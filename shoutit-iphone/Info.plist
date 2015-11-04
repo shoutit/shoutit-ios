@@ -18,6 +18,15 @@
 	<string>1.0.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb174408549569286</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -42,6 +51,16 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>FacebookAppID</key>
+	<string>174408549569286</string>
+	<key>FacebookDisplayName</key>
+	<string>shoutit-iphone</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>com.googleusercontent.apps.759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5</string>
+		<string>com.shoutit-iphone-n</string>
+		<string>fbauth2</string>
 	</array>
 </dict>
 </plist>

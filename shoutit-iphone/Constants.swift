@@ -9,7 +9,17 @@
 import Foundation
 
 struct Constants {
-
+    
+    struct Google {
+        static let clientID = "759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5.apps.googleusercontent.com"
+    }
+    
+    struct RegEx {
+        static let REGEX_EMAIL = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}"
+        static let REGEX_PASSWORD_LIMIT = "^.{6,20}$"
+        
+    }
+    
     struct SharedUserDefaults {
         
     }

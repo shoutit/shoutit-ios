@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="158.40000000000001" y="-739.81999999999994"/>
         </scene>
-        <!--Main Login View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Tr5-Br-7su">
             <objects>
-                <tableViewController storyboardIdentifier="MainLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5oo-Dh-1Lr" customClass="MainLoginViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5oo-Dh-1Lr" customClass="SHLoginViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aAF-MA-a1q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +116,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="singInSwitchAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="OXF-7F-s30"/>
+                                        <action selector="signInSwitchAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="M7w-dZ-OHA"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWG-QA-ehP">
@@ -132,7 +132,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="singUpSwitchAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="IEd-iO-XUt"/>
+                                        <action selector="signUpSwitchAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="LjQ-em-vB4"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -165,7 +165,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="googleLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="b4S-0q-3xl"/>
+                                        <action selector="googleLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="zye-ix-c1V"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hds-7U-9An">
@@ -176,7 +176,7 @@
                                         <constraint firstAttribute="height" constant="15" id="p83-K3-28G"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                    <color key="textColor" red="0.94856178980000005" green="0.94856178980000005" blue="0.94856178980000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYf-bn-aPH">
@@ -189,7 +189,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="facebookLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="3H3-fs-97E"/>
+                                        <action selector="facebookLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="FsS-oV-Ukc"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="VMB-Mo-mNX">
@@ -205,7 +205,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="shoutitLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="EBN-1b-VZj"/>
+                                        <action selector="shoutitLoginAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="v4Q-kf-mxC"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1L-1q-gii">
@@ -220,7 +220,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="resetPasswordAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="W18-Y4-cbh"/>
+                                        <action selector="resetPasswordAction:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="40U-5h-UXB"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr0-25-vk6">
@@ -236,7 +236,7 @@
                                         <color key="titleColor" red="0.53725490196078429" green="0.85098039215686272" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="skipLogin:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="xWl-Gc-s36"/>
+                                        <action selector="skipLogin:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="LCE-PN-f6d"/>
                                     </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18A-eu-tDu">
@@ -349,10 +349,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="EEz-G0-7ml"/>
                     <connections>
-                        <outlet property="shoutSignInButton" destination="VMB-Mo-mNX" id="rdq-5M-aP4"/>
-                        <outlet property="signInButton" destination="xHB-L0-Ntq" id="mHg-ds-vU0"/>
-                        <outlet property="signUpButton" destination="dWG-QA-ehP" id="9YM-3c-TiJ"/>
-                        <outlet property="textView" destination="18A-eu-tDu" id="ZVM-tO-H8z"/>
+                        <outlet property="shoutSignInButton" destination="VMB-Mo-mNX" id="Nvc-iX-7NJ"/>
+                        <outlet property="signInButton" destination="xHB-L0-Ntq" id="jMC-HO-Ht3"/>
+                        <outlet property="signUpButton" destination="dWG-QA-ehP" id="uSd-Xm-yiZ"/>
+                        <outlet property="textView" destination="18A-eu-tDu" id="CMt-ea-iF6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCz-hz-ywI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -362,7 +362,7 @@
         <!--Modal Web View Controller-->
         <scene sceneID="58h-mt-v3T">
             <objects>
-                <viewController storyboardIdentifier="SHModalWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8It-gC-Axm" customClass="SHModalWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHModalWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8It-gC-Axm" customClass="SHModalWebViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="43u-TV-FMq"/>
                         <viewControllerLayoutGuide type="bottom" id="hbm-oC-bee"/>
@@ -391,7 +391,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="1qZ-d2-otx" id="PwC-dn-5IU"/>
+                        <outlet property="webView" destination="1qZ-d2-otx" id="zPi-hl-AS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDu-6U-KHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -422,7 +422,7 @@
     </scenes>
     <resources>
         <image name="facebookSignUp.png" width="560" height="100"/>
-        <image name="googleSignUp.png" width="560" height="100"/>
+        <image name="googleSignUp.png" width="170" height="170"/>
         <image name="logoWhite" width="255" height="117"/>
         <image name="logoWhite.png" width="511" height="234"/>
     </resources>
