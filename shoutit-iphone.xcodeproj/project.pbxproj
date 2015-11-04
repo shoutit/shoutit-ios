@@ -50,6 +50,8 @@
 		AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F11BE96C98009400BE /* SHLoginModel.swift */; };
 		AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */; };
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
+		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
+		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		AC1C93F11BE96C98009400BE /* SHLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginModel.swift; path = Model/auth/SHLoginModel.swift; sourceTree = "<group>"; };
 		AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Model/base/ModelDelegate.swift; sourceTree = "<group>"; };
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
+		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
+		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +240,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C93FA1BEA8AA5009400BE /* location */,
 				AC1C93F31BE9F152009400BE /* base */,
 				AC1C93F01BE96B10009400BE /* auth */,
 			);
@@ -416,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1C93F11BE96C98009400BE /* SHLoginModel.swift */,
+				AC1C93F81BEA8362009400BE /* SHUser.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -427,6 +433,14 @@
 				AC1C93F61BE9FA55009400BE /* Model.swift */,
 			);
 			name = base;
+			sourceTree = "<group>";
+		};
+		AC1C93FA1BEA8AA5009400BE /* location */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93FB1BEA8B03009400BE /* SHAddress.swift */,
+			);
+			name = location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
+				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
@@ -635,6 +650,7 @@
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
+				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,

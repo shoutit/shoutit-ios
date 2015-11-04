@@ -37,4 +37,8 @@ struct Constants {
         static let SH_CLIENT_SECRET = "209b7e713eca4774b5b2d8c20b779d91"
     }
     
+    struct MixPanel {
+        static let MIXPANEL_TOKEN  = "c9d0a1dc521ac1962840e565fa971574"
+        static let MIXPANEL_USER_DEFAULTS = "MIXPANEL_USER_DEFAULTS"
+    }
 }
