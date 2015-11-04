@@ -15,9 +15,9 @@ class SHApiManager: NSObject {
     
     // Base Urls
     #if DEBUG
-    private let BASE_URL = ""
+    let BASE_URL = "http://dev.api.shoutit.com/v2"
     #else
-    private let BASE_URL = ""
+    let BASE_URL = "https://api.shoutit.com/v2"
     #endif
     
     private override init() {

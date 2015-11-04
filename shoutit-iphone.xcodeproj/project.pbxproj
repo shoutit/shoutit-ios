@@ -35,6 +35,7 @@
 		6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */; };
 		6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA21BE75B7800124C28 /* BaseViewController.swift */; };
 		6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */; };
+		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		AC0CA3131BE7D262009EFBA8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC0CA3121BE7D262009EFBA8 /* GoogleService-Info.plist */; };
 		AC1C93DE1BE8F5B9009400BE /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93DD1BE8F5B9009400BE /* TextFieldValidator.m */; };
 		AC1C93E21BE8F5E0009400BE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */; };
@@ -103,6 +104,7 @@
 		6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = View/common/BaseTableViewController.swift; sourceTree = "<group>"; };
 		6027CFA21BE75B7800124C28 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = View/common/BaseViewController.swift; sourceTree = "<group>"; };
 		6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHNavigationViewController.swift; path = View/common/SHNavigationViewController.swift; sourceTree = "<group>"; };
+		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AC0CA3121BE7D262009EFBA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		6027CF671BE74F9800124C28 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				607F75721BEA68BE00F3BA86 /* auth */,
 				6027CF8C1BE7529500124C28 /* SHApiManager.swift */,
 				6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */,
 			);
@@ -369,6 +372,14 @@
 				6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		607F75721BEA68BE00F3BA86 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */,
+			);
+			name = auth;
 			sourceTree = "<group>";
 		};
 		AC1C93D81BE8EC8D009400BE /* Libraries */ = {
@@ -615,6 +626,7 @@
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
+				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
@@ -676,6 +688,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -721,6 +734,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -745,6 +759,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -754,7 +769,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone-n";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -767,6 +782,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -775,7 +791,7 @@
 				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone-n";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 			};

@@ -160,7 +160,7 @@
                                         <constraint firstAttribute="width" secondItem="scI-kH-Z81" secondAttribute="height" multiplier="115:22" id="HGm-kE-5d7"/>
                                     </constraints>
                                     <color key="tintColor" red="0.20429365860000001" green="1" blue="0.20834750120000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" image="googleSignUp.png">
+                                    <state key="normal" image="googleSignUp">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -185,7 +185,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="ZYf-bn-aPH" secondAttribute="height" multiplier="115:22" id="iEa-BK-ETU"/>
                                     </constraints>
-                                    <state key="normal" image="facebookSignUp.png">
+                                    <state key="normal" image="facebookSignUp">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -239,7 +239,7 @@
                                         <action selector="skipLogin:" destination="5oo-Dh-1Lr" eventType="touchUpInside" id="LCE-PN-f6d"/>
                                     </connections>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18A-eu-tDu">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18A-eu-tDu" userLabel="TextView - Terms and Conditions">
                                     <rect key="frame" x="39" y="250" width="242" height="67"/>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -330,7 +330,7 @@
                                         </view>
                                     </subviews>
                                     <animations/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.59607843140000005" green="0.86274509799999999" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="U92-7S-0nQ" secondAttribute="trailing" constant="45" id="3sT-ER-euM"/>
                                         <constraint firstAttribute="bottom" secondItem="U92-7S-0nQ" secondAttribute="bottom" id="501-27-0pZ"/>
@@ -352,7 +352,7 @@
                         <outlet property="shoutSignInButton" destination="VMB-Mo-mNX" id="Nvc-iX-7NJ"/>
                         <outlet property="signInButton" destination="xHB-L0-Ntq" id="jMC-HO-Ht3"/>
                         <outlet property="signUpButton" destination="dWG-QA-ehP" id="uSd-Xm-yiZ"/>
-                        <outlet property="textView" destination="18A-eu-tDu" id="CMt-ea-iF6"/>
+                        <outlet property="termsAndConditionsTextView" destination="18A-eu-tDu" id="o7h-ZG-pDl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCz-hz-ywI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,7 +421,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="facebookSignUp" width="560" height="100"/>
         <image name="facebookSignUp.png" width="560" height="100"/>
+        <image name="googleSignUp" width="560" height="100"/>
         <image name="googleSignUp.png" width="170" height="170"/>
         <image name="logoWhite" width="255" height="117"/>
         <image name="logoWhite.png" width="511" height="234"/>
