@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (3.1.1)
-  - FXKeychain (1.5.3)
   - GoogleAppUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleAuthUtilities (1.0.1):
@@ -19,6 +18,9 @@ PODS:
   - HanekeSwift (0.10.0)
   - Kingfisher (1.7.1)
   - MBProgressHUD (0.9.1)
+  - Mixpanel (2.9.0):
+    - Mixpanel/Mixpanel (= 2.9.0)
+  - Mixpanel/Mixpanel (2.9.0)
   - ObjectMapper (0.19)
   - SVPullToRefresh (0.4.1)
   - SwiftyJSON (2.3.1)
@@ -26,11 +28,11 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
-  - FXKeychain (~> 1.5)
   - GoogleSignIn (~> 2.4)
   - HanekeSwift
   - Kingfisher (~> 1.7)
   - MBProgressHUD (~> 0.9.1)
+  - Mixpanel (~> 2.9)
   - ObjectMapper (~> 0.19)
   - SVPullToRefresh (~> 0.4)
   - SwiftyJSON (~> 2.3.1)
@@ -38,7 +40,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
-  FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
@@ -48,6 +49,7 @@ SPEC CHECKSUMS:
   HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
   Kingfisher: c65d078cfc202639f2b6ddd49f09f742cef8781a
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   ObjectMapper: a88114e5df20f055da63029f25cbc01014847c91
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3

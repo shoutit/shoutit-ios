@@ -3,4 +3,5 @@
 //
 #import <GoogleSignIn/GoogleSignIn.h>
 #import "TextFieldValidator.h"
+#import <Mixpanel/Mixpanel.h>
 
