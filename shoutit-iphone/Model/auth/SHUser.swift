@@ -10,5 +10,10 @@ import Foundation
 
 class SHUser: NSObject {
     
+    var userLocation: SHAddress
+    
+    required init(userLocation: SHAddress) {
+        self.userLocation = userLocation
+    }
 
 }
