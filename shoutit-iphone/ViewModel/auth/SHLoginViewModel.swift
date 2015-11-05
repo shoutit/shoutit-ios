@@ -10,11 +10,12 @@ import UIKit
 
 class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
 
-    var viewController: SHLoginViewController
-    
-    var isSignIn = Bool()
-    var signArray = [[String: AnyObject]]()
+    private var viewController: SHLoginViewController
+    private var isSignIn = Bool()
+    private var signArray = [[String: AnyObject]]()
     private let webViewController = SHModalWebViewController()
+    
+    private let shApiAuthService = SHApiAuthService()
     
     required init(viewController: SHLoginViewController) {
         self.viewController = viewController
@@ -52,6 +53,17 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             // Perform API Request
             if (self.isSignIn) {
                 // Perform Sign In
+                if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
+                    shApiAuthService.performLogin(email, password: password, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
+                        
+                        }, completionHandler: { (response) -> Void in
+                            if response.result.isSuccess {
+                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
+                            } else {
+                                
+                            }
+                    })
+                }
             } else {
                 // Perform SignUp
             }
@@ -243,7 +255,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                 return false
             }
         }
-        if self.isSignIn, let nameTextField = self.signArray[2]["nameTextField"] as? TextFieldValidator {
+        if !self.isSignIn, let nameTextField = self.signArray[2]["nameTextField"] as? TextFieldValidator {
             if(!nameTextField.validate()) {
                 // nameTextField.tapOnError()
                 return false

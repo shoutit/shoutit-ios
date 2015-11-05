@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (3.1.1)
+  - AlamofireObjectMapper (2.0.0):
+    - Alamofire (~> 3.1.0)
+    - ObjectMapper (~> 1.0)
+  - CryptoSwift (0.1.1)
   - GoogleAppUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleAuthUtilities (1.0.1):
@@ -28,8 +32,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
+  - AlamofireObjectMapper (~> 2.0)
+  - CryptoSwift
   - GoogleSignIn (~> 2.4)
-  - HanekeSwift
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
   - Kingfisher (~> 1.7)
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
@@ -38,8 +44,19 @@ DEPENDENCIES:
   - SwiftyJSON (~> 2.3.1)
   - XCGLogger (~> 3.0)
 
+EXTERNAL SOURCES:
+  HanekeSwift:
+    :git: https://github.com/Haneke/HanekeSwift.git
+
+CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 305dec9eec596a375698d859b550cf0d3e43d2a8
+    :git: https://github.com/Haneke/HanekeSwift.git
+
 SPEC CHECKSUMS:
   Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
+  AlamofireObjectMapper: 2d2d99d39661e5af68f377c4f7f659d6e0b9a015
+  CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c

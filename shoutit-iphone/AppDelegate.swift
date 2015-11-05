@@ -26,14 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             log.setup(.None, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #endif
         
+        SHMixpanelHelper.openApp()
+        
         // Initialize sign-in
-       // let configureError: NSError?
-      //  GGLContext.sharedInstance().configureWithError(&configureError)
-      //  assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        // let configureError: NSError?
+        // GGLContext.sharedInstance().configureWithError(&configureError)
+        // assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         GIDSignIn.sharedInstance().delegate = self
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
+        if let cachedOauthToken = SHOauthToken.getFromCache() {
+            if cachedOauthToken.isSignedIn(), let token = cachedOauthToken.accessToken {
+                // User Already Signed In
+                // TODO get discover items
+                // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
+            } else {
+                // Not Signed In
+            }
+        } else {
+            // Not Signed In
+        }
+        
         return true
     }
     
@@ -108,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        SHMixpanelHelper.closeApp()
     }
 
 

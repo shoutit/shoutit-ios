@@ -21,7 +21,8 @@ struct Constants {
     }
     
     struct SharedUserDefaults {
-        
+        static let MIXPANEL = ".User.Defaults.Mixpanel"
+        static let INIT_LOCATION = ".User.Init.Location"
     }
     
     struct StoryboardIdentifier {
@@ -39,6 +40,9 @@ struct Constants {
     
     struct MixPanel {
         static let MIXPANEL_TOKEN  = "c9d0a1dc521ac1962840e565fa971574"
-        static let MIXPANEL_USER_DEFAULTS = "MIXPANEL_USER_DEFAULTS"
+    }
+    
+    struct Cache {
+        static let OauthToken  = ".sh.cache.oauthToken"
     }
 }

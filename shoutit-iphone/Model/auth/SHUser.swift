@@ -7,13 +7,20 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class SHUser: NSObject {
+class SHUser: Mappable {
     
-    var userLocation: SHAddress
+    private(set) var apiUrl: String?
+    private(set) var bio: String = ""
     
-    required init(userLocation: SHAddress) {
-        self.userLocation = userLocation
+    required init?(_ map: Map) {
+        
     }
 
+    // Mappable
+    func mapping(map: Map) {
+        apiUrl              <- map["api_url"]
+        bio                 <- map["bio"]
+    }
 }
