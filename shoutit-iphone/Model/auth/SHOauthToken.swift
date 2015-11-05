@@ -9,7 +9,6 @@
 import UIKit
 import ObjectMapper
 import Haneke
-import Bolts
 
 class SHOauthToken: Mappable {
 

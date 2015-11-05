@@ -54,6 +54,7 @@
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
+		AC1C94001BEB7CCF009400BE /* English-locale.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC1C94021BEB7CCF009400BE /* English-locale.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
+		AC1C94011BEB7CCF009400BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/English-locale.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 		6027CF661BE74F7800124C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C93FD1BEB78DA009400BE /* Localization */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -449,6 +452,14 @@
 			name = location;
 			sourceTree = "<group>";
 		};
+		AC1C93FD1BEB78DA009400BE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C94021BEB7CCF009400BE /* English-locale.strings */,
+			);
+			name = Localization;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -537,7 +548,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = 6027CF281BE74EAE00124C28;
 			productRefGroup = 6027CF321BE74EAE00124C28 /* Products */;
@@ -563,6 +573,7 @@
 				6027CF821BE751ED00124C28 /* CameraStoryboard.storyboard in Resources */,
 				6027CF8B1BE751ED00124C28 /* TagStoryboard.storyboard in Resources */,
 				6027CF831BE751ED00124C28 /* CreateShoutStoryboard.storyboard in Resources */,
+				AC1C94001BEB7CCF009400BE /* English-locale.strings in Resources */,
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
 				6027CF861BE751ED00124C28 /* Launch Screen.xib in Resources */,
 				6027CF871BE751ED00124C28 /* MainStoryboard.storyboard in Resources */,
@@ -702,6 +713,18 @@
 			targetProxy = 6027CF511BE74EAE00124C28 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AC1C94021BEB7CCF009400BE /* English-locale.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC1C94011BEB7CCF009400BE /* en */,
+			);
+			name = "English-locale.strings";
+			path = "Supporting Files/Localization";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6027CF571BE74EAF00124C28 /* Debug */ = {

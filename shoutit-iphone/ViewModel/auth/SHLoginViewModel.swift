@@ -171,10 +171,10 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         switch (indexPath.row) {
         case 0:
             self.signArray[indexPath.row]["emailTextField"] = textView
-            textView.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: "Enter valid email.") // Todo Localization
+            textView.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("Enter valid email.", comment: "Enter valid email."))
         case 1:
             self.signArray[indexPath.row]["passwordTextField"] = textView
-            textView.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: "Password charaters limit should be come between 6-20") // Todo Localization
+            textView.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("Password charaters limit should be come between 6-20", comment: "Password charaters limit should be come between 6-20"))
             textView.secureTextEntry = true
         case 2:
             self.signArray[indexPath.row]["nameTextField"] = textView
@@ -237,7 +237,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             }
             emailTextField.resignFirstResponder()
             if(emailTextField.text == "") {
-                let ac = UIAlertController(title: "Email not set", message: "Please enter the email.", preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
+                let ac = UIAlertController(title: NSLocalizedString("Email not set", comment: "Email not set") , message: NSLocalizedString("Please enter the email.", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
@@ -250,7 +250,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             passwordTextField.resignFirstResponder()
             
             if(passwordTextField.text == "") {
-                let ac = UIAlertController(title: "Password not set", message: "Please enter the password.", preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
+                let ac = UIAlertController(title: NSLocalizedString("Password not set", comment: "Password not set"), message: NSLocalizedString("Please enter the password.", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
