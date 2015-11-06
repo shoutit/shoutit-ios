@@ -35,9 +35,9 @@
 	<string>shoutit-iphone</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>com.googleusercontent.apps.759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5</string>
-		<string>com.shoutit-iphone.swift</string>
 		<string>fbauth2</string>
+		<string>com.shoutit-iphone.swift</string>
+		<string>com.googleusercontent.apps.759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -31,4 +31,19 @@ class SHApiAuthService: NSObject {
         SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func performSignUp(email: String, password: String, name: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+        var params = [
+            "client_id": Constants.Authentication.SH_CLIENT_ID,
+            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
+            "grant_type": "shoutit_signup",
+            "email": email,
+            "password": password,
+            "name": name
+        ]
+        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
+            params["mixpanel_distinct_id"] = mixPanelDistinctId
+        }
+        getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
 }

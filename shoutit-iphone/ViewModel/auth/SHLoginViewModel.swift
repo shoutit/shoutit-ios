@@ -66,6 +66,17 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                 }
             } else {
                 // Perform SignUp
+                if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String, let name = self.signArray[2]["text"] as? String {
+                    shApiAuthService.performSignUp(email, password: password, name: name, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
+                        
+                        }, completionHandler: { (response) -> Void in
+                            if response.result.isSuccess {
+                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
+                            } else {
+                                
+                            }
+                    })
+                }
             }
         }
         
@@ -162,8 +173,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         let textView = cell.viewWithTag(100) as! TextFieldValidator
         textView.presentInView = tableView.window
         let dict = self.signArray[indexPath.row]
-        textView.text = dict["text"]?.stringValue
-        textView.placeholder = dict["placeholder"]?.stringValue
+        textView.text = dict["text"] as? String
+        textView.placeholder = dict["placeholder"] as? String
         textView.addTarget(self, action: NSSelectorFromString(dict["selector"]! as! String), forControlEvents: UIControlEvents.EditingChanged)
         textView.addTarget(self, action: NSSelectorFromString(dict["selectorBegin"]! as! String), forControlEvents: UIControlEvents.EditingDidBegin)
         textView.isMandatory = true

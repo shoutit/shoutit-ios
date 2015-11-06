@@ -54,7 +54,7 @@
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
-		AC1C94001BEB7CCF009400BE /* English-locale.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC1C94021BEB7CCF009400BE /* English-locale.strings */; };
+		AC1C940B1BEBBA10009400BE /* English-locale.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC1C94091BEBBA10009400BE /* English-locale.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,7 +132,7 @@
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
-		AC1C94011BEB7CCF009400BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/English-locale.strings"; sourceTree = "<group>"; };
+		AC1C940A1BEBBA10009400BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/English-locale.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +209,7 @@
 		6027CF331BE74EAE00124C28 /* shoutit-iphone */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C94031BEBB911009400BE /* Resources */,
 				6027CF621BE74F5200124C28 /* Model */,
 				6027CF631BE74F5F00124C28 /* Util */,
 				6027CF641BE74F6F00124C28 /* View */,
@@ -288,7 +289,6 @@
 		6027CF661BE74F7800124C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C93FD1BEB78DA009400BE /* Localization */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -452,12 +452,21 @@
 			name = location;
 			sourceTree = "<group>";
 		};
-		AC1C93FD1BEB78DA009400BE /* Localization */ = {
+		AC1C94031BEBB911009400BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C94021BEB7CCF009400BE /* English-locale.strings */,
+				AC1C94081BEBBA10009400BE /* Localization */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC1C94081BEBBA10009400BE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C94091BEBBA10009400BE /* English-locale.strings */,
 			);
 			name = Localization;
+			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,7 +582,7 @@
 				6027CF821BE751ED00124C28 /* CameraStoryboard.storyboard in Resources */,
 				6027CF8B1BE751ED00124C28 /* TagStoryboard.storyboard in Resources */,
 				6027CF831BE751ED00124C28 /* CreateShoutStoryboard.storyboard in Resources */,
-				AC1C94001BEB7CCF009400BE /* English-locale.strings in Resources */,
+				AC1C940B1BEBBA10009400BE /* English-locale.strings in Resources */,
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
 				6027CF861BE751ED00124C28 /* Launch Screen.xib in Resources */,
 				6027CF871BE751ED00124C28 /* MainStoryboard.storyboard in Resources */,
@@ -715,13 +724,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC1C94021BEB7CCF009400BE /* English-locale.strings */ = {
+		AC1C94091BEBBA10009400BE /* English-locale.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AC1C94011BEB7CCF009400BE /* en */,
+				AC1C940A1BEBBA10009400BE /* en */,
 			);
 			name = "English-locale.strings";
-			path = "Supporting Files/Localization";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -818,6 +826,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,6 +850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
