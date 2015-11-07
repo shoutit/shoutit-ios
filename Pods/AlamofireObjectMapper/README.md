@@ -36,19 +36,8 @@ Given a URL which returns weather data in the following form:
 You can use this extension as the follows:
 ```swift
 let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
-Alamofire.request(.GET, URL, parameters: nil)
-         .responseObject { (response: WeatherResponse?, error: ErrorType?) in
-            print(response?.location)
-            if let threeDayForecast = response?.threeDayForecast {
-                for forecast in threeDayForecast {
-                    print(forecast.day)
-                    print(forecast.temperature)           
-                }
-            }
-}
 Alamofire.request(.GET, URL).responseObject("data") { (response: Response<WeatherResponse, NSError>) in
-            expectation.fulfill()
-            
+
     let weatherResponse = response.result.value
     
     print(weatherResponse?.location)
@@ -161,10 +150,10 @@ Alamofire.request(.GET, URL).responseArray { (response: Response<[Forecast], NSE
 #Installation
 AlamofireObjectMapper can be added to your project using [Cocoapods](https://cocoapods.org/) by adding the following line to your Podfile:
 ```
-pod 'AlamofireObjectMapper', '~> 1.0'
+pod 'AlamofireObjectMapper', '~> 2.0'
 ```
 
 If your using [Carthage](https://github.com/Carthage/Carthage) you can add a dependency on AlamofireObjectMapper by adding it to your Cartfile:
 ```
-github "tristanhimmelman/AlamofireObjectMapper" ~> 1.0
+github "tristanhimmelman/AlamofireObjectMapper" ~> 2.0
 ```
