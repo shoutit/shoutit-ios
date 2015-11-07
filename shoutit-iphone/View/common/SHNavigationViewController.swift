@@ -8,20 +8,30 @@
 
 import UIKit
 
-class SHNavigationViewController: UINavigationController {
+class SHNavigation: NSObject { //UINavigationController
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        // Do any additional setup after loading the view.
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+    
+    func viewControllerWithId(viewControllerId: String) -> AnyObject {
+        return viewControllerFromStoryboard(viewControllerId, withViewControllerId: viewControllerId)
     }
     
-
+    func viewControllerFromStoryboard(storyboardName: String, withViewControllerId viewControllerId: String) -> AnyObject {
+        return UIStoryboard(name: storyboardName, bundle: nil).instantiateViewControllerWithIdentifier(viewControllerId)
+    }
+    
+    func storyboard(storyboardName: String) -> AnyObject {
+        return UIStoryboard(name: storyboardName, bundle: nil)
+    }
     /*
     // MARK: - Navigation
 

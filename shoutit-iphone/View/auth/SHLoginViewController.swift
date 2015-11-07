@@ -7,18 +7,46 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class SHLoginViewController: BaseTableViewController {
+class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
 
+    @IBOutlet weak var shoutSignInButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var termsAndConditionsTextView: UITextView!
+    
     private var viewModel: SHLoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.viewDidLoad()
+        
+        // Google instance
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true;
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false;
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true;
+        // Uncomment to automatically sign in the user.
+        GIDSignIn.sharedInstance().signInSilently()
+        
         
         // Setup Delegates and data Source
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
+        
+        self.shoutSignInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), forState: UIControlState.Normal)
+        self.setNeedsStatusBarAppearanceUpdate()
+        
+        self.shoutSignInButton.layer.cornerRadius = 0.5
+        self.signInButton.layer.cornerRadius = 5
+        self.signUpButton.layer.cornerRadius = 5
+        self.signInButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.signUpButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.signInButton.layer.borderWidth = 1
+        
+        viewModel?.viewDidLoad()
     }
     
     override func initializeViewModel() {
@@ -43,12 +71,81 @@ class SHLoginViewController: BaseTableViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel?.viewDidDisappear()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func facebookLoginAction(sender: AnyObject) {
+        let login: FBSDKLoginManager = FBSDKLoginManager()
+        login.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            if (error != nil) {
+                log.info("Process error")
+            } else {
+                if result.isCancelled {
+                    log.info("Cancelled")
+                } else {
+                    log.info("Logged in")
+                }
+            }
+        }
+        
+    }
+    
+    @IBAction func googleLoginAction(sender: AnyObject) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func resetPasswordAction(sender: AnyObject) {
+        viewModel?.resetPassword()
+    }
+    
+    @IBAction func shoutitLoginAction(sender: AnyObject) {
+        viewModel?.performLogin()
+    }
+    
+    @IBAction func signInSwitchAction(sender: AnyObject) {
+        viewModel?.switchSignIn()
+    }
+    
+    @IBAction func signUpSwitchAction(sender: AnyObject) {
+        viewModel?.switchSignUp()
+    }
+    
+    @IBAction func skipLogin(sender: AnyObject) {
+        
+    }
+    
+    // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+    // UIViewController.
+    
+    // Stop the UIActivityIndicatorView animation that was started when the user
+    // pressed the Sign In button
+    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
+       // myActivityIndicator.stopAnimating()
+    }
+    
+    // Present a view that prompts the user to sign in with Google
+    func signIn(signIn: GIDSignIn!,
+        presentViewController viewController: UIViewController!) {
+            self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    // Dismiss the "Sign in with Google" view
+    func signIn(signIn: GIDSignIn!,
+        dismissViewController viewController: UIViewController!) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // SignOut from Google
+//    @IBAction func didTapSignOut(sender: AnyObject) {
+//        GIDSignIn.sharedInstance().signOut()
+//    }
+    
     
     deinit {
         viewModel?.destroy()

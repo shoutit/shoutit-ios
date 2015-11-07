@@ -35,6 +35,30 @@
 		6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */; };
 		6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA21BE75B7800124C28 /* BaseViewController.swift */; };
 		6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */; };
+		604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */; };
+		604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */; };
+		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
+		604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */; };
+		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
+		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
+		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
+		607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */; };
+		607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */; };
+		AC1C93E21BE8F5E0009400BE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */; };
+		AC1C93E31BE8F5E0009400BE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */; };
+		AC1C93E41BE8F5E0009400BE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */; };
+		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
+		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
+		AC1C93EB1BE90D2A009400BE /* tos.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* tos.html */; };
+		AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */; };
+		AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93EE1BE90F60009400BE /* SHModalWebViewModel.swift */; };
+		AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F11BE96C98009400BE /* SHLoginModel.swift */; };
+		AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */; };
+		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
+		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
+		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
+		AC1C940B1BEBBA10009400BE /* English-locale.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC1C94091BEBBA10009400BE /* English-locale.strings */; };
+		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +114,33 @@
 		6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = View/common/BaseTableViewController.swift; sourceTree = "<group>"; };
 		6027CFA21BE75B7800124C28 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = View/common/BaseViewController.swift; sourceTree = "<group>"; };
 		6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHNavigationViewController.swift; path = View/common/SHNavigationViewController.swift; sourceTree = "<group>"; };
+		604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSuccess.swift; path = Model/SHSuccess.swift; sourceTree = "<group>"; };
+		604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginInputTableViewCell.swift; path = View/auth/SHLoginInputTableViewCell.swift; sourceTree = "<group>"; };
+		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
+		604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiUserService.swift; path = Util/api/users/SHApiUserService.swift; sourceTree = "<group>"; };
+		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
+		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
+		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
+		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
+		607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationManager.swift; path = Util/helpers/SHLocationManager.swift; sourceTree = "<group>"; };
+		607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHOauthToken.swift; path = Model/auth/SHOauthToken.swift; sourceTree = "<group>"; };
 		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
+		AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
+		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
+		AC1C93E81BE90D2A009400BE /* tos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tos.html; path = View/auth/Resource/tos.html; sourceTree = "<group>"; };
+		AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHModalWebViewController.swift; path = View/auth/SHModalWebViewController.swift; sourceTree = "<group>"; };
+		AC1C93EE1BE90F60009400BE /* SHModalWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHModalWebViewModel.swift; path = ViewModel/auth/SHModalWebViewModel.swift; sourceTree = "<group>"; };
+		AC1C93F11BE96C98009400BE /* SHLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginModel.swift; path = Model/auth/SHLoginModel.swift; sourceTree = "<group>"; };
+		AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Model/base/ModelDelegate.swift; sourceTree = "<group>"; };
+		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
+		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
+		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
+		AC1C940A1BEBBA10009400BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/English-locale.strings"; sourceTree = "<group>"; };
+		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +148,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC1C93E41BE8F5E0009400BE /* FBSDKShareKit.framework in Frameworks */,
 				29C192902C2FA8F624DECC34 /* Pods.framework in Frameworks */,
+				AC1C93E21BE8F5E0009400BE /* FBSDKCoreKit.framework in Frameworks */,
+				AC1C93E31BE8F5E0009400BE /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +175,9 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */,
+				AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */,
+				AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */,
 				24DD26576469F744E4920C92 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -161,15 +217,19 @@
 		6027CF331BE74EAE00124C28 /* shoutit-iphone */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C94031BEBB911009400BE /* Resources */,
 				6027CF621BE74F5200124C28 /* Model */,
 				6027CF631BE74F5F00124C28 /* Util */,
 				6027CF641BE74F6F00124C28 /* View */,
 				6027CF651BE74F7300124C28 /* ViewModel */,
 				6027CF661BE74F7800124C28 /* Supporting Files */,
+				607F75771BEA6F0300F3BA86 /* Libraries */,
 				6027CF341BE74EAE00124C28 /* AppDelegate.swift */,
 				6027CF901BE7539300124C28 /* Constants.swift */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
 				6027CF401BE74EAE00124C28 /* Info.plist */,
+				AC5340CB1BED44850065A578 /* GoogleService-Info.plist */,
+				AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */,
 			);
 			path = "shoutit-iphone";
 			sourceTree = "<group>";
@@ -195,6 +255,10 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C93FA1BEA8AA5009400BE /* location */,
+				AC1C93F31BE9F152009400BE /* base */,
+				AC1C93F01BE96B10009400BE /* auth */,
+				604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -226,6 +290,7 @@
 				6027CF951BE757E100124C28 /* auth */,
 				6027CF721BE7506B00124C28 /* splash */,
 				6027CF9A1BE7596E00124C28 /* protocols */,
+				AC1C93EE1BE90F60009400BE /* SHModalWebViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -240,6 +305,9 @@
 		6027CF671BE74F9800124C28 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				604A0DD11BEE6037002A80E7 /* users */,
+				604A0DCE1BEE5898002A80E7 /* misc */,
+				607F75721BEA68BE00F3BA86 /* auth */,
 				6027CF8C1BE7529500124C28 /* SHApiManager.swift */,
 				6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */,
 			);
@@ -249,6 +317,8 @@
 		6027CF681BE74F9D00124C28 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */,
+				607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -297,7 +367,10 @@
 		6027CF941BE757DA00124C28 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				AC1C93E51BE90BF7009400BE /* Resource */,
 				6027CF961BE7583800124C28 /* SHLoginViewController.swift */,
+				AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */,
+				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -327,6 +400,101 @@
 				6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		604A0DCE1BEE5898002A80E7 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */,
+			);
+			name = misc;
+			sourceTree = "<group>";
+		};
+		604A0DD11BEE6037002A80E7 /* users */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */,
+			);
+			name = users;
+			sourceTree = "<group>";
+		};
+		607F75721BEA68BE00F3BA86 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */,
+			);
+			name = auth;
+			sourceTree = "<group>";
+		};
+		607F75771BEA6F0300F3BA86 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				607F75781BEA6F0D00F3BA86 /* TextFieldValidator */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		607F75781BEA6F0D00F3BA86 /* TextFieldValidator */ = {
+			isa = PBXGroup;
+			children = (
+				607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */,
+				607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */,
+			);
+			name = TextFieldValidator;
+			sourceTree = "<group>";
+		};
+		AC1C93E51BE90BF7009400BE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93E61BE90D2A009400BE /* policy.html */,
+				AC1C93E71BE90D2A009400BE /* rules.html */,
+				AC1C93E81BE90D2A009400BE /* tos.html */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		AC1C93F01BE96B10009400BE /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93F11BE96C98009400BE /* SHLoginModel.swift */,
+				AC1C93F81BEA8362009400BE /* SHUser.swift */,
+				607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */,
+			);
+			name = auth;
+			sourceTree = "<group>";
+		};
+		AC1C93F31BE9F152009400BE /* base */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */,
+				AC1C93F61BE9FA55009400BE /* Model.swift */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
+		AC1C93FA1BEA8AA5009400BE /* location */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93FB1BEA8B03009400BE /* SHAddress.swift */,
+			);
+			name = location;
+			sourceTree = "<group>";
+		};
+		AC1C94031BEBB911009400BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C94081BEBBA10009400BE /* Localization */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC1C94081BEBBA10009400BE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C94091BEBBA10009400BE /* English-locale.strings */,
+			);
+			name = Localization;
+			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,7 +585,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = 6027CF281BE74EAE00124C28;
 			productRefGroup = 6027CF321BE74EAE00124C28 /* Products */;
@@ -436,16 +603,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
+				AC1C93EB1BE90D2A009400BE /* tos.html in Resources */,
 				6027CF851BE751ED00124C28 /* FilterStoryboard.storyboard in Resources */,
 				6027CF821BE751ED00124C28 /* CameraStoryboard.storyboard in Resources */,
 				6027CF8B1BE751ED00124C28 /* TagStoryboard.storyboard in Resources */,
 				6027CF831BE751ED00124C28 /* CreateShoutStoryboard.storyboard in Resources */,
+				AC1C940B1BEBBA10009400BE /* English-locale.strings in Resources */,
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
 				6027CF861BE751ED00124C28 /* Launch Screen.xib in Resources */,
 				6027CF871BE751ED00124C28 /* MainStoryboard.storyboard in Resources */,
 				6027CF8A1BE751ED00124C28 /* StreamStoryboard.storyboard in Resources */,
 				6027CF841BE751ED00124C28 /* Discover.storyboard in Resources */,
+				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				6027CF931BE7575400124C28 /* LoginStoryboard.storyboard in Resources */,
+				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				6027CF881BE751ED00124C28 /* ProfileStoryboard.storyboard in Resources */,
 				6027CF891BE751ED00124C28 /* SettingsStoryboard.storyboard in Resources */,
 			);
@@ -521,18 +693,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
+				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
+				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
+				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
+				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
+				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
+				AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
+				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
+				AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
+				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
+				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
+				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
+				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
+				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
+				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
+				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
 				6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
+				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +755,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		AC1C94091BEBBA10009400BE /* English-locale.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC1C940A1BEBBA10009400BE /* en */,
+			);
+			name = "English-locale.strings";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		6027CF571BE74EAF00124C28 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -588,6 +787,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -633,6 +833,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -656,12 +857,22 @@
 			baseConfigurationReference = 5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -670,11 +881,20 @@
 			baseConfigurationReference = 7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 			};
 			name = Release;
 		};
