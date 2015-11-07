@@ -78,36 +78,11 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                     })
                 }
             }
+        } else {
+            log.debug("Incorrect Email or Password")
         }
         
-        if (self.isSignIn) {
-        }
-        
-        //        if(self.isSignIn)
-        //        {
-        //            self.
-        //
-        //            [self.loginModel signInWithShout:emailTextField.text pass:passwordTextField.text];
-        //            [self.view addSubview:self.greenView];
-        //            [SVProgressHUD showWithStatus:NSLocalizedString(@"Signing In..." , @"Signing In..." ) maskType:SVProgressHUDMaskTypeBlack];
-        //
-        //        }else{
-        //            if(![nameTextField validate])
-        //            {
-        //                [nameTextField tapOnError];
-        //                return;
-        //            }
-        //            [nameTextField resignFirstResponder];
-        //            if ([nameTextField.text  isEqual:  @""])
-        //            {
-        //                [UIAlertView showAlertWithTitle:NSLocalizedString(@"Name not set", @"Name not set") message:NSLocalizedString(@"Please enter the name.", @"Please enter the name.")];
-        //                return;
-        //            }
-        //            [self.loginModel signUpWithShout:emailTextField.text pass:passwordTextField.text name:nameTextField.text];
-        //            [self.view addSubview:self.greenView];
-        //            [SVProgressHUD showWithStatus:NSLocalizedString(@"Signing In...", @"Signing In...") maskType:SVProgressHUDMaskTypeBlack];
-        //            
-        //        }
+
     }
     
     func switchSignIn() {
@@ -140,6 +115,33 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             completion: {(finished: Bool) in self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Create Account",comment: "Create Account"), forState: UIControlState.Normal)
                 UIView.animateWithDuration(0.1, animations: {self.viewController.shoutSignInButton.titleLabel!.alpha = 1})
         })
+    }
+    
+    func resetPassword() {
+        
+        if let email = self.signArray[0]["text"] as? String where email != "" {
+            if let validEmail = self.signArray[0]["emailTextField"] as? TextFieldValidator  {
+                if(!validEmail.validate()) {
+                    return
+                }
+                shApiAuthService.resetPassword(email, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
+                    
+                    }, completionHandler: { (response) -> Void in
+                        if response.result.isSuccess {
+                            log.verbose("Password recovery email will be sent soon.")
+                        } else {
+                            
+                        }
+                })
+                
+            } else {
+                
+            }
+            
+        } else {
+            // Enter email to reset the password
+            log.verbose("Enter email to reset the password")
+        }
     }
     
     // MARK - Selectors

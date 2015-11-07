@@ -11,7 +11,7 @@ import Foundation
 struct Constants {
     
     struct Google {
-        static let clientID = "759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5.apps.googleusercontent.com"
+        static let clientID = "759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp.apps.googleusercontent.com"
     }
     
     struct RegEx {

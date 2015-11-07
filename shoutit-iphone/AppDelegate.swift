@@ -81,12 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //                    object: nil,
 //                    userInfo: ["statusText": "Signed in user:\n\(name)"])
                 // [END_EXCLUDE]
+                
+                
             } else {
                 log.debug("\(error.localizedDescription)")
-                // [START_EXCLUDE silent]
-                NSNotificationCenter.defaultCenter().postNotificationName(
-                    "ToggleAuthUINotification", object: nil, userInfo: nil)
-                // [END_EXCLUDE]
             }
             }
     }

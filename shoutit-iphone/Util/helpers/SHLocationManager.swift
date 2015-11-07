@@ -14,11 +14,12 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = SHLocationManager()
     
     private let clLocationManager = CLLocationManager()
-    private var currentLocation = CLLocation()
+    private var currentLocation:CLLocation?
     private let geoCoder = CLGeocoder()
     private var country: String = ""
     private var isUpdating = false
     private var currentAddress: SHAddress?
+    private var placemark: CLPlacemark?
     
     private override init() {
         super.init()
@@ -56,4 +57,18 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
 //        let userLoc = CLLocation(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>))
     }
     
+    
+    func isAddressAvailable() -> Bool {
+        return self.currentAddress != nil
+    }
+    
+    func getAddress() -> String {
+        if ((self.placemark) != nil) {
+            return (self.placemark?.thoroughfare)!
+        } else {
+            return ""
+        }
+    }
+    
+   
 }

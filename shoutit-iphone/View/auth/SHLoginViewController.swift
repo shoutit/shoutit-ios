@@ -101,7 +101,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func resetPasswordAction(sender: AnyObject) {
-
+        viewModel?.resetPassword()
     }
     
     @IBAction func shoutitLoginAction(sender: AnyObject) {

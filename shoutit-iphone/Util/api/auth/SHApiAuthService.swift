@@ -12,6 +12,7 @@ import Alamofire
 class SHApiAuthService: NSObject {
 
     private let OAUTH2_ACCESS_TOKEN = SHApiManager.sharedInstance.BASE_URL + "/oauth2/access_token"
+    private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
     func performLogin(email: String, password: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
         var params = [
@@ -45,5 +46,15 @@ class SHApiAuthService: NSObject {
         }
         getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
+    
+    func resetPassword(email: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+        let param = [
+            "email": email
+        
+        ]
+        SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    
     
 }

@@ -26,6 +26,22 @@
 				<string>fb174408549569286</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.shoutit-iphone.swift</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
@@ -37,12 +53,10 @@
 	<array>
 		<string>fbauth2</string>
 		<string>com.shoutit-iphone.swift</string>
-		<string>com.googleusercontent.apps.759293649336-v9benmmh0r4si673gk3305u6lgvmpeb5</string>
+		<string>com.googleusercontent.apps.759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -51,13 +65,15 @@
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
 				<key>NSIncludesSubdomains</key>
 				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
 			</dict>
 		</dict>
 	</dict>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LoginStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
