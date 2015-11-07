@@ -53,4 +53,18 @@ class SHApiAuthService: NSObject {
         return params
     }
     
+    // Login- facebook
+    func loginWithFacebook(fbToken:String,completionHandler: Response<SHOauthToken, NSError> ->Void) {
+        var params = [
+            "client_id": Constants.Authentication.SH_CLIENT_ID,
+            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
+            "grant_type": "facebook_access_token",
+            "facebook_access_token": fbToken
+        ]
+        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
+            params["mixpanel_distinct_id"] = mixPanelDistinctId
+        }
+       SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, completionHandler: completionHandler)
+    }
+    
 }

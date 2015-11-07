@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
 
@@ -14,9 +16,9 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     private var isSignIn = Bool()
     private var signArray = [[String: AnyObject]]()
     private let webViewController = SHModalWebViewController()
-    
     private let shApiAuthService = SHApiAuthService()
-    
+    private var loginMethod: Int?
+   
     required init(viewController: SHLoginViewController) {
         self.viewController = viewController
     }
@@ -47,7 +49,40 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         
     }
     
+    func setLoginMethod(loginMethod: Int) {
+        self.loginMethod = loginMethod
+        if(loginMethod != Enums.LoginMethod.LOGIN_METHOD_NOT_SET_YET.rawValue) {
+            NSUserDefaults.standardUserDefaults().setInteger(loginMethod, forKey: Constants.SharedUserDefaults.USER_DEFAULTS_LOGIN_METHOD)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
     // MARK - ViewController Methods
+    func loginWithFacebook() {
+        self.loginMethod = Enums.LoginMethod.LOGIN_METHOD_FACEBOOK.rawValue
+        let login: FBSDKLoginManager = FBSDKLoginManager()
+        login.logInWithReadPermissions(["public_profile"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            if (error != nil) {
+                log.info("Process error")
+            } else {
+                if result.isCancelled {
+                    log.info("Cancelled")
+                } else {
+                    log.info("Logged in")
+                    if((FBSDKAccessToken.currentAccessToken()) != nil) {
+                    self.shApiAuthService.loginWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString, completionHandler: { (response) -> Void in
+                        if response.result.isSuccess {
+                            log.verbose("AccessToken : \(response.result.value?.accessToken)")
+                        } else {
+                           // ReLogin
+                        }
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
     func performLogin() {
         if validateAuthentication() {
             // Perform API Request

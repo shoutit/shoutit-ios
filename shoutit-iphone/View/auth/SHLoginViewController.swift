@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
 
@@ -81,19 +79,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func facebookLoginAction(sender: AnyObject) {
-        let login: FBSDKLoginManager = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
-            if (error != nil) {
-                log.info("Process error")
-            } else {
-                if result.isCancelled {
-                    log.info("Cancelled")
-                } else {
-                    log.info("Logged in")
-                }
-            }
-        }
-        
+        viewModel?.loginWithFacebook()
     }
     
     @IBAction func googleLoginAction(sender: AnyObject) {
