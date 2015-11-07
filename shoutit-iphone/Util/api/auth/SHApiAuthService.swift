@@ -14,19 +14,18 @@ class SHApiAuthService: NSObject {
     private let OAUTH2_ACCESS_TOKEN = SHApiManager.sharedInstance.BASE_URL + "/oauth2/access_token"
     private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
-    func performLogin(email: String, password: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(
+    func getLoginParams(email: String, password: String) -> [String: AnyObject] {
+        return generateParams(
             "shoutit_signin",
             params: [
                 "email": email,
                 "password": password
             ]
         )
-        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func performSignUp(email: String, password: String, name: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(
+    func getSignUpParams(email: String, password: String, name: String) -> [String: AnyObject] {
+        return generateParams(
             "shoutit_signup",
             params: [
                 "email": email,
@@ -34,18 +33,16 @@ class SHApiAuthService: NSObject {
                 "name": name
             ]
         )
-        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    // Login- facebook
-    func loginWithFacebook(fbToken:String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> ->Void) {
-        let params = generateParams(
+    // Login Facebook
+    func getFacebookParams(fbToken: String) -> [String: AnyObject] {
+        return generateParams(
             "facebook_access_token",
             params: [
                 "facebook_access_token": fbToken
             ]
         )
-        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, completionHandler: completionHandler)
     }
     
     func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
@@ -55,11 +52,11 @@ class SHApiAuthService: NSObject {
         SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, completionHandler: completionHandler)
     }
     
-    // MARK - private
-    private func getAuthToken(params: [String: AnyObject]?, cacheKey: String? = nil, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    func getOauthToken(params: [String: AnyObject]?, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    // MARK - private
     private func generateParams(grantType: String, params: [String: AnyObject]? = nil) -> [String : AnyObject] {
         var defaultParams: [String: AnyObject] = [
             "client_id": Constants.Authentication.SH_CLIENT_ID,

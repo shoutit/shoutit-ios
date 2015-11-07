@@ -69,8 +69,6 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel?.viewDidDisappear()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {

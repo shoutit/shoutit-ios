@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import SVProgressHUD
+import Haneke
 
 class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
 
@@ -61,15 +62,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                 } else {
                     log.info("Logged in")
                     if((FBSDKAccessToken.currentAccessToken()) != nil) {
-                        self.shApiAuthService.loginWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString, cacheResponse: { (shOauthToken) -> Void in
-                                // TODO Caching
-                            }, completionHandler: { (response) -> Void in
-                                if response.result.isSuccess {
-                                    log.verbose("AccessToken : \(response.result.value?.accessToken)")
-                                } else {
-                                    // ReLogin
-                                }
-                        })
+                        let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
+                        self.getOauthResponse(params)
                     }
                 }
             }
@@ -82,36 +76,19 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             if (self.isSignIn) {
                 // Perform Sign In
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
-                    SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
-//                    shApiAuthService.performLogin(email, password: password, cacheResponse: { (oauthToken) -> Void in
-//                            // Do Nothing for cached object
-//                        }, completionHandler: { (response) -> Void in
-//                            if response.result.isSuccess {
-//                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
-//                            } else {
-//                                
-//                            }
-//                    })
+                    let params = self.shApiAuthService.getLoginParams(email, password: password)
+                    self.getOauthResponse(params)
                 }
             } else {
                 // Perform SignUp
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String, let name = self.signArray[2]["text"] as? String {
-                    shApiAuthService.performSignUp(email, password: password, name: name, cacheResponse: { (oauthToken) -> Void in
-                        
-                        }, completionHandler: { (response) -> Void in
-                            if response.result.isSuccess {
-                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
-                            } else {
-                                
-                            }
-                    })
+                    let params = self.shApiAuthService.getSignUpParams(email, password: password, name: name)
+                    self.getOauthResponse(params)
                 }
             }
         } else {
             log.debug("Incorrect Email or Password")
         }
-        
-
     }
     
     func switchSignIn() {
@@ -320,6 +297,54 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             
         }
         return true
+    }
+    
+    private func getOauthResponse(params: [String: AnyObject]) {
+        SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
+        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
+            // Do nothing here
+        }) { (response) -> Void in
+            SVProgressHUD.dismiss()
+            switch(response.result) {
+            case .Success(let oauthToken):
+                if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
+                    // Login Success
+                    // TODO
+                    
+//                    [[SHPusherManager sharedInstance]subscribeToEventsWithUserID:[[[SHLoginModel sharedModel] selfUser]userID]];
+//                    if([[UIApplication sharedApplication]isRegisteredForRemoteNotifications])
+//                    {
+//                        NSData * savedToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+//                        if (savedToken != nil)
+//                        {
+//                            [[SHNotificationsModel getInstance] sendToken:savedToken];
+//                        }
+//                    }
+                    SHMixpanelHelper.aliasUserId(userId)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let tabViewController = SHTabViewController()
+                        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+                    })
+                } else {
+                    // Login Failure
+                    self.handleOauthResponseError()
+                }
+            case .Failure:
+                self.handleOauthResponseError()
+                // TODO
+                // Show Alert Dialog with the error message
+                // Currently this is bad in the current iOS app
+            }
+        }
+    }
+    
+    private func handleOauthResponseError() {
+        log.debug("error logging in")
+        // Clear OauthToken cache
+        Shared.stringCache.removeAll()
+        let alert = UIAlertController(title: "Error", message: "Invalid username or password, please try again!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

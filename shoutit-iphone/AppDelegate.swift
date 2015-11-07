@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if let cachedOauthToken = SHOauthToken.getFromCache() {
-            if cachedOauthToken.isSignedIn() && cachedOauthToken.accessToken != nil {
+            if cachedOauthToken.isSignedIn() {
                 // User Already Signed In
                 let tabViewController = SHTabViewController()
                 self.window?.rootViewController = tabViewController
