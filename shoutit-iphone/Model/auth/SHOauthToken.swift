@@ -65,12 +65,14 @@ class SHOauthToken: Mappable {
         return shOauthToken
     }
     
-    static func getFromCache(oauthToken: SHOauthToken -> ()) {
+    static func getFromCache(oauthToken: SHOauthToken? -> ()) {
         Shared.stringCache.fetch(key: Constants.Cache.OauthToken)
             .onSuccess({ (cachedString) -> () in
                 if let shOauthToken = Mapper<SHOauthToken>().map(cachedString) {
                     oauthToken(shOauthToken)
                 }
-            })
+            }).onFailure { (error) -> () in
+                oauthToken(nil)
+        }
     }
 }

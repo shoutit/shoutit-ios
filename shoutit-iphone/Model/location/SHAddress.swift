@@ -49,13 +49,15 @@ class SHAddress: Mappable {
         return shAddress
     }
     
-    static func getFromCache(address: SHAddress -> ()) {
+    static func getFromCache(address: SHAddress? -> ()) {
         Shared.stringCache.fetch(key: Constants.Cache.SHAddress)
             .onSuccess({ (cachedString) -> () in
                 if let shAddress = Mapper<SHAddress>().map(cachedString) {
                     address(shAddress)
                 }
-            })
+            }).onFailure { (error) -> () in
+                address(nil)
+        }
     }
     
 }
