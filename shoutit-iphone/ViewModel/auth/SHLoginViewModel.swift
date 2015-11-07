@@ -55,7 +55,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                 // Perform Sign In
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
                     shApiAuthService.performLogin(email, password: password, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
-                        
+                            // Do Nothing for cached object
                         }, completionHandler: { (response) -> Void in
                             if response.result.isSuccess {
                                 log.verbose("AccessToken : \(response.result.value?.accessToken)")
@@ -86,7 +86,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func switchSignIn() {
-        if self.isSignIn == true {
+        if self.isSignIn {
             return
         }
         self.viewController.signUpButton.layer.borderWidth = 0
@@ -95,14 +95,18 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         self.viewController.tableView.beginUpdates()
         self.viewController.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
         self.viewController.tableView.endUpdates()
-        UIView.animateWithDuration(0.1, animations: {self.viewController.shoutSignInButton.titleLabel!.alpha = 0},
-            completion: {(finished: Bool) in self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Sign In",comment: "Sign In"), forState: UIControlState.Normal)
-                UIView.animateWithDuration(0.1, animations: {self.viewController.shoutSignInButton.titleLabel!.alpha = 1})
-        })
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
+        }) { (finished) -> Void in
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Sign In",comment: "Sign In"), forState: UIControlState.Normal)
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
+            })
+        }
     }
     
     func switchSignUp() {
-        if self.isSignIn == false {
+        if !self.isSignIn {
             return
         }
         self.viewController.signInButton.layer.borderWidth = 0
@@ -111,29 +115,29 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         self.viewController.tableView.beginUpdates()
         self.viewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
         self.viewController.tableView.endUpdates()
-        UIView.animateWithDuration(0.1, animations: {self.viewController.shoutSignInButton.titleLabel!.alpha = 0},
-            completion: {(finished: Bool) in self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Create Account",comment: "Create Account"), forState: UIControlState.Normal)
-                UIView.animateWithDuration(0.1, animations: {self.viewController.shoutSignInButton.titleLabel!.alpha = 1})
-        })
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
+        }) { (finished) -> Void in
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Create Account",comment: "Create Account"), forState: UIControlState.Normal)
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
+            })
+        }
     }
     
     func resetPassword() {
-        
-        if let email = self.signArray[0]["text"] as? String where email != "" {
+        if let email = self.signArray[0]["text"] as? String where !email.isEmpty {
             if let validEmail = self.signArray[0]["emailTextField"] as? TextFieldValidator  {
                 if(!validEmail.validate()) {
                     return
                 }
-                shApiAuthService.resetPassword(email, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
-                    
-                    }, completionHandler: { (response) -> Void in
-                        if response.result.isSuccess {
-                            log.verbose("Password recovery email will be sent soon.")
-                        } else {
-                            
-                        }
+                shApiAuthService.resetPassword(email, completionHandler: { (response) -> Void in
+                    if response.result.isSuccess {
+                        log.verbose("Password recovery email will be sent soon.")
+                    } else {
+                        
+                    }
                 })
-                
             } else {
                 
             }

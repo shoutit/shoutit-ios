@@ -24,11 +24,11 @@ class SHApiAuthService: NSObject {
         getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func resetPassword(email: String, cacheKey: String, cacheResponse: SHSuccess -> Void, completionHandler: Response<SHSuccess, NSError> -> Void) {
+    func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let param = [
             "email": email
         ]
-        SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, completionHandler: completionHandler)
     }
     
     // MARK - private
