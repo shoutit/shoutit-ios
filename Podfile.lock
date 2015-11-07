@@ -3,7 +3,24 @@ PODS:
   - AlamofireObjectMapper (2.0.2):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
+  - Bolts (1.4.0):
+    - Bolts/AppLinks (= 1.4.0)
+    - Bolts/Tasks (= 1.4.0)
+  - Bolts/AppLinks (1.4.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.4.0)
   - CryptoSwift (0.1.1)
+  - FBSDKCoreKit (4.7.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.7.1)
+    - FBSDKCoreKit/no-arc (= 4.7.1)
+  - FBSDKCoreKit/arc (4.7.1):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.7.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.7.1):
+    - FBSDKCoreKit
   - GoogleAppUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleAuthUtilities (1.0.1):
@@ -35,6 +52,8 @@ DEPENDENCIES:
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.0)
   - CryptoSwift
+  - FBSDKCoreKit (~> 4.7)
+  - FBSDKLoginKit (~> 4.7)
   - GoogleSignIn (~> 2.4)
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
   - Kingfisher (~> 1.8)
@@ -58,7 +77,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   AlamofireObjectMapper: 3047127bcc25ec43e8243b89d819022ccee77546
+  Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
+  FBSDKCoreKit: 9141b70960a37930850370495fe565f4a27ac141
+  FBSDKLoginKit: c11ed3c2833472db3bb4a4aecf27af4a6f69b173
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c

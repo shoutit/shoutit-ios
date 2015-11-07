@@ -52,9 +52,6 @@
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */; };
 		607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */; };
-		AC1C93E21BE8F5E0009400BE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */; };
-		AC1C93E31BE8F5E0009400BE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */; };
-		AC1C93E41BE8F5E0009400BE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
 		AC1C93EB1BE90D2A009400BE /* tos.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* tos.html */; };
@@ -141,9 +138,6 @@
 		607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHOauthToken.swift; path = Model/auth/SHOauthToken.swift; sourceTree = "<group>"; };
 		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
-		AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
 		AC1C93E81BE90D2A009400BE /* tos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tos.html; path = View/auth/Resource/tos.html; sourceTree = "<group>"; };
@@ -162,10 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC1C93E41BE8F5E0009400BE /* FBSDKShareKit.framework in Frameworks */,
 				29C192902C2FA8F624DECC34 /* Pods.framework in Frameworks */,
-				AC1C93E21BE8F5E0009400BE /* FBSDKCoreKit.framework in Frameworks */,
-				AC1C93E31BE8F5E0009400BE /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,9 +180,6 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C93DF1BE8F5E0009400BE /* FBSDKCoreKit.framework */,
-				AC1C93E01BE8F5E0009400BE /* FBSDKLoginKit.framework */,
-				AC1C93E11BE8F5E0009400BE /* FBSDKShareKit.framework */,
 				24DD26576469F744E4920C92 /* Pods.framework */,
 			);
 			name = Frameworks;

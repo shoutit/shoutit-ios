@@ -36,16 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        if let cachedOauthToken = SHOauthToken.getFromCache() {
-            if cachedOauthToken.isSignedIn() {
-                // User Already Signed In
-                let tabViewController = SHTabViewController()
-                self.window?.rootViewController = tabViewController
-                // TODO get discover items
-                // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
-            } else {
-                // Not Signed In
-            }
+        if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
+            // User Already Signed In
+            let tabViewController = SHTabViewController()
+            self.window?.rootViewController = tabViewController
+            // TODO get discover items
+            // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
         } else {
             // Not Signed In
         }
@@ -56,15 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // handle the URL that your application receives at the end of the authentication process -- Google
     func application(application: UIApplication,
         openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-            if ((GIDSignIn.sharedInstance()) != nil) {
-                
-                return GIDSignIn.sharedInstance().handleURL(url,
-                    sourceApplication: sourceApplication,
-                    annotation: annotation)
-            } else {
-                return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            }
+            let fb  = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+            let g = GIDSignIn.sharedInstance().handleURL(url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
             
+            let ret = fb ? fb : (g ? g : false)
+            return ret;
     }
     
     //handle the sign-in process -- Google
@@ -118,7 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
