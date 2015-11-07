@@ -21,7 +21,7 @@ struct Constants {
     }
     
     struct SharedUserDefaults {
-        static let MIXPANEL = ".User.Defaults.Mixpanel"
+        static let MIXPANEL = "MIXPANEL_USER_DEFAULTS"
         static let INIT_LOCATION = ".User.Init.Location"
     }
     

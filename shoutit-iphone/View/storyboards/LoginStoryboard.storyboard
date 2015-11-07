@@ -1,87 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eZ2-in-Fbf">
     <dependencies>
-        <deployment version="1808" identifier="iOS"/>
+        <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
-        <scene sceneID="9FU-Kr-ErN">
-            <objects>
-                <viewController id="mDo-MO-tDk" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZNc-08-OWl"/>
-                        <viewControllerLayoutGuide type="bottom" id="zHp-GB-gsf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleAspectFill" id="bd4-2Q-Is5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1o-D8-W6o">
-                                <rect key="frame" x="517" y="8" width="74" height="30"/>
-                                <animations/>
-                                <state key="normal" title="skip">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLH-Ey-y2h">
-                                <rect key="frame" x="45" y="282" width="230" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Dhs-bI-0jh"/>
-                                    <constraint firstAttribute="width" constant="230" id="mBL-nN-lO2"/>
-                                </constraints>
-                                <color key="tintColor" red="0.20429365859759463" green="1" blue="0.2083475012221736" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="googleSignUp.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqz-lj-Qu9">
-                                <rect key="frame" x="45" y="345" width="230" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="ZLj-Xl-r35"/>
-                                    <constraint firstAttribute="width" constant="230" id="h6W-g8-XY4"/>
-                                </constraints>
-                                <state key="normal" image="facebookSignUp.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="AdI-J4-e4Q">
-                                <rect key="frame" x="60" y="150" width="200" height="136"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="136" id="7tA-QZ-skF"/>
-                                    <constraint firstAttribute="width" constant="200" id="RQZ-QT-IQY"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.59607843140000005" green="0.86274509799999999" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="jqz-lj-Qu9" firstAttribute="top" secondItem="oLH-Ey-y2h" secondAttribute="bottom" constant="19" id="6qu-Cs-uBn"/>
-                            <constraint firstItem="oLH-Ey-y2h" firstAttribute="top" secondItem="AdI-J4-e4Q" secondAttribute="bottom" constant="-4" id="7Af-52-yHB"/>
-                            <constraint firstAttribute="centerX" secondItem="jqz-lj-Qu9" secondAttribute="centerX" id="9Mq-eQ-jMI"/>
-                            <constraint firstAttribute="centerX" secondItem="AdI-J4-e4Q" secondAttribute="centerX" id="Ca8-Rf-NfJ"/>
-                            <constraint firstItem="AdI-J4-e4Q" firstAttribute="top" secondItem="ZNc-08-OWl" secondAttribute="bottom" constant="150" id="Wis-m4-dAa"/>
-                            <constraint firstAttribute="centerX" secondItem="oLH-Ey-y2h" secondAttribute="centerX" id="cSH-lW-X4f"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uhR-Gz-Yvd"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Title" id="a9f-Jq-wDZ"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cYk-7b-RSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="158.40000000000001" y="-739.81999999999994"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="Tr5-Br-7su">
             <objects>
@@ -422,10 +347,7 @@
     </scenes>
     <resources>
         <image name="facebookSignUp" width="560" height="100"/>
-        <image name="facebookSignUp.png" width="560" height="100"/>
         <image name="googleSignUp" width="560" height="100"/>
-        <image name="googleSignUp.png" width="170" height="170"/>
         <image name="logoWhite" width="255" height="117"/>
-        <image name="logoWhite.png" width="511" height="234"/>
     </resources>
 </document>

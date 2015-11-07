@@ -13,40 +13,16 @@ class SHMixpanelHelper: NSObject {
 
     static func openApp() {
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.SharedUserDefaults.MIXPANEL)
-        let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-       // NSString* access_token = [[FXKeychain defaultKeychain] objectForKey:KEYCHAIN_ACCESS_TOKEN];
-        
-       // SHUser* user = [SHUser loadUserWithKey:USER_DEFAULTS_USER];
-//        if (access_token && user) {
-//            if(user.userID) {
-//                mixpanel.identify(user.userID)
-//                mixpanel.track("app_open", properties: ["signed_user": true])
-//                NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.MIXPANEL)
-//            } else {
-//                mixpanel.track("app_open", properties: ["signed_user": false])
-//            }
-//        } else {
-//            mixpanel.track("app_open", properties: ["signed_user": false])
-//        }
-        
+        if trackApp(true) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.MIXPANEL)
+        }
     }
     
     static func closeApp() {
-        let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-       // SHUser* user = [SHUser loadUserWithKey:USER_DEFAULTS_USER];
-//        if (user) {
-//            if(user.userID) {
-//                mixpanel.identify(user.userID)
-//                mixpanel.track("app_leave", properties: ["signed_user": true])
-//            }
-//        } else {
-//            mixpanel.track("app_leave", properties: ["signed_user": false])
-//        }
-        
+        trackApp(false)
     }
     
     static func aliasUserId(userId: String) {
-        
         if(!NSUserDefaults.standardUserDefaults().boolForKey(Constants.SharedUserDefaults.MIXPANEL)) {
             let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
             if (!userId.isEmpty) {
@@ -54,7 +30,6 @@ class SHMixpanelHelper: NSObject {
                 mixpanel.identify(mixpanel.distinctId)
             }
         }
-        
     }
     
     static func identifyUserId(userId: String) {
@@ -71,4 +46,19 @@ class SHMixpanelHelper: NSObject {
         return nil
     }
     
+    // MARK - Private
+    private static func trackApp(isAppOpening: Bool) -> Bool {
+        let eventName = isAppOpening ? "app_open" : "app_leave"
+        let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
+        if let oauthToken = SHOauthToken.getFromCache(),
+            let accessToken = oauthToken.accessToken where accessToken.characters.count > 0,
+            let user = oauthToken.user {
+                mixpanel.identify(user.id)
+                mixpanel.track(eventName, properties: ["signed_user": true])
+                return true
+        } else {
+            mixpanel.track(eventName, properties: ["signed_user": false])
+        }
+        return false
+    }
 }
