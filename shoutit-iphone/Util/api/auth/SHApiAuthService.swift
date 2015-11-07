@@ -15,13 +15,37 @@ class SHApiAuthService: NSObject {
     private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
     func performLogin(email: String, password: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(email, password: password, grantType: "shoutit_signin")
+        let params = generateParams(
+            "shoutit_signin",
+            params: [
+                "email": email,
+                "password": password
+            ]
+        )
         getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func performSignUp(email: String, password: String, name: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(email, password: password, grantType: "shoutit_signup", name: name)
+        let params = generateParams(
+            "shoutit_signup",
+            params: [
+                "email": email,
+                "password": password,
+                "name": name
+            ]
+        )
         getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    // Login- facebook
+    func loginWithFacebook(fbToken:String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> ->Void) {
+        let params = generateParams(
+            "facebook_access_token",
+            params: [
+                "facebook_access_token": fbToken
+            ]
+        )
+        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, completionHandler: completionHandler)
     }
     
     func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
@@ -36,35 +60,21 @@ class SHApiAuthService: NSObject {
         SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    private func generateParams(email: String, password: String, grantType: String, name: String? = nil) -> [String : AnyObject] {
-        var params = [
+    private func generateParams(grantType: String, params: [String: AnyObject]? = nil) -> [String : AnyObject] {
+        var defaultParams: [String: AnyObject] = [
             "client_id": Constants.Authentication.SH_CLIENT_ID,
             "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
-            "grant_type": grantType,
-            "email": email,
-            "password": password
+            "grant_type": grantType
         ]
-        if let userName = name {
-            params["name"] = userName
+        if let params = params {
+            for (key, value) in params {
+                defaultParams[key] = value
+            }
         }
         if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
-            params["mixpanel_distinct_id"] = mixPanelDistinctId
+            defaultParams["mixpanel_distinct_id"] = mixPanelDistinctId
         }
-        return params
-    }
-    
-    // Login- facebook
-    func loginWithFacebook(fbToken:String,completionHandler: Response<SHOauthToken, NSError> ->Void) {
-        var params = [
-            "client_id": Constants.Authentication.SH_CLIENT_ID,
-            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
-            "grant_type": "facebook_access_token",
-            "facebook_access_token": fbToken
-        ]
-        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
-            params["mixpanel_distinct_id"] = mixPanelDistinctId
-        }
-       SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, completionHandler: completionHandler)
+        return defaultParams
     }
     
 }

@@ -59,7 +59,6 @@
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
 		AC1C940B1BEBBA10009400BE /* English-locale.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC1C94091BEBBA10009400BE /* English-locale.strings */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
-		AC6F2B2C1BEE725A00D9F5A3 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B2B1BEE725A00D9F5A3 /* Enumerations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +141,6 @@
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
 		AC1C940A1BEBBA10009400BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/English-locale.strings"; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AC6F2B2B1BEE725A00D9F5A3 /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +230,6 @@
 				6027CF401BE74EAE00124C28 /* Info.plist */,
 				AC5340CB1BED44850065A578 /* GoogleService-Info.plist */,
 				AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */,
-				AC6F2B2B1BEE725A00D9F5A3 /* Enumerations.swift */,
 			);
 			path = "shoutit-iphone";
 			sourceTree = "<group>";
@@ -718,7 +715,6 @@
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
-				AC6F2B2C1BEE725A00D9F5A3 /* Enumerations.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
