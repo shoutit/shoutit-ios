@@ -29,8 +29,17 @@ struct Constants {
         
     }
     
+    struct Style {
+        static let COLOR_BACKGROUND_WHITE = "#fafafa"
+        static let COLOR_BACKGROUND_GRAY = "#333333"
+        static let COLOR_SHOUT_GREEN = "#98dc1a"
+        static let COLOR_SHOUT_RED = "#ca3c3c"
+        static let COLOR_SHOUT_DARK_GREEN = "#658529"
+        static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
+    }
+    
     struct ViewControllers {
-        
+        static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
     }
     
     struct TableViewCell {

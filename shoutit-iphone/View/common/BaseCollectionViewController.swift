@@ -1,20 +1,18 @@
 //
-//  BaseTableViewController.swift
+//  BaseCollectionViewController.swift
 //  shoutit-iphone
 //
-//  Created by Hitesh Sondhi on 02/11/15.
+//  Created by Hitesh Sondhi on 08/11/15.
 //  Copyright © 2015 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-class BaseTableViewController: UITableViewController {
-    
+class BaseCollectionViewController: UICollectionViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViewModel()
-        
-        self.tableView.keyboardDismissMode = .OnDrag
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -24,6 +22,5 @@ class BaseTableViewController: UITableViewController {
     func initializeViewModel() {
         assertionFailure("You must override this method in child class [e.g - \nviewModel = ClubFeedViewModel(viewController: self)\n]")
     }
-    
-}
 
+}

@@ -39,6 +39,13 @@
 		604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */; };
 		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
 		604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */; };
+		604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */; };
+		604A0DDA1BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */; };
+		604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DDB1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift */; };
+		604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */; };
+		604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */; };
+		604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */; };
+		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -118,6 +125,13 @@
 		604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginInputTableViewCell.swift; path = View/auth/SHLoginInputTableViewCell.swift; sourceTree = "<group>"; };
 		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
 		604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiUserService.swift; path = Util/api/users/SHApiUserService.swift; sourceTree = "<group>"; };
+		604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCollectionViewController.swift; path = View/common/BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
+		604A0DDB1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewControllerModelProtocol.swift; path = ViewModel/protocols/CollectionViewControllerModelProtocol.swift; sourceTree = "<group>"; };
+		604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverViewModel.swift; sourceTree = "<group>"; };
+		604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTabViewController.swift; path = View/tabs/SHTabViewController.swift; sourceTree = "<group>"; };
+		604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Extensions.swift"; path = "Util/extensions/UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Util/extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -276,6 +290,7 @@
 		6027CF641BE74F6F00124C28 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				604A0DD41BEE9ADA002A80E7 /* tabs */,
 				6027CF941BE757DA00124C28 /* auth */,
 				6027CF6A1BE74FB400124C28 /* splash */,
 				6027CF711BE7504B00124C28 /* storyboards */,
@@ -287,6 +302,7 @@
 		6027CF651BE74F7300124C28 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				604A0DD51BEE9ADF002A80E7 /* tabs */,
 				6027CF951BE757E100124C28 /* auth */,
 				6027CF721BE7506B00124C28 /* splash */,
 				6027CF9A1BE7596E00124C28 /* protocols */,
@@ -326,6 +342,8 @@
 		6027CF691BE74FA100124C28 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */,
+				604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -388,6 +406,7 @@
 			children = (
 				6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */,
 				6027CF9D1BE759C400124C28 /* TableViewControllerModelProtocol.swift */,
+				604A0DDB1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -398,6 +417,7 @@
 				6027CFA21BE75B7800124C28 /* BaseViewController.swift */,
 				6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */,
 				6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */,
+				604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -416,6 +436,39 @@
 				604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */,
 			);
 			name = users;
+			sourceTree = "<group>";
+		};
+		604A0DD41BEE9ADA002A80E7 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DD81BEE9BA1002A80E7 /* discover */,
+				604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */,
+			);
+			name = tabs;
+			sourceTree = "<group>";
+		};
+		604A0DD51BEE9ADF002A80E7 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DDD1BEE9CAF002A80E7 /* discover */,
+			);
+			name = tabs;
+			sourceTree = "<group>";
+		};
+		604A0DD81BEE9BA1002A80E7 /* discover */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */,
+			);
+			name = discover;
+			sourceTree = "<group>";
+		};
+		604A0DDD1BEE9CAF002A80E7 /* discover */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */,
+			);
+			name = discover;
 			sourceTree = "<group>";
 		};
 		607F75721BEA68BE00F3BA86 /* auth */ = {
@@ -699,28 +752,35 @@
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
+				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */,
+				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
+				604A0DDA1BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
+				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
+				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
+				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
 				6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
+				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

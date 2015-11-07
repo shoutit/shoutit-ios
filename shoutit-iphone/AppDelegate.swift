@@ -37,8 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if let cachedOauthToken = SHOauthToken.getFromCache() {
-            if cachedOauthToken.isSignedIn(), let token = cachedOauthToken.accessToken {
+            if cachedOauthToken.isSignedIn() && cachedOauthToken.accessToken != nil {
                 // User Already Signed In
+                let tabViewController = SHTabViewController()
+                self.window?.rootViewController = tabViewController
                 // TODO get discover items
                 // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
             } else {

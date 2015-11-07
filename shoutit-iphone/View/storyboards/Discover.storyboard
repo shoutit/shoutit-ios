@@ -8,7 +8,7 @@
         <!--Discover-->
         <scene sceneID="dYs-xU-AwL">
             <objects>
-                <collectionViewController storyboardIdentifier="SHDiscoverCollectionViewController" title="Discover" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6G-wl-0xD" customClass="SHDiscoverCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SHDiscoverCollectionViewController" title="Discover" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6G-wl-0xD" customClass="SHDiscoverCollectionViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="4mu-sT-xQa">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
