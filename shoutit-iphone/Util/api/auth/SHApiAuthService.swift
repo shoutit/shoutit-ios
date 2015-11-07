@@ -14,14 +14,14 @@ class SHApiAuthService: NSObject {
     private let OAUTH2_ACCESS_TOKEN = SHApiManager.sharedInstance.BASE_URL + "/oauth2/access_token"
     private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
-    func performLogin(email: String, password: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+    func performLogin(email: String, password: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
         let params = generateParams(email, password: password, grantType: "shoutit_signin")
-        getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func performSignUp(email: String, password: String, name: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+    func performSignUp(email: String, password: String, name: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
         let params = generateParams(email, password: password, grantType: "shoutit_signup", name: name)
-        getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {

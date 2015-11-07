@@ -9,54 +9,17 @@
 import Foundation
 import MapKit
 import ObjectMapper
+import Haneke
 
-class SHAddress: NSObject, NSCoding, Mappable {
+class SHAddress: Mappable {
 
-    var fullAddress: String?
-    var streetNumber: String?
-    var route: String?
-    var city: String?
-    var stateCode: String?
-    var countryCode: String?
-    var postalCode: String?
-    var countryName: String?
-    var latitude: String?
-    var longitude: String?
-    var googleResponse: String?
-    
-    init(c: CLLocationCoordinate2D) {
-        self.latitude = "\(c.latitude)"
-        self.longitude = "\(c.longitude)"
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        //Encode properties, other class variables, etc
-        aCoder.encodeObject(self.fullAddress, forKey: "fullAddress")
-        aCoder.encodeObject(self.streetNumber, forKey: "streetNumber")
-        aCoder.encodeObject(self.route, forKey: "route")
-        aCoder.encodeObject(self.city, forKey: "city")
-        aCoder.encodeObject(self.stateCode, forKey: "stateCode")
-        aCoder.encodeObject(self.postalCode, forKey: "postalCode")
-        aCoder.encodeObject(self.countryName, forKey: "countryName")
-        aCoder.encodeObject(self.countryCode, forKey: "countryCode")
-        aCoder.encodeObject(self.latitude, forKey: "latitude")
-        aCoder.encodeObject(self.longitude, forKey: "longitude")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        //decode properties, other class vars
-        self.fullAddress  = aDecoder.decodeObjectForKey("fullAddress")?.stringValue
-        self.streetNumber = aDecoder.decodeObjectForKey("streetNumber")?.stringValue
-        self.route        = aDecoder.decodeObjectForKey("route")?.stringValue
-        self.city         = aDecoder.decodeObjectForKey("city")?.stringValue
-        self.stateCode    = aDecoder.decodeObjectForKey("stateCode")?.stringValue
-        self.postalCode   = aDecoder.decodeObjectForKey("postalCode")?.stringValue
-        self.countryName  = aDecoder.decodeObjectForKey("countryName")?.stringValue
-        self.countryCode  = aDecoder.decodeObjectForKey("countryCode")?.stringValue
-        self.latitude     = aDecoder.decodeObjectForKey("latitude")?.stringValue
-        self.longitude    = aDecoder.decodeObjectForKey("longitude")?.stringValue
-        
-    }
+    private(set) var address: String?
+    private(set) var city: String?
+    private(set) var country: String?
+    private(set) var latitude: Float?
+    private(set) var longitude: Float?
+    private(set) var postalCode: String?
+    private(set) var state: String?
     
     required init?(_ map: Map) {
         
@@ -64,21 +27,35 @@ class SHAddress: NSObject, NSCoding, Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        fullAddress     <- map["fullAddress"]
-        streetNumber    <- map["streetNumber"]
-        route           <- map["route"]
+        address         <- map["address"]
         city            <- map["city"]
-        stateCode       <- map["stateCode"]
-        countryCode     <- map["countryCode"]
-        postalCode      <- map["postalCode"]
-        countryName     <- (map["countryName"])
+        country         <- map["country"]
         latitude        <- map["latitude"]
         longitude       <- map["longitude"]
-        googleResponse  <- (map["googleResponse"])
-        
+        postalCode      <- map["postal_code"]
+        state           <- map["state"]
     }
     
+    static func getFromCache() -> SHAddress? {
+        var shAddress: SHAddress? = nil
+        let semaphore = dispatch_semaphore_create(0)
+        getFromCache { (address) -> () in
+            shAddress = address
+            dispatch_semaphore_signal(semaphore)
+        }
+        while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW) != 0) {
+            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 0))
+        }
+        return shAddress
+    }
     
-   
+    static func getFromCache(address: SHAddress -> ()) {
+        Shared.stringCache.fetch(key: Constants.Cache.SHAddress)
+            .onSuccess({ (cachedString) -> () in
+                if let shAddress = Mapper<SHAddress>().map(cachedString) {
+                    address(shAddress)
+                }
+            })
+    }
     
 }

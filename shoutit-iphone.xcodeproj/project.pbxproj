@@ -36,6 +36,9 @@
 		6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA21BE75B7800124C28 /* BaseViewController.swift */; };
 		6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */; };
 		604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */; };
+		604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */; };
+		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
+		604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -112,6 +115,9 @@
 		6027CFA21BE75B7800124C28 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = View/common/BaseViewController.swift; sourceTree = "<group>"; };
 		6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHNavigationViewController.swift; path = View/common/SHNavigationViewController.swift; sourceTree = "<group>"; };
 		604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSuccess.swift; path = Model/SHSuccess.swift; sourceTree = "<group>"; };
+		604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginInputTableViewCell.swift; path = View/auth/SHLoginInputTableViewCell.swift; sourceTree = "<group>"; };
+		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
+		604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiUserService.swift; path = Util/api/users/SHApiUserService.swift; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -299,6 +305,8 @@
 		6027CF671BE74F9800124C28 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				604A0DD11BEE6037002A80E7 /* users */,
+				604A0DCE1BEE5898002A80E7 /* misc */,
 				607F75721BEA68BE00F3BA86 /* auth */,
 				6027CF8C1BE7529500124C28 /* SHApiManager.swift */,
 				6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */,
@@ -362,6 +370,7 @@
 				AC1C93E51BE90BF7009400BE /* Resource */,
 				6027CF961BE7583800124C28 /* SHLoginViewController.swift */,
 				AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */,
+				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -391,6 +400,22 @@
 				6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		604A0DCE1BEE5898002A80E7 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */,
+			);
+			name = misc;
+			sourceTree = "<group>";
+		};
+		604A0DD11BEE6037002A80E7 /* users */ = {
+			isa = PBXGroup;
+			children = (
+				604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */,
+			);
+			name = users;
 			sourceTree = "<group>";
 		};
 		607F75721BEA68BE00F3BA86 /* auth */ = {
@@ -671,12 +696,14 @@
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
+				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
+				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
@@ -693,6 +720,7 @@
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
 				6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
+				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

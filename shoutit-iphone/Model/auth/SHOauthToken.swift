@@ -42,6 +42,16 @@ class SHOauthToken: Mappable {
         return false
     }
     
+    func updateUser(user: SHUser?) {
+        if let shUser = user {
+            self.user = shUser
+        }
+        if let stringResponse = Mapper().toJSONString(self) {
+            Shared.stringCache.set(value: stringResponse, key: Constants.Cache.OauthToken)
+        }
+        // TODO Throw an event that user is updated
+    }
+    
     static func getFromCache() -> SHOauthToken? {
         var shOauthToken: SHOauthToken? = nil
         let semaphore = dispatch_semaphore_create(0)

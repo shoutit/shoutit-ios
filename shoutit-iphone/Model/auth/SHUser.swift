@@ -14,6 +14,8 @@ class SHUser: Mappable {
     private(set) var apiUrl: String?
     private(set) var bio: String = ""
     private(set) var id: String?
+    private(set) var location: SHAddress?
+    private(set) var username: String?
     
     required init?(_ map: Map) {
         
@@ -24,5 +26,7 @@ class SHUser: Mappable {
         apiUrl              <- map["api_url"]
         bio                 <- map["bio"]
         id                  <- map["id"]
+        location            <- map["location"]
+        username            <- map["username"]
     }
 }

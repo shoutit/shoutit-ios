@@ -54,7 +54,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             if (self.isSignIn) {
                 // Perform Sign In
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
-                    shApiAuthService.performLogin(email, password: password, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
+                    shApiAuthService.performLogin(email, password: password, cacheResponse: { (oauthToken) -> Void in
                             // Do Nothing for cached object
                         }, completionHandler: { (response) -> Void in
                             if response.result.isSuccess {
@@ -67,7 +67,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             } else {
                 // Perform SignUp
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String, let name = self.signArray[2]["text"] as? String {
-                    shApiAuthService.performSignUp(email, password: password, name: name, cacheKey: Constants.Cache.OauthToken, cacheResponse: { (oauthToken) -> Void in
+                    shApiAuthService.performSignUp(email, password: password, name: name, cacheResponse: { (oauthToken) -> Void in
                         
                         }, completionHandler: { (response) -> Void in
                             if response.result.isSuccess {
@@ -173,28 +173,28 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         textFieldChanged(textField, row: 2)
     }
     
+    // TODO We still need to refactor this
     // MARK - UITableView Delegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SHLoginInputCell", forIndexPath: indexPath)
-        let textView = cell.viewWithTag(100) as! TextFieldValidator
-        textView.presentInView = tableView.window
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHLoginInputCell, forIndexPath: indexPath) as! SHLoginInputTableViewCell
+        cell.textField.presentInView = tableView.window
         let dict = self.signArray[indexPath.row]
-        textView.text = dict["text"] as? String
-        textView.placeholder = dict["placeholder"] as? String
-        textView.addTarget(self, action: NSSelectorFromString(dict["selector"]! as! String), forControlEvents: UIControlEvents.EditingChanged)
-        textView.addTarget(self, action: NSSelectorFromString(dict["selectorBegin"]! as! String), forControlEvents: UIControlEvents.EditingDidBegin)
-        textView.isMandatory = true
+        cell.textField.text = dict["text"] as? String
+        cell.textField.placeholder = dict["placeholder"] as? String
+        cell.textField.addTarget(self, action: NSSelectorFromString(dict["selector"]! as! String), forControlEvents: UIControlEvents.EditingChanged)
+        cell.textField.addTarget(self, action: NSSelectorFromString(dict["selectorBegin"]! as! String), forControlEvents: UIControlEvents.EditingDidBegin)
+        cell.textField.isMandatory = true
         
         switch (indexPath.row) {
         case 0:
-            self.signArray[indexPath.row]["emailTextField"] = textView
-            textView.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("Enter valid email.", comment: "Enter valid email."))
+            self.signArray[indexPath.row]["emailTextField"] = cell.textField
+            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("Enter valid email.", comment: "Enter valid email."))
         case 1:
-            self.signArray[indexPath.row]["passwordTextField"] = textView
-            textView.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("Password charaters limit should be come between 6-20", comment: "Password charaters limit should be come between 6-20"))
-            textView.secureTextEntry = true
+            self.signArray[indexPath.row]["passwordTextField"] = cell.textField
+            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("Password charaters limit should be come between 6-20", comment: "Password charaters limit should be come between 6-20"))
+            cell.textField.secureTextEntry = true
         case 2:
-            self.signArray[indexPath.row]["nameTextField"] = textView
+            self.signArray[indexPath.row]["nameTextField"] = cell.textField
         default:
             break;
         }
@@ -249,7 +249,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     private func validateAuthentication() -> Bool {
         if let emailTextField = self.signArray[0]["emailTextField"] as? TextFieldValidator {
             if(!emailTextField.validate()) {
-                //                emailTextField.tapOnError()
+                emailTextField.tapOnError()
                 return false
             }
             emailTextField.resignFirstResponder()
@@ -261,7 +261,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         }
         if let passwordTextField = self.signArray[1]["passwordTextField"] as? TextFieldValidator {
             if(!passwordTextField.validate()) {
-                // passwordTextField.tapOnError()
+                passwordTextField.tapOnError()
                 return false
             }
             passwordTextField.resignFirstResponder()
@@ -274,7 +274,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         }
         if !self.isSignIn, let nameTextField = self.signArray[2]["nameTextField"] as? TextFieldValidator {
             if(!nameTextField.validate()) {
-                // nameTextField.tapOnError()
+                nameTextField.tapOnError()
                 return false
             }
             nameTextField.resignFirstResponder()

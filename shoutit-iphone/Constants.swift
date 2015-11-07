@@ -22,7 +22,7 @@ struct Constants {
     
     struct SharedUserDefaults {
         static let MIXPANEL = "MIXPANEL_USER_DEFAULTS"
-        static let INIT_LOCATION = ".User.Init.Location"
+        static let INIT_LOCATION = "initLocation"
     }
     
     struct StoryboardIdentifier {
@@ -31,6 +31,10 @@ struct Constants {
     
     struct ViewControllers {
         
+    }
+    
+    struct TableViewCell {
+        static let SHLoginInputCell = "SHLoginInputCell"
     }
     
     struct Authentication {
@@ -44,5 +48,6 @@ struct Constants {
     
     struct Cache {
         static let OauthToken  = ".sh.cache.oauthToken"
+        static let SHAddress  = ".sh.cache.shAddress"
     }
 }

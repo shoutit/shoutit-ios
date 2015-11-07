@@ -35,6 +35,11 @@ class SHApiManager: NSObject {
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func patch<R: Mappable>(url: String, params: [String : AnyObject]?, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
+        let request = Alamofire.request(.PATCH, url, parameters: params, headers: authHeaders())
+        executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func post<R: Mappable>(url: String, params: [String : AnyObject]?, isCachingEnabled: Bool = true, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
         let request = Alamofire.request(.POST, url, parameters: params, headers: authHeaders())
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
@@ -86,12 +91,12 @@ class SHApiManager: NSObject {
     }
     
     private func authHeaders() -> [String: String]? {
-        //        if let authToken = NSUserDefaults.standardUserDefaults().getAuthToken() {
-        //            return [
-        //                // Headers
-        //                // "X-API-TOKEN": authToken
-        //            ]
-        //        }
+        if let oauthToken = SHOauthToken.getFromCache(), let accessToken = oauthToken.accessToken, let tokenType = oauthToken.tokenType {
+            return [
+                // Headers
+                "Authorization": "\(tokenType) \(accessToken)"
+            ]
+        }
         return nil;
     }
     

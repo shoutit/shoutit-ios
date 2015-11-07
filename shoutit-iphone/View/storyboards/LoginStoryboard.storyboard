@@ -214,7 +214,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SHLoginInputCell" id="qZ3-rx-o8B">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SHLoginInputCell" id="qZ3-rx-o8B" customClass="SHLoginInputTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="207" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qZ3-rx-o8B" id="vzM-nu-cv2">
@@ -224,7 +224,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U92-7S-0nQ">
                                             <rect key="frame" x="45" y="0.0" width="230" height="44"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fmH-dq-hFe" customClass="TextFieldValidator">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fmH-dq-hFe" customClass="TextFieldValidator">
                                                     <rect key="frame" x="8" y="0.0" width="214" height="44"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -265,6 +265,9 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="textField" destination="fmH-dq-hFe" id="BVm-Jm-P9Z"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
