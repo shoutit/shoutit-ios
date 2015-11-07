@@ -34,7 +34,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
         
-        self.shoutSignInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), forState: UIControlState.Normal)
+        self.shoutSignInButton.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
         self.setNeedsStatusBarAppearanceUpdate()
         
         self.shoutSignInButton.layer.cornerRadius = 0.5

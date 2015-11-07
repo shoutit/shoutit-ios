@@ -46,6 +46,7 @@
 		604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */; };
 		604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */; };
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
+		604A0DE71BEEB0B1002A80E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 604A0DE61BEEB0B0002A80E7 /* Localizable.strings */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -132,6 +133,7 @@
 		604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTabViewController.swift; path = View/tabs/SHTabViewController.swift; sourceTree = "<group>"; };
 		604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Extensions.swift"; path = "Util/extensions/UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Util/extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		604A0DE61BEEB0B0002A80E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1C94091BEBBA10009400BE /* English-locale.strings */,
+				604A0DE61BEEB0B0002A80E7 /* Localizable.strings */,
 			);
 			name = Localization;
 			path = Resources/Localization;
@@ -669,6 +672,7 @@
 				6027CF8A1BE751ED00124C28 /* StreamStoryboard.storyboard in Resources */,
 				6027CF841BE751ED00124C28 /* Discover.storyboard in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
+				604A0DE71BEEB0B1002A80E7 /* Localizable.strings in Resources */,
 				6027CF931BE7575400124C28 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				6027CF881BE751ED00124C28 /* ProfileStoryboard.storyboard in Resources */,

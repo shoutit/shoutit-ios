@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SVProgressHUD
 
 class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
 
@@ -81,15 +82,16 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             if (self.isSignIn) {
                 // Perform Sign In
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
-                    shApiAuthService.performLogin(email, password: password, cacheResponse: { (oauthToken) -> Void in
-                            // Do Nothing for cached object
-                        }, completionHandler: { (response) -> Void in
-                            if response.result.isSuccess {
-                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
-                            } else {
-                                
-                            }
-                    })
+                    SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
+//                    shApiAuthService.performLogin(email, password: password, cacheResponse: { (oauthToken) -> Void in
+//                            // Do Nothing for cached object
+//                        }, completionHandler: { (response) -> Void in
+//                            if response.result.isSuccess {
+//                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
+//                            } else {
+//                                
+//                            }
+//                    })
                 }
             } else {
                 // Perform SignUp
@@ -125,7 +127,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.viewController.shoutSignInButton.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Sign In",comment: "Sign In"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("SignIn",comment: "Sign In"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.viewController.shoutSignInButton.titleLabel?.alpha = 1
             })
@@ -145,7 +147,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.viewController.shoutSignInButton.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Create Account",comment: "Create Account"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("CreateAccount",comment: "Create Account"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.viewController.shoutSignInButton.titleLabel?.alpha = 1
             })
@@ -215,10 +217,10 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         switch (indexPath.row) {
         case 0:
             self.signArray[indexPath.row]["emailTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("Enter valid email.", comment: "Enter valid email."))
+            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
         case 1:
             self.signArray[indexPath.row]["passwordTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("Password charaters limit should be come between 6-20", comment: "Password charaters limit should be come between 6-20"))
+            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
             cell.textField.secureTextEntry = true
         case 2:
             self.signArray[indexPath.row]["nameTextField"] = cell.textField
@@ -281,7 +283,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             }
             emailTextField.resignFirstResponder()
             if(emailTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("Email not set", comment: "Email not set") , message: NSLocalizedString("Please enter the email.", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
+                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
@@ -294,7 +296,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             passwordTextField.resignFirstResponder()
             
             if(passwordTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("Password not set", comment: "Password not set"), message: NSLocalizedString("Please enter the password.", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
+                let ac = UIAlertController(title: NSLocalizedString("PasswordNotSet", comment: "Password not set"), message: NSLocalizedString("PleaseEnterPassword", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
@@ -308,8 +310,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             
             if(nameTextField.text == "") {
                 let ac = UIAlertController(
-                    title: NSLocalizedString("Name not set", comment: "Name not set"),
-                    message: NSLocalizedString("Please enter the name.", comment: "Please enter the name."),
+                    title: NSLocalizedString("NameNotSet", comment: "Name not set"),
+                    message: NSLocalizedString("PleaseEnterName", comment: "Please enter the name."),
                     preferredStyle: UIAlertControllerStyle.Alert
                 )
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
