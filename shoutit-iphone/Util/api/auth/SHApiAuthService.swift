@@ -15,46 +15,42 @@ class SHApiAuthService: NSObject {
     private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
     func performLogin(email: String, password: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        var params = [
-            "client_id": Constants.Authentication.SH_CLIENT_ID,
-            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
-            "grant_type": "shoutit_signin",
-            "email": email,
-            "password": password
-        ]
-        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
-            params["mixpanel_distinct_id"] = mixPanelDistinctId
-        }
+        let params = generateParams(email, password: password, grantType: "shoutit_signin")
         getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
-    }
-    
-    private func getAuthToken(params: [String: AnyObject]?, cacheKey: String? = nil, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func performSignUp(email: String, password: String, name: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        var params = [
-            "client_id": Constants.Authentication.SH_CLIENT_ID,
-            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
-            "grant_type": "shoutit_signup",
-            "email": email,
-            "password": password,
-            "name": name
-        ]
-        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
-            params["mixpanel_distinct_id"] = mixPanelDistinctId
-        }
+        let params = generateParams(email, password: password, grantType: "shoutit_signup", name: name)
         getAuthToken(params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func resetPassword(email: String, cacheKey: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+    func resetPassword(email: String, cacheKey: String, cacheResponse: SHSuccess -> Void, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let param = [
             "email": email
-        
         ]
         SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    // MARK - private
+    private func getAuthToken(params: [String: AnyObject]?, cacheKey: String? = nil, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
     
+    private func generateParams(email: String, password: String, grantType: String, name: String? = nil) -> [String : AnyObject] {
+        var params = [
+            "client_id": Constants.Authentication.SH_CLIENT_ID,
+            "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
+            "grant_type": grantType,
+            "email": email,
+            "password": password
+        ]
+        if let userName = name {
+            params["name"] = userName
+        }
+        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
+            params["mixpanel_distinct_id"] = mixPanelDistinctId
+        }
+        return params
+    }
     
 }
