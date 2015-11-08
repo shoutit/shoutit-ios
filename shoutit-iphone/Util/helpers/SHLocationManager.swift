@@ -25,9 +25,9 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
     
     private override init() {
         super.init()
-        clLocationManager.requestWhenInUseAuthorization()
         clLocationManager.delegate = self
         clLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        clLocationManager.requestWhenInUseAuthorization()
     }
     
     func startUpdating() {
