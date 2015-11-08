@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import SVProgressHUD
 import Haneke
 
-class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
+class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate {
 
     private var viewController: SHLoginViewController
     private var isSignIn = Bool()
@@ -51,6 +51,11 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     // MARK - ViewController Methods
+    func loginWithGplus() {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
     func loginWithFacebook() {
         let login: FBSDKLoginManager = FBSDKLoginManager()
         login.logInWithReadPermissions(["public_profile"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
@@ -209,6 +214,23 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.isSignIn ? 2 : 3
+    }
+    
+    // MARK - GoogleSignIn Delegate
+    //handle the sign-in process -- Google
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+        withError error: NSError!) {
+            if (error == nil) {
+                let params = shApiAuthService.getGooglePlusParams(user.authentication.accessToken)
+                self.getOauthResponse(params)
+            } else {
+                log.debug("\(error.localizedDescription)")
+            }
+    }
+
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+        withError error: NSError!) {
+            log.verbose("Error getting Google Plus User")
     }
     
     // MARK - Private

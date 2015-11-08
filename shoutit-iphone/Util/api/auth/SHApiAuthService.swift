@@ -35,12 +35,20 @@ class SHApiAuthService: NSObject {
         )
     }
     
-    // Login Facebook
     func getFacebookParams(fbToken: String) -> [String: AnyObject] {
         return generateParams(
             "facebook_access_token",
             params: [
                 "facebook_access_token": fbToken
+            ]
+        )
+    }
+    
+    func getGooglePlusParams(gplusToken: String) -> [String: AnyObject] {
+        return generateParams(
+            "gplus_code",
+            params: [
+                "gplus_code": gplusToken
             ]
         )
     }

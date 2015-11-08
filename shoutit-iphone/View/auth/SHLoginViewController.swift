@@ -81,7 +81,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func googleLoginAction(sender: AnyObject) {
-        GIDSignIn.sharedInstance().signIn()
+        viewModel?.loginWithGplus()
     }
     
     @IBAction func resetPasswordAction(sender: AnyObject) {

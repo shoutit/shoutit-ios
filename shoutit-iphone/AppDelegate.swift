@@ -14,7 +14,7 @@ import FBSDKCoreKit
 let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // GGLContext.sharedInstance().configureWithError(&configureError)
         // assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-        GIDSignIn.sharedInstance().delegate = self
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
@@ -60,41 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let ret = fb ? fb : (g ? g : false)
             return ret;
     }
-    
-    //handle the sign-in process -- Google
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-        withError error: NSError!) {
-            if (error == nil) {
-                log.info("GoolgeLoggedIn")
-                // Perform any operations on signed in user here.
-//                let userId = user.userID                  // For client-side use only!
-//                let idToken = user.authentication.idToken // Safe to send to the server
-//                let name = user.profile.name
-//                let email = user.profile.email
-                // ...
-//                NSNotificationCenter.defaultCenter().postNotificationName(
-//                    "ToggleAuthUINotification",
-//                    object: nil,
-//                    userInfo: ["statusText": "Signed in user:\n\(name)"])
-                // [END_EXCLUDE]
-                
-                
-            } else {
-                log.debug("\(error.localizedDescription)")
-            }
-            }
-    }
-    
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-        withError error: NSError!) {
-            // Perform any operations when the user disconnects from app here.
-            // ...
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                "ToggleAuthUINotification",
-                object: nil,
-                userInfo: ["statusText": "User has disconnected."])
-    }
-
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -118,6 +82,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         SHMixpanelHelper.closeApp()
     }
 
-
-
-
+}
