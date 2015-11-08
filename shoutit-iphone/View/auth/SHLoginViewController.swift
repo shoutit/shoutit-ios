@@ -14,6 +14,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
+    @IBOutlet weak var facebookLoginButton: UIButton!
     
     private var viewModel: SHLoginViewModel?
     
@@ -21,22 +22,19 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         // Google instance
-        GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
-        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true;
-        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false;
-        GIDSignIn.sharedInstance().allowsSignInWithWebView = true;
-        // Uncomment to automatically sign in the user.
-        GIDSignIn.sharedInstance().signInSilently()
-        
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
         
         // Setup Delegates and data Source
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
         
         self.shoutSignInButton.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
-        self.setNeedsStatusBarAppearanceUpdate()
-        
         self.shoutSignInButton.layer.cornerRadius = 0.5
         self.signInButton.layer.cornerRadius = 5
         self.signUpButton.layer.cornerRadius = 5

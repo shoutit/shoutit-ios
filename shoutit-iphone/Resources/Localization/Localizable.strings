@@ -38,3 +38,12 @@
 
 /* Please enter the name */
 "PleaseEnterName" = "Please enter the name.";
+
+/* Error */
+"Error" = "Error";
+
+/* Could not log you in, please try again! */
+"LoginError" = "Could not log you in, please try again!";
+
+/* Ok */
+"Ok" = "Ok";

@@ -39,7 +39,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp</string>
+				<string>com.googleusercontent.apps.935842257865-lppn1neft859vr84flug604an2lh33dk</string>
 			</array>
 		</dict>
 	</array>
@@ -51,9 +51,12 @@
 	<string>shoutit-iphone</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
+		<string>fbshareextension</string>
 		<string>com.shoutit-iphone.swift</string>
-		<string>com.googleusercontent.apps.759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp</string>
+		<string>com.googleusercontent.apps.935842257865-lppn1neft859vr84flug604an2lh33dk</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -62,20 +65,26 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>facebook.com</key>
-    	<dict>
-      	<key>NSIncludesSubdomains</key> <true/>
-      	<key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
-    	</dict>
-    	<key>fbcdn.net</key>
-    	<dict>
-      	<key>NSIncludesSubdomains</key> <true/>
-      	<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>  <false/>
-    	</dict>
-    	<key>akamaihd.net</key>
-    	<dict>
-      	<key>NSIncludesSubdomains</key> <true/>
-      	<key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
-    	</dict>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
 			<key>shoutit.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -101,6 +110,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
