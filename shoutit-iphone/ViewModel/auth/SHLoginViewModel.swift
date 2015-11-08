@@ -367,8 +367,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         log.debug("error logging in")
         // Clear OauthToken cache
         Shared.stringCache.removeAll()
-        let alert = UIAlertController(title: "Error", message: "Invalid username or password, please try again!", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
         self.viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
