@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="lWR-BX-jsh" customClass="SHDiscoverFlowLayout"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverCollectionViewCell" reuseIdentifier="SHDiscoverCollectionViewCell" id="j4J-iW-TlQ" customClass="SHDiscoverCollectionViewCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverCollectionViewCell" reuseIdentifier="SHDiscoverViewCell" id="j4J-iW-TlQ" customClass="SHDiscoverCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -65,8 +65,8 @@
                                 </constraints>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
-                                    <outlet property="imageView" destination="5aO-FG-24V" id="Nsa-CM-FSB"/>
-                                    <outlet property="textLabel" destination="M9u-Dh-cLX" id="kuB-cg-GyA"/>
+                                    <outlet property="imageView" destination="5aO-FG-24V" id="cSD-F4-axd"/>
+                                    <outlet property="textLabel" destination="M9u-Dh-cLX" id="a0A-EL-1Ns"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

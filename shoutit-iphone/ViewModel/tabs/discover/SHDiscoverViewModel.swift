@@ -11,6 +11,9 @@ import UIKit
 class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol {
 
     var viewController: SHDiscoverCollectionViewController
+    private var titleLabel: UILabel?
+    private var subTitleLabel: UILabel?
+    private let shApiDiscoverService = SHApiDiscoverService()
     
     required init(viewController: SHDiscoverCollectionViewController) {
         self.viewController = viewController

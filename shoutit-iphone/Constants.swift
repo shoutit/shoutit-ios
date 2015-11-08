@@ -44,6 +44,7 @@ struct Constants {
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
+        static let SHDiscoverCollectionViewCell = "SHDiscoverCollectionViewCell"
     }
     
     struct Authentication {
