@@ -41,7 +41,7 @@ class SHApiManager: NSObject {
     }
     
     func post<R: Mappable>(url: String, params: [String : AnyObject]?, isCachingEnabled: Bool = true, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
-        let request = Alamofire.request(.POST, url, parameters: params, headers: authHeaders())
+        let request = Alamofire.request(.POST, url, parameters: params, headers: nil)
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     

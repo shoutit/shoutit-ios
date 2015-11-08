@@ -218,18 +218,21 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     // MARK - GoogleSignIn Delegate
     //handle the sign-in process -- Google
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-        withError error: NSError!) {
-            if (error == nil) {
-                let params = shApiAuthService.getGooglePlusParams(user.authentication.accessToken)
+    func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?,
+        withError error: NSError?) {
+            GIDSignIn.sharedInstance().delegate = nil
+            if error == nil, let serverAuthCode = user?.serverAuthCode {
+                let params = shApiAuthService.getGooglePlusParams(serverAuthCode)
                 self.getOauthResponse(params)
             } else {
-                log.debug("\(error.localizedDescription)")
+                GIDSignIn.sharedInstance().signOut()
+                log.debug("\(error?.localizedDescription)")
             }
     }
 
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-        withError error: NSError!) {
+    func signIn(signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
+        withError error: NSError?) {
+            GIDSignIn.sharedInstance().delegate = nil
             log.verbose("Error getting Google Plus User")
     }
     
