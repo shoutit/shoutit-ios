@@ -11,18 +11,21 @@ import Alamofire
 
 class SHApiDiscoverService: NSObject {
     
-    private let DISCOVER_BY_COUNTRY = SHApiManager.sharedInstance.BASE_URL + "/discover"
-    private let locationCache = SHOauthToken.getFromCache()?.user?.location
+    private let DISCOVER_FEED = SHApiManager.sharedInstance.BASE_URL + "/discover"
+    private let DISCOVER_FEED_ITEMS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@"
+    private let location = SHAddress.getUserOrDeviceLocation()
     
-    func getItemsForLocation(country: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHUser, NSError> -> Void) {
-        if let country = locationCache?.country {
+    func getDiscoverLocation(cacheResponse: SHDiscoverLocation -> Void, completionHandler: Response<SHDiscoverLocation, NSError> -> Void) {
+        if let country = location?.country {
             let params = [
                 "country": country
             ]
-            SHApiManager.sharedInstance.get(DISCOVER_BY_COUNTRY, params: params, cacheKey: Constants.Cache.OauthToken, completionHandler: completionHandler)
+            SHApiManager.sharedInstance.get(DISCOVER_FEED, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
         }
-        
-        
+    }
+    
+    func getItemsFeedForLocation(id: String, cacheResponse: SHDiscoverItem -> Void, completionHandler: Response<SHDiscoverItem, NSError> -> Void) {
+        SHApiManager.sharedInstance.get(String(format: DISCOVER_FEED_ITEMS, id), params: nil, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
 }

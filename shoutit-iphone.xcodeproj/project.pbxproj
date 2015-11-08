@@ -40,7 +40,6 @@
 		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
 		604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */; };
 		604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */; };
-		604A0DDA1BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */; };
 		604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DDB1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift */; };
 		604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */; };
 		604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */; };
@@ -57,16 +56,19 @@
 		AC1C93EB1BE90D2A009400BE /* tos.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* tos.html */; };
 		AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */; };
 		AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93EE1BE90F60009400BE /* SHModalWebViewModel.swift */; };
-		AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F11BE96C98009400BE /* SHLoginModel.swift */; };
 		AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */; };
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
-		AC6F2B2E1BEF50A400D9F5A3 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B2D1BEF50A300D9F5A3 /* SHDiscoverCollectionViewCell.swift */; };
-		AC6F2B311BEF5B9300D9F5A3 /* SHTopItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B301BEF5B9300D9F5A3 /* SHTopItemsModel.swift */; };
 		AC6F2B351BEF613B00D9F5A3 /* SHFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B341BEF613B00D9F5A3 /* SHFilter.swift */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
+		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
+		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
+		ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */; };
+		ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */; };
+		ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */; };
+		ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8D11BEFF405001FB172 /* SHDiscoverDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,7 +129,6 @@
 		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
 		604A0DD21BEE605B002A80E7 /* SHApiUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiUserService.swift; path = Util/api/users/SHApiUserService.swift; sourceTree = "<group>"; };
 		604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCollectionViewController.swift; path = View/common/BaseCollectionViewController.swift; sourceTree = "<group>"; };
-		604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		604A0DDB1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewControllerModelProtocol.swift; path = ViewModel/protocols/CollectionViewControllerModelProtocol.swift; sourceTree = "<group>"; };
 		604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverViewModel.swift; sourceTree = "<group>"; };
 		604A0DE01BEE9DCC002A80E7 /* SHTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTabViewController.swift; path = View/tabs/SHTabViewController.swift; sourceTree = "<group>"; };
@@ -147,16 +148,19 @@
 		AC1C93E81BE90D2A009400BE /* tos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tos.html; path = View/auth/Resource/tos.html; sourceTree = "<group>"; };
 		AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHModalWebViewController.swift; path = View/auth/SHModalWebViewController.swift; sourceTree = "<group>"; };
 		AC1C93EE1BE90F60009400BE /* SHModalWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHModalWebViewModel.swift; path = ViewModel/auth/SHModalWebViewModel.swift; sourceTree = "<group>"; };
-		AC1C93F11BE96C98009400BE /* SHLoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginModel.swift; path = Model/auth/SHLoginModel.swift; sourceTree = "<group>"; };
 		AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Model/base/ModelDelegate.swift; sourceTree = "<group>"; };
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AC6F2B2D1BEF50A300D9F5A3 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
-		AC6F2B301BEF5B9300D9F5A3 /* SHTopItemsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTopItemsModel.swift; path = Model/tagModels/SHTopItemsModel.swift; sourceTree = "<group>"; };
 		AC6F2B341BEF613B00D9F5A3 /* SHFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilter.swift; path = View/stream/filter/SHFilter.swift; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
+		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
+		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
+		ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
+		ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
+		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
+		ACF9A8D11BEFF405001FB172 /* SHDiscoverDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,7 +269,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AC6F2B2F1BEF5B1D00D9F5A3 /* tagModels */,
+				AC6F2B2F1BEF5B1D00D9F5A3 /* discover */,
 				AC1C93FA1BEA8AA5009400BE /* location */,
 				AC1C93F31BE9F152009400BE /* base */,
 				AC1C93F01BE96B10009400BE /* auth */,
@@ -457,8 +461,9 @@
 		604A0DD81BEE9BA1002A80E7 /* discover */ = {
 			isa = PBXGroup;
 			children = (
-				604A0DD91BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift */,
-				AC6F2B2D1BEF50A300D9F5A3 /* SHDiscoverCollectionViewCell.swift */,
+				ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */,
+				ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */,
+				ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */,
 			);
 			name = discover;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				604A0DDE1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift */,
+				ACF9A8D11BEFF405001FB172 /* SHDiscoverDetailViewModel.swift */,
 			);
 			name = discover;
 			sourceTree = "<group>";
@@ -509,7 +515,6 @@
 		AC1C93F01BE96B10009400BE /* auth */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C93F11BE96C98009400BE /* SHLoginModel.swift */,
 				AC1C93F81BEA8362009400BE /* SHUser.swift */,
 				607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */,
 			);
@@ -550,12 +555,13 @@
 			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
-		AC6F2B2F1BEF5B1D00D9F5A3 /* tagModels */ = {
+		AC6F2B2F1BEF5B1D00D9F5A3 /* discover */ = {
 			isa = PBXGroup;
 			children = (
-				AC6F2B301BEF5B9300D9F5A3 /* SHTopItemsModel.swift */,
+				AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */,
+				AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */,
 			);
-			name = tagModels;
+			name = discover;
 			sourceTree = "<group>";
 		};
 		AC6F2B321BEF60AB00D9F5A3 /* stream */ = {
@@ -781,6 +787,7 @@
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
+				ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				AC6F2B351BEF613B00D9F5A3 /* SHFilter.swift in Sources */,
@@ -788,18 +795,19 @@
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
-				AC1C93F21BE96C98009400BE /* SHLoginModel.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
-				604A0DDA1BEE9C2D002A80E7 /* SHDiscoverCollectionViewController.swift in Sources */,
+				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
+				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
+				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
@@ -807,16 +815,16 @@
 				AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */,
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
+				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
+				AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */,
 				6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */,
-				AC6F2B311BEF5B9300D9F5A3 /* SHTopItemsModel.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
-				AC6F2B2E1BEF50A400D9F5A3 /* SHDiscoverCollectionViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,13 +13,13 @@ import Haneke
 
 class SHAddress: Mappable {
 
-    private(set) var address: String?
-    private(set) var city: String?
-    private(set) var country: String?
+    private(set) var address = String()
+    private(set) var city = String()
+    private(set) var country = String()
     private(set) var latitude: Float?
     private(set) var longitude: Float?
     private(set) var postalCode: String?
-    private(set) var state: String?
+    private(set) var state =  String()
     
     required init?(_ map: Map) {
         
@@ -34,6 +34,17 @@ class SHAddress: Mappable {
         longitude       <- map["longitude"]
         postalCode      <- map["postal_code"]
         state           <- map["state"]
+    }
+    
+    static func getUserOrDeviceLocation() -> SHAddress? {
+        var shAddress: SHAddress? = nil
+        if let oauthToken = SHOauthToken.getFromCache() {
+            shAddress = oauthToken.user?.location
+        }
+        if shAddress == nil {
+            shAddress = getFromCache()
+        }
+        return shAddress
     }
     
     static func getFromCache() -> SHAddress? {

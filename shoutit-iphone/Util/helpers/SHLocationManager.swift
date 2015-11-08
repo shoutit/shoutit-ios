@@ -84,7 +84,10 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
                     })
                 }
             }
+            
         }
+        
+        
     }
    
 }
