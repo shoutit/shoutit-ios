@@ -46,6 +46,10 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
         return shAddress
     }
     
+    func getCurrentLocation() -> CLLocation? {
+        return self.currentLocation
+    }
+    
     // MARK - CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         log.error("Error: Failed to Get Location")

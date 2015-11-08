@@ -76,6 +76,12 @@ class SHApiAuthService: NSObject {
                 defaultParams[key] = value
             }
         }
+        if let coordinate = SHLocationManager.sharedInstance.getCurrentLocation()?.coordinate {
+            defaultParams["location"] = [
+                "latitude": coordinate.latitude,
+                "longitude": coordinate.longitude
+            ]
+        }
         if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
             defaultParams["mixpanel_distinct_id"] = mixPanelDistinctId
         }
