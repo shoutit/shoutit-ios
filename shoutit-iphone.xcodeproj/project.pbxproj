@@ -61,7 +61,6 @@
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
-		AC6F2B351BEF613B00D9F5A3 /* SHFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B341BEF613B00D9F5A3 /* SHFilter.swift */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
 		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
@@ -153,7 +152,6 @@
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AC6F2B341BEF613B00D9F5A3 /* SHFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilter.swift; path = View/stream/filter/SHFilter.swift; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
 		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 		6027CF641BE74F6F00124C28 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AC6F2B321BEF60AB00D9F5A3 /* stream */,
 				604A0DD41BEE9ADA002A80E7 /* tabs */,
 				6027CF941BE757DA00124C28 /* auth */,
 				6027CF6A1BE74FB400124C28 /* splash */,
@@ -564,22 +561,6 @@
 			name = discover;
 			sourceTree = "<group>";
 		};
-		AC6F2B321BEF60AB00D9F5A3 /* stream */ = {
-			isa = PBXGroup;
-			children = (
-				AC6F2B331BEF60CA00D9F5A3 /* filter */,
-			);
-			name = stream;
-			sourceTree = "<group>";
-		};
-		AC6F2B331BEF60CA00D9F5A3 /* filter */ = {
-			isa = PBXGroup;
-			children = (
-				AC6F2B341BEF613B00D9F5A3 /* SHFilter.swift */,
-			);
-			name = filter;
-			sourceTree = "<group>";
-		};
 		AC6F2B361BEF70EC00D9F5A3 /* discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,7 +771,6 @@
 				ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
-				AC6F2B351BEF613B00D9F5A3 /* SHFilter.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,

@@ -12,7 +12,7 @@ import ObjectMapper
 class SHDiscoverItem: Mappable {
     
     private(set) var id: String?
-    private(set) var api_Url: String?
+    private(set) var apiUrl: String?
     private(set) var title: String?
     private(set) var subtitle: String?
     private(set) var position: Int?
@@ -21,9 +21,9 @@ class SHDiscoverItem: Mappable {
     private(set) var description: String?
     private(set) var cover: String?
     private(set) var countries = [String]()
-    private(set) var parents = []
-    private(set) var children = [SHDiscoverItem]()
-    private(set) var shouts_Url: String?
+    private(set) var parents: [SHDiscoverItem] = [] // TODO Type
+    private(set) var children: [SHDiscoverItem] = []
+    private(set) var shoutsUrl: String?
     
     
     required init?(_ map: Map) {
@@ -33,7 +33,7 @@ class SHDiscoverItem: Mappable {
     // Mappable
     func mapping(map: Map) {
         id                 <- map["id"]
-        api_Url            <- map["api_url"]
+        apiUrl             <- map["api_url"]
         title              <- map["title"]
         subtitle           <- map["subtitle"]
         position           <- map["position"]
@@ -44,6 +44,6 @@ class SHDiscoverItem: Mappable {
         countries          <- map["countries"]
         parents            <- map["parents"]
         children           <- map["children"]
-        shouts_Url         <- map["shouts_Url"]
+        shoutsUrl          <- map["shouts_Url"]
     }
 }
