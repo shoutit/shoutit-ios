@@ -69,6 +69,10 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     // MARK - Private
+    private func updateUI(discoverItem: SHDiscoverItem) {
+        // TODO Update UI Here
+    }
+    
     private func discoverItems() {
         shApiDiscoverService.getDiscoverLocation({ (shDiscoverLocation) -> Void in
             //Do Nothing here
@@ -76,22 +80,30 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 switch(response.result) {
                 case .Success(let result):
                     if result.results.count > 0, let discoverItemId = result.results[0].id {
-                        self.shApiDiscoverService.getItemsFeedForLocation(discoverItemId, cacheResponse: { (shDiscoverItem) -> Void in
-                            // Do Nothing here
-                            }, completionHandler: { (response) -> Void in
-                                switch(response.result) {
-                                case .Success(let result):
-                                    log.info("Success \(result)")
-                                case .Failure(let error):
-                                    log.debug("\(error)")
-                                }
-                            }
-                        )
+                        self.fetchDiscoverItems(discoverItemId)
                     }
                 case .Failure(let error):
                     log.debug("\(error)")
+                    // TODO
                 }
         }
+    }
+    
+    private func fetchDiscoverItems(id: String) {
+        self.shApiDiscoverService.getItemsFeedForLocation(id, cacheResponse: { (shDiscoverItem) -> Void in
+                // Do Nothing here
+                self.updateUI(shDiscoverItem)
+            }, completionHandler: { (response) -> Void in
+                switch(response.result) {
+                case .Success(let result):
+                    log.info("Success getting discover items")
+                    self.updateUI(result)
+                case .Failure(let error):
+                    log.debug("\(error)")
+                    // TODO
+                }
+            }
+        )
     }
     
     private func setupNavigationBar() {
