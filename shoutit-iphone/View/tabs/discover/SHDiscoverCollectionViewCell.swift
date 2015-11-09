@@ -13,4 +13,13 @@ class SHDiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     
+    private var viewModel: SHDiscoverCellViewModel?
+    
+    override func awakeFromNib() {
+        self.viewModel = SHDiscoverCellViewModel(cell: self)
+    }
+    
+    func setUp(item: SHDiscoverItem) {
+        viewModel?.setup(item)
+    }
 }

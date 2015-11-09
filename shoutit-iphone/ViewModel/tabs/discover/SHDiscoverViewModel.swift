@@ -55,10 +55,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as! SHDiscoverCollectionViewCell
-        cell.textLabel.text = items[indexPath.row].title
-        if let imageUrl = items[indexPath.row].image where imageUrl != "" {
-            cell.imageView.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: UIImage(named: "image_placeholder"))
-        }
+        cell.setUp(items[indexPath.row])
         return cell
     }
     
