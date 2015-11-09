@@ -63,8 +63,8 @@ class SHApiManager: NSObject {
             NetworkActivityManager.removeActivity()
             switch (response.result) {
             case .Success(let result):
-                if let stringResponse = Mapper().toJSONString(result) {
-                    self.cache.set(value: stringResponse, key: cacheKey!)
+                if let stringResponse = Mapper().toJSONString(result), let apiCacheKey = cacheKey {
+                    self.cache.set(value: stringResponse, key: apiCacheKey)
                 }
                 log.debug("Success post request : \(result)")
             case .Failure(let error):
