@@ -46,6 +46,7 @@
 		604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */; };
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
 		604A0DE71BEEB0B1002A80E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 604A0DE61BEEB0B0002A80E7 /* Localizable.strings */; };
+		606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116A71BF0947600259357 /* SHDiscoverFlowLayout.swift */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -134,6 +135,7 @@
 		604A0DE21BEEA047002A80E7 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Extensions.swift"; path = "Util/extensions/UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Util/extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		604A0DE61BEEB0B0002A80E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		606116A71BF0947600259357 /* SHDiscoverFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFlowLayout.swift; path = View/tabs/discover/SHDiscoverFlowLayout.swift; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */,
 				ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */,
 				ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */,
+				606116A71BF0947600259357 /* SHDiscoverFlowLayout.swift */,
 			);
 			name = discover;
 			sourceTree = "<group>";
@@ -784,6 +787,7 @@
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
+				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,

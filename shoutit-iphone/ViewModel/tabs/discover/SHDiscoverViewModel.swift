@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
+class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     let viewController: SHDiscoverCollectionViewController
     private let shApiDiscoverService = SHApiDiscoverService()
@@ -54,12 +54,16 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as? SHDiscoverCollectionViewCell
-        cell?.textLabel.text = items[indexPath.row].title
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as! SHDiscoverCollectionViewCell
+        cell.textLabel.text = items[indexPath.row].title
         if let imageUrl = items[indexPath.row].image where imageUrl != "" {
-            cell?.imageView.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: UIImage(named: "image_placeholder"))
+            cell.imageView.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: UIImage(named: "image_placeholder"))
         }
-        return cell!
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return (collectionViewLayout as! SHDiscoverFlowLayout).sizeCellForRowAtIndexPath(indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -69,22 +73,28 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     // MARK - Private
     private func updateUI(discoverItem: SHDiscoverItem) {
         // TODO Update UI Here
+        items = discoverItem.children
         self.viewController.collectionView?.reloadData()
     }
     
     private func discoverItems() {
-        shApiDiscoverService.getDiscoverLocation({ (shDiscoverLocation) -> Void in
-            //Do Nothing here
+        shApiDiscoverService.getDiscoverLocation(
+            { (shDiscoverLocation) -> Void in
+                self.gotDiscoverItems(shDiscoverLocation)
             }) { (response) -> Void in
                 switch(response.result) {
                 case .Success(let result):
-                    if result.results.count > 0, let discoverItemId = result.results[0].id {
-                        self.fetchDiscoverItems(discoverItemId)
-                    }
+                    self.gotDiscoverItems(result)
                 case .Failure(let error):
                     log.debug("\(error)")
                     // TODO
                 }
+        }
+    }
+    
+    private func gotDiscoverItems(result: SHDiscoverLocation) {
+        if result.results.count > 0, let discoverItemId = result.results[0].id {
+            self.fetchDiscoverItems(discoverItemId)
         }
     }
     
