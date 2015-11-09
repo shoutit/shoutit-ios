@@ -21,8 +21,8 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     
     func viewDidLoad() {
         self.viewController.collectionView!.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
-        let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: nil) //action : selectLocation
-        self.viewController.navigationItem.rightBarButtonItem = loc;
+        let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: "selectLocation:")
+        self.viewController.navigationItem.rightBarButtonItem = loc
 
         discoverItems()
         setupNavigationBar()
@@ -45,6 +45,13 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func destroy() {
+        
+    }
+    
+    func selectLocation(sender: AnyObject) {
+        let vc = Constants.ViewControllers.LOCATION_GETTER_VIEW_CONTROLLER
+        vc.title = NSLocalizedString("Select Place", comment: "Select Place")
+        self.viewController.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -124,13 +131,14 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
         titleLabel.text = self.viewController.title
         titleLabel.sizeToFit()
+        
         let imageView = UIImageView(image: UIImage(named: "logoWhite"))
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.frame = CGRectMake(0, 0, 70, 44)
         let logo = UIBarButtonItem(customView: imageView)
         self.viewController.navigationItem.leftBarButtonItem = logo
         
-        let subTitleLabel = UILabel(frame: CGRect(x: 0, y: titleLabel.frame.origin.y + titleLabel.frame.size.height - 3, width: 100, height: 0))
+        let subTitleLabel = UILabel(frame: CGRectMake(0, titleLabel.frame.origin.y + titleLabel.frame.size.height - 3, 100, 0))
         subTitleLabel.textAlignment = NSTextAlignment.Center
         subTitleLabel.backgroundColor = UIColor.clearColor()
         subTitleLabel.textColor = UIColor.whiteColor()
@@ -139,15 +147,13 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
         }
-        subTitleLabel.center = CGPointMake(titleLabel.center.x, titleLabel.center.y)
+        subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)
         subTitleLabel.sizeToFit()
         
         let twoLineTitleView = UIView(frame: titleLabel.frame)
         twoLineTitleView.addSubview(titleLabel)
         twoLineTitleView.addSubview(subTitleLabel)
-        subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)
         self.viewController.navigationItem.titleView = twoLineTitleView
-        subTitleLabel.sizeToFit()
     }
     
 }

@@ -47,3 +47,16 @@
 
 /* Ok */
 "Ok" = "Ok";
+
+/* Location */
+"Location" = "Location";
+
+/* Select Place */
+"Select Place" = "Select Place";
+
+/* Success */
+"Success" = "Success";
+
+/* Password recovery email will be sent soon. */
+"Password recovery email will be sent soon." = "Password recovery email will be sent soon.";
+
