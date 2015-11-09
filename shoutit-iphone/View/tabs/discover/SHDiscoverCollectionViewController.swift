@@ -14,6 +14,10 @@ class SHDiscoverCollectionViewController: BaseCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup Delegates and data Source
+        self.collectionView!.delegate = viewModel
+        self.collectionView!.dataSource = viewModel
+        
         viewModel?.viewDidLoad()
     }
     

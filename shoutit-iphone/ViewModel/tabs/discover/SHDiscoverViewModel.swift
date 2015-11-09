@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
 
     let viewController: SHDiscoverCollectionViewController
     private let shApiDiscoverService = SHApiDiscoverService()
-    private let items: [SHDiscoverItem] = []
+    private var items: [SHDiscoverItem] = []
     
     required init(viewController: SHDiscoverCollectionViewController) {
         self.viewController = viewController
@@ -44,20 +45,22 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     //Mark - CollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as? SHDiscoverCollectionViewCell {
-            cell.textLabel.text = items[indexPath.row].title
-            //        [cell.imageView setImageWithURL:[NSURL URLWithString:tag.image] placeholderImage:[UIImage imageNamed:@"image_placeholder"]  usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            return cell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as? SHDiscoverCollectionViewCell
+        cell?.textLabel.text = items[indexPath.row].title
+        if let imageUrl = items[indexPath.row].image where imageUrl != "" {
+            cell?.imageView.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: UIImage(named: "image_placeholder"))
         }
-        
-        
-        return UICollectionViewCell()
+        return cell!
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -97,6 +100,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 switch(response.result) {
                 case .Success(let result):
                     log.info("Success getting discover items")
+                    self.items = result.children
                     self.updateUI(result)
                 case .Failure(let error):
                     log.debug("\(error)")
