@@ -14,7 +14,7 @@ import FBSDKCoreKit
 let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -33,20 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // GGLContext.sharedInstance().configureWithError(&configureError)
         // assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-        GIDSignIn.sharedInstance().delegate = self
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        if let cachedOauthToken = SHOauthToken.getFromCache() {
-            if cachedOauthToken.isSignedIn(), let token = cachedOauthToken.accessToken {
-                // User Already Signed In
-                // TODO get discover items
-                // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
-            } else {
-                // Not Signed In
-            }
+        if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
+            // User Already Signed In
+            let tabViewController = SHTabViewController()
+            self.window?.rootViewController = tabViewController
+            // TODO get discover items
+            // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
         } else {
             // Not Signed In
         }
+        
+        SHLocationManager.sharedInstance.startUpdating()
         
         return true
     }
@@ -54,51 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // handle the URL that your application receives at the end of the authentication process -- Google
     func application(application: UIApplication,
         openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-            if ((GIDSignIn.sharedInstance()) != nil) {
-                
-                return GIDSignIn.sharedInstance().handleURL(url,
-                    sourceApplication: sourceApplication,
-                    annotation: annotation)
-            } else {
-                return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            }
+            let fb  = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+            let g = GIDSignIn.sharedInstance().handleURL(url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
             
+            let ret = fb ? fb : (g ? g : false)
+            return ret;
     }
-    
-    //handle the sign-in process -- Google
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-        withError error: NSError!) {
-            if (error == nil) {
-                log.info("GoolgeLoggedIn")
-                // Perform any operations on signed in user here.
-//                let userId = user.userID                  // For client-side use only!
-//                let idToken = user.authentication.idToken // Safe to send to the server
-//                let name = user.profile.name
-//                let email = user.profile.email
-                // ...
-//                NSNotificationCenter.defaultCenter().postNotificationName(
-//                    "ToggleAuthUINotification",
-//                    object: nil,
-//                    userInfo: ["statusText": "Signed in user:\n\(name)"])
-                // [END_EXCLUDE]
-                
-                
-            } else {
-                log.debug("\(error.localizedDescription)")
-            }
-            }
-    }
-    
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-        withError error: NSError!) {
-            // Perform any operations when the user disconnects from app here.
-            // ...
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                "ToggleAuthUINotification",
-                object: nil,
-                userInfo: ["statusText": "User has disconnected."])
-    }
-
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -108,21 +70,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        SHLocationManager.sharedInstance.stopUpdating()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        SHLocationManager.sharedInstance.startUpdating()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
         SHMixpanelHelper.closeApp()
+        SHLocationManager.sharedInstance.stopUpdating()
     }
 
-
-
-
+}

@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  shoutit-iphone
+
+  Created by Hitesh Sondhi on 08/11/15.
+  Copyright © 2015 Shoutit. All rights reserved.
+*/
+
+/* Signing In... */
+"SigningIn" = "Signing In...";
+
+/* Sign In */
+"SignIn" = "Sign In";
+
+/* Create Account */
+"CreateAccount" = "Create Account";
+
+/* Enter valid email. */
+"EnterValidMail" = "Enter valid email.";
+
+/* Password charaters limit should be come between 6-20 */
+"PasswordValidationError" = "Password charaters limit should be come between 6-20";
+
+/* Email not set */
+"EmailNotSet" = "Email not set";
+
+/* Please enter the email. */
+"PleaseEnterTheEmail" = "Please enter the email.";
+
+/* Password not set */
+"PasswordNotSet" = "Password not set";
+
+/* Please enter the password. */
+"PleaseEnterPassword" = "Please enter the password.";
+
+/* Name not set */
+"NameNotSet" = "Name not set";
+
+/* Please enter the name */
+"PleaseEnterName" = "Please enter the name.";
+
+/* Error */
+"Error" = "Error";
+
+/* Could not log you in, please try again! */
+"LoginError" = "Could not log you in, please try again!";
+
+/* Ok */
+"Ok" = "Ok";

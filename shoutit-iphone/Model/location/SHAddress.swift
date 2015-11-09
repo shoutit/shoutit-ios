@@ -13,13 +13,13 @@ import Haneke
 
 class SHAddress: Mappable {
 
-    private(set) var address: String?
-    private(set) var city: String?
-    private(set) var country: String?
+    private(set) var address = String()
+    private(set) var city = String()
+    private(set) var country = String()
     private(set) var latitude: Float?
     private(set) var longitude: Float?
     private(set) var postalCode: String?
-    private(set) var state: String?
+    private(set) var state =  String()
     
     required init?(_ map: Map) {
         
@@ -36,6 +36,17 @@ class SHAddress: Mappable {
         state           <- map["state"]
     }
     
+    static func getUserOrDeviceLocation() -> SHAddress? {
+        var shAddress: SHAddress? = nil
+        if let oauthToken = SHOauthToken.getFromCache() {
+            shAddress = oauthToken.user?.location
+        }
+        if shAddress == nil {
+            shAddress = getFromCache()
+        }
+        return shAddress
+    }
+    
     static func getFromCache() -> SHAddress? {
         var shAddress: SHAddress? = nil
         let semaphore = dispatch_semaphore_create(0)
@@ -49,13 +60,15 @@ class SHAddress: Mappable {
         return shAddress
     }
     
-    static func getFromCache(address: SHAddress -> ()) {
+    static func getFromCache(address: SHAddress? -> ()) {
         Shared.stringCache.fetch(key: Constants.Cache.SHAddress)
             .onSuccess({ (cachedString) -> () in
                 if let shAddress = Mapper<SHAddress>().map(cachedString) {
                     address(shAddress)
                 }
-            })
+            }).onFailure { (error) -> () in
+                address(nil)
+        }
     }
     
 }

@@ -3,24 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp.apps.googleusercontent.com</string>
+	<string>935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp</string>
+	<string>com.googleusercontent.apps.935842257865-lppn1neft859vr84flug604an2lh33dk</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.shoutit-iphone.swift</string>
-	<key>IS_ADS_ENABLED</key>
-	<false/>
-	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
-	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
-	<key>IS_GCM_ENABLED</key>
-	<false/>
-	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
-	<key>GOOGLE_APP_ID</key>
-	<string>1:759293649336:ios:a3a5da4f5cc21430</string>
 </dict>
 </plist>

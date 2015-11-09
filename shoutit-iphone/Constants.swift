@@ -11,7 +11,8 @@ import Foundation
 struct Constants {
     
     struct Google {
-        static let clientID = "759293649336-bist95s97m2f84o8clnvv0upuh4vfmmp.apps.googleusercontent.com"
+        static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
+        static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"
     }
     
     struct RegEx {
@@ -29,12 +30,25 @@ struct Constants {
         
     }
     
+    struct Style {
+        static let COLOR_BACKGROUND_WHITE = "#fafafa"
+        static let COLOR_BACKGROUND_GRAY = "#333333"
+        static let COLOR_SHOUT_GREEN = "#98dc1a"
+        static let COLOR_SHOUT_RED = "#ca3c3c"
+        static let COLOR_SHOUT_DARK_GREEN = "#658529"
+        static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
+    }
+    
     struct ViewControllers {
-        
+        static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
     }
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
+    }
+    
+    struct CollectionViewCell {
+        static let SHDiscoverCollectionViewCell = "SHDiscoverCollectionViewCell"
     }
     
     struct Authentication {

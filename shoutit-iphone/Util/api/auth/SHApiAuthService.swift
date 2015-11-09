@@ -14,14 +14,43 @@ class SHApiAuthService: NSObject {
     private let OAUTH2_ACCESS_TOKEN = SHApiManager.sharedInstance.BASE_URL + "/oauth2/access_token"
     private let AUTH_RESET_PASSWORD = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
     
-    func performLogin(email: String, password: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(email, password: password, grantType: "shoutit_signin")
-        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    func getLoginParams(email: String, password: String) -> [String: AnyObject] {
+        return generateParams(
+            "shoutit_signin",
+            params: [
+                "email": email,
+                "password": password
+            ]
+        )
     }
     
-    func performSignUp(email: String, password: String, name: String, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        let params = generateParams(email, password: password, grantType: "shoutit_signup", name: name)
-        getAuthToken(params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    func getSignUpParams(email: String, password: String, name: String) -> [String: AnyObject] {
+        return generateParams(
+            "shoutit_signup",
+            params: [
+                "email": email,
+                "password": password,
+                "name": name
+            ]
+        )
+    }
+    
+    func getFacebookParams(fbToken: String) -> [String: AnyObject] {
+        return generateParams(
+            "facebook_access_token",
+            params: [
+                "facebook_access_token": fbToken
+            ]
+        )
+    }
+    
+    func getGooglePlusParams(gplusToken: String) -> [String: AnyObject] {
+        return generateParams(
+            "gplus_code",
+            params: [
+                "gplus_code": gplusToken
+            ]
+        )
     }
     
     func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
@@ -31,26 +60,32 @@ class SHApiAuthService: NSObject {
         SHApiManager.sharedInstance.post(AUTH_RESET_PASSWORD, params: param, completionHandler: completionHandler)
     }
     
-    // MARK - private
-    private func getAuthToken(params: [String: AnyObject]?, cacheKey: String? = nil, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    func getOauthToken(params: [String: AnyObject]?, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
+        SHApiManager.sharedInstance.post(OAUTH2_ACCESS_TOKEN, params: params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    private func generateParams(email: String, password: String, grantType: String, name: String? = nil) -> [String : AnyObject] {
-        var params = [
+    // MARK - private
+    private func generateParams(grantType: String, params: [String: AnyObject]? = nil) -> [String : AnyObject] {
+        var defaultParams: [String: AnyObject] = [
             "client_id": Constants.Authentication.SH_CLIENT_ID,
             "client_secret": Constants.Authentication.SH_CLIENT_SECRET,
-            "grant_type": grantType,
-            "email": email,
-            "password": password
+            "grant_type": grantType
         ]
-        if let userName = name {
-            params["name"] = userName
+        if let params = params {
+            for (key, value) in params {
+                defaultParams[key] = value
+            }
+        }
+        if let coordinate = SHLocationManager.sharedInstance.getCurrentLocation()?.coordinate {
+            defaultParams["location"] = [
+                "latitude": coordinate.latitude,
+                "longitude": coordinate.longitude
+            ]
         }
         if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
-            params["mixpanel_distinct_id"] = mixPanelDistinctId
+            defaultParams["mixpanel_distinct_id"] = mixPanelDistinctId
         }
-        return params
+        return defaultParams
     }
     
 }

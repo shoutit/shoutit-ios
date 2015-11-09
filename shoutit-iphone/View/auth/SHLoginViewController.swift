@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
 
@@ -16,6 +14,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
+    @IBOutlet weak var facebookLoginButton: UIButton!
     
     private var viewModel: SHLoginViewModel?
     
@@ -23,22 +22,19 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         // Google instance
-        GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
-        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true;
-        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false;
-        GIDSignIn.sharedInstance().allowsSignInWithWebView = true;
-        // Uncomment to automatically sign in the user.
-        GIDSignIn.sharedInstance().signInSilently()
-        
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
         
         // Setup Delegates and data Source
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
         
-        self.shoutSignInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), forState: UIControlState.Normal)
-        self.setNeedsStatusBarAppearanceUpdate()
-        
+        self.shoutSignInButton.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
         self.shoutSignInButton.layer.cornerRadius = 0.5
         self.signInButton.layer.cornerRadius = 5
         self.signUpButton.layer.cornerRadius = 5
@@ -71,8 +67,6 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel?.viewDidDisappear()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,23 +75,11 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func facebookLoginAction(sender: AnyObject) {
-        let login: FBSDKLoginManager = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
-            if (error != nil) {
-                log.info("Process error")
-            } else {
-                if result.isCancelled {
-                    log.info("Cancelled")
-                } else {
-                    log.info("Logged in")
-                }
-            }
-        }
-        
+        viewModel?.loginWithFacebook()
     }
     
     @IBAction func googleLoginAction(sender: AnyObject) {
-        GIDSignIn.sharedInstance().signIn()
+        viewModel?.loginWithGplus()
     }
     
     @IBAction func resetPasswordAction(sender: AnyObject) {

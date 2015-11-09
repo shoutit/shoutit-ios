@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import SVProgressHUD
+import Haneke
 
-class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
+class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate {
 
     private var viewController: SHLoginViewController
     private var isSignIn = Bool()
     private var signArray = [[String: AnyObject]]()
     private let webViewController = SHModalWebViewController()
-    
     private let shApiAuthService = SHApiAuthService()
-    
+   
     required init(viewController: SHLoginViewController) {
         self.viewController = viewController
     }
@@ -48,41 +51,49 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     // MARK - ViewController Methods
+    func loginWithGplus() {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func loginWithFacebook() {
+        let login: FBSDKLoginManager = FBSDKLoginManager()
+        login.logInWithReadPermissions(["public_profile"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            if (error != nil) {
+                log.info("Process error")
+            } else {
+                if result.isCancelled {
+                    log.info("Cancelled")
+                } else {
+                    log.info("Logged in")
+                    if((FBSDKAccessToken.currentAccessToken()) != nil) {
+                        let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
+                        self.getOauthResponse(params)
+                    }
+                }
+            }
+        }
+    }
+    
     func performLogin() {
         if validateAuthentication() {
             // Perform API Request
             if (self.isSignIn) {
                 // Perform Sign In
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
-                    shApiAuthService.performLogin(email, password: password, cacheResponse: { (oauthToken) -> Void in
-                            // Do Nothing for cached object
-                        }, completionHandler: { (response) -> Void in
-                            if response.result.isSuccess {
-                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
-                            } else {
-                                
-                            }
-                    })
+                    let params = self.shApiAuthService.getLoginParams(email, password: password)
+                    self.getOauthResponse(params)
                 }
             } else {
                 // Perform SignUp
                 if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String, let name = self.signArray[2]["text"] as? String {
-                    shApiAuthService.performSignUp(email, password: password, name: name, cacheResponse: { (oauthToken) -> Void in
-                        
-                        }, completionHandler: { (response) -> Void in
-                            if response.result.isSuccess {
-                                log.verbose("AccessToken : \(response.result.value?.accessToken)")
-                            } else {
-                                
-                            }
-                    })
+                    let params = self.shApiAuthService.getSignUpParams(email, password: password, name: name)
+                    self.getOauthResponse(params)
                 }
             }
         } else {
             log.debug("Incorrect Email or Password")
         }
-        
-
     }
     
     func switchSignIn() {
@@ -98,7 +109,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.viewController.shoutSignInButton.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Sign In",comment: "Sign In"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("SignIn",comment: "Sign In"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.viewController.shoutSignInButton.titleLabel?.alpha = 1
             })
@@ -118,7 +129,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.viewController.shoutSignInButton.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("Create Account",comment: "Create Account"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("CreateAccount",comment: "Create Account"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.viewController.shoutSignInButton.titleLabel?.alpha = 1
             })
@@ -188,10 +199,10 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         switch (indexPath.row) {
         case 0:
             self.signArray[indexPath.row]["emailTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("Enter valid email.", comment: "Enter valid email."))
+            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
         case 1:
             self.signArray[indexPath.row]["passwordTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("Password charaters limit should be come between 6-20", comment: "Password charaters limit should be come between 6-20"))
+            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
             cell.textField.secureTextEntry = true
         case 2:
             self.signArray[indexPath.row]["nameTextField"] = cell.textField
@@ -203,6 +214,26 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.isSignIn ? 2 : 3
+    }
+    
+    // MARK - GoogleSignIn Delegate
+    //handle the sign-in process -- Google
+    func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?,
+        withError error: NSError?) {
+            GIDSignIn.sharedInstance().delegate = nil
+            if error == nil, let serverAuthCode = user?.serverAuthCode {
+                let params = shApiAuthService.getGooglePlusParams(serverAuthCode)
+                self.getOauthResponse(params)
+            } else {
+                GIDSignIn.sharedInstance().signOut()
+                log.debug("\(error?.localizedDescription)")
+            }
+    }
+
+    func signIn(signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
+        withError error: NSError?) {
+            GIDSignIn.sharedInstance().delegate = nil
+            log.verbose("Error getting Google Plus User")
     }
     
     // MARK - Private
@@ -254,7 +285,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             }
             emailTextField.resignFirstResponder()
             if(emailTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("Email not set", comment: "Email not set") , message: NSLocalizedString("Please enter the email.", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
+                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
@@ -267,7 +298,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             passwordTextField.resignFirstResponder()
             
             if(passwordTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("Password not set", comment: "Password not set"), message: NSLocalizedString("Please enter the password.", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
+                let ac = UIAlertController(title: NSLocalizedString("PasswordNotSet", comment: "Password not set"), message: NSLocalizedString("PleaseEnterPassword", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
                 return false
             }
@@ -281,8 +312,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             
             if(nameTextField.text == "") {
                 let ac = UIAlertController(
-                    title: NSLocalizedString("Name not set", comment: "Name not set"),
-                    message: NSLocalizedString("Please enter the name.", comment: "Please enter the name."),
+                    title: NSLocalizedString("NameNotSet", comment: "Name not set"),
+                    message: NSLocalizedString("PleaseEnterName", comment: "Please enter the name."),
                     preferredStyle: UIAlertControllerStyle.Alert
                 )
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
@@ -291,6 +322,54 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             
         }
         return true
+    }
+    
+    private func getOauthResponse(params: [String: AnyObject]) {
+        SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
+        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
+            // Do nothing here
+        }) { (response) -> Void in
+            SVProgressHUD.dismiss()
+            switch(response.result) {
+            case .Success(let oauthToken):
+                if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
+                    // Login Success
+                    // TODO
+                    
+//                    [[SHPusherManager sharedInstance]subscribeToEventsWithUserID:[[[SHLoginModel sharedModel] selfUser]userID]];
+//                    if([[UIApplication sharedApplication]isRegisteredForRemoteNotifications])
+//                    {
+//                        NSData * savedToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+//                        if (savedToken != nil)
+//                        {
+//                            [[SHNotificationsModel getInstance] sendToken:savedToken];
+//                        }
+//                    }
+                    SHMixpanelHelper.aliasUserId(userId)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let tabViewController = SHTabViewController()
+                        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+                    })
+                } else {
+                    // Login Failure
+                    self.handleOauthResponseError()
+                }
+            case .Failure:
+                self.handleOauthResponseError()
+                // TODO
+                // Show Alert Dialog with the error message
+                // Currently this is bad in the current iOS app
+            }
+        }
+    }
+    
+    private func handleOauthResponseError() {
+        log.debug("error logging in")
+        // Clear OauthToken cache
+        Shared.stringCache.removeAll()
+        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+        self.viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
