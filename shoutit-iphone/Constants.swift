@@ -41,6 +41,7 @@ struct Constants {
     
     struct ViewControllers {
         static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+        static let MODEL_WEB_VIEW_CONTROLLER = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
     }
     
     struct TableViewCell {

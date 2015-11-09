@@ -54,7 +54,6 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as? SHDiscoverCollectionViewCell
         cell?.textLabel.text = items[indexPath.row].title
         if let imageUrl = items[indexPath.row].image where imageUrl != "" {
@@ -64,16 +63,13 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let navigation = SHNavigation()
-        let detailViewController = navigation.viewControllerWithId("SHDiscoverDetailViewController")
-        
-      //  [detailViewController requestStreamForTag:self.tagModel.tags[indexPath.row] address:self.tagModel.currentLocation];
-       // [self.navigationController pushViewController:detailViewController animated:YES];
+        // TODO open shouts
     }
     
     // MARK - Private
     private func updateUI(discoverItem: SHDiscoverItem) {
         // TODO Update UI Here
+        self.viewController.collectionView?.reloadData()
     }
     
     private func discoverItems() {
@@ -100,7 +96,6 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 switch(response.result) {
                 case .Success(let result):
                     log.info("Success getting discover items")
-                    self.items = result.children
                     self.updateUI(result)
                 case .Failure(let error):
                     log.debug("\(error)")
