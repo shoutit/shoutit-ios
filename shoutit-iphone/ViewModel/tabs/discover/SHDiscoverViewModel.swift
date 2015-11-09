@@ -20,6 +20,10 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func viewDidLoad() {
+        self.viewController.collectionView!.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: nil) //action : selectLocation
+        self.viewController.navigationItem.rightBarButtonItem = loc;
+
         discoverItems()
         setupNavigationBar()
     }
