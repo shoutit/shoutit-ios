@@ -99,7 +99,7 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func skipLogin(sender: AnyObject) {
-        
+        viewModel?.skipLogin()
     }
     
     // Implement these methods only if the GIDSignInUIDelegate is not a subclass of

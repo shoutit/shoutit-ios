@@ -18,4 +18,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "LoginStoryboard", bundle: nil)
     }
     
+    static func getStream() -> UIStoryboard {
+        return UIStoryboard(name: "StreamStoryboard", bundle: nil)
+    }
+    
 }

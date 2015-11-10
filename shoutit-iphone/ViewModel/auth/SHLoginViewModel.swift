@@ -137,26 +137,32 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func resetPassword() {
-        if let email = self.signArray[0]["text"] as? String where !email.isEmpty {
-            if let validEmail = self.signArray[0]["emailTextField"] as? TextFieldValidator  {
-                if(!validEmail.validate()) {
-                    return
-                }
-                shApiAuthService.resetPassword(email, completionHandler: { (response) -> Void in
-                    if response.result.isSuccess {
-                        log.verbose("Password recovery email will be sent soon.")
-                    } else {
-                        
-                    }
-                })
-            } else {
-                
+        if let emailTextField = self.signArray[0]["emailTextField"] as? TextFieldValidator {
+            if(!emailTextField.validate()) {
+                emailTextField.tapOnError()
+                return
             }
-            
-        } else {
-            // Enter email to reset the password
-            log.verbose("Enter email to reset the password")
+            emailTextField.resignFirstResponder()
+            if(emailTextField.text == "") {
+                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
+                self.viewController.presentViewController(ac, animated: true, completion: nil)
+                return
+            }
+            shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
+                if response.result.isSuccess {
+                    let ac = UIAlertController(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Password recovery email will be sent soon.", comment: "Password recovery email will be sent soon."), preferredStyle: UIAlertControllerStyle.Alert)
+                    ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.viewController.presentViewController(ac, animated: true, completion: nil)
+                } else {
+                    log.debug("Error sending the mail")
+                }
+            })
         }
+    }
+    
+    func skipLogin () {
+        let tabViewController = SHTabViewController()
+        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
     }
     
     // MARK - Selectors
