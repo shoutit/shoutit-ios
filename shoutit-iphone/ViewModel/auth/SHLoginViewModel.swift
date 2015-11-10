@@ -58,7 +58,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     func loginWithFacebook() {
         let login: FBSDKLoginManager = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+        login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
             if (error != nil) {
                 log.info("Process error")
             } else {
