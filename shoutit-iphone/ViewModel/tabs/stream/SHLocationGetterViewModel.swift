@@ -18,6 +18,7 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     private var pastSearchWords = [String]()
     private var pastSearchResults = [String: AnyObject]()
     typealias LocationSelected = (vc: SHLocationGetterViewController?, selected: SHAddress?, isCurrent: Bool?) -> ()
+    private var locationSelected: LocationSelected?
     
     required init(viewController: SHLocationGetterViewController) {
         self.viewController = viewController
@@ -36,6 +37,8 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
         self.localSearchQueries.removeAll()
         self.pastSearchResults.removeAll()
         self.pastSearchWords.removeAll()
+        self.viewController.searchTextField.text = ""
+        self.viewController.locationTableView.reloadData()
     }
     
     func viewDidAppear() {
@@ -51,41 +54,41 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     }
     
     func destroy() {
-        
+        autoCompleteTimer?.invalidate()
+    }
+    
+    func setLocationSelected(locationSelected: LocationSelected) {
+        self.locationSelected = locationSelected
     }
     
     //pragma mark - Autocomplete SearchBar methods
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.autoCompleteTimer?.invalidate()
-        if let string = self.subString {
-            self.searchAutocompleteLocationsWithSubstring(string)
-            self.viewController.searchTextField.resignFirstResponder()
-            self.viewController.locationTableView.reloadData()
-        }
+        self.searchAutocompleteLocationsWithSubstring()
+        self.viewController.searchTextField.resignFirstResponder()
+        self.viewController.locationTableView.reloadData()
     }
     
-    func searchAutocompleteLocationsWithSubstring (subString: String) {
+    func searchAutocompleteLocationsWithSubstring() {
         self.localSearchQueries.removeAll()
         self.viewController.locationTableView.reloadData()
-        
-        if(!self.pastSearchWords.contains(subString)) {
-            self.pastSearchWords.append(subString)
-            self.retrieveGooglePlaceInformation(subString, withCompletion: { (result) -> () in
-                self.localSearchQueries = result
-                self.pastSearchResults["\(self.subString)"] = result
-                self.viewController.locationTableView.reloadData()
-            })
-            
-        } else {
-            for pastResult in self.pastSearchResults {
-                if(pastResult.0 == "\(self.subString)") {
-                    self.localSearchQueries.append(pastResult.1 as! GMSAutocompletePrediction)
+        if let string = self.subString {
+            if(!self.pastSearchWords.contains(string)) {
+                self.pastSearchWords.append(string)
+                self.retrieveGooglePlaceInformation(string, withCompletion: { (result) -> () in
+                    self.localSearchQueries = result
+                    self.pastSearchResults["\(self.subString)"] = result
                     self.viewController.locationTableView.reloadData()
+                })
+            } else {
+                for (key, value) in self.pastSearchResults {
+                    if(key == "\(string)") {
+                        self.localSearchQueries.append(value as! GMSAutocompletePrediction)
+                        self.viewController.locationTableView.reloadData()
+                    }
                 }
-                
             }
         }
-        
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -100,8 +103,8 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        let searchWordProtection = self.viewController.searchTextField.text?.stringByReplacingOccurrencesOfString(" ", withString: "")
-        if (searchWordProtection?.characters.count != 0) {
+        let searchWordProtection = searchText.stringByReplacingOccurrencesOfString(" ", withString: "")
+        if (!searchWordProtection.isEmpty) {
             self.runScript()
         } else {
             NSLog("The searcTextField is empty.")
@@ -117,18 +120,17 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     
     func runScript() {
         self.autoCompleteTimer?.invalidate()
-        self.autoCompleteTimer = NSTimer(timeInterval: 0.5, target: self, selector: "searchAutocompleteLocationsWithSubstring:", userInfo: nil, repeats: false)
+        self.autoCompleteTimer = NSTimer(timeInterval: 0.5, target: self, selector: "searchAutocompleteLocationsWithSubstring", userInfo: nil, repeats: false)
+        self.autoCompleteTimer?.fire()
     }
-    
     
     // #pragma mark - Google API Requests
     func retrieveGooglePlaceInformation (searchWord: String, withCompletion: [GMSAutocompletePrediction] -> () ) {
-        
         let filter = GMSAutocompleteFilter()
         filter.type = GMSPlacesAutocompleteTypeFilter.City
         GMSPlacesClient.sharedClient().autocompleteQuery(searchWord, bounds: nil, filter: filter) { (results, error) -> Void in
             withCompletion([GMSAutocompletePrediction]())
-            if error != nil, let placesResults = results as? [GMSAutocompletePrediction] {
+            if error == nil, let placesResults = results as? [GMSAutocompletePrediction] {
                 withCompletion(placesResults)
             }
         }
@@ -182,19 +184,23 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
         switch(indexPath.section) {
         case Enums.LocationSections.TableViewSectionMain.rawValue:
             if (indexPath.row == 0) {
-               // if let address = SHAddress.getUserOrDeviceLocation() {
-                   // self.locationSelected(vc: self.viewController, selected: address, isCurrent: true)
-                    self.viewController.navigationController?.popViewControllerAnimated(true)
-               // }
+                if let locationSelected = self.locationSelected, let address = SHLocationManager.sharedInstance.getAddress() {
+                    locationSelected(vc: self.viewController, selected: address, isCurrent: true)
+                }
+                self.viewController.navigationController?.popViewControllerAnimated(true)
+                return
             }
+            self.viewController.locationTableView.deselectRowAtIndexPath(indexPath, animated: true)
+            SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
             let searchResult: GMSAutocompletePrediction = self.localSearchQueries[indexPath.row - 1]
             let placeID = searchResult.placeID
             self.viewController.searchTextField.resignFirstResponder()
             self.retrieveJSONDetailsAbout(placeID, withCompletion: { (address, error) -> () in
-               // if let currentAddress = address {
-                   // self.locationSelected(vc: self.viewController, selected: currentAddress, isCurrent: false)
-                    self.viewController.navigationController?.popViewControllerAnimated(true)
-                // }
+                SHProgressHUD.dismiss()
+                if let locationSelected = self.locationSelected, let shAddress = address {
+                    locationSelected(vc: self.viewController, selected: shAddress, isCurrent: false)
+                }
+                self.viewController.navigationController?.popViewControllerAnimated(true)
             })
         default:
             break
@@ -208,9 +214,9 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
             case Enums.LocationSections.TableViewSectionMain.rawValue:
-            return self.localSearchQueries.count + 1
+                return self.localSearchQueries.count + 1
             default:
-            return 0
+                return 0
         }
     }
     

@@ -9,7 +9,6 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
-import SVProgressHUD
 import Haneke
 
 class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate {
@@ -331,11 +330,11 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     private func getOauthResponse(params: [String: AnyObject]) {
-        SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
+        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
         shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
             // Do nothing here
         }) { (response) -> Void in
-            SVProgressHUD.dismiss()
+            SHProgressHUD.dismiss()
             switch(response.result) {
             case .Success(let oauthToken):
                 if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {

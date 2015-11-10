@@ -20,7 +20,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func viewDidLoad() {
-        self.viewController.collectionView!.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        self.viewController.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
         let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: "selectLocation:")
         self.viewController.navigationItem.rightBarButtonItem = loc
 
@@ -52,7 +52,6 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         let vc = Constants.ViewControllers.LOCATION_GETTER_VIEW_CONTROLLER
         vc.title = NSLocalizedString("Select Place", comment: "Select Place")
         self.viewController.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     //Mark - CollectionViewDataSource
@@ -147,6 +146,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
         }
+        
         subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)
         subTitleLabel.sizeToFit()
         
