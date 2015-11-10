@@ -13,6 +13,7 @@ struct Constants {
     struct Google {
         static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
         static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"
+        static let GOOGLE_API_KEY = "AIzaSyBld5731YUMSNuLBO5Gu2L4Tsj-CrQZGIg"
     }
     
     struct RegEx {
@@ -47,6 +48,7 @@ struct Constants {
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
+        static let LocationSearchCell = "SearchCell"
     }
     
     struct CollectionViewCell {

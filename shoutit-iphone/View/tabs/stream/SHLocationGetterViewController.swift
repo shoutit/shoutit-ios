@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SHLocationGetterViewController: BaseViewController {
+
+class SHLocationGetterViewController: BaseViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var locationTableView: UITableView!
@@ -50,6 +51,7 @@ class SHLocationGetterViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     deinit {
         viewModel?.destroy()

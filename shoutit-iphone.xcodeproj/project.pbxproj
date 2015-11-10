@@ -68,7 +68,10 @@
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
 		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
 		ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */; };
-		ACA77ECB1BF0CC1300D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECA1BF0CC1300D504AA /* SHLocationGetterViewModel.swift */; };
+		ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECE1BF1233700D504AA /* Enumerations.swift */; };
+		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
+		ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */; };
+		ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */; };
 		ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */; };
 		ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */; };
 		ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */; };
@@ -164,7 +167,10 @@
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
 		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
 		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
-		ACA77ECA1BF0CC1300D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/splash/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
+		ACA77ECE1BF1233700D504AA /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerations.swift; path = Model/enums/Enumerations.swift; sourceTree = "<group>"; };
+		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
+		ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterCellViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterCellViewModel.swift; sourceTree = "<group>"; };
+		ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewCell.swift; path = View/tabs/stream/SHLocationGetterViewCell.swift; sourceTree = "<group>"; };
 		ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +283,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ACA77ECD1BF1230100D504AA /* enums */,
 				AC6F2B2F1BEF5B1D00D9F5A3 /* discover */,
 				AC1C93FA1BEA8AA5009400BE /* location */,
 				AC1C93F31BE9F152009400BE /* base */,
@@ -587,7 +594,8 @@
 		ACA77EC61BF0CAD000D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
-				ACA77ECA1BF0CC1300D504AA /* SHLocationGetterViewModel.swift */,
+				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
+				ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */,
 			);
 			name = stream;
 			sourceTree = "<group>";
@@ -596,8 +604,17 @@
 			isa = PBXGroup;
 			children = (
 				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
+				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
 			);
 			name = stream;
+			sourceTree = "<group>";
+		};
+		ACA77ECD1BF1230100D504AA /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				ACA77ECE1BF1233700D504AA /* Enumerations.swift */,
+			);
+			name = enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -803,10 +820,10 @@
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
-				ACA77ECB1BF0CC1300D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
 				606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */,
+				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
@@ -815,6 +832,7 @@
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				AC1C93EF1BE90F60009400BE /* SHModalWebViewModel.swift in Sources */,
+				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,
@@ -829,9 +847,11 @@
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
 				AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */,
+				ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */,
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
+				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,

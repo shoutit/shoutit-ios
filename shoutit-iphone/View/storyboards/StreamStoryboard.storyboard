@@ -558,7 +558,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QTw-Tc-N7K" style="IBUITableViewCellStyleDefault" id="Mhz-cZ-eim">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QTw-Tc-N7K" style="IBUITableViewCellStyleDefault" id="Mhz-cZ-eim" customClass="SHLocationGetterViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhz-cZ-eim" id="FnC-li-omI">
@@ -610,6 +610,6 @@
         <image name="chatTabBar.png" width="25" height="19"/>
         <image name="clockIcon.png" width="50" height="50"/>
         <image name="locationMark.png" width="50" height="60"/>
-        <image name="streamTabBar.png" width="25" height="25"/>
+        <image name="streamTabBar.png" width="255" height="117"/>
     </resources>
 </document>
