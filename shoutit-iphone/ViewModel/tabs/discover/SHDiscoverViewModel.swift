@@ -7,25 +7,28 @@
 //
 
 import UIKit
+import SVProgressHUD
 import Kingfisher
 
 class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    let viewController: SHDiscoverCollectionViewController
+    private let viewController: SHDiscoverCollectionViewController
     private let shApiDiscoverService = SHApiDiscoverService()
     private var items: [SHDiscoverItem] = []
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHDiscoverCollectionViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-        self.viewController.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
         let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: "selectLocation:")
         self.viewController.navigationItem.rightBarButtonItem = loc
 
         discoverItems()
         setupNavigationBar()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated", name: Constants.Notification.LocationUpdated, object: nil)
     }
     
     func viewWillAppear() {
@@ -33,7 +36,11 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func viewDidAppear() {
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner!.frame = CGRectMake(0, 0, 24, 24)
+        spinner!.startAnimating()
         
+        self.viewController.collectionView?.pullToRefreshView?.setCustomView(spinner!, forState: 10)
     }
     
     func viewWillDisappear() {
@@ -44,14 +51,24 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         
     }
     
+    func pullToRefresh() {
+        spinner?.startAnimating()
+        discoverItems()
+    }
+    
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func selectLocation(sender: AnyObject) {
         let vc = Constants.ViewControllers.LOCATION_GETTER_VIEW_CONTROLLER
         vc.title = NSLocalizedString("Select Place", comment: "Select Place")
         self.viewController.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func locationUpdated() {
+        discoverItems()
+        setupNavigationBar()
     }
     
     //Mark - CollectionViewDataSource
@@ -110,6 +127,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 // Do Nothing here
                 self.updateUI(shDiscoverItem)
             }, completionHandler: { (response) -> Void in
+                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
                     log.info("Success getting discover items")

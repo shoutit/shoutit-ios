@@ -25,6 +25,7 @@ struct Constants {
     struct SharedUserDefaults {
         static let MIXPANEL = "MIXPANEL_USER_DEFAULTS"
         static let INIT_LOCATION = "initLocation"
+        static let CUSTOM_LOCATION = "customLocation"
     }
     
     struct StoryboardIdentifier {
@@ -67,5 +68,9 @@ struct Constants {
     struct Cache {
         static let OauthToken  = ".sh.cache.oauthToken"
         static let SHAddress  = ".sh.cache.shAddress"
+    }
+    
+    struct Notification {
+        static let LocationUpdated  = ".notification.LocationUpdated"
     }
 }

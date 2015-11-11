@@ -17,8 +17,6 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     private var localSearchQueries = [GMSAutocompletePrediction]()
     private var pastSearchWords = [String]()
     private var pastSearchResults = [String: AnyObject]()
-    typealias LocationSelected = (vc: SHLocationGetterViewController?, selected: SHAddress?, isCurrent: Bool?) -> ()
-    private var locationSelected: LocationSelected?
     
     required init(viewController: SHLocationGetterViewController) {
         self.viewController = viewController
@@ -55,10 +53,6 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
     
     func destroy() {
         autoCompleteTimer?.invalidate()
-    }
-    
-    func setLocationSelected(locationSelected: LocationSelected) {
-        self.locationSelected = locationSelected
     }
     
     //pragma mark - Autocomplete SearchBar methods
@@ -184,23 +178,31 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
         switch(indexPath.section) {
         case Enums.LocationSections.TableViewSectionMain.rawValue:
             if (indexPath.row == 0) {
-                if let locationSelected = self.locationSelected, let address = SHLocationManager.sharedInstance.getAddress() {
-                    locationSelected(vc: self.viewController, selected: address, isCurrent: true)
-                }
+                NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
                 self.viewController.navigationController?.popViewControllerAnimated(true)
                 return
             }
             self.viewController.locationTableView.deselectRowAtIndexPath(indexPath, animated: true)
-            SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
             let searchResult: GMSAutocompletePrediction = self.localSearchQueries[indexPath.row - 1]
             let placeID = searchResult.placeID
             self.viewController.searchTextField.resignFirstResponder()
             self.retrieveJSONDetailsAbout(placeID, withCompletion: { (address, error) -> () in
-                SHProgressHUD.dismiss()
-                if let locationSelected = self.locationSelected, let shAddress = address {
-                    locationSelected(vc: self.viewController, selected: shAddress, isCurrent: false)
+                if let oauthToken = SHOauthToken.getFromCache() where oauthToken.isSignedIn(), let userName = oauthToken.user?.username, let latitude = address?.latitude, let longitude = address?.longitude {
+                    // Update User's Location
+                    SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
+                    SHApiUserService().updateLocation(userName, latitude: latitude, longitude: longitude, completionHandler: { (response) -> Void in
+                        SHProgressHUD.dismiss()
+                        if response.result.isSuccess {
+                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.CUSTOM_LOCATION)
+                            oauthToken.updateUser(response.result.value)
+                        }
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                        self.viewController.navigationController?.popViewControllerAnimated(true)
+                    })
+                } else {
+                    // Update SHAddress
                 }
-                self.viewController.navigationController?.popViewControllerAnimated(true)
+                
             })
         default:
             break

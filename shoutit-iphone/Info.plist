@@ -72,6 +72,15 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>runscope.net</key>
+			<dict>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>akamaihd.net</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>

@@ -59,7 +59,11 @@ class SHOauthToken: Mappable {
             shOauthToken = oauthToken
             dispatch_semaphore_signal(semaphore)
         }
+        let loopStartTime = NSDate().timeIntervalSince1970
         while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW) != 0) {
+            if NSDate().timeIntervalSince1970 - loopStartTime > 0.1 {
+                break
+            }
             NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 0))
         }
         return shOauthToken

@@ -18,6 +18,10 @@ class SHModalWebViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "cancel:"), animated: true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         if (self.htmlData != nil) {
             self.webView.loadData(self.htmlData, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: NSURL(string: "http://www.shoutit.com")!)
         }
