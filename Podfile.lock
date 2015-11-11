@@ -9,7 +9,12 @@ PODS:
   - Bolts/AppLinks (1.4.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.4.0)
+  - Crashlytics (3.4.0):
+    - Fabric (~> 1.6.0)
   - CryptoSwift (0.1.1)
+  - Fabric (1.6.0):
+    - Fabric/Base (= 1.6.0)
+  - Fabric/Base (1.6.0)
   - FBSDKCoreKit (4.7.1):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.7.1)
@@ -26,6 +31,7 @@ PODS:
   - GoogleAuthUtilities (1.0.1):
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
+  - GoogleMaps (1.10.5)
   - GoogleNetworkingUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleSignIn (2.4.0):
@@ -51,9 +57,12 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.0)
+  - Crashlytics
   - CryptoSwift
+  - Fabric
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
+  - GoogleMaps (~> 1.10)
   - GoogleSignIn (~> 2.4)
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
   - Kingfisher (~> 1.8)
@@ -78,11 +87,14 @@ SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   AlamofireObjectMapper: 3047127bcc25ec43e8243b89d819022ccee77546
   Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
+  Crashlytics: 1ee87895c37472eb3f01f409ea1654a464d2f8d4
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
+  Fabric: d737eda3a26ac940a5430230eedb35f16b226131
   FBSDKCoreKit: 9141b70960a37930850370495fe565f4a27ac141
   FBSDKLoginKit: c11ed3c2833472db3bb4a4aecf27af4a6f69b173
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSignIn: 79929b51e6299c69f1197bbd9c7a1367d523ecd8
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56

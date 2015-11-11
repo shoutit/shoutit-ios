@@ -9,10 +9,9 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
-import SVProgressHUD
 import Haneke
 
-class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate {
+class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate, UITextViewDelegate {
 
     private var viewController: SHLoginViewController
     private var isSignIn = Bool()
@@ -28,6 +27,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         self.isSignIn = true
         self.setupLogin()
         self.setupText()
+        
+        self.viewController.termsAndConditionsTextView.delegate = self
     }
     
     func viewWillAppear() {
@@ -58,7 +59,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     func loginWithFacebook() {
         let login: FBSDKLoginManager = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+        login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
             if (error != nil) {
                 log.info("Process error")
             } else {
@@ -137,26 +138,32 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func resetPassword() {
-        if let email = self.signArray[0]["text"] as? String where !email.isEmpty {
-            if let validEmail = self.signArray[0]["emailTextField"] as? TextFieldValidator  {
-                if(!validEmail.validate()) {
-                    return
-                }
-                shApiAuthService.resetPassword(email, completionHandler: { (response) -> Void in
-                    if response.result.isSuccess {
-                        log.verbose("Password recovery email will be sent soon.")
-                    } else {
-                        
-                    }
-                })
-            } else {
-                
+        if let emailTextField = self.signArray[0]["emailTextField"] as? TextFieldValidator {
+            if(!emailTextField.validate()) {
+                emailTextField.tapOnError()
+                return
             }
-            
-        } else {
-            // Enter email to reset the password
-            log.verbose("Enter email to reset the password")
+            emailTextField.resignFirstResponder()
+            if(emailTextField.text == "") {
+                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
+                self.viewController.presentViewController(ac, animated: true, completion: nil)
+                return
+            }
+            shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
+                if response.result.isSuccess {
+                    let ac = UIAlertController(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Password recovery email will be sent soon.", comment: "Password recovery email will be sent soon."), preferredStyle: UIAlertControllerStyle.Alert)
+                    ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.viewController.presentViewController(ac, animated: true, completion: nil)
+                } else {
+                    log.debug("Error sending the mail")
+                }
+            })
         }
+    }
+    
+    func skipLogin () {
+        let tabViewController = SHTabViewController()
+        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
     }
     
     // MARK - Selectors
@@ -236,25 +243,8 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             log.verbose("Error getting Google Plus User")
     }
     
-    // MARK - Private
-    private func setupLogin() {
-        self.signArray = [
-            ["placeholder": "E-mail", "text": "", "selector": "emailChanged:", "selectorBegin": "emailBegin:"],
-            ["placeholder": "Password", "text": "", "selector": "passwordChanged:", "selectorBegin":"passwordBegin:"],
-            ["placeholder": "Name", "text": "", "selector": "nameChanged:", "selectorBegin": "nameBegin:"]]
-    }
-    
-    private func setupText() {
-        let text = NSMutableAttributedString(attributedString: self.viewController.termsAndConditionsTextView.attributedText)
-        text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Shout IT Terms"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
-        self.viewController.termsAndConditionsTextView.attributedText = text
-        self.viewController.termsAndConditionsTextView.editable = false
-        self.viewController.termsAndConditionsTextView.delaysContentTouches = false
-    }
-    
-    private func textView(textView: UITextView, shouldInteractWithURL url: NSURL, inRange characterRange: NSRange) -> Bool {
+    // MARK - UITextViewDelegate
+    func textView(textView: UITextView, shouldInteractWithURL url: NSURL, inRange characterRange: NSRange) -> Bool {
         if(url.scheme == "initial") {
             if(url.absoluteString.containsString("terms")) {
                 webViewController.presentFromViewController(self.viewController, withHTMLFile: "tos")
@@ -268,13 +258,31 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         return true
     }
     
-    private func textEditBegin(textField: UITextField, row: Int) {
+    func textEditBegin(textField: UITextField, row: Int) {
         self.viewController.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
     }
     
-    private func textFieldChanged(textField: TextFieldValidator, row: Int) {
+    func textFieldChanged(textField: TextFieldValidator, row: Int) {
         self.signArray[row]["text"] = textField.text
         textField.validate()
+    }
+    
+    // MARK - Private
+    private func setupLogin() {
+        self.signArray = [
+            ["placeholder": "E-mail", "text": "", "selector": "emailChanged:", "selectorBegin": "emailBegin:"],
+            ["placeholder": "Password", "text": "", "selector": "passwordChanged:", "selectorBegin":"passwordBegin:"],
+            ["placeholder": "Name", "text": "", "selector": "nameChanged:", "selectorBegin": "nameBegin:"]]
+    }
+    
+    private func setupText() {
+        let text = NSMutableAttributedString(attributedString: self.viewController.termsAndConditionsTextView.attributedText)
+        text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Shout IT Terms"))
+        text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
+        text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
+        self.viewController.termsAndConditionsTextView.editable = false
+        self.viewController.termsAndConditionsTextView.delaysContentTouches = false
+        self.viewController.termsAndConditionsTextView.attributedText = text
     }
     
     private func validateAuthentication() -> Bool {
@@ -325,11 +333,11 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     private func getOauthResponse(params: [String: AnyObject]) {
-        SVProgressHUD.showWithStatus(NSLocalizedString("SigningIn", comment: "Signing In..."), maskType: .Black)
+        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
         shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
             // Do nothing here
         }) { (response) -> Void in
-            SVProgressHUD.dismiss()
+            SHProgressHUD.dismiss()
             switch(response.result) {
             case .Success(let oauthToken):
                 if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {

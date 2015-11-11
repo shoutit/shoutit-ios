@@ -20,11 +20,12 @@ class SHApiManager: NSObject {
     private let cache = Shared.stringCache
     
     // Base Urls
-    #if DEBUG
-    let BASE_URL = "http://dev.api.shoutit.com/v2"
-    #else
-    let BASE_URL = "https://api.shoutit.com/v2"
-    #endif
+//    #if DEBUG
+//    let BASE_URL = "http://dev.api.shoutit.com/v2"
+    let BASE_URL = "http://dev-api-shoutit-com-qm7w6bwy42b2.runscope.net/v2"
+//    #else
+//    let BASE_URL = "https://api.shoutit.com/v2"
+//    #endif
     
     private override init() {
         // Private initialization to ensure just one instance is created.
@@ -36,12 +37,12 @@ class SHApiManager: NSObject {
     }
     
     func patch<R: Mappable>(url: String, params: [String : AnyObject]?, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
-        let request = Alamofire.request(.PATCH, url, parameters: params, headers: authHeaders())
+        let request = Alamofire.request(.PATCH, url, parameters: params, encoding: Alamofire.ParameterEncoding.JSON, headers: authHeaders())
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func post<R: Mappable>(url: String, params: [String : AnyObject]?, isCachingEnabled: Bool = true, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
-        let request = Alamofire.request(.POST, url, parameters: params, headers: nil)
+        let request = Alamofire.request(.POST, url, parameters: params, encoding: Alamofire.ParameterEncoding.JSON, headers: authHeaders())
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
@@ -66,9 +67,9 @@ class SHApiManager: NSObject {
                 if let stringResponse = Mapper().toJSONString(result), let apiCacheKey = cacheKey {
                     self.cache.set(value: stringResponse, key: apiCacheKey)
                 }
-                log.debug("Success post request : \(result)")
+                log.debug("Success request : \(result)")
             case .Failure(let error):
-                log.debug("error with post request : \(error)")
+                log.debug("error with request : \(error)")
             }
             completionHandler(response)
         }

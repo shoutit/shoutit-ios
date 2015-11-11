@@ -13,12 +13,15 @@ class SHModalWebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     var HTMLString: String!
     var htmlData: NSData!
-    let navigation = SHNavigation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "cancel:"), animated: true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         if (self.htmlData != nil) {
             self.webView.loadData(self.htmlData, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: NSURL(string: "http://www.shoutit.com")!)
         }
@@ -30,33 +33,24 @@ class SHModalWebViewController: UIViewController {
     }
     
     func presentFromViewController(parent: UIViewController, withHTMLFile: String) {
-        let vc:SHModalWebViewController = navigation.viewControllerFromStoryboard("LoginStoryboard", withViewControllerId: "SHModalWebViewController") as! SHModalWebViewController
-        vc.htmlData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(withHTMLFile, ofType: "html")!)
-        let navController = UINavigationController(rootViewController: vc)
-        parent.presentViewController(navController, animated: true, completion: nil)
+        if let vc = Constants.ViewControllers.MODEL_WEB_VIEW_CONTROLLER as? SHModalWebViewController, let contents = NSBundle.mainBundle().pathForResource(withHTMLFile, ofType: "html") {
+            vc.htmlData = NSData(contentsOfFile: contents)
+            let navController = UINavigationController(rootViewController: vc)
+            parent.presentViewController(navController, animated: true, completion: nil)
+        }
     }
     
     func presentFromViewController(parent: UIViewController, with HTMLString: String) {
-        let vc: SHModalWebViewController = navigation.viewControllerFromStoryboard("LoginStoryboard", withViewControllerId: "SHModalWebViewController") as! SHModalWebViewController
-        vc.HTMLString = HTMLString
-        vc.webView.loadHTMLString(HTMLString, baseURL: nil)
-        let navController: UINavigationController = UINavigationController(rootViewController: vc)
-        parent.presentViewController(navController, animated: true, completion: nil)
+        if let vc = Constants.ViewControllers.MODEL_WEB_VIEW_CONTROLLER as? SHModalWebViewController {
+            vc.HTMLString = HTMLString
+            vc.webView.loadHTMLString(HTMLString, baseURL: nil)
+            let navController = UINavigationController(rootViewController: vc)
+            parent.presentViewController(navController, animated: true, completion: nil)
+        }
     }
     
     func cancel(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

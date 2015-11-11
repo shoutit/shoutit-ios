@@ -13,6 +13,7 @@ struct Constants {
     struct Google {
         static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
         static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"
+        static let GOOGLE_API_KEY = "AIzaSyBZsjPCMTtOFB79RsWn3oUGVPDImf4ceTU"
     }
     
     struct RegEx {
@@ -24,6 +25,7 @@ struct Constants {
     struct SharedUserDefaults {
         static let MIXPANEL = "MIXPANEL_USER_DEFAULTS"
         static let INIT_LOCATION = "initLocation"
+        static let CUSTOM_LOCATION = "customLocation"
     }
     
     struct StoryboardIdentifier {
@@ -41,10 +43,13 @@ struct Constants {
     
     struct ViewControllers {
         static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+        static let MODEL_WEB_VIEW_CONTROLLER = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
+        static let LOCATION_GETTER_VIEW_CONTROLLER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
     }
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
+        static let LocationSearchCell = "SearchCell"
     }
     
     struct CollectionViewCell {
@@ -63,5 +68,9 @@ struct Constants {
     struct Cache {
         static let OauthToken  = ".sh.cache.oauthToken"
         static let SHAddress  = ".sh.cache.shAddress"
+    }
+    
+    struct Notification {
+        static let LocationUpdated  = ".notification.LocationUpdated"
     }
 }

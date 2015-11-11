@@ -9,6 +9,8 @@
 import UIKit
 import XCGLogger
 import FBSDKCoreKit
+import Fabric
+import Crashlytics
 
 // Initialize Logger as global instance
 let log = XCGLogger.defaultInstance()
@@ -25,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
             log.setup(.None, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #endif
+        
+        Fabric.with([Crashlytics.self])
         
         SHMixpanelHelper.openApp()
         

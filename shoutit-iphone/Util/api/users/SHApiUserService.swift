@@ -14,7 +14,7 @@ class SHApiUserService: NSObject {
     private let USERS_URL_NAME = SHApiManager.sharedInstance.BASE_URL + "/users/%@"
 
     func updateLocation(userName: String, latitude: Float, longitude: Float, completionHandler: Response<SHUser, NSError> -> Void) {
-        let params = [
+        let params: [String: AnyObject] = [
             "location" : [
                 "latitude": latitude,
                 "longitude": longitude

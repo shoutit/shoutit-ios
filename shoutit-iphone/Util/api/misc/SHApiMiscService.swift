@@ -14,7 +14,7 @@ class SHApiMiscService: NSObject {
     
     private let GEOCODE_URL = SHApiManager.sharedInstance.BASE_URL + "/misc/geocode"
     
-    func geocodeLocation(location: CLLocationCoordinate2D, cacheResponse: SHAddress -> Void, completionHandler: Response<SHAddress, NSError> -> Void) {
+    func geocodeLocation(location: CLLocationCoordinate2D, cacheResponse: (SHAddress -> Void)? = nil, completionHandler: Response<SHAddress, NSError> -> Void) {
         let params = [
             "latlng": "\(location.latitude),\(location.longitude)"
         ]

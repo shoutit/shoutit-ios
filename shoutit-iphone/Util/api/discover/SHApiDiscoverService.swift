@@ -13,10 +13,9 @@ class SHApiDiscoverService: NSObject {
     
     private let DISCOVER_FEED = SHApiManager.sharedInstance.BASE_URL + "/discover"
     private let DISCOVER_FEED_ITEMS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@"
-    private let location = SHAddress.getUserOrDeviceLocation()
     
     func getDiscoverLocation(cacheResponse: SHDiscoverLocation -> Void, completionHandler: Response<SHDiscoverLocation, NSError> -> Void) {
-        if let country = location?.country {
+        if let country = SHAddress.getUserOrDeviceLocation()?.country {
             let params = [
                 "country": country
             ]

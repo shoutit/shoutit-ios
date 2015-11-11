@@ -7,20 +7,28 @@
 //
 
 import UIKit
+import SVProgressHUD
+import Kingfisher
 
-class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
+class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    let viewController: SHDiscoverCollectionViewController
+    private let viewController: SHDiscoverCollectionViewController
     private let shApiDiscoverService = SHApiDiscoverService()
-    private let items: [SHDiscoverItem] = []
+    private var items: [SHDiscoverItem] = []
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHDiscoverCollectionViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
+        let loc = UIBarButtonItem(title: NSLocalizedString("Location", comment: "Location"), style: UIBarButtonItemStyle.Plain, target: self, action: "selectLocation:")
+        self.viewController.navigationItem.rightBarButtonItem = loc
+
         discoverItems()
         setupNavigationBar()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated", name: Constants.Notification.LocationUpdated, object: nil)
     }
     
     func viewWillAppear() {
@@ -28,7 +36,11 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func viewDidAppear() {
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner!.frame = CGRectMake(0, 0, 24, 24)
+        spinner!.startAnimating()
         
+        self.viewController.collectionView?.pullToRefreshView?.setCustomView(spinner!, forState: 10)
     }
     
     func viewWillDisappear() {
@@ -39,53 +51,74 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         
     }
     
+    func pullToRefresh() {
+        spinner?.startAnimating()
+        discoverItems()
+    }
+    
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func selectLocation(sender: AnyObject) {
+        let vc = Constants.ViewControllers.LOCATION_GETTER_VIEW_CONTROLLER
+        vc.title = NSLocalizedString("Select Place", comment: "Select Place")
+        self.viewController.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func locationUpdated() {
+        discoverItems()
+        setupNavigationBar()
     }
     
     //Mark - CollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as? SHDiscoverCollectionViewCell {
-            cell.textLabel.text = items[indexPath.row].title
-            //        [cell.imageView setImageWithURL:[NSURL URLWithString:tag.image] placeholderImage:[UIImage imageNamed:@"image_placeholder"]  usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            return cell
-        }
-        
-        
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverCollectionViewCell, forIndexPath: indexPath) as! SHDiscoverCollectionViewCell
+        cell.setUp(items[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return (collectionViewLayout as! SHDiscoverFlowLayout).sizeCellForRowAtIndexPath(indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let navigation = SHNavigation()
-        let detailViewController = navigation.viewControllerWithId("SHDiscoverDetailViewController")
-        
-      //  [detailViewController requestStreamForTag:self.tagModel.tags[indexPath.row] address:self.tagModel.currentLocation];
-       // [self.navigationController pushViewController:detailViewController animated:YES];
+        // TODO open shouts
     }
     
     // MARK - Private
     private func updateUI(discoverItem: SHDiscoverItem) {
         // TODO Update UI Here
+        items = discoverItem.children
+        self.viewController.collectionView?.reloadData()
     }
     
     private func discoverItems() {
-        shApiDiscoverService.getDiscoverLocation({ (shDiscoverLocation) -> Void in
-            //Do Nothing here
+        shApiDiscoverService.getDiscoverLocation(
+            { (shDiscoverLocation) -> Void in
+                self.gotDiscoverItems(shDiscoverLocation)
             }) { (response) -> Void in
                 switch(response.result) {
                 case .Success(let result):
-                    if result.results.count > 0, let discoverItemId = result.results[0].id {
-                        self.fetchDiscoverItems(discoverItemId)
-                    }
+                    self.gotDiscoverItems(result)
                 case .Failure(let error):
                     log.debug("\(error)")
                     // TODO
                 }
+        }
+    }
+    
+    private func gotDiscoverItems(result: SHDiscoverLocation) {
+        if result.results.count > 0, let discoverItemId = result.results[0].id {
+            self.fetchDiscoverItems(discoverItemId)
         }
     }
     
@@ -94,6 +127,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 // Do Nothing here
                 self.updateUI(shDiscoverItem)
             }, completionHandler: { (response) -> Void in
+                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
                     log.info("Success getting discover items")
@@ -114,13 +148,14 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
         titleLabel.text = self.viewController.title
         titleLabel.sizeToFit()
+        
         let imageView = UIImageView(image: UIImage(named: "logoWhite"))
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.frame = CGRectMake(0, 0, 70, 44)
         let logo = UIBarButtonItem(customView: imageView)
         self.viewController.navigationItem.leftBarButtonItem = logo
         
-        let subTitleLabel = UILabel(frame: CGRect(x: 0, y: titleLabel.frame.origin.y + titleLabel.frame.size.height - 3, width: 100, height: 0))
+        let subTitleLabel = UILabel(frame: CGRectMake(0, titleLabel.frame.origin.y + titleLabel.frame.size.height - 3, 100, 0))
         subTitleLabel.textAlignment = NSTextAlignment.Center
         subTitleLabel.backgroundColor = UIColor.clearColor()
         subTitleLabel.textColor = UIColor.whiteColor()
@@ -129,15 +164,14 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
         }
-        subTitleLabel.center = CGPointMake(titleLabel.center.x, titleLabel.center.y)
+        
+        subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)
         subTitleLabel.sizeToFit()
         
         let twoLineTitleView = UIView(frame: titleLabel.frame)
         twoLineTitleView.addSubview(titleLabel)
         twoLineTitleView.addSubview(subTitleLabel)
-        subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)
         self.viewController.navigationItem.titleView = twoLineTitleView
-        subTitleLabel.sizeToFit()
     }
     
 }

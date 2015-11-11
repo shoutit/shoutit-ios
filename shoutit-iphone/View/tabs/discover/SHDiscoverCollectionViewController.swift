@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVPullToRefresh
 
 class SHDiscoverCollectionViewController: BaseCollectionViewController {
 
@@ -14,6 +15,11 @@ class SHDiscoverCollectionViewController: BaseCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup Delegates and data Source
+        self.collectionView?.delegate = viewModel
+        self.collectionView?.dataSource = viewModel
+        
+        self.collectionView?.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
         viewModel?.viewDidLoad()
     }
     
@@ -23,6 +29,8 @@ class SHDiscoverCollectionViewController: BaseCollectionViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        setPullToRefresh()
         viewModel?.viewDidAppear()
     }
     
@@ -48,6 +56,13 @@ class SHDiscoverCollectionViewController: BaseCollectionViewController {
     
     deinit {
         viewModel?.destroy()
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.collectionView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
     }
     
 }

@@ -14,4 +14,12 @@ extension UIStoryboard {
         return UIStoryboard(name: "Discover", bundle: nil)
     }
     
+    static func getLogin() -> UIStoryboard {
+        return UIStoryboard(name: "LoginStoryboard", bundle: nil)
+    }
+    
+    static func getStream() -> UIStoryboard {
+        return UIStoryboard(name: "StreamStoryboard", bundle: nil)
+    }
+    
 }
