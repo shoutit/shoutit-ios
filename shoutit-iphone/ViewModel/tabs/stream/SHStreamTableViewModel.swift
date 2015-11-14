@@ -42,7 +42,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func viewWillAppear() {
-        
+
     }
     
     func viewDidAppear() {

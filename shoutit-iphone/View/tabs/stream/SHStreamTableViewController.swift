@@ -52,11 +52,6 @@ class SHStreamTableViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    
     deinit {
         viewModel?.destroy()
     }
