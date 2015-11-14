@@ -16,7 +16,11 @@ class SHStreamTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set Datasource and Delegate
+        self.tableView.delegate = viewModel
+        self.tableView.dataSource = viewModel
         viewModel?.viewDidLoad()
+        self.tableView.keyboardDismissMode = .OnDrag
     }
     
     override func initializeViewModel() {
@@ -46,6 +50,10 @@ class SHStreamTableViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     
