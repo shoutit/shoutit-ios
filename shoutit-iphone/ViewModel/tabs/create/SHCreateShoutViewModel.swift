@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
+class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     private let viewController: SHCreateShoutTableViewController
     
@@ -47,25 +47,34 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         
     }
     
-    // MARK - TableView Delegate
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // MARK - CollectionView Delegate
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.item < 1 {
+            return CGSizeMake(190, 190)
+        } else {
+            // TODO
+//            id data = self.media[indexPath.item - 1];
+//            if([data isKindOfClass:[UIImage class]])
+//            {
+//                return CGSizeMake(190, 190);
+//            }
+//            if([data isKindOfClass:[SHVideo class]])
+//            {
+//                return CGSizeMake(337, 190);
+//            }
+        }
+        return CGSizeMake(190, 190)
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
 }

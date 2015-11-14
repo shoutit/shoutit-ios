@@ -37,8 +37,8 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView?.delegate = viewModel
-        self.tableView?.dataSource = viewModel
+        self.collectionView.delegate = viewModel
+        self.collectionView.dataSource = viewModel
         
         viewModel?.viewDidLoad()
     }
@@ -78,4 +78,5 @@ class SHCreateShoutTableViewController: BaseTableViewController {
 
     @IBAction func segmentAction(sender: AnyObject) {
     }
+    
 }
