@@ -13,8 +13,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     
     private var viewController: SHStreamTableViewController
-    private var fetchedResultsController = []
-    private var selectedSegment: Int?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -33,15 +31,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.edgesForExtendedLayout = UIRectEdge.None
         setupNavigationBar()
         
-        // Get Latest Shouts
-        self.selectedSegment = 0
-        self.getLatestShouts()
-        self.selectedSegment = 1
-        self.getLatestShouts()
-        self.selectedSegment = 2
-        self.getLatestShouts()
-        self.selectedSegment = 0
-
     }
     
     func viewWillAppear() {
@@ -98,7 +87,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.titleView =  twoLineTitleView
     }
     
-    private func getLatestShouts() {
+    func getLatestShouts() {
         
     }
     
@@ -135,9 +124,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (self.selectedSegment == 0) {
+        if (self.viewController.selectedSegment == 0) {
             return 100
-        } else if (self.selectedSegment == 1) {
+        } else if (self.viewController.selectedSegment == 1) {
             return 348
         } else {
             return 44
