@@ -9,21 +9,22 @@
 import UIKit
 import Foundation
 
-class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
     
     
     private var viewController: SHStreamTableViewController
     private var fetchedResultsController = []
     private var selectedSegment: Int?
-    private var searchBar = UISearchBar()
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
+        self.viewController.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
         // Navigation Setup
         self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        
         self.viewController.tableView.scrollsToTop = true
         let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
         self.viewController.navigationItem.rightBarButtonItem = mapB
@@ -32,13 +33,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.edgesForExtendedLayout = UIRectEdge.None
         setupNavigationBar()
         
-        // SearchBar
-        self.searchBar = UISearchBar(frame: CGRectMake(0, 20, self.viewController.view.frame.size.width, 44))
-        self.searchBar.delegate = self
-        self.searchBar.placeholder = NSLocalizedString("Search", comment: "Search")
-        self.viewController.navigationController!.view.insertSubview(self.searchBar, belowSubview: (self.viewController.navigationController?.navigationBar)!)
-        self.showSearchBar(self.viewController.tableView)
-        
+        // Get Latest Shouts
+        self.selectedSegment = 0
+        self.getLatestShouts()
+        self.selectedSegment = 1
+        self.getLatestShouts()
+        self.selectedSegment = 2
+        self.getLatestShouts()
+        self.selectedSegment = 0
+
     }
     
     func viewWillAppear() {
@@ -61,31 +64,13 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         
     }
     
-    func showSearchBar(sender: UIScrollView) {
-        let currentPoint: CGPoint = sender.contentOffset
-        if let navBar = self.viewController.navigationController?.navigationBar {
-            let yMin = navBar.frame.origin.y
-            let yMax = yMin + navBar.frame.size.height
-            if (self.searchBar.frame.origin.y < yMax) {
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.searchBar.center = CGPointMake(self.searchBar.center.x, self.searchBar.frame.size.height/2 + yMax)
-                    if(currentPoint.y < 0) {
-                        let point: CGPoint = CGPointMake(currentPoint.x, -44)
-                        self.viewController.tableView.setContentOffset(point, animated: true)
-                        self.viewController.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
-                        self.viewController.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
-                    }
-                })
-            }
-        }
-    }
-    
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.textColor = UIColor.darkTextColor()
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
+        titleLabel.text = self.viewController.title
         titleLabel.sizeToFit()
         
         let subTitleLabel = UILabel(frame: CGRectMake(0, 22, 0, 0))
@@ -113,20 +98,11 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.titleView =  twoLineTitleView
     }
     
-    func hideSearchBar(sender: UIScrollView) {
-        if let navBar = self.viewController.navigationController?.navigationBar {
-            let yMin = navBar.frame.origin.y
-            let yMax = yMin + navBar.frame.size.height
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
-                self.searchBar.center = CGPointMake(self.searchBar.center.x, -self.searchBar.frame.size.height/2.0 + yMax)
-                self.viewController.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-                self.viewController.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0)
-            })
-            
-        }
+    private func getLatestShouts() {
+        
     }
     
-    func switchToMapView(sender: AnyObject) {
+    private func switchToMapView(sender: AnyObject) {
 //        -(void)switchToMapView:(id)sender
 //        {
 //            SHStreamMapViewController *mapViewController = [SHNavigator viewControllerFromStoryboard:@"StreamStoryboard" withViewControllerId:@"SHStreamMapViewController"];
@@ -141,7 +117,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
 //        }
     }
     
-    func selectLocation(sender: AnyObject) {
+    private func selectLocation(sender: AnyObject) {
 //        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.filterViewController];
 //        // [navController.navigationBar setBarTintColor:[UIColor colorWithHex:@"#99c93b"]];
 //        //navController.navigationBar.tintColor = [UIColor whiteColor];
