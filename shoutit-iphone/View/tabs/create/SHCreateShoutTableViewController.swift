@@ -39,6 +39,8 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
+        self.tableView.delegate = viewModel
+        self.tableView.dataSource = viewModel
         
         viewModel?.viewDidLoad()
     }

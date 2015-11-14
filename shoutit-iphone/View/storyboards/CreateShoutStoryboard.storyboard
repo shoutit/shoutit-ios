@@ -166,7 +166,7 @@
                                                                 <outlet property="plusImageView" destination="Yvk-Ek-cBQ" id="QiJ-LE-Jhy"/>
                                                             </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreateImageCollectionViewCell" id="Vrt-aA-e2e" customClass="SHCreateImageCollectionViewCell">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreateImageCollectionViewCell" id="Vrt-aA-e2e" customClass="SHCreateImageCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                                             <rect key="frame" x="255" y="5" width="190" height="190"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -188,7 +188,7 @@
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="removeAction:" destination="Vrt-aA-e2e" eventType="touchUpInside" id="bvs-6b-sxb"/>
+                                                                            <action selector="removeAction:" destination="Vrt-aA-e2e" eventType="touchUpInside" id="EQB-ST-Dfh"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -206,10 +206,10 @@
                                                             </constraints>
                                                             <size key="customSize" width="190" height="190"/>
                                                             <connections>
-                                                                <outlet property="imageViewShout" destination="iTv-x5-38H" id="sBY-MA-uDh"/>
+                                                                <outlet property="imageViewShout" destination="iTv-x5-38H" id="983-o9-hDp"/>
                                                             </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreateVideoCollectionViewCell" id="O01-g0-y9G" customClass="SHCreateVideoCollectionViewCell">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreateVideoCollectionViewCell" id="O01-g0-y9G" customClass="SHCreateVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                                             <rect key="frame" x="450" y="5" width="337" height="190"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -232,7 +232,7 @@
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="playstopAction:" destination="O01-g0-y9G" eventType="touchUpInside" id="98p-cE-hxA"/>
+                                                                            <action selector="playstopAction:" destination="O01-g0-y9G" eventType="touchUpInside" id="E9Y-NN-aCo"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-MN-29S">
@@ -246,7 +246,7 @@
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="removeAction:" destination="O01-g0-y9G" eventType="touchUpInside" id="GAx-F1-Rl5"/>
+                                                                            <action selector="removeAction:" destination="O01-g0-y9G" eventType="touchUpInside" id="cdF-Qa-bUC"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -266,8 +266,8 @@
                                                             </constraints>
                                                             <size key="customSize" width="337" height="190"/>
                                                             <connections>
-                                                                <outlet property="playerHolder" destination="gSw-Mw-ASt" id="7hM-Fr-Yld"/>
-                                                                <outlet property="playstopButton" destination="mgX-oi-CxX" id="05t-k0-NyJ"/>
+                                                                <outlet property="playerHolder" destination="gSw-Mw-ASt" id="3Vt-kh-hvo"/>
+                                                                <outlet property="playstopButton" destination="mgX-oi-CxX" id="1DJ-le-V16"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

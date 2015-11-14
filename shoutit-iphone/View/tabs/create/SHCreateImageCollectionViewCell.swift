@@ -10,4 +10,8 @@ import UIKit
 
 class SHCreateImageCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageViewShout: UIImageView!
+    
+    @IBAction func removeAction(sender: AnyObject) {
+    }
 }

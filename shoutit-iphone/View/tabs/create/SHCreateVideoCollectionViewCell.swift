@@ -10,4 +10,12 @@ import UIKit
 
 class SHCreateVideoCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var playerHolder: UIView!
+    @IBOutlet weak var playstopButton: UIButton!
+    
+    @IBAction func playstopAction(sender: AnyObject) {
+    }
+    
+    @IBAction func removeAction(sender: AnyObject) {
+    }
 }
