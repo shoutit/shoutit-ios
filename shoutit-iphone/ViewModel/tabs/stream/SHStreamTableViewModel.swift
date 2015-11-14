@@ -95,7 +95,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.titleView =  twoLineTitleView
     }
     
-    func getLatestShouts() {
+    private func getLatestShouts() {
         
     }
     
