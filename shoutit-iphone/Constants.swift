@@ -10,6 +10,11 @@ import Foundation
 
 struct Constants {
     
+    struct Shout {
+        static let TIME_VIDEO_SHOUT = 60
+        static let TIME_VIDEO_CV = 60
+    }
+    
     struct Google {
         static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
         static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"
@@ -45,8 +50,9 @@ struct Constants {
         static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
         static let STREAM_VC =
         UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamTableViewController")
-        static let MODEL_WEB_VIEW_CONTROLLER = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
-        static let LOCATION_GETTER_VIEW_CONTROLLER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
+        static let MODEL_WEB = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
+        static let LOCATION_GETTER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
+        static let CREATE_SHOUT = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
     }
     
     struct TableViewCell {

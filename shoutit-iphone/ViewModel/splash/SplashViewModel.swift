@@ -10,7 +10,7 @@ import UIKit
 
 class SplashViewModel: NSObject, ViewControllerModelProtocol {
 
-    var viewController: SplashViewController
+    private let viewController: SplashViewController
     
     required init(viewController: SplashViewController) {
         self.viewController = viewController
