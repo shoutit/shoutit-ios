@@ -1,5 +1,5 @@
 //
-//  SHShoutStreamModel.swift
+//  SHApiShoutService.swift
 //  shoutit-iphone
 //
 //  Created by Vishal Thakur on 15/11/15.

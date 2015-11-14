@@ -1,5 +1,5 @@
 //
-//  SHTopTagsModel.swift
+//  SHApiTagsService.swift
 //  shoutit-iphone
 //
 //  Created by Vishal Thakur on 15/11/15.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SHApiTagService: NSObject {
-    
+class SHApiTagsService: NSObject {
+
 }
