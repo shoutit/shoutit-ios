@@ -16,7 +16,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     private var fetchedResultsController = []
     private var selectedSegment: Int?
     private var searchBar = UISearchBar()
-    private var tap: UITapGestureRecognizer?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -26,8 +25,8 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
         // Navigation Setup
         self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
-        self.tap?.numberOfTapsRequired = 1
+        self.viewController.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
+        self.viewController.tap?.numberOfTapsRequired = 1
         
         self.viewController.tableView.scrollsToTop = true
         let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
@@ -75,16 +74,16 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         
     }
     
-    func dismissSearchKeyboard(sender: AnyObject) {
+    private func dismissSearchKeyboard(sender: AnyObject) {
         if (self.searchBar.isFirstResponder()) {
-            if let tap = self.tap {
+            if let tap = self.viewController.tap {
                self.viewController.tableView.removeGestureRecognizer(tap)
             }
             self.searchBar.resignFirstResponder()
         }
     }
     
-    func showSearchBar(sender: UIScrollView) {
+    private func showSearchBar(sender: UIScrollView) {
         let currentPoint: CGPoint = sender.contentOffset
         if let navBar = self.viewController.navigationController?.navigationBar {
             let yMin = navBar.frame.origin.y
@@ -103,7 +102,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.backgroundColor = UIColor.clearColor()
@@ -137,7 +136,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.titleView =  twoLineTitleView
     }
     
-    func hideSearchBar(sender: UIScrollView) {
+    private func hideSearchBar(sender: UIScrollView) {
         if let navBar = self.viewController.navigationController?.navigationBar {
             let yMin = navBar.frame.origin.y
             let yMax = yMin + navBar.frame.size.height
@@ -150,11 +149,11 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
     }
     
-    func getLatestShouts() {
+    private func getLatestShouts() {
         
     }
     
-    func switchToMapView(sender: AnyObject) {
+    private func switchToMapView(sender: AnyObject) {
 //        -(void)switchToMapView:(id)sender
 //        {
 //            SHStreamMapViewController *mapViewController = [SHNavigator viewControllerFromStoryboard:@"StreamStoryboard" withViewControllerId:@"SHStreamMapViewController"];
@@ -169,7 +168,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
 //        }
     }
     
-    func selectLocation(sender: AnyObject) {
+    private func selectLocation(sender: AnyObject) {
 //        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.filterViewController];
 //        // [navController.navigationBar setBarTintColor:[UIColor colorWithHex:@"#99c93b"]];
 //        //navController.navigationBar.tintColor = [UIColor whiteColor];
@@ -202,10 +201,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
-    }
-    
-    deinit {
-        self.tap = nil
     }
 
 

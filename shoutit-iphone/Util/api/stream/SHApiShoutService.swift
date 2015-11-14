@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SHShoutStreamModel: NSObject {
+class SHApiShoutService: NSObject {
 
 }

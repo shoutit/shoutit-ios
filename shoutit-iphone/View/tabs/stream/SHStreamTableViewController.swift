@@ -12,7 +12,7 @@ class SHStreamTableViewController: BaseViewController {
 
     private var viewModel: SHStreamTableViewModel?
     @IBOutlet var tableView: UITableView!
-    
+    var tap: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()

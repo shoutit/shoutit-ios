@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SHTopTagsModel: NSObject {
-
+class SHApiTagService: NSObject {
+    
 }
