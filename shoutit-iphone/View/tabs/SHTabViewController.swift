@@ -35,8 +35,10 @@ class SHTabViewController: UITabBarController {
         // Setup Tabs
         let discoverVC = Constants.ViewControllers.DISCOVER_VC
         let streamVC = Constants.ViewControllers.STREAM_VC
+        let createShoutVC = Constants.ViewControllers.CREATE_SHOUT
         
         self.viewControllers = [
+            getNavController(createShoutVC),
             getNavController(discoverVC),
             getNavController(streamVC)
         ]

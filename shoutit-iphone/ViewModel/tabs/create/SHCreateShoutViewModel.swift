@@ -65,7 +65,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return Enums.LocationSections.TableViewSectionCount.rawValue
+        return 1
     }
     
 }

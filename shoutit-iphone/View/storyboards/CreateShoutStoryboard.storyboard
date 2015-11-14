@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Create Shout Scroll View Controller-->
@@ -98,7 +98,7 @@
                                                     </segments>
                                                     <color key="tintColor" red="0.59607843140000005" green="0.86274509799999999" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
-                                                        <action selector="segmentAction:" destination="Scb-dR-f27" eventType="valueChanged" id="FkL-54-Cl6"/>
+                                                        <action selector="segmentAction:" destination="Scb-dR-f27" eventType="valueChanged" id="47Q-yc-KfD"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -562,18 +562,17 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="categoriesLabel" destination="GpC-a5-4dm" id="tvd-ug-48K"/>
-                        <outlet property="categoriesTextField" destination="wgm-nB-4h8" id="nJB-zW-ZAI"/>
-                        <outlet property="collectionView" destination="N7G-H3-3Ly" id="vo3-cu-2XW"/>
-                        <outlet property="currencyTextField" destination="YcC-Zp-NKQ" id="KrX-ic-Hd1"/>
-                        <outlet property="descriptionTextView" destination="nhA-kz-QXJ" id="Shx-OH-w0t"/>
-                        <outlet property="locationTextView" destination="q82-80-KXg" id="DWw-wL-oO5"/>
-                        <outlet property="priceTextField" destination="yDC-VW-nlb" id="0Q5-fi-BMq"/>
-                        <outlet property="segmentControl" destination="rh2-wb-W0H" id="Gtq-5c-ido"/>
-                        <outlet property="tagList" destination="zV2-HA-U7r" id="rWf-ss-DUF"/>
-                        <outlet property="tagsLabel" destination="Pff-n9-gQw" id="adl-Yd-ome"/>
-                        <outlet property="tagsList" destination="zV2-HA-U7r" id="Sag-3m-1iw"/>
-                        <outlet property="titleTextField" destination="KGd-J1-Xfp" id="4Se-eZ-Wwk"/>
+                        <outlet property="categoriesLabel" destination="GpC-a5-4dm" id="bHr-wF-JQR"/>
+                        <outlet property="categoriesTextField" destination="wgm-nB-4h8" id="sPm-Zb-xXE"/>
+                        <outlet property="collectionView" destination="N7G-H3-3Ly" id="aEm-hn-bGJ"/>
+                        <outlet property="currencyTextField" destination="YcC-Zp-NKQ" id="J8L-80-bs1"/>
+                        <outlet property="descriptionTextView" destination="nhA-kz-QXJ" id="vuo-Ot-MGR"/>
+                        <outlet property="locationTextView" destination="q82-80-KXg" id="HgV-jG-kZI"/>
+                        <outlet property="priceTextField" destination="yDC-VW-nlb" id="RHn-YK-ob0"/>
+                        <outlet property="segmentControl" destination="rh2-wb-W0H" id="kay-xv-JAi"/>
+                        <outlet property="tagsLabel" destination="Pff-n9-gQw" id="nQb-r7-Br4"/>
+                        <outlet property="tagsList" destination="zV2-HA-U7r" id="JZE-EB-qFv"/>
+                        <outlet property="titleTextField" destination="KGd-J1-Xfp" id="xco-Pv-8Qg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0o-qE-J0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
