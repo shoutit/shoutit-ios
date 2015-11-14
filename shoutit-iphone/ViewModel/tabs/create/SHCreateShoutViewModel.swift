@@ -17,6 +17,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     private var isVideoCV = false
     private var offset: Float = 0
     
+    var shout: SHShout?
     var isEditing = false
     
     required init(viewController: SHCreateShoutTableViewController) {
@@ -129,7 +130,84 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return self.viewController.tableView(tableView, numberOfRowsInSection: section)
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.viewController.numberOfSectionsInTableView(tableView)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return self.viewController.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // Title
+        if let shout = self.shout {
+            if (indexPath.section == 0 && indexPath.row == 0) {
+                self.viewController.titleTextField.text = shout.title
+            } else if (indexPath.section == 0 && indexPath.row == 1) {
+                // TODO
+//                if([self.shout.type isEqualToString:@"offer"])
+//                {
+//                    [self setupViewForStandard:YES];
+//                    self.segmentControl.selectedSegmentIndex = 0;
+//                    
+//                }else if([self.shout.type isEqualToString:@"request"])
+//                {
+//                    [self setupViewForStandard:YES];
+//                    self.segmentControl.selectedSegmentIndex = 1;
+//                    
+//                }else if(self.shout.category)
+//                {
+//                    if([self.shout.category.name isEqualToString:@"cv-video"])
+//                    {
+//                        [self setupViewForStandard:NO];
+//                        self.segmentControl.selectedSegmentIndex = 2;
+//                    }
+//                }
+//                self.categoriesTextField.text =  self.shout.category.name;
+            }
+            // TODO
+//            if (indexPath.section == 2 && indexPath.row == 0) // categorie
+//            {
+//                self.categoriesTextField.text = self.shout.category.name;
+//            }
+//            if (indexPath.section == 3 && indexPath.row == 0) // description
+//            {
+//                self.descriptionTextView.text = self.shout.text;
+//            }
+//            if (indexPath.section == 4 && indexPath.row == 0) // Price
+//            {
+//                self.priceTextField.text = self.shout.price;
+//            }
+//            if (indexPath.section == 4 && indexPath.row == 1) // Currency
+//            {
+//                self.currencyTextField.text = self.shout.currency;
+//            }
+//            if (indexPath.section == 5 && indexPath.row == 0) // location
+//            {
+//                [self.locationTextView setText:[NSString stringWithFormat:@"%@, %@, %@",self.shout.shoutLocation.city,self.shout.shoutLocation.stateCode,self.shout.shoutLocation.countryCode]];
+//            }
+        }
+        let cell = self.viewController.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // TODO
+//        if (indexPath.section == 2 && indexPath.row == 1)
+//        {
+//            [self.tagList setTags:self.shout.stringTags];
+//            
+//            [self.tagList.constraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                NSLayoutConstraint* constraint = obj;
+//                if (constraint.firstAttribute == NSLayoutAttributeHeight)
+//                {
+//                constraint.constant =  fmax(24.0, self.tagList.contentSize.height);
+//                *stop = YES;
+//                }
+//                }];
+//            
+//            [cell layoutIfNeeded];
+//        }
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.section == 2 && indexPath.row == 1 {
+//            // TODO
+////            return fmax(24.0, self.tagList.contentSize.height) + 20
+//        }
+        return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
     }
 }
