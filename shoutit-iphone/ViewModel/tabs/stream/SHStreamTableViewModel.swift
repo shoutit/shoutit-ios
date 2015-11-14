@@ -16,14 +16,19 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     private var fetchedResultsController = []
     private var selectedSegment: Int?
     private var searchBar = UISearchBar()
+    private var tap: UITapGestureRecognizer?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
+        self.viewController.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
         // Navigation Setup
         self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
+        self.tap?.numberOfTapsRequired = 1
+        
         self.viewController.tableView.scrollsToTop = true
         let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
         self.viewController.navigationItem.rightBarButtonItem = mapB
@@ -39,6 +44,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationController!.view.insertSubview(self.searchBar, belowSubview: (self.viewController.navigationController?.navigationBar)!)
         self.showSearchBar(self.viewController.tableView)
         
+        // Get Latest Shouts
+        self.selectedSegment = 0
+        self.getLatestShouts()
+        self.selectedSegment = 1
+        self.getLatestShouts()
+        self.selectedSegment = 2
+        self.getLatestShouts()
+        self.selectedSegment = 0
+
     }
     
     func viewWillAppear() {
@@ -59,6 +73,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     func destroy() {
         
+    }
+    
+    func dismissSearchKeyboard(sender: AnyObject) {
+        if (self.searchBar.isFirstResponder()) {
+            if let tap = self.tap {
+               self.viewController.tableView.removeGestureRecognizer(tap)
+            }
+            self.searchBar.resignFirstResponder()
+        }
     }
     
     func showSearchBar(sender: UIScrollView) {
@@ -86,6 +109,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.textColor = UIColor.darkTextColor()
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
+        titleLabel.text = self.viewController.title
         titleLabel.sizeToFit()
         
         let subTitleLabel = UILabel(frame: CGRectMake(0, 22, 0, 0))
@@ -124,6 +148,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
             })
             
         }
+    }
+    
+    func getLatestShouts() {
+        
     }
     
     func switchToMapView(sender: AnyObject) {
@@ -174,6 +202,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    deinit {
+        self.tap = nil
     }
 
 

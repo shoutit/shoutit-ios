@@ -82,6 +82,10 @@
 		ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */; };
 		ACDB3C8B1BF7397B0097444E /* SHStreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C8A1BF7397B0097444E /* SHStreamTableViewCell.swift */; };
 		ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C8C1BF73B1C0097444E /* SHStreamTableViewCellModel.swift */; };
+		ACDB3C901BF7D1B50097444E /* SHShoutStreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C8F1BF7D1B50097444E /* SHShoutStreamModel.swift */; };
+		ACDB3C921BF7D1F90097444E /* SHTopTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C911BF7D1F90097444E /* SHTopTagsModel.swift */; };
+		ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C941BF7D2EE0097444E /* SHStreamMapViewController.swift */; };
+		ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C971BF7D33C0097444E /* SHStreamMapViewModel.swift */; };
 		ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */; };
 		ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */; };
 		ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */; };
@@ -191,6 +195,10 @@
 		ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewModel.swift; path = ViewModel/tabs/stream/SHStreamTableViewModel.swift; sourceTree = "<group>"; };
 		ACDB3C8A1BF7397B0097444E /* SHStreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewCell.swift; path = View/tabs/stream/SHStreamTableViewCell.swift; sourceTree = "<group>"; };
 		ACDB3C8C1BF73B1C0097444E /* SHStreamTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewCellModel.swift; path = ViewModel/tabs/stream/SHStreamTableViewCellModel.swift; sourceTree = "<group>"; };
+		ACDB3C8F1BF7D1B50097444E /* SHShoutStreamModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutStreamModel.swift; path = Util/api/stream/SHShoutStreamModel.swift; sourceTree = "<group>"; };
+		ACDB3C911BF7D1F90097444E /* SHTopTagsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTopTagsModel.swift; path = Util/api/stream/SHTopTagsModel.swift; sourceTree = "<group>"; };
+		ACDB3C941BF7D2EE0097444E /* SHStreamMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamMapViewController.swift; path = View/tabs/stream/mapView/SHStreamMapViewController.swift; sourceTree = "<group>"; };
+		ACDB3C971BF7D33C0097444E /* SHStreamMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamMapViewModel.swift; path = ViewModel/tabs/stream/mapView/SHStreamMapViewModel.swift; sourceTree = "<group>"; };
 		ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +365,7 @@
 		6027CF671BE74F9800124C28 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3C8E1BF7D15F0097444E /* stream */,
 				AC6F2B361BEF70EC00D9F5A3 /* discover */,
 				604A0DD11BEE6037002A80E7 /* users */,
 				604A0DCE1BEE5898002A80E7 /* misc */,
@@ -644,6 +653,7 @@
 		ACA77EC61BF0CAD000D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3C961BF7D2FB0097444E /* mapView */,
 				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
 				ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */,
 				ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */,
@@ -655,6 +665,7 @@
 		ACA77EC71BF0CB0A00D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3C931BF7D2900097444E /* mapView */,
 				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
 				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
 				ACDB3C861BF732550097444E /* SHStreamTableViewController.swift */,
@@ -669,6 +680,31 @@
 				ACA77ECE1BF1233700D504AA /* Enumerations.swift */,
 			);
 			name = enums;
+			sourceTree = "<group>";
+		};
+		ACDB3C8E1BF7D15F0097444E /* stream */ = {
+			isa = PBXGroup;
+			children = (
+				ACDB3C8F1BF7D1B50097444E /* SHShoutStreamModel.swift */,
+				ACDB3C911BF7D1F90097444E /* SHTopTagsModel.swift */,
+			);
+			name = stream;
+			sourceTree = "<group>";
+		};
+		ACDB3C931BF7D2900097444E /* mapView */ = {
+			isa = PBXGroup;
+			children = (
+				ACDB3C941BF7D2EE0097444E /* SHStreamMapViewController.swift */,
+			);
+			name = mapView;
+			sourceTree = "<group>";
+		};
+		ACDB3C961BF7D2FB0097444E /* mapView */ = {
+			isa = PBXGroup;
+			children = (
+				ACDB3C971BF7D33C0097444E /* SHStreamMapViewModel.swift */,
+			);
+			name = mapView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -900,8 +936,10 @@
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
+				ACDB3C921BF7D1F90097444E /* SHTopTagsModel.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
+				ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				60D36D551BF762AA00238D62 /* SHCreateShoutViewModel.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
@@ -915,6 +953,7 @@
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
+				ACDB3C901BF7D1B50097444E /* SHShoutStreamModel.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
 				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
@@ -926,6 +965,7 @@
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
+				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,

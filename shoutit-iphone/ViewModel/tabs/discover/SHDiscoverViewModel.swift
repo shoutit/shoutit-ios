@@ -61,7 +61,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func selectLocation(sender: AnyObject) {
-        let vc = Constants.ViewControllers.LOCATION_GETTER_VIEW_CONTROLLER
+        let vc = Constants.ViewControllers.LOCATION_GETTER
         vc.title = NSLocalizedString("Select Place", comment: "Select Place")
         self.viewController.navigationController?.pushViewController(vc, animated: true)
     }
