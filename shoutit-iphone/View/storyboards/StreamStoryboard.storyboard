@@ -9,7 +9,7 @@
         <!--Stream-->
         <scene sceneID="uN7-UK-qKQ">
             <objects>
-                <tableViewController storyboardIdentifier="SHStreamTableViewController" title="Stream" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdq-rL-FBA" customClass="SHStreamTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHStreamTableViewController" title="Stream" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdq-rL-FBA" customClass="SHStreamTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="rIX-aS-WXx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,11 +25,12 @@
                             <outlet property="delegate" destination="Vdq-rL-FBA" id="SOl-16-5hC"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stream" image="streamTabBar.png" id="BfL-nv-s3m"/>
+                    <tabBarItem key="tabBarItem" title="Stream" image="streamTabBar" id="BfL-nv-s3m"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="vk4-Re-dXZ" id="nGG-xS-FCF"/>
+                        <outlet property="tableView" destination="rIX-aS-WXx" id="cA5-zN-Mbh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csU-uP-qeb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -570,7 +571,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -610,6 +611,6 @@
         <image name="chatTabBar.png" width="25" height="19"/>
         <image name="clockIcon.png" width="50" height="50"/>
         <image name="locationMark.png" width="50" height="60"/>
-        <image name="streamTabBar.png" width="255" height="117"/>
+        <image name="streamTabBar" width="25" height="25"/>
     </resources>
 </document>

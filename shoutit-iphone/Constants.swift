@@ -43,6 +43,8 @@ struct Constants {
     
     struct ViewControllers {
         static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+        static let STREAM_VC =
+        UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamTableViewController")
         static let MODEL_WEB_VIEW_CONTROLLER = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
         static let LOCATION_GETTER_VIEW_CONTROLLER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
     }

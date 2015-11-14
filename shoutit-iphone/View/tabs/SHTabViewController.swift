@@ -34,9 +34,11 @@ class SHTabViewController: UITabBarController {
     private func addTabs() {
         // Setup Tabs
         let discoverVC = Constants.ViewControllers.DISCOVER_VC
+        let streamVC = Constants.ViewControllers.STREAM_VC
         
         self.viewControllers = [
-            getNavController(discoverVC)
+            getNavController(discoverVC),
+            getNavController(streamVC)
         ]
     }
     
