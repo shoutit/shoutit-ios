@@ -16,7 +16,11 @@ class SHStreamTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set Datasource and Delegate
+        self.tableView.delegate = viewModel
+        self.tableView.dataSource = viewModel
         viewModel?.viewDidLoad()
+        self.tableView.keyboardDismissMode = .OnDrag
     }
     
     override func initializeViewModel() {
@@ -47,7 +51,6 @@ class SHStreamTableViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     deinit {
         viewModel?.destroy()
