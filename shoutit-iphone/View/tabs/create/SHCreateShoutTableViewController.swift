@@ -11,9 +11,22 @@ import UIKit
 class SHCreateShoutTableViewController: BaseTableViewController {
 
     private var viewModel: SHCreateShoutViewModel?
+    private var isEditingMode = false
+    private var shout: SHShout?
+    
+    static func presentEditorFromViewController(parent: UIViewController, shout: SHShout) {
+        if let viewController = Constants.ViewControllers.CREATE_SHOUT as? SHCreateShoutTableViewController {
+            viewController.isEditingMode = true
+            viewController.shout = shout
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView?.delegate = viewModel
+        self.tableView?.dataSource = viewModel
+        
         viewModel?.viewDidLoad()
     }
     

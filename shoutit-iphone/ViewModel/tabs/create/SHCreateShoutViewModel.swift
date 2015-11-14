@@ -12,6 +12,13 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UITabl
 
     private let viewController: SHCreateShoutTableViewController
     
+    private var media: [SHMedia] = []
+    private var categories: [SHCategory] = []
+    private var isVideoCV = false
+    private var offset: Float = 0
+    
+    var isEditing = false
+    
     required init(viewController: SHCreateShoutTableViewController) {
         self.viewController = viewController
     }

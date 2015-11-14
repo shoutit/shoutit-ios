@@ -39,7 +39,7 @@
         <!--New Shout-->
         <scene sceneID="b56-b9-tNH">
             <objects>
-                <tableViewController storyboardIdentifier="SHCreateShoutTableViewController" autoresizesArchivedViewToFullSize="NO" id="Scb-dR-f27" customClass="SHCreateShoutTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="shCreateShoutTableViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Scb-dR-f27" customClass="SHCreateShoutTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KM1-EX-PqB">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
