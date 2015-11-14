@@ -14,6 +14,12 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate {
     @IBOutlet var tableView: UITableView!
     private var tap: UITapGestureRecognizer?
     private var searchBar = UISearchBar()
+    private var mode: String?
+    private var searchQuery: String?
+    private var lastResultCount: Int?
+    private var fetchedResultsController = []
+    private var loading: Bool?
+    var selectedSegment: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +109,60 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate {
                 self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0)
             })
             
+        }
+    }
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        self.tableView.addGestureRecognizer(self.tap!)
+        return true
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(false, animated: true)
+        self.tableView.removeGestureRecognizer(self.tap!)
+        return true
+    }
+    
+    func searchBar(searchBar: UISearchBar, var textDidChange searchText: String) {
+        if(self.mode == "Tag") {
+            searchText = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            self.searchBar.text = searchText
+        }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if(searchBar.text != "") {
+        self.searchQuery = searchBar.text
+        self.lastResultCount = 0
+        self.fetchedResultsController = []
+        self.tableView.reloadData()
+        self.loading = true
+        if (self.selectedSegment == 0 || self.selectedSegment == 1) {
+        
+        }
+//        if (![searchBar.text isEqual: @""])
+//        {
+//            self.searchQuery = searchBar.text;
+//            self.lastResultCount = 0;
+//            [self.fetchedResultsController removeAllObjects];
+//            [self.tableView reloadData];
+//            self.loading = YES;
+//            [self.loadMoreView showLoading];
+//            self.loadMoreView.loadingLabel.text = @"";
+//            if(self.selectedSegment == 0 || self.selectedSegment == 1)
+//            {
+//                [self.shoutModel searchStreamForLocation:self.location ofType:self.selectedSegment query:self.searchQuery];
+//            }else{
+//                [self.searchTagModel searchTagQuery:self.searchQuery ];
+//            }
+//            
+//            self.tableView.scrollEnabled = NO;
+//            
+//            self.isSearchMode = YES;
+//        }else{
+//            self.isSearchMode = NO;
+//        }
         }
     }
 }
