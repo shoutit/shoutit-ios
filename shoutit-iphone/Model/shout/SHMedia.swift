@@ -27,7 +27,7 @@ class SHMedia: Mappable {
         thumbnailUrl        <- map["thumbnail_url"]
         provider            <- map["provider"]
         idOnProvider        <- map["id_on_provider"]
-        duration            <- map["type"]
+        duration            <- map["duration"]
     }
     
 }

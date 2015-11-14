@@ -7,9 +7,22 @@
 //
 
 import UIKit
+import DWTagList
 
 class SHCreateShoutTableViewController: BaseTableViewController {
 
+    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var categoriesTextField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var currencyTextField: UITextField!
+    @IBOutlet weak var locationTextView: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextField!
+    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var tagsLabel: UILabel!
+    @IBOutlet weak var tagsList: DWTagList!
+    @IBOutlet weak var titleTextField: UITextField!
+    
     private var viewModel: SHCreateShoutViewModel?
     private var isEditingMode = false
     private var shout: SHShout?
@@ -24,8 +37,10 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView?.delegate = viewModel
-        self.tableView?.dataSource = viewModel
+        self.collectionView.delegate = viewModel
+        self.collectionView.dataSource = viewModel
+        self.tableView.delegate = viewModel
+        self.tableView.dataSource = viewModel
         
         viewModel?.viewDidLoad()
     }
@@ -63,4 +78,7 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         viewModel?.destroy()
     }
 
+    @IBAction func segmentAction(sender: AnyObject) {
+    }
+    
 }
