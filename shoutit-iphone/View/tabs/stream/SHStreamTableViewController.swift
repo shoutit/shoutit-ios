@@ -35,14 +35,6 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate {
         self.searchBar.placeholder = NSLocalizedString("Search", comment: "Search")
         self.navigationController!.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
         self.showSearchBar(self.tableView)
-        // Get Latest Shouts
-        self.selectedSegment = 0
-        viewModel!.getLatestShouts()
-        self.selectedSegment = 1
-        viewModel!.getLatestShouts()
-        self.selectedSegment = 2
-        viewModel!.getLatestShouts()
-        self.selectedSegment = 0
         self.tableView.keyboardDismissMode = .OnDrag
     }
     

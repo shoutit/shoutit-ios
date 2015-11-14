@@ -30,6 +30,14 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.leftBarButtonItem = loc
         self.viewController.edgesForExtendedLayout = UIRectEdge.None
         setupNavigationBar()
+        // Get Latest Shouts
+        self.viewController.selectedSegment = 0
+        getLatestShouts()
+        self.viewController.selectedSegment = 1
+        getLatestShouts()
+        self.viewController.selectedSegment = 2
+        getLatestShouts()
+        self.viewController.selectedSegment = 0
         
     }
     
