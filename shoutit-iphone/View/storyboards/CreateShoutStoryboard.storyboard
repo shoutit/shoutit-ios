@@ -137,14 +137,14 @@
                                                         <inset key="sectionInset" minX="60" minY="0.0" maxX="60" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreatePlusCollectionViewCell" id="HeX-hE-RrP" customClass="SHCreatePlusCollectionViewCell">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreatePlusCollectionViewCell" id="HeX-hE-RrP" customClass="SHCreatePlusCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                                             <rect key="frame" x="60" y="5" width="190" height="190"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_media" translatesAutoresizingMaskIntoConstraints="NO" id="Yvk-Ek-cBQ">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddMedia" translatesAutoresizingMaskIntoConstraints="NO" id="Yvk-Ek-cBQ">
                                                                         <rect key="frame" x="45" y="45" width="100" height="100"/>
                                                                         <animations/>
                                                                         <constraints>
@@ -163,7 +163,7 @@
                                                             </constraints>
                                                             <size key="customSize" width="190" height="190"/>
                                                             <connections>
-                                                                <outlet property="plusImageView" destination="Yvk-Ek-cBQ" id="08r-aa-qhE"/>
+                                                                <outlet property="plusImageView" destination="Yvk-Ek-cBQ" id="QiJ-LE-Jhy"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHCreateImageCollectionViewCell" id="Vrt-aA-e2e" customClass="SHCreateImageCollectionViewCell">
@@ -184,7 +184,7 @@
                                                                             <constraint firstAttribute="width" constant="30" id="hda-k3-Hjb"/>
                                                                             <constraint firstAttribute="height" constant="30" id="u3R-Et-Hfj"/>
                                                                         </constraints>
-                                                                        <state key="normal" image="remove_media">
+                                                                        <state key="normal" image="RemoveMedia">
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
@@ -228,7 +228,7 @@
                                                                             <constraint firstAttribute="height" constant="55" id="CpC-Kb-Dhp"/>
                                                                             <constraint firstAttribute="width" constant="55" id="EDK-Wj-7uy"/>
                                                                         </constraints>
-                                                                        <state key="normal" backgroundImage="play_button">
+                                                                        <state key="normal" backgroundImage="PlayButton">
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
@@ -242,7 +242,7 @@
                                                                             <constraint firstAttribute="width" constant="30" id="SOC-IV-HOM"/>
                                                                             <constraint firstAttribute="height" constant="30" id="tNk-z6-guF"/>
                                                                         </constraints>
-                                                                        <state key="normal" image="remove_media">
+                                                                        <state key="normal" image="RemoveMedia">
                                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
@@ -271,10 +271,6 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="Scb-dR-f27" id="Uw5-Ra-scx"/>
-                                                        <outlet property="delegate" destination="Scb-dR-f27" id="nSX-4L-QsR"/>
-                                                    </connections>
                                                 </collectionView>
                                             </subviews>
                                             <animations/>
@@ -799,11 +795,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddMedia" width="190" height="190"/>
         <image name="CloseButton.png" width="73" height="73"/>
-        <image name="add_media" width="190" height="190"/>
+        <image name="PlayButton" width="80" height="80"/>
+        <image name="RemoveMedia" width="100" height="100"/>
         <image name="near_me.png" width="100" height="100"/>
         <image name="newShoutTabBar.png" width="21" height="25"/>
-        <image name="play_button" width="80" height="80"/>
-        <image name="remove_media" width="100" height="100"/>
     </resources>
 </document>

@@ -50,6 +50,12 @@
 		606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AD1BF09B4E00259357 /* SHCellViewModelProtocol.swift */; };
 		606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */; };
 		606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116B31BF2563F00259357 /* SHProgressHUD.swift */; };
+		606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */; };
+		606ED2EA1BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2E91BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift */; };
+		606ED2EC1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2EB1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift */; };
+		606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2ED1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift */; };
+		606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2EF1BF7EE7E0064C53E /* SHCreateImageViewModel.swift */; };
+		606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2F11BF7EE8F0064C53E /* SHCreateVideoViewModel.swift */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -160,6 +166,12 @@
 		606116AD1BF09B4E00259357 /* SHCellViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCellViewModelProtocol.swift; path = ViewModel/protocols/SHCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCellViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverCellViewModel.swift; sourceTree = "<group>"; };
 		606116B31BF2563F00259357 /* SHProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProgressHUD.swift; path = Util/helpers/SHProgressHUD.swift; sourceTree = "<group>"; };
+		606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreatePlusCollectionViewCell.swift; path = View/tabs/create/SHCreatePlusCollectionViewCell.swift; sourceTree = "<group>"; };
+		606ED2E91BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateImageCollectionViewCell.swift; path = View/tabs/create/SHCreateImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		606ED2EB1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateVideoCollectionViewCell.swift; path = View/tabs/create/SHCreateVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		606ED2ED1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreatePlusViewModel.swift; path = ViewModel/tabs/create/SHCreatePlusViewModel.swift; sourceTree = "<group>"; };
+		606ED2EF1BF7EE7E0064C53E /* SHCreateImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateImageViewModel.swift; path = ViewModel/tabs/create/SHCreateImageViewModel.swift; sourceTree = "<group>"; };
+		606ED2F11BF7EE8F0064C53E /* SHCreateVideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateVideoViewModel.swift; path = ViewModel/tabs/create/SHCreateVideoViewModel.swift; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -558,6 +570,9 @@
 			isa = PBXGroup;
 			children = (
 				60D36D511BF7622700238D62 /* SHCreateShoutTableViewController.swift */,
+				606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */,
+				606ED2E91BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift */,
+				606ED2EB1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift */,
 			);
 			name = create;
 			sourceTree = "<group>";
@@ -566,6 +581,9 @@
 			isa = PBXGroup;
 			children = (
 				60D36D541BF762AA00238D62 /* SHCreateShoutViewModel.swift */,
+				606ED2ED1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift */,
+				606ED2EF1BF7EE7E0064C53E /* SHCreateImageViewModel.swift */,
+				606ED2F11BF7EE8F0064C53E /* SHCreateVideoViewModel.swift */,
 			);
 			name = create;
 			sourceTree = "<group>";
@@ -926,14 +944,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
+				606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */,
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */,
+				606ED2EC1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
 				ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */,
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
+				606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
@@ -945,6 +966,7 @@
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
+				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
@@ -959,6 +981,7 @@
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				60D36D5E1BF78D5F00238D62 /* SHCategory.swift in Sources */,
+				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
@@ -973,6 +996,7 @@
 				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
+				606ED2EA1BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift in Sources */,
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
