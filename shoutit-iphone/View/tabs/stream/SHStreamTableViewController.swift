@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DOPDropDownMenu
 
 class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate {
 
