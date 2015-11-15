@@ -55,4 +55,9 @@ class SHShout: Mappable {
         tags            <- map["tags"]
     }
     
+    func getStringTags() -> [String] {
+        // TODO
+        return []
+    }
+    
 }
