@@ -62,6 +62,9 @@ struct Constants {
     
     struct CollectionViewCell {
         static let SHDiscoverCollectionViewCell = "SHDiscoverCollectionViewCell"
+        static let SHCreatePlusCollectionViewCell = "SHCreatePlusCollectionViewCell"
+        static let SHCreateImageCollectionViewCell = "SHCreateImageCollectionViewCell"
+        static let SHCreateVideoCollectionViewCell = "SHCreateVideoCollectionViewCell"
     }
     
     struct Authentication {

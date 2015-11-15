@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import DWTagList
 
-class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate {
 
     private let viewController: SHCreateShoutTableViewController
     
     private var media: [SHMedia] = []
     private var categories: [SHCategory] = []
     private var isVideoCV = false
-    private var offset: Float = 0
+    private var offset: CGFloat = 0
+    private var tapTagsSelect: UITapGestureRecognizer?
     
+    var shout: SHShout?
     var isEditing = false
     
     required init(viewController: SHCreateShoutTableViewController) {
@@ -24,7 +27,60 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
+        // TODO
+        if isEditing {
+//            [self setupViewForStandard:YES];
+//            [self setCurrentLocation];
+        }
+        self.tapTagsSelect = UITapGestureRecognizer(target: self, action: "selectTags")
+        self.offset = self.viewController.tableView.contentOffset.y
+
+        // TODO Setup Currency
+//        if(!self.isEditingMode)
+//        {
+//            NSString* localCur = @"";
+//            NSMutableArray *currencies = [[NSUserDefaults standardUserDefaults] valueForKey:@"currencies"];
+//            for (NSDictionary* dict in currencies)
+//            if([[[[[SHLoginModel sharedModel]selfUser] userLocation]countryCode] isEqualToString:dict[@"country"]])
+//            localCur = dict[@"code"];
+//            self.currencyTextField.text = localCur;
+//        }
         
+        self.viewController.tagsList.delegate = self
+        self.viewController.tableView.estimatedRowHeight = 120
+        self.viewController.tableView.rowHeight = UITableViewAutomaticDimension
+
+        // TODO
+//        if(self.isEditingMode)
+//        {
+//            [self.titleTextField setText:self.shout.title];
+//            if([self.shout.type isEqualToString:@"offer"])
+//            {
+//                [self setupViewForStandard:YES];
+//                self.segmentControl.selectedSegmentIndex = 0;
+//                
+//            }else if([self.shout.type isEqualToString:@"request"])
+//            {
+//                [self setupViewForStandard:YES];
+//                self.segmentControl.selectedSegmentIndex = 1;
+//                
+//            }else if(self.shout.category)
+//            {
+//                if([self.shout.category.name isEqualToString:@"cv-video"])
+//                {
+//                    [self setupViewForStandard:NO];
+//                    self.segmentControl.selectedSegmentIndex = 2;
+//                }
+//            }
+//            self.categoriesTextField.text = self.shout.category.name;
+//            self.descriptionTextView.text = self.shout.text;
+//            self.priceTextField.text = self.shout.price;
+//            self.currencyTextField.text = self.shout.currency;
+//            [self.locationTextView setText:[NSString stringWithFormat:@"%@, %@, %@",self.shout.shoutLocation.city,self.shout.shoutLocation.stateCode,self.shout.shoutLocation.countryCode]];
+//            
+//        }
+        
+        setUpTagList()
     }
     
     func viewWillAppear() {
@@ -49,7 +105,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     // MARK - CollectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.media.count + 1
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -74,7 +130,18 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return CGSizeMake(190, 190)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.item < 1 {
+            // TODO Open Camera
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if indexPath.item < 1 {
+            return collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreatePlusCollectionViewCell, forIndexPath: indexPath)
+        } else {
+            
+        }
         return UICollectionViewCell()
     }
     
@@ -129,7 +196,98 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return self.viewController.tableView(tableView, numberOfRowsInSection: section)
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.viewController.numberOfSectionsInTableView(tableView)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return self.viewController.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // Title
+        if let shout = self.shout {
+            if (indexPath.section == 0 && indexPath.row == 0) {
+                self.viewController.titleTextField.text = shout.title
+            } else if (indexPath.section == 0 && indexPath.row == 1) {
+                // TODO
+//                if([self.shout.type isEqualToString:@"offer"])
+//                {
+//                    [self setupViewForStandard:YES];
+//                    self.segmentControl.selectedSegmentIndex = 0;
+//                    
+//                }else if([self.shout.type isEqualToString:@"request"])
+//                {
+//                    [self setupViewForStandard:YES];
+//                    self.segmentControl.selectedSegmentIndex = 1;
+//                    
+//                }else if(self.shout.category)
+//                {
+//                    if([self.shout.category.name isEqualToString:@"cv-video"])
+//                    {
+//                        [self setupViewForStandard:NO];
+//                        self.segmentControl.selectedSegmentIndex = 2;
+//                    }
+//                }
+//                self.categoriesTextField.text =  self.shout.category.name;
+            }
+            // TODO
+//            if (indexPath.section == 2 && indexPath.row == 0) // categorie
+//            {
+//                self.categoriesTextField.text = self.shout.category.name;
+//            }
+//            if (indexPath.section == 3 && indexPath.row == 0) // description
+//            {
+//                self.descriptionTextView.text = self.shout.text;
+//            }
+//            if (indexPath.section == 4 && indexPath.row == 0) // Price
+//            {
+//                self.priceTextField.text = self.shout.price;
+//            }
+//            if (indexPath.section == 4 && indexPath.row == 1) // Currency
+//            {
+//                self.currencyTextField.text = self.shout.currency;
+//            }
+//            if (indexPath.section == 5 && indexPath.row == 0) // location
+//            {
+//                [self.locationTextView setText:[NSString stringWithFormat:@"%@, %@, %@",self.shout.shoutLocation.city,self.shout.shoutLocation.stateCode,self.shout.shoutLocation.countryCode]];
+//            }
+        }
+        let cell = self.viewController.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // TODO
+//        if (indexPath.section == 2 && indexPath.row == 1)
+//        {
+//            [self.tagList setTags:self.shout.stringTags];
+//            
+//            [self.tagList.constraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                NSLayoutConstraint* constraint = obj;
+//                if (constraint.firstAttribute == NSLayoutAttributeHeight)
+//                {
+//                constraint.constant =  fmax(24.0, self.tagList.contentSize.height);
+//                *stop = YES;
+//                }
+//                }];
+//            
+//            [cell layoutIfNeeded];
+//        }
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.section == 2 && indexPath.row == 1 {
+//            // TODO
+////            return fmax(24.0, self.tagList.contentSize.height) + 20
+//        }
+        return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
+    }
+    
+    // MARK - Private
+    private func setUpTagList() {
+        self.viewController.tagsList.setTags(self.shout?.getStringTags())
+        self.viewController.tagsList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
+        self.viewController.tagsList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
+        self.viewController.tagsList.textShadowColor = UIColor.clearColor()
+        self.viewController.tagsList.automaticResize = true
+        self.viewController.tagsList.userInteractionEnabled = true
+        if let tapGesture = self.tapTagsSelect {
+            self.viewController.tagsList.addGestureRecognizer(tapGesture)
+        }
+        self.viewController.tagsList.scrollEnabled = false
     }
 }

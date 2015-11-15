@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hZQ-9o-tYc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hZQ-9o-tYc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--ShoutIT-->
         <scene sceneID="bIL-p2-QCQ">
             <objects>
-                <viewController storyboardIdentifier="SHCameraViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0Z-EN-A1D" customClass="SHCameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHCameraViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0Z-EN-A1D" customClass="SHCameraViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1fp-NW-mf8"/>
                         <viewControllerLayoutGuide type="bottom" id="t9C-Mu-uZc"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ahz-bA-XCh" customClass="SHCameraPreviewView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ahz-bA-XCh" customClass="SHCameraPreviewView" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaW-tw-s3x">
@@ -68,7 +68,7 @@
                                             <constraint firstAttribute="width" constant="80" id="9Rv-B5-IVO"/>
                                             <constraint firstAttribute="height" constant="80" id="kZn-Be-3Om"/>
                                         </constraints>
-                                        <state key="normal" title="Record" image="RecordButton.png">
+                                        <state key="normal" title="Record" image="RecordButton">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -86,7 +86,7 @@
                                             <constraint firstAttribute="height" constant="80" id="Ei4-qe-Hxf"/>
                                             <constraint firstAttribute="width" constant="80" id="nsK-pg-76x"/>
                                         </constraints>
-                                        <state key="normal" image="cameraTakePicture.png">
+                                        <state key="normal" image="CameraTakePicture">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -150,7 +150,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="countdownTimerLabel" destination="SN9-Be-ehn" id="B4l-aS-Vle"/>
-                        <outlet property="previewView" destination="Ahz-bA-XCh" id="K1w-Fi-458"/>
+                        <outlet property="gestureRecognizers" destination="jAZ-ra-16f" id="aMC-Pa-0OS"/>
+                        <outlet property="previewView" destination="Ahz-bA-XCh" id="IGE-09-4bD"/>
                         <outlet property="recordButton" destination="HXZ-4s-AyI" id="85N-f4-AV5"/>
                         <outlet property="stillButton" destination="3DG-Jo-voU" id="pvK-bl-Y8c"/>
                     </connections>
@@ -333,11 +334,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RecordButton.png" width="364" height="364"/>
+        <image name="CameraTakePicture" width="194" height="194"/>
+        <image name="RecordButton" width="364" height="364"/>
         <image name="cameraDone.png" width="94" height="92"/>
         <image name="cameraRetake.png" width="47" height="47"/>
         <image name="cameraTabBar.png" width="25" height="19"/>
-        <image name="cameraTakePicture.png" width="194" height="194"/>
         <image name="videoStop.png" width="80" height="80"/>
     </resources>
 </document>

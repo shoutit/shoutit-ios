@@ -42,11 +42,14 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
         
+        setUpNavBar()
+        
         viewModel?.viewDidLoad()
     }
     
     override func initializeViewModel() {
         viewModel = SHCreateShoutViewModel(viewController: self)
+        viewModel?.isEditing = self.isEditingMode
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,6 +82,20 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     }
 
     @IBAction func segmentAction(sender: AnyObject) {
+    }
+    
+    // MARK - Private
+    private func setUpNavBar() {
+        if self.isEditingMode {
+            self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Save", comment: "Save"), style: UIBarButtonItemStyle.Done, target: self, action: "patchShout"), animated: false)
+            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIBarButtonItemStyle.Done, target: self, action: "cancelBack"), animated: false)
+        } else {
+            self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Shout", comment: "Shout"), style: UIBarButtonItemStyle.Done, target: self, action: "postShout"), animated: false)
+            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Clear", comment: "Clear"), style: UIBarButtonItemStyle.Done, target: self, action: "cleanForms"), animated: false)
+        }
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
     }
     
 }
