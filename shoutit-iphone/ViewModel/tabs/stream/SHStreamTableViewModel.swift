@@ -95,6 +95,28 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     private func getLatestShouts() {
+        self.viewController.searchQuery = nil
+        self.viewController.searchBar.text = ""
+        self.viewController.mode = "Search"
+        self.viewController.searchBar.placeholder = self.viewController.mode
+        self.viewController.loading = true
+        // [self.loadMoreView showNoMoreContent]; 
+        self.viewController.fetchedResultsController = []
+        self.viewController.tableView.reloadData()
+        if(self.viewController.selectedSegment == 0 || self.viewController.selectedSegment == 1) {
+            if let location = SHAddress.getUserOrDeviceLocation(), let type = self.viewController.selectedSegment {
+                self.viewController.shoutApi.refreshStreamForLocation(location, ofType: type)
+            } else {
+                self.viewController.isSearchMode = false
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                    if let location = SHAddress.getUserOrDeviceLocation() {
+                        self.viewController.tagsApi.refreshTopTagsForLocation(location)
+                    }
+                    
+                })
+            }
+            
+        }
         
     }
     

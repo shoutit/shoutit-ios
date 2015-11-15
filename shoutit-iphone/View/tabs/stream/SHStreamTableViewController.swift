@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import DOPDropDownMenu
 
-class SHStreamTableViewController: BaseViewController, UISearchBarDelegate {
+class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate {
 
     private var viewModel: SHStreamTableViewModel?
     @IBOutlet var tableView: UITableView!
     private var tap: UITapGestureRecognizer?
-    private var searchBar = UISearchBar()
-    private var mode: String?
-    private var searchQuery: String?
+    var searchBar = UISearchBar()
+    var mode: String?
+    var searchQuery: String?
     private var lastResultCount: Int?
-    private var fetchedResultsController = []
-    private var loading: Bool?
+    var fetchedResultsController = []
+    var loading: Bool?
     var selectedSegment: Int?
+    let shoutApi = SHApiShoutService()
+    let tagsApi = SHApiTagsService()
+    var isSearchMode: Bool?
+    private var dropMenu: DOPDropDownMenu?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,30 +144,69 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate {
         self.tableView.reloadData()
         self.loading = true
         if (self.selectedSegment == 0 || self.selectedSegment == 1) {
-        
+            if let location = SHAddress.getUserOrDeviceLocation(), let type = self.selectedSegment, let query = self.searchQuery{
+                self.shoutApi.searchStreamForLocation(location, ofType: type, query: query)
+            } else {
+                if let query = self.searchQuery {
+                    self.tagsApi.searchTagQuery(query)
+                }
+            }
+            
         }
-//        if (![searchBar.text isEqual: @""])
-//        {
-//            self.searchQuery = searchBar.text;
-//            self.lastResultCount = 0;
-//            [self.fetchedResultsController removeAllObjects];
-//            [self.tableView reloadData];
-//            self.loading = YES;
-//            [self.loadMoreView showLoading];
-//            self.loadMoreView.loadingLabel.text = @"";
-//            if(self.selectedSegment == 0 || self.selectedSegment == 1)
-//            {
-//                [self.shoutModel searchStreamForLocation:self.location ofType:self.selectedSegment query:self.searchQuery];
-//            }else{
-//                [self.searchTagModel searchTagQuery:self.searchQuery ];
-//            }
-//            
-//            self.tableView.scrollEnabled = NO;
-//            
-//            self.isSearchMode = YES;
-//        }else{
-//            self.isSearchMode = NO;
-//        }
+            self.tableView.scrollEnabled = false
+            self.isSearchMode = true
+        } else {
+            self.isSearchMode = false
         }
     }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        if(searchBar.text != "") {
+            self.isSearchMode = true
+        } else {
+            self.isSearchMode = false
+        }
+        self.dismissSearchKeyboard(searchBar)
+    }
+    
+    func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
+        self.dropMenu = DOPDropDownMenu(origin: CGPointMake(self.searchBar.frame.origin.x, self.searchBar.frame.origin.y + self.searchBar.frame.size.height), andHeight: 1)
+        self.dropMenu!.dataSource = self
+        self.dropMenu!.delegate = self
+        self.view.addSubview(dropMenu!)
+       // self.dropMenu.present()
+    }
+    
+    func menu(menu: DOPDropDownMenu!, didSelectRowAtIndexPath indexPath: DOPIndexPath!) {
+        switch (indexPath.row) {
+        case 0:
+            self.searchBar.placeholder = NSLocalizedString("Search", comment: "Search")
+        case 1:
+            self.searchBar.placeholder = NSLocalizedString("Tag", comment: "Tag")
+        default:
+            break
+        }
+        //self.dropMenu.hide()
+        self.mode = self.searchBar.placeholder
+    }
+    
+    func menu(menu: DOPDropDownMenu!, numberOfRowsInColumn column: Int) -> Int {
+        return 2
+    }
+    
+    func menu(menu: DOPDropDownMenu!, titleForRowAtIndexPath indexPath: DOPIndexPath!) -> String! {
+        switch (indexPath.row) {
+        case 0:
+            return NSLocalizedString("Search", comment: "Search")
+        case 1:
+            return NSLocalizedString("Tag", comment: "Tag")
+        default:
+            break
+        }
+        return ""
+    }
+    
 }
+
+
+

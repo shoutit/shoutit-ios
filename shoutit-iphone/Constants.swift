@@ -13,6 +13,7 @@ struct Constants {
     struct Shout {
         static let TIME_VIDEO_SHOUT = 60
         static let TIME_VIDEO_CV = 60
+        static let SH_PAGE_SIZE = 60
     }
     
     struct Google {

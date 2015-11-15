@@ -98,6 +98,7 @@
 		ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C9B1BF7DAD10097444E /* SHApiShoutService.swift */; };
 		ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C9D1BF7DB1A0097444E /* SHApiTagsService.swift */; };
 		ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CA01BF885F60097444E /* SHFilter.swift */; };
+		ACDB3CA51BF8DD9B0097444E /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CA41BF8DD9B0097444E /* DOPDropDownMenu.m */; };
 		ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */; };
 		ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */; };
 		ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */; };
@@ -223,6 +224,8 @@
 		ACDB3C9B1BF7DAD10097444E /* SHApiShoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiShoutService.swift; path = Util/api/shout/SHApiShoutService.swift; sourceTree = "<group>"; };
 		ACDB3C9D1BF7DB1A0097444E /* SHApiTagsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiTagsService.swift; path = Util/api/tags/SHApiTagsService.swift; sourceTree = "<group>"; };
 		ACDB3CA01BF885F60097444E /* SHFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilter.swift; path = Model/shout/Filter/SHFilter.swift; sourceTree = "<group>"; };
+		ACDB3CA31BF8DD9B0097444E /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
+		ACDB3CA41BF8DD9B0097444E /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
 		ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 		607F75771BEA6F0300F3BA86 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */,
 				607F75781BEA6F0D00F3BA86 /* TextFieldValidator */,
 			);
 			name = Libraries;
@@ -773,6 +777,15 @@
 				ACDB3CA01BF885F60097444E /* SHFilter.swift */,
 			);
 			name = Filter;
+			sourceTree = "<group>";
+		};
+		ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ACDB3CA31BF8DD9B0097444E /* DOPDropDownMenu.h */,
+				ACDB3CA41BF8DD9B0097444E /* DOPDropDownMenu.m */,
+			);
+			name = DOPDropDownMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1060,6 +1073,7 @@
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
+				ACDB3CA51BF8DD9B0097444E /* DOPDropDownMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
