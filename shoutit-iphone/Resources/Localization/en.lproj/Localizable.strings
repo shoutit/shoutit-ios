@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   shoutit-iphone
 
@@ -135,23 +135,8 @@
 /* Featured Tags */
 "Featured Tags" = "Featured Tags";
 
+/* Preparing video... */
+"PreparingVideo" = "Preparing video...";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Please Load a Video Asset First */
+"LoadVideoAssetFirst" = "Please Load a Video Asset First";

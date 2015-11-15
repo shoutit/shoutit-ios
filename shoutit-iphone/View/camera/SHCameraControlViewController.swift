@@ -137,8 +137,7 @@ class SHCameraControlViewController: BaseViewController, UIScrollViewAccessibili
         }
     }
     
-    // MARK - Private
-    private func setMode(isVideo: Bool) {
+    func setMode(isVideo: Bool) {
         self.isVideo = isVideo
         UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseIn, animations: { () -> Void in
             self.recordButton.alpha = !isVideo ? 0 : 1
@@ -155,6 +154,7 @@ class SHCameraControlViewController: BaseViewController, UIScrollViewAccessibili
         }
     }
     
+    // MARK - Private
     private func getAngleForOrientation(orientation: UIInterfaceOrientation) -> Double {
         switch(orientation) {
         case .Portrait:

@@ -165,6 +165,7 @@ class SHVideoPreviewViewModel: NSObject, ViewControllerModelProtocol {
                     outputFilePath = filePath
                 }
                 
+                SHProgressHUD.dismiss()
                 if let filePath = outputFilePath {
                     let url = NSURL(fileURLWithPath: filePath)
                     // 5 - Create exporter
@@ -182,7 +183,6 @@ class SHVideoPreviewViewModel: NSObject, ViewControllerModelProtocol {
                         }
                     }
                 }
-                SHProgressHUD.dismiss()
             } catch {
                 // Do Nothing
             }
