@@ -148,10 +148,11 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
                     
                     var outputFilePath: String? = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("movie") as NSString).stringByAppendingPathExtension("mov")
                     
-                    if let filePath = outputFilePath {
+                    if var filePath = outputFilePath {
                         while NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-                            outputFilePath = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "movie-%d", arc4random() % 1000)) as NSString).stringByAppendingPathExtension("mov")
+                            filePath = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "movie-%ld", NSDate().timeIntervalSince1970)) as NSString).stringByAppendingPathExtension("mov")!
                         }
+                        outputFilePath = filePath
                     }
                     
                     if let outFile = outputFilePath {
