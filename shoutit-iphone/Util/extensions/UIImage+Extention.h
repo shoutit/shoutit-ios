@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// TODO Convert to Swift
 @interface UIImage (Extention)
 - (UIImage*) maskImage:(UIImage *) image withMask:(UIImage *) mask;
 -(UIImage *)resizeImageProportionallyIntoNewSize:(CGSize)newSize;

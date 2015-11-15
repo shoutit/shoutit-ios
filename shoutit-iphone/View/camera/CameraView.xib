@@ -67,6 +67,9 @@
                                         <color key="titleColor" red="0.98358495300000004" green="0.97959382159999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="switchFlashButton:" destination="-1" eventType="touchUpInside" id="5hP-A9-lew"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcA-W9-5pz">
                                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -76,7 +79,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="switchFlash:" destination="-1" eventType="touchUpInside" id="nRT-kJ-zbD"/>
+                                        <action selector="switchFlash:" destination="-1" eventType="touchUpInside" id="6bg-zb-jNO"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -109,7 +112,7 @@
                                 <constraint firstAttribute="height" constant="20" id="JvP-yi-oZm"/>
                                 <constraint firstAttribute="width" constant="28" id="Zkm-RA-IfL"/>
                             </constraints>
-                            <state key="normal" image="cameraTurn.png">
+                            <state key="normal" image="cameraTurn">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -200,7 +203,7 @@
                                 <constraint firstAttribute="height" constant="70" id="t11-sw-ZsA"/>
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" backgroundImage="cameraVideo.png">
+                            <state key="normal" backgroundImage="cameraVideo">
                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -237,7 +240,7 @@
                                 <constraint firstAttribute="height" constant="70" id="g6l-fZ-2Pj"/>
                                 <constraint firstAttribute="width" constant="70" id="vfU-rI-EbS"/>
                             </constraints>
-                            <state key="normal" backgroundImage="cameraPhoto.png">
+                            <state key="normal" backgroundImage="cameraPhoto">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -265,7 +268,7 @@
                                 <constraint firstAttribute="width" constant="55" id="GLp-Wm-6if"/>
                                 <constraint firstAttribute="height" constant="42" id="iJ7-Ft-szG"/>
                             </constraints>
-                            <state key="normal" backgroundImage="cameraModeVideo.png">
+                            <state key="normal" backgroundImage="cameraModeVideo">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -490,7 +493,7 @@
                                 <constraint firstAttribute="width" constant="70" id="Tzp-Jt-xwp"/>
                                 <constraint firstAttribute="height" constant="70" id="e9p-IB-X5u"/>
                             </constraints>
-                            <state key="normal" backgroundImage="cameraTakePicture.png">
+                            <state key="normal" backgroundImage="cameraTakePicture">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -583,7 +586,7 @@
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="gvW-IM-I97"/>
                                 <constraint firstAttribute="width" constant="70" id="wbf-fS-dlh"/>
                             </constraints>
-                            <state key="normal" backgroundImage="RecordButton.png">
+                            <state key="normal" backgroundImage="RecordButton">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -692,12 +695,12 @@
     </objects>
     <resources>
         <image name="CameraCloseWhite" width="832" height="832"/>
-        <image name="RecordButton.png" width="364" height="364"/>
-        <image name="cameraModeVideo.png" width="200" height="149"/>
-        <image name="cameraPhoto.png" width="132" height="132"/>
-        <image name="cameraTakePicture.png" width="194" height="194"/>
-        <image name="cameraTurn.png" width="56" height="42"/>
-        <image name="cameraVideo.png" width="132" height="132"/>
+        <image name="RecordButton" width="364" height="364"/>
+        <image name="cameraModeVideo" width="200" height="149"/>
+        <image name="cameraPhoto" width="132" height="132"/>
+        <image name="cameraTakePicture" width="364" height="364"/>
+        <image name="cameraTurn" width="56" height="42"/>
+        <image name="cameraVideo" width="132" height="132"/>
         <image name="flashButton" width="100" height="170"/>
     </resources>
 </document>

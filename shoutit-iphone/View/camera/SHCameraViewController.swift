@@ -96,6 +96,10 @@ class SHCameraViewController: SHCameraControlViewController {
         viewModel?.snapStillImage()
     }
     
+    @IBAction func switchFlashButton(sender: AnyObject) {
+        viewModel?.switchFlash()
+    }
+    
     @IBAction func switchFlash(sender: AnyObject) {
         viewModel?.switchFlash()
     }

@@ -98,10 +98,6 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
     
     func viewWillAppear() {
         dispatch_async(sessionQueue) { () -> Void in
-            // TODO
-//            [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
-//            [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
-//            [self addObserver:self forKeyPath:@"movieFileOutput.recording" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:RecordingContext];
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "subjectAreaDidChange:", name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
             self.runTimeErrorHandlingObserver = NSNotificationCenter.defaultCenter().addObserverForName(AVCaptureSessionRuntimeErrorNotification, object: self.session, queue: nil, usingBlock: { (notification) -> Void in
                 dispatch_async(self.sessionQueue, { () -> Void in
@@ -133,10 +129,6 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
             if let observer = self.runTimeErrorHandlingObserver {
                 NSNotificationCenter.defaultCenter().removeObserver(observer)
             }
-            // TODO 
-//            [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
-//            [self removeObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" context:CapturingStillImageContext];
-//            [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
         }
     }
     
@@ -147,32 +139,36 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
     func toggleMovieRecording() {
         dispatch_async(self.sessionQueue) { () -> Void in
             if let movieFileOutput = self.movieFileOutput {
-                if movieFileOutput.recording {
+                if !movieFileOutput.recording {
                     self.lockInterfaceRotation = true
                     if UIDevice.currentDevice().multitaskingSupported {
                         // Setup background task. This is needed because the captureOutput:didFinishRecordingToOutputFileAtURL: callback is not received until SHCamera returns to the foreground unless you request background execution time. This also ensures that there will be time to write the file to the assets library when SHCamera is backgrounded. To conclude this background execution, -endBackgroundTask is called in -recorder:recordingDidFinishToOutputFileURL:error: after the recorded file has been saved.
                         self.backgroundRecordingID = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler(nil)
                     }
                     
-                    var outputFilePath = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("movie") as NSString).stringByAppendingPathComponent("mov")
+                    var outputFilePath: String? = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("movie") as NSString).stringByAppendingPathExtension("mov")
                     
-                    while NSFileManager.defaultManager().fileExistsAtPath(outputFilePath) {
-                        outputFilePath = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "movie-%d", arc4random() % 1000)) as NSString).stringByAppendingPathComponent("mov")
+                    if let filePath = outputFilePath {
+                        while NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+                            outputFilePath = ((NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "movie-%d", arc4random() % 1000)) as NSString).stringByAppendingPathExtension("mov")
+                        }
                     }
                     
-                    do {
-                        try NSFileManager.defaultManager().removeItemAtURL(NSURL.fileURLWithPath(outputFilePath))
-                    } catch {
-                        // Do Nothing
+                    if let outFile = outputFilePath {
+                        do {
+                            try NSFileManager.defaultManager().removeItemAtURL(NSURL.fileURLWithPath(outFile))
+                        } catch {
+                            // Do Nothing
+                        }
+                        
+                        if movieFileOutput.connectionWithMediaType(AVMediaTypeVideo).active {
+                            movieFileOutput.startRecordingToOutputFileURL(NSURL.fileURLWithPath(outFile), recordingDelegate: self)
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.viewController.startRecording(true)
+                        })
                     }
-                    
-                    if movieFileOutput.connectionWithMediaType(AVMediaTypeVideo).active {
-                        movieFileOutput.startRecordingToOutputFileURL(NSURL.fileURLWithPath(outputFilePath), recordingDelegate: self)
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.viewController.startRecording(true)
-                    })
                 } else {
                     movieFileOutput.stopRecording()
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -273,7 +269,16 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
     
     func switchFlash() {
         if let videoDeviceInput = self.videoDeviceInput where videoDeviceInput.device.hasFlash {
-            setFlashMode(videoDeviceInput.device.flashMode, device: videoDeviceInput.device)
+            let flashMode: AVCaptureFlashMode
+            switch videoDeviceInput.device.flashMode {
+            case .On:
+                flashMode = .Off
+            case .Off:
+                flashMode = .Auto
+            case .Auto:
+                flashMode = .On
+            }
+            setFlashMode(flashMode, device: videoDeviceInput.device)
             self.viewController.setFlashButtonMode(videoDeviceInput.device.flashMode)
         }
     }
@@ -288,6 +293,30 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
         }
         return false
     }
+    
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        if (context == &self.CapturingStillImageContext) {
+//            var isCapturingStillImage = true
+//            if let bool = change?[NSKeyValueChangeNewKey]?.boolValue {
+//                isCapturingStillImage = bool
+//            }
+//            if isCapturingStillImage {
+//                self.runStillImageCaptureAnimation()
+//            }
+//        } else if (context == &self.RecordingContext) {
+//            var isRecording = true
+//            if let bool = change?[NSKeyValueChangeNewKey]?.boolValue {
+//                isRecording = bool
+//            }
+//            if isRecording {
+//                self.viewController.startRecording(true)
+//            } else {
+//                self.viewController.startRecording(false)
+//            }
+//        } else {
+//            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+//        }
+//    }
     
     // MARK - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -326,7 +355,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
     // MARK - AVCaptureFileOutputRecordingDelegate
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         if error != nil {
-            log.error("Error with capturing video")
+            log.error("Error with capturing video \(error.localizedDescription)")
         }
         self.lockInterfaceRotation = false
         if let videoPreviewViewController = Constants.ViewControllers.VIDEO_PREVIEW as? SHVideoPreviewViewController {
@@ -465,7 +494,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
         }
     }
     
-    private func autorotateCamera(notification: NSNotification?) {
+    func autorotateCamera(notification: NSNotification?) {
         if !self.lockInterfaceRotation {
             let orientation = UIDevice.currentDevice().orientation
             let interfaceOrientation = UIInterfaceOrientation(rawValue: orientation.rawValue)!
@@ -540,53 +569,14 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
             }
         }
     }
-
-    // TODO
-//    - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//    {
-//    if (context == CapturingStillImageContext)
-//    {
-//    BOOL isCapturingStillImage = [change[NSKeyValueChangeNewKey] boolValue];
-//    
-//    if (isCapturingStillImage)
-//    {
-//    [self runStillImageCaptureAnimation];
-//    }
-//    }
-//    else if (context == RecordingContext)
-//    {
-//    BOOL isRecording = [change[NSKeyValueChangeNewKey] boolValue];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//    if (isRecording)
-//    {
-//    [super startRecording:YES];
-//    }
-//    else
-//    {
-//    [super startRecording:NO];
-//    }
-//    });
-//    }
-//    else
-//    {
-//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//    }
-//    }
-//    - (void)subjectAreaDidChange:(NSNotification *)notification
-//    {
-//    CGPoint devicePoint = CGPointMake(.5, .5);
-//    [self focusWithMode:AVCaptureFocusModeContinuousAutoFocus exposeWithMode:AVCaptureExposureModeContinuousAutoExposure atDevicePoint:devicePoint monitorSubjectAreaChange:NO];
-//    }
     
-//    - (void)runStillImageCaptureAnimation
-//    {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//    [[[self previewView] layer] setOpacity:0.0];
-//    [UIView animateWithDuration:.25 animations:^{
-//    [[[self previewView] layer] setOpacity:1.0];
-//    }];
-//    });
-//    }
+    private func runStillImageCaptureAnimation() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.viewController.previewView.layer.opacity = 0.0
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.viewController.previewView.layer.opacity = 1.0
+            })
+        }
+    }
     
 }
