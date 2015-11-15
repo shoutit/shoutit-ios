@@ -132,7 +132,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.item < 1 {
-            // TODO Open Camera
+            SHCameraViewController.presentFromViewController(self.viewController, onlyPhoto: false, timeToRecord: Constants.Shout.TIME_VIDEO_SHOUT, isVideoCV: self.isVideoCV, firstVideo: true)
         }
     }
     
