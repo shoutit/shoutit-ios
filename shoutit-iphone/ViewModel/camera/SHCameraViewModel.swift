@@ -296,30 +296,6 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
         return false
     }
     
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        if (context == &self.CapturingStillImageContext) {
-//            var isCapturingStillImage = true
-//            if let bool = change?[NSKeyValueChangeNewKey]?.boolValue {
-//                isCapturingStillImage = bool
-//            }
-//            if isCapturingStillImage {
-//                self.runStillImageCaptureAnimation()
-//            }
-//        } else if (context == &self.RecordingContext) {
-//            var isRecording = true
-//            if let bool = change?[NSKeyValueChangeNewKey]?.boolValue {
-//                isRecording = bool
-//            }
-//            if isRecording {
-//                self.viewController.startRecording(true)
-//            } else {
-//                self.viewController.startRecording(false)
-//            }
-//        } else {
-//            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-//        }
-//    }
-    
     // MARK - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // 1 - Get media type
