@@ -26,4 +26,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "CreateShoutStoryboard", bundle: nil)
     }
     
+    static func getCamera() -> UIStoryboard {
+        return UIStoryboard(name: "CameraStoryboard", bundle: nil)
+    }
+    
 }

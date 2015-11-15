@@ -42,11 +42,11 @@ class SHCameraControlViewController: BaseViewController, UIScrollViewAccessibili
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var orient = UIApplication.sharedApplication().statusBarOrientation
+        var orient = UIDevice.currentDevice().orientation
         if (orient != .Portrait || orient != .PortraitUpsideDown || orient != .LandscapeLeft || orient != .LandscapeRight) {
             orient = .Portrait
         }
-        self.currentInterfaceOrientation = orient
+        self.currentInterfaceOrientation = UIInterfaceOrientation(rawValue: orient.rawValue)!
         self.switchModeButton.hidden = onlyPhoto
         self.setMode(isVideo)
         self.visualEffectView.alpha = 1
@@ -118,25 +118,7 @@ class SHCameraControlViewController: BaseViewController, UIScrollViewAccessibili
         self.setMode(isVideo)
     }
     
-    // MARK - Private
-    private func setMode(isVideo: Bool) {
-        self.isVideo = isVideo
-        UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseIn, animations: { () -> Void in
-            self.recordButton.alpha = !isVideo ? 0 : 1
-            self.stillButton.alpha = isVideo ? 0 : 1
-            self.toolbar.alpha = isVideo ? 0 : 0.7
-            self.timerLabel.alpha = !isVideo ? 0 : 1
-            }) { (finished) -> Void in
-                self.timerLabel.hidden = !isVideo
-                self.recordButton.hidden = !isVideo
-                self.stillButton.hidden = isVideo
-                self.toolbar.hidden = isVideo
-                self.openLibraryImageView.image = self.isVideo ? self.lastVideo : self.lastImage
-                self.switchModeButton.setBackgroundImage(UIImage(named: !isVideo ? "cameraModeVideo" : "cameraModePhoto"), forState: .Normal)
-        }
-    }
-    
-    private func rotateViewTo(orientation: UIInterfaceOrientation) {
+    func rotateViewTo(orientation: UIInterfaceOrientation) {
         self.currentInterfaceOrientation = orientation
         
         let angle = self.getAngleForOrientation(orientation)
@@ -152,6 +134,24 @@ class SHCameraControlViewController: BaseViewController, UIScrollViewAccessibili
                 self.closeButton.transform = transform
                 self.openLibraryView.transform  = transform
                 }, completion: nil)
+        }
+    }
+    
+    // MARK - Private
+    private func setMode(isVideo: Bool) {
+        self.isVideo = isVideo
+        UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseIn, animations: { () -> Void in
+            self.recordButton.alpha = !isVideo ? 0 : 1
+            self.stillButton.alpha = isVideo ? 0 : 1
+            self.toolbar.alpha = isVideo ? 0 : 0.7
+            self.timerLabel.alpha = !isVideo ? 0 : 1
+            }) { (finished) -> Void in
+                self.timerLabel.hidden = !isVideo
+                self.recordButton.hidden = !isVideo
+                self.stillButton.hidden = isVideo
+                self.toolbar.hidden = isVideo
+                self.openLibraryImageView.image = self.isVideo ? self.lastVideo : self.lastImage
+                self.switchModeButton.setBackgroundImage(UIImage(named: !isVideo ? "cameraModeVideo" : "cameraModePhoto"), forState: .Normal)
         }
     }
     

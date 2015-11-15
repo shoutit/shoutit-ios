@@ -76,7 +76,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="switchFlash:" destination="-1" eventType="touchUpInside" id="b3D-K4-3nX"/>
+                                        <action selector="switchFlash:" destination="-1" eventType="touchUpInside" id="nRT-kJ-zbD"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -155,7 +155,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="closeCamera:" destination="-1" eventType="touchUpInside" id="ygT-eF-eRV"/>
+                                <action selector="closeCamera:" destination="-1" eventType="touchUpInside" id="9FG-nu-8KP"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5L-3o-rf2">
@@ -225,7 +225,7 @@
                                 </mask>
                             </variation>
                             <connections>
-                                <action selector="toggleMovieRecording:" destination="-1" eventType="touchUpInside" id="73I-Ud-N2k"/>
+                                <action selector="toggleMovieRecording:" destination="-1" eventType="touchUpInside" id="WEf-9Z-vXb"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-zf-Lph" userLabel="Photo">
@@ -255,7 +255,7 @@
                                 </mask>
                             </variation>
                             <connections>
-                                <action selector="snapStillImage:" destination="-1" eventType="touchUpInside" id="l8y-72-Y2C"/>
+                                <action selector="snapStillImage:" destination="-1" eventType="touchUpInside" id="Gdu-zJ-7dn"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRC-Nt-S7w">
@@ -269,7 +269,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="toggleVideoButton:" destination="-1" eventType="touchUpInside" id="ZqO-9s-zfV"/>
+                                <action selector="toggleVideoButton:" destination="-1" eventType="touchUpInside" id="iBd-Tx-sC8"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqc-sP-M3e">
@@ -309,7 +309,7 @@
                                         </mask>
                                     </variation>
                                     <connections>
-                                        <action selector="openLibrary:" destination="-1" eventType="touchUpInside" id="1Rz-0C-FSJ"/>
+                                        <action selector="openLibrary:" destination="-1" eventType="touchUpInside" id="dyq-fP-NVr"/>
                                     </connections>
                                 </button>
                             </subviews>

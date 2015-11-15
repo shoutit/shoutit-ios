@@ -191,7 +191,7 @@
         <!--PhotoPreview-->
         <scene sceneID="BjR-va-xVu">
             <objects>
-                <viewController storyboardIdentifier="SHPhotoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="PhotoPreview" modalTransitionStyle="partialCurl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wW7-p1-emq" customClass="SHPhotoPreviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHPhotoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="PhotoPreview" modalTransitionStyle="partialCurl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wW7-p1-emq" customClass="SHPhotoPreviewViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w6E-R2-8ow"/>
                         <viewControllerLayoutGuide type="bottom" id="hz9-Ek-6nW"/>
@@ -212,11 +212,11 @@
                                     <constraint firstAttribute="height" constant="80" id="85K-pU-thk"/>
                                     <constraint firstAttribute="width" constant="83" id="Mjp-iB-OoA"/>
                                 </constraints>
-                                <state key="normal" title="done" image="cameraDone.png">
+                                <state key="normal" title="done" image="cameraDone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextButtonAction:" destination="wW7-p1-emq" eventType="touchUpInside" id="Dl4-dV-6V6"/>
+                                    <action selector="nextButtonAction:" destination="wW7-p1-emq" eventType="touchUpInside" id="ibf-Rn-1Qb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQe-px-h9j">
@@ -226,11 +226,11 @@
                                     <constraint firstAttribute="height" constant="40" id="A1X-c5-srn"/>
                                     <constraint firstAttribute="width" constant="40" id="LCI-80-AbR"/>
                                 </constraints>
-                                <state key="normal" image="cameraRetake.png">
+                                <state key="normal" image="cameraRetake">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="closeButtonAction:" destination="wW7-p1-emq" eventType="touchUpInside" id="ycF-8w-Qk1"/>
+                                    <action selector="closeButtonAction:" destination="wW7-p1-emq" eventType="touchUpInside" id="KG7-5F-jSf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -252,7 +252,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="photoImageView" destination="Zzp-L9-2Q3" id="psb-hU-aM6"/>
+                        <outlet property="photoImageView" destination="Zzp-L9-2Q3" id="47t-os-oS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEN-rn-PEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,7 +262,7 @@
         <!--VideoPreview-->
         <scene sceneID="Sce-Zk-MRa">
             <objects>
-                <viewController storyboardIdentifier="SHVideoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="VideoPreview" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="07x-bq-AvW" customClass="SHVideoPreviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHVideoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="VideoPreview" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="07x-bq-AvW" customClass="SHVideoPreviewViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t8H-Df-bjL"/>
                         <viewControllerLayoutGuide type="bottom" id="g76-WK-WZs"/>
@@ -283,11 +283,11 @@
                                     <constraint firstAttribute="height" constant="80" id="ewt-zG-rYE"/>
                                     <constraint firstAttribute="width" constant="83" id="n4y-E6-rJz"/>
                                 </constraints>
-                                <state key="normal" image="cameraDone.png">
+                                <state key="normal" image="cameraDone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextButtonAction:" destination="07x-bq-AvW" eventType="touchUpInside" id="QkI-VL-Hse"/>
+                                    <action selector="nextButtonAction:" destination="07x-bq-AvW" eventType="touchUpInside" id="6Tv-QW-c7V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Osh-2y-46t">
@@ -297,11 +297,11 @@
                                     <constraint firstAttribute="width" constant="40" id="8xN-GK-rAJ"/>
                                     <constraint firstAttribute="height" constant="40" id="eWL-bD-Uzf"/>
                                 </constraints>
-                                <state key="normal" image="cameraRetake.png">
+                                <state key="normal" image="cameraRetake">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="closeButtonAction:" destination="07x-bq-AvW" eventType="touchUpInside" id="hIn-Wr-t7O"/>
+                                    <action selector="closeButtonAction:" destination="07x-bq-AvW" eventType="touchUpInside" id="JOd-84-cLN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -325,7 +325,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="playerView" destination="MgG-Uq-gev" id="Sf8-0d-uOs"/>
+                        <outlet property="playerView" destination="MgG-Uq-gev" id="Saa-98-I6m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Asc-5V-p6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,8 +336,8 @@
     <resources>
         <image name="CameraTakePicture" width="194" height="194"/>
         <image name="RecordButton" width="364" height="364"/>
-        <image name="cameraDone.png" width="94" height="92"/>
-        <image name="cameraRetake.png" width="47" height="47"/>
+        <image name="cameraDone" width="94" height="92"/>
+        <image name="cameraRetake" width="47" height="47"/>
         <image name="cameraTabBar.png" width="25" height="19"/>
         <image name="videoStop.png" width="80" height="80"/>
     </resources>

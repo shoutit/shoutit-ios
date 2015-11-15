@@ -53,6 +53,9 @@ struct Constants {
         static let MODEL_WEB = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
         static let LOCATION_GETTER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
         static let CREATE_SHOUT = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
+        static let CAMERA_VC = SHCameraViewController(nibName: "CameraView", bundle: NSBundle.mainBundle())
+        static let PHOTO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHPhotoPreviewViewController")
+        static let VIDEO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHVideoPreviewViewController")
     }
     
     struct TableViewCell {
