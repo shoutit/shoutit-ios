@@ -98,6 +98,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
     
     func viewWillAppear() {
         self.viewController.setMode(true)
+        self.viewController.startRecording(false)
         dispatch_async(sessionQueue) { () -> Void in
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "subjectAreaDidChange:", name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: self.videoDeviceInput?.device)
             self.runTimeErrorHandlingObserver = NSNotificationCenter.defaultCenter().addObserverForName(AVCaptureSessionRuntimeErrorNotification, object: self.session, queue: nil, usingBlock: { (notification) -> Void in

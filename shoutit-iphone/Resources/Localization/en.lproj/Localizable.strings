@@ -140,3 +140,6 @@
 
 /* Please Load a Video Asset First */
 "LoadVideoAssetFirst" = "Please Load a Video Asset First";
+
+/* Categories */
+"Categories" = "Categories";

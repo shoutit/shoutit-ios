@@ -154,11 +154,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if indexPath.row == 0 && indexPath.section == 0 {
             self.viewController.titleTextField.becomeFirstResponder()
         } else if indexPath.row == 0 && indexPath.section == 2 && !self.isVideoCV {
-            // TODO
-//            [self addPickerView:self.categoriesTextField
-//                withArray:self.categories
-//                andTitle:@"Categories"
-//            showClear:YES];
+            if !self.isVideoCV {
+                self.addPickerView(self.viewController.categoriesTextField, array: self.categories, title: NSLocalizedString("Categories", comment: "Categories"), showClear: true)
+            }
         } else if indexPath.section == 2 && indexPath.row == 1 {
             // TODO
 //            [self selectTags:nil];
@@ -342,6 +340,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     // MARK - Private
+    private func addPickerView(textField: UITextField, array: NSArray, title: String, showClear: Bool) {
+        
+    }
+    
     private func setUpTagList() {
         self.viewController.tagsList.setTags(self.shout?.getStringTags())
         self.viewController.tagsList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))

@@ -66,6 +66,8 @@
 		606ED3071BF8AEF80064C53E /* SHVideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3061BF8AEF80064C53E /* SHVideoPreviewViewController.swift */; };
 		606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3081BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift */; };
 		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */; };
+		606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */; };
 		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
@@ -233,6 +235,8 @@
 		606ED3081BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHVideoPreviewViewModel.swift; path = ViewModel/camera/SHVideoPreviewViewModel.swift; sourceTree = "<group>"; };
 		606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+UIActivityIndicatorForSDWebImage.h"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+UIActivityIndicatorForSDWebImage.m"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
+		606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSinglePickerTableViewController.swift; path = View/common/SHSinglePickerTableViewController.swift; sourceTree = "<group>"; };
+		606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSinglePickerTableViewModel.swift; path = ViewModel/common/SHSinglePickerTableViewModel.swift; sourceTree = "<group>"; };
 		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
@@ -464,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				ACDD23C01BFB5B3B00EEC6A6 /* tags */,
+				606ED3101BF9402F0064C53E /* common */,
 				606ED2F61BF8080D0064C53E /* camera */,
 				604A0DD51BEE9ADF002A80E7 /* tabs */,
 				6027CF951BE757E100124C28 /* auth */,
@@ -588,6 +593,7 @@
 				6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */,
 				6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */,
 				604A0DD61BEE9B5C002A80E7 /* BaseCollectionViewController.swift */,
+				606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -680,6 +686,14 @@
 				606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 			);
 			name = "UIActivityIndicator-for-SDWebImage";
+			sourceTree = "<group>";
+		};
+		606ED3101BF9402F0064C53E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */,
+			);
+			name = common;
 			sourceTree = "<group>";
 		};
 		607F75721BEA68BE00F3BA86 /* auth */ = {
@@ -1263,6 +1277,7 @@
 				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
+				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */,
@@ -1368,6 +1383,8 @@
 				ACDB3CBF1BF90DBC0097444E /* SHRequestImageTableViewCell.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
+				606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */,
+				ACDB3CA51BF8DD9B0097444E /* DOPDropDownMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
