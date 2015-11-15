@@ -24,10 +24,11 @@ class SHCameraViewController: SHCameraControlViewController {
     
     @IBOutlet var gestureRecognizers: UITapGestureRecognizer!
     
-    static func presentFromViewController(parent: UIViewController, onlyPhoto: Bool, timeToRecord: Int, isVideoCV: Bool, firstVideo: Bool) {
+    static func presentFromViewController(parent: UIViewController, onlyPhoto: Bool, timeToRecord: Int, isVideoCV: Bool, firstVideo: Bool, delegate: SHCameraViewControllerDelegate) {
         let cameraVC = Constants.ViewControllers.CAMERA_VC
         cameraVC.onlyPhoto = onlyPhoto
         cameraVC.isVideoCV = isVideoCV
+        cameraVC.delegate = delegate
         cameraVC.timeToRecord = timeToRecord
         cameraVC.isVideo = firstVideo
         

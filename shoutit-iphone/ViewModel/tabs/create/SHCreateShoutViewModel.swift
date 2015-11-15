@@ -9,7 +9,7 @@
 import UIKit
 import DWTagList
 
-class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate {
+class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate, SHCreateVideoCollectionViewCellDelegate, SHCameraViewControllerDelegate, SHCreateImageCollectionViewCellDelegate {
 
     private let viewController: SHCreateShoutTableViewController
     
@@ -113,26 +113,15 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if indexPath.item < 1 {
-            return CGSizeMake(190, 190)
-        } else {
-            // TODO
-//            id data = self.media[indexPath.item - 1];
-//            if([data isKindOfClass:[UIImage class]])
-//            {
-//                return CGSizeMake(190, 190);
-//            }
-//            if([data isKindOfClass:[SHVideo class]])
-//            {
-//                return CGSizeMake(337, 190);
-//            }
+        if indexPath.item >= 1 && self.media[indexPath.item - 1].isVideo {
+            return CGSizeMake(337, 190)
         }
         return CGSizeMake(190, 190)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.item < 1 {
-            SHCameraViewController.presentFromViewController(self.viewController, onlyPhoto: false, timeToRecord: Constants.Shout.TIME_VIDEO_SHOUT, isVideoCV: self.isVideoCV, firstVideo: true)
+            SHCameraViewController.presentFromViewController(self.viewController, onlyPhoto: false, timeToRecord: Constants.Shout.TIME_VIDEO_SHOUT, isVideoCV: self.isVideoCV, firstVideo: true, delegate: self)
         }
     }
     
@@ -140,9 +129,24 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if indexPath.item < 1 {
             return collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreatePlusCollectionViewCell, forIndexPath: indexPath)
         } else {
-            
+            let data = self.media[indexPath.item - 1]
+            if data.isVideo {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateVideoCollectionViewCell, forIndexPath: indexPath) as! SHCreateVideoCollectionViewCell
+                cell.delegate = self
+                cell.media = data
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateImageCollectionViewCell, forIndexPath: indexPath) as! SHCreateImageCollectionViewCell
+                cell.delegate = self
+                if let image = data.image {
+                    cell.image = image
+                } else {
+                    // TODO
+//                    cell.imageURL = imageURL
+                }
+                return cell
+            }
         }
-        return UICollectionViewCell()
     }
     
     // MARK - UITableView Delegate
@@ -277,6 +281,66 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
     }
     
+    // MARK - SHCreateImageCollectionViewCellDelegate
+    func removeImage(image: UIImage) {
+        if let index = self.media.indexOf({
+            if let image1 = $0.image {
+                return image.isEqual(image1)
+            }
+            return false
+        }) {
+            self.media.removeAtIndex(index)
+            self.viewController.collectionView.performBatchUpdates({ () -> Void in
+                self.viewController.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index + 1, inSection: 0)])
+                }, completion: nil)
+        }
+    }
+    
+    func removeImageURL(imageURL: String) {
+        if let index = self.media.indexOf({
+            return imageURL == $0.localUrl || $0.url == imageURL
+        }) {
+            self.media.removeAtIndex(index)
+            self.viewController.collectionView.performBatchUpdates({ () -> Void in
+                self.viewController.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index + 1, inSection: 0)])
+                }, completion: nil)
+        }
+    }
+    
+    // MARK - SHCreateVideoCollectionViewCellDelegate
+    func removeVideo(media: SHMedia) {
+        if let index = self.media.indexOf({
+            if let image1 = $0.image, image2 = media.image {
+                return image2.isEqual(image1)
+            }
+            return $0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && $0.url == media.url)
+        }) {
+            self.media.removeAtIndex(index)
+            self.viewController.collectionView.performBatchUpdates({ () -> Void in
+                self.viewController.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index + 1, inSection: 0)])
+                }, completion: nil)
+        }
+    }
+    
+    // MARK - SHCameraViewControllerDelegate
+    func didCameraFinish(image: UIImage) {
+        let media = SHMedia()
+        media.isVideo = false
+        media.image = image
+        self.media.insert(media, atIndex: 0)
+        self.viewController.collectionView.reloadData()
+    }
+    
+    func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
+        let media = SHMedia()
+        media.isVideo = true
+        media.upload = true
+        media.localUrl = tempVideoFileURL
+        media.localThumbImage = thumbnailImage
+        self.media.append(media)
+        self.viewController.collectionView.reloadData()
+    }
+    
     // MARK - Private
     private func setUpTagList() {
         self.viewController.tagsList.setTags(self.shout?.getStringTags())
@@ -289,5 +353,84 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             self.viewController.tagsList.addGestureRecognizer(tapGesture)
         }
         self.viewController.tagsList.scrollEnabled = false
+    }
+    
+    private func setupViewForStandard(standard: Bool) {
+        if standard {
+            // TODO
+            // get categories from cache
+//            self.categories = [NSMutableArray arrayWithArray: [[NSUserDefaults standardUserDefaults] valueForKey:SH_CATEGORIES_URL]];
+            self.viewController.priceTextField.placeholder = NSLocalizedString("Price", comment: "Price")
+            self.viewController.titleTextField.placeholder = NSLocalizedString("Title", comment: "Title")
+            if self.isEditing {
+                self.viewController.categoriesTextField.text = ""
+            }
+            self.viewController.tagsLabel.text = NSLocalizedString("Price", comment: "Price")
+            self.isVideoCV = false
+        } else {
+            // TODO
+//            [self.priceTextField setPlaceholder:NSLocalizedString(@"Salary",@"Salary")];
+//            [self.titleTextField setPlaceholder:NSLocalizedString(@"Job Title",@"Job Title")];
+//            [self.tagsLabel setText:NSLocalizedString(@"Professions",@"Professions")];
+//            [self.categoriesTextField setText:NSLocalizedString(@"Jobs Wanted",@"Jobs Wanted")];
+//            
+//            self.shout.category = [SHCategory categoryWithName:@"Jobs Wanted"];
+//            self.tagsCV = [NSMutableArray arrayWithObjects:
+//            [SHTag tagWithName:@"Accounting"],
+//            [SHTag tagWithName:@"Airlines & Aviation"],
+//            [SHTag tagWithName:@"Architecture & Interior Design"],
+//            [SHTag tagWithName:@"Art & Entertainment"],
+//            [SHTag tagWithName:@"Automotive"],
+//            [SHTag tagWithName: @"Banking & Finance"],
+//            [SHTag tagWithName:@"Beauty"],
+//            [SHTag tagWithName:@"Business Development"],
+//            [SHTag tagWithName:@"Business Supplies & Equipment"],
+//            [SHTag tagWithName:@"Construction "],
+//            [SHTag tagWithName:@"Consulting"],
+//            [SHTag tagWithName:@"Customer Service "],
+//            [SHTag tagWithName:@"Education"],
+//            [SHTag tagWithName:@"Engineering"],
+//            [SHTag tagWithName:@"Environmental Service"],
+//            [SHTag tagWithName:@"Event Management"],
+//            [SHTag tagWithName: @"Executive"],
+//            [SHTag tagWithName:@"Fashion"],
+//            [SHTag tagWithName:@"Food & Beverages"],
+//            [SHTag tagWithName:@"Government/Administration "],
+//            [SHTag tagWithName:@"Graphic Design"],
+//            [SHTag tagWithName:@"Hospitality & Restaurants "],
+//            [SHTag tagWithName:@"HR & Recruitment"],
+//            [SHTag tagWithName:@"Import & Export"],
+//            [SHTag tagWithName:@"Industrial & Manufactures"],
+//            [SHTag tagWithName:@"Information Technology"],
+//            [SHTag tagWithName:@"Insurance"],
+//            [SHTag tagWithName:@"Internet"],
+//            [SHTag tagWithName:@"Legal Services"],
+//            [SHTag tagWithName:@"Logistics & Distribution"],
+//            [SHTag tagWithName:@"Marketing & Advertising"],
+//            [SHTag tagWithName:@"Media"],
+//            [SHTag tagWithName:@"Medical & Healthcare"],
+//            [SHTag tagWithName:@"Model"],
+//            [SHTag tagWithName:@"Oil, Gas & Energy"],
+//            [SHTag tagWithName:@"Online Media"],
+//            [SHTag tagWithName:@"Pharmaceuticals"],
+//            [SHTag tagWithName:@"Public Relations"],
+//            [SHTag tagWithName:@"Real Estate"],
+//            [SHTag tagWithName:@"Research & Development"],
+//            [SHTag tagWithName:@"Retail & Consumer Goods"],
+//            [SHTag tagWithName:@"Safety & Security"],
+//            [SHTag tagWithName:@"Sales"],
+//            [SHTag tagWithName:@"Secretarial"],
+//            [SHTag tagWithName:@"Sports & Fitness"],
+//            [SHTag tagWithName:@"Telecommunications "],
+//            [SHTag tagWithName:@"Transportation"],
+//            [SHTag tagWithName:@"Travel & Tourism"],
+//            [SHTag tagWithName: @"Veterinary & Animals"],
+//            [SHTag tagWithName:@"Warehousing"],
+//            nil];
+//            
+//            [self.segmentControl setSelectedSegmentIndex:self.segmentControl.numberOfSegments-1];
+//            self.timeToRecord = TIME_VIDEO_CV;
+//            self.isVideoCV = YES;
+        }
     }
 }

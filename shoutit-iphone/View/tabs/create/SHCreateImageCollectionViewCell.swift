@@ -10,7 +10,7 @@ import UIKit
 
 protocol SHCreateImageCollectionViewCellDelegate {
     func removeImage(image: UIImage)
-    func removeImage(imageURL: String)
+    func removeImageURL(imageURL: String)
 }
 
 class SHCreateImageCollectionViewCell: UICollectionViewCell {
@@ -26,7 +26,9 @@ class SHCreateImageCollectionViewCell: UICollectionViewCell {
     
     var imageURL: String? {
         didSet {
-            self.imageViewShout?.setImageWithURL(NSURL(string: imageURL!), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+            if let url = imageURL {
+                self.imageViewShout?.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+            }
         }
     }
     
@@ -47,7 +49,7 @@ class SHCreateImageCollectionViewCell: UICollectionViewCell {
             if let image = self.image, let delegate = self.delegate {
                 delegate.removeImage(image)
             } else if let imageURL = self.imageURL, let delegate = self.delegate {
-                delegate.removeImage(imageURL)
+                delegate.removeImageURL(imageURL)
             }
         }))
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)

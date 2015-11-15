@@ -19,10 +19,14 @@ class SHMedia: Mappable {
     var upload: Bool = false
     var localUrl: NSURL?
     var localThumbImage: UIImage?
-    
+    var isVideo = false
+    var image: UIImage?
     
     required init?(_ map: Map) {
         
+    }
+    
+    init() {
     }
     
     // Mappable
