@@ -97,6 +97,7 @@
 		ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C971BF7D33C0097444E /* SHStreamMapViewModel.swift */; };
 		ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C9B1BF7DAD10097444E /* SHApiShoutService.swift */; };
 		ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C9D1BF7DB1A0097444E /* SHApiTagsService.swift */; };
+		ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CA01BF885F60097444E /* SHFilter.swift */; };
 		ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */; };
 		ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */; };
 		ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */; };
@@ -221,6 +222,7 @@
 		ACDB3C971BF7D33C0097444E /* SHStreamMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamMapViewModel.swift; path = ViewModel/tabs/stream/mapView/SHStreamMapViewModel.swift; sourceTree = "<group>"; };
 		ACDB3C9B1BF7DAD10097444E /* SHApiShoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiShoutService.swift; path = Util/api/shout/SHApiShoutService.swift; sourceTree = "<group>"; };
 		ACDB3C9D1BF7DB1A0097444E /* SHApiTagsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiTagsService.swift; path = Util/api/tags/SHApiTagsService.swift; sourceTree = "<group>"; };
+		ACDB3CA01BF885F60097444E /* SHFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilter.swift; path = Model/shout/Filter/SHFilter.swift; sourceTree = "<group>"; };
 		ACF9A8CB1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewCell.swift; path = View/tabs/discover/SHDiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACF9A8CC1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCollectionViewController.swift; path = View/tabs/discover/SHDiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 		60D36D561BF78C3900238D62 /* shout */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3C9F1BF885700097444E /* Filter */,
 				60D36D591BF78C8E00238D62 /* SHMedia.swift */,
 				60D36D5B1BF78CBA00238D62 /* SHShout.swift */,
 				60D36D5D1BF78D5F00238D62 /* SHCategory.swift */,
@@ -762,6 +765,14 @@
 				ACDB3C9D1BF7DB1A0097444E /* SHApiTagsService.swift */,
 			);
 			name = tags;
+			sourceTree = "<group>";
+		};
+		ACDB3C9F1BF885700097444E /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				ACDB3CA01BF885F60097444E /* SHFilter.swift */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -995,6 +1006,7 @@
 				606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
+				ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */,
 				ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,

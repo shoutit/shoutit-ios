@@ -22,7 +22,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
         // Navigation Setup
         self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        
         self.viewController.tableView.scrollsToTop = true
         let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
         self.viewController.navigationItem.rightBarButtonItem = mapB
