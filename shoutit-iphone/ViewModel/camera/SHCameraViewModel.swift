@@ -252,6 +252,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
         case .Unknown:
             videoOrientation = .Portrait
         }
+        self.runStillImageCaptureAnimation()
         self.stillImageOutput?.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = videoOrientation
         dispatch_async(self.sessionQueue) { () -> Void in
             self.stillImageOutput?.captureStillImageAsynchronouslyFromConnection(self.stillImageOutput?.connectionWithMediaType(AVMediaTypeVideo), completionHandler: { (data, error) -> Void in
