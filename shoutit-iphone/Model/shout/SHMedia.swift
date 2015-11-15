@@ -16,6 +16,10 @@ class SHMedia: Mappable {
     var provider = String()
     var idOnProvider = String()
     var duration: Int64 = 0
+    var upload: Bool = false
+    var localUrl: NSURL?
+    var localThumbImage: UIImage?
+    
     
     required init?(_ map: Map) {
         

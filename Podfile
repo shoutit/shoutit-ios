@@ -22,4 +22,4 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'DWTagList', '~> 0.0'
 pod 'SMCalloutView', '~> 2.1'
-
+pod 'SDWebImage', '~> 3.7'
