@@ -173,7 +173,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.dropMenu!.dataSource = self
         self.dropMenu!.delegate = self
         self.view.addSubview(dropMenu!)
-       // self.dropMenu.present()
+        self.dropMenu!.present()
     }
     
     func menu(menu: DOPDropDownMenu!, didSelectRowAtIndexPath indexPath: DOPIndexPath!) {
@@ -185,7 +185,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         default:
             break
         }
-        //self.dropMenu.hide()
+        self.dropMenu!.hide()
         self.mode = self.searchBar.placeholder
     }
     

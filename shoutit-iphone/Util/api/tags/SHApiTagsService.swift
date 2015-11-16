@@ -28,7 +28,7 @@ class SHApiTagsService: NSObject {
         return !self.is_last_page
     }
     
-    func loadTagSearchForQueryForPage(page: Int, query: String, cacheResponse: SHShout -> Void, completionHandler: Response<SHShout, NSError> -> Void) {
+    func loadTagSearchForQueryForPage(page: Int, query: String, cacheResponse: SHTag -> Void, completionHandler: Response<SHTag, NSError> -> Void) {
         var params = [String: AnyObject]()
         if let filter = self.filter {
             params = filter.getTagsFilterQuery()
@@ -41,7 +41,7 @@ class SHApiTagsService: NSObject {
     }
     
     func searchTagQuery(query: String) {
-        self.loadTagSearchForQueryForPage(currentPage, query: query, cacheResponse: { (shShout) -> Void in
+        self.loadTagSearchForQueryForPage(currentPage, query: query, cacheResponse: { (shTag) -> Void in
             // Do Nothing
             }) { (response) -> Void in
                 // Success
@@ -51,7 +51,7 @@ class SHApiTagsService: NSObject {
     func loadTagSearchNextPageForQuery(query: String) {
         if(self.isMore()) {
             self.currentPage++
-            self.loadTagSearchForQueryForPage(self.currentPage, query: query, cacheResponse: { (shShout) -> Void in
+            self.loadTagSearchForQueryForPage(self.currentPage, query: query, cacheResponse: { (shTag) -> Void in
                 // Do Nothing
                 }, completionHandler: { (response) -> Void in
                     // Success
@@ -59,7 +59,7 @@ class SHApiTagsService: NSObject {
         }
     }
     
-    func loadTopTagsForLocation(location: SHAddress, forPage: Int, cacheResponse: SHShout -> Void, completionHandler: Response<SHShout, NSError> -> Void) {
+    func loadTopTagsForLocation(location: SHAddress, forPage: Int, cacheResponse: SHTag -> Void, completionHandler: Response<SHTag, NSError> -> Void) {
         var params = [String: AnyObject]()
         if let filter = self.filter {
             params = filter.getTagsFilterQuery()
@@ -79,7 +79,7 @@ class SHApiTagsService: NSObject {
         self.currentLocation = location
         self.currentPage = 1
         if let currentLocation = self.currentLocation {
-            self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shShout) -> Void in
+            self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTag) -> Void in
                 // Do Nothing
                 }, completionHandler: { (response) -> Void in
                     // Success
@@ -92,7 +92,7 @@ class SHApiTagsService: NSObject {
         if(self.isMore()) {
             self.currentPage++
             if let currentLocation = self.currentLocation {
-                self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shShout) -> Void in
+                self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTag) -> Void in
                     // Do Nothing
                     }, completionHandler: { (response) -> Void in
                         // Success

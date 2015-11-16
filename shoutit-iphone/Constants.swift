@@ -57,11 +57,16 @@ struct Constants {
         static let CAMERA_VC = SHCameraViewController(nibName: "CameraView", bundle: NSBundle.mainBundle())
         static let PHOTO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHPhotoPreviewViewController")
         static let VIDEO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHVideoPreviewViewController")
+        static let STREAM_MAP =
+        UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamMapViewController")
     }
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
         static let LocationSearchCell = "SearchCell"
+        static let SHRequestVideoTableViewCell = "SHRequestVideoTableViewCell"
+        static let SHRequestImageTableViewCell = "SHRequestImageTableViewCell"
+        static let SHShoutTableViewCell = "SHShoutTableViewCell"
     }
     
     struct CollectionViewCell {

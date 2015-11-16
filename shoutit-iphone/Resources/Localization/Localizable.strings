@@ -86,3 +86,6 @@
 
 /* Shoutit doesn’t have permission to use Camera, please change privacy settings */
 "CameraNoPermissions" = "Shoutit doesn’t have permission to use Camera, please change privacy settings";
+
+/* Tag */
+"Tag" = "Tag";

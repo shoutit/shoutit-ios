@@ -121,6 +121,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     private func switchToMapView(sender: AnyObject) {
+        let mapViewController = Constants.ViewControllers.STREAM_MAP
 //        -(void)switchToMapView:(id)sender
 //        {
 //            SHStreamMapViewController *mapViewController = [SHNavigator viewControllerFromStoryboard:@"StreamStoryboard" withViewControllerId:@"SHStreamMapViewController"];
@@ -145,6 +146,69 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let obj: AnyObject = self.viewController.fetchedResultsController[indexPath.row]
+        if(obj.isKindOfClass(SHShout)) {
+            let shout = obj as! SHShout
+            if(self.viewController.selectedSegment == 1) {
+                if(shout.videoUrl != "") {
+                    if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as? SHRequestVideoTableViewCell {
+                        cell.setShout(shout)
+                        return cell
+                    }
+                } else {
+                    if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as? SHRequestImageTableViewCell {
+                        cell.setShout(shout)
+                        return cell
+                    }
+                }
+            } else if (self.viewController.selectedSegment == 0) {
+                if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as? SHShoutTableViewCell {
+                    cell.setShout(shout)
+                    return cell
+                }
+                
+            }
+        } else {
+            
+          //  let shTag = SHTag()
+            
+         //   SHTag* shTag = (SHTag*)obj;
+            //            SHTopTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SHTopTagTableViewCell" forIndexPath:indexPath];
+            //            [cell setTagCell:shTag];
+            //            return cell;
+        }
+        
+//        id  obj = self.fetchedResultsController[indexPath.row];
+//        if([obj isKindOfClass:[SHShout class]])
+//        {
+//            SHShout* shout = (SHShout*)obj;
+//            if (self.selectedSegment == 1)
+//            {
+//                if(shout.video_url!=nil)
+//                {
+//                    SHRequestVideoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SHRequestVideoTableViewCell" forIndexPath:indexPath];
+//                    [cell setShout:shout];
+//                    
+//                    
+//                    return cell;
+//                }else{
+//                    SHRequestImageTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SHRequestImageTableViewCell" forIndexPath:indexPath];
+//                    [cell setShout:shout];
+//                    return cell;
+//                }
+//            }
+//            else if(self.selectedSegment == 0)
+//            {
+//                SHShoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SHShoutTableViewCell" forIndexPath:indexPath];
+//                [cell setShout:shout];
+//                return cell;
+//            }
+//        }else{
+//            SHTag* shTag = (SHTag*)obj;
+//            SHTopTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SHTopTagTableViewCell" forIndexPath:indexPath];
+//            [cell setTagCell:shTag];
+//            return cell;
+//        }
         return UITableViewCell()
     }
     
@@ -163,7 +227,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 0
+       return self.viewController.fetchedResultsController.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
