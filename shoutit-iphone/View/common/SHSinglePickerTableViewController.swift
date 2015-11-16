@@ -11,12 +11,18 @@ import UIKit
 class SHSinglePickerTableViewController: BaseTableViewController {
 
     private var viewModel: SHSinglePickerTableViewModel?
+    private var onSelection: ((String) -> ())?
+    private var stringList: [String] = []
+    private var allowNoneOption: Bool?
     
-    static func presentPickerFromViewController(parent: UIViewController, stringList: [String], title: String, allowNoneOption: Bool, onSelection: ((String) -> ())?) {
+    static func presentPickerFromViewController(parent: UIViewController, var stringList: [String], title: String, allowNoneOption: Bool, onSelection: ((String) -> ())?) {
         let vc = SHSinglePickerTableViewController(style: UITableViewStyle.Plain)
-        vc.viewModel?.onSelection = onSelection
-        vc.viewModel?.stringList = stringList
-        vc.viewModel?.allowNoneOption = allowNoneOption
+        vc.onSelection = onSelection
+        if allowNoneOption {
+            stringList = ["None"] + stringList
+        }
+        vc.stringList = stringList
+        vc.allowNoneOption = allowNoneOption
         vc.title = title
         parent.navigationController?.pushViewController(vc, animated: true)
     }
@@ -30,6 +36,9 @@ class SHSinglePickerTableViewController: BaseTableViewController {
     
     override func initializeViewModel() {
         viewModel = SHSinglePickerTableViewModel(viewController: self)
+        viewModel?.stringList = self.stringList
+        viewModel?.allowNoneOption = self.allowNoneOption
+        viewModel?.onSelection = self.onSelection
     }
     
     override func viewDidAppear(animated: Bool) {

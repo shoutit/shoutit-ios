@@ -10,20 +10,28 @@ import UIKit
 import ObjectMapper
 
 class SHCategory: Mappable {
-    
+
     var name = String()
     var slug = String()
-    var mainTag:SHTag?
-    
+    var mainTag: SHTag?
+
     required init?(_ map: Map) {
-        
+
     }
-    
+
+    init() {}
+
+    static func categoryFromName(name: String) -> SHCategory {
+        let category = SHCategory()
+        category.name = name
+        return category
+    }
+
     // Mappable
     func mapping(map: Map) {
         name            <- map["name"]
         slug            <- map["slug"]
         mainTag         <- map["main_tag"]
     }
-    
+
 }

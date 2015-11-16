@@ -53,7 +53,7 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
     
     func updateLocationToCurrent(completion: (() -> ())? = nil) {
         if self.shAddress == nil {
-            self.shApiMiscService.geocodeLocation(self.currentLocation.coordinate, cacheResponse: { (shAddress) -> Void in
+            self.shApiMiscService.geocodeLocation(self.currentLocation.coordinate, cacheKey: Constants.Cache.SHAddress, cacheResponse: { (shAddress) -> Void in
                 log.verbose("got cached address : \(shAddress.address)")
                 }, completionHandler: { (response) -> Void in
                     if response.result.isSuccess {

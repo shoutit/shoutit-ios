@@ -82,6 +82,7 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     }
 
     @IBAction func segmentAction(sender: AnyObject) {
+        viewModel?.segmentAction()
     }
     
     // MARK - Private

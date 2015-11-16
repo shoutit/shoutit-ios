@@ -11,20 +11,24 @@ import Alamofire
 import CoreLocation
 
 class SHApiMiscService: NSObject {
-    
+
     private let GEOCODE_URL = SHApiManager.sharedInstance.BASE_URL + "/misc/geocode"
-    private let CATEGORY_URL = SHApiManager.sharedInstance.BASE_URL + "/misc/categories"
-    
-    func geocodeLocation(location: CLLocationCoordinate2D, cacheResponse: (SHAddress -> Void)? = nil, completionHandler: Response<SHAddress, NSError> -> Void) {
+    private let CATEGORIES_URL = SHApiManager.sharedInstance.BASE_URL + "/misc/categories"
+    private let CURRENCIES_URL = SHApiManager.sharedInstance.BASE_URL + "/misc/currencies"
+
+    func geocodeLocation(location: CLLocationCoordinate2D, cacheKey: String? = nil, cacheResponse: (SHAddress -> Void)? = nil, completionHandler: Response<SHAddress, NSError> -> Void) {
         let params = [
             "latlng": "\(location.latitude),\(location.longitude)"
         ]
-        SHApiManager.sharedInstance.get(GEOCODE_URL, params: params, cacheKey: Constants.Cache.SHAddress, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        SHApiManager.sharedInstance.get(GEOCODE_URL, params: params, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
-    
-    func getCategories(cacheResponse: (SHCategory -> Void)? = nil, completionHandler: Response<SHCategory, NSError> -> Void) {
-        let params = [String: AnyObject]()
-        SHApiManager.sharedInstance.get(CATEGORY_URL,params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+
+    func getCategories(cacheResponse: (Array<SHCategory> -> Void)? = nil, completionHandler: Response<Array<SHCategory>, NSError> -> Void) {
+        SHApiManager.sharedInstance.getArray(CATEGORIES_URL, params: nil, cacheKey: Constants.Cache.Categories, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+
+    func getCurrencies(cacheResponse: (Array<SHCurrency> -> Void)? = nil, completionHandler: Response<Array<SHCurrency>, NSError> -> Void) {
+        SHApiManager.sharedInstance.getArray(CURRENCIES_URL, params: nil, cacheKey: Constants.Cache.Currencies, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
 
 }

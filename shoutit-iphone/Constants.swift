@@ -94,8 +94,10 @@ struct Constants {
     }
     
     struct Cache {
-        static let OauthToken  = ".sh.cache.oauthToken"
-        static let SHAddress  = ".sh.cache.shAddress"
+        static let OauthToken = ".sh.cache.oauthToken"
+        static let SHAddress = ".sh.cache.shAddress"
+        static let Categories = ".sh.cache.categories"
+        static let Currencies = ".sh.cache.currencies"
     }
     
     struct Notification {

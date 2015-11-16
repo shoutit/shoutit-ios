@@ -36,6 +36,11 @@ class SHApiManager: NSObject {
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func getArray<R: Mappable>(url: String, params: [String : AnyObject]?, cacheKey: String? = nil, cacheResponse: ([R] -> Void)? = nil, completionHandler: Response<[R], NSError> -> Void) {
+        let request = Alamofire.request(.GET, url, parameters: params, headers: authHeaders())
+        executeRequestForArray(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func patch<R: Mappable>(url: String, params: [String : AnyObject]?, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
         let request = Alamofire.request(.PATCH, url, parameters: params, encoding: Alamofire.ParameterEncoding.JSON, headers: authHeaders())
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
@@ -74,6 +79,34 @@ class SHApiManager: NSObject {
             completionHandler(response)
         }
     }
+    
+    private func executeRequestForArray<R: Mappable>(request: Request, var cacheKey: String?, cacheResponse: ([R] -> Void)?, completionHandler: Response<[R], NSError> -> Void) {
+        NetworkActivityManager.addActivity()
+        if cacheResponse != nil {
+            if cacheKey == nil {
+                cacheKey = getCacheKey(request)
+            }
+            cache.fetch(key: cacheKey!).onSuccess { (cachedObject) -> () in
+                if let mappedObject = Mapper<R>().mapArray(cachedObject) {
+                    cacheResponse?(mappedObject)
+                }
+            }
+        }
+        request.responseArray { (response: Response<[R], NSError>) -> Void in
+            NetworkActivityManager.removeActivity()
+            switch (response.result) {
+            case .Success(let result):
+                if let stringResponse = Mapper().toJSONString(result), let apiCacheKey = cacheKey {
+                    self.cache.set(value: stringResponse, key: apiCacheKey)
+                }
+                log.debug("Success request : \(result)")
+            case .Failure(let error):
+                log.debug("error with request : \(error)")
+            }
+            completionHandler(response)
+        }
+    }
+    
     
     private func getCacheKey(request: Request) -> String {
         var key: String = ""

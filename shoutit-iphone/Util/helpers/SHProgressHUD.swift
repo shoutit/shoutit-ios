@@ -19,6 +19,12 @@ class SHProgressHUD: NSObject {
         }
     }
     
+    static func showError(status: String? = nil, maskType: SVProgressHUDMaskType = .Black) {
+        if let message = status {
+            SVProgressHUD.showErrorWithStatus(message, maskType: maskType)
+        }
+    }
+    
     static func dismiss() {
         SVProgressHUD.dismiss()
     }

@@ -12,6 +12,7 @@ import ObjectMapper
 enum ShoutType {
     case Offer
     case Request
+    case VideoCV
 }
 
 class SHShout: Mappable {
@@ -35,6 +36,8 @@ class SHShout: Mappable {
     required init?(_ map: Map) {
         
     }
+    
+    init(){}
     
     // Mappable
     func mapping(map: Map) {

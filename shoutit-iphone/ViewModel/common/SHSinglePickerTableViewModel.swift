@@ -11,18 +11,16 @@ import UIKit
 class SHSinglePickerTableViewModel: NSObject, ViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
 
     private let viewController: SHSinglePickerTableViewController
-    var allowNoneOption: Bool = true
     var stringList: [String] = []
     var onSelection: ((String) -> ())?
+    var allowNoneOption: Bool?
     
     required init(viewController: SHSinglePickerTableViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-        if self.allowNoneOption {
-            stringList = ["None"] + stringList
-        }
+        
     }
     
     func viewWillAppear() {
@@ -61,7 +59,7 @@ class SHSinglePickerTableViewModel: NSObject, ViewControllerModelProtocol, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if self.allowNoneOption {
+        if let allowNone = self.allowNoneOption where allowNone {
             if indexPath.row == 0 {
                 onSelection?("")
             } else {

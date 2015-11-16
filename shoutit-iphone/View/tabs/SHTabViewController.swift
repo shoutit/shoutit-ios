@@ -14,6 +14,7 @@ class SHTabViewController: UITabBarController {
         super.viewDidLoad()
         self.setTabStyle()
         self.addTabs()
+        self.updateCache()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +47,20 @@ class SHTabViewController: UITabBarController {
     
     private func setTabStyle() {
         self.tabBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+    }
+    
+    private func updateCache() {
+        SHApiMiscService().getCategories({ (categories) -> Void in
+            // Do Nothing
+            }) { (response) -> Void in
+                // Do Nothing
+        }
+        
+        SHApiMiscService().getCurrencies({ (currencies) -> Void in
+            // Do Nothing
+            }) { (response) -> Void in
+                // Do Nothing
+        }
     }
 
 }

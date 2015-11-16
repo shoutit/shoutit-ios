@@ -14,6 +14,7 @@ class SHTag: Mappable {
     var name = String()
     var image = String()
     var url = String()
+    var apiUrl = String()
     var isListening: Bool?
     var listenersCount: Int = 0
     var shoutsCount: Int = 0
@@ -23,6 +24,14 @@ class SHTag: Mappable {
     
     required init?(_ map: Map) {
         
+    }
+    
+    init() {}
+    
+    static func tagWithName(name: String) -> SHTag {
+        let tag = SHTag()
+        tag.name = name
+        return tag
     }
     
     // Mappable
@@ -36,6 +45,7 @@ class SHTag: Mappable {
         title           <- map["title"]
         rank            <- map["rank"]
         id              <- map["id"]
+        apiUrl          <- map["api_url"]
     }
     
 }
