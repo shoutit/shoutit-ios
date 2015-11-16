@@ -40,7 +40,7 @@ class SHShoutTableViewCell: UITableViewCell {
         self.imageViewShout.clipsToBounds = true
         self.imageViewShout.layer.cornerRadius = self.imageViewShout.frame.size.width / 15.0
         
-        let imgMask = UIImage(named: "shoutMask.")
+        let imgMask = UIImage(named: "shoutMask")
         let mask = CALayer()
         mask.contents = imgMask?.CGImage
         mask.frame = CGRectMake(0, 0, self.imageViewShout.frame.size.width, self.imageViewShout.frame.size.height)
@@ -50,10 +50,10 @@ class SHShoutTableViewCell: UITableViewCell {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-        let date: NSDate = NSDate(timeIntervalSince1970: NSDate().timeIntervalSinceDate(shout.datePublished!))
-        self.timeLabel.text = String(date)
-        let price = String(format: "%@ %@", arguments: [shout.currency, shout.price])
-        self.priceLabel.text = price
+//        let date: NSDate = NSDate(timeIntervalSince1970: NSDate().timeIntervalSinceDate(shout.datePublished!))
+//        self.timeLabel.text = String(date)
+      //  let price = String(format: "%@ %@", arguments: [shout.currency, shout.price])
+      //  self.priceLabel.text = price
         self.descriptionLabel.text = shout.text
         if let city = shout.location?.city {
             self.locationLabel.text = String(format: "%@", arguments: [city])

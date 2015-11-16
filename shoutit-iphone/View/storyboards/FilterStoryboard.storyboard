@@ -8,7 +8,7 @@
         <!--Filter-->
         <scene sceneID="3yo-Lj-Tqh">
             <objects>
-                <viewController storyboardIdentifier="SHFilterViewController" title="Filter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gv0-rA-Wan" customClass="SHFilterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHFilterViewController" title="Filter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gv0-rA-Wan" customClass="SHFilterViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Xgr-Ef-uV1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -160,6 +160,9 @@
                         </connections>
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Xgr-Ef-uV1" id="2ut-QU-iGY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrX-j7-OTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

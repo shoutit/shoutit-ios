@@ -85,6 +85,10 @@
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
 		AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93FB1BEA8B03009400BE /* SHAddress.swift */; };
+		AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7021BF9F9AD00AB6BAA /* SHFilterViewController.swift */; };
+		AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */; };
+		AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7061BFA171500AB6BAA /* SHShoutMeta.swift */; };
+		AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
@@ -229,6 +233,10 @@
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
 		AC1C93FB1BEA8B03009400BE /* SHAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAddress.swift; path = Model/location/SHAddress.swift; sourceTree = "<group>"; };
+		AC27E7021BF9F9AD00AB6BAA /* SHFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterViewController.swift; path = View/tabs/stream/filter/SHFilterViewController.swift; sourceTree = "<group>"; };
+		AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterViewModel.swift; path = ViewModel/tabs/stream/filter/SHFilterViewModel.swift; sourceTree = "<group>"; };
+		AC27E7061BFA171500AB6BAA /* SHShoutMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMeta.swift; path = Model/shout/SHShoutMeta.swift; sourceTree = "<group>"; };
+		AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagMeta.swift; path = Model/shout/SHTagMeta.swift; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
@@ -676,6 +684,8 @@
 				60D36D5B1BF78CBA00238D62 /* SHShout.swift */,
 				60D36D5D1BF78D5F00238D62 /* SHCategory.swift */,
 				60D36D5F1BF7944100238D62 /* SHTag.swift */,
+				AC27E7061BFA171500AB6BAA /* SHShoutMeta.swift */,
+				AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */,
 			);
 			name = shout;
 			sourceTree = "<group>";
@@ -733,6 +743,22 @@
 			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
+		AC27E7001BF9F87A00AB6BAA /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				AC27E7021BF9F9AD00AB6BAA /* SHFilterViewController.swift */,
+			);
+			name = filter;
+			sourceTree = "<group>";
+		};
+		AC27E7011BF9F8AD00AB6BAA /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */,
+			);
+			name = filter;
+			sourceTree = "<group>";
+		};
 		AC6F2B2F1BEF5B1D00D9F5A3 /* discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +779,7 @@
 		ACA77EC61BF0CAD000D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
+				AC27E7011BF9F8AD00AB6BAA /* filter */,
 				ACDB3CAE1BF90B0A0097444E /* cell */,
 				ACDB3C961BF7D2FB0097444E /* mapView */,
 				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
@@ -766,6 +793,7 @@
 		ACA77EC71BF0CB0A00D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
+				AC27E7001BF9F87A00AB6BAA /* filter */,
 				ACDB3CAC1BF90ADB0097444E /* cell */,
 				ACDB3C931BF7D2900097444E /* mapView */,
 				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
@@ -1101,7 +1129,9 @@
 				606ED2F51BF807F00064C53E /* SHCameraControlViewController.swift in Sources */,
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
 				606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */,
+				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
+				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */,
@@ -1140,8 +1170,10 @@
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
+				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
+				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				606ED3071BF8AEF80064C53E /* SHVideoPreviewViewController.swift in Sources */,
 				60D36D5E1BF78D5F00238D62 /* SHCategory.swift in Sources */,

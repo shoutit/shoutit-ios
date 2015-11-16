@@ -19,7 +19,7 @@ class SHFilter: NSObject {
     private var category: String?
     private var selectedCategoryIndex: Int?
     private var tags = []
-    private var isApplied = false
+    var isApplied = false
     
     override init () {
         selectedCategoryIndex = 0

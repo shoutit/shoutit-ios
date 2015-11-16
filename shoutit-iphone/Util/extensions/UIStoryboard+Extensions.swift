@@ -30,4 +30,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "CameraStoryboard", bundle: nil)
     }
     
+    static func getFilter() -> UIStoryboard {
+        return UIStoryboard(name: "FilterStoryboard", bundle: nil)
+    }
+    
 }

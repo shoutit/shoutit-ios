@@ -59,6 +59,8 @@ struct Constants {
         static let VIDEO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHVideoPreviewViewController")
         static let STREAM_MAP =
         UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamMapViewController")
+        static let SHFILTER =
+        UIStoryboard.getFilter().instantiateViewControllerWithIdentifier("SHFilterViewController")
     }
     
     struct TableViewCell {
@@ -92,5 +94,21 @@ struct Constants {
     
     struct Notification {
         static let LocationUpdated  = ".notification.LocationUpdated"
+    }
+    
+    struct Filter {
+        static let kLeftLablel = "kLeftLablel"
+        static let kRightLablel = "kRightLablel"
+        static let kCellType = "kCellType"
+        static let KTagsArray = "KTagsArray"
+        
+        
+        static let kStandardCellId = "kStandardCellId"
+        static let kTextFieldCellId = "kTextFieldCellId"
+        static let kCenterCellId = "kCenterCellId"
+        static let kTagsCellId = "SHFilterTagsTableViewCell"
+        
+        static let kIsApply = "kIsApply"
+        static let kSelectorName = "kSelectorName"
     }
 }

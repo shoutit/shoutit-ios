@@ -17,20 +17,27 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
     var mode: String?
     var searchQuery: String?
     private var lastResultCount: Int?
-    var fetchedResultsController = []
+    var fetchedResultsController = [SHShout]()
     var loading: Bool?
     var selectedSegment: Int?
     let shoutApi = SHApiShoutService()
     let tagsApi = SHApiTagsService()
     var isSearchMode: Bool?
     private var dropMenu: DOPDropDownMenu?
+    var location: SHAddress?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Datasource and Delegate
         self.tableView.delegate = viewModel
         self.tableView.dataSource = viewModel
+        // Register cells
+        self.tableView.registerNib(UINib(nibName: "SHShoutTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHShoutTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "SHRequestImageTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestImageTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "SHRequestVideoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestVideoTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "SHTopTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHTopTagTableViewCell")
         viewModel?.viewDidLoad()
+        self.location = SHAddress.getUserOrDeviceLocation()
         self.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
         self.tap?.numberOfTapsRequired = 1
         // SearchBar
@@ -48,6 +55,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        setPullToRefresh()
         viewModel?.viewDidAppear()
     }
     
@@ -143,7 +151,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.tableView.reloadData()
         self.loading = true
         if (self.selectedSegment == 0 || self.selectedSegment == 1) {
-            if let location = SHAddress.getUserOrDeviceLocation(), let type = self.selectedSegment, let query = self.searchQuery{
+            if let location = self.location, let type = self.selectedSegment, let query = self.searchQuery{
                 self.shoutApi.searchStreamForLocation(location, ofType: type, query: query)
             } else {
                 if let query = self.searchQuery {
@@ -203,6 +211,13 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
             break
         }
         return ""
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
     }
     
 }

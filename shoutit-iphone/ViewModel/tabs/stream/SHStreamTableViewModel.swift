@@ -13,6 +13,8 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     
     private var viewController: SHStreamTableViewController
+    private var filterViewController: SHFilterViewController?
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -38,10 +40,18 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         getLatestShouts()
         self.viewController.selectedSegment = 0
         
+        // set Filter SB
+        //self.filterViewController = Constants.ViewControllers.SHFILTER as? SHFilterViewController
+        
+        //[self.filterViewController setDelegate:self];
+        
     }
     
     func viewWillAppear() {
-
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner!.frame = CGRectMake(0, 0, 24, 24)
+        spinner!.startAnimating()
+        self.viewController.tableView.pullToRefreshView?.setCustomView(spinner!, forState: 10)
     }
     
     func viewDidAppear() {
@@ -105,7 +115,20 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.tableView.reloadData()
         if(self.viewController.selectedSegment == 0 || self.viewController.selectedSegment == 1) {
             if let location = SHAddress.getUserOrDeviceLocation(), let type = self.viewController.selectedSegment {
-                self.viewController.shoutApi.refreshStreamForLocation(location, ofType: type)
+                self.viewController.shoutApi.refreshStreamForLocation(location, ofType: type, cacheResponse: { (shShoutMeta) -> Void in
+                    self.updateUI(shShoutMeta)
+                    }, completionHandler: { (response) -> Void in
+                        self.viewController.tableView.pullToRefreshView.stopAnimating()
+                        if(response.result.isSuccess) {
+                            if let shShoutMeta = response.result.value {
+                                self.updateUI(shShoutMeta)
+                            }
+                            
+                        } else {
+                            // Do Nothing
+                        }
+                        
+                })
             } else {
                 self.viewController.isSearchMode = false
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
@@ -118,6 +141,19 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
             
         }
         
+    }
+    
+    func pullToRefresh() {
+        spinner?.startAnimating()
+        self.getLatestShouts()
+    }
+    
+    
+    private func updateUI(shShoutMeta: SHShoutMeta) {
+        if shShoutMeta.results.count > 0 {
+            self.viewController.fetchedResultsController = shShoutMeta.results
+            self.viewController.tableView.reloadData()
+        }
     }
     
     private func switchToMapView(sender: AnyObject) {
