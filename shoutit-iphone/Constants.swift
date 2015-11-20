@@ -13,6 +13,9 @@ struct Constants {
     struct Shout {
         static let TIME_VIDEO_SHOUT = 60
         static let TIME_VIDEO_CV = 60
+    }
+    
+    struct Common {
         static let SH_PAGE_SIZE = 60
     }
     
@@ -61,6 +64,9 @@ struct Constants {
         UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamMapViewController")
         static let SHFILTER =
         UIStoryboard.getFilter().instantiateViewControllerWithIdentifier("SHFilterViewController")
+        static let SHTAGPROFILE = UIStoryboard.getTag().instantiateViewControllerWithIdentifier("SHTagProfileTableViewController")
+        static let SHFILTERPRICE =
+        UIStoryboard.getFilter().instantiateViewControllerWithIdentifier("SHFilterPriceTableViewController")
     }
     
     struct TableViewCell {
@@ -69,6 +75,7 @@ struct Constants {
         static let SHRequestVideoTableViewCell = "SHRequestVideoTableViewCell"
         static let SHRequestImageTableViewCell = "SHRequestImageTableViewCell"
         static let SHShoutTableViewCell = "SHShoutTableViewCell"
+        static let SHTopTagTableViewCell = "SHTopTagTableViewCell"
     }
     
     struct CollectionViewCell {
@@ -97,8 +104,8 @@ struct Constants {
     }
     
     struct Filter {
-        static let kLeftLablel = "kLeftLablel"
-        static let kRightLablel = "kRightLablel"
+        static let kLeftLable = "kLeftLablel"
+        static let kRightLable = "kRightLablel"
         static let kCellType = "kCellType"
         static let KTagsArray = "KTagsArray"
         

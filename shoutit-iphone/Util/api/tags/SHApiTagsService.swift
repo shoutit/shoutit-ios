@@ -12,11 +12,11 @@ import Alamofire
 class SHApiTagsService: NSObject {
     
     private let TAGS_URL = SHApiManager.sharedInstance.BASE_URL + "/tags"
-    private var filter: SHFilter?
     private var is_last_page = true
     private var currentPage = 1
-    private var tags = [SHTag]()
     private var currentLocation: SHAddress?
+    var filter: SHFilter?
+    var tags = [SHTag]()
     
     func isMore() -> Bool {
         return !self.is_last_page
@@ -28,7 +28,7 @@ class SHApiTagsService: NSObject {
             params = filter.getTagsFilterQuery()
         }
         params["show_is_listening"] = 1
-        params["page_size"] = Constants.Shout.SH_PAGE_SIZE
+        params["page_size"] = Constants.Common.SH_PAGE_SIZE
         params["page"] = page
         params["search"] = query
         SHApiManager.sharedInstance.get(TAGS_URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
@@ -64,7 +64,7 @@ class SHApiTagsService: NSObject {
             }
         }
         params["type"] = "featured"
-        params["page_size"] = Constants.Shout.SH_PAGE_SIZE
+        params["page_size"] = Constants.Common.SH_PAGE_SIZE
         params["page"] = forPage
         SHApiManager.sharedInstance.get(TAGS_URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
@@ -77,6 +77,15 @@ class SHApiTagsService: NSObject {
                 // Do Nothing
                 }, completionHandler: { (response) -> Void in
                     // Success
+                    if (response.result.isSuccess) {
+                        if(self.currentPage == 1) {
+                            self.tags.removeAll()
+                            if let tags = response.result.value {
+                                self.tags = tags.results
+                                self.is_last_page = tags.next == "" ? true : false
+                            }
+                        }
+                    }
             })
         }
         
@@ -93,6 +102,64 @@ class SHApiTagsService: NSObject {
                 })
             }
         }
+    }
+    
+    func loadProfileForTag(tagName: String) {
+        self.currentPage = 1
+       // let urlString =
+    }
+    
+//    - (void) loadProfileForTag:(NSString*)tagName;
+//    {
+//    self.currentPage = 1;
+//    NSString *urlString = SH_TAG_URL_WITH_ID([tagName urlencode]);
+//    [self didStartLoad];
+//    [SHRequestManager get:urlString params:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+//    {
+//    self.tag = [mappingResult firstObject];
+//    [self loadShoutsFor:tagName forPage:self.currentPage];
+//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//    [self didFailLoadWithError:error];
+//    }];
+//    }
+    func loadTagsForPage(page: Int, query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
+        var params = [String: AnyObject]()
+        if let filter = self.filter {
+            params = filter.getTagsFilterQuery()
+        }
+        params["page_size"] = Constants.Common.SH_PAGE_SIZE
+        params["page"] = page
+        if (query != "") {
+            params["search"] = query
+        }
+        SHApiManager.sharedInstance.get(TAGS_URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        //    [SHRequestManager get:SH_TAGS_URL params:params success:
+        //    ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+        //    {
+        //    //NSLog(@"%@", operation.HTTPRequestOperation.responseString);
+        //
+        //    if(page == 0)    [self.tags removeAllObjects];
+        //
+        //    [self.tags addObjectsFromArray:mappingResult.dictionary[@"results"]];
+        //    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:operation.HTTPRequestOperation.responseData options:kNilOptions error:nil];
+        //    self.is_last_page = (response[@"next"] == [NSNull null] ) ?true:false;
+        //
+        //    [self didFinishLoad];
+        //    } failure:^(RKObjectRequestOperation *operation, NSError *error)
+        //    {
+        //    [self didFailLoadWithError:error];
+        //    }];
+
+    }
+    
+    func refreshTagsWithQuery(query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
+        self.currentPage = 1
+        self.loadTagsForPage(self.currentPage, query: query,cacheResponse: cacheResponse,completionHandler: completionHandler)
+    }
+    
+    func loadTagsNextPageWithQuery(query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
+        self.currentPage++
+        self.loadTagsForPage(self.currentPage, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
 
 }

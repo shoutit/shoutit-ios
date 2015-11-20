@@ -11,20 +11,23 @@ import UIKit
 class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate {
 
     private var viewModel: SHStreamTableViewModel?
-    @IBOutlet var tableView: UITableView!
     private var tap: UITapGestureRecognizer?
+    private var dropMenu: DOPDropDownMenu?
+    @IBOutlet var tableView: UITableView!
+    
     var searchBar = UISearchBar()
     var mode: String?
     var searchQuery: String?
-    private var lastResultCount: Int?
-    var fetchedResultsController = [SHShout]()
-    var loading: Bool?
+    var lastResultCount: Int?
+    var fetchedResultsController = []
     var selectedSegment: Int?
     let shoutApi = SHApiShoutService()
     let tagsApi = SHApiTagsService()
-    var isSearchMode: Bool?
-    private var dropMenu: DOPDropDownMenu?
+    var isSearchMode = false
     var location: SHAddress?
+    var previousYOffset = 0
+    var deltaYOffset = 0
+    var subTitleLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +39,8 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.tableView.registerNib(UINib(nibName: "SHRequestImageTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestImageTableViewCell")
         self.tableView.registerNib(UINib(nibName: "SHRequestVideoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestVideoTableViewCell")
         self.tableView.registerNib(UINib(nibName: "SHTopTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHTopTagTableViewCell")
-        viewModel?.viewDidLoad()
         self.location = SHAddress.getUserOrDeviceLocation()
+        self.mode = "Search"
         self.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
         self.tap?.numberOfTapsRequired = 1
         // SearchBar
@@ -47,6 +50,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.navigationController!.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
         self.showSearchBar(self.tableView)
         self.tableView.keyboardDismissMode = .OnDrag
+        viewModel?.viewDidLoad()
     }
     
     override func initializeViewModel() {
@@ -79,10 +83,6 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         // Dispose of any resources that can be recreated.
     }
     
-    deinit {
-        viewModel?.destroy()
-    }
-    
     func dismissSearchKeyboard(sender: AnyObject) {
         if (self.searchBar.isFirstResponder()) {
             if let tap = self.tap {
@@ -92,7 +92,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         }
     }
     
-    private func showSearchBar(sender: UIScrollView) {
+    func showSearchBar(sender: UIScrollView) {
         let currentPoint: CGPoint = sender.contentOffset
         if let navBar = self.navigationController?.navigationBar {
             let yMin = navBar.frame.origin.y
@@ -103,15 +103,15 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
                     if(currentPoint.y < 0) {
                         let point: CGPoint = CGPointMake(currentPoint.x, -44)
                         self.tableView.setContentOffset(point, animated: true)
-                        self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
-                        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
                     }
+                    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+                    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
                 })
             }
         }
     }
     
-    private func hideSearchBar(sender: UIScrollView) {
+    func hideSearchBar(sender: UIScrollView) {
         if let navBar = self.navigationController?.navigationBar {
             let yMin = navBar.frame.origin.y
             let yMax = yMin + navBar.frame.size.height
@@ -144,22 +144,38 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if(searchBar.text != "") {
-        self.searchQuery = searchBar.text
-        self.lastResultCount = 0
-        self.fetchedResultsController = []
-        self.tableView.reloadData()
-        self.loading = true
+        if (searchBar.text != "") {
+            self.searchQuery = searchBar.text
+            self.lastResultCount = 0
+            self.fetchedResultsController = []
+            self.tableView.reloadData()
+          //  self.loading = true
+            if let loadMoreView = self.viewModel?.loadMoreView {
+                loadMoreView.showLoading()
+                loadMoreView.loadingLabel.text = ""
+            }
         if (self.selectedSegment == 0 || self.selectedSegment == 1) {
             if let location = self.location, let type = self.selectedSegment, let query = self.searchQuery{
-                self.shoutApi.searchStreamForLocation(location, ofType: type, query: query)
-            } else {
-                if let query = self.searchQuery {
-                    self.tagsApi.searchTagQuery(query)
-                }
+                self.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
+                    self.viewModel!.updateUI(shShoutMeta)
+                    }, completionHandler: { (response) -> Void in
+                        self.tableView.pullToRefreshView.stopAnimating()
+                        if(response.result.isSuccess) {
+                            if let shShoutMeta = response.result.value {
+                                self.viewModel!.updateUI(shShoutMeta)
+                            }
+                            
+                        } else {
+                            // Do Nothing
+                        }
+                        
+                })
             }
-            
-        }
+        } else {
+            if let query = self.searchQuery {
+                self.tagsApi.searchTagQuery(query)
+            }
+            }
             self.tableView.scrollEnabled = false
             self.isSearchMode = true
         } else {
@@ -213,11 +229,22 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         return ""
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
     // MARK - Private
     private func setPullToRefresh() {
         self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
             self.viewModel?.pullToRefresh()
         })
+    }
+    
+    deinit {
+        viewModel?.destroy()
+        self.searchBar.delegate = nil
+        self.tap = nil
+        
     }
     
 }

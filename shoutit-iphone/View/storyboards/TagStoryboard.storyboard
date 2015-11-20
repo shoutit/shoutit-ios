@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Top Tags Table View Controller-->
@@ -40,7 +40,7 @@
         <!--Tag Profile Table View Controller-->
         <scene sceneID="XFb-Lt-Lcu">
             <objects>
-                <tableViewController storyboardIdentifier="SHTagProfileTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l8G-Bc-fU3" customClass="SHTagProfileTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHTagProfileTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l8G-Bc-fU3" customClass="SHTagProfileTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DtE-Ik-iOb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,7 +91,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="listenAction:" destination="l8G-Bc-fU3" eventType="touchUpInside" id="s8l-R3-jvM"/>
+                                                            <action selector="listenAction:" destination="l8G-Bc-fU3" eventType="touchUpInside" id="cIo-4e-9BQ"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-cS-VI8" userLabel="lgView">
@@ -120,7 +120,7 @@
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="listeningAction:" destination="l8G-Bc-fU3" eventType="touchUpInside" id="9aW-y0-lGZ"/>
+                                                                    <action selector="listeningAction:" destination="l8G-Bc-fU3" eventType="touchUpInside" id="SAO-3e-wAd"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -193,10 +193,10 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="lgView" destination="X4C-cS-VI8" id="XJr-Xh-WP8"/>
-                        <outlet property="listenButton" destination="Pnj-BM-wYC" id="XaL-Ve-UWk"/>
-                        <outlet property="listeningLabel" destination="Ao7-W0-GkS" id="AHj-rN-P5E"/>
-                        <outlet property="tagLabel" destination="Grt-tu-2Xi" id="Yh0-NQ-lxf"/>
+                        <outlet property="lgView" destination="X4C-cS-VI8" id="mPc-4W-xZ9"/>
+                        <outlet property="listenButton" destination="Pnj-BM-wYC" id="k3E-j6-pdX"/>
+                        <outlet property="listeningLabel" destination="Ao7-W0-GkS" id="hBH-gi-2Q0"/>
+                        <outlet property="tagLabel" destination="Grt-tu-2Xi" id="QaV-lF-Ld8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FHv-Ty-uYY" userLabel="First Responder" sceneMemberID="firstResponder"/>

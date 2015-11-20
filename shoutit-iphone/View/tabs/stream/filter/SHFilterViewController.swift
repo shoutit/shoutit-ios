@@ -8,83 +8,38 @@
 
 import UIKit
 
+protocol SHFilterViewControllerDelegate {
+    func applyFilter(filter: SHFilter?, isApplied: Bool)
+}
+
 class SHFilterViewController: BaseViewController {
 
     
     @IBOutlet var tableView: UITableView!
     private var viewModel: SHFilterViewModel?
-    private var filter: SHFilter?
-    private var filters = []
     private var lastResultCount: Int?
     private var activeTextField: UITextField?
     private var keyToolbar: UIToolbar?
-    private var tapTagsSelect: UITapGestureRecognizer?
-    
+    private var loadMoreView: SHLoadMoreView?
+    var delegate: SHFilterViewControllerDelegate?
+    var filter: SHFilter?
+    var filters = []
+    var fetchedResultsController = []
+    var tapTagsSelect: UITapGestureRecognizer?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         lastResultCount = 0
         filter = SHFilter()
-        self.configureFilter()
     }
-    
-    private func configureFilter () {
-        var firstSection = [[String: AnyObject]]()
-        var secondSection = [[String: AnyObject]]()
-        var thirdSection = [[String: AnyObject]]()
-        var fourthSection = []
-        
-        let Category = [Constants.Filter.kLeftLablel: NSLocalizedString("Category", comment: "Category"), Constants.Filter.kRightLablel: NSLocalizedString("All", comment: "All"),
-            Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
-            Constants.Filter.kSelectorName: "selectCategory:"]
-        
-        let Type = [Constants.Filter.kLeftLablel: NSLocalizedString("Type", comment: "Type"),
-            Constants.Filter.kRightLablel: NSLocalizedString("Offer", comment: "Offer"),
-            Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
-            Constants.Filter.kSelectorName: "selectType:"]
-        
-        let Tags = [Constants.Filter.kLeftLablel: NSLocalizedString("Tags", comment: "Tags"),
-            Constants.Filter.kRightLablel: "",
-            Constants.Filter.KTagsArray: [],
-            Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
-            Constants.Filter.kSelectorName: "selectTags:"]
-        
-        firstSection = [Category, Type, Tags as! Dictionary<String, AnyObject>]
-        
-        let Price = [Constants.Filter.kLeftLablel: NSLocalizedString("Price", comment: "Price"),
-            Constants.Filter.kRightLablel: NSLocalizedString("Any", comment: "Any"),
-            Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
-            Constants.Filter.kSelectorName: "selectPrice:"]
-        
-        secondSection = [Price]
-        
-        let Location = [Constants.Filter.kLeftLablel: NSLocalizedString("Location", comment: "Location"), Constants.Filter.kRightLablel: NSLocalizedString("Current Location", comment: "Current Location"),
-            Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
-            Constants.Filter.kSelectorName: "selectLocation:"]
-        
-        thirdSection = [Location]
-        
-        let Reset = [Constants.Filter.kLeftLablel: NSLocalizedString("Reset", comment: "Reset"),
-            Constants.Filter.kCellType: Constants.Filter.kCenterCellId,
-            Constants.Filter.kSelectorName: "resetFilter"]
-        
-        fourthSection = [Reset]
-        
-        self.filters = [firstSection, secondSection, thirdSection, fourthSection]
-        
-        if let location = SHAddress.getUserOrDeviceLocation(), let filter = self.filter{
-            let string = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
-            self.filters[2][0].setObject(string, forKey: Constants.Filter.kRightLablel)
-            self.filters[2][0].setObject(1, forKey: Constants.Filter.kIsApply)
-            filter.isApplied = true
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-            })
-        }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //tableView DataSource and Delegate
+        self.tableView.dataSource = viewModel
+        self.tableView.delegate = viewModel
+        
         var frame = self.tableView.frame
         frame.size.height = 44
         self.keyToolbar = UIToolbar(frame: frame)
@@ -105,7 +60,8 @@ class SHFilterViewController: BaseViewController {
         // Do any additional setup after loading the view.
         self.tapTagsSelect = UITapGestureRecognizer(target: self, action: Selector("selectTags:"))
         
-        //self.tableView.tableFooterView = self.loadMoreView;
+        self.tableView.registerNib(UINib(nibName: "SHTopTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHTopTagTableViewCell")
+        self.tableView.tableFooterView = self.loadMoreView;
         viewModel?.viewDidLoad()
     }
     
@@ -114,7 +70,9 @@ class SHFilterViewController: BaseViewController {
     }
     
     func applyAction(sender: AnyObject) {
-        //[self.delegate applyFilter:self.filter.isApplyed?self.filter:nil isApplyed:self.filter.isApplyed]
+        if let filter = self.filter {
+            self.delegate?.applyFilter(filter.isApplied ? filter : nil, isApplied: filter.isApplied)
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
