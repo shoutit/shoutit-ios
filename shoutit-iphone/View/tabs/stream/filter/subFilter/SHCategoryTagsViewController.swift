@@ -11,7 +11,7 @@ import UIKit
 class SHCategoryTagsViewController: BaseTableViewController {
     
     private var viewModel: SHCategoryTagsViewModel?
-    var selectedBlock: (([AnyObject]) -> ())?
+    var selectedBlock: (([SHTag]) -> ())?
     var oldTags = []
     var hardCodedTags = []
     var selectedDict = [String: AnyObject]()
@@ -73,6 +73,10 @@ class SHCategoryTagsViewController: BaseTableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshTags(category: String) {
+        viewModel?.getTagsForCategory(category)
     }
     
     deinit {

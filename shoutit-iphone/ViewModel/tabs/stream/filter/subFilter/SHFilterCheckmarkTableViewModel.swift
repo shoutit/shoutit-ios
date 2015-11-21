@@ -17,7 +17,7 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
     }
     
     func viewDidLoad() {
-        
+        getListOfCategories()
     }
     
     func viewWillAppear() {
@@ -40,44 +40,49 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
         
     }
     
+    func getListOfCategories() {
+        self.viewController.shApiMisc.getCategories({ (shCategory) -> Void in
+            // Do Nothing
+            }) { (response) -> Void in
+                print(response.result.value?.mainTag)
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewController.dataArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-//        SHFilterCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SHFilterCheckTableViewCell" forIndexPath:indexPath];
-//        cell.leftLabel.text = self.dataArray[indexPath.row];
-//        if(indexPath.row == self.selectedRow)
-//        {
-//            cell.leftLabel.textColor = [UIColor colorWithHex:COLOR_SHOUT_DARK_GREEN];
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        }
-//        else{
-//            cell.leftLabel.textColor = [UIColor darkTextColor];
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//        }
-//        return cell;
+        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHFilterCheckTableViewCell, forIndexPath: indexPath) as? SHFilterCheckTableViewCell {
+            cell.leftLabel.text = self.viewController.dataArray[indexPath.row] as? String
+            if(indexPath.row == self.viewController.selectedRow) {
+                cell.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            } else {
+                cell.leftLabel.textColor = UIColor.darkTextColor()
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            }
+            return cell
+        }
         return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedRow inSection:0]].accessoryType = UITableViewCellAccessoryNone;
-//        [[((SHFilterCheckTableViewCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedRow inSection:0]]) leftLabel]setTextColor:[UIColor darkTextColor]];
-//        
-//        self.selectedRow = (int)indexPath.row;
-//        [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
-//        [[((SHFilterCheckTableViewCell*)[tableView cellForRowAtIndexPath:indexPath]) leftLabel]setTextColor:[UIColor colorWithHex:COLOR_SHOUT_DARK_GREEN]];
-//        
-//        if(self.selectedBlock) self.selectedBlock(self.dataArray[self.selectedRow], self.selectedRow);
-//        [self.navigationController popViewControllerAnimated:YES];
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let selectedRow = self.viewController.selectedRow {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
+            (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0)) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor.darkTextColor()
+            self.viewController.selectedRow = indexPath.row
+            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            (tableView.cellForRowAtIndexPath(indexPath) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+           // if(self.selectedBlock) self.selectedBlock(self.dataArray[self.selectedRow], self.selectedRow);
+            self.viewController.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-//        [[((SHFilterCheckTableViewCell*)[tableView cellForRowAtIndexPath:indexPath]) leftLabel]setTextColor:[UIColor darkTextColor]];
-//        
-//        [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+        (tableView.cellForRowAtIndexPath(indexPath) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor.darkTextColor()
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
     }
     
     

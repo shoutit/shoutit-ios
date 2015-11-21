@@ -12,8 +12,8 @@ class SHFilter: NSObject {
 
     private var before: NSDate?
     private var after: NSDate?
-    private var selectedTypeIndex: Int?
-    private var selectedCategoryIndex: Int?
+    var selectedTypeIndex: Int?
+    var selectedCategoryIndex: Int?
     var tags = []
     var isApplied = false
     var location: SHAddress?

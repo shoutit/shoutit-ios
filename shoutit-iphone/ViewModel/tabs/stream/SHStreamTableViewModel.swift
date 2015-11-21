@@ -39,7 +39,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         updateSubtitleLabel()
         
         // set Filter SB
-        self.filterViewController = Constants.ViewControllers.SHFILTER as? SHFilterViewController
+        self.filterViewController = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTER)  as? SHFilterViewController
         self.filterViewController?.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
@@ -154,7 +154,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func switchToMapView(sender: AnyObject) {
-        let mapViewController = Constants.ViewControllers.STREAM_MAP
+        let mapViewController = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_MAP) 
         UIView.beginAnimations("View Flip", context: nil)
         UIView.setAnimationDuration(0.50)
         UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)

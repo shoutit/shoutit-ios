@@ -1,5 +1,5 @@
 //
-//  SHFilterCheckMarkTableViewCell.swift
+//  SHFilterCheckTableViewCell.swift
 //  shoutit-iphone
 //
 //  Created by Vishal Thakur on 20/11/15.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SHFilterCheckMarkTableViewCell: UITableViewCell {
+class SHFilterCheckTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var leftLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,4 +22,5 @@ class SHFilterCheckMarkTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 }

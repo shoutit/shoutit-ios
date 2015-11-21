@@ -8,16 +8,19 @@
 
 import Foundation
 
-class SHFilterCheckmarkTableViewController: BaseViewController {
+class SHFilterCheckmarkTableViewController: BaseTableViewController {
     
     var dataArray = []
     var selectedRow: Int?
     var selectedBlock: ((selectedTitle: String, index: Int) -> ())?
+    let shApiMisc = SHApiMiscService()
     
     private var viewModel: SHFilterCheckmarkTableViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = viewModel
+        self.tableView.delegate = viewModel
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         viewModel?.viewDidLoad()
     }
@@ -51,7 +54,7 @@ class SHFilterCheckmarkTableViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setData (array: [String], index: Int) {
+    func setData (array: [AnyObject], index: Int) {
         self.dataArray = array
         self.selectedRow = index
     }

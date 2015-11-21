@@ -23,7 +23,7 @@ class SHFilterViewController: BaseViewController {
     private var loadMoreView: SHLoadMoreView?
     var delegate: SHFilterViewControllerDelegate?
     var filter: SHFilter?
-    var filters = []
+    var filters: [AnyObject] = []
     var fetchedResultsController = []
     var tapTagsSelect: UITapGestureRecognizer?
     

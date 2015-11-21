@@ -168,7 +168,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.viewController.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 4) {
-            if let tagViewController = Constants.ViewControllers.SHTAGPROFILE as? SHTagProfileTableViewController {
+            if let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as? SHTagProfileTableViewController {
                 //[tagViewController requestTag:self.fetchedResultsController[indexPath.row]];
                 self.viewController.navigationController?.pushViewController(tagViewController, animated: true)
             }
@@ -185,66 +185,121 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     
     // Selectors
     func selectCategory(sender: AnyObject) {
+        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERCHECKMARK) as? SHFilterCheckmarkTableViewController
+        if let filter = self.viewController.filter {
+            if let selectedTypeIndex = self.viewController.filter?.selectedTypeIndex, let selectedCategoryIndex = self.viewController.filter?.selectedCategoryIndex {
+                vc?.setData([(selectedTypeIndex)], index: selectedCategoryIndex)
+            }
+            vc!.selectedBlock = {(text: String, index: Int) in
+                if(filter.category != text) {
+                    filter.tags = []
+                    (self.viewController.filters[0][2] as? NSDictionary)!.setValue([], forKey: Constants.Filter.KTagsArray)
+                }
+                filter.category = text
+                filter.selectedCategoryIndex = index
+                (self.viewController.filters[0][0] as? NSDictionary)?.setValue(text, forKey: Constants.Filter.kRightLable)
+                filter.isApplied = true
+                (self.viewController.filters[0][0] as? NSDictionary)?.setValue(index == 0 ? false : true, forKey: Constants.Filter.kIsApply)
+                self.viewController.tableView.reloadData()
+            }
+            
+        }
+        
+        vc?.title = NSLocalizedString("Category", comment: "Category")
+        self.viewController.navigationController?.pushViewController(vc!, animated: true)
         
     }
     
     func selectType(sender: AnyObject) {
-//        SHFilterCheckmarkTableViewController * vc = [SHNavigator viewControllerFromStoryboard:@"FilterStoryboard" withViewControllerId:@"SHFilterCheckmarkTableViewController"];
-//        [vc setData:[SHFilter typeList] withSelectedItem:self.filter.selectedTypeIndex];
-//        
-//        vc.title = NSLocalizedString(@"Type", @"Type");
-//        [vc setSelectedBlock:^(NSString * text, int index)
-//        {
-//        
-//        self.filter.type = text;
-//        self.filter.selectedTypeIndex = index;
-//        [self.filters[0][1] setObject:text forKey:kRightLablel];
-//        [self.filters[0][1] setObject:@1 forKey:kIsApply];
-//        self.filter.isApplyed = YES;
-//        [self.filters[0][1] setObject:@(index==0?NO:YES) forKey:kIsApply];
-//        [self.tableView reloadData];
-//        NSLog(@"Selected Category: %@",text);
-//        }];
-//        [self.navigationController pushViewController:vc animated:YES];
+        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERCHECKMARK) as? SHFilterCheckmarkTableViewController
+        if let typeList = self.viewController.filter?.typeList(), let selectedTypeIndex = self.viewController.filter?.selectedTypeIndex {
+            vc?.setData(typeList, index: selectedTypeIndex)
+        }
+        vc?.title = NSLocalizedString("Type", comment: "Type")
+        vc?.selectedBlock = {(text: String, index: Int) in
+            self.viewController.filter?.type = text
+            self.viewController.filter?.selectedTypeIndex = index
+            (self.viewController.filters[0][1] as? NSDictionary)?.setValue(text, forKey: Constants.Filter.kRightLable)
+            (self.viewController.filters[0][1] as? NSDictionary)?.setValue(1, forKey: Constants.Filter.kIsApply)
+            self.viewController.tableView.reloadData()
+        }
+        self.viewController.navigationController?.pushViewController(vc!, animated: true)
         
     }
     
-    func selectTag(sender: AnyObject) {
-        
+    func selectTagst(sender: AnyObject) {
+        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHCATEGORYTAGS) as? SHCategoryTagsViewController
+        if let category = self.viewController.filter?.category {
+            vc?.refreshTags(category)
+        }
+        if let tags = self.viewController.filter?.tags {
+            vc?.oldTags = tags
+        }
+        vc?.selectedBlock = {(tagArray: [SHTag]) in
+            if(tagArray.count > 0) {
+                if(self.tagExist(tagArray[0])) {
+                    return
+                }
+                if(self.viewController.filter?.tags.count == 0) {
+                    self.viewController.filter?.tags = tagArray
+                } else {
+                    self.viewController.filter?.tags = tagArray
+                }
+                var strArray = [String]()
+                if let tags = self.viewController.filter?.tags {
+                    for tag in tags {
+                        strArray.append(tag.name)
+                    }
+                }
+                (self.viewController.filters[0][2] as? NSDictionary)?.setValue(1, forKey: Constants.Filter.kIsApply)
+                (self.viewController.filters[0][2] as? NSDictionary)?.setValue(strArray, forKey: Constants.Filter.KTagsArray)
+                self.viewController.filter?.isApplied = true
+                self.viewController.filter?.isApplied = true
+                self.viewController.tableView.reloadData()
+        }
+        }
+        self.viewController.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func tagExist (tag: SHTag) -> Bool {
-        return true
+        if let tags = self.viewController.filter?.tags {
+            for shTag in tags {
+                if(shTag.name == tag.name) {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     func selectPrice(sender: AnyObject) {
-//        if let vc = Constants.ViewControllers.SHFILTERPRICE as? SHFilterPriceTableViewController {
-//            if let filter = self.viewController.filter {
-//                vc.min = filter.minPrice == nil ? "0" : filter.minPrice
-//                vc.max = filter.maxPrice == nil ? "0" : filter.maxPrice
-//                var string = String(format: "%@ - %@", arguments: [(filter.minPrice != nil && filter.minPrice != "") ? filter.minPrice!: NSLocalizedString("Any", comment: "Any"), (filter.maxPrice != nil && filter.maxPrice != "") ? filter.maxPrice! : NSLocalizedString("Any", comment: "Any")])
-//                self.viewController.filter?.isApplied = true
-//                var i = true
-//                if((filter.minPrice == nil && filter.maxPrice == nil) || (filter.minPrice == "" && filter.maxPrice == "")) {
-//                string = NSLocalizedString("Any", comment: "Any")
-//                i = false
-//                }
-////                [self.filters[1][0] setObject:string forKey:kRightLablel];
-////                [self.filters[1][0] setObject:@(i) forKey:kIsApply];
-////                
-////                [self.tableView reloadData];
-//            }
-//            vc.title = NSLocalizedString("Select Place", comment: "Select Place")
-//            self.viewController.navigationController?.pushViewController(vc, animated: true)
-//        }
+        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERPRICE) as? SHFilterPriceTableViewController
+        vc?.min = self.viewController.filter?.minPrice
+        vc?.max = self.viewController.filter?.maxPrice
+        vc?.selectedBlock = {(min: String, max: String) in
+            self.viewController.filter?.minPrice = min
+            self.viewController.filter?.maxPrice = max
+            var string = String(format: "%@ - %@", arguments: [(min != "" ? min : NSLocalizedString("Any", comment: "Any")), (max != "" ? max : NSLocalizedString("Any", comment: "Any"))])
+            self.viewController.filter?.isApplied = true
+            var i = true
+            if(min == "" && max == "") {
+                string = NSLocalizedString("Any", comment: "Any")
+                i = false
+            }
+            (self.viewController.filters[1][0] as? NSDictionary)?.setValue(string, forKey: Constants.Filter.kRightLable)
+            (self.viewController.filters[1][0] as? NSDictionary)?.setValue(i, forKey: Constants.Filter.kIsApply)
+            self.viewController.tableView.reloadData()
+        }
+        vc?.title = NSLocalizedString("Select Price", comment: "Select Price")
+        self.viewController.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func selectDates(sender: AnyObject) {
-        
-    }
+//    func selectDates(sender: AnyObject) {
+//        
+//    }
     
     func selectLocation(sender: AnyObject) {
-        let vc = Constants.ViewControllers.LOCATION_GETTER
+        let vc = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOCATION_GETTER)
         vc.title = NSLocalizedString("Select Place", comment: "Select Place")
         self.viewController.navigationController?.pushViewController(vc, animated: true)
     }
@@ -270,13 +325,13 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
             Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
             Constants.Filter.kSelectorName: "selectType:"]
         
-        let tags = [Constants.Filter.kLeftLable: NSLocalizedString("Tags", comment: "Tags"),
+        let tags: [String: AnyObject] = [Constants.Filter.kLeftLable: NSLocalizedString("Tags", comment: "Tags"),
             Constants.Filter.kRightLable: "",
             Constants.Filter.KTagsArray: [],
             Constants.Filter.kCellType: Constants.Filter.kStandardCellId,
             Constants.Filter.kSelectorName: "selectTags:"]
         
-        firstSection = [category, type, tags as! [String: AnyObject]]
+        firstSection = [category, type, tags]
         
         let price = [Constants.Filter.kLeftLable: NSLocalizedString("Price", comment: "Price"),
             Constants.Filter.kRightLable: NSLocalizedString("Any", comment: "Any"),

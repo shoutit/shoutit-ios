@@ -100,9 +100,9 @@
 		AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7801BFE58BE0029CE7D /* SHFilterPriceTableModel.swift */; };
 		AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7821BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift */; };
 		AC74A7851BFEF8330029CE7D /* SHFilterCheckmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7841BFEF8330029CE7D /* SHFilterCheckmarkTableViewController.swift */; };
-		AC74A7911BFF2C360029CE7D /* SHFilterCheckMarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7901BFF2C360029CE7D /* SHFilterCheckMarkTableViewCell.swift */; };
 		AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7921BFF314B0029CE7D /* SHCategoryTagsViewController.swift */; };
 		AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7941BFF31E30029CE7D /* SHCategoryTagsViewModel.swift */; };
+		AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */; };
 		ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */; };
 		ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECE1BF1233700D504AA /* Enumerations.swift */; };
 		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
@@ -268,9 +268,9 @@
 		AC74A7801BFE58BE0029CE7D /* SHFilterPriceTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterPriceTableModel.swift; path = ViewModel/tabs/stream/filter/subFilter/SHFilterPriceTableModel.swift; sourceTree = "<group>"; };
 		AC74A7821BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckmarkTableViewModel.swift; path = ViewModel/tabs/stream/filter/subFilter/SHFilterCheckmarkTableViewModel.swift; sourceTree = "<group>"; };
 		AC74A7841BFEF8330029CE7D /* SHFilterCheckmarkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckmarkTableViewController.swift; path = View/tabs/stream/filter/subFilter/SHFilterCheckmarkTableViewController.swift; sourceTree = "<group>"; };
-		AC74A7901BFF2C360029CE7D /* SHFilterCheckMarkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckMarkTableViewCell.swift; path = View/tabs/stream/filter/cell/SHFilterCheckMarkTableViewCell.swift; sourceTree = "<group>"; };
 		AC74A7921BFF314B0029CE7D /* SHCategoryTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategoryTagsViewController.swift; path = View/tabs/stream/filter/subFilter/SHCategoryTagsViewController.swift; sourceTree = "<group>"; };
 		AC74A7941BFF31E30029CE7D /* SHCategoryTagsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategoryTagsViewModel.swift; path = ViewModel/tabs/stream/filter/subFilter/SHCategoryTagsViewModel.swift; sourceTree = "<group>"; };
+		AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckTableViewCell.swift; path = View/tabs/stream/filter/cell/SHFilterCheckTableViewCell.swift; sourceTree = "<group>"; };
 		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
 		ACA77ECE1BF1233700D504AA /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerations.swift; path = Model/enums/Enumerations.swift; sourceTree = "<group>"; };
 		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
@@ -1014,7 +1014,7 @@
 				ACDD23B61BFADE1300EEC6A6 /* SHFilterTagsTableViewCell.swift */,
 				ACDD23B81BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift */,
 				ACDD23BA1BFB52C400EEC6A6 /* SHFilterCenterTableViewCell.swift */,
-				AC74A7901BFF2C360029CE7D /* SHFilterCheckMarkTableViewCell.swift */,
+				AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1256,6 +1256,7 @@
 				AC74A7851BFEF8330029CE7D /* SHFilterCheckmarkTableViewController.swift in Sources */,
 				606ED2EC1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
+				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
 				ACDD23BB1BFB52C400EEC6A6 /* SHFilterCenterTableViewCell.swift in Sources */,
 				ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */,
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
@@ -1330,7 +1331,6 @@
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
-				AC74A7911BFF2C360029CE7D /* SHFilterCheckMarkTableViewCell.swift in Sources */,
 				606ED3001BF8A85D0064C53E /* SHPhotoPreviewViewController.swift in Sources */,
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				ACDD23B71BFADE1300EEC6A6 /* SHFilterTagsTableViewCell.swift in Sources */,

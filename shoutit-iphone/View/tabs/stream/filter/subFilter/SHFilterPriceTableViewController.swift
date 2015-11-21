@@ -8,12 +8,13 @@
 
 import Foundation
 
-class SHFilterPriceTableViewController: BaseViewController, UITextFieldDelegate {
+class SHFilterPriceTableViewController: BaseTableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var minTextField: UITextField!
     @IBOutlet weak var maxTextField: UITextField!
     var min: String?
     var max: String?
+    var selectedBlock: ((min: String, max: String) -> ())?
     
     private var viewModel: SHFilterPriceTableModel?
     
@@ -22,6 +23,7 @@ class SHFilterPriceTableViewController: BaseViewController, UITextFieldDelegate 
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.minTextField.text = self.min
         self.maxTextField.text = self.max
+        self.tableView.delegate = viewModel
         viewModel?.viewDidLoad()
     }
     

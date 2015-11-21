@@ -310,14 +310,14 @@
         <!--Filter Checkmark Table View Controller-->
         <scene sceneID="Zwi-ov-VX5">
             <objects>
-                <tableViewController storyboardIdentifier="SHFilterCheckmarkTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JDG-cR-8Eo" customClass="SHFilterCheckmarkTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHFilterCheckmarkTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JDG-cR-8Eo" customClass="SHFilterCheckmarkTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hKV-SZ-eo8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterCheckMarkTableViewCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SHFilterCheckMarkTableViewCell" rowHeight="40" id="e7f-KJ-8zs" customClass="SHFilterCheckMarkTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterCheckMarkTableViewCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SHFilterCheckTableViewCell" rowHeight="40" id="e7f-KJ-8zs" customClass="SHFilterCheckTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7f-KJ-8zs" id="cX3-Sj-l84">
@@ -345,7 +345,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="leftLabel" destination="wiI-pK-cuw" id="T1Q-75-we5"/>
+                                    <outlet property="leftLabel" destination="wiI-pK-cuw" id="WTd-g8-RiZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
