@@ -29,7 +29,7 @@ class SHTag: Mappable {
     func mapping(map: Map) {
         name            <- map["name"]
         image           <- map["image"]
-        url             <- map["url"]
+        url             <- map["api_url"]
         isListening     <- map["is_listening"]
         listenersCount  <- map["listeners_count"]
         shoutsCount     <- map["shouts_count"]

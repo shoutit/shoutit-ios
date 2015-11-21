@@ -12,7 +12,8 @@ import ObjectMapper
 class SHCategory: Mappable {
     
     var name = String()
-    var mainTag: SHTag?
+    var slug = String()
+    var mainTag:SHTag?
     
     required init?(_ map: Map) {
         
@@ -21,6 +22,7 @@ class SHCategory: Mappable {
     // Mappable
     func mapping(map: Map) {
         name            <- map["name"]
+        slug            <- map["slug"]
         mainTag         <- map["main_tag"]
     }
     

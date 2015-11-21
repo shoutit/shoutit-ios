@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Filter-->
         <scene sceneID="3yo-Lj-Tqh">
             <objects>
-                <viewController storyboardIdentifier="SHFilterViewController" title="Filter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gv0-rA-Wan" customClass="SHFilterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHFilterViewController" title="Filter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gv0-rA-Wan" customClass="SHFilterViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Xgr-Ef-uV1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="kStandardCellId" rowHeight="40" id="GCm-Gs-1Ia" customClass="SHFilterStandardTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterStandardTableViewCell" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="kStandardCellId" rowHeight="40" id="GCm-Gs-1Ia" customClass="SHFilterStandardTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GCm-Gs-1Ia" id="3Lg-VR-2cx">
@@ -57,11 +57,11 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="leftLabel" destination="kah-gM-Spe" id="faK-aC-5nO"/>
-                                    <outlet property="rightLabel" destination="aXH-m2-NT1" id="iQd-LS-xXe"/>
+                                    <outlet property="leftLabel" destination="kah-gM-Spe" id="zxm-Ao-f2J"/>
+                                    <outlet property="rightLabel" destination="aXH-m2-NT1" id="JnA-k2-Qqj"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHFilterTagsTableViewCell" rowHeight="40" id="omy-PP-Nif" customClass="SHFilterTagsTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterTagsTableViewCell" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHFilterTagsTableViewCell" rowHeight="40" id="omy-PP-Nif" customClass="SHFilterTagsTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="154" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="omy-PP-Nif" id="ywE-2g-c93">
@@ -97,8 +97,8 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="leftLabel" destination="Kx3-3E-qFs" id="JOS-gq-Dsw"/>
-                                    <outlet property="tagList" destination="gvk-C5-QZg" id="S65-Gt-U1d"/>
+                                    <outlet property="leftLabel" destination="Kx3-3E-qFs" id="hVv-o9-ger"/>
+                                    <outlet property="tagList" destination="gvk-C5-QZg" id="k66-TS-mYK"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="kTextFieldCellId" rowHeight="40" id="Mm0-JB-hXI" customClass="SHFilterTextTableViewCell">
@@ -125,7 +125,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="kCenterCellId" rowHeight="40" id="Vwj-bt-Eoc" customClass="SHFilterCenterTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterCenterTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="kCenterCellId" rowHeight="40" id="Vwj-bt-Eoc" customClass="SHFilterCenterTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="234" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vwj-bt-Eoc" id="yZS-0I-tgH">
@@ -150,7 +150,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="centerLabel" destination="dgS-JB-MHG" id="hm4-oX-w5x"/>
+                                    <outlet property="centerLabel" destination="dgS-JB-MHG" id="vl1-gs-WO1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -160,6 +160,9 @@
                         </connections>
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Xgr-Ef-uV1" id="2ut-QU-iGY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrX-j7-OTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,14 +310,14 @@
         <!--Filter Checkmark Table View Controller-->
         <scene sceneID="Zwi-ov-VX5">
             <objects>
-                <tableViewController storyboardIdentifier="SHFilterCheckmarkTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JDG-cR-8Eo" customClass="SHFilterCheckmarkTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHFilterCheckmarkTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JDG-cR-8Eo" customClass="SHFilterCheckmarkTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hKV-SZ-eo8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SHFilterCheckTableViewCell" rowHeight="40" id="e7f-KJ-8zs" customClass="SHFilterCheckTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHFilterCheckMarkTableViewCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SHFilterCheckTableViewCell" rowHeight="40" id="e7f-KJ-8zs" customClass="SHFilterCheckTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7f-KJ-8zs" id="cX3-Sj-l84">
@@ -342,7 +345,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="leftLabel" destination="wiI-pK-cuw" id="T1Q-75-we5"/>
+                                    <outlet property="leftLabel" destination="wiI-pK-cuw" id="WTd-g8-RiZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -360,7 +363,7 @@
         <!--Category Tags View Controller-->
         <scene sceneID="BHS-DX-Ly2">
             <objects>
-                <tableViewController storyboardIdentifier="SHCategoryTagsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="010-SX-08A" customClass="SHCategoryTagsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHCategoryTagsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="010-SX-08A" customClass="SHCategoryTagsViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rnz-6Q-MjD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,7 +382,7 @@
         <!--Filter Price Table View Controller-->
         <scene sceneID="XOv-l3-UJa">
             <objects>
-                <tableViewController storyboardIdentifier="SHFilterPriceTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yc1-Ov-Fof" customClass="SHFilterPriceTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHFilterPriceTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yc1-Ov-Fof" customClass="SHFilterPriceTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="d5g-rh-1zh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -487,8 +490,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="maxTextField" destination="XP9-N1-qNf" id="i5U-we-n7y"/>
-                        <outlet property="minTextField" destination="WiR-O2-LxT" id="xty-fa-eJE"/>
+                        <outlet property="maxTextField" destination="XP9-N1-qNf" id="rcR-dn-i87"/>
+                        <outlet property="minTextField" destination="WiR-O2-LxT" id="znT-Ls-Hkg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U10-Nt-ru1" userLabel="First Responder" sceneMemberID="firstResponder"/>

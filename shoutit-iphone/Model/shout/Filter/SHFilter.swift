@@ -12,14 +12,15 @@ class SHFilter: NSObject {
 
     private var before: NSDate?
     private var after: NSDate?
-    private var type: String?
-    private var selectedTypeIndex: Int?
-    private var minPrice: String?
-    private var maxPrice: String?
-    private var category: String?
-    private var selectedCategoryIndex: Int?
-    private var tags = []
-    private var isApplied = false
+    var selectedTypeIndex: Int?
+    var selectedCategoryIndex: Int?
+    var tags = []
+    var isApplied = false
+    var location: SHAddress?
+    var minPrice: String?
+    var maxPrice: String?
+    var type: String?
+    var category: String?
     
     override init () {
         selectedCategoryIndex = 0

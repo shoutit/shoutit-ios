@@ -86,3 +86,72 @@
 
 /* Shoutit doesn’t have permission to use Camera, please change privacy settings */
 "CameraNoPermissions" = "Shoutit doesn’t have permission to use Camera, please change privacy settings";
+
+/* Tag */
+"Tag" = "Tag";
+
+/* Category */
+"Category" = "Category";
+
+/* All */
+"All" = "All";
+
+/* Type */
+"Type" = "Type";
+
+/* Offer */
+"Offer" = "Offer";
+
+/* Tags */
+"Tags" = "Tags";
+
+/* Price */
+"Price" = "Price";
+
+/* Any */
+"Any" = "Any";
+
+/* Current Location */
+"Current Location" = "Current Location";
+
+/* Reset */
+"Reset" = "Reset";
+
+/* Shout Map */
+"Shout Map" = "Shout Map";
+
+/* Shout */
+"Shout" = "Shout";
+
+/* Shouts */
+"Shouts" = "Shouts";
+
+/* Done */
+"Done" = "Done";
+
+/* Apply */
+"Apply" = "Apply";
+
+/* Featured Tags */
+"Featured Tags" = "Featured Tags";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

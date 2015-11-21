@@ -13,6 +13,9 @@ struct Constants {
     struct Shout {
         static let TIME_VIDEO_SHOUT = 60
         static let TIME_VIDEO_CV = 60
+    }
+    
+    struct Common {
         static let SH_PAGE_SIZE = 60
     }
     
@@ -48,20 +51,30 @@ struct Constants {
     }
     
     struct ViewControllers {
-        static let DISCOVER_VC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
-        static let STREAM_VC =
-        UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHStreamTableViewController")
-        static let MODEL_WEB = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHModalWebViewController")
-        static let LOCATION_GETTER = UIStoryboard.getStream().instantiateViewControllerWithIdentifier("SHLocationGetterViewController")
+        static let DISCOVER_VC = "SHDiscoverCollectionViewController"
+        static let STREAM_VC = "SHStreamTableViewController"
+        static let MODEL_WEB = "SHModalWebViewController"
+        static let LOCATION_GETTER = "SHLocationGetterViewController"
         static let CREATE_SHOUT = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
         static let CAMERA_VC = SHCameraViewController(nibName: "CameraView", bundle: NSBundle.mainBundle())
         static let PHOTO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHPhotoPreviewViewController")
         static let VIDEO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHVideoPreviewViewController")
+        static let STREAM_MAP = "SHStreamMapViewController"
+        static let SHFILTER = "SHFilterViewController"
+        static let SHTAGPROFILE = "SHTagProfileTableViewController"
+        static let SHFILTERPRICE = "SHFilterPriceTableViewController"
+        static let SHFILTERCHECKMARK = "SHFilterCheckmarkTableViewController"
+        static let SHCATEGORYTAGS = "SHCategoryTagsViewController"
     }
     
     struct TableViewCell {
         static let SHLoginInputCell = "SHLoginInputCell"
         static let LocationSearchCell = "SearchCell"
+        static let SHRequestVideoTableViewCell = "SHRequestVideoTableViewCell"
+        static let SHRequestImageTableViewCell = "SHRequestImageTableViewCell"
+        static let SHShoutTableViewCell = "SHShoutTableViewCell"
+        static let SHTopTagTableViewCell = "SHTopTagTableViewCell"
+        static let SHFilterCheckTableViewCell = "SHFilterCheckTableViewCell"
     }
     
     struct CollectionViewCell {
@@ -87,5 +100,21 @@ struct Constants {
     
     struct Notification {
         static let LocationUpdated  = ".notification.LocationUpdated"
+    }
+    
+    struct Filter {
+        static let kLeftLable = "kLeftLablel"
+        static let kRightLable = "kRightLablel"
+        static let kCellType = "kCellType"
+        static let KTagsArray = "KTagsArray"
+        
+        
+        static let kStandardCellId = "kStandardCellId"
+        static let kTextFieldCellId = "kTextFieldCellId"
+        static let kCenterCellId = "kCenterCellId"
+        static let kTagsCellId = "SHFilterTagsTableViewCell"
+        
+        static let kIsApply = "kIsApply"
+        static let kSelectorName = "kSelectorName"
     }
 }

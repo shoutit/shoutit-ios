@@ -33,7 +33,7 @@ class SHModalWebViewController: UIViewController {
     }
     
     func presentFromViewController(parent: UIViewController, withHTMLFile: String) {
-        if let vc = Constants.ViewControllers.MODEL_WEB as? SHModalWebViewController, let contents = NSBundle.mainBundle().pathForResource(withHTMLFile, ofType: "html") {
+        if let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.MODEL_WEB)  as? SHModalWebViewController, let contents = NSBundle.mainBundle().pathForResource(withHTMLFile, ofType: "html") {
             vc.htmlData = NSData(contentsOfFile: contents)
             let navController = UINavigationController(rootViewController: vc)
             parent.presentViewController(navController, animated: true, completion: nil)
@@ -41,7 +41,7 @@ class SHModalWebViewController: UIViewController {
     }
     
     func presentFromViewController(parent: UIViewController, with HTMLString: String) {
-        if let vc = Constants.ViewControllers.MODEL_WEB as? SHModalWebViewController {
+        if let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.MODEL_WEB) as? SHModalWebViewController {
             vc.HTMLString = HTMLString
             vc.webView.loadHTMLString(HTMLString, baseURL: nil)
             let navController = UINavigationController(rootViewController: vc)

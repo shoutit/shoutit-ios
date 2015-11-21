@@ -10,6 +10,12 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     
+    var fetchedResultsController = []
+    var emptyContentView = SHEmptyContentView()
+    var loadMoreView = SHLoadMoreView()
+    var loading: Bool?
+    var visible: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViewModel()

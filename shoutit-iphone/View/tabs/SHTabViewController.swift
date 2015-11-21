@@ -33,8 +33,8 @@ class SHTabViewController: UITabBarController {
     
     private func addTabs() {
         // Setup Tabs
-        let discoverVC = Constants.ViewControllers.DISCOVER_VC
-        let streamVC = Constants.ViewControllers.STREAM_VC
+        let discoverVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC)
+        let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC)
         let createShoutVC = Constants.ViewControllers.CREATE_SHOUT
         
         self.viewControllers = [
