@@ -81,7 +81,7 @@
         <!--Title-->
         <scene sceneID="bKL-ii-gPJ">
             <objects>
-                <tableViewController storyboardIdentifier="SHShoutDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jfq-Pw-XRn" customClass="SHShoutDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHShoutDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jfq-Pw-XRn" customClass="SHShoutDetailTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="10" sectionFooterHeight="10" id="xWk-ve-VoE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,7 +259,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="contactAction:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="f5V-CL-m74"/>
+                                        <action selector="contactAction:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="TTX-PX-XXY"/>
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clockIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="ybd-6G-nhY">
@@ -289,7 +289,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="share:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="4Ba-o0-uzA"/>
+                                        <action selector="share:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="Lhu-AD-aMT"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-id-cx9">
@@ -302,7 +302,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="reportAction:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="kzK-I7-hGD"/>
+                                        <action selector="reportAction:" destination="Jfq-Pw-XRn" eventType="touchUpInside" id="Y8o-Tv-Vq2"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-pU-4hw">
@@ -332,7 +332,7 @@
                         <barButtonItem key="rightBarButtonItem" image="chatTabBar.png" id="taX-Ie-qUQ">
                             <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="replyAction:" destination="Jfq-Pw-XRn" id="00X-UG-sYn"/>
+                                <action selector="replyAction:" destination="Jfq-Pw-XRn" id="sno-CX-LZz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -341,21 +341,21 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
-                        <outlet property="categoryLabel" destination="1fs-KC-G7f" id="Xxy-Hq-j5P"/>
-                        <outlet property="collectionView" destination="3Gv-rJ-ATi" id="slT-Ud-QZO"/>
-                        <outlet property="descriptionTextView" destination="LbX-lA-7E6" id="br9-Bv-sWB"/>
-                        <outlet property="locationLabel" destination="xpJ-7v-eNg" id="irr-Zd-URN"/>
-                        <outlet property="mapView" destination="qjk-ql-QY5" id="V9t-p3-eaP"/>
-                        <outlet property="pageControl" destination="b0G-FF-v39" id="BLr-r5-N2R"/>
-                        <outlet property="priceLabel" destination="uZM-U1-6GT" id="Rhw-23-c1i"/>
-                        <outlet property="profileButton" destination="K80-mI-6t8" id="7yp-q9-hMd"/>
-                        <outlet property="profileImageView" destination="m84-hE-MQE" id="tdH-6S-bEY"/>
-                        <outlet property="reportButton" destination="gdo-id-cx9" id="OiT-N1-QLr"/>
-                        <outlet property="shareButton" destination="UMD-hF-Whi" id="qp4-ee-010"/>
-                        <outlet property="tagList" destination="9s7-xg-3dY" id="Dld-XC-ff9"/>
-                        <outlet property="timeLabel" destination="C97-vz-wdf" id="EVQ-0M-w3X"/>
-                        <outlet property="titleLabel" destination="HZE-pU-4hw" id="4UJ-fO-uOp"/>
-                        <outlet property="typeLabel" destination="5zK-RD-nXf" id="AU3-HX-Y6G"/>
+                        <outlet property="categoryLabel" destination="Fc2-AX-xEt" id="GVw-mi-3xR"/>
+                        <outlet property="collectionView" destination="3Gv-rJ-ATi" id="mTW-xi-SSL"/>
+                        <outlet property="descriptionTextView" destination="LbX-lA-7E6" id="BGO-Ni-EE1"/>
+                        <outlet property="locationLabel" destination="xpJ-7v-eNg" id="NGY-8U-5a1"/>
+                        <outlet property="mapView" destination="qjk-ql-QY5" id="iTD-Oy-owO"/>
+                        <outlet property="pageControl" destination="b0G-FF-v39" id="59J-yC-BO7"/>
+                        <outlet property="priceLabel" destination="uZM-U1-6GT" id="xue-RM-jeh"/>
+                        <outlet property="profileButton" destination="K80-mI-6t8" id="8Ce-NR-0bJ"/>
+                        <outlet property="profileImageView" destination="m84-hE-MQE" id="q6O-Rd-kuX"/>
+                        <outlet property="reportButton" destination="gdo-id-cx9" id="9Ap-SV-fF4"/>
+                        <outlet property="shareButton" destination="UMD-hF-Whi" id="nXA-6x-ajq"/>
+                        <outlet property="tagList" destination="9s7-xg-3dY" id="bfP-KR-L0L"/>
+                        <outlet property="timeLabel" destination="C97-vz-wdf" id="lBg-9B-NId"/>
+                        <outlet property="titleLabel" destination="HZE-pU-4hw" id="H9b-An-Byo"/>
+                        <outlet property="typeLabel" destination="5zK-RD-nXf" id="nvN-Jj-ukp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4n2-dU-ftu" userLabel="First Responder" sceneMemberID="firstResponder"/>

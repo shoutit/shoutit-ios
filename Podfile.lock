@@ -12,6 +12,7 @@ PODS:
   - Crashlytics (3.4.0):
     - Fabric (~> 1.6.0)
   - CryptoSwift (0.1.1)
+  - DACircularProgress (2.3.1)
   - DWTagList (0.0.7)
   - Fabric (1.6.0):
     - Fabric/Base (= 1.6.0)
@@ -26,6 +27,8 @@ PODS:
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.7.1):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.8.0):
     - FBSDKCoreKit
   - GoogleAppUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
@@ -49,6 +52,10 @@ PODS:
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
   - ObjectMapper (1.0.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -68,12 +75,14 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
+  - FBSDKShareKit (~> 4.8)
   - GoogleMaps (~> 1.10)
   - GoogleSignIn (~> 2.4)
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
   - Kingfisher (~> 1.8)
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
+  - MWPhotoBrowser (~> 2.1)
   - ObjectMapper (~> 1.0)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
@@ -97,10 +106,12 @@ SPEC CHECKSUMS:
   Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   Crashlytics: 1ee87895c37472eb3f01f409ea1654a464d2f8d4
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb
   Fabric: d737eda3a26ac940a5430230eedb35f16b226131
   FBSDKCoreKit: 9141b70960a37930850370495fe565f4a27ac141
   FBSDKLoginKit: c11ed3c2833472db3bb4a4aecf27af4a6f69b173
+  FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
@@ -112,6 +123,7 @@ SPEC CHECKSUMS:
   Kingfisher: 4d40a6d8a0030b575be66593cae3aea587971a67
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106

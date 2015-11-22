@@ -48,6 +48,7 @@ struct Constants {
         static let COLOR_SHOUT_RED = "#ca3c3c"
         static let COLOR_SHOUT_DARK_GREEN = "#658529"
         static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
+        static let COLOR_SHOUTDETAIL_PROFILEIMAGE = "#e8e8e8"
     }
     
     struct ViewControllers {
