@@ -11,7 +11,7 @@ import UIKit
 class SHCategoryTagsViewController: BaseTableViewController {
     
     var viewModel: SHCategoryTagsViewModel?
-    var selectedBlock: (([AnyObject]) -> ())?
+    var selectedBlock: (([SHTag]) -> ())?
     var oldTags = []
     var hardCodedTags = []
     var selectedDict = [String: AnyObject]()
@@ -61,8 +61,9 @@ class SHCategoryTagsViewController: BaseTableViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
         viewModel?.viewWillDisappear()
+        
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidDisappear(animated: Bool) {

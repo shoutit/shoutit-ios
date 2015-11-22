@@ -12,6 +12,8 @@ import DWTagList
 class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataSource, UITableViewDelegate, DWTagListDelegate {
 
     private let viewController: SHFilterViewController
+    private var tapTagsSelect: UITapGestureRecognizer?
+    
     let filters = SHFilterMeta()
     
     required init(viewController: SHFilterViewController) {
@@ -21,6 +23,8 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     
     func viewDidLoad() {
         self.configureFilter()
+        
+        self.tapTagsSelect = UITapGestureRecognizer(target: self, action: "selectTags:")
     }
     
     func viewWillAppear() {
@@ -72,35 +76,20 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.section < 4)
-        {
-//            let dict = self.viewController.filters[indexPath.section][indexPath.row]
-//            if(String(dict["kCellType"]) == Constants.Filter.kTagsCellId) {
-//                let cell = tableView.dequeueReusableCellWithIdentifier(String(dict["kCellType"]), forIndexPath: indexPath) as? SHFilterTagsTableViewCell
-//                cell?.tagList.setTags(dict["KTagsArray"] as! [AnyObject])
-//                cell?.tagList.automaticResize = true
-//                cell?.tagList.horizontalPadding = 0
-//                cell?.tagList.userInteractionEnabled = true
-//                if let cellFrameHeight = cell?.frame.size.height, cellTaglistContHeight = cell?.tagList.contentSize.height, cellTaglistFrameHeight = cell?.tagList.frame.size.height {
-//                    return fmax(40, cellFrameHeight + cellTaglistContHeight - cellTaglistFrameHeight)
-//                } else {
-//                    return 40
-//                }
-//                
-//            } else {
-//                return 40
-//            }
-            return 40
-        } else {
-            return 40
+        if let tags = filters.tags where !tags.kCellType.isEmpty && indexPath.section == 0 && indexPath.row == 2 {
+            if let cell = self.viewController.tableView.dequeueReusableCellWithIdentifier(tags.kCellType) as? SHFilterTagsTableViewCell {
+                cell.tagList.setTags(tags.KTagsArray)
+                cell.tagList.automaticResize = true
+                cell.tagList.horizontalPadding = 0
+                cell.tagList.userInteractionEnabled = true
+                let cellFrameHeight = cell.frame.size.height, cellTaglistContHeight = cell.tagList.contentSize.height, cellTaglistFrameHeight = cell.tagList.frame.size.height
+                return fmax(40, cellFrameHeight + cellTaglistContHeight - cellTaglistFrameHeight)
+            }
         }
+        return 40
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if (indexPath.row >= self.viewController.fetchedResultsController.count - Constants.Common.SH_PAGE_SIZE / 3) {
-           // self.triggerLoadMore()
-        }
-        
         if(indexPath.section == 4) {
             if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as? SHTopTagTableViewCell {
                 cell.listenButton.hidden = true
@@ -113,112 +102,72 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
             }
         }
         if (indexPath.section == 0 && indexPath.row == 0) {
-        if let category = filters.category {
-               let cellId = category.kCellType
+            if let category = filters.category {
+                let cellId = category.kCellType
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = category.kLeftLabel
                     cell.rightLabel.text = category.kRightLabel
-//                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-//                        if(kIsApply) {
-//                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-//                        } else {
-//                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-//                        }
-//                    }
                     return cell
+                }
             }
-        }
         } else if(indexPath.section == 0 && indexPath.row == 1) {
             if let type = filters.type {
                 let cellId = type.kCellType
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = type.kLeftLabel
                     cell.rightLabel.text = type.kRightLabel
-                    //                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-                    //                        if(kIsApply) {
-                    //                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                    //                        } else {
-                    //                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-                    //                        }
-                    //                    }
                     return cell
-                    
                 }
-                
             }
         } else if(indexPath.section == 0 && indexPath.row == 2) {
             if let tags = filters.tags {
                 let cellId = tags.kCellType
-                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
-                    cell.leftLabel.text = tags.kLeftLabel
-                    cell.rightLabel.text = tags.kRightLabel
-                    //                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-                    //                        if(kIsApply) {
-                    //                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                    //                        } else {
-                    //                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-                    //                        }
-                    //                    }
+                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterTagsTableViewCell {
+                    cell.leftLabel.text = self.filters.tags?.kLeftLabel
+                    cell.tagList.setTags(self.filters.tags?.KTagsArray)
+                    cell.tagList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
+                    cell.tagList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
+                    cell.tagList.tagDelegate = self
+                    cell.tagList.textShadowColor = UIColor.clearColor()
+                    cell.tagList.automaticResize = true
+                    cell.tagList.horizontalPadding = 0
+                    cell.tagList.userInteractionEnabled = true
+                    if let tapGesture = self.tapTagsSelect {
+                        cell.tagList.addGestureRecognizer(tapGesture)
+                    }
+                    cell.tagList.scrollEnabled = false
                     return cell
-                    
                 }
             }
             
-            } else if(indexPath.section == 1 && indexPath.row == 0) {
-                if let price = filters.price {
-                    let cellId = price.kCellType
-                    if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
-                        cell.leftLabel.text = price.kLeftLabel
-                        cell.rightLabel.text = price.kRightLabel
-                        //                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-                        //                        if(kIsApply) {
-                        //                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                        //                        } else {
-                        //                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-                        //                        }
-                        //                    }
-                        return cell
-                        
-                    }
-                    
+        } else if(indexPath.section == 1 && indexPath.row == 0) {
+            if let price = filters.price {
+                let cellId = price.kCellType
+                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
+                    cell.leftLabel.text = price.kLeftLabel
+                    cell.rightLabel.text = price.kRightLabel
+                    return cell
                 }
-            } else if(indexPath.section == 2 && indexPath.row == 0) {
-                if let location = filters.location {
-                    let cellId = location.kCellType
-                    if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
-                        cell.leftLabel.text = location.kLeftLabel
-                        cell.rightLabel.text = location.kRightLabel
-                        //                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-                        //                        if(kIsApply) {
-                        //                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                        //                        } else {
-                        //                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-                        //                        }
-                        //                    }
-                        return cell
-                        
-                    }
-                    
-                }
-            } else if(indexPath.section == 3 && indexPath.row == 0) {
-                if let reset = filters.reset {
-                    let cellId = reset.kCellType
-                    if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterCenterTableViewCell {
-                        cell.centerLabel.text = reset.kLeftLabel
-                        
-                        //                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-                        //                        if(kIsApply) {
-                        //                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                        //                        } else {
-                        //                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-                        //                        }
-                        //                    }
-                        return cell
-                        
-                    }
-                    
+                
+            }
+        } else if(indexPath.section == 2 && indexPath.row == 0) {
+            if let location = filters.location {
+                let cellId = location.kCellType
+                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
+                    cell.leftLabel.text = location.kLeftLabel
+                    cell.rightLabel.text = location.kRightLabel
+                    return cell
                 }
             }
+        } else if(indexPath.section == 3 && indexPath.row == 0) {
+            if let reset = filters.reset {
+                let cellId = reset.kCellType
+                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterCenterTableViewCell {
+                    cell.centerLabel.text = reset.kLeftLabel
+                    return cell
+                }
+            }
+        }
         return UITableViewCell()
     }
 //        if let dict = self.viewController.filters[indexPath.section][indexPath.row] {
@@ -375,28 +324,19 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         if let tags = self.viewController.filter?.tags {
             vc?.oldTags = tags
         }
-        vc?.selectedBlock = {(tagArray: [AnyObject]) in
+        vc?.selectedBlock = {(tagArray: [SHTag]) in
             if(tagArray.count > 0) {
-//                if(self.tagExist(tagArray[0])) {
-//                    return
-//                }
-                if(self.viewController.filter?.tags.count == 0) {
-                    self.viewController.filter?.tags = tagArray
-                } else {
-                    self.viewController.filter?.tags = tagArray
-                }
-                var strArray = [String]()
-                if let tags = self.viewController.filter?.tags {
-                    for tag in tags {
-                        strArray.append(tag.name)
-                    }
+                self.viewController.filter?.tags = tagArray
+                var strArray: [String] = []
+                for tag in tagArray {
+                    strArray.append(tag.name)
                 }
                 if let tagsMeta = self.filters.tags {
-                    tagsMeta.KTagsArray = strArray
+                    tagsMeta.KTagsArray += strArray
                 }
                 self.viewController.filter?.isApplied = true
                 self.viewController.tableView.reloadData()
-        }
+            }
         }
         self.viewController.navigationController?.pushViewController(vc!, animated: true)
     }
@@ -466,7 +406,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         filters.tags = SHFilterTags(kLeftLabel: NSLocalizedString("Tags", comment: "Tags"),
             kRightLabel: "",
             KTagsArray: [],
-            kCellType: Constants.Filter.kStandardCellId,
+            kCellType: Constants.Filter.kTagsCellId,
             kSelectorName: "selectTags:")
         
         filters.price = SHFilterPrice(kLeftLabel: NSLocalizedString("Price", comment: "Price"),

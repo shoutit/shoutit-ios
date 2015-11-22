@@ -47,18 +47,16 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHFilterCheckTableViewCell, forIndexPath: indexPath) as? SHFilterCheckTableViewCell {
-            cell.leftLabel.text = self.viewController.dataArray[indexPath.row]
-            if(indexPath.row == self.viewController.selectedRow) {
-                cell.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-            } else {
-                cell.leftLabel.textColor = UIColor.darkTextColor()
-                cell.accessoryType = UITableViewCellAccessoryType.None
-            }
-            return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHFilterCheckTableViewCell, forIndexPath: indexPath) as! SHFilterCheckTableViewCell
+        cell.leftLabel.text = self.viewController.dataArray[indexPath.row]
+        if(indexPath.row == self.viewController.selectedRow) {
+            cell.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell.leftLabel.textColor = UIColor.darkTextColor()
+            cell.accessoryType = UITableViewCellAccessoryType.None
         }
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
