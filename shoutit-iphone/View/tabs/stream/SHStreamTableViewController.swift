@@ -21,11 +21,13 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     var shouts: [SHShout] = []
     var shoutType: ShoutType = .Offer
     let tagsApi = SHApiTagsService()
+    let shoutApi = SHApiShoutService()
     var isSearchMode = false
     var location: SHAddress?
     var previousYOffset = 0
     var deltaYOffset = 0
     var subTitleLabel: UILabel?
+    
     private var filterViewController: SHFilterViewController?
     
     override func viewDidLoad() {
@@ -240,123 +242,116 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     }
     
     // MARK - SHFilterViewControllerDelegate
-    func applyFilter(filter: SHFilter?, isApplied: Bool) {
-        if let shFilter = filter {
-            //            if let location = shFilter.location {
-            //                self.viewController.location = location
-            //                self.updateSubtitleLabel()
-            //            }
-            //            if(shFilter.type == NSLocalizedString("Tag", comment: "Tag")) {
-            //                if(self.viewController.isSearchMode) {
-            //                    self.viewController.tagsApi.filter = shFilter
-            //                    if let query = self.viewController.searchQuery {
-            //                        self.viewController.tagsApi.searchTagQuery(query)
-            //                    }
-            //                    // TODO
-            ////                    self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-            //                } else {
-            //                    self.viewController.tagsApi.filter = shFilter
-            //                    if let location = self.viewController.location {
-            //                        self.viewController.tagsApi.refreshTopTagsForLocation(location)
-            //                        // TODO
-            ////                        self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-            //                    }
-            //
-            //                }
-            //                self.viewController.selectedSegment = 2
-            //                self.viewController.tableView.reloadData()
-            //                self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-            //                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            //            } else if (shFilter.type == "Offer") {
-            //                self.viewController.shoutApi.filter = shFilter
-            //self.fetchedResultsController = self.shoutModel.offerShouts;
-            //                self.viewController.selectedSegment = 0
-            //                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-            //                    let query = self.viewController.searchQuery {
-            //                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-            //                            self.updateUI(shShoutMeta)
-            //                            }, completionHandler: { (response) -> Void in
-            //                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-            //                                if(response.result.isSuccess) {
-            //                                    if let shShoutMeta = response.result.value {
-            //                                        self.updateUI(shShoutMeta)
-            //                                    }
-            //
-            //                                } else {
-            //                                    // Do Nothing
-            //                                }
-            //
-            //                        })
-            //                        self.viewController.tableView.reloadData()
-            //                        self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-            //                        self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            //                }
-            
-            //            } else {
-            //                self.viewController.shoutApi.filter = shFilter
-            // TODO
-            //                self.viewController.fetchedResultsController = self.viewController.shoutApi.requestShouts
-            //                self.viewController.selectedSegment = 1
-            //                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-            //                    let query = self.viewController.searchQuery {
-            //                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-            //                            self.updateUI(shShoutMeta)
-            //                            }, completionHandler: { (response) -> Void in
-            //                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-            //                                if(response.result.isSuccess) {
-            //                                    if let shShoutMeta = response.result.value {
-            //                                        self.updateUI(shShoutMeta)
-            //                                    }
-            //
-            //                                } else {
-            //                                    // Do Nothing
-            //                                }
-            //
-            //                        })
-            //                        self.viewController.tableView.reloadData()
-            //                }
-            //                self.viewController.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-            //                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            //            }
-            // TODO
-            //            self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
+    func applyFilter(shFilter: SHFilter?, isApplied: Bool) {
+        if let filter = shFilter {
+            if let location = filter.location {
+                if let oauthToken = SHOauthToken.getFromCache() where oauthToken.isSignedIn(), let userName = oauthToken.user?.username, let latitude = location.latitude, let longitude = location.longitude {
+                    // Update User's Location
+                    SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
+                    SHApiUserService().updateLocation(userName, latitude: latitude, longitude: longitude, completionHandler: { (response) -> Void in
+                            SHProgressHUD.dismiss()
+                            if response.result.isSuccess {
+                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.CUSTOM_LOCATION)
+                                oauthToken.updateUser(response.result.value)
+                            }
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                    })
+                }
+            }
+            shoutApi.filter = filter
+            viewModel?.getLatestShouts()
         }
-        
-        //        self.selectedSegment = 0;
-        //
-        //        [self.shoutModel setFilter:filter];
-        //        [self.topTagModel setFilter:filter];
-        //        [self.searchTagModel setFilter:filter];
-        //
-        //        [[SHLocationManager getInstance] addressOfCurrentLocationSuccess:^(SHLocationManager *manager, SHAddress *address)
-        //            {
-        //            self.location = address;
-        //
-        //            if (self.selectedSegment == 0 || self.selectedSegment == 1)
-        //            {
-        //            self.fetchedResultsController = self.shoutModel.offerShouts;
-        //            [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
-        //            }else{
-        //            self.isSearchMode = NO;
-        //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-        //            ^{
-        //            [self.topTagModel refreshTopTagsForLocation:self.location];
-        //            });
-        //            }
-        //            } failure:^(SHLocationManager *manager, NSError *error, SHAddress *userAddress) {
-        //            self.location = userAddress;
-        //            if (self.selectedSegment == 0 || self.selectedSegment == 1)
-        //            {
-        //            self.fetchedResultsController = self.shoutModel.offerShouts;
-        //            [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
-        //            }else{
-        //            self.isSearchMode = NO;
-        //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-        //            ^{
-        //            [self.topTagModel refreshTopTagsForLocation:self.location];
-        //            });
-        //            }
-        //            }];
+//        if (filter) {
+//            if(filter.location)
+//            {
+//                self.location = filter.location;
+//                
+//                [self updateSubtitleLabel];
+//            }
+//            if([filter.type isEqualToString:NSLocalizedString(@"Tag", @"Tag")])
+//            {
+//                if (self.isSearchMode)
+//                {
+//                    [self.searchTagModel setFilter:filter];
+//                    [self.searchTagModel searchTagQuery:self.searchQuery];
+//                    self.fetchedResultsController = [self.searchTagModel.tags mutableCopy];
+//                    
+//                }else{
+//                    [self.topTagModel setFilter:filter];
+//                    [self.topTagModel refreshTopTagsForLocation:self.location];
+//                    self.fetchedResultsController = [self.topTagModel.tags mutableCopy];
+//                }
+//                self.selectedSegment = 2;
+//                
+//                [self.tableView reloadData];
+//                self.tableView.backgroundColor = [UIColor whiteColor];
+//                self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//                
+//            }else if([filter.type isEqualToString:@"Offer"]){
+//                [self.shoutModel setFilter:filter];
+//                self.fetchedResultsController = self.shoutModel.offerShouts;
+//                self.selectedSegment = 0;
+//                [self.shoutModel searchStreamForLocation:self.location ofType:self.selectedSegment query:self.searchQuery];
+//                [self.tableView reloadData];
+//                self.tableView.backgroundColor = [UIColor whiteColor];
+//                self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//                
+//            }else{
+//                [self.shoutModel setFilter:filter];
+//                self.fetchedResultsController = self.shoutModel.requestShouts;
+//                self.selectedSegment = 1;
+//                [self.shoutModel searchStreamForLocation:self.location ofType:self.selectedSegment query:self.searchQuery];
+//                [self.tableView reloadData];
+//                self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//                self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//                
+//            }
+//            self.lastResultCount = self.fetchedResultsController.count;
+//            
+//        }else{
+//            self.selectedSegment = 0;
+//            
+//            [self.shoutModel setFilter:filter];
+//            [self.topTagModel setFilter:filter];
+//            [self.searchTagModel setFilter:filter];
+//            
+//            [[SHLocationManager getInstance] addressOfCurrentLocationSuccess:^(SHLocationManager *manager, SHAddress *address)
+//                {
+//                self.location = address;
+//                
+//                if (self.selectedSegment == 0 || self.selectedSegment == 1)
+//                {
+//                self.fetchedResultsController = self.shoutModel.offerShouts;
+//                [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
+//                }else{
+//                self.isSearchMode = NO;
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+//                ^{
+//                [self.topTagModel refreshTopTagsForLocation:self.location];
+//                });
+//                }
+//                } failure:^(SHLocationManager *manager, NSError *error, SHAddress *userAddress) {
+//                self.location = userAddress;
+//                if (self.selectedSegment == 0 || self.selectedSegment == 1)
+//                {
+//                self.fetchedResultsController = self.shoutModel.offerShouts;
+//                [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
+//                }else{
+//                self.isSearchMode = NO;
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+//                ^{
+//                [self.topTagModel refreshTopTagsForLocation:self.location];
+//                });
+//                }
+//                }];
+//            
+//            
+//        }
+//        
+//        
+//        
+//        self.lastResultCount = [self.fetchedResultsController count];
+//        [self updateFooterLabel];
         
     }
     

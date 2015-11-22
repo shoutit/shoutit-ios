@@ -14,7 +14,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     private var viewController: SHStreamTableViewController
     private var spinner: UIActivityIndicatorView?
     private var shShoutMeta: SHShoutMeta?
-    private let shoutApi = SHApiShoutService()
     private var pulltoRefreshLabel: UILabel?
     
     required init(viewController: SHStreamTableViewController) {
@@ -68,9 +67,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func triggerSearchForBar() {
-        self.shoutApi.resetPage()
+        self.viewController.shoutApi.resetPage()
         if let location = self.viewController.location, let query = self.viewController.searchQuery {
-            self.shoutApi.searchStreamForLocation(location, type: self.viewController.shoutType, query: query, cacheResponse: { (shShoutMeta) -> Void in
+            self.viewController.shoutApi.searchStreamForLocation(location, type: self.viewController.shoutType, query: query, cacheResponse: { (shShoutMeta) -> Void in
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
@@ -188,7 +187,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         if let location = self.viewController.location, let shShoutMeta = self.shShoutMeta where !shShoutMeta.next.isEmpty {
             self.viewController.loading = true
             self.viewController.loadMoreView.showLoading()
-            self.shoutApi.loadShoutStreamNextPageForLocation(location, type: self.viewController.shoutType, query: self.viewController.searchQuery, cacheResponse: { (shShoutMeta) -> Void in
+            self.viewController.shoutApi.loadShoutStreamNextPageForLocation(location, type: self.viewController.shoutType, query: self.viewController.searchQuery, cacheResponse: { (shShoutMeta) -> Void in
                 // Do Nothing
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
@@ -263,7 +262,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.navigationItem.titleView =  twoLineTitleView
     }
     
-    private func getLatestShouts() {
+    func getLatestShouts() {
         self.viewController.searchQuery = nil
         self.viewController.searchBar.text = ""
         self.viewController.mode = "Search"
@@ -274,9 +273,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.tableView.reloadData()
         self.updateFooterView()
         self.updateFooterLabel()
-        self.shoutApi.resetPage()
+        self.viewController.shoutApi.resetPage()
         if let location = self.viewController.location {
-            self.shoutApi.refreshStreamForLocation(location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
+            self.viewController.shoutApi.refreshStreamForLocation(location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
@@ -295,7 +294,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     private func updateUI(shShoutMeta: SHShoutMeta) {
         self.shShoutMeta = shShoutMeta
-        if self.shoutApi.getCurrentPage() == 1 {
+        if self.viewController.shoutApi.getCurrentPage() == 1 {
             self.viewController.shouts = []
         }
         self.viewController.shouts += shShoutMeta.results
