@@ -140,7 +140,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         )
     }
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.backgroundColor = UIColor.clearColor()

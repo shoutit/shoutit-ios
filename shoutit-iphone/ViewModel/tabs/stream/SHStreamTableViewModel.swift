@@ -9,10 +9,9 @@
 import UIKit
 import Foundation
 
-class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, SHFilterViewControllerDelegate {
+class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
     
     private var viewController: SHStreamTableViewController
-    private var filterViewController: SHFilterViewController?
     private var spinner: UIActivityIndicatorView?
     private var shShoutMeta: SHShoutMeta?
     private let shoutApi = SHApiShoutService()
@@ -23,41 +22,18 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func viewDidLoad() {
-        self.viewController.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
-        self.viewController.tableView.scrollsToTop = true
-        let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
-        self.viewController.navigationItem.rightBarButtonItem = mapB
-        let loc = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("selectFilter:"))
-        self.viewController.navigationItem.leftBarButtonItem = loc
-        self.viewController.edgesForExtendedLayout = UIRectEdge.None
-        setupNavigationBar()
-        // Navigation Setup
-        self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         // Get Latest Shouts
         getLatestShouts()
         updateSubtitleLabel()
-        
-        // set Filter SB
-        self.filterViewController = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTER)  as? SHFilterViewController
-        self.filterViewController?.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
     }
     
     func locationUpdated(notification: NSNotification) {
-        if let filterVC = self.filterViewController, let userInfo = notification.userInfo, let location = userInfo["Location"] as? SHAddress {
-            self.viewController.location = location
-            filterVC.filter?.isApplied = true
-            filterVC.filter?.location = location
-            let string = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
-          //  filterVC.filters[2][0].setObject(string, forKey: Constants.Filter.kRightLablel)
-          //  filterVC.filters[2][0].setObject(1, forKey: Constants.Filter.kIsApply)
-            self.filterViewController?.applyAction(filterVC)
-        }
+        self.viewController.location = SHAddress.getUserOrDeviceLocation()
         getLatestShouts()
         setupNavigationBar()
     }
-    
     
     func viewWillAppear() {
         self.updateFooterView()
@@ -155,21 +131,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         getLatestShouts()
     }
     
-    func switchToMapView(sender: AnyObject) {
-        let mapViewController = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_MAP) 
-        UIView.beginAnimations("View Flip", context: nil)
-        UIView.setAnimationDuration(0.50)
-        UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-        UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromRight, forView: (self.viewController.navigationController?.view)!, cache: false)
-        self.viewController.navigationController?.pushViewController(mapViewController, animated: true)
-        UIView.commitAnimations()
-    }
-    
-    func selectFilter(sender: AnyObject) {
-        let navController = SHNavigationViewController(rootViewController: self.filterViewController!)
-        self.viewController.presentViewController(navController, animated: true, completion: nil)
-    }
-    
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -255,127 +216,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
     }
     
-    // MARK - SHFilterViewControllerDelegate
-    func applyFilter(filter: SHFilter?, isApplied: Bool) {
-        if let shFilter = filter {
-//            if let location = shFilter.location {
-//                self.viewController.location = location
-//                self.updateSubtitleLabel()
-//            }
-//            if(shFilter.type == NSLocalizedString("Tag", comment: "Tag")) {
-//                if(self.viewController.isSearchMode) {
-//                    self.viewController.tagsApi.filter = shFilter
-//                    if let query = self.viewController.searchQuery {
-//                        self.viewController.tagsApi.searchTagQuery(query)
-//                    }
-//                    // TODO
-////                    self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-//                } else {
-//                    self.viewController.tagsApi.filter = shFilter
-//                    if let location = self.viewController.location {
-//                        self.viewController.tagsApi.refreshTopTagsForLocation(location)
-//                        // TODO
-////                        self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-//                    }
-//                    
-//                }
-//                self.viewController.selectedSegment = 2
-//                self.viewController.tableView.reloadData()
-//                self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-//                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-//            } else if (shFilter.type == "Offer") {
-//                self.viewController.shoutApi.filter = shFilter
-                //self.fetchedResultsController = self.shoutModel.offerShouts;
-//                self.viewController.selectedSegment = 0
-//                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-//                    let query = self.viewController.searchQuery {
-//                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-//                            self.updateUI(shShoutMeta)
-//                            }, completionHandler: { (response) -> Void in
-//                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-//                                if(response.result.isSuccess) {
-//                                    if let shShoutMeta = response.result.value {
-//                                        self.updateUI(shShoutMeta)
-//                                    }
-//                                    
-//                                } else {
-//                                    // Do Nothing
-//                                }
-//                                
-//                        })
-//                        self.viewController.tableView.reloadData()
-//                        self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-//                        self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-//                }
-                
-//            } else {
-//                self.viewController.shoutApi.filter = shFilter
-                // TODO
-//                self.viewController.fetchedResultsController = self.viewController.shoutApi.requestShouts
-//                self.viewController.selectedSegment = 1
-//                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-//                    let query = self.viewController.searchQuery {
-//                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-//                            self.updateUI(shShoutMeta)
-//                            }, completionHandler: { (response) -> Void in
-//                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-//                                if(response.result.isSuccess) {
-//                                    if let shShoutMeta = response.result.value {
-//                                        self.updateUI(shShoutMeta)
-//                                    }
-//                                    
-//                                } else {
-//                                    // Do Nothing
-//                                }
-//                                
-//                        })
-//                        self.viewController.tableView.reloadData()
-//                }
-//                self.viewController.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-//                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-//            }
-            // TODO
-//            self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
-        }
-        
-//        self.selectedSegment = 0;
-//        
-//        [self.shoutModel setFilter:filter];
-//        [self.topTagModel setFilter:filter];
-//        [self.searchTagModel setFilter:filter];
-//        
-//        [[SHLocationManager getInstance] addressOfCurrentLocationSuccess:^(SHLocationManager *manager, SHAddress *address)
-//            {
-//            self.location = address;
-//            
-//            if (self.selectedSegment == 0 || self.selectedSegment == 1)
-//            {
-//            self.fetchedResultsController = self.shoutModel.offerShouts;
-//            [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
-//            }else{
-//            self.isSearchMode = NO;
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-//            ^{
-//            [self.topTagModel refreshTopTagsForLocation:self.location];
-//            });
-//            }
-//            } failure:^(SHLocationManager *manager, NSError *error, SHAddress *userAddress) {
-//            self.location = userAddress;
-//            if (self.selectedSegment == 0 || self.selectedSegment == 1)
-//            {
-//            self.fetchedResultsController = self.shoutModel.offerShouts;
-//            [self.shoutModel refreshStreamForLocation:self.location ofType:self.selectedSegment];
-//            }else{
-//            self.isSearchMode = NO;
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-//            ^{
-//            [self.topTagModel refreshTopTagsForLocation:self.location];
-//            });
-//            }
-//            }];
-        
-    }
-    
     func updateSubtitleLabel() {
         if let location = self.viewController.location {
             self.viewController.subTitleLabel?.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
@@ -389,7 +229,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     // MARK Private
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.backgroundColor = UIColor.clearColor()
