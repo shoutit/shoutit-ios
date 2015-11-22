@@ -9,10 +9,10 @@
 import UIKit
 import ObjectMapper
 
-enum ShoutType {
-    case Offer
-    case Request
-    case VideoCV
+enum ShoutType : String {
+    case Offer = "offer"
+    case Request = "request"
+    case VideoCV = "cvRequest"
 }
 
 class SHShout: Mappable {
@@ -29,7 +29,7 @@ class SHShout: Mappable {
     var thumbnail = String()
     var videoUrl = String()
     var user: SHUser?
-    var datePublished: NSDate?
+    var datePublished: Double = 0.0
     var category: SHCategory?
     var tags: [SHTag]?
     

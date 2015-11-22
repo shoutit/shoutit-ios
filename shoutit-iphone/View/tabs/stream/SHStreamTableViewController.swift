@@ -8,20 +8,18 @@
 
 import UIKit
 
-class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate {
+class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate {
 
     private var viewModel: SHStreamTableViewModel?
     private var tap: UITapGestureRecognizer?
     private var dropMenu: DOPDropDownMenu?
-    @IBOutlet var tableView: UITableView!
+//    @IBOutlet var tableView: UITableView!
     
     var searchBar = UISearchBar()
     var mode: String?
     var searchQuery: String?
-    var lastResultCount: Int?
-    var fetchedResultsController = []
-    var selectedSegment: Int?
-    let shoutApi = SHApiShoutService()
+    var shouts: [SHShout] = []
+    var shoutType: ShoutType = .Offer
     let tagsApi = SHApiTagsService()
     var isSearchMode = false
     var location: SHAddress?
@@ -47,7 +45,7 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.searchBar = UISearchBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44))
         self.searchBar.delegate = self
         self.searchBar.placeholder = NSLocalizedString("Search", comment: "Search")
-        self.navigationController!.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
+        self.navigationController?.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
         self.showSearchBar(self.tableView)
         self.tableView.keyboardDismissMode = .OnDrag
         viewModel?.viewDidLoad()
@@ -146,36 +144,13 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if (searchBar.text != "") {
             self.searchQuery = searchBar.text
-            self.lastResultCount = 0
-            self.fetchedResultsController = []
+            self.shouts = []
             self.tableView.reloadData()
-          //  self.loading = true
-            if let loadMoreView = self.viewModel?.loadMoreView {
-                loadMoreView.showLoading()
-                loadMoreView.loadingLabel.text = ""
-            }
-        if (self.selectedSegment == 0 || self.selectedSegment == 1) {
-            if let location = self.location, let type = self.selectedSegment, let query = self.searchQuery{
-                self.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-                    self.viewModel!.updateUI(shShoutMeta)
-                    }, completionHandler: { (response) -> Void in
-                        self.tableView.pullToRefreshView.stopAnimating()
-                        if(response.result.isSuccess) {
-                            if let shShoutMeta = response.result.value {
-                                self.viewModel!.updateUI(shShoutMeta)
-                            }
-                            
-                        } else {
-                            // Do Nothing
-                        }
-                        
-                })
-            }
-        } else {
-            if let query = self.searchQuery {
-                self.tagsApi.searchTagQuery(query)
-            }
-            }
+            self.loading = true
+            loadMoreView.showLoading()
+            loadMoreView.loadingLabel.text = ""
+            
+            viewModel?.triggerSearchForBar()
             self.tableView.scrollEnabled = false
             self.isSearchMode = true
         } else {
@@ -184,20 +159,18 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        if(searchBar.text != "") {
-            self.isSearchMode = true
-        } else {
-            self.isSearchMode = false
-        }
+        self.isSearchMode = searchBar.text != ""
         self.dismissSearchKeyboard(searchBar)
     }
     
     func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
         self.dropMenu = DOPDropDownMenu(origin: CGPointMake(self.searchBar.frame.origin.x, self.searchBar.frame.origin.y + self.searchBar.frame.size.height), andHeight: 1)
-        self.dropMenu!.dataSource = self
-        self.dropMenu!.delegate = self
-        self.view.addSubview(dropMenu!)
-        self.dropMenu!.present()
+        self.dropMenu?.dataSource = self
+        self.dropMenu?.delegate = self
+        if let menu = dropMenu {
+            self.view.addSubview(menu)
+        }
+        self.dropMenu?.present()
     }
     
     func menu(menu: DOPDropDownMenu!, didSelectRowAtIndexPath indexPath: DOPIndexPath!) {
@@ -238,13 +211,19 @@ class SHStreamTableViewController: BaseViewController, UISearchBarDelegate, DOPD
         self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
             self.viewModel?.pullToRefresh()
         })
+        
+        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+            self.viewModel?.triggerLoadMore()
+        })
     }
     
     deinit {
         viewModel?.destroy()
         self.searchBar.delegate = nil
+        if let tap = self.tap {
+            self.tableView.removeGestureRecognizer(tap)
+        }
         self.tap = nil
-        
     }
     
 }

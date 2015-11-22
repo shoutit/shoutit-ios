@@ -47,17 +47,21 @@ class SHShoutTableViewCell: UITableViewCell {
         self.imageViewShout.layer.mask = mask
         self.imageViewShout.layer.masksToBounds = true
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-//        let date: NSDate = NSDate(timeIntervalSince1970: NSDate().timeIntervalSinceDate(shout.datePublished!))
-//        self.timeLabel.text = String(date)
-      //  let price = String(format: "%@ %@", arguments: [shout.currency, shout.price])
-      //  self.priceLabel.text = price
+        if shout.datePublished > 0 {
+            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        } else {
+            self.timeLabel.text = "-"
+        }
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        if let number = numberFormatter.numberFromString(String(format: "%g", shout.price)) {
+            let price = String(format: "%@ %@", shout.currency, number.stringValue)
+            self.priceLabel.text = price
+        }
         self.descriptionLabel.text = shout.text
+        self.titleLabel.text = shout.title
         if let city = shout.location?.city {
             self.locationLabel.text = String(format: "%@", arguments: [city])
-            self.timeLabel.text = shout.title
         }
     }
     
@@ -65,6 +69,5 @@ class SHShoutTableViewCell: UITableViewCell {
         self.clockImageView.hidden = true
         self.timeLabel.hidden = true
     }
-    
     
 }

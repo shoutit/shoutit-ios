@@ -43,14 +43,18 @@ class SHRequestImageTableViewCell: UITableViewCell {
         
         self.usernameLabel.text = shout.user?.name
         self.shoutTitleLabel.text = shout.title
-        let price = String(format: "%@ %@", arguments: [shout.currency, shout.price])
-        self.priceLabel.text = price
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        if let number = numberFormatter.numberFromString(String(format: "%g", shout.price)) {
+            let price = String(format: "%@ %@", shout.currency, number.stringValue)
+            self.priceLabel.text = price
+        }
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-        let date: NSDate = NSDate(timeIntervalSince1970: NSDate().timeIntervalSinceDate(shout.datePublished!))
-        self.timeLabel.text = String(date)
+        if shout.datePublished > 0 {
+            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        } else {
+            self.timeLabel.text = "-"
+        }
         
         self.locationLabel.text = shout.location?.city
         self.userImageView.kf_setImageWithURL(NSURL(string: (shout.user?.image)!)!, placeholderImage: UIImage(named: "no_image_available"))

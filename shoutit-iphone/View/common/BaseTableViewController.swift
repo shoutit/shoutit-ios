@@ -21,6 +21,16 @@ class BaseTableViewController: UITableViewController {
         initializeViewModel()
         
         self.tableView.keyboardDismissMode = .OnDrag
+        
+        var nibs = NSBundle.mainBundle().loadNibNamed("SHEmptyContentView", owner: self, options: nil)
+        if let emptyContentView = nibs.last as? SHEmptyContentView {
+            self.emptyContentView = emptyContentView
+        }
+        
+        nibs = NSBundle.mainBundle().loadNibNamed("SHLoadMoreView", owner: self, options: nil)
+        if let loadMoreView = nibs.last as? SHLoadMoreView {
+            self.loadMoreView = loadMoreView
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

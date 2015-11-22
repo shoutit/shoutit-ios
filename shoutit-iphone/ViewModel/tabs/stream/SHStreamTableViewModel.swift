@@ -11,13 +11,12 @@ import Foundation
 
 class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, SHFilterViewControllerDelegate {
     
-    
     private var viewController: SHStreamTableViewController
     private var filterViewController: SHFilterViewController?
     private var spinner: UIActivityIndicatorView?
-    private var loading: Bool?
-    private var emptyContentView: SHEmptyContentView?
-    var loadMoreView: SHLoadMoreView?
+    private var shShoutMeta: SHShoutMeta?
+    private let shoutApi = SHApiShoutService()
+    private var pulltoRefreshLabel: UILabel?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -35,7 +34,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         // Navigation Setup
         self.viewController.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         // Get Latest Shouts
-        getShouts()
+        getLatestShouts()
         updateSubtitleLabel()
         
         // set Filter SB
@@ -61,16 +60,12 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     
     func viewWillAppear() {
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        spinner!.frame = CGRectMake(0, 0, 24, 24)
-        spinner!.startAnimating()
-        self.viewController.tableView.pullToRefreshView?.setCustomView(spinner!, forState: 10)
         self.updateFooterView()
         self.viewController.searchBar.hidden = false
     }
     
     func viewDidAppear() {
-        
+        updateRefreshView()
     }
     
     func viewWillDisappear() {
@@ -84,6 +79,33 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     func destroy() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func updateRefreshView() {
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        let title = String(format: "%@: %@", NSLocalizedString("Last update", comment: "Last update"), formatter.stringFromDate(NSDate()))
+        
+        self.viewController.tableView.pullToRefreshView.subtitleLabel.text = title
+    }
+    
+    func triggerSearchForBar() {
+        self.shoutApi.resetPage()
+        if let location = self.viewController.location, let query = self.viewController.searchQuery {
+            self.shoutApi.searchStreamForLocation(location, type: self.viewController.shoutType, query: query, cacheResponse: { (shShoutMeta) -> Void in
+                self.updateUI(shShoutMeta)
+                }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    if(response.result.isSuccess) {
+                        if let shShoutMeta = response.result.value {
+                            self.updateUI(shShoutMeta)
+                        }
+                    } else {
+                        // Do Nothing
+                    }
+            })
+        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -116,41 +138,17 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         return scrollView.scrollsToTop
     }
     
-    func loadFromServer () {
-        if let location = self.viewController.location, let selectedSegment = self.viewController.selectedSegment, let query = self.viewController.searchQuery {
-            if (selectedSegment == 0 || selectedSegment == 1) {
-                self.viewController.shoutApi.loadShoutStreamNextPageForLocation(location, ofType: selectedSegment, query: query)
-            } else {
-                if (self.viewController.isSearchMode) {
-                    self.viewController.tagsApi.loadTagSearchNextPageForQuery(query)
-                } else {
-                    self.viewController.tagsApi.loadTopTagsNextPage()
-                }
-            }
-        }
-    }
-    
     func updateFooterLabel () {
-        if(self.viewController.selectedSegment == 0 || self.viewController.selectedSegment == 1) {
-            if (self.viewController.fetchedResultsController.count == 1) {
-                self.loadMoreView?.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Shout", comment: "Shout")])
-            } else {
-                self.loadMoreView?.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Shouts", comment: "Shouts")])
-            }
+        if (self.viewController.shouts.count == 1) {
+            self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.shouts.count, NSLocalizedString("Shout", comment: "Shout")])
         } else {
-            if(self.viewController.fetchedResultsController.count == 1) {
-                self.loadMoreView?.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Tag", comment: "Tag")])
-            } else {
-                self.loadMoreView?.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Tags", comment: "Tags")])
-            }
+            self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.viewController.shouts.count, NSLocalizedString("Shouts", comment: "Shouts")])
         }
     }
-    
-    
     
     func pullToRefresh() {
         spinner?.startAnimating()
-        self.getShouts()
+        getLatestShouts()
     }
     
     func switchToMapView(sender: AnyObject) {
@@ -171,39 +169,26 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if(indexPath.row >= self.viewController.fetchedResultsController.count - Constants.Common.SH_PAGE_SIZE / 3) {
-            self.triggerLoadMore()
-        }
+//        if(indexPath.row >= self.viewController.shouts.count - Constants.Common.SH_PAGE_SIZE / 3) {
+//            self.triggerLoadMore()
+//        }
         
-        let obj: AnyObject = self.viewController.fetchedResultsController[indexPath.row]
-        if(obj.isKindOfClass(SHShout)) {
-            let shout = obj as! SHShout
-            if(self.viewController.selectedSegment == 1) {
-                if(shout.videoUrl != "") {
-                    if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as? SHRequestVideoTableViewCell {
-                        cell.setShout(shout)
-                        return cell
-                    }
-                } else {
-                    if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as? SHRequestImageTableViewCell {
-                        cell.setShout(shout)
-                        return cell
-                    }
-                }
-            } else if (self.viewController.selectedSegment == 0) {
-                if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as? SHShoutTableViewCell {
-                    cell.setShout(shout)
-                    return cell
-                }
-                
-            }
-        } else {
-            if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as? SHTopTagTableViewCell, let shTag = obj as? SHTag {
-                cell.setTagCell(shTag)
+        let shout = self.viewController.shouts[indexPath.row]
+        if let type = shout.type where type == .Request {
+            if(shout.videoUrl != "") {
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
+                cell.setShout(shout)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell
+                cell.setShout(shout)
                 return cell
             }
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
+            cell.setShout(shout)
+            return cell
         }
-        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -211,17 +196,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (self.viewController.selectedSegment == 0) {
+        if (self.viewController.shoutType == .Offer) {
             return 100
-        } else if (self.viewController.selectedSegment == 1) {
-            return 348
         } else {
-            return 44
+            return 348
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.viewController.fetchedResultsController.count
+       return self.viewController.shouts.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -229,137 +212,125 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
 
     func updateFooterView() {
-        if(self.viewController.fetchedResultsController.count == 0) {
-            self.viewController.tableView.tableFooterView = self.emptyContentView
+        if(self.viewController.shouts.count == 0) {
+            self.viewController.tableView.tableFooterView = self.viewController.emptyContentView
         } else {
-            self.viewController.tableView.tableFooterView = self.loadMoreView
+            self.viewController.tableView.tableFooterView = self.viewController.loadMoreView
         }
     }
     
     func triggerLoadMore () {
-        if(self.viewController.selectedSegment == 0 || self.viewController.selectedSegment == 1) {
-            if let loading  = self.loading {
-                if(!loading && self.viewController.shoutApi.isMoreOfType(self.viewController.selectedSegment!)) {
-                        self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
-                        self.loading = true
-                        self.loadMoreView?.showLoading()
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                            if let location = self.viewController.location, let type = self.viewController.selectedSegment, let query = self.viewController.searchQuery {
-                                self.viewController.shoutApi.loadShoutStreamNextPageForLocation(location, ofType: type, query: query)
-                            }
-                        })
+        if let location = self.viewController.location, let shShoutMeta = self.shShoutMeta where !shShoutMeta.next.isEmpty {
+            self.viewController.loading = true
+            self.viewController.loadMoreView.showLoading()
+            self.shoutApi.loadShoutStreamNextPageForLocation(location, type: self.viewController.shoutType, query: self.viewController.searchQuery, cacheResponse: { (shShoutMeta) -> Void in
+                // Do Nothing
+                }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.infiniteScrollingView.stopAnimating()
+                    switch(response.result) {
+                    case .Success(let result):
+                        self.shShoutMeta = result
+                        self.viewController.tableView.beginUpdates()
+                        var insertedIndexPaths: [NSIndexPath] = []
+                        let currentCount = self.viewController.shouts.count
+                        for (index, _) in result.results.enumerate() {
+                            insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+                        }
+                        self.viewController.shouts += result.results
+                        self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                        self.viewController.tableView.endUpdates()
+                    case .Failure(let error):
+                        log.error("Error getting shout response \(error.localizedDescription)")
                     }
-            }
+            })
         } else {
-            self.triggerLoadMoreTags()
-        }
-    }
-    
-    func triggerLoadMoreTags () {
-        if(self.viewController.isSearchMode) {
-            if let loading = self.loading {
-                if (!loading && self.viewController.tagsApi.isMore()) {
-                        self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
-                        self.loading = true
-                        self.loadMoreView?.showLoading()
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                            self.loadFromServer()
-                        })
-                }
-            }
-        } else {
-            if let loading = self.loading {
-                if(!loading && self.viewController.tagsApi.isMore())  {
-                    
-                        self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
-                        self.loading = true
-                        self.loadMoreView?.showLoading()
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                            self.viewController.tagsApi.loadTopTagsNextPage()
-                        })
-                    }
-                
-            }
+            self.viewController.loadMoreView.showNoMoreContent()
+            self.updateFooterLabel()
+            self.updateFooterView()
         }
     }
     
     // MARK - SHFilterViewControllerDelegate
     func applyFilter(filter: SHFilter?, isApplied: Bool) {
         if let shFilter = filter {
-            if let location = shFilter.location {
-                self.viewController.location = location
-                self.updateSubtitleLabel()
-            }
-            if(shFilter.type == NSLocalizedString("Tag", comment: "Tag")) {
-                if(self.viewController.isSearchMode) {
-                    self.viewController.tagsApi.filter = shFilter
-                    if let query = self.viewController.searchQuery {
-                        self.viewController.tagsApi.searchTagQuery(query)
-                    }
-                    self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-                } else {
-                    self.viewController.tagsApi.filter = shFilter
-                    if let location = self.viewController.location {
-                        self.viewController.tagsApi.refreshTopTagsForLocation(location)
-                        self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
-                    }
-                    
-                }
-                self.viewController.selectedSegment = 2
-                self.viewController.tableView.reloadData()
-                self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            } else if (shFilter.type == "Offer") {
-                self.viewController.shoutApi.filter = shFilter
+//            if let location = shFilter.location {
+//                self.viewController.location = location
+//                self.updateSubtitleLabel()
+//            }
+//            if(shFilter.type == NSLocalizedString("Tag", comment: "Tag")) {
+//                if(self.viewController.isSearchMode) {
+//                    self.viewController.tagsApi.filter = shFilter
+//                    if let query = self.viewController.searchQuery {
+//                        self.viewController.tagsApi.searchTagQuery(query)
+//                    }
+//                    // TODO
+////                    self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
+//                } else {
+//                    self.viewController.tagsApi.filter = shFilter
+//                    if let location = self.viewController.location {
+//                        self.viewController.tagsApi.refreshTopTagsForLocation(location)
+//                        // TODO
+////                        self.viewController.fetchedResultsController = self.viewController.tagsApi.tags
+//                    }
+//                    
+//                }
+//                self.viewController.selectedSegment = 2
+//                self.viewController.tableView.reloadData()
+//                self.viewController.tableView.backgroundColor = UIColor.whiteColor()
+//                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+//            } else if (shFilter.type == "Offer") {
+//                self.viewController.shoutApi.filter = shFilter
                 //self.fetchedResultsController = self.shoutModel.offerShouts;
-                self.viewController.selectedSegment = 0
-                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-                    let query = self.viewController.searchQuery {
-                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-                            self.updateUI(shShoutMeta)
-                            }, completionHandler: { (response) -> Void in
-                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-                                if(response.result.isSuccess) {
-                                    if let shShoutMeta = response.result.value {
-                                        self.updateUI(shShoutMeta)
-                                    }
-                                    
-                                } else {
-                                    // Do Nothing
-                                }
-                                
-                        })
-                        self.viewController.tableView.reloadData()
-                        self.viewController.tableView.backgroundColor = UIColor.whiteColor()
-                        self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-                }
+//                self.viewController.selectedSegment = 0
+//                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
+//                    let query = self.viewController.searchQuery {
+//                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
+//                            self.updateUI(shShoutMeta)
+//                            }, completionHandler: { (response) -> Void in
+//                                self.viewController.tableView.pullToRefreshView.stopAnimating()
+//                                if(response.result.isSuccess) {
+//                                    if let shShoutMeta = response.result.value {
+//                                        self.updateUI(shShoutMeta)
+//                                    }
+//                                    
+//                                } else {
+//                                    // Do Nothing
+//                                }
+//                                
+//                        })
+//                        self.viewController.tableView.reloadData()
+//                        self.viewController.tableView.backgroundColor = UIColor.whiteColor()
+//                        self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+//                }
                 
-            } else {
-                self.viewController.shoutApi.filter = shFilter
-                self.viewController.fetchedResultsController = self.viewController.shoutApi.requestShouts
-                self.viewController.selectedSegment = 1
-                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
-                    let query = self.viewController.searchQuery {
-                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
-                            self.updateUI(shShoutMeta)
-                            }, completionHandler: { (response) -> Void in
-                                self.viewController.tableView.pullToRefreshView.stopAnimating()
-                                if(response.result.isSuccess) {
-                                    if let shShoutMeta = response.result.value {
-                                        self.updateUI(shShoutMeta)
-                                    }
-                                    
-                                } else {
-                                    // Do Nothing
-                                }
-                                
-                        })
-                        self.viewController.tableView.reloadData()
-                }
-                self.viewController.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            }
-            self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
+//            } else {
+//                self.viewController.shoutApi.filter = shFilter
+                // TODO
+//                self.viewController.fetchedResultsController = self.viewController.shoutApi.requestShouts
+//                self.viewController.selectedSegment = 1
+//                if let location = self.viewController.location, let type = self.viewController.selectedSegment,
+//                    let query = self.viewController.searchQuery {
+//                        self.viewController.shoutApi.searchStreamForLocation(location, ofType: type, query: query, cacheResponse: { (shShoutMeta) -> Void in
+//                            self.updateUI(shShoutMeta)
+//                            }, completionHandler: { (response) -> Void in
+//                                self.viewController.tableView.pullToRefreshView.stopAnimating()
+//                                if(response.result.isSuccess) {
+//                                    if let shShoutMeta = response.result.value {
+//                                        self.updateUI(shShoutMeta)
+//                                    }
+//                                    
+//                                } else {
+//                                    // Do Nothing
+//                                }
+//                                
+//                        })
+//                        self.viewController.tableView.reloadData()
+//                }
+//                self.viewController.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+//                self.viewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+//            }
+            // TODO
+//            self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
         }
         
 //        self.selectedSegment = 0;
@@ -452,58 +423,37 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.viewController.searchBar.text = ""
         self.viewController.mode = "Search"
         self.viewController.searchBar.placeholder = self.viewController.mode
-        self.loading = true
-        self.loadMoreView?.showNoMoreContent()
-        self.viewController.lastResultCount = 0
-        self.viewController.fetchedResultsController = []
+        self.viewController.loading = true
+        self.viewController.loadMoreView.showNoMoreContent()
+        self.viewController.shouts = []
         self.viewController.tableView.reloadData()
         self.updateFooterView()
         self.updateFooterLabel()
-        if(self.viewController.selectedSegment == 0 || self.viewController.selectedSegment == 1) {
-            if let location = self.viewController.location, let type = self.viewController.selectedSegment {
-                self.viewController.shoutApi.refreshStreamForLocation(location, ofType: type, cacheResponse: { (shShoutMeta) -> Void in
-                    self.updateUI(shShoutMeta)
-                    }, completionHandler: { (response) -> Void in
-                        self.viewController.tableView.pullToRefreshView.stopAnimating()
-                        if(response.result.isSuccess) {
-                            if let shShoutMeta = response.result.value {
-                                self.updateUI(shShoutMeta)
-                                self.viewController.tableView.reloadData()
-                            }
-                            
-                        } else {
-                            // Do Nothing
-                        }
-                        
-                })
-            }
-        } else {
-            self.viewController.isSearchMode = false
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                if let location = self.viewController.location {
-                    self.viewController.tagsApi.refreshTopTagsForLocation(location)
-                }
+        self.shoutApi.resetPage()
+        if let location = self.viewController.location {
+            self.shoutApi.refreshStreamForLocation(location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
+                self.updateUI(shShoutMeta)
+                }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    switch(response.result) {
+                    case .Success(let result):
+                        self.updateRefreshView()
+                        self.updateUI(result)
+                    case .Failure(let error):
+                        log.error("Error while getting stream \(error.localizedDescription)")
+                    }
             })
         }
-        
     }
     
-    private func getShouts() {
-        self.viewController.selectedSegment = 0
-        getLatestShouts()
-        self.viewController.selectedSegment = 1
-        getLatestShouts()
-        self.viewController.selectedSegment = 2
-        getLatestShouts()
-        self.viewController.selectedSegment = 0
-        //self.viewController.tableView.reloadData()
-    }
-    
-    func updateUI(shShoutMeta: SHShoutMeta) {
-        if shShoutMeta.results.count > 0 {
-            self.viewController.fetchedResultsController = shShoutMeta.results
+    private func updateUI(shShoutMeta: SHShoutMeta) {
+        self.shShoutMeta = shShoutMeta
+        if self.shoutApi.getCurrentPage() == 1 {
+            self.viewController.shouts = []
         }
+        self.viewController.shouts += shShoutMeta.results
+        self.viewController.tableView.reloadData()
+        self.updateFooterView()
     }
     
-
 }

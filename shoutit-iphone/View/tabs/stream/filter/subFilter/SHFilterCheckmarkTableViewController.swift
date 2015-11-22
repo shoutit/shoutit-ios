@@ -22,7 +22,7 @@ class SHFilterCheckmarkTableViewController: BaseTableViewController {
         super.viewDidLoad()
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         viewModel?.viewDidLoad()
     }
     
