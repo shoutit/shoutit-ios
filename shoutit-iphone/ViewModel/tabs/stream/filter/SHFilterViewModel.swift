@@ -289,53 +289,42 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
             }
         }
         if (indexPath.section == 0 && indexPath.row == 0) {
-            if let category = filters.category?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(category))) {
+            if let category = filters.category?.kSelectorName where self.respondsToSelector(NSSelectorFromString(category)) {
                 self.performSelector(NSSelectorFromString(category), withObject: self, afterDelay: 0)
-                }
             }
         } else if (indexPath.section == 0 && indexPath.row == 1) {
-            if let type = filters.type?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(type))) {
-                    self.performSelector(NSSelectorFromString(type), withObject: self, afterDelay: 0)
-                }
+            if let type = filters.type?.kSelectorName where self.respondsToSelector(NSSelectorFromString(type)){
+                self.performSelector(NSSelectorFromString(type), withObject: self, afterDelay: 0)
             }
         } else if (indexPath.section == 0 && indexPath.row == 2) {
-            if let tags = filters.tags?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(tags))) {
-                    self.performSelector(NSSelectorFromString(tags), withObject: self, afterDelay: 0)
-                }
+            if let tags = filters.tags?.kSelectorName where self.respondsToSelector(NSSelectorFromString(tags)){
+                self.performSelector(NSSelectorFromString(tags), withObject: self, afterDelay: 0)
             }
         } else if (indexPath.section == 1 && indexPath.row == 0) {
-            if let price = filters.price?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(price))) {
-                    self.performSelector(NSSelectorFromString(price), withObject: self, afterDelay: 0)
-                }
+            if let price = filters.price?.kSelectorName where self.respondsToSelector(NSSelectorFromString(price)){
+                self.performSelector(NSSelectorFromString(price), withObject: self, afterDelay: 0)
             }
         } else if (indexPath.section == 2 && indexPath.row == 0) {
-            if let location = filters.location?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(location))) {
-                    self.performSelector(NSSelectorFromString(location), withObject: self, afterDelay: 0)
-                }
+            if let location = filters.location?.kSelectorName where self.respondsToSelector(NSSelectorFromString(location)) {
+                self.performSelector(NSSelectorFromString(location), withObject: self, afterDelay: 0)
             }
         } else if (indexPath.section == 3 && indexPath.row == 0) {
-            if let reset = filters.reset?.kSelectorName {
-                if(self.respondsToSelector(NSSelectorFromString(reset))) {
-                    self.performSelector(NSSelectorFromString(reset), withObject: self, afterDelay: 0)
-                }
+            if let reset = filters.reset?.kSelectorName where self.respondsToSelector(NSSelectorFromString(reset)) {
+                self.performSelector(NSSelectorFromString(reset), withObject: self, afterDelay: 0)
             }
         }
     }
     
     // Selectors
     func selectCategory(sender: AnyObject) {
-        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERCHECKMARK) as? SHFilterCheckmarkTableViewController
-        vc!.isCategories = true
+        let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERCHECKMARK) as! SHFilterCheckmarkTableViewController
+        vc.isCategories = true
         if let filter = self.viewController.filter {
 //            if let selectedTypeIndex = self.viewController.filter?.selectedTypeIndex, let selectedCategoryIndex = self.viewController.filter?.selectedCategoryIndex {
 //                vc?.setData([("\(selectedTypeIndex)")], index: selectedCategoryIndex)
 //            }
-            vc!.selectedBlock = {(text: String, index: Int) in
+            vc.selectedItem = filter.category
+            vc.selectedBlock = {(text: String, index: Int) in
                 if(filter.category != text) {
                     filter.tags = []
                     if let tags = self.filters.tags {
@@ -353,9 +342,8 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
             
         }
         
-        vc?.title = NSLocalizedString("Category", comment: "Category")
-        self.viewController.navigationController?.pushViewController(vc!, animated: true)
-        
+        vc.title = NSLocalizedString("Category", comment: "Category")
+        self.viewController.navigationController?.pushViewController(vc, animated: true)
     }
     
     func selectType(sender: AnyObject) {

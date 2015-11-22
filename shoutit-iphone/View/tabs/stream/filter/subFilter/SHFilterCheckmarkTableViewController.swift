@@ -12,6 +12,7 @@ class SHFilterCheckmarkTableViewController: BaseTableViewController {
     
     var dataArray = [String]()
     var selectedRow: Int?
+    var selectedItem: String?
     var selectedBlock: ((selectedTitle: String, index: Int) -> ())?
     let shApiMisc = SHApiMiscService()
     var isCategories = false

@@ -98,5 +98,11 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
         self.viewController.dataArray += category.map({ (category) -> String in
             category.name
         })
+        if !self.viewController.dataArray.contains("All") {
+            self.viewController.dataArray.insert("All", atIndex: 0)
+        }
+        if let selectedItem = self.viewController.selectedItem {
+            self.viewController.selectedRow = self.viewController.dataArray.indexOf(selectedItem)
+        }
     }
 }
