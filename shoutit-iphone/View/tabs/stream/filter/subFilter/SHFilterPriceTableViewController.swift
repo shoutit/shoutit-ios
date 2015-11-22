@@ -44,6 +44,10 @@ class SHFilterPriceTableViewController: BaseTableViewController, UITextFieldDele
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel?.viewWillDisappear()
+        
+        if (self.isMovingFromParentViewController() || self.isBeingDismissed()) {
+            selectedBlock?(min: self.minTextField.text!, max: self.maxTextField.text!)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -64,7 +68,6 @@ class SHFilterPriceTableViewController: BaseTableViewController, UITextFieldDele
         }
         return true
     }
-    
     
     deinit {
         viewModel?.destroy()

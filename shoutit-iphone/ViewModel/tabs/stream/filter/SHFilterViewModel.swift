@@ -216,15 +216,8 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         let ac = UIAlertController(title: NSLocalizedString("Delete tag?", comment: "Delete tag?"), message: "", preferredStyle: UIAlertControllerStyle.Alert)
         ac.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
-            if var tags = self.viewController.filters[0][2][Constants.Filter.KTagsArray] as? [AnyObject], let filter = self.viewController.filter {
-                if(tags.count > tagIndex && filter.tags.count > tagIndex) {
-                    tags.removeAtIndex(tagIndex)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.viewController.tableView.reloadData()
-                    })
-                    
-                }
-            }
+            self.filters.tags?.KTagsArray.removeAtIndex(tagIndex)
+            self.viewController.tableView.reloadData()
         }))
         self.viewController.presentViewController(ac, animated: true, completion: nil)
     }
@@ -374,10 +367,6 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         vc?.title = NSLocalizedString("Select Price", comment: "Select Price")
         self.viewController.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-//    func selectDates(sender: AnyObject) {
-//        
-//    }
     
     func selectLocation(sender: AnyObject) {
         let vc = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOCATION_GETTER)

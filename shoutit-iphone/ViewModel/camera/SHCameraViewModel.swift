@@ -261,7 +261,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
                 if let imageDataSampleBuffer = data {
                     let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                     let image = UIImage(data: imageData)
-                    if let photoPreviewViewController = Constants.ViewControllers.PHOTO_PREVIEW as? SHPhotoPreviewViewController {
+                    if let photoPreviewViewController = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier(Constants.ViewControllers.PHOTO_PREVIEW) as? SHPhotoPreviewViewController {
                         photoPreviewViewController.photo = image
                         photoPreviewViewController.delegate = self
                         self.viewController.navigationController?.pushViewController(photoPreviewViewController, animated: false)
@@ -306,13 +306,13 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
             picker.dismissViewControllerAnimated(true, completion: nil)
             // Handle a movie capture
             if (kUTTypeMovie as NSString) == mediaType {
-                if let videoPreviewViewController = Constants.ViewControllers.VIDEO_PREVIEW as? SHVideoPreviewViewController {
+                if let videoPreviewViewController = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier(Constants.ViewControllers.VIDEO_PREVIEW) as? SHVideoPreviewViewController {
                     videoPreviewViewController.videoFileURL = info[UIImagePickerControllerMediaURL] as? NSURL
                     videoPreviewViewController.delegate = self
                     self.viewController.navigationController?.pushViewController(videoPreviewViewController, animated: false)
                 }
             } else if (kUTTypeImage as NSString) == mediaType {
-                if let photoPreviewViewController = Constants.ViewControllers.PHOTO_PREVIEW as? SHPhotoPreviewViewController {
+                if let photoPreviewViewController = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier(Constants.ViewControllers.PHOTO_PREVIEW) as? SHPhotoPreviewViewController {
                     photoPreviewViewController.photo = info[UIImagePickerControllerOriginalImage] as? UIImage
                     photoPreviewViewController.delegate = self
                     self.viewController.navigationController?.pushViewController(photoPreviewViewController, animated: false)
@@ -338,7 +338,7 @@ class SHCameraViewModel: NSObject, ViewControllerModelProtocol, AVCaptureFileOut
             log.error("Error with capturing video \(error.localizedDescription)")
         }
         self.lockInterfaceRotation = false
-        if let videoPreviewViewController = Constants.ViewControllers.VIDEO_PREVIEW as? SHVideoPreviewViewController {
+        if let videoPreviewViewController = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier(Constants.ViewControllers.VIDEO_PREVIEW) as? SHVideoPreviewViewController {
             videoPreviewViewController.videoFileURL = outputFileURL
             videoPreviewViewController.delegate = self
             self.viewController.navigationController?.pushViewController(videoPreviewViewController, animated: false)
