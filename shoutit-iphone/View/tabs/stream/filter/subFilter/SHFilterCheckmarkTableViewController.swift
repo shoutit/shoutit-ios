@@ -10,10 +10,11 @@ import Foundation
 
 class SHFilterCheckmarkTableViewController: BaseTableViewController {
     
-    var dataArray = []
+    var dataArray = [String]()
     var selectedRow: Int?
     var selectedBlock: ((selectedTitle: String, index: Int) -> ())?
     let shApiMisc = SHApiMiscService()
+    var isCategories = false
     
     private var viewModel: SHFilterCheckmarkTableViewModel?
     
@@ -54,9 +55,10 @@ class SHFilterCheckmarkTableViewController: BaseTableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setData (array: [AnyObject], index: Int) {
+    func setData (array: [String], index: Int) {
         self.dataArray = array
         self.selectedRow = index
+        self.tableView.reloadData()
     }
     
     deinit {

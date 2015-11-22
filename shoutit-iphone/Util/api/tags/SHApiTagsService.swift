@@ -124,9 +124,9 @@ class SHApiTagsService: NSObject {
 //    }
     func loadTagsForPage(page: Int, query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
         var params = [String: AnyObject]()
-        if let filter = self.filter {
-            params = filter.getTagsFilterQuery()
-        }
+//        if let filter = self.filter {
+//            params = filter.getTagsFilterQuery()
+//        }
         params["page_size"] = Constants.Common.SH_PAGE_SIZE
         params["page"] = page
         if (query != "") {

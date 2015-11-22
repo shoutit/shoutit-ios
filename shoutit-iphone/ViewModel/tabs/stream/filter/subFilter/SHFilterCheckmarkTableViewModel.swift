@@ -17,7 +17,9 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
     }
     
     func viewDidLoad() {
-        getListOfCategories()
+        if(self.viewController.isCategories) {
+            getListOfCategories()
+        }
     }
     
     func viewWillAppear() {
@@ -40,21 +42,13 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
         
     }
     
-    func getListOfCategories() {
-        self.viewController.shApiMisc.getCategories({ (shCategory) -> Void in
-            // Do Nothing
-            }) { (response) -> Void in
-                print(response.result.value?.mainTag)
-        }
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewController.dataArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHFilterCheckTableViewCell, forIndexPath: indexPath) as? SHFilterCheckTableViewCell {
-            cell.leftLabel.text = self.viewController.dataArray[indexPath.row] as? String
+            cell.leftLabel.text = self.viewController.dataArray[indexPath.row]
             if(indexPath.row == self.viewController.selectedRow) {
                 cell.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -69,15 +63,18 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let selectedRow = self.viewController.selectedRow {
-            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0))
-            (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: selectedRow, inSection: 0)) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor.darkTextColor()
+//        if let selectedRow = self.viewController.selectedRow {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0))
+            (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor.darkTextColor()
             self.viewController.selectedRow = indexPath.row
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
             (tableView.cellForRowAtIndexPath(indexPath) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            if let block = self.viewController.selectedBlock {
+                block(selectedTitle: self.viewController.dataArray[indexPath.row], index: indexPath.row)
+            }
            // if(self.selectedBlock) self.selectedBlock(self.dataArray[self.selectedRow], self.selectedRow);
             self.viewController.navigationController?.popViewControllerAnimated(true)
-        }
+       // }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -85,5 +82,21 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
     }
     
+    // Private 
+    private func getListOfCategories() {
+        self.viewController.shApiMisc.getCategories({ (shCategory) -> Void in
+            self.setCategories(shCategory)
+            }) { (response) -> Void in
+                if let result = response.result.value {
+                    self.setCategories(result)
+                }
+                self.viewController.tableView.reloadData()
+        }
+    }
     
+    private func setCategories(category: [SHCategory]) {
+        self.viewController.dataArray += category.map({ (category) -> String in
+            category.name
+        })
+    }
 }

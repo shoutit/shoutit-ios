@@ -468,6 +468,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                         if(response.result.isSuccess) {
                             if let shShoutMeta = response.result.value {
                                 self.updateUI(shShoutMeta)
+                                self.viewController.tableView.reloadData()
                             }
                             
                         } else {
@@ -501,7 +502,6 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     func updateUI(shShoutMeta: SHShoutMeta) {
         if shShoutMeta.results.count > 0 {
             self.viewController.fetchedResultsController = shShoutMeta.results
-            self.viewController.tableView.reloadData()
         }
     }
     

@@ -17,7 +17,7 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     }
     
     func viewDidLoad() {
-        
+        getTagsForCategory("")
     }
     
     func viewWillAppear() {
@@ -31,18 +31,24 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     func viewWillDisappear() {
         if(self.viewController.navigationController?.viewControllers.indexOf(self.viewController) == NSNotFound) {
             let indexes = NSMutableIndexSet()
-            for (key,value) in self.viewController.selectedDict {
+            for key in self.viewController.selectedDict.keys {
                 if let dictKey = self.viewController.selectedDict[key] as? Int {
                     if(dictKey == 1) {
                        indexes.addIndex(dictKey)
                     }
+                    
                 }
             }
-            if((self.viewController.selectedBlock) != nil) {
-//               if(self.selectedBlock) self.selectedBlock([[self.fetchedResultsController objectsAtIndexes:indexs] mutableCopy]);
-                
+            if let block = self.viewController.selectedBlock {
+                block(self.viewController.fetchedResultsController.objectsAtIndexes(indexes))
             }
+//            if var block = self.viewController.selectedBlock {
+//                block = (self.viewController.fetchedResultsController.objectAtIndex(dictKey))
+//            }
+//            if((self.viewController.selectedBlock) != nil) {
+//               if(self.selectedBlock) self.selectedBlock([[self.fetchedResultsController objectsAtIndexes:indexs] mutableCopy]);
         }
+        
     }
     
     func viewDidDisappear() {
@@ -56,20 +62,21 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     func getTagsForCategory (category: String) {
         self.viewController.category = category
         self.viewController.loading = true
-        self.viewController.loadMoreView.showNoMoreContent()
+       // self.viewController.loadMoreView.showNoMoreContent()
         self.viewController.lastResultCount = 0
         self.viewController.fetchedResultsController = []
         self.viewController.tableView.reloadData()
         //[self updateFooterView];
-        self.updateFooterLabel()
+       // self.updateFooterLabel()
         
         let filter = SHFilter()
         filter.isApplied = true
         filter.category = category
         filter.type = "Tag"
         self.viewController.shTagsApi.filter = filter
-        if(self.viewController.hardCodedTags.count > 0) {
+       // if(self.viewController.hardCodedTags.count > 0) {
             self.viewController.shTagsApi.refreshTagsWithQuery("", cacheResponse: { (shTagMeta) -> Void in
+                
                 self.updateUI(shTagMeta)
                 }, completionHandler: { (response) -> Void in
                     if(response.result.isSuccess) {
@@ -81,7 +88,7 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
                         // Do Nothing
                     }
             })
-        }
+       // }
 
     }
     
