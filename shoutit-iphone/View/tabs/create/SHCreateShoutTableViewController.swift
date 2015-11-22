@@ -28,7 +28,7 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     private var shout: SHShout?
     
     static func presentEditorFromViewController(parent: UIViewController, shout: SHShout) {
-        if let viewController = Constants.ViewControllers.CREATE_SHOUT as? SHCreateShoutTableViewController {
+        if let viewController = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT) as? SHCreateShoutTableViewController {
             viewController.isEditingMode = true
             viewController.shout = shout
         }

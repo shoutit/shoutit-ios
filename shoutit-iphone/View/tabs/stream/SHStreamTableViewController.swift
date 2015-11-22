@@ -62,7 +62,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
         // set Filter SB
-        self.filterViewController = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTER)  as? SHFilterViewController
+        self.filterViewController = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTER) as? SHFilterViewController
         self.filterViewController?.delegate = self
         
         viewModel?.viewDidLoad()

@@ -36,7 +36,7 @@ class SHTabViewController: UITabBarController {
         // Setup Tabs
         let discoverVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC)
         let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC)
-        let createShoutVC = Constants.ViewControllers.CREATE_SHOUT
+        let createShoutVC = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT)
         
         self.viewControllers = [
             getNavController(createShoutVC),

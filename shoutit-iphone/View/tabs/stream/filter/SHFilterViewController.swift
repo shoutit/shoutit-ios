@@ -61,7 +61,8 @@ class SHFilterViewController: BaseViewController {
         self.tapTagsSelect = UITapGestureRecognizer(target: self, action: Selector("selectTags:"))
         
         self.tableView.registerNib(UINib(nibName: "SHTopTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHTopTagTableViewCell")
-        self.tableView.tableFooterView = self.loadMoreView;
+        
+        self.tableView.tableFooterView = self.loadMoreView
         viewModel?.viewDidLoad()
     }
     

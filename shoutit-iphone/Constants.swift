@@ -56,10 +56,9 @@ struct Constants {
         static let STREAM_VC = "SHStreamTableViewController"
         static let MODEL_WEB = "SHModalWebViewController"
         static let LOCATION_GETTER = "SHLocationGetterViewController"
-        static let CREATE_SHOUT = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
-        static let CAMERA_VC = SHCameraViewController(nibName: "CameraView", bundle: NSBundle.mainBundle())
-        static let PHOTO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHPhotoPreviewViewController")
-        static let VIDEO_PREVIEW = UIStoryboard.getCamera().instantiateViewControllerWithIdentifier("SHVideoPreviewViewController")
+        static let CREATE_SHOUT = "shCreateShoutTableViewController"
+        static let PHOTO_PREVIEW = "SHPhotoPreviewViewController"
+        static let VIDEO_PREVIEW = "SHVideoPreviewViewController"
         static let STREAM_MAP = "SHStreamMapViewController"
         static let SHFILTER = "SHFilterViewController"
         static let SHTAGPROFILE = "SHTagProfileTableViewController"

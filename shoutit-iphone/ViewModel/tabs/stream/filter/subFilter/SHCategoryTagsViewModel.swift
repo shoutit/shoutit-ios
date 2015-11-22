@@ -29,25 +29,22 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     }
     
     func viewWillDisappear() {
-        if(self.viewController.navigationController?.viewControllers.indexOf(self.viewController) == NSNotFound) {
-            let indexes = NSMutableIndexSet()
-            for key in self.viewController.selectedDict.keys {
-                if let dictKey = self.viewController.selectedDict[key] as? Int {
-                    if(dictKey == 1) {
-                       indexes.addIndex(dictKey)
-                    }
-                    
-                }
-            }
-            if let block = self.viewController.selectedBlock {
-                block(self.viewController.fetchedResultsController.objectsAtIndexes(indexes))
-            }
-//            if var block = self.viewController.selectedBlock {
-//                block = (self.viewController.fetchedResultsController.objectAtIndex(dictKey))
+//        if(self.viewController.navigationController?.viewControllers.indexOf(self.viewController) == NSNotFound) {
+//            let indexes = NSMutableIndexSet()
+//            for key in self.viewController.selectedDict.keys {
+//                if let dictKey = self.viewController.selectedDict[key] as? Int where dictKey == 1 {
+//                    indexes.addIndex(dictKey)
+//                }
 //            }
-//            if((self.viewController.selectedBlock) != nil) {
-//               if(self.selectedBlock) self.selectedBlock([[self.fetchedResultsController objectsAtIndexes:indexs] mutableCopy]);
-        }
+//            if let block = self.viewController.selectedBlock {
+//                block(self.viewController.fetchedResultsController.objectsAtIndexes(indexes))
+//            }
+////            if var block = self.viewController.selectedBlock {
+////                block = (self.viewController.fetchedResultsController.objectAtIndex(dictKey))
+////            }
+////            if((self.viewController.selectedBlock) != nil) {
+////               if(self.selectedBlock) self.selectedBlock([[self.fetchedResultsController objectsAtIndexes:indexs] mutableCopy]);
+//        }
         
     }
     
@@ -145,19 +142,17 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
         }
         
         let tag = self.viewController.fetchedResultsController[indexPath.row]
-        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as? SHTopTagTableViewCell {
-            cell.listenButton.hidden = true
-            cell.setTagCell(tag as! SHTag)
-            if let row = self.viewController.selectedDict["\(indexPath.row)"] as? Int {
-                if (row == 1) {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                } else {
-                    cell.accessoryType = UITableViewCellAccessoryType.None
-                }
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+        cell.listenButton.hidden = true
+        cell.setTagCell(tag as! SHTag)
+        if let row = self.viewController.selectedDict["\(indexPath.row)"] as? Int {
+            if (row == 1) {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryType.None
             }
-            return cell
         }
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -169,6 +164,12 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
             self.viewController.selectedDict["\(indexPath.row)"] = 1
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
+        if let block = self.viewController.selectedBlock {
+            if let tag = self.viewController.fetchedResultsController.objectAtIndex(indexPath.row) as? SHTag {
+                block([tag])
+            }
+        }
+        
         self.viewController.navigationController?.popViewControllerAnimated(true)
     }
     
