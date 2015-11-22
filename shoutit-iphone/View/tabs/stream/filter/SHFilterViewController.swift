@@ -13,7 +13,6 @@ protocol SHFilterViewControllerDelegate {
 }
 
 class SHFilterViewController: BaseViewController {
-
     
     @IBOutlet var tableView: UITableView!
     private var viewModel: SHFilterViewModel?

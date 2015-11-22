@@ -175,46 +175,6 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         }
         return UITableViewCell()
     }
-//        if let dict = self.viewController.filters[indexPath.section][indexPath.row] {
-//            if let cellId = dict[Constants.Filter.kCellType] as? String where cellId == Constants.Filter.kStandardCellId {
-//                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
-//                    cell.leftLabel.text = dict[Constants.Filter.kLeftLable] as? String
-//                    cell.rightLabel.text = dict[Constants.Filter.kRightLable] as? String
-//                    if let kIsApply = (dict[Constants.Filter.kIsApply]) as? Bool {
-//                        if(kIsApply) {
-//                            cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
-//                        } else {
-//                            cell.rightLabel.textColor = UIColor.lightGrayColor()
-//                        }
-//                    }
-//                    return cell
-//                }
-//            } else if let cellId = dict[Constants.Filter.kCellType] as? String where cellId == Constants.Filter.kTagsCellId {
-//                if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterTagsTableViewCell {
-//                    cell.leftLabel.text = String(dict[Constants.Filter.kLeftLable])
-//                    cell.tagList.setTags(dict[Constants.Filter.KTagsArray] as? [AnyObject])
-//                    cell.tagList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
-//                    cell.tagList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
-//                    cell.tagList.tagDelegate = self
-//                    cell.tagList.textShadowColor = UIColor.clearColor()
-//                    cell.tagList.automaticResize = true
-//                    cell.tagList.horizontalPadding = 0
-//                    cell.tagList.userInteractionEnabled = true
-//                    if let tapTagsSelect = self.viewController.tapTagsSelect {
-//                        cell.tagList.addGestureRecognizer(tapTagsSelect)
-//                    }
-//                    cell.tagList.scrollEnabled = false
-//                    return cell
-//                }
-//            } else {
-//                if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Filter.kCenterCellId) as? SHFilterCenterTableViewCell {
-//                    if let leftLabel = dict[Constants.Filter.kLeftLable] {
-//                        cell.centerLabel.text = leftLabel as? String
-//                    }
-//                    return cell
-//                }
-//            }
-//        }
     
     
     func selectedTag(tagName: String!, tagIndex: Int) {
@@ -267,9 +227,6 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTERCHECKMARK) as! SHFilterCheckmarkTableViewController
         vc.isCategories = true
         if let filter = self.viewController.filter {
-//            if let selectedTypeIndex = self.viewController.filter?.selectedTypeIndex, let selectedCategoryIndex = self.viewController.filter?.selectedCategoryIndex {
-//                vc?.setData([("\(selectedTypeIndex)")], index: selectedCategoryIndex)
-//            }
             vc.selectedItem = filter.category
             vc.selectedBlock = {(text: String, index: Int) in
                 if(filter.category != text) {
@@ -390,7 +347,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         }
     }
     
-    func resetFilter () {
+    func resetFilter (sender: AnyObject) {
         self.configureFilter()
         self.viewController.filter?.reset()
         self.viewController.tableView.reloadData()
