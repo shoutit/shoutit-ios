@@ -374,7 +374,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qt4-la-uxA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qt4-la-uxA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -419,6 +419,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qt4-la-uxA" firstAttribute="leading" secondItem="IlV-vZ-lX3" secondAttribute="leading" id="1GM-40-acf"/>
+                            <constraint firstAttribute="trailing" secondItem="qt4-la-uxA" secondAttribute="trailing" id="aAh-fq-SAA"/>
+                            <constraint firstItem="KRx-Y3-QgX" firstAttribute="top" secondItem="qt4-la-uxA" secondAttribute="bottom" id="gKx-Pz-nCD"/>
+                            <constraint firstItem="qt4-la-uxA" firstAttribute="top" secondItem="IlV-vZ-lX3" secondAttribute="top" id="gS3-Sw-D46"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="locationTableView" destination="qt4-la-uxA" id="BqY-p6-gWW"/>
