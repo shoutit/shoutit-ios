@@ -8,12 +8,13 @@
 
 import UIKit
 
-
 class SHLocationGetterViewController: BaseViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var locationTableView: UITableView!
     private var viewModel: SHLocationGetterViewModel?
+    var isUpdateUserLocation = true
+    var locationSelected: ((address: SHAddress) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,9 @@ class SHLocationGetterViewController: BaseViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func setLocationSelected(locationSelected: ((address: SHAddress) -> ())?) {
+        self.locationSelected = locationSelected
+    }
     
     deinit {
         viewModel?.destroy()

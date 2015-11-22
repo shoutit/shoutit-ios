@@ -156,6 +156,11 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = location.kLeftLabel
                     cell.rightLabel.text = location.kRightLabel
+                    if cell.rightLabel.text! != NSLocalizedString("Current Location", comment: "Current Location") {
+                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                    } else {
+                        cell.rightLabel.textColor = UIColor.lightGrayColor()
+                    }
                     return cell
                 }
             }
@@ -369,9 +374,20 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     }
     
     func selectLocation(sender: AnyObject) {
-        let vc = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOCATION_GETTER)
-        vc.title = NSLocalizedString("Select Place", comment: "Select Place")
-        self.viewController.navigationController?.pushViewController(vc, animated: true)
+        if let vc = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOCATION_GETTER) as? SHLocationGetterViewController {
+            vc.isUpdateUserLocation = false
+            vc.setLocationSelected({ (address) -> () in
+                self.viewController.filter?.location = address
+                self.viewController.filter?.isApplied = true
+                if let location = self.filters.location {
+                    location.kLeftLabel = NSLocalizedString("Location", comment: "Location")
+                    location.kRightLabel = String(format: "%@, %@, %@", address.city, address.state, address.country)
+                }
+                self.viewController.tableView.reloadData()
+            })
+            vc.title = NSLocalizedString("Select Place", comment: "Select Place")
+            self.viewController.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func resetFilter () {

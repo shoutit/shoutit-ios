@@ -189,16 +189,24 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
             self.retrieveJSONDetailsAbout(placeID, withCompletion: { (address, error) -> () in
                 if let oauthToken = SHOauthToken.getFromCache() where oauthToken.isSignedIn(), let userName = oauthToken.user?.username, let latitude = address?.latitude, let longitude = address?.longitude {
                     // Update User's Location
-                    SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
-                    SHApiUserService().updateLocation(userName, latitude: latitude, longitude: longitude, completionHandler: { (response) -> Void in
-                        SHProgressHUD.dismiss()
-                        if response.result.isSuccess {
-                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.CUSTOM_LOCATION)
-                            oauthToken.updateUser(response.result.value)
-                        }
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                    if self.viewController.isUpdateUserLocation {
+                        SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
+                        SHApiUserService().updateLocation(userName, latitude: latitude, longitude: longitude, completionHandler: { (response) -> Void in
+                            SHProgressHUD.dismiss()
+                            if response.result.isSuccess {
+                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.CUSTOM_LOCATION)
+                                oauthToken.updateUser(response.result.value)
+                            }
+                            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                            self.viewController.navigationController?.popViewControllerAnimated(true)
+                        })
+                    } else {
                         self.viewController.navigationController?.popViewControllerAnimated(true)
-                    })
+                    }
+                    
+                    if let shAddress = address {
+                        self.viewController.locationSelected?(address: shAddress)
+                    }
                 } else {
                     // Update SHAddress
                 }
