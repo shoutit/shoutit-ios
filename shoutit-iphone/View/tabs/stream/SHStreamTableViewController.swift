@@ -48,6 +48,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.navigationController?.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
         self.showSearchBar(self.tableView)
         self.tableView.keyboardDismissMode = .OnDrag
+        
         viewModel?.viewDidLoad()
     }
     
@@ -151,7 +152,6 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
             loadMoreView.loadingLabel.text = ""
             
             viewModel?.triggerSearchForBar()
-            self.tableView.scrollEnabled = false
             self.isSearchMode = true
         } else {
             self.isSearchMode = false
@@ -211,7 +211,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
             self.viewModel?.pullToRefresh()
         })
-        
+
         self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
             self.viewModel?.triggerLoadMore()
         })

@@ -65,6 +65,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func viewDidAppear() {
+        self.viewController.tableView.infiniteScrollingView.hidden = true
         updateRefreshView()
     }
     
@@ -97,12 +98,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
-                    if(response.result.isSuccess) {
-                        if let shShoutMeta = response.result.value {
-                            self.updateUI(shShoutMeta)
-                        }
-                    } else {
-                        // Do Nothing
+                    self.viewController.tableView.infiniteScrollingView.stopAnimating()
+                    switch response.result {
+                    case .Success(let result):
+                        self.updateFooterLabel()
+                        self.updateRefreshView()
+                        self.updateFooterView()
+                        self.updateUI(result)
+                    case .Failure(let error):
+                        log.error("Error getting values \(error.localizedDescription)")
                     }
             })
         }
@@ -226,6 +230,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
             self.shoutApi.loadShoutStreamNextPageForLocation(location, type: self.viewController.shoutType, query: self.viewController.searchQuery, cacheResponse: { (shShoutMeta) -> Void in
                 // Do Nothing
                 }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
                     self.viewController.tableView.infiniteScrollingView.stopAnimating()
                     switch(response.result) {
                     case .Success(let result):
@@ -435,9 +440,11 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    self.viewController.tableView.infiniteScrollingView.stopAnimating()
                     switch(response.result) {
                     case .Success(let result):
                         self.updateRefreshView()
+                        self.updateFooterLabel()
                         self.updateUI(result)
                     case .Failure(let error):
                         log.error("Error while getting stream \(error.localizedDescription)")
@@ -453,6 +460,13 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
         self.viewController.shouts += shShoutMeta.results
         self.viewController.tableView.reloadData()
+        
+        if Constants.Common.SH_PAGE_SIZE != shShoutMeta.results.count {
+            self.viewController.loading = false
+            self.viewController.loadMoreView.showNoMoreContent()
+            self.updateFooterLabel()
+        }
+        
         self.updateFooterView()
     }
     
