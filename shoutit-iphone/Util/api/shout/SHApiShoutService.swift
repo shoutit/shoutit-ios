@@ -81,5 +81,12 @@ class SHApiShoutService: NSObject {
         self.currentPage = 0
         self.totalCounts = 0
     }
+    
+    func loadShoutDetail(shoutID: String, cacheResponse: SHShout -> Void, completionHandler: Response<SHShout, NSError> -> Void) {
+        //let urlString = String(format: SHOUTS + "/%@", arguments: [shoutID])
+        var params = [String: AnyObject]()
+        params["id"] = shoutID
+        SHApiManager.sharedInstance.get(SHOUTS, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
 
 }

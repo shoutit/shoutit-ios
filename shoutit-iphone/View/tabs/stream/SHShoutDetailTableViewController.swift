@@ -9,9 +9,11 @@
 import UIKit
 import DWTagList
 import MapKit
-import FBSDKShareKit
+import Social
+import MessageUI
+//import FBSDKShareKit
 
-class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDelegate {
+class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDelegate, MFMailComposeViewControllerDelegate {
     private var viewModel: SHShoutDetailTableViewModel?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -93,6 +95,13 @@ class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDe
     }
     
     @IBAction func contactAction(sender: AnyObject) {
+//        if(![self.shoutModel.shout.user.userID isEqualToString:[[[SHLoginModel sharedModel] selfUser] userID]])
+//        {
+//            SHProfileCollectionViewController* profileViewController = [SHNavigator viewControllerFromStoryboard:@"ProfileStoryboard" withViewControllerId:@"SHProfileCollectionViewController"];
+//            [profileViewController requestUser:self.shoutModel.shout.user];
+//            
+//            [self.navigationController pushViewController:profileViewController animated:YES];
+//        }
     }
     
     @IBAction func share(sender: AnyObject) {
@@ -102,6 +111,16 @@ class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDe
     }
     
     @IBAction func reportAction(sender: AnyObject) {
+//        
+//        [SHShoutDetailModel reportShout:self.shoutModel.shout succsess:^(BOOL isSuccess)
+//            {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Thank you! Shout has been reported as inappropriate and will be reviewed.", @"Thank you! Shout has been reported as inappropriate and will be reviewed.")];
+//            });
+//            
+//            } failure:^(NSError *error) {
+//            NSLog(@"Shout not reported");
+//            }];
     }
     
     @IBAction func replyAction(sender: AnyObject) {
@@ -115,56 +134,34 @@ class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDe
             return
         }
         
-//        switch(buttonIndex) {
-//        case 0:
-//            break
-//        case 1:
-//            break
-//        case 2:
-//            break
-//        case 3:
-//            break
-//        default:
-//            break
-//        }
-        
-        
-//        switch (buttonIndex) {
-//        case 0:
-//            {
-//                [FBShareManager openShareDialogWith:self.shoutModel.shout succsess:^(FBAppCall *call, id result) {
-//                    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Shout shared", @"Shout shared")];
-//                    } failure:^(FBAppCall *call, id result, NSError *error) {
-//                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-//                    }];
-//            }
-//            break;
-//        case 1:
-//            {
-//                [GShareManager shareShout:self.shoutModel.shout];
-//            }
-//            break;
-//        case 2:
-//            {
-//                if ([MFMailComposeViewController canSendMail]) {
-//                    MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-//                    [composeViewController setMailComposeDelegate:self];
-//                    [composeViewController setMessageBody:self.shoutModel.shout.web_url isHTML:NO];
-//                    [self presentViewController:composeViewController animated:YES completion:nil];
-//                }
-//            }
-//            break;
-//        case 3:
-//            {
-//                NSMutableArray *sharingItems = [NSMutableArray new];
-//                [sharingItems addObject:self.shoutModel.shout.web_url];
-//                UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
-//                [self presentViewController:activityController animated:YES completion:nil];
-//            }
-//            break;
-//            
-//        }
+        switch(buttonIndex) {
+        case 0:
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            vc.setInitialText("web_url")
+          //  vc.addImage(detailImageView.image!)
+            vc.addURL(NSURL(string: "http://www.facebook.com"))
+            presentViewController(vc, animated: true, completion: nil)
+        case 1:
+            // Google SingIn
+            break
+        case 2:
+            if(MFMailComposeViewController.canSendMail()) {
+                let composeViewController = MFMailComposeViewController(nibName: nil, bundle: nil)
+                composeViewController.mailComposeDelegate = self
+                composeViewController.setMessageBody("web_url", isHTML: false)
+                self.presentViewController(composeViewController, animated: true, completion: nil)
+            }
+        case 3:
+            var sharingItems = [String]()
+            sharingItems.append("web_url")
+            let activityController = UIActivityViewController.init(activityItems: sharingItems, applicationActivities: nil)
+            self.presentViewController(activityController, animated: true, completion: nil)
+        default:
+            break
+        }
     }
+    
+    
     
     deinit {
         viewModel?.destroy()
