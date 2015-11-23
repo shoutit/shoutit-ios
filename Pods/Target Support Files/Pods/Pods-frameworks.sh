@@ -84,6 +84,9 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/AWSCognito.framework"
+  install_framework "Pods/AWSCore.framework"
+  install_framework "Pods/AWSS3.framework"
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
   install_framework "Pods/Bolts.framework"
@@ -108,6 +111,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/XCGLogger.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/AWSCognito.framework"
+  install_framework "Pods/AWSCore.framework"
+  install_framework "Pods/AWSS3.framework"
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
   install_framework "Pods/Bolts.framework"

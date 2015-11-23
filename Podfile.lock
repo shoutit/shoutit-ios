@@ -3,6 +3,11 @@ PODS:
   - AlamofireObjectMapper (2.0.2):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
+  - AWSCognito (2.3.0):
+    - AWSCore (= 2.3.0)
+  - AWSCore (2.3.0)
+  - AWSS3 (2.3.0):
+    - AWSCore (= 2.3.0)
   - Bolts (1.4.0):
     - Bolts/AppLinks (= 1.4.0)
     - Bolts/Tasks (= 1.4.0)
@@ -70,6 +75,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.0)
+  - AWSCognito (~> 2.3)
+  - AWSS3 (~> 2.3)
   - Crashlytics
   - CryptoSwift
   - DWTagList (~> 0.0)
@@ -105,6 +112,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   AlamofireObjectMapper: 3047127bcc25ec43e8243b89d819022ccee77546
+  AWSCognito: 71454ddf2b631005292aa2cbbdcc6d079b1b65cb
+  AWSCore: dc200c885c9799f9f5d3ab9ec38a9c4b44d680f9
+  AWSS3: 0185482a8136da9c7542a767567ee18106b38bca
   Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   Crashlytics: 1ee87895c37472eb3f01f409ea1654a464d2f8d4
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61

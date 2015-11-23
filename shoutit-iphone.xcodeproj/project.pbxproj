@@ -40,6 +40,7 @@
 		602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */; };
 		6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6043CF051C02A4A100A9AA49 /* SHShoutCalloutView.xib */; };
 		6043CF081C02C94E00A9AA49 /* SHTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6043CF071C02C94E00A9AA49 /* SHTextInputViewController.swift */; };
+		6043CF0D1C0343EC00A9AA49 /* SHAmazonAWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6043CF0C1C0343EC00A9AA49 /* SHAmazonAWS.swift */; };
 		604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */; };
 		604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */; };
 		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
@@ -216,6 +217,7 @@
 		602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHEmptyContentView.swift; path = View/common/SHEmptyContentView.swift; sourceTree = "<group>"; };
 		6043CF051C02A4A100A9AA49 /* SHShoutCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHShoutCalloutView.xib; path = View/tabs/stream/mapView/SHShoutCalloutView.xib; sourceTree = "<group>"; };
 		6043CF071C02C94E00A9AA49 /* SHTextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTextInputViewController.swift; path = View/tabs/create/SHTextInputViewController.swift; sourceTree = "<group>"; };
+		6043CF0C1C0343EC00A9AA49 /* SHAmazonAWS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAmazonAWS.swift; path = Util/api/aws/SHAmazonAWS.swift; sourceTree = "<group>"; };
 		604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSuccess.swift; path = Model/SHSuccess.swift; sourceTree = "<group>"; };
 		604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginInputTableViewCell.swift; path = View/auth/SHLoginInputTableViewCell.swift; sourceTree = "<group>"; };
 		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 		6027CF671BE74F9800124C28 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				6043CF0B1C0343B200A9AA49 /* aws */,
 				602414901C01F2FB00DFF4DD /* transforms */,
 				ACDB3C9A1BF7DA8A0097444E /* tags */,
 				ACDB3C991BF7DA770097444E /* shout */,
@@ -629,6 +632,14 @@
 				602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		6043CF0B1C0343B200A9AA49 /* aws */ = {
+			isa = PBXGroup;
+			children = (
+				6043CF0C1C0343EC00A9AA49 /* SHAmazonAWS.swift */,
+			);
+			name = aws;
 			sourceTree = "<group>";
 		};
 		604A0DCE1BEE5898002A80E7 /* misc */ = {
@@ -1424,6 +1435,7 @@
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,
+				6043CF0D1C0343EC00A9AA49 /* SHAmazonAWS.swift in Sources */,
 				ACDB3CBF1BF90DBC0097444E /* SHRequestImageTableViewCell.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
