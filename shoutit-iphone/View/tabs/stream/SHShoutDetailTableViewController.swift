@@ -15,6 +15,7 @@ import MessageUI
 
 class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDelegate, MFMailComposeViewControllerDelegate {
     private var viewModel: SHShoutDetailTableViewModel?
+    var shoutID: String?
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -38,6 +39,8 @@ class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDe
         
        // self.pageControl.numberOfPages = [self getCollectionViewCount];
         self.pageControl.currentPage = 0
+        self.collectionView.dataSource = viewModel
+        self.collectionView.delegate = viewModel
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.pagingEnabled = true
         
@@ -161,6 +164,10 @@ class SHShoutDetailTableViewController: BaseTableViewController, UIActionSheetDe
         }
     }
     
+    func getShoutDetails(shoutID: String) {
+        self.shoutID = shoutID
+        self.tableView.reloadData()
+    }
     
     
     deinit {

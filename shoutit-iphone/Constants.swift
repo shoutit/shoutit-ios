@@ -66,6 +66,7 @@ struct Constants {
         static let SHFILTERPRICE = "SHFilterPriceTableViewController"
         static let SHFILTERCHECKMARK = "SHFilterCheckmarkTableViewController"
         static let SHCATEGORYTAGS = "SHCategoryTagsViewController"
+        static let SHSHOUTDETAIL = "SHShoutDetailTableViewController"
     }
     
     struct TableViewCell {
@@ -83,6 +84,9 @@ struct Constants {
         static let SHCreatePlusCollectionViewCell = "SHCreatePlusCollectionViewCell"
         static let SHCreateImageCollectionViewCell = "SHCreateImageCollectionViewCell"
         static let SHCreateVideoCollectionViewCell = "SHCreateVideoCollectionViewCell"
+        static let SHShoutDetailImageCollectionViewCell = "SHShoutDetailImageCollectionViewCell"
+        static let SHYouTubeVideoCollectionViewCell = "SHYouTubeVideoCollectionViewCell"
+        static let SHAmazonVideoCollectionViewCell = "SHAmazonVideoCollectionViewCell"
     }
     
     struct Authentication {

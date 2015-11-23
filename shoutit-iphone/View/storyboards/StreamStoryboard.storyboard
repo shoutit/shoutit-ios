@@ -108,7 +108,7 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                     <cells>
-                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell">
+                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -130,11 +130,11 @@
                                             </view>
                                             <animations/>
                                             <connections>
-                                                <outlet property="activityIndicatorView" destination="2vk-3X-KQQ" id="bQW-GS-Fzv"/>
-                                                <outlet property="ytPlayerView" destination="Mju-YY-JRh" id="Epu-CO-JcE"/>
+                                                <outlet property="activityIndicatorView" destination="2vk-3X-KQQ" id="hqv-Kk-bBu"/>
+                                                <outlet property="ytPlayerView" destination="Mju-YY-JRh" id="bjM-Vy-vxE"/>
                                             </connections>
                                         </collectionViewCell>
-                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell">
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHShoutDetailImageCollectionViewCell" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="320" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -152,10 +152,10 @@
                                             </view>
                                             <animations/>
                                             <connections>
-                                                <outlet property="shoutImageView" destination="vbp-wW-Tce" id="FuA-y4-zhX"/>
+                                                <outlet property="shoutImageView" destination="vbp-wW-Tce" id="Mzx-Ac-3hZ"/>
                                             </connections>
                                         </collectionViewCell>
-                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHAmazonVideoCollectionViewCell" id="XEl-0J-RM1" customClass="SHAmazonVideoCollectionViewCell">
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHAmazonVideoCollectionViewCell" reuseIdentifier="SHAmazonVideoCollectionViewCell" id="XEl-0J-RM1" customClass="SHAmazonVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="640" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -173,7 +173,7 @@
                                             </view>
                                             <animations/>
                                             <connections>
-                                                <outlet property="playerView" destination="MLc-wt-Crj" id="vSk-jx-Feh"/>
+                                                <outlet property="playerView" destination="MLc-wt-Crj" id="Qsl-Jc-Lae"/>
                                             </connections>
                                         </collectionViewCell>
                                     </cells>
@@ -334,7 +334,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="d2b-bb-dgf">
-                        <barButtonItem key="rightBarButtonItem" image="chatTabBar.png" id="taX-Ie-qUQ">
+                        <barButtonItem key="rightBarButtonItem" image="chatTabBar" id="taX-Ie-qUQ">
                             <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="replyAction:" destination="Jfq-Pw-XRn" id="sno-CX-LZz"/>
@@ -442,7 +442,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatTabBar.png" width="25" height="19"/>
+        <image name="chatTabBar" width="25" height="20"/>
         <image name="clockIcon.png" width="50" height="50"/>
         <image name="locationMark.png" width="50" height="60"/>
     </resources>

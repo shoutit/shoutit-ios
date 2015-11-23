@@ -103,6 +103,9 @@
 		AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */; };
 		AC47A7341C02349F006AF406 /* SHShoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7331C02349F006AF406 /* SHShoutDetailTableViewController.swift */; };
 		AC47A7361C02351F006AF406 /* SHShoutDetailTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7351C02351F006AF406 /* SHShoutDetailTableViewModel.swift */; };
+		AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */; };
+		AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7391C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift */; };
+		AC47A73C1C031367006AF406 /* SHShoutDetailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
@@ -284,6 +287,9 @@
 		AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagMeta.swift; path = Model/shout/SHTagMeta.swift; sourceTree = "<group>"; };
 		AC47A7331C02349F006AF406 /* SHShoutDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailTableViewController.swift; path = View/tabs/stream/SHShoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		AC47A7351C02351F006AF406 /* SHShoutDetailTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailTableViewModel.swift; path = ViewModel/tabs/stream/SHShoutDetailTableViewModel.swift; sourceTree = "<group>"; };
+		AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHYouTubeVideoCollectionViewCell.swift; path = View/tabs/stream/cell/SHYouTubeVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC47A7391C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAmazonVideoCollectionViewCell.swift; path = View/tabs/stream/cell/SHAmazonVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailImageCollectionViewCell.swift; path = View/tabs/stream/cell/SHShoutDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
@@ -1005,9 +1011,12 @@
 		ACDB3CAC1BF90ADB0097444E /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				ACDB3CAD1BF90AE20097444E /* requestCell */,
 				ACDB3CCE1BF94FD80097444E /* SHShoutTableViewCell.xib */,
 				ACDB3CCC1BF94F270097444E /* SHShoutTableViewCell.swift */,
-				ACDB3CAD1BF90AE20097444E /* requestCell */,
+				AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */,
+				AC47A7391C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift */,
+				AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1345,6 +1354,7 @@
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */,
 				ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */,
+				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
@@ -1354,6 +1364,7 @@
 				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,
 				AC74A7761BFCA9290029CE7D /* SHShoutAnnotation.swift in Sources */,
 				ACDB3CC51BF90F650097444E /* SHRequestImageTableViewCellModel.swift in Sources */,
+				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
@@ -1428,6 +1439,7 @@
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
 				606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */,
+				AC47A73C1C031367006AF406 /* SHShoutDetailImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
