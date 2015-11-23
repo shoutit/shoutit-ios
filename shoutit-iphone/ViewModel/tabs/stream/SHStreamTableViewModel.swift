@@ -156,7 +156,12 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       
+        if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
+            detailView.title = self.viewController.shouts[indexPath.row].title
+            detailView.getShoutDetails(self.viewController.shouts[indexPath.row].id)
+            // [detailView getDetailShouts:self.fetchedResultsController[indexPath.row]];
+            self.viewController.navigationController?.pushViewController(detailView, animated: true)
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

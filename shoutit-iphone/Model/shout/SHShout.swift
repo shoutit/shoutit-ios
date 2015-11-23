@@ -33,6 +33,12 @@ class SHShout: Mappable {
     var category: SHCategory?
     var tags: [SHTag]?
     var stringTags: [String] = []
+    var images:[String] = []
+    var videos:[SHMedia] = []
+    var replyUrl: String?
+    var relatedRequests = []
+    var relatedOffers = []
+    var conversations = []
     
     required init?(_ map: Map) {
         
@@ -59,6 +65,12 @@ class SHShout: Mappable {
         datePublished   <- map["date_published"]
         category        <- map["category"]
         tags            <- map["tags"]
+        images          <- map["images"]
+        videos          <- map["videos"]
+        replyUrl        <- map["reply_url"]
+        relatedRequests <- map["related_requests"]
+        relatedOffers   <- map["relatedOffers"]
+        conversations   <- map["conversations"]
     }
     
     func getStringTags() -> [String] {

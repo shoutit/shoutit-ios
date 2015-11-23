@@ -211,7 +211,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if !self.validFields() {
             return;
         }
-        self.shout
+       // self.shout
     }
     
     // MARK - CollectionView Delegate
