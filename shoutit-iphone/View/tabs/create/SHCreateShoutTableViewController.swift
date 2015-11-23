@@ -85,6 +85,14 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         viewModel?.segmentAction()
     }
     
+    func postShout() {
+        viewModel?.postShout()
+    }
+    
+    func cleanForms() {
+        viewModel?.cleanForms()
+    }
+    
     // MARK - Private
     private func setUpNavBar() {
         if self.isEditingMode {

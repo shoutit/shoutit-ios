@@ -16,9 +16,6 @@ class SHApiShoutService: NSObject {
     private var currentPage = 0
     private var totalCounts = 0
     var filter: SHFilter?
-    
-    override init() {
-    }
 
     func loadShoutStreamForLocation(location: SHAddress, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         if type == ShoutType.VideoCV {

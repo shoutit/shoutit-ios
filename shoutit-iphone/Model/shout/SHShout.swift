@@ -38,7 +38,9 @@ class SHShout: Mappable {
         
     }
     
-    init(){}
+    init(){
+        self.location = SHAddress.getUserOrDeviceLocation()
+    }
     
     // Mappable
     func mapping(map: Map) {

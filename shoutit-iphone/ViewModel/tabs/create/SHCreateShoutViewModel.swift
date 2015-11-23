@@ -205,6 +205,15 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         
     }
     
+    func cleanForms() {}
+    
+    func postShout() {
+        if !self.validFields() {
+            return;
+        }
+        self.shout
+    }
+    
     // MARK - CollectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.media.count + 1
@@ -283,8 +292,6 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         } else if (indexPath.section == 4 && indexPath.row == 0) {
             self.viewController.priceTextField.becomeFirstResponder()
         } else if (indexPath.section == 4 && indexPath.row == 1) {
-            // TODO
-            // get currencies from cache or update from web
             if self.currencies.count == 0 {
                 SHApiMiscService().getCurrencies({ (currencies) -> Void in
                     self.setCurrencies(currencies)
@@ -338,7 +345,11 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         } else if (indexPath.section == 3 && indexPath.row == 0) { // description
             self.viewController.descriptionTextView.text = self.shout.text
         } else if (indexPath.section == 4 && indexPath.row == 0) { // Price
-            self.viewController.priceTextField.text = "\(self.shout.price)"
+            if self.shout.price != 0 {
+                self.viewController.priceTextField.text = "\(self.shout.price)"
+            } else {
+                self.viewController.priceTextField.text = ""
+            }
         } else if (indexPath.section == 4 && indexPath.row == 1) { // Currency
             self.viewController.currencyTextField.text = "\(self.shout.currency)"
         } else if (indexPath.section == 5 && indexPath.row == 0) { // location
@@ -447,6 +458,60 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         }
     }
     
+    private func validFields() -> Bool {
+        if self.viewController.titleTextField.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Title not set", comment: "Title not set"), message: NSLocalizedString("Please enter the title.", comment: "Please enter the title."))
+            return false
+        }
+        if self.viewController.titleTextField.text!.characters.count < 6 {
+            self.showErrorAlert(NSLocalizedString("Title minimum length", comment: "Title minimum length"), message: NSLocalizedString("Title should be at least 6 characters.", comment: "Title should be at least 6 characters."))
+            return false
+        }
+        if self.viewController.categoriesTextField.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Categorie not set", comment: "Categorie not set"), message: NSLocalizedString("Please select the categorie.", comment: "Please select the categorie."))
+            return false
+        }
+        if self.viewController.tagsList.textArray.count < 1 {
+            self.showErrorAlert(NSLocalizedString("Tags not set", comment: "Tags not set"), message: NSLocalizedString("Please select tags.", comment: "Please select tags."))
+            return false
+        }
+        if self.viewController.descriptionTextView.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Description not set", comment: "Description not set"), message: NSLocalizedString("Please enter the description.", comment: "Please enter the description."))
+            return false
+        }
+        if self.viewController.descriptionTextView.text!.characters.count < 10 {
+            self.showErrorAlert(NSLocalizedString("Description minimum length", comment: "Description minimum length"), message: NSLocalizedString("Description should be at least 10 characters.", comment: "Description should be at least 10 characters."))
+            return false
+        }
+        if self.viewController.priceTextField.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Price not set", comment: "Price not set"), message: NSLocalizedString("Please enter the price.", comment: "Please enter the price."))
+            return false
+        }
+        if self.viewController.currencyTextField.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Currency not set", comment: "Currency not set"), message: NSLocalizedString("Please select the currency", comment: "Please select the currency"))
+            return false
+        }
+        if self.media.count < 1 {
+            self.showErrorAlert(NSLocalizedString("Media is empty", comment: "Media is empty"), message: NSLocalizedString("Please take at least one image or video.", comment: "Please take at least one image or video."))
+            return false
+        }
+        if self.viewController.locationTextView.text!.isEmpty {
+            self.showErrorAlert(NSLocalizedString("Location not set", comment: "Location not set"), message: NSLocalizedString("Please select the location", comment: "Please select the location"))
+            return false
+        }
+        if !SHApiManager.sharedInstance.isNetworkReachable() {
+            self.showErrorAlert(NSLocalizedString("No network connection", comment: "No network connection"), message: NSLocalizedString("You must be connected to the internet to post the shout.", comment: "You must be connected to the internet to post the shout."))
+            return false
+        }
+        return true
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+        self.viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     private func addPickerView(textField: UITextField, stringList: [String], title: String, showClear: Bool) {
         SHSinglePickerTableViewController.presentPickerFromViewController(self.viewController, stringList: stringList, title: title, allowNoneOption: showClear) { (selectedItem) -> () in
             textField.text = selectedItem
@@ -468,6 +533,28 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     private func selectLocation() {
+        if let locationVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOCATION_GETTER) as? SHLocationGetterViewController {
+            locationVC.title = NSLocalizedString("Select Place", comment: "Select Place")
+            locationVC.isUpdateUserLocation = false
+            locationVC.setLocationSelected({ (address) -> () in
+                self.shout.location = address
+                if let location = self.shout.location {
+                    self.viewController.locationTextView.text = String(format: "%@, %@, %@", location.city, location.state, location.country)
+                    let verticalContentOffset = self.viewController.tableView.contentOffset.y
+                    self.viewController.tableView.reloadData()
+                    self.viewController.tableView.contentOffset = CGPointMake(0, verticalContentOffset)
+                    for currency in self.currencies {
+                        if address.country == currency.country {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.viewController.currencyTextField.text = currency.code
+                            })
+                            break
+                        }
+                    }
+                }
+            })
+            self.viewController.navigationController?.pushViewController(locationVC, animated: true)
+        }
     }
     
     private func setUpTagList() {
@@ -493,8 +580,12 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     private func setCurrencies(currencies: [SHCurrency]) {
         self.currencies = currencies
+        let location = SHAddress.getUserOrDeviceLocation()
         self.currenciesString = self.currencies.map({ (currency) -> String in
-            currency.code
+            if let loc = location where loc.country == currency.country {
+                self.viewController.currencyTextField.text = currency.code
+            }
+            return currency.code
         })
     }
     

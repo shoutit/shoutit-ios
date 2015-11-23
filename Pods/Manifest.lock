@@ -57,6 +57,7 @@ PODS:
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - ObjectMapper (1.0.1)
+  - ReachabilitySwift (2.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (~> 2.1)
   - ObjectMapper (~> 1.0)
+  - ReachabilitySwift (~> 2.3)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
   - SVProgressHUD
@@ -125,6 +127,7 @@ SPEC CHECKSUMS:
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
+  ReachabilitySwift: 2ac9df18a443901f06caae38a9f5431219a4c36a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

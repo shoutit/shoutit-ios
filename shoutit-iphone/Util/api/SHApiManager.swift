@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireObjectMapper
 import CryptoSwift
 import Haneke
+import ReachabilitySwift
 
 class SHApiManager: NSObject {
 
@@ -49,6 +50,16 @@ class SHApiManager: NSObject {
     func post<R: Mappable>(url: String, params: [String : AnyObject]?, isCachingEnabled: Bool = true, cacheKey: String? = nil, cacheResponse: (R -> Void)? = nil, completionHandler: Response<R, NSError> -> Void) {
         let request = Alamofire.request(.POST, url, parameters: params, encoding: Alamofire.ParameterEncoding.JSON, headers: authHeaders())
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    func isNetworkReachable() -> Bool {
+        let reachability: Reachability
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+            return reachability.isReachable()
+        } catch {
+            return false
+        }
     }
     
     // MARK - Private
