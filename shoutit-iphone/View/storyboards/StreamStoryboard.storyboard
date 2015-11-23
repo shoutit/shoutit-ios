@@ -56,7 +56,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A51-4O-Tih" customClass="CustomMapView" customModule="shoutit_iphone" customModuleProvider="target">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A51-4O-Tih" customClass="CustomMapView" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <animations/>
                                 <connections>
@@ -66,6 +66,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A51-4O-Tih" firstAttribute="top" secondItem="2AX-vW-nAJ" secondAttribute="bottom" id="IrO-QD-3bw"/>
+                            <constraint firstItem="q0Z-QC-YJo" firstAttribute="top" secondItem="A51-4O-Tih" secondAttribute="bottom" id="QfO-e5-FRy"/>
+                            <constraint firstAttribute="trailing" secondItem="A51-4O-Tih" secondAttribute="trailing" id="i0E-Sn-YZo"/>
+                            <constraint firstItem="A51-4O-Tih" firstAttribute="leading" secondItem="3kb-Pb-Tpg" secondAttribute="leading" id="tnb-Zi-PzR"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

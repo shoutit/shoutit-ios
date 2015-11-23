@@ -12,6 +12,14 @@ import MapKit
 
 class CustomMapView: MKMapView {
     var calloutView: SMCalloutView?
+    
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        if let point = self.calloutView?.convertPoint(point, fromView: self), let calloutMaybe = self.calloutView?.hitTest(point, withEvent: event) {
+            return calloutMaybe
+        }
+        
+        return super.hitTest(point, withEvent: event)
+    }
 }
 
 class SHStreamMapViewController: BaseViewController, SMCalloutViewDelegate {
@@ -19,12 +27,25 @@ class SHStreamMapViewController: BaseViewController, SMCalloutViewDelegate {
     @IBOutlet weak var mapView: CustomMapView!
     private var viewModel: SHStreamMapViewModel?
     private var isInitial = true
-    private var array = []
     var apiShout = SHApiShoutService()
     var calloutView: SMCalloutView?
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let streamB = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToStreamView:"))
+        self.navigationItem.rightBarButtonItem = streamB
+        self.navigationItem.hidesBackButton = true
+        
+        self.mapView.delegate = viewModel
+        
+        //create our custom callout view
+        self.calloutView = SMCalloutView.platformCalloutView()
+        self.calloutView?.delegate = self
+        self.mapView.calloutView = self.calloutView
+        self.calloutView?.prepareForInterfaceBuilder()
+        self.title = NSLocalizedString("Shout Map", comment: "Shout Map")
+        
         viewModel?.viewDidLoad()
     }
     
@@ -34,17 +55,6 @@ class SHStreamMapViewController: BaseViewController, SMCalloutViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let streamB = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToStreamView:"))
-        self.navigationItem.rightBarButtonItem = streamB
-        self.navigationItem.hidesBackButton = true
-        
-        //create our custom callout view
-        self.calloutView = SMCalloutView.platformCalloutView()
-        self.calloutView?.delegate = self
-        self.mapView.calloutView = self.calloutView
-        self.calloutView?.prepareForInterfaceBuilder()
-        self.title = NSLocalizedString("Shout Map", comment: "Shout Map")
-        
         viewModel?.viewDidAppear()
     }
     
@@ -78,8 +88,6 @@ class SHStreamMapViewController: BaseViewController, SMCalloutViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
         UIView.commitAnimations()
     }
-    
-    
     
     deinit {
         viewModel?.destroy()

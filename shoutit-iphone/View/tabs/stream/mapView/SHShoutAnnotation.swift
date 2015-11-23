@@ -9,11 +9,11 @@
 import Foundation
 import MapKit
 
-class SHShoutAnnotation: NSObject {
+class SHShoutAnnotation: NSObject, MKAnnotation {
 
-    private var coordinate: CLLocationCoordinate2D?
-    private var title: String?
-    private var subTitle: String?
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subTitle: String?
     var shout: SHShout?
     
     init(coordinate: CLLocationCoordinate2D, shout: SHShout) {
@@ -22,18 +22,14 @@ class SHShoutAnnotation: NSObject {
         self.title = shout.title
     }
     
-    func setCoordinate(newCoordinate: CLLocationCoordinate2D) {
-        self.coordinate = newCoordinate
-    }
-    
     func annotationView () -> MKAnnotationView {
-        let annotationView = MKAnnotationView()
+        let annotationView = MKAnnotationView(annotation: self, reuseIdentifier: "SHShoutAnnotationView")
         annotationView.enabled = true
         annotationView.canShowCallout = true
         let imageView = UIImageView(frame: CGRectMake(0, 0, 32, 32))
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         if let thumbnail = self.shout?.thumbnail, let url = NSURL(string: thumbnail) {
-            imageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "shoutStarted"), options: .None, completionHandler: { (image, error, cacheType, imageURL) -> () in
+            imageView.kf_setImageWithURL(url, placeholderImage: UIImage(named: "shoutStarted"), optionsInfo: .None, completionHandler: { (image, error, cacheType, imageURL) -> () in
                 if(image == nil) {
                     imageView.image = UIImage(named: "no_image_available")
                 }
