@@ -11,13 +11,17 @@ import UIKit
 class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource{
     
     private let viewController: SHCategoryTagsViewController
+    private var shTagMeta: SHTagMeta?
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHCategoryTagsViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-        getTagsForCategory("")
+        if let _ = self.viewController.category {
+            self.getTagsForCategory()
+        }
     }
     
     func viewWillAppear() {
@@ -25,7 +29,13 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     }
     
     func viewDidAppear() {
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner!.frame = CGRectMake(0, 0, 24, 24)
+        spinner!.startAnimating()
         
+        self.viewController.tableView?.pullToRefreshView?.setCustomView(spinner!, forState: 10)
+        self.viewController.tableView?.infiniteScrollingView?.hidden = true
+        self.viewController.tableView?.infiniteScrollingView?.stopAnimating()
     }
     
     func viewWillDisappear() {
@@ -56,44 +66,46 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
         
     }
     
-    func getTagsForCategory (category: String) {
-        self.viewController.category = category
+    func getTagsForCategory() {
         self.viewController.loading = true
-       // self.viewController.loadMoreView.showNoMoreContent()
+        self.viewController.loadMoreView.showNoMoreContent()
         self.viewController.lastResultCount = 0
         self.viewController.fetchedResultsController = []
         self.viewController.tableView.reloadData()
-        //[self updateFooterView];
-       // self.updateFooterLabel()
+        self.viewController.updateFooterView()
+        self.updateFooterLabel()
         
         let filter = SHFilter()
         filter.isApplied = true
-        filter.category = category
+        filter.category = self.viewController.category
         filter.type = "Tag"
         self.viewController.shTagsApi.filter = filter
-       // if(self.viewController.hardCodedTags.count > 0) {
-            self.viewController.shTagsApi.refreshTagsWithQuery("", cacheResponse: { (shTagMeta) -> Void in
-                
-                self.updateUI(shTagMeta)
-                }, completionHandler: { (response) -> Void in
-                    if(response.result.isSuccess) {
-                        if let shTagMeta = response.result.value {
-                            self.updateUI(shTagMeta)
-                        }
-                        
-                    } else {
-                        // Do Nothing
+        self.viewController.shTagsApi.reset()
+        self.viewController.shTagsApi.refreshTagsWithQuery("", cacheResponse: { (shTagMeta) -> Void in
+            
+            self.updateUI(shTagMeta)
+            }, completionHandler: { (response) -> Void in
+                self.viewController.tableView.pullToRefreshView.stopAnimating()
+                self.viewController.tableView?.infiniteScrollingView?.stopAnimating()
+                if(response.result.isSuccess) {
+                    if let shTagMeta = response.result.value {
+                        self.updateUI(shTagMeta)
                     }
-            })
-       // }
-
+                    
+                } else {
+                    // Do Nothing
+                }
+        })
     }
     
-    func updateUI(shShoutMeta: SHTagMeta) {
-        if shShoutMeta.results.count > 0 {
-            self.viewController.fetchedResultsController = shShoutMeta.results
+    func updateUI(shTagMeta: SHTagMeta) {
+        self.shTagMeta = shTagMeta
+        if shTagMeta.results.count > 0 {
+            self.viewController.fetchedResultsController = shTagMeta.results
             self.viewController.tableView.reloadData()
         }
+        self.viewController.updateFooterView()
+        updateFooterLabel()
     }
     
     func updateFooterLabel () {
@@ -101,6 +113,42 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
             self.viewController.loadMoreView.loadingLabel.text = String(format: "%d %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Tag", comment: "Tag") ])
         } else {
             self.viewController.loadMoreView.loadingLabel.text = String(format: "%d %@", arguments: [self.viewController.fetchedResultsController.count, NSLocalizedString("Tags", comment: "Tags")])
+        }
+    }
+    
+    func pullToRefresh() {
+        getTagsForCategory()
+    }
+    
+    func infiniteScroll() {
+        if let shTagsMeta = self.shTagMeta where !shTagsMeta.next.isEmpty {
+            self.viewController.loadMoreView.showLoading()
+            self.viewController.shTagsApi.loadTagsNextPageWithQuery("", cacheResponse: { (shTagsMeta) -> Void in
+                // Do Nothing
+                }) { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    self.viewController.tableView?.infiniteScrollingView?.stopAnimating()
+                    switch (response.result) {
+                    case .Success(let result):
+                        self.shTagMeta = result
+                        self.viewController.tableView.beginUpdates()
+                        var insertedIndexPaths: [NSIndexPath] = []
+                        let currentCount = self.viewController.fetchedResultsController.count
+                        for (index, _) in result.results.enumerate() {
+                            insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+                        }
+                        self.viewController.fetchedResultsController += result.results as [AnyObject]
+                        self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                        self.viewController.tableView.endUpdates()
+                    case .Failure(let error):
+                        log.error("Error getting tags : \(error.localizedDescription)")
+                    }
+            }
+        } else {
+            self.viewController.loadMoreView.showNoMoreContent()
+            self.updateFooterLabel()
+            self.viewController.updateFooterView()
+            self.viewController.tableView?.showsInfiniteScrolling = false
         }
     }
     
@@ -113,33 +161,11 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
         return self.viewController.fetchedResultsController.count
     }
     
-    func triggerLoadMore() {
-        if let loading = self.viewController.loading {
-            if(!loading && self.viewController.shTagsApi.isMore()) {
-                self.viewController.lastResultCount = self.viewController.fetchedResultsController.count
-                self.viewController.loading = true
-                self.viewController.loadMoreView.showLoading()
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                    self.viewController.shTagsApi.loadTagsNextPageWithQuery("", cacheResponse: { (shTagMeta) -> Void in
-                        // Do Nothing
-                        }, completionHandler: { (response) -> Void in
-                            // Do Nothing
-                    })
-                })
-            }
-        }
-    }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 40
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if(self.viewController.hardCodedTags.count == 0) {
-            if(indexPath.row >= (self.viewController.fetchedResultsController.count - Constants.Common.SH_PAGE_SIZE / 3 )) {
-                self.triggerLoadMore()
-            }
-        }
         
         let tag = self.viewController.fetchedResultsController[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
@@ -165,7 +191,7 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
         if let block = self.viewController.selectedBlock {
-            if let tag = self.viewController.fetchedResultsController.objectAtIndex(indexPath.row) as? SHTag {
+            if let tag = self.viewController.fetchedResultsController[indexPath.row] as? SHTag {
                 block([tag])
             }
         }

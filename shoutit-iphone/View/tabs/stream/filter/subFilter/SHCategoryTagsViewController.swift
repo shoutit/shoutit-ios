@@ -10,12 +10,12 @@ import UIKit
 
 class SHCategoryTagsViewController: BaseTableViewController {
     
-    var viewModel: SHCategoryTagsViewModel?
+    private var viewModel: SHCategoryTagsViewModel?
     var selectedBlock: (([SHTag]) -> ())?
     var oldTags = []
     var hardCodedTags = []
     var selectedDict = [String: AnyObject]()
-    var category = ""
+    var category: String?
     var lastResultCount: Int?
     var shTagsApi = SHApiTagsService()
     
@@ -41,7 +41,7 @@ class SHCategoryTagsViewController: BaseTableViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         self.tableView.scrollsToTop = true
         if(self.hardCodedTags.count > 0) {
-            self.fetchedResultsController = self.hardCodedTags
+            self.fetchedResultsController = self.hardCodedTags as [AnyObject]
         }
         viewModel?.viewDidLoad()
     }
@@ -52,6 +52,8 @@ class SHCategoryTagsViewController: BaseTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.setPullToRefresh()
         viewModel?.viewDidAppear()
     }
     
@@ -82,6 +84,16 @@ class SHCategoryTagsViewController: BaseTableViewController {
     
     deinit {
         viewModel?.destroy()
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+            self.viewModel?.infiniteScroll()
+        })
     }
     
 }

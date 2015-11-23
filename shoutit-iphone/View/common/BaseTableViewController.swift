@@ -10,7 +10,7 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     
-    var fetchedResultsController = []
+    var fetchedResultsController: [AnyObject] = []
     var emptyContentView = SHEmptyContentView()
     var loadMoreView = SHLoadMoreView()
     var loading: Bool?
@@ -39,6 +39,14 @@ class BaseTableViewController: UITableViewController {
     
     func initializeViewModel() {
         assertionFailure("You must override this method in child class [e.g - \nviewModel = ClubFeedViewModel(viewController: self)\n]")
+    }
+    
+    func updateFooterView() {
+        if self.fetchedResultsController.count == 0 {
+            self.tableView.tableFooterView = self.emptyContentView
+        } else {
+            self.tableView.tableFooterView = self.loadMoreView
+        }
     }
     
 }

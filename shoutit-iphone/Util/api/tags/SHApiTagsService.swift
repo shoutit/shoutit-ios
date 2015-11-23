@@ -12,15 +12,9 @@ import Alamofire
 class SHApiTagsService: NSObject {
     
     private let TAGS_URL = SHApiManager.sharedInstance.BASE_URL + "/tags"
-    private var is_last_page = true
     private var currentPage = 1
     private var currentLocation: SHAddress?
     var filter: SHFilter?
-    var tags = [SHTag]()
-    
-    func isMore() -> Bool {
-        return !self.is_last_page
-    }
     
     func loadTagSearchForQueryForPage(page: Int, query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
         var params = [String: AnyObject]()
@@ -43,14 +37,14 @@ class SHApiTagsService: NSObject {
     }
     
     func loadTagSearchNextPageForQuery(query: String) {
-        if(self.isMore()) {
-            self.currentPage++
-            self.loadTagSearchForQueryForPage(self.currentPage, query: query, cacheResponse: { (shTagMeta) -> Void in
-                // Do Nothing
-                }, completionHandler: { (response) -> Void in
-                    // Success
-            })
-        }
+//        if(self.isMore()) {
+//            self.currentPage++
+//            self.loadTagSearchForQueryForPage(self.currentPage, query: query, cacheResponse: { (shTagMeta) -> Void in
+//                // Do Nothing
+//                }, completionHandler: { (response) -> Void in
+//                    // Success
+//            })
+//        }
     }
     
     func loadTopTagsForLocation(location: SHAddress, forPage: Int, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
@@ -70,38 +64,38 @@ class SHApiTagsService: NSObject {
     }
 
     func refreshTopTagsForLocation (location: SHAddress) {
-        self.currentLocation = location
-        self.currentPage = 1
-        if let currentLocation = self.currentLocation {
-            self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTagMeta) -> Void in
-                // Do Nothing
-                }, completionHandler: { (response) -> Void in
-                    // Success
-                    if (response.result.isSuccess) {
-                        if(self.currentPage == 1) {
-                            self.tags.removeAll()
-                            if let tags = response.result.value {
-                                self.tags = tags.results
-                                self.is_last_page = tags.next == "" ? true : false
-                            }
-                        }
-                    }
-            })
-        }
+//        self.currentLocation = location
+//        self.currentPage = 1
+//        if let currentLocation = self.currentLocation {
+//            self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTagMeta) -> Void in
+//                // Do Nothing
+//                }, completionHandler: { (response) -> Void in
+//                    // Success
+//                    if (response.result.isSuccess) {
+//                        if(self.currentPage == 1) {
+//                            self.tags.removeAll()
+//                            if let tags = response.result.value {
+//                                self.tags = tags.results
+//                                self.is_last_page = tags.next == "" ? true : false
+//                            }
+//                        }
+//                    }
+//            })
+//        }
         
     }
     
     func loadTopTagsNextPage () {
-        if(self.isMore()) {
-            self.currentPage++
-            if let currentLocation = self.currentLocation {
-                self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTagMeta) -> Void in
-                    // Do Nothing
-                    }, completionHandler: { (response) -> Void in
-                        // Success
-                })
-            }
-        }
+//        if(self.isMore()) {
+//            self.currentPage++
+//            if let currentLocation = self.currentLocation {
+//                self.loadTopTagsForLocation(currentLocation, forPage: self.currentPage, cacheResponse: { (shTagMeta) -> Void in
+//                    // Do Nothing
+//                    }, completionHandler: { (response) -> Void in
+//                        // Success
+//                })
+//            }
+//        }
     }
     
     func loadProfileForTag(tagName: String) {
@@ -124,9 +118,9 @@ class SHApiTagsService: NSObject {
 //    }
     func loadTagsForPage(page: Int, query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
         var params = [String: AnyObject]()
-//        if let filter = self.filter {
-//            params = filter.getTagsFilterQuery()
-//        }
+        if let filter = self.filter {
+            params = filter.getTagsFilterQuery()
+        }
         params["page_size"] = Constants.Common.SH_PAGE_SIZE
         params["page"] = page
         if (query != "") {
@@ -160,6 +154,10 @@ class SHApiTagsService: NSObject {
     func loadTagsNextPageWithQuery(query: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
         self.currentPage++
         self.loadTagsForPage(self.currentPage, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    func reset() {
+        self.currentPage = 1
     }
 
 }

@@ -273,8 +273,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
         let vc = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHCATEGORYTAGS) as? SHCategoryTagsViewController
         if let category = self.viewController.filter?.category {
             //vc?.refreshTags(category)
-            vc?.viewModel?.getTagsForCategory(category)
-            
+            vc?.category = category
         }
         if let tags = self.viewController.filter?.tags {
             vc?.oldTags = tags

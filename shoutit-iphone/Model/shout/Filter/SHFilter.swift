@@ -39,13 +39,14 @@ class SHFilter: NSObject {
         }
         if(self.type == NSLocalizedString("Tag", comment: "Tag")) {
             var params = [String: AnyObject]()
-            if let location = SHAddress.getUserOrDeviceLocation() {
-                params["country"] = location.country
-                params["city"] = location.city
+//            if let location = SHAddress.getUserOrDeviceLocation() {
+//                params["country"] = location.country
+//                params["city"] = location.city
+//            }
+            if let category = self.category where category != NSLocalizedString("All", comment: "All") {
+                params["category"] = category
             }
-            if(self.category != NSLocalizedString("All", comment: "All")) {
-                params["category"] = self.category
-            }
+            
             return params
         } else {
             return [:]
