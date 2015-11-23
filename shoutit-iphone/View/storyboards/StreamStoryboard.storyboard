@@ -24,9 +24,8 @@
                             <outlet property="delegate" destination="Vdq-rL-FBA" id="SOl-16-5hC"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stream" image="streamTabBar" id="BfL-nv-s3m"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="vk4-Re-dXZ" id="nGG-xS-FCF"/>
                         <outlet property="tableView" destination="rIX-aS-WXx" id="cA5-zN-Mbh"/>
@@ -446,6 +445,5 @@
         <image name="chatTabBar.png" width="25" height="19"/>
         <image name="clockIcon.png" width="50" height="50"/>
         <image name="locationMark.png" width="50" height="60"/>
-        <image name="streamTabBar" width="25" height="25"/>
     </resources>
 </document>

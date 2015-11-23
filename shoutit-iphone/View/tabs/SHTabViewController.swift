@@ -37,7 +37,7 @@ class SHTabViewController: UITabBarController {
         let discoverVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC)
         let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC)
         let createShoutVC = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT)
-        
+        streamVC.tabBarItem.image = UIImage(named: "streamTabBar")
         self.viewControllers = [
             getNavController(createShoutVC),
             getNavController(discoverVC),
@@ -46,7 +46,11 @@ class SHTabViewController: UITabBarController {
     }
     
     private func setTabStyle() {
-        self.tabBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        UITabBar.appearance().tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        
+        // Sets the default color of the background of the UITabBar
+        UITabBar.appearance().barTintColor = UIColor.whiteColor()
+        UITabBar.appearance().translucent = false
     }
     
     private func updateCache() {
