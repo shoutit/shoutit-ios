@@ -32,6 +32,7 @@ class SHShout: Mappable {
     var datePublished: Double = 0.0
     var category: SHCategory?
     var tags: [SHTag]?
+    var stringTags: [String] = []
     
     required init?(_ map: Map) {
         

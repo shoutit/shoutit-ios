@@ -76,7 +76,6 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
 //            self.currencyTextField.text = localCur;
 //        }
         
-        self.viewController.tagsList.delegate = self
         self.viewController.tableView.estimatedRowHeight = 120
         self.viewController.tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -159,6 +158,49 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if self.shout.category == nil {
             SHProgressHUD.showError(NSLocalizedString("Please, select category first.", comment: "Please, select category first."))
             return
+        }
+        
+        if let tagsVC = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHCATEGORYTAGS) as? SHCategoryTagsViewController {
+            tagsVC.category = self.shout.category?.name
+            tagsVC.selectedBlock = {(tags: [SHTag]) in
+                if tags.count > 0 {
+                    let tagName = tags[0].name
+                    if self.tagExist(tagName) {
+                        return;
+                    }
+                    var stringTags: [String] = []
+                    for tag in tags {
+                        stringTags += [tag.name]
+                    }
+                    if self.shout.tags == nil {
+                        self.shout.tags = tags
+                        self.shout.stringTags = stringTags
+                    } else {
+                        self.shout.tags! += tags
+                        self.shout.stringTags += stringTags
+                    }
+                    
+                    if (self.viewController.segmentControl.selectedSegmentIndex == 2) {
+                        if NSUserDefaults.standardUserDefaults().valueForKey(Constants.SharedUserDefaults.SelectLocationAlert) == nil {
+                            NSUserDefaults.standardUserDefaults().setValue(1, forKey: Constants.SharedUserDefaults.SelectLocationAlert)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                let alert = UIAlertController(title: NSLocalizedString("Recommendation", comment: "Recommendation"), message: NSLocalizedString("Now choose the city you would like to work in", comment: "Now choose the city you would like to work in"), preferredStyle: UIAlertControllerStyle.Alert)
+                                
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("Skip", comment: "Skip"), style: UIAlertActionStyle.Cancel, handler: nil))
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("Choose the city", comment: "Choose the city"), style: .Default, handler: { (action) -> Void in
+                                    self.selectLocation()
+                                }))
+                                self.viewController.presentViewController(alert, animated: true, completion: nil)
+                            })
+                        }
+                    }
+                }
+                let verticalContentOffset = self.viewController.tableView.contentOffset.y
+                self.viewController.tableView.reloadData()
+                self.viewController.tableView.contentOffset = CGPointMake(0, verticalContentOffset)
+            }
+            
+            self.viewController.navigationController?.pushViewController(tagsVC, animated: true)
         }
         
     }
@@ -316,30 +358,23 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             }
         }
         let cell = self.viewController.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        // TODO
-//        if (indexPath.section == 2 && indexPath.row == 1)
-//        {
-//            [self.tagList setTags:self.shout.stringTags];
-//            
-//            [self.tagList.constraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                NSLayoutConstraint* constraint = obj;
-//                if (constraint.firstAttribute == NSLayoutAttributeHeight)
-//                {
-//                constraint.constant =  fmax(24.0, self.tagList.contentSize.height);
-//                *stop = YES;
-//                }
-//                }];
-//            
-//            [cell layoutIfNeeded];
-//        }
+        if (indexPath.section == 2 && indexPath.row == 1) {
+            self.viewController.tagsList.setTags(self.shout.stringTags)
+            for (_, constraint) in self.viewController.tagsList.constraints.enumerate() {
+                if constraint.firstAttribute == NSLayoutAttribute.Height {
+                    constraint.constant =  fmax(24.0, self.viewController.tagsList.contentSize.height)
+                    break
+                }
+            }
+            cell.layoutIfNeeded()
+        }
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.section == 2 && indexPath.row == 1 {
-//            // TODO
-////            return fmax(24.0, self.tagList.contentSize.height) + 20
-//        }
+        if indexPath.section == 2 && indexPath.row == 1 {
+            return fmax(24.0, self.viewController.tagsList.contentSize.height) + 20
+        }
         return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
     }
     
@@ -403,6 +438,18 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.collectionView.reloadData()
     }
     
+    // MARK - DWTagListDelegate
+    func selectedTag(tagName: String!, tagIndex: Int) {
+        let ac = UIAlertController(title: NSLocalizedString("Delete tag?", comment: "Delete tag?"), message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        ac.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
+            self.shout.tags?.removeAtIndex(tagIndex)
+            self.shout.stringTags.removeAtIndex(tagIndex)
+            self.viewController.tagsList.setTags(self.shout.stringTags)
+        }))
+        self.viewController.presentViewController(ac, animated: true, completion: nil)
+    }
+    
     // MARK - Private
     private func showCurrencyPicker() {
         SHSinglePickerTableViewController.presentPickerFromViewController(self.viewController, stringList: self.currenciesString, title: "Currencies", allowNoneOption: true) { (selectedItem) -> () in
@@ -431,6 +478,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         }
     }
     
+    private func selectLocation() {
+    }
+    
     private func setUpTagList() {
         self.viewController.tagsList.setTags(self.shout.getStringTags())
         self.viewController.tagsList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
@@ -438,6 +488,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.tagsList.textShadowColor = UIColor.clearColor()
         self.viewController.tagsList.automaticResize = true
         self.viewController.tagsList.userInteractionEnabled = true
+        self.viewController.tagsList.tagDelegate = self
         if let tapGesture = self.tapTagsSelect {
             self.viewController.tagsList.addGestureRecognizer(tapGesture)
         }
@@ -456,6 +507,18 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.currenciesString = self.currencies.map({ (currency) -> String in
             currency.code
         })
+    }
+    
+    
+    private func tagExist(tagName: String) -> Bool{
+        if let tags = self.shout.tags {
+            for tag in tags {
+                if tag.name == tagName {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     private func setupViewForStandard(standard: Bool) {

@@ -35,6 +35,7 @@ struct Constants {
         static let MIXPANEL = "MIXPANEL_USER_DEFAULTS"
         static let INIT_LOCATION = "initLocation"
         static let CUSTOM_LOCATION = "customLocation"
+        static let SelectLocationAlert = "SelectLocationAlert"
     }
     
     struct StoryboardIdentifier {
