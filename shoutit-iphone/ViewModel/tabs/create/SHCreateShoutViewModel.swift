@@ -276,11 +276,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         } else if indexPath.section == 2 && indexPath.row == 1 {
             self.selectTags()
         } else if indexPath.section == 3 && indexPath.row == 0 {
-            // TODO
-//            [SHTextInputViewController presentFromViewController:self withText:self.shout.text completionHandler:^(NSString *text) {
-//                [self.descriptionTextView setText:text];
-//                self.shout.text = text;
-//                }];
+            SHTextInputViewController.presentFromViewController(self.viewController, text: self.shout.text, completionHandler: { (text) -> () in
+                self.viewController.descriptionTextView.text = text
+                self.shout.text = text
+            })
         } else if (indexPath.section == 4 && indexPath.row == 0) {
             self.viewController.priceTextField.becomeFirstResponder()
         } else if (indexPath.section == 4 && indexPath.row == 1) {
@@ -301,18 +300,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             } else {
                 self.showCurrencyPicker()
             }
-//            [SHSinglePickerTableViewController presentPickerFromViewController:self
-//                withStringList:cur
-//                andTitle:@"Currencies"
-//            allowNoneOption:YES
-//            andOnSelectionCallback:^(NSString *selectedItem)
-//            {
-//                self.shout.currency = selectedItem;
-//                self.currencyTextField.text = selectedItem;
-//            }];
         } else if (indexPath.section == 5 && indexPath.row == 0) {
-            // TODO
-//            [self selectLocation];
+            self.selectLocation()
         }
         self.viewController.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         self.viewController.tableView.reloadData()

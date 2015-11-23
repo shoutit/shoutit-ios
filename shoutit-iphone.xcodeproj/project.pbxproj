@@ -39,6 +39,7 @@
 		602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F4CA41C020A980051B737 /* SHLoadMoreView.swift */; };
 		602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */; };
 		6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6043CF051C02A4A100A9AA49 /* SHShoutCalloutView.xib */; };
+		6043CF081C02C94E00A9AA49 /* SHTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6043CF071C02C94E00A9AA49 /* SHTextInputViewController.swift */; };
 		604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */; };
 		604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */; };
 		604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */; };
@@ -214,6 +215,7 @@
 		602F4CA41C020A980051B737 /* SHLoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoadMoreView.swift; path = View/common/SHLoadMoreView.swift; sourceTree = "<group>"; };
 		602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHEmptyContentView.swift; path = View/common/SHEmptyContentView.swift; sourceTree = "<group>"; };
 		6043CF051C02A4A100A9AA49 /* SHShoutCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHShoutCalloutView.xib; path = View/tabs/stream/mapView/SHShoutCalloutView.xib; sourceTree = "<group>"; };
+		6043CF071C02C94E00A9AA49 /* SHTextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTextInputViewController.swift; path = View/tabs/create/SHTextInputViewController.swift; sourceTree = "<group>"; };
 		604A0DCA1BEE478B002A80E7 /* SHSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSuccess.swift; path = Model/SHSuccess.swift; sourceTree = "<group>"; };
 		604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginInputTableViewCell.swift; path = View/auth/SHLoginInputTableViewCell.swift; sourceTree = "<group>"; };
 		604A0DCF1BEE58BB002A80E7 /* SHApiMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiMiscService.swift; path = Util/api/misc/SHApiMiscService.swift; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 				606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */,
 				606ED2E91BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift */,
 				606ED2EB1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift */,
+				6043CF071C02C94E00A9AA49 /* SHTextInputViewController.swift */,
 			);
 			name = create;
 			sourceTree = "<group>";
@@ -1346,6 +1349,7 @@
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
+				6043CF081C02C94E00A9AA49 /* SHTextInputViewController.swift in Sources */,
 				606ED2FC1BF80A730064C53E /* SHCameraViewController.swift in Sources */,
 				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,
 				AC74A7761BFCA9290029CE7D /* SHShoutAnnotation.swift in Sources */,

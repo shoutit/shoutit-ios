@@ -634,7 +634,7 @@
         <!--Text Input View Controller-->
         <scene sceneID="xMF-5T-AAY">
             <objects>
-                <viewController storyboardIdentifier="SHTextInputViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IvW-D6-8Bf" customClass="SHTextInputViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHTextInputViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IvW-D6-8Bf" customClass="SHTextInputViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Ko-eL-PA9"/>
                         <viewControllerLayoutGuide type="bottom" id="Z92-uK-Ix3"/>
@@ -665,7 +665,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="textView" destination="7Jw-Si-bam" id="2lw-TE-AWM"/>
+                        <outlet property="textView" destination="7Jw-Si-bam" id="9F5-Ev-bZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgT-bJ-pSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
