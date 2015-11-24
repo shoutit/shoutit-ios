@@ -632,6 +632,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
                         if address.country == currency.country {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 self.viewController.currencyTextField.text = currency.code
+                                self.shout.currency = currency.code
                             })
                             break
                         }
@@ -665,10 +666,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     private func setCurrencies(currencies: [SHCurrency]) {
         self.currencies = currencies
-        let location = SHAddress.getUserOrDeviceLocation()
         self.currenciesString = self.currencies.map({ (currency) -> String in
-            if let loc = location where loc.country == currency.country {
+            if let loc = shout.location where loc.country == currency.country {
                 self.viewController.currencyTextField.text = currency.code
+                self.shout.currency = currency.code
             }
             return currency.code
         })

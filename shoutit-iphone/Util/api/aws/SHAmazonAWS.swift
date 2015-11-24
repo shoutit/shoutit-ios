@@ -27,11 +27,11 @@ class SHAmazonAWS: NSObject {
     }
     
     func generateKeyWithExtenstion(ext: String) -> String {
-        return String(format: "%@-%d.%@", NSUUID().UUIDString, NSDate().timeIntervalSince1970, ext)
+        return String(format: "%@-%d.%@", NSUUID().UUIDString, Int(NSDate().timeIntervalSince1970), ext)
     }
     
     func generateKey() -> String {
-        return String(format: "%@-%d", NSUUID().UUIDString, NSDate().timeIntervalSince1970)
+        return String(format: "%@-%d", NSUUID().UUIDString, Int(NSDate().timeIntervalSince1970))
     }
     
     func getShoutImageTask(image: UIImage) -> AWSTask? {
