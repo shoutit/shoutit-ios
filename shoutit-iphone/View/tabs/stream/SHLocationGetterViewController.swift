@@ -13,7 +13,7 @@ class SHLocationGetterViewController: BaseViewController, UISearchBarDelegate {
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var locationTableView: UITableView!
     private var viewModel: SHLocationGetterViewModel?
-    var isUpdateUserLocation: Bool?
+    var isUpdateUserLocation: Bool = true
     var locationSelected: ((address: SHAddress) -> ())?
     
     override func viewDidLoad() {

@@ -189,7 +189,7 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
             self.retrieveJSONDetailsAbout(placeID, withCompletion: { (address, error) -> () in
                 if let oauthToken = SHOauthToken.getFromCache() where oauthToken.isSignedIn(), let userName = oauthToken.user?.username, let latitude = address?.latitude, let longitude = address?.longitude {
                     // Update User's Location
-                    if let updateUserLocation = self.viewController.isUpdateUserLocation where updateUserLocation {
+                    if self.viewController.isUpdateUserLocation {
                         SHProgressHUD.show(NSLocalizedString("UpdatingLocation", comment: "Updating Location..."))
                         SHApiUserService().updateLocation(userName, latitude: latitude, longitude: longitude, completionHandler: { (response) -> Void in
                             SHProgressHUD.dismiss()

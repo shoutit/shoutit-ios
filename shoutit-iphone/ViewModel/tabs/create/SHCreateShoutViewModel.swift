@@ -708,12 +708,14 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             self.viewController.tagsLabel.text = NSLocalizedString("Tags", comment: "Tags")
             self.isVideoCV = false
         } else {
-            // TODO
             self.viewController.priceTextField.placeholder = NSLocalizedString("Salary", comment: "Salary")
             self.viewController.titleTextField.placeholder = NSLocalizedString("Job Title", comment: "Job Title")
             self.viewController.tagsLabel.text = NSLocalizedString("Professions", comment: "Professions")
             self.viewController.categoriesTextField.text = NSLocalizedString("Jobs Wanted", comment: "Jobs Wanted")
-
+            self.shout.tags?.removeAll()
+            self.shout.stringTags.removeAll()
+            self.viewController.tagsList.setTags(self.shout.stringTags)
+            
             self.shout.category = SHCategory.categoryFromName("Jobs Wanted")
             self.tagsCV = [
                 SHTag.tagWithName("Accounting"),

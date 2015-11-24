@@ -45,11 +45,19 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
     }
     
     func viewDidDisappear() {
-        
+        switch self.viewController.mapView.mapType {
+        case .Hybrid:
+            self.viewController.mapView.mapType = .Standard
+        case .Standard:
+            self.viewController.mapView.mapType = .Hybrid
+        default:
+            break
+        }
+        self.viewController.mapView.removeFromSuperview()
+        self.viewController.mapView = nil
     }
     
     func destroy() {
-        
     }
     
     func refreshShouts () {
