@@ -9,6 +9,8 @@
 import UIKit
 import DWTagList
 import SVProgressHUD
+import Fabric
+import Crashlytics
 
 class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate, SHCreateVideoCollectionViewCellDelegate, SHCameraViewControllerDelegate, SHCreateImageCollectionViewCellDelegate, UITextFieldDelegate {
 
@@ -229,7 +231,12 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             return;
         }
         SHApiShoutService().postShout(self.shout, media: self.media) { (response) -> Void in
-            // Do Nothing for now
+            switch response.result {
+            case .Success:
+                self.trackCreateShoutWithAnswers(self.shout)
+            case .Failure:
+                SVProgressHUD.showErrorWithStatus("Something went wrong, shout not posted")
+            }
         }
         self.showShoutAnimation()
     }
@@ -758,5 +765,33 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             self.viewController.segmentControl.selectedSegmentIndex = self.viewController.segmentControl.numberOfSegments - 1
             self.isVideoCV = true
         }
+    }
+    
+    private func trackCreateShoutWithAnswers(shout: SHShout) {
+        let country: String
+        let city: String
+        if let location = shout.location {
+            country = location.country
+            city = location.city
+        } else {
+            country = ""
+            city = ""
+        }
+        
+        let categoryName: String
+        if let category = shout.category {
+            categoryName = category.name
+        } else {
+            categoryName = ""
+        }
+        
+        Answers.logCustomEventWithName("Create Shout", customAttributes: [
+            "Type": shout.type.rawValue,
+            "Country": country,
+            "City": city,
+            "Category": categoryName,
+            "Images": shout.images.count,
+            "Videos": shout.videos.count
+            ])
     }
 }
