@@ -437,10 +437,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     // MARK - SHCreateVideoCollectionViewCellDelegate
     func removeVideo(media: SHMedia) {
         if let index = self.media.indexOf({
-            if let image1 = $0.image, image2 = media.image {
-                return image2.isEqual(image1)
-            }
-            return $0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && $0.url == media.url)
+            return $0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && !$0.url.isEmpty && $0.url == media.url)
         }) {
             self.media.removeAtIndex(index)
             self.viewController.collectionView.performBatchUpdates({ () -> Void in
