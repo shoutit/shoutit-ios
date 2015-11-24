@@ -13,6 +13,7 @@ import MapKit
 class SHApiShoutService: NSObject {
     
     private let SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/shouts"
+    private let REPORT_SHOUT = SHApiManager.sharedInstance.BASE_URL + "/misc/reports"
     private var currentPage = 0
     private var totalCounts = 0
     var filter: SHFilter?
@@ -86,6 +87,12 @@ class SHApiShoutService: NSObject {
         let urlString = String(format: SHOUTS + "/%@", arguments: [shoutID])
         let params = [String: AnyObject]()
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    func reportShout(reportedText: String, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let params: [String: AnyObject] = ["text" : reportedText,
+                      "attached_object" : ["shout" : ["id" : shoutID]]]
+        SHApiManager.sharedInstance.post(REPORT_SHOUT, params: params, completionHandler: completionHandler)
     }
 
 }
