@@ -223,6 +223,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.segmentControl.selectedSegmentIndex = 0
         self.media.removeAll()
         self.shout = SHShout()
+        
+        if let location = shout.location {
+            self.viewController.locationTextView.text = String(format: "%@, %@, %@", location.city, location.state, location.country)
+        }
         self.viewController.collectionView.reloadData()
     }
     
@@ -595,6 +599,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             textField.text = selectedItem
             if title == NSLocalizedString("Categories", comment: "Categories") {
                 self.shout.category = SHCategory.categoryFromName(selectedItem)
+                self.shout.tags?.removeAll()
+                self.shout.stringTags.removeAll()
+                self.viewController.tagsList.setTags(self.shout.stringTags)
                 if selectedItem == "Jobs Wanted" {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         let alert = UIAlertController(title: NSLocalizedString("Recommendation", comment: "Recommendation"), message: NSLocalizedString("CreateCVMessage", comment: "Create a video cv to increase your chances of impressing potential employers!"), preferredStyle: UIAlertControllerStyle.Alert)
@@ -667,7 +674,6 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         })
     }
     
-    
     private func tagExist(tagName: String) -> Bool{
         if let tags = self.shout.tags {
             for tag in tags {
@@ -699,7 +705,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             if self.isEditing {
                 self.viewController.categoriesTextField.text = ""
             }
-            self.viewController.tagsLabel.text = NSLocalizedString("Price", comment: "Price")
+            self.viewController.tagsLabel.text = NSLocalizedString("Tags", comment: "Tags")
             self.isVideoCV = false
         } else {
             // TODO

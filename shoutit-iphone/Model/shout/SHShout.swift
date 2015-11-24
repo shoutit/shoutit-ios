@@ -12,7 +12,7 @@ import ObjectMapper
 enum ShoutType : String {
     case Offer = "offer"
     case Request = "request"
-    case VideoCV = "cvRequest"
+    case VideoCV = "cv-video"
 }
 
 class SHShout: Mappable {
