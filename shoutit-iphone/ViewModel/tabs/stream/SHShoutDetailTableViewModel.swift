@@ -57,8 +57,8 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             UIAlertControllerStyle.Alert)
         alert.addTextFieldWithConfigurationHandler(configurationTextField)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
-            if let reportedtext = self.reportTextField?.text, let shout = self.shoutDetail {
-                self.shApiShout.reportShout(reportedtext, shoutID: shout.id, completionHandler: { (shSuccess) -> Void in
+            if let reportedtext = self.reportTextField?.text, let shout = self.shoutDetail, let shoutId = shout.id {
+                self.shApiShout.reportShout(reportedtext, shoutID: shoutId, completionHandler: { (shSuccess) -> Void in
                     switch (shSuccess.result) {
                     case .Success( _):
                         dispatch_async(dispatch_get_main_queue()) { () -> Void in
@@ -100,7 +100,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 //                    FBSDKShareDialog.showFromViewController(self.viewController, withContent: content, delegate: nil)
                     let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                     vc.setInitialText(shout.title)
-                    vc.addURL(NSURL(string: shout.apiUrl))
+                    if let apiUrl = shout.apiUrl {
+                        vc.addURL(NSURL(string: apiUrl))
+                    }
                     self.viewController.presentViewController(vc, animated: true, completion: nil)
 
                 case 2:
@@ -130,12 +132,16 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     if(MFMailComposeViewController.canSendMail()) {
                         let composeViewController = MFMailComposeViewController(nibName: nil, bundle: nil)
                         composeViewController.mailComposeDelegate = self
-                        composeViewController.setMessageBody(shout.webUrl, isHTML: false)
+                        if let webUrl = shout.webUrl {
+                            composeViewController.setMessageBody(webUrl, isHTML: false)
+                        }
                         self.viewController.presentViewController(composeViewController, animated: true, completion: nil)
                     }
                 case 4:
                     var sharingItems = [String]()
-                    sharingItems.append(shout.webUrl)
+                    if let webUrl = shout.webUrl {
+                        sharingItems.append(webUrl)
+                    }
                     let activityController = UIActivityViewController.init(activityItems: sharingItems, applicationActivities: nil)
                     self.viewController.presentViewController(activityController, animated: true, completion: nil)
                 default:
@@ -388,7 +394,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             }
 
             if let datePublished = self.shoutDetail?.datePublished  {
-                self.viewController.timeLabel.text = NSDate(timeIntervalSince1970: datePublished).timeAgoSimple
+                self.viewController.timeLabel.text = datePublished.timeAgoSimple
             }
             self.viewController.descriptionTextView.text = shoutDetail.text
 
@@ -402,7 +408,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 }
             }
             self.viewController.titleLabel.text = shoutDetail.title
-            self.viewController.typeLabel.text = shoutDetail.type?.rawValue
+            self.viewController.typeLabel.text = shoutDetail.type.rawValue
             if(shoutDetail.type == ShoutType.Offer) {
                 self.viewController.typeLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
             } else {
