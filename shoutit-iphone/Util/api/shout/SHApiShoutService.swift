@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import MapKit
+import AWSS3
+import Bolts
 
 class SHApiShoutService: NSObject {
     
@@ -89,6 +91,23 @@ class SHApiShoutService: NSObject {
     }
 
     func postShout(shout: SHShout, media: [SHMedia]) {
-        let kinesisRecorder = AWSKinesisRecorder.def
+        var tasks: [AWSTask] = []
+        for shMedia in media {
+            if shMedia.isVideo {
+                if let url = shMedia.localUrl, let thumbImage = shMedia.localThumbImage {
+                    let task = SHAmazonAWS.getVideoUploadTasks(url, image: thumbImage)
+                    tasks += task
+                }
+            } else {
+                if let image = shMedia.image, let task = SHAmazonAWS.getShoutImageTask(image) {
+                    tasks.append(task)
+                }
+            }
+        }
+        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+            log.verbose("All Media Uploaded Successfully")
+            return nil
+        }
+        
     }
 }
