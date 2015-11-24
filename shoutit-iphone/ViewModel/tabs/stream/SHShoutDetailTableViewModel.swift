@@ -7,44 +7,187 @@
 //
 
 import Foundation
+import MWPhotoBrowser
+import MapKit
+import Social
+import MessageUI
+import FBSDKShareKit
+import DWTagList
 
-class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate {
+class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate, MWPhotoBrowserDelegate, MKMapViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate{
 
     private let viewController: SHShoutDetailTableViewController
     private let shApiShout = SHApiShoutService()
     private var shoutDetail: SHShout?
-    
+    private var photos:[MWPhoto] = []
+    private var reportTextField: UITextField?
+
     required init(viewController: SHShoutDetailTableViewController) {
         self.viewController = viewController
     }
-    
+
     func viewDidLoad() {
         if let shoutID = self.viewController.shoutID {
             getShoutDetails(shoutID)
         }
     }
-    
+
     func viewWillAppear() {
-        
+
     }
-    
+
     func viewDidAppear() {
-        
+
     }
-    
+
     func viewWillDisappear() {
-        
+
     }
-    
+
     func viewDidDisappear() {
-        
+
     }
-    
+
     func destroy() {
-        
+
     }
-    
+    // Report Action
+    func reportAction() {
+        let alert = UIAlertController(title: NSLocalizedString("Report Inappropriate", comment: "Report Inappropriate"), message: "", preferredStyle:
+            UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler(configurationTextField)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
+            if let reportedtext = self.reportTextField?.text, let shout = self.shoutDetail {
+                self.shApiShout.reportShout(reportedtext, shoutID: shout.id, completionHandler: { (shSuccess) -> Void in
+                    switch (shSuccess.result) {
+                    case .Success( _):
+                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                            SHProgressHUD.showError(NSLocalizedString("Thank you! Shout has been reported as inappropriate and will be reviewed.", comment: "Report"), maskType: .Black)
+                        }
+                    case .Failure(let error):
+                        log.error("Error posting the Report Inappropriate \(error.localizedDescription)")
+                    }
+                })
+            }
+
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func configurationTextField(textField: UITextField!)
+    {
+        self.reportTextField = textField
+    }
+
+    //Action Sheet
+    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+        if(actionSheet.tag != 2) {
+            return
+        }
+        if(buttonIndex == actionSheet.cancelButtonIndex) {
+            return
+        }
+
+        if let shout = self.shoutDetail {
+            switch(buttonIndex) {
+                case 1:
+//                    let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+//                    content.contentURL = NSURL(string: shout.webUrl)
+//                    content.contentTitle = shout.title
+//                    content.contentDescription = shout.text
+//                    content.imageURL = NSURL(string: shout.images[0])
+//                    FBSDKShareDialog.showFromViewController(self.viewController, withContent: content, delegate: nil)
+                    let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                    vc.setInitialText(shout.title)
+                    vc.addURL(NSURL(string: shout.apiUrl))
+                    self.viewController.presentViewController(vc, animated: true, completion: nil)
+
+                case 2:
+                break
+                    // Google Share
+                    // Construct the Google+ share URL
+//
+//                    NSURLComponents* urlComponents = [[NSURLComponents alloc]
+//                        initWithString:@"https://plus.google.com/share"];
+//                    urlComponents.queryItems = @[[[NSURLQueryItem alloc]
+//                    initWithName:@"url"
+//                    value:[shareURL absoluteString]]];
+//                    NSURL* url = [urlComponents URL];
+//
+//                    if ([SFSafariViewController class]) {
+//                        // Open the URL in SFSafariViewController (iOS 9+)
+//                        SFSafariViewController* controller = [[SFSafariViewController alloc]
+//                            initWithURL:url];
+//                        controller.delegate = self;
+//                        [self presentViewController:controller animated:YES completion:nil];
+//                    } else {
+//                        // Open the URL in the device's browser
+//                        [[UIApplication sharedApplication] openURL:url];
+              //  }
+
+                case 3:
+                    if(MFMailComposeViewController.canSendMail()) {
+                        let composeViewController = MFMailComposeViewController(nibName: nil, bundle: nil)
+                        composeViewController.mailComposeDelegate = self
+                        composeViewController.setMessageBody(shout.webUrl, isHTML: false)
+                        self.viewController.presentViewController(composeViewController, animated: true, completion: nil)
+                    }
+                case 4:
+                    var sharingItems = [String]()
+                    sharingItems.append(shout.webUrl)
+                    let activityController = UIActivityViewController.init(activityItems: sharingItems, applicationActivities: nil)
+                    self.viewController.presentViewController(activityController, animated: true, completion: nil)
+                default:
+                    break
+            }
+        }
+
+    }
+
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    // MapView Overlay
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleR = MKCircleRenderer(overlay: overlay)
+        circleR.fillColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        circleR.alpha = 0.5
+        circleR.lineWidth = 1
+        circleR.strokeColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        return circleR
+    }
+
+    // Photo Browser
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(self.photos.count)
+    }
+
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        if(index < UInt(self.photos.count)) {
+            return self.photos[Int(index)]
+        }
+        return nil
+    }
+
     func getShoutDetails(shoutID: String) {
+//        MBProgressHUD.showHUDAddedTo(self.viewController.view, animated: true)
+//        MBProgressHUD(forView: self.viewController.view).labelText = NSLocalizedString("Loading", comment: "Loading...")
+//        MBProgressHUD(forView: self.viewController.view).backgroundColor = UIColor.blackColor()
+        SHProgressHUD.show(NSLocalizedString("Loading", comment: "Loading..."), maskType: .Black)
+
+        self.photos = [MWPhoto]()
+        if let images = shoutDetail?.images {
+            for stringUrl in images {
+                self.photos.append(MWPhoto(URL: NSURL(string: stringUrl)))
+            }
+        }
+        if(shoutDetail?.user?.username == SHOauthToken.getFromCache()?.user?.username) {
+            self.viewController.navigationItem.rightBarButtonItem = nil
+            let item = UIBarButtonItem(image: UIImage(named: "more_item"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editShout:"))
+            self.viewController.navigationItem.rightBarButtonItem = item
+        }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
             self.updateUI(shShout)
             }) { (response) -> Void in
@@ -54,29 +197,37 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 case .Failure(let error):
                     log.error("Unable to get the Shout Details \(error.localizedDescription)")
                 }
+                SHProgressHUD.dismiss()
+               // MBProgressHUD.hideHUDForView(self.viewController.view, animated: true)
         }
     }
-    
+
+
     // UICollectioViewDataSource
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return collectionView.frame.size
     }
-    
+
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return getCollectionViewCount()
+    }
+
+    func getCollectionViewCount() -> Int {
+        if let images = self.shoutDetail?.images, let videos = self.shoutDetail?.videos {
+            return images.count + videos.count
+        }
         return 1
     }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        self.viewController.pageControl.hidden = false
         if (self.shoutDetail?.videos.count > 0) {
             if(indexPath.row < self.shoutDetail?.videos.count) {
+                self.viewController.pageControl.hidden = true
                 if let video = self.shoutDetail?.videos[indexPath.row] {
                     if(video.provider == "youtube") {
                         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHYouTubeVideoCollectionViewCell, forIndexPath: indexPath) as! SHYouTubeVideoCollectionViewCell
@@ -88,7 +239,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                             "rel" : 0,
                             "theme" : "light"
                         ]
-                        
+
                         cell.ytPlayerView.loadWithVideoId(video.idOnProvider, playerVars: playerVars)
                         cell.ytPlayerView.delegate = self
                         cell.ytPlayerView.webView.backgroundColor = UIColor.darkGrayColor()
@@ -102,50 +253,222 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             } else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHShoutDetailImageCollectionViewCell, forIndexPath: indexPath) as! SHShoutDetailImageCollectionViewCell
                 if let shoutDetail = self.shoutDetail where shoutDetail.images.count > 0 {
-//                    cell.shoutImageView.kf_setImageWithURL(<#T##URL: NSURL##NSURL#>, placeholderImage: <#T##UIImage?#>)
+                    cell.shoutImageView.setImageWithURL(NSURL(string: shoutDetail.images[indexPath.row - shoutDetail.videos.count]), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+                    cell.imageURL = shoutDetail.images[indexPath.row - shoutDetail.videos.count]
+                } else {
+                    cell.shoutImageView.image = UIImage(named: "no_image_available")
                 }
-//                if(self.shoutDetail?.images.count > 0) {
-//                    cell.shoutImageView.kf_setImageWithURL(NSURL(string: self.shoutDetail?.images[indexPath.row - self.shoutDetail?.videos.count])?, placeholderImage: <#T##UIImage?#>)
-//                    
-//                }
-                
-//                SHShoutDetailImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SHShoutDetailImageCollectionViewCell" forIndexPath:indexPath];
-//                
-//                if (self.shoutModel.shout.images.count > 0)
-//                {
-//                    [cell.shoutImageView setImageWithURL:[NSURL URLWithString:[self.shoutModel.shout.images[indexPath.row - self.shoutModel.shout.videos.count] largeImage]] placeholderImage:[UIImage imageNamed:@"logo.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//                    cell.imageURL = [self.shoutModel.shout.images[indexPath.row - self.shoutModel.shout.videos.count] largeImage];
-//                }
-//                else{
-//                    [cell.shoutImageView setImage:[UIImage imageNamed:@"no_image_available"]];
-//                }
-//                
-//                
-//                return cell;
-                
+                return cell
             }
+        } else {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHShoutDetailImageCollectionViewCell, forIndexPath: indexPath) as! SHShoutDetailImageCollectionViewCell
+            if (self.shoutDetail?.images.count > 0) {
+                if let url = self.shoutDetail?.images[indexPath.row] {
+                    cell.shoutImageView.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+                }
+            } else {
+                cell.shoutImageView.image = UIImage(named: "no_image_available")
+            }
+            return cell
         }
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHShoutDetailImageCollectionViewCell, forIndexPath: indexPath) as! SHShoutDetailImageCollectionViewCell
-        cell.shoutImageView.image = UIImage(named: "no_image_available")
-        
-//        SHShoutDetailImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SHShoutDetailImageCollectionViewCell" forIndexPath:indexPath];
-        
-//        if (self.shoutModel.shout.images.count > 0)
-//        {
-//            [cell.shoutImageView setImageWithURL:[NSURL URLWithString:[self.shoutModel.shout.images[indexPath.row] largeImage]] placeholderImage:[UIImage imageNamed:@"logo.png"]  usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        }
-//        else{
-//            [cell.shoutImageView setImage:[UIImage imageNamed:@"no_image_available"]];
-//        }
-        
+        return UICollectionViewCell()
+    }
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            var browser = MWPhotoBrowser(delegate: self)
+            // Set Options
+            // Show action button to allow sharing, copying, etc (defaults to YES)
+            browser.displayActionButton = false
+            // Whether to display left and right nav arrows on toolbar (defaults to NO)
+            browser.displayNavArrows = false
+            // Whether selection buttons are shown on each image (defaults to NO)
+            browser.displaySelectionButtons = false
+            // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+            browser.zoomPhotosToFill = true
+            // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+            browser.alwaysShowControls = false
+            // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+            browser.enableGrid = true
+            // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+            browser.startOnGrid = false
+
+            if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+                if(cell.isKindOfClass(SHShoutDetailImageCollectionViewCell)) {
+                    var ind = indexPath.row
+                    if let videoCount = self.shoutDetail?.videos.count {
+                        ind -= videoCount
+                    }
+                    browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                    browser.navigationController?.navigationBar.opaque = true
+                    browser.setCurrentPhotoIndex(UInt(ind))
+                }
+            }
+
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.type = kCATransitionFade
+            transition.subtype = kCATransitionFromTop
+            self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+            self.viewController.navigationController?.pushViewController(browser, animated: true)
+            browser = nil
+        }
+    }
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let pageWidth = self.viewController.collectionView.frame.size.width
+        self.viewController.pageControl.currentPage = Int((self.viewController.collectionView.contentOffset.x + (pageWidth) / 2.0) / pageWidth)
+    }
+
+
+    // Suggested Shouts Tableview
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("Suggested Shouts", comment: "Suggested Shouts")
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
+
+//        SHShout* shout = self.shoutModel.suggestedShouts[indexPath.row];
+//        [cell setShout:shout];
         return cell;
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
+//        detailView.title = [self.shoutModel.suggestedShouts[indexPath.row] title];
+//        [detailView getDetailShouts:self.shoutModel.suggestedShouts[indexPath.row]];
+        self.viewController.navigationController?.pushViewController(detailView, animated: true)
+    }
+
+    //Tags Selected
+    func selectedTag(tagName: String!, tagIndex: Int) {
+        let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as! SHTagProfileTableViewController
+//        SHTagProfileTableViewController* tagViewController = [SHNavigator viewControllerFromStoryboard:@"TagStoryboard" withViewControllerId:@"SHTagProfileTableViewController"];
+//        [tagViewController requestTag:self.shoutModel.shout.tags[tagIndex]];
+//        [self.navigationController pushViewController:tagViewController animated:YES];
+    }
+
+    func selectedTag(tagName: String!) {
+        log.verbose(tagName)
+    }
+
+    func tagListTagsChanged(tagList: DWTagList!) {
+
+    }
+
     // MARK Private
-    private func updateUI (shout: SHShout) {
-        self.shoutDetail = shout
+    private func updateUI (shoutDetail: SHShout) {
+        self.shoutDetail = shoutDetail
+        updateShoutInfo(shoutDetail)
         self.viewController.collectionView.reloadData()
+       // self.viewController.tableView.reloadData()
+    }
+
+    private func updateShoutInfo(shoutDetail: SHShout) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+            dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+
+            let numberFormatter = NSNumberFormatter()
+            numberFormatter.numberStyle = .DecimalStyle
+            if let number = numberFormatter.numberFromString(String(format: "%g", shoutDetail.price)) {
+                let price = String(format: "%@ %@", shoutDetail.currency, number.stringValue)
+                self.viewController.priceLabel.text = price
+            }
+
+            if let datePublished = self.shoutDetail?.datePublished  {
+                self.viewController.timeLabel.text = NSDate(timeIntervalSince1970: datePublished).timeAgoSimple
+            }
+            self.viewController.descriptionTextView.text = shoutDetail.text
+
+            if(shoutDetail.location?.state != "") {
+                if let city = shoutDetail.location?.city, let state = shoutDetail.location?.state, let country = shoutDetail.location?.country {
+                    self.viewController.locationLabel.text = String(format: "%@, %@, %@", arguments: [city, state, country])
+                }
+            } else {
+                if let city = shoutDetail.location?.city, let country = shoutDetail.location?.country {
+                    self.viewController.locationLabel.text = String(format: "%@, %@", arguments: [city, country])
+                }
+            }
+            self.viewController.titleLabel.text = shoutDetail.title
+            self.viewController.typeLabel.text = shoutDetail.type?.rawValue
+            if(shoutDetail.type == ShoutType.Offer) {
+                self.viewController.typeLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            } else {
+                self.viewController.typeLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_RED)
+            }
+            if shoutDetail.stringTags.isEmpty, let tags = shoutDetail.tags {
+                shoutDetail.stringTags = tags.map({ (tag) -> String in
+                    tag.name
+                })
+            }
+            self.viewController.tagList.setTags(shoutDetail.stringTags)
+            self.viewController.categoryLabel.text = shoutDetail.category?.name
+            self.viewController.pageControl.numberOfPages = self.getCollectionViewCount()
+
+            if let userImage = shoutDetail.user?.image , let imageUrl = NSURL(string: userImage) {
+                self.viewController.profileImageView.kf_setImageWithURL(imageUrl, placeholderImage: UIImage(named: "no_image_available"))
+            }
+            self.photos = [MWPhoto]()
+            for stringUrl in shoutDetail.images {
+                if let url = NSURL(string: stringUrl) {
+                    self.photos.append(MWPhoto(URL: url))
+                }
+            }
+            self.viewController.profileButton.setTitle(self.shoutDetail?.user?.name, forState: UIControlState.Normal)
+
+            if let lat = shoutDetail.location?.latitude, let long = shoutDetail.location?.longitude {
+                let coord = CLLocationCoordinate2DMake(Double(lat), Double(long))
+
+                let circle = MKCircle(centerCoordinate: coord, radius: 400)
+                self.viewController.mapView.addOverlay(circle)
+
+                let span = MKCoordinateSpanMake(0.01, 0.01)
+                let region = MKCoordinateRegion(center: coord, span: span)
+                self.viewController.mapView.setRegion(region, animated: true)
+                self.viewController.mapView.addOverlay(circle)
+            }
+            self.recalculateHeaderViewSize()
+
+        }
+    }
+
+    private func recalculateHeaderViewSize () {
+        var tag = self.viewController.tagList.frame
+        self.viewController.descriptionTextView.sizeToFit()
+        var desc = self.viewController.descriptionTextView.frame
+        desc.size.height += 1
+        tag.size = self.viewController.tagList.contentSize
+
+        self.viewController.titleLabel.numberOfLines = 0
+        self.viewController.titleLabel.sizeToFit()
+        self.viewController.tagListHeight.constant = tag.size.height
+        self.viewController.descriptionHeight.constant  = desc.size.height
+        self.viewController.titleHeight.constant = self.viewController.titleLabel.frame.size.height
+        self.viewController.tableView.layoutIfNeeded()
+        let report = self.viewController.reportButton.frame.origin.y + self.viewController.reportButton.frame.size.height
+        if var head = self.viewController.tableView.tableHeaderView?.frame {
+            if(head.size.height - 20 <= report) {
+                head.size.height = report + 20
+            }
+            let temp = self.viewController.tableView.tableHeaderView
+            self.viewController.tableView.tableHeaderView = nil
+            temp?.frame = head
+            temp?.layoutIfNeeded()
+            self.viewController.tableView.tableHeaderView = temp
+            self.viewController.tableView.layoutIfNeeded()
+        }
     }
 
 }
