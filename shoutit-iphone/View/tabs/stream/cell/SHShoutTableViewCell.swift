@@ -31,8 +31,8 @@ class SHShoutTableViewCell: UITableViewCell {
     }
     
     func setShout(shout: SHShout) {
-        if(shout.thumbnail != "") {
-            self.imageViewShout.kf_setImageWithURL(NSURL(string: (shout.thumbnail))!, placeholderImage: UIImage(named: "image_placeholder"))
+        if let thumbnail = shout.thumbnail where !thumbnail.isEmpty {
+            self.imageViewShout.kf_setImageWithURL(NSURL(string: thumbnail)!, placeholderImage: UIImage(named: "image_placeholder"))
         } else {
             self.imageViewShout.image = UIImage(named: "no_image_available_thumb")
         }
@@ -47,8 +47,8 @@ class SHShoutTableViewCell: UITableViewCell {
         self.imageViewShout.layer.mask = mask
         self.imageViewShout.layer.masksToBounds = true
         
-        if shout.datePublished > 0 {
-            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        if let datePublished = shout.datePublished {
+            self.timeLabel.text = datePublished.timeAgoSimple
         } else {
             self.timeLabel.text = "-"
         }

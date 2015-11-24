@@ -50,8 +50,8 @@ class SHRequestImageTableViewCell: UITableViewCell {
             self.priceLabel.text = price
         }
         
-        if shout.datePublished > 0 {
-            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        if let datePublished = shout.datePublished {
+            self.timeLabel.text = datePublished.timeAgoSimple
         } else {
             self.timeLabel.text = "-"
         }

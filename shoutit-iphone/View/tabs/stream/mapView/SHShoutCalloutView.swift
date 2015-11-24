@@ -33,8 +33,8 @@ class SHShoutCalloutView: UIView {
     func setShout(shout: SHShout, withAccessoryBlock: (shout: SHShout) -> ()) {
         self.accessoryBlock = withAccessoryBlock
         self.shout = shout
-        if !shout.thumbnail.isEmpty {
-            self.imageViewShout.setImageWithURL(NSURL(string: shout.thumbnail), placeholderImage: UIImage(named: "image_placeholder"), completed: { (image, error, cacheType, url) -> Void in
+        if let thumbnail = shout.thumbnail where !thumbnail.isEmpty {
+            self.imageViewShout.setImageWithURL(NSURL(string: thumbnail), placeholderImage: UIImage(named: "image_placeholder"), completed: { (image, error, cacheType, url) -> Void in
                 // Do Nothing
                 }, usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         } else {
@@ -50,8 +50,8 @@ class SHShoutCalloutView: UIView {
         self.imageViewShout.layer.mask = mask
         self.imageViewShout.layer.masksToBounds = true
         
-        if shout.datePublished > 0 {
-            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        if let datePublished = shout.datePublished {
+            self.timeLabel.text = datePublished.timeAgoSimple
         } else {
             self.timeLabel.text = "-"
         }

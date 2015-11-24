@@ -138,7 +138,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
 //        }
         
         let shout = self.viewController.shouts[indexPath.row]
-        if let type = shout.type where type == .Request {
+        if shout.type == .Request {
             if(shout.videoUrl != "") {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
                 cell.setShout(shout)
@@ -158,7 +158,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
             detailView.title = self.viewController.shouts[indexPath.row].title
-            detailView.getShoutDetails(self.viewController.shouts[indexPath.row].id)
+            if let shoutId = self.viewController.shouts[indexPath.row].id {
+                detailView.getShoutDetails(shoutId)
+            }
             // [detailView getDetailShouts:self.fetchedResultsController[indexPath.row]];
             self.viewController.navigationController?.pushViewController(detailView, animated: true)
         }

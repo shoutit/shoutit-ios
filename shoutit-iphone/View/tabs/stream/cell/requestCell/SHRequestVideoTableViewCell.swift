@@ -51,8 +51,8 @@ class SHRequestVideoTableViewCell: UITableViewCell, YTPlayerViewDelegate {
             self.priceLabel.text = price
         }
         
-        if shout.datePublished > 0 {
-            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        if let datePublished = shout.datePublished {
+            self.timeLabel.text = datePublished.timeAgoSimple
         } else {
             self.timeLabel.text = "-"
         }
@@ -68,8 +68,10 @@ class SHRequestVideoTableViewCell: UITableViewCell, YTPlayerViewDelegate {
                             "rel": 0,
                             "theme": "light" ]
         self.ytPlayerView.delegate = self
-        let videoID = self.getYoutubeVideoID(shout.videoUrl)
-        self.ytPlayerView.loadWithVideoId(videoID, playerVars: playerVars)
+        if let videoUrl = shout.videoUrl {
+            let videoID = self.getYoutubeVideoID(videoUrl)
+            self.ytPlayerView.loadWithVideoId(videoID, playerVars: playerVars)
+        }
     }
     
     func getYoutubeVideoID(url: String) -> String {

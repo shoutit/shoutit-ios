@@ -228,7 +228,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if !self.validFields() {
             return;
         }
-        SHApiShoutService().postShout(self.shout, media: self.media)
+        SHApiShoutService().postShout(self.shout, media: self.media) { (response) -> Void in
+            // Do Nothing for now
+        }
         self.showShoutAnimation()
     }
     
@@ -627,7 +629,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     private func setUpTagList() {
-        self.viewController.tagsList.setTags(self.shout.getStringTags())
+        self.viewController.tagsList.setTags(self.shout.stringTags)
         self.viewController.tagsList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
         self.viewController.tagsList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
         self.viewController.tagsList.textShadowColor = UIColor.clearColor()
