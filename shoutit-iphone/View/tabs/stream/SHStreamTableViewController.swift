@@ -8,12 +8,16 @@
 
 import UIKit
 
+enum StreamType {
+    case Stream
+    case Discover
+}
+
 class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, SHFilterViewControllerDelegate {
 
     private var viewModel: SHStreamTableViewModel?
     private var tap: UITapGestureRecognizer?
     private var dropMenu: DOPDropDownMenu?
-//    @IBOutlet var tableView: UITableView!
     
     var searchBar = UISearchBar()
     var mode: String?
@@ -27,6 +31,8 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     var previousYOffset = 0
     var deltaYOffset = 0
     var subTitleLabel: UILabel?
+    
+    var streamType: StreamType = .Stream
     
     private var filterViewController: SHFilterViewController?
     
@@ -52,12 +58,14 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.showSearchBar(self.tableView)
         self.tableView.keyboardDismissMode = .OnDrag
         
-        self.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
-        self.tableView.scrollsToTop = true
-        let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
-        self.navigationItem.rightBarButtonItem = mapB
-        let loc = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("selectFilter:"))
-        self.navigationItem.leftBarButtonItem = loc
+        if streamType == .Stream {
+            self.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
+            self.tableView.scrollsToTop = true
+            let mapB = UIBarButtonItem(image: UIImage(named: "mapButton"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("switchToMapView:"))
+            self.navigationItem.rightBarButtonItem = mapB
+            let loc = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("selectFilter:"))
+            self.navigationItem.leftBarButtonItem = loc
+        }
         self.edgesForExtendedLayout = UIRectEdge.None
         viewModel?.setupNavigationBar()
         // Navigation Setup
