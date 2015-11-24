@@ -88,4 +88,7 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
 
+    func postShout(shout: SHShout, media: [SHMedia]) {
+        let kinesisRecorder = AWSKinesisRecorder.def
+    }
 }

@@ -8,8 +8,9 @@
 
 import UIKit
 import DWTagList
+import SVProgressHUD
 
-class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate, SHCreateVideoCollectionViewCellDelegate, SHCameraViewControllerDelegate, SHCreateImageCollectionViewCellDelegate {
+class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate, SHCreateVideoCollectionViewCellDelegate, SHCameraViewControllerDelegate, SHCreateImageCollectionViewCellDelegate, UITextFieldDelegate {
 
     private let viewController: SHCreateShoutTableViewController
     
@@ -61,6 +62,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
                     log.warning("Error getting categories \(error.localizedDescription)")
                 }
         })
+        
+        self.viewController.priceTextField.delegate = self
+        self.viewController.titleTextField.delegate = self
         
         self.tapTagsSelect = UITapGestureRecognizer(target: self, action: "selectTags")
         self.offset = self.viewController.tableView.contentOffset.y
@@ -205,13 +209,27 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         
     }
     
-    func cleanForms() {}
+    func cleanForms() {
+        self.viewController.titleTextField.text = ""
+        self.viewController.categoriesTextField.text =  ""
+        self.shout.tags?.removeAll()
+        self.shout.stringTags.removeAll()
+        self.viewController.tagsList.setTags(self.shout.stringTags)
+        self.viewController.descriptionTextView.text = ""
+        self.viewController.priceTextField.text = ""
+        self.viewController.currencyTextField.text = ""
+        self.viewController.segmentControl.selectedSegmentIndex = 0
+        self.media.removeAll()
+        self.shout = SHShout()
+        self.viewController.collectionView.reloadData()
+    }
     
     func postShout() {
         if !self.validFields() {
             return;
         }
-       // self.shout
+        SHApiShoutService().postShout(self.shout, media: self.media)
+        self.showShoutAnimation()
     }
     
     // MARK - CollectionView Delegate
@@ -328,7 +346,6 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         if (indexPath.section == 0 && indexPath.row == 0) {
             self.viewController.titleTextField.text = shout.title
         } else if (indexPath.section == 0 && indexPath.row == 1) {
-            // TODO
             if shout.type == .Offer {
                 self.setupViewForStandard(true)
                 self.viewController.segmentControl.selectedSegmentIndex = 0
@@ -346,7 +363,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             self.viewController.descriptionTextView.text = self.shout.text
         } else if (indexPath.section == 4 && indexPath.row == 0) { // Price
             if self.shout.price != 0 {
-                self.viewController.priceTextField.text = "\(self.shout.price)"
+                self.viewController.priceTextField.text = String(format: "%g", self.shout.price)
             } else {
                 self.viewController.priceTextField.text = ""
             }
@@ -362,7 +379,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             self.viewController.tagsList.setTags(self.shout.stringTags)
             for (_, constraint) in self.viewController.tagsList.constraints.enumerate() {
                 if constraint.firstAttribute == NSLayoutAttribute.Height {
-                    constraint.constant =  fmax(24.0, self.viewController.tagsList.contentSize.height)
+                    constraint.constant = fmax(24.0, self.viewController.tagsList.contentSize.height)
                     break
                 }
             }
@@ -450,7 +467,59 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.presentViewController(ac, animated: true, completion: nil)
     }
     
+    // MARK - UITextFieldDelegate
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text {
+            let textString = text.stringByAppendingString(string)
+            if textField.tag == 0 {
+                self.shout.title = textString
+            } else if textField.tag == 3 {
+                self.shout.price = Double(textString)!
+            }
+            
+            // only when adding on the end of textfield && it's a space
+            if range.location == text.characters.count && string == " " {
+                // ignore replacement string and add your own
+                textField.text = text.stringByAppendingString("\u{00a0}")
+                return false
+            }
+            
+            if text.characters.count + string.characters.count > 120 {
+                SVProgressHUD.showErrorWithStatus(NSLocalizedString("Title must be less the 120 characters", comment: "Title must be less the 120 characters"))
+                return false
+            }
+        }
+        
+        // for all other cases, proceed with replacement
+        return true
+    }
+    
     // MARK - Private
+    private func showShoutAnimation() {
+        let frame = self.viewController.view.frame
+        let iw = UIImageView(frame: CGRectMake(frame.size.width/2 - 64 , frame.size.height/2 - 64, 128, 128))
+        iw.image = UIImage(named: "shoutStarted")
+        self.viewController.view.window?.addSubview(iw)
+        iw.transform = CGAffineTransformMakeScale(0, 0)
+        
+        UIView.animateWithDuration(0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            iw.transform = CGAffineTransformMakeScale(1, 1)
+            }) { (finished) -> Void in
+                UIView.animateWithDuration(0.3, delay: 0.7, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                    iw.frame = CGRectMake(0, 0, 0, 0)
+                    iw.alpha = 0
+                    }, completion: { (finished) -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.ShoutStarted, object: nil)
+                        iw.removeFromSuperview()
+                        self.cleanForms()
+                })
+        }
+    }
+    
     private func showCurrencyPicker() {
         SHSinglePickerTableViewController.presentPickerFromViewController(self.viewController, stringList: self.currenciesString, title: "Currencies", allowNoneOption: true) { (selectedItem) -> () in
             self.shout.currency = selectedItem
