@@ -106,7 +106,9 @@ class SHApiShoutService: NSObject {
                 }
             }
         }
+        NetworkActivityManager.addActivity()
         BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+            NetworkActivityManager.removeActivity()
             if aws.images.count + aws.videos.count != media.count {
                 log.error("All media wasn't uploaded, occured some error!")
             }
