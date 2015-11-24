@@ -102,7 +102,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             } else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHShoutDetailImageCollectionViewCell, forIndexPath: indexPath) as! SHShoutDetailImageCollectionViewCell
                 if let shoutDetail = self.shoutDetail where shoutDetail.images.count > 0 {
-                    cell.shoutImageView.kf_setImageWithURL(<#T##URL: NSURL##NSURL#>, placeholderImage: <#T##UIImage?#>)
+//                    cell.shoutImageView.kf_setImageWithURL(<#T##URL: NSURL##NSURL#>, placeholderImage: <#T##UIImage?#>)
                 }
 //                if(self.shoutDetail?.images.count > 0) {
 //                    cell.shoutImageView.kf_setImageWithURL(NSURL(string: self.shoutDetail?.images[indexPath.row - self.shoutDetail?.videos.count])?, placeholderImage: <#T##UIImage?#>)

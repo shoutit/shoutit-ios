@@ -9,6 +9,9 @@
 import UIKit
 import Alamofire
 import MapKit
+import AWSS3
+import Bolts
+import ObjectMapper
 
 class SHApiShoutService: NSObject {
     
@@ -88,4 +91,35 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
 
+    func postShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
+        var tasks: [AWSTask] = []
+        let aws = SHAmazonAWS()
+        for shMedia in media {
+            if shMedia.isVideo {
+                if let url = shMedia.localUrl, let thumbImage = shMedia.localThumbImage {
+                    let task = aws.getVideoUploadTasks(url, image: thumbImage)
+                    tasks += task
+                }
+            } else {
+                if let image = shMedia.image, let task = aws.getShoutImageTask(image) {
+                    tasks.append(task)
+                }
+            }
+        }
+        NetworkActivityManager.addActivity()
+        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+            NetworkActivityManager.removeActivity()
+            if aws.images.count + aws.videos.count != media.count {
+                log.error("All media wasn't uploaded, occured some error!")
+            }
+            shout.images = aws.images
+            shout.videos = aws.videos
+            if shout.type == .VideoCV {
+                shout.type = .Request
+            }
+            let params = Mapper().toJSON(shout)
+            SHApiManager.sharedInstance.post(self.SHOUTS, params: params, isCachingEnabled: false, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+            return nil
+        }
+    }
 }

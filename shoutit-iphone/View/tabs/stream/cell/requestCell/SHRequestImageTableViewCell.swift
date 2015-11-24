@@ -50,17 +50,19 @@ class SHRequestImageTableViewCell: UITableViewCell {
             self.priceLabel.text = price
         }
         
-        if shout.datePublished > 0 {
-            self.timeLabel.text = NSDate(timeIntervalSince1970: shout.datePublished).timeAgoSimple
+        if let datePublished = shout.datePublished {
+            self.timeLabel.text = datePublished.timeAgoSimple
         } else {
             self.timeLabel.text = "-"
         }
         
         self.locationLabel.text = shout.location?.city
-        self.userImageView.kf_setImageWithURL(NSURL(string: (shout.user?.image)!)!, placeholderImage: UIImage(named: "no_image_available"))
+        if let image = shout.user?.image {
+            self.userImageView.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: UIImage(named: "no_image_available"))
+        }
         self.backView.layer.cornerRadius = 1.0
-        if(shout.thumbnail != "") {
-            self.shoutImageView.kf_setImageWithURL(NSURL(string: (shout.user?.image)!)!, placeholderImage: UIImage(named: "image_placeholder"))
+        if let thumbnail = shout.thumbnail where !thumbnail.isEmpty {
+            self.shoutImageView.setImageWithURL(NSURL(string: thumbnail), placeholderImage: UIImage(named: "image_placeholder"), completed: nil, usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         } else {
             self.shoutImageView.image = UIImage(named: "no_image_available")
         }

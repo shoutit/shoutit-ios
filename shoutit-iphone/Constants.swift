@@ -107,6 +107,7 @@ struct Constants {
     
     struct Notification {
         static let LocationUpdated  = ".notification.LocationUpdated"
+        static let ShoutStarted  = ".notification.ShoutStarted"
     }
     
     struct Filter {
@@ -123,5 +124,17 @@ struct Constants {
         
         static let kIsApply = "kIsApply"
         static let kSelectorName = "kSelectorName"
+    }
+    
+    struct AWS {
+        static let SH_S3_USER_NAME = "shoutit-ios"
+        static let SH_S3_ACCESS_KEY_ID = "AKIAJW62O3PBJT3W3HJA"
+        static let SH_S3_SECRET_ACCESS_KEY = "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"
+        static let SH_AMAZON_SHOUT_BUCKET = "shoutit-shout-image-original"
+        static let SH_AMAZON_USER_BUCKET = "shoutit-user-image-original"
+        
+        static let SH_AMAZON_URL = "https://s3-eu-west-1.amazonaws.com/"
+        static let SH_AWS_SHOUT_URL = "https://shout-image.static.shoutit.com/"
+        static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
     }
 }

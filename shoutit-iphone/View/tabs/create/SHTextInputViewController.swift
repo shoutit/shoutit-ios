@@ -41,6 +41,8 @@ class SHTextInputViewController: UIViewController, UITextViewDelegate {
         toolbar.barStyle = .Default
         toolbar.sizeToFit()
         
+        self.textView.text = self.text
+        
         self.countLabel = UILabel(frame: CGRectMake(0, 0, 100, 44))
         self.countLabel.backgroundColor = UIColor.clearColor()
         self.countLabel.font = UIFont(name: "Helvetica-light", size: 15)
@@ -57,8 +59,6 @@ class SHTextInputViewController: UIViewController, UITextViewDelegate {
         
         self.textView.inputAccessoryView = toolbar
         self.countLabel.sizeToFit()
-        
-        self.textView.text = self.text
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)

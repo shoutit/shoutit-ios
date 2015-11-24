@@ -263,6 +263,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
             if let type = self.filters.type {
                 type.kRightLabel = text
             }
+            self.viewController.filter?.isApplied = true
             self.viewController.tableView.reloadData()
         }
         self.viewController.navigationController?.pushViewController(vc!, animated: true)

@@ -90,7 +90,12 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     }
     
     func cleanForms() {
-        viewModel?.cleanForms()
+        let alert = UIAlertController(title: nil, message: NSLocalizedString("Discard changes?", comment: "Discard changes?"), preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("YES", comment: "YES"), style: .Default, handler: { (action) -> Void in
+             self.viewModel?.cleanForms()
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK - Private

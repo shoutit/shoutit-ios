@@ -111,7 +111,7 @@ class SHCreateVideoCollectionViewCell: UICollectionViewCell {
             // (to know when the video is ready to be played, if for example you want to cover the
             // black rectangle with an image until the video is ready to be played)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd", name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
-            let tapGesture = UITapGestureRecognizer(target: self, action: "playstopAction")
+            let tapGesture = UITapGestureRecognizer(target: self, action: "playstopAction:")
             self.playerHolder.addGestureRecognizer(tapGesture)
         }
     }

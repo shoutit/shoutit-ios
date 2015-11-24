@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         Fabric.with([Crashlytics.self])
-        
+        SHAmazonAWS.configureS3()
         SHMixpanelHelper.openApp()
         
         // Initialize sign-in

@@ -12,24 +12,24 @@ import ObjectMapper
 enum ShoutType : String {
     case Offer = "offer"
     case Request = "request"
-    case VideoCV = "cvRequest"
+    case VideoCV = "cv-video"
 }
 
 class SHShout: Mappable {
     
-    var id = String()
-    var apiUrl = String()
-    var webUrl = String()
-    var type: ShoutType?
+    var id: String?
+    var apiUrl: String?
+    var webUrl: String?
+    var type: ShoutType = .Offer
     var location: SHAddress?
     var title = String()
-    var text =  String()
+    var text = String()
     var price: Double = 0.0
     var currency = String()
-    var thumbnail = String()
-    var videoUrl = String()
+    var thumbnail: String?
+    var videoUrl: String?
     var user: SHUser?
-    var datePublished: Double = 0.0
+    var datePublished: NSDate?
     var category: SHCategory?
     var tags: [SHTag]?
     var stringTags: [String] = []
@@ -44,8 +44,9 @@ class SHShout: Mappable {
         
     }
     
-    init(){
+    init() {
         self.location = SHAddress.getUserOrDeviceLocation()
+        self.datePublished = NSDate()
     }
     
     // Mappable
@@ -62,7 +63,7 @@ class SHShout: Mappable {
         thumbnail       <- map["thumbnail"]
         videoUrl        <- map["video_url"]
         user            <- map["user"]
-        datePublished   <- map["date_published"]
+        datePublished   <- (map["date_published"], SHDateTransform())
         category        <- map["category"]
         tags            <- map["tags"]
         images          <- map["images"]
@@ -71,11 +72,6 @@ class SHShout: Mappable {
         relatedRequests <- map["related_requests"]
         relatedOffers   <- map["relatedOffers"]
         conversations   <- map["conversations"]
-    }
-    
-    func getStringTags() -> [String] {
-        // TODO
-        return []
     }
     
 }

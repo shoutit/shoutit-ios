@@ -43,7 +43,6 @@ class SHShoutAnnotation: NSObject, MKAnnotation {
         imageView.layer.masksToBounds = true
         
         annotationView.leftCalloutAccessoryView = imageView
-       // [annotationView setImageWithURL:[NSURL URLWithString:[self.shout.thumbnail smallImage]] placeholderImage:[UIImage imageNamed:@"shoutStarted.png"]];
         annotationView.frame = CGRectMake(0, 0, 50, 50)
         return annotationView
         

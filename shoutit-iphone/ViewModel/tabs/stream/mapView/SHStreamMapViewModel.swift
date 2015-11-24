@@ -14,6 +14,8 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
     private let viewController: SHStreamMapViewController
     private var shouts: [SHShout] = []
     
+    private var isInitial: Bool = true
+    
     required init(viewController: SHStreamMapViewController) {
         self.viewController = viewController
     }
@@ -43,11 +45,19 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
     }
     
     func viewDidDisappear() {
-        
+        switch self.viewController.mapView.mapType {
+        case .Hybrid:
+            self.viewController.mapView.mapType = .Standard
+        case .Standard:
+            self.viewController.mapView.mapType = .Hybrid
+        default:
+            break
+        }
+        self.viewController.mapView.removeFromSuperview()
+        self.viewController.mapView = nil
     }
     
     func destroy() {
-        
     }
     
     func refreshShouts () {
@@ -60,14 +70,71 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
                 switch(response.result) {
                 case .Success(let result):
                     self.shouts = result.results
-                    var annotations: [SHShoutAnnotation] = []
-                    for shout in self.shouts {
-                        if let lat = shout.location?.latitude, let lon = shout.location?.longitude {
-                            annotations.append(SHShoutAnnotation(coordinate: CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(lon)), shout: shout))
+                    var sameAnnotations: [SHShout] = []
+                    var addAnnotations: [SHShoutAnnotation] = []
+                    var deleteAnnotations: [SHShoutAnnotation] = []
+//                    for shout in self.shouts {
+//                        if let lat = shout.location?.latitude, let lon = shout.location?.longitude {
+//                            annotations.append(SHShoutAnnotation(coordinate: CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(lon)), shout: shout))
+//                        }
+//                    }
+                    
+                    for shAnnotation in self.viewController.mapView.annotations {
+                        if let annotation = shAnnotation as? SHShoutAnnotation {
+                            var isExist = false
+                            if let annShout = annotation.shout {
+                                for (_, shout) in self.shouts.enumerate() {
+                                    if shout.id == annShout.id {
+                                        isExist = true
+                                        sameAnnotations.append(shout)
+                                        break
+                                    }
+                                }
+                            }
+                            if !isExist {
+                                deleteAnnotations.append(annotation)
+                            }
                         }
                     }
-                    self.viewController.mapView.removeAnnotations(self.viewController.mapView.annotations)
-                    self.viewController.mapView.addAnnotations(annotations)
+                    
+                    for shout in self.shouts {
+                        for shAnnotation in self.viewController.mapView.annotations {
+                            var isExist = false
+                            if let annotation = shAnnotation as? SHShoutAnnotation {
+                                if let annShout = annotation.shout {
+                                    for (_, shout) in self.shouts.enumerate() {
+                                        if shout.id == annShout.id {
+                                            isExist = true
+                                            sameAnnotations.append(shout)
+                                            break
+                                        }
+                                    }
+                                }
+                            }
+                            if !isExist, let lat = shout.location?.latitude, let lng = shout.location?.longitude {
+                                let pinCoordinate = CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(lng))
+                                let annotation = SHShoutAnnotation(coordinate: pinCoordinate, shout: shout)
+                                addAnnotations.append(annotation)
+                            }
+                        }
+                    }
+                    
+                    self.viewController.mapView.removeAnnotations(deleteAnnotations)
+                    self.viewController.mapView.addAnnotations(addAnnotations)
+                    
+                    if var mapAnnotations = self.viewController.mapView.annotations as? [SHShoutAnnotation] {
+                        for deleteAnnotation in deleteAnnotations {
+                            if let index = mapAnnotations.indexOf(deleteAnnotation) {
+                                mapAnnotations.removeAtIndex(index)
+                            }
+                        }
+                        mapAnnotations += addAnnotations
+                        
+                        if self.isInitial {
+                            self.viewController.mapView.showAnnotations(mapAnnotations, animated: true)
+                            self.isInitial = false
+                        }
+                    }
                 case .Failure(let error):
                     log.error("error getting shouts : \(error.localizedDescription)")
                 }
@@ -133,6 +200,10 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
                 }
             }
         }
+    }
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.refreshShouts()
     }
     
 }
