@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SHTagProfileTableViewController: BaseViewController {
+class SHTagProfileTableViewController: BaseTableViewController {
 
     @IBOutlet weak var lgView: UIView!
     @IBOutlet weak var listenButton: UIButton!
@@ -20,6 +20,16 @@ class SHTagProfileTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //[self setListenSelected:self.model.tag.is_listening];
+        self.tableView.dataSource = viewModel
+        self.tableView.delegate = viewModel
+        self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
+        self.tagLabel.layer.masksToBounds = true
+        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.tableView.registerNib(UINib(nibName: Constants.TableViewCell.SHShoutTableViewCell, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.TableViewCell.SHShoutTableViewCell)
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.lgView.layer.cornerRadius = 5
         viewModel?.viewDidLoad()
     }
     
@@ -57,11 +67,34 @@ class SHTagProfileTableViewController: BaseViewController {
     }
     
     @IBAction func listenAction(sender: AnyObject) {
-        
+        self.viewModel?.listenAction()
     }
     
     @IBAction func listeningAction(sender: AnyObject) {
-        
+        self.viewModel?.listeningAction()
     }
+    
+    func setListenSelected(isFollowing: Bool) {
+        if(!isFollowing) {
+            self.listenButton.setTitle(NSLocalizedString("Listen", comment: "Listen"), forState: UIControlState.Normal)
+            self.listenButton.layer.cornerRadius = 5
+            self.listenButton.layer.borderWidth = 1
+            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
+            self.listenButton.setTitleColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN), forState: UIControlState.Normal)
+            self.listenButton.backgroundColor = UIColor.whiteColor()
+           // self.listenButton.setLeftIcon(UIImage(named: "listen"), withSize: CGSizeMake(32, 32))
+        } else {
+            self.listenButton.setTitle(NSLocalizedString("Listening", comment: "Listening"), forState: UIControlState.Normal)
+            self.listenButton.layer.cornerRadius = 5
+            self.listenButton.layer.borderWidth = 2
+            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
+            self.listenButton.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            self.listenButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+           // self.listenButton.setLeftIcon(UIImage(named: "listenGreen"), withSize: CGSizeMake(32, 32))
+            
+        }
+        self.listenButton.alpha = 1
+    }
+    
 
 }

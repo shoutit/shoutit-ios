@@ -12,8 +12,9 @@ import MapKit
 import Social
 import MessageUI
 import FBSDKShareKit
+import DWTagList
 
-class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate, MWPhotoBrowserDelegate, MKMapViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate, MWPhotoBrowserDelegate, MKMapViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate{
 
     private let viewController: SHShoutDetailTableViewController
     private let shApiShout = SHApiShoutService()
@@ -346,6 +347,22 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 //        detailView.title = [self.shoutModel.suggestedShouts[indexPath.row] title];
 //        [detailView getDetailShouts:self.shoutModel.suggestedShouts[indexPath.row]];
         self.viewController.navigationController?.pushViewController(detailView, animated: true)
+    }
+    
+    //Tags Selected
+    func selectedTag(tagName: String!, tagIndex: Int) {
+        let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as! SHTagProfileTableViewController
+//        SHTagProfileTableViewController* tagViewController = [SHNavigator viewControllerFromStoryboard:@"TagStoryboard" withViewControllerId:@"SHTagProfileTableViewController"];
+//        [tagViewController requestTag:self.shoutModel.shout.tags[tagIndex]];
+//        [self.navigationController pushViewController:tagViewController animated:YES];
+    }
+    
+    func selectedTag(tagName: String!) {
+        log.verbose(tagName)
+    }
+    
+    func tagListTagsChanged(tagList: DWTagList!) {
+        
     }
 
     // MARK Private
