@@ -132,22 +132,17 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-//        if(indexPath.row >= self.viewController.shouts.count - Constants.Common.SH_PAGE_SIZE / 3) {
-//            self.triggerLoadMore()
-//        }
-        
         let shout = self.viewController.shouts[indexPath.row]
         if shout.type == .Request {
-            if(shout.videoUrl != "") {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
-                cell.setShout(shout)
-                return cell
-            } else {
+//            if let videoUrl = shout.videoUrl where !videoUrl.isEmpty {
+//                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
+//                cell.setShout(shout)
+//                return cell
+//            } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell
                 cell.setShout(shout)
                 return cell
-            }
+//            }
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
             cell.setShout(shout)
@@ -167,7 +162,8 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (self.viewController.shoutType == .Offer) {
+        let shout = self.viewController.shouts[indexPath.row]
+        if (shout.type == .Offer) {
             return 100
         } else {
             return 348

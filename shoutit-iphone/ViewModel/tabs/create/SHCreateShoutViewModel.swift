@@ -37,6 +37,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     func viewDidLoad() {
         // TODO
         if isEditing {
+            self.setupViewForStandard(true)
 //            [self setupViewForStandard:YES];
 //            [self setCurrentLocation];
         }
@@ -223,7 +224,12 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.segmentControl.selectedSegmentIndex = 0
         self.media.removeAll()
         self.shout = SHShout()
-        
+        for currency in self.currencies {
+            if let loc = shout.location where loc.country == currency.country {
+                self.viewController.currencyTextField.text = currency.code
+                self.shout.currency = currency.code
+            }
+        }
         if let location = shout.location {
             self.viewController.locationTextView.text = String(format: "%@, %@, %@", location.city, location.state, location.country)
         }
