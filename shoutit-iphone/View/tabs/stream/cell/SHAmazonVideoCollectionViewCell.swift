@@ -25,7 +25,7 @@ class SHAmazonVideoCollectionViewCell: UICollectionViewCell {
             player.view.autoresizingMask = UIViewAutoresizing.FlexibleHeight
             self.playerView.addSubview(player.view)
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didEnterFullScreen:"), name: MPMoviePlayerDidExitFullscreenNotification, object: self.player)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didExitFullScreen:"), name: MPMoviePlayerDidExitFullscreenNotification, object: self.player)
         
     }
     
