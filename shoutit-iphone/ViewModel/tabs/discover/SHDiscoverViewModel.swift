@@ -91,7 +91,12 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO open shouts
+        // open stream
+        if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
+            streamVC.streamType = .Discover
+            streamVC.discoverId = items[indexPath.row].id
+            self.viewController.navigationController?.pushViewController(streamVC, animated: true)
+        }
     }
     
     // MARK - Private

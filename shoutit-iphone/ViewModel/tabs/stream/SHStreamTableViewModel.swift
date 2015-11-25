@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource {
+class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     private var viewController: SHStreamTableViewController
     private var spinner: UIActivityIndicatorView?
