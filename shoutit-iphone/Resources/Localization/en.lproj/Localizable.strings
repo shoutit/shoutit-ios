@@ -153,9 +153,6 @@
 /* Cancel */
 "Cancel" = "Cancel";
 
-/* Report Inappropriate */
-"Report Inappropriate" = "Report Inappropriate";
-
 /* Thank you! Shout has been reported as inappropriate and will be reviewed. */
 "Thank you! Shout has been reported as inappropriate and will be reviewed." = "Thank you! Shout has been reported as inappropriate and will be reviewed.";
 
@@ -167,3 +164,12 @@
 
 /* Listening */
 "Listening" = "Listening";
+
+/* Message */
+"Message" = "Message";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* Edit */
+"Edit" = "Edit";

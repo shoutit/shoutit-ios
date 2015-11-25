@@ -53,7 +53,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
     // Report Action
     func reportAction() {
-        let alert = UIAlertController(title: NSLocalizedString("Report Inappropriate", comment: "Report Inappropriate"), message: "", preferredStyle:
+        let alert = UIAlertController(title: "", message: "", preferredStyle:
             UIAlertControllerStyle.Alert)
         alert.addTextFieldWithConfigurationHandler(configurationTextField)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
@@ -75,9 +75,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         self.viewController.presentViewController(alert, animated: true, completion: nil)
     }
 
-    func configurationTextField(textField: UITextField!)
-    {
+    func configurationTextField(textField: UITextField!) {
         self.reportTextField = textField
+        self.reportTextField?.placeholder = NSLocalizedString("Message", comment: "Message")
     }
 
     //Action Sheet
@@ -189,11 +189,6 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 self.photos.append(MWPhoto(URL: NSURL(string: stringUrl)))
             }
         }
-        if(shoutDetail?.user?.username == SHOauthToken.getFromCache()?.user?.username) {
-            self.viewController.navigationItem.rightBarButtonItem = nil
-            let item = UIBarButtonItem(image: UIImage(named: "more_item"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editShout:"))
-            self.viewController.navigationItem.rightBarButtonItem = item
-        }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
             self.updateUI(shShout)
             }) { (response) -> Void in
@@ -206,6 +201,12 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 SHProgressHUD.dismiss()
                // MBProgressHUD.hideHUDForView(self.viewController.view, animated: true)
         }
+    }
+    
+    func editShout(sender: AnyObject) {
+        let sheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: "Cancel"), destructiveButtonTitle: NSLocalizedString("Delete", comment: "Delete"), otherButtonTitles: NSLocalizedString("Edit", comment: "Edit"))
+        sheet.tag = 10
+        sheet.showInView(self.viewController.view)
     }
 
 
@@ -230,10 +231,10 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        self.viewController.pageControl.hidden = false
+        //self.viewController.pageControl.hidden = false
         if (self.shoutDetail?.videos.count > 0) {
             if(indexPath.row < self.shoutDetail?.videos.count) {
-                self.viewController.pageControl.hidden = true
+               // self.viewController.pageControl.hidden = true
                 if let video = self.shoutDetail?.videos[indexPath.row] {
                     if(video.provider == "youtube") {
                         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHYouTubeVideoCollectionViewCell, forIndexPath: indexPath) as! SHYouTubeVideoCollectionViewCell
@@ -308,16 +309,20 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
                     browser.navigationController?.navigationBar.opaque = true
                     browser.setCurrentPhotoIndex(UInt(ind))
+                    
+                    let transition = CATransition()
+                    transition.duration = 0.3
+                    transition.type = kCATransitionFade
+                    transition.subtype = kCATransitionFromTop
+                    self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+                    self.viewController.navigationController?.pushViewController(browser, animated: true)
+                    browser = nil
                 }
+                
             }
 
-            let transition = CATransition()
-            transition.duration = 0.3
-            transition.type = kCATransitionFade
-            transition.subtype = kCATransitionFromTop
-            self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-            self.viewController.navigationController?.pushViewController(browser, animated: true)
-            browser = nil
+            
+            
         }
     }
 
@@ -446,6 +451,12 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 self.viewController.mapView.addOverlay(circle)
             }
             self.recalculateHeaderViewSize()
+            // NavBar
+            if(shoutDetail.user?.username == SHOauthToken.getFromCache()?.user?.username) {
+                self.viewController.navigationItem.rightBarButtonItem = nil
+                let item = UIBarButtonItem(image: UIImage(named: "more_item"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editShout:"))
+                self.viewController.navigationItem.rightBarButtonItem = item
+            }
 
         }
     }
