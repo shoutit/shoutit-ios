@@ -16,32 +16,43 @@ import ObjectMapper
 class SHApiShoutService: NSObject {
     
     private let SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/shouts"
+    private let DISCOVER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@/shouts"
+    private let TAG_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/tags/%@/shouts"
     private let REPORT_SHOUT = SHApiManager.sharedInstance.BASE_URL + "/misc/reports"
     private var currentPage = 0
     private var totalCounts = 0
     var filter: SHFilter?
+    var discoverId: String?
+    var tagName: String?
 
     func loadShoutStreamForLocation(location: SHAddress, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        var URL = SHOUTS
         if type == ShoutType.VideoCV {
             type = .Request
         }
         let sendType = type.rawValue
         var params = [String: AnyObject]()
-        if let filter = self.filter {
-            params = filter.getShoutFilterQuery()
+        params["shout_type"] = sendType
+        if let discoverId = self.discoverId {
+            URL = String(format: DISCOVER_SHOUTS, discoverId)
+        } else if let tagName = self.tagName {
+            URL = String(format: TAG_SHOUTS, tagName)
         } else {
-            if let location = SHAddress.getUserOrDeviceLocation() {
-                params["city"] = location.city
-                params["country"] = location.country
+            if let filter = self.filter {
+                params = filter.getShoutFilterQuery()
+            } else {
+                if let location = SHAddress.getUserOrDeviceLocation() {
+                    params["city"] = location.city
+                    params["country"] = location.country
+                }
             }
-            params["shout_type"] = sendType
         }
         params["page_size"] = Constants.Common.SH_PAGE_SIZE
         params["page"] = page
         if let q = query where !q.isEmpty {
             params["search"] = query
         }
-        SHApiManager.sharedInstance.get(SHOUTS, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        SHApiManager.sharedInstance.get(URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func refreshStreamForLocation(location: SHAddress, type: ShoutType, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {

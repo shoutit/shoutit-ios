@@ -89,7 +89,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SHShoutDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jfq-Pw-XRn" customClass="SHShoutDetailTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="10" sectionFooterHeight="10" id="xWk-ve-VoE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,8 +112,35 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                     <cells>
-                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHYouTubeVideoCollectionViewCell" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHShoutDetailImageCollectionViewCell" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbp-wW-Tce">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <animations/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="vbp-wW-Tce" firstAttribute="top" secondItem="yYg-TI-vRA" secondAttribute="top" id="0M7-7i-FSn"/>
+                                                <constraint firstItem="vbp-wW-Tce" firstAttribute="leading" secondItem="yYg-TI-vRA" secondAttribute="leading" id="f4Y-EZ-mpu"/>
+                                                <constraint firstAttribute="trailing" secondItem="vbp-wW-Tce" secondAttribute="trailing" id="iBe-rt-2Ug"/>
+                                                <constraint firstAttribute="bottom" secondItem="vbp-wW-Tce" secondAttribute="bottom" id="zkr-nk-Ywj"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="shoutImageView" destination="vbp-wW-Tce" id="Gb1-ee-fvu"/>
+                                            </connections>
+                                        </collectionViewCell>
+                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHYouTubeVideoCollectionViewCell" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                            <rect key="frame" x="320" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
@@ -152,33 +179,6 @@
                                                 <outlet property="ytPlayerView" destination="Mju-YY-JRh" id="Epu-CO-JcE"/>
                                             </connections>
                                         </collectionViewCell>
-                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHShoutDetailImageCollectionViewCell" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                            <rect key="frame" x="320" y="0.0" width="320" height="240"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbp-wW-Tce">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
-                                                        <animations/>
-                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <animations/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="vbp-wW-Tce" firstAttribute="top" secondItem="yYg-TI-vRA" secondAttribute="top" id="0M7-7i-FSn"/>
-                                                <constraint firstItem="vbp-wW-Tce" firstAttribute="leading" secondItem="yYg-TI-vRA" secondAttribute="leading" id="f4Y-EZ-mpu"/>
-                                                <constraint firstAttribute="trailing" secondItem="vbp-wW-Tce" secondAttribute="trailing" id="iBe-rt-2Ug"/>
-                                                <constraint firstAttribute="bottom" secondItem="vbp-wW-Tce" secondAttribute="bottom" id="zkr-nk-Ywj"/>
-                                            </constraints>
-                                            <connections>
-                                                <outlet property="shoutImageView" destination="vbp-wW-Tce" id="Gb1-ee-fvu"/>
-                                            </connections>
-                                        </collectionViewCell>
                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHAmazonVideoCollectionViewCell" reuseIdentifier="SHAmazonVideoCollectionViewCell" id="XEl-0J-RM1" customClass="SHAmazonVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="640" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -197,10 +197,12 @@
                                             </view>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="MLc-wt-Crj" secondAttribute="bottom" id="5qQ-1U-Bfr"/>
-                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="top" secondItem="XEl-0J-RM1" secondAttribute="top" id="83B-o5-EY9"/>
-                                                <constraint firstAttribute="trailing" secondItem="MLc-wt-Crj" secondAttribute="trailing" id="87B-ri-Km1"/>
-                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="leading" secondItem="XEl-0J-RM1" secondAttribute="leading" id="99j-QV-OZh"/>
+                                                <constraint firstAttribute="trailing" secondItem="MLc-wt-Crj" secondAttribute="trailing" id="FFz-N7-rUC"/>
+                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="leading" secondItem="XEl-0J-RM1" secondAttribute="leading" id="HjG-Qf-FyM"/>
+                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="height" secondItem="XEl-0J-RM1" secondAttribute="height" id="K6o-PI-sJU"/>
+                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="top" secondItem="XEl-0J-RM1" secondAttribute="top" id="XSe-fB-oHd"/>
+                                                <constraint firstItem="MLc-wt-Crj" firstAttribute="width" secondItem="XEl-0J-RM1" secondAttribute="width" id="sMV-Dh-XgW"/>
+                                                <constraint firstAttribute="bottom" secondItem="MLc-wt-Crj" secondAttribute="bottom" id="wR2-jU-a8Y"/>
                                             </constraints>
                                             <connections>
                                                 <outlet property="playerView" destination="MLc-wt-Crj" id="vSk-jx-Feh"/>
@@ -309,8 +311,8 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Request" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-RD-nXf">
-                                    <rect key="frame" x="266" y="262" width="46" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-RD-nXf">
+                                    <rect key="frame" x="266" y="263" width="46" height="16"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="NYw-nU-mho"/>
@@ -479,9 +481,9 @@
                                 <constraint firstItem="1fs-KC-G7f" firstAttribute="top" secondItem="Fc2-AX-xEt" secondAttribute="bottom" constant="2" id="oqY-PM-Jo2"/>
                                 <constraint firstItem="K80-mI-6t8" firstAttribute="top" secondItem="9s7-xg-3dY" secondAttribute="bottom" constant="36" id="q6C-Vx-29a"/>
                                 <constraint firstItem="5zK-RD-nXf" firstAttribute="top" secondItem="C97-vz-wdf" secondAttribute="bottom" id="qQH-2E-PgX"/>
-                                <constraint firstAttribute="trailing" secondItem="3Gv-rJ-ATi" secondAttribute="trailing" id="xRU-9f-Ajg"/>
+                                <constraint firstAttribute="trailing" secondItem="3Gv-rJ-ATi" secondAttribute="trailing" priority="750" id="xRU-9f-Ajg"/>
                                 <constraint firstItem="HZE-pU-4hw" firstAttribute="top" secondItem="3Gv-rJ-ATi" secondAttribute="bottom" constant="8" id="yLA-OB-oJD"/>
-                                <constraint firstItem="3Gv-rJ-ATi" firstAttribute="leading" secondItem="CKo-mT-uHk" secondAttribute="leading" id="ysb-ql-M7c"/>
+                                <constraint firstItem="3Gv-rJ-ATi" firstAttribute="leading" secondItem="CKo-mT-uHk" secondAttribute="leading" priority="750" id="ysb-ql-M7c"/>
                                 <constraint firstItem="UMD-hF-Whi" firstAttribute="leading" secondItem="CKo-mT-uHk" secondAttribute="leading" id="zfp-0m-ec3"/>
                             </constraints>
                         </view>
@@ -500,8 +502,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="categoryHeight" destination="tHA-TI-lD1" id="qC7-S3-DWr"/>
                         <outlet property="categoryLabel" destination="1fs-KC-G7f" id="Xxy-Hq-j5P"/>

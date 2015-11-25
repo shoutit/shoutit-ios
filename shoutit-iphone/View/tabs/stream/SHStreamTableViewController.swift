@@ -11,6 +11,7 @@ import UIKit
 enum StreamType {
     case Stream
     case Discover
+    case Tag
 }
 
 class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, SHFilterViewControllerDelegate {
@@ -33,6 +34,8 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     var subTitleLabel: UILabel?
     
     var streamType: StreamType = .Stream
+    var discoverId: String?
+    var tagName: String?
     
     private var filterViewController: SHFilterViewController?
     
@@ -55,9 +58,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.searchBar.delegate = self
         self.searchBar.placeholder = NSLocalizedString("Search", comment: "Search")
         self.navigationController?.view.insertSubview(self.searchBar, belowSubview: (self.navigationController?.navigationBar)!)
-        self.showSearchBar(self.tableView)
         self.tableView.keyboardDismissMode = .OnDrag
-        
         if streamType == .Stream {
             self.tabBarItem.title = NSLocalizedString("Stream", comment: "Stream")
             self.tableView.scrollsToTop = true
@@ -75,6 +76,13 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.filterViewController = UIStoryboard.getFilter().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHFILTER) as? SHFilterViewController
         self.filterViewController?.delegate = self
         
+        
+        if streamType == .Discover {
+            shoutApi.discoverId = self.discoverId
+        } else if streamType == .Tag {
+            shoutApi.tagName = self.tagName
+        }
+        
         viewModel?.viewDidLoad()
     }
     
@@ -84,8 +92,14 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
         setPullToRefresh()
         viewModel?.viewDidAppear()
+        
+        if streamType != .Stream {
+            self.hideSearchBar(self.tableView)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
