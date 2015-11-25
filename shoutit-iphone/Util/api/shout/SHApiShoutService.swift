@@ -140,4 +140,10 @@ class SHApiShoutService: NSObject {
             return nil
         }
     }
+    
+    func deleteShoutID(shoutID: String, completionHandler: Response<String, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@", arguments: [shoutID])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
+    }
 }

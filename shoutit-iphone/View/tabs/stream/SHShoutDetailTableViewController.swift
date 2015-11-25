@@ -62,10 +62,6 @@ class SHShoutDetailTableViewController: BaseTableViewController {
         self.tableView.registerNib(UINib(nibName: Constants.TableViewCell.SHShoutTableViewCell, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.TableViewCell.SHShoutTableViewCell)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
-        
-       //  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        
-       //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRotation:) name:UIDeviceOrientationDidChangeNotification object:nil];
         self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
         self.profileImageView.clipsToBounds = true
         self.profileImageView.layer.borderColor = (UIColor(hexString: Constants.Style.COLOR_SHOUTDETAIL_PROFILEIMAGE))?.CGColor
@@ -131,7 +127,6 @@ class SHShoutDetailTableViewController: BaseTableViewController {
     
     func getShoutDetails(shoutID: String) {
         self.shoutID = shoutID
-       // self.tableView.reloadData()
     }
     
     

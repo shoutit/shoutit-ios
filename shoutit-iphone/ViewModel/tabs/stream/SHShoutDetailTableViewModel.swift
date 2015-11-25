@@ -177,11 +177,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func getShoutDetails(shoutID: String) {
-//        MBProgressHUD.showHUDAddedTo(self.viewController.view, animated: true)
-//        MBProgressHUD(forView: self.viewController.view).labelText = NSLocalizedString("Loading", comment: "Loading...")
-//        MBProgressHUD(forView: self.viewController.view).backgroundColor = UIColor.blackColor()
         SHProgressHUD.show(NSLocalizedString("Loading", comment: "Loading..."), maskType: .Black)
-
         self.photos = [MWPhoto]()
         if let images = shoutDetail?.images {
             for stringUrl in images {
@@ -229,10 +225,8 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //self.viewController.pageControl.hidden = false
         if (self.shoutDetail?.videos.count > 0) {
             if(indexPath.row < self.shoutDetail?.videos.count) {
-               // self.viewController.pageControl.hidden = true
                 if let video = self.shoutDetail?.videos[indexPath.row] {
                     if(video.provider == "youtube") {
                         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHYouTubeVideoCollectionViewCell, forIndexPath: indexPath) as! SHYouTubeVideoCollectionViewCell
@@ -373,6 +367,32 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 
     func tagListTagsChanged(tagList: DWTagList!) {
 
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if(actionSheet.tag == 10) {
+            if(buttonIndex == 0) {
+                let ac = UIAlertController(title: NSLocalizedString("Delete", comment: "Delete"), message: NSLocalizedString("Delete the shout?", comment: "Delete the shout?"), preferredStyle: UIAlertControllerStyle.Alert)
+                ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+                    if let shout = self.shoutDetail, let shoutId = shout.id{
+                        self.shApiShout.deleteShoutID(shoutId, completionHandler: { (response) -> Void in
+                            if(response.result.isSuccess) {
+                                self.viewController.navigationController?.popViewControllerAnimated(true)
+                                NSNotificationCenter.defaultCenter().postNotificationName("shoutDeleted", object: true)
+                            } else {
+                                log.verbose("Error deleting the shout: \(shoutId)")
+                            }
+                        })
+                    }
+                }))
+                ac.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+                self.viewController.presentViewController(ac, animated: true, completion: nil)
+            } else if(buttonIndex == 1) {
+                if let shout = self.shoutDetail {
+                    SHCreateShoutTableViewController.presentEditorFromViewController(self.viewController, shout: shout)
+                }
+            }
+        }
     }
 
     // MARK Private

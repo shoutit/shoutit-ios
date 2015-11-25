@@ -26,6 +26,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         updateSubtitleLabel()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
+        //ShoutDeleted Notification
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("shoutDeleted:"), name: "shoutDeleted", object: nil)
+    }
+    
+    func shoutDeleted(notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        self.pullToRefresh()
     }
     
     func locationUpdated(notification: NSNotification) {
@@ -134,15 +143,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let shout = self.viewController.shouts[indexPath.row]
         if shout.type == .Request {
-//            if let videoUrl = shout.videoUrl where !videoUrl.isEmpty {
-//                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
-//                cell.setShout(shout)
-//                return cell
-//            } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell
                 cell.setShout(shout)
                 return cell
-//            }
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
             cell.setShout(shout)
