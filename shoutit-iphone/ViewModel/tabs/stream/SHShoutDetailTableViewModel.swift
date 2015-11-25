@@ -52,31 +52,33 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
     // Report Action
     func reportAction() {
-        let alert = UIAlertController(title: "", message: "", preferredStyle:
-            UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler(configurationTextField)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
-            if let reportedtext = self.reportTextField?.text, let shout = self.shoutDetail, let shoutId = shout.id {
-                self.shApiShout.reportShout(reportedtext, shoutID: shoutId, completionHandler: { (shSuccess) -> Void in
-                    switch (shSuccess.result) {
-                    case .Success( _):
-                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                            SHProgressHUD.showError(NSLocalizedString("Thank you! Shout has been reported as inappropriate and will be reviewed.", comment: "Report"), maskType: .Black)
+        if let shout = self.shoutDetail {
+            let alert = UIAlertController(title: "Report:\(shout.title)", message: "", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            alert.addTextFieldWithConfigurationHandler(configurationTextField)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
+                if let reportedtext = self.reportTextField?.text, let shoutId = shout.id {
+                    self.shApiShout.reportShout(reportedtext, shoutID: shoutId, completionHandler: { (shSuccess) -> Void in
+                        switch (shSuccess.result) {
+                        case .Success( _):
+                            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                                SHProgressHUD.showError(NSLocalizedString("Thank you! Shout has been reported as inappropriate and will be reviewed.", comment: "Report"), maskType: .Black)
+                            }
+                        case .Failure(let error):
+                            log.error("Error posting the Report Inappropriate \(error.localizedDescription)")
                         }
-                    case .Failure(let error):
-                        log.error("Error posting the Report Inappropriate \(error.localizedDescription)")
-                    }
-                })
-            }
-
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.viewController.presentViewController(alert, animated: true, completion: nil)
+                    })
+                }
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.viewController.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     func configurationTextField(textField: UITextField!) {
         self.reportTextField = textField
-        self.reportTextField?.placeholder = NSLocalizedString("Message", comment: "Message")
+        self.reportTextField?.placeholder = NSLocalizedString("Tell us what is wrong", comment: "Tell us what is wrong")
     }
 
     //Action Sheet

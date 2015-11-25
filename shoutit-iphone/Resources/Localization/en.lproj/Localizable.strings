@@ -165,11 +165,11 @@
 /* Listening */
 "Listening" = "Listening";
 
-/* Message */
-"Message" = "Message";
-
 /* Delete */
 "Delete" = "Delete";
 
 /* Edit */
 "Edit" = "Edit";
+
+/* Tell us what is wrong */
+"Tell us what is wrong" = "Tell us what is wrong";
