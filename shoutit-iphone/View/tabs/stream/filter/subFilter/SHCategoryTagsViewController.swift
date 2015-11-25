@@ -43,6 +43,7 @@ class SHCategoryTagsViewController: BaseTableViewController {
         if(self.hardCodedTags.count > 0) {
             self.fetchedResultsController = self.hardCodedTags as [AnyObject]
         }
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -52,8 +53,6 @@ class SHCategoryTagsViewController: BaseTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.setPullToRefresh()
         viewModel?.viewDidAppear()
     }
     

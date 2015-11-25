@@ -85,7 +85,7 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
             
             self.updateUI(shTagMeta)
             }, completionHandler: { (response) -> Void in
-                self.viewController.tableView.pullToRefreshView.stopAnimating()
+                self.viewController.tableView?.pullToRefreshView?.stopAnimating()
                 self.viewController.tableView?.infiniteScrollingView?.stopAnimating()
                 if(response.result.isSuccess) {
                     if let shTagMeta = response.result.value {
@@ -126,7 +126,7 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
             self.viewController.shTagsApi.loadTagsNextPageWithQuery("", cacheResponse: { (shTagsMeta) -> Void in
                 // Do Nothing
                 }) { (response) -> Void in
-                    self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    self.viewController.tableView?.pullToRefreshView?.stopAnimating()
                     self.viewController.tableView?.infiniteScrollingView?.stopAnimating()
                     switch (response.result) {
                     case .Success(let result):
