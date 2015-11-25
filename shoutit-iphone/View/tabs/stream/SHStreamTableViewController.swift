@@ -11,6 +11,7 @@ import UIKit
 enum StreamType {
     case Stream
     case Discover
+    case Tag
 }
 
 class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, SHFilterViewControllerDelegate {
@@ -34,6 +35,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     
     var streamType: StreamType = .Stream
     var discoverId: String?
+    var tagName: String?
     
     private var filterViewController: SHFilterViewController?
     
@@ -77,6 +79,8 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         
         if streamType == .Discover {
             shoutApi.discoverId = self.discoverId
+        } else if streamType == .Tag {
+            shoutApi.tagName = self.tagName
         }
         
         viewModel?.viewDidLoad()

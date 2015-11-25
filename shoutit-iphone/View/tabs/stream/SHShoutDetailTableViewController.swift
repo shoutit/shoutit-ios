@@ -52,7 +52,7 @@ class SHShoutDetailTableViewController: BaseTableViewController {
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         
-        self.tagList.delegate = self
+        self.tagList.tagDelegate = viewModel
         self.tagList.automaticResize = true
         self.tagList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
         self.tagList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))

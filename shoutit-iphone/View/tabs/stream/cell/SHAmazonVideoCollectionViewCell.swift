@@ -21,11 +21,9 @@ class SHAmazonVideoCollectionViewCell: UICollectionViewCell {
             player.prepareToPlay()
             player.controlStyle = MPMovieControlStyle.Embedded
             
-            player.view.frame = self.playerView.bounds
+            player.view.frame = CGRectMake(self.playerView.bounds.origin.x, self.playerView.bounds.origin.y, UIScreen.mainScreen().bounds.width, 240)
             player.view.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-            if let view = player.view {
-                self.playerView.addSubview(view)
-            }
+            self.playerView.addSubview(player.view)
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didEnterFullScreen:"), name: MPMoviePlayerDidExitFullscreenNotification, object: self.player)
         

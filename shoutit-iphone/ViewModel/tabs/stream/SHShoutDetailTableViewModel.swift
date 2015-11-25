@@ -37,7 +37,6 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func viewDidAppear() {
-
     }
 
     func viewWillDisappear() {
@@ -197,21 +196,20 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
             self.updateUI(shShout)
             }) { (response) -> Void in
+                SHProgressHUD.dismiss()
                 switch response.result {
                 case .Success(let result):
                     self.updateUI(result)
                 case .Failure(let error):
                     log.error("Unable to get the Shout Details \(error.localizedDescription)")
                 }
-                SHProgressHUD.dismiss()
-               // MBProgressHUD.hideHUDForView(self.viewController.view, animated: true)
         }
     }
 
 
     // UICollectioViewDataSource
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return collectionView.frame.size
+        return CGSizeMake(UIScreen.mainScreen().bounds.width, collectionView.frame.size.height)
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -326,7 +324,6 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         self.viewController.pageControl.currentPage = Int((self.viewController.collectionView.contentOffset.x + (pageWidth) / 2.0) / pageWidth)
     }
 
-
     // Suggested Shouts Tableview
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -357,10 +354,12 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 
     //Tags Selected
     func selectedTag(tagName: String!, tagIndex: Int) {
-        let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as! SHTagProfileTableViewController
-//        SHTagProfileTableViewController* tagViewController = [SHNavigator viewControllerFromStoryboard:@"TagStoryboard" withViewControllerId:@"SHTagProfileTableViewController"];
-//        [tagViewController requestTag:self.shoutModel.shout.tags[tagIndex]];
-//        [self.navigationController pushViewController:tagViewController animated:YES];
+        if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
+            streamVC.streamType = .Tag
+            streamVC.tagName = tagName
+            streamVC.title = tagName
+            self.viewController.navigationController?.pushViewController(streamVC, animated: true)
+        }
     }
 
     func selectedTag(tagName: String!) {
@@ -372,11 +371,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     // MARK Private
-    private func updateUI (shoutDetail: SHShout) {
+    private func updateUI(shoutDetail: SHShout) {
         self.shoutDetail = shoutDetail
         updateShoutInfo(shoutDetail)
-        self.viewController.collectionView.reloadData()
-       // self.viewController.tableView.reloadData()
     }
 
     private func updateShoutInfo(shoutDetail: SHShout) {
@@ -446,7 +443,8 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 self.viewController.mapView.addOverlay(circle)
             }
             self.recalculateHeaderViewSize()
-
+            self.viewController.tableView.reloadData()
+            self.viewController.collectionView.reloadData()
         }
     }
 

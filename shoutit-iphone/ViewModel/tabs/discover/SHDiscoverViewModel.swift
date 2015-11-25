@@ -95,6 +95,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
             streamVC.streamType = .Discover
             streamVC.discoverId = items[indexPath.row].id
+            streamVC.title = items[indexPath.row].title
             self.viewController.navigationController?.pushViewController(streamVC, animated: true)
         }
     }
