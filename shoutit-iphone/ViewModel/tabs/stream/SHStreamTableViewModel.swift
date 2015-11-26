@@ -141,7 +141,18 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let shout = self.viewController.shouts[indexPath.row]
+        var shout = self.viewController.shouts[indexPath.row]
+//        if indexPath.row == 0{
+//            if (self.viewController.streamType == StreamType.Tag) {
+//                shout = self.viewController.shouts[indexPath.row]
+//                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+//                cell.setTagCellWithName(self.viewController.tagName!)
+//                //cell.setTagCell(shout.)
+//                return cell
+//                
+//            }
+//        }
+        
         if shout.type == .Request {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell
                 cell.setShout(shout)
@@ -174,7 +185,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.viewController.shouts.count
+//        if (self.viewController.streamType == StreamType.Tag) {
+//            return self.viewController.shouts.count + 1
+//        }
+        return self.viewController.shouts.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

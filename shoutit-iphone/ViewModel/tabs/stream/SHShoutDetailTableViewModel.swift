@@ -21,6 +21,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     private var shoutDetail: SHShout?
     private var photos:[MWPhoto] = []
     private var reportTextField: UITextField?
+    private var relatedShouts: [SHShout] = []
 
     required init(viewController: SHShoutDetailTableViewController) {
         self.viewController = viewController
@@ -335,21 +336,22 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.relatedShouts.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
-
-//        SHShout* shout = self.shoutModel.suggestedShouts[indexPath.row];
-//        [cell setShout:shout];
+        let shout = self.relatedShouts[indexPath.row]
+        cell.setShout(shout)
         return cell;
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
-//        detailView.title = [self.shoutModel.suggestedShouts[indexPath.row] title];
-//        [detailView getDetailShouts:self.shoutModel.suggestedShouts[indexPath.row]];
+        detailView.title = self.relatedShouts[indexPath.row].title
+        if let shoutId = self.relatedShouts[indexPath.row].id {
+            detailView.getShoutDetails(shoutId)
+        }
         self.viewController.navigationController?.pushViewController(detailView, animated: true)
     }
 
@@ -401,6 +403,29 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     private func updateUI(shoutDetail: SHShout) {
         self.shoutDetail = shoutDetail
         updateShoutInfo(shoutDetail)
+        if let shoutId = shoutDetail.id {
+            getRelatedShouts(shoutId)
+        }
+    }
+    
+    private func getRelatedShouts(shoutID: String) {
+        shApiShout.loadRelatedShout(shoutID, cacheResponse: { (shShout) -> Void in
+            self.updateRelatedShouts(shShout)
+            }) { (response) -> Void in
+                switch(response.result) {
+                case .Success(let result):
+                    self.updateRelatedShouts(result)
+                case .Failure(let error):
+                    log.error("Error fetching related Shouts \(error.localizedDescription)")
+                }
+                
+        }
+    }
+    
+    private func updateRelatedShouts(shout: SHShoutMeta) {
+        self.relatedShouts = shout.results
+        self.viewController.tableView.reloadData()
+        self.viewController.collectionView.reloadData()
     }
 
     private func updateShoutInfo(shoutDetail: SHShout) {

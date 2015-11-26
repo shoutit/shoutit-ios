@@ -103,6 +103,12 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func loadRelatedShout(shoutID: String, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@" + "/related", arguments: [shoutID])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func reportShout(reportedText: String, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let params: [String: AnyObject] = ["text" : reportedText,
                       "attached_object" : ["shout" : ["id" : shoutID]]]

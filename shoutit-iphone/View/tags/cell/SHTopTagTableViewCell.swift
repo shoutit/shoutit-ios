@@ -23,6 +23,22 @@ class SHTopTagTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        if(selected) {
+            self.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        } else {
+            self.backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        UIView.animateWithDuration(0.1) { () -> Void in
+            if(highlighted) {
+                self.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            } else {
+                self.backgroundColor = UIColor.whiteColor()
+            }
+        }
     }
     
     func setTagCell(tag: SHTag) {
@@ -35,6 +51,19 @@ class SHTopTagTableViewCell: UITableViewCell {
             self.setListenSelected(listening)
         }
     }
+    
+    func setTagCellWithName(tag: String) {
+        //tagCell = tag
+        setListenSelected(false)
+        self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
+        self.tagLabel.layer.masksToBounds = true
+        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
+        self.tagLabel.text = String(format: " %@ ", arguments: [tag])
+        if let listening = self.tagCell?.isListening {
+            self.setListenSelected(listening)
+        }
+    }
+
     
     func setListenSelected(isFollowing: Bool) {
         if(!isFollowing) {

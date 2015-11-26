@@ -286,8 +286,13 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             SVProgressHUD.dismiss()
             switch response.result {
             case .Success:
-                log.verbose("Successfully updated shout")
-                // TODO Update shout cache (details as well stream page) and show the updated on the shout detail page
+                if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
+                    detailView.title = self.shout.title
+                    if let shoutId = self.shout.id {
+                        detailView.getShoutDetails(shoutId)
+                    }
+                    self.viewController.navigationController?.pushViewController(detailView, animated: true)
+                }
             case .Failure:
                 SVProgressHUD.showErrorWithStatus("Something went wrong, shout not updated")
             }
@@ -571,6 +576,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
                         iw.removeFromSuperview()
                         self.cleanForms()
                 })
+        }
+        if let discoverView = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC) as? SHDiscoverCollectionViewController {
+            self.viewController.navigationController?.pushViewController(discoverView, animated: true)
         }
     }
     
