@@ -190,10 +190,10 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.viewController.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 4) {
-            if let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as? SHTagProfileTableViewController {
-                //[tagViewController requestTag:self.fetchedResultsController[indexPath.row]];
-                self.viewController.navigationController?.pushViewController(tagViewController, animated: true)
-            }
+//            if let tagViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHTAGPROFILE) as? SHTagProfileTableViewController {
+//                //[tagViewController requestTag:self.fetchedResultsController[indexPath.row]];
+//                self.viewController.navigationController?.pushViewController(tagViewController, animated: true)
+//            }
         }
         if (indexPath.section == 0 && indexPath.row == 0) {
             if let category = filters.category?.kSelectorName where self.respondsToSelector(NSSelectorFromString(category)) {

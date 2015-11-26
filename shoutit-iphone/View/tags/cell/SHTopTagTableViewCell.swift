@@ -12,8 +12,8 @@ class SHTopTagTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var listenButton: UIButton!
-    @IBOutlet weak var lgView: UIView!
-    @IBOutlet weak var listeningLabel: UILabel!
+    @IBOutlet weak var lgView: UIView?
+    @IBOutlet weak var listeningLabel: UILabel?
     
     var tagCell: SHTag?
     

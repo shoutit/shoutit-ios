@@ -141,11 +141,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var shout = self.viewController.shouts[indexPath.row]
         if indexPath.row == 0{
             if (self.viewController.streamType == StreamType.Tag) {
-                shout = self.viewController.shouts[indexPath.row]
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHStreamTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
                 cell.setTagCellWithName(self.viewController.tagName!)
                 self.viewController.searchBar.hidden = true
                 let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
@@ -160,8 +158,14 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                 self.viewController.navigationItem.titleView = tagNavigationView
                 //cell.setTagCell(shout.)
                 return cell
-                
             }
+        }
+        
+        let shout: SHShout
+        if self.viewController.streamType == .Tag {
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
         }
         
         if shout.type == .Request {
@@ -176,9 +180,19 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let shout: SHShout
+        if self.viewController.streamType == .Tag {
+            if indexPath.row == 0 {
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                return
+            }
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
+        }
         if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
-            detailView.title = self.viewController.shouts[indexPath.row].title
-            if let shoutId = self.viewController.shouts[indexPath.row].id {
+            detailView.title = shout.title
+            if let shoutId = shout.id {
                 detailView.getShoutDetails(shoutId)
             }
             // [detailView getDetailShouts:self.fetchedResultsController[indexPath.row]];
@@ -187,7 +201,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let shout = self.viewController.shouts[indexPath.row]
+        let shout: SHShout
+        if (self.viewController.streamType == StreamType.Tag) {
+            if indexPath.row == 0 {
+                return 44
+            }
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
+        }
         if (shout.type == .Offer) {
             return 100
         } else {
@@ -196,9 +218,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if (self.viewController.streamType == StreamType.Tag) {
-//            return self.viewController.shouts.count + 1
-//        }
+        if (self.viewController.streamType == StreamType.Tag) {
+            return self.viewController.shouts.count + 1
+        }
         return self.viewController.shouts.count
     }
     
