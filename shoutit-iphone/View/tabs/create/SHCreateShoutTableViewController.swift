@@ -24,14 +24,18 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     @IBOutlet weak var titleTextField: UITextField!
     
     private var viewModel: SHCreateShoutViewModel?
-    private var isEditingMode = false
-    private var shout: SHShout?
+    var shout: SHShout?
+    var isEditingMode = false
     
     static func presentEditorFromViewController(parent: UIViewController, shout: SHShout) {
         if let viewController = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT) as? SHCreateShoutTableViewController {
             viewController.isEditingMode = true
             viewController.shout = shout
+            let navController = SHNavigationViewController(rootViewController: viewController)
+            parent.presentViewController(navController, animated: true, completion: nil)
+            //viewController.viewDidLoad()
         }
+        
     }
     
     override func viewDidLoad() {
@@ -96,6 +100,15 @@ class SHCreateShoutTableViewController: BaseTableViewController {
              self.viewModel?.cleanForms()
         }))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func cancelBack() {
+        let ac = UIAlertController(title: NSLocalizedString("Discard changes?", comment: "Discard changes?"), message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        ac.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Yes"), style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        ac.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(ac, animated: true, completion: nil)
     }
     
     // MARK - Private

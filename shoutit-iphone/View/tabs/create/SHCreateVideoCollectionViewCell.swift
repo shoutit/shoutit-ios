@@ -54,7 +54,11 @@ class SHCreateVideoCollectionViewCell: UICollectionViewCell {
                 delegate.removeVideo(media)
             }
         }))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        let window = UIApplication.sharedApplication().keyWindow
+        window?.makeKeyAndVisible()
+        window?.rootViewController = UIViewController()
+        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+      //  UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func playerItemDidReachEnd() {

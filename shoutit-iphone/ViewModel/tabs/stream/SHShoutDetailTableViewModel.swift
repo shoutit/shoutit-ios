@@ -389,7 +389,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 }))
                 ac.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
                 self.viewController.presentViewController(ac, animated: true, completion: nil)
-            } else if(buttonIndex == 1) {
+            } else if(buttonIndex == 2) {
                 if let shout = self.shoutDetail {
                     SHCreateShoutTableViewController.presentEditorFromViewController(self.viewController, shout: shout)
                 }

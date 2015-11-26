@@ -86,7 +86,47 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.viewController.tableView.estimatedRowHeight = 120
         self.viewController.tableView.rowHeight = UITableViewAutomaticDimension
 
-        // TODO
+        if(self.viewController.isEditingMode) {
+            if let shout = self.viewController.shout{
+                self.shout = shout
+                //self.media+=shout.videos
+              //  self.media+=shout.images
+                for imageURL in shout.images {
+                    let media = SHMedia()
+                    media.isVideo = false
+                    media.url = imageURL
+                    //self.media.insert(media, atIndex: 0)
+                    self.media.append(media)
+                }
+                for video in shout.videos {
+                    video.upload = false
+                    video.isVideo = true
+                    self.media.append(video)
+                }
+            }
+            
+            self.viewController.titleTextField.text = shout.title
+            if(shout.type == .Offer) {
+                self.setupViewForStandard(true)
+                self.viewController.segmentControl.selectedSegmentIndex = 0
+            } else if(shout.type == .Request) {
+                self.setupViewForStandard(true)
+                self.viewController.segmentControl.selectedSegmentIndex = 1
+            } else if(shout.type == .VideoCV) {
+                self.setupViewForStandard(false)
+                self.viewController.segmentControl.selectedSegmentIndex = 2
+            }
+            self.viewController.categoriesTextField.text = shout.category?.name
+            self.viewController.descriptionTextView.text = shout.text
+            self.viewController.priceTextField.text = "\(shout.price)"
+            self.viewController.currencyTextField.text = shout.currency
+            if let location = shout.location {
+                self.viewController.locationTextView.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
+            }
+           // self.viewController.tableView.reloadData()
+            
+        }
+        
 //        if(self.isEditingMode)
 //        {
 //            [self.titleTextField setText:self.shout.title];
@@ -288,10 +328,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
                 cell.delegate = self
                 if let image = data.image {
                     cell.image = image
-                } else {
-                    // TODO
-//                    cell.imageURL = imageURL
+                    return cell
                 }
+                cell.imageURL = data.url
                 return cell
             }
         }
@@ -668,14 +707,16 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     private func setCurrencies(currencies: [SHCurrency]) {
-        self.currencies = currencies
-        self.currenciesString = self.currencies.map({ (currency) -> String in
-            if let loc = shout.location where loc.country == currency.country {
-                self.viewController.currencyTextField.text = currency.code
-                self.shout.currency = currency.code
-            }
-            return currency.code
-        })
+        if(!self.viewController.isEditingMode){
+            self.currencies = currencies
+            self.currenciesString = self.currencies.map({ (currency) -> String in
+                if let loc = shout.location where loc.country == currency.country {
+                    self.viewController.currencyTextField.text = currency.code
+                    self.shout.currency = currency.code
+                }
+                return currency.code
+            })
+        }
     }
     
     private func tagExist(tagName: String) -> Bool{
