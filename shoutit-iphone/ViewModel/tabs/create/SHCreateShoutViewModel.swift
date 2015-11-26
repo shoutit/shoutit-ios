@@ -264,7 +264,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     func postShout() {
         if !self.validFields() {
-            return;
+            return
         }
         SHApiShoutService().postShout(self.shout, media: self.media) { (response) -> Void in
             switch response.result {
@@ -279,6 +279,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     func patchShout() {
         // Show alert dialog and then apply patch
+        if !self.validFields() {
+            return
+        }
         self.viewController.view.endEditing(true)
         SVProgressHUD.showWithStatus("Shout is updating")
         // dismiss and go to detail page
