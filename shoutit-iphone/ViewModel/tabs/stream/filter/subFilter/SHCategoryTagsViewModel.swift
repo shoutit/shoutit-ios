@@ -30,8 +30,8 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
     
     func viewDidAppear() {
         spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        spinner!.frame = CGRectMake(0, 0, 24, 24)
-        spinner!.startAnimating()
+        spinner?.frame = CGRectMake(0, 0, 24, 24)
+        spinner?.startAnimating()
         
         self.viewController.tableView?.pullToRefreshView?.setCustomView(spinner!, forState: 10)
         self.viewController.tableView?.infiniteScrollingView?.hidden = true
@@ -192,11 +192,11 @@ class SHCategoryTagsViewModel: NSObject, TableViewControllerModelProtocol, UITab
         }
         if let block = self.viewController.selectedBlock {
             if let tag = self.viewController.fetchedResultsController[indexPath.row] as? SHTag {
+                self.viewController.navigationController?.popViewControllerAnimated(true)
+                self.viewController.tableView?.userInteractionEnabled = false
                 block([tag])
             }
         }
-        
-        self.viewController.navigationController?.popViewControllerAnimated(true)
     }
     
 }
