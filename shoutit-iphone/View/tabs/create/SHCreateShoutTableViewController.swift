@@ -93,6 +93,10 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         viewModel?.postShout()
     }
     
+    func patchShout() {
+        viewModel?.patchShout()
+    }
+    
     func cleanForms() {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Discard changes?", comment: "Discard changes?"), preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Default, handler: nil))

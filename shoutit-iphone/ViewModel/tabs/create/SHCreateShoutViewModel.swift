@@ -35,11 +35,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
-        // TODO
         if isEditing {
             self.setupViewForStandard(true)
-//            [self setupViewForStandard:YES];
-//            [self setCurrentLocation];
         }
         
         // get categories from cache or update from web
@@ -71,17 +68,6 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         
         self.tapTagsSelect = UITapGestureRecognizer(target: self, action: "selectTags")
         self.offset = self.viewController.tableView.contentOffset.y
-
-        // TODO Setup Currency
-//        if(!self.isEditingMode)
-//        {
-//            NSString* localCur = @"";
-//            NSMutableArray *currencies = [[NSUserDefaults standardUserDefaults] valueForKey:@"currencies"];
-//            for (NSDictionary* dict in currencies)
-//            if([[[[[SHLoginModel sharedModel]selfUser] userLocation]countryCode] isEqualToString:dict[@"country"]])
-//            localCur = dict[@"code"];
-//            self.currencyTextField.text = localCur;
-//        }
         
         self.viewController.tableView.estimatedRowHeight = 120
         self.viewController.tableView.rowHeight = UITableViewAutomaticDimension
@@ -291,6 +277,23 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         self.showShoutAnimation()
     }
     
+    func patchShout() {
+        // Show alert dialog and then apply patch
+        self.viewController.view.endEditing(true)
+        SVProgressHUD.showWithStatus("Shout is updating")
+        // dismiss and go to detail page
+        SHApiShoutService().patchShout(self.shout, media: self.media) { (response) -> Void in
+            SVProgressHUD.dismiss()
+            switch response.result {
+            case .Success:
+                log.verbose("Successfully updated shout")
+                // TODO Update shout cache (details as well stream page) and show the updated on the shout detail page
+            case .Failure:
+                SVProgressHUD.showErrorWithStatus("Something went wrong, shout not updated")
+            }
+        }
+    }
+    
     // MARK - CollectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.media.count + 1
@@ -321,16 +324,12 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             if data.isVideo {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateVideoCollectionViewCell, forIndexPath: indexPath) as! SHCreateVideoCollectionViewCell
                 cell.delegate = self
-                cell.media = data
+                cell.setUp(self.viewController, data: data)
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateImageCollectionViewCell, forIndexPath: indexPath) as! SHCreateImageCollectionViewCell
                 cell.delegate = self
-                if let image = data.image {
-                    cell.image = image
-                    return cell
-                }
-                cell.imageURL = data.url
+                cell.setUp(self.viewController, data: data)
                 return cell
             }
         }
@@ -482,7 +481,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     // MARK - SHCreateVideoCollectionViewCellDelegate
     func removeVideo(media: SHMedia) {
         if let index = self.media.indexOf({
-            return $0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && !$0.url.isEmpty && $0.url == media.url)
+            return $0.isVideo && ($0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && !$0.url.isEmpty && $0.url == media.url))
         }) {
             self.media.removeAtIndex(index)
             self.viewController.collectionView.performBatchUpdates({ () -> Void in

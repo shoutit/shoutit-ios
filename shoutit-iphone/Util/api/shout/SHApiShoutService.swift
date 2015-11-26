@@ -109,6 +109,26 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.post(REPORT_SHOUT, params: params, completionHandler: completionHandler)
     }
 
+    func patchShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
+        if let shoutId = shout.id {
+            let urlString = String(format: SHOUTS + "/%@", arguments: [shoutId])
+            shout.images = []
+            shout.videos = []
+            for shMedia in media {
+                if shMedia.isVideo {
+                    shout.videos.append(shMedia)
+                } else {
+                    shout.images.append(shMedia.url)
+                }
+            }
+            if shout.type == .VideoCV {
+                shout.type = .Request
+            }
+            let params = Mapper().toJSON(shout)
+            SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+        }
+    }
+    
     func postShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
         var tasks: [AWSTask] = []
         let aws = SHAmazonAWS()

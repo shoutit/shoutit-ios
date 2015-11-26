@@ -17,6 +17,9 @@ protocol SHCreateVideoCollectionViewCellDelegate {
 class SHCreateVideoCollectionViewCell: UICollectionViewCell {
     
     var player: AVPlayer?
+    
+    var viewController: UIViewController?
+    
     var media: SHMedia? {
         didSet {
             setMedia()
@@ -54,11 +57,12 @@ class SHCreateVideoCollectionViewCell: UICollectionViewCell {
                 delegate.removeVideo(media)
             }
         }))
-        let window = UIApplication.sharedApplication().keyWindow
-        window?.makeKeyAndVisible()
-        window?.rootViewController = UIViewController()
-        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
-      //  UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        self.viewController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func setUp(viewController: UIViewController, data: SHMedia) {
+        self.viewController = viewController
+        self.media = data
     }
     
     func playerItemDidReachEnd() {
