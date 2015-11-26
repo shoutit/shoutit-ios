@@ -178,7 +178,12 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
         switch(indexPath.section) {
         case Enums.LocationSections.TableViewSectionMain.rawValue:
             if (indexPath.row == 0) {
-                NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                if let shAddress = SHAddress.getUserOrDeviceLocation() {
+                    self.viewController.locationSelected?(address: shAddress)
+                    if self.viewController.isUpdateUserLocation {
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.LocationUpdated, object: nil)
+                    }
+                }
                 self.viewController.navigationController?.popViewControllerAnimated(true)
                 return
             }

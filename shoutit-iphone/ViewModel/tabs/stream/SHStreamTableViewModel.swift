@@ -26,6 +26,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         updateSubtitleLabel()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
+        //ShoutDeleted Notification
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("shoutDeleted:"), name: "shoutDeleted", object: nil)
+    }
+    
+    func shoutDeleted(notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        self.pullToRefresh()
     }
     
     func locationUpdated(notification: NSNotification) {
@@ -132,17 +141,37 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let shout = self.viewController.shouts[indexPath.row]
+        if indexPath.row == 0{
+            if (self.viewController.streamType == StreamType.Tag) {
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+                cell.setTagCellWithName(self.viewController.tagName!)
+                self.viewController.searchBar.hidden = true
+                let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+                titleLabel.textAlignment = NSTextAlignment.Center
+                titleLabel.backgroundColor = UIColor.clearColor()
+                titleLabel.textColor = UIColor.darkTextColor()
+                titleLabel.font = UIFont.boldSystemFontOfSize(17)
+                titleLabel.text = self.viewController.tagName
+                titleLabel.sizeToFit()
+                let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
+                tagNavigationView.addSubview(titleLabel)
+                self.viewController.navigationItem.titleView = tagNavigationView
+                //cell.setTagCell(shout.)
+                return cell
+            }
+        }
+        
+        let shout: SHShout
+        if self.viewController.streamType == .Tag {
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
+        }
+        
         if shout.type == .Request {
-//            if let videoUrl = shout.videoUrl where !videoUrl.isEmpty {
-//                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestVideoTableViewCell, forIndexPath: indexPath) as! SHRequestVideoTableViewCell
-//                cell.setShout(shout)
-//                return cell
-//            } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell
                 cell.setShout(shout)
                 return cell
-//            }
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
             cell.setShout(shout)
@@ -151,9 +180,19 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let shout: SHShout
+        if self.viewController.streamType == .Tag {
+            if indexPath.row == 0 {
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                return
+            }
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
+        }
         if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
-            detailView.title = self.viewController.shouts[indexPath.row].title
-            if let shoutId = self.viewController.shouts[indexPath.row].id {
+            detailView.title = shout.title
+            if let shoutId = shout.id {
                 detailView.getShoutDetails(shoutId)
             }
             // [detailView getDetailShouts:self.fetchedResultsController[indexPath.row]];
@@ -162,7 +201,15 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let shout = self.viewController.shouts[indexPath.row]
+        let shout: SHShout
+        if (self.viewController.streamType == StreamType.Tag) {
+            if indexPath.row == 0 {
+                return 44
+            }
+            shout = self.viewController.shouts[indexPath.row - 1]
+        } else {
+            shout = self.viewController.shouts[indexPath.row]
+        }
         if (shout.type == .Offer) {
             return 100
         } else {
@@ -171,7 +218,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.viewController.shouts.count
+        if (self.viewController.streamType == StreamType.Tag) {
+            return self.viewController.shouts.count + 1
+        }
+        return self.viewController.shouts.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

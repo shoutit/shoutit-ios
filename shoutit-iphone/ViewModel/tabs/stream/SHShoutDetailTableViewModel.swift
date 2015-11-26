@@ -13,6 +13,7 @@ import Social
 import MessageUI
 import FBSDKShareKit
 import DWTagList
+import SVProgressHUD
 
 class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate, MWPhotoBrowserDelegate, MKMapViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate{
 
@@ -21,6 +22,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     private var shoutDetail: SHShout?
     private var photos:[MWPhoto] = []
     private var reportTextField: UITextField?
+    private var relatedShouts: [SHShout] = []
 
     required init(viewController: SHShoutDetailTableViewController) {
         self.viewController = viewController
@@ -52,31 +54,33 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
     // Report Action
     func reportAction() {
-        let alert = UIAlertController(title: "", message: "", preferredStyle:
-            UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler(configurationTextField)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
-            if let reportedtext = self.reportTextField?.text, let shout = self.shoutDetail, let shoutId = shout.id {
-                self.shApiShout.reportShout(reportedtext, shoutID: shoutId, completionHandler: { (shSuccess) -> Void in
-                    switch (shSuccess.result) {
-                    case .Success( _):
-                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                            SHProgressHUD.showError(NSLocalizedString("Thank you! Shout has been reported as inappropriate and will be reviewed.", comment: "Report"), maskType: .Black)
+        if let shout = self.shoutDetail {
+            let alert = UIAlertController(title: "Report:\(shout.title)", message: "", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            alert.addTextFieldWithConfigurationHandler(configurationTextField)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
+                if let reportedtext = self.reportTextField?.text, let shoutId = shout.id {
+                    self.shApiShout.reportShout(reportedtext, shoutID: shoutId, completionHandler: { (shSuccess) -> Void in
+                        switch (shSuccess.result) {
+                        case .Success( _):
+                            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                                SHProgressHUD.showError(NSLocalizedString("Thank you! Shout has been reported as inappropriate and will be reviewed.", comment: "Report"), maskType: .Black)
+                            }
+                        case .Failure(let error):
+                            log.error("Error posting the Report Inappropriate \(error.localizedDescription)")
                         }
-                    case .Failure(let error):
-                        log.error("Error posting the Report Inappropriate \(error.localizedDescription)")
-                    }
-                })
-            }
-
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.viewController.presentViewController(alert, animated: true, completion: nil)
+                    })
+                }
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.viewController.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     func configurationTextField(textField: UITextField!) {
         self.reportTextField = textField
-        self.reportTextField?.placeholder = NSLocalizedString("Message", comment: "Message")
+        self.reportTextField?.placeholder = NSLocalizedString("Tell us what is wrong", comment: "Tell us what is wrong")
     }
 
     //Action Sheet
@@ -177,11 +181,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func getShoutDetails(shoutID: String) {
-//        MBProgressHUD.showHUDAddedTo(self.viewController.view, animated: true)
-//        MBProgressHUD(forView: self.viewController.view).labelText = NSLocalizedString("Loading", comment: "Loading...")
-//        MBProgressHUD(forView: self.viewController.view).backgroundColor = UIColor.blackColor()
         SHProgressHUD.show(NSLocalizedString("Loading", comment: "Loading..."), maskType: .Black)
-
         self.photos = [MWPhoto]()
         if let images = shoutDetail?.images {
             for stringUrl in images {
@@ -189,6 +189,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             }
         }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
+            SHProgressHUD.dismiss()
             self.updateUI(shShout)
             }) { (response) -> Void in
                 SHProgressHUD.dismiss()
@@ -229,10 +230,8 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //self.viewController.pageControl.hidden = false
         if (self.shoutDetail?.videos.count > 0) {
             if(indexPath.row < self.shoutDetail?.videos.count) {
-               // self.viewController.pageControl.hidden = true
                 if let video = self.shoutDetail?.videos[indexPath.row] {
                     if(video.provider == "youtube") {
                         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHYouTubeVideoCollectionViewCell, forIndexPath: indexPath) as! SHYouTubeVideoCollectionViewCell
@@ -339,21 +338,22 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.relatedShouts.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHShoutTableViewCell, forIndexPath: indexPath) as! SHShoutTableViewCell
-
-//        SHShout* shout = self.shoutModel.suggestedShouts[indexPath.row];
-//        [cell setShout:shout];
+        let shout = self.relatedShouts[indexPath.row]
+        cell.setShout(shout)
         return cell;
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
-//        detailView.title = [self.shoutModel.suggestedShouts[indexPath.row] title];
-//        [detailView getDetailShouts:self.shoutModel.suggestedShouts[indexPath.row]];
+        detailView.title = self.relatedShouts[indexPath.row].title
+        if let shoutId = self.relatedShouts[indexPath.row].id {
+            detailView.getShoutDetails(shoutId)
+        }
         self.viewController.navigationController?.pushViewController(detailView, animated: true)
     }
 
@@ -374,11 +374,60 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     func tagListTagsChanged(tagList: DWTagList!) {
 
     }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if(actionSheet.tag == 10) {
+            if(buttonIndex == 0) {
+                let ac = UIAlertController(title: NSLocalizedString("Delete", comment: "Delete"), message: NSLocalizedString("Delete the shout?", comment: "Delete the shout?"), preferredStyle: UIAlertControllerStyle.Alert)
+                ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+                    if let shout = self.shoutDetail, let shoutId = shout.id{
+                        self.shApiShout.deleteShoutID(shoutId, completionHandler: { (response) -> Void in
+                            if(response.result.isSuccess) {
+                                self.viewController.navigationController?.popViewControllerAnimated(true)
+                                NSNotificationCenter.defaultCenter().postNotificationName("shoutDeleted", object: true)
+                            } else {
+                                log.verbose("Error deleting the shout: \(shoutId)")
+                            }
+                        })
+                    }
+                }))
+                ac.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+                self.viewController.presentViewController(ac, animated: true, completion: nil)
+            } else if(buttonIndex == 2) {
+                if let shout = self.shoutDetail {
+                    SHCreateShoutTableViewController.presentEditorFromViewController(self.viewController, shout: shout)
+                }
+            }
+        }
+    }
 
     // MARK Private
     private func updateUI(shoutDetail: SHShout) {
         self.shoutDetail = shoutDetail
         updateShoutInfo(shoutDetail)
+        if let shoutId = shoutDetail.id {
+            getRelatedShouts(shoutId)
+        }
+    }
+    
+    private func getRelatedShouts(shoutID: String) {
+        shApiShout.loadRelatedShout(shoutID, cacheResponse: { (shShout) -> Void in
+            self.updateRelatedShouts(shShout)
+            }) { (response) -> Void in
+                switch(response.result) {
+                case .Success(let result):
+                    self.updateRelatedShouts(result)
+                case .Failure(let error):
+                    log.error("Error fetching related Shouts \(error.localizedDescription)")
+                }
+                
+        }
+    }
+    
+    private func updateRelatedShouts(shout: SHShoutMeta) {
+        self.relatedShouts = shout.results
+        self.viewController.tableView.reloadData()
+        self.viewController.collectionView.reloadData()
     }
 
     private func updateShoutInfo(shoutDetail: SHShout) {

@@ -52,6 +52,11 @@ class SHApiManager: NSObject {
         executeRequest(request, cacheKey: cacheKey, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func delete(url: String, params: [String : AnyObject]?, completionHandler: Response<String, NSError> -> Void) {
+        let request = Alamofire.request(.DELETE, url, parameters: params, encoding: Alamofire.ParameterEncoding.JSON, headers: authHeaders())
+        executeRequestString(request, completionHandler: completionHandler)
+    }
+    
     func isNetworkReachable() -> Bool {
         let reachability: Reachability
         do {
@@ -64,6 +69,20 @@ class SHApiManager: NSObject {
     
     // MARK - Private
     // TODO if we get user not authenticated/authorized, then we need refresh user's token and resend the request before calling completion handlers
+    private func executeRequestString(request: Request, completionHandler: Response<String, NSError> -> Void) {
+        NetworkActivityManager.addActivity()
+        request.responseString { (response) -> Void in
+            NetworkActivityManager.removeActivity()
+            switch (response.result) {
+            case .Success(let result):
+                log.debug("Success request : \(result)")
+            case .Failure(let error):
+                log.debug("error with request : \(error)")
+            }
+            completionHandler(response)
+        }
+    }
+    
     private func executeRequest<R: Mappable>(request: Request, var cacheKey: String?, cacheResponse: (R -> Void)?, completionHandler: Response<R, NSError> -> Void) {
         NetworkActivityManager.addActivity()
         if cacheResponse != nil {

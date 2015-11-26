@@ -14,6 +14,7 @@ class SHLocationGetterViewController: BaseViewController, UISearchBarDelegate {
     @IBOutlet weak var locationTableView: UITableView!
     private var viewModel: SHLocationGetterViewModel?
     var isUpdateUserLocation: Bool = true
+    var currentLocation: SHAddress?
     var locationSelected: ((address: SHAddress) -> ())?
     
     override func viewDidLoad() {

@@ -103,12 +103,38 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func loadRelatedShout(shoutID: String, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@" + "/related", arguments: [shoutID])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func reportShout(reportedText: String, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let params: [String: AnyObject] = ["text" : reportedText,
                       "attached_object" : ["shout" : ["id" : shoutID]]]
         SHApiManager.sharedInstance.post(REPORT_SHOUT, params: params, completionHandler: completionHandler)
     }
 
+    func patchShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
+        if let shoutId = shout.id {
+            let urlString = String(format: SHOUTS + "/%@", arguments: [shoutId])
+            shout.images = []
+            shout.videos = []
+            for shMedia in media {
+                if shMedia.isVideo {
+                    shout.videos.append(shMedia)
+                } else {
+                    shout.images.append(shMedia.url)
+                }
+            }
+            if shout.type == .VideoCV {
+                shout.type = .Request
+            }
+            let params = Mapper().toJSON(shout)
+            SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+        }
+    }
+    
     func postShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
         var tasks: [AWSTask] = []
         let aws = SHAmazonAWS()
@@ -139,5 +165,11 @@ class SHApiShoutService: NSObject {
             SHApiManager.sharedInstance.post(self.SHOUTS, params: params, isCachingEnabled: false, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
             return nil
         }
+    }
+    
+    func deleteShoutID(shoutID: String, completionHandler: Response<String, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@", arguments: [shoutID])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
     }
 }

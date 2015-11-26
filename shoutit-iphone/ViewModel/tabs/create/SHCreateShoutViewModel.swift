@@ -35,11 +35,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
-        // TODO
         if isEditing {
             self.setupViewForStandard(true)
-//            [self setupViewForStandard:YES];
-//            [self setCurrentLocation];
         }
         
         // get categories from cache or update from web
@@ -71,22 +68,51 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         
         self.tapTagsSelect = UITapGestureRecognizer(target: self, action: "selectTags")
         self.offset = self.viewController.tableView.contentOffset.y
-
-        // TODO Setup Currency
-//        if(!self.isEditingMode)
-//        {
-//            NSString* localCur = @"";
-//            NSMutableArray *currencies = [[NSUserDefaults standardUserDefaults] valueForKey:@"currencies"];
-//            for (NSDictionary* dict in currencies)
-//            if([[[[[SHLoginModel sharedModel]selfUser] userLocation]countryCode] isEqualToString:dict[@"country"]])
-//            localCur = dict[@"code"];
-//            self.currencyTextField.text = localCur;
-//        }
         
         self.viewController.tableView.estimatedRowHeight = 120
         self.viewController.tableView.rowHeight = UITableViewAutomaticDimension
 
-        // TODO
+        if(self.viewController.isEditingMode) {
+            if let shout = self.viewController.shout{
+                self.shout = shout
+                //self.media+=shout.videos
+              //  self.media+=shout.images
+                for imageURL in shout.images {
+                    let media = SHMedia()
+                    media.isVideo = false
+                    media.url = imageURL
+                    //self.media.insert(media, atIndex: 0)
+                    self.media.append(media)
+                }
+                for video in shout.videos {
+                    video.upload = false
+                    video.isVideo = true
+                    self.media.append(video)
+                }
+            }
+            
+            self.viewController.titleTextField.text = shout.title
+            if(shout.type == .Offer) {
+                self.setupViewForStandard(true)
+                self.viewController.segmentControl.selectedSegmentIndex = 0
+            } else if(shout.type == .Request) {
+                self.setupViewForStandard(true)
+                self.viewController.segmentControl.selectedSegmentIndex = 1
+            } else if(shout.type == .VideoCV) {
+                self.setupViewForStandard(false)
+                self.viewController.segmentControl.selectedSegmentIndex = 2
+            }
+            self.viewController.categoriesTextField.text = shout.category?.name
+            self.viewController.descriptionTextView.text = shout.text
+            self.viewController.priceTextField.text = "\(shout.price)"
+            self.viewController.currencyTextField.text = shout.currency
+            if let location = shout.location {
+                self.viewController.locationTextView.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
+            }
+           // self.viewController.tableView.reloadData()
+            
+        }
+        
 //        if(self.isEditingMode)
 //        {
 //            [self.titleTextField setText:self.shout.title];
@@ -238,7 +264,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     func postShout() {
         if !self.validFields() {
-            return;
+            return
         }
         SHApiShoutService().postShout(self.shout, media: self.media) { (response) -> Void in
             switch response.result {
@@ -249,6 +275,31 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             }
         }
         self.showShoutAnimation()
+    }
+    
+    func patchShout() {
+        // Show alert dialog and then apply patch
+        if !self.validFields() {
+            return
+        }
+        self.viewController.view.endEditing(true)
+        SVProgressHUD.showWithStatus("Shout is updating")
+        // dismiss and go to detail page
+        SHApiShoutService().patchShout(self.shout, media: self.media) { (response) -> Void in
+            SVProgressHUD.dismiss()
+            switch response.result {
+            case .Success:
+                if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
+                    detailView.title = self.shout.title
+                    if let shoutId = self.shout.id {
+                        detailView.getShoutDetails(shoutId)
+                    }
+                    self.viewController.navigationController?.pushViewController(detailView, animated: true)
+                }
+            case .Failure:
+                SVProgressHUD.showErrorWithStatus("Something went wrong, shout not updated")
+            }
+        }
     }
     
     // MARK - CollectionView Delegate
@@ -281,17 +332,12 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             if data.isVideo {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateVideoCollectionViewCell, forIndexPath: indexPath) as! SHCreateVideoCollectionViewCell
                 cell.delegate = self
-                cell.media = data
+                cell.setUp(self.viewController, data: data)
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHCreateImageCollectionViewCell, forIndexPath: indexPath) as! SHCreateImageCollectionViewCell
                 cell.delegate = self
-                if let image = data.image {
-                    cell.image = image
-                } else {
-                    // TODO
-//                    cell.imageURL = imageURL
-                }
+                cell.setUp(self.viewController, data: data)
                 return cell
             }
         }
@@ -443,7 +489,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     // MARK - SHCreateVideoCollectionViewCellDelegate
     func removeVideo(media: SHMedia) {
         if let index = self.media.indexOf({
-            return $0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && !$0.url.isEmpty && $0.url == media.url)
+            return $0.isVideo && ($0.localUrl == media.localUrl || ($0.idOnProvider == media.idOnProvider && !$0.url.isEmpty && $0.url == media.url))
         }) {
             self.media.removeAtIndex(index)
             self.viewController.collectionView.performBatchUpdates({ () -> Void in
@@ -533,6 +579,9 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
                         iw.removeFromSuperview()
                         self.cleanForms()
                 })
+        }
+        if let discoverView = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC) as? SHDiscoverCollectionViewController {
+            self.viewController.navigationController?.pushViewController(discoverView, animated: true)
         }
     }
     
@@ -670,7 +719,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     private func setCurrencies(currencies: [SHCurrency]) {
         self.currencies = currencies
         self.currenciesString = self.currencies.map({ (currency) -> String in
-            if let loc = shout.location where loc.country == currency.country {
+            if let loc = shout.location where loc.country == currency.country && !self.viewController.isEditingMode {
                 self.viewController.currencyTextField.text = currency.code
                 self.shout.currency = currency.code
             }

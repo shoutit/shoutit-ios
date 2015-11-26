@@ -18,6 +18,8 @@ class SHCreateImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageViewShout: UIImageView!
     var delegate: SHCreateImageCollectionViewCellDelegate?
     
+    private var viewController: UIViewController?
+    
     var image: UIImage? {
         didSet {
             self.imageViewShout?.image = image
@@ -29,6 +31,15 @@ class SHCreateImageCollectionViewCell: UICollectionViewCell {
             if let url = imageURL {
                 self.imageViewShout?.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
             }
+        }
+    }
+    
+    func setUp(viewController: UIViewController, data: SHMedia) {
+        self.viewController = viewController
+        if let image = data.image {
+            self.image = image
+        } else {
+            self.imageURL = data.url
         }
     }
     
@@ -52,6 +63,6 @@ class SHCreateImageCollectionViewCell: UICollectionViewCell {
                 delegate.removeImageURL(imageURL)
             }
         }))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        self.viewController?.presentViewController(alert, animated: true, completion: nil)
     }
 }
