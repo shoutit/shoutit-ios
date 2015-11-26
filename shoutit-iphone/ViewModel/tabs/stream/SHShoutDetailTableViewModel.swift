@@ -13,6 +13,7 @@ import Social
 import MessageUI
 import FBSDKShareKit
 import DWTagList
+import SVProgressHUD
 
 class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate, MWPhotoBrowserDelegate, MKMapViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, DWTagListDelegate{
 
@@ -188,6 +189,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             }
         }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
+            SHProgressHUD.dismiss()
             self.updateUI(shShout)
             }) { (response) -> Void in
                 SHProgressHUD.dismiss()
