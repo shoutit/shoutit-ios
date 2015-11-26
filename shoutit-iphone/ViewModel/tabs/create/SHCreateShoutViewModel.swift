@@ -717,16 +717,14 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     private func setCurrencies(currencies: [SHCurrency]) {
-        if(!self.viewController.isEditingMode){
-            self.currencies = currencies
-            self.currenciesString = self.currencies.map({ (currency) -> String in
-                if let loc = shout.location where loc.country == currency.country {
-                    self.viewController.currencyTextField.text = currency.code
-                    self.shout.currency = currency.code
-                }
-                return currency.code
-            })
-        }
+        self.currencies = currencies
+        self.currenciesString = self.currencies.map({ (currency) -> String in
+            if let loc = shout.location where loc.country == currency.country && !self.viewController.isEditingMode {
+                self.viewController.currencyTextField.text = currency.code
+                self.shout.currency = currency.code
+            }
+            return currency.code
+        })
     }
     
     private func tagExist(tagName: String) -> Bool{
