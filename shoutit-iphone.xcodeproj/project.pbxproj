@@ -127,6 +127,7 @@
 		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
 		ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */; };
 		ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */; };
+		ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */; };
 		ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C861BF732550097444E /* SHStreamTableViewController.swift */; };
 		ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */; };
 		ACDB3C8B1BF7397B0097444E /* SHStreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3C8A1BF7397B0097444E /* SHStreamTableViewCell.swift */; };
@@ -315,6 +316,7 @@
 		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
 		ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterCellViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterCellViewModel.swift; sourceTree = "<group>"; };
 		ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewCell.swift; path = View/tabs/stream/SHLocationGetterViewCell.swift; sourceTree = "<group>"; };
+		ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHStreamTagTableViewCell.xib; path = View/tags/cell/SHStreamTagTableViewCell.xib; sourceTree = "<group>"; };
 		ACDB3C861BF732550097444E /* SHStreamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewController.swift; path = View/tabs/stream/SHStreamTableViewController.swift; sourceTree = "<group>"; };
 		ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewModel.swift; path = ViewModel/tabs/stream/SHStreamTableViewModel.swift; sourceTree = "<group>"; };
 		ACDB3C8A1BF7397B0097444E /* SHStreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTableViewCell.swift; path = View/tabs/stream/SHStreamTableViewCell.swift; sourceTree = "<group>"; };
@@ -1094,6 +1096,7 @@
 		ACDD23B01BFAD3F200EEC6A6 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */,
 				ACDD23B11BFAD40700EEC6A6 /* SHTopTagTableViewCell.xib */,
 				ACDD23B31BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift */,
 			);
@@ -1252,6 +1255,7 @@
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				6027CF881BE751ED00124C28 /* ProfileStoryboard.storyboard in Resources */,
 				ACDB3CBB1BF90CBC0097444E /* SHRequestVideoTableViewCell.xib in Resources */,
+				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				6027CF891BE751ED00124C28 /* SettingsStoryboard.storyboard in Resources */,
 				ACDD23B21BFAD40800EEC6A6 /* SHTopTagTableViewCell.xib in Resources */,
 			);

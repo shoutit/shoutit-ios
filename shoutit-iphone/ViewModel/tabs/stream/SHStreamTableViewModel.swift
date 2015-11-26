@@ -142,16 +142,27 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     // tableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var shout = self.viewController.shouts[indexPath.row]
-//        if indexPath.row == 0{
-//            if (self.viewController.streamType == StreamType.Tag) {
-//                shout = self.viewController.shouts[indexPath.row]
-//                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
-//                cell.setTagCellWithName(self.viewController.tagName!)
-//                //cell.setTagCell(shout.)
-//                return cell
-//                
-//            }
-//        }
+        if indexPath.row == 0{
+            if (self.viewController.streamType == StreamType.Tag) {
+                shout = self.viewController.shouts[indexPath.row]
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHStreamTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+                cell.setTagCellWithName(self.viewController.tagName!)
+                self.viewController.searchBar.hidden = true
+                let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+                titleLabel.textAlignment = NSTextAlignment.Center
+                titleLabel.backgroundColor = UIColor.clearColor()
+                titleLabel.textColor = UIColor.darkTextColor()
+                titleLabel.font = UIFont.boldSystemFontOfSize(17)
+                titleLabel.text = self.viewController.tagName
+                titleLabel.sizeToFit()
+                let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
+                tagNavigationView.addSubview(titleLabel)
+                self.viewController.navigationItem.titleView = tagNavigationView
+                //cell.setTagCell(shout.)
+                return cell
+                
+            }
+        }
         
         if shout.type == .Request {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHRequestImageTableViewCell, forIndexPath: indexPath) as! SHRequestImageTableViewCell

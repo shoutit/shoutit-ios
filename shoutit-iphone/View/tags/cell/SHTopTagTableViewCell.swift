@@ -12,6 +12,9 @@ class SHTopTagTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var lgView: UIView!
+    @IBOutlet weak var listeningLabel: UILabel!
+    
     var tagCell: SHTag?
     
     override func awakeFromNib() {
@@ -46,7 +49,7 @@ class SHTopTagTableViewCell: UITableViewCell {
         self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
         self.tagLabel.layer.masksToBounds = true
         self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
-        self.tagLabel.text = String(format: " %@ ", arguments: [tag.name])
+        self.tagLabel.text = String(format: "%@", arguments: [tag.name])
         if let listening = self.tagCell?.isListening {
             self.setListenSelected(listening)
         }
@@ -58,7 +61,7 @@ class SHTopTagTableViewCell: UITableViewCell {
         self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
         self.tagLabel.layer.masksToBounds = true
         self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
-        self.tagLabel.text = String(format: " %@ ", arguments: [tag])
+        self.tagLabel.text = String(format: "%@", arguments: [tag])
         if let listening = self.tagCell?.isListening {
             self.setListenSelected(listening)
         }

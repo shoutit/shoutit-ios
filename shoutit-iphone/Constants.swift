@@ -77,6 +77,7 @@ struct Constants {
         static let SHShoutTableViewCell = "SHShoutTableViewCell"
         static let SHTopTagTableViewCell = "SHTopTagTableViewCell"
         static let SHFilterCheckTableViewCell = "SHFilterCheckTableViewCell"
+        static let SHStreamTagTableViewCell = "SHStreamTagTableViewCell"
     }
     
     struct CollectionViewCell {
