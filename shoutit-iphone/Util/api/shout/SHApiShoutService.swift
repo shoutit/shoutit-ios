@@ -118,20 +118,53 @@ class SHApiShoutService: NSObject {
     func patchShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
         if let shoutId = shout.id {
             let urlString = String(format: SHOUTS + "/%@", arguments: [shoutId])
+            var tasks: [AWSTask] = []
+            let aws = SHAmazonAWS()
             shout.images = []
             shout.videos = []
             for shMedia in media {
-                if shMedia.isVideo {
-                    shout.videos.append(shMedia)
+                if shMedia.url.isEmpty {
+                    if shMedia.isVideo {
+                        if let url = shMedia.localUrl, let thumbImage = shMedia.localThumbImage {
+                            let task = aws.getVideoUploadTasks(url, image: thumbImage)
+                            tasks += task
+                        }
+                    } else {
+                        if let image = shMedia.image, let task = aws.getShoutImageTask(image) {
+                            tasks.append(task)
+                        }
+                    }
                 } else {
-                    shout.images.append(shMedia.url)
+                    if shMedia.isVideo {
+                        shout.videos.append(shMedia)
+                    } else {
+                        shout.images.append(shMedia.url)
+                    }
                 }
             }
             if shout.type == .VideoCV {
                 shout.type = .Request
             }
-            let params = Mapper().toJSON(shout)
-            SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+            if tasks.isEmpty {
+                let params = Mapper().toJSON(shout)
+                SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+            } else {
+                NetworkActivityManager.addActivity()
+                BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+                    NetworkActivityManager.removeActivity()
+                    if aws.images.count + aws.videos.count != media.count {
+                        log.error("All media wasn't uploaded, occured some error!")
+                    }
+                    shout.images += aws.images
+                    shout.videos += aws.videos
+                    if shout.type == .VideoCV {
+                        shout.type = .Request
+                    }
+                    let params = Mapper().toJSON(shout)
+                    SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+                    return nil
+                }
+            }
         }
     }
     
