@@ -289,13 +289,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             SVProgressHUD.dismiss()
             switch response.result {
             case .Success:
-                if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
-                    detailView.title = self.shout.title
-                    if let shoutId = self.shout.id {
-                        detailView.getShoutDetails(shoutId)
-                    }
-                    self.viewController.navigationController?.pushViewController(detailView, animated: true)
+                if let shoutId = self.shout.id {
+                    NSNotificationCenter.defaultCenter().postNotificationName("ShoutUpdated\(shoutId)", object: nil)
                 }
+                self.viewController.dismissViewControllerAnimated(true, completion: nil)
             case .Failure:
                 SVProgressHUD.showErrorWithStatus("Something went wrong, shout not updated")
             }

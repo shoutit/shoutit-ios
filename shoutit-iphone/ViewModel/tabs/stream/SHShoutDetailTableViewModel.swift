@@ -23,6 +23,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     private var photos:[MWPhoto] = []
     private var reportTextField: UITextField?
     private var relatedShouts: [SHShout] = []
+    private var toUpdate = false
 
     required init(viewController: SHShoutDetailTableViewController) {
         self.viewController = viewController
@@ -30,6 +31,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 
     func viewDidLoad() {
         if let shoutID = self.viewController.shoutID {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDetails", name: "ShoutUpdated\(shoutID)", object: nil)
             getShoutDetails(shoutID)
         }
     }
@@ -39,6 +41,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func viewDidAppear() {
+        if let shoutID = self.viewController.shoutID where self.toUpdate {
+            getShoutDetails(shoutID)
+        }
     }
 
     func viewWillDisappear() {
@@ -50,12 +55,17 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func destroy() {
-
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    func updateDetails() {
+        toUpdate = true
+    }
+    
     // Report Action
     func reportAction() {
         if let shout = self.shoutDetail {
-            let alert = UIAlertController(title: "Report:\(shout.title)", message: "", preferredStyle:
+            let alert = UIAlertController(title: "Report \(shout.title)", message: "", preferredStyle:
                 UIAlertControllerStyle.Alert)
             alert.addTextFieldWithConfigurationHandler(configurationTextField)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
@@ -189,9 +199,12 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             }
         }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
-            SHProgressHUD.dismiss()
-            self.updateUI(shShout)
+            if !self.toUpdate {
+                SHProgressHUD.dismiss()
+                self.updateUI(shShout)
+            }
             }) { (response) -> Void in
+                self.toUpdate = false
                 SHProgressHUD.dismiss()
                 switch response.result {
                 case .Success(let result):
