@@ -84,6 +84,13 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
             shoutApi.tagName = self.tagName
         }
         
+        self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
+        
+        setPullToRefresh()
+        if streamType != .Stream {
+            self.hideSearchBar(self.tableView)
+        }
         viewModel?.viewDidLoad()
     }
     
@@ -93,14 +100,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0)
-        setPullToRefresh()
         viewModel?.viewDidAppear()
-        
-        if streamType != .Stream {
-            self.hideSearchBar(self.tableView)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
