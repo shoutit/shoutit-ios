@@ -318,13 +318,13 @@
         <!--Profile-->
         <scene sceneID="k7V-5O-YTa">
             <objects>
-                <collectionViewController storyboardIdentifier="SHProfileCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wcQ-mu-Cmh" customClass="SHProfileCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SHProfileCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wcQ-mu-Cmh" customClass="SHProfileCollectionViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="boT-7A-QhX">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="8se-uT-kcQ" customClass="SHProfileFlowLayout"/>
+                        <collectionViewLayout key="collectionViewLayout" id="8se-uT-kcQ" customClass="SHProfileFlowLayout" customModule="shoutit_iphone" customModuleProvider="target"/>
                         <cells/>
                         <connections>
                             <outlet property="dataSource" destination="wcQ-mu-Cmh" id="UE2-Pp-mBa"/>

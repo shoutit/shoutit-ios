@@ -52,6 +52,9 @@ PODS:
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
   - HanekeSwift (0.10.0)
+  - JSQMessagesViewController (7.2.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Kingfisher (1.8.0)
   - MBProgressHUD (0.9.1)
   - Mixpanel (2.9.0):
@@ -87,6 +90,7 @@ DEPENDENCIES:
   - GoogleMaps (~> 1.10)
   - GoogleSignIn (~> 2.4)
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
+  - JSQMessagesViewController (~> 7.2)
   - Kingfisher (~> 1.8)
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
@@ -132,6 +136,8 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
+  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Kingfisher: 4d40a6d8a0030b575be66593cae3aea587971a67
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d

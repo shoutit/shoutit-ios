@@ -500,6 +500,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clearText.png" width="96" height="96"/>
+        <image name="clearText.png" width="50" height="60"/>
     </resources>
 </document>
