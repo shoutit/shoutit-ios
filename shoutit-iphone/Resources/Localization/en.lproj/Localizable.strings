@@ -173,3 +173,15 @@
 
 /* Tell us what is wrong */
 "Tell us what is wrong" = "Tell us what is wrong";
+
+/* Delivered */
+"Delivered" = "Delivered";
+
+/* Sent */
+"Sent" = "Sent";
+
+/* Pending */
+"Pending" = "Pending";
+
+/* Failed */
+"Failed" = "Failed";

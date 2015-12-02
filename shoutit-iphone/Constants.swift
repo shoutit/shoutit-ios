@@ -147,4 +147,11 @@ struct Constants {
         static let SH_AWS_SHOUT_URL = "https://shout-image.static.shoutit.com/"
         static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
     }
+    
+    struct MessagesStatus {
+        static let kStatusDelivered = NSLocalizedString("Delivered", comment: "Delivered")
+        static let kStatusSent = NSLocalizedString("Sent", comment: "Sent")
+        static let kStatusPending = NSLocalizedString("Pending", comment: "Pending")
+        static let kStatusFailed = NSLocalizedString("Failed", comment: "Failed")
+    }
 }

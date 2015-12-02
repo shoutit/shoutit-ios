@@ -141,12 +141,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Messages" image="messagesTabBar.png" id="YLA-6J-Q2l"/>
+                    <tabBarItem key="tabBarItem" title="Messages" image="messagesTabBar" id="YLA-6J-Q2l"/>
                     <navigationItem key="navigationItem" title="Title" id="OoV-dq-QkE">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="WGj-Om-I5b">
                             <color key="tintColor" red="0.98358495302187288" green="0.97959382155191033" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="refreshAction:" destination="stp-iW-Dmi" id="SyN-0J-8E1"/>
+                                <action selector="refreshAction:" destination="stp-iW-Dmi" id="dnh-JS-Qz9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -221,6 +221,6 @@
     </scenes>
     <resources>
         <image name="chatTabBar.png" width="25" height="19"/>
-        <image name="messagesTabBar.png" width="21" height="25"/>
+        <image name="messagesTabBar" width="22" height="25"/>
     </resources>
 </document>

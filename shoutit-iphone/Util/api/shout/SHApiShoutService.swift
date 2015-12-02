@@ -212,4 +212,15 @@ class SHApiShoutService: NSObject {
         let params = [String: AnyObject]()
         SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
     }
+    
+    func composeMessage(text: String, shoutId: String, completionHandler: Response<SHMessage, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@" + "/reply", arguments: [shoutId])
+        let params = ["text" : text]
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    
+    
+    
+    
 }

@@ -66,7 +66,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
         messageViewController.isFromShout = true
         //        [messageViewController setShout:self.shoutModel.shout];
-        messageViewController.shout?.id = self.shoutDetail?.id
+        messageViewController.shout = self.shoutDetail
         messageViewController.title = self.viewController.title
         
         let transition = CATransition()

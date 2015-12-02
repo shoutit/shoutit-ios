@@ -8,21 +8,33 @@
 
 import UIKit
 import JSQMessagesViewController
+import URBMediaFocusViewController
 
 class SHMessagesViewController: JSQMessagesViewController {
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     var isFromShout = false
     var shout: SHShout?
-    
+    var myUser: SHUser?
+    var mediaVideoController: URBMediaFocusViewController?
+    var refreshIndicatorView: UIActivityIndicatorView?
+    var progress: UIProgressView?
+    var progressTimer: NSTimer?
+    var conversationID: String?
     private var viewModel: SHMessagesViewModel?
     private var progressView: UIProgressView?
-    private var progressTimer: NSTimer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mediaVideoController = URBMediaFocusViewController()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleCollectionTapRecognizer:"))
+        self.collectionView?.dataSource = viewModel
+        self.collectionView?.delegate = viewModel
         self.collectionView?.addGestureRecognizer(tapRecognizer)
+        self.myUser = SHOauthToken.getFromCache()?.user
+        self.senderId = myUser?.username
+        self.senderDisplayName = myUser?.name
         var size = self.view.frame.size
         if let tabBarCtrl = self.tabBarController {
             let tsize = tabBarCtrl.tabBar.frame.size
@@ -30,9 +42,12 @@ class SHMessagesViewController: JSQMessagesViewController {
         }
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, size.width, size.height)
         if(self.isFromShout) {
-            let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: Selector("doneAction:"))
+            let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: Selector("doneAction"))
             self.navigationItem.leftBarButtonItem = item
         }
+        self.automaticallyScrollsToMostRecentMessage = true
+        self.refreshIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        self.refreshIndicatorView?.startAnimating()
         
         let cellNib = UINib(nibName: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell, bundle: nil)
         self.collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell)
@@ -66,9 +81,9 @@ class SHMessagesViewController: JSQMessagesViewController {
         
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recievedMessage:", name: "kMessagePushNotification", object: nil)
-        
-//        self.collectionView.collectionViewLayout.messageBubbleFont = [UIFont fontWithName:@"Helvetica" size:15.0f];
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedMessage:", name: "kMessagePushNotification", object: nil)
+        self.collectionView?.collectionViewLayout.messageBubbleFont = UIFont(name: "Helvetica", size: 15.0)
+        self.scrollToBottomAnimated(false)
         if(!self.isFromShout) {
             self.setupNavigationBar()
         }
@@ -76,7 +91,7 @@ class SHMessagesViewController: JSQMessagesViewController {
         if let navBar = self.navigationController?.navigationBar.topItem {
             navBar.title = NSLocalizedString("Back", comment: "Back")
         }
-        
+        initializeViewModel()
         viewModel?.viewDidLoad()
     }
     
@@ -109,9 +124,14 @@ class SHMessagesViewController: JSQMessagesViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func recievedMessage (notification: NSNotification) {
+    @IBAction func refreshAction(sender: AnyObject) {
+        
+    }
+    
+    
+    func receivedMessage (notification: NSNotification) {
         if let userInfo = notification.userInfo, let obj = userInfo["object"] {
-            let conversation_id = obj["conversation_id"]
+          //  let conversation_id = obj["conversation_id"]
         }
     }
     
@@ -167,45 +187,10 @@ class SHMessagesViewController: JSQMessagesViewController {
 //        }
     }
     
-    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        self.startProgress()
+//    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+//        self.startProgress()
 //        
-//        SHMessage * msg = [[SHMessage alloc] init];
-//        msg.user = self.myUser;
-//        msg.text = text;
-//        msg.created_at = [[NSDate date] timeIntervalSince1970];
-//        
-//        msg.isFromShout = self.isFromShout;
-//        msg.status = kStatusPending;
-        if(self.isFromShout) {
-            
-        }
-//        if (self.isFromShout)
-//        {
-//            
-//            [self.model composeMessage:text forShoutID:self.shoutID succsess:^(SHMessagesModel *model, SHMessage *message)
-//                {
-//                [self setStatus:kStatusSent forMessage:message];
-//                [self finishProgress];
-//                [JSQSystemSoundPlayer jsq_playMessageSentSound];
-//                [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Your message was sent successfully", @"Your message was sent successfully")];
-//                
-//                } failure:^(SHMessagesModel *model, NSError *error)
-//                {
-//                [self setStatus:kStatusFailed forMessage:msg];
-//                [self finishProgress];
-//                [self.model.faildToSendMessages addObject:msg];
-//                [SHAlertView alertWithTitle:SH_MESSAGE_ERROR message:error.localizedDescription];
-//                
-//                }];
-//            
-//            [self.model.messages addObject:msg];
-//            [self addMessageFrom:msg];
-//            [self finishSendingMessage];
-//            [self doneAction:nil];
-//            
-//        }
-    }
+//    }
     
     func startProgress () {
         self.progressTimer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("increaseProgress:"), userInfo: nil, repeats: true)
@@ -228,6 +213,20 @@ class SHMessagesViewController: JSQMessagesViewController {
         }
     }
     
+    func doneAction () {
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromBottom
+        self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController?.popViewControllerAnimated(false)
+    }
+    
+    // JSQMessagesViewController method overrides
+    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        print(self.shout?.id)
+        viewModel?.sendButtonAction(text)
+    }
     
     
     deinit {
