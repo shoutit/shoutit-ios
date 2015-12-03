@@ -69,18 +69,47 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == UITableViewCellEditingStyle.Delete) {
-            
+            if let conversationId = self.conversations[indexPath.row].id {
+                self.shApiConversation.deleteConversationID(conversationId, completionHandler: { (response) -> Void in
+                    if(response.result.isSuccess) {
+                        log.verbose("Conversation has been deleted")
+                    } else {
+                        log.verbose("Conversation has not been deleted")
+                    }
+                })
+            }
+            self.conversations.removeAtIndex(indexPath.row)
+            self.viewController.tableView.beginUpdates()
+            self.updateBottomNumber()
         }
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.conversations.count
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier(<#T##identifier: String##String#>, forIndexPath: <#T##NSIndexPath#>)
-//        
-//        SHConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SHConversationTableViewCell" forIndexPath:indexPath];
-//        [cell setConversation:self.fetchedResultsController[indexPath.row]];
-//        
-//        return cell;
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHConversationTableViewCell, forIndexPath: indexPath) as! SHConversationTableViewCell
+        cell.setConversation(self.conversations[indexPath.row])
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailMessage = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
+       
+        if let isRead = self.conversations[indexPath.row].isRead {
+            if(isRead) {
+            }
+        }
+        self.conversations[indexPath.row].isRead = true
+        
+//        detailMessage.title = [[self.fetchedResultsController[indexPath.row] aboutShout]title];
+//        [detailMessage getMessages:[self.fetchedResultsController[indexPath.row] conversation_id]];
+//        [detailMessage setShout:[self.fetchedResultsController[indexPath.row] aboutShout]];
+//        [detailMessage.model setConversation:self.fetchedResultsController[indexPath.row]];
+        self.viewController.hidesBottomBarWhenPushed = true
+        self.viewController.navigationController?.pushViewController(detailMessage, animated: true)
+        self.viewController.hidesBottomBarWhenPushed = false
     }
     
     
@@ -91,15 +120,11 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.viewController.tableView.reloadData()
             self.viewController.updateFooterView()
-            if(self.conversations.count == 1) {
-                self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversation", comment: "Conversation")])
-            } else {
-                self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversations", comment: "Conversations")])
-            }
+            self.updateBottomNumber()
             self.lastTimeStamp = Int(NSDate().timeIntervalSince1970)
             self.lastTimeStamp += 10
-            self.shApiConversation.loadConversationsForBeforeDate(self.lastTimeStamp, cacheResponse: { (shConversations) -> Void in
-                self.updateUI(shConversations)
+            self.shApiConversation.loadConversationsForBeforeDate(self.lastTimeStamp, cacheResponse: { (shConversationsMeta) -> Void in
+                self.updateUI(shConversationsMeta)
                 }, completionHandler: { (response) -> Void in
                     switch(response.result) {
                         case .Success(let result):
@@ -111,11 +136,18 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         }
     }
     
-    private func updateUI (conversations: SHConversations) {
-       // self.conversations = conversations
-        
+    private func updateUI (conversationsMeta: SHConversationsMeta) {
+        self.conversations = conversationsMeta.results
+        self.viewController.tableView.reloadData()
+        updateBottomNumber()
     }
     
-    
+    private func updateBottomNumber () {
+        if(self.conversations.count == 1) {
+            self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversation", comment: "Conversation")])
+        } else {
+            self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversations", comment: "Conversations")])
+        }
+    }
 
 }

@@ -47,7 +47,7 @@ class SHConversationTableViewCell: UITableViewCell {
                     self.nameLabel.text = conversation.users[0].name
                     if(conversation.type == "chat") {
                         self.imageConvView.setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-                        self.timeLabel.text = conversation.users[0].name
+                        self.titleLabel.text = conversation.users[0].name
                     }
                 } else {
                     if let urlString = conversation.users[1].image {
@@ -62,7 +62,36 @@ class SHConversationTableViewCell: UITableViewCell {
                 self.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
             }
         } else {
-            
+            self.avatarImageView.image = UIImage(named: "logo.png")
+            self.nameLabel.text = String(format: "%d %@ in chat", arguments: [conversation.users.count, conversation.users.count == 1 ? "person": "people"])
+            self.avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            if(conversation.type == "chat") {
+                self.titleLabel.text = self.nameLabel.text
+            }
+        }
+        self.avatarImageView.clipsToBounds = true
+        self.avatarImageView.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUTDETAIL_PROFILEIMAGE)?.CGColor
+        self.avatarImageView.layer.borderWidth = 2.0
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2.0
+        self.isReadImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        self.isReadImageView.clipsToBounds = true
+        self.isReadImageView.layer.cornerRadius = self.isReadImageView.frame.size.width / 2.0
+        if let isRead = conversation.isRead {
+            self.isReadImageView.hidden = isRead
+        }
+        
+        if(conversation.type != "chat") {
+            if let thumbnail = conversation.about?.thumbnail {
+                if(thumbnail != "") {
+                    self.imageConvView.setImageWithURL(NSURL(string: thumbnail), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+                } else {
+                    self.imageConvView.image = UIImage(named: "no_image_available_thumb")
+                }
+            }
+            self.titleLabel.text = conversation.about?.title
+        } else {
+            self.nameLabel.hidden = true
+            self.avatarImageView.hidden = true
         }
     }
     

@@ -12,7 +12,7 @@ import Alamofire
 class SHApiConversationService: NSObject {
     private let CONVERSATIONS = SHApiManager.sharedInstance.BASE_URL + "/conversations"
     
-    func loadConversationsForBeforeDate (beforeTimestamp: Int, cacheResponse: SHConversations -> Void, completionHandler: Response<SHConversations, NSError> -> Void) {
+    func loadConversationsForBeforeDate (beforeTimestamp: Int, cacheResponse: SHConversationsMeta -> Void, completionHandler: Response<SHConversationsMeta, NSError> -> Void) {
         var params = [String: AnyObject]()
         params["before"] = beforeTimestamp
         params["page_size"] = Constants.Common.SH_PAGE_SIZE

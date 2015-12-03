@@ -22,9 +22,10 @@ class SHConversations: Mappable {
     var lastMessage: SHMessage?
     var text = String()
     var attachments = []
-    var about = String()
+    var about: SHShout?
     var messageUrl = String()
     var replyUrl = String()
+    var isRead: Bool?
     
     required init?(_ map: Map) {
         
@@ -50,6 +51,7 @@ class SHConversations: Mappable {
         about                <- map["about"]
         messageUrl           <- map["message_url"]
         replyUrl             <- map["reply_url"]
+        isRead               <- map["is_Read"]
         
     }
 }

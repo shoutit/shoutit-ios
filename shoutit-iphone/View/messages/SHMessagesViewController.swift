@@ -235,7 +235,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                 options.append(NSLocalizedString("Shout Location", comment: "Shout Location"))
             }
         }
-        let sheet = UIActionSheet(title: NSLocalizedString("Post a shout", comment: "Post a shout"), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: "Cancel"), destructiveButtonTitle: "")
+        let sheet = UIActionSheet(title: NSLocalizedString("Post a shout", comment: "Post a shout"), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: "Cancel"), destructiveButtonTitle: nil)
         for title in options {
             sheet.addButtonWithTitle(title)
         }
@@ -246,6 +246,17 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
         viewModel?.actionWithButtonIndex(actionSheet, buttonIndex: buttonIndex)
+    }
+    
+    func handleCollectionTapRecognizer (recognizer: UITapGestureRecognizer) {
+        if(recognizer.state == UIGestureRecognizerState.Ended) {
+            if let textView = self.inputToolbar?.contentView?.textView {
+                if(textView.isFirstResponder()) {
+                    self.inputToolbar?.contentView?.textView?.resignFirstResponder()
+                }
+            }
+            
+        }
     }
     
     deinit {

@@ -8,14 +8,14 @@
         <!--Conversations-->
         <scene sceneID="XQ4-rL-JLC">
             <objects>
-                <tableViewController storyboardIdentifier="SHConversationsTableViewController" title="Conversations" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdm-hj-mhG" customClass="SHConversationsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHConversationsTableViewController" title="Conversations" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdm-hj-mhG" customClass="SHConversationsTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="VUe-zc-rf7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHConversationTableViewCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zEB-Ku-U38" id="kBB-ug-ILC">
@@ -163,7 +163,7 @@
         <!--Shout Picker Table View Controller-->
         <scene sceneID="NwO-Uv-HMn">
             <objects>
-                <tableViewController storyboardIdentifier="SHShoutPickerTableViewController" id="rbG-Uc-VMW" customClass="SHShoutPickerTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHShoutPickerTableViewController" id="rbG-Uc-VMW" customClass="SHShoutPickerTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="zXL-HU-T7Q">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

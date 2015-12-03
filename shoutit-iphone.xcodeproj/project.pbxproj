@@ -137,6 +137,7 @@
 		ACB803B21C108B2A00420BB1 /* SHConversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B11C108B2A00420BB1 /* SHConversations.swift */; };
 		ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B41C108E9F00420BB1 /* SHApiConversationService.swift */; };
 		ACB803B71C10A1F300420BB1 /* SHConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B61C10A1F300420BB1 /* SHConversationTableViewCell.swift */; };
+		ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */; };
 		ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */; };
 		ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */; };
 		ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */; };
@@ -348,6 +349,7 @@
 		ACB803B11C108B2A00420BB1 /* SHConversations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversations.swift; path = Model/conversations/SHConversations.swift; sourceTree = "<group>"; };
 		ACB803B41C108E9F00420BB1 /* SHApiConversationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiConversationService.swift; path = Util/api/conversations/SHApiConversationService.swift; sourceTree = "<group>"; };
 		ACB803B61C10A1F300420BB1 /* SHConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationTableViewCell.swift; path = View/messages/cell/SHConversationTableViewCell.swift; sourceTree = "<group>"; };
+		ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationsMeta.swift; path = Model/conversations/SHConversationsMeta.swift; sourceTree = "<group>"; };
 		ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHStreamTagTableViewCell.xib; path = View/tags/cell/SHStreamTagTableViewCell.xib; sourceTree = "<group>"; };
 		ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewController.swift; path = View/profile/collectionProfile/SHProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewModel.swift; path = ViewModel/profile/collectionProfile/SHProfileCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -1070,6 +1072,7 @@
 			isa = PBXGroup;
 			children = (
 				ACB803B11C108B2A00420BB1 /* SHConversations.swift */,
+				ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */,
 			);
 			name = conversations;
 			sourceTree = "<group>";
@@ -1619,6 +1622,7 @@
 				606ED3071BF8AEF80064C53E /* SHVideoPreviewViewController.swift in Sources */,
 				60D36D5E1BF78D5F00238D62 /* SHCategory.swift in Sources */,
 				ACDB3CC31BF90F080097444E /* SHRequestTextTableViewCellModel.swift in Sources */,
+				ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */,
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
