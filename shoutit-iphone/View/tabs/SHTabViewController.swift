@@ -38,10 +38,12 @@ class SHTabViewController: UITabBarController {
         let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC)
         let createShoutVC = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT)
         streamVC.tabBarItem.image = UIImage(named: "streamTabBar")
+        let conversationVC = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHCONVERSATIONSTABLE)
         self.viewControllers = [
             getNavController(createShoutVC),
             getNavController(discoverVC),
-            getNavController(streamVC)
+            getNavController(streamVC),
+            getNavController(conversationVC)
         ]
     }
     

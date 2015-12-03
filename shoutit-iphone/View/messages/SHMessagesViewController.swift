@@ -10,7 +10,7 @@ import UIKit
 import JSQMessagesViewController
 import URBMediaFocusViewController
 
-class SHMessagesViewController: JSQMessagesViewController {
+class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate {
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     var isFromShout = false
@@ -228,6 +228,25 @@ class SHMessagesViewController: JSQMessagesViewController {
         viewModel?.sendButtonAction(text)
     }
     
+    override func didPressAccessoryButton(sender: UIButton!) {
+        var options = [NSLocalizedString("Photo or Video", comment: "Photo or Video"), NSLocalizedString("Select a Shout", comment: "Select a Shout"), NSLocalizedString("My Location", comment: "My Location")]
+        if let shout = self.shout {
+            if(shout.user?.username == SHOauthToken.getFromCache()?.user?.username) {
+                options.append(NSLocalizedString("Shout Location", comment: "Shout Location"))
+            }
+        }
+        let sheet = UIActionSheet(title: NSLocalizedString("Post a shout", comment: "Post a shout"), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: "Cancel"), destructiveButtonTitle: "")
+        for title in options {
+            sheet.addButtonWithTitle(title)
+        }
+        if let inputToolbar = self.inputToolbar {
+            sheet.showFromToolbar(inputToolbar)
+        }
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+        viewModel?.actionWithButtonIndex(actionSheet, buttonIndex: buttonIndex)
+    }
     
     deinit {
         viewModel?.destroy()

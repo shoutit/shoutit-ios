@@ -19,7 +19,7 @@ class SHApiShoutService: NSObject {
     private let DISCOVER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@/shouts"
     private let TAG_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/tags/%@/shouts"
     private let REPORT_SHOUT = SHApiManager.sharedInstance.BASE_URL + "/misc/reports"
-    private let USER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/users/"
+    private let USER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/users"
     private var currentPage = 0
     private var totalCounts = 0
     var filter: SHFilter?
@@ -27,7 +27,7 @@ class SHApiShoutService: NSObject {
     var tagName: String?
     
     func loadShoutStreamForUser(username: String, page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
-        let shoutStreamForUser = String(format: USER_SHOUTS + "%@" + "/shouts", arguments: [username])
+        let shoutStreamForUser = String(format: USER_SHOUTS + "/%@" + "/shouts", arguments: [username])
         let params = ["page_size": Constants.Common.SH_PAGE_SIZE]
         SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
@@ -219,6 +219,16 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
     }
     
+//    func composeURLForShoutID (shoutId: String) -> String {
+//        if(!shoutId.isEmpty) {
+//            return String(format: SHOUTS + "/%@" + "/reply", arguments: [shoutId])
+//        } else {
+//            if let username = SHOauthToken.getFromCache()?.user?.username {
+//                return String(format: USER_SHOUTS + "/%@" + "/message", arguments: [username])
+//            }
+//        }
+//
+//    }
     
     
     

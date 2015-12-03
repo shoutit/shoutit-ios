@@ -493,7 +493,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="d2b-bb-dgf">
-                        <barButtonItem key="rightBarButtonItem" image="chatTabBar.png" id="taX-Ie-qUQ">
+                        <barButtonItem key="rightBarButtonItem" image="chatTabBar" id="taX-Ie-qUQ">
                             <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="replyAction:" destination="Jfq-Pw-XRn" id="00X-UG-sYn"/>
@@ -603,7 +603,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatTabBar.png" width="50" height="60"/>
+        <image name="chatTabBar" width="25" height="20"/>
         <image name="clockIcon" width="50" height="50"/>
         <image name="locationMark" width="50" height="60"/>
     </resources>

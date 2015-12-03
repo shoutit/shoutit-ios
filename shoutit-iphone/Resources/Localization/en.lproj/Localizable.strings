@@ -185,3 +185,18 @@
 
 /* Failed */
 "Failed" = "Failed";
+
+/* Photo or Video */
+"Photo or Video" = "Photo or Video";
+
+/* Select a Shout */
+"Select a Shout" = "Select a Shout";
+
+/* My Location */
+"My Location" = "My Location";
+
+/* Shout Location */
+"Shout Location" = "Shout Location";
+
+/* Your message was sent successfully */
+"Your message was sent successfully" = "Your message was sent successfully";

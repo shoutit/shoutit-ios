@@ -23,4 +23,6 @@ class SHApiUserService: NSObject {
         SHApiManager.sharedInstance.patch(String(format: USERS_URL_NAME, userName), params: params, completionHandler: completionHandler)
     }
     
+    
+    
 }

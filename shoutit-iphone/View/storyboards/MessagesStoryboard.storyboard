@@ -15,7 +15,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zEB-Ku-U38" id="kBB-ug-ILC">
@@ -104,13 +104,13 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <outlet property="avatarImageView" destination="joJ-QQ-xGm" id="0Oi-iX-faU"/>
-                                    <outlet property="descriptionLabel" destination="tzC-SK-1W5" id="2t4-Zc-PFD"/>
-                                    <outlet property="imageConvView" destination="LRa-Ub-bSa" id="tUv-x4-DG1"/>
-                                    <outlet property="is_readImageView" destination="8rp-zc-Ff5" id="4Rr-JV-omV"/>
-                                    <outlet property="nameLabel" destination="WTX-px-FqF" id="4IQ-oq-vHW"/>
-                                    <outlet property="timeLabel" destination="Wip-IK-3w5" id="I3B-nD-CPi"/>
-                                    <outlet property="titleLabel" destination="SmT-92-hov" id="g6U-mB-mSY"/>
+                                    <outlet property="avatarImageView" destination="joJ-QQ-xGm" id="7cg-0L-7xE"/>
+                                    <outlet property="descriptionLabel" destination="tzC-SK-1W5" id="Lth-G1-39K"/>
+                                    <outlet property="imageConvView" destination="LRa-Ub-bSa" id="h8G-Ta-4He"/>
+                                    <outlet property="isReadImageView" destination="8rp-zc-Ff5" id="YmV-RT-qP1"/>
+                                    <outlet property="nameLabel" destination="WTX-px-FqF" id="mXe-Cb-ffX"/>
+                                    <outlet property="timeLabel" destination="Wip-IK-3w5" id="BCS-RG-5XO"/>
+                                    <outlet property="titleLabel" destination="SmT-92-hov" id="qTS-O6-0dC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -119,7 +119,7 @@
                             <outlet property="delegate" destination="rdm-hj-mhG" id="iMI-gQ-XXU"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Chat" image="chatTabBar.png" id="GAm-YC-l0g"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chatTabBar" id="GAm-YC-l0g"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm0-oI-998" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,7 +220,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatTabBar.png" width="25" height="19"/>
+        <image name="chatTabBar" width="25" height="20"/>
         <image name="messagesTabBar" width="22" height="25"/>
     </resources>
 </document>

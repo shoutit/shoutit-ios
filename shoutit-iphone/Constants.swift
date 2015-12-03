@@ -70,6 +70,8 @@ struct Constants {
         static let SHPROFILE = "SHProfileCollectionViewController"
         static let SHSETTINGS = "SHSettingsTableViewController"
         static let SHMESSAGES = "SHMessagesViewController"
+        static let SHSHOUTPICKERTABLE = "SHShoutPickerTableViewController"
+        static let SHCONVERSATIONSTABLE = "SHConversationsTableViewController"
     }
     
     struct TableViewCell {
@@ -81,6 +83,7 @@ struct Constants {
         static let SHTopTagTableViewCell = "SHTopTagTableViewCell"
         static let SHFilterCheckTableViewCell = "SHFilterCheckTableViewCell"
         static let SHStreamTagTableViewCell = "SHStreamTagTableViewCell"
+        static let SHConversationTableViewCell = "SHConversationTableViewCell"
     }
     
     struct CollectionViewCell {

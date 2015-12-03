@@ -8,29 +8,30 @@
 
 import UIKit
 import Alamofire
+import MapKit
 
 class SHApiMessageService: NSObject {
     private let CONVERSATIONS = SHApiManager.sharedInstance.BASE_URL + "/conversations"
+    private let SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/shouts"
     
     func sendMessage(text: String, conversationID: String, localId: String, completionHandler: Response<SHMessage, NSError> -> Void) {
         let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [])
-        var params = ["text": text]
-//        if(localId) {
-//            params[Constants.MessagesStatus]
-//        }
+        var params = [String: AnyObject]()
+        params["text"] = text
+        if(localId != "") {
+            params["client_id"] = localId
+        }
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func composeShout(shout: SHShout, shoutId: String, completionHandler: Response<SHMessage, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@" + "/reply", arguments: [shoutId])
+        var params = [String: AnyObject]()
+        params["shout"] = shout
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func composeCoordinates(coordinates: CLLocationCoordinate2D, shoutId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         
     }
-//        if (localId) {
-//            [payload setValue:localId forKey:@"client_id"];
-//        }    [SHRequestManager post:urlString params:nil payload:payload success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
-//            {
-//            SHMessage *msg =[mappingResult firstObject];
-//            [self updateMessage:msg];
-//            success(self, msg);
-//            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            failure(self,error);
-//            }];
-        
-        
-    
 }
