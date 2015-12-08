@@ -125,6 +125,7 @@
 		AC7030D31C16C983008F4C00 /* SHShoutMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7030CF1C16C982008F4C00 /* SHShoutMessageCell.xib */; };
 		AC7030D41C16C983008F4C00 /* SHVideoMediaItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7030D01C16C982008F4C00 /* SHVideoMediaItem.xib */; };
 		AC7030D71C16D8A8008F4C00 /* SHConversationPusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030D61C16D8A8008F4C00 /* SHConversationPusherManager.swift */; };
+		AC7030D91C16E4F4008F4C00 /* SHPusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030D81C16E4F4008F4C00 /* SHPusherManager.swift */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
 		AC74A7761BFCA9290029CE7D /* SHShoutAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7751BFCA9290029CE7D /* SHShoutAnnotation.swift */; };
 		AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7771BFCD1770029CE7D /* SHShoutCalloutView.swift */; };
@@ -353,6 +354,7 @@
 		AC7030CF1C16C982008F4C00 /* SHShoutMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHShoutMessageCell.xib; path = View/messages/cell/messages/SHShoutMessageCell.xib; sourceTree = "<group>"; };
 		AC7030D01C16C982008F4C00 /* SHVideoMediaItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHVideoMediaItem.xib; path = View/messages/cell/messages/SHVideoMediaItem.xib; sourceTree = "<group>"; };
 		AC7030D61C16D8A8008F4C00 /* SHConversationPusherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationPusherManager.swift; path = Util/manager/SHConversationPusherManager.swift; sourceTree = "<group>"; };
+		AC7030D81C16E4F4008F4C00 /* SHPusherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPusherManager.swift; path = Util/manager/SHPusherManager.swift; sourceTree = "<group>"; };
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		AC74A7751BFCA9290029CE7D /* SHShoutAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutAnnotation.swift; path = View/tabs/stream/mapView/SHShoutAnnotation.swift; sourceTree = "<group>"; };
 		AC74A7771BFCD1770029CE7D /* SHShoutCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutCalloutView.swift; path = View/tabs/stream/mapView/SHShoutCalloutView.swift; sourceTree = "<group>"; };
@@ -1027,6 +1029,7 @@
 			isa = PBXGroup;
 			children = (
 				AC7030D61C16D8A8008F4C00 /* SHConversationPusherManager.swift */,
+				AC7030D81C16E4F4008F4C00 /* SHPusherManager.swift */,
 			);
 			name = manager;
 			sourceTree = "<group>";
@@ -1699,6 +1702,7 @@
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
+				AC7030D91C16E4F4008F4C00 /* SHPusherManager.swift in Sources */,
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
 				ACDB3CC11BF90DE80097444E /* SHRequestTextTableViewCell.swift in Sources */,
 				ACB803A01C0EE26C00420BB1 /* SHMessage.swift in Sources */,

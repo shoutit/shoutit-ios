@@ -12,3 +12,6 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import <JSQMessagesViewController/JSQMessages.h>
 #import "UIView+Gradient.h"
+#import <Pusher/Pusher.h>
+#import <Pusher/PTPusherEventDispatcher.h>
+

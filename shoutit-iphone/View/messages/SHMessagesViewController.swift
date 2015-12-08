@@ -101,11 +101,24 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        self.inputToolbar?.contentView?.textView?.resignFirstResponder()
+        self.progress?.removeFromSuperview()
+        if(!self.isFromShout) {
+            self.finishCheckingStatus()
+        }
+        self.progress = nil
         viewModel?.viewWillDisappear()
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        if(!self.isFromShout) {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMessageNotification", object: nil)
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
+            if var timer = self.typingTimer {
+                timer.invalidate()
+            }
+        }
         viewModel?.viewDidDisappear()
     }
     
@@ -115,7 +128,16 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     @IBAction func refreshAction(sender: AnyObject) {
-        
+        if let conversationID = self.conversationID {
+            self.viewModel?.getMessagesById(conversationID)
+        }
+    }
+    
+    func finishCheckingStatus() {
+        if let checkerTimer = self.statusCheckerTimer {
+            checkerTimer.invalidate()
+        }
+        self.statusCheckerTimer = nil
     }
     
     func textDidChange() {
@@ -194,6 +216,17 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     func startProgress () {
         self.progressTimer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("increaseProgress:"), userInfo: nil, repeats: true)
+    }
+    
+    func resetProgress () {
+        self.progress?.setProgress(0, animated: true)
+    }
+    
+    func finishProgress () {
+        self.progressTimer?.invalidate()
+        self.progressTimer = nil
+        self.progress?.setProgress(1, animated: true)
+        self.performSelector(Selector("resetProgress"), withObject: nil, afterDelay: 1)
     }
     
     func increaseProgress () {

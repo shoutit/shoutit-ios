@@ -66,6 +66,15 @@ class SHApiMessageService: NSObject {
         SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
     }
     
+    func sendShout(shout: SHShout, conversationId: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = String(format: CONVERSATIONS, arguments: [conversationId])
+        var params = [String: AnyObject]()
+        params = dictForAttachments([shout])
+        if(!localId.isEmpty) {
+            params["client_id"] = localId
+        }
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
     
     // Private
     private func composeURLForShoutID (shoutId: String) -> String {

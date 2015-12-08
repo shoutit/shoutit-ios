@@ -11,7 +11,7 @@ import ObjectMapper
 
 class SHMessage: Mappable {
     var user: SHUser?
-    var conversation = String()
+    var conversation: SHConversations? //String()
     var createdAt: Int?
     var text = String()
     var messageId = String()
