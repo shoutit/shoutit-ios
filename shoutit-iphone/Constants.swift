@@ -9,6 +9,10 @@
 import Foundation
 
 struct Constants {
+    struct Messages {
+        static let SHImageMediaItem = "SHImageMediaItem"
+        static let SHVideoMediaItem = "SHVideoMediaItem"
+    }
     
     struct Shout {
         static let TIME_VIDEO_SHOUT = 60
@@ -84,6 +88,7 @@ struct Constants {
         static let SHFilterCheckTableViewCell = "SHFilterCheckTableViewCell"
         static let SHStreamTagTableViewCell = "SHStreamTagTableViewCell"
         static let SHConversationTableViewCell = "SHConversationTableViewCell"
+        static let SHShoutMessageCell = "SHShoutMessageCell"
     }
     
     struct CollectionViewCell {

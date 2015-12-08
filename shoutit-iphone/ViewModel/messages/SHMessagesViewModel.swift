@@ -9,11 +9,12 @@
 import UIKit
 import JSQMessagesViewController
 import SDWebImage
+import MWPhotoBrowser
 
-class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMessagesCollectionViewDelegateFlowLayout, SHCameraViewControllerDelegate, SHShoutPickerTableViewControllerDelegate {
+class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMessagesCollectionViewDelegateFlowLayout, SHCameraViewControllerDelegate, SHShoutPickerTableViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     private let viewController: SHMessagesViewController
-    private var messages = [JSQMessage]()
+    private var jsqMessages = [JSQMessage]()
     private var shMessages = [SHMessage]()
     private let shApiShout = SHApiShoutService()
     private let shApiMessage = SHApiMessageService()
@@ -23,7 +24,9 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
     }
     
     func viewDidLoad() {
-        
+        if let conversationId =  self.viewController.conversationID {
+            getMessagesById(conversationId)
+        }
     }
     
     func viewWillAppear() {
@@ -46,6 +49,57 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         
     }
     
+    //TapTitleAction
+    func tapTitleAction () {
+//        SHShout* shout = self.model.conversation.aboutShout;
+//        if(!shout) return;
+//        SHShoutDetailTableViewController* detailView = [SHNavigator viewControllerFromStoryboard:@"StreamStoryboard" withViewControllerId:@"SHShoutDetailTableViewController"];
+//        detailView.title = [shout title];
+//        [detailView getDetailShouts:shout];
+//        self.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:detailView animated:YES];
+    }
+    
+    // Received Message
+    func receivedMessage(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let obj = userInfo["object"] {
+            let conversation_id = String(obj["conversation_id"])
+            if let conversationId = self.viewController.conversationID where conversationId == conversation_id {
+                for message in self.shMessages {
+                    if(message.messageId == String(obj["message_id"])) {
+                        return
+                    }
+                }
+                if let msg = obj as? SHMessage {
+                    self.shMessages.append(msg)
+                    self.addMessageFrom(msg)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.viewController.finishReceivingMessage()
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                    })
+                }
+            }
+        } else {
+            AudioServicesPlaySystemSound(1054)
+        }
+    }
+    
+    // Get Messages by conversation Id
+    func getMessagesById (conversationId: String) {
+        self.jsqMessages.removeAll()
+        shApiMessage.loadMessagesForConversation(conversationId, beforeTimeStamp: 0, cacheResponse: { (shMessagesMeta) -> Void in
+            self.updateMessages(shMessagesMeta)
+            }) { (response) -> Void in
+                switch (response.result) {
+                case .Success(let result):
+                    self.updateMessages(result)
+                case .Failure(let error):
+                    log.error("Error fetching messages \(error.localizedDescription)")
+                }
+        }
+        
+    }
+    
     // Action Sheet
     func actionWithButtonIndex(actionSheet: UIActionSheet, buttonIndex: Int) {
         if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -61,10 +115,10 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
             self.viewController.navigationController?.pushViewController(picker, animated: true)
         case 3:
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                var coord = CLLocationCoordinate2D()
-//                if let currentLocation = SHLocationManager.sharedInstance.getCurrentLocation() {
-//                    coord = currentLocation.coordinate
-//                }
+                var coord = CLLocationCoordinate2D()
+                if let currentLocation = SHLocationManager.sharedInstance.getCurrentLocation() {
+                    coord = currentLocation.coordinate
+                }
                 self.viewController.startProgress()
                 let msg = SHMessage()
                 msg.user = self.viewController.myUser
@@ -74,11 +128,51 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
               //  [msg addLocationAttachment:loc];
                 msg.status = Constants.MessagesStatus.kStatusPending
                 if(self.viewController.isFromShout) {
-                    
+                    if let shoutId = self.viewController.shout?.id {
+                        self.shApiMessage.composeCoordinates(coord, shoutId: shoutId, completionHandler: { (response) -> Void in
+                            switch(response.result) {
+                            case .Success( _):
+                                self.finishProgress()
+                                JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                                SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+                            case .Failure(let error):
+                                self.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                                self.viewController.collectionView?.reloadData()
+                                self.finishProgress()
+                                JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+                                log.error("Error sending the location \(error.localizedDescription)")
+                            }
+                        })
+                        self.shMessages.append(msg)
+                        self.addMessageFrom(msg)
+                        self.viewController.finishSendingMessage()
+                        self.viewController.doneAction()
+                    }
+                } else {
+                    if let conversationId = self.viewController.conversationID {
+                        let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
+                        msg.localId = localID
+                        self.shApiMessage.sendCoordinates(coord, conversationID: conversationId, localId: localID, completionHandler: { (response) -> Void in
+                            switch(response.result) {
+                            case .Success( _):
+                                self.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+                                self.viewController.collectionView?.reloadData()
+                                self.finishProgress()
+                                JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                            case .Failure(let error):
+                                self.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                                self.viewController.collectionView?.reloadData()
+                                self.finishProgress()
+                                JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+                                log.error("Error sending the coordinates \(error.localizedDescription)")
+                            }
+                        })
+                        self.shMessages.append(msg)
+                        self.addMessageFrom(msg)
+                        self.viewController.finishSendingMessage()
+                    }
                 }
             })
-        case 4:
-            break
         default:
             break
         }
@@ -114,6 +208,8 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
                         }
                     })
                 }
+                
+                
             }
             
         }
@@ -136,7 +232,6 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         self.viewController.collectionView?.reloadData()
     }
 
-    
     func sendButtonAction (text: String) {
         self.viewController.startProgress()
         let msg = SHMessage()
@@ -144,7 +239,7 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         msg.text = text
         msg.createdAt = Int(NSDate().timeIntervalSince1970)
         msg.isFromShout = self.viewController.isFromShout
-        msg.status = "kStatusPending"
+        msg.status = Constants.MessagesStatus.kStatusPending
         
         if(self.viewController.isFromShout) {
             if let shoutId = self.viewController.shout?.id {
@@ -197,8 +292,99 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
             let mediaItem = SHSystemMessageMediaItem()
             if let createdAt = message.createdAt {
                 mediaItem.prepareView(String(format: "%@ %@ ago", arguments: [message.text, NSDate(timeIntervalSince1970: Double(createdAt)).timeAgoSimple]))
-                let msg = JSQMessage(senderId: self.viewController.senderId, senderDisplayName: self.viewController.senderDisplayName, date: NSDate(timeIntervalSince1970: Double(createdAt)), media: mediaItem)
-                self.messages.append(msg)
+                let msg = JSQMessage(senderId: self.viewController.senderId,
+                    senderDisplayName: self.viewController.senderDisplayName,
+                    date: NSDate(timeIntervalSince1970: Double(createdAt)),
+                    media: mediaItem)
+                self.jsqMessages.append(msg)
+            }
+        } else if (message.attachments.count > 0) {
+            for attachment in message.attachments {
+                if(attachment.isKindOfClass(SHShoutAttachment)) {
+                    if let shout = SHShoutAttachment().shout {
+                        let mediaItem = SHShoutMediaItem()
+                        mediaItem.shout = shout
+                        mediaItem.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        let shoutMessage = JSQMessage(senderId: message.user?.username,
+                            displayName: message.user?.name,
+                            media: mediaItem)
+                        self.jsqMessages.append(shoutMessage)
+                    }
+                } else if(attachment.isKindOfClass(SHLocationAttachment)) {
+                    if let location = SHLocationAttachment().location, let longitude = location.longitude, let latitude = location.latitude {
+                        if(location.latitude != 0 && location.latitude != 0) {
+                            let media = SHLocationMediaItem()
+                            media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
+                                self.viewController.collectionView?.reloadData()
+                            })
+                            if let user = message.user {
+                                let locationMessage = JSQMessage(senderId: user.username,
+                                    displayName: user.name,
+                                    media: media)
+                                self.jsqMessages.append(locationMessage)
+                            }
+                        } else if(location.latitude == 0 && location.longitude == 0) {
+                            if(message.text.isEmpty) {
+                                let media = SHLocationMediaItem()
+                                if let location = SHLocationAttachment().location, let longitude = location.longitude, let latitude = location.latitude {
+                                    media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
+                                        self.viewController.collectionView?.reloadData()
+                                    })
+                                }
+                                if let user = message.user {
+                                    let locationMessage = JSQMessage(senderId: user.username,
+                                        displayName: user.name,
+                                        media: media)
+                                    self.jsqMessages.append(locationMessage)
+                                }
+                            }
+                        }
+                    }
+                } else if(attachment.isKindOfClass(SHImageAttachment)) {
+                    if let localImages = (attachment as? SHImageAttachment)?.localImages {
+                        for image in localImages {
+                            let media = SHImageMediaItem()
+                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                            if let user = message.user {
+                                let shoutMessage = JSQMessage(senderId: user.username,
+                                    displayName: user.name,
+                                    media: media)
+                                media.image = image.image
+                                self.jsqMessages.append(shoutMessage)
+                            }
+                        }
+                    } else if let images = (attachment as? SHImageAttachment)?.images {
+                        for imageUrl in images {
+                            let media = SHImageMediaItem()
+                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                            if let user = message.user {
+                                let shoutMessage = JSQMessage(senderId: user.username,
+                                    displayName: user.name,
+                                    media: media)
+                                media.imageURL = imageUrl.url
+                                self.jsqMessages.append(shoutMessage)
+                            }
+                        }
+                    }
+                } else if(attachment.isKindOfClass(SHVideoAttachment)) {
+                    let videos = (attachment as! SHVideoAttachment).videos
+                    for video in videos {
+                        let media = SHVideoMediaItem()
+                        media.video = video
+                        //[media setIsOutgoing:[message.user.username isEqualToString:self.myUser.username]];
+                        if let user = message.user {
+                            let shoutMessage = JSQMessage(senderId: user.username,
+                                displayName: user.name,
+                                media: media)
+                            self.jsqMessages.append(shoutMessage)
+                        }
+                    }
+                }
+            }
+        } else {
+            if let user = message.user, let createdAt = message.createdAt {
+                let jmsg = JSQMessage(senderId: user.username, senderDisplayName: user.name, date: NSDate(timeIntervalSince1970: Double(createdAt)), text: message.text)
+                self.jsqMessages.append(jmsg)
             }
         }
     }
@@ -221,8 +407,31 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         return ""
     }
     
+    func deleteMessage(aNotification: NSNotification) {
+        let cell = aNotification.object as! JSQMessagesCollectionViewCell
+        let indexPath = self.viewController.collectionView?.indexPathForCell(cell)
+        //delete message for indexPath
+        
+//        JSQMessagesCollectionViewCell *cell = aNotification.object;
+//        NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
+//        
+//        //delete message for indexPath
+//        [self.model deleteMessageID:[self.model.messages[indexPath.row] message_id] succsess:^(SHMessagesModel *model, BOOL isSuccess)
+//            {
+//            NSLog(@"Message deleted.");
+//            } failure:^(SHMessagesModel *model, NSError *error)
+//            {
+//            NSLog(@"Message not deleted.");
+//            }];
+//        
+//        [self.messages removeObjectAtIndex:indexPath.row];
+//        [self.model.messages removeObjectAtIndex:indexPath.row];
+//        
+//        [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath] ];
+    }
+    
     func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return self.messages[indexPath.item]
+        return self.jsqMessages[indexPath.item]
     }
     
     func collectionView(collectionView: JSQMessagesCollectionView!, didDeleteMessageAtIndexPath indexPath: NSIndexPath!) {
@@ -231,13 +440,12 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
     
     func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        let message = self.messages[indexPath.item]
+        let message = self.jsqMessages[indexPath.item]
         if let messageSenderId = message.senderId {
             if messageSenderId == self.senderId() {
                 return bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
             }
         }
-        
         return bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
     
@@ -261,25 +469,25 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
     
     func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         if(indexPath.item % 3 == 0) {
-            return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(self.messages[indexPath.item].date)
+            return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(self.jsqMessages[indexPath.item].date)
         }
         return nil
     }
     
     func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        let message = self.messages[indexPath.item]
+        let message = self.jsqMessages[indexPath.item]
         if(message.senderId == self.senderId()) {
             return nil
         }
         if(indexPath.item - 1 > 0) {
-            let previousMessage = self.messages[indexPath.item - 1]
+            let previousMessage = self.jsqMessages[indexPath.item - 1]
             if let previousSenderId = previousMessage.senderId {
                 if previousSenderId == message.senderId {
                     return nil
                 }
             }
         }
-        return NSAttributedString(string: "\(message.senderDisplayName)")
+        return NSAttributedString(string: "\(self.viewController.senderDisplayName)")
     }
     
     func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
@@ -302,21 +510,20 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
     // UICollectionView DataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.jsqMessages.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = JSQMessagesCollectionViewCell()
-        let msg = self.messages[indexPath.item]
-        if((msg.isMediaMessage)) {
+        let cell = self.viewController.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        let msg = self.jsqMessages[indexPath.item]
+        if(!(msg.isMediaMessage)) {
             if let textView = cell.textView, let textColor = cell.textView?.textColor {
                 if(msg.senderId == self.senderId()) {
                     textView.textColor = UIColor.whiteColor()
                 } else {
                     textView.textColor = UIColor.blackColor()
                 }
-                textView.linkTextAttributes = [NSForegroundColorAttributeName : textColor, NSUnderlineStyleAttributeName : (NSUnderlineStyle.StyleSingle as? AnyObject)!]
+//                textView.linkTextAttributes = [NSForegroundColorAttributeName : textColor, NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle]
             }
         }
         return cell
@@ -339,17 +546,18 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
     
     func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         
-        let currentMessage = self.messages[indexPath.item]
-        if(currentMessage.senderId == self.senderId()) {
-            return 0.0
-        }
-        if(indexPath.item - 1 > 0) {
-            let previousMessage = self.messages[indexPath.item - 1]
-            if(previousMessage.senderId == currentMessage.senderId) {
+        let currentMessage = self.jsqMessages[indexPath.item]
+        if let user = currentMessage.senderId {
+            if(user == self.senderId()) {
                 return 0.0
             }
+            if(indexPath.item - 1 > 0) {
+                let previousMessage = self.jsqMessages[indexPath.item - 1]
+                if(previousMessage.senderId == user) {
+                    return 0.0
+                }
+            }
         }
-        
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
     
@@ -357,6 +565,108 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         return 15.0
     }
     
+    // Responding to collection view tap events
+    func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
+        if let conversationId = self.viewController.conversationID, let timeStamp = self.shMessages.first?.createdAt  {
+            shApiMessage.loadMessagesForConversation(conversationId, beforeTimeStamp: timeStamp, cacheResponse: { (shMessagesMeta) -> Void in
+                self.updateMessages(shMessagesMeta)
+                }) { (response) -> Void in
+                    switch (response.result) {
+                    case .Success(let result):
+                        self.updateMessages(result)
+                    case .Failure(let error):
+                        log.error("Error fetching messages \(error.localizedDescription)")
+                    }
+            }
+        }
+    }
+    
+    func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
+        let msg = self.shMessages[indexPath.item]
+        if let user = msg.user {
+            let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
+            profileViewController.requestUser(user)
+            self.viewController.hidesBottomBarWhenPushed = true
+            self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
+        }
+    }
+    
+    func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
+        if(self.jsqMessages[indexPath.item].isMediaMessage) {
+            if(self.jsqMessages[indexPath.item].media.isKindOfClass(SHShoutMediaItem)) {
+                if let shout = (self.jsqMessages[indexPath.item].media as? SHShoutMediaItem)?.shout, let shoutId = shout.id {
+                    let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
+                    detailView.title = shout.title
+                    detailView.getShoutDetails(shoutId)
+                    self.viewController.hidesBottomBarWhenPushed = true
+                    self.viewController.navigationController?.pushViewController(detailView, animated: true)
+                }
+            } else if(self.jsqMessages[indexPath.item].media.isKindOfClass(SHLocationMediaItem)) {
+                let location = (self.jsqMessages[indexPath.item].media as? SHLocationMediaItem)?.location
+//                [SHMapDetatilViewController presentFromViewController:self withLocationCoordinates:location shout:self.shout];
+            } else if(self.jsqMessages[indexPath.item].media.isKindOfClass(SHImageMediaItem)) {
+                let item = self.jsqMessages[indexPath.item].media as? SHImageMediaItem
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    var browser = MWPhotoBrowser()
+                    browser.displayActionButton = false
+                    browser.displayNavArrows = false
+                    browser.displaySelectionButtons = false
+                    browser.zoomPhotosToFill = true
+                    browser.alwaysShowControls = false
+                    browser.enableGrid = true
+                    browser.startOnGrid = false
+                    browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                    browser.navigationController?.navigationBar.opaque = false
+                    let transition = CATransition()
+                    transition.duration = 0.3
+                    transition.type = kCATransitionFade
+                    transition.subtype = kCATransitionFromTop
+                    self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+                    self.viewController.navigationController?.pushViewController(browser, animated: true)
+                    browser = MWPhotoBrowser()
+                })
+                
+            } else if(self.jsqMessages[indexPath.item].media.isKindOfClass(SHVideoMediaItem)) {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let item = (self.jsqMessages[indexPath.item].media as!  SHVideoMediaItem)
+                    if let videoUrl = item.video?.localUrl {
+                        let player = AVPlayer(URL: videoUrl)
+                        
+                    } else {
+                        SHProgressHUD.show(NSLocalizedString("Video is not available", comment: "Video is not available"), maskType: .Black)
+                    }
+                })
+            }
+        }
+
+    }
+    
+    func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
+        log.verbose("Tapped cell at %@!", functionName: NSStringFromCGPoint(touchLocation))
+    }
+    
+    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! JSQMessagesCollectionViewCell
+        if let _ = cell.mediaView {
+            return action == Selector("delete:")
+        } else {
+            let test: Bool = action == Selector("delete:")
+            return (test || action == Selector("copy:"))
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! JSQMessagesCollectionViewCell
+        if let _ = cell.mediaView {
+            
+        } else if (action == Selector("copy:")) {
+            self.collectionView(collectionView, performAction: action, forItemAtIndexPath: indexPath, withSender: sender)
+        }
+    }
     
     // Private 
     private func finishProgress () {
@@ -367,7 +677,7 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         }
     }
     
-    private func resetProgress () {
+    func resetProgress () {
         self.viewController.progress?.setProgress(0, animated: false)
     }
     
@@ -379,6 +689,14 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
             }
         }
         
+    }
+    
+    private func updateMessages(shMessagesMeta: SHMessagesMeta) {
+        self.shMessages = shMessagesMeta.results
+        for (_, shMessage) in self.shMessages.enumerate() {
+            self.addMessageFrom(shMessage)
+        }
+        self.viewController.collectionView?.reloadData()
     }
     
     

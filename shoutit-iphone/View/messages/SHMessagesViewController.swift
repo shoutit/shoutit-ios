@@ -20,13 +20,16 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     var refreshIndicatorView: UIActivityIndicatorView?
     var progress: UIProgressView?
     var progressTimer: NSTimer?
+    var statusCheckerTimer: NSTimer?
     var conversationID: String?
+    var typingTimer: NSTimer?
+    var typingCounter = 0
     private var viewModel: SHMessagesViewModel?
     private var progressView: UIProgressView?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeViewModel()
         self.mediaVideoController = URBMediaFocusViewController()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleCollectionTapRecognizer:"))
         self.collectionView?.dataSource = viewModel
@@ -48,26 +51,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.automaticallyScrollsToMostRecentMessage = true
         self.refreshIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
         self.refreshIndicatorView?.startAnimating()
-        
-        let cellNib = UINib(nibName: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell, bundle: nil)
-        self.collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell)
-        
-//        if(self.title == nil)
-//        {
-//            if(self.model.conversation.users.count > 1 && self.model.conversation.users.count < 3)
-//            {
-//                if(![[self.model.conversation.users[0] username] isEqualToString:[[[SHLoginModel sharedModel]selfUser]username]])
-//                {
-//                    self.title = [self.model.conversation.users[0] name];
-//                }else{
-//                    self.title = [self.model.conversation.users[1] name];
-//                }
-//            }else
-//            {
-//                self.title = [NSString stringWithFormat:@"Chat with %d %@", (int)self.model.conversation.users.count,self.model.conversation.users.count==1?@"person":@"people"];
-//            }
-//            
-//        }
+//        let cellNib = UINib(nibName: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell, bundle: nil)
+//        self.collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("tapTitleAction"))
         let titleLabel = UILabel()
@@ -91,7 +76,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let navBar = self.navigationController?.navigationBar.topItem {
             navBar.title = NSLocalizedString("Back", comment: "Back")
         }
-        initializeViewModel()
         viewModel?.viewDidLoad()
     }
     
@@ -101,11 +85,17 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.collectionView?.collectionViewLayout.springinessEnabled = true
         viewModel?.viewDidAppear()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupProgressBar()
+        if(!self.isFromShout) {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("deleteMessage:"), name: "DeleteMessageNotification", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textDidChange:"), name: UITextViewTextDidChangeNotification, object: nil)
+        }
         viewModel?.viewWillAppear()
     }
     
@@ -128,11 +118,25 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         
     }
     
+    func textDidChange() {
+        if(self.typingTimer == nil) {
+            self.typingTimer = NSTimer(timeInterval: 1, target: self, selector: Selector("typingAction"), userInfo: nil, repeats: true)
+            //[self.conversationManager sendTyping:[[SHLoginModel sharedModel]selfUser]];
+        }
+    }
+    
+    func typingAction() {
+        if(self.typingCounter < 3) {
+            self.typingCounter++
+        } else {
+            self.typingCounter = 0
+            self.typingTimer?.invalidate()
+            self.typingTimer = nil
+        }
+    }
     
     func receivedMessage (notification: NSNotification) {
-        if let userInfo = notification.userInfo, let obj = userInfo["object"] {
-          //  let conversation_id = obj["conversation_id"]
-        }
+        self.viewModel?.receivedMessage(notification)
     }
     
     func setupNavigationBar () {
@@ -171,26 +175,22 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func setupProgressBar () {
-//        if let navController = self.navigationController {
-//            let navBar = self.navigationController?.navigationBar
-//            if((self.progress == nil)) {
-//                self.progress = UIProgressView(progressViewStyle: UIProgressViewStyle.Bar)
-//                self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
-//                self.progress?.backgroundColor = navBar?.window?.tintColor
-//               // self.progress.progressTintColor = [UIColor jsq_messageBubbleBlueColor];
-////                self.progress?.frame = CGRectMake(0, navBar?.frame.origin + navBar?.frame.size.height - 20, navBar?.frame.size.width, 2)
-////                navBar?.addSubview(self.progress)
-//            } else {
-//                
-//            }
-//            self.progress?.setProgress(0, animated: false)
-//        }
+        if let navBar = self.navigationController?.navigationBar {
+            if((self.progress == nil)) {
+                self.progress = UIProgressView(progressViewStyle: UIProgressViewStyle.Bar)
+                self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
+                self.progress?.backgroundColor = navBar.window?.tintColor
+                self.progress?.progressTintColor = UIColor.jsq_messageBubbleBlueColor()
+                self.progress?.frame = CGRectMake(0, navBar.frame.size.height - 20, navBar.frame.size.width, 2)
+                if let progress = self.progress {
+                    navBar.addSubview(progress)
+                }
+            } else {
+                
+            }
+            self.progress?.setProgress(0, animated: false)
+        }
     }
-    
-//    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-//        self.startProgress()
-//        
-//    }
     
     func startProgress () {
         self.progressTimer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("increaseProgress:"), userInfo: nil, repeats: true)
@@ -213,6 +213,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         }
     }
     
+    
     func doneAction () {
         let transition = CATransition()
         transition.duration = 0.1
@@ -224,7 +225,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     // JSQMessagesViewController method overrides
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        print(self.shout?.id)
         viewModel?.sendButtonAction(text)
     }
     
@@ -255,8 +255,19 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     self.inputToolbar?.contentView?.textView?.resignFirstResponder()
                 }
             }
-            
         }
+    }
+    
+    func startCheckingStatus () {
+        self.statusCheckerTimer = NSTimer(timeInterval: 10, target: self, selector: Selector("checkStaus"), userInfo: nil, repeats: true)
+    }
+    
+    func deleteMessage(aNotification: NSNotification) {
+        self.viewModel?.deleteMessage(aNotification)
+    }
+    
+    func tapTitleAction () {
+        self.viewModel?.tapTitleAction()
     }
     
     deinit {

@@ -30,3 +30,5 @@ pod 'AWSS3', '~> 2.3'
 pod 'AWSCognito', '~> 2.3'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
+pod 'libPusher', '~> 1.6'
+

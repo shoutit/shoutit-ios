@@ -10,3 +10,5 @@
 #import "DOPDropDownMenu.h"
 #import "YTPlayerView.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import <JSQMessagesViewController/JSQMessages.h>
+#import "UIView+Gradient.h"

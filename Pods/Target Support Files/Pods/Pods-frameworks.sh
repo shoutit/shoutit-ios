@@ -109,9 +109,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SMCalloutView.framework"
   install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/SVPullToRefresh.framework"
+  install_framework "Pods/SocketRocket.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/URBMediaFocusViewController.framework"
   install_framework "Pods/XCGLogger.framework"
+  install_framework "Pods/Pusher.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AWSCognito.framework"
@@ -139,7 +141,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SMCalloutView.framework"
   install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/SVPullToRefresh.framework"
+  install_framework "Pods/SocketRocket.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/URBMediaFocusViewController.framework"
   install_framework "Pods/XCGLogger.framework"
+  install_framework "Pods/Pusher.framework"
 fi

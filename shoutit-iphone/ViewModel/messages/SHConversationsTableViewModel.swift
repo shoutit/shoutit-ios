@@ -13,6 +13,7 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     private var conversations = [SHConversations]()
     private let shApiConversation = SHApiConversationService()
     private var lastTimeStamp = 0
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHConversationsTableViewController) {
         self.viewController = viewController
@@ -44,6 +45,11 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     
     func destroy() {
         
+    }
+    
+    func pullToRefresh() {
+        spinner?.startAnimating()
+        refreshConversations()
     }
     
     func receivedMessage (notification: NSNotification) {
@@ -98,20 +104,44 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         let detailMessage = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
        
         if let isRead = self.conversations[indexPath.row].isRead {
-            if(isRead) {
+            if(!isRead) {
             }
         }
         self.conversations[indexPath.row].isRead = true
         
-//        detailMessage.title = [[self.fetchedResultsController[indexPath.row] aboutShout]title];
-//        [detailMessage getMessages:[self.fetchedResultsController[indexPath.row] conversation_id]];
-//        [detailMessage setShout:[self.fetchedResultsController[indexPath.row] aboutShout]];
-//        [detailMessage.model setConversation:self.fetchedResultsController[indexPath.row]];
+        detailMessage.title = self.conversations[indexPath.row].about?.title
+        if let conversationId = self.conversations[indexPath.row].id {
+            detailMessage.conversationID = conversationId
+        }
         self.viewController.hidesBottomBarWhenPushed = true
         self.viewController.navigationController?.pushViewController(detailMessage, animated: true)
         self.viewController.hidesBottomBarWhenPushed = false
     }
     
+    func triggerLoadMore () {
+        self.viewController.loadMoreView.showLoading()
+        self.shApiConversation.loadConversationsNextPage(self.conversations, cacheResponse: { (shConversationsMeta) -> Void in
+            //
+            }) { (response) -> Void in
+                self.viewController.tableView.pullToRefreshView.stopAnimating()
+                self.viewController.tableView.infiniteScrollingView.stopAnimating()
+                switch(response.result) {
+                case .Success(let result):
+                    self.viewController.tableView.beginUpdates()
+                    var insertedIndexPaths: [NSIndexPath] = []
+                    let currentCount = self.conversations.count
+                    for (index, _) in result.results.enumerate() {
+                        insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+                    }
+                    self.conversations += result.results
+                    self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                    self.viewController.tableView.endUpdates()
+                case .Failure(let error):
+                    log.error("Error getting shout response \(error.localizedDescription)")
+                }
+                
+        }
+    }
     
     // Private
     private func refreshConversations () {
@@ -138,8 +168,8 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     
     private func updateUI (conversationsMeta: SHConversationsMeta) {
         self.conversations = conversationsMeta.results
-        self.viewController.tableView.reloadData()
         updateBottomNumber()
+        self.viewController.tableView.reloadData()
     }
     
     private func updateBottomNumber () {
@@ -149,5 +179,4 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
             self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversations", comment: "Conversations")])
         }
     }
-
 }

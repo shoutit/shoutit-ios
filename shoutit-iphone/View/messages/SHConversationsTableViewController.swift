@@ -17,6 +17,7 @@ class SHConversationsTableViewController: BaseTableViewController {
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         self.clearsSelectionOnViewWillAppear = true
+        setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -47,6 +48,17 @@ class SHConversationsTableViewController: BaseTableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        
+        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+            self.viewModel?.triggerLoadMore()
+        })
     }
     
     deinit {

@@ -288,7 +288,7 @@
                             <outlet property="delegate" destination="KUk-M0-2Xc" id="fS8-Yy-dJ3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar.png" id="bmW-vV-AJy"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar" id="bmW-vV-AJy"/>
                     <navigationItem key="navigationItem" title="Title" id="uYb-KN-FNZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -331,7 +331,7 @@
                             <outlet property="delegate" destination="wcQ-mu-Cmh" id="gIl-CM-OoQ"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar.png" id="4BG-wl-2Yw"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar" id="4BG-wl-2Yw"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -663,6 +663,6 @@
     </scenes>
     <resources>
         <image name="image_placeholder" width="170" height="170"/>
-        <image name="profileTabBar.png" width="21" height="25"/>
+        <image name="profileTabBar" width="170" height="170"/>
     </resources>
 </document>

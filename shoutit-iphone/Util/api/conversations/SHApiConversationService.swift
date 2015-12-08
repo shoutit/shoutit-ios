@@ -25,4 +25,9 @@ class SHApiConversationService: NSObject {
         SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
     }
     
+    func loadConversationsNextPage (conversations: [SHConversations], cacheResponse: SHConversationsMeta -> Void, completionHandler: Response<SHConversationsMeta, NSError> -> Void) {
+        if let lastTimeStamp = conversations[conversations.count - 1].createdAt {
+            self.loadConversationsForBeforeDate(lastTimeStamp, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        }
+    }
 }
