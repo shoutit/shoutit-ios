@@ -9,6 +9,9 @@
 import UIKit
 import Alamofire
 import MapKit
+import AWSS3
+import Bolts
+import ObjectMapper
 
 class SHApiMessageService: NSObject {
     private let CONVERSATIONS = SHApiManager.sharedInstance.BASE_URL + "/conversations"
@@ -74,6 +77,61 @@ class SHApiMessageService: NSObject {
             params["client_id"] = localId
         }
         SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+//    func composeImage(imageURL: String, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+//        let urlString = self.composeURLForShoutID(shoutID)
+//        var params = [String: AnyObject]()
+//        params["attachments"] = ["images" : [imageURL]]
+//        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+//    }
+//    
+//    func sendImage(imageURl: String, conversationID: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+//        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
+//        var params = [String: AnyObject]()
+//        params["attachments"] = ["images": [imageURl]]
+//        if(!localId.isEmpty) {
+//            params["client_id"] = localId
+//        }
+//        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+//    }
+    func sendImage(media: SHMedia, conversationID: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
+        var params = [String: AnyObject]()
+        if(!localId.isEmpty) {
+            params["client_id"] = localId
+        }
+        var tasks: [AWSTask] = []
+        let aws = SHAmazonAWS()
+        
+        if let image = media.image, let task = aws.getShoutImageTask(image) {
+                tasks.append(task)
+            }
+        
+        NetworkActivityManager.addActivity()
+        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+            NetworkActivityManager.removeActivity()
+            params["attachments"] = [["images": [aws.images]]]
+            SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+            return nil
+        }
+    }
+    
+    
+    func composeVideo(video: SHMedia, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = self.composeURLForShoutID(shoutID)
+        var params = [String: AnyObject]()
+        params["attachments"] = ["videos": [video]]
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func sendVideo(video: SHMedia, conversationID: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
+//        NSDictionary* vDict = [video dictionary];
+//        if(!vDict)
+//        return;
+        
+        
     }
     
     // Private

@@ -50,6 +50,116 @@ class SHMessagesViewModel: NSObject {
         
     }
     
+    // camera
+    func cameraFinishWithImage (media: SHMedia) {
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+//            //SHAmazonAWS uploadShoutImage:image progress:^(float percent)
+//            let url = ""
+//            if(self.viewController.isFromShout) {
+//                if let shout = self.viewController.shout, let shoutId = shout.id {
+//                    self.shApiMessage.composeImage(url, shoutID: shoutId, completionHandler: { (response) -> Void in
+//                        self.viewController.finishProgress()
+//                        switch(response.result) {
+//                        case .Success( _):
+//                            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+//                            SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+//                        case.Failure(let error):
+//                            self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+//                            self.viewController.collectionView?.reloadData()
+//                            self.viewController.finishProgress()
+//                            JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+//                            self.failedToSendMessages.append(msg)
+//                            log.error("Error composing Image \(error.localizedDescription)")
+//                        }
+//                        
+//                    })
+//                }
+//            } else {
+//                if let conversationId = self.viewController.conversationID {
+//                    let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
+//                    msg.localId = localID
+//                    self.shApiMessage.sendImage(url, conversationID: conversationId, localId: localID, completionHandler: { (response) -> Void in
+//                        switch(response.result) {
+//                        case .Success( _):
+//                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+//                            self.viewController.collectionView?.reloadData()
+//                            self.viewController.finishProgress()
+//                            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+//                        case .Failure(let error):
+//                            self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+//                            self.viewController.collectionView?.reloadData()
+//                            self.viewController.finishProgress()
+//                            JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+//                            self.failedToSendMessages.append(msg)
+//                            log.error("Error sending the message \(error.localizedDescription)")
+//                        }
+//                    })
+//                    
+//                }
+//            }
+//        }
+        if let conversationId = self.viewController.conversationID {
+            let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
+            self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, completionHandler: { (response) -> Void in
+                switch(response.result) {
+                    case .Success( _):
+                       // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+                        self.viewController.collectionView?.reloadData()
+                        self.viewController.finishProgress()
+                        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    case .Failure(let error):
+                       // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                        self.viewController.collectionView?.reloadData()
+                        self.viewController.finishProgress()
+                        JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+                       // self.failedToSendMessages.append(msg)
+                        log.error("Error sending the message \(error.localizedDescription)")
+                }
+            })
+        }
+        
+        if(self.viewController.isFromShout) {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.viewController.doneAction()
+            })
+        }
+    }
+    
+    func cameraFinishWithVideoFile(msg: SHMessage) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            //SHAmazonAWS uploadVideo:tempVideoFileURL thumbImage:thumbImage progress:^(float progress)
+            let video = SHMedia()
+            if(self.viewController.isFromShout) {
+                if let shout = self.viewController.shout, let shoutId = shout.id {
+                    self.shApiMessage.composeVideo(video, shoutID: shoutId, completionHandler: { (response) -> Void in
+                        switch(response.result) {
+                        case .Success( _):
+                            self.viewController.finishProgress()
+                            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                            SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+                        case .Failure(let error):
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                            self.viewController.collectionView?.reloadData()
+                            self.viewController.finishProgress()
+                            JSQSystemSoundPlayer.jsq_playMessageSentAlert()
+                            self.failedToSendMessages.append(msg)
+                            log.error("Error composing the video \(error.localizedDescription)")
+                        }
+                    })
+                }
+            } else {
+                if let conversationId = self.viewController.conversationID {
+                    let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
+                    msg.localId = localID
+                    
+                }
+            }
+        }
+    }
+    
+
+    
     //SetUp ConversationPusherManager
     func setupConverstaionManager () {
         self.viewController.conversationManager?.subscribeToEventsWithMessageHandler({ (event) -> () in

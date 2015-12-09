@@ -28,6 +28,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     var typingCounter = 0
     var conversationManager: SHConversationPusherManager?
     var subTitleLabel: UILabel?
+    private var media: [SHMedia] = []
     private var viewModel: SHMessagesViewModel?
     private var progressView: UIProgressView?
     
@@ -593,8 +594,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     //SHShoutPickerTableViewControllerDelegate
     func didFinishSelect (shout: SHShout) {
-        // Check Code Duplication
-        
+
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.startProgress()
             let msg = SHMessage()
@@ -661,7 +661,15 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         let media = SHMedia()
         media.isVideo = false
         media.image = image
-        self.collectionView?.reloadData()
+        self.media.insert(media, atIndex: 0)
+        self.viewModel?.cameraFinishWithImage(media)
+//        self.startProgress()
+//        let msg = SHMessage()
+//        msg.user = self.myUser
+//        msg.text = ""
+//        msg.createdAt = Int(NSDate().timeIntervalSince1970)
+//        msg.isFromShout = self.isFromShout
+        
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
@@ -670,7 +678,21 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         media.upload = true
         media.localUrl = tempVideoFileURL
         media.localThumbImage = thumbnailImage
+        self.media.append(media)
         self.collectionView?.reloadData()
+//        self.startProgress()
+//        let msg = SHMessage()
+//        msg.user = self.myUser
+//        msg.text = ""
+//        msg.createdAt = Int(NSDate().timeIntervalSince1970)
+//        msg.isFromShout = self.isFromShout
+//        // [msg addVideoAttachment:tempVideoFileURL thumbImage:thumbImage];
+//        
+//        msg.status = Constants.MessagesStatus.kStatusPending
+//        self.viewModel?.shMessages.append(msg)
+//        self.viewModel?.addMessageFrom(msg)
+//        self.finishSendingMessage()
+//        self.viewModel?.cameraFinishWithVideoFile(msg)
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {

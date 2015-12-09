@@ -148,9 +148,9 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         self.viewController.loadMoreView.showNoMoreContent()
         self.conversations = []
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.viewController.tableView.reloadData()
+           // self.viewController.tableView.reloadData()
             self.viewController.updateFooterView()
-            self.updateBottomNumber()
+            self.updateBottomNumber() 
             self.lastTimeStamp = Int(NSDate().timeIntervalSince1970)
             self.lastTimeStamp += 10
             self.shApiConversation.loadConversationsForBeforeDate(self.lastTimeStamp, cacheResponse: { (shConversationsMeta) -> Void in
@@ -167,9 +167,11 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     }
     
     private func updateUI (conversationsMeta: SHConversationsMeta) {
-        self.conversations = conversationsMeta.results
-        updateBottomNumber()
-        self.viewController.tableView.reloadData()
+        if(conversationsMeta.results.count > 0) {
+            self.conversations = conversationsMeta.results
+            updateBottomNumber()
+            self.viewController.tableView.reloadData()
+        }
     }
     
     private func updateBottomNumber () {

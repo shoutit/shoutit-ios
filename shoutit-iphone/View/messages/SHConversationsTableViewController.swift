@@ -17,7 +17,6 @@ class SHConversationsTableViewController: BaseTableViewController {
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         self.clearsSelectionOnViewWillAppear = true
-        setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
