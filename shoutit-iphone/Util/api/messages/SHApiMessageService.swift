@@ -17,7 +17,7 @@ class SHApiMessageService: NSObject {
     private let MESSAGES = SHApiManager.sharedInstance.BASE_URL + "/messages"
     
     func sendMessage(text: String, conversationID: String, localId: String, completionHandler: Response<SHMessage, NSError> -> Void) {
-        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [])
+        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
         var params = [String: AnyObject]()
         params["text"] = text
         if(localId != "") {
