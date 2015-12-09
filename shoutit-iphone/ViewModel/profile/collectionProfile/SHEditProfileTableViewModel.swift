@@ -10,4 +10,35 @@ import UIKit
 
 class SHEditProfileTableViewModel: NSObject {
 
+    private let viewController: SHEditProfileTableViewController
+    
+    required init(viewController: SHEditProfileTableViewController) {
+        self.viewController = viewController
+    }
+    
+    func viewDidLoad() {
+        
+    }
+    
+    func viewWillAppear() {
+        
+    }
+    
+    func viewDidAppear() {
+        
+    }
+    
+    func viewWillDisappear() {
+        
+    }
+    
+    func viewDidDisappear() {
+        
+    }
+    
+    func destroy() {
+        
+    }
+
+
 }

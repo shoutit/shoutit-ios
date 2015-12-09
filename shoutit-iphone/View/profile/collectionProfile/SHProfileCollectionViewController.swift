@@ -29,8 +29,8 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         } else {
             if let _ = self.user {
                // if(self.user.is_listener && self.user.is_following)
-                let reply = UIBarButtonItem(image: UIImage(named: "chatTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("replyAction:"))
-                self.navigationItem.rightBarButtonItem = reply
+//                let reply = UIBarButtonItem(image: UIImage(named: "chatTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("replyAction:"))
+//                self.navigationItem.rightBarButtonItem = reply
             } else {
                 self.navigationItem.rightBarButtonItem = nil
             }
@@ -75,7 +75,10 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     func requestUser(user: SHUser) {
         self.user = user
         self.title = self.user?.name
-       // self.viewModel?.loadShoutStreamForUser()
+    }
+    
+    func replyAction (sender: AnyObject) {
+        self.viewModel?.replyToAction()
     }
     
     deinit {

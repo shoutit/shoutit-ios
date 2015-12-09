@@ -38,6 +38,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     private var imglisten: UIImageView?
     private var imglistenGreen: UIImageView?
     private var user: SHUser?
+    var viewController = SHProfileCollectionViewController()
     
     func setupViewForUser (user: SHUser) {
         
@@ -59,6 +60,18 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             self.cvShortcutButton.hidden = false
             self.cvShortcutButton.layer.cornerRadius = 5
             self.cvShortcutButton.backgroundColor = UIColor.lightTextColor()
+            
+            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
+            editBtn.tintColor = UIColor.darkTextColor()
+            self.viewController.navigationItem.rightBarButtonItem = editBtn
+            
+            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
+            self.viewController.navigationItem.leftBarButtonItem = setBtn
+            
+            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
+            tap.numberOfTapsRequired = 1
+            tap.numberOfTouchesRequired = 1
+            self.profileImageView.addGestureRecognizer(tap)
         } else {
             if let isListen = self.user?.isListening {
                 self.setListenSelected(isListen)

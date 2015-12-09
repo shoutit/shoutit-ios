@@ -11,7 +11,7 @@ import UIKit
 class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, SHHeaderProfileReusableViewDelegate {
 
     private let viewController: SHProfileCollectionViewController
-    private let userShouts = [SHShout]()
+    private var userShouts = [SHShout]()
     private let shApiShout = SHApiShoutService()
     
     required init(viewController: SHProfileCollectionViewController) {
@@ -19,7 +19,9 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func viewDidLoad() {
-        
+        if let username = self.viewController.user?.username {
+            self.loadShoutStreamForUser(username)
+        }
     }
     
     func viewWillAppear() {
@@ -42,13 +44,35 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         
     }
     
+    // replyToAction
+    func replyToAction() {
+        let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
+        messageViewController.isFromShout = true
+        messageViewController.shout = nil
+        messageViewController.title = self.viewController.user?.name
+        
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromTop
+        self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.viewController.hidesBottomBarWhenPushed = true
+        self.viewController.navigationController?.pushViewController(messageViewController, animated: false)
+        self.viewController.hidesBottomBarWhenPushed = false
+    }
+    
     //loadShoutsForUser
     func loadShoutStreamForUser (username: String) {
         let currentPage = 1
         shApiShout.loadShoutStreamForUser(username, page: currentPage, cacheResponse: { (shShoutMeta) -> Void in
-            //
+            self.updateUIForShouts(shShoutMeta)
             }) { (response) -> Void in
-                //
+                switch(response.result) {
+                case .Success(let result):
+                    self.updateUIForShouts(result)
+                case .Failure(let error):
+                    log.error("Error getting user Shouts \(error.localizedDescription)")
+                }
         }
     }
     
@@ -68,20 +92,21 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.userShouts.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHShoutSquareCollectionViewCell, forIndexPath: indexPath) as! SHShoutSquareCollectionViewCell
-        //[cell setShout:self.fetchedResultsController[indexPath.item]];
+        cell.setShout(self.userShouts[indexPath.item])
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
-//        detailView.delegate = self;
-//        detailView.title = [self.fetchedResultsController[indexPath.row] title];
-//        [detailView getDetailShouts:self.fetchedResultsController[indexPath.row]];
+        detailView.title = self.userShouts[indexPath.row].title
+        if let shoutId = self.userShouts[indexPath.row].id {
+            detailView.getShoutDetails(shoutId)
+        }
         self.viewController.navigationController?.pushViewController(detailView, animated: true)
     }
     
@@ -123,6 +148,12 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
 //            }
 //            
 //        }
+    }
+    
+    // Private
+    func updateUIForShouts(shShoutMeta: SHShoutMeta) {
+        self.userShouts = shShoutMeta.results
+        self.viewController.collectionView?.reloadData()
     }
     
 
