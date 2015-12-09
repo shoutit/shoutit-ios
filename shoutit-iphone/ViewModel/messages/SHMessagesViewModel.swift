@@ -50,6 +50,37 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         
     }
     
+    //SetUp ConversationPusherManager
+    func setupConverstaionManager () {
+        self.viewController.conversationManager?.subscribeToEventsWithMessageHandler({ (event) -> () in
+            log.verbose("Message Handler \(event)")
+            }, typingHandler: { (event) -> () in
+                if let typingTimer = self.viewController.typingTimer {
+                    typingTimer.invalidate()
+                }
+                self.viewController.typingTimer = NSTimer(timeInterval: 5, target: self, selector: Selector("hideTypingIndicator"), userInfo: nil, repeats: false)
+                log.verbose("Typing... \(event["username"])")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.hidingTypingIndicatorAction()
+                })
+                
+            }, joined_chatHandler: { (event) -> () in
+                log.verbose("joined_chathandler \(event)")
+            }, left_chatHandler: { (event) -> () in
+                log.verbose("left_chathandler \(event)")
+        })
+    }
+    
+    func hideTypingIndicator () {
+        if let typingTimer = self.viewController.typingTimer  {
+            typingTimer.invalidate()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.hidingTypingIndicatorAction()
+            })
+        }
+    }
+    
+    
     //TapTitleAction
     func tapTitleAction () {
 //        SHShout* shout = self.model.conversation.aboutShout;
@@ -734,6 +765,12 @@ class SHMessagesViewModel: NSObject, JSQMessagesCollectionViewDataSource, JSQMes
         self.viewController.collectionView?.reloadData()
     }
     
-    
+    private func hidingTypingIndicatorAction () {
+        self.viewController.showTypingIndicator = false
+        self.viewController.collectionView?.reloadData()
+        if(self.viewController.automaticallyScrollsToMostRecentMessage) {
+            self.viewController.scrollToBottomAnimated(true)
+        }
+    }
     
 }

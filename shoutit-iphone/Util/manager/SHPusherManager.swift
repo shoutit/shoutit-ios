@@ -14,7 +14,7 @@ let PUSHER_APP_KEY = "86d676926d4afda44089"
 let PUSHER_URL = "https://api.shoutit.com/v2/pusher/auth"
 
 class SHPusherManager: NSObject, PTPusherDelegate {
-    private var client: PTPusher?
+    var client: PTPusher?
     private var got_message_block: eventReceived?
     private var got_listen_block: eventReceived?
     private var message_channel: PTPusherChannel?

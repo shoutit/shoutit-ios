@@ -206,3 +206,9 @@
 
 /* Conversation */
 "Conversation" = "Conversation";
+
+/* online */
+"online" = "online";
+
+/* offline */
+"offline" = "offline";

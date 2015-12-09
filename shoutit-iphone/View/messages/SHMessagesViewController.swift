@@ -24,6 +24,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     var conversationID: String?
     var typingTimer: NSTimer?
     var typingCounter = 0
+    var conversationManager: SHConversationPusherManager?
+    var subTitleLabel: UILabel?
     private var viewModel: SHMessagesViewModel?
     private var progressView: UIProgressView?
     
@@ -31,6 +33,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         super.viewDidLoad()
         initializeViewModel()
         self.mediaVideoController = URBMediaFocusViewController()
+        self.conversationManager = SHConversationPusherManager()
+        self.conversationManager?.conversationID = self.conversationID
         let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleCollectionTapRecognizer:"))
         self.collectionView?.dataSource = viewModel
         self.collectionView?.delegate = viewModel
@@ -93,6 +97,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         super.viewWillAppear(animated)
         self.setupProgressBar()
         if(!self.isFromShout) {
+            self.viewModel?.setupConverstaionManager()
+//            [self setupConverstaionManager];
+//            [self startCheckingStatus];
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("deleteMessage:"), name: "DeleteMessageNotification", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textDidChange:"), name: UITextViewTextDidChangeNotification, object: nil)
         }
@@ -104,6 +111,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.inputToolbar?.contentView?.textView?.resignFirstResponder()
         self.progress?.removeFromSuperview()
         if(!self.isFromShout) {
+            self.conversationManager?.unbindAll()
             self.finishCheckingStatus()
         }
         self.progress = nil
@@ -115,7 +123,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if(!self.isFromShout) {
             NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMessageNotification", object: nil)
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
-            if var timer = self.typingTimer {
+            if let timer = self.typingTimer {
                 timer.invalidate()
             }
         }
@@ -143,7 +151,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     func textDidChange() {
         if(self.typingTimer == nil) {
             self.typingTimer = NSTimer(timeInterval: 1, target: self, selector: Selector("typingAction"), userInfo: nil, repeats: true)
-            //[self.conversationManager sendTyping:[[SHLoginModel sharedModel]selfUser]];
+            if let user = self.myUser {
+                self.conversationManager?.sendTyping(user)
+            }
         }
     }
     
@@ -170,28 +180,28 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         titleLabel.text = self.title
         titleLabel.sizeToFit()
         
-        let subTitleLabel = UILabel(frame: CGRectMake(0, 22, 0, 0))
-        subTitleLabel.textAlignment = NSTextAlignment.Center
-        subTitleLabel.backgroundColor = UIColor.clearColor()
-        subTitleLabel.textColor = UIColor.whiteColor()
-        subTitleLabel.font = UIFont.systemFontOfSize(12)
+        subTitleLabel = UILabel(frame: CGRectMake(0, 22, 0, 0))
+        subTitleLabel?.textAlignment = NSTextAlignment.Center
+        subTitleLabel?.backgroundColor = UIColor.clearColor()
+        subTitleLabel?.textColor = UIColor.whiteColor()
+        subTitleLabel?.font = UIFont.systemFontOfSize(12)
         //[self checkStaus];
-        subTitleLabel.text = "offline"
-        subTitleLabel.sizeToFit()
+        subTitleLabel?.text = "offline"
+        subTitleLabel?.sizeToFit()
         
-        let twoLineTitleView = UIView(frame: CGRectMake(0, 0, max(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 30))
+        let twoLineTitleView = UIView(frame: CGRectMake(0, 0, max(subTitleLabel!.frame.size.width, titleLabel.frame.size.width), 30))
         twoLineTitleView.addSubview(titleLabel)
-        twoLineTitleView.addSubview(subTitleLabel)
+        twoLineTitleView.addSubview(subTitleLabel!)
         
-        let widthDiff = subTitleLabel.frame.size.width - titleLabel.frame.size.width
+        let widthDiff = subTitleLabel!.frame.size.width - titleLabel.frame.size.width
         if(widthDiff > 0) {
             var frame = titleLabel.frame
             frame.origin.x = widthDiff / 2
             titleLabel.frame = CGRectIntegral(frame)
         } else {
-            var frame = subTitleLabel.frame
+            var frame = subTitleLabel!.frame
             frame.origin.x = abs(widthDiff) / 2
-            subTitleLabel.frame = CGRectIntegral(frame)
+            subTitleLabel?.frame = CGRectIntegral(frame)
         }
         self.navigationItem.titleView = twoLineTitleView
     }
@@ -292,7 +302,20 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func startCheckingStatus () {
-        self.statusCheckerTimer = NSTimer(timeInterval: 10, target: self, selector: Selector("checkStaus"), userInfo: nil, repeats: true)
+        self.statusCheckerTimer = NSTimer(timeInterval: 10, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
+    }
+    
+    func checkStatus () {
+        let online = self.conversationManager?.whoIsOnline()
+        log.verbose("Online Members \(online)")
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if(online > 1) {
+                self.subTitleLabel?.text = NSLocalizedString("online", comment: "online")
+            } else {
+                self.subTitleLabel?.text = NSLocalizedString("offline", comment: "offline")
+            }
+            self.subTitleLabel?.sizeToFit()
+        }
     }
     
     func deleteMessage(aNotification: NSNotification) {
