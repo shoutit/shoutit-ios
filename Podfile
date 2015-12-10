@@ -31,4 +31,4 @@ pod 'AWSCognito', '~> 2.3'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'libPusher', '~> 1.6'
-
+pod 'DAProgressOverlayView', '~> 1.0'

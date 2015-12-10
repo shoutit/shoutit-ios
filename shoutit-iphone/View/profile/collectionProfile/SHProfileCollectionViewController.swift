@@ -81,6 +81,12 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         self.viewModel?.replyToAction()
     }
     
+    func editProfile(sender: AnyObject) {
+        if let user = self.user {
+            SHEditProfileTableViewController.presentFromViewController(self, user: user)
+        }
+    }
+    
     deinit {
         viewModel?.destroy()
     }

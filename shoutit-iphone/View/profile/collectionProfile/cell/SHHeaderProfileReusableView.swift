@@ -126,4 +126,11 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         }
     }
     
+    @IBAction func cvShortcut(sender: AnyObject) {
+        if let delegate = self.delegate, let button = sender as? UIButton {
+            delegate.didPressCvShortcutButtonButton(button)
+        }
+    }
+    
+    
 }

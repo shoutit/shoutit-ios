@@ -136,18 +136,9 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func didPressCvShortcutButtonButton(button: UIButton) {
-//        UIViewController *vc =self.navigationController.navigationController.viewControllers[1];
-//        if([vc isKindOfClass:[SHSwipeTabbarViewController class]])
-//        {
-//            [[((SHSwipeTabbarViewController*)vc) swipeController]setSelectedIndex:0 animated:YES];
-//            UINavigationController* nc = [((SHSwipeTabbarViewController*)vc) swipeController].viewControllers[0];
-//            UIViewController *vcre = nc.viewControllers[0];
-//            if([vcre isKindOfClass:[SHCreateShoutTableViewController class]])
-//            {
-//                [((SHCreateShoutTableViewController*)vcre) setupViewForStandard:NO];
-//            }
-//            
-//        }
+        let shCreate = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT) as! SHCreateShoutTableViewController
+        shCreate.isViewSetUp = false
+        self.viewController.navigationController?.pushViewController(shCreate, animated: true)
     }
     
     // Private

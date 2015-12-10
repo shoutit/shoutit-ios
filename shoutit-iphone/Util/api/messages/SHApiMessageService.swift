@@ -111,7 +111,7 @@ class SHApiMessageService: NSObject {
         NetworkActivityManager.addActivity()
         BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
-            params["attachments"] = [["images": [aws.images]]]
+            params["attachments"] = [["images": [aws.images[0].URLString]]]
             SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
             return nil
         }
