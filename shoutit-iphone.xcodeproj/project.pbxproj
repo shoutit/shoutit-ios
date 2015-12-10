@@ -111,6 +111,7 @@
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
 		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
+		AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7026D11C19DF2A00262622 /* SHLoginAccounts.swift */; };
 		AC7030BB1C1591C1008F4C00 /* SHShoutAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BA1C1591C1008F4C00 /* SHShoutAttachment.swift */; };
 		AC7030BD1C159249008F4C00 /* SHLocationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BC1C159249008F4C00 /* SHLocationAttachment.swift */; };
 		AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BE1C1596F9008F4C00 /* SHShoutMediaItem.swift */; };
@@ -341,6 +342,7 @@
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
 		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
+		AC7026D11C19DF2A00262622 /* SHLoginAccounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginAccounts.swift; path = Model/accounts/SHLoginAccounts.swift; sourceTree = "<group>"; };
 		AC7030BA1C1591C1008F4C00 /* SHShoutAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutAttachment.swift; path = Model/attachments/SHShoutAttachment.swift; sourceTree = "<group>"; };
 		AC7030BC1C159249008F4C00 /* SHLocationAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationAttachment.swift; path = Model/attachments/SHLocationAttachment.swift; sourceTree = "<group>"; };
 		AC7030BE1C1596F9008F4C00 /* SHShoutMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMediaItem.swift; path = View/messages/cell/messages/SHShoutMediaItem.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC7026D01C19DED800262622 /* accounts */,
 				AC7030B91C159160008F4C00 /* attachments */,
 				ACB803B01C108AF100420BB1 /* conversations */,
 				ACB8039E1C0EDF6F00420BB1 /* messages */,
@@ -1016,6 +1019,14 @@
 				AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */,
 			);
 			name = discover;
+			sourceTree = "<group>";
+		};
+		AC7026D01C19DED800262622 /* accounts */ = {
+			isa = PBXGroup;
+			children = (
+				AC7026D11C19DF2A00262622 /* SHLoginAccounts.swift */,
+			);
+			name = accounts;
 			sourceTree = "<group>";
 		};
 		AC7030B91C159160008F4C00 /* attachments */ = {
@@ -1627,6 +1638,7 @@
 				606ED2EC1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift in Sources */,
 				60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
+				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
 				ACB803BB1C11A29E00420BB1 /* SHMessagesMeta.swift in Sources */,

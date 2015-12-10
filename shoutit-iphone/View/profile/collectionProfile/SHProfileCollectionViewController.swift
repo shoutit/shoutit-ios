@@ -87,6 +87,14 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         }
     }
     
+    func openSettings () {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let vc = UIStoryboard.getSettings().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSETTINGS) as! SHSettingsTableViewController
+            vc.user = self.user
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     deinit {
         viewModel?.destroy()
     }

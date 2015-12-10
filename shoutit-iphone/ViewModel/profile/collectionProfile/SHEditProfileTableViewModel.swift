@@ -124,15 +124,18 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
         let media = SHMedia()
         media.isVideo = false
         media.image = image
-        if let username = self.viewController.user?.username {
-            shApiUser.changeUserImage(username, media: media, completionHandler: { (response) -> Void in
-                switch(response.result) {
-                case .Success(let result):
-                    log.verbose("Image updated")
-                case .Failure(let error):
-                    log.error("Error uploading Image")
-                }
-            })
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if let username = self.viewController.user?.username {
+                self.shApiUser.changeUserImage(username, media: media, completionHandler: { (response) -> Void in
+                    switch(response.result) {
+                    case .Success( _):
+                        log.verbose("Image updated")
+                    case .Failure(let error):
+                        log.error("Error uploading Image \(error.localizedDescription)")
+                    }
+                })
+            }
         }
     }
 

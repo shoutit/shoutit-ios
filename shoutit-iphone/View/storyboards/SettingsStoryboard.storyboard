@@ -9,12 +9,12 @@
         <!--Settings-->
         <scene sceneID="oMp-wo-e6L">
             <objects>
-                <tableViewController storyboardIdentifier="SHSettingsTableViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N6E-18-Zm8" customClass="SHSettingsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHSettingsTableViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N6E-18-Zm8" customClass="SHSettingsTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Slg-OD-Pqp">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Linked accounts" id="zbp-tX-i28">
                                 <cells>
@@ -48,7 +48,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="fbLinkAction:" destination="N6E-18-Zm8" eventType="touchUpInside" id="0Ml-PZ-KrA"/>
+                                                        <action selector="fbLinkAction:" destination="N6E-18-Zm8" eventType="touchUpInside" id="I2S-KN-MMa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -91,7 +91,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="googleLinkAction:" destination="N6E-18-Zm8" eventType="touchUpInside" id="HeT-I6-hic"/>
+                                                        <action selector="googleLinkAction:" destination="N6E-18-Zm8" eventType="touchUpInside" id="Gea-Uz-c5F"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -240,8 +240,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="fbLinkButton" destination="eAd-zw-nun" id="3gz-L4-BTR"/>
-                        <outlet property="googleLinkButton" destination="AmC-Wi-6rI" id="tbi-O1-cjr"/>
+                        <outlet property="fbLinkButton" destination="eAd-zw-nun" id="yxa-IX-iug"/>
+                        <outlet property="googleLinkButton" destination="AmC-Wi-6rI" id="fgR-FZ-ERD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGT-PU-xit" userLabel="First Responder" sceneMemberID="firstResponder"/>

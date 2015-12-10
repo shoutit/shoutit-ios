@@ -18,6 +18,7 @@ PODS:
     - Fabric (~> 1.6.0)
   - CryptoSwift (0.1.1)
   - DACircularProgress (2.3.1)
+  - DAProgressOverlayView (1.0.2)
   - DWTagList (0.0.7)
   - Fabric (1.6.0):
     - Fabric/Base (= 1.6.0)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - AWSS3 (~> 2.3)
   - Crashlytics
   - CryptoSwift
+  - DAProgressOverlayView (~> 1.0)
   - DWTagList (~> 0.0)
   - Fabric
   - FBSDKCoreKit (~> 4.7)
@@ -131,6 +133,7 @@ SPEC CHECKSUMS:
   Crashlytics: 1ee87895c37472eb3f01f409ea1654a464d2f8d4
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
   DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb
   Fabric: d737eda3a26ac940a5430230eedb35f16b226131
   FBSDKCoreKit: 9141b70960a37930850370495fe565f4a27ac141

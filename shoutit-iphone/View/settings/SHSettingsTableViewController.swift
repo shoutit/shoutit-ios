@@ -10,9 +10,14 @@ import UIKit
 
 class SHSettingsTableViewController: BaseTableViewController{
     private var viewModel: SHSettingsTableViewModel?
+    var user: SHUser?
+    
+    @IBOutlet weak var fbLinkButton: UIButton!
+    @IBOutlet weak var googleLinkButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = viewModel
         viewModel?.viewDidLoad()
     }
     
@@ -43,6 +48,14 @@ class SHSettingsTableViewController: BaseTableViewController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func fbLinkAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func googleLinkAction(sender: AnyObject) {
+        
     }
     
     deinit {

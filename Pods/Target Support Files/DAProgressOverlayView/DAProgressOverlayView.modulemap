@@ -1,0 +1,6 @@
+framework module DAProgressOverlayView {
+  umbrella header "DAProgressOverlayView-umbrella.h"
+
+  export *
+  module * { export * }
+}
