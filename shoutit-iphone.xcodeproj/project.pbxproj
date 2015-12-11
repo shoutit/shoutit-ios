@@ -122,6 +122,8 @@
 		AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC7027FA1C1AA66200262622 /* uv_idea@2x.png */; };
 		AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7028061C1ABC9E00262622 /* SHUserListTableViewController.swift */; };
 		AC7028091C1ABD0600262622 /* SHUserListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7028081C1ABD0600262622 /* SHUserListTableViewModel.swift */; };
+		AC70280B1C1AC17600262622 /* SHUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70280A1C1AC17600262622 /* SHUserTableViewCell.swift */; };
+		AC70280D1C1AC1BA00262622 /* SHUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC70280C1C1AC1BA00262622 /* SHUserTableViewCell.xib */; };
 		AC7030BB1C1591C1008F4C00 /* SHShoutAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BA1C1591C1008F4C00 /* SHShoutAttachment.swift */; };
 		AC7030BD1C159249008F4C00 /* SHLocationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BC1C159249008F4C00 /* SHLocationAttachment.swift */; };
 		AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7030BE1C1596F9008F4C00 /* SHShoutMediaItem.swift */; };
@@ -150,6 +152,7 @@
 		AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7921BFF314B0029CE7D /* SHCategoryTagsViewController.swift */; };
 		AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7941BFF31E30029CE7D /* SHCategoryTagsViewModel.swift */; };
 		AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */; };
+		AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */; };
 		ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */; };
 		ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECE1BF1233700D504AA /* Enumerations.swift */; };
 		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
@@ -398,6 +401,8 @@
 		AC7027FD1C1AA66200262622 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UserVoice.strings"; sourceTree = "<group>"; };
 		AC7028061C1ABC9E00262622 /* SHUserListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUserListTableViewController.swift; path = View/profile/collectionProfile/SHUserListTableViewController.swift; sourceTree = "<group>"; };
 		AC7028081C1ABD0600262622 /* SHUserListTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUserListTableViewModel.swift; path = ViewModel/profile/SHUserListTableViewModel.swift; sourceTree = "<group>"; };
+		AC70280A1C1AC17600262622 /* SHUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUserTableViewCell.swift; path = View/profile/collectionProfile/cell/SHUserTableViewCell.swift; sourceTree = "<group>"; };
+		AC70280C1C1AC1BA00262622 /* SHUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHUserTableViewCell.xib; path = View/profile/collectionProfile/cell/SHUserTableViewCell.xib; sourceTree = "<group>"; };
 		AC7030BA1C1591C1008F4C00 /* SHShoutAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutAttachment.swift; path = Model/attachments/SHShoutAttachment.swift; sourceTree = "<group>"; };
 		AC7030BC1C159249008F4C00 /* SHLocationAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationAttachment.swift; path = Model/attachments/SHLocationAttachment.swift; sourceTree = "<group>"; };
 		AC7030BE1C1596F9008F4C00 /* SHShoutMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMediaItem.swift; path = View/messages/cell/messages/SHShoutMediaItem.swift; sourceTree = "<group>"; };
@@ -427,6 +432,7 @@
 		AC74A7921BFF314B0029CE7D /* SHCategoryTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategoryTagsViewController.swift; path = View/tabs/stream/filter/subFilter/SHCategoryTagsViewController.swift; sourceTree = "<group>"; };
 		AC74A7941BFF31E30029CE7D /* SHCategoryTagsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategoryTagsViewModel.swift; path = ViewModel/tabs/stream/filter/subFilter/SHCategoryTagsViewModel.swift; sourceTree = "<group>"; };
 		AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckTableViewCell.swift; path = View/tabs/stream/filter/cell/SHFilterCheckTableViewCell.swift; sourceTree = "<group>"; };
+		AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUsersMeta.swift; path = Model/users/SHUsersMeta.swift; sourceTree = "<group>"; };
 		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
 		ACA77ECE1BF1233700D504AA /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerations.swift; path = Model/enums/Enumerations.swift; sourceTree = "<group>"; };
 		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
@@ -613,6 +619,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC856E9E1C1AF3A300864A85 /* users */,
 				AC7026D01C19DED800262622 /* accounts */,
 				AC7030B91C159160008F4C00 /* attachments */,
 				ACB803B01C108AF100420BB1 /* conversations */,
@@ -1153,6 +1160,14 @@
 			name = subFilter;
 			sourceTree = "<group>";
 		};
+		AC856E9E1C1AF3A300864A85 /* users */ = {
+			isa = PBXGroup;
+			children = (
+				AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */,
+			);
+			name = users;
+			sourceTree = "<group>";
+		};
 		ACA77EC61BF0CAD000D504AA /* stream */ = {
 			isa = PBXGroup;
 			children = (
@@ -1291,10 +1306,12 @@
 		ACC36C331C09C98E0082E0C2 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				AC70280C1C1AC1BA00262622 /* SHUserTableViewCell.xib */,
 				ACC36C341C09CA600082E0C2 /* SHHeaderProfileReusableView.xib */,
 				ACC36C351C09CA600082E0C2 /* SHShoutSquareCollectionViewCell.xib */,
 				ACC36C381C09D1220082E0C2 /* SHShoutSquareCollectionViewCell.swift */,
 				ACC36C3A1C09D5060082E0C2 /* SHHeaderProfileReusableView.swift */,
+				AC70280A1C1AC17600262622 /* SHUserTableViewCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1625,6 +1642,7 @@
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
 				AC7030D21C16C983008F4C00 /* SHLocationMessageCell.xib in Resources */,
 				6027CF851BE751ED00124C28 /* FilterStoryboard.storyboard in Resources */,
+				AC70280D1C1AC1BA00262622 /* SHUserTableViewCell.xib in Resources */,
 				606ED2FE1BF80DFA0064C53E /* CameraView.xib in Resources */,
 				6027CF821BE751ED00124C28 /* CameraStoryboard.storyboard in Resources */,
 				6027CF8B1BE751ED00124C28 /* TagStoryboard.storyboard in Resources */,
@@ -1837,10 +1855,12 @@
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
 				AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */,
+				AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
 				606ED3071BF8AEF80064C53E /* SHVideoPreviewViewController.swift in Sources */,
 				60D36D5E1BF78D5F00238D62 /* SHCategory.swift in Sources */,
 				AC7030DB1C1830C0008F4C00 /* SHEditProfileTableViewController.swift in Sources */,
+				AC70280B1C1AC17600262622 /* SHUserTableViewCell.swift in Sources */,
 				ACDB3CC31BF90F080097444E /* SHRequestTextTableViewCellModel.swift in Sources */,
 				ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */,
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,

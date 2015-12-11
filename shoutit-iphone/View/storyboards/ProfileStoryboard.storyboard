@@ -343,7 +343,7 @@
         <!--User List Table View Controller-->
         <scene sceneID="mzD-vq-qg7">
             <objects>
-                <tableViewController storyboardIdentifier="SHUserListTableViewController" id="fjM-en-Sqs" customClass="SHUserListTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHUserListTableViewController" id="fjM-en-Sqs" customClass="SHUserListTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hED-1R-SE9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -112,27 +112,33 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     
     //Mark SHHeaderProfileReusableViewDelegate
     func didPressListenersButton(button: UIButton) {
-//        SHUserListTableViewController* listViewController = [SHNavigator viewControllerFromStoryboard:@"ProfileStoryboard" withViewControllerId:@"SHUserListTableViewController"];
-//        listViewController.user = self.user;
-//        listViewController.title = NSLocalizedString( @"Listeners",  @"Listeners");
-//        [listViewController requestUsersForUser:self.user withParam:@"listeners" type:nil];
-//        [self.navigationController pushViewController:listViewController animated:YES];
+        let listViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
+        listViewController.user = self.viewController.user
+        listViewController.title = NSLocalizedString("Listeners", comment: "Listeners")
+        if let user = self.viewController.user {
+            listViewController.requestUsersAndTags(user, param: "listeners", type: "")
+        }
+        self.viewController.navigationController?.pushViewController(listViewController, animated: true)
     }
     
     func didPressListeningButton(button: UIButton) {
-//        SHUserListTableViewController* listViewController = [SHNavigator viewControllerFromStoryboard:@"ProfileStoryboard" withViewControllerId:@"SHUserListTableViewController"];
-//        listViewController.user = self.user;
-//        listViewController.title = NSLocalizedString(@"Listening", @"Listening");
-//        [listViewController requestUsersForUser:self.user withParam:@"listening" type:@"users"];
-//        [self.navigationController pushViewController:listViewController animated:YES];
+        let listViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
+        listViewController.user = self.viewController.user
+        listViewController.title = NSLocalizedString("Listening", comment: "Listening")
+        if let user = self.viewController.user {
+            listViewController.requestUsersAndTags(user, param: "listening", type: "users")
+        }
+        self.viewController.navigationController?.pushViewController(listViewController, animated: true)
     }
     
     func didPressTagsButton(button: UIButton) {
-//        SHUserListTableViewController* listViewController = [SHNavigator viewControllerFromStoryboard:@"ProfileStoryboard" withViewControllerId:@"SHUserListTableViewController"];
-//        listViewController.user = self.user;
-//        listViewController.title = NSLocalizedString(@"Listening", @"Listening");
-//        [listViewController requestUsersForUser:self.user withParam:@"listening" type:@"tags"];
-//        [self.navigationController pushViewController:listViewController animated:YES];
+        let listViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
+        listViewController.user = self.viewController.user
+        listViewController.title = NSLocalizedString("Listening", comment: "Listening")
+        if let user = self.viewController.user {
+            listViewController.requestUsersAndTags(user, param: "listening", type: "tags")
+        }
+        self.viewController.navigationController?.pushViewController(listViewController, animated: true)
     }
     
     func didPressCvShortcutButtonButton(button: UIButton) {

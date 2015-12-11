@@ -15,6 +15,7 @@ class SHTagMeta: Mappable {
     private(set) var next = String()
     private(set) var previous = String()
     private(set) var results: [SHTag] = []
+    var tags: [SHTag] = []
 
     required init?(_ map: Map) {
 
@@ -26,5 +27,6 @@ class SHTagMeta: Mappable {
         next            <- map["next"]
         previous        <- map["previous"]
         results         <- map["results"]
+        tags            <- map["tags"]
     }
 }
