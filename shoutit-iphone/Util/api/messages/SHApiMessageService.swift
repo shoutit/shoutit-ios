@@ -105,8 +105,8 @@ class SHApiMessageService: NSObject {
         let aws = SHAmazonAWS()
         
         if let image = media.image, let task = aws.getShoutImageTask(image) {
-                tasks.append(task)
-            }
+            tasks.append(task)
+        }
         
         NetworkActivityManager.addActivity()
         BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
@@ -116,7 +116,6 @@ class SHApiMessageService: NSObject {
             return nil
         }
     }
-    
     
     func composeVideo(video: SHMedia, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let urlString = self.composeURLForShoutID(shoutID)

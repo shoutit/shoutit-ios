@@ -12,7 +12,7 @@ import ObjectMapper
 class SHImageAttachment: Mappable {
     
     var localImages = [SHMedia]()
-    var images = [SHMedia]()
+    var images = [String]()
     
     required init?(_ map: Map) {
         

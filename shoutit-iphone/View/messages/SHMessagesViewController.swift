@@ -414,20 +414,21 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        //        let msg = self.shMessages[indexPath.item]
-        //        if(msg.status == Constants.MessagesStatus.kStatusDelivered) {
-        //            return NSAttributedString(string: NSLocalizedString("Delivered", comment: "Delivered"))
-        //        }
-        //        if(msg.status == Constants.MessagesStatus.kStatusSent) {
-        //            return NSAttributedString(string: NSLocalizedString("Sent", comment: "Sent"))
-        //        }
-        //        if(msg.status == Constants.MessagesStatus.kStatusPending) {
-        //            return NSAttributedString(string: NSLocalizedString("Pending", comment: "Pending"))
-        //        }
-        //        if(msg.status == Constants.MessagesStatus.kStatusFailed) {
-        //            return NSAttributedString(string: NSLocalizedString("Failed", comment: "Failed"))
-        //        }
-        return nil
+        if let msg = self.viewModel?.shMessages[indexPath.item] {
+            if(msg.status == Constants.MessagesStatus.kStatusDelivered) {
+                return NSAttributedString(string: NSLocalizedString("Delivered", comment: "Delivered"))
+            }
+            if(msg.status == Constants.MessagesStatus.kStatusSent) {
+                return NSAttributedString(string: NSLocalizedString("Sent", comment: "Sent"))
+            }
+            if(msg.status == Constants.MessagesStatus.kStatusPending) {
+                return NSAttributedString(string: NSLocalizedString("Pending", comment: "Pending"))
+            }
+            if(msg.status == Constants.MessagesStatus.kStatusFailed) {
+                return NSAttributedString(string: NSLocalizedString("Failed", comment: "Failed"))
+            }
+        }
+        return NSAttributedString(string: "")
     }
     
     // UICollectionView DataSource
@@ -697,6 +698,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
         self.viewModel?.shMessages = shMessagesMeta.results
+        self.viewModel?.jsqMessages.removeAll()
         if let messages = self.viewModel?.shMessages {
             for (_, shMessage) in messages.enumerate() {
                 self.viewModel?.addMessageFrom(shMessage)

@@ -16,7 +16,7 @@ class SHMessage: Mappable {
     var text = String()
     var messageId = String()
     var conversationId = String()
-    var attachments = []
+    var attachments : [AnyObject] = []
     var isRead = false
     var type = String()
     var status = String()

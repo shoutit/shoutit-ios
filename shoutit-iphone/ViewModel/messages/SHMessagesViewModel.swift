@@ -10,6 +10,8 @@ import UIKit
 import JSQMessagesViewController
 import SDWebImage
 import MWPhotoBrowser
+import SwiftyJSON
+import SVProgressHUD
 
 class SHMessagesViewModel: NSObject {
 
@@ -103,7 +105,7 @@ class SHMessagesViewModel: NSObject {
             let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
             self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, completionHandler: { (response) -> Void in
                 switch(response.result) {
-                    case .Success( _):
+                    case .Success:
                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
@@ -340,17 +342,20 @@ class SHMessagesViewModel: NSObject {
                         if let shMessage = response.result.value {
                             self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                            self.shMessages.append(shMessage)
-                            self.addMessageFrom(shMessage)
-                            self.viewController.finishSendingMessage()
-                            self.viewController.doneAction()
+                            SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
                         }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.failedToSendMessages.append(msg)
+                        // TODO
+//                        [SHAlertView alertWithTitle:SH_MESSAGE_ERROR message:error.localizedDescription];
                         log.error("Error posting the message")
                     }
                 })
+                self.shMessages.append(msg)
+                self.addMessageFrom(msg)
+                self.viewController.finishSendingMessage()
+                self.viewController.doneAction()
             }
         } else {
             if let conversationID = self.viewController.conversationID {
@@ -361,20 +366,23 @@ class SHMessagesViewModel: NSObject {
                     if(response.result.isSuccess) {
                         if let shMessage = response.result.value {
                             self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
+                            self.viewController.finishProgress()
                             self.viewController.finishReceivingMessage()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                            self.shMessages.append(shMessage)
-                            self.addMessageFrom(msg)
-                            self.viewController.finishSendingMessage()
                         }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()
+                        self.viewController.finishProgress()
                         self.failedToSendMessages.append(msg)
-                        log.error("Error sending the message")
+                        // TODO
+//                        [SHAlertView alertWithTitle:SH_MESSAGE_ERROR message:error.localizedDescription];
+//                        log.error("Error sending the message")
                     }
                 })
-                
+                self.shMessages.append(msg)
+                self.addMessageFrom(msg)
+                self.viewController.finishSendingMessage()
             }
             
         }
@@ -395,6 +403,20 @@ class SHMessagesViewModel: NSObject {
             }
         } else if (message.attachments.count > 0) {
             for attachment in message.attachments {
+                let json = JSON(attachment)
+                if json["images"].count > 0 {
+                    for (_, url) in json["images"] {
+                        let media = SHImageMediaItem()
+                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        if let user = message.user {
+                            let shoutMessage = JSQMessage(senderId: user.username,
+                                displayName: user.name,
+                                media: media)
+                            media.imageURL = url.stringValue
+                            self.jsqMessages.append(shoutMessage)
+                        }
+                    }
+                }
                 if(attachment.isKindOfClass(SHShoutAttachment)) {
                     if let shout = SHShoutAttachment().shout {
                         let mediaItem = SHShoutMediaItem()
@@ -462,7 +484,7 @@ class SHMessagesViewModel: NSObject {
                                 let shoutMessage = JSQMessage(senderId: user.username,
                                     displayName: user.name,
                                     media: media)
-                                media.imageURL = imageUrl.url
+                                media.imageURL = imageUrl
                                 self.jsqMessages.append(shoutMessage)
                             }
                         }
