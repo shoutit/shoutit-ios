@@ -132,5 +132,26 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         }
     }
     
+    @IBAction func listenAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func showListenersAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func showListeningAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func tagScreen(sender: AnyObject) {
+        if let delegate = self.delegate, let button = sender as? UIButton {
+            delegate.didPressTagsButton(button)
+        }
+    }
+    
+    
+    
+    
     
 }

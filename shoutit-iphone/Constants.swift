@@ -59,6 +59,7 @@ struct Constants {
     }
     
     struct ViewControllers {
+        static let LOGIN_VC = "SHLoginViewController"
         static let DISCOVER_VC = "SHDiscoverCollectionViewController"
         static let STREAM_VC = "SHStreamTableViewController"
         static let MODEL_WEB = "SHModalWebViewController"

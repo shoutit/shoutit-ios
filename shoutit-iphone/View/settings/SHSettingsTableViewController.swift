@@ -51,11 +51,11 @@ class SHSettingsTableViewController: BaseTableViewController{
     }
     
     @IBAction func fbLinkAction(sender: AnyObject) {
-        
+        self.viewModel?.fbLinkAction()
     }
     
     @IBAction func googleLinkAction(sender: AnyObject) {
-        
+        self.viewModel?.googleLinkAction()
     }
     
     deinit {

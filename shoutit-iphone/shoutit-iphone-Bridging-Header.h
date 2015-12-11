@@ -14,4 +14,7 @@
 #import "UIView+Gradient.h"
 #import <Pusher/Pusher.h>
 #import <Pusher/PTPusherEventDispatcher.h>
+#import "UserVoice.h"
+//#import <uservoice-iphone-sdk/UserVoice.h>
+
 

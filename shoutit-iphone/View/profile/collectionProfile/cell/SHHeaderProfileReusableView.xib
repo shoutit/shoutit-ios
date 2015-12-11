@@ -57,6 +57,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="showListenersAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="vbM-tc-lig"/>
                                                     <action selector="showListnersAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="U7X-n7-QsM"/>
                                                 </connections>
                                             </button>
@@ -111,7 +112,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="showListeningAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="WJn-Vz-X1j"/>
+                                                    <action selector="showListeningAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="FpV-Bb-D7p"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -146,6 +147,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="tagScreen:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="gRw-d3-RyB"/>
                                                     <action selector="tagsScreen:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="UVo-gD-yjD"/>
                                                 </connections>
                                             </button>
@@ -216,7 +218,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="listenAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="7oa-Gz-osK"/>
+                                <action selector="listenAction:" destination="u1S-Zi-dlC" eventType="touchUpInside" id="Kjb-32-rhs"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="xg0-Ew-KBA">

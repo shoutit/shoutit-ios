@@ -79,4 +79,12 @@ class SHOauthToken: Mappable {
                 oauthToken(nil)
         }
     }
+    
+    func logOut() {
+        self.accessToken = ""
+        self.tokenType = ""
+        self.expiresIn = 0
+        self.refreshToken = ""
+        self.scope = ""
+    }
 }
