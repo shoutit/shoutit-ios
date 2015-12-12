@@ -95,7 +95,7 @@ class SHApiMessageService: NSObject {
 //        }
 //        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
 //    }
-    func sendImage(media: SHMedia, conversationID: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+    func sendImage(media: SHMedia, conversationID: String, localId: String, progress: AWSNetworkingDownloadProgressBlock? = nil, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
         var params = [String: AnyObject]()
         if(!localId.isEmpty) {
@@ -104,7 +104,7 @@ class SHApiMessageService: NSObject {
         var tasks: [AWSTask] = []
         let aws = SHAmazonAWS()
         
-        if let image = media.image, let task = aws.getShoutImageTask(image) {
+        if let image = media.image, let task = aws.getShoutImageTask(image, progress: progress) {
             tasks.append(task)
         }
         

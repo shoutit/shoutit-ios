@@ -210,22 +210,20 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.navigationItem.titleView = twoLineTitleView
     }
     
-    func setupProgressBar () {
+    func setupProgressBar() {
         if let navBar = self.navigationController?.navigationBar {
-            if((self.progress == nil)) {
+            if self.progress == nil {
                 self.progress = UIProgressView(progressViewStyle: UIProgressViewStyle.Bar)
                 self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
                 self.progress?.backgroundColor = navBar.window?.tintColor
                 self.progress?.progressTintColor = UIColor.jsq_messageBubbleBlueColor()
-                self.progress?.frame = CGRectMake(0, navBar.frame.size.height - 20, navBar.frame.size.width, 2)
+                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height, navBar.frame.size.width, 2)
                 if let progress = self.progress {
                     navBar.addSubview(progress)
                 }
-            } else {
-                
             }
-            self.progress?.setProgress(0, animated: false)
         }
+        self.progress?.setProgress(0, animated: false)
     }
     
     func startProgress () {
@@ -233,7 +231,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func resetProgress () {
-        self.progress?.setProgress(0, animated: true)
+        self.progress?.setProgress(0, animated: false)
     }
     
     func finishProgress () {
@@ -416,19 +414,19 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         if let msg = self.viewModel?.shMessages[indexPath.item] {
             if(msg.status == Constants.MessagesStatus.kStatusDelivered) {
-                return NSAttributedString(string: NSLocalizedString("Delivered", comment: "Delivered"))
+                return NSAttributedString(string: Constants.MessagesStatus.kStatusDelivered)
             }
             if(msg.status == Constants.MessagesStatus.kStatusSent) {
-                return NSAttributedString(string: NSLocalizedString("Sent", comment: "Sent"))
+                return NSAttributedString(string: Constants.MessagesStatus.kStatusSent)
             }
             if(msg.status == Constants.MessagesStatus.kStatusPending) {
-                return NSAttributedString(string: NSLocalizedString("Pending", comment: "Pending"))
+                return NSAttributedString(string: Constants.MessagesStatus.kStatusPending)
             }
             if(msg.status == Constants.MessagesStatus.kStatusFailed) {
-                return NSAttributedString(string: NSLocalizedString("Failed", comment: "Failed"))
+                return NSAttributedString(string: Constants.MessagesStatus.kStatusFailed)
             }
         }
-        return NSAttributedString(string: "")
+        return nil
     }
     
     // UICollectionView DataSource
@@ -659,18 +657,25 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     // MARK - SHCameraViewControllerDelegate
     func didCameraFinish(image: UIImage) {
+        self.startProgress()
+        let msg = SHMessage()
+        msg.user = self.myUser
+        msg.text = ""
+        msg.createdAt = Int(NSDate().timeIntervalSince1970)
+        msg.isFromShout = self.isFromShout
+        
         let media = SHMedia()
         media.isVideo = false
         media.image = image
         self.media.insert(media, atIndex: 0)
+        let imageAttachment = SHImageAttachment()
+        imageAttachment.localImages.append(media)
+        msg.attachments.append(imageAttachment)
+        msg.status = Constants.MessagesStatus.kStatusPending
+        self.viewModel?.shMessages.append(msg)
+        self.viewModel?.addMessageFrom(msg)
+        self.finishSendingMessage()
         self.viewModel?.cameraFinishWithImage(media)
-//        self.startProgress()
-//        let msg = SHMessage()
-//        msg.user = self.myUser
-//        msg.text = ""
-//        msg.createdAt = Int(NSDate().timeIntervalSince1970)
-//        msg.isFromShout = self.isFromShout
-        
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
@@ -697,6 +702,10 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
+        var scrollToEnd = false
+        if let count = self.viewModel?.shMessages.count where count == 0 {
+            scrollToEnd = true
+        }
         self.viewModel?.shMessages = shMessagesMeta.results
         self.viewModel?.jsqMessages.removeAll()
         if let messages = self.viewModel?.shMessages {
@@ -705,6 +714,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             }
         }
         self.collectionView?.reloadData()
+        if let count = self.viewModel?.shMessages.count where scrollToEnd && count > 0 {
+            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: count - 1, inSection: 0), atScrollPosition: .None, animated: false)
+        }
     }
     
     func setStatus(status: String, msg: SHMessage) {

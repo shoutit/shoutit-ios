@@ -101,23 +101,36 @@ class SHMessagesViewModel: NSObject {
 //                }
 //            }
 //        }
+        self.viewController.resetProgress()
+        self.viewController.progressTimer?.invalidate()
+        self.viewController.progressTimer = nil
         if let conversationId = self.viewController.conversationID {
             let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
-            self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, completionHandler: { (response) -> Void in
-                switch(response.result) {
+            self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+                if let progressView = self.viewController.progress {
+                    var p = progressView.progress
+                    if(progressView.progress < 0.5) {
+                        p += 0.1
+                    } else if (progressView.progress < 0.8) {
+                        p += 0.02
+                    }
+                    self.viewController.progress?.setProgress(p, animated: true)
+                }
+                }, completionHandler: { (response) -> Void in
+                    switch(response.result) {
                     case .Success:
-                       // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     case .Failure(let error):
-                       // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentAlert()
-                       // self.failedToSendMessages.append(msg)
+                        // self.failedToSendMessages.append(msg)
                         log.error("Error sending the message \(error.localizedDescription)")
-                }
+                    }
             })
         }
         
