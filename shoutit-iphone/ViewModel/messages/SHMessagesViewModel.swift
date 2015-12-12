@@ -489,18 +489,6 @@ class SHMessagesViewModel: NSObject {
                                 self.jsqMessages.append(shoutMessage)
                             }
                         }
-                    } else if let images = (attachment as? SHImageAttachment)?.images {
-                        for imageUrl in images {
-                            let media = SHImageMediaItem()
-                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-                            if let user = message.user {
-                                let shoutMessage = JSQMessage(senderId: user.username,
-                                    displayName: user.name,
-                                    media: media)
-                                media.imageURL = imageUrl
-                                self.jsqMessages.append(shoutMessage)
-                            }
-                        }
                     }
                 } else if(attachment.isKindOfClass(SHVideoAttachment)) {
                     let videos = (attachment as! SHVideoAttachment).videos
