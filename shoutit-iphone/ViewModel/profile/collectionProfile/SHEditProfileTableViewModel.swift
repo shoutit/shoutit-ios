@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DAProgressOverlayView
 
 class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
 
@@ -121,19 +122,39 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
     }
     
     func didCameraFinish(image: UIImage) {
-        let media = SHMedia()
-        media.isVideo = false
-        media.image = image
-        
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let hud = DAProgressOverlayView(frame: self.viewController.profileImageView.bounds)
+            self.viewController.profileImageView.addSubview(hud)
             if let username = self.viewController.user?.username {
-                self.shApiUser.changeUserImage(username, media: media, completionHandler: { (response) -> Void in
-                    switch(response.result) {
-                    case .Success( _):
-                        log.verbose("Image updated")
-                    case .Failure(let error):
-                        log.error("Error uploading Image \(error.localizedDescription)")
-                    }
+                self.shApiUser.changeUserImage(username, image: image, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let progress = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend * 100)
+                        if(progress < 0.999) {
+                            hud.progress = progress
+                        } else {
+                            hud.progress = 0.999
+                        }
+                    })}
+                    , completionHandler: { (response) -> Void in
+                        switch(response.result) {
+                        case .Success( _):
+                            log.verbose("Image updated")
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                hud.removeFromSuperview()
+                                if let profileImageView = self.viewController.profileImageView {
+                                    profileImageView.image = image
+                                }
+                                if let bluredImageView = self.viewController.bluredImageView {
+                                    bluredImageView.image = image
+                                }
+                            })
+                        case .Failure(let error):
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                hud.removeFromSuperview()
+                            })
+                            log.error("Error uploading Image \(error.localizedDescription)")
+                        }
+                        
                 })
             }
         }

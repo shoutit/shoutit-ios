@@ -38,18 +38,18 @@ class SHApiUserService: NSObject {
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func changeUserImage(username: String, media: SHMedia, completionHandler: Response<SHMedia, NSError> -> Void) {
+    func changeUserImage(username: String, image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil, completionHandler: Response<SHMedia, NSError> -> Void) {
         var tasks: [AWSTask] = []
         let aws = SHAmazonAWS()
-        if let image = media.image, let task = aws.getUserImageTask(image) {
+        if let task = aws.getUserImageTask(image, progress: progress) {
             tasks.append(task)
-        }
+        } 
         
         NetworkActivityManager.addActivity()
         BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
             let urlString = String(format: self.USERS_URL_NAME, arguments: [username])
-            let params = ["image" : aws.images]
+            let params = ["image" : aws.images[0].URLString]
             SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
             return nil
         }

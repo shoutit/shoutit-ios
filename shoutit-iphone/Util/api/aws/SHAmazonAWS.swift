@@ -42,9 +42,13 @@ class SHAmazonAWS: NSObject {
         })
     }
     
-    func getUserImageTask(image: UIImage) -> AWSTask? {
+    func getUserImageTask(image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
         let filePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(generateKeyWithExtenstion("jpg"))
-        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET)
+        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET, progress: progress)?.continueWithSuccessBlock({ (task) -> AnyObject! in
+            self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_USER_URL, (filePath as NSString).lastPathComponent))
+            return nil
+        })
+       // return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET)
     }
     
     func getVideoUploadTasks(videoUrl: NSURL, image: UIImage) -> [AWSTask] {

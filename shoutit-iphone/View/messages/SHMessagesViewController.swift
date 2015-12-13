@@ -712,10 +712,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             for (_, shMessage) in messages.enumerate() {
                 self.viewModel?.addMessageFrom(shMessage)
             }
+            self.automaticallyScrollsToMostRecentMessage = true
         }
         self.collectionView?.reloadData()
-        if let count = self.viewModel?.shMessages.count where scrollToEnd && count > 0 {
-            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: count - 1, inSection: 0), atScrollPosition: .None, animated: false)
+        if(self.automaticallyScrollsToMostRecentMessage) {
+            self.scrollToBottomAnimated(true)
         }
     }
     
