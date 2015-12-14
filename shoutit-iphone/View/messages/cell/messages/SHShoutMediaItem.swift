@@ -27,7 +27,7 @@ class SHShoutMediaItem: JSQMediaItem {
                 (view.viewWithTag(3) as? UILabel)?.text = self.shout?.text
                 
                 if let currency = self.shout?.currency, let price = self.shout?.price {
-                    let price = String(format: "%@ %@", arguments: [currency, price])
+                    let price = String(format: "%@ %g", arguments: [currency, price])
                     (view.viewWithTag(4) as? UILabel)?.text = price
                 }
                 view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)

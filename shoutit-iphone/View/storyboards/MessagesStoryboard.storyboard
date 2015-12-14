@@ -183,7 +183,7 @@
         <!--Map Detatil View Controller-->
         <scene sceneID="jy3-mj-soY">
             <objects>
-                <viewController storyboardIdentifier="SHMapDetatilViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cHn-sp-JVf" customClass="SHMapDetatilViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHMapDetatilViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cHn-sp-JVf" customClass="SHMapDetatilViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y0J-BO-3Lw"/>
                         <viewControllerLayoutGuide type="bottom" id="3jE-fw-aen"/>
@@ -212,7 +212,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="mapView" destination="Oes-tF-8q5" id="5yq-0s-FcM"/>
+                        <outlet property="mapView" destination="Oes-tF-8q5" id="QSE-YY-zIP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVl-GD-Lre" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -81,6 +81,7 @@ class SHShoutPickerTableViewModel: NSObject, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.viewController.delegate?.didFinishSelect(self.shouts[indexPath.row])
         self.viewController.navigationController?.popViewControllerAnimated(true)
     }
     

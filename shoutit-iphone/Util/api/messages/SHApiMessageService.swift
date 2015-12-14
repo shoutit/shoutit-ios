@@ -70,12 +70,14 @@ class SHApiMessageService: NSObject {
     }
     
     func sendShout(shout: SHShout, conversationId: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
-        let urlString = String(format: CONVERSATIONS, arguments: [conversationId])
+        let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationId])
         var params = [String: AnyObject]()
-        params = dictForAttachments([shout])
+        //params = dictForAttachments([shout])
+        params = Mapper().toJSON(shout)
         if(!localId.isEmpty) {
             params["client_id"] = localId
         }
+        
         SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
     }
     
@@ -117,20 +119,40 @@ class SHApiMessageService: NSObject {
         }
     }
     
-    func composeVideo(video: SHMedia, shoutID: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+    func composeVideo(video: SHMedia, shoutID: String, progress: AWSNetworkingDownloadProgressBlock? = nil, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let urlString = self.composeURLForShoutID(shoutID)
         var params = [String: AnyObject]()
+        
+        
         params["attachments"] = ["videos": [video]]
         SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
     }
     
-    func sendVideo(video: SHMedia, conversationID: String, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+    func sendVideo(video: SHMedia, conversationID: String, progress: AWSNetworkingDownloadProgressBlock? = nil, localId: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
         let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationID])
-//        NSDictionary* vDict = [video dictionary];
-//        if(!vDict)
-//        return;
+        var params = [String: AnyObject]()
+        if(!localId.isEmpty) {
+            params["client_id"] = localId
+        }
         
-        
+        var tasks: [AWSTask] = []
+        let aws = SHAmazonAWS()
+        if let url = video.localUrl, let thumbImage = video.localThumbImage {
+            let task = aws.getVideoUploadTasks(url, image: thumbImage)
+            tasks += task
+        }
+        NetworkActivityManager.addActivity()
+        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+            NetworkActivityManager.removeActivity()
+            params["attachments"] = [["videos": ["url" : aws.videos[0].url,
+                "thumbnail_url" : aws.videos[0].thumbnailUrl,
+                "provider" : aws.videos[0].provider,
+                "id_on_provider" : aws.videos[0].idOnProvider,
+                "duration" : aws.videos[0].duration ]]]
+            //params["attachments"] = [["videos": [aws.videos[0]]]]
+            SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+            return nil
+        }
     }
     
     // Private
@@ -151,8 +173,10 @@ class SHApiMessageService: NSObject {
         for obj in array {
             var objDict = [String: AnyObject]()
             if(obj.isKindOfClass(SHShout)) {
-                objDict["shout"] = obj
-                objArray.append(objDict)
+                if let shoutId = (obj as! SHShout).id {
+                    objDict["shout"] = ["id" : [(shoutId)]]
+                    objArray.append(objDict)
+                }
             } else if(obj.isKindOfClass(CLLocation)) {
                 if let loc = obj as? CLLocation {
                     var coordinatesDict = [String: AnyObject]()

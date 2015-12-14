@@ -11,8 +11,9 @@ import JSQMessagesViewController
 import URBMediaFocusViewController
 import SDWebImage
 import MWPhotoBrowser
+import AVKit
 
-class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate, SHCameraViewControllerDelegate, SHShoutPickerTableViewControllerDelegate {
+class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate, SHCameraViewControllerDelegate, SHShoutPickerTableViewControllerDelegate, AVPlayerViewControllerDelegate {
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     var isFromShout = false
@@ -59,8 +60,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.automaticallyScrollsToMostRecentMessage = true
         self.refreshIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
         self.refreshIndicatorView?.startAnimating()
-//        let cellNib = UINib(nibName: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell, bundle: nil)
-//        self.collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHMessageShoutOutgoingCollectionViewCell)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("tapTitleAction"))
         let titleLabel = UILabel()
@@ -526,38 +525,58 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     self.navigationController?.pushViewController(detailView, animated: true)
                 }
             } else if(message.media.isKindOfClass(SHLocationMediaItem)) {
-                let location = (message.media as? SHLocationMediaItem)?.location
-                //                [SHMapDetatilViewController presentFromViewController:self withLocationCoordinates:location shout:self.shout];
+                if let location = (message.media as? SHLocationMediaItem)?.location {
+                    let vc = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMAPDETAIL) as! SHMapDetatilViewController
+                    let navController = UINavigationController(rootViewController: vc)
+                    navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                    navController.navigationBar.tintColor = UIColor.whiteColor()
+                    self.presentViewController(navController, animated: true, completion: nil)
+                    vc.location = location
+                    vc.shout = shout
+//                     SHMapDetatilViewController.presentFromViewController(self, location: location, shout: shout)
+                }
             } else if(message.media.isKindOfClass(SHImageMediaItem)) {
-                let item = message.media as? SHImageMediaItem
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    var browser = MWPhotoBrowser()
-                    browser.displayActionButton = false
-                    browser.displayNavArrows = false
-                    browser.displaySelectionButtons = false
-                    browser.zoomPhotosToFill = true
-                    browser.alwaysShowControls = false
-                    browser.enableGrid = true
-                    browser.startOnGrid = false
-                    browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
-                    browser.navigationController?.navigationBar.opaque = false
-                    let transition = CATransition()
-                    transition.duration = 0.3
-                    transition.type = kCATransitionFade
-                    transition.subtype = kCATransitionFromTop
-                    self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-                    self.navigationController?.pushViewController(browser, animated: true)
-                    browser = MWPhotoBrowser()
-                })
+                if let item = message.media as? SHImageMediaItem {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        var browser = MWPhotoBrowser()
+                        browser.displayActionButton = false
+                        browser.displayNavArrows = false
+                        browser.displaySelectionButtons = false
+                        browser.zoomPhotosToFill = true
+                        browser.alwaysShowControls = false
+                        browser.enableGrid = true
+                        browser.startOnGrid = false
+                        browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                        browser.navigationController?.navigationBar.opaque = false
+                        let transition = CATransition()
+                        transition.duration = 0.3
+                        transition.type = kCATransitionFade
+                        transition.subtype = kCATransitionFromTop
+                        self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+                        self.navigationController?.pushViewController(browser, animated: true)
+                        browser = MWPhotoBrowser()
+                    })
+                }
                 
             } else if(message.media.isKindOfClass(SHVideoMediaItem)) {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let item = (message.media as!  SHVideoMediaItem)
-                    if let videoUrl = item.video?.localUrl {
-                        let player = AVPlayer(URL: videoUrl)
-                        
-                    } else {
-                        SHProgressHUD.show(NSLocalizedString("Video is not available", comment: "Video is not available"), maskType: .Black)
+                    if let item = (message.media as?  SHVideoMediaItem) {
+                        if let videoLocalUrl = item.video?.localUrl {
+                            let player = AVPlayer(URL: videoLocalUrl)
+                            let viewC = AVPlayerViewController()
+                            viewC.player = player
+                            viewC.player?.play()
+                            self.navigationController?.presentViewController(viewC, animated: true, completion: nil)
+                        } else if let videoUrl = item.video?.url, let url = NSURL(string: videoUrl) {
+                            let player = AVPlayer(URL: url)
+                            let viewC = AVPlayerViewController()
+                            viewC.player = player
+                            viewC.player?.play()
+                            self.navigationController?.presentViewController(viewC, animated: true, completion: nil)
+                            
+                        } else {
+                            SHProgressHUD.show(NSLocalizedString("Video is not available", comment: "Video is not available"), maskType: .Black)
+                        }
                     }
                 })
             }
@@ -601,10 +620,16 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             msg.text = ""
             msg.createdAt = Int(NSDate().timeIntervalSince1970)
             msg.isFromShout = self.isFromShout
-            if let shout = self.shout {
-                //  msg.attachments["shout"] = shout
-            }
+            //msg.attachments.append(shout)
             msg.status = Constants.MessagesStatus.kStatusPending
+            
+            let shoutAttachment = SHShoutAttachment()
+            shoutAttachment.shout = shout
+            msg.attachments.append(shoutAttachment)
+            msg.status = Constants.MessagesStatus.kStatusPending
+//            self.viewModel?.shMessages.append(msg)
+//            self.viewModel?.addMessageFrom(msg)
+//            self.finishSendingMessage()
             
             if(self.isFromShout) {
                 if let shout = self.shout, let id = shout.id {
@@ -637,9 +662,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                             self.collectionView?.reloadData()
                             self.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                            self.viewModel?.shMessages.append(msg)
-                            self.viewModel?.addMessageFrom(msg)
-                            self.finishSendingMessage()
                         case .Failure(let error):
                             self.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                             self.collectionView?.reloadData()
@@ -649,6 +671,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                             log.error("Error sending shout: \(error.localizedDescription)")
                         }
                     })
+                    self.viewModel?.shMessages.append(msg)
+                    self.viewModel?.addMessageFrom(msg)
+                    self.finishSendingMessage()
                 }
             }
             
@@ -679,26 +704,27 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
+        self.startProgress()
+        let msg = SHMessage()
+        msg.user = self.myUser
+        msg.text = ""
+        msg.createdAt = Int(NSDate().timeIntervalSince1970)
+        msg.isFromShout = self.isFromShout
+
         let media = SHMedia()
         media.isVideo = true
         media.upload = true
         media.localUrl = tempVideoFileURL
         media.localThumbImage = thumbnailImage
         self.media.append(media)
-        self.collectionView?.reloadData()
-//        self.startProgress()
-//        let msg = SHMessage()
-//        msg.user = self.myUser
-//        msg.text = ""
-//        msg.createdAt = Int(NSDate().timeIntervalSince1970)
-//        msg.isFromShout = self.isFromShout
-//        // [msg addVideoAttachment:tempVideoFileURL thumbImage:thumbImage];
-//        
-//        msg.status = Constants.MessagesStatus.kStatusPending
-//        self.viewModel?.shMessages.append(msg)
-//        self.viewModel?.addMessageFrom(msg)
-//        self.finishSendingMessage()
-//        self.viewModel?.cameraFinishWithVideoFile(msg)
+        let videoAttachment = SHVideoAttachment()
+        videoAttachment.videos.append(media)
+        msg.attachments.append(videoAttachment)
+        msg.status = Constants.MessagesStatus.kStatusPending
+        self.viewModel?.shMessages.append(msg)
+        self.viewModel?.addMessageFrom(msg)
+        self.finishSendingMessage()
+        self.viewModel?.cameraFinishWithVideoFile(media)
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
