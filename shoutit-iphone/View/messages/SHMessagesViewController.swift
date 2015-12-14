@@ -627,9 +627,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             shoutAttachment.shout = shout
             msg.attachments.append(shoutAttachment)
             msg.status = Constants.MessagesStatus.kStatusPending
-//            self.viewModel?.shMessages.append(msg)
-//            self.viewModel?.addMessageFrom(msg)
-//            self.finishSendingMessage()
             
             if(self.isFromShout) {
                 if let shout = self.shout, let id = shout.id {

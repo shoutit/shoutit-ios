@@ -31,7 +31,7 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.setPullToRefresh()
+       // self.setPullToRefresh()
         viewModel?.viewWillAppear()
     }
     

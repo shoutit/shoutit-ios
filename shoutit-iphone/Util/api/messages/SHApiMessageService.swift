@@ -73,11 +73,14 @@ class SHApiMessageService: NSObject {
         let urlString = String(format: CONVERSATIONS + "/%@" + "/reply", arguments: [conversationId])
         var params = [String: AnyObject]()
         //params = dictForAttachments([shout])
-        params = Mapper().toJSON(shout)
+       // params = Mapper().toJSON(shout)
         if(!localId.isEmpty) {
             params["client_id"] = localId
         }
-        
+       // params["attachments"] = [["shout" : ["id": shout.id]]]
+        if let shoutId = shout.id {
+            params["attachments"] = [["shout" : ["id" : shoutId]]]
+        }
         SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
     }
     

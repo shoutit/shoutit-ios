@@ -486,22 +486,31 @@ class SHMessagesViewModel: NSObject {
                             self.jsqMessages.append(shoutMessage)
                         }
                     }
-                } else if(attachment.isKindOfClass(SHShoutAttachment)) {
-                    if let shoutAttachment = attachment as? SHShoutAttachment {
+                } else if json["shout"].count > 0 {
+                   // for (_, shout) in json["shout"]{
                         let mediaItem = SHShoutMediaItem()
                         mediaItem.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-                        
+                        let newShout = SHShout()
+                        newShout.apiUrl = json["shout"]["api_url"].stringValue
+                        newShout.currency = json["shout"]["currency"].stringValue
+                        newShout.price = json["shout"]["price"].doubleValue
+                        newShout.text = json["shout"]["text"].stringValue
+                        newShout.thumbnail = json["shout"]["thumbnail"].stringValue
+                        newShout.title = json["shout"]["title"].stringValue
+                        newShout.videoUrl = json["shout"]["videoUrl"].stringValue
+                        newShout.id = json["shout"]["id"].stringValue
+                        mediaItem.shout = newShout
                         let shoutMessage = JSQMessage(senderId: message.user?.username,
                             displayName: message.user?.name,
                             media: mediaItem)
-                        mediaItem.shout = shoutAttachment.shout
                         self.jsqMessages.append(shoutMessage)
-                    }
-                } else if(attachment.isKindOfClass(SHLocationAttachment)) {
-                    if let longitude = SHAddress.getUserOrDeviceLocation()?.longitude, let latitude = SHAddress.getUserOrDeviceLocation()?.latitude {
+                   // }
+                } else if json["location"].count > 0 {
+                    let longitude = json["location"]["longitude"].floatValue
+                    let latitude = json["location"]["latitude"].floatValue
                         let media = SHLocationMediaItem()
                         media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
-                            self.viewController.collectionView?.reloadData()
+                            // Do Nothing
                         })
                         
                         if let user = message.user {
@@ -510,7 +519,7 @@ class SHMessagesViewModel: NSObject {
                                 media: media)
                             self.jsqMessages.append(locationMessage)
                         }
-                    }
+                    self.viewController.collectionView?.reloadData()
                 }
                 
 //                 if json["location"].count > 0 {
@@ -554,34 +563,34 @@ class SHMessagesViewModel: NSObject {
 //                            }
 //                        }
                 
-                 else if(attachment.isKindOfClass(SHImageAttachment)) {
-                    if let localImages = (attachment as? SHImageAttachment)?.localImages {
-                        for image in localImages {
-                            let media = SHImageMediaItem()
-                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-                            if let user = message.user {
-                                let shoutMessage = JSQMessage(senderId: user.username,
-                                    displayName: user.name,
-                                    media: media)
-                                media.image = image.image
-                                self.jsqMessages.append(shoutMessage)
-                            }
-                        }
-                    }
-                } else if(attachment.isKindOfClass(SHVideoAttachment)) {
-                    let videos = (attachment as! SHVideoAttachment).videos
-                    for video in videos {
-                        let media = SHVideoMediaItem()
-                        media.video = video
-                        //[media setIsOutgoing:[message.user.username isEqualToString:self.myUser.username]];
-                        if let user = message.user {
-                            let shoutMessage = JSQMessage(senderId: user.username,
-                                displayName: user.name,
-                                media: media)
-                            self.jsqMessages.append(shoutMessage)
-                        }
-                    }
-                }
+//                 else if(attachment.isKindOfClass(SHImageAttachment)) {
+//                    if let localImages = (attachment as? SHImageAttachment)?.localImages {
+//                        for image in localImages {
+//                            let media = SHImageMediaItem()
+//                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+//                            if let user = message.user {
+//                                let shoutMessage = JSQMessage(senderId: user.username,
+//                                    displayName: user.name,
+//                                    media: media)
+//                                media.image = image.image
+//                                self.jsqMessages.append(shoutMessage)
+//                            }
+//                        }
+//                    }
+//                } else if(attachment.isKindOfClass(SHVideoAttachment)) {
+//                    let videos = (attachment as! SHVideoAttachment).videos
+//                    for video in videos {
+//                        let media = SHVideoMediaItem()
+//                        media.video = video
+//                        //[media setIsOutgoing:[message.user.username isEqualToString:self.myUser.username]];
+//                        if let user = message.user {
+//                            let shoutMessage = JSQMessage(senderId: user.username,
+//                                displayName: user.name,
+//                                media: media)
+//                            self.jsqMessages.append(shoutMessage)
+//                        }
+//                    }
+//                }
             }
         } else {
             if let user = message.user, let createdAt = message.createdAt {
