@@ -12,6 +12,7 @@ import SDWebImage
 import MWPhotoBrowser
 import SwiftyJSON
 import SVProgressHUD
+import ObjectMapper
 
 class SHMessagesViewModel: NSObject {
 
@@ -142,7 +143,7 @@ class SHMessagesViewModel: NSObject {
     }
     
     func cameraFinishWithVideoFile(media: SHMedia) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             //SHAmazonAWS uploadVideo:tempVideoFileURL thumbImage:thumbImage progress:^(float progress)
 //            let video = SHMedia()
 //            if(self.viewController.isFromShout) {
@@ -203,7 +204,7 @@ class SHMessagesViewModel: NSObject {
                         
                 })
             }
-        }
+//        }
     }
     
 
@@ -468,14 +469,20 @@ class SHMessagesViewModel: NSObject {
                         }
                     }
                 } else if json["videos"].count > 0 {
-                    for (_, url) in json["videos"] {
+                    for (_, videoJSON) in json["videos"] {
                         let media = SHVideoMediaItem()
                        // media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
                         if let user = message.user {
+                            let video = SHMedia()
+                            video.duration = videoJSON["duration"].intValue
+                            video.thumbnailUrl = videoJSON["thumbnail_url"].stringValue
+                            video.provider = videoJSON["provider"].stringValue
+                            video.idOnProvider = videoJSON["id_on_provider"].stringValue
+                            video.url = videoJSON["url"].stringValue
+                            media.video = video
                             let shoutMessage = JSQMessage(senderId: user.username,
                                 displayName: user.name,
                                 media: media)
-                           // media.video = url
                             self.jsqMessages.append(shoutMessage)
                         }
                     }
