@@ -173,3 +173,94 @@
 
 /* Tell us what is wrong */
 "Tell us what is wrong" = "Tell us what is wrong";
+
+/* Delivered */
+"Delivered" = "Delivered";
+
+/* Sent */
+"Sent" = "Sent";
+
+/* Pending */
+"Pending" = "Pending";
+
+/* Failed */
+"Failed" = "Failed";
+
+/* Photo or Video */
+"Photo or Video" = "Photo or Video";
+
+/* Select a Shout */
+"Select a Shout" = "Select a Shout";
+
+/* My Location */
+"My Location" = "My Location";
+
+/* Shout Location */
+"Shout Location" = "Shout Location";
+
+/* Your message was sent successfully */
+"Your message was sent successfully" = "Your message was sent successfully";
+
+/* Conversations */
+"Conversations" = "Conversations";
+
+/* Conversation */
+"Conversation" = "Conversation";
+
+/* online */
+"online" = "online";
+
+/* offline */
+"offline" = "offline";
+
+/* Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30 */
+"Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30" = "Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30";
+
+/* First name charaters limit should be come between 2-30 */
+"First name charaters limit should be come between 2-30" = "First name charaters limit should be come between 2-30";
+
+/* Last name charaters limit should be come between 1-30 */
+"Last name charaters limit should be come between 1-30" = "Last name charaters limit should be come between 1-30";
+
+/* First name not set */
+"First name not set" = "First name not set";
+
+/* Please enter firstname. */
+"Please enter firstname." = "Please enter firstname.";
+
+/* Last name not set */
+"Last name not set" = "Last name not set";
+
+/* Please enter lastname. */
+"Please enter lastname." = "Please enter lastname.";
+
+/* Username not set */
+"Username not set" = "Username not set";
+
+/* Please enter username. */
+"Please enter username." = "Please enter username.";
+
+/* Gender not set */
+"Gender not set" = "Gender not set";
+
+/* Please select the gender. */
+"Please select the gender." = "Please select the gender.";
+
+/* Updating User */
+"Updating User" = "Updating User";
+
+/* User succesfully updated */
+"User succesfully updated" = "User succesfully updated";
+
+/* You cannot send an email from the app */
+"You cannot send an email from the app" = "You cannot send an email from the app";
+
+/* Check out ShoutIT app, http://www.shoutit.com */
+"Check out ShoutIT app, http://www.shoutit.com" = "Check out ShoutIT app, http://www.shoutit.com";
+
+/* User */
+"User" = "User";
+
+/* Users */
+"Users" = "Users";
+

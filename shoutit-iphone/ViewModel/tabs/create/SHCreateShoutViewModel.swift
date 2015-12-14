@@ -143,6 +143,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
 //        }
         
         setUpTagList()
+        
+        if let isViewSetup = self.viewController.isViewSetUp {
+            self.setupViewForStandard(isViewSetup)
+        }
     }
     
     func viewWillAppear() {
@@ -735,7 +739,35 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return false
     }
     
-    private func setupViewForStandard(standard: Bool) {
+    private func trackCreateShoutWithAnswers(shout: SHShout) {
+        let country: String
+        let city: String
+        if let location = shout.location {
+            country = location.country
+            city = location.city
+        } else {
+            country = ""
+            city = ""
+        }
+        
+        let categoryName: String
+        if let category = shout.category {
+            categoryName = category.name
+        } else {
+            categoryName = ""
+        }
+        
+        Answers.logCustomEventWithName("Create Shout", customAttributes: [
+            "Type": shout.type.rawValue,
+            "Country": country,
+            "City": city,
+            "Category": categoryName,
+            "Images": shout.images.count,
+            "Videos": shout.videos.count
+            ])
+    }
+    
+    func setupViewForStandard(standard: Bool) {
         if standard {
             // get categories from cache
             if self.categories.count == 0 {
@@ -822,34 +854,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             
             self.viewController.segmentControl.selectedSegmentIndex = self.viewController.segmentControl.numberOfSegments - 1
             self.isVideoCV = true
+            self.shout.type = .VideoCV
         }
-    }
-    
-    private func trackCreateShoutWithAnswers(shout: SHShout) {
-        let country: String
-        let city: String
-        if let location = shout.location {
-            country = location.country
-            city = location.city
-        } else {
-            country = ""
-            city = ""
-        }
-        
-        let categoryName: String
-        if let category = shout.category {
-            categoryName = category.name
-        } else {
-            categoryName = ""
-        }
-        
-        Answers.logCustomEventWithName("Create Shout", customAttributes: [
-            "Type": shout.type.rawValue,
-            "Country": country,
-            "City": city,
-            "Category": categoryName,
-            "Images": shout.images.count,
-            "Videos": shout.videos.count
-            ])
     }
 }

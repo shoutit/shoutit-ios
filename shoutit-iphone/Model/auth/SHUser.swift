@@ -23,6 +23,9 @@ class SHUser: Mappable {
     private(set) var isActivated: Bool?
     private(set) var image: String?
     private(set) var isListening: Bool?
+    private(set) var email: String?
+    private(set) var gender: String?
+    private(set) var linkedAccounts: SHLoginAccounts?
     
     required init?(_ map: Map) {
         
@@ -42,5 +45,8 @@ class SHUser: Mappable {
         isActivated         <- map["is_activated"]
         image               <- map["image"]
         isListening         <- map["is_listening"]
+        email               <- map["email"]
+        gender              <- map["gender"]
+        linkedAccounts      <- map["linked_accounts"]
     }
 }

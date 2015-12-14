@@ -51,6 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SHLocationManager.sharedInstance.startUpdating()
         
+        //UserVoice
+        let config = UVConfig(site: "shoutit.uservoice.com")
+        config.showForum = false
+        config.topicId = 79840
+        config.forumId = 290071
+        UserVoice.initialize(config)
+        
         return true
     }
     

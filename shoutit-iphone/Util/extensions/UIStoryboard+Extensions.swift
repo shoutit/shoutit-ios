@@ -38,4 +38,16 @@ extension UIStoryboard {
         return UIStoryboard(name: "TagStoryboard", bundle: nil)
     }
     
+    static func getProfile() -> UIStoryboard {
+        return UIStoryboard(name: "ProfileStoryboard", bundle: nil)
+    }
+    
+    static func getSettings() -> UIStoryboard {
+        return UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+    }
+    
+    static  func getMessages() -> UIStoryboard {
+        return UIStoryboard(name: "MessagesStoryboard", bundle: nil)
+    }
+    
 }

@@ -128,7 +128,6 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
 //        GIDSignIn.sharedInstance().signOut()
 //    }
     
-    
     deinit {
         viewModel?.destroy()
     }

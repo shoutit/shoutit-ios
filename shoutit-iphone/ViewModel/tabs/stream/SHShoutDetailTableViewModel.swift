@@ -61,6 +61,35 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     func updateDetails() {
         toUpdate = true
     }
+    // ReplyAction
+    func replyAction () {
+        let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
+        messageViewController.isFromShout = true
+        //        [messageViewController setShout:self.shoutModel.shout];
+        messageViewController.shout = self.shoutDetail
+        messageViewController.title = self.viewController.title
+        
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromTop
+        self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        
+        self.viewController.hidesBottomBarWhenPushed = true
+        self.viewController.navigationController?.pushViewController(messageViewController, animated: false)
+        self.viewController.hidesBottomBarWhenPushed = false
+    }
+    
+    // Shout Contact Profile Action
+    func contactProfileAction () {
+        if let shoutUser = self.shoutDetail?.user {
+            if(shoutUser.username != SHOauthToken.getFromCache()?.user?.username) {
+                let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
+                profileViewController.requestUser(shoutUser)
+                self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
+            }
+        }
+    }
     
     // Report Action
     func reportAction() {
