@@ -95,9 +95,12 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHConversationTableViewCell, forIndexPath: indexPath) as! SHConversationTableViewCell
-        cell.setConversation(self.conversations[indexPath.row])
-        return cell
+        if self.conversations.count > 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHConversationTableViewCell, forIndexPath: indexPath) as! SHConversationTableViewCell
+            cell.setConversation(self.conversations[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -148,14 +151,16 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         self.viewController.loadMoreView.showNoMoreContent()
         self.conversations = []
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-           // self.viewController.tableView.reloadData()
-            self.viewController.updateFooterView()
+            self.viewController.tableView.reloadData()
+            self.updateFooterView()
             self.updateBottomNumber() 
             self.lastTimeStamp = Int(NSDate().timeIntervalSince1970)
             self.lastTimeStamp += 10
             self.shApiConversation.loadConversationsForBeforeDate(self.lastTimeStamp, cacheResponse: { (shConversationsMeta) -> Void in
                 self.updateUI(shConversationsMeta)
                 }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
+                    self.viewController.tableView.infiniteScrollingView.stopAnimating()
                     switch(response.result) {
                         case .Success(let result):
                             self.updateUI(result)
@@ -167,12 +172,12 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     }
     
     private func updateUI (conversationsMeta: SHConversationsMeta) {
-        if(conversationsMeta.results.count > 0) {
-            self.conversations = conversationsMeta.results
-            self.viewController.tableView.reloadData()
-        }
+        
+        self.conversations = conversationsMeta.results
+        self.viewController.tableView.reloadData()
+        
         self.updateBottomNumber()
-        self.viewController.updateFooterView()
+        self.updateFooterView()
     }
     
     private func updateBottomNumber () {
@@ -180,6 +185,14 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
             self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversation", comment: "Conversation")])
         } else {
             self.viewController.loadMoreView.loadingLabel.text = String(format: "%lu %@", arguments: [self.conversations.count, NSLocalizedString("Conversations", comment: "Conversations")])
+        }
+    }
+    
+    private func updateFooterView() {
+        if(self.conversations.count == 0) {
+            self.viewController.tableView.tableFooterView = self.viewController.emptyContentView
+        } else {
+            self.viewController.tableView.tableFooterView = self.viewController.loadMoreView
         }
     }
 }
