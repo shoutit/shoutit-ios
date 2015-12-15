@@ -356,6 +356,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         let tabViewController = SHTabViewController()
+                        tabViewController.selectedIndex = 1
                         self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
                     })
                 } else {

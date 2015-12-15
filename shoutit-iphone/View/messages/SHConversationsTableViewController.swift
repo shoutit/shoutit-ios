@@ -17,6 +17,7 @@ class SHConversationsTableViewController: BaseTableViewController {
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         self.clearsSelectionOnViewWillAppear = true
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -31,7 +32,6 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-       // self.setPullToRefresh()
         viewModel?.viewWillAppear()
     }
     

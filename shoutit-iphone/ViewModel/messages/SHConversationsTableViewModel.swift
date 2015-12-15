@@ -169,9 +169,10 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     private func updateUI (conversationsMeta: SHConversationsMeta) {
         if(conversationsMeta.results.count > 0) {
             self.conversations = conversationsMeta.results
-            updateBottomNumber()
             self.viewController.tableView.reloadData()
         }
+        self.updateBottomNumber()
+        self.viewController.updateFooterView()
     }
     
     private func updateBottomNumber () {
