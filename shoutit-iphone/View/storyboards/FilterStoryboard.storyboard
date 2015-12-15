@@ -377,7 +377,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yib-j9-31B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641" y="423"/>
+            <point key="canvasLocation" x="639" y="414"/>
         </scene>
         <!--Filter Price Table View Controller-->
         <scene sceneID="XOv-l3-UJa">
