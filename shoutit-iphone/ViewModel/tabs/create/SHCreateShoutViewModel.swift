@@ -245,8 +245,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     func cleanForms() {
         self.viewController.titleTextField.text = ""
         self.viewController.categoriesTextField.text =  ""
-        self.shout.tags?.removeAll()
-        self.shout.stringTags.removeAll()
+       // self.shout.tags?.removeAll()
+       // self.shout.stringTags.removeAll()
         self.viewController.tagsList.setTags(self.shout.stringTags)
         self.viewController.descriptionTextView.text = ""
         self.viewController.priceTextField.text = ""
