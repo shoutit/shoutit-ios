@@ -65,7 +65,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     func replyAction () {
         let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
         messageViewController.isFromShout = true
-        //        [messageViewController setShout:self.shoutModel.shout];
+//      [messageViewController setShout:self.shoutModel.shout];
         messageViewController.shout = self.shoutDetail
         messageViewController.title = self.viewController.title
         
@@ -74,10 +74,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         transition.type = kCATransitionMoveIn
         transition.subtype = kCATransitionFromTop
         self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-        
-        self.viewController.hidesBottomBarWhenPushed = true
         self.viewController.navigationController?.pushViewController(messageViewController, animated: false)
-        self.viewController.hidesBottomBarWhenPushed = false
     }
     
     // Shout Contact Profile Action
