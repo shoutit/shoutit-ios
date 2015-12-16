@@ -538,7 +538,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             } else if(message.media.isKindOfClass(SHImageMediaItem)) {
                 if let item = message.media as? SHImageMediaItem {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        var browser = MWPhotoBrowser()
+                        var browser = MWPhotoBrowser(delegate: item)
                         browser.displayActionButton = false
                         browser.displayNavArrows = false
                         browser.displaySelectionButtons = false
@@ -554,7 +554,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         transition.subtype = kCATransitionFromTop
                         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
                         self.navigationController?.pushViewController(browser, animated: true)
-                        browser = MWPhotoBrowser()
+                        browser = nil
                     })
                 }
                 

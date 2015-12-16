@@ -144,7 +144,9 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                     oauthToken.logOut()
                 }
                 let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC) as! SHLoginViewController
-                self.viewController.presentViewController(vc, animated: true, completion: nil)
+//                self.viewController.presentViewController(vc, animated: true, completion: nil)
+                self.viewController.parentViewController?.navigationController?.popToViewController(vc, animated: true)
+
             }))
             self.viewController.presentViewController(ac, animated: true, completion: nil)
         }
