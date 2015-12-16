@@ -35,6 +35,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("profileVideoCV:"), name:"ProfileVideoCV", object: nil)
         if isEditing {
             self.setupViewForStandard(true)
         }
@@ -149,6 +150,13 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         }
     }
     
+    func profileVideoCV(notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        self.setupViewForStandard(false)
+    }
+    
     func viewWillAppear() {
         
     }
@@ -166,7 +174,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func segmentAction() {

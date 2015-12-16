@@ -41,7 +41,6 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
         self.tableView.delegate = viewModel

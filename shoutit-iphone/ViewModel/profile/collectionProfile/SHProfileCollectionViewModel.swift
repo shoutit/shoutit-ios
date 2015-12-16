@@ -142,9 +142,10 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func didPressCvShortcutButtonButton(button: UIButton) {
-        let shCreate = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT) as! SHCreateShoutTableViewController
-        shCreate.isViewSetUp = false
-        self.viewController.navigationController?.pushViewController(shCreate, animated: true)
+        let tabVC = SHTabViewController()
+        tabVC.selectedIndex = 0
+        self.viewController.presentViewController(tabVC, animated: true, completion: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("ProfileVideoCV", object: false)
     }
     
     // Private
