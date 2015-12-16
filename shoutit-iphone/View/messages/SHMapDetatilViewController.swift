@@ -51,7 +51,7 @@ class SHMapDetatilViewController: UIViewController, UIActionSheetDelegate, MKMap
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if let coordinate = self.location?.coordinate {
-            if(buttonIndex == 0) {
+            if(buttonIndex == 1) {
                 let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
                 let mapItem = MKMapItem(placemark: placemark)
                 mapItem.name = self.shout?.title
@@ -59,7 +59,7 @@ class SHMapDetatilViewController: UIViewController, UIActionSheetDelegate, MKMap
                 let launchOption = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
                 let currentLocationMapItem = MKMapItem.mapItemForCurrentLocation()
                 MKMapItem.openMapsWithItems([currentLocationMapItem, mapItem], launchOptions: launchOption)
-            } else if (buttonIndex == 1) {
+            } else if (buttonIndex == 2) {
                 if let url = NSURL(string: String(format: "comgooglemaps://?saddr=&daddr=%f,%f", arguments: [coordinate.latitude, coordinate.longitude])) {
                     if(!UIApplication.sharedApplication().canOpenURL(url)) {
                         SHProgressHUD.showError(NSLocalizedString("Google Maps app is not installed", comment: "Google Maps app is not installed"), maskType: .Black)
