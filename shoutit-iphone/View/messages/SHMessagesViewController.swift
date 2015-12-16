@@ -369,20 +369,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        //        let msg = self.shMessages[indexPath.item]
-        //        if(msg.user == nil) {
-        //            return nil
-        //        }
-        //        let username = msg.user?.username
-        let username = self.viewModel?.jsqMessages[indexPath.item].senderDisplayName
-        // let image = SDImageCache
-        //UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:username];
-        var image = SDImageCache.sharedImageCache().imageFromDiskCacheForKey(username)
-        if (image == nil) {
-            image = UIImage(named: "no_image_available")
+        let imageView = UIImageView()
+        if let imageUrl = self.myUser?.image {
+            imageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "no_image_available"))
         }
-        
-        let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
+        let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(imageView.image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
         return avImage;
         
     }
