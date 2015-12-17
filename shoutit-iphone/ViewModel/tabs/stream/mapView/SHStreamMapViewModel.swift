@@ -78,27 +78,27 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
 //                            annotations.append(SHShoutAnnotation(coordinate: CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(lon)), shout: shout))
 //                        }
 //                    }
-                    
-                    for shAnnotation in self.viewController.mapView.annotations {
-                        if let annotation = shAnnotation as? SHShoutAnnotation {
-                            var isExist = false
-                            if let annShout = annotation.shout {
-                                for (_, shout) in self.shouts.enumerate() {
-                                    if shout.id == annShout.id {
-                                        isExist = true
-                                        sameAnnotations.append(shout)
-                                        break
+                    if let mapView = self.viewController.mapView {
+                        for shAnnotation in mapView.annotations {
+                            if let annotation = shAnnotation as? SHShoutAnnotation {
+                                var isExist = false
+                                if let annShout = annotation.shout {
+                                    for (_, shout) in self.shouts.enumerate() {
+                                        if shout.id == annShout.id {
+                                            isExist = true
+                                            sameAnnotations.append(shout)
+                                            break
+                                        }
                                     }
                                 }
-                            }
-                            if !isExist {
-                                deleteAnnotations.append(annotation)
+                                if !isExist {
+                                    deleteAnnotations.append(annotation)
+                                }
                             }
                         }
-                    }
                     
                     for shout in self.shouts {
-                        for shAnnotation in self.viewController.mapView.annotations {
+                        for shAnnotation in mapView.annotations {
                             var isExist = false
                             if let annotation = shAnnotation as? SHShoutAnnotation {
                                 if let annShout = annotation.shout {
@@ -117,24 +117,24 @@ class SHStreamMapViewModel: NSObject, MKMapViewDelegate {
                                 addAnnotations.append(annotation)
                             }
                         }
-                    }
-                    
-                    self.viewController.mapView.removeAnnotations(deleteAnnotations)
-                    self.viewController.mapView.addAnnotations(addAnnotations)
-                    
-                    if var mapAnnotations = self.viewController.mapView.annotations as? [SHShoutAnnotation] {
-                        for deleteAnnotation in deleteAnnotations {
-                            if let index = mapAnnotations.indexOf(deleteAnnotation) {
-                                mapAnnotations.removeAtIndex(index)
+                        }
+                        mapView.removeAnnotations(deleteAnnotations)
+                        mapView.addAnnotations(addAnnotations)
+                        if var mapAnnotations = mapView.annotations as? [SHShoutAnnotation] {
+                            for deleteAnnotation in deleteAnnotations {
+                                if let index = mapAnnotations.indexOf(deleteAnnotation) {
+                                    mapAnnotations.removeAtIndex(index)
+                                }
+                            }
+                            mapAnnotations += addAnnotations
+                            
+                            if self.isInitial {
+                                self.viewController.mapView.showAnnotations(mapAnnotations, animated: true)
+                                self.isInitial = false
                             }
                         }
-                        mapAnnotations += addAnnotations
-                        
-                        if self.isInitial {
-                            self.viewController.mapView.showAnnotations(mapAnnotations, animated: true)
-                            self.isInitial = false
-                        }
                     }
+        
                 case .Failure(let error):
                     log.error("error getting shouts : \(error.localizedDescription)")
                 }
