@@ -469,6 +469,22 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Title"
+        } else if(section == 1) {
+            return "Media"
+        } else if(section == 2) {
+            return "Details"
+        } else if(section == 3) {
+            return "Description"
+        } else if (section == 4) {
+            return "Price"
+        } else {
+            return "Location"
+        }
+    }
+    
     // MARK - SHCreateImageCollectionViewCellDelegate
     func removeImage(image: UIImage) {
         if let index = self.media.indexOf({
