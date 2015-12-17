@@ -143,7 +143,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             if (self.viewController.streamType == StreamType.Tag) {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHStreamTagTableViewCell, forIndexPath: indexPath) as! SHStreamTagTableViewCell
                 cell.setTagCellWithName(self.viewController.tagName!)
                 self.viewController.searchBar.hidden = true
                 let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
@@ -204,7 +204,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         let shout: SHShout
         if (self.viewController.streamType == StreamType.Tag) {
             if indexPath.row == 0 {
-                return 44
+                return 100
             }
             shout = self.viewController.shouts[indexPath.row - 1]
         } else {

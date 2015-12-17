@@ -8,11 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHStreamTagTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SHStreamTagTableViewCell" rowHeight="80" id="KGk-i7-Jjw" userLabel="SHStreamTagTableViewCell" customClass="SHStreamTagTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHStreamTagTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SHStreamTagTableViewCell" rowHeight="100" id="KGk-i7-Jjw" customClass="SHStreamTagTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C7-OT-acQ">
@@ -51,6 +51,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eyZ-IK-EZb" firstAttribute="centerY" secondItem="gRB-c2-15I" secondAttribute="centerY" id="4dE-Nw-gJe"/>
+                            <constraint firstAttribute="height" constant="31" id="9jz-QD-MRj"/>
                             <constraint firstItem="gRB-c2-15I" firstAttribute="top" secondItem="j3d-ge-caX" secondAttribute="top" id="Dqo-ms-WPg"/>
                             <constraint firstAttribute="trailing" secondItem="gRB-c2-15I" secondAttribute="trailing" constant="53" id="Ekg-iR-xIe"/>
                             <constraint firstAttribute="bottom" secondItem="gRB-c2-15I" secondAttribute="bottom" id="Emd-CH-0Ej"/>
@@ -64,11 +65,12 @@
                             <mask key="constraints">
                                 <exclude reference="Emd-CH-0Ej"/>
                                 <exclude reference="K8V-G7-7mb"/>
+                                <exclude reference="ftY-2Q-4NT"/>
                             </mask>
                         </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NV-ln-jMz" userLabel="LIsten Button">
-                        <rect key="frame" x="235" y="32" width="77" height="25"/>
+                        <rect key="frame" x="235" y="32" width="77" height="30"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="77" id="GHT-TL-ffC"/>
@@ -83,9 +85,24 @@
                             </mask>
                         </variation>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drT-xQ-5XB">
+                        <rect key="frame" x="0.0" y="74" width="320" height="25"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shouts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBq-aq-d2T">
+                                <rect key="frame" x="8" y="4" width="145" height="21"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
                 <animations/>
-                <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="1NV-ln-jMz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="4kG-MZ-fHD"/>
                     <constraint firstItem="3C7-OT-acQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="75n-j7-Br9"/>
@@ -98,7 +115,7 @@
                     <constraint firstItem="j3d-ge-caX" firstAttribute="top" secondItem="3C7-OT-acQ" secondAttribute="bottom" constant="11" id="aDn-Uq-BpZ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="j3d-ge-caX" secondAttribute="bottom" constant="3" id="b7Q-TF-IjI"/>
                     <constraint firstItem="j3d-ge-caX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="43" id="baS-kX-CcE"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="j3d-ge-caX" secondAttribute="bottom" constant="-3" id="jEw-H5-d4f"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="j3d-ge-caX" secondAttribute="bottom" id="jEw-H5-d4f"/>
                     <constraint firstAttribute="bottomMargin" secondItem="1NV-ln-jMz" secondAttribute="bottom" constant="14" id="jRB-yl-hlr"/>
                     <constraint firstAttribute="trailing" secondItem="j3d-ge-caX" secondAttribute="trailing" constant="167" id="leg-Br-Liy"/>
                     <constraint firstItem="1NV-ln-jMz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="u4y-uj-iwE"/>
@@ -107,16 +124,18 @@
                     <mask key="constraints">
                         <exclude reference="8G4-Df-bY6"/>
                         <exclude reference="b7Q-TF-IjI"/>
+                        <exclude reference="leg-Br-Liy"/>
                         <exclude reference="jRB-yl-hlr"/>
+                        <exclude reference="u4y-uj-iwE"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="lgView" destination="j3d-ge-caX" id="vxz-la-C5a"/>
-                <outlet property="listenButton" destination="1NV-ln-jMz" id="oBY-e6-URj"/>
-                <outlet property="listeningLabel" destination="eyZ-IK-EZb" id="wS8-i8-8kf"/>
-                <outlet property="tagLabel" destination="3C7-OT-acQ" id="X2M-Mb-cAk"/>
+                <outlet property="lgView" destination="j3d-ge-caX" id="BTY-Fu-vtE"/>
+                <outlet property="listenButton" destination="1NV-ln-jMz" id="RJG-gQ-kl7"/>
+                <outlet property="listeningLabel" destination="eyZ-IK-EZb" id="b0c-L4-ZcF"/>
+                <outlet property="tagLabel" destination="3C7-OT-acQ" id="oqO-Ek-81i"/>
             </connections>
             <point key="canvasLocation" x="215" y="182"/>
         </tableViewCell>

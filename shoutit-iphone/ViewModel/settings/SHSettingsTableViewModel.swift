@@ -143,9 +143,14 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                 if let oauthToken = SHOauthToken.getFromCache() {
                     oauthToken.logOut()
                 }
-                let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC) as! SHLoginViewController
+//                let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC) as! SHLoginViewController
 //                self.viewController.presentViewController(vc, animated: true, completion: nil)
-                self.viewController.parentViewController?.navigationController?.popToViewController(vc, animated: true)
+                Shared.stringCache.removeAll()
+                let appDelegate = UIApplication.sharedApplication().delegate
+                let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC)
+                appDelegate?.window??.rootViewController = nil
+                appDelegate?.window??.rootViewController = loginVC
+//                self.viewController.parentViewController?.navigationController?.popToViewController(vc, animated: true)
 
             }))
             self.viewController.presentViewController(ac, animated: true, completion: nil)

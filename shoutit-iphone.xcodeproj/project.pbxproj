@@ -102,6 +102,7 @@
 		AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */; };
 		AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7061BFA171500AB6BAA /* SHShoutMeta.swift */; };
 		AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */; };
+		AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4122951C22BB96002C74DC /* SHStreamTagTableViewCell.swift */; };
 		AC47A7341C02349F006AF406 /* SHShoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7331C02349F006AF406 /* SHShoutDetailTableViewController.swift */; };
 		AC47A7361C02351F006AF406 /* SHShoutDetailTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7351C02351F006AF406 /* SHShoutDetailTableViewModel.swift */; };
 		AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */; };
@@ -347,6 +348,7 @@
 		AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterViewModel.swift; path = ViewModel/tabs/stream/filter/SHFilterViewModel.swift; sourceTree = "<group>"; };
 		AC27E7061BFA171500AB6BAA /* SHShoutMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMeta.swift; path = Model/shout/SHShoutMeta.swift; sourceTree = "<group>"; };
 		AC27E7081BFA26D900AB6BAA /* SHTagMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagMeta.swift; path = Model/shout/SHTagMeta.swift; sourceTree = "<group>"; };
+		AC4122951C22BB96002C74DC /* SHStreamTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHStreamTagTableViewCell.swift; path = View/tags/cell/SHStreamTagTableViewCell.swift; sourceTree = "<group>"; };
 		AC47A7331C02349F006AF406 /* SHShoutDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailTableViewController.swift; path = View/tabs/stream/SHShoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		AC47A7351C02351F006AF406 /* SHShoutDetailTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailTableViewModel.swift; path = ViewModel/tabs/stream/SHShoutDetailTableViewModel.swift; sourceTree = "<group>"; };
 		AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHYouTubeVideoCollectionViewCell.swift; path = View/tabs/stream/cell/SHYouTubeVideoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1477,6 +1479,7 @@
 				ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */,
 				ACDD23B11BFAD40700EEC6A6 /* SHTopTagTableViewCell.xib */,
 				ACDD23B31BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift */,
+				AC4122951C22BB96002C74DC /* SHStreamTagTableViewCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1774,6 +1777,7 @@
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
+				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
