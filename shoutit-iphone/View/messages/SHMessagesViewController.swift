@@ -370,8 +370,10 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         let imageView = UIImageView()
-        if let imageUrl = self.myUser?.image {
+        if let imageUrl = self.myUser?.image where self.myUser?.name == self.viewModel?.jsqMessages[indexPath.item].senderDisplayName {
             imageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "no_image_available"))
+        } else {
+            imageView.image = UIImage(named: "profile")
         }
         let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(imageView.image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
         return avImage;
@@ -512,7 +514,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
                     detailView.title = shout.title
                     detailView.getShoutDetails(shoutId)
-                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(detailView, animated: true)
                 }
             } else if(message.media.isKindOfClass(SHLocationMediaItem)) {
