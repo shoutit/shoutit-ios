@@ -15,6 +15,7 @@
 #import <Pusher/Pusher.h>
 #import <Pusher/PTPusherEventDispatcher.h>
 #import "UserVoice.h"
+#import "UIButton+imageText.h"
 //#import <uservoice-iphone-sdk/UserVoice.h>
 
 

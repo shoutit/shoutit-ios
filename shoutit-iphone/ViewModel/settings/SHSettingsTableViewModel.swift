@@ -188,6 +188,12 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
         self.viewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
     // Private
     private func loadUserData(user: SHUser) {
         if let username = user.username {

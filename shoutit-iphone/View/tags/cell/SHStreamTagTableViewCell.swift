@@ -15,11 +15,20 @@ class SHStreamTagTableViewCell: UITableViewCell {
     @IBOutlet weak var lgView: UIView!
     @IBOutlet weak var listeningLabel: UILabel!
     
-    var tagCell: SHTag?
-    
+    var tagCell = SHTag()
+    let shApiTag = SHApiTagsService()
+    var viewController = SHStreamTableViewController()
+    //var tagName: String?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        if let isListening = self.tagCell.isListening {
+            self.setListenSelected(isListening)
+        }
+        self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height/2
+        self.tagLabel.layer.masksToBounds = true
+        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
+        self.lgView.layer.cornerRadius = 5
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -56,13 +65,13 @@ class SHStreamTagTableViewCell: UITableViewCell {
 //    }
     
     func setTagCellWithName(tag: String) {
-        //tagCell = tag
+        self.tagCell.name = tag
         setListenSelected(false)
         self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
         self.tagLabel.layer.masksToBounds = true
         self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
         self.tagLabel.text = String(format: "%@", arguments: [tag])
-        if let listening = self.tagCell?.isListening {
+        if let listening = self.tagCell.isListening {
             self.setListenSelected(listening)
         }
     }
@@ -76,6 +85,7 @@ class SHStreamTagTableViewCell: UITableViewCell {
             self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
             self.listenButton.setTitleColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN), forState: UIControlState.Normal)
             self.listenButton.backgroundColor = UIColor.whiteColor()
+            self.listenButton.setLeftIcon(UIImage(named: "listen.png"), withSize: CGSizeMake(32, 32))
         } else {
             self.listenButton.setTitle(NSLocalizedString("Listening", comment: "Listening"), forState: UIControlState.Normal)
             self.listenButton.layer.cornerRadius = 5
@@ -83,7 +93,66 @@ class SHStreamTagTableViewCell: UITableViewCell {
             self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
             self.listenButton.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
             self.listenButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            self.listenButton.setLeftIcon(UIImage(named: "listenGreen.png"), withSize: CGSizeMake(32, 32))
         }
+        self.listenButton.alpha = 1
     }
-
+    
+    @IBAction func listenAction(sender: AnyObject) {
+        //[self setListenSelected:self.model.tag.is_listening];
+        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        indicatorView.frame = self.listenButton.frame
+        indicatorView.startAnimating()
+        self.listenButton.hidden = true
+        self.listenButton.superview?.addSubview(indicatorView)
+        if let boolListen = self.tagCell.isListening == nil ? false : self.tagCell.isListening {
+            self.setListenSelected(boolListen)
+            if(boolListen) {
+                shApiTag.unfollowTag(self.tagCell.name, completionHandler: { (response) -> Void in
+                    switch(response.result) {
+                    case .Success( _):
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tagCell.isListening = false
+                            self.setListenSelected(false)
+                            indicatorView.removeFromSuperview()
+                            self.listenButton.hidden = false
+                            self.tagCell.listenersCount--
+                        })
+                    case .Failure(let error):
+                        log.error("Error deleting tags \(error.localizedDescription)")
+                        indicatorView.removeFromSuperview()
+                        self.listenButton.hidden = false
+                    }
+                    
+                })
+            } else {
+                shApiTag.followTag(self.tagCell.name, completionHandler: { (response) -> Void in
+                    switch(response.result) {
+                    case .Success( _):
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tagCell.isListening = true
+                            self.setListenSelected(true)
+                            indicatorView.removeFromSuperview()
+                            self.listenButton.hidden = false
+                            self.tagCell.listenersCount++
+                        })
+                    case .Failure(let error):
+                        log.error("Error listening to tags \(error.localizedDescription)")
+                    }
+                })
+            }
+            
+        }
+        
+        
+       
+    }
+    
+    @IBAction func listenersAction(sender: AnyObject) {
+        let listViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
+       // listViewController.requestUsersAndTags(<#T##user: SHUser##SHUser#>, param: <#T##String#>, type: <#T##String#>)
+       // [listViewController requestUsersForTag:self.model.tag];
+        self.viewController.navigationController?.pushViewController(listViewController, animated: true)
+    }
+    
 }

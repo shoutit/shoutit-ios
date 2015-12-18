@@ -159,6 +159,24 @@ class SHApiTagsService: NSObject {
     func reset() {
         self.currentPage = 1
     }
+    
+    func unfollowTag(tagName: String, completionHandler: Response<String, NSError> -> Void ) {
+        let urlString = String(format: TAGS_URL + "/%@" + "/listen", arguments: [tagName])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func followTag(tagName: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = String(format: TAGS_URL + "/%@" + "/listen", arguments: [tagName])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func loadListenersFor(tag: String, cacheResponse: SHUsersMeta -> Void, completionHandler: Response<SHUsersMeta, NSError> -> Void) {
+        let urlString = String(format: TAGS_URL + "/%@" + "/listeners", arguments: [tag])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
 
 }
 

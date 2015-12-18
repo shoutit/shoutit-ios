@@ -82,6 +82,7 @@ struct Constants {
         static let SHEDITPROFILE = "SHEditProfileTableViewController"
         static let SHUSERLIST = "SHUserListTableViewController"
         static let SHMAPDETAIL = "SHMapDetatilViewController"
+        static let SHTAGLISTENERS = "SHTagListenersTableViewController"
     }
     
     struct TableViewCell {

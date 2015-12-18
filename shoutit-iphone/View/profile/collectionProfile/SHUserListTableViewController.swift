@@ -23,7 +23,7 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         super.viewDidLoad()
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
-        if(self.param == "listening" && self.type == "users" || self.type == "tags") {
+        if(self.param == "listening" && (self.type == "users" || self.type == "tags")) {
             self.searchBar = UISearchBar()
             self.searchBar?.sizeToFit()
             self.searchBar?.placeholder = NSLocalizedString("Search", comment: "Search")
