@@ -28,7 +28,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         self.setupLogin()
         self.setupText()
         
-        self.viewController.termsAndConditionsTextView.delegate = self
+        self.viewController.termsAndConditionsTextView?.delegate = self
     }
     
     func viewWillAppear() {
@@ -101,18 +101,18 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         if self.isSignIn {
             return
         }
-        self.viewController.signUpButton.layer.borderWidth = 0
-        self.viewController.signInButton.layer.borderWidth = 1
+        self.viewController.signUpButton?.layer.borderWidth = 0
+        self.viewController.signInButton?.layer.borderWidth = 1
         self.isSignIn = true
-        self.viewController.tableView.beginUpdates()
-        self.viewController.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-        self.viewController.tableView.endUpdates()
+//        self.viewController.tableView.beginUpdates()
+//        self.viewController.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+//        self.viewController.tableView.endUpdates()
         UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
+            self.viewController.shoutSignInButton?.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("SignIn",comment: "Sign In"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton?.setTitle(NSLocalizedString("SignIn",comment: "Sign In"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
+                self.viewController.shoutSignInButton?.titleLabel?.alpha = 1
             })
         }
     }
@@ -121,18 +121,18 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         if !self.isSignIn {
             return
         }
-        self.viewController.signInButton.layer.borderWidth = 0
-        self.viewController.signUpButton.layer.borderWidth = 1
+        self.viewController.signInButton?.layer.borderWidth = 0
+        self.viewController.signUpButton?.layer.borderWidth = 1
         self.isSignIn = false
-        self.viewController.tableView.beginUpdates()
-        self.viewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-        self.viewController.tableView.endUpdates()
+//        self.viewController.tableView.beginUpdates()
+//        self.viewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+//        self.viewController.tableView.endUpdates()
         UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
+            self.viewController.shoutSignInButton?.titleLabel?.alpha = 0
         }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("CreateAccount",comment: "Create Account"), forState: UIControlState.Normal)
+            self.viewController.shoutSignInButton?.setTitle(NSLocalizedString("CreateAccount",comment: "Create Account"), forState: UIControlState.Normal)
             UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
+                self.viewController.shoutSignInButton?.titleLabel?.alpha = 1
             })
         }
     }
@@ -261,7 +261,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func textEditBegin(textField: UITextField, row: Int) {
-        self.viewController.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+//        self.viewController.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
     }
     
     func textFieldChanged(textField: TextFieldValidator, row: Int) {
@@ -278,13 +278,15 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     private func setupText() {
-        let text = NSMutableAttributedString(attributedString: self.viewController.termsAndConditionsTextView.attributedText)
-        text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Shout IT Terms"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
-        self.viewController.termsAndConditionsTextView.editable = false
-        self.viewController.termsAndConditionsTextView.delaysContentTouches = false
-        self.viewController.termsAndConditionsTextView.attributedText = text
+        if let attributedText = self.viewController.termsAndConditionsTextView?.attributedText {
+            let text = NSMutableAttributedString(attributedString: attributedText)
+            text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Shout IT Terms"))
+            text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
+            text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
+            self.viewController.termsAndConditionsTextView?.editable = false
+            self.viewController.termsAndConditionsTextView?.delaysContentTouches = false
+            self.viewController.termsAndConditionsTextView?.attributedText = text
+        }
     }
     
     private func validateAuthentication() -> Bool {

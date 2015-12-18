@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
+class SHLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
-    @IBOutlet weak var shoutSignInButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var termsAndConditionsTextView: UITextView!
-    @IBOutlet weak var facebookLoginButton: UIButton!
+    @IBOutlet weak var shoutSignInButton: UIButton?
+    @IBOutlet weak var signInButton: UIButton?
+    @IBOutlet weak var signUpButton: UIButton?
+    @IBOutlet weak var termsAndConditionsTextView: UITextView?
+    @IBOutlet weak var facebookLoginButton: UIButton?
+    @IBOutlet weak var signUpView: UIView!
+    @IBOutlet weak var loginView: UIView!
     
     private var viewModel: SHLoginViewModel?
     
@@ -30,17 +32,13 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
         
-        // Setup Delegates and data Source
-        self.tableView.delegate = viewModel
-        self.tableView.dataSource = viewModel
-        
-        self.shoutSignInButton.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
-        self.shoutSignInButton.layer.cornerRadius = 0.5
-        self.signInButton.layer.cornerRadius = 5
-        self.signUpButton.layer.cornerRadius = 5
-        self.signInButton.layer.borderColor = UIColor.whiteColor().CGColor
-        self.signUpButton.layer.borderColor = UIColor.whiteColor().CGColor
-        self.signInButton.layer.borderWidth = 1
+        self.shoutSignInButton?.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
+        self.shoutSignInButton?.layer.cornerRadius = 0.5
+        self.signInButton?.layer.cornerRadius = 5
+        self.signUpButton?.layer.cornerRadius = 5
+        self.signInButton?.layer.borderColor = UIColor.whiteColor().CGColor
+        self.signUpButton?.layer.borderColor = UIColor.whiteColor().CGColor
+        self.signInButton?.layer.borderWidth = 1
         
         viewModel?.viewDidLoad()
     }
@@ -123,11 +121,18 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
             self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func viewChanged(sender: UISegmentedControl) {
+        self.loginView.hidden = sender.selectedSegmentIndex != 0
+        self.signUpView.hidden = sender.selectedSegmentIndex == 0
+    }
     // SignOut from Google
 //    @IBAction func didTapSignOut(sender: AnyObject) {
 //        GIDSignIn.sharedInstance().signOut()
 //    }
     
+    @IBAction func goBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     deinit {
         viewModel?.destroy()
     }
