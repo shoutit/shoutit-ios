@@ -32,7 +32,7 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
 
-    func loadShoutStreamForLocation(location: SHAddress, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func loadShoutStreamForLocation(location: SHAddress?, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         var URL = SHOUTS
         if type == ShoutType.VideoCV {
             type = .Request
@@ -51,6 +51,9 @@ class SHApiShoutService: NSObject {
                 if let location = SHAddress.getUserOrDeviceLocation() {
                     params["city"] = location.city
                     params["country"] = location.country
+                } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), let country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
+                    params["city"] = city
+                    params["country"] = country
                 }
             }
         }
@@ -62,7 +65,7 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func refreshStreamForLocation(location: SHAddress, type: ShoutType, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func refreshStreamForLocation(location: SHAddress?, type: ShoutType, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         self.currentPage = 1
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: "", cacheResponse: cacheResponse, completionHandler: completionHandler)
     }

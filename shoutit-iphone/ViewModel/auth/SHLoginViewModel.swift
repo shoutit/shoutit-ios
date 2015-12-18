@@ -162,8 +162,10 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func skipLogin () {
-        let tabViewController = SHTabViewController()
-        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+//        let tabViewController = SHTabViewController()
+//        tabViewController.selectedIndex = 1
+//        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+        SHOauthToken.goToDiscover()
     }
     
     // MARK - Selectors
@@ -355,10 +357,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
 //                    }
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let appDelegate = UIApplication.sharedApplication().delegate
-                        let tabViewController = SHTabViewController()
-                        tabViewController.selectedIndex = 1
-                        appDelegate?.window??.rootViewController = tabViewController
+                        SHOauthToken.goToDiscover()
                     })
                 } else {
                     // Login Failure

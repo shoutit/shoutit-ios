@@ -147,6 +147,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Shoutit App wants to access your location</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>

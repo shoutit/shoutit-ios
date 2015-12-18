@@ -14,6 +14,10 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+        }
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         self.clearsSelectionOnViewWillAppear = true

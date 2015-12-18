@@ -16,6 +16,10 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+        }
         self.collectionView?.dataSource = viewModel
         self.collectionView?.delegate = viewModel
         self.collectionView?.registerNib(UINib(nibName: Constants.CollectionViewCell.SHShoutSquareCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHShoutSquareCollectionViewCell)

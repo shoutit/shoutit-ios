@@ -15,12 +15,17 @@ class SHApiDiscoverService: NSObject {
     private let DISCOVER_FEED_ITEMS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@"
     
     func getDiscoverLocation(cacheResponse: SHDiscoverLocation -> Void, completionHandler: Response<SHDiscoverLocation, NSError> -> Void) {
+        var params = [String: String]()
         if let country = SHAddress.getUserOrDeviceLocation()?.country {
-            let params = [
+            params = [
                 "country": country
             ]
-            SHApiManager.sharedInstance.get(DISCOVER_FEED, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+        } else if let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String {
+            params = [
+                "country": countryCode
+            ]
         }
+        SHApiManager.sharedInstance.get(DISCOVER_FEED, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
     func getItemsFeedForLocation(id: String, cacheResponse: SHDiscoverItem -> Void, completionHandler: Response<SHDiscoverItem, NSError> -> Void) {

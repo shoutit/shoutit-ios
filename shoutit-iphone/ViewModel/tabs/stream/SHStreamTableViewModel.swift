@@ -298,6 +298,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         if let location = SHAddress.getUserOrDeviceLocation() {
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
+        }else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry"){
+            subTitleLabel.text = String(format: "%@, %@", arguments: [city, country])
+            subTitleLabel.sizeToFit()
         }
         let twoLineTitleView = UIView(frame: CGRectMake(0, 0, max(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 30))
         twoLineTitleView.addSubview(titleLabel)
@@ -327,8 +330,8 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.updateFooterView()
         self.updateFooterLabel()
         self.viewController.shoutApi.resetPage()
-        if let location = self.viewController.location {
-            self.viewController.shoutApi.refreshStreamForLocation(location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
+      //  if let location = self.viewController.location {
+            self.viewController.shoutApi.refreshStreamForLocation(self.viewController.location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
@@ -342,7 +345,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                         log.error("Error while getting stream \(error.localizedDescription)")
                     }
             })
-        }
+      //  }
     }
     
     private func updateUI(shShoutMeta: SHShoutMeta) {
