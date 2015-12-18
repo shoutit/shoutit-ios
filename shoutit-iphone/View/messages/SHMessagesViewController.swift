@@ -637,7 +637,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         }
                         self.viewModel?.shMessages.append(msg)
                         self.viewModel?.addMessageFrom(msg)
-                        self.finishSendingMessage()
+                        self.finishSendingMessageAnimated(true)
+                       // self.finishSendingMessage()
                         self.doneAction()
                     })
                 }
@@ -663,7 +664,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     })
                     self.viewModel?.shMessages.append(msg)
                     self.viewModel?.addMessageFrom(msg)
-                    self.finishSendingMessage()
+                   // self.finishSendingMessage()
+                    self.finishSendingMessageAnimated(true)
                 }
             }
             
@@ -689,7 +691,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-        self.finishSendingMessage()
+       // self.finishSendingMessage()
+        self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithImage(media, msg: msg)
     }
     
@@ -713,7 +716,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-        self.finishSendingMessage()
+       // self.finishSendingMessage()
+        self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithVideoFile(media, msg: msg)
     }
     
