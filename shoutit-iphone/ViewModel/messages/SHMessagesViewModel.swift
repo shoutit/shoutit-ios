@@ -102,9 +102,11 @@ class SHMessagesViewModel: NSObject {
 //                }
 //            }
 //        }
-        self.viewController.resetProgress()
-        self.viewController.progressTimer?.invalidate()
-        self.viewController.progressTimer = nil
+        
+        //-------------1812
+//        self.viewController.resetProgress()
+//        self.viewController.progressTimer?.invalidate()
+//        self.viewController.progressTimer = nil
         if let conversationId = self.viewController.conversationID {
             let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
             self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
@@ -121,7 +123,6 @@ class SHMessagesViewModel: NSObject {
                     switch(response.result) {
                     case .Success:
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                        self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     case .Failure(let error):
@@ -171,9 +172,10 @@ class SHMessagesViewModel: NSObject {
 //                    
 //                }
 //            }
-            self.viewController.resetProgress()
-            self.viewController.progressTimer?.invalidate()
-            self.viewController.progressTimer = nil
+        //----------1812
+//            self.viewController.resetProgress()
+//            self.viewController.progressTimer?.invalidate()
+//            self.viewController.progressTimer = nil
             if let conversationId = self.viewController.conversationID {
                 let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
                 self.shApiMessage.sendVideo(media, conversationID: conversationId, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
@@ -190,7 +192,6 @@ class SHMessagesViewModel: NSObject {
                         switch(response.result) {
                         case .Success:
                             self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                            self.viewController.collectionView?.reloadData()
                             self.viewController.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                         case .Failure(let error):
@@ -354,7 +355,6 @@ class SHMessagesViewModel: NSObject {
                             switch(response.result) {
                             case .Success( _):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                                self.viewController.collectionView?.reloadData()
                                 self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
                                 self.shMessages.append(msg)
@@ -363,7 +363,6 @@ class SHMessagesViewModel: NSObject {
                                 
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
-                                self.viewController.collectionView?.reloadData()
                                 self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentAlert()
                                 log.error("Error sending the coordinates \(error.localizedDescription)")
@@ -471,7 +470,7 @@ class SHMessagesViewModel: NSObject {
                 } else if json["videos"].count > 0 {
                     for (_, videoJSON) in json["videos"] {
                         let media = SHVideoMediaItem()
-                       // media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
                         if let user = message.user {
                             let video = SHMedia()
                             video.duration = videoJSON["duration"].intValue
@@ -510,7 +509,7 @@ class SHMessagesViewModel: NSObject {
                     let latitude = json["location"]["latitude"].floatValue
                         let media = SHLocationMediaItem()
                         media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
-                            // Do Nothing
+                            self.viewController.collectionView?.reloadData()
                         })
                         
                         if let user = message.user {
@@ -519,7 +518,6 @@ class SHMessagesViewModel: NSObject {
                                 media: media)
                             self.jsqMessages.append(locationMessage)
                         }
-                    self.viewController.collectionView?.reloadData()
                 }
                 
 //                 if json["location"].count > 0 {
