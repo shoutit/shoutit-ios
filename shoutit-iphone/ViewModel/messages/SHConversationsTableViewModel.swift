@@ -85,9 +85,11 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
                 })
             }
             self.conversations.removeAtIndex(indexPath.row)
-            self.viewController.tableView.beginUpdates()
+            //self.viewController.tableView.beginUpdates()
             self.updateBottomNumber()
+            //self.viewController.tableView.endUpdates()
         }
+        self.viewController.tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

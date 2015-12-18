@@ -498,7 +498,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="d2b-bb-dgf">
                         <barButtonItem key="rightBarButtonItem" image="chatTabBar" id="taX-Ie-qUQ">
-                            <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="replyAction:" destination="Jfq-Pw-XRn" id="00X-UG-sYn"/>
                             </connections>
