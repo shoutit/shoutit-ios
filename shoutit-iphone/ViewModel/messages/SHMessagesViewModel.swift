@@ -54,7 +54,7 @@ class SHMessagesViewModel: NSObject {
     }
     
     // camera
-    func cameraFinishWithImage (media: SHMedia) {
+    func cameraFinishWithImage (media: SHMedia, msg: SHMessage) {
         
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
 //            //SHAmazonAWS uploadShoutImage:image progress:^(float percent)
@@ -120,12 +120,12 @@ class SHMessagesViewModel: NSObject {
                 }, completionHandler: { (response) -> Void in
                     switch(response.result) {
                     case .Success:
-                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+                        self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     case .Failure(let error):
-                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                        self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentAlert()
@@ -142,7 +142,7 @@ class SHMessagesViewModel: NSObject {
         }
     }
     
-    func cameraFinishWithVideoFile(media: SHMedia) {
+    func cameraFinishWithVideoFile(media: SHMedia, msg: SHMessage) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             //SHAmazonAWS uploadVideo:tempVideoFileURL thumbImage:thumbImage progress:^(float progress)
 //            let video = SHMedia()
@@ -189,12 +189,12 @@ class SHMessagesViewModel: NSObject {
                     }, localId: localID, completionHandler: { (response) -> Void in
                         switch(response.result) {
                         case .Success:
-                            // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             self.viewController.collectionView?.reloadData()
                             self.viewController.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                         case .Failure(let error):
-                            // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                             self.viewController.collectionView?.reloadData()
                             self.viewController.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentAlert()
@@ -391,11 +391,11 @@ class SHMessagesViewModel: NSObject {
                 shApiShout.composeMessage(text, shoutId: shoutId, completionHandler: { (response) -> Void in
                     self.viewController.finishProgress()
                     if(response.result.isSuccess) {
-                        if let shMessage = response.result.value {
-                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
+                       // if let shMessage = response.result.value {
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                             SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
-                        }
+                       // }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.failedToSendMessages.append(msg)
@@ -416,12 +416,12 @@ class SHMessagesViewModel: NSObject {
                 shApiMessage.sendMessage(text, conversationID: conversationID, localId: localID, completionHandler: { (response) -> Void in
                     self.viewController.finishProgress()
                     if(response.result.isSuccess) {
-                        if let shMessage = response.result.value {
-                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
+                       // if let shMessage = response.result.value {
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             self.viewController.finishProgress()
                             self.viewController.finishReceivingMessage()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                        }
+                       // }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()

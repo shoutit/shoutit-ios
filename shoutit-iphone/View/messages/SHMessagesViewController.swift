@@ -627,6 +627,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         if(response.result.isSuccess) {
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                             SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+                            self.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             self.viewModel?.shMessages.append(msg)
                             self.viewModel?.addMessageFrom(msg)
                             self.finishSendingMessage()
@@ -689,7 +690,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
         self.finishSendingMessage()
-        self.viewModel?.cameraFinishWithImage(media)
+        self.viewModel?.cameraFinishWithImage(media, msg: msg)
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
@@ -713,14 +714,14 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
         self.finishSendingMessage()
-        self.viewModel?.cameraFinishWithVideoFile(media)
+        self.viewModel?.cameraFinishWithVideoFile(media, msg: msg)
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
-        var scrollToEnd = false
-        if let count = self.viewModel?.shMessages.count where count == 0 {
-            scrollToEnd = true
-        }
+//        var scrollToEnd = false
+//        if let count = self.viewModel?.shMessages.count where count == 0 {
+//            scrollToEnd = true
+//        }
         self.viewModel?.shMessages = shMessagesMeta.results
         self.viewModel?.jsqMessages.removeAll()
         if let messages = self.viewModel?.shMessages {

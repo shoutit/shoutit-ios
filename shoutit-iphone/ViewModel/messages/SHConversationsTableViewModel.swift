@@ -118,9 +118,7 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         if let conversationId = self.conversations[indexPath.row].id {
             detailMessage.conversationID = conversationId
         }
-        self.viewController.hidesBottomBarWhenPushed = true
         self.viewController.navigationController?.pushViewController(detailMessage, animated: true)
-        self.viewController.hidesBottomBarWhenPushed = false
     }
     
     func triggerLoadMore () {
