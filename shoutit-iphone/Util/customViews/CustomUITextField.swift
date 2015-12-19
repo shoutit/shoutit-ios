@@ -2,14 +2,15 @@
 //  CustomUITextField.swift
 //  shoutit-iphone
 //
-//  Created by Hitesh Sondhi on 18/12/15.
+//  Created by Hitesh Sondhi on 19/12/15.
 //  Copyright © 2015 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-class CustomUITextField: UITextField {
-
+@IBDesignable
+class CustomUITextField: TextFieldValidator {
+    
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -32,11 +33,11 @@ class CustomUITextField: UITextField {
     }
     
     override func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, leftRightMargin, leftRightMargin)
+        return CGRectInset(bounds, leftRightMargin, 0)
     }
     
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, leftRightMargin, leftRightMargin)
+        return CGRectInset(bounds, leftRightMargin, 0)
     }
-
+    
 }

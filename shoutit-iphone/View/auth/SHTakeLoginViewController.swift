@@ -22,5 +22,10 @@ class SHTakeLoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true
     }
+    
+    
+    @IBAction func skipLogin(sender: AnyObject) {
+        SHOauthToken.goToDiscover()
+    }
 
 }

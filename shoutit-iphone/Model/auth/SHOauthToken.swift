@@ -54,7 +54,7 @@ class SHOauthToken: Mappable {
     
     static func goToLogin() {
         let appDelegate = UIApplication.sharedApplication().delegate
-        let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC)
+        let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.TAKE_LOGIN_VC)
         appDelegate?.window??.rootViewController = nil
         appDelegate?.window??.rootViewController = loginVC
     }
