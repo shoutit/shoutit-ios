@@ -264,3 +264,11 @@
 /* Users */
 "Users" = "Users";
 
+/* Enter valid email or username. */
+"EnterValidMailOrUsername" = "Enter valid email or username.";
+
+/* Enter valid first name. */
+"FirstNameValidationError" = "Enter valid first name.";
+
+/* Enter valid last name. */
+"LastNameValidationError" = "Enter valid last name.";
