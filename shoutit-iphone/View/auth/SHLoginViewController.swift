@@ -96,6 +96,10 @@ class SHLoginViewController: BaseViewController {
     @IBAction func showAbout(sender: AnyObject) {
     }
     
+    @IBAction func showPassword(sender: AnyObject) {
+        viewModel?.togglePassword()
+    }
+    
     deinit {
         viewModel?.destroy()
     }

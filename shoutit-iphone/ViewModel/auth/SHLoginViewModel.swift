@@ -140,6 +140,16 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         webViewController.presentFromViewController(viewController, withHTMLFile: "tos")
     }
     
+    func togglePassword() {
+        if let vc = self.viewController {
+            if vc.signUpView.hidden {
+                vc.signInPassword.secureTextEntry = !vc.signInPassword.secureTextEntry
+            } else {
+                vc.signUpPassword.secureTextEntry = !vc.signUpPassword.secureTextEntry
+            }
+        }
+    }
+    
     func showUserVoice(viewController: UIViewController) {
         UserVoice.presentUserVoiceInterfaceForParentViewController(viewController)
     }
