@@ -11,7 +11,7 @@ import MessageUI
 import FBSDKLoginKit
 import Haneke
 
-class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate{
+class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate, GIDSignInUIDelegate{
     private let viewController: SHSettingsTableViewController
     private let shApiUser = SHApiUserService()
     private let shApiAuthService = SHApiAuthService()
@@ -24,7 +24,14 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
         if let user = self.viewController.user {
             self.loadUserData(user)
         }
-        
+        // Google instance
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
     }
     
     func viewWillAppear() {
@@ -45,6 +52,14 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     
     func destroy() {
         
+    }
+    
+    func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        self.viewController.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    func signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // google Link Action
