@@ -11,7 +11,7 @@ import JSQMessagesViewController
 
 class SHVideoMediaItem: JSQMediaItem {
     var video: SHMedia?
-    
+    var isOutgoing = false
     override func mediaView() -> UIView! {
         if let localThumbImage = self.video?.localThumbImage {
             let nibViews = NSBundle.mainBundle().loadNibNamed(Constants.Messages.SHVideoMediaItem, owner: self, options: nil)
@@ -22,7 +22,7 @@ class SHVideoMediaItem: JSQMediaItem {
                 }
                 imageView?.image = localThumbImage
                 view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
-//                [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:_isOutgoing];
+                JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()
                 return view
@@ -40,7 +40,7 @@ class SHVideoMediaItem: JSQMediaItem {
                     imageView?.image = UIImage(named: "no_image_available")
                 }
                 view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
-                //[JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:_isOutgoing];
+                JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()
                 return view

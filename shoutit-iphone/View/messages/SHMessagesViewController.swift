@@ -502,7 +502,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let msg = self.viewModel?.shMessages[indexPath.item], let user = msg.user {
             let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
             profileViewController.requestUser(user)
-            self.hidesBottomBarWhenPushed = true
+            //self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
@@ -628,10 +628,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                             SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
                             self.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                            self.viewModel?.shMessages.append(msg)
-                            self.viewModel?.addMessageFrom(msg)
-                            self.finishSendingMessage()
-                            self.doneAction()
                         } else if(response.result.isFailure) {
                             self.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                             self.collectionView?.reloadData()
@@ -639,6 +635,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                             self.viewModel?.failedToSendMessages.append(msg)
                             log.error("Error composing the shout message")
                         }
+                        self.viewModel?.shMessages.append(msg)
+                        self.viewModel?.addMessageFrom(msg)
+                        self.finishSendingMessageAnimated(true)
+                       // self.finishSendingMessage()
+                        self.doneAction()
                     })
                 }
             } else {
@@ -663,7 +664,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     })
                     self.viewModel?.shMessages.append(msg)
                     self.viewModel?.addMessageFrom(msg)
-                    self.finishSendingMessage()
+                   // self.finishSendingMessage()
+                    self.finishSendingMessageAnimated(true)
                 }
             }
             
@@ -689,7 +691,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-        self.finishSendingMessage()
+       // self.finishSendingMessage()
+        self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithImage(media, msg: msg)
     }
     
@@ -713,7 +716,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-        self.finishSendingMessage()
+       // self.finishSendingMessage()
+        self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithVideoFile(media, msg: msg)
     }
     
