@@ -140,7 +140,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     @IBAction func refreshAction(sender: AnyObject) {
         if let conversationID = self.conversationID {
+//            SHProgressHUD.show()
             self.viewModel?.getMessagesById(conversationID)
+//            SHProgressHUD.dismiss()
         }
     }
     

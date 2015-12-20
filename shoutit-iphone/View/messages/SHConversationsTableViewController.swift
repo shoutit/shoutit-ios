@@ -60,9 +60,9 @@ class SHConversationsTableViewController: BaseTableViewController {
             self.viewModel?.pullToRefresh()
         })
         
-        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
-            self.viewModel?.triggerLoadMore()
-        })
+//        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+//            self.viewModel?.triggerLoadMore()
+//        })
     }
     
     deinit {

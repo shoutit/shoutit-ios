@@ -160,7 +160,7 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
                 self.updateUI(shConversationsMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
-                    self.viewController.tableView.infiniteScrollingView.stopAnimating()
+                    //self.viewController.tableView.infiniteScrollingView.stopAnimating()
                     switch(response.result) {
                         case .Success(let result):
                             self.updateUI(result)
