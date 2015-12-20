@@ -272,3 +272,6 @@
 
 /* Enter valid last name. */
 "LastNameValidationError" = "Enter valid last name.";
+
+/* Refreshing Chats... */
+"Refreshing Chats..." = "Refreshing Chats...";

@@ -140,9 +140,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     @IBAction func refreshAction(sender: AnyObject) {
         if let conversationID = self.conversationID {
-//            SHProgressHUD.show()
+            SHProgressHUD.show(NSLocalizedString("Refreshing Chats...", comment: "Refreshing Chats..."), maskType: .Black)
             self.viewModel?.getMessagesById(conversationID)
-//            SHProgressHUD.dismiss()
+            SHProgressHUD.dismiss()
         }
     }
     
@@ -639,8 +639,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         }
                         self.viewModel?.shMessages.append(msg)
                         self.viewModel?.addMessageFrom(msg)
-                        self.finishSendingMessageAnimated(true)
-                       // self.finishSendingMessage()
+                        //self.finishSendingMessageAnimated(true)
+                        self.finishSendingMessage()
                         self.doneAction()
                     })
                 }
@@ -666,8 +666,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     })
                     self.viewModel?.shMessages.append(msg)
                     self.viewModel?.addMessageFrom(msg)
-                   // self.finishSendingMessage()
-                    self.finishSendingMessageAnimated(true)
+                    self.finishSendingMessage()
+                   // self.finishSendingMessageAnimated(true)
                 }
             }
             
@@ -693,8 +693,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-       // self.finishSendingMessage()
-        self.finishSendingMessageAnimated(true)
+        self.finishSendingMessage()
+       // self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithImage(media, msg: msg)
     }
     
@@ -718,8 +718,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         msg.status = Constants.MessagesStatus.kStatusPending
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
-       // self.finishSendingMessage()
-        self.finishSendingMessageAnimated(true)
+        self.finishSendingMessage()
+       // self.finishSendingMessageAnimated(true)
         self.viewModel?.cameraFinishWithVideoFile(media, msg: msg)
     }
     

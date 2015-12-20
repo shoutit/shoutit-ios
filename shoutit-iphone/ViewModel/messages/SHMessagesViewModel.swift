@@ -279,9 +279,11 @@ class SHMessagesViewModel: NSObject {
     // Get Messages by conversation Id
     func getMessagesById (conversationId: String) {
         self.jsqMessages.removeAll()
+        SHProgressHUD.show(NSLocalizedString("Loading Chats...", comment: "Loading Chats..."), maskType: .Black)
         shApiMessage.loadMessagesForConversation(conversationId, beforeTimeStamp: 0, cacheResponse: { (shMessagesMeta) -> Void in
             self.viewController.updateMessages(shMessagesMeta)
             }) { (response) -> Void in
+                SHProgressHUD.dismiss() 
                 switch (response.result) {
                 case .Success(let result):
                     self.viewController.updateMessages(result)
@@ -335,8 +337,8 @@ class SHMessagesViewModel: NSObject {
                                 SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
                                 self.shMessages.append(msg)
                                 self.addMessageFrom(msg)
-                                self.viewController.finishSendingMessageAnimated(true)
-                                //self.viewController.finishSendingMessage()
+                               // self.viewController.finishSendingMessageAnimated(true)
+                                self.viewController.finishSendingMessage()
                                 self.viewController.doneAction()
                                 
                             case .Failure(let error):
@@ -360,8 +362,8 @@ class SHMessagesViewModel: NSObject {
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
                                 self.shMessages.append(msg)
                                 self.addMessageFrom(msg)
-                                self.viewController.finishSendingMessageAnimated(true)
-                               // self.viewController.finishSendingMessage()
+                                //self.viewController.finishSendingMessageAnimated(true)
+                                self.viewController.finishSendingMessage()
                                 
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
@@ -407,8 +409,8 @@ class SHMessagesViewModel: NSObject {
                 })
                 self.shMessages.append(msg)
                 self.addMessageFrom(msg)
-                self.viewController.finishSendingMessageAnimated(true)
-               // self.viewController.finishSendingMessage()
+                //self.viewController.finishSendingMessageAnimated(true)
+                self.viewController.finishSendingMessage()
                 self.viewController.doneAction()
             }
         } else {
@@ -436,8 +438,8 @@ class SHMessagesViewModel: NSObject {
                 })
                 self.shMessages.append(msg)
                 self.addMessageFrom(msg)
-                self.viewController.finishSendingMessageAnimated(true)
-               // self.viewController.finishSendingMessage()
+                //self.viewController.finishSendingMessageAnimated(true)
+                self.viewController.finishSendingMessage()
             }
             
         }
