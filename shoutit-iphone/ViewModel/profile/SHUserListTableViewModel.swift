@@ -46,6 +46,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     
     func requestUsersAndTags (username: String, param: String, type: String) {
         if (type != "tags") {
+            self.viewController.loadMoreView.showLoading()
             shApiUser.loadUsersFor(username, param: param, type: type, page: 1, cacheResponse: { (shUserMeta) -> Void in
                 self.updateUI(shUserMeta, shUsersTag: nil)
                 }) { (response) -> Void in
@@ -153,6 +154,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             self.viewController.tableView.reloadData()
         }
         self.updateFooterlabel()
+        self.updateFooterView()
     }
     
     private func updateFooterlabel() {
@@ -173,4 +175,11 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         }
     }
     
+    private func updateFooterView() {
+        if(self.userTags.count == 0) {
+            self.viewController.tableView.tableFooterView = self.viewController.emptyContentView
+        } else {
+            self.viewController.tableView.tableFooterView = self.viewController.loadMoreView
+        }
+    }
 }
