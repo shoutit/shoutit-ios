@@ -299,7 +299,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: shoutDetail.images[indexPath.row - shoutDetail.videos.count]), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                     cell.imageURL = shoutDetail.images[indexPath.row - shoutDetail.videos.count]
                 } else {
-                    cell.shoutImageView.image = UIImage(named: "no_image_available")
+                    cell.shoutImageView.image = UIImage(named: "logo")
                 }
                 return cell
             }
@@ -310,7 +310,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                 }
             } else {
-                cell.shoutImageView.image = UIImage(named: "no_image_available")
+                cell.shoutImageView.image = UIImage(named: "logo")
             }
             return cell
         }
