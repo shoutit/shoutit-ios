@@ -41,6 +41,12 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     var viewController = SHProfileCollectionViewController()
     var shApiUser = SHApiUserService()
     
+    override func awakeFromNib() {
+        self.lgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListeningAction:")))
+        self.lsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListnersAction:")))
+        self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
+    }
+    
     func setupViewForUser (user: SHUser) {
         loadUserData(user)
         self.user = user
@@ -83,9 +89,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         self.lsView.layer.cornerRadius = 5
         self.tgView.layer.cornerRadius = 5
         
-        self.lgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListeningAction:")))
-        self.lsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListnersAction:")))
-        self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
 //        [self.listenersNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.followers_count]];
 //        [self.listeningNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_users]];
 //        [self.listeningTagsLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_tags]];
@@ -130,20 +133,20 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     @IBAction func showListnersAction(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressListenersButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressListenersButton(listenersButton)
         }
     }
     
     @IBAction func showListeningAction(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressListeningButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressListeningButton(listeningButton)
         }
     }
     
     @IBAction func tagsScreen(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressTagsButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressTagsButton(tagButton)
         }
     }
     

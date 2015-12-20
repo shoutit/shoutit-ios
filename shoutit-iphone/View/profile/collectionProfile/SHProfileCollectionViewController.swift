@@ -20,6 +20,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
             SHOauthToken.goToLogin()
             SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
         }
+        self.clearsSelectionOnViewWillAppear = true
         self.collectionView?.dataSource = viewModel
         self.collectionView?.delegate = viewModel
         self.collectionView?.registerNib(UINib(nibName: Constants.CollectionViewCell.SHShoutSquareCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHShoutSquareCollectionViewCell)
