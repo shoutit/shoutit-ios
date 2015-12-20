@@ -216,7 +216,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                 self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
                 self.progress?.backgroundColor = navBar.window?.tintColor
                 self.progress?.progressTintColor = UIColor.jsq_messageBubbleBlueColor()
-                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height, navBar.frame.size.width, 2)
+                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height - 20, navBar.frame.size.width, 2)
                 if let progress = self.progress {
                     navBar.addSubview(progress)
                 }
