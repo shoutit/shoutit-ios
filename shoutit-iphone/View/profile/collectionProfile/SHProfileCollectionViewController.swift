@@ -44,6 +44,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         }
         self.collectionView?.alwaysBounceVertical = true
         self.edgesForExtendedLayout = UIRectEdge.None
+        self.hidesBottomBarWhenPushed = false
         viewModel?.viewDidLoad()
     }
     
@@ -93,6 +94,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     
     func didUpdateUser(user: SHUser) {
         self.user = user
+//        viewDidLoad()
     }
     
     func openSettings () {

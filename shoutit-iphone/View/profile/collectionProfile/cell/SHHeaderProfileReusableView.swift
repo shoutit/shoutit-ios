@@ -39,9 +39,10 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     private var imglistenGreen: UIImageView?
     private var user: SHUser?
     var viewController = SHProfileCollectionViewController()
+    var shApiUser = SHApiUserService()
     
     func setupViewForUser (user: SHUser) {
-        
+        loadUserData(user)
         self.user = user
         self.imglisten = UIImageView(frame: CGRectMake(0, 0, 32, 32))
         self.imglisten?.image = UIImage(named: "listen")
@@ -85,14 +86,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         self.lgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListeningAction:")))
         self.lsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListnersAction:")))
         self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
-        self.nameLabel.text = self.user?.name
-        self.bioTextView.text = self.user?.bio
-        if let userImage = self.user?.image {
-            self.profileImageView.setImageWithURL(NSURL(string: userImage), placeholderImage: UIImage(named: "no_image_available"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-        }
-        if let image = self.user?.image {
-            self.blurredImageView.sd_setImageWithURL(NSURL(string: image))
-        }
 //        [self.listenersNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.followers_count]];
 //        [self.listeningNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_users]];
 //        [self.listeningTagsLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_tags]];
@@ -154,8 +147,31 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         }
     }
     
+    private func loadUserData(user: SHUser) {
+        if let username = user.username {
+            shApiUser.loadUserDetails(username, cacheResponse: { (shUser) -> Void in
+                self.fillUserDetails(shUser)
+                }) { (response) -> Void in
+                    switch(response.result) {
+                    case .Success(let result):
+                        self.fillUserDetails(result)
+                    case .Failure(let error):
+                        log.error("Error getting user details \(error.localizedDescription)")
+                    }
+            }
+        }
+    }
     
-    
+    private func fillUserDetails(shUser: SHUser) {
+        self.nameLabel.text = self.user?.name
+        self.bioTextView.text = self.user?.bio
+        if let userImage = self.user?.image {
+            self.profileImageView.setImageWithURL(NSURL(string: userImage), placeholderImage: UIImage(named: "no_image_available"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        }
+        if let image = self.user?.image {
+            self.blurredImageView.sd_setImageWithURL(NSURL(string: image))
+        }
+    }
     
     
 }
