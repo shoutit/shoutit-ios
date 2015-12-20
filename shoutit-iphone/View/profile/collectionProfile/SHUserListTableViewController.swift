@@ -113,6 +113,15 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         }
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        if(searchBar.text != "") {
+            self.isSearchMode = true
+        } else {
+            self.isSearchMode = false
+        }
+        self.dismissSearchKeyboard(searchBar)
+    }
+    
     func requestUsersAndTags(user: SHUser, param: String, type: String) {
         self.user = user
         self.param = param
