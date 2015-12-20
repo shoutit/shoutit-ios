@@ -524,9 +524,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     let navController = UINavigationController(rootViewController: vc)
                     navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
                     navController.navigationBar.tintColor = UIColor.whiteColor()
-                    self.presentViewController(navController, animated: true, completion: nil)
                     vc.location = location
                     vc.shout = shout
+                    self.presentViewController(navController, animated: true, completion: nil)
 //                     SHMapDetatilViewController.presentFromViewController(self, location: location, shout: shout)
                 }
             } else if(message.media.isKindOfClass(SHImageMediaItem)) {
