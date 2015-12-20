@@ -103,12 +103,16 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
         if let username = self.viewController.user?.username {
             SHProgressHUD.show(NSLocalizedString("Updating User", comment: "Updating User"), maskType: .Black)
             shApiUser.editUser(username, userDict: userDict, cacheResponse: { (shUser) -> Void in
-                SHProgressHUD.show(NSLocalizedString("User succesfully updated", comment: "User succesfully updated"), maskType: .Black)
+               // SHProgressHUD.show(NSLocalizedString("User succesfully updated", comment: "User succesfully updated"), maskType: .Black)
                 }) { (response) -> Void in
                     SHProgressHUD.dismiss()
                     switch(response.result) {
                     case .Success( _):
-                        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+                        if let user = response.result.value {
+                            let vc = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
+                            vc.didUpdateUser(user)
+                            self.viewController.navigationController?.pushViewController(vc, animated: true)
+                        }
                     case .Failure(let error):
                         log.error("Error updating User \(error.localizedDescription)")
                     }
