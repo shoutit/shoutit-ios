@@ -335,6 +335,7 @@ class SHMessagesViewModel: NSObject {
                                 self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
                                 SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+                                self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                                 self.shMessages.append(msg)
                                 self.addMessageFrom(msg)
                                // self.viewController.finishSendingMessageAnimated(true)

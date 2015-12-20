@@ -282,8 +282,8 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
                 }
             }
             shoutApi.filter = filter
-            viewModel?.getLatestShouts()
         }
+        viewModel?.getLatestShouts()
     }
     
     // MARK - Private

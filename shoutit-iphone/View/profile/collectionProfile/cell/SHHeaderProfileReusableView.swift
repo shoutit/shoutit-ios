@@ -69,10 +69,10 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
             self.viewController.navigationItem.leftBarButtonItem = setBtn
             
-            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
-            tap.numberOfTapsRequired = 1
-            tap.numberOfTouchesRequired = 1
-            self.profileImageView.addGestureRecognizer(tap)
+//            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
+//            tap.numberOfTapsRequired = 1
+//            tap.numberOfTouchesRequired = 1
+//            self.profileImageView.addGestureRecognizer(tap)
         } else {
             if let isListen = self.user?.isListening {
                 self.setListenSelected(isListen)

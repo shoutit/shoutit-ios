@@ -90,7 +90,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     // collectionView
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        var reusableview = UICollectionReusableView()
+        var reusableview: UICollectionReusableView?
         if(kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: Constants.CollectionReusableView.SHHeaderProfileReusableView, forIndexPath: indexPath) as! SHHeaderProfileReusableView
             
@@ -102,7 +102,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
             reusableview = headerView
             collectionView.layoutIfNeeded()
         }
-       return reusableview
+       return reusableview!
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
