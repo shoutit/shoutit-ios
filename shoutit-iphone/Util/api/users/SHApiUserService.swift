@@ -89,4 +89,16 @@ class SHApiUserService: NSObject {
         }
         SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
+    
+    func unfollowUser(userName: String, completionHandler: Response<String, NSError> -> Void ) {
+        let urlString = String(format: SH_USERS_URL + "/%@" + "/listen", arguments: [userName])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+    func followUser(userName: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+        let urlString = String(format: SH_USERS_URL + "/%@" + "/listen", arguments: [userName])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
 }

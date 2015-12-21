@@ -26,6 +26,8 @@ class SHUser: Mappable {
     private(set) var email: String?
     private(set) var gender: String?
     private(set) var linkedAccounts: SHLoginAccounts?
+    private(set) var isFollowing: Bool?
+    var followersCount = 0
     
     required init?(_ map: Map) {
         
@@ -45,8 +47,10 @@ class SHUser: Mappable {
         isActivated         <- map["is_activated"]
         image               <- map["image"]
         isListening         <- map["is_listening"]
+        isFollowing         <- map["is_following"]
         email               <- map["email"]
         gender              <- map["gender"]
         linkedAccounts      <- map["linked_accounts"]
+        followersCount      <- map["followers_count"]
     }
 }

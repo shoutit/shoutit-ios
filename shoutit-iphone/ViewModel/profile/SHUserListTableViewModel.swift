@@ -48,6 +48,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         if (type != "tags") {
             self.viewController.loadMoreView.showLoading()
             shApiUser.loadUsersFor(username, param: param, type: type, page: 1, cacheResponse: { (shUserMeta) -> Void in
+                self.viewController.loadMoreView.showNoMoreContent()
                 self.updateUI(shUserMeta, shUsersTag: nil)
                 }) { (response) -> Void in
                     switch(response.result) {
@@ -59,6 +60,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             }
         } else {
             shApiUser.loadUserTags(username, param: param, type: type, page: 1, cacheResponse: { (shTagMeta) -> Void in
+                self.viewController.loadMoreView.showNoMoreContent()
                 self.updateUI(nil, shUsersTag: shTagMeta)
                 }, completionHandler: { (response) -> Void in
                     switch(response.result) {

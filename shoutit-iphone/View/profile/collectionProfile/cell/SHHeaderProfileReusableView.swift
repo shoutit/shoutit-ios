@@ -129,7 +129,64 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     @IBAction func listenAction(sender: AnyObject) {
-       
+        if let isFollowing = self.user?.isFollowing {
+            self.setListenSelected(isFollowing)
+        }
+        if let user = self.user {
+            if(user.username != SHOauthToken.getFromCache()?.user?.username) {
+                let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+                indicatorView.frame = self.listeningButton.frame
+                indicatorView.startAnimating()
+                self.listenButton.hidden = true
+                self.listeningButton.superview?.addSubview(indicatorView)
+                if let isFollowing = user.isFollowing == nil ? false : user.isFollowing {
+                    if(isFollowing) {
+                        if let username = user.username {
+                            shApiUser.unfollowUser(username, completionHandler: { (response) -> Void in
+                                switch(response.result) {
+                                case .Success( _):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        // self.user?.isFollowing = false
+                                        self.setListenSelected(false)
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                        user.followersCount--
+                                    })
+                                case .Failure(let error):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        log.error("Unable to listen to the user \(error.localizedDescription)")
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                    })
+                                }
+                            })
+                        }
+                    } else {
+                        if let username = user.username {
+                            shApiUser.followUser(username, completionHandler: { (response) -> Void in
+                                switch(response.result) {
+                                case .Success( _):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        // self.user?.isFollowing = true
+                                        self.setListenSelected(true)
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                        user.followersCount++
+                                    })
+                                case .Failure(let error):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        log.error("Unable to listen to the user \(error.localizedDescription)")
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                    })
+                                }
+                            })
+                        }
+                    }
+                }
+                
+            }
+        }
     }
     
     @IBAction func showListnersAction(sender: AnyObject) {
