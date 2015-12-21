@@ -77,10 +77,12 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         self.userTags = []
         self.viewController.tableView.reloadData()
         self.viewController.loadMoreView.showLoading()
-        self.viewController.loadMoreView.loadingLabel.text = ""
+       // self.viewController.loadMoreView.loadingLabel.text = ""
+        self.updateFooterView()
         if(self.viewController.type != "tags") {
             if let searchQuery = self.viewController.searchQuery, let param = self.viewController.param {
                 self.shApiUser.searchUserQuery(searchQuery, page: 1, param: param, cacheResponse: { (shUsersMeta) -> Void in
+                    self.viewController.loadMoreView.showNoMoreContent()
                     }) { (response) -> Void in
                         switch(response.result){
                         case .Success(let result):
@@ -103,6 +105,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         } else {
             if let searchQuery = self.viewController.searchQuery, let param = self.viewController.param {
                 self.shApiUser.searchTagsQuery(searchQuery, page: 1, param: param, cacheResponse: { (shTagMeta) -> Void in
+                    self.viewController.loadMoreView.showNoMoreContent()
                     }) { (response) -> Void in
                         switch(response.result){
                         case .Success(let result):
