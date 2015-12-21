@@ -117,6 +117,7 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
         detailMessage.title = self.conversations[indexPath.row].about?.title
         if let conversationId = self.conversations[indexPath.row].id {
             detailMessage.conversationID = conversationId
+            detailMessage.shout = self.conversations[indexPath.row].about
         }
         self.viewController.navigationController?.pushViewController(detailMessage, animated: true)
     }

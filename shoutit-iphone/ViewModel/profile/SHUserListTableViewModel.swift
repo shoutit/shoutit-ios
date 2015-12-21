@@ -11,7 +11,7 @@ import UIKit
 class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     private let viewController: SHUserListTableViewController
-    private var userTags = []
+    private var userTags: AnyObject = []
     let shApiUser = SHApiUserService()
     
     required init(viewController: SHUserListTableViewController) {
@@ -46,6 +46,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     
     func requestUsersAndTags (username: String, param: String, type: String) {
         if (type != "tags") {
+            self.viewController.loadMoreView.showLoading()
             shApiUser.loadUsersFor(username, param: param, type: type, page: 1, cacheResponse: { (shUserMeta) -> Void in
                 self.updateUI(shUserMeta, shUsersTag: nil)
                 }) { (response) -> Void in
@@ -76,17 +77,53 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         self.userTags = []
         self.viewController.tableView.reloadData()
         self.viewController.loadMoreView.showLoading()
-        self.viewController.loadMoreView.loadingLabel.text = ""
-        if let searchQuery = self.viewController.searchQuery, let param = self.viewController.param {
-            self.shApiUser.searchUserQuery(searchQuery, page: 1, param: param, cacheResponse: { (shUsersMeta) -> Void in
-                self.updateUI(shUsersMeta, shUsersTag: nil)
-                }) { (response) -> Void in
-                    switch(response.result){
-                    case .Success(let result):
-                        self.updateUI(result, shUsersTag: nil)
-                    case .Failure(let error):
-                        log.error("Error searching the user \(error.localizedDescription)")
-                    }
+       // self.viewController.loadMoreView.loadingLabel.text = ""
+        self.updateFooterView()
+        if(self.viewController.type != "tags") {
+            if let searchQuery = self.viewController.searchQuery, let param = self.viewController.param {
+                self.shApiUser.searchUserQuery(searchQuery, page: 1, param: param, cacheResponse: { (shUsersMeta) -> Void in
+                    self.viewController.loadMoreView.showNoMoreContent()
+                    }) { (response) -> Void in
+                        switch(response.result){
+                        case .Success(let result):
+                            self.viewController.tableView.beginUpdates()
+                            var insertedIndexPaths: [NSIndexPath] = []
+                            let currentCount = self.userTags.count
+                            for (index, _) in result.results.enumerate() {
+                                insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+                            }
+                            self.userTags = result.results
+                            self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                            self.viewController.tableView.endUpdates()
+                            self.updateFooterlabel()
+                            self.updateFooterView()
+                        case .Failure(let error):
+                            log.error("Error searching the user \(error.localizedDescription)")
+                        }
+                }
+            }
+        } else {
+            if let searchQuery = self.viewController.searchQuery, let param = self.viewController.param {
+                self.shApiUser.searchTagsQuery(searchQuery, page: 1, param: param, cacheResponse: { (shTagMeta) -> Void in
+                    self.viewController.loadMoreView.showNoMoreContent()
+                    }) { (response) -> Void in
+                        switch(response.result){
+                        case .Success(let result):
+                            self.viewController.tableView.beginUpdates()
+                            var insertedIndexPaths: [NSIndexPath] = []
+                            let currentCount = self.userTags.count
+                            for (index, _) in result.results.enumerate() {
+                                insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+                            }
+                            self.userTags = result.results
+                            self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                            self.viewController.tableView.endUpdates()
+                            self.updateFooterlabel()
+                            self.updateFooterView()
+                        case .Failure(let error):
+                            log.error("Error searching the user \(error.localizedDescription)")
+                        }
+                }
             }
         }
     }
@@ -119,10 +156,12 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if(self.userTags[indexPath.row].isKindOfClass(SHUser)) {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHUserTableViewCell, forIndexPath: indexPath) as! SHUserTableViewCell
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.setUser(self.userTags[indexPath.row] as! SHUser)
             return cell
         } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.setTagCell(self.userTags[indexPath.row] as! SHTag)
             cell.listenButton.hidden = true
             return cell
@@ -136,11 +175,12 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             profileViewController.requestUser(self.userTags[indexPath.row] as! SHUser)
             self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
         } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
-            //            SHTagProfileTableViewController* tagViewController = [SHNavigator viewControllerFromStoryboard:@"TagStoryboard" withViewControllerId:@"SHTagProfileTableViewController"];
-            //            [tagViewController requestTag:self.fetchedResultsController[indexPath.row]];
-            //            [self.navigationController pushViewController:tagViewController animated:YES];
-            //
-            
+            if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
+                streamVC.streamType = .Tag
+                streamVC.tagName = (self.userTags[indexPath.row] as! SHTag).name
+                streamVC.title = (self.userTags[indexPath.row] as! SHTag).title
+                self.viewController.navigationController?.pushViewController(streamVC, animated: true)
+            }
         }
     }
     
@@ -153,6 +193,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             self.viewController.tableView.reloadData()
         }
         self.updateFooterlabel()
+        self.updateFooterView()
     }
     
     private func updateFooterlabel() {
@@ -173,4 +214,11 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         }
     }
     
+    private func updateFooterView() {
+        if(self.userTags.count == 0) {
+            self.viewController.tableView.tableFooterView = self.viewController.emptyContentView
+        } else {
+            self.viewController.tableView.tableFooterView = self.viewController.loadMoreView
+        }
+    }
 }
