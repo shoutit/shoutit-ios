@@ -13,6 +13,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     private let viewController: SHUserListTableViewController
     private var userTags: AnyObject = []
     let shApiUser = SHApiUserService()
+    let shApiTags = SHApiTagsService()
     private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHUserListTableViewController) {
@@ -21,7 +22,9 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     
     func viewDidLoad() {
         if let username = self.viewController.user?.username, let param = self.viewController.param, let type = self.viewController.type {
-        self.requestUsersAndTags(username, param: param, type: type)
+            self.requestUsersAndTags(username, param: param, type: type)
+        } else if let tagName = self.viewController.tagName {
+            self.requestUsersForTag(tagName)
         }
     }
     
@@ -49,6 +52,23 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         spinner?.startAnimating()
         if let username = self.viewController.user?.username, let param = self.viewController.param, let type = self.viewController.type {
             self.requestUsersAndTags(username, param: param, type: type)
+        }
+    }
+    
+    func requestUsersForTag(tagName: String) {
+        self.viewController.loadMoreView.showLoading()
+        self.updateFooterView()
+        shApiTags.loadListenersFor(tagName, cacheResponse: { (shUserMeta) -> Void in
+            //
+            }) { (response) -> Void in
+                self.viewController.tableView.pullToRefreshView.stopAnimating()
+                self.viewController.loadMoreView.showNoMoreContent()
+                switch(response.result) {
+                case .Success(let result):
+                    self.createTableView(result)
+                case .Failure(let error):
+                    log.error("Error getting the results \(error.localizedDescription)")
+                }
         }
     }
     
@@ -98,17 +118,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
                     }) { (response) -> Void in
                         switch(response.result){
                         case .Success(let result):
-                            self.viewController.tableView.beginUpdates()
-                            var insertedIndexPaths: [NSIndexPath] = []
-                            let currentCount = self.userTags.count
-                            for (index, _) in result.results.enumerate() {
-                                insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
-                            }
-                            self.userTags = result.results
-                            self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
-                            self.viewController.tableView.endUpdates()
-                            self.updateFooterlabel()
-                            self.updateFooterView()
+                            self.createTableView(result)
                         case .Failure(let error):
                             log.error("Error searching the user \(error.localizedDescription)")
                         }
@@ -158,10 +168,10 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(self.viewController.type == "users" || self.viewController.type == "") {
-            return NSLocalizedString("Users", comment: "Users")
-        } else {
+        if(self.viewController.type == "tags") {
             return NSLocalizedString("Tags", comment: "Tags")
+        } else {
+            return NSLocalizedString("Users", comment: "Users")
         }
     }
     
@@ -231,6 +241,22 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             self.viewController.tableView.tableFooterView = self.viewController.emptyContentView
         } else {
             self.viewController.tableView.tableFooterView = self.viewController.loadMoreView
+        }
+    }
+    
+    private func createTableView (result: SHUsersMeta) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.viewController.tableView.beginUpdates()
+            var insertedIndexPaths: [NSIndexPath] = []
+            let currentCount = self.userTags.count
+            for (index, _) in result.results.enumerate() {
+                insertedIndexPaths += [NSIndexPath(forRow: index + currentCount, inSection: 0)]
+            }
+            self.userTags = result.results
+            self.viewController.tableView.insertRowsAtIndexPaths(insertedIndexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+            self.viewController.tableView.endUpdates()
+            self.updateFooterlabel()
+            self.updateFooterView()
         }
     }
 }

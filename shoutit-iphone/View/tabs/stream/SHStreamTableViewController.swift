@@ -36,6 +36,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     var streamType: StreamType = .Stream
     var discoverId: String?
     var tagName: String?
+    var tag: SHTag?
     
     private var filterViewController: SHFilterViewController?
     

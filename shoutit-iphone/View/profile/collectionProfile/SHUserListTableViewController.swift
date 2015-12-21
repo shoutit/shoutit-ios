@@ -18,6 +18,7 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
     var searchQuery: String?
     var tap: UITapGestureRecognizer?
     var searchBar: UISearchBar?
+    var tagName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +131,10 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         self.user = user
         self.param = param
         self.type = type
+    }
+    
+    func requestUsersForTag(tagName: String) {
+        self.tagName = tagName
     }
     
     // MARK - Private

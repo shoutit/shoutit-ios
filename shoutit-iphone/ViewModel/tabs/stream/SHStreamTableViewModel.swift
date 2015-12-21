@@ -15,6 +15,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     private var spinner: UIActivityIndicatorView?
     private var shShoutMeta: SHShoutMeta?
     private var pulltoRefreshLabel: UILabel?
+    private var tag: SHTag?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -24,7 +25,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         // Get Latest Shouts
         getLatestShouts()
         updateSubtitleLabel()
-        
+        if let tagName = self.viewController.tagName {
+            self.getTagProfile(tagName)
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
         //ShoutDeleted Notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("shoutDeleted:"), name: "shoutDeleted", object: nil)
@@ -144,18 +147,20 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         if indexPath.row == 0{
             if (self.viewController.streamType == StreamType.Tag) {
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHStreamTagTableViewCell, forIndexPath: indexPath) as! SHStreamTagTableViewCell
-                cell.setTagCellWithName(self.viewController.tagName!)
-                self.viewController.searchBar.hidden = true
-                let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-                titleLabel.textAlignment = NSTextAlignment.Center
-                titleLabel.backgroundColor = UIColor.clearColor()
-                titleLabel.textColor = UIColor.darkTextColor()
-                titleLabel.font = UIFont.boldSystemFontOfSize(17)
-                titleLabel.text = self.viewController.tagName
-                titleLabel.sizeToFit()
-                let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
-                tagNavigationView.addSubview(titleLabel)
-                self.viewController.navigationItem.titleView = tagNavigationView
+                if let tag = self.tag {
+                    cell.setTagCell(tag, viewController: self.viewController)
+                    self.viewController.searchBar.hidden = true
+                    let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+                    titleLabel.textAlignment = NSTextAlignment.Center
+                    titleLabel.backgroundColor = UIColor.clearColor()
+                    titleLabel.textColor = UIColor.darkTextColor()
+                    titleLabel.font = UIFont.boldSystemFontOfSize(17)
+                    titleLabel.text = self.viewController.tagName
+                    titleLabel.sizeToFit()
+                    let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
+                    tagNavigationView.addSubview(titleLabel)
+                    self.viewController.navigationItem.titleView = tagNavigationView
+                }
                 //cell.setTagCell(shout.)
                 return cell
             }
@@ -363,6 +368,22 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
         
         self.updateFooterView()
+    }
+    
+    private func getTagProfile(tagName: String) {
+        self.viewController.tagsApi.loadProfileForTag(tagName, cacheResponse: { (shTag) -> Void in
+            //
+            }) { (response) -> Void in
+                switch(response.result) {
+                    case .Success(let result):
+                        self.tag = result
+                    self.viewController.tableView.reloadData()
+                       // self.viewController.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                    case .Failure(let error):
+                        log.error("Error getting Tag Profile \(error.localizedDescription)")
+                }
+        }
+    
     }
     
 }

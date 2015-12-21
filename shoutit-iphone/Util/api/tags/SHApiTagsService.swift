@@ -98,9 +98,11 @@ class SHApiTagsService: NSObject {
 //        }
     }
     
-    func loadProfileForTag(tagName: String) {
+    func loadProfileForTag(tagName: String, cacheResponse: SHTag -> Void, completionHandler: Response<SHTag, NSError> -> Void) {
         self.currentPage = 1
-       // let urlString =
+        let urlString = String(format: TAGS_URL + "/%@", arguments: [tagName])
+        let params = [String: AnyObject]()
+        SHApiManager.sharedInstance.get(urlString, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
 //    - (void) loadProfileForTag:(NSString*)tagName;

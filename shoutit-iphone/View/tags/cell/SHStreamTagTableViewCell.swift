@@ -17,7 +17,8 @@ class SHStreamTagTableViewCell: UITableViewCell {
     
     var tagCell = SHTag()
     let shApiTag = SHApiTagsService()
-    var viewController = SHStreamTableViewController()
+    private var viewController: UIViewController?
+    
     //var tagName: String?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,28 +54,31 @@ class SHStreamTagTableViewCell: UITableViewCell {
         }
     }
     
-//    func setTagCell(tag: SHTag) {
-//        tagCell = tag
-//        self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
-//        self.tagLabel.layer.masksToBounds = true
-//        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
-//        self.tagLabel.text = String(format: "%@", arguments: [tag.name])
-//        if let listening = self.tagCell?.isListening {
-//            self.setListenSelected(listening)
-//        }
-//    }
-    
-    func setTagCellWithName(tag: String) {
-        self.tagCell.name = tag
-        setListenSelected(false)
+    func setTagCell(tag: SHTag, viewController: UIViewController) {
+        self.tagCell = tag
+        self.viewController = viewController
         self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
         self.tagLabel.layer.masksToBounds = true
         self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
-        self.tagLabel.text = String(format: "%@", arguments: [tag])
+        self.tagLabel.text = String(format: "%@", arguments: [tag.name])
+        self.listeningLabel.text = "\(tag.listenersCount)"
         if let listening = self.tagCell.isListening {
             self.setListenSelected(listening)
         }
     }
+    
+//    func setTagCellWithName(tag: String, viewController: UIViewController) {
+//        self.tagCell.name = tag
+//        self.viewController = viewController
+//        setListenSelected(false)
+//        self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
+//        self.tagLabel.layer.masksToBounds = true
+//        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
+//        self.tagLabel.text = String(format: "%@", arguments: [tag])
+//        if let listening = self.tagCell.isListening {
+//            self.setListenSelected(listening)
+//        }
+//    }
     
     
     func setListenSelected(isFollowing: Bool) {
@@ -141,18 +145,13 @@ class SHStreamTagTableViewCell: UITableViewCell {
                     }
                 })
             }
-            
         }
-        
-        
-       
     }
     
     @IBAction func listenersAction(sender: AnyObject) {
-        let listViewController = UIStoryboard.getTag().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
-       // listViewController.requestUsersAndTags(<#T##user: SHUser##SHUser#>, param: <#T##String#>, type: <#T##String#>)
-       // [listViewController requestUsersForTag:self.model.tag];
-        self.viewController.navigationController?.pushViewController(listViewController, animated: true)
+        let listViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHUSERLIST) as! SHUserListTableViewController
+        listViewController.requestUsersForTag(self.tagCell.name)
+        viewController?.navigationController?.pushViewController(listViewController, animated: true)
     }
     
 }
