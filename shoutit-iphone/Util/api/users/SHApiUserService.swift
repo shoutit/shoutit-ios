@@ -63,6 +63,15 @@ class SHApiUserService: NSObject {
         SHApiManager.sharedInstance.get(SH_USERS_URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
+    func searchTagsQuery(query: String, page: Int, param: String, cacheResponse: SHTagMeta -> Void, completionHandler: Response<SHTagMeta, NSError> -> Void) {
+        var params:[String: AnyObject] = ["page": page, "page_size": Constants.Common.SH_PAGE_SIZE]
+        if (!query.isEmpty) {
+            params["search"] = query
+        }
+        params["type"] = "all"
+        SHApiManager.sharedInstance.get(SH_TAGS_URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func loadUsersFor(username: String, param: String, type: String, page: Int, cacheResponse: SHUsersMeta -> Void, completionHandler: Response<SHUsersMeta, NSError> -> Void) {
         let urlString = String(format: USERS_URL_NAME + "/%@", arguments: [username, param.lowercaseString])
         var params: [String: AnyObject] = ["page": page, "page_size": Constants.Common.SH_PAGE_SIZE]
