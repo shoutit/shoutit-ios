@@ -148,7 +148,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(self.viewController.type == "users" || self.viewController.type == nil) {
+        if(self.viewController.type == "users" || self.viewController.type == "") {
             return NSLocalizedString("Users", comment: "Users")
         } else {
             return NSLocalizedString("Tags", comment: "Tags")
