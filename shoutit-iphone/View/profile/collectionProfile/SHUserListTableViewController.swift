@@ -45,7 +45,7 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         } else {
             self.searchBar?.placeholder = NSLocalizedString("Search New Tags", comment: "Search New Tags")
         }
-        
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -131,6 +131,18 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         self.param = param
         self.type = type
     }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        
+        //        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+        //            self.viewModel?.triggerLoadMore()
+        //        })
+    }
+    
     
     deinit {
         viewModel?.destroy()

@@ -13,6 +13,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     private let viewController: SHUserListTableViewController
     private var userTags: AnyObject = []
     let shApiUser = SHApiUserService()
+    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHUserListTableViewController) {
         self.viewController = viewController
@@ -44,6 +45,13 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
         
     }
     
+    func pullToRefresh() {
+        spinner?.startAnimating()
+        if let username = self.viewController.user?.username, let param = self.viewController.param, let type = self.viewController.type {
+            self.requestUsersAndTags(username, param: param, type: type)
+        }
+    }
+    
     func requestUsersAndTags (username: String, param: String, type: String) {
         if (type != "tags") {
             self.viewController.loadMoreView.showLoading()
@@ -51,6 +59,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
                 self.viewController.loadMoreView.showNoMoreContent()
                 self.updateUI(shUserMeta, shUsersTag: nil)
                 }) { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
                     switch(response.result) {
                     case .Success(let result):
                         self.updateUI(result, shUsersTag: nil)
@@ -63,6 +72,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
                 self.viewController.loadMoreView.showNoMoreContent()
                 self.updateUI(nil, shUsersTag: shTagMeta)
                 }, completionHandler: { (response) -> Void in
+                    self.viewController.tableView.pullToRefreshView.stopAnimating()
                     switch(response.result) {
                     case .Success(let result):
                         self.updateUI(nil, shUsersTag: result)

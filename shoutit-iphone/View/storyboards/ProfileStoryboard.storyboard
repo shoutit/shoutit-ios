@@ -355,6 +355,10 @@
                             <outlet property="delegate" destination="fjM-en-Sqs" id="H1u-DW-WbA"/>
                         </connections>
                     </tableView>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="QLz-P6-qee">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cE5-kp-haa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
