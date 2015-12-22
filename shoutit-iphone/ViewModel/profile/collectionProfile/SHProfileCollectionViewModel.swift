@@ -102,7 +102,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: Constants.CollectionReusableView.SHHeaderProfileReusableView, forIndexPath: indexPath) as! SHHeaderProfileReusableView
             
             if let user = self.viewController.user {
-                headerView.setupViewForUser(user)
+                headerView.setupViewForUser(user, viewController: self.viewController)
                 headerView.setNeedsDisplay()
             }
             headerView.delegate = self
@@ -173,7 +173,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     func updateUIForShouts(shShoutMeta: SHShoutMeta) {
         self.userShouts = shShoutMeta.results
         self.viewController.collectionView?.reloadData()
-        self.viewController.collectionView?.layoutIfNeeded()
+       // self.viewController.collectionView?.layoutIfNeeded()
     }
     
     

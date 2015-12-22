@@ -38,7 +38,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     private var imglisten: UIImageView?
     private var imglistenGreen: UIImageView?
     private var user: SHUser?
-    var viewController = SHProfileCollectionViewController()
+    var viewController: SHProfileCollectionViewController?
     var shApiUser = SHApiUserService()
     
     override func awakeFromNib() {
@@ -47,9 +47,9 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
     }
     
-    func setupViewForUser (user: SHUser) {
+    func setupViewForUser (user: SHUser, viewController: SHProfileCollectionViewController) {
+        self.viewController = viewController
         loadUserData(user)
-        self.user = user
         self.imglisten = UIImageView(frame: CGRectMake(0, 0, 32, 32))
         self.imglisten?.image = UIImage(named: "listen")
         self.imglistenGreen = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
@@ -68,12 +68,12 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             self.cvShortcutButton.layer.cornerRadius = 5
             self.cvShortcutButton.backgroundColor = UIColor.lightTextColor()
             
-            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
-            editBtn.tintColor = UIColor.darkTextColor()
-            self.viewController.navigationItem.rightBarButtonItem = editBtn
+//            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
+//            editBtn.tintColor = UIColor.darkTextColor()
+//            viewController.navigationItem.rightBarButtonItem = editBtn
             
-            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
-            self.viewController.navigationItem.leftBarButtonItem = setBtn
+//            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
+//            viewController.navigationItem.leftBarButtonItem = setBtn
             
 //            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
 //            tap.numberOfTapsRequired = 1
@@ -88,10 +88,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         self.lgView.layer.cornerRadius = 5
         self.lsView.layer.cornerRadius = 5
         self.tgView.layer.cornerRadius = 5
-        
-//        [self.listenersNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.followers_count]];
-//        [self.listeningNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_users]];
-//        [self.listeningTagsLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_tags]];
     }
     
     func setListenSelected (isFollowing: Bool) {
@@ -150,7 +146,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
                                         self.setListenSelected(false)
                                         indicatorView.removeFromSuperview()
                                         self.listenButton.hidden = false
-                                        user.followersCount--
+                                        user.listenersCount--
                                     })
                                 case .Failure(let error):
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -171,7 +167,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
                                         self.setListenSelected(true)
                                         indicatorView.removeFromSuperview()
                                         self.listenButton.hidden = false
-                                        user.followersCount++
+                                        user.listenersCount++
                                     })
                                 case .Failure(let error):
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -223,6 +219,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     private func fillUserDetails(shUser: SHUser) {
+        self.user = shUser
         self.nameLabel.text = self.user?.name
         self.bioTextView.text = self.user?.bio
         if let userImage = self.user?.image {
@@ -230,6 +227,12 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         }
         if let image = self.user?.image {
             self.blurredImageView.sd_setImageWithURL(NSURL(string: image))
+        }
+        
+        self.listenersNumberLabel.text = "\(shUser.listenersCount)"
+        if let users = shUser.listeningCount?.users, let tags = shUser.listeningCount?.tags {
+            self.listeningNumberLabel.text = "\(users)"
+            self.listeningTagsLabel.text = "\(tags)"
         }
     }
     

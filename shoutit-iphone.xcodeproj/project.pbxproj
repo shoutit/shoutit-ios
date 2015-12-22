@@ -180,6 +180,7 @@
 		ACB803B71C10A1F300420BB1 /* SHConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B61C10A1F300420BB1 /* SHConversationTableViewCell.swift */; };
 		ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */; };
 		ACB803BB1C11A29E00420BB1 /* SHMessagesMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803BA1C11A29E00420BB1 /* SHMessagesMeta.swift */; };
+		ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB7BBE1C2942160052C12B /* SHListenersMeta.swift */; };
 		ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */; };
 		ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */; };
 		ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */; };
@@ -491,6 +492,7 @@
 		ACB803B61C10A1F300420BB1 /* SHConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationTableViewCell.swift; path = View/messages/cell/SHConversationTableViewCell.swift; sourceTree = "<group>"; };
 		ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationsMeta.swift; path = Model/conversations/SHConversationsMeta.swift; sourceTree = "<group>"; };
 		ACB803BA1C11A29E00420BB1 /* SHMessagesMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMessagesMeta.swift; path = Model/messages/SHMessagesMeta.swift; sourceTree = "<group>"; };
+		ACBB7BBE1C2942160052C12B /* SHListenersMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHListenersMeta.swift; path = Model/users/SHListenersMeta.swift; sourceTree = "<group>"; };
 		ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHStreamTagTableViewCell.xib; path = View/tags/cell/SHStreamTagTableViewCell.xib; sourceTree = "<group>"; };
 		ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewController.swift; path = View/profile/collectionProfile/SHProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewModel.swift; path = ViewModel/profile/collectionProfile/SHProfileCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -1237,6 +1239,7 @@
 			isa = PBXGroup;
 			children = (
 				AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */,
+				ACBB7BBE1C2942160052C12B /* SHListenersMeta.swift */,
 			);
 			name = users;
 			sourceTree = "<group>";
@@ -1972,6 +1975,7 @@
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
+				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
 				AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */,
 				AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */,
