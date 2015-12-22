@@ -275,3 +275,6 @@
 
 /* Refreshing Chats... */
 "Refreshing Chats..." = "Refreshing Chats...";
+
+/* The user cancelled the signin flow */
+"The user cancelled the signin flow" = "The user cancelled the signin flow";

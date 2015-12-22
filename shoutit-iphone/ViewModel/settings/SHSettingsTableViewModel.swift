@@ -74,7 +74,6 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
             if(!gplus) {
                 GIDSignIn.sharedInstance().delegate = self
                 GIDSignIn.sharedInstance().signIn()
-                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     indicatorView.removeFromSuperview()
                     self.viewController.googleLinkButton.hidden = false
@@ -104,10 +103,10 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                 let login: FBSDKLoginManager = FBSDKLoginManager()
                 login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
                     if (error != nil) {
-                        log.info("Process error")
+                        SHProgressHUD.showError(error.localizedDescription, maskType: .Black)
                     } else {
                         if result.isCancelled {
-                            log.info("Cancelled")
+                            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
                         } else {
                             log.info("Logged in")
                             self.setSelected(self.viewController.fbLinkButton, isSelected: true)
@@ -134,7 +133,9 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        
+        if let _ = error {
+            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
