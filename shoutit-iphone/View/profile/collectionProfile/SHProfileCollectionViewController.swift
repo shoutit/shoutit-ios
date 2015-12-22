@@ -47,6 +47,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         self.collectionView?.alwaysBounceVertical = true
         self.edgesForExtendedLayout = UIRectEdge.None
         self.hidesBottomBarWhenPushed = false
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -105,6 +106,16 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
             vc.user = self.user
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    //Private
+    private func setPullToRefresh() {
+        self.collectionView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        
+        //        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+        //            self.viewModel?.triggerLoadMore()
+        //        })
     }
     
     deinit {

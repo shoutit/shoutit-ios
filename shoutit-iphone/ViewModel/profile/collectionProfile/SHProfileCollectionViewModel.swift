@@ -41,6 +41,12 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         
     }
     
+    func pullToRefresh() {
+        if let username = self.viewController.user?.username {
+            self.loadShoutStreamForUser(username)
+        }
+    }
+    
     func destroy() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -78,6 +84,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         shApiShout.loadShoutStreamForUser(username, page: currentPage, cacheResponse: { (shShoutMeta) -> Void in
             self.updateUIForShouts(shShoutMeta)
             }) { (response) -> Void in
+                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
                     self.updateUIForShouts(result)

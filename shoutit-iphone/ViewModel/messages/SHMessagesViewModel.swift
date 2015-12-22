@@ -336,12 +336,6 @@ class SHMessagesViewModel: NSObject {
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
 //                                SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                                self.shMessages.append(msg)
-                                self.addMessageFrom(msg)
-                               // self.viewController.finishSendingMessageAnimated(true)
-                                self.viewController.finishSendingMessage()
-                                self.viewController.doneAction()
-                                
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                                 self.viewController.collectionView?.reloadData()
@@ -349,6 +343,11 @@ class SHMessagesViewModel: NSObject {
                                 JSQSystemSoundPlayer.jsq_playMessageSentAlert()
                                 log.error("Error sending the location \(error.localizedDescription)")
                             }
+                            self.shMessages.append(msg)
+                            self.addMessageFrom(msg)
+                            // self.viewController.finishSendingMessageAnimated(true)
+                            self.viewController.finishSendingMessage()
+                            self.viewController.doneAction()
                         })
                     }
                 } else {
@@ -359,19 +358,18 @@ class SHMessagesViewModel: NSObject {
                             switch(response.result) {
                             case .Success( _):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                                self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                                self.shMessages.append(msg)
-                                self.addMessageFrom(msg)
-                                //self.viewController.finishSendingMessageAnimated(true)
-                                self.viewController.finishSendingMessage()
-                                
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
-                                self.viewController.finishProgress()
+                               // self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentAlert()
                                 log.error("Error sending the coordinates \(error.localizedDescription)")
                             }
+                            self.shMessages.append(msg)
+                            self.addMessageFrom(msg)
+                            self.viewController.finishProgress()
+                            //self.viewController.finishSendingMessageAnimated(true)
+                            self.viewController.finishSendingMessage()
                         })
                     }
                 }
@@ -608,7 +606,7 @@ class SHMessagesViewModel: NSObject {
                     if let location = (attachment as! SHLocationAttachment).location, let longitude = location.longitude, let latitude = location.latitude {
                         let media = SHLocationMediaItem(maskAsOutgoing: message.user?.username == self.viewController.myUser?.username)
                         media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
-                            self.viewController.collectionView?.reloadData()
+                           // self.viewController.collectionView?.reloadData()
                         })
                         if let user = message.user {
                             let shoutMessage = JSQMessage(senderId: user.username,
