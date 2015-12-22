@@ -95,11 +95,6 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         }
     }
     
-    func didUpdateUser(user: SHUser) {
-        self.user = user
-//        viewDidLoad()
-    }
-    
     func openSettings () {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let vc = UIStoryboard.getSettings().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSETTINGS) as! SHSettingsTableViewController
