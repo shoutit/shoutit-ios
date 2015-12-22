@@ -58,7 +58,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         if let user = notification.object as? SHUser, let username = user.username {
             self.viewController.user = user
             self.loadShoutStreamForUser(username)
-            self.viewController.collectionView?.reloadData()
+           // self.viewController.collectionView?.reloadData()
         }
     }
     
@@ -108,7 +108,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
             }
             headerView.delegate = self
             reusableview = headerView
-            collectionView.layoutIfNeeded()
+            //collectionView.layoutIfNeeded()
         }
        return reusableview!
     }

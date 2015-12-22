@@ -109,17 +109,8 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
                     switch(response.result) {
                     case .Success( _):
                         if let user = response.result.value {
-                            let tabVC = SHTabViewController()
-                            tabVC.selectedIndex = 4
-                            self.viewController.presentViewController(tabVC, animated: true, completion: nil)
                             NSNotificationCenter.defaultCenter().postNotificationName("DidUpdateUser", object: user)
-//                            self.viewController.dismissViewControllerAnimated(true, completion: { () -> Void in
-//                                let vc = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
-//                                vc.didUpdateUser(user)
-//                            })
-                            //self.viewController.tabBarController?.navigationController?.pushViewController(vc, animated: true)
-                            //self.viewController.dismissViewControllerAnimated(true, completion: nil)
-//                            self.viewController.navigationController?.presentViewController(vc, animated: true, completion: nil)
+                            self.viewController.dismissViewControllerAnimated(true, completion: nil)
                         }
                     case .Failure(let error):
                         log.error("Error updating User \(error.localizedDescription)")
