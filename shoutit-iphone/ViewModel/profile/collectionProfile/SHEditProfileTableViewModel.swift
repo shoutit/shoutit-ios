@@ -103,12 +103,15 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
         if let username = self.viewController.user?.username {
             SHProgressHUD.show(NSLocalizedString("Updating User", comment: "Updating User"), maskType: .Black)
             shApiUser.editUser(username, userDict: userDict, cacheResponse: { (shUser) -> Void in
-                SHProgressHUD.show(NSLocalizedString("User succesfully updated", comment: "User succesfully updated"), maskType: .Black)
+               // SHProgressHUD.show(NSLocalizedString("User succesfully updated", comment: "User succesfully updated"), maskType: .Black)
                 }) { (response) -> Void in
                     SHProgressHUD.dismiss()
                     switch(response.result) {
                     case .Success( _):
-                        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+                        if let user = response.result.value {
+                            NSNotificationCenter.defaultCenter().postNotificationName("DidUpdateUser", object: user)
+                            self.viewController.dismissViewControllerAnimated(true, completion: nil)
+                        }
                     case .Failure(let error):
                         log.error("Error updating User \(error.localizedDescription)")
                     }
@@ -128,7 +131,7 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
             if let username = self.viewController.user?.username {
                 self.shApiUser.changeUserImage(username, image: image, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let progress = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend * 100)
+                        let progress = CGFloat(totalBytesSent + totalBytesExpectedToSend) / CGFloat(bytesSent * 100)
                         if(progress < 0.999) {
                             hud.progress = progress
                         } else {

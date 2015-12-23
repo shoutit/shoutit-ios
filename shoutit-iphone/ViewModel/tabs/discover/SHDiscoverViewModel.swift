@@ -169,6 +169,9 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         if let location = SHAddress.getUserOrDeviceLocation() {
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
+        } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry"){
+            subTitleLabel.text = String(format: "%@, %@", arguments: [city, country])
+            subTitleLabel.sizeToFit()
         }
         
         subTitleLabel.center = CGPointMake(titleLabel.center.x, subTitleLabel.center.y)

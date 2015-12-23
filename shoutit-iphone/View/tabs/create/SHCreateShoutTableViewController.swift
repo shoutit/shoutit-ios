@@ -41,7 +41,11 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+            return
+        }
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
         self.tableView.delegate = viewModel
@@ -102,7 +106,9 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Discard changes?", comment: "Discard changes?"), preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Default, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("YES", comment: "YES"), style: .Default, handler: { (action) -> Void in
+            SHProgressHUD.show(NSLocalizedString("Retrieving Location", comment: "Retrieving Location"), maskType: .Black)
              self.viewModel?.cleanForms()
+            SHProgressHUD.dismiss()
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }

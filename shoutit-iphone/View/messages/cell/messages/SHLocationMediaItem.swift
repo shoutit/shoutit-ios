@@ -51,7 +51,7 @@ class SHLocationMediaItem: JSQMediaItem{
         options.scale = UIScreen.mainScreen().scale
         let snapShotter = MKMapSnapshotter(options: options)
         snapShotter.startWithQueue(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { (snapShot, error) -> Void in
-            if(error != "") {
+            if(error != nil) {
                 log.error("Error creating map snapshot: \(error?.localizedDescription)")
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

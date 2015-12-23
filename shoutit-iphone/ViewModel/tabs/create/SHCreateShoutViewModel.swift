@@ -35,6 +35,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("profileVideoCV:"), name:"ProfileVideoCV", object: nil)
         if isEditing {
             self.setupViewForStandard(true)
         }
@@ -149,6 +150,13 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         }
     }
     
+    func profileVideoCV(notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        self.setupViewForStandard(false)
+    }
+    
     func viewWillAppear() {
         
     }
@@ -166,7 +174,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func segmentAction() {
@@ -245,8 +253,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     func cleanForms() {
         self.viewController.titleTextField.text = ""
         self.viewController.categoriesTextField.text =  ""
-        self.shout.tags?.removeAll()
-        self.shout.stringTags.removeAll()
+       // self.shout.tags?.removeAll()
+       // self.shout.stringTags.removeAll()
         self.viewController.tagsList.setTags(self.shout.stringTags)
         self.viewController.descriptionTextView.text = ""
         self.viewController.priceTextField.text = ""
@@ -459,6 +467,22 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             return fmax(24.0, self.viewController.tagsList.contentSize.height) + 20
         }
         return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Title"
+        } else if(section == 1) {
+            return "Media"
+        } else if(section == 2) {
+            return "Details"
+        } else if(section == 3) {
+            return "Description"
+        } else if (section == 4) {
+            return "Price"
+        } else {
+            return "Location"
+        }
     }
     
     // MARK - SHCreateImageCollectionViewCellDelegate

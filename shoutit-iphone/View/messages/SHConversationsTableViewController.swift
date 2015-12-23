@@ -14,9 +14,15 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+            return
+        }
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
         self.clearsSelectionOnViewWillAppear = true
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -31,7 +37,6 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-       // self.setPullToRefresh()
         viewModel?.viewWillAppear()
     }
     
@@ -56,9 +61,9 @@ class SHConversationsTableViewController: BaseTableViewController {
             self.viewModel?.pullToRefresh()
         })
         
-        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
-            self.viewModel?.triggerLoadMore()
-        })
+//        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+//            self.viewModel?.triggerLoadMore()
+//        })
     }
     
     deinit {

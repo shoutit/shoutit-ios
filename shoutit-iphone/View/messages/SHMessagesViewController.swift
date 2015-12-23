@@ -140,7 +140,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     @IBAction func refreshAction(sender: AnyObject) {
         if let conversationID = self.conversationID {
+            SHProgressHUD.show(NSLocalizedString("Refreshing Chats...", comment: "Refreshing Chats..."), maskType: .Black)
             self.viewModel?.getMessagesById(conversationID)
+            SHProgressHUD.dismiss()
         }
     }
     
@@ -216,7 +218,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                 self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
                 self.progress?.backgroundColor = navBar.window?.tintColor
                 self.progress?.progressTintColor = UIColor.jsq_messageBubbleBlueColor()
-                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height, navBar.frame.size.width, 2)
+                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height - 20, navBar.frame.size.width, 2)
                 if let progress = self.progress {
                     navBar.addSubview(progress)
                 }
@@ -369,20 +371,13 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        //        let msg = self.shMessages[indexPath.item]
-        //        if(msg.user == nil) {
-        //            return nil
-        //        }
-        //        let username = msg.user?.username
-        let username = self.viewModel?.jsqMessages[indexPath.item].senderDisplayName
-        // let image = SDImageCache
-        //UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:username];
-        var image = SDImageCache.sharedImageCache().imageFromDiskCacheForKey(username)
-        if (image == nil) {
-            image = UIImage(named: "no_image_available")
+        let imageView = UIImageView()
+        if let imageUrl = self.myUser?.image where self.myUser?.name == self.viewModel?.jsqMessages[indexPath.item].senderDisplayName {
+            imageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "no_image_available"))
+        } else {
+            imageView.image = UIImage(named: "profile")
         }
-        
-        let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
+        let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(imageView.image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
         return avImage;
         
     }
@@ -509,7 +504,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let msg = self.viewModel?.shMessages[indexPath.item], let user = msg.user {
             let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
             profileViewController.requestUser(user)
-            self.hidesBottomBarWhenPushed = true
+            //self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
@@ -521,7 +516,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as! SHShoutDetailTableViewController
                     detailView.title = shout.title
                     detailView.getShoutDetails(shoutId)
-                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(detailView, animated: true)
                 }
             } else if(message.media.isKindOfClass(SHLocationMediaItem)) {
@@ -530,15 +524,15 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     let navController = UINavigationController(rootViewController: vc)
                     navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
                     navController.navigationBar.tintColor = UIColor.whiteColor()
-                    self.presentViewController(navController, animated: true, completion: nil)
                     vc.location = location
                     vc.shout = shout
+                    self.presentViewController(navController, animated: true, completion: nil)
 //                     SHMapDetatilViewController.presentFromViewController(self, location: location, shout: shout)
                 }
             } else if(message.media.isKindOfClass(SHImageMediaItem)) {
                 if let item = message.media as? SHImageMediaItem {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        var browser = MWPhotoBrowser()
+                        var browser = MWPhotoBrowser(delegate: item)
                         browser.displayActionButton = false
                         browser.displayNavArrows = false
                         browser.displaySelectionButtons = false
@@ -554,7 +548,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         transition.subtype = kCATransitionFromTop
                         self.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
                         self.navigationController?.pushViewController(browser, animated: true)
-                        browser = MWPhotoBrowser()
+                        browser = nil
                     })
                 }
                 
@@ -635,10 +629,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         if(response.result.isSuccess) {
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                             SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
-                            self.viewModel?.shMessages.append(msg)
-                            self.viewModel?.addMessageFrom(msg)
-                            self.finishSendingMessage()
-                            self.doneAction()
+                            self.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                         } else if(response.result.isFailure) {
                             self.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                             self.collectionView?.reloadData()
@@ -646,6 +637,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                             self.viewModel?.failedToSendMessages.append(msg)
                             log.error("Error composing the shout message")
                         }
+                        self.viewModel?.shMessages.append(msg)
+                        self.viewModel?.addMessageFrom(msg)
+                        //self.finishSendingMessageAnimated(true)
+                        self.finishSendingMessage()
+                        self.doneAction()
                     })
                 }
             } else {
@@ -671,6 +667,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                     self.viewModel?.shMessages.append(msg)
                     self.viewModel?.addMessageFrom(msg)
                     self.finishSendingMessage()
+                   // self.finishSendingMessageAnimated(true)
                 }
             }
             
@@ -697,7 +694,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
         self.finishSendingMessage()
-        self.viewModel?.cameraFinishWithImage(media)
+       // self.finishSendingMessageAnimated(true)
+        self.viewModel?.cameraFinishWithImage(media, msg: msg)
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
@@ -721,14 +719,15 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         self.viewModel?.shMessages.append(msg)
         self.viewModel?.addMessageFrom(msg)
         self.finishSendingMessage()
-        self.viewModel?.cameraFinishWithVideoFile(media)
+       // self.finishSendingMessageAnimated(true)
+        self.viewModel?.cameraFinishWithVideoFile(media, msg: msg)
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
-        var scrollToEnd = false
-        if let count = self.viewModel?.shMessages.count where count == 0 {
-            scrollToEnd = true
-        }
+//        var scrollToEnd = false
+//        if let count = self.viewModel?.shMessages.count where count == 0 {
+//            scrollToEnd = true
+//        }
         self.viewModel?.shMessages = shMessagesMeta.results
         self.viewModel?.jsqMessages.removeAll()
         if let messages = self.viewModel?.shMessages {

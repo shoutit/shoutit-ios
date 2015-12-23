@@ -107,6 +107,11 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = category.kLeftLabel
                     cell.rightLabel.text = category.kRightLabel
+                    if(category.kRightLabel != "All") {
+                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                    } else {
+                        cell.rightLabel.textColor = UIColor.lightGrayColor()
+                    }
                     return cell
                 }
             }
@@ -116,6 +121,11 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = type.kLeftLabel
                     cell.rightLabel.text = type.kRightLabel
+                    if(type.kRightLabel != "Offer") {
+                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                    } else {
+                        cell.rightLabel.textColor = UIColor.lightGrayColor()
+                    }
                     return cell
                 }
             }
@@ -146,6 +156,11 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = price.kLeftLabel
                     cell.rightLabel.text = price.kRightLabel
+                    if(price.kRightLabel != "Any") {
+                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                    } else {
+                        cell.rightLabel.textColor = UIColor.lightGrayColor()
+                    }
                     return cell
                 }
                 
@@ -155,7 +170,9 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 let cellId = location.kCellType
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterStandardTableViewCell {
                     cell.leftLabel.text = location.kLeftLabel
-                    cell.rightLabel.text = location.kRightLabel
+                    if let location = SHAddress.getUserOrDeviceLocation() {
+                        cell.rightLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
+                    }
                     if cell.rightLabel.text! != NSLocalizedString("Current Location", comment: "Current Location") {
                         cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
                     } else {

@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.7</string>
+	<string>1.0.9</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -145,6 +145,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Shoutit App wants to access your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

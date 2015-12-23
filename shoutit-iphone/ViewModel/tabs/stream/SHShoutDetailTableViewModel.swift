@@ -65,7 +65,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     func replyAction () {
         let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
         messageViewController.isFromShout = true
-        //        [messageViewController setShout:self.shoutModel.shout];
+//      [messageViewController setShout:self.shoutModel.shout];
         messageViewController.shout = self.shoutDetail
         messageViewController.title = self.viewController.title
         
@@ -74,10 +74,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
         transition.type = kCATransitionMoveIn
         transition.subtype = kCATransitionFromTop
         self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
-        
-        self.viewController.hidesBottomBarWhenPushed = true
         self.viewController.navigationController?.pushViewController(messageViewController, animated: false)
-        self.viewController.hidesBottomBarWhenPushed = false
     }
     
     // Shout Contact Profile Action
@@ -87,7 +84,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
                 profileViewController.requestUser(shoutUser)
                 self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
-            }
+            } 
         }
     }
     
@@ -302,7 +299,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: shoutDetail.images[indexPath.row - shoutDetail.videos.count]), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                     cell.imageURL = shoutDetail.images[indexPath.row - shoutDetail.videos.count]
                 } else {
-                    cell.shoutImageView.image = UIImage(named: "no_image_available")
+                    cell.shoutImageView.image = UIImage(named: "logo")
                 }
                 return cell
             }
@@ -313,7 +310,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                 }
             } else {
-                cell.shoutImageView.image = UIImage(named: "no_image_available")
+                cell.shoutImageView.image = UIImage(named: "logo")
             }
             return cell
         }

@@ -27,6 +27,10 @@
                     </tableView>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ODC-da-Bk2">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </refreshControl>
                     <connections>
                         <outlet property="searchDisplayController" destination="vk4-Re-dXZ" id="nGG-xS-FCF"/>
                         <outlet property="tableView" destination="rIX-aS-WXx" id="cA5-zN-Mbh"/>
@@ -494,7 +498,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="d2b-bb-dgf">
                         <barButtonItem key="rightBarButtonItem" image="chatTabBar" id="taX-Ie-qUQ">
-                            <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="replyAction:" destination="Jfq-Pw-XRn" id="00X-UG-sYn"/>
                             </connections>

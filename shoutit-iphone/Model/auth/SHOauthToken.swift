@@ -52,6 +52,20 @@ class SHOauthToken: Mappable {
         // TODO Throw an event that user is updated
     }
     
+    static func goToLogin() {
+        let appDelegate = UIApplication.sharedApplication().delegate
+        let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.TAKE_LOGIN_VC)
+        appDelegate?.window??.rootViewController = nil
+        appDelegate?.window??.rootViewController = loginVC
+    }
+    
+    static func goToDiscover() {
+        let appDelegate = UIApplication.sharedApplication().delegate
+        let tabViewController = SHTabViewController()
+        tabViewController.selectedIndex = 1
+        appDelegate?.window??.rootViewController = tabViewController
+    }
+    
     static func getFromCache() -> SHOauthToken? {
         var shOauthToken: SHOauthToken? = nil
         let semaphore = dispatch_semaphore_create(0)

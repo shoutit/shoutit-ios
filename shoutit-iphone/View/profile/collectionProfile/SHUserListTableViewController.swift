@@ -18,12 +18,14 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
     var searchQuery: String?
     var tap: UITapGestureRecognizer?
     var searchBar: UISearchBar?
+    var tagName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
-        if(self.param == "listening" && self.type == "users" || self.type == "tags") {
+    
+        if(self.param == "listening" && (self.type == "users" || self.type == "tags")) {
             self.searchBar = UISearchBar()
             self.searchBar?.sizeToFit()
             self.searchBar?.placeholder = NSLocalizedString("Search", comment: "Search")
@@ -44,7 +46,7 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         } else {
             self.searchBar?.placeholder = NSLocalizedString("Search New Tags", comment: "Search New Tags")
         }
-        
+        self.setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -110,7 +112,19 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         if(searchBar.text != "") {
             self.searchQuery = searchBar.text
             self.viewModel?.searchAction()
+            self.isSearchMode = true
+        } else {
+            self.isSearchMode = false
         }
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        if(searchBar.text != "") {
+            self.isSearchMode = true
+        } else {
+            self.isSearchMode = false
+        }
+        self.dismissSearchKeyboard(searchBar)
     }
     
     func requestUsersAndTags(user: SHUser, param: String, type: String) {
@@ -118,6 +132,22 @@ class SHUserListTableViewController: BaseTableViewController, UISearchBarDelegat
         self.param = param
         self.type = type
     }
+    
+    func requestUsersForTag(tagName: String) {
+        self.tagName = tagName
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.tableView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        
+        //        self.tableView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+        //            self.viewModel?.triggerLoadMore()
+        //        })
+    }
+    
     
     deinit {
         viewModel?.destroy()

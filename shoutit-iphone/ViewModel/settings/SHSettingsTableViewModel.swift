@@ -11,7 +11,7 @@ import MessageUI
 import FBSDKLoginKit
 import Haneke
 
-class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate{
+class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate, GIDSignInUIDelegate{
     private let viewController: SHSettingsTableViewController
     private let shApiUser = SHApiUserService()
     private let shApiAuthService = SHApiAuthService()
@@ -24,7 +24,14 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
         if let user = self.viewController.user {
             self.loadUserData(user)
         }
-        
+        // Google instance
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
     }
     
     func viewWillAppear() {
@@ -47,6 +54,14 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
         
     }
     
+    func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        self.viewController.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    func signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // google Link Action
     func googleLinkAction () {
         let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -59,7 +74,6 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
             if(!gplus) {
                 GIDSignIn.sharedInstance().delegate = self
                 GIDSignIn.sharedInstance().signIn()
-                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     indicatorView.removeFromSuperview()
                     self.viewController.googleLinkButton.hidden = false
@@ -89,10 +103,10 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                 let login: FBSDKLoginManager = FBSDKLoginManager()
                 login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
                     if (error != nil) {
-                        log.info("Process error")
+                        SHProgressHUD.showError(error.localizedDescription, maskType: .Black)
                     } else {
                         if result.isCancelled {
-                            log.info("Cancelled")
+                            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
                         } else {
                             log.info("Logged in")
                             self.setSelected(self.viewController.fbLinkButton, isSelected: true)
@@ -119,7 +133,9 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        
+        if let _ = error {
+            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -143,8 +159,12 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                 if let oauthToken = SHOauthToken.getFromCache() {
                     oauthToken.logOut()
                 }
-                let vc = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC) as! SHLoginViewController
-                self.viewController.presentViewController(vc, animated: true, completion: nil)
+                Shared.stringCache.removeAll()
+                SHOauthToken.goToLogin()
+//                let appDelegate = UIApplication.sharedApplication().delegate
+//                let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.LOGIN_VC)
+//                appDelegate?.window??.rootViewController = nil
+//                appDelegate?.window??.rootViewController = loginVC
             }))
             self.viewController.presentViewController(ac, animated: true, completion: nil)
         }
@@ -183,6 +203,12 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         self.viewController.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     
     // Private
     private func loadUserData(user: SHUser) {

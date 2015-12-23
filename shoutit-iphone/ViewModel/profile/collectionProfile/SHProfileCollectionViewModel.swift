@@ -19,6 +19,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func viewDidLoad() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didUpdateUser:"), name:"DidUpdateUser", object: nil)
         if let username = self.viewController.user?.username {
             self.loadShoutStreamForUser(username)
         }
@@ -40,8 +41,25 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         
     }
     
+    func pullToRefresh() {
+        if let username = self.viewController.user?.username {
+            self.loadShoutStreamForUser(username)
+        }
+    }
+    
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func didUpdateUser (notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        if let user = notification.object as? SHUser, let username = user.username {
+            self.viewController.user = user
+            self.loadShoutStreamForUser(username)
+           // self.viewController.collectionView?.reloadData()
+        }
     }
     
     // replyToAction
@@ -67,6 +85,7 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
         shApiShout.loadShoutStreamForUser(username, page: currentPage, cacheResponse: { (shShoutMeta) -> Void in
             self.updateUIForShouts(shShoutMeta)
             }) { (response) -> Void in
+                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
                     self.updateUIForShouts(result)
@@ -79,16 +98,19 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     // collectionView
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        var reusableview = UICollectionReusableView()
+        var reusableview: UICollectionReusableView?
         if(kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: Constants.CollectionReusableView.SHHeaderProfileReusableView, forIndexPath: indexPath) as! SHHeaderProfileReusableView
+            
             if let user = self.viewController.user {
-                headerView.setupViewForUser(user)
+                headerView.setupViewForUser(user, viewController: self.viewController)
+                headerView.setNeedsDisplay()
             }
             headerView.delegate = self
             reusableview = headerView
+            //collectionView.layoutIfNeeded()
         }
-       return reusableview
+       return reusableview!
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -142,16 +164,18 @@ class SHProfileCollectionViewModel: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func didPressCvShortcutButtonButton(button: UIButton) {
-        let shCreate = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT) as! SHCreateShoutTableViewController
-        shCreate.isViewSetUp = false
-        self.viewController.navigationController?.pushViewController(shCreate, animated: true)
+        let tabVC = SHTabViewController()
+        tabVC.selectedIndex = 0
+        self.viewController.presentViewController(tabVC, animated: true, completion: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("ProfileVideoCV", object: false)
     }
     
     // Private
     func updateUIForShouts(shShoutMeta: SHShoutMeta) {
         self.userShouts = shShoutMeta.results
         self.viewController.collectionView?.reloadData()
+       // self.viewController.collectionView?.layoutIfNeeded()
     }
     
-
+    
 }

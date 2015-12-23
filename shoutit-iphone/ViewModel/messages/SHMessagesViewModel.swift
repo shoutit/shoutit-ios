@@ -54,7 +54,7 @@ class SHMessagesViewModel: NSObject {
     }
     
     // camera
-    func cameraFinishWithImage (media: SHMedia) {
+    func cameraFinishWithImage (media: SHMedia, msg: SHMessage) {
         
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
 //            //SHAmazonAWS uploadShoutImage:image progress:^(float percent)
@@ -102,9 +102,11 @@ class SHMessagesViewModel: NSObject {
 //                }
 //            }
 //        }
-        self.viewController.resetProgress()
-        self.viewController.progressTimer?.invalidate()
-        self.viewController.progressTimer = nil
+        
+        //-------------1812
+//        self.viewController.resetProgress()
+//        self.viewController.progressTimer?.invalidate()
+//        self.viewController.progressTimer = nil
         if let conversationId = self.viewController.conversationID {
             let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
             self.shApiMessage.sendImage(media, conversationID: conversationId, localId: localID, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
@@ -120,12 +122,11 @@ class SHMessagesViewModel: NSObject {
                 }, completionHandler: { (response) -> Void in
                     switch(response.result) {
                     case .Success:
-                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                        self.viewController.collectionView?.reloadData()
+                        self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     case .Failure(let error):
-                        // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                        self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()
                         self.viewController.finishProgress()
                         JSQSystemSoundPlayer.jsq_playMessageSentAlert()
@@ -142,7 +143,7 @@ class SHMessagesViewModel: NSObject {
         }
     }
     
-    func cameraFinishWithVideoFile(media: SHMedia) {
+    func cameraFinishWithVideoFile(media: SHMedia, msg: SHMessage) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             //SHAmazonAWS uploadVideo:tempVideoFileURL thumbImage:thumbImage progress:^(float progress)
 //            let video = SHMedia()
@@ -171,9 +172,10 @@ class SHMessagesViewModel: NSObject {
 //                    
 //                }
 //            }
-            self.viewController.resetProgress()
-            self.viewController.progressTimer?.invalidate()
-            self.viewController.progressTimer = nil
+        //----------1812
+//            self.viewController.resetProgress()
+//            self.viewController.progressTimer?.invalidate()
+//            self.viewController.progressTimer = nil
             if let conversationId = self.viewController.conversationID {
                 let localID = String(format: "%@-%d", arguments: [conversationId, Int(NSDate().timeIntervalSince1970)])
                 self.shApiMessage.sendVideo(media, conversationID: conversationId, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
@@ -189,12 +191,11 @@ class SHMessagesViewModel: NSObject {
                     }, localId: localID, completionHandler: { (response) -> Void in
                         switch(response.result) {
                         case .Success:
-                            // self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                            self.viewController.collectionView?.reloadData()
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             self.viewController.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                         case .Failure(let error):
-                            // self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                             self.viewController.collectionView?.reloadData()
                             self.viewController.finishProgress()
                             JSQSystemSoundPlayer.jsq_playMessageSentAlert()
@@ -278,9 +279,11 @@ class SHMessagesViewModel: NSObject {
     // Get Messages by conversation Id
     func getMessagesById (conversationId: String) {
         self.jsqMessages.removeAll()
+        SHProgressHUD.show(NSLocalizedString("Loading Chats...", comment: "Loading Chats..."), maskType: .Black)
         shApiMessage.loadMessagesForConversation(conversationId, beforeTimeStamp: 0, cacheResponse: { (shMessagesMeta) -> Void in
             self.viewController.updateMessages(shMessagesMeta)
             }) { (response) -> Void in
+                SHProgressHUD.dismiss() 
                 switch (response.result) {
                 case .Success(let result):
                     self.viewController.updateMessages(result)
@@ -331,12 +334,8 @@ class SHMessagesViewModel: NSObject {
                             case .Success( _):
                                 self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                                SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
-                                self.shMessages.append(msg)
-                                self.addMessageFrom(msg)
-                                self.viewController.finishSendingMessage()
-                                self.viewController.doneAction()
-                                
+//                                SHProgressHUD.show(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
+                                self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                                 self.viewController.collectionView?.reloadData()
@@ -344,6 +343,11 @@ class SHMessagesViewModel: NSObject {
                                 JSQSystemSoundPlayer.jsq_playMessageSentAlert()
                                 log.error("Error sending the location \(error.localizedDescription)")
                             }
+                            self.shMessages.append(msg)
+                            self.addMessageFrom(msg)
+                            // self.viewController.finishSendingMessageAnimated(true)
+                            self.viewController.finishSendingMessage()
+                            self.viewController.doneAction()
                         })
                     }
                 } else {
@@ -354,20 +358,18 @@ class SHMessagesViewModel: NSObject {
                             switch(response.result) {
                             case .Success( _):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
-                                self.viewController.collectionView?.reloadData()
-                                self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                                self.shMessages.append(msg)
-                                self.addMessageFrom(msg)
-                                self.viewController.finishSendingMessage()
-                                
                             case .Failure(let error):
                                 self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
-                                self.viewController.collectionView?.reloadData()
-                                self.viewController.finishProgress()
+                               // self.viewController.finishProgress()
                                 JSQSystemSoundPlayer.jsq_playMessageSentAlert()
                                 log.error("Error sending the coordinates \(error.localizedDescription)")
                             }
+                            self.shMessages.append(msg)
+                            self.addMessageFrom(msg)
+                            self.viewController.finishProgress()
+                            //self.viewController.finishSendingMessageAnimated(true)
+                            self.viewController.finishSendingMessage()
                         })
                     }
                 }
@@ -391,11 +393,11 @@ class SHMessagesViewModel: NSObject {
                 shApiShout.composeMessage(text, shoutId: shoutId, completionHandler: { (response) -> Void in
                     self.viewController.finishProgress()
                     if(response.result.isSuccess) {
-                        if let shMessage = response.result.value {
-                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
+                       // if let shMessage = response.result.value {
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
                             SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Your message was sent successfully", comment: "Your message was sent successfully"), maskType: .Black)
-                        }
+                       // }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.failedToSendMessages.append(msg)
@@ -406,6 +408,7 @@ class SHMessagesViewModel: NSObject {
                 })
                 self.shMessages.append(msg)
                 self.addMessageFrom(msg)
+                //self.viewController.finishSendingMessageAnimated(true)
                 self.viewController.finishSendingMessage()
                 self.viewController.doneAction()
             }
@@ -416,12 +419,12 @@ class SHMessagesViewModel: NSObject {
                 shApiMessage.sendMessage(text, conversationID: conversationID, localId: localID, completionHandler: { (response) -> Void in
                     self.viewController.finishProgress()
                     if(response.result.isSuccess) {
-                        if let shMessage = response.result.value {
-                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: shMessage)
+                       // if let shMessage = response.result.value {
+                            self.viewController.setStatus(Constants.MessagesStatus.kStatusSent, msg: msg)
                             self.viewController.finishProgress()
                             self.viewController.finishReceivingMessage()
                             JSQSystemSoundPlayer.jsq_playMessageSentSound()
-                        }
+                       // }
                     } else if(response.result.isFailure) {
                         self.viewController.setStatus(Constants.MessagesStatus.kStatusFailed, msg: msg)
                         self.viewController.collectionView?.reloadData()
@@ -434,6 +437,7 @@ class SHMessagesViewModel: NSObject {
                 })
                 self.shMessages.append(msg)
                 self.addMessageFrom(msg)
+                //self.viewController.finishSendingMessageAnimated(true)
                 self.viewController.finishSendingMessage()
             }
             
@@ -457,21 +461,38 @@ class SHMessagesViewModel: NSObject {
             for attachment in message.attachments {
                 let json = JSON(attachment)
                 if json["images"].count > 0 {
-                    for (_, url) in json["images"] {
-                        let media = SHImageMediaItem()
-                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-                        if let user = message.user {
-                            let shoutMessage = JSQMessage(senderId: user.username,
-                                displayName: user.name,
-                                media: media)
-                            media.imageURL = url.stringValue
-                            self.jsqMessages.append(shoutMessage)
+                    if json["images"].count > 0 {
+                        for (_, url) in json["images"] {
+                            let media = SHImageMediaItem()
+                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                            if let user = message.user {
+                                let shoutMessage = JSQMessage(senderId: user.username,
+                                    displayName: user.name,
+                                    media: media)
+                                media.imageURL = url.stringValue
+                                self.jsqMessages.append(shoutMessage)
+                            }
                         }
                     }
+//                    else {
+//                        if let localImages = (attachment as? SHImageAttachment)?.localImages {
+//                            for image in localImages {
+//                                let media = SHImageMediaItem()
+//                                media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+//                                if let user = message.user {
+//                                    let shoutMessage = JSQMessage(senderId: user.username,
+//                                        displayName: user.name,
+//                                        media: media)
+//                                    media.image = image.image
+//                                    self.jsqMessages.append(shoutMessage)
+//                                }
+//                            }
+//                        }
+//                    }
                 } else if json["videos"].count > 0 {
                     for (_, videoJSON) in json["videos"] {
                         let media = SHVideoMediaItem()
-                       // media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
                         if let user = message.user {
                             let video = SHMedia()
                             video.duration = videoJSON["duration"].intValue
@@ -488,29 +509,30 @@ class SHMessagesViewModel: NSObject {
                     }
                 } else if json["shout"].count > 0 {
                    // for (_, shout) in json["shout"]{
-                        let mediaItem = SHShoutMediaItem()
-                        mediaItem.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-                        let newShout = SHShout()
-                        newShout.apiUrl = json["shout"]["api_url"].stringValue
-                        newShout.currency = json["shout"]["currency"].stringValue
-                        newShout.price = json["shout"]["price"].doubleValue
-                        newShout.text = json["shout"]["text"].stringValue
-                        newShout.thumbnail = json["shout"]["thumbnail"].stringValue
-                        newShout.title = json["shout"]["title"].stringValue
-                        newShout.videoUrl = json["shout"]["videoUrl"].stringValue
-                        newShout.id = json["shout"]["id"].stringValue
-                        mediaItem.shout = newShout
-                        let shoutMessage = JSQMessage(senderId: message.user?.username,
-                            displayName: message.user?.name,
-                            media: mediaItem)
-                        self.jsqMessages.append(shoutMessage)
+                    let mediaItem = SHShoutMediaItem()
+                    mediaItem.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                    let newShout = SHShout()
+                    newShout.apiUrl = json["shout"]["api_url"].stringValue
+                    newShout.currency = json["shout"]["currency"].stringValue
+                    newShout.price = Double((round(json["shout"]["price"].doubleValue) * 100)/100)
+                   // newShout.price = json["shout"]["price"].doubleValue
+                    newShout.text = json["shout"]["text"].stringValue
+                    newShout.thumbnail = json["shout"]["thumbnail"].stringValue
+                    newShout.title = json["shout"]["title"].stringValue
+                    newShout.videoUrl = json["shout"]["videoUrl"].stringValue
+                    newShout.id = json["shout"]["id"].stringValue
+                    mediaItem.shout = newShout
+                    let shoutMessage = JSQMessage(senderId: message.user?.username,
+                        displayName: message.user?.name,
+                        media: mediaItem)
+                    self.jsqMessages.append(shoutMessage)
                    // }
                 } else if json["location"].count > 0 {
                     let longitude = json["location"]["longitude"].floatValue
                     let latitude = json["location"]["latitude"].floatValue
                         let media = SHLocationMediaItem()
                         media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
-                            // Do Nothing
+                            self.viewController.collectionView?.reloadData()
                         })
                         
                         if let user = message.user {
@@ -519,29 +541,7 @@ class SHMessagesViewModel: NSObject {
                                 media: media)
                             self.jsqMessages.append(locationMessage)
                         }
-                    self.viewController.collectionView?.reloadData()
                 }
-                
-//                 if json["location"].count > 0 {
-//                    for (_, url) in json["location"] {
-//                        let media = SHLocationMediaItem()
-//                        // media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-//                        if let location = SHLocationAttachment().location, let longitude = location.longitude, let latitude = location.latitude {
-//                            if let user = message.user {
-//                                let locationMessage = JSQMessage(senderId: user.username,
-//                                    displayName: user.name,
-//                                    media: media)
-//                                media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
-//                                    
-//                                })
-//                                self.jsqMessages.append(locationMessage)
-//                            }
-//                        }
-//                    }
-//                }
-                
-                
-                
                 
                 
 //                    else if(location.latitude == 0 && location.longitude == 0) {
@@ -563,34 +563,59 @@ class SHMessagesViewModel: NSObject {
 //                            }
 //                        }
                 
-//                 else if(attachment.isKindOfClass(SHImageAttachment)) {
-//                    if let localImages = (attachment as? SHImageAttachment)?.localImages {
-//                        for image in localImages {
-//                            let media = SHImageMediaItem()
-//                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
-//                            if let user = message.user {
-//                                let shoutMessage = JSQMessage(senderId: user.username,
-//                                    displayName: user.name,
-//                                    media: media)
-//                                media.image = image.image
-//                                self.jsqMessages.append(shoutMessage)
-//                            }
-//                        }
-//                    }
-//                } else if(attachment.isKindOfClass(SHVideoAttachment)) {
-//                    let videos = (attachment as! SHVideoAttachment).videos
-//                    for video in videos {
-//                        let media = SHVideoMediaItem()
-//                        media.video = video
-//                        //[media setIsOutgoing:[message.user.username isEqualToString:self.myUser.username]];
-//                        if let user = message.user {
-//                            let shoutMessage = JSQMessage(senderId: user.username,
-//                                displayName: user.name,
-//                                media: media)
-//                            self.jsqMessages.append(shoutMessage)
-//                        }
-//                    }
-//                }
+                 else if(attachment.isKindOfClass(SHImageAttachment)) {
+                    if let localImages = (attachment as? SHImageAttachment)?.localImages {
+                        for image in localImages {
+                            let media = SHImageMediaItem()
+                            media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                            if let user = message.user {
+                                let shoutMessage = JSQMessage(senderId: user.username,
+                                    displayName: user.name,
+                                    media: media)
+                                media.image = image.image
+                                self.jsqMessages.append(shoutMessage)
+                            }
+                        }
+                    }
+                } else if(attachment.isKindOfClass(SHVideoAttachment)) {
+                    let videos = (attachment as! SHVideoAttachment).videos
+                    for video in videos {
+                        let media = SHVideoMediaItem()
+                        media.video = video
+                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        if let user = message.user {
+                            let shoutMessage = JSQMessage(senderId: user.username,
+                                displayName: user.name,
+                                media: media)
+                            self.jsqMessages.append(shoutMessage)
+                        }
+                    }
+                } else if(attachment.isKindOfClass(SHShoutAttachment)) {
+                    if let shout = (attachment as! SHShoutAttachment).shout {
+                        let media = SHShoutMediaItem()
+                        media.shout = shout
+                        media.isOutgoing = (message.user?.username == self.viewController.myUser?.username)
+                        if let user = message.user {
+                            let shoutMessage = JSQMessage(senderId: user.username,
+                                displayName: user.name,
+                                media: media)
+                            self.jsqMessages.append(shoutMessage)
+                        }
+                    }
+                } else if(attachment.isKindOfClass(SHLocationAttachment)) {
+                    if let location = (attachment as! SHLocationAttachment).location, let longitude = location.longitude, let latitude = location.latitude {
+                        let media = SHLocationMediaItem(maskAsOutgoing: message.user?.username == self.viewController.myUser?.username)
+                        media.setLocation(CLLocation(latitude: Double(latitude), longitude: Double(longitude)), withCompletionHandler: { () -> Void in
+                           // self.viewController.collectionView?.reloadData()
+                        })
+                        if let user = message.user {
+                            let shoutMessage = JSQMessage(senderId: user.username,
+                                displayName: user.name,
+                                media: media)
+                            self.jsqMessages.append(shoutMessage)
+                        }
+                    }
+                }
             }
         } else {
             if let user = message.user, let createdAt = message.createdAt {

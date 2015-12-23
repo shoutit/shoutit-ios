@@ -38,11 +38,18 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     private var imglisten: UIImageView?
     private var imglistenGreen: UIImageView?
     private var user: SHUser?
-    var viewController = SHProfileCollectionViewController()
+    var viewController: SHProfileCollectionViewController?
+    var shApiUser = SHApiUserService()
     
-    func setupViewForUser (user: SHUser) {
-        
-        self.user = user
+    override func awakeFromNib() {
+        self.lgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListeningAction:")))
+        self.lsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListnersAction:")))
+        self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
+    }
+    
+    func setupViewForUser (user: SHUser, viewController: SHProfileCollectionViewController) {
+        self.viewController = viewController
+        loadUserData(user)
         self.imglisten = UIImageView(frame: CGRectMake(0, 0, 32, 32))
         self.imglisten?.image = UIImage(named: "listen")
         self.imglistenGreen = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
@@ -61,17 +68,17 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             self.cvShortcutButton.layer.cornerRadius = 5
             self.cvShortcutButton.backgroundColor = UIColor.lightTextColor()
             
-            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
-            editBtn.tintColor = UIColor.darkTextColor()
-            self.viewController.navigationItem.rightBarButtonItem = editBtn
+//            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
+//            editBtn.tintColor = UIColor.darkTextColor()
+//            viewController.navigationItem.rightBarButtonItem = editBtn
             
-            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
-            self.viewController.navigationItem.leftBarButtonItem = setBtn
+//            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
+//            viewController.navigationItem.leftBarButtonItem = setBtn
             
-            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
-            tap.numberOfTapsRequired = 1
-            tap.numberOfTouchesRequired = 1
-            self.profileImageView.addGestureRecognizer(tap)
+//            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
+//            tap.numberOfTapsRequired = 1
+//            tap.numberOfTouchesRequired = 1
+//            self.profileImageView.addGestureRecognizer(tap)
         } else {
             if let isListen = self.user?.isListening {
                 self.setListenSelected(isListen)
@@ -81,21 +88,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
         self.lgView.layer.cornerRadius = 5
         self.lsView.layer.cornerRadius = 5
         self.tgView.layer.cornerRadius = 5
-        
-        self.lgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListeningAction:")))
-        self.lsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("showListnersAction:")))
-        self.tgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tagsScreen:")))
-        self.nameLabel.text = self.user?.name
-        self.bioTextView.text = self.user?.bio
-        if let userImage = self.user?.image {
-            self.profileImageView.setImageWithURL(NSURL(string: userImage), placeholderImage: UIImage(named: "no_image_available"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-        }
-        if let image = self.user?.image {
-            self.blurredImageView.sd_setImageWithURL(NSURL(string: image))
-        }
-//        [self.listenersNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.followers_count]];
-//        [self.listeningNumberLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_users]];
-//        [self.listeningTagsLabel setText:[NSString stringWithFormat:@"%d", self.user.listening_tags]];
     }
     
     func setListenSelected (isFollowing: Bool) {
@@ -133,29 +125,121 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     @IBAction func listenAction(sender: AnyObject) {
-       
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+            return
+        }
+        if let isFollowing = self.user?.isFollowing {
+            self.setListenSelected(isFollowing)
+        }
+        if let user = self.user {
+            if(user.username != SHOauthToken.getFromCache()?.user?.username) {
+                let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+                indicatorView.frame = self.listeningButton.frame
+                indicatorView.startAnimating()
+                self.listenButton.hidden = true
+                self.listeningButton.superview?.addSubview(indicatorView)
+                if let isFollowing = user.isFollowing == nil ? false : user.isFollowing {
+                    if(isFollowing) {
+                        if let username = user.username {
+                            shApiUser.unfollowUser(username, completionHandler: { (response) -> Void in
+                                switch(response.result) {
+                                case .Success( _):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        self.user?.isFollowing = false
+                                        self.setListenSelected(false)
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                        user.listenersCount--
+                                    })
+                                case .Failure(let error):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        log.error("Unable to listen to the user \(error.localizedDescription)")
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                    })
+                                }
+                            })
+                        }
+                    } else {
+                        if let username = user.username {
+                            shApiUser.followUser(username, completionHandler: { (response) -> Void in
+                                switch(response.result) {
+                                case .Success( _):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        self.user?.isFollowing = true
+                                        self.setListenSelected(true)
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                        user.listenersCount++
+                                    })
+                                case .Failure(let error):
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        log.error("Unable to listen to the user \(error.localizedDescription)")
+                                        indicatorView.removeFromSuperview()
+                                        self.listenButton.hidden = false
+                                    })
+                                }
+                            })
+                        }
+                    }
+                }
+                
+            }
+        }
     }
     
     @IBAction func showListnersAction(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressListenersButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressListenersButton(listenersButton)
         }
     }
     
     @IBAction func showListeningAction(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressListeningButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressListeningButton(listeningButton)
         }
     }
     
     @IBAction func tagsScreen(sender: AnyObject) {
-        if let delegate = self.delegate, let button = sender as? UIButton {
-            delegate.didPressTagsButton(button)
+        if let delegate = self.delegate {
+            delegate.didPressTagsButton(tagButton)
         }
     }
     
+    private func loadUserData(user: SHUser) {
+        if let username = user.username {
+            shApiUser.loadUserDetails(username, cacheResponse: { (shUser) -> Void in
+                self.fillUserDetails(shUser)
+                }) { (response) -> Void in
+                    switch(response.result) {
+                    case .Success(let result):
+                        self.fillUserDetails(result)
+                    case .Failure(let error):
+                        log.error("Error getting user details \(error.localizedDescription)")
+                    }
+            }
+        }
+    }
     
-    
+    private func fillUserDetails(shUser: SHUser) {
+        self.user = shUser
+        self.nameLabel.text = self.user?.name
+        self.bioTextView.text = self.user?.bio
+        if let userImage = self.user?.image {
+            self.profileImageView.setImageWithURL(NSURL(string: userImage), placeholderImage: UIImage(named: "no_image_available"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        }
+        if let image = self.user?.image {
+            self.blurredImageView.sd_setImageWithURL(NSURL(string: image))
+        }
+        
+        self.listenersNumberLabel.text = "\(shUser.listenersCount)"
+        if let users = shUser.listeningCount?.users, let tags = shUser.listeningCount?.tags {
+            self.listeningNumberLabel.text = "\(users)"
+            self.listeningTagsLabel.text = "\(tags)"
+        }
+    }
     
     
 }

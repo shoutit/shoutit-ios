@@ -36,6 +36,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
     var streamType: StreamType = .Stream
     var discoverId: String?
     var tagName: String?
+    var tag: SHTag?
     
     private var filterViewController: SHFilterViewController?
     
@@ -49,7 +50,7 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
         self.tableView.registerNib(UINib(nibName: "SHRequestImageTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestImageTableViewCell")
         self.tableView.registerNib(UINib(nibName: "SHRequestVideoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHRequestVideoTableViewCell")
         self.tableView.registerNib(UINib(nibName: "SHTopTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHTopTagTableViewCell")
-        self.tableView.registerNib(UINib(nibName: "SHStreamTagTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "SHStreamTagTableViewCell")
+        self.tableView.registerNib(UINib(nibName: Constants.TableViewCell.SHStreamTagTableViewCell, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.TableViewCell.SHStreamTagTableViewCell)
         self.location = SHAddress.getUserOrDeviceLocation()
         self.mode = "Search"
         self.tap = UITapGestureRecognizer(target: self, action: Selector("dismissSearchKeyboard:"))
@@ -282,8 +283,8 @@ class SHStreamTableViewController: BaseTableViewController, UISearchBarDelegate,
                 }
             }
             shoutApi.filter = filter
-            viewModel?.getLatestShouts()
         }
+        viewModel?.getLatestShouts()
     }
     
     // MARK - Private

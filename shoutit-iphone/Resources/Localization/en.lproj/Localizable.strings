@@ -264,3 +264,20 @@
 /* Users */
 "Users" = "Users";
 
+/* Enter valid email or username. */
+"EnterValidMailOrUsername" = "Enter valid email or username.";
+
+/* Enter valid first name. */
+"FirstNameValidationError" = "Enter valid first name.";
+
+/* Enter valid last name. */
+"LastNameValidationError" = "Enter valid last name.";
+
+/* Refreshing Chats... */
+"Refreshing Chats..." = "Refreshing Chats...";
+
+/* The user cancelled the signin flow */
+"The user cancelled the signin flow" = "The user cancelled the signin flow";
+
+/* Loading... */
+"Loading..." = "Loading...";

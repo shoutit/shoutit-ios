@@ -11,11 +11,10 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Haneke
 
-class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewDelegate, UITableViewDataSource, GIDSignInDelegate, UITextViewDelegate {
+class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate, UITextViewDelegate {
 
-    private var viewController: SHLoginViewController
-    private var isSignIn = Bool()
-    private var signArray = [[String: AnyObject]]()
+    private var viewController: SHLoginViewController?
+    private var socialViewController: SHSocialLoginViewController?
     private let webViewController = SHModalWebViewController()
     private let shApiAuthService = SHApiAuthService()
    
@@ -23,12 +22,15 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         self.viewController = viewController
     }
     
+    init(socialViewController: SHSocialLoginViewController) {
+        self.socialViewController = socialViewController
+    }
+    
     func viewDidLoad() {
-        self.isSignIn = true
-        self.setupLogin()
         self.setupText()
         
-        self.viewController.termsAndConditionsTextView.delegate = self
+        self.viewController?.termsAndConditionsTextView?.delegate = self
+        self.setUpValidations()
     }
     
     func viewWillAppear() {
@@ -61,7 +63,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         let login: FBSDKLoginManager = FBSDKLoginManager()
         login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
             if (error != nil) {
-                log.info("Process error")
+                log.info("Process error \(error.localizedDescription)")
             } else {
                 if result.isCancelled {
                     log.info("Cancelled")
@@ -76,69 +78,31 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         }
     }
     
+    func performSignUp() {
+        if validateAuthentication() {
+            // Perform SignUp
+            if let vc = self.viewController {
+                let params = self.shApiAuthService.getSignUpParams(vc.signUpEmailOrUsername.text!, password: vc.signUpPassword.text!, name: vc.firstname.text! + " " + vc.lastname.text!)
+                self.getOauthResponse(params)
+            }
+        }
+    }
+    
     func performLogin() {
         if validateAuthentication() {
             // Perform API Request
-            if (self.isSignIn) {
-                // Perform Sign In
-                if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String {
-                    let params = self.shApiAuthService.getLoginParams(email, password: password)
-                    self.getOauthResponse(params)
-                }
-            } else {
-                // Perform SignUp
-                if let email = self.signArray[0]["text"] as? String, let password = self.signArray[1]["text"] as? String, let name = self.signArray[2]["text"] as? String {
-                    let params = self.shApiAuthService.getSignUpParams(email, password: password, name: name)
-                    self.getOauthResponse(params)
-                }
+            // Perform Sign In
+            if let vc = self.viewController {
+                let params = self.shApiAuthService.getLoginParams(vc.signInEmailOrUsername.text!, password: vc.signInPassword.text!)
+                self.getOauthResponse(params)
             }
         } else {
             log.debug("Incorrect Email or Password")
         }
     }
     
-    func switchSignIn() {
-        if self.isSignIn {
-            return
-        }
-        self.viewController.signUpButton.layer.borderWidth = 0
-        self.viewController.signInButton.layer.borderWidth = 1
-        self.isSignIn = true
-        self.viewController.tableView.beginUpdates()
-        self.viewController.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-        self.viewController.tableView.endUpdates()
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
-        }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("SignIn",comment: "Sign In"), forState: UIControlState.Normal)
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
-            })
-        }
-    }
-    
-    func switchSignUp() {
-        if !self.isSignIn {
-            return
-        }
-        self.viewController.signInButton.layer.borderWidth = 0
-        self.viewController.signUpButton.layer.borderWidth = 1
-        self.isSignIn = false
-        self.viewController.tableView.beginUpdates()
-        self.viewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-        self.viewController.tableView.endUpdates()
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.viewController.shoutSignInButton.titleLabel?.alpha = 0
-        }) { (finished) -> Void in
-            self.viewController.shoutSignInButton.setTitle(NSLocalizedString("CreateAccount",comment: "Create Account"), forState: UIControlState.Normal)
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.viewController.shoutSignInButton.titleLabel?.alpha = 1
-            })
-        }
-    }
-    
     func resetPassword() {
-        if let emailTextField = self.signArray[0]["emailTextField"] as? TextFieldValidator {
+        if let emailTextField = self.viewController?.signInEmailOrUsername {
             if(!emailTextField.validate()) {
                 emailTextField.tapOnError()
                 return
@@ -146,14 +110,14 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
             emailTextField.resignFirstResponder()
             if(emailTextField.text == "") {
                 let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
-                self.viewController.presentViewController(ac, animated: true, completion: nil)
+                self.viewController?.presentViewController(ac, animated: true, completion: nil)
                 return
             }
             shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
                 if response.result.isSuccess {
                     let ac = UIAlertController(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Password recovery email will be sent soon.", comment: "Password recovery email will be sent soon."), preferredStyle: UIAlertControllerStyle.Alert)
                     ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
-                    self.viewController.presentViewController(ac, animated: true, completion: nil)
+                    self.viewController?.presentViewController(ac, animated: true, completion: nil)
                 } else {
                     log.debug("Error sending the mail")
                 }
@@ -162,65 +126,37 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     }
     
     func skipLogin () {
-        let tabViewController = SHTabViewController()
-        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+//        let tabViewController = SHTabViewController()
+//        tabViewController.selectedIndex = 1
+//        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+        SHOauthToken.goToDiscover()
+    }
+    
+    func showPrivacy(viewController: UIViewController) {
+        webViewController.presentFromViewController(viewController, withHTMLFile: "policy")
+    }
+    
+    func showTerms(viewController: UIViewController) {
+        webViewController.presentFromViewController(viewController, withHTMLFile: "tos")
+    }
+    
+    func togglePassword() {
+        if let vc = self.viewController {
+            if vc.signUpView.hidden {
+                vc.signInPassword.secureTextEntry = !vc.signInPassword.secureTextEntry
+            } else {
+                vc.signUpPassword.secureTextEntry = !vc.signUpPassword.secureTextEntry
+            }
+        }
+    }
+    
+    func showUserVoice(viewController: UIViewController) {
+        UserVoice.presentUserVoiceInterfaceForParentViewController(viewController)
     }
     
     // MARK - Selectors
-    func emailBegin(textField: UITextField) {
-        textEditBegin(textField, row: 0)
-    }
-    
-    func passwordBegin(textField: UITextField) {
-        textEditBegin(textField, row: 1)
-    }
-    
-    func nameBegin(textField: UITextField) {
-        textEditBegin(textField, row: 2)
-    }
-    
-    func emailChanged(textField: TextFieldValidator) {
-        textFieldChanged(textField, row: 0)
-    }
-    
-    func passwordChanged(textField: TextFieldValidator) {
-        textFieldChanged(textField, row: 1)
-    }
-    
-    func nameChanged(textField: TextFieldValidator) {
-        textFieldChanged(textField, row: 2)
-    }
-    
-    // TODO We still need to refactor this
-    // MARK - UITableView Delegate
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHLoginInputCell, forIndexPath: indexPath) as! SHLoginInputTableViewCell
-        cell.textField.presentInView = tableView.window
-        let dict = self.signArray[indexPath.row]
-        cell.textField.text = dict["text"] as? String
-        cell.textField.placeholder = dict["placeholder"] as? String
-        cell.textField.addTarget(self, action: NSSelectorFromString(dict["selector"]! as! String), forControlEvents: UIControlEvents.EditingChanged)
-        cell.textField.addTarget(self, action: NSSelectorFromString(dict["selectorBegin"]! as! String), forControlEvents: UIControlEvents.EditingDidBegin)
-        cell.textField.isMandatory = true
-        
-        switch (indexPath.row) {
-        case 0:
-            self.signArray[indexPath.row]["emailTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
-        case 1:
-            self.signArray[indexPath.row]["passwordTextField"] = cell.textField
-            cell.textField.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
-            cell.textField.secureTextEntry = true
-        case 2:
-            self.signArray[indexPath.row]["nameTextField"] = cell.textField
-        default:
-            break;
-        }
-        return cell;
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.isSignIn ? 2 : 3
+    func textFieldChanged(textField: TextFieldValidator) {
+        textField.validate()
     }
     
     // MARK - GoogleSignIn Delegate
@@ -245,89 +181,130 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
     
     // MARK - UITextViewDelegate
     func textView(textView: UITextView, shouldInteractWithURL url: NSURL, inRange characterRange: NSRange) -> Bool {
-        if(url.scheme == "initial") {
+        if let vc = self.viewController where url.scheme == "initial" {
             if(url.absoluteString.containsString("terms")) {
-                webViewController.presentFromViewController(self.viewController, withHTMLFile: "tos")
+                self.showTerms(vc)
             } else if (url.absoluteString.containsString("privacy")) {
-                webViewController.presentFromViewController(self.viewController, withHTMLFile: "policy")
+                self.showPrivacy(vc)
             } else if (url.absoluteString.containsString("rules")) {
-                webViewController.presentFromViewController(self.viewController, withHTMLFile: "rules")
+                webViewController.presentFromViewController(vc, withHTMLFile: "rules")
             }
             return false
         }
         return true
     }
     
-    func textEditBegin(textField: UITextField, row: Int) {
-        self.viewController.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
-    }
-    
-    func textFieldChanged(textField: TextFieldValidator, row: Int) {
-        self.signArray[row]["text"] = textField.text
-        textField.validate()
-    }
-    
     // MARK - Private
-    private func setupLogin() {
-        self.signArray = [
-            ["placeholder": "E-mail", "text": "", "selector": "emailChanged:", "selectorBegin": "emailBegin:"],
-            ["placeholder": "Password", "text": "", "selector": "passwordChanged:", "selectorBegin":"passwordBegin:"],
-            ["placeholder": "Name", "text": "", "selector": "nameChanged:", "selectorBegin": "nameBegin:"]]
+    private func setUpValidations() {
+        if let vc = self.viewController {
+            vc.signInEmailOrUsername.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.signInEmailOrUsername.presentInView = vc.view
+            vc.signInPassword.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.signInPassword.presentInView = vc.view
+            vc.signUpEmailOrUsername.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.signUpEmailOrUsername.presentInView = vc.view
+            vc.signUpPassword.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.signUpPassword.presentInView = vc.view
+            vc.firstname.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.firstname.presentInView = vc.view
+            vc.lastname.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
+            vc.lastname.presentInView = vc.view
+            vc.signInEmailOrUsername.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email or username."))
+            vc.signUpEmailOrUsername.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
+            vc.signInPassword.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
+            vc.signUpPassword.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
+            vc.firstname.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."))
+            vc.firstname.addRegx(Constants.RegEx.REGEX_LAST_USER_NAME_LIMIT, withMsg: NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."))
+        }
     }
     
     private func setupText() {
-        let text = NSMutableAttributedString(attributedString: self.viewController.termsAndConditionsTextView.attributedText)
-        text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Shout IT Terms"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
-        text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
-        self.viewController.termsAndConditionsTextView.editable = false
-        self.viewController.termsAndConditionsTextView.delaysContentTouches = false
-        self.viewController.termsAndConditionsTextView.attributedText = text
+        if let attributedText = self.viewController?.termsAndConditionsTextView?.attributedText {
+            let text = NSMutableAttributedString(attributedString: attributedText)
+            text.addAttribute(NSLinkAttributeName, value: "initial://terms", range: (text.string as NSString).rangeOfString("Terms of Service"))
+            text.addAttribute(NSLinkAttributeName, value: "initial://privacy", range: (text.string as NSString).rangeOfString("Privacy Policy"))
+            text.addAttribute(NSLinkAttributeName, value: "initial://rules", range: (text.string as NSString).rangeOfString("Marketplace Rules"))
+            self.viewController?.termsAndConditionsTextView?.editable = false
+            self.viewController?.termsAndConditionsTextView?.linkTextAttributes = [
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue,
+                NSForegroundColorAttributeName: UIColor.grayColor()
+            ]
+            self.viewController?.termsAndConditionsTextView?.delaysContentTouches = false
+            self.viewController?.termsAndConditionsTextView?.attributedText = text
+        }
     }
     
     private func validateAuthentication() -> Bool {
-        if let emailTextField = self.signArray[0]["emailTextField"] as? TextFieldValidator {
-            if(!emailTextField.validate()) {
-                emailTextField.tapOnError()
-                return false
-            }
-            emailTextField.resignFirstResponder()
-            if(emailTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
-                self.viewController.presentViewController(ac, animated: true, completion: nil)
-                return false
-            }
-        }
-        if let passwordTextField = self.signArray[1]["passwordTextField"] as? TextFieldValidator {
-            if(!passwordTextField.validate()) {
-                passwordTextField.tapOnError()
-                return false
-            }
-            passwordTextField.resignFirstResponder()
-            
-            if(passwordTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("PasswordNotSet", comment: "Password not set"), message: NSLocalizedString("PleaseEnterPassword", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
-                self.viewController.presentViewController(ac, animated: true, completion: nil)
-                return false
+        if let vc = self.viewController {
+            if vc.signUpView.hidden {
+                if let emailTextField = vc.signInEmailOrUsername where !validateEmail(emailTextField) {
+                    return false
+                }
+                if let passwordTextField = vc.signInPassword where !validatePassword(passwordTextField){
+                    return false
+                }
+            } else {
+                if let nameTextField = vc.firstname where !validateName(nameTextField, title: NSLocalizedString("FirstNameNotSet", comment: "First Name not set"), message: NSLocalizedString("PleaseEnterFirstName", comment: "Please enter the first name.")) {
+                    return false
+                }
+                if let nameTextField = vc.lastname where !validateName(nameTextField, title: NSLocalizedString("LastNameNotSet", comment: "Last Name not set"), message: NSLocalizedString("PleaseEnterLastName", comment: "Please enter the last name.")) {
+                    return false
+                }
+                if let emailTextField = vc.signUpEmailOrUsername where !validateEmail(emailTextField) {
+                    return false
+                }
+                if let passwordTextField = vc.signUpPassword where !validatePassword(passwordTextField){
+                    return false
+                }
             }
         }
-        if !self.isSignIn, let nameTextField = self.signArray[2]["nameTextField"] as? TextFieldValidator {
-            if(!nameTextField.validate()) {
-                nameTextField.tapOnError()
-                return false
-            }
-            nameTextField.resignFirstResponder()
-            
-            if(nameTextField.text == "") {
-                let ac = UIAlertController(
-                    title: NSLocalizedString("NameNotSet", comment: "Name not set"),
-                    message: NSLocalizedString("PleaseEnterName", comment: "Please enter the name."),
-                    preferredStyle: UIAlertControllerStyle.Alert
-                )
-                self.viewController.presentViewController(ac, animated: true, completion: nil)
-                return false
-            }
-            
+        return true
+    }
+    
+    private func validateName(nameTextField: TextFieldValidator, title: String, message: String) -> Bool {
+        if(!nameTextField.validate()) {
+            nameTextField.tapOnError()
+            return false
+        }
+        nameTextField.resignFirstResponder()
+        
+        if(nameTextField.text == "") {
+            let ac = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            self.viewController?.presentViewController(ac, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    private func validatePassword(passwordTextField: TextFieldValidator) -> Bool {
+        if(!passwordTextField.validate()) {
+            passwordTextField.tapOnError()
+            return false
+        }
+        passwordTextField.resignFirstResponder()
+        
+        if(passwordTextField.text == "") {
+            let ac = UIAlertController(title: NSLocalizedString("PasswordNotSet", comment: "Password not set"), message: NSLocalizedString("PleaseEnterPassword", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
+            self.viewController?.presentViewController(ac, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    private func validateEmail(emailTextField: TextFieldValidator) -> Bool {
+        if(!emailTextField.validate()) {
+            emailTextField.tapOnError()
+            return false
+        }
+        emailTextField.resignFirstResponder()
+        if(emailTextField.text == "") {
+            let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
+            self.viewController?.presentViewController(ac, animated: true, completion: nil)
+            return false
         }
         return true
     }
@@ -355,8 +332,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
 //                    }
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let tabViewController = SHTabViewController()
-                        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+                        SHOauthToken.goToDiscover()
                     })
                 } else {
                     // Login Failure
@@ -377,7 +353,7 @@ class SHLoginViewModel: NSObject, TableViewControllerModelProtocol, UITableViewD
         Shared.stringCache.removeAll()
         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
-        self.viewController.presentViewController(alert, animated: true, completion: nil)
+        self.viewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

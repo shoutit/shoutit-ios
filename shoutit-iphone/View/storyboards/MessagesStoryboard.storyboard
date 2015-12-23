@@ -119,6 +119,7 @@
                             <outlet property="delegate" destination="rdm-hj-mhG" id="iMI-gQ-XXU"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Chat" image="chatTabBar" id="GAm-YC-l0g"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>

@@ -8,39 +8,22 @@
 
 import UIKit
 
-class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
+class SHLoginViewController: BaseViewController {
 
-    @IBOutlet weak var shoutSignInButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
-    @IBOutlet weak var facebookLoginButton: UIButton!
+    @IBOutlet weak var signUpView: UIView!
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var signUpEmailOrUsername: TextFieldValidator!
+    @IBOutlet weak var signInEmailOrUsername: TextFieldValidator!
+    @IBOutlet weak var signUpPassword: TextFieldValidator!
+    @IBOutlet weak var signInPassword: TextFieldValidator!
+    @IBOutlet weak var firstname: TextFieldValidator!
+    @IBOutlet weak var lastname: TextFieldValidator!
     
     private var viewModel: SHLoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Google instance
-        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
-        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
-        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
-        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
-        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
-        
-        // Setup Delegates and data Source
-        self.tableView.delegate = viewModel
-        self.tableView.dataSource = viewModel
-        
-        self.shoutSignInButton.setTitle(NSLocalizedString("SignIn", comment: "Sign In"), forState: UIControlState.Normal)
-        self.shoutSignInButton.layer.cornerRadius = 0.5
-        self.signInButton.layer.cornerRadius = 5
-        self.signUpButton.layer.cornerRadius = 5
-        self.signInButton.layer.borderColor = UIColor.whiteColor().CGColor
-        self.signUpButton.layer.borderColor = UIColor.whiteColor().CGColor
-        self.signInButton.layer.borderWidth = 1
         
         viewModel?.viewDidLoad()
     }
@@ -74,14 +57,6 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func facebookLoginAction(sender: AnyObject) {
-        viewModel?.loginWithFacebook()
-    }
-    
-    @IBAction func googleLoginAction(sender: AnyObject) {
-        viewModel?.loginWithGplus()
-    }
-    
     @IBAction func resetPasswordAction(sender: AnyObject) {
         viewModel?.resetPassword()
     }
@@ -90,43 +65,40 @@ class SHLoginViewController: BaseTableViewController, GIDSignInUIDelegate {
         viewModel?.performLogin()
     }
     
-    @IBAction func signInSwitchAction(sender: AnyObject) {
-        viewModel?.switchSignIn()
+    @IBAction func shoutitSignUpAction(sender: AnyObject) {
+        viewModel?.performSignUp()
     }
     
-    @IBAction func signUpSwitchAction(sender: AnyObject) {
-        viewModel?.switchSignUp()
+    @IBAction func viewChanged(sender: UISegmentedControl) {
+        self.loginView.hidden = sender.selectedSegmentIndex != 0
+        self.signUpView.hidden = sender.selectedSegmentIndex == 0
     }
-    
-    @IBAction func skipLogin(sender: AnyObject) {
-        viewModel?.skipLogin()
-    }
-    
-    // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
-    // UIViewController.
-    
-    // Stop the UIActivityIndicatorView animation that was started when the user
-    // pressed the Sign In button
-    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
-       // myActivityIndicator.stopAnimating()
-    }
-    
-    // Present a view that prompts the user to sign in with Google
-    func signIn(signIn: GIDSignIn!,
-        presentViewController viewController: UIViewController!) {
-            self.presentViewController(viewController, animated: true, completion: nil)
-    }
-    
-    // Dismiss the "Sign in with Google" view
-    func signIn(signIn: GIDSignIn!,
-        dismissViewController viewController: UIViewController!) {
-            self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // SignOut from Google
 //    @IBAction func didTapSignOut(sender: AnyObject) {
 //        GIDSignIn.sharedInstance().signOut()
 //    }
+    
+    @IBAction func goBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func showFeedback(sender: AnyObject) {
+        viewModel?.showUserVoice(self)
+    }
+    
+    @IBAction func showHelp(sender: AnyObject) {
+    }
+    
+    @IBAction func showTerms(sender: AnyObject) {
+        viewModel?.showTerms(self)
+    }
+    
+    @IBAction func showAbout(sender: AnyObject) {
+    }
+    
+    @IBAction func showPassword(sender: AnyObject) {
+        viewModel?.togglePassword()
+    }
     
     deinit {
         viewModel?.destroy()
