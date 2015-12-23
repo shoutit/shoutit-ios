@@ -14,7 +14,6 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     private var userTags: AnyObject = []
     let shApiUser = SHApiUserService()
     let shApiTags = SHApiTagsService()
-    private var spinner: UIActivityIndicatorView?
     
     required init(viewController: SHUserListTableViewController) {
         self.viewController = viewController
@@ -49,20 +48,18 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     }
     
     func pullToRefresh() {
-        spinner?.startAnimating()
         if let username = self.viewController.user?.username, let param = self.viewController.param, let type = self.viewController.type {
             self.requestUsersAndTags(username, param: param, type: type)
         }
     }
     
     func requestUsersForTag(tagName: String) {
-        self.viewController.loadMoreView.showLoading()
+        self.viewController.loadMoreView.showNoMoreContent()
         self.updateFooterView()
         shApiTags.loadListenersFor(tagName, cacheResponse: { (shUserMeta) -> Void in
             //
             }) { (response) -> Void in
                 self.viewController.tableView.pullToRefreshView.stopAnimating()
-                self.viewController.loadMoreView.showNoMoreContent()
                 switch(response.result) {
                 case .Success(let result):
                     self.createTableView(result)
@@ -73,35 +70,36 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     }
     
     func requestUsersAndTags (username: String, param: String, type: String) {
-        if (type != "tags") {
-            self.viewController.loadMoreView.showLoading()
-            shApiUser.loadUsersFor(username, param: param, type: type, page: 1, cacheResponse: { (shUserMeta) -> Void in
-                self.viewController.loadMoreView.showNoMoreContent()
-                self.updateUI(shUserMeta, shUsersTag: nil)
-                }) { (response) -> Void in
-                    self.viewController.tableView.pullToRefreshView.stopAnimating()
-                    switch(response.result) {
-                    case .Success(let result):
-                        self.updateUI(result, shUsersTag: nil)
-                    case .Failure(let error):
-                        log.error("Error getting the results \(error.localizedDescription)")
-                    }
+        self.viewController.loadMoreView.showNoMoreContent()
+        self.userTags = []
+        self.viewController.tableView.reloadData()
+       // dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if (type != "tags") {
+                self.shApiUser.loadUsersFor(username, param: param, type: type, page: 1, cacheResponse: { (shUserMeta) -> Void in
+                    self.updateUI(shUserMeta, shUsersTag: nil)
+                    }) { (response) -> Void in
+                        self.viewController.tableView.pullToRefreshView.stopAnimating()
+                        switch(response.result) {
+                        case .Success(let result):
+                            self.updateUI(result, shUsersTag: nil)
+                        case .Failure(let error):
+                            log.error("Error getting the results \(error.localizedDescription)")
+                        }
+                }
+            } else {
+                self.shApiUser.loadUserTags(username, param: param, type: type, page: 1, cacheResponse: { (shTagMeta) -> Void in
+                    self.updateUI(nil, shUsersTag: shTagMeta)
+                    }, completionHandler: { (response) -> Void in
+                        self.viewController.tableView.pullToRefreshView.stopAnimating()
+                        switch(response.result) {
+                        case .Success(let result):
+                            self.updateUI(nil, shUsersTag: result)
+                        case .Failure(let error):
+                            log.error("Error getting the results \(error.localizedDescription)")
+                        }
+                })
             }
-        } else {
-            shApiUser.loadUserTags(username, param: param, type: type, page: 1, cacheResponse: { (shTagMeta) -> Void in
-                self.viewController.loadMoreView.showNoMoreContent()
-                self.updateUI(nil, shUsersTag: shTagMeta)
-                }, completionHandler: { (response) -> Void in
-                    self.viewController.tableView.pullToRefreshView.stopAnimating()
-                    switch(response.result) {
-                    case .Success(let result):
-                        self.updateUI(nil, shUsersTag: result)
-                    case .Failure(let error):
-                        log.error("Error getting the results \(error.localizedDescription)")
-                    }
-            })
-        }
-        
+        //}
     }
     
     // Search Action
@@ -185,7 +183,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.setTagCell(self.userTags[indexPath.row] as! SHTag)
-            cell.listenButton.hidden = true
+            //cell.listenButton.hidden = true
             return cell
         }
         return UITableViewCell()
@@ -209,11 +207,10 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     private func updateUI(shUsersMeta: SHUsersMeta?, shUsersTag: SHTagMeta?) {
         if let users = shUsersMeta {
             self.userTags = users.users
-            self.viewController.tableView.reloadData()
         } else if let tags = shUsersTag {
             self.userTags = tags.tags
-            self.viewController.tableView.reloadData()
         }
+        self.viewController.tableView.reloadData()
         self.updateFooterlabel()
         self.updateFooterView()
     }

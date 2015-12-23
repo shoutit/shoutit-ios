@@ -278,3 +278,6 @@
 
 /* The user cancelled the signin flow */
 "The user cancelled the signin flow" = "The user cancelled the signin flow";
+
+/* Loading... */
+"Loading..." = "Loading...";
