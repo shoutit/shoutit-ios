@@ -13,12 +13,16 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     private var viewModel: SHProfileCollectionViewModel?
     var user: SHUser?
     let settingsViewControler = SHSettingsTableViewController()
+    var othersProfile = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+        if(!othersProfile) {
+            if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+                SHOauthToken.goToLogin()
+                SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+                return
+            }
         }
         self.clearsSelectionOnViewWillAppear = true
         self.collectionView?.dataSource = viewModel
@@ -83,6 +87,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     func requestUser(user: SHUser) {
         self.user = user
         self.title = self.user?.name
+        self.othersProfile = true
     }
     
     func replyAction (sender: AnyObject) {

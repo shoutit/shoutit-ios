@@ -125,6 +125,11 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     @IBAction func listenAction(sender: AnyObject) {
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+            return
+        }
         if let isFollowing = self.user?.isFollowing {
             self.setListenSelected(isFollowing)
         }
