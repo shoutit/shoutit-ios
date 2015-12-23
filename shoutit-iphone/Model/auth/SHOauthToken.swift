@@ -62,7 +62,6 @@ class SHOauthToken: Mappable {
     static func goToDiscover() {
         let appDelegate = UIApplication.sharedApplication().delegate
         let tabViewController = SHTabViewController()
-        tabViewController.selectedIndex = 1
         appDelegate?.window??.rootViewController = tabViewController
     }
     

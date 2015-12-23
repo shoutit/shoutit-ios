@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
             // User Already Signed In
             let tabViewController = SHTabViewController()
-            tabViewController.selectedIndex = 1
             self.window?.rootViewController = tabViewController
             // TODO get discover items
             // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
