@@ -112,6 +112,7 @@ class SHStreamTagTableViewCell: UITableViewCell {
         if let boolListen = self.tagCell.isListening == nil ? false : self.tagCell.isListening {
             self.setListenSelected(boolListen)
             if(boolListen) {
+                self.listeningLabel.text = "\(--self.tagCell.listenersCount)"
                 shApiTag.unfollowTag(self.tagCell.name, completionHandler: { (response) -> Void in
                     switch(response.result) {
                     case .Success( _):
@@ -120,16 +121,16 @@ class SHStreamTagTableViewCell: UITableViewCell {
                             self.setListenSelected(false)
                             indicatorView.removeFromSuperview()
                             self.listenButton.hidden = false
-                            self.tagCell.listenersCount--
+                           // self.tagCell.listenersCount--
                         })
                     case .Failure(let error):
                         log.error("Error deleting tags \(error.localizedDescription)")
                         indicatorView.removeFromSuperview()
                         self.listenButton.hidden = false
                     }
-                    
                 })
             } else {
+                self.listeningLabel.text = "\(++self.tagCell.listenersCount)"
                 shApiTag.followTag(self.tagCell.name, completionHandler: { (response) -> Void in
                     switch(response.result) {
                     case .Success( _):
@@ -138,7 +139,7 @@ class SHStreamTagTableViewCell: UITableViewCell {
                             self.setListenSelected(true)
                             indicatorView.removeFromSuperview()
                             self.listenButton.hidden = false
-                            self.tagCell.listenersCount++
+                           // self.tagCell.listenersCount++
                         })
                     case .Failure(let error):
                         log.error("Error listening to tags \(error.localizedDescription)")
