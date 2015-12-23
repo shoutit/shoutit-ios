@@ -17,8 +17,12 @@ class SHShoutListViewController: BaseViewController {
     private var viewModel: SHShoutListViewModel?
     var type: ShoutListType = .HOME
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.dataSource = viewModel
+        self.collectionView.delegate = viewModel
         viewModel?.viewDidLoad()
     }
     

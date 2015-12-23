@@ -89,7 +89,6 @@
 		607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */; };
 		607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */; };
 		60B8A10C1C2B3680004FC1B3 /* ShoutList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B8A10B1C2B3680004FC1B3 /* ShoutList.storyboard */; };
-		60B8A10F1C2B4ABA004FC1B3 /* SHShoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8A10E1C2B4AB9004FC1B3 /* SHShoutListViewController.swift */; };
 		60B8A1121C2B4B72004FC1B3 /* SHShoutListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8A1111C2B4B72004FC1B3 /* SHShoutListViewModel.swift */; };
 		60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D36D511BF7622700238D62 /* SHCreateShoutTableViewController.swift */; };
 		60D36D551BF762AA00238D62 /* SHCreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D36D541BF762AA00238D62 /* SHCreateShoutViewModel.swift */; };
@@ -97,9 +96,13 @@
 		60D36D5C1BF78CBA00238D62 /* SHShout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D36D5B1BF78CBA00238D62 /* SHShout.swift */; };
 		60D36D5E1BF78D5F00238D62 /* SHCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D36D5D1BF78D5F00238D62 /* SHCategory.swift */; };
 		60D36D601BF7944100238D62 /* SHTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D36D5F1BF7944100238D62 /* SHTag.swift */; };
+		60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DBB55A1C2B5A1400243487 /* SHShoutListViewController.swift */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
 		60DD76DC1C02096F007C5334 /* SHEmptyContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DD76DA1C02096F007C5334 /* SHEmptyContentView.xib */; };
 		60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DD76DB1C02096F007C5334 /* SHLoadMoreView.xib */; };
+		60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D3B1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift */; };
+		60F11D3E1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D3D1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift */; };
+		60F11D401C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D3F1C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift */; };
 		AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0656DC1C00CB580059E39D /* SHFilterMeta.swift */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
@@ -366,7 +369,6 @@
 		607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationManager.swift; path = Util/helpers/SHLocationManager.swift; sourceTree = "<group>"; };
 		607F757E1BEABFF400F3BA86 /* SHOauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHOauthToken.swift; path = Model/auth/SHOauthToken.swift; sourceTree = "<group>"; };
 		60B8A10B1C2B3680004FC1B3 /* ShoutList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShoutList.storyboard; path = View/storyboards/ShoutList.storyboard; sourceTree = "<group>"; };
-		60B8A10E1C2B4AB9004FC1B3 /* SHShoutListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutListViewController.swift; path = View/tabs/home/SHShoutListViewController.swift; sourceTree = "<group>"; };
 		60B8A1111C2B4B72004FC1B3 /* SHShoutListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutListViewModel.swift; path = ViewModel/tabs/home/SHShoutListViewModel.swift; sourceTree = "<group>"; };
 		60D36D511BF7622700238D62 /* SHCreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateShoutTableViewController.swift; path = View/tabs/create/SHCreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		60D36D541BF762AA00238D62 /* SHCreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateShoutViewModel.swift; path = ViewModel/tabs/create/SHCreateShoutViewModel.swift; sourceTree = "<group>"; };
@@ -374,9 +376,13 @@
 		60D36D5B1BF78CBA00238D62 /* SHShout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShout.swift; path = Model/shout/SHShout.swift; sourceTree = "<group>"; };
 		60D36D5D1BF78D5F00238D62 /* SHCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategory.swift; path = Model/shout/SHCategory.swift; sourceTree = "<group>"; };
 		60D36D5F1BF7944100238D62 /* SHTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTag.swift; path = Model/shout/SHTag.swift; sourceTree = "<group>"; };
+		60DBB55A1C2B5A1400243487 /* SHShoutListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutListViewController.swift; path = View/tabs/home/SHShoutListViewController.swift; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		60DD76DA1C02096F007C5334 /* SHEmptyContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHEmptyContentView.xib; path = View/common/SHEmptyContentView.xib; sourceTree = "<group>"; };
 		60DD76DB1C02096F007C5334 /* SHLoadMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHLoadMoreView.xib; path = View/common/SHLoadMoreView.xib; sourceTree = "<group>"; };
+		60F11D3B1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDiscoverTitleCell.swift; path = View/tabs/home/SHShoutDiscoverTitleCell.swift; sourceTree = "<group>"; };
+		60F11D3D1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDiscoverListCell.swift; path = View/tabs/home/SHShoutDiscoverListCell.swift; sourceTree = "<group>"; };
+		60F11D3F1C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMyFeedHeaderCell.swift; path = View/tabs/home/SHShoutMyFeedHeaderCell.swift; sourceTree = "<group>"; };
 		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AC0656DC1C00CB580059E39D /* SHFilterMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterMeta.swift; path = Model/filters/SHFilterMeta.swift; sourceTree = "<group>"; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1039,7 +1045,10 @@
 		60B8A10D1C2B4A93004FC1B3 /* home */ = {
 			isa = PBXGroup;
 			children = (
-				60B8A10E1C2B4AB9004FC1B3 /* SHShoutListViewController.swift */,
+				60DBB55A1C2B5A1400243487 /* SHShoutListViewController.swift */,
+				60F11D3B1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift */,
+				60F11D3D1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift */,
+				60F11D3F1C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -1959,12 +1968,14 @@
 				602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */,
+				60F11D3E1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift in Sources */,
 				ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */,
 				ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */,
 				AC7030C81C15C91F008F4C00 /* SHImageMediaItem.swift in Sources */,
 				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
+				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
 				AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */,
 				ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
@@ -1976,7 +1987,6 @@
 				606ED2FC1BF80A730064C53E /* SHCameraViewController.swift in Sources */,
 				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,
 				AC74A7761BFCA9290029CE7D /* SHShoutAnnotation.swift in Sources */,
-				60B8A10F1C2B4ABA004FC1B3 /* SHShoutListViewController.swift in Sources */,
 				ACDB3CC51BF90F650097444E /* SHRequestImageTableViewCellModel.swift in Sources */,
 				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
@@ -1995,11 +2005,13 @@
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
 				ACB803A91C1026E000420BB1 /* SHShoutPickerTableViewController.swift in Sources */,
+				60F11D401C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift in Sources */,
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
+				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,
 				606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
