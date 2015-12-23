@@ -142,7 +142,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
                                 switch(response.result) {
                                 case .Success( _):
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        // self.user?.isFollowing = false
+                                        self.user?.isFollowing = false
                                         self.setListenSelected(false)
                                         indicatorView.removeFromSuperview()
                                         self.listenButton.hidden = false
@@ -163,7 +163,7 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
                                 switch(response.result) {
                                 case .Success( _):
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        // self.user?.isFollowing = true
+                                        self.user?.isFollowing = true
                                         self.setListenSelected(true)
                                         indicatorView.removeFromSuperview()
                                         self.listenButton.hidden = false

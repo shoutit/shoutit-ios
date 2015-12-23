@@ -26,7 +26,7 @@ class SHUser: Mappable {
     private(set) var email: String?
     private(set) var gender: String?
     private(set) var linkedAccounts: SHLoginAccounts?
-    private(set) var isFollowing: Bool?
+    var isFollowing: Bool?
     var listenersCount = 0
     var listeningCount: SHListenersMeta?
     
