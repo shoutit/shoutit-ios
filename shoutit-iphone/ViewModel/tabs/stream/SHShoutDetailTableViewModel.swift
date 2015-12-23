@@ -84,7 +84,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                 let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
                 profileViewController.requestUser(shoutUser)
                 self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
-            }
+            } 
         }
     }
     
