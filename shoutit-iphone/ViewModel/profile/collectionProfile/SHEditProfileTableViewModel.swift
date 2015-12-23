@@ -131,7 +131,7 @@ class SHEditProfileTableViewModel: NSObject, SHCameraViewControllerDelegate {
             if let username = self.viewController.user?.username {
                 self.shApiUser.changeUserImage(username, image: image, progress: { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let progress = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend * 100)
+                        let progress = CGFloat(totalBytesSent + totalBytesExpectedToSend) / CGFloat(bytesSent * 100)
                         if(progress < 0.999) {
                             hud.progress = progress
                         } else {
