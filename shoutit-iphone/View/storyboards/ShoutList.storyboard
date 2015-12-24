@@ -22,15 +22,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="QVH-mJ-NB2">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QVH-mJ-NB2">
                                     <size key="itemSize" width="200" height="239"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aer-qs-ALN">
-                                        <rect key="frame" x="0.0" y="64" width="200" height="239"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="shShoutItemGridCell" id="aer-qs-ALN" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="64" width="200" height="239"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
@@ -104,9 +104,15 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <constraint firstAttribute="bottom" secondItem="xcN-Yj-xdO" secondAttribute="bottom" id="PTo-BF-GUM"/>
                                             <constraint firstItem="xcN-Yj-xdO" firstAttribute="leading" secondItem="aer-qs-ALN" secondAttribute="leading" id="Ru4-fY-Chu"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="name" destination="WSn-mY-CmW" id="ewy-c4-DEM"/>
+                                            <outlet property="shoutImage" destination="S9F-TN-zQa" id="e8o-tt-dMb"/>
+                                            <outlet property="shoutPrice" destination="HpW-Xd-UD8" id="CXb-Gy-vFt"/>
+                                            <outlet property="shoutTitle" destination="nec-tP-nlv" id="PI2-s8-VGG"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="0yP-1M-ldN" customClass="SHShoutDiscoverTitleCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="223" y="163" width="377" height="41"/>
+                                        <rect key="frame" x="112" y="313" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -122,8 +128,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                             <color key="textColor" red="0.22745098039215686" green="0.76470588235294112" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCOVER DUBAI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSA-oL-RTK">
-                                                            <rect key="frame" x="10" y="10" width="140" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCOVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSA-oL-RTK">
+                                                            <rect key="frame" x="10" y="10" width="84" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,7 +159,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <size key="customSize" width="377" height="41"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="lyL-P0-Ffj" customClass="SHShoutMyFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="303" width="377" height="41"/>
+                                        <rect key="frame" x="112" y="364" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -166,6 +172,9 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                             <rect key="frame" x="341" y="10" width="26" height="22"/>
                                                             <animations/>
                                                             <state key="normal" image="shoutsAsList"/>
+                                                            <connections>
+                                                                <action selector="switchViewType:" destination="lyL-P0-Ffj" eventType="touchUpInside" id="8r9-0M-EfU"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIp-TU-YNt">
                                                             <rect key="frame" x="312" y="10" width="19" height="22"/>
@@ -203,9 +212,12 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <constraint firstItem="JT5-Q1-aCp" firstAttribute="top" secondItem="lyL-P0-Ffj" secondAttribute="top" id="qeg-KO-CTo"/>
                                         </constraints>
                                         <size key="customSize" width="377" height="41"/>
+                                        <connections>
+                                            <outlet property="switchViewTypeButton" destination="VY5-GC-UXj" id="6TP-Pk-lAk"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4gt-tj-vc2">
-                                        <rect key="frame" x="0.0" y="350" width="384" height="110"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemListCell" reuseIdentifier="shShoutItemListCell" id="4gt-tj-vc2" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="108" y="415" width="384" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
@@ -325,9 +337,17 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <constraint firstItem="708-SO-j1V" firstAttribute="top" secondItem="4gt-tj-vc2" secondAttribute="top" id="sQU-Ng-Ryq"/>
                                         </constraints>
                                         <size key="customSize" width="384" height="110"/>
+                                        <connections>
+                                            <outlet property="name" destination="QZH-fu-dC2" id="AAX-xu-mgr"/>
+                                            <outlet property="shoutImage" destination="4NM-Vm-HSa" id="i8y-l5-m43"/>
+                                            <outlet property="shoutPrice" destination="Z8F-PG-nWD" id="hcn-pl-xFh"/>
+                                            <outlet property="shoutTimeAgo" destination="iyH-tN-1bZ" id="8ML-wK-S83"/>
+                                            <outlet property="shoutTitle" destination="U33-FD-BYQ" id="ZVG-aI-zxP"/>
+                                            <outlet property="shoutType" destination="4sf-ib-MF0" id="TGt-1A-Yw7"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverListCell" reuseIdentifier="shoutDiscoverListCell" id="hXl-TT-nkS" customClass="SHShoutDiscoverListCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="384" y="344" width="206" height="121"/>
+                                        <rect key="frame" x="197" y="535" width="206" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="206" height="121"/>

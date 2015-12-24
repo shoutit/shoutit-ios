@@ -12,10 +12,20 @@ enum ShoutListType {
     case HOME
 }
 
+enum ShoutViewType {
+    case GRID
+    case LIST
+}
+
 class SHShoutListViewController: BaseViewController {
 
     private var viewModel: SHShoutListViewModel?
     var type: ShoutListType = .HOME
+    var viewType: ShoutViewType = .GRID {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     

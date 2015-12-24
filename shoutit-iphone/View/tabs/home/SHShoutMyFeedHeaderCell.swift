@@ -10,4 +10,20 @@ import UIKit
 
 class SHShoutMyFeedHeaderCell: UICollectionViewCell {
     
+    @IBOutlet weak var switchViewTypeButton: UIButton!
+    
+    var viewModel: SHShoutMyFeedHeaderCellViewModel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        viewModel = SHShoutMyFeedHeaderCellViewModel(cell: self)
+    }
+    
+    func setUp(viewController: SHShoutListViewController) {
+        viewModel?.setUp(viewController)
+    }
+    
+    @IBAction func switchViewType(sender: AnyObject) {
+        viewModel?.toggleSwitchView()
+    }
 }

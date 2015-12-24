@@ -26,6 +26,15 @@ class SHApiShoutService: NSObject {
     var discoverId: String?
     var tagName: String?
     
+    func loadHomeShouts(page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        let shoutStreamForUser = USER_SHOUTS + "/me/shouts"
+        let params = [
+            "page_size": Constants.Common.SH_PAGE_SIZE,
+            "page": page
+        ]
+        SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
     func loadShoutStreamForUser(username: String, page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         let shoutStreamForUser = String(format: USER_SHOUTS + "/%@" + "/shouts", arguments: [username])
         let params = ["page_size": Constants.Common.SH_PAGE_SIZE]

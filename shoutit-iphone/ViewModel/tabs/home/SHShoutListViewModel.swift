@@ -11,14 +11,26 @@ import UIKit
 class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     private let viewController: SHShoutListViewController
-    private let shouts: [SHShout] = []
+    private var shouts: [SHShout] = []
+    private let shApiShoutsService = SHApiShoutService()
     
     required init(viewController: SHShoutListViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-        
+        shApiShoutsService.loadHomeShouts(1, cacheResponse: { (shShoutMeta) -> Void in
+            self.shouts = shShoutMeta.results
+            self.updateUI()
+            }) { (response) -> Void in
+                switch response.result {
+                case .Success(let shShoutMeta):
+                    self.shouts = shShoutMeta.results
+                    self.updateUI()
+                case .Failure(let error):
+                    log.error("Error fetching shouts \(error.localizedDescription)")
+                }
+        }
     }
     
     func viewWillAppear() {
@@ -41,6 +53,10 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
         
     }
     
+    func updateUI() {
+        self.viewController.collectionView.reloadData()
+    }
+    
     // MARK - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch (viewController.type) {
@@ -60,10 +76,9 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
             case 2:
                 return getMyFeedHeaderCell(indexPath)
             default:
-                break
+                return getShoutListCell(indexPath)
             }
         }
-        return UICollectionViewCell()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -77,10 +92,15 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
             case 2:
                 return CGSizeMake(UIScreen.mainScreen().bounds.width, 41)
             default:
-                break
+                switch self.viewController.viewType {
+                case .GRID:
+                    let imageWidth = (UIScreen.mainScreen().bounds.width - 30) / 2
+                    return CGSizeMake(imageWidth, imageWidth + 39)
+                case .LIST:
+                    return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 110)
+                }
             }
         }
-        return CGSizeMake(0,0)
     }
     
     // MARK - Private
@@ -93,6 +113,21 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
     }
     
     private func getMyFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutMyFeedHeaderCell, forIndexPath: indexPath)
+        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutMyFeedHeaderCell, forIndexPath: indexPath) as! SHShoutMyFeedHeaderCell
+        cell.setUp(self.viewController)
+        return cell
+    }
+    
+    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        switch(self.viewController.viewType) {
+        case .GRID:
+            let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+            return cell
+        case .LIST:
+            let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemListCell, forIndexPath: indexPath) as! SHShoutItemCell
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+            return cell
+        }
     }
 }
