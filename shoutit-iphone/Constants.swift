@@ -113,6 +113,8 @@ struct Constants {
         static let ShoutMyFeedHeaderCell = "shoutMyFeedHeaderCell"
         static let ShoutDiscoverTitleCell = "shoutDiscoverTitleCell"
         static let ShoutDiscoverListCell = "shoutDiscoverListCell"
+        static let ShoutDiscoverItemCell = "discoverItemCell"
+        static let ShoutDiscoverSeeAllCell = "shDiscoverSeeAllCell"
     }
     
     struct CollectionReusableView {

@@ -14,14 +14,14 @@ class CustomUIView: UIView {
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
+            updateMaskToBounds()
         }
     }
     
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
-            layer.masksToBounds = borderWidth > 0
+            updateMaskToBounds()
         }
     }
     
@@ -29,6 +29,10 @@ class CustomUIView: UIView {
         didSet {
             layer.borderColor = borderColor.CGColor
         }
+    }
+    
+    func updateMaskToBounds() {
+        layer.masksToBounds = cornerRadius > 0 || borderWidth > 0
     }
 
 }

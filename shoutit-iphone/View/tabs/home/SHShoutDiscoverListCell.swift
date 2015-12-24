@@ -10,4 +10,19 @@ import UIKit
 
 class SHShoutDiscoverListCell: UICollectionViewCell {
     
+    private var viewModel: SHShoutDiscoverListCellViewModel?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        viewModel = SHShoutDiscoverListCellViewModel(cell: self)
+        collectionView.delegate = viewModel
+        collectionView.dataSource = viewModel
+    }
+    
+    func setUp(viewController: UIViewController) {
+        viewModel?.setUp(viewController)
+    }
 }

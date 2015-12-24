@@ -73,7 +73,7 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
             case 0:
                 return CGSizeMake(UIScreen.mainScreen().bounds.width, 41)
             case 1:
-                return CGSizeMake(UIScreen.mainScreen().bounds.width, 119)
+                return CGSizeMake(UIScreen.mainScreen().bounds.width, 121)
             case 2:
                 return CGSizeMake(UIScreen.mainScreen().bounds.width, 41)
             default:
