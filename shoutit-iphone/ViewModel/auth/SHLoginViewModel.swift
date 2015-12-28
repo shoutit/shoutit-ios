@@ -126,9 +126,6 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     }
     
     func skipLogin () {
-//        let tabViewController = SHTabViewController()
-//        tabViewController.selectedIndex = 1
-//        self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
         SHOauthToken.goToDiscover()
     }
     

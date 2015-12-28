@@ -83,6 +83,7 @@ struct Constants {
         static let SHUSERLIST = "SHUserListTableViewController"
         static let SHMAPDETAIL = "SHMapDetatilViewController"
         static let SHTAGLISTENERS = "SHTagListenersTableViewController"
+        static let ShoutList = "shoutListViewController"
     }
     
     struct TableViewCell {
@@ -109,6 +110,13 @@ struct Constants {
         static let SHAmazonVideoCollectionViewCell = "SHAmazonVideoCollectionViewCell"
         static let SHShoutSquareCollectionViewCell = "SHShoutSquareCollectionViewCell"
         static let SHMessageShoutOutgoingCollectionViewCell = "SHMessageShoutOutgoingCollectionViewCell"
+        static let ShoutMyFeedHeaderCell = "shoutMyFeedHeaderCell"
+        static let ShoutDiscoverTitleCell = "shoutDiscoverTitleCell"
+        static let ShoutDiscoverListCell = "shoutDiscoverListCell"
+        static let ShoutDiscoverItemCell = "discoverItemCell"
+        static let ShoutDiscoverSeeAllCell = "shDiscoverSeeAllCell"
+        static let ShoutItemGridCell = "shShoutItemGridCell"
+        static let ShoutItemListCell = "shShoutItemListCell"
     }
     
     struct CollectionReusableView {

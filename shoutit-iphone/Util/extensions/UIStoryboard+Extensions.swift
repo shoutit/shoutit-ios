@@ -50,4 +50,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "MessagesStoryboard", bundle: nil)
     }
     
+    static  func getShoutList() -> UIStoryboard {
+        return UIStoryboard(name: "ShoutList", bundle: nil)
+    }
+    
 }
