@@ -31,7 +31,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     var subTitleLabel: UILabel?
     private var media: [SHMedia] = []
     private var viewModel: SHMessagesViewModel?
-    private var progressView: UIProgressView?
+    var otherFrame = false
+   // private var progressView: UIProgressView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let navBar = self.navigationController?.navigationBar.topItem {
             navBar.title = NSLocalizedString("Back", comment: "Back")
         }
-        self.setupProgressBar()
+       // self.setupProgressBar()
         viewModel?.viewDidLoad()
     }
     
@@ -99,10 +100,10 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupProgressBar()
         if(!self.isFromShout) {
             self.viewModel?.setupConverstaionManager()
-//            [self setupConverstaionManager];
-//            [self startCheckingStatus];
+            self.startCheckingStatus()
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("deleteMessage:"), name: "DeleteMessageNotification", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textDidChange"), name: UITextViewTextDidChangeNotification, object: nil)
         }
@@ -218,7 +219,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                 self.progress?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin
                 self.progress?.backgroundColor = navBar.window?.tintColor
                 self.progress?.progressTintColor = UIColor.jsq_messageBubbleBlueColor()
-                self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height - 20, navBar.frame.size.width, 2)
+                if(otherFrame) {
+                    self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height, navBar.frame.size.width, 2)
+                } else {
+                    self.progress?.frame = CGRectMake(0, navBar.frame.origin.y + navBar.frame.size.height - 20, navBar.frame.size.width, 2)
+                }
                 if let progress = self.progress {
                     navBar.addSubview(progress)
                 }
@@ -243,16 +248,16 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func increaseProgress () {
-        if let _ = self.progressTimer, let progressView = self.progressView {
+        if let _ = self.progressTimer, let progressView = self.progress {
             if(progressView.progress < 0.5) {
                 var p = progressView.progress
                 p += 0.1
-                self.progressView?.setProgress(p, animated: true)
+                self.progress?.setProgress(p, animated: true)
                 
             } else if (progressView.progress < 0.6) {
                 var p = progressView.progress
                 p += 0.02
-                self.progressView?.setProgress(p, animated: true)
+                self.progress?.setProgress(p, animated: true)
             } else {
                 self.progressTimer?.invalidate()
             }
@@ -618,6 +623,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             msg.isFromShout = self.isFromShout
             //msg.attachments.append(shout)
             msg.status = Constants.MessagesStatus.kStatusPending
+            self.otherFrame = false
             
             let shoutAttachment = SHShoutAttachment()
             shoutAttachment.shout = shout
@@ -678,6 +684,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     // MARK - SHCameraViewControllerDelegate
     func didCameraFinish(image: UIImage) {
+        self.otherFrame = true
         self.startProgress()
         let msg = SHMessage()
         msg.user = self.myUser
@@ -701,6 +708,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func didCameraFinish(tempVideoFileURL: NSURL, thumbnailImage: UIImage) {
+        self.otherFrame = true
         self.startProgress()
         let msg = SHMessage()
         msg.user = self.myUser
