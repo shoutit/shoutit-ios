@@ -48,46 +48,36 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     func setupViewForUser (user: SHUser, viewController: SHProfileCollectionViewController) {
-        self.viewController = viewController
-        loadUserData(user)
-        self.imglisten = UIImageView(frame: CGRectMake(0, 0, 32, 32))
-        self.imglisten?.image = UIImage(named: "listen")
-        self.imglistenGreen = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        self.imglistenGreen?.image = UIImage(named: "listenGreen")
-        
-        self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        self.profileImageView.clipsToBounds = true
-        self.profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
-        self.profileImageView.layer.borderWidth = 2.0
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2.0
-        
-        
-        if(user.username == SHOauthToken.getFromCache()?.user?.username) {
-            self.listenButton.hidden = true
-            self.cvShortcutButton.hidden = false
-            self.cvShortcutButton.layer.cornerRadius = 5
-            self.cvShortcutButton.backgroundColor = UIColor.lightTextColor()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.viewController = viewController
+            self.loadUserData(user)
+            self.imglisten = UIImageView(frame: CGRectMake(0, 0, 32, 32))
+            self.imglisten?.image = UIImage(named: "listen")
+            self.imglistenGreen = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+            self.imglistenGreen?.image = UIImage(named: "listenGreen")
             
-//            let editBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editProfile:"))
-//            editBtn.tintColor = UIColor.darkTextColor()
-//            viewController.navigationItem.rightBarButtonItem = editBtn
+            self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            self.profileImageView.clipsToBounds = true
+            self.profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+            self.profileImageView.layer.borderWidth = 2.0
+            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2.0
             
-//            let setBtn = UIBarButtonItem(image: UIImage(named: "settingsTabBar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("openSettings"))
-//            viewController.navigationItem.leftBarButtonItem = setBtn
             
-//            let tap = UITapGestureRecognizer(target: self, action: Selector("editProfilePic:"))
-//            tap.numberOfTapsRequired = 1
-//            tap.numberOfTouchesRequired = 1
-//            self.profileImageView.addGestureRecognizer(tap)
-        } else {
-            if let isListen = self.user?.isListening {
-                self.setListenSelected(isListen)
+            if(user.username == SHOauthToken.getFromCache()?.user?.username) {
+                self.listenButton.hidden = true
+                self.cvShortcutButton.hidden = false
+                self.cvShortcutButton.layer.cornerRadius = 5
+                self.cvShortcutButton.backgroundColor = UIColor.lightTextColor()
+            } else {
+                if let isListen = self.user?.isListening {
+                    self.setListenSelected(isListen)
+                }
             }
+            
+            self.lgView.layer.cornerRadius = 5
+            self.lsView.layer.cornerRadius = 5
+            self.tgView.layer.cornerRadius = 5
         }
-        
-        self.lgView.layer.cornerRadius = 5
-        self.lsView.layer.cornerRadius = 5
-        self.tgView.layer.cornerRadius = 5
     }
     
     func setListenSelected (isFollowing: Bool) {

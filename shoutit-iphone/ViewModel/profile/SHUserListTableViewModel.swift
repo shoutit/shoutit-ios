@@ -183,7 +183,7 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.setTagCell(self.userTags[indexPath.row] as! SHTag)
-            //cell.listenButton.hidden = true
+            cell.listenButton.hidden = true
             return cell
         }
         return UITableViewCell()

@@ -83,6 +83,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let navBar = self.navigationController?.navigationBar.topItem {
             navBar.title = NSLocalizedString("Back", comment: "Back")
         }
+        self.setupProgressBar()
         viewModel?.viewDidLoad()
     }
     
@@ -98,7 +99,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupProgressBar()
         if(!self.isFromShout) {
             self.viewModel?.setupConverstaionManager()
 //            [self setupConverstaionManager];
@@ -375,7 +375,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let imageUrl = self.myUser?.image where self.myUser?.name == self.viewModel?.jsqMessages[indexPath.item].senderDisplayName {
             imageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "no_image_available"))
         } else {
-            imageView.image = UIImage(named: "profile")
+            if let msg = self.viewModel?.shMessages[indexPath.item], let imageUrl = msg.user?.image {
+                imageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "no_image_available"))
+            }
         }
         let avImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(imageView.image, diameter: UInt( kJSQMessagesCollectionViewAvatarSizeDefault))
         return avImage;
