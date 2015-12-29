@@ -359,7 +359,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
             self.viewController.shouts = []
         }
         self.viewController.shouts += shShoutMeta.results
-        self.viewController.tableView.reloadData()
+      //  self.viewController.tableView.reloadData()
+        let range = NSMakeRange(0, self.viewController.tableView.numberOfSections)
+        let sections = NSIndexSet(indexesInRange: range)
+        self.viewController.tableView.reloadSections(sections, withRowAnimation: .Bottom)
         
         if Constants.Common.SH_PAGE_SIZE != shShoutMeta.results.count {
             self.viewController.loading = false

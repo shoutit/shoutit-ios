@@ -74,7 +74,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedMessage:", name: "kMessagePushNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedMessage:", name: Constants.Notification.kMessagePushNotification, object: nil)
         self.collectionView?.collectionViewLayout.messageBubbleFont = UIFont(name: "Helvetica", size: 15.0)
         self.scrollToBottomAnimated(false)
         if(!self.isFromShout) {
@@ -191,7 +191,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         subTitleLabel?.backgroundColor = UIColor.clearColor()
         subTitleLabel?.textColor = UIColor.whiteColor()
         subTitleLabel?.font = UIFont.systemFontOfSize(12)
-        //[self checkStaus];
+        self.checkStatus()
         subTitleLabel?.text = "offline"
         subTitleLabel?.sizeToFit()
         
@@ -335,7 +335,9 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     deinit {
+        self.finishCheckingStatus()
         viewModel?.destroy()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.kMessagePushNotification, object: nil)
     }
     
     // JSQMessagesViewController

@@ -142,7 +142,11 @@ class SHMessagesViewModel: NSObject {
                 self.viewController.typingTimer = NSTimer(timeInterval: 5, target: self, selector: Selector("hideTypingIndicator"), userInfo: nil, repeats: false)
                 log.verbose("Typing... \(event["username"])")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.hidingTypingIndicatorAction()
+                    self.viewController.showTypingIndicator = true
+                    self.viewController.collectionView?.reloadData()
+                    if(self.viewController.automaticallyScrollsToMostRecentMessage) {
+                        self.viewController.scrollToBottomAnimated(true)
+                    }
                 })
                 
             }, joined_chatHandler: { (event) -> () in
@@ -156,7 +160,11 @@ class SHMessagesViewModel: NSObject {
         if let typingTimer = self.viewController.typingTimer  {
             typingTimer.invalidate()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.hidingTypingIndicatorAction()
+                self.viewController.showTypingIndicator = false
+                self.viewController.collectionView?.reloadData()
+                if(self.viewController.automaticallyScrollsToMostRecentMessage) {
+                    self.viewController.scrollToBottomAnimated(true)
+                }
             })
         }
     }
