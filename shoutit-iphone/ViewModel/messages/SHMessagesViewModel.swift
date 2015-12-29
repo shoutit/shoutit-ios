@@ -138,6 +138,7 @@ class SHMessagesViewModel: NSObject {
             }, typingHandler: { (event) -> () in
                 if let typingTimer = self.viewController.typingTimer {
                     typingTimer.invalidate()
+                    self.viewController.typingTimer = nil
                 }
                 self.viewController.typingTimer = NSTimer(timeInterval: 5, target: self, selector: Selector("hideTypingIndicator"), userInfo: nil, repeats: false)
                 log.verbose("Typing... \(event["username"])")
@@ -159,6 +160,7 @@ class SHMessagesViewModel: NSObject {
     func hideTypingIndicator () {
         if let typingTimer = self.viewController.typingTimer  {
             typingTimer.invalidate()
+            self.viewController.typingTimer = nil
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.viewController.showTypingIndicator = false
                 self.viewController.collectionView?.reloadData()

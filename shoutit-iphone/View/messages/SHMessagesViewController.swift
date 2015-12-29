@@ -1,4 +1,4 @@
-//
+r//
 //  SHMessagesViewController.swift
 //  shoutit-iphone
 //
@@ -129,6 +129,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
             if let timer = self.typingTimer {
                 timer.invalidate()
+                self.typingTimer = nil
             }
         }
         viewModel?.viewDidDisappear()
@@ -763,5 +764,4 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
             }
         }
     }
-
 }

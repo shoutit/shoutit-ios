@@ -40,7 +40,8 @@ class SHConversationPusherManager: NSObject {
     }
     
     func sendTyping(user: SHUser) {
-        self.channel_typing?.triggerEventNamed("client-user_is_typing", data: user)
+        let payLoad = dictionaryUser(user)
+        self.channel_typing?.triggerEventNamed("client-user_is_typing", data: payLoad)
     }
     
     func whoIsOnline () -> Int {
@@ -52,5 +53,23 @@ class SHConversationPusherManager: NSObject {
             }
         }
         return 0
+    }
+    
+    func dictionaryUser(user: SHUser) -> [String: AnyObject] {
+        var dict = [String: AnyObject]()
+        dict["id"] = user.id
+        dict["first_name"] = user.firstName
+        dict["last_name"] = user.lastName
+        dict["image"] = user.image
+        dict["web_url"] = user.webUrl
+        dict["username"] = user.username
+        dict["email"] = user.email
+        dict["bio"] = user.bio
+        dict["gender"] = user.gender
+//        [self setForDictionary:dict value:@{@"all":@(self.listening_all),
+//            @"users":@(self.listening_users),
+//            @"tags":@(self.listening_tags)} forKey:@"listening_count"];
+//       [self setForDictionary:dict value:@(self.followers_count) forKey:@"listeners_count"];
+        return dict
     }
 }

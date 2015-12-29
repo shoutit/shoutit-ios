@@ -21,7 +21,7 @@ class SHConversationsTableViewModel: NSObject, UITableViewDataSource, UITableVie
     
     func viewDidLoad() {
         refreshConversations()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receivedMessage:"), name: "kMessagePushNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receivedMessage:"), name: Constants.Notification.kMessagePushNotification, object: nil)
         let edit = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: Selector("editConversations:"))
         self.viewController.navigationItem.leftBarButtonItem = edit
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receivedMessage:"), name: "kApplicationDidBecomeActive", object: nil)

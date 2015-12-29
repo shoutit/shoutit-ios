@@ -58,6 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.forumId = 290071
         UserVoice.initialize(config)
         
+        SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
+            let userInfo = ["object": event]
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.kMessagePushNotification, object: nil, userInfo: userInfo)
+        }
+        
         return true
     }
     

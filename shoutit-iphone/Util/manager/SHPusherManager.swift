@@ -9,9 +9,9 @@
 import UIKit
 import Pusher
 
-typealias eventReceived = (event: Dictionary<String, String>) -> ()
+typealias eventReceived = (event: Dictionary<String, AnyObject>) -> ()
 let PUSHER_APP_KEY = "86d676926d4afda44089"
-let PUSHER_URL = "https://api.shoutit.com/v2/pusher/auth"
+let PUSHER_URL = SHApiManager.sharedInstance.BASE_URL + "/pusher/auth"
 
 class SHPusherManager: NSObject, PTPusherDelegate {
     var client: PTPusher?
