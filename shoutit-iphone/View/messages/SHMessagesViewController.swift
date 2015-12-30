@@ -1,4 +1,4 @@
-r//
+//
 //  SHMessagesViewController.swift
 //  shoutit-iphone
 //
@@ -32,7 +32,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     private var media: [SHMedia] = []
     private var viewModel: SHMessagesViewModel?
     var otherFrame = false
-   // private var progressView: UIProgressView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +83,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         if let navBar = self.navigationController?.navigationBar.topItem {
             navBar.title = NSLocalizedString("Back", comment: "Back")
         }
-       // self.setupProgressBar()
+        self.startCheckingStatus()
         viewModel?.viewDidLoad()
     }
     
@@ -311,11 +310,11 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func startCheckingStatus () {
-        self.statusCheckerTimer = NSTimer(timeInterval: 10, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
+        self.statusCheckerTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
     }
     
     func checkStatus () {
-        let online = self.conversationManager?.whoIsOnline()
+        let online = self.conversationManager?.members
         log.verbose("Online Members \(online)")
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             if(online > 1) {
@@ -340,24 +339,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         viewModel?.destroy()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.kMessagePushNotification, object: nil)
     }
-    
-    // JSQMessagesViewController
-    
-    // JSQMessagesCollectionViewDataSource
-    
-//    func senderDisplayName() -> String! {
-//        if let user = self.myUser {
-//            return user.name
-//        }
-//        return ""
-//    }
-//    
-//    func senderId() -> String! {
-//        if let user = self.myUser {
-//            return user.username
-//        }
-//        return ""
-//    }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return self.viewModel?.jsqMessages[indexPath.item]
@@ -394,7 +375,8 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         if(indexPath.item % 3 == 0) {
-            return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(self.viewModel?.jsqMessages[indexPath.item].date)
+            return
+                JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(self.viewModel?.jsqMessages[indexPath.item].date)
         }
         return nil
     }
@@ -737,10 +719,6 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
     }
     
     func updateMessages(shMessagesMeta: SHMessagesMeta) {
-//        var scrollToEnd = false
-//        if let count = self.viewModel?.shMessages.count where count == 0 {
-//            scrollToEnd = true
-//        }
         self.viewModel?.shMessages = shMessagesMeta.results
         self.viewModel?.jsqMessages.removeAll()
         if let messages = self.viewModel?.shMessages {

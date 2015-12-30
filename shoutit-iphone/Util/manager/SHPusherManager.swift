@@ -57,7 +57,7 @@ class SHPusherManager: NSObject, PTPusherDelegate {
     func subscribeToEventsChannelName (channelName: String, eventName: String, handler: eventReceived) -> PTPusherChannel {
         let channel = SHPusherManager.sharedInstance.channelWithName(channelName)
         channel.bindToEventNamed(eventName) { (channelEvent) -> Void in
-            if let data = channelEvent.data as? Dictionary<String, String> {
+            if let data = channelEvent.data as? Dictionary<String, AnyObject> {
                 handler(event: data)
             }
         }
@@ -80,13 +80,13 @@ class SHPusherManager: NSObject, PTPusherDelegate {
         let channel_name = String(format: "u-%@", arguments: [userID])
         self.message_channel = self.client?.subscribeToPresenceChannelNamed(channel_name)
         self.message_channel?.bindToEventNamed("new_message", handleWithBlock: { (channelEvent) -> Void in
-            if let block = self.got_message_block, let data = channelEvent.data as? Dictionary<String, String>{
+            if let block = self.got_message_block, let data = channelEvent.data as? Dictionary<String, AnyObject>{
                 block(event: data)
             }
                 
         })
         self.message_channel?.bindToEventNamed("new_listen", handleWithBlock: { (channelEvent) -> Void in
-            if let block = self.got_listen_block,let data = channelEvent.data as? Dictionary<String, String> {
+            if let block = self.got_listen_block,let data = channelEvent.data as? Dictionary<String, AnyObject> {
                 block(event: data)
             }
         })

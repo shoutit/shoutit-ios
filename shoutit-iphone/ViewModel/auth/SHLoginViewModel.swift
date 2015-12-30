@@ -330,6 +330,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         SHOauthToken.goToDiscover()
+                        SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
                     })
                 } else {
                     // Login Failure

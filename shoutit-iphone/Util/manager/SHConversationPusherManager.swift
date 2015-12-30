@@ -9,12 +9,13 @@
 import UIKit
 import Pusher
 
-class SHConversationPusherManager: NSObject {
+class SHConversationPusherManager: NSObject, PTPusherPresenceChannelDelegate {
     var conversationID: String?
     var channel_new_message: PTPusherChannel?
     var channel_typing: PTPusherPresenceChannel?
     var channel_joined_chat: PTPusherChannel?
     var channel_left_chat: PTPusherChannel?
+    var members: Int?
     
     func unbindAll () {
         self.channel_new_message?.unsubscribe()
@@ -29,8 +30,9 @@ class SHConversationPusherManager: NSObject {
             self.channel_new_message = SHPusherManager.sharedInstance.subscribeToEventsChannelName(channelName, eventName: "new_message", handler: messageHandler)
             let channel_name1 = String(format: "c-%@", arguments: [conversationID])
             self.channel_typing = SHPusherManager.sharedInstance.client?.subscribeToPresenceChannelNamed(channel_name1)
+            self.channel_typing = SHPusherManager.sharedInstance.client?.subscribeToPresenceChannelNamed(channel_name1, delegate: self)
             self.channel_typing?.bindToEventNamed("client-user_is_typing", handleWithBlock: { (channelEvent) -> Void in
-                if let data = channelEvent.data as? Dictionary<String, String> {
+                if let data = channelEvent.data as? Dictionary<String, AnyObject> {
                     typingHandler(event: data)
                 }
             })
@@ -71,5 +73,17 @@ class SHConversationPusherManager: NSObject {
 //            @"tags":@(self.listening_tags)} forKey:@"listening_count"];
 //       [self setForDictionary:dict value:@(self.followers_count) forKey:@"listeners_count"];
         return dict
+    }
+    
+    func presenceChannelDidSubscribe(channel: PTPusherPresenceChannel!) {
+        members = channel.members.count
+    }
+    
+    func presenceChannel(channel: PTPusherPresenceChannel!, memberAdded member: PTPusherChannelMember!) {
+        members = channel.members.count
+    }
+    
+    func presenceChannel(channel: PTPusherPresenceChannel!, memberRemoved member: PTPusherChannelMember!) {
+        members = channel.members.count
     }
 }
