@@ -24,11 +24,11 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
             self.updateUI()
             }) { (response) -> Void in
                 switch response.result {
-                case .Success(let shShoutMeta):
-                    self.shouts = shShoutMeta.results
-                    self.updateUI()
-                case .Failure(let error):
-                    log.error("Error fetching shouts \(error.localizedDescription)")
+                    case .Success(let shShoutMeta):
+                        self.shouts = shShoutMeta.results
+                        self.updateUI()
+                    case .Failure(let error):
+                        log.error("Error fetching shouts \(error.localizedDescription)")
                 }
         }
     }

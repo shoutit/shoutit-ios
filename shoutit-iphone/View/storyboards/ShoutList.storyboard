@@ -50,7 +50,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" id="UPA-LB-LxB"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
-                                                            <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpW-Xd-UD8">
@@ -264,7 +264,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                             <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pe2-ve-zr5">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pe2-ve-zr5" userLabel="shoutCountry">
                                                             <rect key="frame" x="115" y="83" width="25" height="25"/>
                                                             <animations/>
                                                             <constraints>
@@ -272,7 +272,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                 <constraint firstAttribute="height" constant="25" id="oEH-KA-aQk"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-RN-oRn">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-RN-oRn" userLabel="shoutCategory">
                                                             <rect key="frame" x="145" y="83" width="25" height="25"/>
                                                             <animations/>
                                                             <constraints>
@@ -342,6 +342,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <size key="customSize" width="384" height="110"/>
                                         <connections>
                                             <outlet property="name" destination="QZH-fu-dC2" id="AAX-xu-mgr"/>
+                                            <outlet property="shoutCategoryImage" destination="9Rd-RN-oRn" id="Pby-3d-H3q"/>
+                                            <outlet property="shoutCountryImage" destination="pe2-ve-zr5" id="PAQ-na-0QY"/>
                                             <outlet property="shoutImage" destination="4NM-Vm-HSa" id="i8y-l5-m43"/>
                                             <outlet property="shoutPrice" destination="Z8F-PG-nWD" id="hcn-pl-xFh"/>
                                             <outlet property="shoutTimeAgo" destination="iyH-tN-1bZ" id="8ML-wK-S83"/>

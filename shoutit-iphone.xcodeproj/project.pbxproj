@@ -130,6 +130,7 @@
 		AC47A73C1C031367006AF406 /* SHShoutDetailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */; };
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
 		AC5404D81C1EC19200F6ECFE /* SHMapDetatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5404D71C1EC19100F6ECFE /* SHMapDetatilViewController.swift */; };
+		AC679B3D1C3BF6B500F45947 /* DiscoverFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
 		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
@@ -418,6 +419,7 @@
 		AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailImageCollectionViewCell.swift; path = View/tabs/stream/cell/SHShoutDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC5404D71C1EC19100F6ECFE /* SHMapDetatilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMapDetatilViewController.swift; path = View/messages/SHMapDetatilViewController.swift; sourceTree = "<group>"; };
+		AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverFeed.storyboard; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
 		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 				6027CF801BE751ED00124C28 /* StreamStoryboard.storyboard */,
 				6027CF811BE751ED00124C28 /* TagStoryboard.storyboard */,
 				60B8A10B1C2B3680004FC1B3 /* ShoutList.storyboard */,
+				AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */,
 			);
 			name = storyboards;
 			sourceTree = "<group>";
@@ -1803,6 +1806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
+				AC679B3D1C3BF6B500F45947 /* DiscoverFeed.storyboard in Resources */,
 				AC1C93EB1BE90D2A009400BE /* tos.html in Resources */,
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
 				AC7030D21C16C983008F4C00 /* SHLocationMessageCell.xib in Resources */,

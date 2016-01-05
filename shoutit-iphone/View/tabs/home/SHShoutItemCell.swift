@@ -17,6 +17,8 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutPrice: UILabel!
     @IBOutlet weak var shoutType: UILabel?
     @IBOutlet weak var shoutTimeAgo: UILabel?
+    @IBOutlet weak var shoutCountryImage: UIImageView!
+    @IBOutlet weak var shoutCategoryImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

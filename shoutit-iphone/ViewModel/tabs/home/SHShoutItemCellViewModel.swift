@@ -25,6 +25,12 @@ class SHShoutItemCellViewModel: NSObject {
         cell.shoutType?.layer.borderWidth = 0.8
         cell.shoutType?.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor
         cell.shoutType?.layer.cornerRadius = 2
+        if let shoutLocation = SHAddress.getUserOrDeviceLocation()?.country {
+            cell.shoutCountryImage?.image = UIImage(named: shoutLocation)
+            cell.shoutCountryImage?.layer.cornerRadius = cell.shoutCountryImage.frame.size.width / 2
+            cell.shoutCountryImage?.clipsToBounds = true
+        }
+        cell.shoutCategoryImage?.image = UIImage(named: "clothing")
     }
     
     // MARK - Private
