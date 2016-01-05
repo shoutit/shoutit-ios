@@ -123,11 +123,20 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
         case .GRID:
             let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
             cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+            addBorder(cell)
             return cell
         case .LIST:
             let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemListCell, forIndexPath: indexPath) as! SHShoutItemCell
             cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+            addBorder(cell)
             return cell
         }
+    }
+    
+    private func addBorder(cell: UICollectionViewCell) {
+        cell.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 5
+        cell.layer.masksToBounds = true
     }
 }

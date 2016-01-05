@@ -9,5 +9,12 @@
 import UIKit
 
 class SHShoutDiscoverTitleCell: UICollectionViewCell {
+    @IBOutlet weak var discoverLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        if let location = SHAddress.getUserOrDeviceLocation() {
+            discoverLabel.text = "DISCOVER" + " " + "\(location.city.uppercaseString)"
+        }
+    }
 }

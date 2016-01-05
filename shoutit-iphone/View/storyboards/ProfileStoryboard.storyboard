@@ -331,7 +331,7 @@
                             <outlet property="delegate" destination="wcQ-mu-Cmh" id="gIl-CM-OoQ"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar" id="4BG-wl-2Yw"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tabProfile" id="4BG-wl-2Yw"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -664,5 +664,6 @@
     <resources>
         <image name="image_placeholder" width="170" height="170"/>
         <image name="profileTabBar" width="21" height="25"/>
+        <image name="tabProfile" width="30" height="30"/>
     </resources>
 </document>

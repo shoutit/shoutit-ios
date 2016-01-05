@@ -51,11 +51,12 @@ struct Constants {
     struct Style {
         static let COLOR_BACKGROUND_WHITE = "#fafafa"
         static let COLOR_BACKGROUND_GRAY = "#333333"
-        static let COLOR_SHOUT_GREEN = "#98dc1a"
+        static let COLOR_SHOUT_GREEN = "#A6D280" //"#98dc1a"
         static let COLOR_SHOUT_RED = "#ca3c3c"
         static let COLOR_SHOUT_DARK_GREEN = "#658529"
         static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
         static let COLOR_SHOUTDETAIL_PROFILEIMAGE = "#e8e8e8"
+        static let COLOR_BORDER_DISCOVER = "#C2C2C2"
     }
     
     struct ViewControllers {

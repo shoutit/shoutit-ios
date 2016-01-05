@@ -22,6 +22,9 @@ class SHShoutItemCellViewModel: NSObject {
         loadShoutImage(shout.thumbnail)
         cell.name.text = shout.user?.name
         cell.shoutTitle.text = shout.title
+        cell.shoutType?.layer.borderWidth = 0.8
+        cell.shoutType?.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor
+        cell.shoutType?.layer.cornerRadius = 2
     }
     
     // MARK - Private
