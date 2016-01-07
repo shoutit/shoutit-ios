@@ -1,21 +1,20 @@
 //
-//  SHShoutDiscoverListCellViewModel.swift
+//  SHDiscoverFeedDiscoverItemCellViewModel.swift
 //  shoutit-iphone
 //
-//  Created by Hitesh Sondhi on 24/12/15.
-//  Copyright © 2015 Shoutit. All rights reserved.
+//  Created by Vishal Thakur on 1/7/16.
+//  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-class SHShoutDiscoverListCellViewModel: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class SHDiscoverFeedDiscoverItemCellViewModel: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    private let cell: SHShoutDiscoverListCell
+    private let cell: SHDiscoverFeedDiscoverItemCell
     private var discoverItems: [SHDiscoverItem] = []
     private var viewController: UIViewController?
-    var type: ShoutListType = .HOME
     
-    init(cell: SHShoutDiscoverListCell) {
+    init(cell: SHDiscoverFeedDiscoverItemCell) {
         self.cell = cell
         super.init()
         getDiscoverItems()
@@ -27,42 +26,18 @@ class SHShoutDiscoverListCellViewModel: NSObject, UICollectionViewDelegateFlowLa
     
     // MARK - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch(type) {
-        case .HOME:
-            return discoverItems.count + 1
-        case .DISCOVER:
-            return discoverItems.count
-        }
+       return discoverItems.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if indexPath.row < discoverItems.count {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverItemCell, forIndexPath: indexPath) as! SHDiscoverItemCell
-            cell.setUp(self.viewController, discoverItem: discoverItems[indexPath.row])
-            addShadow(cell)
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverSeeAllCell, forIndexPath: indexPath)
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedCell, forIndexPath: indexPath) as! SHDiscoverFeedCell
+        cell.setUp(self.viewController, discoverItem: discoverItems[indexPath.row])
+        //addShadow(cell)
+        return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        switch(type) {
-        case .HOME:
-            return CGSizeMake(90, 121)
-        case .DISCOVER:
-            return CGSizeMake(200, 240)
-        }
-    }
-    
-    // MARK - Private
-    private func addShadow(cell: UICollectionViewCell) {
-        cell.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor(red: 0.21, green: 0.21, blue: 0.21, alpha: 1).CGColor
-        cell.layer.shadowOpacity = 0.8
-        cell.layer.shadowRadius = 1
-        cell.layer.shadowOffset = CGSizeMake(0, 1)
+        return CGSizeMake(200, 240)
     }
     
     private func getDiscoverItems() {

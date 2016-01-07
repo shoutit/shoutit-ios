@@ -535,6 +535,190 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <outlet property="collectionView" destination="Cki-yJ-ddv" id="aTN-Nf-gTo"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverFeedHeaderCell" reuseIdentifier="discoverFeedHeaderCell" id="Yq5-e6-2AV" customClass="SHDiscoverFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="112" y="666" width="377" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="377" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-gT-g84">
+                                                    <rect key="frame" x="0.0" y="0.0" width="377" height="100"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGt-ff-SF7">
+                                                            <rect key="frame" x="0.0" y="0.0" width="377" height="100"/>
+                                                            <animations/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qM7-Sj-O0e">
+                                                            <rect key="frame" x="155" y="39" width="67" height="21"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="qM7-Sj-O0e" secondAttribute="trailing" constant="155" id="CJT-5h-IbK"/>
+                                                        <constraint firstItem="qM7-Sj-O0e" firstAttribute="leading" secondItem="gxD-gT-g84" secondAttribute="leading" constant="155" id="IcW-J2-o5h"/>
+                                                        <constraint firstItem="gGt-ff-SF7" firstAttribute="leading" secondItem="gxD-gT-g84" secondAttribute="leading" id="WWE-WK-Ari"/>
+                                                        <constraint firstItem="qM7-Sj-O0e" firstAttribute="top" secondItem="gxD-gT-g84" secondAttribute="top" constant="39" id="hb4-YZ-faW"/>
+                                                        <constraint firstItem="gGt-ff-SF7" firstAttribute="centerY" secondItem="qM7-Sj-O0e" secondAttribute="centerY" id="mIE-rm-D4B"/>
+                                                        <constraint firstItem="gGt-ff-SF7" firstAttribute="top" secondItem="gxD-gT-g84" secondAttribute="top" id="w23-bU-F6F"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gGt-ff-SF7" secondAttribute="trailing" id="zwE-zc-8CW"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="gxD-gT-g84" secondAttribute="bottom" id="9EL-t0-Ft2"/>
+                                            <constraint firstItem="gxD-gT-g84" firstAttribute="top" secondItem="Yq5-e6-2AV" secondAttribute="top" id="Xpo-43-Yi8"/>
+                                            <constraint firstItem="gxD-gT-g84" firstAttribute="leading" secondItem="Yq5-e6-2AV" secondAttribute="leading" id="b1z-Dc-2Er"/>
+                                        </constraints>
+                                        <size key="customSize" width="377" height="100"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverFeedDiscoverItemCell" reuseIdentifier="discoverFeedDiscoverItemCell" id="sAR-YO-Ik2" customClass="SHDiscoverFeedDiscoverItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="776" width="200" height="239"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lEi-si-J0z">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                                    <subviews>
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b9t-y3-dFd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                                            <animations/>
+                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="81R-Mv-oZc">
+                                                                <size key="itemSize" width="200" height="240"/>
+                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            </collectionViewFlowLayout>
+                                                            <cells>
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverFeedCell" reuseIdentifier="SHDiscoverFeedCell" id="GRU-sn-ljQ" customClass="SHDiscoverFeedCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="240"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="240"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <subviews>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIM-Yj-bxb">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="240"/>
+                                                                                <subviews>
+                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eno-7V-2kC">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                                                        <animations/>
+                                                                                    </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cars" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg7-u3-Sut">
+                                                                                        <rect key="frame" x="0.0" y="200" width="200" height="40"/>
+                                                                                        <animations/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="40" id="WAv-W2-eLT"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                                <animations/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="eno-7V-2kC" firstAttribute="leading" secondItem="IIM-Yj-bxb" secondAttribute="leading" id="3Qj-T1-5fU"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Mg7-u3-Sut" secondAttribute="trailing" id="Ag5-Cz-0ew"/>
+                                                                                    <constraint firstItem="Mg7-u3-Sut" firstAttribute="top" secondItem="eno-7V-2kC" secondAttribute="bottom" id="IGa-M0-0Ct"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="eno-7V-2kC" secondAttribute="trailing" id="S0p-UE-ZMc"/>
+                                                                                    <constraint firstItem="Mg7-u3-Sut" firstAttribute="leading" secondItem="IIM-Yj-bxb" secondAttribute="leading" id="cC6-eh-nm9"/>
+                                                                                    <constraint firstItem="eno-7V-2kC" firstAttribute="top" secondItem="IIM-Yj-bxb" secondAttribute="top" id="rdi-G6-FE6"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="Mg7-u3-Sut" secondAttribute="bottom" id="tJJ-p2-c5i"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                        </subviews>
+                                                                        <animations/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                    <animations/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="IIM-Yj-bxb" secondAttribute="bottom" id="8Yf-1f-SuJ"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="IIM-Yj-bxb" secondAttribute="trailing" id="Jaf-pj-dyB"/>
+                                                                        <constraint firstItem="IIM-Yj-bxb" firstAttribute="leading" secondItem="GRU-sn-ljQ" secondAttribute="leading" id="RFi-zI-BOP"/>
+                                                                        <constraint firstItem="IIM-Yj-bxb" firstAttribute="top" secondItem="GRU-sn-ljQ" secondAttribute="top" id="pVM-v6-Lj5"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <outlet property="discoverImage" destination="eno-7V-2kC" id="wGE-ZS-8T8"/>
+                                                                        <outlet property="discoverTitle" destination="Mg7-u3-Sut" id="HRW-WW-nfD"/>
+                                                                    </connections>
+                                                                </collectionViewCell>
+                                                            </cells>
+                                                        </collectionView>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="collectionView" destination="b9t-y3-dFd" id="PWk-2b-n7h"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShoutHeaderCell" reuseIdentifier="discoverShoutHeaderCell" id="6XC-z8-0ou" customClass="SHDiscoverShoutHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="112" y="1025" width="377" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="377" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shouts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FID-Pm-Xz6">
+                                                    <rect key="frame" x="161" y="14" width="54" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="FID-Pm-Xz6" secondAttribute="trailing" constant="154" id="4mA-c8-vdt"/>
+                                            <constraint firstItem="FID-Pm-Xz6" firstAttribute="top" secondItem="6XC-z8-0ou" secondAttribute="topMargin" constant="6" id="5vL-47-YEN"/>
+                                            <constraint firstItem="FID-Pm-Xz6" firstAttribute="leading" secondItem="6XC-z8-0ou" secondAttribute="leadingMargin" constant="153" id="TqF-Sb-cY5"/>
+                                        </constraints>
+                                        <size key="customSize" width="377" height="50"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShowMoreShoutsCell" reuseIdentifier="discoverShowMoreShoutsCell" id="IgW-jt-3WS" customClass="SHDiscoverShowMoreShoutsCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="112" y="1085" width="377" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="377" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PI-KQ-4IX">
+                                                    <rect key="frame" x="124" y="10" width="129" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Show More Shouts"/>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="4PI-KQ-4IX" secondAttribute="trailing" constant="116" id="5gF-bJ-k9D"/>
+                                            <constraint firstItem="4PI-KQ-4IX" firstAttribute="leading" secondItem="IgW-jt-3WS" secondAttribute="leadingMargin" constant="116" id="o4I-FX-Ayx"/>
+                                            <constraint firstItem="4PI-KQ-4IX" firstAttribute="top" secondItem="IgW-jt-3WS" secondAttribute="topMargin" constant="2" id="yWw-Eg-qBm"/>
+                                        </constraints>
+                                        <size key="customSize" width="377" height="50"/>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>

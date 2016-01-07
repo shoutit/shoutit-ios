@@ -10,6 +10,8 @@ import UIKit
 
 class SHTakeLoginViewController: UIViewController {
 
+    @IBOutlet weak var welcomeTextSpaceFromLogo: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,7 +22,10 @@ class SHTakeLoginViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.hidden = true
+        // 667/8.3375 = 80 as per zeplin designs we have top space of 80, lets keep it properly according to aspect ratio
+        welcomeTextSpaceFromLogo.constant = UIScreen.mainScreen().bounds.height / 8.3375
     }
     
     

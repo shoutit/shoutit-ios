@@ -12,6 +12,7 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
 
     private let viewController: SHShoutListViewController
     private var shouts: [SHShout] = []
+    private var discoverItems: [SHDiscoverItem] = []
     private let shApiShoutsService = SHApiShoutService()
     
     required init(viewController: SHShoutListViewController) {
@@ -19,18 +20,24 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
     }
     
     func viewDidLoad() {
-        shApiShoutsService.loadHomeShouts(1, cacheResponse: { (shShoutMeta) -> Void in
-            self.shouts = shShoutMeta.results
-            self.updateUI()
-            }) { (response) -> Void in
-                switch response.result {
+        switch(viewController.type) {
+        case .HOME:
+            shApiShoutsService.loadHomeShouts(1, cacheResponse: { (shShoutMeta) -> Void in
+                self.shouts = shShoutMeta.results
+                self.updateUI()
+                }) { (response) -> Void in
+                    switch response.result {
                     case .Success(let shShoutMeta):
                         self.shouts = shShoutMeta.results
                         self.updateUI()
                     case .Failure(let error):
                         log.error("Error fetching shouts \(error.localizedDescription)")
-                }
+                    }
+            }
+        case .DISCOVER:
+            break
         }
+        
     }
     
     func viewWillAppear() {
@@ -58,11 +65,15 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
     }
     
     // MARK - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch (viewController.type) {
         case .HOME:
             return 3 + shouts.count
+        case .DISCOVER:
+            return 5
         }
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -78,7 +89,23 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
             default:
                 return getShoutListCell(indexPath)
             }
+        case .DISCOVER:
+            switch indexPath.row {
+            case 0:
+                return getDiscoverFeedHeaderCell(indexPath)
+            case 1:
+                return getDiscoverFeedDiscoverListCell(indexPath)
+            case 2:
+                return getDiscoverShoutHeader(indexPath)
+            case 3:
+                return getShoutListCell(indexPath)
+            case 4:
+                return getDiscoverShowMoreShouts(indexPath)
+            default:
+                return getDiscoverListCell(indexPath)
+            }
         }
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -100,6 +127,21 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
                     return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 110)
                 }
             }
+        case .DISCOVER:
+            switch indexPath.row {
+            case 0:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width, 100)
+            case 1:
+                return CGSizeMake((UIScreen.mainScreen().bounds.width - 20) / 2, 200)
+            case 2:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width, 50)
+            case 3:
+                return CGSizeMake((UIScreen.mainScreen().bounds.width - 20) / 2, 200)
+            case 4:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width, 50)
+            default:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width, 50)
+            }
         }
     }
     
@@ -110,6 +152,10 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
     
     private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverListCell, forIndexPath: indexPath)
+    }
+    
+    private func getDiscoverFeedDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedDiscoverItemCell, forIndexPath: indexPath)
     }
     
     private func getMyFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -139,4 +185,18 @@ class SHShoutListViewModel: NSObject, ViewControllerModelProtocol, UICollectionV
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true
     }
+    
+    //Extra discover cells
+    private func getDiscoverFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedHeaderCell, forIndexPath: indexPath)
+    }
+    
+    private func getDiscoverShoutHeader(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutHeaderCell, forIndexPath: indexPath)
+    }
+    
+    private func getDiscoverShowMoreShouts(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShowMoreShoutsCell, forIndexPath: indexPath)
+    }
+    
 }

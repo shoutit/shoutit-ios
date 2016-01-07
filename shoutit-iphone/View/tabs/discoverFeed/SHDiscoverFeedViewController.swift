@@ -1,33 +1,16 @@
 //
-//  SHHomeViewController.swift
+//  SHDiscoverFeedViewController.swift
 //  shoutit-iphone
 //
-//  Created by Hitesh Sondhi on 24/12/15.
-//  Copyright © 2015 Shoutit. All rights reserved.
+//  Created by Vishal Thakur on 1/6/16.
+//  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-enum ShoutListType {
-    case HOME
-    case DISCOVER
-}
+class SHDiscoverFeedViewController: BaseViewController {
 
-enum ShoutViewType {
-    case GRID
-    case LIST
-}
-
-class SHShoutListViewController: BaseViewController {
-
-    private var viewModel: SHShoutListViewModel?
-    var type: ShoutListType = .HOME
-    var viewType: ShoutViewType = .GRID {
-        didSet {
-            self.collectionView?.reloadData()
-        }
-    }
-    
+    private var viewModel: SHDiscoverFeedViewModel?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -38,12 +21,11 @@ class SHShoutListViewController: BaseViewController {
     }
     
     override func initializeViewModel() {
-        viewModel = SHShoutListViewModel(viewController: self)
+        viewModel = SHDiscoverFeedViewModel(viewController: self)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.collectionView.reloadData()
         viewModel?.viewDidAppear()
     }
     
@@ -70,5 +52,6 @@ class SHShoutListViewController: BaseViewController {
     deinit {
         viewModel?.destroy()
     }
+   
 
 }

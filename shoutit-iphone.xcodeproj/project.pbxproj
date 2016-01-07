@@ -131,6 +131,16 @@
 		AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC5340CB1BED44850065A578 /* GoogleService-Info.plist */; };
 		AC5404D81C1EC19200F6ECFE /* SHMapDetatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5404D71C1EC19100F6ECFE /* SHMapDetatilViewController.swift */; };
 		AC679B3D1C3BF6B500F45947 /* DiscoverFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */; };
+		AC679B401C3CE34700F45947 /* SHDiscoverFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B3F1C3CE34700F45947 /* SHDiscoverFeedViewController.swift */; };
+		AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B421C3CE42500F45947 /* SHDiscoverFeedViewModel.swift */; };
+		AC679B451C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B441C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift */; };
+		AC679B471C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */; };
+		AC679B491C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */; };
+		AC679B4B1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */; };
+		AC679B4D1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */; };
+		AC679B4F1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */; };
+		AC679B511C3E274A00F45947 /* SHDiscoverFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */; };
+		AC679B531C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
 		AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */; };
 		AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */; };
@@ -420,6 +430,16 @@
 		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC5404D71C1EC19100F6ECFE /* SHMapDetatilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMapDetatilViewController.swift; path = View/messages/SHMapDetatilViewController.swift; sourceTree = "<group>"; };
 		AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverFeed.storyboard; sourceTree = "<group>"; };
+		AC679B3F1C3CE34700F45947 /* SHDiscoverFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedViewController.swift; path = View/tabs/discoverFeed/SHDiscoverFeedViewController.swift; sourceTree = "<group>"; };
+		AC679B421C3CE42500F45947 /* SHDiscoverFeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedViewModel.swift; sourceTree = "<group>"; };
+		AC679B441C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedHeaderCell.swift; path = View/tabs/discoverFeed/SHDiscoverFeedHeaderCell.swift; sourceTree = "<group>"; };
+		AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedHeaderCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedHeaderCellViewModel.swift; sourceTree = "<group>"; };
+		AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverShoutHeaderCell.swift; path = View/tabs/discoverFeed/SHDiscoverShoutHeaderCell.swift; sourceTree = "<group>"; };
+		AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverShowMoreShoutsCell.swift; path = View/tabs/discoverFeed/SHDiscoverShowMoreShoutsCell.swift; sourceTree = "<group>"; };
+		AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedDiscoverItemCell.swift; path = View/tabs/discoverFeed/SHDiscoverFeedDiscoverItemCell.swift; sourceTree = "<group>"; };
+		AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedDiscoverItemCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedDiscoverItemCellViewModel.swift; sourceTree = "<group>"; };
+		AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedCell.swift; path = View/tabs/discoverFeed/SHDiscoverFeedCell.swift; sourceTree = "<group>"; };
+		AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedCellViewModel.swift; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
 		AC6F2B391BEF895800D9F5A3 /* SHDiscoverLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverLocation.swift; path = Model/discover/SHDiscoverLocation.swift; sourceTree = "<group>"; };
 		AC6F2B3B1BEF916800D9F5A3 /* SHDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItem.swift; path = Model/discover/SHDiscoverItem.swift; sourceTree = "<group>"; };
@@ -926,6 +946,7 @@
 		604A0DD41BEE9ADA002A80E7 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
+				AC679B3E1C3CE1D700F45947 /* discoverFeed */,
 				60B8A10D1C2B4A93004FC1B3 /* home */,
 				60D36D501BF761B900238D62 /* create */,
 				ACA77EC71BF0CB0A00D504AA /* stream */,
@@ -938,6 +959,7 @@
 		604A0DD51BEE9ADF002A80E7 /* tabs */ = {
 			isa = PBXGroup;
 			children = (
+				AC679B411C3CE3CA00F45947 /* discoverFeed */,
 				60B8A1101C2B4B5A004FC1B3 /* home */,
 				60D36D531BF7624E00238D62 /* create */,
 				ACA77EC61BF0CAD000D504AA /* stream */,
@@ -1198,6 +1220,30 @@
 				AC27E7041BF9F9EC00AB6BAA /* SHFilterViewModel.swift */,
 			);
 			name = filter;
+			sourceTree = "<group>";
+		};
+		AC679B3E1C3CE1D700F45947 /* discoverFeed */ = {
+			isa = PBXGroup;
+			children = (
+				AC679B3F1C3CE34700F45947 /* SHDiscoverFeedViewController.swift */,
+				AC679B441C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift */,
+				AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */,
+				AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */,
+				AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */,
+				AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */,
+			);
+			name = discoverFeed;
+			sourceTree = "<group>";
+		};
+		AC679B411C3CE3CA00F45947 /* discoverFeed */ = {
+			isa = PBXGroup;
+			children = (
+				AC679B421C3CE42500F45947 /* SHDiscoverFeedViewModel.swift */,
+				AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */,
+				AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */,
+				AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */,
+			);
+			name = discoverFeed;
 			sourceTree = "<group>";
 		};
 		AC6F2B2F1BEF5B1D00D9F5A3 /* discover */ = {
@@ -1948,6 +1994,7 @@
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
+				AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */,
 				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
@@ -1963,7 +2010,9 @@
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
 				ACB803BB1C11A29E00420BB1 /* SHMessagesMeta.swift in Sources */,
+				AC679B531C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift in Sources */,
 				ACDD23BB1BFB52C400EEC6A6 /* SHFilterCenterTableViewCell.swift in Sources */,
+				AC679B491C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift in Sources */,
 				ACB803A71C0F923200420BB1 /* SHApiMessageService.swift in Sources */,
 				ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */,
 				AC47A7341C02349F006AF406 /* SHShoutDetailTableViewController.swift in Sources */,
@@ -1977,6 +2026,7 @@
 				606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				ACB803AB1C10277200420BB1 /* SHShoutPickerTableViewModel.swift in Sources */,
+				AC679B4F1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
@@ -1990,6 +2040,8 @@
 				ACB803A41C0F40F700420BB1 /* SHSystemMessageMediaItem.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */,
+				AC679B4D1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift in Sources */,
+				AC679B451C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */,
 				60F11D3E1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift in Sources */,
@@ -2001,6 +2053,7 @@
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
 				AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */,
+				AC679B511C3E274A00F45947 /* SHDiscoverFeedCell.swift in Sources */,
 				ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
@@ -2024,6 +2077,7 @@
 				AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */,
 				ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */,
 				ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */,
+				AC679B471C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,
 				60D36D551BF762AA00238D62 /* SHCreateShoutViewModel.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
@@ -2119,8 +2173,10 @@
 				ACDB3CBF1BF90DBC0097444E /* SHRequestImageTableViewCell.swift in Sources */,
 				601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */,
 				ACC36C411C09DEAC0082E0C2 /* SHSettingsTableViewModel.swift in Sources */,
+				AC679B401C3CE34700F45947 /* SHDiscoverFeedViewController.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
+				AC679B4B1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift in Sources */,
 				606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */,
 				AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */,
 				AC47A73C1C031367006AF406 /* SHShoutDetailImageCollectionViewCell.swift in Sources */,

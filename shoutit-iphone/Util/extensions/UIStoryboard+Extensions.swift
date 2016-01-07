@@ -11,7 +11,8 @@ import UIKit
 extension UIStoryboard {
 
     static func getDiscover() -> UIStoryboard {
-        return UIStoryboard(name: "Discover", bundle: nil)
+        return UIStoryboard(name: "DiscoverFeed", bundle: nil)
+        //return UIStoryboard(name: "Discover", bundle: nil)
     }
     
     static func getLogin() -> UIStoryboard {

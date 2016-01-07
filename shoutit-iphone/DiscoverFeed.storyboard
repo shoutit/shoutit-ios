@@ -9,7 +9,7 @@
         <!--DiscoverFeed-->
         <scene sceneID="rpa-Qv-7Qs">
             <objects>
-                <viewController id="rN8-91-9Cy" userLabel="DiscoverFeed" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHDiscoverFeedViewController" id="rN8-91-9Cy" userLabel="DiscoverFeed" customClass="SHDiscoverFeedViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w7p-kZ-vJR"/>
                         <viewControllerLayoutGuide type="bottom" id="wiX-2v-oER"/>
@@ -29,7 +29,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W6S-fQ-SDs" userLabel="discoverHeader">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverFeedHeaderCell" reuseIdentifier="discoverFeedHeaderCell" id="W6S-fQ-SDs" userLabel="discoverHeader" customClass="SHDiscoverFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -124,7 +124,7 @@
                                             </mask>
                                         </variation>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bra-SX-9lP" userLabel="discoverGridCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverListCell" reuseIdentifier="shoutDiscoverListCell" id="Bra-SX-9lP" userLabel="discoverGridCell" customClass="SHShoutDiscoverListCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -207,7 +207,7 @@
                                             </mask>
                                         </variation>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IHw-b9-8OK" userLabel="shoutHeader">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShoutHeaderCell" reuseIdentifier="discoverShoutHeaderCell" id="IHw-b9-8OK" userLabel="shoutHeader" customClass="SHDiscoverShoutHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -272,7 +272,7 @@
                                             </mask>
                                         </variation>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8bU-sd-3sS" userLabel="shoutGridCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="shShoutItemGridCell" id="8bU-sd-3sS" userLabel="shoutGridCell" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -435,7 +435,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             </mask>
                                         </variation>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cAn-1c-7Pp" userLabel="showMoreShouts">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShowMoreShoutsCell" reuseIdentifier="discoverShowMoreShoutsCell" id="cAn-1c-7Pp" userLabel="showMoreShouts" customClass="SHDiscoverShowMoreShoutsCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -517,13 +517,21 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Discover" image="tabDiscover" id="c6n-eC-qlg"/>
+                    <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="collectionView" destination="LgT-Ai-UwH" id="U7c-IQ-NUA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Jn-cL-1p6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="217" y="294"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabDiscover" width="31" height="30"/>
+    </resources>
 </document>
