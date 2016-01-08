@@ -70,8 +70,8 @@ class SHLoginViewController: BaseViewController {
     }
     
     @IBAction func viewChanged(sender: UISegmentedControl) {
-        self.loginView.hidden = sender.selectedSegmentIndex != 0
-        self.signUpView.hidden = sender.selectedSegmentIndex == 0
+        self.signUpView.hidden = sender.selectedSegmentIndex != 0
+        self.loginView.hidden = sender.selectedSegmentIndex == 0
     }
     // SignOut from Google
 //    @IBAction func didTapSignOut(sender: AnyObject) {

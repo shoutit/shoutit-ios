@@ -11,7 +11,8 @@ import UIKit
 class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
     private var viewModel: SHLoginViewModel?
-    
+    @IBOutlet weak var topSpaceJoinNowConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomSpaceSignUpConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +30,11 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
         
         viewModel?.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        topSpaceJoinNowConstraint.constant = UIScreen.mainScreen().bounds.height / 6.67
+        bottomSpaceSignUpConstraint.constant = UIScreen.mainScreen().bounds.height / 8.443
     }
     
     override func initializeViewModel() {
