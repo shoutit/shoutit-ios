@@ -97,6 +97,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 self.getOauthResponse(params)
             }
         } else {
+            
             log.debug("Incorrect Email or Password")
         }
     }
@@ -199,11 +200,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 if let password = textField.text {
                     self.passwordValidation(password)
                 }
-            } else if (textField == vc.signInEmailOrUsername) {
-                if let email = textField.text {
-                    self.emailValidation(email)
-                }
-            } else if (textField == vc.signInPassword) {
+             } else if (textField == vc.signInPassword) {
                 if let password = textField.text {
                     self.passwordValidation(password)
                 }
@@ -244,13 +241,13 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                             return
                         }
                     }
-                } else if textField == vc.signInEmailOrUsername {
-                    if let email = vc.signInEmailOrUsername.text {
-                        if(!self.emailValidation(email)) {
-                            self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
-                            return
-                        }
-                    }
+//                } else if textField == vc.signInEmailOrUsername {
+//                    if let email = vc.signInEmailOrUsername.text {
+//                        if(!self.emailValidation(email)) {
+//                            self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
+//                            return
+//                        }
+//                    }
                 } else if textField == vc.signInPassword {
                     if let password = vc.signInPassword.text {
                         if(!self.passwordValidation(password)) {
@@ -306,10 +303,10 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     private func validateAuthentication() -> Bool {
         if let vc = self.viewController {
             if vc.signUpView.hidden {
-                if let email = vc.signInEmailOrUsername.text where !self.emailValidation(email) {
-                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
-                    return false
-                }
+//                if let email = vc.signInEmailOrUsername.text where !self.emailValidation(email) {
+//                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
+//                    return false
+//                }
                 if let password = vc.signInPassword.text where !self.passwordValidation(password) {
                     self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
                     return false
@@ -379,9 +376,10 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         log.debug("error logging in")
         // Clear OauthToken cache
         Shared.stringCache.removeAll()
-        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
-        self.viewController?.presentViewController(alert, animated: true, completion: nil)
+        self.viewController?.errorMessageLabel.text = NSLocalizedString("LoginError", comment: "Could not log you in, please try again!")
+//        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
+//        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+//        self.viewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

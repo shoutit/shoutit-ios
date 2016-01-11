@@ -159,7 +159,6 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightFirstNameAction(recognizer: UITapGestureRecognizer){
-        // do other task
         firstNameView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -167,7 +166,6 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightLastNameAction(recognizer: UITapGestureRecognizer){
-        // do other task
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -175,7 +173,6 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightEmailAction(recognizer: UITapGestureRecognizer){
-        // do other task
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
@@ -183,7 +180,6 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightPasswordAction(recognizer: UITapGestureRecognizer){
-        // do other task
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -196,7 +192,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         if let signInEmailView = self.signInEmailView {
             addTapGesture(signInEmailView)
             loginView.addSubview(signInEmailView)
-            prepareFloatingTextField(signInEmailOrUsername, frameX: 10, frameY: 15, placeholderText: "Email or UserName", view: signInEmailView, parentView: loginView)
+            prepareFloatingTextField(signInEmailOrUsername, frameX: 10, frameY: 15, placeholderText: "Email or Username", view: signInEmailView, parentView: loginView)
         }
         
         signInPasswordView = prepareSignInView(signInViewHeight / 1.97)
@@ -263,14 +259,8 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             showPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
-            if parentView == signUpView {
-                textField.secureTextEntry = true
-                textField.addTarget(self, action: Selector("highLightPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            } else {
-                textField.secureTextEntry = true
-                textField.addTarget(self, action: Selector("highLightSignInPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            }
-            
+            textField.secureTextEntry = true
+            textField.addTarget(self, action: Selector("highLightPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
             showPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
             showPasswordButton.sizeToFit()
             view.addSubview(textField)
@@ -283,14 +273,8 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             showLoginPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showLoginPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showLoginPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
-            if parentView == signUpView {
-                textField.secureTextEntry = true
-                textField.addTarget(self, action: Selector("highLightPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            } else {
-                textField.secureTextEntry = true
-                textField.addTarget(self, action: Selector("highLightSignInPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            }
-            
+            textField.secureTextEntry = true
+            textField.addTarget(self, action: Selector("highLightSignInPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
             showLoginPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
             showLoginPasswordButton.sizeToFit()
             view.addSubview(textField)

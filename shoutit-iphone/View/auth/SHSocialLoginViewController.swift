@@ -33,8 +33,8 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        topSpaceJoinNowConstraint.constant = UIScreen.mainScreen().bounds.height / 6.67
-        bottomSpaceSignUpConstraint.constant = UIScreen.mainScreen().bounds.height / 8.443
+        topSpaceJoinNowConstraint.constant = UIScreen.mainScreen().bounds.height / 7
+        bottomSpaceSignUpConstraint.constant = UIScreen.mainScreen().bounds.height / 10
     }
     
     override func initializeViewModel() {
