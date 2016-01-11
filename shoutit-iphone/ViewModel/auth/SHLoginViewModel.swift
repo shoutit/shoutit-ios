@@ -10,8 +10,9 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Haneke
+import MK
 
-class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate, UITextViewDelegate {
+class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate, UITextViewDelegate, TextFieldDelegate{
 
     private var viewController: SHLoginViewController?
     private var socialViewController: SHSocialLoginViewController?
@@ -28,9 +29,8 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     
     func viewDidLoad() {
         self.setupText()
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("validateInput:"), name: UITextFieldTextDidEndEditingNotification, object: nil)
         self.viewController?.termsAndConditionsTextView?.delegate = self
-        self.setUpValidations()
     }
     
     func viewWillAppear() {
@@ -82,7 +82,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         if validateAuthentication() {
             // Perform SignUp
             if let vc = self.viewController {
-                let params = self.shApiAuthService.getSignUpParams(vc.signUpEmailOrUsername.text!, password: vc.signUpPassword.text!, name: vc.firstname.text! + " " + vc.lastname.text!)
+                let params = self.shApiAuthService.getSignUpParams(vc.signUpEmailOrUsername.text!, password: vc.signUpPassword.text!, name: vc.firstName.text! + " " + vc.lastNameTextField.text!)
                 self.getOauthResponse(params)
             }
         }
@@ -103,14 +103,8 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     
     func resetPassword() {
         if let emailTextField = self.viewController?.signInEmailOrUsername {
-            if(!emailTextField.validate()) {
-                emailTextField.tapOnError()
-                return
-            }
-            emailTextField.resignFirstResponder()
-            if(emailTextField.text == "") {
-                let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
-                self.viewController?.presentViewController(ac, animated: true, completion: nil)
+            if let email = emailTextField.text where !self.emailValidation(email) {
+                self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: self.viewController?.emailView)
                 return
             }
             shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
@@ -151,11 +145,6 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         UserVoice.presentUserVoiceInterfaceForParentViewController(viewController)
     }
     
-    // MARK - Selectors
-    func textFieldChanged(textField: TextFieldValidator) {
-        textField.validate()
-    }
-    
     // MARK - GoogleSignIn Delegate
     //handle the sign-in process -- Google
     func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?,
@@ -191,28 +180,111 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         return true
     }
     
-    // MARK - Private
-    private func setUpValidations() {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if let vc = self.viewController {
-            vc.signInEmailOrUsername.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.signInEmailOrUsername.presentInView = vc.view
-            vc.signInPassword.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.signInPassword.presentInView = vc.view
-            vc.signUpEmailOrUsername.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.signUpEmailOrUsername.presentInView = vc.view
-            vc.signUpPassword.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.signUpPassword.presentInView = vc.view
-            vc.firstname.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.firstname.presentInView = vc.view
-            vc.lastname.addTarget(self, action: "textFieldChanged:", forControlEvents: UIControlEvents.EditingChanged)
-            vc.lastname.presentInView = vc.view
-            vc.signInEmailOrUsername.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email or username."))
-            vc.signUpEmailOrUsername.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
-            vc.signInPassword.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
-            vc.signUpPassword.addRegx(Constants.RegEx.REGEX_PASSWORD_LIMIT, withMsg: NSLocalizedString("PasswordValidationError", comment: "Password charaters limit should be come between 6-20"))
-            vc.firstname.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."))
-            vc.firstname.addRegx(Constants.RegEx.REGEX_LAST_USER_NAME_LIMIT, withMsg: NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."))
+            if ((textField == vc.firstNameTextField) || (textField == vc.lastNameTextField)) {
+                if let name = textField.text {
+                    self.nameValidation(name)
+                }
+            } else if (textField == vc.signUpEmailOrUsername) {
+                if let email = textField.text {
+                    self.emailValidation(email)
+                }
+            } else if (textField == vc.signUpPassword) {
+                if let password = textField.text {
+                    self.passwordValidation(password)
+                }
+            } else if (textField == vc.signInEmailOrUsername) {
+                if let email = textField.text {
+                    self.emailValidation(email)
+                }
+            } else if (textField == vc.signInPassword) {
+                if let password = textField.text {
+                    self.passwordValidation(password)
+                }
+            }
         }
+        return true
+    }
+    
+    func validateInput (sender: NSNotification) {
+        if let vc = self.viewController {
+            self.viewController?.errorMessageLabel.hidden = true
+            if let textField = sender.object as? TextField {
+                if textField == vc.firstNameTextField {
+                    if let firstName = vc.firstNameTextField.text {
+                        if(!self.nameValidation(firstName)) {
+                            self.displayErrorMessage(NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."), view: vc.firstNameView)
+                            return
+                        }
+                    }
+                } else if textField == vc.lastNameTextField {
+                    if let lastName = vc.lastNameTextField.text {
+                        if(!self.nameValidation(lastName)) {
+                            self.displayErrorMessage(NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."), view: vc.lastNameView)
+                            return
+                        }
+                    }
+                } else if textField == vc.signUpEmailOrUsername {
+                    if let email = vc.signUpEmailOrUsername.text {
+                        if(!self.emailValidation(email)) {
+                            self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.emailView)
+                            return
+                        }
+                    }
+                } else if textField == vc.signUpPassword {
+                    if let password = vc.signUpPassword.text {
+                        if(!self.passwordValidation(password)) {
+                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.passwordView)
+                            return
+                        }
+                    }
+                } else if textField == vc.signInEmailOrUsername {
+                    if let email = vc.signInEmailOrUsername.text {
+                        if(!self.emailValidation(email)) {
+                            self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
+                            return
+                        }
+                    }
+                } else if textField == vc.signInPassword {
+                    if let password = vc.signInPassword.text {
+                        if(!self.passwordValidation(password)) {
+                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK - Private
+    private func displayErrorMessage (text: String, view: UIView?) {
+        if let vc = self.viewController {
+            vc.errorMessageLabel.hidden = false
+            vc.errorMessageLabel.text = text
+            view?.layer.borderColor = MaterialColor.red.accent2.CGColor
+        }
+    }
+    
+    private func nameValidation(str : String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, options: [.CaseInsensitive])
+        return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
+    }
+    
+    private func emailValidation(str : String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_EMAIL, options: [.CaseInsensitive])
+        return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
+    }
+    
+    private func passwordValidation(str : String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_PASSWORD_LIMIT, options: [.CaseInsensitive])
+        return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
     }
     
     private func setupText() {
@@ -234,74 +306,32 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     private func validateAuthentication() -> Bool {
         if let vc = self.viewController {
             if vc.signUpView.hidden {
-                if let emailTextField = vc.signInEmailOrUsername where !validateEmail(emailTextField) {
+                if let email = vc.signInEmailOrUsername.text where !self.emailValidation(email) {
+                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
                     return false
                 }
-                if let passwordTextField = vc.signInPassword where !validatePassword(passwordTextField){
+                if let password = vc.signInPassword.text where !self.passwordValidation(password) {
+                    self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
                     return false
                 }
             } else {
-                if let nameTextField = vc.firstname where !validateName(nameTextField, title: NSLocalizedString("FirstNameNotSet", comment: "First Name not set"), message: NSLocalizedString("PleaseEnterFirstName", comment: "Please enter the first name.")) {
+                if let firstName = vc.firstNameTextField.text where !self.nameValidation(firstName) {
+                    self.displayErrorMessage(NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."), view: vc.firstNameView)
                     return false
                 }
-                if let nameTextField = vc.lastname where !validateName(nameTextField, title: NSLocalizedString("LastNameNotSet", comment: "Last Name not set"), message: NSLocalizedString("PleaseEnterLastName", comment: "Please enter the last name.")) {
+                if let lastName = vc.lastNameTextField.text where !self.nameValidation(lastName) {
+                    self.displayErrorMessage(NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."), view: vc.lastNameView)
                     return false
                 }
-                if let emailTextField = vc.signUpEmailOrUsername where !validateEmail(emailTextField) {
+                if let email = vc.signUpEmailOrUsername.text where !self.emailValidation(email) {
+                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.emailView)
                     return false
                 }
-                if let passwordTextField = vc.signUpPassword where !validatePassword(passwordTextField){
+                if let password = vc.signUpPassword.text where !self.passwordValidation(password) {
+                    self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.passwordView)
                     return false
                 }
             }
-        }
-        return true
-    }
-    
-    private func validateName(nameTextField: TextFieldValidator, title: String, message: String) -> Bool {
-        if(!nameTextField.validate()) {
-            nameTextField.tapOnError()
-            return false
-        }
-        nameTextField.resignFirstResponder()
-        
-        if(nameTextField.text == "") {
-            let ac = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertControllerStyle.Alert
-            )
-            self.viewController?.presentViewController(ac, animated: true, completion: nil)
-            return false
-        }
-        return true
-    }
-    
-    private func validatePassword(passwordTextField: TextFieldValidator) -> Bool {
-        if(!passwordTextField.validate()) {
-            passwordTextField.tapOnError()
-            return false
-        }
-        passwordTextField.resignFirstResponder()
-        
-        if(passwordTextField.text == "") {
-            let ac = UIAlertController(title: NSLocalizedString("PasswordNotSet", comment: "Password not set"), message: NSLocalizedString("PleaseEnterPassword", comment: "Please enter the password.") , preferredStyle: UIAlertControllerStyle.Alert) // Todo Localization
-            self.viewController?.presentViewController(ac, animated: true, completion: nil)
-            return false
-        }
-        return true
-    }
-    
-    private func validateEmail(emailTextField: TextFieldValidator) -> Bool {
-        if(!emailTextField.validate()) {
-            emailTextField.tapOnError()
-            return false
-        }
-        emailTextField.resignFirstResponder()
-        if(emailTextField.text == "") {
-            let ac = UIAlertController(title: NSLocalizedString("EmailNotSet", comment: "Email not set") , message: NSLocalizedString("PleaseEnterTheEmail", comment: "Please enter the email."), preferredStyle: UIAlertControllerStyle.Alert)
-            self.viewController?.presentViewController(ac, animated: true, completion: nil)
-            return false
         }
         return true
     }

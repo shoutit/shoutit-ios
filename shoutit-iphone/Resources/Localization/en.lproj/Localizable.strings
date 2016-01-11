@@ -19,7 +19,7 @@
 "EnterValidMail" = "Enter valid email.";
 
 /* Password charaters limit should be come between 6-20 */
-"PasswordValidationError" = "Password charaters limit should be come between 6-20";
+"PasswordValidationError" = "Password characters should be between 6-20";
 
 /* Email not set */
 "EmailNotSet" = "Email not set";

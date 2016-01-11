@@ -65,6 +65,7 @@ PODS:
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
+  - MK (1.27.11)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -103,6 +104,7 @@ DEPENDENCIES:
   - libPusher (~> 1.6)
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
+  - MK (~> 1.0)
   - MWPhotoBrowser (~> 2.1)
   - ObjectMapper (~> 1.0)
   - ReachabilitySwift (~> 2.3)
@@ -153,6 +155,7 @@ SPEC CHECKSUMS:
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
+  MK: a5d812fd164a08de332098b2bbf27fe4c0a8d7dc
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
   ReachabilitySwift: 2ac9df18a443901f06caae38a9f5431219a4c36a
