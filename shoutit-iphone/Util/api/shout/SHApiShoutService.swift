@@ -19,13 +19,29 @@ class SHApiShoutService: NSObject {
     private let DISCOVER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/discover/%@/shouts"
     private let TAG_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/tags/%@/shouts"
     private let REPORT_SHOUT = SHApiManager.sharedInstance.BASE_URL + "/misc/reports"
+    private let USER_SHOUTS = SHApiManager.sharedInstance.BASE_URL + "/users"
     private var currentPage = 0
     private var totalCounts = 0
     var filter: SHFilter?
     var discoverId: String?
     var tagName: String?
+    
+    func loadHomeShouts(page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        let shoutStreamForUser = USER_SHOUTS + "/me/shouts"
+        let params = [
+            "page_size": Constants.Common.SH_PAGE_SIZE,
+            "page": page
+        ]
+        SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
+    
+    func loadShoutStreamForUser(username: String, page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+        let shoutStreamForUser = String(format: USER_SHOUTS + "/%@" + "/shouts", arguments: [username])
+        let params = ["page_size": Constants.Common.SH_PAGE_SIZE]
+        SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    }
 
-    func loadShoutStreamForLocation(location: SHAddress, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func loadShoutStreamForLocation(location: SHAddress?, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         var URL = SHOUTS
         if type == ShoutType.VideoCV {
             type = .Request
@@ -44,6 +60,9 @@ class SHApiShoutService: NSObject {
                 if let location = SHAddress.getUserOrDeviceLocation() {
                     params["city"] = location.city
                     params["country"] = location.country
+                } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), let country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
+                    params["city"] = city
+                    params["country"] = country
                 }
             }
         }
@@ -55,7 +74,7 @@ class SHApiShoutService: NSObject {
         SHApiManager.sharedInstance.get(URL, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func refreshStreamForLocation(location: SHAddress, type: ShoutType, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func refreshStreamForLocation(location: SHAddress?, type: ShoutType, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         self.currentPage = 1
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: "", cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
@@ -118,20 +137,53 @@ class SHApiShoutService: NSObject {
     func patchShout(shout: SHShout, media: [SHMedia], completionHandler: Response<SHShout, NSError> -> Void) {
         if let shoutId = shout.id {
             let urlString = String(format: SHOUTS + "/%@", arguments: [shoutId])
+            var tasks: [AWSTask] = []
+            let aws = SHAmazonAWS()
             shout.images = []
             shout.videos = []
             for shMedia in media {
-                if shMedia.isVideo {
-                    shout.videos.append(shMedia)
+                if shMedia.url.isEmpty {
+                    if shMedia.isVideo {
+                        if let url = shMedia.localUrl, let thumbImage = shMedia.localThumbImage {
+                            let task = aws.getVideoUploadTasks(url, image: thumbImage)
+                            tasks += task
+                        }
+                    } else {
+                        if let image = shMedia.image, let task = aws.getShoutImageTask(image) {
+                            tasks.append(task)
+                        }
+                    }
                 } else {
-                    shout.images.append(shMedia.url)
+                    if shMedia.isVideo {
+                        shout.videos.append(shMedia)
+                    } else {
+                        shout.images.append(shMedia.url)
+                    }
                 }
             }
             if shout.type == .VideoCV {
                 shout.type = .Request
             }
-            let params = Mapper().toJSON(shout)
-            SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+            if tasks.isEmpty {
+                let params = Mapper().toJSON(shout)
+                SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+            } else {
+                NetworkActivityManager.addActivity()
+                BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+                    NetworkActivityManager.removeActivity()
+                    if aws.images.count + aws.videos.count != media.count {
+                        log.error("All media wasn't uploaded, occured some error!")
+                    }
+                    shout.images += aws.images
+                    shout.videos += aws.videos
+                    if shout.type == .VideoCV {
+                        shout.type = .Request
+                    }
+                    let params = Mapper().toJSON(shout)
+                    SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
+                    return nil
+                }
+            }
         }
     }
     
@@ -172,4 +224,25 @@ class SHApiShoutService: NSObject {
         let params = [String: AnyObject]()
         SHApiManager.sharedInstance.delete(urlString, params: params, completionHandler: completionHandler)
     }
+    
+    func composeMessage(text: String, shoutId: String, completionHandler: Response<SHMessage, NSError> -> Void) {
+        let urlString = String(format: SHOUTS + "/%@" + "/reply", arguments: [shoutId])
+        let params = ["text" : text]
+        SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
+    }
+    
+//    func composeURLForShoutID (shoutId: String) -> String {
+//        if(!shoutId.isEmpty) {
+//            return String(format: SHOUTS + "/%@" + "/reply", arguments: [shoutId])
+//        } else {
+//            if let username = SHOauthToken.getFromCache()?.user?.username {
+//                return String(format: USER_SHOUTS + "/%@" + "/message", arguments: [username])
+//            }
+//        }
+//
+//    }
+    
+    
+    
+    
 }

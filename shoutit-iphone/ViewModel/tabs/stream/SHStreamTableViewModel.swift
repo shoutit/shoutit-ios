@@ -15,6 +15,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     private var spinner: UIActivityIndicatorView?
     private var shShoutMeta: SHShoutMeta?
     private var pulltoRefreshLabel: UILabel?
+    private var tag: SHTag?
     
     required init(viewController: SHStreamTableViewController) {
         self.viewController = viewController
@@ -24,7 +25,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         // Get Latest Shouts
         getLatestShouts()
         updateSubtitleLabel()
-        
+        if let tagName = self.viewController.tagName {
+            self.getTagProfile(tagName)
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdated:", name: Constants.Notification.LocationUpdated, object: nil)
         //ShoutDeleted Notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("shoutDeleted:"), name: "shoutDeleted", object: nil)
@@ -143,19 +146,21 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             if (self.viewController.streamType == StreamType.Tag) {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
-                cell.setTagCellWithName(self.viewController.tagName!)
-                self.viewController.searchBar.hidden = true
-                let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-                titleLabel.textAlignment = NSTextAlignment.Center
-                titleLabel.backgroundColor = UIColor.clearColor()
-                titleLabel.textColor = UIColor.darkTextColor()
-                titleLabel.font = UIFont.boldSystemFontOfSize(17)
-                titleLabel.text = self.viewController.tagName
-                titleLabel.sizeToFit()
-                let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
-                tagNavigationView.addSubview(titleLabel)
-                self.viewController.navigationItem.titleView = tagNavigationView
+                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHStreamTagTableViewCell, forIndexPath: indexPath) as! SHStreamTagTableViewCell
+                if let tag = self.tag {
+                    cell.setTagCell(tag, viewController: self.viewController)
+                    self.viewController.searchBar.hidden = true
+                    let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+                    titleLabel.textAlignment = NSTextAlignment.Center
+                    titleLabel.backgroundColor = UIColor.clearColor()
+                    titleLabel.textColor = UIColor.darkTextColor()
+                    titleLabel.font = UIFont.boldSystemFontOfSize(17)
+                    titleLabel.text = self.viewController.tagName
+                    titleLabel.sizeToFit()
+                    let tagNavigationView = UIView(frame: CGRect(x: 0, y: 10, width: titleLabel.frame.width, height: titleLabel.frame.height))
+                    tagNavigationView.addSubview(titleLabel)
+                    self.viewController.navigationItem.titleView = tagNavigationView
+                }
                 //cell.setTagCell(shout.)
                 return cell
             }
@@ -204,7 +209,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         let shout: SHShout
         if (self.viewController.streamType == StreamType.Tag) {
             if indexPath.row == 0 {
-                return 44
+                return 100
             }
             shout = self.viewController.shouts[indexPath.row - 1]
         } else {
@@ -298,6 +303,9 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         if let location = SHAddress.getUserOrDeviceLocation() {
             subTitleLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
             subTitleLabel.sizeToFit()
+        }else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry"){
+            subTitleLabel.text = String(format: "%@, %@", arguments: [city, country])
+            subTitleLabel.sizeToFit()
         }
         let twoLineTitleView = UIView(frame: CGRectMake(0, 0, max(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 30))
         twoLineTitleView.addSubview(titleLabel)
@@ -327,8 +335,8 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         self.updateFooterView()
         self.updateFooterLabel()
         self.viewController.shoutApi.resetPage()
-        if let location = self.viewController.location {
-            self.viewController.shoutApi.refreshStreamForLocation(location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
+      //  if let location = self.viewController.location {
+            self.viewController.shoutApi.refreshStreamForLocation(self.viewController.location, type: self.viewController.shoutType, cacheResponse: { (shShoutMeta) -> Void in
                 self.updateUI(shShoutMeta)
                 }, completionHandler: { (response) -> Void in
                     self.viewController.tableView.pullToRefreshView.stopAnimating()
@@ -342,7 +350,7 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
                         log.error("Error while getting stream \(error.localizedDescription)")
                     }
             })
-        }
+      //  }
     }
     
     private func updateUI(shShoutMeta: SHShoutMeta) {
@@ -351,7 +359,10 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
             self.viewController.shouts = []
         }
         self.viewController.shouts += shShoutMeta.results
-        self.viewController.tableView.reloadData()
+      //  self.viewController.tableView.reloadData()
+        let range = NSMakeRange(0, self.viewController.tableView.numberOfSections)
+        let sections = NSIndexSet(indexesInRange: range)
+        self.viewController.tableView.reloadSections(sections, withRowAnimation: .Bottom)
         
         if Constants.Common.SH_PAGE_SIZE != shShoutMeta.results.count {
             self.viewController.loading = false
@@ -360,6 +371,22 @@ class SHStreamTableViewModel: NSObject, TableViewControllerModelProtocol, UITabl
         }
         
         self.updateFooterView()
+    }
+    
+    private func getTagProfile(tagName: String) {
+        self.viewController.tagsApi.loadProfileForTag(tagName, cacheResponse: { (shTag) -> Void in
+            //
+            }) { (response) -> Void in
+                switch(response.result) {
+                    case .Success(let result):
+                        self.tag = result
+                    self.viewController.tableView.reloadData()
+                       // self.viewController.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                    case .Failure(let error):
+                        log.error("Error getting Tag Profile \(error.localizedDescription)")
+                }
+        }
+    
     }
     
 }

@@ -23,6 +23,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     private var photos:[MWPhoto] = []
     private var reportTextField: UITextField?
     private var relatedShouts: [SHShout] = []
+    private var toUpdate = false
 
     required init(viewController: SHShoutDetailTableViewController) {
         self.viewController = viewController
@@ -30,6 +31,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
 
     func viewDidLoad() {
         if let shoutID = self.viewController.shoutID {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDetails", name: "ShoutUpdated\(shoutID)", object: nil)
             getShoutDetails(shoutID)
         }
     }
@@ -39,6 +41,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func viewDidAppear() {
+        if let shoutID = self.viewController.shoutID where self.toUpdate {
+            getShoutDetails(shoutID)
+        }
     }
 
     func viewWillDisappear() {
@@ -50,12 +55,43 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     }
 
     func destroy() {
-
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    func updateDetails() {
+        toUpdate = true
+    }
+    // ReplyAction
+    func replyAction () {
+        let messageViewController = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMESSAGES) as! SHMessagesViewController
+        messageViewController.isFromShout = true
+//      [messageViewController setShout:self.shoutModel.shout];
+        messageViewController.shout = self.shoutDetail
+        messageViewController.title = self.viewController.title
+        
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromTop
+        self.viewController.navigationController?.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.viewController.navigationController?.pushViewController(messageViewController, animated: false)
+    }
+    
+    // Shout Contact Profile Action
+    func contactProfileAction () {
+        if let shoutUser = self.shoutDetail?.user {
+            if(shoutUser.username != SHOauthToken.getFromCache()?.user?.username) {
+                let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
+                profileViewController.requestUser(shoutUser)
+                self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
+            } 
+        }
+    }
+    
     // Report Action
     func reportAction() {
         if let shout = self.shoutDetail {
-            let alert = UIAlertController(title: "Report:\(shout.title)", message: "", preferredStyle:
+            let alert = UIAlertController(title: "Report \(shout.title)", message: "", preferredStyle:
                 UIAlertControllerStyle.Alert)
             alert.addTextFieldWithConfigurationHandler(configurationTextField)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction) in
@@ -189,9 +225,12 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             }
         }
         shApiShout.loadShoutDetail(shoutID, cacheResponse: { (shShout) -> Void in
-            SHProgressHUD.dismiss()
-            self.updateUI(shShout)
+            if !self.toUpdate {
+                SHProgressHUD.dismiss()
+                self.updateUI(shShout)
+            }
             }) { (response) -> Void in
+                self.toUpdate = false
                 SHProgressHUD.dismiss()
                 switch response.result {
                 case .Success(let result):
@@ -260,7 +299,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: shoutDetail.images[indexPath.row - shoutDetail.videos.count]), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                     cell.imageURL = shoutDetail.images[indexPath.row - shoutDetail.videos.count]
                 } else {
-                    cell.shoutImageView.image = UIImage(named: "no_image_available")
+                    cell.shoutImageView.image = UIImage(named: "logo")
                 }
                 return cell
             }
@@ -271,7 +310,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     cell.shoutImageView.setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "logo"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
                 }
             } else {
-                cell.shoutImageView.image = UIImage(named: "no_image_available")
+                cell.shoutImageView.image = UIImage(named: "logo")
             }
             return cell
         }

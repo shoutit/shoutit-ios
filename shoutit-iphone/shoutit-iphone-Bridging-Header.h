@@ -10,3 +10,14 @@
 #import "DOPDropDownMenu.h"
 #import "YTPlayerView.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import <JSQMessagesViewController/JSQMessages.h>
+#import "UIView+Gradient.h"
+#import <Pusher/Pusher.h>
+#import <Pusher/PTPusherEventDispatcher.h>
+#import "UserVoice.h"
+#import "UIButton+imageText.h"
+//#import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
+//#import <JVFloatLabeledTextField/JVFloatLabeledTextView.h>
+//#import <uservoice-iphone-sdk/UserVoice.h>
+
+

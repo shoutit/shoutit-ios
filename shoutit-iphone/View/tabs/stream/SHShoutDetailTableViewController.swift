@@ -103,13 +103,7 @@ class SHShoutDetailTableViewController: BaseTableViewController {
     }
     
     @IBAction func contactAction(sender: AnyObject) {
-//        if(![self.shoutModel.shout.user.userID isEqualToString:[[[SHLoginModel sharedModel] selfUser] userID]])
-//        {
-//            SHProfileCollectionViewController* profileViewController = [SHNavigator viewControllerFromStoryboard:@"ProfileStoryboard" withViewControllerId:@"SHProfileCollectionViewController"];
-//            [profileViewController requestUser:self.shoutModel.shout.user];
-//            
-//            [self.navigationController pushViewController:profileViewController animated:YES];
-//        }
+        viewModel?.contactProfileAction()
     }
     
     @IBAction func share(sender: AnyObject) {
@@ -123,6 +117,12 @@ class SHShoutDetailTableViewController: BaseTableViewController {
     }
     
     @IBAction func replyAction(sender: AnyObject) {
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin()
+            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+            return
+        }
+        viewModel?.replyAction()
     }
     
     func getShoutDetails(shoutID: String) {

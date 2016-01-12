@@ -19,7 +19,7 @@ class SHTag: Mappable {
     var shoutsCount: Int = 0
     var title = String()
     var rank: Int?
-    var id: Int?
+    var id = String()
     
     required init?(_ map: Map) {
         

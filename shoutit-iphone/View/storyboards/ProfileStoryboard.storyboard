@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Profile-->
@@ -288,7 +288,7 @@
                             <outlet property="delegate" destination="KUk-M0-2Xc" id="fS8-Yy-dJ3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar.png" id="bmW-vV-AJy"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar" id="bmW-vV-AJy"/>
                     <navigationItem key="navigationItem" title="Title" id="uYb-KN-FNZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -318,20 +318,20 @@
         <!--Profile-->
         <scene sceneID="k7V-5O-YTa">
             <objects>
-                <collectionViewController storyboardIdentifier="SHProfileCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wcQ-mu-Cmh" customClass="SHProfileCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SHProfileCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wcQ-mu-Cmh" customClass="SHProfileCollectionViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="boT-7A-QhX">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="8se-uT-kcQ" customClass="SHProfileFlowLayout"/>
+                        <collectionViewLayout key="collectionViewLayout" id="8se-uT-kcQ" customClass="SHProfileFlowLayout" customModule="shoutit_iphone" customModuleProvider="target"/>
                         <cells/>
                         <connections>
                             <outlet property="dataSource" destination="wcQ-mu-Cmh" id="UE2-Pp-mBa"/>
                             <outlet property="delegate" destination="wcQ-mu-Cmh" id="gIl-CM-OoQ"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabBar.png" id="4BG-wl-2Yw"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tabProfile" id="4BG-wl-2Yw"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -343,7 +343,7 @@
         <!--User List Table View Controller-->
         <scene sceneID="mzD-vq-qg7">
             <objects>
-                <tableViewController storyboardIdentifier="SHUserListTableViewController" id="fjM-en-Sqs" customClass="SHUserListTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHUserListTableViewController" id="fjM-en-Sqs" customClass="SHUserListTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hED-1R-SE9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +363,7 @@
         <!--Edit-->
         <scene sceneID="1rm-TB-ywA">
             <objects>
-                <tableViewController storyboardIdentifier="SHEditProfileTableViewController" title="Edit" id="vhg-V9-Xxx" customClass="SHEditProfileTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHEditProfileTableViewController" title="Edit" id="vhg-V9-Xxx" customClass="SHEditProfileTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="f4D-Bg-YnJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -403,7 +403,7 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <state key="normal" title="change image"/>
                                                 <connections>
-                                                    <action selector="editProfilePic:" destination="vhg-V9-Xxx" eventType="touchUpInside" id="k1q-Yl-Ure"/>
+                                                    <action selector="editProfilePic:" destination="vhg-V9-Xxx" eventType="touchUpInside" id="VuW-93-E9S"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -646,14 +646,14 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="bioTextView" destination="xJw-84-4J3" id="K8C-jL-owu"/>
-                        <outlet property="bluredImageView" destination="4X4-HE-pE2" id="3ti-de-JMc"/>
-                        <outlet property="emailTextField" destination="1yy-ma-YiR" id="nPK-YR-dud"/>
-                        <outlet property="firstNameTextField" destination="7g9-gR-P9M" id="ekS-RS-bCm"/>
-                        <outlet property="lastNameTextField" destination="yWo-Ey-slr" id="oQo-GP-bJm"/>
-                        <outlet property="profileImageView" destination="TPM-yK-tru" id="JjH-cl-e8J"/>
-                        <outlet property="sexTextField" destination="XUD-Gc-YwV" id="INC-ej-Ev9"/>
-                        <outlet property="usernameTextField" destination="Z3W-hW-YNC" id="FXm-dw-gyz"/>
+                        <outlet property="bioTextView" destination="xJw-84-4J3" id="Q0z-uv-aue"/>
+                        <outlet property="bluredImageView" destination="4X4-HE-pE2" id="I9h-V0-7wk"/>
+                        <outlet property="emailTextField" destination="1yy-ma-YiR" id="tlN-nc-03L"/>
+                        <outlet property="firstNameTextField" destination="7g9-gR-P9M" id="lrq-jT-gvg"/>
+                        <outlet property="lastNameTextField" destination="yWo-Ey-slr" id="mN7-Nu-qx0"/>
+                        <outlet property="profileImageView" destination="TPM-yK-tru" id="wUy-Zw-rXT"/>
+                        <outlet property="sexTextField" destination="XUD-Gc-YwV" id="UhC-8V-yQB"/>
+                        <outlet property="usernameTextField" destination="Z3W-hW-YNC" id="TGH-KU-G2S"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkB-DC-SUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -663,6 +663,7 @@
     </scenes>
     <resources>
         <image name="image_placeholder" width="170" height="170"/>
-        <image name="profileTabBar.png" width="21" height="25"/>
+        <image name="profileTabBar" width="21" height="25"/>
+        <image name="tabProfile" width="30" height="30"/>
     </resources>
 </document>

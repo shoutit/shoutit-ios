@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Create Shout Scroll View Controller-->
@@ -549,7 +549,7 @@
                             <outlet property="delegate" destination="Scb-dR-f27" id="N5t-1a-yuE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="New Shout" image="newShoutTabBar.png" id="RWl-es-bBq"/>
+                    <tabBarItem key="tabBarItem" title="New Shout" image="tabShout" id="RWl-es-bBq"/>
                     <navigationItem key="navigationItem" title="New Shout" id="FBZ-P1-sva">
                         <barButtonItem key="rightBarButtonItem" title="Shout" id="lOC-HS-uH1">
                             <color key="tintColor" red="0.12994939629999999" green="0.42314009229999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -800,6 +800,6 @@
         <image name="PlayButton" width="80" height="80"/>
         <image name="RemoveMedia" width="100" height="100"/>
         <image name="near_me.png" width="100" height="100"/>
-        <image name="newShoutTabBar.png" width="21" height="25"/>
+        <image name="tabShout" width="30" height="30"/>
     </resources>
 </document>

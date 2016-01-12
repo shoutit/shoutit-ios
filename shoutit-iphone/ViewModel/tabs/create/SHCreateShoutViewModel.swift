@@ -35,6 +35,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func viewDidLoad() {
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("profileVideoCV:"), name:"ProfileVideoCV", object: nil)
         if isEditing {
             self.setupViewForStandard(true)
         }
@@ -143,6 +144,17 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
 //        }
         
         setUpTagList()
+        
+        if let isViewSetup = self.viewController.isViewSetUp {
+            self.setupViewForStandard(isViewSetup)
+        }
+    }
+    
+    func profileVideoCV(notification: NSNotification) {
+        guard let _ = notification.object else {
+            return
+        }
+        self.setupViewForStandard(false)
     }
     
     func viewWillAppear() {
@@ -162,7 +174,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     }
     
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func segmentAction() {
@@ -241,8 +253,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     func cleanForms() {
         self.viewController.titleTextField.text = ""
         self.viewController.categoriesTextField.text =  ""
-        self.shout.tags?.removeAll()
-        self.shout.stringTags.removeAll()
+       // self.shout.tags?.removeAll()
+       // self.shout.stringTags.removeAll()
         self.viewController.tagsList.setTags(self.shout.stringTags)
         self.viewController.descriptionTextView.text = ""
         self.viewController.priceTextField.text = ""
@@ -289,13 +301,10 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             SVProgressHUD.dismiss()
             switch response.result {
             case .Success:
-                if let detailView = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHSHOUTDETAIL) as? SHShoutDetailTableViewController {
-                    detailView.title = self.shout.title
-                    if let shoutId = self.shout.id {
-                        detailView.getShoutDetails(shoutId)
-                    }
-                    self.viewController.navigationController?.pushViewController(detailView, animated: true)
+                if let shoutId = self.shout.id {
+                    NSNotificationCenter.defaultCenter().postNotificationName("ShoutUpdated\(shoutId)", object: nil)
                 }
+                self.viewController.dismissViewControllerAnimated(true, completion: nil)
             case .Failure:
                 SVProgressHUD.showErrorWithStatus("Something went wrong, shout not updated")
             }
@@ -458,6 +467,22 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             return fmax(24.0, self.viewController.tagsList.contentSize.height) + 20
         }
         return self.viewController.tableView(tableView, heightForRowAtIndexPath: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Title"
+        } else if(section == 1) {
+            return "Media"
+        } else if(section == 2) {
+            return "Details"
+        } else if(section == 3) {
+            return "Description"
+        } else if (section == 4) {
+            return "Price"
+        } else {
+            return "Location"
+        }
     }
     
     // MARK - SHCreateImageCollectionViewCellDelegate
@@ -738,7 +763,35 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
         return false
     }
     
-    private func setupViewForStandard(standard: Bool) {
+    private func trackCreateShoutWithAnswers(shout: SHShout) {
+        let country: String
+        let city: String
+        if let location = shout.location {
+            country = location.country
+            city = location.city
+        } else {
+            country = ""
+            city = ""
+        }
+        
+        let categoryName: String
+        if let category = shout.category {
+            categoryName = category.name
+        } else {
+            categoryName = ""
+        }
+        
+        Answers.logCustomEventWithName("Create Shout", customAttributes: [
+            "Type": shout.type.rawValue,
+            "Country": country,
+            "City": city,
+            "Category": categoryName,
+            "Images": shout.images.count,
+            "Videos": shout.videos.count
+            ])
+    }
+    
+    func setupViewForStandard(standard: Bool) {
         if standard {
             // get categories from cache
             if self.categories.count == 0 {
@@ -825,34 +878,7 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
             
             self.viewController.segmentControl.selectedSegmentIndex = self.viewController.segmentControl.numberOfSegments - 1
             self.isVideoCV = true
+            self.shout.type = .VideoCV
         }
-    }
-    
-    private func trackCreateShoutWithAnswers(shout: SHShout) {
-        let country: String
-        let city: String
-        if let location = shout.location {
-            country = location.country
-            city = location.city
-        } else {
-            country = ""
-            city = ""
-        }
-        
-        let categoryName: String
-        if let category = shout.category {
-            categoryName = category.name
-        } else {
-            categoryName = ""
-        }
-        
-        Answers.logCustomEventWithName("Create Shout", customAttributes: [
-            "Type": shout.type.rawValue,
-            "Country": country,
-            "City": city,
-            "Category": categoryName,
-            "Images": shout.images.count,
-            "Videos": shout.videos.count
-            ])
     }
 }

@@ -9,6 +9,10 @@
 import Foundation
 
 struct Constants {
+    struct Messages {
+        static let SHImageMediaItem = "SHImageMediaItem"
+        static let SHVideoMediaItem = "SHVideoMediaItem"
+    }
     
     struct Shout {
         static let TIME_VIDEO_SHOUT = 60
@@ -28,7 +32,9 @@ struct Constants {
     struct RegEx {
         static let REGEX_EMAIL = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}"
         static let REGEX_PASSWORD_LIMIT = "^.{6,20}$"
-        
+        static let REGEX_USER_NAME = "[A-Za-z0-9_.]{2,30}"
+        static let REGEX_FIRST_USER_NAME_LIMIT = "^.{2,30}$"
+        static let REGEX_LAST_USER_NAME_LIMIT = "^.{1,30}$"
     }
     
     struct SharedUserDefaults {
@@ -45,14 +51,16 @@ struct Constants {
     struct Style {
         static let COLOR_BACKGROUND_WHITE = "#fafafa"
         static let COLOR_BACKGROUND_GRAY = "#333333"
-        static let COLOR_SHOUT_GREEN = "#98dc1a"
+        static let COLOR_SHOUT_GREEN = "#A6D280" //"#98dc1a"
         static let COLOR_SHOUT_RED = "#ca3c3c"
         static let COLOR_SHOUT_DARK_GREEN = "#658529"
         static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
         static let COLOR_SHOUTDETAIL_PROFILEIMAGE = "#e8e8e8"
+        static let COLOR_BORDER_DISCOVER = "#C2C2C2"
     }
     
     struct ViewControllers {
+        static let TAKE_LOGIN_VC = "SHTakeLoginViewController"
         static let DISCOVER_VC = "SHDiscoverCollectionViewController"
         static let STREAM_VC = "SHStreamTableViewController"
         static let MODEL_WEB = "SHModalWebViewController"
@@ -67,6 +75,17 @@ struct Constants {
         static let SHFILTERCHECKMARK = "SHFilterCheckmarkTableViewController"
         static let SHCATEGORYTAGS = "SHCategoryTagsViewController"
         static let SHSHOUTDETAIL = "SHShoutDetailTableViewController"
+        static let SHPROFILE = "SHProfileCollectionViewController"
+        static let SHSETTINGS = "SHSettingsTableViewController"
+        static let SHMESSAGES = "SHMessagesViewController"
+        static let SHSHOUTPICKERTABLE = "SHShoutPickerTableViewController"
+        static let SHCONVERSATIONSTABLE = "SHConversationsTableViewController"
+        static let SHEDITPROFILE = "SHEditProfileTableViewController"
+        static let SHUSERLIST = "SHUserListTableViewController"
+        static let SHMAPDETAIL = "SHMapDetatilViewController"
+        static let SHTAGLISTENERS = "SHTagListenersTableViewController"
+        static let ShoutList = "shoutListViewController"
+        static let SHPostSignup = "SHPostSignupViewController"
     }
     
     struct TableViewCell {
@@ -78,6 +97,9 @@ struct Constants {
         static let SHTopTagTableViewCell = "SHTopTagTableViewCell"
         static let SHFilterCheckTableViewCell = "SHFilterCheckTableViewCell"
         static let SHStreamTagTableViewCell = "SHStreamTagTableViewCell"
+        static let SHConversationTableViewCell = "SHConversationTableViewCell"
+        static let SHShoutMessageCell = "SHShoutMessageCell"
+        static let SHUserTableViewCell = "SHUserTableViewCell"
     }
     
     struct CollectionViewCell {
@@ -88,6 +110,24 @@ struct Constants {
         static let SHShoutDetailImageCollectionViewCell = "SHShoutDetailImageCollectionViewCell"
         static let SHYouTubeVideoCollectionViewCell = "SHYouTubeVideoCollectionViewCell"
         static let SHAmazonVideoCollectionViewCell = "SHAmazonVideoCollectionViewCell"
+        static let SHShoutSquareCollectionViewCell = "SHShoutSquareCollectionViewCell"
+        static let SHMessageShoutOutgoingCollectionViewCell = "SHMessageShoutOutgoingCollectionViewCell"
+        static let ShoutMyFeedHeaderCell = "shoutMyFeedHeaderCell"
+        static let ShoutDiscoverTitleCell = "shoutDiscoverTitleCell"
+        static let ShoutDiscoverListCell = "shoutDiscoverListCell"
+        static let ShoutDiscoverItemCell = "discoverItemCell"
+        static let ShoutDiscoverSeeAllCell = "shDiscoverSeeAllCell"
+        static let ShoutItemGridCell = "shShoutItemGridCell"
+        static let ShoutItemListCell = "shShoutItemListCell"
+        static let SHDiscoverFeedHeaderCell = "discoverFeedHeaderCell"
+        static let SHDiscoverShoutHeaderCell = "discoverShoutHeaderCell"
+        static let SHDiscoverShowMoreShoutsCell = "discoverShowMoreShoutsCell"
+        static let SHDiscoverFeedDiscoverItemCell = "discoverFeedDiscoverItemCell"
+        static let SHDiscoverFeedCell = "SHDiscoverFeedCell"
+    }
+    
+    struct CollectionReusableView {
+        static let SHHeaderProfileReusableView = "SHHeaderProfileReusableView"
     }
     
     struct Authentication {
@@ -109,6 +149,7 @@ struct Constants {
     struct Notification {
         static let LocationUpdated  = ".notification.LocationUpdated"
         static let ShoutStarted  = ".notification.ShoutStarted"
+        static let kMessagePushNotification = "kMessagePushNotification"
     }
     
     struct Filter {
@@ -137,5 +178,12 @@ struct Constants {
         static let SH_AMAZON_URL = "https://s3-eu-west-1.amazonaws.com/"
         static let SH_AWS_SHOUT_URL = "https://shout-image.static.shoutit.com/"
         static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
+    }
+    
+    struct MessagesStatus {
+        static let kStatusDelivered = NSLocalizedString("Delivered", comment: "Delivered")
+        static let kStatusSent = NSLocalizedString("Sent", comment: "Sent")
+        static let kStatusPending = NSLocalizedString("Pending", comment: "Pending")
+        static let kStatusFailed = NSLocalizedString("Failed", comment: "Failed")
     }
 }

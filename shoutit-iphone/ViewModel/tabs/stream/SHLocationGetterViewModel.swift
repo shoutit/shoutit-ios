@@ -163,6 +163,12 @@ class SHLocationGetterViewModel: NSObject, TableViewControllerModelProtocol, UIT
                         cell.textLabel?.text = String(format: "%@ %@ - Current Location", arguments: [address.city, address.country])
                         cell.imageView?.image = UIImage(named: "cellCurrentLocation")
                         return cell
+                    } else {
+                        if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), let country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
+                            cell.textLabel?.text = String(format: "%@ %@ - Current Location", arguments: [city, country])
+                            cell.imageView?.image = UIImage(named: "cellCurrentLocation")
+                            return cell
+                        }
                     }
                 }
                 let searchResult: GMSAutocompletePrediction = self.localSearchQueries[indexPath.row - 1]
