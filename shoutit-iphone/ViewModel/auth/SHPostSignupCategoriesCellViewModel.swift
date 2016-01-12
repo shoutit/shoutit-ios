@@ -17,6 +17,8 @@ class SHPostSignupCategoriesCellViewModel: NSObject {
         self.cell = cell
     }
     
-    
+    func setUp (category: String) {
+        cell.categoryTitle.text = category
+    }
 
 }
