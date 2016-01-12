@@ -187,6 +187,10 @@
 		AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */; };
 		AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */; };
 		AC9B39051C40EFD6005D6857 /* MK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9B39041C40EFD6005D6857 /* MK.framework */; };
+		AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */; };
+		AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */; };
+		AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */; };
+		AC9B39121C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */; };
 		ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */; };
 		ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECE1BF1233700D504AA /* Enumerations.swift */; };
 		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
@@ -523,6 +527,10 @@
 		AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckTableViewCell.swift; path = View/tabs/stream/filter/cell/SHFilterCheckTableViewCell.swift; sourceTree = "<group>"; };
 		AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUsersMeta.swift; path = Model/users/SHUsersMeta.swift; sourceTree = "<group>"; };
 		AC9B39041C40EFD6005D6857 /* MK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MK.framework; path = "Pods/../build/Debug-iphoneos/MK.framework"; sourceTree = "<group>"; };
+		AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupViewController.swift; path = View/auth/SHPostSignupViewController.swift; sourceTree = "<group>"; };
+		AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupViewModel.swift; path = ViewModel/auth/SHPostSignupViewModel.swift; sourceTree = "<group>"; };
+		AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupCategoriesCell.swift; path = View/auth/SHPostSignupCategoriesCell.swift; sourceTree = "<group>"; };
+		AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupCategoriesCellViewModel.swift; path = ViewModel/auth/SHPostSignupCategoriesCellViewModel.swift; sourceTree = "<group>"; };
 		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
 		ACA77ECE1BF1233700D504AA /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerations.swift; path = Model/enums/Enumerations.swift; sourceTree = "<group>"; };
 		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
@@ -884,6 +892,8 @@
 				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
 				6068E6481C24680B0061F56C /* SHTakeLoginViewController.swift */,
 				6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */,
+				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
+				AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -892,6 +902,8 @@
 			isa = PBXGroup;
 			children = (
 				6027CF981BE7587800124C28 /* SHLoginViewModel.swift */,
+				AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */,
+				AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -2003,6 +2015,7 @@
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
+				AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */,
 				AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */,
@@ -2074,11 +2087,14 @@
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
+				AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */,
 				ACDB3CBD1BF90D7F0097444E /* SHRequestVideoTableViewCell.swift in Sources */,
+				AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */,
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
 				ACB803AD1C1082D100420BB1 /* SHConversationsTableViewController.swift in Sources */,
 				ACDD23C21BFB5B8500EEC6A6 /* SHTagProfileTableViewModel.swift in Sources */,
 				AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */,
+				AC9B39121C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift in Sources */,
 				ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */,
 				ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */,
 				AC679B471C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift in Sources */,

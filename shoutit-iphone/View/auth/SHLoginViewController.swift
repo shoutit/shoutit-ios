@@ -324,6 +324,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         viewModel?.destroy()
     }
 }

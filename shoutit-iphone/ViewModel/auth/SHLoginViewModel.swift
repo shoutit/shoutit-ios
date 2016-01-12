@@ -50,7 +50,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     }
     
     func destroy() {
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK - ViewController Methods
@@ -356,7 +356,9 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
 //                    }
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        SHOauthToken.goToDiscover()
+                        let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
+                        self.viewController?.presentViewController(postSignupVC, animated: true, completion: nil)
+                        //SHOauthToken.goToDiscover()
                         SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
                     })
                 } else {
