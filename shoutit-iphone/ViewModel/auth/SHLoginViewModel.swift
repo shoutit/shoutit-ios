@@ -200,11 +200,12 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 if let password = textField.text {
                     self.passwordValidation(password)
                 }
-             } else if (textField == vc.signInPassword) {
-                if let password = textField.text {
-                    self.passwordValidation(password)
-                }
-            }
+             }
+//            else if (textField == vc.signInPassword) {
+//                if let password = textField.text {
+//                    self.passwordValidation(password)
+//                }
+//            }
         }
         return true
     }
@@ -241,6 +242,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                             return
                         }
                     }
+                }
 //                } else if textField == vc.signInEmailOrUsername {
 //                    if let email = vc.signInEmailOrUsername.text {
 //                        if(!self.emailValidation(email)) {
@@ -248,14 +250,15 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
 //                            return
 //                        }
 //                    }
-                } else if textField == vc.signInPassword {
-                    if let password = vc.signInPassword.text {
-                        if(!self.passwordValidation(password)) {
-                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
-                            return
-                        }
-                    }
-                }
+                
+//                else if textField == vc.signInPassword {
+//                    if let password = vc.signInPassword.text {
+//                        if(!self.passwordValidation(password)) {
+//                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
+//                            return
+//                        }
+//                    }
+//                }
             }
         }
     }
@@ -276,6 +279,11 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     
     private func emailValidation(str : String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_EMAIL, options: [.CaseInsensitive])
+        return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
+    }
+    
+    private func usernameValidation(str : String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_USER_NAME, options: [.CaseInsensitive])
         return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
     }
     
@@ -303,10 +311,13 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     private func validateAuthentication() -> Bool {
         if let vc = self.viewController {
             if vc.signUpView.hidden {
-//                if let email = vc.signInEmailOrUsername.text where !self.emailValidation(email) {
-//                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
-//                    return false
-//                }
+                if let emailOrUsername = vc.signInEmailOrUsername.text where (!self.emailValidation(emailOrUsername) && !(self.usernameValidation(emailOrUsername))) {
+                    self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
+                    if(emailOrUsername.isEmpty) {
+                        return false
+                    }
+                    return false
+                }
                 if let password = vc.signInPassword.text where !self.passwordValidation(password) {
                     self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
                     return false
