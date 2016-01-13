@@ -82,8 +82,11 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         if validateAuthentication() {
             // Perform SignUp
             if let vc = self.viewController {
-                let params = self.shApiAuthService.getSignUpParams(vc.signUpEmailOrUsername.text!, password: vc.signUpPassword.text!, name: vc.firstName.text! + " " + vc.lastNameTextField.text!)
-                self.getOauthResponse(params)
+                if let emailOrUsername = vc.signUpEmailOrUsername.text, let password = vc.signUpPassword.text, let firstName = vc.firstNameTextField.text, let lastName = vc.lastNameTextField.text {
+                    let params = self.shApiAuthService.getSignUpParams(emailOrUsername, password: password, name: firstName + " " + lastName)
+                    self.getOauthResponse(params)
+                }
+                
             }
         }
     }
@@ -215,31 +218,27 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
             self.viewController?.errorMessageLabel.hidden = true
             if let textField = sender.object as? TextField {
                 if textField == vc.firstNameTextField {
-                    if let firstName = vc.firstNameTextField.text {
+                    if let firstName = vc.firstNameTextField.text where vc.firstNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(firstName)) {
                             self.displayErrorMessage(NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."), view: vc.firstNameView)
-                            return
                         }
                     }
                 } else if textField == vc.lastNameTextField {
-                    if let lastName = vc.lastNameTextField.text {
+                    if let lastName = vc.lastNameTextField.text where vc.lastNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(lastName)) {
                             self.displayErrorMessage(NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."), view: vc.lastNameView)
-                            return
                         }
                     }
                 } else if textField == vc.signUpEmailOrUsername {
-                    if let email = vc.signUpEmailOrUsername.text {
+                    if let email = vc.signUpEmailOrUsername.text where vc.signUpEmailOrUsername.text?.characters.count > 0 {
                         if(!self.emailValidation(email)) {
                             self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.emailView)
-                            return
                         }
                     }
                 } else if textField == vc.signUpPassword {
-                    if let password = vc.signUpPassword.text {
+                    if let password = vc.signUpPassword.text where vc.signUpPassword.text?.characters.count > 0 {
                         if(!self.passwordValidation(password)) {
                             self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.passwordView)
-                            return
                         }
                     }
                 }
@@ -367,9 +366,9 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
 //                    }
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
-                        self.viewController?.presentViewController(postSignupVC, animated: true, completion: nil)
-                        //SHOauthToken.goToDiscover()
+//                        let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
+//                        self.viewController?.presentViewController(postSignupVC, animated: true, completion: nil)
+                        SHOauthToken.goToDiscover()
                         SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
                     })
                 } else {
