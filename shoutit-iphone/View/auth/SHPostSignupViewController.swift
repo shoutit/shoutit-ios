@@ -11,9 +11,11 @@ import UIKit
 class SHPostSignupViewController: BaseViewController{
 
     private var viewModel: SHPostSignupViewModel?
+    var selectedCategories = [String]()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSpaceToNextBtn: NSLayoutConstraint!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = viewModel
@@ -56,11 +58,11 @@ class SHPostSignupViewController: BaseViewController{
     }
     
     @IBAction func skipAction(sender: AnyObject) {
-        
+        SHOauthToken.goToDiscover()
     }
     
     @IBAction func nextAction(sender: AnyObject) {
-        
+        SHOauthToken.goToDiscover()
     }
     
     deinit {

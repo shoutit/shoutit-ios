@@ -14,6 +14,7 @@ class SHPostSignupCategoriesCell: UITableViewCell {
     
     @IBOutlet weak var categoryTitle: UILabel!
     @IBOutlet weak var selectCategoryButton: UIButton!
+    private var postSignUpController: SHPostSignupViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,8 +31,10 @@ class SHPostSignupCategoriesCell: UITableViewCell {
     }
     
     @IBAction func selectCategoryAction(sender: AnyObject) {
-        if (selectCategoryButton.currentBackgroundImage == UIImage(named: "checkbox")) {
-            selectCategoryButton.setBackgroundImage(UIImage(named: "checkboxChecked"), forState: .Normal)
+        if(selectCategoryButton.imageForState(.Normal) == UIImage(named: "checkbox")) {
+            selectCategoryButton.setImage(UIImage(named: "checkboxChecked"), forState: .Normal)
+        } else {
+            selectCategoryButton.setImage(UIImage(named: "checkbox"), forState: .Normal)
         }
     }
     

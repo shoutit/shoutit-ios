@@ -610,7 +610,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-iR-WR9" userLabel="View - Categories">
                                         <rect key="frame" x="0.0" y="168" width="315" height="310"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-mV-mtv">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-mV-mtv">
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="310"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,22 +630,22 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfY-0g-YBp">
-                                                                    <rect key="frame" x="62" y="14" width="221" height="21"/>
+                                                                    <rect key="frame" x="62" y="14" width="210" height="21"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj0-ZU-tm0">
-                                                                    <rect key="frame" x="283" y="10" width="24" height="24"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj0-ZU-tm0">
+                                                                    <rect key="frame" x="272" y="8" width="40" height="40"/>
                                                                     <animations/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="24" id="PtV-Bb-V05"/>
-                                                                        <constraint firstAttribute="height" constant="24" id="cz7-SE-MMN"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="PtV-Bb-V05"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="cz7-SE-MMN"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Button" image="checkbox"/>
                                                                     <connections>
-                                                                        <action selector="selectCategoryAction:" destination="fuP-pJ-7OO" eventType="touchUpInside" id="t8V-Zv-a70"/>
+                                                                        <action selector="selectCategoryAction:" destination="fuP-pJ-7OO" eventType="touchUpInside" id="GVW-41-NKW"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -655,17 +655,16 @@
                                                                 <constraint firstItem="9yt-Fl-Whf" firstAttribute="top" secondItem="ozf-Bw-F4Z" secondAttribute="topMargin" constant="-1" id="BYc-1L-k4A"/>
                                                                 <constraint firstItem="OfY-0g-YBp" firstAttribute="leading" secondItem="9yt-Fl-Whf" secondAttribute="trailing" constant="16" id="DUq-lG-Hkz"/>
                                                                 <constraint firstItem="9yt-Fl-Whf" firstAttribute="leading" secondItem="ozf-Bw-F4Z" secondAttribute="leadingMargin" constant="2" id="Ep3-lJ-1V1"/>
-                                                                <constraint firstItem="Vj0-ZU-tm0" firstAttribute="top" secondItem="ozf-Bw-F4Z" secondAttribute="topMargin" constant="2" id="Fy7-VZ-m2t"/>
-                                                                <constraint firstItem="Vj0-ZU-tm0" firstAttribute="trailing" secondItem="ozf-Bw-F4Z" secondAttribute="trailingMargin" id="JgU-f9-xjV"/>
+                                                                <constraint firstItem="Vj0-ZU-tm0" firstAttribute="top" secondItem="ozf-Bw-F4Z" secondAttribute="topMargin" id="Fy7-VZ-m2t"/>
+                                                                <constraint firstItem="Vj0-ZU-tm0" firstAttribute="trailing" secondItem="ozf-Bw-F4Z" secondAttribute="trailingMargin" constant="5" id="JgU-f9-xjV"/>
                                                                 <constraint firstItem="Vj0-ZU-tm0" firstAttribute="leading" secondItem="OfY-0g-YBp" secondAttribute="trailing" id="R8l-U8-Lc7"/>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="OfY-0g-YBp" secondAttribute="trailing" constant="24" id="TMj-gC-aXg"/>
                                                                 <constraint firstItem="OfY-0g-YBp" firstAttribute="centerY" secondItem="ozf-Bw-F4Z" secondAttribute="centerY" id="gGC-Py-akW"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <animations/>
                                                         <connections>
                                                             <outlet property="categoryTitle" destination="OfY-0g-YBp" id="qJM-UY-iiJ"/>
-                                                            <outlet property="selectCategoryButton" destination="Vj0-ZU-tm0" id="EeD-yv-vMv"/>
+                                                            <outlet property="selectCategoryButton" destination="Vj0-ZU-tm0" id="A6s-Wi-8VI"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

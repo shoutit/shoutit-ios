@@ -49,7 +49,21 @@ class SHPostSignupViewModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHPostSignupCategoriesCell, forIndexPath: indexPath) as! SHPostSignupCategoriesCell
         cell.setUp(self.categoriesString[indexPath.row])
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+//        cell.selectCategoryButton.addTarget(self, action: Selector("selectCategory:"), forControlEvents: UIControlEvents.TouchUpInside)
+//        cell.addSubview(cell.selectCategoryButton)
         return cell
+    }
+    
+    func selectCategory (sender: UIButton) {
+        if(sender.imageForState(.Normal) == UIImage(named: "checkbox")) {
+            sender.setImage(UIImage(named: "checkboxChecked"), forState: .Normal)
+        } else {
+            sender.setImage(UIImage(named: "checkbox"), forState: .Normal)
+        }
+    }
+    func listenToCategories () {
+        
     }
     
     // private 
