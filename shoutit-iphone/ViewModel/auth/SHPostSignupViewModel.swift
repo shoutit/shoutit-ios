@@ -10,13 +10,15 @@ import UIKit
 
 class SHPostSignupViewModel: NSObject, UITableViewDelegate, UITableViewDataSource {
     private let viewController: SHPostSignupViewController
+    private var categories: [SHCategory] = []
+    private var categoriesString: [String] = []
     
     required init(viewController: SHPostSignupViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-        
+        self.getCategories()
     }
     
     func viewWillAppear() {
@@ -41,10 +43,50 @@ class SHPostSignupViewModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     
     //tableView Datasource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return categoriesString.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHPostSignupCategoriesCell, forIndexPath: indexPath) as! SHPostSignupCategoriesCell
+        cell.setUp(self.categoriesString[indexPath.row])
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+//        cell.selectCategoryButton.addTarget(self, action: Selector("selectCategory:"), forControlEvents: UIControlEvents.TouchUpInside)
+//        cell.addSubview(cell.selectCategoryButton)
+        return cell
     }
+    
+    func selectCategory (sender: UIButton) {
+        if(sender.imageForState(.Normal) == UIImage(named: "checkbox")) {
+            sender.setImage(UIImage(named: "checkboxChecked"), forState: .Normal)
+        } else {
+            sender.setImage(UIImage(named: "checkbox"), forState: .Normal)
+        }
+    }
+    func listenToCategories () {
+        
+    }
+    
+    // private 
+    private func getCategories () {
+        // get categories from cache or update from web
+        SHApiMiscService().getCategories({ (categories) -> Void in
+            self.setCategories(categories)
+            }, completionHandler: { (response) -> Void in
+                switch(response.result) {
+                case .Success(let result):
+                    self.setCategories(result)
+                case .Failure(let error):
+                    log.warning("Error getting categories \(error.localizedDescription)")
+                }
+        })
+    }
+    
+    private func setCategories(categories: [SHCategory]) {
+        self.categories = categories
+        self.categoriesString = categories.map({ (category) -> String in
+            category.name
+        })
+        self.viewController.tableView.reloadData()
+    }
+    
 }

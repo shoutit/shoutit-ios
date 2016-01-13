@@ -11,12 +11,18 @@ import UIKit
 class SHPostSignupViewController: BaseViewController{
 
     private var viewModel: SHPostSignupViewModel?
+    var selectedCategories = [String]()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomSpaceToNextBtn: NSLayoutConstraint!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
+        self.tableView.layer.borderColor = UIColor(colorLiteralRed: 88/255, green: 88/255, blue: 88/255, alpha: 0.5).CGColor
+        self.tableView.layer.borderWidth = 1
+        self.tableView.layer.cornerRadius = 5
         viewModel?.viewDidLoad()
     }
     
@@ -31,6 +37,8 @@ class SHPostSignupViewController: BaseViewController{
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        bottomSpaceToNextBtn.constant = UIScreen.mainScreen().bounds.height / 11.91
+        tableViewHeight.constant = UIScreen.mainScreen().bounds.height / 1.395
         viewModel?.viewWillAppear()
     }
     
@@ -50,11 +58,11 @@ class SHPostSignupViewController: BaseViewController{
     }
     
     @IBAction func skipAction(sender: AnyObject) {
-        
+        SHOauthToken.goToDiscover()
     }
     
     @IBAction func nextAction(sender: AnyObject) {
-        
+        SHOauthToken.goToDiscover()
     }
     
     deinit {

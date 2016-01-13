@@ -100,6 +100,7 @@ struct Constants {
         static let SHConversationTableViewCell = "SHConversationTableViewCell"
         static let SHShoutMessageCell = "SHShoutMessageCell"
         static let SHUserTableViewCell = "SHUserTableViewCell"
+        static let SHPostSignupCategoriesCell = "SHPostSignupCategoriesCell"
     }
     
     struct CollectionViewCell {

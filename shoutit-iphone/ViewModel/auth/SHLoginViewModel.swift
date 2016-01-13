@@ -82,8 +82,11 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         if validateAuthentication() {
             // Perform SignUp
             if let vc = self.viewController {
-                let params = self.shApiAuthService.getSignUpParams(vc.signUpEmailOrUsername.text!, password: vc.signUpPassword.text!, name: vc.firstName.text! + " " + vc.lastNameTextField.text!)
-                self.getOauthResponse(params)
+                if let emailOrUsername = vc.signUpEmailOrUsername.text, let password = vc.signUpPassword.text, let firstName = vc.firstNameTextField.text, let lastName = vc.lastNameTextField.text {
+                    let params = self.shApiAuthService.getSignUpParams(emailOrUsername, password: password, name: firstName + " " + lastName)
+                    self.getOauthResponse(params)
+                }
+                
             }
         }
     }
@@ -200,11 +203,12 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 if let password = textField.text {
                     self.passwordValidation(password)
                 }
-             } else if (textField == vc.signInPassword) {
-                if let password = textField.text {
-                    self.passwordValidation(password)
-                }
-            }
+             }
+//            else if (textField == vc.signInPassword) {
+//                if let password = textField.text {
+//                    self.passwordValidation(password)
+//                }
+//            }
         }
         return true
     }
@@ -214,33 +218,34 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
             self.viewController?.errorMessageLabel.hidden = true
             if let textField = sender.object as? TextField {
                 if textField == vc.firstNameTextField {
-                    if let firstName = vc.firstNameTextField.text {
+                    if let firstName = vc.firstNameTextField.text where vc.firstNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(firstName)) {
                             self.displayErrorMessage(NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."), view: vc.firstNameView)
-                            return
+                            vc.firstNameTextField.resignFirstResponder()
                         }
                     }
                 } else if textField == vc.lastNameTextField {
-                    if let lastName = vc.lastNameTextField.text {
+                    if let lastName = vc.lastNameTextField.text where vc.lastNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(lastName)) {
                             self.displayErrorMessage(NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."), view: vc.lastNameView)
-                            return
+                            vc.lastNameTextField.resignFirstResponder()
                         }
                     }
                 } else if textField == vc.signUpEmailOrUsername {
-                    if let email = vc.signUpEmailOrUsername.text {
+                    if let email = vc.signUpEmailOrUsername.text where vc.signUpEmailOrUsername.text?.characters.count > 0 {
                         if(!self.emailValidation(email)) {
                             self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.emailView)
-                            return
+                            vc.signUpEmailOrUsername.resignFirstResponder()
                         }
                     }
                 } else if textField == vc.signUpPassword {
-                    if let password = vc.signUpPassword.text {
+                    if let password = vc.signUpPassword.text where vc.signUpPassword.text?.characters.count > 0 {
                         if(!self.passwordValidation(password)) {
                             self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.passwordView)
-                            return
+                            vc.signUpPassword.resignFirstResponder()
                         }
                     }
+                }
 //                } else if textField == vc.signInEmailOrUsername {
 //                    if let email = vc.signInEmailOrUsername.text {
 //                        if(!self.emailValidation(email)) {
@@ -248,14 +253,15 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
 //                            return
 //                        }
 //                    }
-                } else if textField == vc.signInPassword {
-                    if let password = vc.signInPassword.text {
-                        if(!self.passwordValidation(password)) {
-                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
-                            return
-                        }
-                    }
-                }
+                
+//                else if textField == vc.signInPassword {
+//                    if let password = vc.signInPassword.text {
+//                        if(!self.passwordValidation(password)) {
+//                            self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
+//                            return
+//                        }
+//                    }
+//                }
             }
         }
     }
@@ -266,6 +272,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
             vc.errorMessageLabel.hidden = false
             vc.errorMessageLabel.text = text
             view?.layer.borderColor = MaterialColor.red.accent2.CGColor
+           // view?.resignFirstResponder()
         }
     }
     
@@ -276,6 +283,11 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     
     private func emailValidation(str : String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_EMAIL, options: [.CaseInsensitive])
+        return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
+    }
+    
+    private func usernameValidation(str : String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.RegEx.REGEX_USER_NAME, options: [.CaseInsensitive])
         return regex.numberOfMatchesInString(str, options: [], range: NSMakeRange(0, str.characters.count)) > 0
     }
     
@@ -303,10 +315,13 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     private func validateAuthentication() -> Bool {
         if let vc = self.viewController {
             if vc.signUpView.hidden {
-//                if let email = vc.signInEmailOrUsername.text where !self.emailValidation(email) {
-//                    self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.signInEmailView)
-//                    return false
-//                }
+                if let emailOrUsername = vc.signInEmailOrUsername.text where (!self.emailValidation(emailOrUsername) && !(self.usernameValidation(emailOrUsername))) {
+                    self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
+                    if(emailOrUsername.isEmpty) {
+                        return false
+                    }
+                    return false
+                }
                 if let password = vc.signInPassword.text where !self.passwordValidation(password) {
                     self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
                     return false
@@ -356,8 +371,20 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
 //                    }
                     SHMixpanelHelper.aliasUserId(userId)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
-                        self.viewController?.presentViewController(postSignupVC, animated: true, completion: nil)
+                        if let currentVC = self.viewController {
+                            if !currentVC.signUpView.hidden {
+                                self.showPostSignUpScreen(currentVC)
+                            } else {
+                                SHOauthToken.goToDiscover()
+                            }
+                            
+                        } else if let currentVC = self.socialViewController {
+                            self.showPostSignUpScreen(currentVC)
+                        } else {
+                            self.showPostSignUpScreen(self.webViewController)
+                        }
+                        
+                        
                         //SHOauthToken.goToDiscover()
                         SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
                     })
@@ -372,6 +399,11 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 // Currently this is bad in the current iOS app
             }
         }
+    }
+    
+    private func showPostSignUpScreen (currentVC: UIViewController) {
+        let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
+        currentVC.presentViewController(postSignupVC, animated: true, completion: nil)
     }
     
     private func handleOauthResponseError() {

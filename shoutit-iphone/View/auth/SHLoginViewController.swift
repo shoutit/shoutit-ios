@@ -117,21 +117,21 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func showPassword(sender: AnyObject) {
-        if let password = self.signUpPassword.text where !password.isEmpty {
+        if let password = self.signUpPassword.text where !password.isEmpty && signUpPassword.isFirstResponder() {
             if(showPasswordButton.titleLabel?.text == "show") {
                 showPasswordButton.setTitle("hide", forState: .Normal)
             } else {
                 showPasswordButton.setTitle("show", forState: .Normal)
             }
-        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty {
+            viewModel?.togglePassword()
+        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty && signInPassword.isFirstResponder() {
             if(showLoginPasswordButton.titleLabel?.text == "show") {
                 showLoginPasswordButton.setTitle("hide", forState: .Normal)
             } else {
                 showLoginPasswordButton.setTitle("show", forState: .Normal)
             }
+            viewModel?.togglePassword()
         }
-        
-        viewModel?.togglePassword()
     }
     
     func keyboardWillShow(sender: NSNotification) {
@@ -149,16 +149,19 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightSignInEmailAction(recognizer: UITapGestureRecognizer) {
+        //self.errorMessageLabel.hidden = true
         signInEmailView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
         signInPasswordView?.layer.borderColor = lightGrayBorderColor
     }
     
     func highLightSignInPasswordAction(recognizer: UITapGestureRecognizer) {
+       // self.errorMessageLabel.hidden = true
         signInEmailView?.layer.borderColor = lightGrayBorderColor
         signInPasswordView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
     }
     
     func highLightFirstNameAction(recognizer: UITapGestureRecognizer){
+        //self.errorMessageLabel.hidden = true
         firstNameView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -166,6 +169,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightLastNameAction(recognizer: UITapGestureRecognizer){
+       // self.errorMessageLabel.hidden = true
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -173,6 +177,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightEmailAction(recognizer: UITapGestureRecognizer){
+       // self.errorMessageLabel.hidden = true
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = MaterialColor.lightBlue.accent2.CGColor
@@ -180,6 +185,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     func highLightPasswordAction(recognizer: UITapGestureRecognizer){
+        //self.errorMessageLabel.hidden = true
         firstNameView?.layer.borderColor = lightGrayBorderColor
         lastNameView?.layer.borderColor = lightGrayBorderColor
         emailView?.layer.borderColor = lightGrayBorderColor
@@ -190,14 +196,14 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     private func setUpLoginViewFields () {
         signInEmailView = prepareSignInView(signInViewHeight / 13.4)
         if let signInEmailView = self.signInEmailView {
-            addTapGesture(signInEmailView)
+           // addTapGesture(signInEmailView)
             loginView.addSubview(signInEmailView)
             prepareFloatingTextField(signInEmailOrUsername, frameX: 10, frameY: 15, placeholderText: "Email or Username", view: signInEmailView, parentView: loginView)
         }
         
         signInPasswordView = prepareSignInView(signInViewHeight / 1.97)
         if let signInPasswordView = self.signInPasswordView {
-            addTapGesture(signInPasswordView)
+           // addTapGesture(signInPasswordView)
             loginView.addSubview(signInPasswordView)
             prepareFloatingTextField(signInPassword, frameX: 10, frameY: 15, placeholderText: "Password", view: signInPasswordView, parentView: loginView)
         }
@@ -206,25 +212,25 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     private func setUpSignUpViewFields () {
         firstNameView = prepareView(signUpViewHeight / 24.2)
         if let firstNameView = self.firstNameView {
-            addTapGesture(firstNameView)
+           // addTapGesture(firstNameView)
             signUpView.addSubview(firstNameView)
             prepareFloatingTextField(firstNameTextField, frameX: 10, frameY: 15, placeholderText: "First Name", view: firstNameView, parentView: signUpView)
         }
         lastNameView = prepareView(signUpViewHeight / 3.558)
         if let lastNameView = self.lastNameView {
-            addTapGesture(lastNameView)
+           // addTapGesture(lastNameView)
             signUpView.addSubview(lastNameView)
             prepareFloatingTextField(lastNameTextField, frameX: 10, frameY: 15, placeholderText: "Last Name", view: lastNameView, parentView: signUpView)
         }
         emailView = prepareView(signUpViewHeight / 1.92)
         if let emailView = self.emailView {
-            addTapGesture(emailView)
+           // addTapGesture(emailView)
             signUpView.addSubview(emailView)
             prepareFloatingTextField(signUpEmailOrUsername, frameX: 10, frameY: 15, placeholderText: "Email", view: emailView, parentView: signUpView)
         }
         passwordView = prepareView(signUpViewHeight / 1.315)
         if let passwordView = self.passwordView {
-            addTapGesture(passwordView)
+           // addTapGesture(passwordView)
             signUpView.addSubview(passwordView)
             prepareFloatingTextField(signUpPassword, frameX: 10, frameY: 15, placeholderText: "Password", view: passwordView, parentView: signUpView)
         }
@@ -300,28 +306,28 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         return textView
     }
     
-    private func addTapGesture (view: UIView) {
-        if(view == firstNameView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightFirstNameAction:")
-            view.addGestureRecognizer(gesture)
-        } else if (view == lastNameView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightLastNameAction:")
-            view.addGestureRecognizer(gesture)
-        } else if (view == emailView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightEmailAction:")
-            view.addGestureRecognizer(gesture)
-        } else if (view == passwordView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightPasswordAction:")
-            view.addGestureRecognizer(gesture)
-        } else if (view == signInEmailView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightSignInEmailAction:")
-            view.addGestureRecognizer(gesture)
-        } else if (view == signInPasswordView) {
-            let gesture = UITapGestureRecognizer(target: self, action: "highLightSignInPasswordAction:")
-            view.addGestureRecognizer(gesture)
-        }
-        
-    }
+//    private func addTapGesture (view: UIView) {
+//        if(view == firstNameView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightFirstNameAction:")
+//            view.addGestureRecognizer(gesture)
+//        } else if (view == lastNameView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightLastNameAction:")
+//            view.addGestureRecognizer(gesture)
+//        } else if (view == emailView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightEmailAction:")
+//            view.addGestureRecognizer(gesture)
+//        } else if (view == passwordView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightPasswordAction:")
+//            view.addGestureRecognizer(gesture)
+//        } else if (view == signInEmailView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightSignInEmailAction:")
+//            view.addGestureRecognizer(gesture)
+//        } else if (view == signInPasswordView) {
+//            let gesture = UITapGestureRecognizer(target: self, action: "highLightSignInPasswordAction:")
+//            view.addGestureRecognizer(gesture)
+//        }
+//        
+//    }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
