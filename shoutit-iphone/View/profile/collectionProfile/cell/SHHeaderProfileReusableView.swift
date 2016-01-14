@@ -119,8 +119,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             if let viewController = self.viewController {
                 SHOauthToken.goToLogin(viewController)
             }
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
         }
         if let isFollowing = self.user?.isFollowing {
             self.setListenSelected(isFollowing)

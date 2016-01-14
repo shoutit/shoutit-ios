@@ -86,6 +86,7 @@ struct Constants {
         static let SHTAGLISTENERS = "SHTagListenersTableViewController"
         static let ShoutList = "shoutListViewController"
         static let SHPostSignup = "SHPostSignupViewController"
+        static let SHLOGINPOPUP =  "SHLoginPopupViewController"
     }
     
     struct TableViewCell {

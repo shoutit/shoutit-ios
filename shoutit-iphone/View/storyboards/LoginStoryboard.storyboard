@@ -911,6 +911,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="parentView" destination="d3d-8b-h2o" id="QoN-kY-8ll"/>
+                        <outlet property="titleLabel" destination="zr7-FQ-8AH" id="b7A-Gy-ZG3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="css-nY-c4a" userLabel="First Responder" sceneMemberID="firstResponder"/>

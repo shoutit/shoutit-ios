@@ -319,7 +319,8 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                     if(emailOrUsername.isEmpty) {
                         self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
                         return false
-                    } else if (!(self.usernameValidation(emailOrUsername))) {
+                    }
+                    if (!(self.usernameValidation(emailOrUsername)) && !(self.emailValidation(emailOrUsername))) {
                         self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
                         return false
                     }

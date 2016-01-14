@@ -43,8 +43,6 @@ class SHCreateShoutTableViewController: BaseTableViewController {
         super.viewDidLoad()
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
             SHOauthToken.goToLogin(self)
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
         }
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
@@ -68,6 +66,9 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin(self)
+        }
         viewModel?.viewWillAppear()
     }
     

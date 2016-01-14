@@ -12,9 +12,14 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
 
     private var viewModel: SHLoginPopupViewModel?
     @IBOutlet var parentView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    var isFromCreateShout = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tapGesture
+        self.addTapGesture()
+        
         // Google instance
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
         GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
@@ -38,6 +43,9 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.parentView.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.54)
+        if(isFromCreateShout) {
+            self.titleLabel.text = "Login to create shout"
+        }
         viewModel?.viewWillAppear()
     }
     
@@ -67,13 +75,26 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
     
     @IBAction func signupOrLoginAction(sender: AnyObject) {
         let destinationVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHLoginViewController")
-        self.presentViewController(destinationVC, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: destinationVC)
+       // navigationController.navigationItem.leftBarButtonItem?.action = Selector("backToLoginPopup")
+        let backButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backToLoginPopup"))
+        destinationVC.navigationItem.leftBarButtonItem = backButton
+        destinationVC.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
+       // navigationController.navigationItem.leftBarButtonItem = backButton
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHLoginViewController")
-        destinationVC.navigationController
-        self.presentViewController(destinationVC, animated: true, completion: nil)
+    func backToLoginPopup () {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addTapGesture () {
+        let gesture = UITapGestureRecognizer(target: self, action: "gotoLogin")
+        parentView.addGestureRecognizer(gesture)
+    }
+    
+    func gotoLogin () {
+        SHOauthToken.goToLogin(self)
     }
     
     deinit {

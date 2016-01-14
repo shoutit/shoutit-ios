@@ -118,15 +118,15 @@ class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             if let currentVC = self.loginViewController {
                                 if !currentVC.signUpView.hidden {
-                                    self.showPostSignUpScreen(currentVC)
+                                    self.showPostSignUpScreen()
                                 } else {
                                     SHOauthToken.goToDiscover()
                                 }
                                 
-                            } else if let currentVC = self.socialViewController {
-                                self.showPostSignUpScreen(currentVC)
+                            } else if let _ = self.socialViewController {
+                                self.showPostSignUpScreen()
                             } else {
-                                self.showPostSignUpScreen(self.webViewController)
+                                self.showPostSignUpScreen()
                             }
                             
                             
@@ -146,20 +146,14 @@ class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
         }
     }
     
-    private func showPostSignUpScreen (currentVC: UIViewController) {
+    private func showPostSignUpScreen () {
         let postSignupVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPostSignup)
-        currentVC.presentViewController(postSignupVC, animated: true, completion: nil)
+        self.viewController.presentViewController(postSignupVC, animated: true, completion: nil)
     }
     
     private func handleOauthResponseError(error: String) {
         log.debug("error logging in")
         // Clear OauthToken cache
         Shared.stringCache.removeAll()
-       // self.viewController?.errorMessageLabel.hidden = false
-       // self.viewController?.errorMessageLabel.text = error
-        
-        //        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
-        //        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
-        //        self.viewController?.presentViewController(alert, animated: true, completion: nil)
     }
 }
