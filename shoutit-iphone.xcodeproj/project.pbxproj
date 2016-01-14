@@ -209,6 +209,8 @@
 		ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */; };
 		ACB803BB1C11A29E00420BB1 /* SHMessagesMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB803BA1C11A29E00420BB1 /* SHMessagesMeta.swift */; };
 		ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB7BBE1C2942160052C12B /* SHListenersMeta.swift */; };
+		ACC064471C47523E0089912A /* SHLoginPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC064461C47523E0089912A /* SHLoginPopupViewController.swift */; };
+		ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC064481C47526D0089912A /* SHLoginPopupViewModel.swift */; };
 		ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */; };
 		ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */; };
 		ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */; };
@@ -549,6 +551,8 @@
 		ACB803B81C10D42500420BB1 /* SHConversationsMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHConversationsMeta.swift; path = Model/conversations/SHConversationsMeta.swift; sourceTree = "<group>"; };
 		ACB803BA1C11A29E00420BB1 /* SHMessagesMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMessagesMeta.swift; path = Model/messages/SHMessagesMeta.swift; sourceTree = "<group>"; };
 		ACBB7BBE1C2942160052C12B /* SHListenersMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHListenersMeta.swift; path = Model/users/SHListenersMeta.swift; sourceTree = "<group>"; };
+		ACC064461C47523E0089912A /* SHLoginPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginPopupViewController.swift; path = View/auth/SHLoginPopupViewController.swift; sourceTree = "<group>"; };
+		ACC064481C47526D0089912A /* SHLoginPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginPopupViewModel.swift; path = ViewModel/auth/SHLoginPopupViewModel.swift; sourceTree = "<group>"; };
 		ACC36C291C07B6170082E0C2 /* SHStreamTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SHStreamTagTableViewCell.xib; path = View/tags/cell/SHStreamTagTableViewCell.xib; sourceTree = "<group>"; };
 		ACC36C2D1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewController.swift; path = View/profile/collectionProfile/SHProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		ACC36C311C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProfileCollectionViewModel.swift; path = ViewModel/profile/collectionProfile/SHProfileCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -894,6 +898,7 @@
 				6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */,
 				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
 				AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */,
+				ACC064461C47523E0089912A /* SHLoginPopupViewController.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -904,6 +909,7 @@
 				6027CF981BE7587800124C28 /* SHLoginViewModel.swift */,
 				AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */,
 				AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */,
+				ACC064481C47526D0089912A /* SHLoginPopupViewModel.swift */,
 			);
 			name = auth;
 			sourceTree = "<group>";
@@ -2023,6 +2029,7 @@
 				606ED2EC1BF7EE380064C53E /* SHCreateVideoCollectionViewCell.swift in Sources */,
 				60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
+				ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */,
 				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
@@ -2181,6 +2188,7 @@
 				AC5404D81C1EC19200F6ECFE /* SHMapDetatilViewController.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
 				60D36D5C1BF78CBA00238D62 /* SHShout.swift in Sources */,
+				ACC064471C47523E0089912A /* SHLoginPopupViewController.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,

@@ -42,7 +42,7 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
+            SHOauthToken.goToLogin(self)
             SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
             return
         }

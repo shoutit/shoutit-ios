@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MZFormSheetPresentationController
+import MZAppearance
 
 class SHConversationsTableViewController: BaseTableViewController {
     
@@ -15,9 +17,17 @@ class SHConversationsTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
+            SHOauthToken.goToLogin(self)
+//            let navigationController = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("formSheetController") as! UINavigationController
+//            let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+//            formSheetController.presentationController?.portraitTopInset =  -22
+//            formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+//            formSheetController.presentationController?.blurEffectStyle = .ExtraLight
+//            formSheetController.presentationController?.contentViewSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height + 4)
+//            self.presentViewController(formSheetController, animated: true, completion: nil)
+//            return
+//            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
+//            return
         }
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel

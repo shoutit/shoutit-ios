@@ -116,7 +116,9 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     
     @IBAction func listenAction(sender: AnyObject) {
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
+            if let viewController = self.viewController {
+                SHOauthToken.goToLogin(viewController)
+            }
             SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
             return
         }

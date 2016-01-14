@@ -70,6 +70,9 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - MZAppearance (1.1.6)
+  - MZFormSheetPresentationController (2.2.0):
+    - MZAppearance
   - ObjectMapper (1.0.1)
   - ReachabilitySwift (2.3)
   - SDWebImage (3.7.3):
@@ -106,6 +109,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.9)
   - MK (~> 1.0)
   - MWPhotoBrowser (~> 2.1)
+  - MZFormSheetPresentationController (~> 2.2)
   - ObjectMapper (~> 1.0)
   - ReachabilitySwift (~> 2.3)
   - SDWebImage (~> 3.7)
@@ -157,6 +161,8 @@ SPEC CHECKSUMS:
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   MK: a5d812fd164a08de332098b2bbf27fe4c0a8d7dc
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  MZFormSheetPresentationController: 3405c52eb182abfb8fa2b635981930eeeec37396
   ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
   ReachabilitySwift: 2ac9df18a443901f06caae38a9f5431219a4c36a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
