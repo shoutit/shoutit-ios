@@ -44,35 +44,37 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
-        //return 7 + discoverItems.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        switch(indexPath.row) {
-        case 0:
-            return getDiscoverFeedHeaderCell(indexPath)
-        default :
-            return getDiscoverFeedHeaderCell(indexPath)
-        }
+        return getDiscoverFeedHeaderCell(indexPath)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0:
+            return CGSizeMake(UIScreen.mainScreen().bounds.width, 132)
+        default:
+            return CGSizeMake(172, 172)
+        }
+    }
     
     // MARK - Private
     private func getDiscoverFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedHeaderCell, forIndexPath: indexPath)
     }
-    
-    private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverListCell, forIndexPath: indexPath)
-    }
-    
-    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
-        cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
-        addBorder(cell)
-        return cell
-        
-    }
+//
+//    private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+//        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverListCell, forIndexPath: indexPath)
+//    }
+//    
+//    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+//        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
+//        cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+//        addBorder(cell)
+//        return cell
+//        
+//    }
     
     private func addBorder(cell: UICollectionViewCell) {
         cell.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor

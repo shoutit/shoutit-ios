@@ -10,7 +10,6 @@ import UIKit
 
 enum ShoutListType {
     case HOME
-    case DISCOVER
 }
 
 enum ShoutViewType {

@@ -37,12 +37,7 @@ class SHTabViewController: UITabBarController {
         let shoutListVC = UIStoryboard.getShoutList().instantiateViewControllerWithIdentifier(Constants.ViewControllers.ShoutList) 
         shoutListVC.tabBarItem.image = UIImage(named: "tabHome")
         shoutListVC.tabBarItem.title = "Home"
-    
-        let discoverVC = UIStoryboard.getShoutList().instantiateViewControllerWithIdentifier(Constants.ViewControllers.ShoutList) as! SHShoutListViewController
-        discoverVC.type = ShoutListType.DISCOVER
-        discoverVC.tabBarItem.image = UIImage(named: "tabDiscover")
-        discoverVC.tabBarItem.title = "Discover"
-       // let discoverVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC)
+        let discoverVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.DISCOVER_VC)
         let createShoutVC = UIStoryboard.getCreateShout().instantiateViewControllerWithIdentifier(Constants.ViewControllers.CREATE_SHOUT)
         let conversationVC = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHCONVERSATIONSTABLE)
         let profileVC = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController

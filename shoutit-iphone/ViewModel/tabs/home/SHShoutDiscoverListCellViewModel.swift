@@ -13,7 +13,6 @@ class SHShoutDiscoverListCellViewModel: NSObject, UICollectionViewDelegateFlowLa
     private let cell: SHShoutDiscoverListCell
     private var discoverItems: [SHDiscoverItem] = []
     private var viewController: UIViewController?
-    var type: ShoutListType = .HOME
     
     init(cell: SHShoutDiscoverListCell) {
         self.cell = cell
@@ -27,12 +26,7 @@ class SHShoutDiscoverListCellViewModel: NSObject, UICollectionViewDelegateFlowLa
     
     // MARK - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch(type) {
-        case .HOME:
-            return discoverItems.count + 1
-        case .DISCOVER:
-            return discoverItems.count
-        }
+        return discoverItems.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -48,12 +42,7 @@ class SHShoutDiscoverListCellViewModel: NSObject, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        switch(type) {
-        case .HOME:
-            return CGSizeMake(90, 121)
-        case .DISCOVER:
-            return CGSizeMake(200, 240)
-        }
+        return CGSizeMake(90, 121)
     }
     
     // MARK - Private

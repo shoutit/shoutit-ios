@@ -61,7 +61,7 @@ struct Constants {
     
     struct ViewControllers {
         static let TAKE_LOGIN_VC = "SHTakeLoginViewController"
-        static let DISCOVER_VC = "SHDiscoverCollectionViewController"
+        static let DISCOVER_VC = "SHDiscoverFeedViewController"//"SHDiscoverCollectionViewController"
         static let STREAM_VC = "SHStreamTableViewController"
         static let MODEL_WEB = "SHModalWebViewController"
         static let LOCATION_GETTER = "SHLocationGetterViewController"
@@ -125,7 +125,6 @@ struct Constants {
         static let SHDiscoverFeedHeaderCell = "discoverFeedHeaderCell"
         static let SHDiscoverShoutHeaderCell = "discoverShoutHeaderCell"
         static let SHDiscoverShowMoreShoutsCell = "discoverShowMoreShoutsCell"
-        static let SHDiscoverFeedDiscoverItemCell = "discoverFeedDiscoverItemCell"
         static let SHDiscoverFeedCell = "SHDiscoverFeedCell"
     }
     

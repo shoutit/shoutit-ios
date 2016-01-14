@@ -137,8 +137,6 @@
 		AC679B471C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */; };
 		AC679B491C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */; };
 		AC679B4B1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */; };
-		AC679B4D1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */; };
-		AC679B4F1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */; };
 		AC679B511C3E274A00F45947 /* SHDiscoverFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */; };
 		AC679B531C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */; };
 		AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */; };
@@ -443,8 +441,6 @@
 		AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedHeaderCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverShoutHeaderCell.swift; path = View/tabs/discoverFeed/SHDiscoverShoutHeaderCell.swift; sourceTree = "<group>"; };
 		AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverShowMoreShoutsCell.swift; path = View/tabs/discoverFeed/SHDiscoverShowMoreShoutsCell.swift; sourceTree = "<group>"; };
-		AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedDiscoverItemCell.swift; path = View/tabs/discoverFeed/SHDiscoverFeedDiscoverItemCell.swift; sourceTree = "<group>"; };
-		AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedDiscoverItemCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedDiscoverItemCellViewModel.swift; sourceTree = "<group>"; };
 		AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedCell.swift; path = View/tabs/discoverFeed/SHDiscoverFeedCell.swift; sourceTree = "<group>"; };
 		AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedCellViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedCellViewModel.swift; sourceTree = "<group>"; };
 		AC6F2B371BEF71AE00D9F5A3 /* SHApiDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiDiscoverService.swift; path = Util/api/discover/SHApiDiscoverService.swift; sourceTree = "<group>"; };
@@ -1251,7 +1247,6 @@
 				AC679B441C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift */,
 				AC679B481C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift */,
 				AC679B4A1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift */,
-				AC679B4C1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift */,
 				AC679B501C3E274A00F45947 /* SHDiscoverFeedCell.swift */,
 			);
 			name = discoverFeed;
@@ -1262,7 +1257,6 @@
 			children = (
 				AC679B421C3CE42500F45947 /* SHDiscoverFeedViewModel.swift */,
 				AC679B461C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift */,
-				AC679B4E1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift */,
 				AC679B521C3E279E00F45947 /* SHDiscoverFeedCellViewModel.swift */,
 			);
 			name = discoverFeed;
@@ -2050,7 +2044,6 @@
 				606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				ACB803AB1C10277200420BB1 /* SHShoutPickerTableViewModel.swift in Sources */,
-				AC679B4F1C3DB9E600F45947 /* SHDiscoverFeedDiscoverItemCellViewModel.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
@@ -2064,7 +2057,6 @@
 				ACB803A41C0F40F700420BB1 /* SHSystemMessageMediaItem.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */,
-				AC679B4D1C3DB5E900F45947 /* SHDiscoverFeedDiscoverItemCell.swift in Sources */,
 				AC679B451C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */,

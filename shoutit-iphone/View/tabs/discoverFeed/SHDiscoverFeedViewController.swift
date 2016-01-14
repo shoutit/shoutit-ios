@@ -15,8 +15,8 @@ class SHDiscoverFeedViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.dataSource = viewModel
         self.collectionView.delegate = viewModel
+        self.collectionView.dataSource = viewModel
         viewModel?.viewDidLoad()
     }
     
