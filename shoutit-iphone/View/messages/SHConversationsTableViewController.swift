@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MZFormSheetPresentationController
+import MZAppearance
 
 class SHConversationsTableViewController: BaseTableViewController {
     
@@ -15,9 +17,7 @@ class SHConversationsTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
+            SHOauthToken.goToLogin(self)
         }
         self.tableView.dataSource = viewModel
         self.tableView.delegate = viewModel
@@ -37,6 +37,9 @@ class SHConversationsTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin(self)
+        }
         viewModel?.viewWillAppear()
     }
     

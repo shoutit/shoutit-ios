@@ -315,12 +315,15 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     private func validateAuthentication() -> Bool {
         if let vc = self.viewController {
             if vc.signUpView.hidden {
-                if let emailOrUsername = vc.signInEmailOrUsername.text where (!self.emailValidation(emailOrUsername) && !(self.usernameValidation(emailOrUsername))) {
-                    self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
+                if let emailOrUsername = vc.signInEmailOrUsername.text {
                     if(emailOrUsername.isEmpty) {
+                        self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
                         return false
                     }
-                    return false
+                    if (!(self.usernameValidation(emailOrUsername)) && !(self.emailValidation(emailOrUsername))) {
+                        self.displayErrorMessage(NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username"), view: vc.signInEmailView)
+                        return false
+                    }
                 }
                 if let password = vc.signInPassword.text where !self.passwordValidation(password) {
                     self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.signInPasswordView)
@@ -390,10 +393,10 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                     })
                 } else {
                     // Login Failure
-                    self.handleOauthResponseError()
+                    self.handleOauthResponseError(NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"))
                 }
-            case .Failure:
-                self.handleOauthResponseError()
+            case .Failure(let error):
+                self.handleOauthResponseError(error.localizedDescription)
                 // TODO
                 // Show Alert Dialog with the error message
                 // Currently this is bad in the current iOS app
@@ -406,11 +409,12 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         currentVC.presentViewController(postSignupVC, animated: true, completion: nil)
     }
     
-    private func handleOauthResponseError() {
+    private func handleOauthResponseError(error: String) {
         log.debug("error logging in")
         // Clear OauthToken cache
         Shared.stringCache.removeAll()
-        self.viewController?.errorMessageLabel.text = NSLocalizedString("LoginError", comment: "Could not log you in, please try again!")
+        self.viewController?.errorMessageLabel.hidden = false
+        self.viewController?.errorMessageLabel.text = error
 //        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
 //        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
 //        self.viewController?.presentViewController(alert, animated: true, completion: nil)

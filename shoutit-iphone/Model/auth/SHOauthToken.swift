@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import Haneke
+import MZFormSheetPresentationController
 
 class SHOauthToken: Mappable {
 
@@ -52,11 +53,27 @@ class SHOauthToken: Mappable {
         // TODO Throw an event that user is updated
     }
     
-    static func goToLogin() {
-        let appDelegate = UIApplication.sharedApplication().delegate
-        let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.TAKE_LOGIN_VC)
-        appDelegate?.window??.rootViewController = nil
-        appDelegate?.window??.rootViewController = loginVC
+    static func goToLogin(viewController: UIViewController) {
+        if(viewController.isKindOfClass(SHSettingsTableViewController) || (viewController.isKindOfClass(SHLoginPopupViewController))) {
+            let appDelegate = UIApplication.sharedApplication().delegate
+            let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.TAKE_LOGIN_VC)
+            appDelegate?.window??.rootViewController = nil
+            appDelegate?.window??.rootViewController = loginVC
+        } else {
+            let navigationController = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("formSheetController") as! UINavigationController
+            let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+            formSheetController.presentationController?.portraitTopInset =  -22
+            formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+            formSheetController.presentationController?.blurEffectStyle = .Light
+            formSheetController.presentationController?.contentViewSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height + 4)
+            viewController.presentViewController(formSheetController, animated: true, completion: nil)
+            if(viewController.isKindOfClass(SHCreateShoutTableViewController)) {
+                if let vc = navigationController.viewControllers[0] as? SHLoginPopupViewController {
+                    vc.isFromCreateShout = true
+                }
+            }
+            return
+        }
     }
     
     static func goToDiscover() {

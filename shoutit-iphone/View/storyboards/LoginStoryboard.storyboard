@@ -269,7 +269,7 @@
         <!--Login View Controller-->
         <scene sceneID="ubS-9P-aVe">
             <objects>
-                <viewController id="Kan-cl-PLY" customClass="SHLoginViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SHLoginViewController" storyboardIdentifier="SHLoginViewController" id="Kan-cl-PLY" customClass="SHLoginViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dzy-DQ-WRX"/>
                         <viewControllerLayoutGuide type="bottom" id="NUx-k4-3w1"/>
@@ -773,6 +773,151 @@
             </objects>
             <point key="canvasLocation" x="2374.5" y="277.5"/>
         </scene>
+        <!--SHLoginPopupViewController-->
+        <scene sceneID="ad8-7x-xdW">
+            <objects>
+                <viewController restorationIdentifier="SHLoginPopupViewController" storyboardIdentifier="SHLoginPopupViewController" title="SHLoginPopupViewController" id="Lo3-1g-CBS" customClass="SHLoginPopupViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KBt-9g-AZK"/>
+                        <viewControllerLayoutGuide type="bottom" id="2py-y8-ImB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d3d-8b-h2o" customClass="CustomUIView" customModule="CustomViews">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHa-vo-w34" customClass="CustomUIView" customModule="CustomViews">
+                                <rect key="frame" x="16" y="227" width="343" height="214"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-Kn-bDf" customClass="CustomUIButton" customModule="CustomViews">
+                                        <rect key="frame" x="12" y="160" width="319" height="44"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Sign up / Log in with Email">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signupOrLoginAction:" destination="Lo3-1g-CBS" eventType="touchUpInside" id="E5W-VP-uPM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-cw-fOe" customClass="CustomUIButton" customModule="CustomViews">
+                                        <rect key="frame" x="12" y="56" width="319" height="44"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.2274509804" green="0.34509803919999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Log in with Facebook">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginWithFacebook:" destination="Lo3-1g-CBS" eventType="touchUpInside" id="uc6-EQ-A2B"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReU-Xq-Z64" customClass="CustomUIButton" customModule="CustomViews">
+                                        <rect key="frame" x="12" y="108" width="319" height="44"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.87450980389999999" green="0.32156862749999998" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Log in with Google">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginWithGoogle:" destination="Lo3-1g-CBS" eventType="touchUpInside" id="2UH-lG-fyu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TK3-sg-cLF" userLabel="Button - Google Plus Image">
+                                        <rect key="frame" x="25" y="121" width="17" height="18"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="17" id="MmQ-tb-LV0"/>
+                                            <constraint firstAttribute="height" constant="18" id="yYS-hc-UHr"/>
+                                        </constraints>
+                                        <state key="normal" image="google_plus"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgU-kR-fXg" userLabel="Button - Facebook Image">
+                                        <rect key="frame" x="28" y="67" width="10" height="20"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="PHo-0o-6nb"/>
+                                            <constraint firstAttribute="width" constant="10" id="QZj-6w-Ugj"/>
+                                        </constraints>
+                                        <state key="normal" image="facebook"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zr7-FQ-8AH">
+                                        <rect key="frame" x="12" y="12" width="319" height="44"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zr7-FQ-8AH" firstAttribute="leading" secondItem="uHa-vo-w34" secondAttribute="leading" constant="12" id="04L-9q-8l3"/>
+                                    <constraint firstItem="gxe-Kn-bDf" firstAttribute="leading" secondItem="uHa-vo-w34" secondAttribute="leading" constant="12" id="7PZ-sd-Qa6"/>
+                                    <constraint firstItem="XgU-kR-fXg" firstAttribute="top" secondItem="uHa-vo-w34" secondAttribute="top" constant="67" id="7W9-Nl-Xmn"/>
+                                    <constraint firstItem="ReU-Xq-Z64" firstAttribute="top" secondItem="d4g-cw-fOe" secondAttribute="bottom" constant="8" id="851-bO-z5D"/>
+                                    <constraint firstItem="TK3-sg-cLF" firstAttribute="top" secondItem="d4g-cw-fOe" secondAttribute="bottom" constant="21" id="8b1-gY-iG2"/>
+                                    <constraint firstItem="TK3-sg-cLF" firstAttribute="centerY" secondItem="ReU-Xq-Z64" secondAttribute="centerY" id="AIF-RS-6AU"/>
+                                    <constraint firstItem="d4g-cw-fOe" firstAttribute="leading" secondItem="uHa-vo-w34" secondAttribute="leading" constant="12" id="Evp-1G-gud"/>
+                                    <constraint firstItem="d4g-cw-fOe" firstAttribute="top" secondItem="zr7-FQ-8AH" secondAttribute="bottom" id="Hgl-u5-xbV"/>
+                                    <constraint firstItem="zr7-FQ-8AH" firstAttribute="top" secondItem="uHa-vo-w34" secondAttribute="top" constant="12" id="J0Z-rP-ah3"/>
+                                    <constraint firstAttribute="bottom" secondItem="gxe-Kn-bDf" secondAttribute="bottom" constant="10" id="Onr-Xm-vxP"/>
+                                    <constraint firstAttribute="trailing" secondItem="zr7-FQ-8AH" secondAttribute="trailing" constant="12" id="POE-rb-xr2"/>
+                                    <constraint firstAttribute="trailing" secondItem="ReU-Xq-Z64" secondAttribute="trailing" constant="12" id="QMj-pE-iN8"/>
+                                    <constraint firstItem="XgU-kR-fXg" firstAttribute="centerX" secondItem="TK3-sg-cLF" secondAttribute="centerX" id="Rr8-oN-vcf"/>
+                                    <constraint firstItem="ReU-Xq-Z64" firstAttribute="top" secondItem="XgU-kR-fXg" secondAttribute="bottom" constant="21" id="TlT-ML-N6k"/>
+                                    <constraint firstItem="XgU-kR-fXg" firstAttribute="leading" secondItem="uHa-vo-w34" secondAttribute="leading" constant="28" id="bW2-Xw-rNE"/>
+                                    <constraint firstItem="ReU-Xq-Z64" firstAttribute="leading" secondItem="uHa-vo-w34" secondAttribute="leading" constant="12" id="dzu-Zf-Y2H"/>
+                                    <constraint firstItem="gxe-Kn-bDf" firstAttribute="top" secondItem="ReU-Xq-Z64" secondAttribute="bottom" constant="8" id="gok-gg-pwI"/>
+                                    <constraint firstAttribute="height" constant="214" id="keM-HJ-pje"/>
+                                    <constraint firstAttribute="trailing" secondItem="gxe-Kn-bDf" secondAttribute="trailing" constant="12" id="qrN-1c-9Ue"/>
+                                    <constraint firstItem="XgU-kR-fXg" firstAttribute="top" secondItem="zr7-FQ-8AH" secondAttribute="bottom" constant="11" id="y3X-qa-Jlm"/>
+                                    <constraint firstAttribute="trailing" secondItem="d4g-cw-fOe" secondAttribute="trailing" constant="12" id="yTI-29-oLx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="uHa-vo-w34" firstAttribute="leading" secondItem="d3d-8b-h2o" secondAttribute="leadingMargin" id="E5t-d1-kgf"/>
+                            <constraint firstItem="uHa-vo-w34" firstAttribute="trailing" secondItem="d3d-8b-h2o" secondAttribute="trailingMargin" id="S4o-Ld-n2e"/>
+                            <constraint firstItem="uHa-vo-w34" firstAttribute="centerY" secondItem="d3d-8b-h2o" secondAttribute="centerY" id="idC-mO-jKF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IJI-yA-hKF"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="parentView" destination="d3d-8b-h2o" id="QoN-kY-8ll"/>
+                        <outlet property="titleLabel" destination="zr7-FQ-8AH" id="b7A-Gy-ZG3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="css-nY-c4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2884.5" y="1061.5"/>
+        </scene>
         <!--Modal Web View Controller-->
         <scene sceneID="58h-mt-v3T">
             <objects>
@@ -810,7 +955,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDu-6U-KHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3052" y="379"/>
+            <point key="canvasLocation" x="3584" y="379"/>
         </scene>
         <!--Take Login View Controller-->
         <scene sceneID="f7b-el-DSH">
@@ -979,6 +1124,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnt-ay-3Av" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="377" y="328"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LVT-YJ-7Hp">
+            <objects>
+                <navigationController restorationIdentifier="formSheetController" storyboardIdentifier="formSheetController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JGC-cG-eSP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gYm-8T-e07">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Lo3-1g-CBS" kind="relationship" relationship="rootViewController" id="oFa-hq-O9T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tL-Uu-clb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="1012"/>
         </scene>
     </scenes>
     <resources>

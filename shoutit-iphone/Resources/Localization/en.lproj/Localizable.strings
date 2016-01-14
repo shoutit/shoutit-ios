@@ -281,3 +281,6 @@
 
 /* Loading... */
 "Loading..." = "Loading...";
+
+/* LoginPopupTitleLabel */
+"LoginPopupTitleLabel" = "Login to create shout";

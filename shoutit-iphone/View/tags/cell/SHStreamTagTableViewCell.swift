@@ -104,9 +104,9 @@ class SHStreamTagTableViewCell: UITableViewCell {
     
     @IBAction func listenAction(sender: AnyObject) {
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
+            if let viewController = self.viewController {
+               SHOauthToken.goToLogin(viewController)
+            }
         }
         //[self setListenSelected:self.model.tag.is_listening];
         let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)

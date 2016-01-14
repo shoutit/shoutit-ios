@@ -19,9 +19,7 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
         super.viewDidLoad()
         if(!othersProfile) {
             if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-                SHOauthToken.goToLogin()
-                SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-                return
+                SHOauthToken.goToLogin(self)
             }
         }
         self.clearsSelectionOnViewWillAppear = true
@@ -66,6 +64,9 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
+            SHOauthToken.goToLogin(self)
+        }
         viewModel?.viewWillAppear()
     }
     

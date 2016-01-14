@@ -118,9 +118,7 @@ class SHShoutDetailTableViewController: BaseTableViewController {
     
     @IBAction func replyAction(sender: AnyObject) {
         if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin()
-            SHProgressHUD.showError(NSLocalizedString("Please log in to continue", comment: "Please log in to continue"))
-            return
+            SHOauthToken.goToLogin(self)
         }
         viewModel?.replyAction()
     }

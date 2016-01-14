@@ -32,7 +32,7 @@ struct Constants {
     struct RegEx {
         static let REGEX_EMAIL = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}"
         static let REGEX_PASSWORD_LIMIT = "^.{6,20}$"
-        static let REGEX_USER_NAME = "[A-Za-z0-9_.]{2,30}"
+        static let REGEX_USER_NAME = "^[a-z0-9A-Z_-]{2,20}$"
         static let REGEX_FIRST_USER_NAME_LIMIT = "^.{2,30}$"
         static let REGEX_LAST_USER_NAME_LIMIT = "^.{1,30}$"
     }
@@ -86,6 +86,8 @@ struct Constants {
         static let SHTAGLISTENERS = "SHTagListenersTableViewController"
         static let ShoutList = "shoutListViewController"
         static let SHPostSignup = "SHPostSignupViewController"
+        static let SHLOGINPOPUP =  "SHLoginPopupViewController"
+        static let SHLOGIN = "SHLoginViewController"
     }
     
     struct TableViewCell {
