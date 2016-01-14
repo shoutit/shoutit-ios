@@ -44,7 +44,7 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
         super.viewWillAppear(animated)
         self.parentView.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.54)
         if(isFromCreateShout) {
-            self.titleLabel.text = "Login to create shout"
+            self.titleLabel.text = NSLocalizedString("LoginPopupTitleLabel", comment: "Login to create shout")
         }
         viewModel?.viewWillAppear()
     }
@@ -74,13 +74,11 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
     
     
     @IBAction func signupOrLoginAction(sender: AnyObject) {
-        let destinationVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier("SHLoginViewController")
-        let navigationController = UINavigationController(rootViewController: destinationVC)
-       // navigationController.navigationItem.leftBarButtonItem?.action = Selector("backToLoginPopup")
+        let loginVC = UIStoryboard.getLogin().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHLOGIN)
+        let navigationController = UINavigationController(rootViewController: loginVC)
         let backButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backToLoginPopup"))
-        destinationVC.navigationItem.leftBarButtonItem = backButton
-        destinationVC.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
-       // navigationController.navigationItem.leftBarButtonItem = backButton
+        loginVC.navigationItem.leftBarButtonItem = backButton
+        loginVC.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     

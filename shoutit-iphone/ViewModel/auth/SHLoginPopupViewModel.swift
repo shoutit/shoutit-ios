@@ -128,9 +128,6 @@ class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
                             } else {
                                 self.showPostSignUpScreen()
                             }
-                            
-                            
-                            //SHOauthToken.goToDiscover()
                             SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
                         })
                     } else {
