@@ -139,8 +139,10 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         if let vc = self.viewController {
             if vc.signUpView.hidden {
                 vc.signInPassword.secureTextEntry = !vc.signInPassword.secureTextEntry
+                vc.signInPassword.resignFirstResponder()
             } else {
                 vc.signUpPassword.secureTextEntry = !vc.signUpPassword.secureTextEntry
+                vc.signUpPassword.resignFirstResponder()
             }
         }
     }
