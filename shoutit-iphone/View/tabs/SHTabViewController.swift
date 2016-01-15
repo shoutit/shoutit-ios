@@ -27,7 +27,7 @@ class SHTabViewController: UITabBarController {
         let navVC = UINavigationController(rootViewController: viewController)
         navVC.tabBarItem = viewController.tabBarItem
         navVC.title = viewController.title
-        navVC.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        navVC.navigationBar.barTintColor = UIColor(hexString: Constants.Style.primaryGreen)
         navVC.navigationBar.tintColor = UIColor.whiteColor()
         return navVC
     }

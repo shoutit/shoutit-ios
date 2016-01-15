@@ -40,7 +40,7 @@ class SHApiShoutService: NSObject {
         let params = ["page_size": Constants.Common.SH_PAGE_SIZE]
         SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
-
+    
     func loadShoutStreamForLocation(location: SHAddress?, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         var URL = SHOUTS
         if type == ShoutType.VideoCV {
@@ -66,7 +66,7 @@ class SHApiShoutService: NSObject {
                 }
             }
         }
-        params["page_size"] = Constants.Common.SH_PAGE_SIZE
+        params["page_size"] = self.discoverId == nil ? Constants.Common.SH_PAGE_SIZE : 4
         params["page"] = page
         if let q = query where !q.isEmpty {
             params["search"] = query

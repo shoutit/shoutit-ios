@@ -117,14 +117,14 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func showPassword(sender: AnyObject) {
-        if let password = self.signUpPassword.text where !password.isEmpty && signUpPassword.isFirstResponder() {
+        if let password = self.signUpPassword.text where !password.isEmpty {
             if(showPasswordButton.titleLabel?.text == "show") {
                 showPasswordButton.setTitle("hide", forState: .Normal)
             } else {
                 showPasswordButton.setTitle("show", forState: .Normal)
             }
             viewModel?.togglePassword()
-        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty && signInPassword.isFirstResponder() {
+        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty {
             if(showLoginPasswordButton.titleLabel?.text == "show") {
                 showLoginPasswordButton.setTitle("hide", forState: .Normal)
             } else {

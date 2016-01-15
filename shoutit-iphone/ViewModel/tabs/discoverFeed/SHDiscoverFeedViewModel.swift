@@ -13,13 +13,14 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     private let viewController: SHDiscoverFeedViewController
     private var discoverItems: [SHDiscoverItem] = []
     private var shouts: [SHShout] = []
+    private var shApiShout = SHApiShoutService()
     
     required init(viewController: SHDiscoverFeedViewController) {
         self.viewController = viewController
     }
     
     func viewDidLoad() {
-       // getDiscoverItems()
+        getDiscoverItems()
     }
     
     func viewWillAppear() {
@@ -43,17 +44,38 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2 + discoverItems.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return getDiscoverFeedHeaderCell(indexPath)
+        switch(indexPath.row) {
+        case 0:
+            return getDiscoverFeedHeaderCell(indexPath)
+        case 1...discoverItems.count:
+            let cell = getDiscoverListCell(indexPath) as! SHDiscoverFeedCell
+            cell.setUp(self.viewController, discoverItem: self.discoverItems[indexPath.row - 1])
+            return cell
+        case discoverItems.count + 1:
+            return getDiscoverShoutHeaderCell(indexPath)
+//        case (discoverItems.count + 2)...(discoverItems.count + 5):
+//            return getShoutListCell(indexPath)
+        default:
+            //return getShoutListCell(indexPath)
+            return getDiscoverFeedHeaderCell(indexPath)
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         switch indexPath.row {
         case 0:
-            return CGSizeMake(UIScreen.mainScreen().bounds.width, 132)
+            return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 132)
+        case 1...discoverItems.count:
+            return CGSizeMake((UIScreen.mainScreen().bounds.width - 30) / 2, 165)
+        case discoverItems.count + 1:
+            return CGSizeMake(UIScreen.mainScreen().bounds.width, 44)
+//        case (discoverItems.count + 2)...(discoverItems.count + 5):
+//            return CGSizeMake(172, 172)
         default:
             return CGSizeMake(172, 172)
         }
@@ -63,17 +85,20 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     private func getDiscoverFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedHeaderCell, forIndexPath: indexPath)
     }
-//
-//    private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-//        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverListCell, forIndexPath: indexPath)
-//    }
-//    
+
+    private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverFeedCell, forIndexPath: indexPath)
+    }
+    
+    private func getDiscoverShoutHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutHeaderCell, forIndexPath: indexPath)
+    }
+
 //    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-//        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
-//        cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 3])
+//        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier("SHDiscoverShoutsCell", forIndexPath: indexPath) as! SHDiscoverShoutsCell
+//        cell.setUp(self.viewController, shout: self.shouts[indexPath.row - (discoverItems.count + 2)])
 //        addBorder(cell)
 //        return cell
-//        
 //    }
     
     private func addBorder(cell: UICollectionViewCell) {
@@ -107,11 +132,13 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     private func fetchDiscoverItems(id: String) {
         SHApiDiscoverService().getItemsFeedForLocation(id, cacheResponse: { (shDiscoverItem) -> Void in
             // Do Nothing here
+            self.fetchShoutsForLocation(id)
             self.updateUI(shDiscoverItem)
             }, completionHandler: { (response) -> Void in
-                self.viewController.collectionView?.pullToRefreshView?.stopAnimating()
+               // self.viewController.collectionView?.pullToRefreshView?.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
+                    self.fetchShoutsForLocation(id)
                     log.info("Success getting discover items")
                     self.updateUI(result)
                 case .Failure(let error):
@@ -122,10 +149,30 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
         )
     }
     
-    private func updateUI(discoverItem: SHDiscoverItem) {
-        discoverItems = discoverItem.children
-        self.viewController.collectionView?.reloadData()
+    private func fetchShoutsForLocation(discoverId: String) {
+        shApiShout.discoverId = discoverId
+        shApiShout.loadShoutStreamForLocation(nil, page: 1, type: ShoutType.Offer, query: nil, cacheResponse: { (shShoutMeta) -> Void in
+            self.updateShouts(shShoutMeta)
+            }) { (response) -> Void in
+                self.viewController.collectionView?.pullToRefreshView?.stopAnimating()
+                switch(response.result) {
+                case .Success(let result):
+                    log.info("Success getting discover items")
+                    self.updateShouts(result)
+                case .Failure(let error):
+                    log.debug("\(error)")
+                    // TODO
+                }
+        }
     }
     
+    private func updateUI(discoverItem: SHDiscoverItem) {
+        self.discoverItems = discoverItem.children
+    }
+    
+    private func updateShouts(shouts: SHShoutMeta) {
+        self.shouts = shouts.results
+        self.viewController.collectionView.reloadData()
+    }
 
 }
