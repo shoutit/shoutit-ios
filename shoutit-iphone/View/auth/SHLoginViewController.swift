@@ -252,7 +252,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         textField.titleLabelColor = MaterialColor.grey.lighten1
         textField.titleLabelActiveColor = MaterialColor.lightBlue.accent2
         textField.bottomBorderLayer.hidden = true
-        textField.clearButtonMode = .WhileEditing
+        textField.clearButtonMode = .Never
         textField.delegate = viewModel
         if(view == firstNameView) {
             textField.addTarget(self, action: Selector("highLightFirstNameAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
@@ -262,13 +262,13 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if ((view == passwordView)) {
-            showPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
+            showPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 80, frameY - 2, 20, 15)
             showPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
             textField.secureTextEntry = true
             textField.addTarget(self, action: Selector("highLightPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            showPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
+            showPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(12)
             showPasswordButton.sizeToFit()
             view.addSubview(textField)
             view.addSubview(showPasswordButton)
@@ -277,13 +277,13 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightSignInEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == signInPasswordView) {
-            showLoginPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
+            showLoginPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 80, frameY - 2, 20, 15)
             showLoginPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showLoginPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showLoginPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
             textField.secureTextEntry = true
             textField.addTarget(self, action: Selector("highLightSignInPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            showLoginPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
+            showLoginPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(12)
             showLoginPasswordButton.sizeToFit()
             view.addSubview(textField)
             view.addSubview(showLoginPasswordButton)
