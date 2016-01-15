@@ -239,9 +239,9 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     private func prepareFloatingTextField (textField: TextField, frameX: CGFloat, frameY: CGFloat, placeholderText: String, view: UIView, parentView: UIView) {
         textField.delegate = self
         if parentView == signUpView {
-            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 12.5)
+            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 8)
         } else {
-            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signInViewHeight / 4.18)
+            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signInViewHeight / 5)
         }
         
         textField.placeholder = placeholderText
@@ -259,6 +259,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         } else if (view == lastNameView) {
             textField.addTarget(self, action: Selector("highLightLastNameAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == emailView) {
+            textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if ((view == passwordView)) {
             showPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
@@ -273,6 +274,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             view.addSubview(showPasswordButton)
             return
         } else if (view == signInEmailView) {
+            textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightSignInEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == signInPasswordView) {
             showLoginPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
