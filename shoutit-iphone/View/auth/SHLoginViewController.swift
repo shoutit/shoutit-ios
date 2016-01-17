@@ -239,13 +239,13 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     private func prepareFloatingTextField (textField: TextField, frameX: CGFloat, frameY: CGFloat, placeholderText: String, view: UIView, parentView: UIView) {
         textField.delegate = self
         if parentView == signUpView {
-            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 8)
+            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 9)
         } else {
             textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signInViewHeight / 5)
         }
         
         textField.placeholder = placeholderText
-        textField.font = UIFont(name: "System", size: 16)
+        textField.font = UIFont(name: "System", size: 15)
         textField.textColor = MaterialColor.black
         textField.titleLabel = UILabel()
         textField.titleLabel?.font = RobotoFont.mediumWithSize(10)

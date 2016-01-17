@@ -222,6 +222,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 if textField == vc.firstNameTextField {
                     if let firstName = vc.firstNameTextField.text where vc.firstNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(firstName)) {
+                            vc.firstNameTextField.titleLabelColor = MaterialColor.red.accent2
                             self.displayErrorMessage(NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name."), view: vc.firstNameView)
                             vc.firstNameTextField.resignFirstResponder()
                         }
@@ -229,6 +230,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 } else if textField == vc.lastNameTextField {
                     if let lastName = vc.lastNameTextField.text where vc.lastNameTextField.text?.characters.count > 0 {
                         if(!self.nameValidation(lastName)) {
+                            vc.lastNameTextField.titleLabelColor = MaterialColor.red.accent2
                             self.displayErrorMessage(NSLocalizedString("LastNameValidationError", comment: "Enter valid last name."), view: vc.lastNameView)
                             vc.lastNameTextField.resignFirstResponder()
                         }
@@ -236,6 +238,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 } else if textField == vc.signUpEmailOrUsername {
                     if let email = vc.signUpEmailOrUsername.text where vc.signUpEmailOrUsername.text?.characters.count > 0 {
                         if(!self.emailValidation(email)) {
+                            vc.signUpEmailOrUsername.titleLabelColor = MaterialColor.red.accent2
                             self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: vc.emailView)
                             vc.signUpEmailOrUsername.resignFirstResponder()
                         }
@@ -243,6 +246,7 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 } else if textField == vc.signUpPassword {
                     if let password = vc.signUpPassword.text where vc.signUpPassword.text?.characters.count > 0 {
                         if(!self.passwordValidation(password)) {
+                            vc.signUpPassword.titleLabelColor = MaterialColor.red.accent2
                             self.displayErrorMessage(NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20"), view: vc.passwordView)
                             vc.signUpPassword.resignFirstResponder()
                         }

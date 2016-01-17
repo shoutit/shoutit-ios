@@ -20,6 +20,11 @@ class SHDiscoverFeedViewController: BaseViewController {
         viewModel?.viewDidLoad()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     override func initializeViewModel() {
         viewModel = SHDiscoverFeedViewModel(viewController: self)
     }

@@ -22,6 +22,15 @@ class SHDiscoverShoutsCellViewModel: NSObject {
         loadShoutImage(shout.thumbnail)
         cell.name.text = shout.user?.name
         cell.shoutTitle.text = shout.title
+        cell.shoutTitle.clipsToBounds = true
+        cell.name.clipsToBounds = true
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        if let number = numberFormatter.numberFromString(String(format: "%g", shout.price)) {
+            let price = String(format: "%@ %@", shout.currency, number.stringValue)
+            cell.price.text = price
+            cell.price.clipsToBounds = true
+        }
     }
     
     // MARK - Private

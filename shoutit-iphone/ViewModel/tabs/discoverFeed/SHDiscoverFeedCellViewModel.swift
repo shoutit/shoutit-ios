@@ -19,8 +19,8 @@ class SHDiscoverFeedCellViewModel: NSObject {
     
     func setUp(viewController: UIViewController?, discoverItem: SHDiscoverItem) {
         self.discoverItem = discoverItem
-        
         cell.discoverTitle.text = discoverItem.title
+        cell.discoverTitle.clipsToBounds = true
         loadDiscoverImage(discoverItem.image)
     }
     
@@ -30,4 +30,5 @@ class SHDiscoverFeedCellViewModel: NSObject {
             cell.discoverImage.kf_setImageWithURL(nsUrl)
         }
     }
+    
 }

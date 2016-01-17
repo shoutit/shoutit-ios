@@ -24,5 +24,4 @@ class SHDiscoverFeedCell: UICollectionViewCell {
     func setUp(viewController: UIViewController?, discoverItem: SHDiscoverItem) {
         viewModel?.setUp(viewController, discoverItem: discoverItem)
     }
-
 }
