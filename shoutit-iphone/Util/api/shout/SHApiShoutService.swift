@@ -25,6 +25,7 @@ class SHApiShoutService: NSObject {
     var filter: SHFilter?
     var discoverId: String?
     var tagName: String?
+    var pageSize: Int?
     
     func loadHomeShouts(page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         let shoutStreamForUser = USER_SHOUTS + "/me/shouts"
@@ -66,7 +67,7 @@ class SHApiShoutService: NSObject {
                 }
             }
         }
-        params["page_size"] = self.discoverId == nil ? Constants.Common.SH_PAGE_SIZE : 4
+        params["page_size"] = self.pageSize == nil ? Constants.Common.SH_PAGE_SIZE : self.pageSize
         params["page"] = page
         if let q = query where !q.isEmpty {
             params["search"] = query

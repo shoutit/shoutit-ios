@@ -1,34 +1,30 @@
 //
-//  SHDiscoverFeedViewController.swift
+//  SHDiscoverShoutsViewController.swift
 //  shoutit-iphone
 //
-//  Created by Vishal Thakur on 1/6/16.
+//  Created by Vishal Thakur on 1/18/16.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-class SHDiscoverFeedViewController: BaseViewController {
-
-    private var viewModel: SHDiscoverFeedViewModel?
-    var discoverId: String?
+class SHDiscoverShoutsViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+
+    private var viewModel: SHDiscoverShoutsViewModel?
+    var discoverId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.registerNib(UINib(nibName: Constants.CollectionViewCell.SHDiscoverShoutCell, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHDiscoverShoutCell)
-        self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
+        self.collectionView.delegate = viewModel
+        self.navigationController?.navigationBar.topItem?.title = ""
         viewModel?.viewDidLoad()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
     override func initializeViewModel() {
-        viewModel = SHDiscoverFeedViewModel(viewController: self)
+        viewModel = SHDiscoverShoutsViewModel(viewController: self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -59,6 +55,4 @@ class SHDiscoverFeedViewController: BaseViewController {
     deinit {
         viewModel?.destroy()
     }
-   
-
 }

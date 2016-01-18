@@ -1,35 +1,35 @@
 //
-//  SHDiscoverShoutsCellViewModel.swift
+//  SHDiscoverShoutCellViewModel.swift
 //  shoutit-iphone
 //
-//  Created by Vishal Thakur on 1/15/16.
+//  Created by Vishal Thakur on 1/18/16.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 
-class SHDiscoverShoutsCellViewModel: NSObject {
+class SHDiscoverShoutCellViewModel: NSObject {
 
-    private let cell: SHDiscoverShoutsCell
+    private let cell: SHDiscoverShoutCell
     private var shout: SHShout?
     
-    init(cell: SHDiscoverShoutsCell) {
+    init(cell: SHDiscoverShoutCell) {
         self.cell = cell
     }
     
     func setUp(viewController: UIViewController?, shout: SHShout) {
         self.shout = shout
         loadShoutImage(shout.thumbnail)
-        cell.name.text = shout.user?.name
+        cell.shouterName.text = shout.user?.name
         cell.shoutTitle.text = shout.title
         cell.shoutTitle.clipsToBounds = true
-        cell.name.clipsToBounds = true
+        cell.shouterName.clipsToBounds = true
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = .DecimalStyle
         if let number = numberFormatter.numberFromString(String(format: "%g", shout.price)) {
             let price = String(format: "%@ %@", shout.currency, number.stringValue)
-            cell.price.text = price
-            cell.price.clipsToBounds = true
+            cell.shoutPrice.text = price
+            cell.shoutPrice.clipsToBounds = true
         }
     }
     

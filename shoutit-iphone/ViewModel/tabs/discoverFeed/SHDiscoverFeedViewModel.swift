@@ -14,7 +14,6 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     private var discoverItems: [SHDiscoverItem] = []
     private var shouts: [SHShout] = []
     private var shApiShout = SHApiShoutService()
-    private var oddNumberOfDiscoverItems: Int?
     
     required init(viewController: SHDiscoverFeedViewController) {
         self.viewController = viewController
@@ -65,9 +64,12 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
         case discoverItems.count + 1:
             return getDiscoverShoutHeaderCell(indexPath)
         case (discoverItems.count + 2)...(discoverItems.count + 5):
-            return getShoutListCell(indexPath)
+            let cell = getShoutListCell(indexPath) as! SHDiscoverShoutCell
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - (discoverItems.count + 2)])
+            return cell
         default:
-            let cell = getSeeAllShoutsCell(indexPath)
+            let cell = getSeeAllShoutsCell(indexPath) as! SHDiscoverShowMoreShoutsCell
+            cell.setup(self.viewController)
             addBorder(cell)
             return cell
         }
@@ -103,9 +105,7 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     }
 
     private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier("SHDiscoverShoutsCell", forIndexPath: indexPath) as! SHDiscoverShoutsCell
-        cell.setUp(self.viewController, shout: self.shouts[indexPath.row - (discoverItems.count + 2)])
-        return cell
+        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutCell, forIndexPath: indexPath) as! SHDiscoverShoutCell
     }
     
     private func getSeeAllShoutsCell(indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -144,6 +144,7 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     
     private func gotDiscoverItems(result: SHDiscoverLocation) {
         if result.results.count > 0, let discoverItemId = result.results[0].id {
+            self.viewController.discoverId = discoverItemId
             self.fetchDiscoverItems(discoverItemId)
         }
     }
@@ -170,6 +171,7 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     
     private func fetchShoutsForLocation(discoverId: String) {
         shApiShout.discoverId = discoverId
+        shApiShout.pageSize = 4
         shApiShout.loadShoutStreamForLocation(nil, page: 1, type: ShoutType.Offer, query: nil, cacheResponse: { (shShoutMeta) -> Void in
             self.updateShouts(shShoutMeta)
             }) { (response) -> Void in

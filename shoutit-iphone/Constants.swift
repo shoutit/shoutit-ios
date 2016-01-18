@@ -89,6 +89,7 @@ struct Constants {
         static let SHPostSignup = "SHPostSignupViewController"
         static let SHLOGINPOPUP =  "SHLoginPopupViewController"
         static let SHLOGIN = "SHLoginViewController"
+        static let SHDISCOVERSHOUTS = "SHDiscoverShoutsViewController"
     }
     
     struct TableViewCell {
@@ -127,6 +128,8 @@ struct Constants {
         static let SHDiscoverShoutHeaderCell = "discoverShoutHeaderCell"
         static let SHDiscoverShowMoreShoutsCell = "discoverShowMoreShoutsCell"
         static let SHDiscoverFeedCell = "SHDiscoverFeedCell"
+        static let SHDiscoverShoutCell = "SHDiscoverShoutCell"
+        static let SHDiscoverShoutsHeaderCell = "SHDiscoverShoutsHeaderCell"
     }
     
     struct CollectionReusableView {
