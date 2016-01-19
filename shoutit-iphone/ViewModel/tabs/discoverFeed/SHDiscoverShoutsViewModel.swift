@@ -44,6 +44,28 @@ class SHDiscoverShoutsViewModel: NSObject, ViewControllerModelProtocol, UICollec
         
     }
     
+    func pullToRefresh() {
+        if let discoverId = self.viewController.discoverId {
+            self.fetchShoutsForLocation(discoverId)
+        }
+    }
+    
+    func triggerLoadMore () {
+        self.shApiShout.loadShoutStreamNextPageForLocation(nil, type: .Offer, query: nil, cacheResponse: { (shShoutMeta) -> Void in
+            // Do Nothing
+            }) { (response) -> Void in
+                self.viewController.collectionView.pullToRefreshView.stopAnimating()
+                self.viewController.collectionView.infiniteScrollingView.stopAnimating()
+                switch(response.result) {
+                case .Success(let result):
+                    self.shouts += result.results
+                    self.viewController.collectionView.reloadData()
+                case .Failure(let error):
+                    log.error("Error fetching more shouts \(error.localizedDescription)")
+                }
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1 + shouts.count
     }
@@ -53,9 +75,7 @@ class SHDiscoverShoutsViewModel: NSObject, ViewControllerModelProtocol, UICollec
         case 0:
             return getDiscoverShoutsHeaderCell(indexPath)
         case 1...shouts.count:
-            let cell = getShoutListCell(indexPath) as! SHDiscoverShoutCell
-            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 1])
-            return cell
+            return getDiscoverShoutCell(indexPath)
         default:
             return getDiscoverShoutsHeaderCell(indexPath)
         }
@@ -66,7 +86,12 @@ class SHDiscoverShoutsViewModel: NSObject, ViewControllerModelProtocol, UICollec
         case 0:
             return CGSizeMake(UIScreen.mainScreen().bounds.width, 50)
         case 1...shouts.count:
-            return CGSizeMake((UIScreen.mainScreen().bounds.width - 30) / 2, 172)
+            switch self.viewController.viewType {
+            case .GRID:
+                return CGSizeMake((UIScreen.mainScreen().bounds.width - 30) / 2, 172)
+            case .LIST:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 110)
+            }
         default:
             return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 44)
         }
@@ -74,7 +99,9 @@ class SHDiscoverShoutsViewModel: NSObject, ViewControllerModelProtocol, UICollec
     
     // MARK - Private
     private func getDiscoverShoutsHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutsHeaderCell, forIndexPath: indexPath)
+        let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutsHeaderCell, forIndexPath: indexPath) as! SHDiscoverShoutsHeaderCell
+        cell.setUp(self.viewController)
+        return cell
     }
     
     private func fetchShoutsForLocation(discoverId: String) {
@@ -99,8 +126,17 @@ class SHDiscoverShoutsViewModel: NSObject, ViewControllerModelProtocol, UICollec
         self.viewController.collectionView.reloadData()
     }
     
-    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        return self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutCell, forIndexPath: indexPath) as! SHDiscoverShoutCell
+    private func getDiscoverShoutCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        switch(self.viewController.viewType) {
+        case .GRID:
+            let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutCell, forIndexPath: indexPath) as! SHDiscoverShoutCell
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 1])
+            return cell
+        case .LIST:
+            let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHDiscoverShoutListCell, forIndexPath: indexPath) as! SHDiscoverShoutListCell
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - 1])
+            return cell
+        }
     }
 
 }

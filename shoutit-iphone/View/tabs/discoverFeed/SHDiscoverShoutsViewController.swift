@@ -13,13 +13,19 @@ class SHDiscoverShoutsViewController: BaseViewController {
 
     private var viewModel: SHDiscoverShoutsViewModel?
     var discoverId: String?
+    var viewType: ShoutViewType = .GRID {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.registerNib(UINib(nibName: Constants.CollectionViewCell.SHDiscoverShoutCell, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHDiscoverShoutCell)
+        self.collectionView.registerNib(UINib(nibName: Constants.CollectionViewCell.SHDiscoverShoutListCell, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHDiscoverShoutListCell)
         self.collectionView.dataSource = viewModel
         self.collectionView.delegate = viewModel
-        self.navigationController?.navigationBar.topItem?.title = ""
+        setPullToRefresh()
         viewModel?.viewDidLoad()
     }
     
@@ -50,6 +56,21 @@ class SHDiscoverShoutsViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func cancelAction(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    // MARK - Private
+    private func setPullToRefresh() {
+        self.collectionView?.addPullToRefreshWithActionHandler({ () -> Void in
+            self.viewModel?.pullToRefresh()
+        })
+        
+        self.collectionView?.addInfiniteScrollingWithActionHandler({ () -> Void in
+            self.viewModel?.triggerLoadMore()
+        })
     }
     
     deinit {

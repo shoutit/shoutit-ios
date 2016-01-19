@@ -85,7 +85,7 @@ class SHApiShoutService: NSObject {
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func loadShoutStreamNextPageForLocation(location: SHAddress, type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func loadShoutStreamNextPageForLocation(location: SHAddress?, type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         self.currentPage++
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }

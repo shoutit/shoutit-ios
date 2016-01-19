@@ -14,6 +14,8 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     private var discoverItems: [SHDiscoverItem] = []
     private var shouts: [SHShout] = []
     private var shApiShout = SHApiShoutService()
+    private var numberOfDiscoverItems = 0
+    private var isDiscoverCountOdd = false
     
     required init(viewController: SHDiscoverFeedViewController) {
         self.viewController = viewController
@@ -45,7 +47,7 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(discoverItems.count > 0 && shouts.count > 0) {
-            return 3 + discoverItems.count + shouts.count
+            return 3 + numberOfDiscoverItems + shouts.count
         } else {
             return 0
         }
@@ -57,15 +59,20 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
             let cell = getDiscoverFeedHeaderCell(indexPath)
             addShadow(cell)
             return cell
-        case 1...discoverItems.count:
-            let cell = getDiscoverListCell(indexPath) as! SHDiscoverFeedCell
-            cell.setUp(self.viewController, discoverItem: self.discoverItems[indexPath.row - 1])
-            return cell
-        case discoverItems.count + 1:
+        case 1...numberOfDiscoverItems:
+            if(indexPath.row < numberOfDiscoverItems && isDiscoverCountOdd) {
+                let cell = getDiscoverListCell(indexPath) as! SHDiscoverFeedCell
+                cell.setUp(self.viewController, discoverItem: self.discoverItems[indexPath.row - 1])
+                return cell
+            } else {
+                let cell = self.viewController.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.SHExtraDiscoverCell, forIndexPath: indexPath)
+                return cell
+            }
+        case numberOfDiscoverItems + 1:
             return getDiscoverShoutHeaderCell(indexPath)
-        case (discoverItems.count + 2)...(discoverItems.count + 5):
+        case (numberOfDiscoverItems + 2)...(numberOfDiscoverItems + 5):
             let cell = getShoutListCell(indexPath) as! SHDiscoverShoutCell
-            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - (discoverItems.count + 2)])
+            cell.setUp(self.viewController, shout: self.shouts[indexPath.row - (numberOfDiscoverItems + 2)])
             return cell
         default:
             let cell = getSeeAllShoutsCell(indexPath) as! SHDiscoverShowMoreShoutsCell
@@ -80,11 +87,11 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
         switch indexPath.row {
         case 0:
             return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 132)
-        case 1...discoverItems.count:
+        case 1...numberOfDiscoverItems:
             return CGSizeMake((UIScreen.mainScreen().bounds.width - 30) / 2, 165)
-        case discoverItems.count + 1:
+        case numberOfDiscoverItems + 1:
             return CGSizeMake(UIScreen.mainScreen().bounds.width, 44)
-        case (discoverItems.count + 2)...(discoverItems.count + 5):
+        case (numberOfDiscoverItems + 2)...(numberOfDiscoverItems + 5):
             return CGSizeMake((UIScreen.mainScreen().bounds.width - 30) / 2, 172)
         default:
             return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 44)
@@ -189,6 +196,12 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     
     private func updateUI(discoverItem: SHDiscoverItem) {
         self.discoverItems = discoverItem.children
+        if(self.discoverItems.count % 2 == 0) {
+            self.numberOfDiscoverItems = self.discoverItems.count
+        } else {
+            self.numberOfDiscoverItems = self.discoverItems.count + 1
+            self.isDiscoverCountOdd = true
+        }
     }
     
     private func updateShouts(shouts: SHShoutMeta) {

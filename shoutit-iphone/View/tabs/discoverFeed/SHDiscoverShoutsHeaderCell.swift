@@ -9,5 +9,21 @@
 import UIKit
 
 class SHDiscoverShoutsHeaderCell: UICollectionViewCell {
+    @IBOutlet weak var shoutViewType: UIButton!
+    
+    var viewModel: SHDiscoverShoutsHeaderCellViewModel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        viewModel = SHDiscoverShoutsHeaderCellViewModel(cell: self)
+    }
+    
+    func setUp(viewController: SHDiscoverShoutsViewController) {
+        viewModel?.setUp(viewController)
+    }
+    
+    @IBAction func shoutViewTypeAction(sender: AnyObject) {
+       viewModel?.toggleSwitchView() 
+    }
     
 }

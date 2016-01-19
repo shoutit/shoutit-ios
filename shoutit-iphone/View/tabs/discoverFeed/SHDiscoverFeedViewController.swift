@@ -17,6 +17,7 @@ class SHDiscoverFeedViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.registerNib(UINib(nibName: Constants.CollectionViewCell.SHDiscoverShoutCell, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHDiscoverShoutCell)
+        self.collectionView.registerClass(SHExtraDiscoverCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHExtraDiscoverCell)
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
         viewModel?.viewDidLoad()

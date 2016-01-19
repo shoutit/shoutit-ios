@@ -555,7 +555,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                     </view>
                     <navigationItem key="navigationItem" id="5FB-7S-VIL">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="drawer" id="wep-Io-s8T" userLabel="drawer"/>
+                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="MAL-mf-RN1"/>
                         <view key="titleView" contentMode="scaleToFill" id="DK0-JL-1LJ">
                             <rect key="frame" x="262" y="12" width="76" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -621,9 +621,9 @@ Hat, Chunky Textured Knit Hat and more text</string>
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
-        <image name="drawer" width="25" height="16"/>
         <image name="filterShoutList" width="19" height="21"/>
         <image name="headbarLogoWhite" width="77" height="20"/>
+        <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>
         <image name="shoutsAsList" width="26" height="21"/>
