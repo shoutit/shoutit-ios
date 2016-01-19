@@ -11,13 +11,21 @@ import UIKit
 class SHDiscoverFeedViewController: BaseViewController {
 
     private var viewModel: SHDiscoverFeedViewModel?
+    var discoverId: String?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.dataSource = viewModel
+        self.collectionView.registerNib(UINib(nibName: Constants.CollectionViewCell.SHDiscoverShoutCell, bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: Constants.CollectionViewCell.SHDiscoverShoutCell)
+        self.collectionView.registerClass(SHExtraDiscoverCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.SHExtraDiscoverCell)
         self.collectionView.delegate = viewModel
+        self.collectionView.dataSource = viewModel
         viewModel?.viewDidLoad()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     override func initializeViewModel() {

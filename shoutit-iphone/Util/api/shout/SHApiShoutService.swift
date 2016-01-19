@@ -25,6 +25,7 @@ class SHApiShoutService: NSObject {
     var filter: SHFilter?
     var discoverId: String?
     var tagName: String?
+    var pageSize: Int?
     
     func loadHomeShouts(page: Int, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         let shoutStreamForUser = USER_SHOUTS + "/me/shouts"
@@ -40,7 +41,7 @@ class SHApiShoutService: NSObject {
         let params = ["page_size": Constants.Common.SH_PAGE_SIZE]
         SHApiManager.sharedInstance.get(shoutStreamForUser, params: params, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
-
+    
     func loadShoutStreamForLocation(location: SHAddress?, page: Int, var type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         var URL = SHOUTS
         if type == ShoutType.VideoCV {
@@ -66,7 +67,7 @@ class SHApiShoutService: NSObject {
                 }
             }
         }
-        params["page_size"] = Constants.Common.SH_PAGE_SIZE
+        params["page_size"] = self.pageSize == nil ? Constants.Common.SH_PAGE_SIZE : self.pageSize
         params["page"] = page
         if let q = query where !q.isEmpty {
             params["search"] = query
@@ -84,7 +85,7 @@ class SHApiShoutService: NSObject {
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }
     
-    func loadShoutStreamNextPageForLocation(location: SHAddress, type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
+    func loadShoutStreamNextPageForLocation(location: SHAddress?, type: ShoutType, query: String?, cacheResponse: SHShoutMeta -> Void, completionHandler: Response<SHShoutMeta, NSError> -> Void) {
         self.currentPage++
         self.loadShoutStreamForLocation(location, page: self.currentPage, type: type, query: query, cacheResponse: cacheResponse, completionHandler: completionHandler)
     }

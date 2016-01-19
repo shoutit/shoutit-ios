@@ -19,6 +19,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.hidden = false
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar"))
+        self.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.primaryGreen)
         
         // Google instance
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID

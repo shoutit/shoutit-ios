@@ -117,14 +117,14 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func showPassword(sender: AnyObject) {
-        if let password = self.signUpPassword.text where !password.isEmpty && signUpPassword.isFirstResponder() {
+        if let password = self.signUpPassword.text where !password.isEmpty {
             if(showPasswordButton.titleLabel?.text == "show") {
                 showPasswordButton.setTitle("hide", forState: .Normal)
             } else {
                 showPasswordButton.setTitle("show", forState: .Normal)
             }
             viewModel?.togglePassword()
-        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty && signInPassword.isFirstResponder() {
+        } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty {
             if(showLoginPasswordButton.titleLabel?.text == "show") {
                 showLoginPasswordButton.setTitle("hide", forState: .Normal)
             } else {
@@ -239,49 +239,51 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     private func prepareFloatingTextField (textField: TextField, frameX: CGFloat, frameY: CGFloat, placeholderText: String, view: UIView, parentView: UIView) {
         textField.delegate = self
         if parentView == signUpView {
-            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 12.5)
+            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signUpViewHeight / 9)
         } else {
-            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signInViewHeight / 4.18)
+            textField.frame = CGRectMake(frameX, frameY, UIScreen.mainScreen().bounds.width - 50, signInViewHeight / 5)
         }
         
         textField.placeholder = placeholderText
-        textField.font = UIFont(name: "System", size: 16)
+        textField.font = UIFont(name: "System", size: 15)
         textField.textColor = MaterialColor.black
         textField.titleLabel = UILabel()
         textField.titleLabel?.font = RobotoFont.mediumWithSize(10)
         textField.titleLabelColor = MaterialColor.grey.lighten1
         textField.titleLabelActiveColor = MaterialColor.lightBlue.accent2
         textField.bottomBorderLayer.hidden = true
-        textField.clearButtonMode = .WhileEditing
+        textField.clearButtonMode = .Never
         textField.delegate = viewModel
         if(view == firstNameView) {
             textField.addTarget(self, action: Selector("highLightFirstNameAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == lastNameView) {
             textField.addTarget(self, action: Selector("highLightLastNameAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == emailView) {
+            textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if ((view == passwordView)) {
-            showPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
+            showPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 80, frameY - 2, 20, 15)
             showPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
             textField.secureTextEntry = true
             textField.addTarget(self, action: Selector("highLightPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            showPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
+            showPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(12)
             showPasswordButton.sizeToFit()
             view.addSubview(textField)
             view.addSubview(showPasswordButton)
             return
         } else if (view == signInEmailView) {
+            textField.autocapitalizationType = UITextAutocapitalizationType.None
             textField.addTarget(self, action: Selector("highLightSignInEmailAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == signInPasswordView) {
-            showLoginPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 110, frameY - 5, 20, 15)
+            showLoginPasswordButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 80, frameY - 2, 20, 15)
             showLoginPasswordButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
             showLoginPasswordButton.setTitle("show", forState: UIControlState.Normal)
             showLoginPasswordButton.addTarget(self, action: "showPassword:", forControlEvents: UIControlEvents.TouchUpInside)
             textField.secureTextEntry = true
             textField.addTarget(self, action: Selector("highLightSignInPasswordAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
-            showLoginPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(10)
+            showLoginPasswordButton.titleLabel?.font =  RobotoFont.mediumWithSize(12)
             showLoginPasswordButton.sizeToFit()
             view.addSubview(textField)
             view.addSubview(showLoginPasswordButton)
