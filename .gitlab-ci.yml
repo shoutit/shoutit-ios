@@ -1,0 +1,21 @@
+before_script:
+  - export LANG=en_US.UTF-8
+  - git submodule update --init --recursive
+  - rm -rf Gemfile.lock
+  - gem install bundler
+  - bundle install
+
+production:
+  type: build
+  script: "bundle exec fastlane production"
+  tags:
+    - ios9.0
+  only:
+    - master
+testflight:
+  type: build
+  script: "bundle exec fastlane testflight"
+  tags:
+    - ios9.0
+  only:
+    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"

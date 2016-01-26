@@ -57,18 +57,50 @@ install_resource()
       ;;
   esac
 }
-if [[ "$CONFIGURATION" == "Debug" ]]; then
+if [[ "$CONFIGURATION" == "AdHoc_Production" ]]; then
   install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
 fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
+if [[ "$CONFIGURATION" == "AdHoc_Staging" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Test_Production" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Test_Staging" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Profile_Production" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Profile_Staging" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Debug_Production" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Debug_Staging" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Distribution" ]]; then
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
+fi
+if [[ "$CONFIGURATION" == "Distribution_Staging" ]]; then
   install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
-if [[ "${ACTION}" == "install" ]] && [[ "${SKIP_INSTALL}" == "NO" ]]; then
+if [[ "${ACTION}" == "install" ]]; then
   mkdir -p "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
   rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 fi
