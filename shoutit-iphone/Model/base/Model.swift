@@ -255,7 +255,7 @@ class Model: NSObject {
         let selector: Selector = "didPresentGoogleLoginViewController:"
         for delegate: AnyObject in self.delegates {
             if delegate.respondsToSelector(selector) {
-                delegate.didPresentGoogleLoginViewController(googleLoginViewController)
+                //delegate.didPresentGoogleLoginViewController(googleLoginViewController)
             }
         }
 
