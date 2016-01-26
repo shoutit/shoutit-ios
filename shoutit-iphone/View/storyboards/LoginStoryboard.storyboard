@@ -248,14 +248,7 @@
                             <constraint firstItem="0ad-4r-Bia" firstAttribute="leading" secondItem="Z5v-kc-rix" secondAttribute="leading" id="unE-YQ-Bas"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Xth-RG-ENA">
-                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="n1D-BK-3hW">
-                            <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="goBack:" destination="j8m-A5-Y2H" id="jdK-bU-q2O"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Xth-RG-ENA"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bottomSpaceSignUpConstraint" destination="98Z-Y6-4lK" id="JmG-zv-emi"/>
@@ -535,12 +528,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="qse-hA-Zic">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="Ndz-2R-SUL">
-                            <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="goBack:" destination="Kan-cl-PLY" id="BsC-80-HxM"/>
-                            </connections>
-                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="FXU-oq-OnS">
                             <rect key="frame" x="124" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -604,7 +591,7 @@
                                             <constraint firstAttribute="height" constant="21" id="vfN-pV-FSe"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-iR-WR9" userLabel="View - Categories">

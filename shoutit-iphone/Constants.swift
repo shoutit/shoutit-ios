@@ -57,11 +57,12 @@ struct Constants {
         static let COLOR_MESSAGE_BUBBLE_LIGT_GREEN = "#91f261"
         static let COLOR_SHOUTDETAIL_PROFILEIMAGE = "#e8e8e8"
         static let COLOR_BORDER_DISCOVER = "#C2C2C2"
+        static let primaryGreen = "#4CAF50"
     }
     
     struct ViewControllers {
         static let TAKE_LOGIN_VC = "SHTakeLoginViewController"
-        static let DISCOVER_VC = "SHDiscoverCollectionViewController"
+        static let DISCOVER_VC = "SHDiscoverFeedViewController"//"SHDiscoverCollectionViewController"
         static let STREAM_VC = "SHStreamTableViewController"
         static let MODEL_WEB = "SHModalWebViewController"
         static let LOCATION_GETTER = "SHLocationGetterViewController"
@@ -88,6 +89,7 @@ struct Constants {
         static let SHPostSignup = "SHPostSignupViewController"
         static let SHLOGINPOPUP =  "SHLoginPopupViewController"
         static let SHLOGIN = "SHLoginViewController"
+        static let SHDISCOVERSHOUTS = "SHDiscoverShoutsViewController"
     }
     
     struct TableViewCell {
@@ -125,8 +127,11 @@ struct Constants {
         static let SHDiscoverFeedHeaderCell = "discoverFeedHeaderCell"
         static let SHDiscoverShoutHeaderCell = "discoverShoutHeaderCell"
         static let SHDiscoverShowMoreShoutsCell = "discoverShowMoreShoutsCell"
-        static let SHDiscoverFeedDiscoverItemCell = "discoverFeedDiscoverItemCell"
         static let SHDiscoverFeedCell = "SHDiscoverFeedCell"
+        static let SHDiscoverShoutCell = "SHDiscoverShoutCell"
+        static let SHDiscoverShoutsHeaderCell = "SHDiscoverShoutsHeaderCell"
+        static let SHDiscoverShoutListCell = "SHDiscoverShoutListCell"
+        static let SHExtraDiscoverCell = "SHExtraDiscoverCell"
     }
     
     struct CollectionReusableView {

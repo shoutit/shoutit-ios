@@ -9,5 +9,17 @@
 import UIKit
 
 class SHDiscoverShowMoreShoutsCell: UICollectionViewCell {
+    private var discoverFeedViewController : SHDiscoverFeedViewController?
     
+    @IBAction func seeAllShoutsAction(sender: AnyObject) {
+        if let viewController = self.discoverFeedViewController {
+            let discoverShoutsVC = UIStoryboard.getDiscover().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHDISCOVERSHOUTS) as! SHDiscoverShoutsViewController
+            discoverShoutsVC.discoverId = viewController.discoverId
+            viewController.navigationController?.pushViewController(discoverShoutsVC, animated: true)
+        }
+    }
+    
+    func setup(viewController: SHDiscoverFeedViewController) {
+        self.discoverFeedViewController = viewController
+    }
 }
