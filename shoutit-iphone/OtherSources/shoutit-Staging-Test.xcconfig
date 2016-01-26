@@ -1,0 +1,17 @@
+//
+//  wowcher-Staging-Test.xcconfig
+//  wowcher
+//
+//  Created by Łukasz Kasperek on 12.01.2016.
+//  Copyright © 2016 Flipside Group. All rights reserved.
+//
+
+#include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
+#include "../../External/xcconfigs/Base/Configurations/Test.xcconfig"
+#include "shoutit.xcconfig"
+
+// Instrument for code coverage:
+GCC_GENERATE_TEST_COVERAGE_FILES = YES
+GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "STAGING"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) STAGING=1

@@ -1,0 +1,11 @@
+//
+//  wowcher-Staging-AppStore.xcconfig
+//  wowcher
+//
+//  Created by Łukasz Kasperek on 13.01.2016.
+//  Copyright © 2016 Flipside Group. All rights reserved.
+//
+
+#include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
+#include "../../External/xcconfigs/Base/Configurations/Release.xcconfig"
+#include "shoutit-Staging-Release.xcconfig"
