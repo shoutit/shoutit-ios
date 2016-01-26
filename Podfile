@@ -35,3 +35,20 @@ pod 'DAProgressOverlayView', '~> 1.0'
 pod 'MK', '~> 1.0'
 pod 'MZFormSheetPresentationController', '~> 2.2'
 
+# After every installation, copy the license and settings plists over to our project
+post_install do |installer|
+  require 'fileutils'
+
+  acknowledgements_plist = 'Pods/Target Support Files/Pods/Pods-Acknowledgements.plist'
+  if Dir.exists?('Floc/Resources/Settings.bundle') && File.exists?(acknowledgements_plist)
+    FileUtils.cp(acknowledgements_plist, 'Floc/Resources/Settings.bundle/Acknowledgements.plist')
+  end
+  
+  installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+          config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+          config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+          config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+      end
+  end
+end

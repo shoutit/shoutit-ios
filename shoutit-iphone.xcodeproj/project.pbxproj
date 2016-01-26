@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29C192902C2FA8F624DECC34 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DD26576469F744E4920C92 /* Pods.framework */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		601EB8BC1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BB1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift */; };
 		601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */; };
@@ -109,6 +108,7 @@
 		60F11D441C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D431C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift */; };
 		60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D451C2B6CBA00FEA500 /* SHDiscoverItemCell.swift */; };
 		60F11D481C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F11D471C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift */; };
+		92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DD26576469F744E4920C92 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0656DC1C00CB580059E39D /* SHFilterMeta.swift */; };
 		AC1AA9751C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AA9741C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
@@ -323,6 +323,9 @@
 
 /* Begin PBXFileReference section */
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_staging.xcconfig"; sourceTree = "<group>"; };
+		3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_production.xcconfig"; sourceTree = "<group>"; };
+		4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution_staging.xcconfig"; sourceTree = "<group>"; };
 		5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCell.swift; path = View/tabs/home/SHShoutItemCell.swift; sourceTree = "<group>"; };
 		601EB8BB1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCellViewModel.swift; path = ViewModel/tabs/home/SHShoutItemCellViewModel.swift; sourceTree = "<group>"; };
@@ -434,7 +437,13 @@
 		60F11D431C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDiscoverListCellViewModel.swift; path = ViewModel/tabs/home/SHShoutDiscoverListCellViewModel.swift; sourceTree = "<group>"; };
 		60F11D451C2B6CBA00FEA500 /* SHDiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItemCell.swift; path = View/tabs/home/SHDiscoverItemCell.swift; sourceTree = "<group>"; };
 		60F11D471C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverItemCellViewModel.swift; path = ViewModel/tabs/home/SHDiscoverItemCellViewModel.swift; sourceTree = "<group>"; };
+		6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
 		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_production.xcconfig"; sourceTree = "<group>"; };
+		8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_staging.xcconfig"; sourceTree = "<group>"; };
+		8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
+		996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_production.xcconfig"; sourceTree = "<group>"; };
+		9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_staging.xcconfig"; sourceTree = "<group>"; };
 		AC0656DC1C00CB580059E39D /* SHFilterMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterMeta.swift; path = Model/filters/SHFilterMeta.swift; sourceTree = "<group>"; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1AA9741C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHExtraDiscoverCell.swift; path = View/tabs/discoverFeed/SHExtraDiscoverCell.swift; sourceTree = "<group>"; };
@@ -647,6 +656,7 @@
 		B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Staging-Test.xcconfig"; path = "OtherSources/shoutit-Staging-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Test.xcconfig"; path = "OtherSources/shoutit-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBB1C579597003A2D76 /* shoutit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = shoutit.xcconfig; path = OtherSources/shoutit.xcconfig; sourceTree = "<group>"; };
+		B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_production.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,8 +666,8 @@
 			files = (
 				AC9B39051C40EFD6005D6857 /* MK.framework in Frameworks */,
 				6068E6401C2435D10061F56C /* CustomViews.framework in Frameworks */,
-				29C192902C2FA8F624DECC34 /* Pods.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
+				92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +709,16 @@
 			children = (
 				5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */,
 				7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */,
+				B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */,
+				6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */,
+				7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */,
+				3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */,
+				996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */,
+				9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */,
+				3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */,
+				8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */,
+				8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */,
+				4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -742,8 +762,9 @@
 				B227BFA81C579321003A2D76 /* Application */,
 				6027CF621BE74F5200124C28 /* Model */,
 				6027CF631BE74F5F00124C28 /* Util */,
-				6027CF641BE74F6F00124C28 /* View */,
+				6027CF641BE74F6F00124C28 /* Controllers */,
 				6027CF651BE74F7300124C28 /* ViewModel */,
+				6027CF711BE7504B00124C28 /* Storyboards */,
 				6027CF661BE74F7800124C28 /* Supporting Files */,
 				B227BFA91C57933C003A2D76 /* OtherSources */,
 				607F75771BEA6F0300F3BA86 /* Libraries */,
@@ -801,7 +822,7 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
-		6027CF641BE74F6F00124C28 /* View */ = {
+		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				ACC36C441C0C994D0082E0C2 /* messages */,
@@ -812,10 +833,9 @@
 				604A0DD41BEE9ADA002A80E7 /* tabs */,
 				6027CF941BE757DA00124C28 /* auth */,
 				6027CF6A1BE74FB400124C28 /* splash */,
-				6027CF711BE7504B00124C28 /* storyboards */,
 				6027CFA11BE75B4A00124C28 /* common */,
 			);
-			name = View;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		6027CF651BE74F7300124C28 /* ViewModel */ = {
@@ -898,7 +918,7 @@
 			name = splash;
 			sourceTree = "<group>";
 		};
-		6027CF711BE7504B00124C28 /* storyboards */ = {
+		6027CF711BE7504B00124C28 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				ACC36C4C1C0CA3A00082E0C2 /* MessagesStoryboard.storyboard */,
@@ -916,7 +936,7 @@
 				60B8A10B1C2B3680004FC1B3 /* ShoutList.storyboard */,
 				AC679B3C1C3BF6B500F45947 /* DiscoverFeed.storyboard */,
 			);
-			name = storyboards;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		6027CF721BE7506B00124C28 /* splash */ = {
@@ -1898,7 +1918,7 @@
 				TargetAttributes = {
 					6027CF301BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2857HUGC3W;
+						DevelopmentTeam = E6WRHQXQE9;
 					};
 					6027CF441BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2080,7 +2100,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" b058b2dcbf8b8f864860fe9fe12789317aba9da1 b00b1a8c8e7d6642474c08773f226a750139839f7c8bdc708de3dd34c551078d";
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" df7a00236cfb54396bdf1cb5c0a37140f2edc1f4 f4efb60c16b2ebe21247bef34d0adb0e6027329cf5374d0c62d416ca64a5882f\n// production CR\n//b058b2dcbf8b8f864860fe9fe12789317aba9da1 b00b1a8c8e7d6642474c08773f226a750139839f7c8bdc708de3dd34c551078d";
 		};
 		D8607C86775441493F0131C1 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2442,9 +2462,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2466,7 +2483,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2491,9 +2507,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2508,7 +2521,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2517,13 +2529,11 @@
 		};
 		6027CF5A1BE74EAF00124C28 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2538,9 +2548,8 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2549,13 +2558,11 @@
 		};
 		6027CF5B1BE74EAF00124C28 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2569,9 +2576,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2694,9 +2700,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2718,7 +2721,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2727,13 +2729,11 @@
 		};
 		B227BFC81C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2748,9 +2748,8 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2825,9 +2824,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2849,7 +2845,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2858,13 +2853,11 @@
 		};
 		B227BFCD1C5796D4003A2D76 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2879,9 +2872,8 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2956,9 +2948,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2980,7 +2969,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2989,13 +2977,11 @@
 		};
 		B227BFD21C5796D7003A2D76 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hitesh Sondhi (FPSSU7S3XU)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3010,9 +2996,8 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6864561f-550f-49a3-a5c1-b6d39f1ca7c4";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3071,6 +3056,7 @@
 		};
 		B227BFDB1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B227BFB51C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -3086,9 +3072,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3103,7 +3086,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3112,14 +3094,11 @@
 		};
 		B227BFDC1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B227BFB51C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig */;
+			baseConfigurationReference = 4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3133,9 +3112,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3208,9 +3186,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3225,7 +3200,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3234,13 +3208,11 @@
 		};
 		B227BFE11C57971C003A2D76 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3254,9 +3226,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3329,9 +3300,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3346,7 +3314,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3355,13 +3322,11 @@
 		};
 		B227BFE61C579720003A2D76 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3375,9 +3340,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3450,9 +3414,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3467,7 +3428,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3476,13 +3436,11 @@
 		};
 		B227BFEB1C579727003A2D76 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3496,9 +3454,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3571,9 +3528,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3588,7 +3542,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3597,13 +3550,11 @@
 		};
 		B227BFF01C57972B003A2D76 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3617,9 +3568,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit-iphone.swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35b9c408-f727-4b4e-b079-d80ac401e458";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
