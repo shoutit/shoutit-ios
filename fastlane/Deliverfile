@@ -1,0 +1,6 @@
+
+ipa "../ShoutIt.ipa"
+beta_ipa "../ShoutIt.ipa"
+apple_id "947017118"
+app_identifier "com.shoutit-iphone"
+email "shoutit@appunite.com"
