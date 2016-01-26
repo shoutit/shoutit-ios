@@ -1,5 +1,11 @@
 app_identifier "com.appunite.shoutit" # The bundle identifier of your app
-apple_id "piotr.bernad+fastlane@appunite.com" # Your Apple email address
+apple_id "piotr.bernad+fastlane@appunite.com" # Your Apple email 
+
+for_lane :testflight do 
+	app_identifier "com.appunite.shoutit"
+	apple_id "builds@appunite.com"
+end
+
 
 # You can uncomment any of the lines below and add your own
 # team selection in case you're in multiple teams
