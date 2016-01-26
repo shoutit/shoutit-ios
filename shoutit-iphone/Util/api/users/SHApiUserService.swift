@@ -46,7 +46,7 @@ class SHApiUserService: NSObject {
         } 
         
         NetworkActivityManager.addActivity()
-        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+        BFTask(forCompletionOfAllTasks: []).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
             let urlString = String(format: self.USERS_URL_NAME, arguments: [username])
             let params = ["image" : aws.images[0].URLString]

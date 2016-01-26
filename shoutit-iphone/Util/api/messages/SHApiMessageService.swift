@@ -114,7 +114,7 @@ class SHApiMessageService: NSObject {
         }
         
         NetworkActivityManager.addActivity()
-        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+        BFTask(forCompletionOfAllTasks: []).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
             params["attachments"] = [["images": [aws.images[0].URLString]]]
             SHApiManager.sharedInstance.post(urlString, params: params, completionHandler: completionHandler)
@@ -145,7 +145,7 @@ class SHApiMessageService: NSObject {
             tasks += task
         }
         NetworkActivityManager.addActivity()
-        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+        BFTask(forCompletionOfAllTasks: []).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
             params["attachments"] = [["videos": [["url" : aws.videos[0].url,
                 "thumbnail_url" : aws.videos[0].thumbnailUrl,

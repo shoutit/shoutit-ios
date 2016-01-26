@@ -2,38 +2,55 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Alamofire', '~> 3.1.0'
-pod 'XCGLogger', '~> 3.0'
-pod 'SwiftyJSON', '~> 2.3.1'
-pod 'MBProgressHUD', '~> 0.9.1'
-pod 'Kingfisher', '~> 1.8'
-pod 'SVPullToRefresh', '~> 0.4'
-pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git'
-pod 'GoogleSignIn', '~> 2.4'
+# logging
+pod 'Fabric', '~> 1.6'
+pod 'Crashlytics', '~> 3.6'
 pod 'Mixpanel', '~> 2.9'
-pod 'ObjectMapper', '~> 1.0'
-pod 'AlamofireObjectMapper', '~> 2.0'
-pod 'CryptoSwift'
-pod 'SVProgressHUD'
+pod 'XCGLogger', '~> 3.0'
+
+# google
+pod 'GoogleMaps', '~> 1.10'
+pod 'GoogleSignIn', '~> 2.4'
+
+# facebook
 pod 'FBSDKCoreKit', '~> 4.7'
 pod 'FBSDKLoginKit', '~> 4.7'
-pod 'GoogleMaps', '~> 1.10'
-pod 'Fabric'
-pod 'Crashlytics'
-pod 'DWTagList', '~> 0.0'
-pod 'SMCalloutView', '~> 2.1'
-pod 'SDWebImage', '~> 3.7'
-pod 'MWPhotoBrowser', '~> 2.1'
 pod 'FBSDKShareKit', '~> 4.8'
-pod 'ReachabilitySwift', '~> 2.3'
+
+# amazon
 pod 'AWSS3', '~> 2.3'
 pod 'AWSCognito', '~> 2.3'
+
+# networking
+pod 'Alamofire', '~> 3.1.0'
+pod 'ReachabilitySwift', '~> 2.3'
+
+#images
+pod 'Kingfisher', '~> 1.8'
+pod 'SDWebImage', '~> 3.7'
+pod 'MWPhotoBrowser', '~> 2.1'
+
+# serialization
+pod 'SwiftyJSON', '~> 2.3.1'
+pod 'AlamofireObjectMapper', '~> 2.0'
+pod 'ObjectMapper', '~> 1.0'
+pod 'HanekeSwift', '~> 0.10'
+
+# ui controls
+pod 'MBProgressHUD', '~> 0.9.1'
+pod 'SVProgressHUD'
+pod 'SVPullToRefresh', '~> 0.4'
+pod 'DAProgressOverlayView', '~> 1.0'
+pod 'DWTagList', '~> 0.0'
+pod 'SMCalloutView', '~> 2.1'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
-pod 'libPusher', '~> 1.6'
-pod 'DAProgressOverlayView', '~> 1.0'
-pod 'MK', '~> 1.0'
 pod 'MZFormSheetPresentationController', '~> 2.2'
+
+# other
+pod 'CryptoSwift'
+pod 'libPusher', '~> 1.6'
+pod 'MK', '~> 1.0'
 
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|

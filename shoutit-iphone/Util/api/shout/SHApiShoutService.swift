@@ -170,7 +170,7 @@ class SHApiShoutService: NSObject {
                 SHApiManager.sharedInstance.patch(urlString, params: params, cacheKey: nil, cacheResponse: nil, completionHandler: completionHandler)
             } else {
                 NetworkActivityManager.addActivity()
-                BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+                BFTask(forCompletionOfAllTasks: []).continueWithBlock { (task) -> AnyObject! in
                     NetworkActivityManager.removeActivity()
                     if aws.images.count + aws.videos.count != media.count {
                         log.error("All media wasn't uploaded, occured some error!")
@@ -204,7 +204,7 @@ class SHApiShoutService: NSObject {
             }
         }
         NetworkActivityManager.addActivity()
-        BFTask(forCompletionOfAllTasks: tasks).continueWithBlock { (task) -> AnyObject! in
+        BFTask(forCompletionOfAllTasks: []).continueWithBlock { (task) -> AnyObject! in
             NetworkActivityManager.removeActivity()
             if aws.images.count + aws.videos.count != media.count {
                 log.error("All media wasn't uploaded, occured some error!")

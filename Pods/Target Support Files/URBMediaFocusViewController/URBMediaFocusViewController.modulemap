@@ -1,6 +1,0 @@
-framework module URBMediaFocusViewController {
-  umbrella header "URBMediaFocusViewController-umbrella.h"
-
-  export *
-  module * { export * }
-}
