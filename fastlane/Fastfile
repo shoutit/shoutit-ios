@@ -57,11 +57,11 @@ platform :ios do
     git_hash = `git rev-parse --short HEAD`
     
     #send to build tracker
-    # au_build_tracker build_number: build_no, build_name: git_hash, app_name: "wowcher", download_url: bitly_url.to_s 
+    # au_build_tracker build_number: build_no, build_name: git_hash, app_name: "Shoutit", download_url: bitly_url.to_s 
     
     #send slack message
     slack(
-      message: "New wowcher version available (#{build_no}).", 
+      message: "New Shoutit version available (#{build_no}).", 
       attachment_properties: {
         fields: [{
           title: 'git-hash',
@@ -98,7 +98,7 @@ platform :ios do
     git_hash = `git rev-parse --short HEAD`
     
     slack(
-      message: "New version of wowcher available on TestFlight", 
+      message: "New version of Shoutit available on TestFlight", 
       attachment_properties: {
         fields: [{
           title: 'git-hash',
