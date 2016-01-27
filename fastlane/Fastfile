@@ -80,10 +80,9 @@ platform :ios do
   desc "Runs all the tests"
   lane :testflight do
 
-    ENV["FASTLANE_PASSWORD"] = ENV["CERT_PASSWORD"]
+    au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
 
-    # download cert using builds@appunite.com
-    cert
+    ENV["FASTLANE_PASSWORD"] = ENV["CERT_PASSWORD"]
 
     # download provisioning
     sigh
