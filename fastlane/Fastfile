@@ -80,12 +80,9 @@ platform :ios do
   desc "Runs all the tests"
   lane :testflight do
 
+    au_provision_download
+
     au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
-
-    ENV["FASTLANE_PASSWORD"] = ENV["CERT_PASSWORD"]
-
-    # download provisioning
-    sigh
 
     au_artifacts_download
 
