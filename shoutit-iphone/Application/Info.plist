@@ -47,7 +47,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>http://www.shoutit.com</string>
+				<string>shoutit.com</string>
 			</array>
 		</dict>
 	</array>
