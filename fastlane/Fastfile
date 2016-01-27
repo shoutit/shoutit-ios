@@ -51,7 +51,7 @@ platform :ios do
     bitly_url = au_download_link
   
     #upload to crashlytics
-    crashlytics({groups: 'internal-tests'})
+    crashlytics
     
     #prepare git hash
     git_hash = `git rev-parse --short HEAD`
