@@ -87,6 +87,7 @@ platform :ios do
     au_artifacts_download
 
     sh "ls -a"
+    sh "ls -d `pwd`/../*"
     resign
 
     ENV["FASTLANE_PASSWORD"] = ENV["TESTFLIGHT_DELIVER_PASSWORD"]
