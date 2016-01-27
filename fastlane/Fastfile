@@ -88,7 +88,7 @@ platform :ios do
 
     sh "ls -a"
     sh "ls -d `pwd`/../*"
-    resign
+    sh "sigh resign ../shoutit-iphone.ipa --signing_identity \"iPhone Distribution: Syrex FZ LLC (2857HUGC3W)\" --provisioning_profile ../distribution.mobileprovision"
 
     ENV["FASTLANE_PASSWORD"] = ENV["TESTFLIGHT_DELIVER_PASSWORD"]
     
