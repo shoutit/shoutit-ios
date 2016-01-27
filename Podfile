@@ -2,6 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
+# RX
+pod 'RxSwift', '~> 2.1'
+pod 'RxCocoa', '~> 2.1'
+
 # logging
 pod 'Fabric', '~> 1.6'
 pod 'Crashlytics', '~> 3.6'

@@ -30,10 +30,15 @@ class ApplicationMainViewController: UIViewController {
         }
     }
     
+    private(set) weak var delegate: ApplicationMainViewControllerDelegate?
+    
     // MARK: - Lifecycle
     
     final override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // determine if user is logged in and present controller accrodingly
+        
     }
     
     // MARK: - Transitioning

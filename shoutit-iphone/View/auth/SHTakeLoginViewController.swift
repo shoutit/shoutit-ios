@@ -12,15 +12,6 @@ class SHTakeLoginViewController: UIViewController {
 
     @IBOutlet weak var welcomeTextSpaceFromLogo: NSLayoutConstraint!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.hidden = true

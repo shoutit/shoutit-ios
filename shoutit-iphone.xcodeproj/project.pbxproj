@@ -264,6 +264,8 @@
 		B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6461C2445690061F56C /* CustomUIButton.swift */; };
 		B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64C1C2472260061F56C /* CustomUIView.swift */; };
 		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
+		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
+		B250E1CC1C593F950010AB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B250E1CA1C593F950010AB2D /* Main.storyboard */; };
 		B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */; };
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
@@ -325,9 +327,9 @@
 		601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMyFeedHeaderCellViewModel.swift; path = ViewModel/tabs/home/SHShoutMyFeedHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		602414911C01F31B00DFF4DD /* SHDateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDateTransform.swift; path = Util/api/transforms/SHDateTransform.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* shoutit-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shoutit-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
 		6027CF3B1BE74EAE00124C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
-		6027CF401BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6027CF401BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
 		6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shoutit-iphoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutit_iphoneTests.swift; sourceTree = "<group>"; };
 		6027CF4B1BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -338,7 +340,7 @@
 		6027CF751BE7510B00124C28 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewModel.swift; path = ViewModel/splash/SplashViewModel.swift; sourceTree = "<group>"; };
 		6027CF8C1BE7529500124C28 /* SHApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiManager.swift; path = Util/api/SHApiManager.swift; sourceTree = "<group>"; };
 		6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkActivityManager.swift; path = Util/api/NetworkActivityManager.swift; sourceTree = "<group>"; };
-		6027CF901BE7539300124C28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6027CF901BE7539300124C28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Application/Constants.swift; sourceTree = "<group>"; };
 		6027CF961BE7583800124C28 /* SHLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginViewController.swift; path = View/auth/SHLoginViewController.swift; sourceTree = "<group>"; };
 		6027CF981BE7587800124C28 /* SHLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginViewModel.swift; path = ViewModel/auth/SHLoginViewModel.swift; sourceTree = "<group>"; };
 		6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerModelProtocol.swift; path = ViewModel/protocols/ViewControllerModelProtocol.swift; sourceTree = "<group>"; };
@@ -423,7 +425,7 @@
 		996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_production.xcconfig"; sourceTree = "<group>"; };
 		9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_staging.xcconfig"; sourceTree = "<group>"; };
 		AC0656DC1C00CB580059E39D /* SHFilterMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterMeta.swift; path = Model/filters/SHFilterMeta.swift; sourceTree = "<group>"; };
-		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
+		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shoutit-iphone-Bridging-Header.h"; path = "Application/shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1AA9741C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHExtraDiscoverCell.swift; path = View/tabs/discoverFeed/SHExtraDiscoverCell.swift; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
@@ -443,7 +445,7 @@
 		AC47A7371C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHYouTubeVideoCollectionViewCell.swift; path = View/tabs/stream/cell/SHYouTubeVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC47A7391C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHAmazonVideoCollectionViewCell.swift; path = View/tabs/stream/cell/SHAmazonVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC47A73B1C031366006AF406 /* SHShoutDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutDetailImageCollectionViewCell.swift; path = View/tabs/stream/cell/SHShoutDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AC5340CB1BED44850065A578 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Application/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC5404D71C1EC19100F6ECFE /* SHMapDetatilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMapDetatilViewController.swift; path = View/messages/SHMapDetatilViewController.swift; sourceTree = "<group>"; };
 		AC679B3F1C3CE34700F45947 /* SHDiscoverFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedViewController.swift; path = View/tabs/discoverFeed/SHDiscoverFeedViewController.swift; sourceTree = "<group>"; };
 		AC679B421C3CE42500F45947 /* SHDiscoverFeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverFeedViewModel.swift; path = ViewModel/tabs/discoverFeed/SHDiscoverFeedViewModel.swift; sourceTree = "<group>"; };
@@ -632,6 +634,8 @@
 		B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Test.xcconfig"; path = "OtherSources/shoutit-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBB1C579597003A2D76 /* shoutit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = shoutit.xcconfig; path = OtherSources/shoutit.xcconfig; sourceTree = "<group>"; };
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
+		B250E1CB1C593F950010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Localization/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Controllers/IntroViewController.swift; sourceTree = "<group>"; };
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
@@ -650,7 +654,6 @@
 		B2E7E31B1C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TagStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E31C1C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShoutList.storyboard; sourceTree = "<group>"; };
 		B2E7E31D1C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DiscoverFeed.storyboard; sourceTree = "<group>"; };
-		B2E7E31E1C592C370078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_production.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -721,7 +724,6 @@
 		6027CF281BE74EAE00124C28 = {
 			isa = PBXGroup;
 			children = (
-				B250E1C41C5935700010AB2D /* Localizable.strings */,
 				6027CF331BE74EAE00124C28 /* shoutit-iphone */,
 				6027CF481BE74EAE00124C28 /* shoutit-iphoneTests */,
 				6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */,
@@ -926,6 +928,7 @@
 				B2E7E3091C592BDE0078C743 /* TagStoryboard.storyboard */,
 				B2E7E30C1C592BE60078C743 /* ShoutList.storyboard */,
 				B2E7E30F1C592BED0078C743 /* DiscoverFeed.storyboard */,
+				B250E1CA1C593F950010AB2D /* Main.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1261,7 +1264,7 @@
 		AC1C94081BEBBA10009400BE /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				AC74A77B1BFE1B0E0029CE7D /* Localizable.strings */,
+				B250E1C41C5935700010AB2D /* Localizable.strings */,
 			);
 			name = Localization;
 			path = Resources/Localization;
@@ -1804,6 +1807,13 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B250E1C91C593F680010AB2D /* Displayables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Displayables;
+			sourceTree = "<group>";
+		};
 		B25F31F01C57E00400C5DAFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1823,8 +1833,8 @@
 			isa = PBXGroup;
 			children = (
 				B27DF7871C5916BD006909D4 /* Wireframe */,
+				B250E1C91C593F680010AB2D /* Displayables */,
 				B27DF7861C5916B7006909D4 /* FlowControllers */,
-				B27DF7811C58DCCA006909D4 /* FlowController.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -1840,6 +1850,8 @@
 		B27DF7861C5916B7006909D4 /* FlowControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B27DF7811C58DCCA006909D4 /* FlowController.swift */,
+				B250E1C71C593ED60010AB2D /* LoginFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -2046,6 +2058,7 @@
 				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
+				B250E1CC1C593F950010AB2D /* Main.storyboard in Resources */,
 				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2E7E3011C592BD20078C743 /* SettingsStoryboard.storyboard in Resources */,
 				ACDD23B21BFAD40800EEC6A6 /* SHTopTagTableViewCell.xib in Resources */,
@@ -2145,6 +2158,7 @@
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
 				AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */,
+				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
@@ -2423,20 +2437,21 @@
 			name = UserVoice.strings;
 			sourceTree = "<group>";
 		};
-		AC74A77B1BFE1B0E0029CE7D /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2E7E31E1C592C370078C743 /* Base */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		B250E1C41C5935700010AB2D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B250E1C51C5935700010AB2D /* Base */,
 			);
 			name = Localizable.strings;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
+		B250E1CA1C593F950010AB2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B250E1CB1C593F950010AB2D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */ = {
