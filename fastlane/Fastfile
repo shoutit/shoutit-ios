@@ -80,11 +80,12 @@ platform :ios do
   desc "Runs all the tests"
   lane :testflight do
 
-    # download cert using builds@appunite.com
-    cert
-
     # download provisioning
     sigh
+
+    # download cert using builds@appunite.com
+    ENV["FASTLANE_PASSWORD"] = ENV["CERT_PASSWORD"]
+    cert
 
     au_artifacts_download
 
