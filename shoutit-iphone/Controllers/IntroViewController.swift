@@ -7,8 +7,54 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class IntroViewController: UIViewController {
     
+    // subviews
+    @IBOutlet weak var loginButton: CustomUIButton!
+    @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var helpButton: UIButton!
     
+    // rx
+    let disposeBag = DisposeBag()
+    
+    // MARK: - Lifecycle
+    
+    final override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //
+        setupRX()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupRX() {
+        
+        // login
+        loginButton
+            .rx_tap
+            .subscribeNext {
+            
+            }
+            .addDisposableTo(disposeBag)
+        
+        // skip
+        skipButton
+            .rx_tap
+            .subscribeNext {
+                SHOauthToken.goToDiscover() // replace
+            }
+            .addDisposableTo(disposeBag)
+        
+        // help
+        helpButton
+            .rx_tap
+            .subscribeNext{
+                print("Help tapped")
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol ApplicationMainViewControllerRootObject: class {
+    
+}
+
 class ApplicationMainViewController: UIViewController {
     
     // consts
     let animationDuration = 0.25
     
     // vars
+    private(set) var rootObject: ApplicationMainViewControllerRootObject!
     private(set) var rootViewController: UIViewController! {
         
         didSet {
@@ -30,7 +35,7 @@ class ApplicationMainViewController: UIViewController {
         }
     }
     
-    private(set) weak var delegate: ApplicationMainViewControllerDelegate?
+    private(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
     
@@ -38,6 +43,17 @@ class ApplicationMainViewController: UIViewController {
         super.viewDidLoad()
         
         // determine if user is logged in and present controller accrodingly
+        showLogin()
+        
+    }
+    
+    private func showLogin() {
+        let navigationController = UINavigationController()
+        rootObject = LoginFlowController(navigationController: navigationController)
+        rootViewController = navigationController
+    }
+    
+    private func showMainInterface() {
         
     }
     

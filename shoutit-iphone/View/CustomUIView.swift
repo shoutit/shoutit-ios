@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class CustomUIView: UIView {
 
     @IBInspectable var cornerRadius: CGFloat = 0 {

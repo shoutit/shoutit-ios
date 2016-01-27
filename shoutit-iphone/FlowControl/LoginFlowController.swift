@@ -15,5 +15,14 @@ class LoginFlowController: FlowController {
     init(navigationController: UINavigationController) {
         
         self.navigationController = navigationController
+        
+        // setup navigation controller state
+        navigationController.navigationBarHidden = true
+        
+        // create initial view controller
+        let controller = Wireframe.introViewController()
+        navigationController.showViewController(controller, sender: nil)
     }
 }
+
+extension LoginFlowController: ApplicationMainViewControllerRootObject {}

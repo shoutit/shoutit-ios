@@ -46,7 +46,6 @@
 		606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AD1BF09B4E00259357 /* SHCellViewModelProtocol.swift */; };
 		606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */; };
 		606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116B31BF2563F00259357 /* SHProgressHUD.swift */; };
-		6068E6491C24680B0061F56C /* SHTakeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6481C24680B0061F56C /* SHTakeLoginViewController.swift */; };
 		6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */; };
 		6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E65C1C2538F30061F56C /* CustomUITextField.swift */; };
 		606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */; };
@@ -368,7 +367,6 @@
 		606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCellViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverCellViewModel.swift; sourceTree = "<group>"; };
 		606116B31BF2563F00259357 /* SHProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProgressHUD.swift; path = Util/helpers/SHProgressHUD.swift; sourceTree = "<group>"; };
 		6068E6461C2445690061F56C /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIButton.swift; path = View/CustomUIButton.swift; sourceTree = "<group>"; };
-		6068E6481C24680B0061F56C /* SHTakeLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTakeLoginViewController.swift; path = View/auth/SHTakeLoginViewController.swift; sourceTree = "<group>"; };
 		6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSocialLoginViewController.swift; path = View/auth/SHSocialLoginViewController.swift; sourceTree = "<group>"; };
 		6068E64C1C2472260061F56C /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIView.swift; path = View/CustomUIView.swift; sourceTree = "<group>"; };
 		6068E65C1C2538F30061F56C /* CustomUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUITextField.swift; path = Util/customViews/CustomUITextField.swift; sourceTree = "<group>"; };
@@ -948,7 +946,6 @@
 				6027CF961BE7583800124C28 /* SHLoginViewController.swift */,
 				AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */,
 				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
-				6068E6481C24680B0061F56C /* SHTakeLoginViewController.swift */,
 				6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */,
 				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
 				AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */,
@@ -2308,7 +2305,6 @@
 				606ED2FA1BF808560064C53E /* SHCameraPreviewView.swift in Sources */,
 				AC7030BB1C1591C1008F4C00 /* SHShoutAttachment.swift in Sources */,
 				601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */,
-				6068E6491C24680B0061F56C /* SHTakeLoginViewController.swift in Sources */,
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
 				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
 				606ED2EA1BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift in Sources */,
@@ -2678,7 +2674,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2688,7 +2684,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2706,7 +2702,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2715,7 +2711,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Profile_Production;
@@ -2825,7 +2821,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2835,7 +2831,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2922,7 +2918,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2932,7 +2928,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3019,7 +3015,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3029,7 +3025,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3109,7 +3105,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3118,7 +3114,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution_Staging;
@@ -3197,7 +3193,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3206,7 +3202,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Profile_Staging;
@@ -3285,7 +3281,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3294,7 +3290,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug_Production;
@@ -3373,7 +3369,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3382,7 +3378,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug_Staging;
@@ -3461,7 +3457,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = "shoutit-iphone/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3470,7 +3466,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/shoutit-iphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;

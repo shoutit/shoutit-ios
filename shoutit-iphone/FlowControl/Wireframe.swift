@@ -12,7 +12,7 @@ struct Wireframe {
     
     enum Storyboard: String {
         case Main = "Main"
-        case Login = "Login"
+        case Login = "LoginStoryboard"
     }
     
     // General
