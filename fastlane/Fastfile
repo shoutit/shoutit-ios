@@ -51,7 +51,7 @@ platform :ios do
     bitly_url = au_download_link
   
     #upload to crashlytics
-    crashlytics
+    #crashlytics
     
     #prepare git hash
     git_hash = `git rev-parse --short HEAD`
@@ -60,7 +60,7 @@ platform :ios do
     # au_build_tracker build_number: build_no, build_name: git_hash, app_name: "Shoutit", download_url: bitly_url.to_s 
     
     #send slack message
-    slack(
+    #slack(
       message: "New Shoutit version available (#{build_no}).", 
       attachment_properties: {
         fields: [{
