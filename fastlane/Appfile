@@ -2,7 +2,7 @@ app_identifier "com.appunite.shoutit" # The bundle identifier of your app
 apple_id "piotr.bernad+fastlane@appunite.com" # Your Apple email 
 
 for_lane :testflight do 
-	app_identifier "com.appunite.shoutit"
+	app_identifier "com.shoutit-iphone"
 	apple_id "builds@appunite.com"
 end
 
