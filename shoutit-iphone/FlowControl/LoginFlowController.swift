@@ -21,8 +21,26 @@ class LoginFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.introViewController()
+        controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }
 }
 
 extension LoginFlowController: ApplicationMainViewControllerRootObject {}
+
+extension LoginFlowController: IntroViewControllerFlowDelegate {
+    
+    final func showLoginChoice() {
+        
+        // setup navigation controller state
+        navigationController.navigationBarHidden = false
+        
+        // create controller
+        let controller = Wireframe.loginMethodChoiceViewController()
+        controller.viewModel = LoginMethod
+        controller.flowDelegate = self
+        navigationController.showViewController(controller, sender: nil)
+    }
+}
+
+extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}

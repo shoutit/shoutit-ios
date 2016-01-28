@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol IntroViewControllerFlowDelegate: class, LoginHelpDisplayable {
+    func showLoginChoice() -> Void
+}
+
 class IntroViewController: UIViewController {
     
     // subviews
@@ -19,6 +23,9 @@ class IntroViewController: UIViewController {
     
     // rx
     let disposeBag = DisposeBag()
+    
+    // navigation
+    weak var flowDelegate: IntroViewControllerFlowDelegate?
     
     // MARK: - Lifecycle
     
@@ -36,8 +43,8 @@ class IntroViewController: UIViewController {
         // login
         loginButton
             .rx_tap
-            .subscribeNext {
-            
+            .subscribeNext {[unowned self] in
+                self.flowDelegate?.showLoginChoice()
             }
             .addDisposableTo(disposeBag)
         
@@ -52,8 +59,8 @@ class IntroViewController: UIViewController {
         // help
         helpButton
             .rx_tap
-            .subscribeNext{
-                print("Help tapped")
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.showLoginHelp()
             }
             .addDisposableTo(disposeBag)
     }

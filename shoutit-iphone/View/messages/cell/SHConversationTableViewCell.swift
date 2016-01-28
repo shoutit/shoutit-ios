@@ -30,7 +30,7 @@ class SHConversationTableViewCell: UITableViewCell {
     }
 
     func setConversation(conversation: SHConversations) {
-        self.imageConvView.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        self.imageConvView.backgroundColor = UIColor(shoutitColor: .ShoutDarkGreen)
         if let lastMessage = conversation.lastMessage?.createdAt {
             let date = NSDate(timeIntervalSince1970: NSTimeInterval(lastMessage))
             self.timeLabel.text = date.timeAgo
@@ -70,7 +70,7 @@ class SHConversationTableViewCell: UITableViewCell {
             }
         }
         self.avatarImageView.clipsToBounds = true
-        self.avatarImageView.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUTDETAIL_PROFILEIMAGE)?.CGColor
+        self.avatarImageView.layer.borderColor = UIColor(shoutitColor: .ShoutDetailProfileImageLightGrey).CGColor
         self.avatarImageView.layer.borderWidth = 2.0
         self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2.0
         self.isReadImageView.contentMode = UIViewContentMode.ScaleAspectFill

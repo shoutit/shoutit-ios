@@ -23,7 +23,7 @@ class SHShoutItemCellViewModel: NSObject {
         cell.name.text = shout.user?.name
         cell.shoutTitle.text = shout.title
         cell.shoutType?.layer.borderWidth = 0.8
-        cell.shoutType?.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor
+        cell.shoutType?.layer.borderColor = UIColor(shoutitColor: .DiscoverBorder).CGColor
         cell.shoutType?.layer.cornerRadius = 2
         if let shoutLocation = SHAddress.getUserOrDeviceLocation()?.country {
             cell.shoutCountryImage?.image = UIImage(named: shoutLocation)

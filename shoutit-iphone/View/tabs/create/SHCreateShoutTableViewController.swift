@@ -133,7 +133,7 @@ class SHCreateShoutTableViewController: BaseTableViewController {
             self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Clear", comment: "Clear"), style: UIBarButtonItemStyle.Done, target: self, action: "cleanForms"), animated: false)
         }
         
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(shoutitColor: .ShoutDarkGreen)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
     }
     

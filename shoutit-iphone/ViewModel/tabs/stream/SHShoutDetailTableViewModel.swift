@@ -197,10 +197,10 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
     // MapView Overlay
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let circleR = MKCircleRenderer(overlay: overlay)
-        circleR.fillColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        circleR.fillColor = UIColor(shoutitColor: .ShoutGreen)
         circleR.alpha = 0.5
         circleR.lineWidth = 1
-        circleR.strokeColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        circleR.strokeColor = UIColor(shoutitColor: .ShoutGreen)
         return circleR
     }
 
@@ -342,7 +342,7 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
                     if let videoCount = self.shoutDetail?.videos.count {
                         ind -= videoCount
                     }
-                    browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                    browser.navigationController?.navigationBar.tintColor = UIColor(shoutitColor: .ShoutGreen)
                     browser.navigationController?.navigationBar.opaque = true
                     browser.setCurrentPhotoIndex(UInt(ind))
 
@@ -500,9 +500,9 @@ class SHShoutDetailTableViewModel: NSObject, UICollectionViewDataSource, UIColle
             self.viewController.titleLabel.text = shoutDetail.title
             self.viewController.typeLabel.text = shoutDetail.type.rawValue
             if(shoutDetail.type == ShoutType.Offer) {
-                self.viewController.typeLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                self.viewController.typeLabel.textColor = UIColor(shoutitColor: .ShoutGreen)
             } else {
-                self.viewController.typeLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_RED)
+                self.viewController.typeLabel.textColor = UIColor(shoutitColor: .ShoutRed)
             }
             if shoutDetail.stringTags.isEmpty, let tags = shoutDetail.tags {
                 shoutDetail.stringTags = tags.map({ (tag) -> String in

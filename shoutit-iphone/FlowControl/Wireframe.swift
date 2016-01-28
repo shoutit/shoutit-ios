@@ -26,4 +26,8 @@ struct Wireframe {
     static func introViewController() -> IntroViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
     }
+    
+    static func loginMethodChoiceViewController() -> LoginMethodChoiceViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginMethodChoiceViewController") as! LoginMethodChoiceViewController
+    }
 }

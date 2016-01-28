@@ -33,7 +33,7 @@ class SHCameraViewController: SHCameraControlViewController {
         cameraVC.isVideo = firstVideo
         
         let navController = UINavigationController(rootViewController: cameraVC)
-        navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        navController.navigationBar.barTintColor = UIColor(shoutitColor: .ShoutGreen)
         navController.navigationBar.tintColor = UIColor.whiteColor()
         navController.setNavigationBarHidden(true, animated: false)
         parent.presentViewController(navController, animated: true, completion: nil)

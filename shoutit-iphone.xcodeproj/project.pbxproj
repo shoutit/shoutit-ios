@@ -248,6 +248,11 @@
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */; };
 		ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */; };
+		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
+		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
+		B2190D801C5A2B2D007FF33B /* LoginHelpDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */; };
+		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
+		B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
 		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
 		B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */; };
@@ -619,6 +624,11 @@
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewController.swift; path = View/tags/SHTagListenersTableViewController.swift; sourceTree = "<group>"; };
 		ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewModel.swift; path = ViewModel/tags/SHTagListenersTableViewModel.swift; sourceTree = "<group>"; };
+		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
+		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
+		B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginHelpDisplayable.swift; path = FlowControl/LoginHelpDisplayable.swift; sourceTree = "<group>"; };
+		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
+		B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwrapOperators.swift; path = CommonOperators/UnwrapOperators.swift; sourceTree = "<group>"; };
 		B227BFAC1C57942E003A2D76 /* xcconfigs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = xcconfigs; path = External/xcconfigs; sourceTree = SOURCE_ROOT; };
 		B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-AppStore.xcconfig"; path = "OtherSources/shoutit-AppStore.xcconfig"; sourceTree = "<group>"; };
 		B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Debug.xcconfig"; path = "OtherSources/shoutit-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -746,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				B227BFA81C579321003A2D76 /* Application */,
+				B2190D811C5A3D78007FF33B /* Common */,
 				6027CF621BE74F5200124C28 /* Model */,
 				6027CF631BE74F5F00124C28 /* Util */,
 				B27DF7801C58DC94006909D4 /* Navigation */,
@@ -815,6 +826,7 @@
 			children = (
 				B27DF7831C58E1A8006909D4 /* ApplicationMainController */,
 				B27DF77D1C58DBBA006909D4 /* Intro */,
+				B2190D771C5A29DC007FF33B /* LoginMethodChoice */,
 				B25F31F01C57E00400C5DAFC /* Login */,
 				ACC36C441C0C994D0082E0C2 /* messages */,
 				ACC36C3C1C09DDB20082E0C2 /* settings */,
@@ -1750,6 +1762,48 @@
 			name = tags;
 			sourceTree = "<group>";
 		};
+		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {
+			isa = PBXGroup;
+			children = (
+				B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */,
+				B2190D7A1C5A2A09007FF33B /* ViewModel */,
+			);
+			name = LoginMethodChoice;
+			sourceTree = "<group>";
+		};
+		B2190D7A1C5A2A09007FF33B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2190D811C5A3D78007FF33B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B2190D851C5A4161007FF33B /* Operators */,
+				B2190D821C5A3D84007FF33B /* Style */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		B2190D821C5A3D84007FF33B /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */,
+			);
+			name = Style;
+			sourceTree = "<group>";
+		};
+		B2190D851C5A4161007FF33B /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */,
+			);
+			name = Operators;
+			sourceTree = "<group>";
+		};
 		B227BFA81C579321003A2D76 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -1807,6 +1861,7 @@
 		B250E1C91C593F680010AB2D /* Displayables */ = {
 			isa = PBXGroup;
 			children = (
+				B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -2210,11 +2265,13 @@
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */,
 				60F11D3E1C2B623E00FEA500 /* SHShoutDiscoverListCell.swift in Sources */,
+				B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */,
 				ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */,
 				ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */,
 				AC7030C81C15C91F008F4C00 /* SHImageMediaItem.swift in Sources */,
 				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
+				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
 				AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */,
@@ -2222,6 +2279,7 @@
 				ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				ACC845751C4CE0040065A702 /* SHDiscoverShoutsViewController.swift in Sources */,
+				B2190D801C5A2B2D007FF33B /* LoginHelpDisplayable.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				AC7030DD1C183172008F4C00 /* SHEditProfileTableViewModel.swift in Sources */,
 				60F11D481C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift in Sources */,
@@ -2280,6 +2338,7 @@
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
+				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
 				AC7030D91C16E4F4008F4C00 /* SHPusherManager.swift in Sources */,
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
@@ -2308,6 +2367,7 @@
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
 				ACF9A8D01BEFF371001FB172 /* SHDiscoverDetailViewController.swift in Sources */,
 				606ED2EA1BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift in Sources */,
+				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
 				AC7030D71C16D8A8008F4C00 /* SHConversationPusherManager.swift in Sources */,
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,

@@ -120,7 +120,7 @@ class SHDiscoverFeedViewModel: NSObject, ViewControllerModelProtocol, UICollecti
     }
     
     private func addBorder(cell: UICollectionViewCell) {
-        cell.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_BORDER_DISCOVER)?.CGColor
+        cell.layer.borderColor = UIColor(shoutitColor: .DiscoverBorder).CGColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true

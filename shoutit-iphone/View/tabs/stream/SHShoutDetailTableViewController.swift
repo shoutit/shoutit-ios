@@ -54,8 +54,8 @@ class SHShoutDetailTableViewController: BaseTableViewController {
         
         self.tagList.tagDelegate = viewModel
         self.tagList.automaticResize = true
-        self.tagList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
-        self.tagList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
+        self.tagList.setTagBackgroundColor(UIColor(shoutitColor: .ShoutGreen))
+        self.tagList.setTagHighlightColor(UIColor(shoutitColor: .ShoutDarkGreen))
         self.tagList.textShadowColor = UIColor.clearColor()
         
         self.edgesForExtendedLayout = UIRectEdge.None
@@ -64,7 +64,7 @@ class SHShoutDetailTableViewController: BaseTableViewController {
         
         self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
         self.profileImageView.clipsToBounds = true
-        self.profileImageView.layer.borderColor = (UIColor(hexString: Constants.Style.COLOR_SHOUTDETAIL_PROFILEIMAGE))?.CGColor
+        self.profileImageView.layer.borderColor = UIColor(shoutitColor: .ShoutDetailProfileImageLightGrey).CGColor
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2.0
         self.mapView.layer.cornerRadius = 5

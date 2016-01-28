@@ -167,7 +167,7 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
         
         if (indexPath.section == 3 && indexPath.row == 0) {
             // Call this wherever you want to launch UserVoice
-            UINavigationBar.appearance().backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .ShoutGreen)
             UserVoice.presentUserVoiceInterfaceForParentViewController(self.viewController)
         }
         self.viewController.tableView.reloadData()
@@ -245,19 +245,19 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     
     private func setSelected (button: UIButton, isSelected: Bool) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let color = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            let color = UIColor(shoutitColor: .ShoutDarkGreen)
             if(!isSelected) {
                 button.setTitle("LINK", forState: UIControlState.Normal)
                 button.layer.cornerRadius = 5
                 button.layer.borderWidth = 1
-                button.layer.borderColor = color?.CGColor
+                button.layer.borderColor = color.CGColor
                 button.setTitleColor(color, forState: UIControlState.Normal)
                 button.backgroundColor = UIColor.whiteColor()
             } else {
                 button.setTitle("UNLINK", forState: UIControlState.Normal)
                 button.layer.cornerRadius = 5
                 button.layer.borderWidth = 1
-                button.layer.borderColor = color?.CGColor
+                button.layer.borderColor = color.CGColor
                 button.backgroundColor = color
                 button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             }

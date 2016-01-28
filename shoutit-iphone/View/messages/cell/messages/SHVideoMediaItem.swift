@@ -21,7 +21,7 @@ class SHVideoMediaItem: JSQMediaItem {
                     playImageView.image = UIImage(named: "PlayButton")
                 }
                 imageView?.image = localThumbImage
-                view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                view.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
                 JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()
@@ -39,7 +39,7 @@ class SHVideoMediaItem: JSQMediaItem {
                 } else {
                     imageView?.image = UIImage(named: "no_image_available")
                 }
-                view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                view.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
                 JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()

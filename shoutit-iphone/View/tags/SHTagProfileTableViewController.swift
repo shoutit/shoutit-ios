@@ -25,7 +25,7 @@ class SHTagProfileTableViewController: BaseTableViewController {
         self.tableView.delegate = viewModel
         self.tagLabel.layer.cornerRadius = self.tagLabel.frame.size.height / 2
         self.tagLabel.layer.masksToBounds = true
-        self.tagLabel.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)?.CGColor
+        self.tagLabel.layer.borderColor = UIColor(shoutitColor: .ShoutDarkGreen).CGColor
         self.edgesForExtendedLayout = UIRectEdge.None
         self.tableView.registerNib(UINib(nibName: Constants.TableViewCell.SHShoutTableViewCell, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.TableViewCell.SHShoutTableViewCell)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
@@ -79,16 +79,16 @@ class SHTagProfileTableViewController: BaseTableViewController {
             self.listenButton.setTitle(NSLocalizedString("Listen", comment: "Listen"), forState: UIControlState.Normal)
             self.listenButton.layer.cornerRadius = 5
             self.listenButton.layer.borderWidth = 1
-            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
-            self.listenButton.setTitleColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN), forState: UIControlState.Normal)
+            self.listenButton.layer.borderColor = UIColor(shoutitColor: .ShoutGreen).CGColor
+            self.listenButton.setTitleColor(UIColor(shoutitColor: .ShoutGreen), forState: UIControlState.Normal)
             self.listenButton.backgroundColor = UIColor.whiteColor()
            // self.listenButton.setLeftIcon(UIImage(named: "listen"), withSize: CGSizeMake(32, 32))
         } else {
             self.listenButton.setTitle(NSLocalizedString("Listening", comment: "Listening"), forState: UIControlState.Normal)
             self.listenButton.layer.cornerRadius = 5
             self.listenButton.layer.borderWidth = 2
-            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
-            self.listenButton.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            self.listenButton.layer.borderColor = UIColor(shoutitColor: .ShoutGreen).CGColor
+            self.listenButton.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
             self.listenButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
            // self.listenButton.setLeftIcon(UIImage(named: "listenGreen"), withSize: CGSizeMake(32, 32))
             

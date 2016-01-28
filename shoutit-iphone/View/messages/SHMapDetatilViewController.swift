@@ -111,7 +111,7 @@ class SHMapDetatilViewController: UIViewController, UIActionSheetDelegate, MKMap
         vc.location = location
         vc.shout = shout
         let navController = UINavigationController(rootViewController: vc)
-        navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        navController.navigationBar.barTintColor = UIColor(shoutitColor: .ShoutGreen)
         navController.navigationBar.tintColor = UIColor.whiteColor()
         navController.setNavigationBarHidden(true, animated: false)
         parent.presentViewController(vc, animated: true, completion: nil)
