@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YzK-LJ-Tmn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QVH-mJ-NB2">
                                     <size key="itemSize" width="200" height="239"/>
@@ -41,11 +40,9 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S9F-TN-zQa">
                                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                                            <animations/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSn-mY-CmW">
                                                             <rect key="frame" x="5" y="222" width="145" height="12"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" id="UPA-LB-LxB"/>
                                                             </constraints>
@@ -55,7 +52,6 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpW-Xd-UD8">
                                                             <rect key="frame" x="150" y="222" width="45" height="12"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" id="hw6-Ud-iOP"/>
                                                             </constraints>
@@ -65,7 +61,6 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nec-tP-nlv">
                                                             <rect key="frame" x="5" y="203" width="190" height="12"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" id="0US-m4-d3Y"/>
                                                             </constraints>
@@ -76,7 +71,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="nec-tP-nlv" firstAttribute="leading" secondItem="xcN-Yj-xdO" secondAttribute="leading" constant="5" id="6gx-bE-Svr"/>
@@ -94,10 +88,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="xcN-Yj-xdO" secondAttribute="trailing" id="5Ez-wP-GKx"/>
                                             <constraint firstItem="xcN-Yj-xdO" firstAttribute="top" secondItem="aer-qs-ALN" secondAttribute="top" id="Jhg-li-U1V"/>
@@ -112,7 +104,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="0yP-1M-ldN" customClass="SHShoutDiscoverTitleCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="313" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="313" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -123,20 +115,17 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KC6-Ph-1dd">
                                                             <rect key="frame" x="318" y="10" width="49" height="21"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.22745098039215686" green="0.76470588235294112" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCOVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSA-oL-RTK">
                                                             <rect key="frame" x="10" y="10" width="84" height="21"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="DSA-oL-RTK" firstAttribute="leading" secondItem="qHW-Sc-gg3" secondAttribute="leading" constant="10" id="3Zl-3q-hW9"/>
@@ -146,10 +135,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="qHW-Sc-gg3" secondAttribute="trailing" id="4Kv-MG-9JR"/>
                                             <constraint firstAttribute="bottom" secondItem="qHW-Sc-gg3" secondAttribute="bottom" id="VBg-Yg-ari"/>
@@ -162,7 +149,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="lyL-P0-Ffj" customClass="SHShoutMyFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="364" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="364" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -173,7 +160,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY5-GC-UXj">
                                                             <rect key="frame" x="341" y="10" width="26" height="22"/>
-                                                            <animations/>
                                                             <state key="normal" image="shoutsAsList"/>
                                                             <connections>
                                                                 <action selector="switchViewType:" destination="lyL-P0-Ffj" eventType="touchUpInside" id="8r9-0M-EfU"/>
@@ -181,18 +167,15 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIp-TU-YNt">
                                                             <rect key="frame" x="312" y="10" width="19" height="22"/>
-                                                            <animations/>
                                                             <state key="normal" image="filterShoutList"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY FEED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-rN-MJr">
                                                             <rect key="frame" x="10" y="10" width="72" height="21"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="VY5-GC-UXj" secondAttribute="trailing" constant="10" id="BQe-1E-xqg"/>
@@ -204,10 +187,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="JT5-Q1-aCp" secondAttribute="trailing" id="CoP-Fd-QTA"/>
                                             <constraint firstAttribute="bottom" secondItem="JT5-Q1-aCp" secondAttribute="bottom" id="HIl-Bg-Fvh"/>
@@ -231,7 +212,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-Vm-HSa">
                                                             <rect key="frame" x="5" y="5" width="100" height="100"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="100" id="3R6-MG-MF6"/>
                                                                 <constraint firstAttribute="width" constant="100" id="Uqb-yQ-QCS"/>
@@ -245,28 +225,24 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-FD-BYQ">
                                                             <rect key="frame" x="115" y="5" width="264" height="41"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZH-fu-dC2">
                                                             <rect key="frame" x="115" y="51" width="55" height="12"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyH-tN-1bZ">
                                                             <rect key="frame" x="115" y="67" width="52" height="11"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="9"/>
                                                             <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pe2-ve-zr5" userLabel="shoutCountry">
                                                             <rect key="frame" x="115" y="83" width="25" height="25"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="Cuu-59-fhs"/>
                                                                 <constraint firstAttribute="height" constant="25" id="oEH-KA-aQk"/>
@@ -274,7 +250,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-RN-oRn" userLabel="shoutCategory">
                                                             <rect key="frame" x="145" y="83" width="25" height="25"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="2sp-E0-Sze"/>
                                                                 <constraint firstAttribute="height" constant="25" id="puy-VY-hSZ"/>
@@ -282,7 +257,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutListMessage" translatesAutoresizingMaskIntoConstraints="NO" id="uks-rH-REs">
                                                             <rect key="frame" x="175" y="83" width="25" height="25"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="6OK-nr-uYb"/>
                                                                 <constraint firstAttribute="width" constant="25" id="hVi-BR-cvG"/>
@@ -290,20 +264,17 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8F-PG-nWD">
                                                             <rect key="frame" x="318" y="88" width="61" height="17"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                             <color key="textColor" red="0.49019607843137253" green="0.75686274509803919" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sf-ib-MF0">
                                                             <rect key="frame" x="354" y="51" width="25" height="12"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="Z8F-PG-nWD" secondAttribute="trailing" constant="5" id="2PD-0r-AJ8"/>
@@ -329,10 +300,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstItem="708-SO-j1V" firstAttribute="leading" secondItem="4gt-tj-vc2" secondAttribute="leading" id="MH4-ub-pe1"/>
                                             <constraint firstAttribute="bottom" secondItem="708-SO-j1V" secondAttribute="bottom" id="OID-4h-W5f"/>
@@ -363,7 +332,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cki-yJ-ddv">
                                                             <rect key="frame" x="0.0" y="0.0" width="206" height="121"/>
-                                                            <animations/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="GDY-D7-xiZ">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -384,7 +352,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                 <subviews>
                                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oxA-He-mMs">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                                                                        <animations/>
                                                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="90" id="KSk-9A-Ifg"/>
@@ -393,13 +360,11 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cars" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA0-8j-RwM">
                                                                                         <rect key="frame" x="5" y="93" width="80" height="21"/>
-                                                                                        <animations/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
-                                                                                <animations/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="oxA-He-mMs" secondAttribute="trailing" id="7wj-jF-kkJ"/>
@@ -426,10 +391,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                 </variation>
                                                                             </view>
                                                                         </subviews>
-                                                                        <animations/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
-                                                                    <animations/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="vmr-Mz-iKu" secondAttribute="bottom" constant="1" id="FIC-8T-L2u"/>
@@ -456,13 +419,11 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epc-xf-hEY">
                                                                                         <rect key="frame" x="19" y="49" width="53" height="21"/>
-                                                                                        <animations/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
-                                                                                <animations/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="epc-xf-hEY" firstAttribute="centerX" secondItem="5KU-Oq-VnZ" secondAttribute="centerX" id="6hE-a3-s7y"/>
@@ -493,10 +454,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                         </subviews>
-                                                                        <animations/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
-                                                                    <animations/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="5KU-Oq-VnZ" secondAttribute="bottom" constant="1" id="Yvt-9C-ZYc"/>
@@ -509,7 +468,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                             </cells>
                                                         </collectionView>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Cki-yJ-ddv" firstAttribute="top" secondItem="4YS-nP-i5d" secondAttribute="top" id="VgG-3n-oIp"/>
@@ -519,10 +477,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="4YS-nP-i5d" secondAttribute="bottom" id="CN1-DJ-Dou"/>
@@ -538,7 +494,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YzK-LJ-Tmn" firstAttribute="leading" secondItem="qSf-De-SCy" secondAttribute="leading" id="0nS-yz-IXD"/>
@@ -562,10 +517,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headbarLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Zb0-xa-I5u">
                                     <rect key="frame" x="0.0" y="0.0" width="77" height="20"/>
-                                    <animations/>
                                 </imageView>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="6hy-tO-QYQ">
@@ -575,16 +528,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7I-tQ-pu1" userLabel="cart">
                                         <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <animations/>
                                         <state key="normal" image="cart"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Md4-D8-CyD" userLabel="search">
                                         <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <animations/>
                                         <state key="normal" image="search"/>
                                     </button>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </barButtonItem>
@@ -607,7 +557,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9y9-VC-836">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -47,7 +47,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>http://www.shoutit.com</string>
+				<string>shoutit.com</string>
 			</array>
 		</dict>
 	</array>
@@ -152,7 +152,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>LoginStoryboard</string>
+	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

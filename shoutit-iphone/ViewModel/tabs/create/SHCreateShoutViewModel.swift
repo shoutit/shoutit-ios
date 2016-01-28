@@ -722,8 +722,8 @@ class SHCreateShoutViewModel: NSObject, TableViewControllerModelProtocol, UIColl
     
     private func setUpTagList() {
         self.viewController.tagsList.setTags(self.shout.stringTags)
-        self.viewController.tagsList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
-        self.viewController.tagsList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
+        self.viewController.tagsList.setTagBackgroundColor(UIColor(shoutitColor: .ShoutGreen))
+        self.viewController.tagsList.setTagHighlightColor(UIColor(shoutitColor: .ShoutDarkGreen))
         self.viewController.tagsList.textShadowColor = UIColor.clearColor()
         self.viewController.tagsList.automaticResize = true
         self.viewController.tagsList.userInteractionEnabled = true

@@ -50,7 +50,7 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHFilterCheckTableViewCell, forIndexPath: indexPath) as! SHFilterCheckTableViewCell
         cell.leftLabel.text = self.viewController.dataArray[indexPath.row]
         if(indexPath.row == self.viewController.selectedRow) {
-            cell.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            cell.leftLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         } else {
             cell.leftLabel.textColor = UIColor.darkTextColor()
@@ -66,7 +66,7 @@ class SHFilterCheckmarkTableViewModel: NSObject, ViewControllerModelProtocol, UI
             (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor.darkTextColor()
             self.viewController.selectedRow = indexPath.row
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-            (tableView.cellForRowAtIndexPath(indexPath) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            (tableView.cellForRowAtIndexPath(indexPath) as? SHFilterCheckTableViewCell)?.leftLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
             if let block = self.viewController.selectedBlock {
                 block(selectedTitle: self.viewController.dataArray[indexPath.row], index: indexPath.row)
             }

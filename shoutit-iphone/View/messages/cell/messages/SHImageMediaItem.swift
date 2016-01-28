@@ -34,7 +34,7 @@ class SHImageMediaItem: JSQMediaItem, MWPhotoBrowserDelegate {
             let nibViews = NSBundle.mainBundle().loadNibNamed(Constants.Messages.SHImageMediaItem, owner: self, options: nil)
             if let view = nibViews[0] as? UIView, let imageView = (view.viewWithTag(1) as? UIImageView) {
                 imageView.image = image
-                view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                view.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
                 JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: self.isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()
@@ -45,7 +45,7 @@ class SHImageMediaItem: JSQMediaItem, MWPhotoBrowserDelegate {
             let view = nibViews[0] as? UIView
             let imageView = (view?.viewWithTag(1) as? UIImageView)
             imageView?.setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "image_placeholder"), usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-            view?.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            view?.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
             JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: self.isOutgoing)
             view?.clipsToBounds = true
             view?.layoutIfNeeded()

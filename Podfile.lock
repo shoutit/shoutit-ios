@@ -64,8 +64,13 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.2.1):
     - MZAppearance
+  - Nimble (3.0.0)
   - ObjectMapper (1.1.1)
+  - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
+  - RxCocoa (2.1.0):
+    - RxSwift (~> 2.0)
+  - RxSwift (2.1.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -101,8 +106,12 @@ DEPENDENCIES:
   - MK (~> 1.0)
   - MWPhotoBrowser (~> 2.1)
   - MZFormSheetPresentationController (~> 2.2)
-  - ObjectMapper (~> 1.1.0)
+  - Nimble (= 3.0.0)
+  - ObjectMapper (~> 1.0)
+  - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
+  - RxCocoa (~> 2.1)
+  - RxSwift (~> 2.1)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
   - SVProgressHUD
@@ -145,8 +154,12 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
+  RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMCalloutView: 2ea4454883b79ed4bc73e15e00ee7d954e0e6166
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa

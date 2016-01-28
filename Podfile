@@ -2,6 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
+# RX
+pod 'RxSwift', '~> 2.1'
+pod 'RxCocoa', '~> 2.1'
+
 # logging
 pod 'Fabric', '~> 1.6'
 pod 'Crashlytics', '~> 3.6'
@@ -46,6 +50,19 @@ pod 'SMCalloutView', '~> 2.1'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
+
+def testing_pods
+    pod 'Quick', '~> 0.8.0'
+    pod 'Nimble', '3.0.0'
+end
+
+target "shoutit-iphoneTests" do
+    testing_pods
+end
+
+target "shoutit-iphoneUITests" do
+    testing_pods
+end
 
 # other
 pod 'CryptoSwift'

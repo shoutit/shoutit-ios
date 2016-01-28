@@ -19,7 +19,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.hidden = false
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar"))
-        self.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.primaryGreen)
+        self.navigationController?.navigationBar.tintColor = UIColor(shoutitColor: .PrimaryGreen)
         
         // Google instance
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
@@ -42,11 +42,6 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         self.viewModel = SHLoginViewModel(socialViewController: self)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func goBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -63,9 +58,6 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         viewModel?.showUserVoice(self)
     }
     
-    @IBAction func showTerms(sender: AnyObject) {
-        self.viewModel?.showTerms(self)
-    }
     // MARK - GIDSignInUIDelegate
     // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
     // UIViewController.

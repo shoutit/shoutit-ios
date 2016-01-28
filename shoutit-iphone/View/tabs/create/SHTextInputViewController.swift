@@ -50,7 +50,7 @@ class SHTextInputViewController: UIViewController, UITextViewDelegate {
         if self.textView.text.characters.count > self.limit - 20 || self.textView.text.characters.count - self.minLimit < 0 {
             self.countLabel.textColor = UIColor.redColor()
         } else {
-            self.countLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            self.countLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
         }
         
         let item = UIBarButtonItem(customView: self.countLabel)
@@ -149,7 +149,7 @@ class SHTextInputViewController: UIViewController, UITextViewDelegate {
         if len > self.limit - 20 || len - self.minLimit < 0 {
             self.countLabel.textColor = UIColor.redColor()
         } else {
-            self.countLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+            self.countLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
         }
         self.countLabel.sizeToFit()
         return len < self.limit

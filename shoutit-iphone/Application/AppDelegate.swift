@@ -39,15 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
-            // User Already Signed In
-            let tabViewController = SHTabViewController()
-            self.window?.rootViewController = tabViewController
-            // TODO get discover items
-            // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
-        } else {
-            // Not Signed In
-        }
+//        if let cachedOauthToken = SHOauthToken.getFromCache() where cachedOauthToken.isSignedIn() {
+//            // User Already Signed In
+//            let tabViewController = SHTabViewController()
+//            self.window?.rootViewController = tabViewController
+//            // TODO get discover items
+//            // TODO if we get user not authenticated, then we need refresh user's token and get the updated token
+//        } else {
+//            // Not Signed In
+//        }
         
         SHLocationManager.sharedInstance.startUpdating()
         

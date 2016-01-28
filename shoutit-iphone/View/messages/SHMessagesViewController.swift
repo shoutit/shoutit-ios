@@ -353,7 +353,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
         let message = self.viewModel?.jsqMessages[indexPath.item]
         if let messageSenderId = message?.senderId {
             if messageSenderId == self.senderId {
-                return bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
+                return bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(shoutitColor: .ShoutGreen))
             }
         }
         return bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
@@ -514,7 +514,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                 if let location = (message.media as? SHLocationMediaItem)?.location {
                     let vc = UIStoryboard.getMessages().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHMAPDETAIL) as! SHMapDetatilViewController
                     let navController = UINavigationController(rootViewController: vc)
-                    navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                    navController.navigationBar.barTintColor = UIColor(shoutitColor: .ShoutGreen)
                     navController.navigationBar.tintColor = UIColor.whiteColor()
                     vc.location = location
                     vc.shout = shout
@@ -532,7 +532,7 @@ class SHMessagesViewController: JSQMessagesViewController, UIActionSheetDelegate
                         browser.alwaysShowControls = false
                         browser.enableGrid = true
                         browser.startOnGrid = false
-                        browser.navigationController?.navigationBar.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                        browser.navigationController?.navigationBar.tintColor = UIColor(shoutitColor: .ShoutGreen)
                         browser.navigationController?.navigationBar.opaque = false
                         let transition = CATransition()
                         transition.duration = 0.3

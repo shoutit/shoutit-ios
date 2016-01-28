@@ -32,7 +32,7 @@ class SHEditProfileTableViewController: BaseTableViewController {
         vc.user = user
        // vc.delegate = parent
         let navController = UINavigationController(rootViewController: vc)
-        navController.navigationBar.barTintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+        navController.navigationBar.barTintColor = UIColor(shoutitColor: .ShoutGreen)
         navController.navigationBar.tintColor = UIColor.whiteColor()
         parent.presentViewController(navController, animated: true, completion: nil)
     }
@@ -47,7 +47,7 @@ class SHEditProfileTableViewController: BaseTableViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("save"))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: Selector("cancel"))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(shoutitColor: .ShoutDarkGreen)
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         self.setupAlerts()
         viewModel?.viewDidLoad()

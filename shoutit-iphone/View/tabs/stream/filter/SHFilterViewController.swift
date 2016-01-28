@@ -45,7 +45,7 @@ class SHFilterViewController: BaseViewController {
         self.keyToolbar?.frame = frame
         
         let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: "Done"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneEdit:"))
-        done.tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        done.tintColor = UIColor(shoutitColor: .ShoutDarkGreen)
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         self.keyToolbar?.items = [flexibleSpace, done]

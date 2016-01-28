@@ -30,7 +30,7 @@ class SHShoutMediaItem: JSQMediaItem {
                     let price = String(format: "%@ %g", arguments: [currency, price])
                     (view.viewWithTag(4) as? UILabel)?.text = price
                 }
-                view.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+                view.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
                 JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMaskToMediaView(view, isOutgoing: isOutgoing)
                 view.clipsToBounds = true
                 view.layoutIfNeeded()

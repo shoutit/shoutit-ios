@@ -27,7 +27,7 @@ class SHTabViewController: UITabBarController {
         let navVC = UINavigationController(rootViewController: viewController)
         navVC.tabBarItem = viewController.tabBarItem
         navVC.title = viewController.title
-        navVC.navigationBar.barTintColor = UIColor(hexString: Constants.Style.primaryGreen)
+        navVC.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         navVC.navigationBar.tintColor = UIColor.whiteColor()
         return navVC
     }
@@ -52,7 +52,7 @@ class SHTabViewController: UITabBarController {
     }
     
     private func setTabStyle() {
-        UITabBar.appearance().tintColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+        UITabBar.appearance().tintColor = UIColor(shoutitColor: .ShoutDarkGreen)
         
         // Sets the default color of the background of the UITabBar
         UITabBar.appearance().barTintColor = UIColor.whiteColor()

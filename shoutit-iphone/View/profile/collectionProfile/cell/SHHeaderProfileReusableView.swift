@@ -85,8 +85,8 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             self.listenButton.setTitle(NSLocalizedString("Listen", comment: "Listen"), forState: UIControlState.Normal)
             self.listenButton.layer.cornerRadius = 5
             self.listenButton.layer.borderWidth = 1
-            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
-            self.listenButton.setTitleColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN), forState: UIControlState.Normal)
+            self.listenButton.layer.borderColor = UIColor(shoutitColor: .ShoutGreen).CGColor
+            self.listenButton.setTitleColor(UIColor(shoutitColor: .ShoutGreen), forState: UIControlState.Normal)
             self.listenButton.backgroundColor = UIColor.groupTableViewBackgroundColor()
             self.imglisten?.removeFromSuperview()
             if let imageListen = self.imglisten {
@@ -102,8 +102,8 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
             self.listenButton.setTitle(NSLocalizedString("Listening", comment: "Listening"), forState: UIControlState.Normal)
             self.listenButton.layer.cornerRadius = 5
             self.listenButton.layer.borderWidth = 2
-            self.listenButton.layer.borderColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)?.CGColor
-            self.listenButton.backgroundColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN)
+            self.listenButton.layer.borderColor = UIColor(shoutitColor: .ShoutGreen).CGColor
+            self.listenButton.backgroundColor = UIColor(shoutitColor: .ShoutGreen)
             self.listenButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         }
     }

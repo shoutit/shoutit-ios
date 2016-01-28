@@ -108,7 +108,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                     cell.leftLabel.text = category.kLeftLabel
                     cell.rightLabel.text = category.kRightLabel
                     if(category.kRightLabel != "All") {
-                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                        cell.rightLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
                     } else {
                         cell.rightLabel.textColor = UIColor.lightGrayColor()
                     }
@@ -122,7 +122,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                     cell.leftLabel.text = type.kLeftLabel
                     cell.rightLabel.text = type.kRightLabel
                     if(type.kRightLabel != "Offer") {
-                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                        cell.rightLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
                     } else {
                         cell.rightLabel.textColor = UIColor.lightGrayColor()
                     }
@@ -135,8 +135,8 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                 if let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? SHFilterTagsTableViewCell {
                     cell.leftLabel.text = self.filters.tags?.kLeftLabel
                     cell.tagList.setTags(self.filters.tags?.KTagsArray)
-                    cell.tagList.setTagBackgroundColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_GREEN))
-                    cell.tagList.setTagHighlightColor(UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN))
+                    cell.tagList.setTagBackgroundColor(UIColor(shoutitColor: .ShoutDarkGreen))
+                    cell.tagList.setTagHighlightColor(UIColor(shoutitColor: .ShoutDarkGreen))
                     cell.tagList.tagDelegate = self
                     cell.tagList.textShadowColor = UIColor.clearColor()
                     cell.tagList.automaticResize = true
@@ -157,7 +157,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                     cell.leftLabel.text = price.kLeftLabel
                     cell.rightLabel.text = price.kRightLabel
                     if(price.kRightLabel != "Any") {
-                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                        cell.rightLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
                     } else {
                         cell.rightLabel.textColor = UIColor.lightGrayColor()
                     }
@@ -174,7 +174,7 @@ class SHFilterViewModel: NSObject, ViewControllerModelProtocol, UITableViewDataS
                         cell.rightLabel.text = String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
                     }
                     if cell.rightLabel.text! != NSLocalizedString("Current Location", comment: "Current Location") {
-                        cell.rightLabel.textColor = UIColor(hexString: Constants.Style.COLOR_SHOUT_DARK_GREEN)
+                        cell.rightLabel.textColor = UIColor(shoutitColor: .ShoutDarkGreen)
                     } else {
                         cell.rightLabel.textColor = UIColor.lightGrayColor()
                     }

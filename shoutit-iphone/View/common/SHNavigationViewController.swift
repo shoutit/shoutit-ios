@@ -25,7 +25,7 @@ class SHNavigationViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.barTintColor = UIColor(hexString: Constants.Style.primaryGreen)
+        self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
 
