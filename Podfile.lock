@@ -101,7 +101,7 @@ DEPENDENCIES:
   - MK (~> 1.0)
   - MWPhotoBrowser (~> 2.1)
   - MZFormSheetPresentationController (~> 2.2)
-  - ObjectMapper (~> 1.0)
+  - ObjectMapper (~> 1.1.0)
   - ReachabilitySwift (~> 2.3)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
@@ -156,4 +156,4 @@ SPEC CHECKSUMS:
   URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1
   XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
