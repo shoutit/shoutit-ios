@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginFlowController: FlowController {
+final class LoginFlowController: FlowController {
     
     let navigationController: UINavigationController
     
@@ -30,14 +30,14 @@ extension LoginFlowController: ApplicationMainViewControllerRootObject {}
 
 extension LoginFlowController: IntroViewControllerFlowDelegate {
     
-    final func showLoginChoice() {
+    func showLoginChoice() {
         
         // setup navigation controller state
         navigationController.navigationBarHidden = false
         
         // create controller
         let controller = Wireframe.loginMethodChoiceViewController()
-        controller.viewModel = LoginMethod
+        controller.viewModel = LoginMethodChoiceViewModel()
         controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }

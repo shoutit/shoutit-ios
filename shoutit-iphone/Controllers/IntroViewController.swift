@@ -14,7 +14,7 @@ protocol IntroViewControllerFlowDelegate: class, LoginHelpDisplayable {
     func showLoginChoice() -> Void
 }
 
-class IntroViewController: UIViewController {
+final class IntroViewController: UIViewController {
     
     // subviews
     @IBOutlet weak var loginButton: CustomUIButton!
@@ -29,7 +29,7 @@ class IntroViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    final override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         //

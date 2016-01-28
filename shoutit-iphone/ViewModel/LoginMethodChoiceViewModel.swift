@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginMethodChoiceViewModel {
+final class LoginMethodChoiceViewModel {
     
     init() {
         

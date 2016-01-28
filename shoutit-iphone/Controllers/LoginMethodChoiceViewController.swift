@@ -11,7 +11,7 @@ import UIKit
 protocol LoginMethodChoiceViewControllerFlowDelegate: class, LoginHelpDisplayable {
 }
 
-class LoginMethodChoiceViewController: UIViewController {
+final class LoginMethodChoiceViewController: UIViewController {
     
     // ui outlets
     @IBOutlet weak var loginWithFacebookButton: CustomUIButton!
@@ -29,16 +29,17 @@ class LoginMethodChoiceViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    final override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // setup
+        setupRX()
     }
     
     // MARK: - Setup
     
     private func setupRX() {
         
-        
+        print("ZAIMPLEMENTOWANA METODA")
     }
 }

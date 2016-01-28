@@ -12,7 +12,7 @@ protocol ApplicationMainViewControllerRootObject: class {
     
 }
 
-class ApplicationMainViewController: UIViewController {
+final class ApplicationMainViewController: UIViewController {
     
     // consts
     let animationDuration = 0.25
@@ -39,7 +39,7 @@ class ApplicationMainViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    final override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // determine if user is logged in and present controller accrodingly
