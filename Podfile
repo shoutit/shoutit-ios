@@ -51,6 +51,19 @@ pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
 
+def testing_pods
+    pod 'Quick', '~> 0.8.0'
+    pod 'Nimble', '3.0.0'
+end
+
+target "shoutit-iphoneTests" do
+    testing_pods
+end
+
+target "shoutit-iphoneUITests" do
+    testing_pods
+end
+
 # other
 pod 'CryptoSwift'
 pod 'libPusher', '~> 1.6'
