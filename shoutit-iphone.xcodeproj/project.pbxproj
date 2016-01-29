@@ -68,7 +68,6 @@
 		606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */; };
 		606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */; };
 		606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3161BF966D70064C53E /* SHCurrency.swift */; };
-		607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */; };
 		607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F757C1BEAB08000F3BA86 /* SHLocationManager.swift */; };
@@ -252,9 +251,14 @@
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
-		B2190D801C5A2B2D007FF33B /* LoginHelpDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
 		B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */; };
+		B21DFC3F1C5A6BA7000467B4 /* FeedbackDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21DFC3E1C5A6BA7000467B4 /* FeedbackDisplayable.swift */; };
+		B21DFC411C5A6BC6000467B4 /* HelpDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21DFC401C5A6BC6000467B4 /* HelpDisplayable.swift */; };
+		B21DFC431C5A6BD8000467B4 /* AboutDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21DFC421C5A6BD8000467B4 /* AboutDisplayable.swift */; };
+		B21DFC471C5A90E9000467B4 /* APIAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21DFC461C5A90E9000467B4 /* APIAuthService.swift */; };
+		B223A6671C5B77D2006EEA3F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223A6661C5B77D2006EEA3F /* APIManager.swift */; };
+		B223A66A1C5B8201006EEA3F /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223A6691C5B8201006EEA3F /* AuthData.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
 		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
 		B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */; };
@@ -269,6 +273,10 @@
 		B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBB1C579597003A2D76 /* shoutit.xcconfig */; };
 		B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6461C2445690061F56C /* CustomUIButton.swift */; };
 		B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64C1C2472260061F56C /* CustomUIView.swift */; };
+		B24EFCD01C5B86BB006AB7F2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EFCCF1C5B86BB006AB7F2 /* User.swift */; };
+		B24EFCD21C5B88BA006AB7F2 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EFCD11C5B88BA006AB7F2 /* Address.swift */; };
+		B24EFCD41C5BADD1006AB7F2 /* LoginAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EFCD31C5BADD1006AB7F2 /* LoginAccounts.swift */; };
+		B24EFCD61C5BB469006AB7F2 /* ListenersMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EFCD51C5BB469006AB7F2 /* ListenersMetadata.swift */; };
 		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
 		B250E1CC1C593F950010AB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B250E1CA1C593F950010AB2D /* Main.storyboard */; };
@@ -407,7 +415,6 @@
 		606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSinglePickerTableViewController.swift; path = View/common/SHSinglePickerTableViewController.swift; sourceTree = "<group>"; };
 		606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSinglePickerTableViewModel.swift; path = ViewModel/common/SHSinglePickerTableViewModel.swift; sourceTree = "<group>"; };
 		606ED3161BF966D70064C53E /* SHCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCurrency.swift; path = Model/shout/SHCurrency.swift; sourceTree = "<group>"; };
-		607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiAuthService.swift; path = Util/api/auth/SHApiAuthService.swift; sourceTree = "<group>"; };
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
 		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
@@ -642,9 +649,14 @@
 		ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewModel.swift; path = ViewModel/tags/SHTagListenersTableViewModel.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
-		B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginHelpDisplayable.swift; path = FlowControl/LoginHelpDisplayable.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
 		B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwrapOperators.swift; path = CommonOperators/UnwrapOperators.swift; sourceTree = "<group>"; };
+		B21DFC3E1C5A6BA7000467B4 /* FeedbackDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackDisplayable.swift; path = FlowControl/FeedbackDisplayable.swift; sourceTree = "<group>"; };
+		B21DFC401C5A6BC6000467B4 /* HelpDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpDisplayable.swift; path = FlowControl/HelpDisplayable.swift; sourceTree = "<group>"; };
+		B21DFC421C5A6BD8000467B4 /* AboutDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutDisplayable.swift; path = FlowControl/AboutDisplayable.swift; sourceTree = "<group>"; };
+		B21DFC461C5A90E9000467B4 /* APIAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIAuthService.swift; path = Networking/APIAuthService.swift; sourceTree = "<group>"; };
+		B223A6661C5B77D2006EEA3F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = Networking/APIManager.swift; sourceTree = "<group>"; };
+		B223A6691C5B8201006EEA3F /* AuthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthData.swift; path = Model/AuthData.swift; sourceTree = "<group>"; };
 		B227BFAC1C57942E003A2D76 /* xcconfigs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = xcconfigs; path = External/xcconfigs; sourceTree = SOURCE_ROOT; };
 		B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-AppStore.xcconfig"; path = "OtherSources/shoutit-AppStore.xcconfig"; sourceTree = "<group>"; };
 		B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Debug.xcconfig"; path = "OtherSources/shoutit-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -657,6 +669,10 @@
 		B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Staging-Test.xcconfig"; path = "OtherSources/shoutit-Staging-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Test.xcconfig"; path = "OtherSources/shoutit-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBB1C579597003A2D76 /* shoutit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = shoutit.xcconfig; path = OtherSources/shoutit.xcconfig; sourceTree = "<group>"; };
+		B24EFCCF1C5B86BB006AB7F2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
+		B24EFCD11C5B88BA006AB7F2 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Model/Address.swift; sourceTree = "<group>"; };
+		B24EFCD31C5BADD1006AB7F2 /* LoginAccounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccounts.swift; path = Model/LoginAccounts.swift; sourceTree = "<group>"; };
+		B24EFCD51C5BB469006AB7F2 /* ListenersMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersMetadata.swift; path = Model/ListenersMetadata.swift; sourceTree = "<group>"; };
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B250E1CB1C593F950010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Localization/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -805,6 +821,7 @@
 			children = (
 				B227BFA81C579321003A2D76 /* Application */,
 				B2190D811C5A3D78007FF33B /* Common */,
+				B21DFC441C5A90B1000467B4 /* Networking */,
 				6027CF621BE74F5200124C28 /* Model */,
 				6027CF631BE74F5F00124C28 /* Util */,
 				B27DF7801C58DC94006909D4 /* Navigation */,
@@ -840,6 +857,11 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B223A6691C5B8201006EEA3F /* AuthData.swift */,
+				B24EFCCF1C5B86BB006AB7F2 /* User.swift */,
+				B24EFCD11C5B88BA006AB7F2 /* Address.swift */,
+				B24EFCD31C5BADD1006AB7F2 /* LoginAccounts.swift */,
+				B24EFCD51C5BB469006AB7F2 /* ListenersMetadata.swift */,
 				AC856E9E1C1AF3A300864A85 /* users */,
 				AC7026D01C19DED800262622 /* accounts */,
 				AC7030B91C159160008F4C00 /* attachments */,
@@ -927,7 +949,6 @@
 				AC6F2B361BEF70EC00D9F5A3 /* discover */,
 				604A0DD11BEE6037002A80E7 /* users */,
 				604A0DCE1BEE5898002A80E7 /* misc */,
-				607F75721BEA68BE00F3BA86 /* auth */,
 				6027CF8C1BE7529500124C28 /* SHApiManager.swift */,
 				6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */,
 			);
@@ -1168,14 +1189,6 @@
 				606ED3111BF940530064C53E /* SHSinglePickerTableViewModel.swift */,
 			);
 			name = common;
-			sourceTree = "<group>";
-		};
-		607F75721BEA68BE00F3BA86 /* auth */ = {
-			isa = PBXGroup;
-			children = (
-				607F75731BEA68DA00F3BA86 /* SHApiAuthService.swift */,
-			);
-			name = auth;
 			sourceTree = "<group>";
 		};
 		607F75771BEA6F0300F3BA86 /* Libraries */ = {
@@ -1852,6 +1865,23 @@
 			name = Operators;
 			sourceTree = "<group>";
 		};
+		B21DFC441C5A90B1000467B4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B21DFC451C5A90C9000467B4 /* Services */,
+				B223A6661C5B77D2006EEA3F /* APIManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		B21DFC451C5A90C9000467B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B21DFC461C5A90E9000467B4 /* APIAuthService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		B227BFA81C579321003A2D76 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -1909,7 +1939,9 @@
 		B250E1C91C593F680010AB2D /* Displayables */ = {
 			isa = PBXGroup;
 			children = (
-				B2190D7F1C5A2B2D007FF33B /* LoginHelpDisplayable.swift */,
+				B21DFC3E1C5A6BA7000467B4 /* FeedbackDisplayable.swift */,
+				B21DFC401C5A6BC6000467B4 /* HelpDisplayable.swift */,
+				B21DFC421C5A6BD8000467B4 /* AboutDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -2337,6 +2369,7 @@
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
+				B24EFCD41C5BADD1006AB7F2 /* LoginAccounts.swift in Sources */,
 				AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
@@ -2376,6 +2409,7 @@
 				606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				ACB803AB1C10277200420BB1 /* SHShoutPickerTableViewModel.swift in Sources */,
+				B24EFCD61C5BB469006AB7F2 /* ListenersMetadata.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
@@ -2389,6 +2423,7 @@
 				ACB803A41C0F40F700420BB1 /* SHSystemMessageMediaItem.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */,
+				B21DFC411C5A6BC6000467B4 /* HelpDisplayable.swift in Sources */,
 				AC679B451C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
 				ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */,
@@ -2407,7 +2442,6 @@
 				ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				ACC845751C4CE0040065A702 /* SHDiscoverShoutsViewController.swift in Sources */,
-				B2190D801C5A2B2D007FF33B /* LoginHelpDisplayable.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				AC7030DD1C183172008F4C00 /* SHEditProfileTableViewModel.swift in Sources */,
 				60F11D481C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift in Sources */,
@@ -2422,6 +2456,7 @@
 				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
+				B223A6671C5B77D2006EEA3F /* APIManager.swift in Sources */,
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
 				AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */,
 				ACDB3CBD1BF90D7F0097444E /* SHRequestVideoTableViewCell.swift in Sources */,
@@ -2463,6 +2498,8 @@
 				ACDB3CC31BF90F080097444E /* SHRequestTextTableViewCellModel.swift in Sources */,
 				ACB803B91C10D42500420BB1 /* SHConversationsMeta.swift in Sources */,
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
+				B24EFCD21C5B88BA006AB7F2 /* Address.swift in Sources */,
+				B24EFCD01C5B86BB006AB7F2 /* User.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
@@ -2483,8 +2520,8 @@
 				60D36D601BF7944100238D62 /* SHTag.swift in Sources */,
 				AC6F2B381BEF71AE00D9F5A3 /* SHApiDiscoverService.swift in Sources */,
 				ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */,
+				B21DFC3F1C5A6BA7000467B4 /* FeedbackDisplayable.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
-				607F75741BEA68DA00F3BA86 /* SHApiAuthService.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
@@ -2525,9 +2562,12 @@
 				AC5404D81C1EC19200F6ECFE /* SHMapDetatilViewController.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,
 				60D36D5C1BF78CBA00238D62 /* SHShout.swift in Sources */,
+				B21DFC471C5A90E9000467B4 /* APIAuthService.swift in Sources */,
 				ACC064471C47523E0089912A /* SHLoginPopupViewController.swift in Sources */,
+				B21DFC431C5A6BD8000467B4 /* AboutDisplayable.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
+				B223A66A1C5B8201006EEA3F /* AuthData.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,
 				6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,

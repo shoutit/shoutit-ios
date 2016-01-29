@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol IntroViewControllerFlowDelegate: class, LoginHelpDisplayable {
+protocol IntroViewControllerFlowDelegate: class, HelpDisplayable {
     func showLoginChoice() -> Void
 }
 
@@ -60,7 +60,7 @@ final class IntroViewController: UIViewController {
         helpButton
             .rx_tap
             .subscribeNext{[unowned self] in
-                self.flowDelegate?.showLoginHelp()
+                self.flowDelegate?.showHelpInterface()
             }
             .addDisposableTo(disposeBag)
     }

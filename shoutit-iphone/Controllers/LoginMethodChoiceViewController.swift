@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-protocol LoginMethodChoiceViewControllerFlowDelegate: class, LoginHelpDisplayable {
-}
+protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable {}
 
 final class LoginMethodChoiceViewController: UIViewController {
     
@@ -27,6 +28,9 @@ final class LoginMethodChoiceViewController: UIViewController {
     // navigation
     weak var flowDelegate: LoginMethodChoiceViewControllerFlowDelegate?
     
+    // rx
+    let disposeBag = DisposeBag()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -40,6 +44,46 @@ final class LoginMethodChoiceViewController: UIViewController {
     
     private func setupRX() {
         
-        print("ZAIMPLEMENTOWANA METODA")
+        loginWithFacebookButton
+            .rx_tap
+            .subscribeNext{
+                
+            }
+            .addDisposableTo(disposeBag)
+        
+        loginWithGoogleButton
+            .rx_tap
+            .subscribeNext{
+                
+            }
+            .addDisposableTo(disposeBag)
+        
+        loginWithEmailButton
+            .rx_tap
+            .subscribeNext{
+                
+            }
+            .addDisposableTo(disposeBag)
+        
+        feedbackButton
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.showFeedbackInterface()
+            }
+            .addDisposableTo(disposeBag)
+        
+        helpButton
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.showHelpInterface()
+            }
+            .addDisposableTo(disposeBag)
+        
+        aboutButton
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.showAboutInterface()
+            }
+            .addDisposableTo(disposeBag)
     }
 }

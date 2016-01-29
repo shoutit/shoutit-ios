@@ -12,12 +12,11 @@ import FBSDKLoginKit
 import Haneke
 import MK
 
-class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate, UITextViewDelegate, TextFieldDelegate{
+class SHLoginViewModel: NSObject, ViewControllerModelProtocol, UITextViewDelegate, TextFieldDelegate{
 
     private var viewController: SHLoginViewController?
     private var socialViewController: SHSocialLoginViewController?
     private let webViewController = SHModalWebViewController()
-    private let shApiAuthService = SHApiAuthService()
    
     required init(viewController: SHLoginViewController) {
         self.viewController = viewController
@@ -51,12 +50,6 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     
     func destroy() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    // MARK - ViewController Methods
-    func loginWithGplus() {
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().signIn()
     }
     
     func loginWithFacebook() {
@@ -145,30 +138,6 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 vc.signUpPassword.resignFirstResponder()
             }
         }
-    }
-    
-    func showUserVoice(viewController: UIViewController) {
-        UserVoice.presentUserVoiceInterfaceForParentViewController(viewController)
-    }
-    
-    // MARK - GoogleSignIn Delegate
-    //handle the sign-in process -- Google
-    func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?,
-        withError error: NSError?) {
-            GIDSignIn.sharedInstance().delegate = nil
-            if error == nil, let serverAuthCode = user?.serverAuthCode {
-                let params = shApiAuthService.getGooglePlusParams(serverAuthCode)
-                self.getOauthResponse(params)
-            } else {
-                GIDSignIn.sharedInstance().signOut()
-                log.debug("\(error?.localizedDescription)")
-            }
-    }
-
-    func signIn(signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
-        withError error: NSError?) {
-            GIDSignIn.sharedInstance().delegate = nil
-            log.verbose("Error getting Google Plus User")
     }
     
     // MARK - UITextViewDelegate

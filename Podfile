@@ -35,6 +35,7 @@ pod 'SDWebImage', '~> 3.7'
 pod 'MWPhotoBrowser', '~> 2.1'
 
 # serialization
+pod 'Genome', '~> 2.0.0'
 pod 'SwiftyJSON', '~> 2.3.1'
 pod 'AlamofireObjectMapper', '~> 2.0'
 pod 'ObjectMapper', '~> 1.1.0'

@@ -54,10 +54,6 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         viewModel?.loginWithFacebook()
     }
     
-    @IBAction func showFeedback(sender: AnyObject) {
-        viewModel?.showUserVoice(self)
-    }
-    
     // MARK - GIDSignInUIDelegate
     // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
     // UIViewController.
