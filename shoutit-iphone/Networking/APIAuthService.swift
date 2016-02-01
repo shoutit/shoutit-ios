@@ -11,20 +11,45 @@ import Alamofire
 
 class APIAuthService {
     
-    private static let oauth2AccessTokenUrl = SHApiManager.sharedInstance.BASE_URL + "/oauth2/access_token"
-    private static let authResetPasswordUrl = SHApiManager.sharedInstance.BASE_URL + "/auth/reset_password"
+    private static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
+    private static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
     
     // MARK: - Actions
     
-    static func resetPassword(email: String, completionHandler: Response<SHSuccess, NSError> -> Void) {
+    static func resetPassword(email: String, completionHandler: Result<Success, NSError> -> Void) {
         let params = [
             "email": email
         ]
-        SHApiManager.sharedInstance.post(authResetPasswordUrl, params: params, completionHandler: completionHandler)
+        APIManager.manager.request(.POST, authResetPasswordURL, parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
+            switch response.result {
+            case .Success(let json):
+                do {
+                    let success = try Success(js: json)
+                    completionHandler(.Success(success))
+                } catch let error as NSError {
+                    completionHandler(.Failure(error))
+                }
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+            }
+        }
     }
     
-    static func getOauthToken(params: [String: AnyObject]?, cacheResponse: SHOauthToken -> Void, completionHandler: Response<SHOauthToken, NSError> -> Void) {
-        SHApiManager.sharedInstance.post(oauth2AccessTokenUrl, params: params, cacheKey: Constants.Cache.OauthToken, cacheResponse: cacheResponse, completionHandler: completionHandler)
+    static func getOauthToken(params: [String: AnyObject]?, cacheResponse: SHOauthToken -> Void, completionHandler: Result<AuthData, NSError> -> Void) {
+        
+        APIManager.manager.request(.POST, oauth2AccessTokenURL, parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
+            switch response.result {
+            case .Success(let json):
+                    do {
+                        let authResponse = try AuthData(js: json)
+                        completionHandler(.Success(authResponse))
+                    } catch let error as NSError {
+                        completionHandler(.Failure(error))
+                    }
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+            }
+        }
     }
     
     // MARK: - Params
