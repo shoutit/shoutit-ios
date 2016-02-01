@@ -47,7 +47,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func loginGooglePlus(sender: AnyObject) {
-        viewModel?.loginWithGplus()
+        //viewModel?.loginWithGplus()
     }
     
     @IBAction func loginFacebook(sender: AnyObject) {

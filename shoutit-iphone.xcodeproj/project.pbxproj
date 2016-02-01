@@ -250,6 +250,8 @@
 		ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */; };
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
 		B204C0EE1C5F723C00C0E23E /* Success.swift in Sources */ = {isa = PBXBuildFile; fileRef = B204C0ED1C5F723C00C0E23E /* Success.swift */; };
+		B204C0F01C5F7F1E00C0E23E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B204C0EF1C5F7F1E00C0E23E /* Account.swift */; };
+		B204C0F41C5F99FC00C0E23E /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B204C0F31C5F99FC00C0E23E /* SecureCoder.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -261,17 +263,6 @@
 		B223A6671C5B77D2006EEA3F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223A6661C5B77D2006EEA3F /* APIManager.swift */; };
 		B223A66A1C5B8201006EEA3F /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223A6691C5B8201006EEA3F /* AuthData.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
-		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
-		B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */; };
-		B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB31C579597003A2D76 /* shoutit-Profile.xcconfig */; };
-		B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB41C579597003A2D76 /* shoutit-Release.xcconfig */; };
-		B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB51C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig */; };
-		B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB61C579597003A2D76 /* shoutit-Staging-Debug.xcconfig */; };
-		B227BFC21C579597003A2D76 /* shoutit-Staging-Profile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB71C579597003A2D76 /* shoutit-Staging-Profile.xcconfig */; };
-		B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB81C579597003A2D76 /* shoutit-Staging-Release.xcconfig */; };
-		B227BFC41C579597003A2D76 /* shoutit-Staging-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */; };
-		B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */; };
-		B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBB1C579597003A2D76 /* shoutit.xcconfig */; };
 		B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6461C2445690061F56C /* CustomUIButton.swift */; };
 		B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64C1C2472260061F56C /* CustomUIView.swift */; };
 		B24EFCD01C5B86BB006AB7F2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24EFCCF1C5B86BB006AB7F2 /* User.swift */; };
@@ -317,19 +308,6 @@
 			remoteInfo = "shoutit-iphone";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6068E6451C2435D20061F56C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_production.xcconfig"; sourceTree = "<group>"; };
@@ -649,6 +627,8 @@
 		ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewController.swift; path = View/tags/SHTagListenersTableViewController.swift; sourceTree = "<group>"; };
 		ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewModel.swift; path = ViewModel/tags/SHTagListenersTableViewModel.swift; sourceTree = "<group>"; };
 		B204C0ED1C5F723C00C0E23E /* Success.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Success.swift; path = Model/Success.swift; sourceTree = "<group>"; };
+		B204C0EF1C5F7F1E00C0E23E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Model/Account.swift; sourceTree = "<group>"; };
+		B204C0F31C5F99FC00C0E23E /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -678,6 +658,7 @@
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B250E1CB1C593F950010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Localization/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B270FCCE1C5FB7860066254A /* Genome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Genome.framework; path = "Pods/../build/Debug-iphoneos/Genome.framework"; sourceTree = "<group>"; };
 		B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Controllers/IntroViewController.swift; sourceTree = "<group>"; };
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
@@ -740,6 +721,7 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B270FCCE1C5FB7860066254A /* Genome.framework */,
 				AC9B39041C40EFD6005D6857 /* MK.framework */,
 				24DD26576469F744E4920C92 /* Pods.framework */,
 				E5170806B72721CAA3FA0D7C /* Pods_shoutit_iphoneTests.framework */,
@@ -859,6 +841,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B204C0EF1C5F7F1E00C0E23E /* Account.swift */,
 				B204C0ED1C5F723C00C0E23E /* Success.swift */,
 				B223A6691C5B8201006EEA3F /* AuthData.swift */,
 				B24EFCCF1C5B86BB006AB7F2 /* User.swift */,
@@ -1826,6 +1809,14 @@
 			name = tags;
 			sourceTree = "<group>";
 		};
+		B204C0F11C5F99C200C0E23E /* Coders/Decoders */ = {
+			isa = PBXGroup;
+			children = (
+				B204C0F31C5F99FC00C0E23E /* SecureCoder.swift */,
+			);
+			name = Coders/Decoders;
+			sourceTree = "<group>";
+		};
 		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1846,6 +1837,7 @@
 		B2190D811C5A3D78007FF33B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B204C0F11C5F99C200C0E23E /* Coders/Decoders */,
 				B2190D851C5A4161007FF33B /* Operators */,
 				B2190D821C5A3D84007FF33B /* Style */,
 			);
@@ -2012,7 +2004,6 @@
 				6027CF2F1BE74EAE00124C28 /* Resources */,
 				D8607C86775441493F0131C1 /* Embed Pods Frameworks */,
 				5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */,
-				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
 			);
 			buildRules = (
@@ -2072,7 +2063,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Shoutit;
 				TargetAttributes = {
 					6027CF301BE74EAE00124C28 = {
@@ -2151,21 +2142,17 @@
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
 				AC1C93EB1BE90D2A009400BE /* tos.html in Resources */,
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
-				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
-				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
 				AC7030D21C16C983008F4C00 /* SHLocationMessageCell.xib in Resources */,
 				B2E7E2F51C592BB90078C743 /* FilterStoryboard.storyboard in Resources */,
 				AC70280D1C1AC1BA00262622 /* SHUserTableViewCell.xib in Resources */,
 				606ED2FE1BF80DFA0064C53E /* CameraView.xib in Resources */,
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
 				B2E7E3071C592BDE0078C743 /* TagStoryboard.storyboard in Resources */,
-				B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */,
 				AC7030D11C16C982008F4C00 /* SHImageMediaItem.xib in Resources */,
 				60DD76DC1C02096F007C5334 /* SHEmptyContentView.xib in Resources */,
 				B2E7E2F21C592BAD0078C743 /* CreateShoutStoryboard.storyboard in Resources */,
 				ACC8457F1C4D0FEA0065A702 /* SHDiscoverShoutListCell.xib in Resources */,
 				AC7028041C1AA66200262622 /* uv_idea.png in Resources */,
-				B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */,
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
 				B2E7E2F81C592BC20078C743 /* Launch Screen.xib in Resources */,
 				ACC36C361C09CA600082E0C2 /* SHHeaderProfileReusableView.xib in Resources */,
@@ -2180,26 +2167,19 @@
 				60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */,
-				B227BFC41C579597003A2D76 /* shoutit-Staging-Test.xcconfig in Resources */,
 				ACDB3CB91BF90CBC0097444E /* SHRequestImageTableViewCell.xib in Resources */,
-				B227BFC21C579597003A2D76 /* shoutit-Staging-Profile.xcconfig in Resources */,
 				AC7030D41C16C983008F4C00 /* SHVideoMediaItem.xib in Resources */,
-				B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */,
 				ACC36C371C09CA600082E0C2 /* SHShoutSquareCollectionViewCell.xib in Resources */,
-				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				ACDB3CBA1BF90CBC0097444E /* SHRequestTextTableViewCell.xib in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				B2E7E2FE1C592BCE0078C743 /* ProfileStoryboard.storyboard in Resources */,
 				ACDB3CBB1BF90CBC0097444E /* SHRequestVideoTableViewCell.xib in Resources */,
-				B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */,
-				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2E7E30A1C592BE60078C743 /* ShoutList.storyboard in Resources */,
 				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
 				B250E1CC1C593F950010AB2D /* Main.storyboard in Resources */,
-				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2E7E3011C592BD20078C743 /* SettingsStoryboard.storyboard in Resources */,
 				ACDD23B21BFAD40800EEC6A6 /* SHTopTagTableViewCell.xib in Resources */,
 				ACC845711C4CD5850065A702 /* SHDiscoverShoutCell.xib in Resources */,
@@ -2400,6 +2380,7 @@
 				AC679B491C3D07FF00F45947 /* SHDiscoverShoutHeaderCell.swift in Sources */,
 				B204C0EE1C5F723C00C0E23E /* Success.swift in Sources */,
 				ACB803A71C0F923200420BB1 /* SHApiMessageService.swift in Sources */,
+				B204C0F01C5F7F1E00C0E23E /* Account.swift in Sources */,
 				ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */,
 				AC47A7341C02349F006AF406 /* SHShoutDetailTableViewController.swift in Sources */,
 				601EB8BC1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift in Sources */,
@@ -2584,6 +2565,7 @@
 				601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */,
 				ACC36C411C09DEAC0082E0C2 /* SHSettingsTableViewModel.swift in Sources */,
 				AC679B401C3CE34700F45947 /* SHDiscoverFeedViewController.swift in Sources */,
+				B204C0F41C5F99FC00C0E23E /* SecureCoder.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
@@ -3499,6 +3481,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3509,6 +3492,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3589,6 +3573,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3599,6 +3584,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

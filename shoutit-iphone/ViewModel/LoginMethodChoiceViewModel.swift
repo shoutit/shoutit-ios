@@ -32,7 +32,7 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         
             if error == nil, let serverAuthCode = user?.serverAuthCode {
                 let params = APIAuthService.googleLoginParamsWithToken(serverAuthCode)
-                self.getOauthResponse(params)
+                //self.getOauthResponse(params)
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 log.debug("\(error?.localizedDescription)")

@@ -19,8 +19,8 @@ struct ListenersMetadata {
 extension ListenersMetadata: BasicMappable {
     
     mutating func sequence(map: Map) throws {
-        try pages                   <~ map["pages"]
-        try users                   <~ map["users"]
-        try tags                    <~ map["tags"]
+        try pages                   <~> map["pages"]
+        try users                   <~> map["users"]
+        try tags                    <~> map["tags"]
     }
 }

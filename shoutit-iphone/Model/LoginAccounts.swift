@@ -18,7 +18,7 @@ struct LoginAccounts {
 extension LoginAccounts: BasicMappable {
     
     mutating func sequence(map: Map) throws {
-        try gplus                <~ map["gplus"]
-        try facebook             <~ map["facebook"]
+        try gplus                <~> map["gplus"]
+        try facebook             <~> map["facebook"]
     }
 }

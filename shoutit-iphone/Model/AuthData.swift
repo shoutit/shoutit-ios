@@ -28,12 +28,12 @@ struct AuthData {
 extension AuthData: BasicMappable {
     
     mutating func sequence(map: Map) throws {
-        try accessToken         <~ map["access_token"]
-        try expiresIn           <~ map["expires_in"]
-        try isNewSignUp         <~ map["new_signup"]
-        try refreshToken        <~ map["refresh_token"]
-        try scope               <~ map["scope"]
-        try tokenType           <~ map["token_type"]
-        try user                <~ map["user"]
+        try accessToken         <~> map["access_token"]
+        try expiresIn           <~> map["expires_in"]
+        try isNewSignUp         <~> map["new_signup"]
+        try refreshToken        <~> map["refresh_token"]
+        try scope               <~> map["scope"]
+        try tokenType           <~> map["token_type"]
+        try user                <~> map["user"]
     }
 }

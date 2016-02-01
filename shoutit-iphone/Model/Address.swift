@@ -23,12 +23,12 @@ struct Address {
 extension Address: BasicMappable {
     
     mutating func sequence(map: Map) throws {
-        try address         <~ map["address"]
-        try city            <~ map["city"]
-        try country         <~ map["country"]
-        try latitude        <~ map["latitude"]
-        try longitude       <~ map["longitude"]
-        try postalCode      <~ map["postal_code"]
-        try state           <~ map["state"]
+        try address         <~> map["address"]
+        try city            <~> map["city"]
+        try country         <~> map["country"]
+        try latitude        <~> map["latitude"]
+        try longitude       <~> map["longitude"]
+        try postalCode      <~> map["postal_code"]
+        try state           <~> map["state"]
     }
 }
