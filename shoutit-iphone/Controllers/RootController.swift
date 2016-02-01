@@ -12,19 +12,40 @@ class RootController: UIViewController {
         
     @IBOutlet weak var contentContainer : UIView?
     
+    var viewControllers = [NavigationItem: UIViewController]()
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if var destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
         }
     }
     
+    // MARK: Side Menu
+    
+    @IBAction func toggleMenu() {
+        
+    }
+    
+    // MARK: Content Managing
+    
     func openItem(navigationItem: NavigationItem) {
+        let loadedController = viewControllers[navigationItem]
+        
+        if (loadedController != nil) {
+            changeContentTo(loadedController!)
+            return
+        }
+        
         let flowController = flowControllerFor(navigationItem)
+        
         presentWith(flowController)
+        
+        viewControllers[navigationItem] = flowController.navigationController
+        
     }
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
-        let navController = UINavigationController()
+        let navController = SHNavigationViewController()
         var flowController : FlowController
         
         switch navigationItem {
@@ -42,19 +63,26 @@ class RootController: UIViewController {
     }
     
     func presentWith(flowController: FlowController) {
+        
+        if let navigationController : UINavigationController = flowController.navigationController {
+            changeContentTo(navigationController)
+            return
+        } else {
+            fatalError("Flow Controller did not return UIViewController")
+        }
+    }
+    
+    func changeContentTo(controller: UIViewController) {
         contentContainer?.subviews[0].removeFromSuperview()
         
-        let navigationController = flowController.navigationController
+        controller.willMoveToParentViewController(self)
         
-        navigationController.willMoveToParentViewController(self)
-        
-        let newContentView = navigationController.view!
+        let newContentView = controller.view!
         contentContainer?.addSubview(newContentView)
         
-        self.addChildViewController(navigationController)
+        self.addChildViewController(controller)
         
-        navigationController.didMoveToParentViewController(self)
-        
+        controller.didMoveToParentViewController(self)
     }
     
 }
