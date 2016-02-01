@@ -13,6 +13,11 @@ struct Wireframe {
     enum Storyboard: String {
         case Main = "Main"
         case Login = "LoginStoryboard"
+        case Home = "Home"
+        case Discover = "Discover"
+        case Shout = "Shout"
+        case Chats = "Chats"
+        case Profile = "Profile"
     }
     
     // General
@@ -29,5 +34,33 @@ struct Wireframe {
     
     static func loginMethodChoiceViewController() -> LoginMethodChoiceViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginMethodChoiceViewController") as! LoginMethodChoiceViewController
+    }
+    
+    static func homeViewController() -> UIViewController {
+        return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+    }
+    
+    static func browseViewController() -> UIViewController {
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("IntroViewController")
+    }
+    
+    static func ordersViewController() -> UIViewController {
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("IntroViewController")
+    }
+    
+    static func discoverViewController() -> UIViewController {
+        return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+    }
+    
+    static func shoutViewController() -> UIViewController {
+        return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
+    }
+    
+    static func chatsViewController() -> UIViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController")
+    }
+    
+    static func profileViewController() -> UIViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("SHProfileCollectionViewController")
     }
 }
