@@ -55,6 +55,7 @@ extension ContainerController where Self: UIViewController {
     
     func addSubview(subview: UIView, toView view: UIView) {
         
+        subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
         
         let views = ["subview" : subview]

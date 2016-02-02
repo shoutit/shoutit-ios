@@ -115,5 +115,6 @@ extension AppDelegate {
     
     func applyAppearance() {
         UINavigationBar.appearance().tintColor = UIColor(shoutitColor: .PrimaryGreen)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
     }
 }

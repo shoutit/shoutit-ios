@@ -46,6 +46,7 @@ pod 'HanekeSwift', '~> 0.10'
 
 # ui controls
 pod 'Material', '~> 1.29'
+pod 'ResponsiveLabel', '~> 1.0'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'SVProgressHUD'
 pod 'SVPullToRefresh', '~> 0.4'

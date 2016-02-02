@@ -284,6 +284,7 @@
 		B2C45CAC1C60CF98000F88A8 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CAB1C60CF98000F88A8 /* LoginWithEmailViewModel.swift */; };
 		B2C45CAF1C60D7C1000F88A8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CAE1C60D7C1000F88A8 /* Validator.swift */; };
 		B2C45CB21C60DBCE000F88A8 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CB11C60DBCE000F88A8 /* ContainerController.swift */; };
+		B2C45CB41C610F1A000F88A8 /* TermsAndPolicyDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CB31C610F1A000F88A8 /* TermsAndPolicyDisplayable.swift */; };
 		B2E7E2E61C592B600078C743 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */; };
 		B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EB1C592B970078C743 /* Discover.storyboard */; };
 		B2E7E2EC1C592B9E0078C743 /* MessagesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EE1C592B9E0078C743 /* MessagesStoryboard.storyboard */; };
@@ -679,6 +680,7 @@
 		B2C45CAB1C60CF98000F88A8 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		B2C45CAE1C60D7C1000F88A8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C45CB11C60DBCE000F88A8 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerController.swift; path = CommonProtocols/ContainerController.swift; sourceTree = "<group>"; };
+		B2C45CB31C610F1A000F88A8 /* TermsAndPolicyDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsAndPolicyDisplayable.swift; path = FlowControl/TermsAndPolicyDisplayable.swift; sourceTree = "<group>"; };
 		B2E7E3101C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MessagesStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3111C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3121C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateShoutStoryboard.storyboard; sourceTree = "<group>"; };
@@ -1957,6 +1959,7 @@
 				B21DFC401C5A6BC6000467B4 /* HelpDisplayable.swift */,
 				B21DFC421C5A6BD8000467B4 /* AboutDisplayable.swift */,
 				B2C45CA01C601D05000F88A8 /* LoginScreenDisplayable.swift */,
+				B2C45CB31C610F1A000F88A8 /* TermsAndPolicyDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -2537,6 +2540,7 @@
 				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,
 				606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
+				B2C45CB41C610F1A000F88A8 /* TermsAndPolicyDisplayable.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
 				AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */,

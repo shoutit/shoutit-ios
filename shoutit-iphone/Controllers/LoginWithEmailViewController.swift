@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable {}
+protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable, TermsAndPolicyDisplayable {}
 
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
@@ -21,6 +21,8 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     let animationDuration: Double = 0.25
+    let signupViewHeight: CGFloat = 376
+    let loginViewHeight: CGFloat = 306
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!
@@ -28,6 +30,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
     
     // navigation
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
@@ -43,12 +46,14 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         let controller = Wireframe.loginViewController()
         controller.viewModel = self.viewModel
         controller.delegate = self
+        controller.flowDelegate = self.flowDelegate
         return controller
     }()
     lazy var signupViewController: SignupViewController = {
         let controller = Wireframe.signupViewController()
         controller.viewModel = self.viewModel
         controller.delegate = self
+        controller.flowDelegate = self.flowDelegate
         return controller
     }()
     
@@ -57,11 +62,11 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup
         setupRX()
         
-        // show initial child
         
+        // show initial child
+        title = signupViewController.title
         addInitialViewController(signupViewController)
     }
     
@@ -95,10 +100,14 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
 extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegate {
     
     func presentLogin() {
+        title = loginViewController.title
+        containerHeightConstraint.constant = loginViewHeight
         cycleFromViewController(signupViewController, toViewController: loginViewController, animated: true)
     }
     
     func presentSignup() {
+        title = signupViewController.title
+        containerHeightConstraint.constant = signupViewHeight
         cycleFromViewController(loginViewController, toViewController: signupViewController, animated: true)
     }
 }
