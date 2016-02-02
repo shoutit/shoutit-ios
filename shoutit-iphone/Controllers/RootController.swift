@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RootController: UIViewController {
         
@@ -14,25 +16,46 @@ class RootController: UIViewController {
     
     var viewControllers = [NavigationItem: UIViewController]()
     
+    let disposeBag = DisposeBag()
+    
+    // MARK: Life Cycle
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().rx_notification(Constants.Notification.ToggleMenuNotification).subscribeNext { notification in
+            self.toggleMenuAction()
+        }.addDisposableTo(disposeBag)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        openItem(.Home)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? Navigation {
+        if var destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
         }
     }
     
     // MARK: Side Menu
     
-    @IBAction func toggleMenu() {
-        
+    @IBAction func toggleMenuAction() {
+        self.performSegueWithIdentifier("presentMenuSegue", sender: nil)
     }
     
     // MARK: Content Managing
     
     func openItem(navigationItem: NavigationItem) {
         
+        if let presentedMenu = self.presentedViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
         
         if let loadedController = viewControllers[navigationItem] {
-            changeContentTo(loadedController!)
+            changeContentTo(loadedController)
             return
         }
         
@@ -72,13 +95,24 @@ class RootController: UIViewController {
         }
     }
     
+    func removeCurrentContent() {
+        if let currentContent = contentContainer?.subviews[0] {
+            currentContent.removeFromSuperview()
+        }
+        
+        self.childViewControllers.each { child in
+            child.willMoveToParentViewController(nil)
+            child.removeFromParentViewController()
+        }
+    }
+    
     func changeContentTo(controller: UIViewController) {
-        contentContainer?.subviews[0].removeFromSuperview()
+        
+        removeCurrentContent()
         
         controller.willMoveToParentViewController(self)
         
-        let newContentView = controller.view!
-        contentContainer?.addSubview(newContentView)
+        contentContainer?.addSubview(controller.view!)
         
         self.addChildViewController(controller)
         

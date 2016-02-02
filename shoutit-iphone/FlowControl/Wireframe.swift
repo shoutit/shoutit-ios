@@ -13,7 +13,7 @@ struct Wireframe {
     enum Storyboard: String {
         case Main = "Main"
         case Login = "LoginStoryboard"
-        case Home = "Home"
+        case Home = "ShoutList"
         case Discover = "Discover"
         case Shout = "Shout"
         case Chats = "Chats"
@@ -37,7 +37,7 @@ struct Wireframe {
     }
     
     static func homeViewController() -> UIViewController {
-        return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("shoutListViewController")
     }
     
     static func browseViewController() -> UIViewController {

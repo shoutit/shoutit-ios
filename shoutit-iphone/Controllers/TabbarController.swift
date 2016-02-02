@@ -14,7 +14,7 @@ class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]!
     
-    let disposeBag : DisposeBag()
+    let disposeBag = DisposeBag()
     
     var rootController : RootController?
     
@@ -28,7 +28,7 @@ class TabbarController: UIViewController, Navigation {
                 
                 self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
                 
-            }.addDisposableTo(self.disposeBag!)
+            }.addDisposableTo(self.disposeBag)
         }
     }
     
