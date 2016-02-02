@@ -12,10 +12,13 @@ protocol ApplicationMainViewControllerRootObject: class {
     
 }
 
-final class ApplicationMainViewController: UIViewController {
+final class ApplicationMainViewController: UIViewController, ContainerController {
     
     // consts
-    let animationDuration = 0.25
+    let animationDuration: Double = 0.25
+    var containerView: UIView! {
+        return view
+    }
     
     // vars
     private(set) var rootObject: ApplicationMainViewControllerRootObject!
@@ -55,54 +58,5 @@ final class ApplicationMainViewController: UIViewController {
     
     private func showMainInterface() {
         
-    }
-    
-    // MARK: - Transitioning
-    
-    private func addInitialViewController(viewController: UIViewController) {
-        
-        addChildViewController(viewController)
-        addSubview(viewController.view, toView: view)
-        viewController.view.layoutIfNeeded()
-        viewController.didMoveToParentViewController(self)
-    }
-    
-    private func cycleFromViewController(oldViewController: UIViewController, toViewController newViewController: UIViewController, animated: Bool) {
-        
-        // prepare for transition
-        oldViewController.willMoveToParentViewController(nil)
-        addChildViewController(newViewController)
-        
-        //
-        newViewController.view.alpha = 0.0
-        addSubview(newViewController.view, toView: view)
-        newViewController.view.layoutIfNeeded()
-        
-        let animationClosure = {
-            newViewController.view.alpha = 1.0
-            oldViewController.view.alpha = 0.0
-        }
-        
-        let completionClosure: (Bool) -> Void = {(_) -> Void in
-            oldViewController.view.removeFromSuperview()
-            oldViewController.removeFromParentViewController()
-            newViewController.didMoveToParentViewController(self)
-        }
-        
-        if animated {
-            UIView.animateWithDuration(animationDuration, delay: 0.0, options: [], animations: animationClosure, completion: completionClosure)
-        } else {
-            animationClosure()
-            completionClosure(true)
-        }
-    }
-    
-    private func addSubview(subview: UIView, toView view: UIView) {
-        
-        view.addSubview(subview)
-        
-        let views = ["subview" : subview]
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: [], metrics: nil, views: views))
     }
 }

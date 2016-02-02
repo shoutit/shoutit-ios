@@ -12,9 +12,17 @@ class CustomUIButton: UIButton {
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
-            layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
+            applyCornerRadius()
         }
     }
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        applyCornerRadius()
+    }
+    
+    private func applyCornerRadius() {
+        layer.cornerRadius = cornerRadius
+        layer.masksToBounds = cornerRadius > 0
+    }
 }

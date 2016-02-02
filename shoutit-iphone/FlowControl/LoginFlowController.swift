@@ -44,3 +44,5 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
 }
 
 extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
+
+extension LoginFlowController: LoginWithEmailViewControllerFlowDelegate {}

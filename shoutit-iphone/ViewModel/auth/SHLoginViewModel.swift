@@ -12,12 +12,11 @@ import FBSDKLoginKit
 import Haneke
 import MK
 
-class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate, UITextViewDelegate, TextFieldDelegate{
+class SHLoginViewModel: NSObject, ViewControllerModelProtocol, UITextViewDelegate, TextFieldDelegate{
 
     private var viewController: SHLoginViewController?
     private var socialViewController: SHSocialLoginViewController?
     private let webViewController = SHModalWebViewController()
-    private let shApiAuthService = SHApiAuthService()
    
     required init(viewController: SHLoginViewController) {
         self.viewController = viewController
@@ -53,74 +52,68 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    // MARK - ViewController Methods
-    func loginWithGplus() {
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
     func loginWithFacebook() {
-        let login: FBSDKLoginManager = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
-            if (error != nil) {
-                log.info("Process error \(error.localizedDescription)")
-            } else {
-                if result.isCancelled {
-                    log.info("Cancelled")
-                } else {
-                    log.info("Logged in")
-                    if((FBSDKAccessToken.currentAccessToken()) != nil) {
-                        let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
-                        self.getOauthResponse(params)
-                    }
-                }
-            }
-        }
+//        let login: FBSDKLoginManager = FBSDKLoginManager()
+//        login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+//            if (error != nil) {
+//                log.info("Process error \(error.localizedDescription)")
+//            } else {
+//                if result.isCancelled {
+//                    log.info("Cancelled")
+//                } else {
+//                    log.info("Logged in")
+//                    if((FBSDKAccessToken.currentAccessToken()) != nil) {
+//                        let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
+//                        self.getOauthResponse(params)
+//                    }
+//                }
+//            }
+//        }
     }
     
     func performSignUp() {
-        if validateAuthentication() {
-            // Perform SignUp
-            if let vc = self.viewController {
-                if let emailOrUsername = vc.signUpEmailOrUsername.text, let password = vc.signUpPassword.text, let firstName = vc.firstNameTextField.text, let lastName = vc.lastNameTextField.text {
-                    let params = self.shApiAuthService.getSignUpParams(emailOrUsername, password: password, name: firstName + " " + lastName)
-                    self.getOauthResponse(params)
-                }
-                
-            }
-        }
+//        if validateAuthentication() {
+//            // Perform SignUp
+//            if let vc = self.viewController {
+//                if let emailOrUsername = vc.signUpEmailOrUsername.text, let password = vc.signUpPassword.text, let firstName = vc.firstNameTextField.text, let lastName = vc.lastNameTextField.text {
+//                    let params = self.shApiAuthService.getSignUpParams(emailOrUsername, password: password, name: firstName + " " + lastName)
+//                    self.getOauthResponse(params)
+//                }
+//                
+//            }
+//        }
     }
     
     func performLogin() {
-        if validateAuthentication() {
-            // Perform API Request
-            // Perform Sign In
-            if let vc = self.viewController {
-                let params = self.shApiAuthService.getLoginParams(vc.signInEmailOrUsername.text!, password: vc.signInPassword.text!)
-                self.getOauthResponse(params)
-            }
-        } else {
-            
-            log.debug("Incorrect Email or Password")
-        }
+//        if validateAuthentication() {
+//            // Perform API Request
+//            // Perform Sign In
+//            if let vc = self.viewController {
+//                let params = self.shApiAuthService.getLoginParams(vc.signInEmailOrUsername.text!, password: vc.signInPassword.text!)
+//                self.getOauthResponse(params)
+//            }
+//        } else {
+//            
+//            log.debug("Incorrect Email or Password")
+//        }
     }
     
     func resetPassword() {
-        if let emailTextField = self.viewController?.signInEmailOrUsername {
-            if let email = emailTextField.text where !self.emailValidation(email) {
-                self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: self.viewController?.emailView)
-                return
-            }
-            shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
-                if response.result.isSuccess {
-                    let ac = UIAlertController(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Password recovery email will be sent soon.", comment: "Password recovery email will be sent soon."), preferredStyle: UIAlertControllerStyle.Alert)
-                    ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
-                    self.viewController?.presentViewController(ac, animated: true, completion: nil)
-                } else {
-                    log.debug("Error sending the mail")
-                }
-            })
-        }
+//        if let emailTextField = self.viewController?.signInEmailOrUsername {
+//            if let email = emailTextField.text where !self.emailValidation(email) {
+//                self.displayErrorMessage(NSLocalizedString("EnterValidMail", comment: "Enter valid email."), view: self.viewController?.emailView)
+//                return
+//            }
+//            shApiAuthService.resetPassword(emailTextField.text!, completionHandler: { (response) -> Void in
+//                if response.result.isSuccess {
+//                    let ac = UIAlertController(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Password recovery email will be sent soon.", comment: "Password recovery email will be sent soon."), preferredStyle: UIAlertControllerStyle.Alert)
+//                    ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
+//                    self.viewController?.presentViewController(ac, animated: true, completion: nil)
+//                } else {
+//                    log.debug("Error sending the mail")
+//                }
+//            })
+//        }
     }
     
     func skipLogin () {
@@ -145,30 +138,6 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
                 vc.signUpPassword.resignFirstResponder()
             }
         }
-    }
-    
-    func showUserVoice(viewController: UIViewController) {
-        UserVoice.presentUserVoiceInterfaceForParentViewController(viewController)
-    }
-    
-    // MARK - GoogleSignIn Delegate
-    //handle the sign-in process -- Google
-    func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?,
-        withError error: NSError?) {
-            GIDSignIn.sharedInstance().delegate = nil
-            if error == nil, let serverAuthCode = user?.serverAuthCode {
-                let params = shApiAuthService.getGooglePlusParams(serverAuthCode)
-                self.getOauthResponse(params)
-            } else {
-                GIDSignIn.sharedInstance().signOut()
-                log.debug("\(error?.localizedDescription)")
-            }
-    }
-
-    func signIn(signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
-        withError error: NSError?) {
-            GIDSignIn.sharedInstance().delegate = nil
-            log.verbose("Error getting Google Plus User")
     }
     
     // MARK - UITextViewDelegate
@@ -358,56 +327,56 @@ class SHLoginViewModel: NSObject, ViewControllerModelProtocol, GIDSignInDelegate
     }
     
     private func getOauthResponse(params: [String: AnyObject]) {
-        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
-        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
-            // Do nothing here
-        }) { (response) -> Void in
-            SHProgressHUD.dismiss()
-            switch(response.result) {
-            case .Success(let oauthToken):
-                if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
-                    // Login Success
-                    // TODO
-                    
-//                    [[SHPusherManager sharedInstance]subscribeToEventsWithUserID:[[[SHLoginModel sharedModel] selfUser]userID]];
-//                    if([[UIApplication sharedApplication]isRegisteredForRemoteNotifications])
-//                    {
-//                        NSData * savedToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-//                        if (savedToken != nil)
-//                        {
-//                            [[SHNotificationsModel getInstance] sendToken:savedToken];
+//        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
+//        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
+//            // Do nothing here
+//        }) { (response) -> Void in
+//            SHProgressHUD.dismiss()
+//            switch(response.result) {
+//            case .Success(let oauthToken):
+//                if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
+//                    // Login Success
+//                    // TODO
+//                    
+////                    [[SHPusherManager sharedInstance]subscribeToEventsWithUserID:[[[SHLoginModel sharedModel] selfUser]userID]];
+////                    if([[UIApplication sharedApplication]isRegisteredForRemoteNotifications])
+////                    {
+////                        NSData * savedToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+////                        if (savedToken != nil)
+////                        {
+////                            [[SHNotificationsModel getInstance] sendToken:savedToken];
+////                        }
+////                    }
+//                    SHMixpanelHelper.aliasUserId(userId)
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        if let currentVC = self.viewController {
+//                            if !currentVC.signUpView.hidden {
+//                                self.showPostSignUpScreen(currentVC)
+//                            } else {
+//                                SHOauthToken.goToDiscover()
+//                            }
+//                            
+//                        } else if let currentVC = self.socialViewController {
+//                            self.showPostSignUpScreen(currentVC)
+//                        } else {
+//                            self.showPostSignUpScreen(self.webViewController)
 //                        }
-//                    }
-                    SHMixpanelHelper.aliasUserId(userId)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        if let currentVC = self.viewController {
-                            if !currentVC.signUpView.hidden {
-                                self.showPostSignUpScreen(currentVC)
-                            } else {
-                                SHOauthToken.goToDiscover()
-                            }
-                            
-                        } else if let currentVC = self.socialViewController {
-                            self.showPostSignUpScreen(currentVC)
-                        } else {
-                            self.showPostSignUpScreen(self.webViewController)
-                        }
-                        
-                        
-                        //SHOauthToken.goToDiscover()
-                        SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
-                    })
-                } else {
-                    // Login Failure
-                    self.handleOauthResponseError(NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"))
-                }
-            case .Failure(let error):
-                self.handleOauthResponseError(error.localizedDescription)
-                // TODO
-                // Show Alert Dialog with the error message
-                // Currently this is bad in the current iOS app
-            }
-        }
+//                        
+//                        
+//                        //SHOauthToken.goToDiscover()
+//                        SHPusherManager.sharedInstance.subscribeToEventsWithUserID(userId)
+//                    })
+//                } else {
+//                    // Login Failure
+//                    self.handleOauthResponseError(NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"))
+//                }
+//            case .Failure(let error):
+//                self.handleOauthResponseError(error.localizedDescription)
+//                // TODO
+//                // Show Alert Dialog with the error message
+//                // Currently this is bad in the current iOS app
+//            }
+//        }
     }
     
     private func showPostSignUpScreen (currentVC: UIViewController) {

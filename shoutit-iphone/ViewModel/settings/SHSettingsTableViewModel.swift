@@ -14,7 +14,6 @@ import Haneke
 class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate, GIDSignInUIDelegate{
     private let viewController: SHSettingsTableViewController
     private let shApiUser = SHApiUserService()
-    private let shApiAuthService = SHApiAuthService()
     
     required init(viewController: SHSettingsTableViewController) {
         self.viewController = viewController
@@ -92,44 +91,44 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     
     // facebook link Action
     func fbLinkAction () {
-        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        indicatorView.frame = self.viewController.fbLinkButton.frame
-        indicatorView.startAnimating()
-        let superView = self.viewController.fbLinkButton.superview
-        self.viewController.fbLinkButton.hidden = true
-        superView?.addSubview(indicatorView)
-        if let user = self.viewController.user?.linkedAccounts, let facebook = user.facebook {
-            if(!facebook) {
-                let login: FBSDKLoginManager = FBSDKLoginManager()
-                login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
-                    if (error != nil) {
-                        SHProgressHUD.showError(error.localizedDescription, maskType: .Black)
-                    } else {
-                        if result.isCancelled {
-                            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
-                        } else {
-                            log.info("Logged in")
-                            self.setSelected(self.viewController.fbLinkButton, isSelected: true)
-                            if((FBSDKAccessToken.currentAccessToken()) != nil) {
-                                let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
-                                self.getOauthResponse(params)
-                            }
-                        }
-                    }
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    indicatorView.removeFromSuperview()
-                    self.viewController.fbLinkButton.hidden = false
-                })
-            } else {
-                FBSDKLoginManager().logOut()
-                self.setSelected(self.viewController.fbLinkButton, isSelected: false)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    indicatorView.removeFromSuperview()
-                    self.viewController.fbLinkButton.hidden = false
-                })
-            }
-        }
+//        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+//        indicatorView.frame = self.viewController.fbLinkButton.frame
+//        indicatorView.startAnimating()
+//        let superView = self.viewController.fbLinkButton.superview
+//        self.viewController.fbLinkButton.hidden = true
+//        superView?.addSubview(indicatorView)
+//        if let user = self.viewController.user?.linkedAccounts, let facebook = user.facebook {
+//            if(!facebook) {
+//                let login: FBSDKLoginManager = FBSDKLoginManager()
+//                login.logInWithReadPermissions(["public_profile", "email", "user_birthday"], fromViewController: viewController) { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+//                    if (error != nil) {
+//                        SHProgressHUD.showError(error.localizedDescription, maskType: .Black)
+//                    } else {
+//                        if result.isCancelled {
+//                            SHProgressHUD.showError(NSLocalizedString("The user cancelled the signin flow", comment: "The user cancelled the signin flow"), maskType: .Black)
+//                        } else {
+//                            log.info("Logged in")
+//                            self.setSelected(self.viewController.fbLinkButton, isSelected: true)
+//                            if((FBSDKAccessToken.currentAccessToken()) != nil) {
+//                                let params = self.shApiAuthService.getFacebookParams(FBSDKAccessToken.currentAccessToken().tokenString)
+//                                self.getOauthResponse(params)
+//                            }
+//                        }
+//                    }
+//                }
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    indicatorView.removeFromSuperview()
+//                    self.viewController.fbLinkButton.hidden = false
+//                })
+//            } else {
+//                FBSDKLoginManager().logOut()
+//                self.setSelected(self.viewController.fbLinkButton, isSelected: false)
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    indicatorView.removeFromSuperview()
+//                    self.viewController.fbLinkButton.hidden = false
+//                })
+//            }
+//        }
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
@@ -266,28 +265,28 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     }
     
     private func getOauthResponse(params: [String: AnyObject]) {
-        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
-        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
-            // Do nothing here
-            }) { (response) -> Void in
-                SHProgressHUD.dismiss()
-                switch(response.result) {
-                case .Success(let oauthToken):
-                    if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
-                        
-                        SHMixpanelHelper.aliasUserId(userId)
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            let tabViewController = SHTabViewController()
-                            self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
-                        })
-                    } else {
-                        // Login Failure
-                        self.handleOauthResponseError()
-                    }
-                case .Failure:
-                    self.handleOauthResponseError()
-                }
-        }
+//        SHProgressHUD.show(NSLocalizedString("SigningIn", comment: "Signing In..."))
+//        shApiAuthService.getOauthToken(params, cacheResponse: { (oauthToken) -> Void in
+//            // Do nothing here
+//            }) { (response) -> Void in
+//                SHProgressHUD.dismiss()
+//                switch(response.result) {
+//                case .Success(let oauthToken):
+//                    if let userId = oauthToken.user?.id, let accessToken = oauthToken.accessToken where !accessToken.isEmpty {
+//                        
+//                        SHMixpanelHelper.aliasUserId(userId)
+//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                            let tabViewController = SHTabViewController()
+//                            self.viewController.navigationController?.pushViewController(tabViewController, animated: true)
+//                        })
+//                    } else {
+//                        // Login Failure
+//                        self.handleOauthResponseError()
+//                    }
+//                case .Failure:
+//                    self.handleOauthResponseError()
+//                }
+//        }
     }
     
     private func handleOauthResponseError() {
