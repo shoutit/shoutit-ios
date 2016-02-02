@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable {}
+protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable, LoginScreenDisplayable {}
 
 final class LoginMethodChoiceViewController: UIViewController {
     
@@ -36,6 +36,9 @@ final class LoginMethodChoiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup title view
+        navigationItem.titleView = UIImageView(image: UIImage.navBarLogoImage())
+        
         // setup
         setupRX()
     }
@@ -44,24 +47,25 @@ final class LoginMethodChoiceViewController: UIViewController {
     
     private func setupRX() {
         
+        // user actions observers
         loginWithFacebookButton
             .rx_tap
-            .subscribeNext{
-                
+            .subscribeNext{[unowned self] in
+                self.viewModel.loginWithFacebookFromViewController(self)
             }
             .addDisposableTo(disposeBag)
         
         loginWithGoogleButton
             .rx_tap
-            .subscribeNext{
-                
+            .subscribeNext{[unowned self] in
+                self.viewModel.loginWithGoogle()
             }
             .addDisposableTo(disposeBag)
         
         loginWithEmailButton
             .rx_tap
-            .subscribeNext{
-                
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.showLoginWithEmail()
             }
             .addDisposableTo(disposeBag)
         
@@ -85,5 +89,21 @@ final class LoginMethodChoiceViewController: UIViewController {
                 self.flowDelegate?.showAboutInterface()
             }
             .addDisposableTo(disposeBag)
+        
+        // view model observers
+        
+        viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+            self?.presentViewController(alertController, animated: true, completion: nil)
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.loginSuccessSubject.subscribeNext { (isNewSignup) -> Void in
+            if isNewSignup {
+                // show post signup
+            } else {
+                // show main interface
+            }
+        }.addDisposableTo(disposeBag)
     }
 }

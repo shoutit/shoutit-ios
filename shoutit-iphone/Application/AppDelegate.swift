@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //
+        applyAppearance()
+        
         // Setup Logger accourding to env variables
         #if DEBUG
             log.setup(.Verbose, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
@@ -103,4 +107,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SHLocationManager.sharedInstance.stopUpdating()
     }
 
+}
+
+// MARK: - Appearance
+
+extension AppDelegate {
+    
+    func applyAppearance() {
+        UINavigationBar.appearance().tintColor = UIColor(shoutitColor: .PrimaryGreen)
+    }
 }

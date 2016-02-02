@@ -276,6 +276,11 @@
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
 		B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7881C591D1A006909D4 /* Wireframe.swift */; };
+		B2C45C9F1C5FF9C6000F88A8 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45C9E1C5FF9C6000F88A8 /* Assets.swift */; };
+		B2C45CA11C601D05000F88A8 /* LoginScreenDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CA01C601D05000F88A8 /* LoginScreenDisplayable.swift */; };
+		B2C45CA31C6029AB000F88A8 /* LoginWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CA21C6029AB000F88A8 /* LoginWithEmailViewController.swift */; };
+		B2C45CA71C602A42000F88A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CA61C602A42000F88A8 /* LoginViewController.swift */; };
+		B2C45CA91C602A55000F88A8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C45CA81C602A55000F88A8 /* SignupViewController.swift */; };
 		B2E7E2E61C592B600078C743 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */; };
 		B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EB1C592B970078C743 /* Discover.storyboard */; };
 		B2E7E2EC1C592B9E0078C743 /* MessagesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EE1C592B9E0078C743 /* MessagesStoryboard.storyboard */; };
@@ -663,6 +668,11 @@
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
 		B27DF7881C591D1A006909D4 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = FlowControl/Wireframe.swift; sourceTree = "<group>"; };
+		B2C45C9E1C5FF9C6000F88A8 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = UIKitExtensions/Assets.swift; sourceTree = "<group>"; };
+		B2C45CA01C601D05000F88A8 /* LoginScreenDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginScreenDisplayable.swift; path = FlowControl/LoginScreenDisplayable.swift; sourceTree = "<group>"; };
+		B2C45CA21C6029AB000F88A8 /* LoginWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewController.swift; path = Controllers/LoginWithEmailViewController.swift; sourceTree = "<group>"; };
+		B2C45CA61C602A42000F88A8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
+		B2C45CA81C602A55000F88A8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Controllers/SignupViewController.swift; sourceTree = "<group>"; };
 		B2E7E3101C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MessagesStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3111C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3121C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateShoutStoryboard.storyboard; sourceTree = "<group>"; };
@@ -1847,6 +1857,7 @@
 		B2190D821C5A3D84007FF33B /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				B2C45C9E1C5FF9C6000F88A8 /* Assets.swift */,
 				B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */,
 			);
 			name = Style;
@@ -1937,6 +1948,7 @@
 				B21DFC3E1C5A6BA7000467B4 /* FeedbackDisplayable.swift */,
 				B21DFC401C5A6BC6000467B4 /* HelpDisplayable.swift */,
 				B21DFC421C5A6BD8000467B4 /* AboutDisplayable.swift */,
+				B2C45CA01C601D05000F88A8 /* LoginScreenDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -1944,6 +1956,9 @@
 		B25F31F01C57E00400C5DAFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B2C45CA21C6029AB000F88A8 /* LoginWithEmailViewController.swift */,
+				B2C45CA41C602A01000F88A8 /* Login */,
+				B2C45CA51C602A07000F88A8 /* Signup */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1989,6 +2004,22 @@
 				B27DF7881C591D1A006909D4 /* Wireframe.swift */,
 			);
 			name = Wireframe;
+			sourceTree = "<group>";
+		};
+		B2C45CA41C602A01000F88A8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B2C45CA61C602A42000F88A8 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		B2C45CA51C602A07000F88A8 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				B2C45CA81C602A55000F88A8 /* SignupViewController.swift */,
+			);
+			name = Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2408,6 +2439,7 @@
 				ACB803A41C0F40F700420BB1 /* SHSystemMessageMediaItem.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				602F4CA71C020ACA0051B737 /* SHEmptyContentView.swift in Sources */,
+				B2C45C9F1C5FF9C6000F88A8 /* Assets.swift in Sources */,
 				B21DFC411C5A6BC6000467B4 /* HelpDisplayable.swift in Sources */,
 				AC679B451C3CECE900F45947 /* SHDiscoverFeedHeaderCell.swift in Sources */,
 				606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */,
@@ -2436,8 +2468,10 @@
 				6043CF081C02C94E00A9AA49 /* SHTextInputViewController.swift in Sources */,
 				606ED2FC1BF80A730064C53E /* SHCameraViewController.swift in Sources */,
 				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,
+				B2C45CA71C602A42000F88A8 /* LoginViewController.swift in Sources */,
 				AC74A7761BFCA9290029CE7D /* SHShoutAnnotation.swift in Sources */,
 				ACDB3CC51BF90F650097444E /* SHRequestImageTableViewCellModel.swift in Sources */,
+				B2C45CA91C602A55000F88A8 /* SignupViewController.swift in Sources */,
 				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
@@ -2509,6 +2543,7 @@
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
+				B2C45CA31C6029AB000F88A8 /* LoginWithEmailViewController.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
 				B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */,
 				606ED2FA1BF808560064C53E /* SHCameraPreviewView.swift in Sources */,
@@ -2522,6 +2557,7 @@
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */,
+				B2C45CA11C601D05000F88A8 /* LoginScreenDisplayable.swift in Sources */,
 				ACC845811C4D5ABF0065A702 /* SHDiscoverShoutListCellViewModel.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				606ED3001BF8A85D0064C53E /* SHPhotoPreviewViewController.swift in Sources */,

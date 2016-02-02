@@ -35,7 +35,7 @@ class APIAuthService {
         }
     }
     
-    static func getOauthToken(params: [String: AnyObject]?, cacheResponse: SHOauthToken -> Void, completionHandler: Result<AuthData, NSError> -> Void) {
+    static func getOauthToken(params: [String : AnyObject], completionHandler: Result<AuthData, NSError> -> Void) {
         
         APIManager.manager.request(.POST, oauth2AccessTokenURL, parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
             switch response.result {

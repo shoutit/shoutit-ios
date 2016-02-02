@@ -39,6 +39,10 @@ final class Account {
         } catch {
             fatalError("Auth data serialization error")
         }
+        
+        if let authData = self.authData {
+            APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
+        }
     }
     
     func loginUserWithAuthData(authData: AuthData) throws {
