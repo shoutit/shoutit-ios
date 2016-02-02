@@ -11,7 +11,7 @@ production:
   tags:
     - ios9.0
   only:
-    - fabric
+    - develop
 testflight:
   type: build
   script: "bundle exec fastlane testflight"
