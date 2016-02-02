@@ -1,5 +1,5 @@
 //
-//  SHApiManager.swift
+//  SHApiger.swift
 //  shoutit-iphone
 //
 //  Created by Hitesh Sondhi on 02/11/15.

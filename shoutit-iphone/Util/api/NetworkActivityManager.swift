@@ -10,19 +10,19 @@ import UIKit
 
 class NetworkActivityManager: NSObject {
 
-    static var activitiesCount = 0
+    static var activitiesCount: UInt = 0
     
     static func addActivity() {
         if activitiesCount == 0 {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         }
         
-        activitiesCount++
+        activitiesCount += 1
     }
     
     static func removeActivity() {
         if activitiesCount > 0 {
-            activitiesCount--
+            activitiesCount -= 1
             
             if activitiesCount == 0 {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false

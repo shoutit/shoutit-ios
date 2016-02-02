@@ -103,7 +103,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func showFeedback(sender: AnyObject) {
-        viewModel?.showUserVoice(self)
+        //viewModel?.showUserVoice(self)
     }
     
     @IBAction func showHelp(sender: AnyObject) {
