@@ -34,4 +34,12 @@ struct Wireframe {
     static func loginWithEmailViewController() -> LoginWithEmailViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginWithEmailViewController") as! LoginWithEmailViewController
     }
+    
+    static func signupViewController() -> SignupViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("SignupViewController") as! SignupViewController
+    }
+    
+    static func loginViewController() -> LoginViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+    }
 }

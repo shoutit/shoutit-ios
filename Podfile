@@ -32,6 +32,9 @@ pod 'ReachabilitySwift', '~> 2.3'
 # security
 pod 'KeychainAccess', '~> 2.3'
 
+# validation
+pod 'Validator', '~> 1.1'
+
 #images
 pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'
@@ -42,6 +45,7 @@ pod 'Genome', '~> 2.0'
 pod 'HanekeSwift', '~> 0.10'
 
 # ui controls
+pod 'Material', '~> 1.29'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'SVProgressHUD'
 pod 'SVPullToRefresh', '~> 0.4'
