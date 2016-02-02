@@ -15,7 +15,7 @@ class RootController: UIViewController {
     var viewControllers = [NavigationItem: UIViewController]()
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if var destination = segue.destinationViewController as? Navigation {
+        if let destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
         }
     }
@@ -29,9 +29,9 @@ class RootController: UIViewController {
     // MARK: Content Managing
     
     func openItem(navigationItem: NavigationItem) {
-        let loadedController = viewControllers[navigationItem]
         
-        if (loadedController != nil) {
+        
+        if let loadedController = viewControllers[navigationItem] {
             changeContentTo(loadedController!)
             return
         }
@@ -46,7 +46,7 @@ class RootController: UIViewController {
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
         let navController = SHNavigationViewController()
-        var flowController : FlowController
+        let flowController : FlowController
         
         switch navigationItem {
             

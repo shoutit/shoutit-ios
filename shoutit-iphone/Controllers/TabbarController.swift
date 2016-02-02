@@ -14,12 +14,11 @@ class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]!
     
-    var disposeBag : DisposeBag?
+    let disposeBag : DisposeBag()
     
     var rootController : RootController?
     
     override func viewDidLoad() {
-        self.disposeBag = DisposeBag()
         
         tabs.each { button in
             button.rx_tap.subscribeNext {
