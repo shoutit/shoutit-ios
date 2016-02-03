@@ -22,6 +22,10 @@ class SHNavigationViewController: UINavigationController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

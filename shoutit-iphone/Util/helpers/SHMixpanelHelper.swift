@@ -40,10 +40,7 @@ class SHMixpanelHelper: NSObject {
     }
     
     static func getDistinctID() -> String? {
-        if let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN) {
-            return mixpanel.distinctId
-        }
-        return nil
+        return Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN).distinctId
     }
     
     // MARK - Private

@@ -12,51 +12,34 @@ protocol ApplicationMainViewControllerRootObject: class {
     
 }
 
-final class ApplicationMainViewController: UIViewController, ContainerController {
+final class ApplicationMainViewController: UIViewController {
     
     // consts
     let animationDuration: Double = 0.25
-    var containerView: UIView! {
-        return view
-    }
     
-    // vars
-    private(set) var rootObject: ApplicationMainViewControllerRootObject!
-    private(set) var rootViewController: UIViewController! {
-        
-        didSet {
-            
-            guard let rootViewController = rootViewController else {
-                fatalError("Can't set nil root view controller")
-            }
-            
-            if let oldViewController = oldValue {
-                cycleFromViewController(oldViewController, toViewController: rootViewController, animated: true)
-            } else {
-                addInitialViewController(rootViewController)
-            }
-        }
-    }
-    
+    private var loginFlowController: LoginFlowController?
+    private var loginWasPresented = false
     private(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        // determine if user is logged in and present controller accrodingly
-        showLogin()
-        
+        if !Account.sharedInstance.isUserLoggedIn && !loginWasPresented {
+            loginWasPresented = true
+            showLogin()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     private func showLogin() {
         let navigationController = UINavigationController()
-        rootObject = LoginFlowController(navigationController: navigationController)
-        rootViewController = navigationController
+        loginFlowController = LoginFlowController(navigationController: navigationController)
+        presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    private func showMainInterface() {
-        
-    }
 }

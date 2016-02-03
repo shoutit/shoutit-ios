@@ -451,7 +451,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="315" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fuP-pJ-7OO" id="ozf-Bw-F4Z">
-                                                            <rect key="frame" x="0.0" y="0.0" width="315" height="49"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="315" height="49.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-Fl-Whf">
@@ -820,7 +820,7 @@
                                             <constraint firstAttribute="width" constant="90" id="nfP-Xf-rgm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApD-Uf-deH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApD-Uf-deH">
                                         <rect key="frame" x="38" y="166" width="243" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="86a-Q5-vEz"/>
@@ -830,7 +830,7 @@
                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVP-lh-BuA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVP-lh-BuA">
                                         <rect key="frame" x="50" y="208" width="220" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="BCE-sX-cwP"/>
@@ -847,7 +847,7 @@
                                             <constraint firstAttribute="width" constant="51" id="WaK-H3-cYM"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="740" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tkk-Sx-1If" userLabel="BottomSpacer">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="tkk-Sx-1If" userLabel="BottomSpacer">
                                         <rect key="frame" x="134" y="229" width="51" height="201"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -945,6 +945,10 @@
         <scene sceneID="45F-2O-Omb">
             <objects>
                 <viewController storyboardIdentifier="SignupViewController" title="Sign up" id="1p1-qY-7fg" customClass="SignupViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vri-2y-gDN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pl0-Ur-q7j"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Il7-Qc-XZ4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="378"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

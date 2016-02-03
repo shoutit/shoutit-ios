@@ -24,6 +24,11 @@ final class Account {
     // data
     private(set) var authData: AuthData?
     
+    // convienience
+    var isUserLoggedIn: Bool {
+        return authData != nil
+    }
+    
     // MARK - Lifecycle
     
     init() {
