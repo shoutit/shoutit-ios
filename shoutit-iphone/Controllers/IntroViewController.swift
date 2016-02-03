@@ -51,8 +51,8 @@ final class IntroViewController: UIViewController {
         // skip
         skipButton
             .rx_tap
-            .subscribeNext {
-                SHOauthToken.goToDiscover() // replace
+            .subscribeNext {[unowned self] in
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         
