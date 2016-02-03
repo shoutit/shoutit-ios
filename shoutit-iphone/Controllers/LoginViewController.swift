@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Material
 import ResponsiveLabel
+import Validator
 
 class LoginViewController: UIViewController {
     
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    weak var viewModel: LoginWithEmailViewModel!
+    var viewModel: LoginViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -51,13 +52,27 @@ class LoginViewController: UIViewController {
                 self.delegate?.presentSignup()
             }
             .addDisposableTo(disposeBag)
+        
+        emailTextField
+            .rx_text
+            .bindNext {[unowned self] in
+                self.viewModel.email = $0}
+            .addDisposableTo(disposeBag)
+        passwordTextField
+            .rx_text
+            .bindNext{[unowned self] in
+                self.viewModel.password = $0}
+            .addDisposableTo(disposeBag)
+        
+        // validation
+        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {
         
         let text = NSLocalizedString("New to Shoutit? Sign up", comment: "Signup view")
         let loginText = NSLocalizedString("Sign up", comment: "Signup view. Should be the same as whole text's part")
-        
         
         let attributedString = NSMutableAttributedString(string: text)
         
@@ -83,6 +98,10 @@ class LoginViewController: UIViewController {
             textField.titleLabelColor = MaterialColor.grey.lighten1
             textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
             textField.clearButtonMode = .WhileEditing
+            
+            textField.detailLabel = UILabel()
+            textField.detailLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.detailLabelActiveColor = MaterialColor.red.accent3
         }
     }
 }

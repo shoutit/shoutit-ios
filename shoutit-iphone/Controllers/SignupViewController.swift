@@ -31,7 +31,7 @@ final class SignupViewController: UIViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    weak var viewModel: LoginWithEmailViewModel!
+    var viewModel: SignupViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -57,6 +57,32 @@ final class SignupViewController: UIViewController {
                 self.delegate?.presentLogin()
             }
             .addDisposableTo(disposeBag)
+        
+        nameTextField
+            .rx_text
+            .bindNext{[unowned self] in
+                self.viewModel.name = $0
+            }
+            .addDisposableTo(disposeBag)
+        
+        emailTextField
+            .rx_text
+            .bindNext{[unowned self] in
+                self.viewModel.email = $0
+            }
+            .addDisposableTo(disposeBag)
+        
+        passwordTextField
+            .rx_text
+            .bindNext{[unowned self] in
+                self.viewModel.password = $0
+            }
+            .addDisposableTo(disposeBag)
+        
+        // add validators
+        nameTextField.addValidator(Validator.validateName, withDisposeBag: disposeBag)
+        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupTermsAndPolicyLabel() {
@@ -123,6 +149,10 @@ final class SignupViewController: UIViewController {
             textField.titleLabelColor = MaterialColor.grey.lighten1
             textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
             textField.clearButtonMode = .WhileEditing
+            
+            textField.detailLabel = UILabel()
+            textField.detailLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.detailLabelActiveColor = MaterialColor.red.accent3
         }
     }
 }

@@ -731,43 +731,6 @@
             </objects>
             <point key="canvasLocation" x="5408.4375" y="1121.3028169014083"/>
         </scene>
-        <!--Modal Web View Controller-->
-        <scene sceneID="58h-mt-v3T">
-            <objects>
-                <viewController storyboardIdentifier="SHModalWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8It-gC-Axm" customClass="SHModalWebViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="43u-TV-FMq"/>
-                        <viewControllerLayoutGuide type="bottom" id="hbm-oC-bee"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JPM-wb-pSA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-d2-otx">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="8It-gC-Axm" id="6U5-Tj-SGg"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="1qZ-d2-otx" firstAttribute="leading" secondItem="JPM-wb-pSA" secondAttribute="leading" id="Qjt-ky-GLB"/>
-                            <constraint firstAttribute="trailing" secondItem="1qZ-d2-otx" secondAttribute="trailing" id="Rfx-cf-Big"/>
-                            <constraint firstItem="1qZ-d2-otx" firstAttribute="top" secondItem="JPM-wb-pSA" secondAttribute="top" id="ipO-EF-cd7"/>
-                            <constraint firstItem="hbm-oC-bee" firstAttribute="top" secondItem="1qZ-d2-otx" secondAttribute="bottom" id="lRv-Wg-rrx"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="1qZ-d2-otx" id="zPi-hl-AS4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DDu-6U-KHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6720" y="400.35211267605632"/>
-        </scene>
         <!--Intro View Controller-->
         <scene sceneID="f7b-el-DSH">
             <objects>

@@ -44,14 +44,14 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     // child controllers
     lazy var loginViewController: LoginViewController = {
         let controller = Wireframe.loginViewController()
-        controller.viewModel = self.viewModel
+        controller.viewModel = LoginViewModel()
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
     }()
     lazy var signupViewController: SignupViewController = {
         let controller = Wireframe.signupViewController()
-        controller.viewModel = self.viewModel
+        controller.viewModel = SignupViewModel()
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
@@ -63,7 +63,6 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         super.viewDidLoad()
         
         setupRX()
-        
         
         // show initial child
         title = signupViewController.title

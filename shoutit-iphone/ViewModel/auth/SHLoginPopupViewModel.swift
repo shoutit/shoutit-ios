@@ -16,7 +16,6 @@ class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
     private let viewController: SHLoginPopupViewController
     private var loginViewController: SHLoginViewController?
     private var socialViewController: SHSocialLoginViewController?
-    private let webViewController = SHModalWebViewController()
     
     required init(viewController: SHLoginPopupViewController) {
         self.viewController = viewController
