@@ -12,7 +12,7 @@ protocol ApplicationMainViewControllerRootObject: class {
     
 }
 
-final class ApplicationMainViewController: UIViewController, ContainerController {
+final class ApplicationMainViewController: UIViewController {
     
     // consts
     let animationDuration: Double = 0.25
@@ -20,47 +20,22 @@ final class ApplicationMainViewController: UIViewController, ContainerController
         return view
     }
     
-    // vars
-    private(set) var rootObject: ApplicationMainViewControllerRootObject!
-    private(set) var rootViewController: UIViewController! {
-        
-        didSet {
-            
-            guard let rootViewController = rootViewController else {
-                fatalError("Can't set nil root view controller")
-            }
-            
-            if let oldViewController = oldValue {
-                cycleFromViewController(oldViewController, toViewController: rootViewController, animated: true)
-            } else {
-                addInitialViewController(rootViewController)
-            }
-        }
-    }
-    
     private(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if Account.sharedInstance.isUserLoggedIn {
-            showMainInterface()
-        } else {
+        if !Account.sharedInstance.isUserLoggedIn {
             showLogin()
         }
     }
     
     private func showLogin() {
         let navigationController = UINavigationController()
-        rootObject = LoginFlowController(navigationController: navigationController)
-        rootViewController = navigationController
+        let loginFlow = LoginFlowController(navigationController: navigationController)
+        presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    private func showMainInterface() {
-        let rootController = Wireframe.mainInterfaceViewController()
-        rootObject = rootController
-        rootViewController = rootController
-    }
 }

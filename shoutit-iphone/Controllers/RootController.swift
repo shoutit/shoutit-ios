@@ -50,7 +50,7 @@ class RootController: UIViewController {
     
     func openItem(navigationItem: NavigationItem) {
         
-        if let presentedMenu = self.presentedViewController {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
         
