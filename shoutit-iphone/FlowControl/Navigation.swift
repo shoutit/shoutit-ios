@@ -22,7 +22,7 @@ enum NavigationItem : String {
     case InviteFriends = "inviteFriends"
     case Search = "search"
     
-    func title() ->String {
+    func title() -> String {
         switch self {
         case .Home: return NSLocalizedString("Home",comment: "")
         case .Discover: return NSLocalizedString("Discover",comment: "")
