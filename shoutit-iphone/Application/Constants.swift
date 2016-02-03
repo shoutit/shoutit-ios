@@ -146,6 +146,7 @@ struct Constants {
         static let LocationUpdated  = ".notification.LocationUpdated"
         static let ShoutStarted  = ".notification.ShoutStarted"
         static let kMessagePushNotification = "kMessagePushNotification"
+        static let ToggleMenuNotification = "ToggleMenuNotification"
     }
     
     struct Filter {

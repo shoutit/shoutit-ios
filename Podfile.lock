@@ -111,6 +111,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 2.1)
   - MZFormSheetPresentationController (~> 2.2)
   - Nimble (= 3.0.0)
+  - ObjectMapper (~> 1.1.0)
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
