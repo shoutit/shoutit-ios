@@ -11,7 +11,7 @@ import UIKit
 struct Wireframe {
     
     enum Storyboard: String {
-        case Main = "Main"
+        case Root = "Root"
         case Login = "LoginStoryboard"
         case Home = "ShoutList"
         case Discover = "Discover"
@@ -24,6 +24,12 @@ struct Wireframe {
     
     static func storyboard(storyboard: Storyboard) -> UIStoryboard {
         return UIStoryboard(name: storyboard.rawValue, bundle: nil)
+    }
+    
+    // MARK: - Root storyboard view controller
+    
+    static func mainInterfaceViewController() -> RootController {
+        return storyboard(.Root).instantiateViewControllerWithIdentifier("RootController") as! RootController
     }
     
     // MARK: - Login storyboard view controllers

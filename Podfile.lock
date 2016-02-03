@@ -1,10 +1,13 @@
 PODS:
   - Alamofire (3.1.5)
-  - AWSCognito (2.3.3):
-    - AWSCore (= 2.3.3)
-  - AWSCore (2.3.3)
-  - AWSS3 (2.3.3):
-    - AWSCore (= 2.3.3)
+  - AlamofireObjectMapper (2.1.0):
+    - Alamofire (~> 3.1.0)
+    - ObjectMapper (~> 1.0)
+  - AWSCognito (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSCore (2.3.4)
+  - AWSS3 (2.3.4):
+    - AWSCore (= 2.3.4)
   - Bolts (1.6.0):
     - Bolts/AppLinks (= 1.6.0)
     - Bolts/Tasks (= 1.6.0)
@@ -52,11 +55,11 @@ PODS:
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
-  - Material (1.29.1)
+  - Material (1.29.3)
   - MBProgressHUD (0.9.2)
-  - Mixpanel (2.9.1):
-    - Mixpanel/Mixpanel (= 2.9.1)
-  - Mixpanel/Mixpanel (2.9.1)
+  - Mixpanel (2.9.3):
+    - Mixpanel/Mixpanel (= 2.9.3)
+  - Mixpanel/Mixpanel (2.9.3)
   - MK (1.27.14)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
@@ -87,6 +90,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
+  - AlamofireObjectMapper (~> 2.1)
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
@@ -128,9 +132,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  AWSCognito: 3c1209a21a7661c079a59e04f5b5dab4f794561c
-  AWSCore: b12704516e21ed34cfe7547e07ab945b079d1f56
-  AWSS3: 675f59e0c338e61441117f03018187b9deb359c4
+  AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
+  AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
+  AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
+  AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
@@ -155,9 +160,9 @@ SPEC CHECKSUMS:
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
   Kingfisher: 9e37d2a78a082dc123bfe8a16de65de85518daae
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
-  Material: 39fabd329970bc8608d301fb4a76ebd054a6a142
+  Material: 4ffb35c75f6d52617a83be1ae910196c1e19fb79
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  Mixpanel: 5ca24b2a05f4c77fe9bcfe7671d681d0f3f8d76f
+  Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
   MK: a68c9ae628f625847bddf5921e7a208873d192c2
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5

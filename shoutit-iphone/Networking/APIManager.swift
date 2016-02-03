@@ -9,7 +9,6 @@
 import UIKit
 import ObjectMapper
 import Alamofire
-import AlamofireObjectMapper
 import CryptoSwift
 import Haneke
 import ReachabilitySwift

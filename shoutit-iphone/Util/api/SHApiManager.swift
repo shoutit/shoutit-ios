@@ -155,12 +155,12 @@ class SHApiManager: NSObject {
     }
     
     private func authHeaders() -> [String: String]? {
-        if let oauthToken = SHOauthToken.getFromCache(), let accessToken = oauthToken.accessToken, let tokenType = oauthToken.tokenType {
-            return [
-                // Headers
-                "Authorization": "\(tokenType) \(accessToken)"
-            ]
-        }
+//        if let oauthToken = SHOauthToken.getFromCache(), let accessToken = oauthToken.accessToken, let tokenType = oauthToken.tokenType {
+//            return [
+//                // Headers
+//                "Authorization": "\(tokenType) \(accessToken)"
+//            ]
+//        }
         return nil;
     }
     

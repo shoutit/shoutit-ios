@@ -27,6 +27,7 @@ pod 'AWSCognito', '~> 2.3'
 
 # networking
 pod 'Alamofire', '~> 3.1.0'
+pod 'AlamofireObjectMapper', '~> 2.1'
 pod 'ReachabilitySwift', '~> 2.3'
 
 # security

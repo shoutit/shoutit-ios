@@ -120,3 +120,5 @@ class RootController: UIViewController {
     }
     
 }
+
+extension RootController: ApplicationMainViewControllerRootObject {}

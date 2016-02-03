@@ -42,11 +42,9 @@ final class ApplicationMainViewController: UIViewController, ContainerController
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        // determine if user is logged in and present controller accrodingly
-        showLogin()
         
     }
     
@@ -57,6 +55,8 @@ final class ApplicationMainViewController: UIViewController, ContainerController
     }
     
     private func showMainInterface() {
-        
+        let rootController = Wireframe.mainInterfaceViewController()
+        rootObject = rootController
+        rootViewController = rootController
     }
 }
