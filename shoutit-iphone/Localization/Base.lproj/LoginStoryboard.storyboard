@@ -510,7 +510,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="315" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fuP-pJ-7OO" id="ozf-Bw-F4Z">
-                                                            <rect key="frame" x="0.0" y="0.0" width="315" height="49.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-Fl-Whf">

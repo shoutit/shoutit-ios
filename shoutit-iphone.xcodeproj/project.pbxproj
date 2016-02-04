@@ -2508,7 +2508,6 @@
 				B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */,
 				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2E7E30A1C592BE60078C743 /* ShoutList.storyboard in Resources */,
-				AEA5997A1C609E0100015AA3 /* Menu.storyboard in Resources */,
 				B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */,
 				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
