@@ -46,6 +46,21 @@ class LoginViewController: UITableViewController {
     
     private func setupRX() {
         
+        // response to user actions
+        loginButton.rx_tap
+            .filter {[unowned self] in
+                do {
+                    try Validator.validateEmail(self.emailTextField.text)
+                    try Validator.validatePassword(self.passwordTextField.text)
+                } catch {
+                    return false
+                }
+                
+                return true
+            
+            }.subscribeNext{
+        }
+        
         // on return actions
         emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
@@ -55,8 +70,8 @@ class LoginViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         // validation
-        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
-        passwordTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        emailTextField.addValidator(Validator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {
