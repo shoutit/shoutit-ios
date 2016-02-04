@@ -41,9 +41,6 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin(self)
-        }
         self.collectionView.delegate = viewModel
         self.collectionView.dataSource = viewModel
         self.tableView.delegate = viewModel
@@ -66,9 +63,6 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin(self)
-        }
         viewModel?.viewWillAppear()
     }
     
@@ -127,10 +121,8 @@ class SHCreateShoutTableViewController: BaseTableViewController {
     private func setUpNavBar() {
         if self.isEditingMode {
             self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Save", comment: "Save"), style: UIBarButtonItemStyle.Done, target: self, action: "patchShout"), animated: false)
-            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIBarButtonItemStyle.Done, target: self, action: "cancelBack"), animated: false)
         } else {
             self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Shout", comment: "Shout"), style: UIBarButtonItemStyle.Done, target: self, action: "postShout"), animated: false)
-            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: NSLocalizedString("Clear", comment: "Clear"), style: UIBarButtonItemStyle.Done, target: self, action: "cleanForms"), animated: false)
         }
         
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor(shoutitColor: .ShoutDarkGreen)

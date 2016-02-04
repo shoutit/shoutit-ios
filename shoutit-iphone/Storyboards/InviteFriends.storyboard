@@ -5,34 +5,33 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ebd-aV-tie">
+        <!--Title-->
+        <scene sceneID="9CQ-tH-Xa5">
             <objects>
-                <viewController storyboardIdentifier="HelpRootController" id="eYN-gD-tmt" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InviteFriendsRootController" id="ctv-KO-Rwo" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="45c-S5-n8C"/>
-                        <viewControllerLayoutGuide type="bottom" id="j2Z-7d-1Q6"/>
+                        <viewControllerLayoutGuide type="top" id="d8J-ru-6fL"/>
+                        <viewControllerLayoutGuide type="bottom" id="6zm-us-e9A"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GVh-ka-9b4">
+                    <view key="view" contentMode="scaleToFill" id="vU1-Y3-Fgk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="v67-mJ-CRv">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="iZM-cG-BM7">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <navigationItem key="navigationItem" title="Title" id="peX-Yc-7Ud">
+                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="iHA-EI-s2V">
                             <connections>
-                                <action selector="toggleMenu" destination="eYN-gD-tmt" id="eVj-Vl-utK"/>
+                                <action selector="toggleMenu" destination="ctv-KO-Rwo" id="ZRO-G4-sch"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ud4-fh-dBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vvv-hx-FJF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2042" y="248"/>
+            <point key="canvasLocation" x="835" y="91"/>
         </scene>
     </scenes>
     <resources>
-        <image name="menu" width="25" height="25"/>
+        <image name="navMenu" width="24" height="24"/>
     </resources>
 </document>

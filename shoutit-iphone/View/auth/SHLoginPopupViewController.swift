@@ -91,10 +91,6 @@ class SHLoginPopupViewController: BaseViewController, GIDSignInUIDelegate {
         parentView.addGestureRecognizer(gesture)
     }
     
-    func gotoLogin () {
-        SHOauthToken.goToLogin(self)
-    }
-    
     deinit {
         viewModel?.destroy()
     }

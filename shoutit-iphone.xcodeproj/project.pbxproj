@@ -267,6 +267,12 @@
 		AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
 		AE4DB3541C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
 		AE4DB3551C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
+		AE4DB3571C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
+		AE4DB3581C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
+		AE4DB3591C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
+		AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */; };
+		AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */; };
+		AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */; };
 		AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351681C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351691C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
@@ -729,6 +735,8 @@
 		AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFlowController.swift; path = FlowControl/SettingsFlowController.swift; sourceTree = "<group>"; };
 		AE4DB34E1C63717A001EB84B /* Help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Help.storyboard; path = Storyboards/Help.storyboard; sourceTree = "<group>"; };
 		AE4DB3521C63724D001EB84B /* HelpFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpFlowController.swift; path = FlowControl/HelpFlowController.swift; sourceTree = "<group>"; };
+		AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InviteFriends.storyboard; path = Storyboards/InviteFriends.storyboard; sourceTree = "<group>"; };
+		AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsFlowController.swift; path = FlowControl/InviteFriendsFlowController.swift; sourceTree = "<group>"; };
 		AE8351621C5F4DDD0055C71F /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Root.storyboard; path = Storyboards/Root.storyboard; sourceTree = "<group>"; };
 		AE8351661C5F521B0055C71F /* TabbarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarButton.swift; path = View/tabs/TabbarButton.swift; sourceTree = "<group>"; };
 		AE83516B1C5F595C0055C71F /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarController.swift; path = Controllers/TabbarController.swift; sourceTree = "<group>"; };
@@ -1126,6 +1134,7 @@
 				AE8351621C5F4DDD0055C71F /* Root.storyboard */,
 				AEA599791C609E0100015AA3 /* Menu.storyboard */,
 				AE4DB34E1C63717A001EB84B /* Help.storyboard */,
+				AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2174,6 +2183,7 @@
 				AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */,
 				AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */,
 				AE4DB3521C63724D001EB84B /* HelpFlowController.swift */,
+				AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -2406,6 +2416,7 @@
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
 				AC7030D21C16C983008F4C00 /* SHLocationMessageCell.xib in Resources */,
+				AE4DB3571C638E46001EB84B /* InviteFriends.storyboard in Resources */,
 				B2E7E2F51C592BB90078C743 /* FilterStoryboard.storyboard in Resources */,
 				AC70280D1C1AC1BA00262622 /* SHUserTableViewCell.xib in Resources */,
 				606ED2FE1BF80DFA0064C53E /* CameraView.xib in Resources */,
@@ -2466,6 +2477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE4DB3401C634C2A001EB84B /* Root.storyboard in Resources */,
+				AE4DB3581C638E46001EB84B /* InviteFriends.storyboard in Resources */,
 				AE4DB3501C63717A001EB84B /* Help.storyboard in Resources */,
 				AEA5997B1C609E0100015AA3 /* Menu.storyboard in Resources */,
 			);
@@ -2476,6 +2488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE4DB3411C634C2B001EB84B /* Root.storyboard in Resources */,
+				AE4DB3591C638E46001EB84B /* InviteFriends.storyboard in Resources */,
 				AE4DB3511C63717A001EB84B /* Help.storyboard in Resources */,
 				AEA5997C1C609E0100015AA3 /* Menu.storyboard in Resources */,
 			);
@@ -2809,6 +2822,7 @@
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
+				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				B2C729B41C622124006F7D29 /* ContainerController.swift in Sources */,
 				B2C729C41C6221B0006F7D29 /* Address.swift in Sources */,
 				B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */,
@@ -2890,6 +2904,7 @@
 			files = (
 				6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
+				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AE8351841C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				AE4DB34C1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351981C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
@@ -2917,6 +2932,7 @@
 			files = (
 				6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */,
 				AE8351731C5F65D50055C71F /* Array+Additions.swift in Sources */,
+				AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AE8351851C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				AE4DB34D1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351991C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,

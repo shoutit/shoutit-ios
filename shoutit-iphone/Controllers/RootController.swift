@@ -85,6 +85,8 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         case .Chats: flowController = ChatsFlowController(navigationController: navController)
         case .Profile: flowController = ProfileFlowController(navigationController: navController)
         case .Settings: flowController = SettingsFlowController(navigationController: navController)
+        case .Help: flowController = HelpFlowController(navigationController: navController)
+        case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
         default: flowController = HomeFlowController(navigationController: navController)
             
         }

@@ -159,7 +159,6 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                     oauthToken.logOut()
                 }
                 Shared.stringCache.removeAll()
-                SHOauthToken.goToLogin(self.viewController)
             }))
             self.viewController.presentViewController(ac, animated: true, completion: nil)
         }
