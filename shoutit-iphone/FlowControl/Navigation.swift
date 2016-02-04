@@ -42,7 +42,7 @@ enum NavigationItem : String {
         case .Discover: return UIImage(named: "tabDiscover")
         case .Browse: return UIImage(named: "tabDiscover")
         case .Chats: return UIImage(named: "tabChat")
-        case .Orders: return UIImage(named: "tabChat")
+        case .Orders: return UIImage(named: "cart")
         default: return UIImage(named: "tabChat")
         }
     }
