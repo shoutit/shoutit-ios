@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 import Material
 import ResponsiveLabel
+import Validator
 
-class LoginViewController: UIViewController {
+class LoginViewController: UITableViewController {
     
     // UI
     @IBOutlet weak var emailTextField: TextField!
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    weak var viewModel: LoginWithEmailViewModel!
+    var viewModel: LoginViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -45,19 +46,23 @@ class LoginViewController: UIViewController {
     
     private func setupRX() {
         
-        switchToSignupButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
-                self.delegate?.presentSignup()
-            }
-            .addDisposableTo(disposeBag)
+        // on return actions
+        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.passwordTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            // login
+        }.addDisposableTo(disposeBag)
+        
+        // validation
+        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {
         
         let text = NSLocalizedString("New to Shoutit? Sign up", comment: "Signup view")
         let loginText = NSLocalizedString("Sign up", comment: "Signup view. Should be the same as whole text's part")
-        
         
         let attributedString = NSMutableAttributedString(string: text)
         
@@ -83,6 +88,10 @@ class LoginViewController: UIViewController {
             textField.titleLabelColor = MaterialColor.grey.lighten1
             textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
             textField.clearButtonMode = .WhileEditing
+            
+            textField.detailLabel = UILabel()
+            textField.detailLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.detailLabelActiveColor = MaterialColor.red.accent3
         }
     }
 }

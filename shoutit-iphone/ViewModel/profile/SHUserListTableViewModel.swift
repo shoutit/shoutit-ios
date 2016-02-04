@@ -174,34 +174,34 @@ class SHUserListTableViewModel: NSObject, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if(self.userTags[indexPath.row].isKindOfClass(SHUser)) {
-            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHUserTableViewCell, forIndexPath: indexPath) as! SHUserTableViewCell
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.setUser(self.userTags[indexPath.row] as! SHUser)
-            return cell
-        } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
-            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.setTagCell(self.userTags[indexPath.row] as! SHTag)
-            cell.listenButton.hidden = true
-            return cell
-        }
+//        if(self.userTags[indexPath.row].isKindOfClass(SHUser)) {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHUserTableViewCell, forIndexPath: indexPath) as! SHUserTableViewCell
+//            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//            cell.setUser(self.userTags[indexPath.row] as! SHUser)
+//            return cell
+//        } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableViewCell.SHTopTagTableViewCell, forIndexPath: indexPath) as! SHTopTagTableViewCell
+//            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//            cell.setTagCell(self.userTags[indexPath.row] as! SHTag)
+//            cell.listenButton.hidden = true
+//            return cell
+//        }
         return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if(self.userTags[indexPath.row].isKindOfClass(SHUser)) {
-            let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
-            profileViewController.requestUser(self.userTags[indexPath.row] as! SHUser)
-            self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
-        } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
-            if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
-                streamVC.streamType = .Tag
-                streamVC.tagName = (self.userTags[indexPath.row] as! SHTag).name
-                streamVC.title = (self.userTags[indexPath.row] as! SHTag).title
-                self.viewController.navigationController?.pushViewController(streamVC, animated: true)
-            }
-        }
+//        if(self.userTags[indexPath.row].isKindOfClass(SHUser)) {
+//            let profileViewController = UIStoryboard.getProfile().instantiateViewControllerWithIdentifier(Constants.ViewControllers.SHPROFILE) as! SHProfileCollectionViewController
+//            profileViewController.requestUser(self.userTags[indexPath.row] as! SHUser)
+//            self.viewController.navigationController?.pushViewController(profileViewController, animated: true)
+//        } else if (self.userTags[indexPath.row].isKindOfClass(SHTag)) {
+//            if let streamVC = UIStoryboard.getStream().instantiateViewControllerWithIdentifier(Constants.ViewControllers.STREAM_VC) as? SHStreamTableViewController {
+//                streamVC.streamType = .Tag
+//                streamVC.tagName = (self.userTags[indexPath.row] as! SHTag).name
+//                streamVC.title = (self.userTags[indexPath.row] as! SHTag).title
+//                self.viewController.navigationController?.pushViewController(streamVC, animated: true)
+//            }
+//        }
     }
     
     private func updateUI(shUsersMeta: SHUsersMeta?, shUsersTag: SHTagMeta?) {

@@ -27,7 +27,6 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var signUpFieldsView: UIView!
     @IBOutlet weak var firstName: TextField!
-    private var viewModel: SHLoginViewModel?
     var signUpViewHeight = UIScreen.mainScreen().bounds.height / 2.756
     var signInViewHeight = UIScreen.mainScreen().bounds.height / 4.977
     var firstNameView: UIView?
@@ -44,31 +43,31 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil)
         self.setUpLoginViewFields()
         self.setUpSignUpViewFields()
-        viewModel?.viewDidLoad()
+        //viewModel?.viewDidLoad()
     }
     
     override func initializeViewModel() {
-        viewModel = SHLoginViewModel(viewController: self)
+        //viewModel = SHLoginViewModel(viewController: self)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel?.viewDidAppear()
+        //viewModel?.viewDidAppear()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
+        //?.viewWillAppear()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        viewModel?.viewWillDisappear()
+        //viewModel?.viewWillDisappear()
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        viewModel?.viewDidDisappear()
+        //viewModel?.viewDidDisappear()
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,15 +76,15 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func resetPasswordAction(sender: AnyObject) {
-        viewModel?.resetPassword()
+        //viewModel?.resetPassword()
     }
     
     @IBAction func shoutitLoginAction(sender: AnyObject) {
-        viewModel?.performLogin()
+        //viewModel?.performLogin()
     }
     
     @IBAction func shoutitSignUpAction(sender: AnyObject) {
-        viewModel?.performSignUp()
+        //viewModel?.performSignUp()
     }
     
     @IBAction func viewChanged(sender: UISegmentedControl) {
@@ -110,7 +109,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
     }
     
     @IBAction func showTerms(sender: AnyObject) {
-        viewModel?.showTerms(self)
+        //viewModel?.showTerms(self)
     }
     
     @IBAction func showAbout(sender: AnyObject) {
@@ -123,14 +122,14 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
             } else {
                 showPasswordButton.setTitle("show", forState: .Normal)
             }
-            viewModel?.togglePassword()
+            //viewModel?.togglePassword()
         } else if let loginPassword = self.signInPassword.text where !loginPassword.isEmpty {
             if(showLoginPasswordButton.titleLabel?.text == "show") {
                 showLoginPasswordButton.setTitle("hide", forState: .Normal)
             } else {
                 showLoginPasswordButton.setTitle("show", forState: .Normal)
             }
-            viewModel?.togglePassword()
+            //viewModel?.togglePassword()
         }
     }
     
@@ -253,7 +252,7 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
         textField.titleLabelActiveColor = MaterialColor.lightBlue.accent2
         textField.bottomBorderLayer.hidden = true
         textField.clearButtonMode = .Never
-        textField.delegate = viewModel
+        //textField.delegate = viewModel
         if(view == firstNameView) {
             textField.addTarget(self, action: Selector("highLightFirstNameAction:"), forControlEvents: UIControlEvents.AllTouchEvents)
         } else if (view == lastNameView) {
@@ -330,9 +329,4 @@ class SHLoginViewController: BaseViewController, TextFieldDelegate, UITextFieldD
 //        }
 //        
 //    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        viewModel?.destroy()
-    }
 }

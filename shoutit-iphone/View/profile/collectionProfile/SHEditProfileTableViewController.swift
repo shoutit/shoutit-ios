@@ -83,15 +83,15 @@ class SHEditProfileTableViewController: BaseTableViewController {
     }
     
     func setupAlerts() {
-        self.firstNameTextField.presentInView = self.tableView.tableHeaderView
-        self.lastNameTextField.presentInView = self.tableView.tableHeaderView
-        self.usernameTextField.presentInView = self.tableView.tableHeaderView
-        self.emailTextField.presentInView = self.tableView.tableHeaderView
-        
-        self.usernameTextField.addRegx(Constants.RegEx.REGEX_USER_NAME, withMsg: NSLocalizedString("Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30", comment: "Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30"))
-        self.firstNameTextField.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("First name charaters limit should be come between 2-30", comment: "First name charaters limit should be come between 2-30"))
-        self.lastNameTextField.addRegx(Constants.RegEx.REGEX_LAST_USER_NAME_LIMIT, withMsg: NSLocalizedString("Last name charaters limit should be come between 1-30", comment: "Last name charaters limit should be come between 1-30"))
-        self.emailTextField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
+//        self.firstNameTextField.presentInView = self.tableView.tableHeaderView
+//        self.lastNameTextField.presentInView = self.tableView.tableHeaderView
+//        self.usernameTextField.presentInView = self.tableView.tableHeaderView
+//        self.emailTextField.presentInView = self.tableView.tableHeaderView
+//        
+//        self.usernameTextField.addRegx(Constants.RegEx.REGEX_USER_NAME, withMsg: NSLocalizedString("Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30", comment: "Only alpha numeric and ._ characters are allowed. Charaters limit should be come between 2-30"))
+//        self.firstNameTextField.addRegx(Constants.RegEx.REGEX_FIRST_USER_NAME_LIMIT, withMsg: NSLocalizedString("First name charaters limit should be come between 2-30", comment: "First name charaters limit should be come between 2-30"))
+//        self.lastNameTextField.addRegx(Constants.RegEx.REGEX_LAST_USER_NAME_LIMIT, withMsg: NSLocalizedString("Last name charaters limit should be come between 1-30", comment: "Last name charaters limit should be come between 1-30"))
+//        self.emailTextField.addRegx(Constants.RegEx.REGEX_EMAIL, withMsg: NSLocalizedString("EnterValidMail", comment: "Enter valid email."))
     }
     
     func cancel() {

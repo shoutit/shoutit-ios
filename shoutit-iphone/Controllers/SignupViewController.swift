@@ -12,7 +12,7 @@ import RxCocoa
 import Material
 import ResponsiveLabel
 
-final class SignupViewController: UIViewController {
+final class SignupViewController: UITableViewController {
     
     typealias _PatternTapResponder = @convention(block) (String!) -> Void
     
@@ -31,7 +31,7 @@ final class SignupViewController: UIViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    weak var viewModel: LoginWithEmailViewModel!
+    var viewModel: SignupViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -57,6 +57,22 @@ final class SignupViewController: UIViewController {
                 self.delegate?.presentLogin()
             }
             .addDisposableTo(disposeBag)
+        
+        // return button
+        nameTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.emailTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.passwordTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            // signup
+        }.addDisposableTo(disposeBag)
+        
+        // add validators
+        nameTextField.addValidator(Validator.validateName, withDisposeBag: disposeBag)
+        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupTermsAndPolicyLabel() {
@@ -123,6 +139,10 @@ final class SignupViewController: UIViewController {
             textField.titleLabelColor = MaterialColor.grey.lighten1
             textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
             textField.clearButtonMode = .WhileEditing
+            
+            textField.detailLabel = UILabel()
+            textField.detailLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.detailLabelActiveColor = MaterialColor.red.accent3
         }
     }
 }
