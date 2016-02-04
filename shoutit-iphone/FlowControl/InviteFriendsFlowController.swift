@@ -1,5 +1,5 @@
 //
-//  SettingsFlowController.swift
+//  InviteFriendsFlowController.swift
 //  shoutit-iphone
 //
 //  Created by Piotr Bernad on 04/02/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsFlowController: FlowController {
+class InviteFriendsFlowController: FlowController {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -16,7 +16,7 @@ class SettingsFlowController: FlowController {
         self.navigationController = navigationController
         
         // create initial view controller
-        let controller = Wireframe.settingsViewController()
+        let controller = Wireframe.inviteFriendsViewController()
         
         navigationController.showViewController(controller, sender: nil)
     }

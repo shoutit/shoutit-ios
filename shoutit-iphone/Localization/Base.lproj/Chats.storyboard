@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zEB-Ku-U38" id="kBB-ug-ILC">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-Ub-bSa">
@@ -111,7 +111,15 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Chat" image="tabChat" id="GAm-YC-l0g"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="GZ0-mH-W33">
+                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="KCh-3Y-Jjq">
+                            <connections>
+                                <action selector="toggleMenu" destination="rdm-hj-mhG" id="zub-mg-jgg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm0-oI-998" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,6 +216,7 @@
     </scenes>
     <resources>
         <image name="messagesTabBar" width="22" height="25"/>
+        <image name="navMenu" width="24" height="24"/>
         <image name="tabChat" width="30" height="30"/>
     </resources>
 </document>

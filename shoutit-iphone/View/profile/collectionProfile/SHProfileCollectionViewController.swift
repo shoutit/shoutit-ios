@@ -18,9 +18,6 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(!othersProfile) {
-            if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-                SHOauthToken.goToLogin(self)
-            }
         }
         self.clearsSelectionOnViewWillAppear = true
         self.collectionView?.dataSource = viewModel
@@ -64,9 +61,6 @@ class SHProfileCollectionViewController: BaseCollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            SHOauthToken.goToLogin(self)
-        }
         viewModel?.viewWillAppear()
     }
     

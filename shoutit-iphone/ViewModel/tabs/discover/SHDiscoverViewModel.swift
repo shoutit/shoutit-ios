@@ -155,12 +155,6 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
         titleLabel.text = self.viewController.title
         titleLabel.sizeToFit()
         
-        let imageView = UIImageView(image: UIImage(named: "logoWhite"))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
-        imageView.frame = CGRectMake(0, 0, 70, 44)
-        let logo = UIBarButtonItem(customView: imageView)
-        self.viewController.navigationItem.leftBarButtonItem = logo
-        
         let subTitleLabel = UILabel(frame: CGRectMake(0, titleLabel.frame.origin.y + titleLabel.frame.size.height - 3, 100, 0))
         subTitleLabel.textAlignment = NSTextAlignment.Center
         subTitleLabel.backgroundColor = UIColor.clearColor()

@@ -44,7 +44,7 @@ extension UIStoryboard {
     }
     
     static func getSettings() -> UIStoryboard {
-        return UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        return UIStoryboard(name: "Settings", bundle: nil)
     }
     
     static  func getMessages() -> UIStoryboard {

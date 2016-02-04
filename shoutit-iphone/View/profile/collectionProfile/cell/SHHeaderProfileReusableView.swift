@@ -115,11 +115,6 @@ class SHHeaderProfileReusableView: UICollectionReusableView {
     }
     
     @IBAction func listenAction(sender: AnyObject) {
-        if(SHOauthToken.getFromCache()?.accessToken?.characters.count < 0) {
-            if let viewController = self.viewController {
-                SHOauthToken.goToLogin(viewController)
-            }
-        }
         if let isFollowing = self.user?.isFollowing {
             self.setListenSelected(isFollowing)
         }
