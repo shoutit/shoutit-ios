@@ -10,7 +10,6 @@ import UIKit
 
 class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
-    private var viewModel: SHLoginViewModel?
     @IBOutlet weak var topSpaceJoinNowConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomSpaceSignUpConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
         
-        viewModel?.viewDidLoad()
+        //viewModel?.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,7 +38,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
     }
     
     override func initializeViewModel() {
-        self.viewModel = SHLoginViewModel(socialViewController: self)
+        //self.viewModel = SHLoginViewModel(socialViewController: self)
     }
 
     @IBAction func goBack(sender: AnyObject) {
@@ -51,7 +50,7 @@ class SHSocialLoginViewController: BaseViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func loginFacebook(sender: AnyObject) {
-        viewModel?.loginWithFacebook()
+        //viewModel?.loginWithFacebook()
     }
     
     // MARK - GIDSignInUIDelegate

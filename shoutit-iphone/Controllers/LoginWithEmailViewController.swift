@@ -21,8 +21,8 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 376
-    let loginViewHeight: CGFloat = 306
+    let signupViewHeight: CGFloat = 406
+    let loginViewHeight: CGFloat = 326
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!
@@ -44,14 +44,14 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     // child controllers
     lazy var loginViewController: LoginViewController = {
         let controller = Wireframe.loginViewController()
-        controller.viewModel = self.viewModel
+        controller.viewModel = LoginViewModel()
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
     }()
     lazy var signupViewController: SignupViewController = {
         let controller = Wireframe.signupViewController()
-        controller.viewModel = self.viewModel
+        controller.viewModel = SignupViewModel()
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
@@ -64,9 +64,9 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         setupRX()
         
-        
         // show initial child
         title = signupViewController.title
+        containerHeightConstraint.constant = signupViewHeight
         addInitialViewController(signupViewController)
     }
     
