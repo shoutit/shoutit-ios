@@ -13,6 +13,7 @@ struct Wireframe {
     enum Storyboard: String {
         case Root = "Root"
         case Login = "LoginStoryboard"
+        case HTML = "HTML"
         case Home = "ShoutList"
         case Discover = "Discover"
         case Shout = "Shout"
@@ -56,6 +57,14 @@ struct Wireframe {
     static func loginViewController() -> LoginViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
     }
+    
+    // MARK: - HTML storyboard view controllers
+    
+    static func htmlViewController() -> HTMLViewController {
+        return storyboard(.HTML).instantiateInitialViewController() as! HTMLViewController
+    }
+    
+    // MARK: - Home storyboard view controllers
 
     static func homeViewController() -> UIViewController {
         return storyboard(.Home).instantiateViewControllerWithIdentifier("shoutListViewController")

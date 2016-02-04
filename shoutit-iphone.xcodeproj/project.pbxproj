@@ -21,7 +21,6 @@
 		6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */; };
 		6027CF911BE7539400124C28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF901BE7539300124C28 /* Constants.swift */; };
 		6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF961BE7583800124C28 /* SHLoginViewController.swift */; };
-		6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF981BE7587800124C28 /* SHLoginViewModel.swift */; };
 		6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */; };
 		6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9D1BE759C400124C28 /* TableViewControllerModelProtocol.swift */; };
 		6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */; };
@@ -95,8 +94,7 @@
 		AC1AA9751C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AA9741C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
-		AC1C93EB1BE90D2A009400BE /* tos.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* tos.html */; };
-		AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */; };
+		AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* termsofservice.html */; };
 		AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */; };
 		AC1C93F71BE9FA56009400BE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F61BE9FA55009400BE /* Model.swift */; };
 		AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C93F81BEA8362009400BE /* SHUser.swift */; };
@@ -321,6 +319,13 @@
 		AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
+		B2040ED41C625CD200F5038D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2040ED31C625CD200F5038D /* LoginViewModel.swift */; };
+		B2040ED61C625CE200F5038D /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2040ED51C625CE200F5038D /* SignupViewModel.swift */; };
+		B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D721C62638C007EB2FB /* HTMLViewController.swift */; };
+		B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2082D741C6263DD007EB2FB /* HTML.storyboard */; };
+		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
+		B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D781C636422007EB2FB /* UITextField+Extensions.swift */; };
+		B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D7A1C63844E007EB2FB /* Fonts.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -447,7 +452,6 @@
 		6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkActivityManager.swift; path = Util/api/NetworkActivityManager.swift; sourceTree = "<group>"; };
 		6027CF901BE7539300124C28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Application/Constants.swift; sourceTree = "<group>"; };
 		6027CF961BE7583800124C28 /* SHLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginViewController.swift; path = View/auth/SHLoginViewController.swift; sourceTree = "<group>"; };
-		6027CF981BE7587800124C28 /* SHLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginViewModel.swift; path = ViewModel/auth/SHLoginViewModel.swift; sourceTree = "<group>"; };
 		6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerModelProtocol.swift; path = ViewModel/protocols/ViewControllerModelProtocol.swift; sourceTree = "<group>"; };
 		6027CF9D1BE759C400124C28 /* TableViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewControllerModelProtocol.swift; path = ViewModel/protocols/TableViewControllerModelProtocol.swift; sourceTree = "<group>"; };
 		6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = View/common/BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -538,8 +542,7 @@
 		AC1AA9741C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHExtraDiscoverCell.swift; path = View/tabs/discoverFeed/SHExtraDiscoverCell.swift; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
-		AC1C93E81BE90D2A009400BE /* tos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tos.html; path = View/auth/Resource/tos.html; sourceTree = "<group>"; };
-		AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHModalWebViewController.swift; path = View/auth/SHModalWebViewController.swift; sourceTree = "<group>"; };
+		AC1C93E81BE90D2A009400BE /* termsofservice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = termsofservice.html; path = View/auth/Resource/termsofservice.html; sourceTree = "<group>"; };
 		AC1C93F41BE9F1EC009400BE /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Model/base/ModelDelegate.swift; sourceTree = "<group>"; };
 		AC1C93F61BE9FA55009400BE /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Model/base/Model.swift; sourceTree = "<group>"; };
 		AC1C93F81BEA8362009400BE /* SHUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUser.swift; path = Model/auth/SHUser.swift; sourceTree = "<group>"; };
@@ -754,6 +757,13 @@
 		AEA599791C609E0100015AA3 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Menu.storyboard; path = Storyboards/Menu.storyboard; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
+		B2040ED31C625CD200F5038D /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
+		B2040ED51C625CE200F5038D /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
+		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
+		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
+		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
+		B2082D781C636422007EB2FB /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+Extensions.swift"; path = "UIKitExtensions/UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		B2082D7A1C63844E007EB2FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = UIKitExtensions/Fonts.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -1015,6 +1025,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B2082D711C626372007EB2FB /* HTMLController */,
 				B27DF7831C58E1A8006909D4 /* ApplicationMainController */,
 				B27DF77D1C58DBBA006909D4 /* Intro */,
 				B2190D771C5A29DC007FF33B /* LoginMethodChoice */,
@@ -1135,6 +1146,7 @@
 				AEA599791C609E0100015AA3 /* Menu.storyboard */,
 				AE4DB34E1C63717A001EB84B /* Help.storyboard */,
 				AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */,
+				B2082D741C6263DD007EB2FB /* HTML.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1152,7 +1164,6 @@
 			children = (
 				AC1C93E51BE90BF7009400BE /* Resource */,
 				6027CF961BE7583800124C28 /* SHLoginViewController.swift */,
-				AC1C93EC1BE90EAC009400BE /* SHModalWebViewController.swift */,
 				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
 				6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */,
 				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
@@ -1165,7 +1176,6 @@
 		6027CF951BE757E100124C28 /* auth */ = {
 			isa = PBXGroup;
 			children = (
-				6027CF981BE7587800124C28 /* SHLoginViewModel.swift */,
 				AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */,
 				AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */,
 				ACC064481C47526D0089912A /* SHLoginPopupViewModel.swift */,
@@ -1415,9 +1425,6 @@
 		AC1C93E51BE90BF7009400BE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C93E61BE90D2A009400BE /* policy.html */,
-				AC1C93E71BE90D2A009400BE /* rules.html */,
-				AC1C93E81BE90D2A009400BE /* tos.html */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -1451,6 +1458,7 @@
 		AC1C94031BEBB911009400BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B2082D701C626331007EB2FB /* HTMLFiles */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
 				AC1C94081BEBBA10009400BE /* Localization */,
 			);
@@ -1971,6 +1979,8 @@
 			isa = PBXGroup;
 			children = (
 				AE8351701C5F65D50055C71F /* Array+Additions.swift */,
+				B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */,
+				B2082D781C636422007EB2FB /* UITextField+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2017,6 +2027,40 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B2040ED11C625CA300F5038D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2040ED31C625CD200F5038D /* LoginViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2040ED21C625CB400F5038D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2040ED51C625CE200F5038D /* SignupViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2082D701C626331007EB2FB /* HTMLFiles */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C93E61BE90D2A009400BE /* policy.html */,
+				AC1C93E71BE90D2A009400BE /* rules.html */,
+				AC1C93E81BE90D2A009400BE /* termsofservice.html */,
+			);
+			name = HTMLFiles;
+			sourceTree = "<group>";
+		};
+		B2082D711C626372007EB2FB /* HTMLController */ = {
+			isa = PBXGroup;
+			children = (
+				B2082D721C62638C007EB2FB /* HTMLViewController.swift */,
+			);
+			name = HTMLController;
+			sourceTree = "<group>";
+		};
 		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {
 			isa = PBXGroup;
 			children = (
@@ -2052,6 +2096,7 @@
 			children = (
 				B2C729B01C6220EE006F7D29 /* Assets.swift */,
 				B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */,
+				B2082D7A1C63844E007EB2FB /* Fonts.swift */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -2241,6 +2286,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */,
+				B2040ED21C625CB400F5038D /* ViewModel */,
 			);
 			name = Signup;
 			sourceTree = "<group>";
@@ -2249,6 +2295,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C729D91C6223FA006F7D29 /* LoginViewController.swift */,
+				B2040ED11C625CA300F5038D /* ViewModel */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2411,7 +2458,7 @@
 				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
 				B2E7E30D1C592BED0078C743 /* DiscoverFeed.storyboard in Resources */,
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
-				AC1C93EB1BE90D2A009400BE /* tos.html in Resources */,
+				AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */,
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
@@ -2461,6 +2508,8 @@
 				B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */,
 				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2E7E30A1C592BE60078C743 /* ShoutList.storyboard in Resources */,
+				AEA5997A1C609E0100015AA3 /* Menu.storyboard in Resources */,
+				B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */,
 				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
@@ -2641,6 +2690,7 @@
 				B2C729BB1C62218C006F7D29 /* APIAuthService.swift in Sources */,
 				606ED2F51BF807F00064C53E /* SHCameraControlViewController.swift in Sources */,
 				6027CF6C1BE74FE400124C28 /* SplashViewController.swift in Sources */,
+				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
 				606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */,
 				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
@@ -2684,6 +2734,7 @@
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
 				ACB803AF1C10833300420BB1 /* SHConversationsTableViewModel.swift in Sources */,
 				ACC845791C4CE94F0065A702 /* SHDiscoverShoutsHeaderCell.swift in Sources */,
+				B2040ED41C625CD200F5038D /* LoginViewModel.swift in Sources */,
 				ACDD23B41BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift in Sources */,
 				ACB803B21C108B2A00420BB1 /* SHConversations.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
@@ -2718,6 +2769,7 @@
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
+				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */,
 				AC679B511C3E274A00F45947 /* SHDiscoverFeedCell.swift in Sources */,
 				ACB803B51C108E9F00420BB1 /* SHApiConversationService.swift in Sources */,
@@ -2748,6 +2800,7 @@
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
 				AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */,
 				ACDB3CBD1BF90D7F0097444E /* SHRequestVideoTableViewCell.swift in Sources */,
+				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* Validator.swift in Sources */,
 				AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */,
@@ -2778,7 +2831,6 @@
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,
-				AC1C93ED1BE90EAC009400BE /* SHModalWebViewController.swift in Sources */,
 				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,
 				606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
@@ -2806,7 +2858,6 @@
 				ACB803A01C0EE26C00420BB1 /* SHMessage.swift in Sources */,
 				B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */,
 				ACC36C3E1C09DDEC0082E0C2 /* SHSettingsTableViewController.swift in Sources */,
-				6027CF991BE7587800124C28 /* SHLoginViewModel.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
@@ -2820,6 +2871,7 @@
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
+				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
@@ -2874,6 +2926,7 @@
 				ACC064471C47523E0089912A /* SHLoginPopupViewController.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
+				B2040ED61C625CE200F5038D /* SignupViewModel.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,
 				6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,

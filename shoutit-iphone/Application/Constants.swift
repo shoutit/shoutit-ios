@@ -33,12 +33,8 @@ struct Constants {
         static let GOOGLE_API_KEY = "AIzaSyBZsjPCMTtOFB79RsWn3oUGVPDImf4ceTU"
     }
     
-    struct RegEx {
-        static let REGEX_EMAIL = "[A-Z0-9a-z._%+-]{1,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}"
-        static let REGEX_PASSWORD_LIMIT = "^.{6,20}$"
-        static let REGEX_USER_NAME = "^[a-z0-9A-Z_-]{2,20}$"
-        static let REGEX_FIRST_USER_NAME_LIMIT = "^.{2,30}$"
-        static let REGEX_LAST_USER_NAME_LIMIT = "^.{1,30}$"
+    struct URL {
+        static let ShoutItWebsite = "http://www.shoutit.com"
     }
     
     struct SharedUserDefaults {
