@@ -30,6 +30,8 @@ class TabbarController: UIViewController, Navigation {
                 
             }.addDisposableTo(self.disposeBag)
         }
+        
+        tabs.first?.selected = true
     }
     
     func triggerActionWithItem(navigationItem : NavigationItem) {

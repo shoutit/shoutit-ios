@@ -133,7 +133,7 @@ class SHDiscoverViewModel: NSObject, CollectionViewControllerModelProtocol, UICo
                 // Do Nothing here
                 self.updateUI(shDiscoverItem)
             }, completionHandler: { (response) -> Void in
-                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
+//                self.viewController.collectionView?.pullToRefreshView.stopAnimating()
                 switch(response.result) {
                 case .Success(let result):
                     log.info("Success getting discover items")
