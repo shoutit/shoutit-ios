@@ -84,13 +84,13 @@ class LoginViewController: UITableViewController {
             textField.textColor = MaterialColor.black
             
             textField.titleLabel = UILabel()
-            textField.titleLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
             textField.titleLabelColor = MaterialColor.grey.lighten1
             textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
             textField.clearButtonMode = .WhileEditing
             
             textField.detailLabel = UILabel()
-            textField.detailLabel!.font = RobotoFont.mediumWithSize(12)
+            textField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
             textField.detailLabelActiveColor = MaterialColor.red.accent3
         }
     }

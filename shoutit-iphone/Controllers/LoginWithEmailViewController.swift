@@ -21,7 +21,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 386
+    let signupViewHeight: CGFloat = 406
     let loginViewHeight: CGFloat = 326
     
     // UI
@@ -66,6 +66,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         // show initial child
         title = signupViewController.title
+        containerHeightConstraint.constant = signupViewHeight
         addInitialViewController(signupViewController)
     }
     
