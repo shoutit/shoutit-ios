@@ -31,6 +31,22 @@ class MenuTableViewController: UITableViewController, Navigation {
     
     var rootController : RootController?
     
+    var overlayView : UIView? {
+        didSet {
+            guard let overlay = overlayView else {
+                oldValue?.removeFromSuperview()
+                return
+            }
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action:  "dismiss")
+            overlay.addGestureRecognizer(tapGesture)
+        }
+    }
+    
+    func dismiss() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func triggerActionWithItem(navigationItem: NavigationItem) {
         if let root = self.rootController {
             root.openItem(navigationItem)
@@ -62,5 +78,9 @@ class MenuTableViewController: UITableViewController, Navigation {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = MenuSection.menuItems(MenuSection(rawValue: indexPath.section)!)()[indexPath.row]
         triggerActionWithItem(item)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 48.0
     }
 }

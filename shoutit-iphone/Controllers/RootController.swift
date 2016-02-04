@@ -10,13 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RootController: UIViewController {
+class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
     @IBOutlet weak var contentContainer : UIView?
     
     var viewControllers = [NavigationItem: UIViewController]()
     
     let disposeBag = DisposeBag()
+    let presentMenuSegue = "presentMenuSegue"
     
     // MARK: Life Cycle
 
@@ -38,12 +39,17 @@ class RootController: UIViewController {
         if var destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
         }
+        
+        if segue.identifier == presentMenuSegue {
+            segue.destinationViewController.modalPresentationStyle = .Custom
+            segue.destinationViewController.transitioningDelegate = self
+        }
     }
     
     // MARK: Side Menu
     
     @IBAction func toggleMenuAction() {
-        self.performSegueWithIdentifier("presentMenuSegue", sender: nil)
+        self.performSegueWithIdentifier(presentMenuSegue, sender: nil)
     }
     
     // MARK: Content Managing
@@ -78,6 +84,7 @@ class RootController: UIViewController {
         case .Shout: flowController = ShoutFlowController(navigationController: navController)
         case .Chats: flowController = ChatsFlowController(navigationController: navController)
         case .Profile: flowController = ProfileFlowController(navigationController: navController)
+        case .Settings: flowController = SettingsFlowController(navigationController: navController)
         default: flowController = HomeFlowController(navigationController: navController)
             
         }
@@ -117,6 +124,14 @@ class RootController: UIViewController {
         self.addChildViewController(controller)
         
         controller.didMoveToParentViewController(self)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return MenuAnimationController()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return MenuDismissAnimationController()
     }
     
 }
