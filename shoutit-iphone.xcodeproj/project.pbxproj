@@ -330,6 +330,9 @@
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
 		B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */; };
+		B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B41C63DC5E0013E99F /* LocationManager.swift */; };
+		B21EA3B81C63E80E0013E99F /* AuthParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B71C63E80E0013E99F /* AuthParams.swift */; };
+		B21EA3BA1C63E8900013E99F /* Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B91C63E8900013E99F /* Params.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
 		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
 		B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */; };
@@ -768,6 +771,9 @@
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
 		B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwrapOperators.swift; path = CommonOperators/UnwrapOperators.swift; sourceTree = "<group>"; };
+		B21EA3B41C63DC5E0013E99F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Util/LocationManager.swift; sourceTree = "<group>"; };
+		B21EA3B71C63E80E0013E99F /* AuthParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthParams.swift; path = Networking/AuthParams.swift; sourceTree = "<group>"; };
+		B21EA3B91C63E8900013E99F /* Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Params.swift; path = Networking/Params.swift; sourceTree = "<group>"; };
 		B227BFAC1C57942E003A2D76 /* xcconfigs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = xcconfigs; path = External/xcconfigs; sourceTree = SOURCE_ROOT; };
 		B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-AppStore.xcconfig"; path = "OtherSources/shoutit-AppStore.xcconfig"; sourceTree = "<group>"; };
 		B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Debug.xcconfig"; path = "OtherSources/shoutit-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -1012,6 +1018,7 @@
 		6027CF631BE74F5F00124C28 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				B21EA3B31C63DC3F0013E99F /* Location */,
 				AEA5997D1C60C55000015AA3 /* Protocols */,
 				6068E65B1C2538CE0061F56C /* customViews */,
 				AC7030D51C16D86E008F4C00 /* manager */,
@@ -2109,6 +2116,23 @@
 			name = Operators;
 			sourceTree = "<group>";
 		};
+		B21EA3B31C63DC3F0013E99F /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				B21EA3B41C63DC5E0013E99F /* LocationManager.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		B21EA3B61C63E7A30013E99F /* Params */ = {
+			isa = PBXGroup;
+			children = (
+				B21EA3B91C63E8900013E99F /* Params.swift */,
+				B21EA3B71C63E80E0013E99F /* AuthParams.swift */,
+			);
+			name = Params;
+			sourceTree = "<group>";
+		};
 		B227BFA81C579321003A2D76 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -2269,6 +2293,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C729B61C62216A006F7D29 /* APIManager.swift */,
+				B21EA3B61C63E7A30013E99F /* Params */,
 				B2C729B91C62217D006F7D29 /* Services */,
 			);
 			name = Networking;
@@ -2715,6 +2740,7 @@
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
 				ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */,
+				B21EA3B81C63E80E0013E99F /* AuthParams.swift in Sources */,
 				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
@@ -2768,6 +2794,7 @@
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
+				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				AC7030BF1C1596F9008F4C00 /* SHShoutMediaItem.swift in Sources */,
 				AC679B511C3E274A00F45947 /* SHDiscoverFeedCell.swift in Sources */,
@@ -2807,6 +2834,7 @@
 				ACB803AD1C1082D100420BB1 /* SHConversationsTableViewController.swift in Sources */,
 				ACDD23C21BFB5B8500EEC6A6 /* SHTagProfileTableViewModel.swift in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
+				B21EA3BA1C63E8900013E99F /* Params.swift in Sources */,
 				AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */,
 				AC9B39121C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift in Sources */,
 				ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */,
