@@ -304,6 +304,7 @@
 		B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2082D741C6263DD007EB2FB /* HTML.storyboard */; };
 		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
 		B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D781C636422007EB2FB /* UITextField+Extensions.swift */; };
+		B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D7A1C63844E007EB2FB /* Fonts.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -734,6 +735,7 @@
 		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
 		B2082D781C636422007EB2FB /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+Extensions.swift"; path = "UIKitExtensions/UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		B2082D7A1C63844E007EB2FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = UIKitExtensions/Fonts.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -2054,6 +2056,7 @@
 			children = (
 				B2C729B01C6220EE006F7D29 /* Assets.swift */,
 				B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */,
+				B2082D7A1C63844E007EB2FB /* Fonts.swift */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -2746,6 +2749,7 @@
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
 				AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */,
 				ACDB3CBD1BF90D7F0097444E /* SHRequestVideoTableViewCell.swift in Sources */,
+				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* Validator.swift in Sources */,
 				AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */,
