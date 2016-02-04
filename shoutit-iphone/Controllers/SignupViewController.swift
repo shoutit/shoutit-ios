@@ -12,7 +12,7 @@ import RxCocoa
 import Material
 import ResponsiveLabel
 
-final class SignupViewController: UIViewController {
+final class SignupViewController: UITableViewController {
     
     typealias _PatternTapResponder = @convention(block) (String!) -> Void
     
@@ -58,26 +58,16 @@ final class SignupViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        nameTextField
-            .rx_text
-            .bindNext{[unowned self] in
-                self.viewModel.name = $0
-            }
-            .addDisposableTo(disposeBag)
-        
-        emailTextField
-            .rx_text
-            .bindNext{[unowned self] in
-                self.viewModel.email = $0
-            }
-            .addDisposableTo(disposeBag)
-        
-        passwordTextField
-            .rx_text
-            .bindNext{[unowned self] in
-                self.viewModel.password = $0
-            }
-            .addDisposableTo(disposeBag)
+        // return button
+        nameTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.emailTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.passwordTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            // signup
+        }.addDisposableTo(disposeBag)
         
         // add validators
         nameTextField.addValidator(Validator.validateName, withDisposeBag: disposeBag)

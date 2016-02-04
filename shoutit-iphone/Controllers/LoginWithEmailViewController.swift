@@ -21,8 +21,8 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 376
-    let loginViewHeight: CGFloat = 306
+    let signupViewHeight: CGFloat = 386
+    let loginViewHeight: CGFloat = 326
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!

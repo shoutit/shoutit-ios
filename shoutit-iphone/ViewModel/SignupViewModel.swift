@@ -10,8 +10,4 @@ import Foundation
 
 class SignupViewModel {
     
-    var name = ""
-    var email = ""
-    var password = ""
-    
 }

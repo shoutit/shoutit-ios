@@ -9,7 +9,5 @@
 import Foundation
 
 class LoginViewModel {
-    
-    var email = ""
-    var password = ""
+
 }

@@ -13,7 +13,7 @@ import Material
 import ResponsiveLabel
 import Validator
 
-class LoginViewController: UIViewController {
+class LoginViewController: UITableViewController {
     
     // UI
     @IBOutlet weak var emailTextField: TextField!
@@ -46,23 +46,13 @@ class LoginViewController: UIViewController {
     
     private func setupRX() {
         
-        switchToSignupButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
-                self.delegate?.presentSignup()
-            }
-            .addDisposableTo(disposeBag)
-        
-        emailTextField
-            .rx_text
-            .bindNext {[unowned self] in
-                self.viewModel.email = $0}
-            .addDisposableTo(disposeBag)
-        passwordTextField
-            .rx_text
-            .bindNext{[unowned self] in
-                self.viewModel.password = $0}
-            .addDisposableTo(disposeBag)
+        // on return actions
+        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            self?.passwordTextField.becomeFirstResponder()
+        }.addDisposableTo(disposeBag)
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+            // login
+        }.addDisposableTo(disposeBag)
         
         // validation
         emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
