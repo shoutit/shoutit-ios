@@ -15,6 +15,7 @@ protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, H
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
     func presentSignup()
+    func showErrorMessage(message: String)
 }
 
 final class LoginWithEmailViewController: UIViewController, ContainerController {
@@ -23,6 +24,9 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     let animationDuration: Double = 0.25
     let signupViewHeight: CGFloat = 406
     let loginViewHeight: CGFloat = 326
+    
+    //
+    private var timer: NSTimer?
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!
@@ -95,6 +99,16 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
             }
             .addDisposableTo(disposeBag)
     }
+    
+    func hideMessageLabel() {
+        timer?.invalidate()
+        timer = nil
+        errorMessageLabel.layer.removeAllAnimations()
+        UIView.animateWithDuration(0.5) { [weak self] in
+            self?.errorMessageLabel.alpha = 0.0
+        }
+        errorMessageLabel.hidden = true
+    }
 }
 
 extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegate {
@@ -109,5 +123,15 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
         title = signupViewController.title
         containerHeightConstraint.constant = signupViewHeight
         cycleFromViewController(loginViewController, toViewController: signupViewController, animated: true)
+    }
+    
+    func showErrorMessage(message: String) {
+        errorMessageLabel.text = message
+        errorMessageLabel.hidden = false
+        errorMessageLabel.layer.removeAllAnimations()
+        UIView.animateWithDuration(0.5) {[weak self] in
+            self?.errorMessageLabel.alpha = 1.0
+        }
+        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideMessageLabel", userInfo: nil, repeats: false)
     }
 }

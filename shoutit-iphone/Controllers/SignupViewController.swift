@@ -51,10 +51,32 @@ final class SignupViewController: UITableViewController {
     
     private func setupRX() {
         
+        let signupActionFilterClosure: Void -> Bool = {[unowned self] in
+            
+            for validationResult in [Validator.validateName(self.nameTextField.text), Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
+                if case .Invalid(let errors) = validationResult {
+                    if let error = errors.first {
+                        self.delegate?.showErrorMessage(error.message)
+                    }
+                    return false
+                }
+            }
+            
+            return true
+        }
+        
+        // user actions
         switchToLoginButton
             .rx_tap
             .subscribeNext{[unowned self] in
                 self.delegate?.presentLogin()
+            }
+            .addDisposableTo(disposeBag)
+        
+        signupButton
+            .rx_tap
+            .filter(signupActionFilterClosure).subscribeNext{
+                self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
             }
             .addDisposableTo(disposeBag)
         
@@ -67,8 +89,8 @@ final class SignupViewController: UITableViewController {
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
         
-        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
-            // signup
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
+            self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
         // add validators

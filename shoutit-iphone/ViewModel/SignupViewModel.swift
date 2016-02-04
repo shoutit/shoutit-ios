@@ -10,4 +10,7 @@ import Foundation
 
 class SignupViewModel {
     
+    func signupWithName(name: String, email: String, password: String) {
+        
+    }
 }

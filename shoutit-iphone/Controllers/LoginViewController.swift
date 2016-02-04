@@ -46,27 +46,35 @@ class LoginViewController: UITableViewController {
     
     private func setupRX() {
         
-        // response to user actions
-        loginButton.rx_tap
-            .filter {[unowned self] in
-                do {
-                    try Validator.validateEmail(self.emailTextField.text)
-                    try Validator.validatePassword(self.passwordTextField.text)
-                } catch {
+        let loginActionFilterClosure: Void -> Bool = {[unowned self] in
+            
+            for validationResult in [Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
+                if case .Invalid(let errors) = validationResult {
+                    if let error = errors.first {
+                        self.delegate?.showErrorMessage(error.message)
+                    }
                     return false
                 }
-                
-                return true
+            }
             
-            }.subscribeNext{
+            return true
         }
+        
+        // response to user actions
+        switchToSignupButton.rx_tap.subscribeNext{[weak self] in
+            self?.delegate?.presentSignup()
+        }.addDisposableTo(disposeBag)
+        
+        loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
+        }.addDisposableTo(disposeBag)
         
         // on return actions
         emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
-        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
-            // login
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
         // validation
