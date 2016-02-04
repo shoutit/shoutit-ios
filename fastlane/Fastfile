@@ -45,10 +45,10 @@ platform :ios do
     gym scheme: ENV["XCODE_SCHEME"], clean: true, configuration: "Distribution", use_legacy_build_api: true
 
     #upload artifact
-    au_artifacts_upload
+    #au_artifacts_upload
 
     #generate short url
-    bitly_url = au_download_link
+    #bitly_url = au_download_link
   
     #upload to crashlytics
     crashlytics({groups: 'internal-tests'})
@@ -69,7 +69,6 @@ platform :ios do
           short: true
         }, {
           title: 'storage',
-          value: bitly_url,
           short: true
         }]
       }
