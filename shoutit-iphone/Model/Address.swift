@@ -14,8 +14,8 @@ struct Address {
     private(set) var address: String = ""
     private(set) var city: String = ""
     private(set) var country: String = ""
-    private(set) var latitude: Double = 0.0
-    private(set) var longitude: Double = 0.0
+    private(set) var latitude: Double?
+    private(set) var longitude: Double?
     private(set) var postalCode: String = ""
     private(set) var state: String = ""
 }

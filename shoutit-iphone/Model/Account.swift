@@ -17,7 +17,7 @@ final class Account {
     // private consts
     lazy private var archivePath: String = {
         let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("account.usr")
+        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("user").URLByAppendingPathComponent("account.data")
         return directoryURL.absoluteString
     }()
     

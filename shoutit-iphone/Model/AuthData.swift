@@ -11,6 +11,9 @@ import Genome
 
 struct AuthData {
     
+    // token type
+    private(set) var guest: Bool = false
+    
     // token
     private(set) var accessToken: String = ""
     private(set) var refreshToken: String = ""

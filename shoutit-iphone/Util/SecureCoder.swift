@@ -14,7 +14,10 @@ class SecureCoder {
     
     static func writeJson(json: Json, toFileAtPath path: String) {
         let string = json.serialize()
-        NSKeyedArchiver.archiveRootObject(string, toFile: path)
+        
+        let success = NSKeyedArchiver.archiveRootObject(string as NSString, toFile: path)
+        print(string)
+        print(success)
     }
     
     static func writeJsonConvertibleToFile(object: JsonConvertibleType, toPath path: String) throws {
@@ -24,7 +27,11 @@ class SecureCoder {
     
     static func readJsonFromFile(path: String) throws -> Json? {
         
-        guard let string = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? String where string.characters.count > 0 else {
+        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithFile(path) else {
+            return nil
+        }
+        
+        guard let string = contents as? String where string.characters.count > 0 else {
             return nil
         }
         
