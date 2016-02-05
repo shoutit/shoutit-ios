@@ -36,6 +36,12 @@ final class IntroViewController: UIViewController {
         setupRX()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBarHidden = true
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {

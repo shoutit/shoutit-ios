@@ -10,16 +10,6 @@ import Foundation
 import Genome
 import PureJsonSerializer
 
-enum UserType: String {
-    case Profile = "Profile"
-    case Page = "Page"
-}
-
-enum Gender: String {
-    case Male = "male"
-    case Female = "female"
-}
-
 struct User {
     
     // public profile
@@ -61,6 +51,9 @@ struct User {
 extension User: BasicMappable {
     
     mutating func sequence(map: Map) throws {
+        
+        print(map.json)
+        
         try id <~> map["id"]
         try type <~> map["type"].transformFromJson{UserType(rawValue: $0)!}.transformToJson{$0.rawValue}
         try apiPath <~> map["api_url"]
@@ -72,7 +65,15 @@ extension User: BasicMappable {
         try activated <~> map["is_activated"]
         try imagePath <~> map["image"]
         try coverPath <~> map["cover"]
-        try gender <~> map["gender"].transformFromJson{Gender(rawValue: $0)!}.transformToJson{$0!.rawValue}
+        try gender <~> map[KeyType.Key("gender")]
+            .transformFromJson{Gender(string: $0)}
+            .transformToJson{(gender) -> Json in
+            if let raw = gender where raw != .Unknown {
+                return .StringValue(raw.rawValue)
+            }
+            return .NullValue
+        }
+        
         try videoPath <~> map["video"]
         try dateJoindedEpoch <~> map["date_joined"]
         try bio <~> map["bio"]
@@ -103,3 +104,24 @@ extension User: BasicMappable {
         }
     }
 }
+
+enum UserType: String {
+    case Profile = "Profile"
+    case Page = "Page"
+}
+
+enum Gender: String {
+    
+    init?(string: String?) {
+        if let string = string {
+            self.init(rawValue: string)!
+        } else {
+            self.init(rawValue: "unknown")
+        }
+    }
+    
+    case Unknown = "unknown"
+    case Male = "male"
+    case Female = "female"
+}
+

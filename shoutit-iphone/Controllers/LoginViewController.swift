@@ -12,6 +12,7 @@ import RxCocoa
 import Material
 import ResponsiveLabel
 import Validator
+import MBProgressHUD
 
 class LoginViewController: UITableViewController {
     
@@ -66,6 +67,7 @@ class LoginViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
@@ -80,6 +82,7 @@ class LoginViewController: UITableViewController {
                 return true
             }
             .subscribeNext{[unowned self] in
+                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
                 self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
             }
             .addDisposableTo(disposeBag)
@@ -88,7 +91,9 @@ class LoginViewController: UITableViewController {
         emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
+        
         passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         

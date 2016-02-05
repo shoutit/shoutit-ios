@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable, TermsAndPolicyDisplayable {}
 
@@ -101,6 +102,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         // view model subjects
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                 self?.presentViewController(alertController, animated: true, completion: nil)
@@ -108,6 +110,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
             .addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 if isNewSignup {
                     // show post signup
                 } else {
@@ -117,6 +120,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
             .addDisposableTo(disposeBag)
         
         viewModel.successSubject.subscribeNext{[weak self] (message) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 let alertController = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: message, preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                 self?.presentViewController(alertController, animated: true, completion: nil)

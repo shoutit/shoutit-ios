@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable, LoginScreenDisplayable {}
 
@@ -60,6 +61,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         loginWithFacebookButton
             .rx_tap
             .subscribeNext{[unowned self] in
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 self.viewModel.loginWithFacebookFromViewController(self)
             }
             .addDisposableTo(disposeBag)
@@ -67,6 +69,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         loginWithGoogleButton
             .rx_tap
             .subscribeNext{[unowned self] in
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 self.viewModel.loginWithGoogle()
             }
             .addDisposableTo(disposeBag)
@@ -102,12 +105,14 @@ final class LoginMethodChoiceViewController: UIViewController {
         // view model observers
         
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+            MBProgressHUD.hideHUDForView(self?.view, animated: true)
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
             self?.presentViewController(alertController, animated: true, completion: nil)
         }.addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
+            MBProgressHUD.hideHUDForView(self?.view, animated: true)
             if isNewSignup {
                 // show post signup
             } else {

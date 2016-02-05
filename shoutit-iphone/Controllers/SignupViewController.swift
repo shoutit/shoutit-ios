@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Material
 import ResponsiveLabel
+import MBProgressHUD
 
 final class SignupViewController: UITableViewController {
     
@@ -76,6 +77,7 @@ final class SignupViewController: UITableViewController {
         signupButton
             .rx_tap
             .filter(signupActionFilterClosure).subscribeNext{
+                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
                 self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
             }
             .addDisposableTo(disposeBag)
@@ -90,6 +92,7 @@ final class SignupViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
             self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
