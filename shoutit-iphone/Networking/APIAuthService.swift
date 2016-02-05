@@ -16,11 +16,9 @@ class APIAuthService {
     
     // MARK: - Actions
     
-    static func resetPassword(email: String, completionHandler: Result<Success, NSError> -> Void) {
-        let params = [
-            "email": email
-        ]
-        APIManager.manager.request(.POST, authResetPasswordURL, parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
+    static func resetPassword(params: ResetPasswordParams, completionHandler: Result<Success, NSError> -> Void) {
+        
+        APIManager.manager.request(.POST, authResetPasswordURL, parameters: params.params, encoding: .JSON, headers: nil).responseJSON { (response) in
             switch response.result {
             case .Success(let json):
                 do {

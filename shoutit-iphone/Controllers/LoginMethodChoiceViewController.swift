@@ -98,12 +98,12 @@ final class LoginMethodChoiceViewController: UIViewController {
             self?.presentViewController(alertController, animated: true, completion: nil)
         }.addDisposableTo(disposeBag)
         
-        viewModel.loginSuccessSubject.subscribeNext { (isNewSignup) -> Void in
+        viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
             if isNewSignup {
                 // show post signup
             } else {
-                // show main interface
             }
+            self?.dismissViewControllerAnimated(true, completion: nil)
         }.addDisposableTo(disposeBag)
     }
 }

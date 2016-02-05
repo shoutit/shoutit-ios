@@ -31,7 +31,7 @@ final class SignupViewController: UITableViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    var viewModel: SignupViewModel!
+    weak var viewModel: LoginWithEmailViewModel!
     
     // RX
     let disposeBag = DisposeBag()

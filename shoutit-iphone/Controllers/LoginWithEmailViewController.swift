@@ -48,14 +48,14 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     // child controllers
     lazy var loginViewController: LoginViewController = {
         let controller = Wireframe.loginViewController()
-        controller.viewModel = LoginViewModel()
+        controller.viewModel = self.viewModel
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
     }()
     lazy var signupViewController: SignupViewController = {
         let controller = Wireframe.signupViewController()
-        controller.viewModel = SignupViewModel()
+        controller.viewModel = self.viewModel
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
@@ -96,6 +96,30 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
             .rx_tap
             .subscribeNext{[unowned self] in
                 self.flowDelegate?.showAboutInterface()
+            }
+            .addDisposableTo(disposeBag)
+        
+        // view model subjects
+        viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+                self?.presentViewController(alertController, animated: true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
+                if isNewSignup {
+                    // show post signup
+                } else {
+                }
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.successSubject.subscribeNext{[weak self] (message) in
+                let alertController = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: message, preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+                self?.presentViewController(alertController, animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
     }

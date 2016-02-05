@@ -92,3 +92,12 @@ struct GoogleLoginParams: AuthParams {
         ]
     }
 }
+
+struct ResetPasswordParams: Params {
+    
+    let email: String
+    
+    var params: [String : AnyObject] {
+        return ["email" : email]
+    }
+}

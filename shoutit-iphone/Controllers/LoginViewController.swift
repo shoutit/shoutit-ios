@@ -29,7 +29,7 @@ class LoginViewController: UITableViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    var viewModel: LoginViewModel!
+    weak var viewModel: LoginWithEmailViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -68,6 +68,21 @@ class LoginViewController: UITableViewController {
         loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
+        
+        forgotPasswordButton.rx_tap .filter{
+                if case .Invalid(let errors) = Validator.validateEmail(self.emailTextField.text) {
+                    if let error = errors.first {
+                        self.delegate?.showErrorMessage(error.message)
+                    }
+                    return false
+                }
+                
+                return true
+            }
+            .subscribeNext{[unowned self] in
+                self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
+            }
+            .addDisposableTo(disposeBag)
         
         // on return actions
         emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
