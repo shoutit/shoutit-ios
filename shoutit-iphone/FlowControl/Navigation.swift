@@ -15,6 +15,7 @@ enum NavigationItem : String {
     case Shout = "shout"
     case Chats = "chats"
     case Profile = "profile"
+    case Location = "location"
     case Browse = "browse"
     case Orders = "orders"
     case Settings = "settings"

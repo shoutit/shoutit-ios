@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="AE6-Gg-9Of">
+            <objects>
+                <viewController storyboardIdentifier="LocationRootController" id="rBC-b6-zRR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rwh-gH-G2R"/>
+                        <viewControllerLayoutGuide type="bottom" id="OLu-0M-457"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fzx-v8-u7C">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="xqN-Jk-rhS">
+                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="OP7-jH-JRC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="toggleMenu" destination="rBC-b6-zRR" id="jxw-EA-sUk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qpk-Cr-Wt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="363" y="344"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="navMenu" width="24" height="24"/>
+    </resources>
+</document>

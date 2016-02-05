@@ -124,6 +124,9 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+*.mobileprovision
+*.p12
+report.xml
 
 ## Obj-C/Swift specific
 *.hmap
