@@ -569,7 +569,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-NX-WMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="466" y="396"/>
+            <point key="canvasLocation" x="202" y="316"/>
         </scene>
     </scenes>
     <resources>

@@ -17,9 +17,12 @@ enum ShoutViewType {
     case LIST
 }
 
-class SHShoutListViewController: BaseViewController {
-
-    private var viewModel: SHShoutListViewModel?
+class SHShoutListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    private var shouts: [SHShout] = []
+    private var discoverItems: [SHDiscoverItem] = []
+    private let shApiShoutsService = SHApiShoutService()
+    
     var type: ShoutListType = .HOME
     var viewType: ShoutViewType = .GRID {
         didSet {
@@ -31,43 +34,89 @@ class SHShoutListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.dataSource = viewModel
-        self.collectionView.delegate = viewModel
-        viewModel?.viewDidLoad()
+        
+        shApiShoutsService.loadHomeShouts(1, cacheResponse: { (shShoutMeta) -> Void in
+            self.shouts = shShoutMeta.results
+            self.updateUI()
+            }) { (response) -> Void in
+                switch response.result {
+                case .Success(let shShoutMeta):
+                    self.shouts = shShoutMeta.results
+                    self.updateUI()
+                case .Failure(let error):
+                    log.error("Error fetching shouts \(error.localizedDescription)")
+                }
+        }
+        
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
-    override func initializeViewModel() {
-        viewModel = SHShoutListViewModel(viewController: self)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    func updateUI() {
         self.collectionView.reloadData()
-        viewModel?.viewDidAppear()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        switch indexPath.row {
+        case 0:
+            return getDiscoverTitleCell(indexPath)
+        case 1:
+            return getDiscoverListCell(indexPath)
+        case 2:
+            return getMyFeedHeaderCell(indexPath)
+        default:
+            return getShoutListCell(indexPath)
+        }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        viewModel?.viewWillDisappear()
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3 + shouts.count
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        viewModel?.viewDidDisappear()
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0:
+            return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 41)
+        case 1:
+            return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 121)
+        case 2:
+            return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 41)
+        default:
+            switch self.viewType {
+            case .GRID:
+                let imageWidth = (UIScreen.mainScreen().bounds.width - 30) / 2
+                return CGSizeMake(imageWidth, imageWidth + 39)
+            case .LIST:
+                return CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 110)
+            }
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK - Private
+    private func getDiscoverTitleCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverTitleCell, forIndexPath: indexPath)
     }
     
-    deinit {
-        viewModel?.destroy()
+    private func getDiscoverListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        return self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutDiscoverListCell, forIndexPath: indexPath)
     }
-
+    
+    private func getMyFeedHeaderCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutMyFeedHeaderCell, forIndexPath: indexPath) as! SHShoutMyFeedHeaderCell
+        cell.setUp(self)
+        return cell
+    }
+    
+    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+        switch(self.viewType) {
+        case .GRID:
+            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
+            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
+            return cell
+        case .LIST:
+            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemListCell, forIndexPath: indexPath) as! SHShoutItemCell
+            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
+            return cell
+        }
+    }
 }
