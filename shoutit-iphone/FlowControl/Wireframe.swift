@@ -20,6 +20,7 @@ struct Wireframe {
         case Chats = "Chats"
         case Profile = "Profile"
         case Settings = "Settings"
+        case Location = "Location"
         case Help = "Help"
         case InviteFriends = "InviteFriends"
     }
@@ -96,6 +97,10 @@ struct Wireframe {
     
     static func inviteFriendsViewController() -> UIViewController {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController")
+    }
+    
+    static func locationViewController() -> UIViewController {
+        return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController")
     }
     
     static func chatsViewController() -> UIViewController {

@@ -10,26 +10,13 @@ import UIKit
 
 class MenuTableViewController: UITableViewController, Navigation {
     
-    enum MenuSection : Int {
-        case Main = 0
-        case Help = 1
-        
-        func cellIdentifier() -> String {
-            switch self {
-            case .Main: return "MenuBasicCellIdentifier"
-            case .Help: return "MenuHelpCellIdentifier"
-            }
-        }
-        
-        func menuItems() -> [NavigationItem] {
-            switch self {
-            case .Main: return [.Home, .Discover, .Browse, .Chats, .Orders]
-            case .Help: return [.Settings, .Help, .InviteFriends]
-            }
-        }
-    }
-    
     var rootController : RootController?
+    let viewModel = MenuViewModel()
+    var footerHeight : CGFloat = 0
+    
+    private let kTableHeaderHeight: CGFloat = 240.0
+    
+    @IBOutlet var headerView : MenuHeaderView?
     
     var overlayView : UIView? {
         didSet {
@@ -43,32 +30,39 @@ class MenuTableViewController: UITableViewController, Navigation {
         }
     }
     
-    func dismiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+    // MARK: Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupBackgroundView()
+        updateFooterView()
     }
     
-    func triggerActionWithItem(navigationItem: NavigationItem) {
-        if let root = self.rootController {
-            root.openItem(navigationItem)
-        }
+    func setupBackgroundView() {
+        let backgroundView = UIImageView(image: UIImage(named: "auth_screen_bg_pattern"))
+        backgroundView.backgroundColor = UIColor.lightGrayColor()
+        backgroundView.contentMode = .ScaleAspectFill
+        tableView.backgroundView = backgroundView
+        
+        tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        tableView.layer.borderWidth = 1
     }
     
-    func sections() -> [MenuSection] {
-        return [MenuSection.Main, MenuSection.Help]
-    }
+    // MARK: Table View Handling
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sections().count
+        return viewModel.sections().count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MenuSection.menuItems(MenuSection(rawValue: section)!)().count
+        return viewModel.numberOfRowsInSection(section)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = MenuSection.cellIdentifier(MenuSection(rawValue: indexPath.section)!)()
+        let cellIdentifier = viewModel.cellIdentifierForSection(indexPath.section)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! MenuCell
-        let item = MenuSection.menuItems(MenuSection(rawValue: indexPath.section)!)()[indexPath.row]
+        let item = viewModel.navigationItemForIndexPath(indexPath)
         
         cell.bindWith(item)
         
@@ -76,11 +70,55 @@ class MenuTableViewController: UITableViewController, Navigation {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = MenuSection.menuItems(MenuSection(rawValue: indexPath.section)!)()[indexPath.row]
+        let item = viewModel.navigationItemForIndexPath(indexPath)
         triggerActionWithItem(item)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 48.0
+    }
+    
+    // MARK: User Interactions
+    
+    @IBAction func profileAction(sender: AnyObject) {
+        triggerActionWithItem(.Profile)
+    }
+    
+    @IBAction func createShout(sender: AnyObject) {
+        triggerActionWithItem(.Shout)
+    }
+    
+    @IBAction func changeLocation(sender: AnyObject) {
+        triggerActionWithItem(.Location)
+    }
+    
+    func dismiss() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: Bussines Logic
+    
+    func triggerActionWithItem(navigationItem: NavigationItem) {
+        if let root = self.rootController {
+            root.openItem(navigationItem)
+        }
+    }
+    
+    // MARK: Scroll Handling
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateFooterView()
+    }
+    
+    func updateFooterView() {
+        footerHeight = CGRectGetHeight(tableView.frame) - kTableHeaderHeight - 8 * 48.0
+        
+        if let footer = tableView.tableFooterView {
+            if tableView.contentOffset.y > 0 {
+                footer.frame.size.height = footerHeight + tableView.contentOffset.y
+            } else {
+                footer.frame.size.height = footerHeight
+            }
+        }
     }
 }
