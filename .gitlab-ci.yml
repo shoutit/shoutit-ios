@@ -12,6 +12,13 @@ production:
     - ios9.0
   only:
     - develop
+alpha:
+  type: build
+  script: "bundle exec fastlane production"
+  tags:
+    - ios9.0
+  only:
+    - /^alpha-.*$/
 testflight:
   type: build
   script: "bundle exec fastlane testflight"
