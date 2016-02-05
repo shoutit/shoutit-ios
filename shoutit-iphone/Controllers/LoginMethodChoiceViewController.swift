@@ -39,6 +39,15 @@ final class LoginMethodChoiceViewController: UIViewController {
         // setup title view
         navigationItem.titleView = UIImageView(image: UIImage.navBarLogoImage())
         
+        // configure google client
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
+        
         // setup
         setupRX()
     }
@@ -105,5 +114,18 @@ final class LoginMethodChoiceViewController: UIViewController {
             }
             self?.dismissViewControllerAnimated(true, completion: nil)
         }.addDisposableTo(disposeBag)
+    }
+}
+
+extension LoginMethodChoiceViewController: GIDSignInUIDelegate {
+    
+    func signIn(signIn: GIDSignIn!,
+         presentViewController viewController: UIViewController!) {
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    func signIn(signIn: GIDSignIn!,
+         dismissViewController viewController: UIViewController!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
