@@ -20,7 +20,6 @@
 		6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF8C1BE7529500124C28 /* SHApiManager.swift */; };
 		6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */; };
 		6027CF911BE7539400124C28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF901BE7539300124C28 /* Constants.swift */; };
-		6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF961BE7583800124C28 /* SHLoginViewController.swift */; };
 		6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */; };
 		6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9D1BE759C400124C28 /* TableViewControllerModelProtocol.swift */; };
 		6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */; };
@@ -45,7 +44,6 @@
 		606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AD1BF09B4E00259357 /* SHCellViewModelProtocol.swift */; };
 		606116B01BF09C6100259357 /* SHDiscoverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */; };
 		606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606116B31BF2563F00259357 /* SHProgressHUD.swift */; };
-		6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */; };
 		6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E65C1C2538F30061F56C /* CustomUITextField.swift */; };
 		606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */; };
 		606ED2EA1BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606ED2E91BF7EE0D0064C53E /* SHCreateImageCollectionViewCell.swift */; };
@@ -363,6 +361,10 @@
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
 		B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7881C591D1A006909D4 /* Wireframe.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
+		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
+		B2A1441F1C651BCC002CD70A /* PostSignupSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */; };
+		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
+		B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
 		B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729B01C6220EE006F7D29 /* Assets.swift */; };
@@ -464,7 +466,6 @@
 		6027CF8C1BE7529500124C28 /* SHApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHApiManager.swift; path = Util/api/SHApiManager.swift; sourceTree = "<group>"; };
 		6027CF8E1BE7532C00124C28 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkActivityManager.swift; path = Util/api/NetworkActivityManager.swift; sourceTree = "<group>"; };
 		6027CF901BE7539300124C28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Application/Constants.swift; sourceTree = "<group>"; };
-		6027CF961BE7583800124C28 /* SHLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLoginViewController.swift; path = View/auth/SHLoginViewController.swift; sourceTree = "<group>"; };
 		6027CF9B1BE759A700124C28 /* ViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerModelProtocol.swift; path = ViewModel/protocols/ViewControllerModelProtocol.swift; sourceTree = "<group>"; };
 		6027CF9D1BE759C400124C28 /* TableViewControllerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewControllerModelProtocol.swift; path = ViewModel/protocols/TableViewControllerModelProtocol.swift; sourceTree = "<group>"; };
 		6027CF9F1BE75B4000124C28 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = View/common/BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -490,7 +491,6 @@
 		606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverCellViewModel.swift; path = ViewModel/tabs/discover/SHDiscoverCellViewModel.swift; sourceTree = "<group>"; };
 		606116B31BF2563F00259357 /* SHProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHProgressHUD.swift; path = Util/helpers/SHProgressHUD.swift; sourceTree = "<group>"; };
 		6068E6461C2445690061F56C /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIButton.swift; path = View/CustomUIButton.swift; sourceTree = "<group>"; };
-		6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHSocialLoginViewController.swift; path = View/auth/SHSocialLoginViewController.swift; sourceTree = "<group>"; };
 		6068E64C1C2472260061F56C /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIView.swift; path = View/CustomUIView.swift; sourceTree = "<group>"; };
 		6068E65C1C2538F30061F56C /* CustomUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUITextField.swift; path = Util/customViews/CustomUITextField.swift; sourceTree = "<group>"; };
 		606ED2E71BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreatePlusCollectionViewCell.swift; path = View/tabs/create/SHCreatePlusCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -773,8 +773,6 @@
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
 		AEECB9551C648E4300276E4A /* Location.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Location.storyboard; path = Storyboards/Location.storyboard; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
-		B2040ED31C625CD200F5038D /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
-		B2040ED51C625CE200F5038D /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
 		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
 		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
@@ -806,6 +804,10 @@
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
 		B27DF7881C591D1A006909D4 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = FlowControl/Wireframe.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
+		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
+		B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionViewController.swift; path = Controllers/PostSignupSuggestionViewController.swift; sourceTree = "<group>"; };
+		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
+		B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionViewModel.swift; path = ViewModel/PostSignupSuggestionViewModel.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
 		B2C729B01C6220EE006F7D29 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = UIKitExtensions/Assets.swift; sourceTree = "<group>"; };
@@ -1052,6 +1054,7 @@
 				B27DF77D1C58DBBA006909D4 /* Intro */,
 				B2190D771C5A29DC007FF33B /* LoginMethodChoice */,
 				B25F31F01C57E00400C5DAFC /* Login */,
+				B2A144191C651B64002CD70A /* PostSignup */,
 				AEA599741C609D7E00015AA3 /* Menu */,
 				AE8351791C5F6E420055C71F /* RootController */,
 				AE83516A1C5F59270055C71F /* Tabbar */,
@@ -1186,9 +1189,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1C93E51BE90BF7009400BE /* Resource */,
-				6027CF961BE7583800124C28 /* SHLoginViewController.swift */,
 				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
-				6068E64A1C2468BE0061F56C /* SHSocialLoginViewController.swift */,
 				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
 				AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */,
 				ACC064461C47523E0089912A /* SHLoginPopupViewController.swift */,
@@ -2275,6 +2276,49 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		B2A144191C651B64002CD70A /* PostSignup */ = {
+			isa = PBXGroup;
+			children = (
+				B2A1441C1C651B9D002CD70A /* Interests */,
+				B2A1441D1C651BB4002CD70A /* Suggestions */,
+			);
+			name = PostSignup;
+			sourceTree = "<group>";
+		};
+		B2A1441C1C651B9D002CD70A /* Interests */ = {
+			isa = PBXGroup;
+			children = (
+				B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */,
+				B2A144201C651BF4002CD70A /* ViewModel */,
+			);
+			name = Interests;
+			sourceTree = "<group>";
+		};
+		B2A1441D1C651BB4002CD70A /* Suggestions */ = {
+			isa = PBXGroup;
+			children = (
+				B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */,
+				B2A144211C651BFA002CD70A /* ViewModel */,
+			);
+			name = Suggestions;
+			sourceTree = "<group>";
+		};
+		B2A144201C651BF4002CD70A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2A144211C651BFA002CD70A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B2C729AA1C622079006F7D29 /* Validator */ = {
 			isa = PBXGroup;
 			children = (
@@ -2783,6 +2827,7 @@
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				606ED3021BF8A88D0064C53E /* SHPhotoPreviewViewModel.swift in Sources */,
+				B2A1441F1C651BCC002CD70A /* PostSignupSuggestionViewController.swift in Sources */,
 				AC74A77E1BFE58230029CE7D /* SHFilterPriceTableViewController.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
@@ -2805,6 +2850,7 @@
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
+				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
 				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
@@ -2819,6 +2865,7 @@
 				AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
 				AC7028091C1ABD0600262622 /* SHUserListTableViewModel.swift in Sources */,
 				AE83517F1C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
+				B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */,
 				AE83517B1C5F6E620055C71F /* RootController.swift in Sources */,
 				ACC36C3B1C09D5060082E0C2 /* SHHeaderProfileReusableView.swift in Sources */,
 				ACC8457E1C4D0FEA0065A702 /* SHDiscoverShoutListCell.swift in Sources */,
@@ -2912,6 +2959,7 @@
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
+				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
@@ -2948,7 +2996,6 @@
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				AC47A7361C02351F006AF406 /* SHShoutDetailTableViewModel.swift in Sources */,
 				ACDB3C8B1BF7397B0097444E /* SHStreamTableViewCell.swift in Sources */,
-				6027CF971BE7583800124C28 /* SHLoginViewController.swift in Sources */,
 				AC7030CC1C15D77E008F4C00 /* SHVideoMediaItem.swift in Sources */,
 				ACC36C391C09D1220082E0C2 /* SHShoutSquareCollectionViewCell.swift in Sources */,
 				ACC36C4B1C0CA14A0082E0C2 /* SHMessagesViewModel.swift in Sources */,
@@ -2968,7 +3015,6 @@
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,
-				6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,
 				AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */,
 				AC7030C41C15AD01008F4C00 /* SHLocationMediaItem.swift in Sources */,

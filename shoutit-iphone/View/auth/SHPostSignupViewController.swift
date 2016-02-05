@@ -52,11 +52,6 @@ class SHPostSignupViewController: BaseViewController{
         viewModel?.viewDidDisappear()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func skipAction(sender: AnyObject) {
         SHOauthToken.goToDiscover()
     }
