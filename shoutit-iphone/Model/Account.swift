@@ -8,6 +8,7 @@
 
 import Foundation
 import PureJsonSerializer
+import KeychainAccess
 
 final class Account {
     
@@ -17,16 +18,23 @@ final class Account {
     // private consts
     lazy private var archivePath: String = {
         let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("account.data")
+        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("user.data")
         return directoryURL.path!
+    }()
+    
+    private let authDataKey = "authData"
+    
+    lazy private var keychain: Keychain = {
+        return Keychain(service: "com.shoutit-iphone")
     }()
     
     // data
     private(set) var authData: AuthData?
+    private(set) var user: User?
     
     // convienience
     var isUserLoggedIn: Bool {
-        return authData != nil
+        return authData != nil && user != nil
     }
     
     // MARK - Lifecycle
@@ -35,14 +43,22 @@ final class Account {
         
         // try to restore auth data object
         do {
+            
+            // get user
             let json = try SecureCoder.readJsonFromFile(archivePath)
             if let json = json {
+                user = try User(js: json)
+            }
+            
+            // get auth data
+            let data = keychain[data: authDataKey]
+            if let data = data, let json = try SecureCoder.jsonWithNSData(data) {
                 authData = try AuthData(js: json)
             }
-        } catch let error as ParseError {
-            fatalError(error.reason)
-        } catch {
-            fatalError("Auth data serialization error")
+            
+        }  catch {
+            assert(false, "Error while unarchiving user data")
+            _ = try? logout()
         }
         
         if let authData = self.authData {
@@ -51,14 +67,23 @@ final class Account {
     }
     
     func loginUserWithAuthData(authData: AuthData) throws {
-        try SecureCoder.writeJsonConvertibleToFile(authData, toPath: archivePath)
+        
+        // save
+        let data = try SecureCoder.dataWithJsonConvertible(authData)
+        try keychain.set(data, key: authDataKey)
+        try SecureCoder.writeJsonConvertibleToFile(authData.user, toPath: archivePath)
+        
+        // set instance vars
         self.authData = authData
+        self.user = authData.user
+        
+        // update apimanager token
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
     }
     
     func logout() throws {
-        let fileManager = NSFileManager.defaultManager()
-        try fileManager.removeItemAtPath(archivePath)
+        try NSFileManager.defaultManager().removeItemAtPath(archivePath)
+        try keychain.remove(authDataKey)
         APIManager.eraseAuthToken()
     }
 }
