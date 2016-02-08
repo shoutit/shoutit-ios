@@ -360,6 +360,8 @@
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
 		B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7881C591D1A006909D4 /* Wireframe.swift */; };
+		B288D3EA1C68B4BD00895302 /* PublicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3E91C68B4BD00895302 /* PublicProfile.swift */; };
+		B288D3EC1C68B58400895302 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3EB1C68B58400895302 /* Profile.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
 		B2A1441F1C651BCC002CD70A /* PostSignupSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */; };
@@ -803,6 +805,8 @@
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
 		B27DF7881C591D1A006909D4 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = FlowControl/Wireframe.swift; sourceTree = "<group>"; };
+		B288D3E91C68B4BD00895302 /* PublicProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicProfile.swift; path = Model/PublicProfile.swift; sourceTree = "<group>"; };
+		B288D3EB1C68B58400895302 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
 		B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionViewController.swift; path = Controllers/PostSignupSuggestionViewController.swift; sourceTree = "<group>"; };
@@ -2271,7 +2275,9 @@
 		B2A144121C64B3D5002CD70A /* User */ = {
 			isa = PBXGroup;
 			children = (
+				B288D3E91C68B4BD00895302 /* PublicProfile.swift */,
 				B2C729C21C6221B0006F7D29 /* User.swift */,
+				B288D3EB1C68B58400895302 /* Profile.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2785,6 +2791,7 @@
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
 				AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */,
 				AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */,
+				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
@@ -2935,6 +2942,7 @@
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
+				B288D3EA1C68B4BD00895302 /* PublicProfile.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,

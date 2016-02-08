@@ -1,8 +1,8 @@
 //
-//  User.swift
+//  Profile.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 29.01.2016.
+//  Created by Łukasz Kasperek on 08.02.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import Genome
 import PureJsonSerializer
 
-struct User: PublicProfile {
+struct Profile: PublicProfile {
     
     // public profile
     private(set) var id: String = ""
@@ -39,13 +39,11 @@ struct User: PublicProfile {
     private(set) var owner: Bool = false
     private(set) var pages: [User]?
     
-    // app user specific
-    private(set) var linkedAccounts: LoginAccounts?
-    private(set) var pushTokens: PushTokens?
-    private(set) var passwordSet: Bool?
+    // other user specific
+    private(set) var listening: Bool?
 }
 
-extension User: BasicMappable {
+extension Profile: BasicMappable {
     
     mutating func sequence(map: Map) throws {
         
@@ -67,10 +65,10 @@ extension User: BasicMappable {
         try gender <~> map[KeyType.Key("gender")]
             .transformFromJson{Gender(string: $0)}
             .transformToJson{(gender) -> Json in
-            if let raw = gender where raw != .Unknown {
-                return .StringValue(raw.rawValue)
-            }
-            return .NullValue
+                if let raw = gender where raw != .Unknown {
+                    return .StringValue(raw.rawValue)
+                }
+                return .NullValue
         }
         
         try videoPath <~> map["video"]
@@ -86,9 +84,6 @@ extension User: BasicMappable {
         try listeningPath <~> map["listening_url"]
         try owner <~> map["is_owner"]
         try pages <~> map["pages"]
-        try linkedAccounts <~> map["linked_accounts"]
-        try pushTokens <~> map["push_tokens"]
-        try passwordSet <~> map["is_password_set"]
+        try listening <~> map["is_listening"]
     }
 }
-
