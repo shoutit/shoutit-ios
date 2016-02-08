@@ -362,6 +362,8 @@
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
 		B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7881C591D1A006909D4 /* Wireframe.swift */; };
+		B288D3EA1C68B4BD00895302 /* PublicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3E91C68B4BD00895302 /* PublicProfile.swift */; };
+		B288D3EC1C68B58400895302 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3EB1C68B58400895302 /* Profile.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
@@ -773,8 +775,6 @@
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
 		AEECB9551C648E4300276E4A /* Location.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Location.storyboard; path = Storyboards/Location.storyboard; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
-		B2040ED31C625CD200F5038D /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
-		B2040ED51C625CE200F5038D /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
 		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
 		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
@@ -805,6 +805,8 @@
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
 		B27DF7881C591D1A006909D4 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = FlowControl/Wireframe.swift; sourceTree = "<group>"; };
+		B288D3E91C68B4BD00895302 /* PublicProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicProfile.swift; path = Model/PublicProfile.swift; sourceTree = "<group>"; };
+		B288D3EB1C68B58400895302 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
@@ -2270,7 +2272,9 @@
 		B2A144121C64B3D5002CD70A /* User */ = {
 			isa = PBXGroup;
 			children = (
+				B288D3E91C68B4BD00895302 /* PublicProfile.swift */,
 				B2C729C21C6221B0006F7D29 /* User.swift */,
+				B288D3EB1C68B58400895302 /* Profile.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2741,6 +2745,7 @@
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
 				AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */,
 				AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */,
+				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
@@ -2888,6 +2893,7 @@
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
 				AC1C93F91BEA8362009400BE /* SHUser.swift in Sources */,
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
+				B288D3EA1C68B4BD00895302 /* PublicProfile.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
