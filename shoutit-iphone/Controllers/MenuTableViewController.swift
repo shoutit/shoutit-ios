@@ -37,6 +37,7 @@ class MenuTableViewController: UITableViewController, Navigation {
         
         setupBackgroundView()
         updateFooterView()
+        
     }
     
     func setupBackgroundView() {
