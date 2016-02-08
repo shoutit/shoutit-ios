@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable, TermsAndPolicyDisplayable {}
+protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable, TermsAndPolicyDisplayable, PostSignupDisplayable, LoginFinishable {}
 
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
@@ -112,10 +112,10 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 if isNewSignup {
-                    // show post signup
+                    self?.flowDelegate?.showPostSignupInterests()
                 } else {
+                    self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
                 }
-                self?.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         

@@ -14,8 +14,6 @@ class APIAuthService {
     private static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
     private static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
     
-    // MARK: - Actions
-    
     static func resetPassword(params: ResetPasswordParams, completionHandler: Result<Success, NSError> -> Void) {
         
         APIManager.manager.request(.POST, authResetPasswordURL, parameters: params.params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseJSON { (response) in

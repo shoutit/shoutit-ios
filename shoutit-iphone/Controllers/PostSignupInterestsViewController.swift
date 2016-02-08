@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol PostSignupInterestsViewControllerFlowDelegate: class, PostSignupDisplayable, LoginFinishable {}
 
 class PostSignupInterestsViewController: UIViewController {
     
+    // consts
+    let cellReuseID = "PostSignupCategoryTableViewCell"
+    
+    // IB outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -17,27 +25,74 @@ class PostSignupInterestsViewController: UIViewController {
     // view model
     var viewModel: PostSignupInterestsViewModel!
     
+    // navigation
+    weak var flowDelegate: PostSignupInterestsViewControllerFlowDelegate?
+    
+    // Rx
+    let disposeBag = DisposeBag()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup
+        setupRX()
         
-    }
-}
-
-extension PostSignupInterestsViewController: UITableViewDataSource {
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        // fetch
+        self.viewModel.fetchCategories()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBarHidden = true
     }
-}
-
-extension PostSignupInterestsViewController: UITableViewDelegate {
     
+    // MARK: - Setup
+    
+    private func setupRX() {
+        
+        // table view
+        Observable
+            .combineLatest(viewModel.state.asObservable(), viewModel.categories.asObservable()){($0, $1)}
+            .filter { (loadingState, cellViewModels) -> Bool in
+                switch loadingState {
+                case .Idle:
+                    return false
+                case .Loading:
+                    // show activity indicator
+                    return false
+                case .ContentUnavailable:
+                    // show placeholder
+                    return false
+                case .Error(let error):
+                    // display error
+                    return false
+                case .ContentLoaded:
+                    return true
+                }
+            }
+            .map{$1}.bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
+                cell.nameLabel.text = element.category.name
+            }
+            .addDisposableTo(disposeBag)
+        
+        // buttons
+        
+        skipButton
+            .rx_tap
+            .subscribeNext {[unowned self] in
+                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+            }
+            .addDisposableTo(disposeBag)
+        
+        nextButton
+            .rx_tap
+            .subscribeNext {[unowned self] in
+                self.flowDelegate?.showPostSignupSuggestions()
+            }
+            .addDisposableTo(disposeBag)
+    }
 }
 

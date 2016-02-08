@@ -43,6 +43,14 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
     }
 }
 
-extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
+extension LoginFlowController: LoginFinishable {
+    
+    func didFinishLoginProcessWithSuccess(success: Bool) {
+        navigationController.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
 
+extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
 extension LoginFlowController: LoginWithEmailViewControllerFlowDelegate {}
+extension LoginFlowController: PostSignupDisplayable {}
+

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable, LoginScreenDisplayable {}
+protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable, LoginScreenDisplayable, PostSignupDisplayable, LoginFinishable {}
 
 final class LoginMethodChoiceViewController: UIViewController {
     
@@ -114,10 +114,11 @@ final class LoginMethodChoiceViewController: UIViewController {
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
             MBProgressHUD.hideHUDForView(self?.view, animated: true)
             if isNewSignup {
-                // show post signup
+                self?.flowDelegate?.showPostSignupInterests()
             } else {
+                self?.flowDelegate?.showPostSignupInterests()
+                //self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
             }
-            self?.dismissViewControllerAnimated(true, completion: nil)
         }.addDisposableTo(disposeBag)
     }
 }
