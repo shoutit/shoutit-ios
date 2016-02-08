@@ -10,14 +10,19 @@ import Foundation
 import Genome
 
 struct PushTokens {
-    private(set) var apns: String?
-    private(set) var gcm: String?
+    let apns: String?
+    let gcm: String?
 }
 
-extension PushTokens: BasicMappable {
+extension PushTokens: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try apns <~> map["apns"]
-        try gcm <~> map["gcm"]
+    init(map: Map) throws {
+        apns = try map.extract("apns")
+        gcm = try map.extract("gcm")
+    }
+    
+    func sequence(map: Map) throws {
+        try apns ~> map["apns"]
+        try gcm ~> map["gcm"]
     }
 }

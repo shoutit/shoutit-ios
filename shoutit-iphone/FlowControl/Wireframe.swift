@@ -59,6 +59,10 @@ struct Wireframe {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
     }
     
+    static func postSignupInterestsViewController() -> PostSignupInterestsViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupInterestsViewController") as! PostSignupInterestsViewController
+    }
+    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {

@@ -11,24 +11,34 @@ import Genome
 
 struct Address {
     
-    private(set) var address: String = ""
-    private(set) var city: String = ""
-    private(set) var country: String = ""
-    private(set) var latitude: Double?
-    private(set) var longitude: Double?
-    private(set) var postalCode: String = ""
-    private(set) var state: String = ""
+    let address: String
+    let city: String
+    let country: String
+    let latitude: Double?
+    let longitude: Double?
+    let postalCode: String
+    let state: String
 }
 
-extension Address: BasicMappable {
+extension Address: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try address         <~> map["address"]
-        try city            <~> map["city"]
-        try country         <~> map["country"]
-        try latitude        <~> map["latitude"]
-        try longitude       <~> map["longitude"]
-        try postalCode      <~> map["postal_code"]
-        try state           <~> map["state"]
+    init(map: Map) throws {
+        address = try map.extract("address")
+        city = try map.extract("city")
+        country = try map.extract("country")
+        latitude = try map.extract("latitude")
+        longitude = try map.extract("longitude")
+        postalCode = try map.extract("postal_code")
+        state = try map.extract("state")
+    }
+    
+    func sequence(map: Map) throws {
+        try address         ~> map["address"]
+        try city            ~> map["city"]
+        try country         ~> map["country"]
+        try latitude        ~> map["latitude"]
+        try longitude       ~> map["longitude"]
+        try postalCode      ~> map["postal_code"]
+        try state           ~> map["state"]
     }
 }

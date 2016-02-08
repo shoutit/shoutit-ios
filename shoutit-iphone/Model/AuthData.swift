@@ -15,28 +15,38 @@ struct AuthData {
     private(set) var guest: Bool = false
     
     // token
-    private(set) var accessToken: String = ""
-    private(set) var refreshToken: String = ""
-    private(set) var tokenType: String = ""
-    private(set) var expiresIn: Int = Int.max
+    let accessToken: String
+    let refreshToken: String
+    let tokenType: String
+    let expiresIn: Int
     
     // user
-    private(set) var user: User = User()
+    let user: User
     
     // other
-    private(set) var isNewSignUp: Bool = false
-    private(set) var scope: String = ""
+    let isNewSignUp: Bool
+    let scope: String
 }
 
-extension AuthData: BasicMappable {
+extension AuthData: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try accessToken         <~> map["access_token"]
-        try expiresIn           <~> map["expires_in"]
-        try isNewSignUp         <~> map["new_signup"]
-        try refreshToken        <~> map["refresh_token"]
-        try scope               <~> map["scope"]
-        try tokenType           <~> map["token_type"]
-        try user                <~> map["user"]
+    init(map: Map) throws {
+        accessToken = try map.extract("access_token")
+        expiresIn = try map.extract("expires_in")
+        isNewSignUp = try map.extract("new_signup")
+        refreshToken = try map.extract("refresh_token")
+        scope = try map.extract("scope")
+        tokenType = try map.extract("token_type")
+        user = try map.extract("user")
+    }
+    
+    func sequence(map: Map) throws {
+        try accessToken         ~> map["access_token"]
+        try expiresIn           ~> map["expires_in"]
+        try isNewSignUp         ~> map["new_signup"]
+        try refreshToken        ~> map["refresh_token"]
+        try scope               ~> map["scope"]
+        try tokenType           ~> map["token_type"]
+        try user                ~> map["user"]
     }
 }

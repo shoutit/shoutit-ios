@@ -10,13 +10,13 @@ import Foundation
 import Genome
 
 struct Success {
-    private(set) var message: String = ""
+    let message: String
 }
 
-extension Success: BasicMappable {
+extension Success: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try message <~ map["success"]
+    init(map: Map) throws {
+        message = try map.extract("success")
     }
 }
 

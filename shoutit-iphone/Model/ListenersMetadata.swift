@@ -10,17 +10,22 @@ import Foundation
 import Genome
 
 struct ListenersMetadata {
-    
-    private(set) var pages: Int = 0
-    private(set) var users: Int = 0
-    private(set) var tags: Int = 0
+    let pages: Int
+    let users: Int
+    let tags: Int
 }
 
-extension ListenersMetadata: BasicMappable {
+extension ListenersMetadata: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try pages                   <~> map["pages"]
-        try users                   <~> map["users"]
-        try tags                    <~> map["tags"]
+    init(map: Map) throws {
+        pages = try map.extract("pages")
+        users = try map.extract("users")
+        tags = try map.extract("tags")
+    }
+    
+    func sequence(map: Map) throws {
+        try pages                   ~> map["pages"]
+        try users                   ~> map["users"]
+        try tags                    ~> map["tags"]
     }
 }

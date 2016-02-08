@@ -14,8 +14,8 @@ import Haneke
 class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
 
     private let viewController: SHLoginPopupViewController
-    private var loginViewController: SHLoginViewController?
-    private var socialViewController: SHSocialLoginViewController?
+    //private var loginViewController: SHLoginViewController?
+    //private var socialViewController: SHSocialLoginViewController?
     
     required init(viewController: SHLoginPopupViewController) {
         self.viewController = viewController
