@@ -24,6 +24,16 @@ final class Account {
     // data
     private(set) var authData: AuthData?
     
+    class func locationString() -> String {
+        if let location = SHAddress.getUserOrDeviceLocation() {
+            return String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
+        } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
+            return String(format: "%@, %@", arguments: [city, country])
+        }
+        
+        return NSLocalizedString("Unknown Location", comment: "")
+    }
+    
     // convienience
     var isUserLoggedIn: Bool {
         return authData != nil

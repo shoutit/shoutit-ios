@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     func configureLoggingServices() {
+        
         #if DEBUG
             log.setup(.Verbose, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #else
@@ -90,7 +91,16 @@ extension AppDelegate {
     }
     
     func applyAppearance() {
-        UINavigationBar.appearance().tintColor = UIColor(shoutitColor: .PrimaryGreen)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        if #available(iOS 9.0, *) {
+            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
+            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        } else {
+            
+        }
+        
     }
 }

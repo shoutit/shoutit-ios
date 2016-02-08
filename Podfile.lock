@@ -20,7 +20,7 @@ PODS:
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
   - DWTagList (0.0.7)
-  - Fabric (1.6.4)
+  - Fabric (1.6.5)
   - FBSDKCoreKit (4.9.1):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.9.1):
@@ -55,7 +55,7 @@ PODS:
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
-  - Material (1.29.4)
+  - Material (1.30.2)
   - MBProgressHUD (0.9.2)
   - Mixpanel (2.9.3):
     - Mixpanel/Mixpanel (= 2.9.3)
@@ -142,7 +142,7 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
   DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb
-  Fabric: ed41fd62173c6bdea24ab02c9d7707161eabb750
+  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   FBSDKLoginKit: ec22dc49bd372b064e93d6773df4ffefb3a552a2
   FBSDKShareKit: b8c8ef0ed173f9fc1b3c8df384a0202ce53008d4
@@ -160,7 +160,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
   Kingfisher: 9e37d2a78a082dc123bfe8a16de65de85518daae
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
-  Material: d02c197b017871cbee6a0fcdabe92c5de81a3abe
+  Material: 0fab7c03df67f778716b0c1eed28c4d8562ccde3
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
   MK: a68c9ae628f625847bddf5921e7a208873d192c2

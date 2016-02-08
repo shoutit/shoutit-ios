@@ -323,6 +323,11 @@
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
+		AEE924B61C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
+		AEE924B71C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
+		AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */; };
+		AEE924BA1C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */; };
+		AEE924BB1C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */; };
 		AEECB9561C648E4300276E4A /* Location.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEECB9551C648E4300276E4A /* Location.storyboard */; };
 		AEECB9571C648E4300276E4A /* Location.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEECB9551C648E4300276E4A /* Location.storyboard */; };
 		AEECB9581C648E4300276E4A /* Location.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEECB9551C648E4300276E4A /* Location.storyboard */; };
@@ -769,10 +774,9 @@
 		AEA599791C609E0100015AA3 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Menu.storyboard; path = Storyboards/Menu.storyboard; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
+		AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginNavigationViewController.swift; path = Controllers/LoginNavigationViewController.swift; sourceTree = "<group>"; };
 		AEECB9551C648E4300276E4A /* Location.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Location.storyboard; path = Storyboards/Location.storyboard; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
-		B2040ED31C625CD200F5038D /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
-		B2040ED51C625CE200F5038D /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
 		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
 		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
@@ -1039,6 +1043,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AEE924BC1C68C1C900EFBF43 /* ChangeLocation */,
 				B2082D711C626372007EB2FB /* HTMLController */,
 				B27DF7831C58E1A8006909D4 /* ApplicationMainController */,
 				B27DF77D1C58DBBA006909D4 /* Intro */,
@@ -1221,6 +1226,7 @@
 				606ED30E1BF940270064C53E /* SHSinglePickerTableViewController.swift */,
 				602F4CA41C020A980051B737 /* SHLoadMoreView.swift */,
 				602F4CA61C020ACA0051B737 /* SHEmptyContentView.swift */,
+				AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -1646,8 +1652,6 @@
 				AC27E7011BF9F8AD00AB6BAA /* filter */,
 				ACDB3CAE1BF90B0A0097444E /* cell */,
 				ACDB3C961BF7D2FB0097444E /* mapView */,
-				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
-				ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */,
 				ACDB3C881BF732930097444E /* SHStreamTableViewModel.swift */,
 				ACDB3C8C1BF73B1C0097444E /* SHStreamTableViewCellModel.swift */,
 				AC47A7351C02351F006AF406 /* SHShoutDetailTableViewModel.swift */,
@@ -1661,8 +1665,6 @@
 				AC27E7001BF9F87A00AB6BAA /* filter */,
 				ACDB3CAC1BF90ADB0097444E /* cell */,
 				ACDB3C931BF7D2900097444E /* mapView */,
-				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
-				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
 				ACDB3C861BF732550097444E /* SHStreamTableViewController.swift */,
 				ACDB3C8A1BF7397B0097444E /* SHStreamTableViewCell.swift */,
 				AC47A7331C02349F006AF406 /* SHShoutDetailTableViewController.swift */,
@@ -2057,6 +2059,15 @@
 				B2040ED51C625CE200F5038D /* SignupViewModel.swift */,
 			);
 			name = ViewModel;
+		AEE924BC1C68C1C900EFBF43 /* ChangeLocation */ = {
+			isa = PBXGroup;
+			children = (
+				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
+				ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */,
+				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
+				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
+			);
+			name = ChangeLocation;
 			sourceTree = "<group>";
 		};
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
@@ -2849,6 +2860,7 @@
 				60F11D441C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
+				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,
 				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,
@@ -2979,12 +2991,14 @@
 				6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
+				AEE924B61C6884D600EFBF43 /* User.swift in Sources */,
 				AE8351841C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				AEECB95F1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				AE4DB34C1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351981C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
 				AE4DB3441C635026001EB84B /* MenuAnimationController.swift in Sources */,
 				AE8351771C5F6BC50055C71F /* Navigation.swift in Sources */,
+				AEE924BA1C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				AE8351901C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				AE8351801C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
 				AE83516D1C5F595C0055C71F /* TabbarController.swift in Sources */,
@@ -3010,12 +3024,14 @@
 				6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */,
 				AE8351731C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
+				AEE924B71C6884D600EFBF43 /* User.swift in Sources */,
 				AE8351851C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				AE4DB34D1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351991C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
 				AE4DB3451C635026001EB84B /* MenuAnimationController.swift in Sources */,
 				AE8351781C5F6BC50055C71F /* Navigation.swift in Sources */,
+				AEE924BB1C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				AE8351911C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				AE8351811C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
 				AE83516E1C5F595C0055C71F /* TabbarController.swift in Sources */,
