@@ -20,6 +20,14 @@ class MenuHeaderView: UIView {
     @IBOutlet weak var createShoutButton : UIButton?
     @IBOutlet weak var changeCountryButton : UIButton?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.profileNameLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.profileNameLabel?.layer.shadowRadius = 1
+        self.profileNameLabel?.layer.shadowOpacity = 0.5;
+    }
+    
     func fillWith(user: User?){
         
         if let u = user {
