@@ -5,31 +5,80 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Title-->
-        <scene sceneID="AE6-Gg-9Of">
+        <!--Change Location-->
+        <scene sceneID="VRP-pS-15V">
             <objects>
-                <viewController storyboardIdentifier="LocationRootController" id="rBC-b6-zRR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationRootController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eGL-Yg-bi6" customClass="SHLocationGetterViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rwh-gH-G2R"/>
-                        <viewControllerLayoutGuide type="bottom" id="OLu-0M-457"/>
+                        <viewControllerLayoutGuide type="top" id="C7F-8X-8tc"/>
+                        <viewControllerLayoutGuide type="bottom" id="iEy-ek-AuT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fzx-v8-u7C">
+                    <view key="view" contentMode="scaleToFill" id="L1O-2R-3GO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6Kn-ex-Fu3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="x99-BO-JKC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="eGL-Yg-bi6" id="917-Rr-kyC"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QHl-jt-Ozq" style="IBUITableViewCellStyleDefault" id="5MX-R9-g3h" customClass="SHLocationGetterViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="66" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5MX-R9-g3h" id="JoY-1u-v7u">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QHl-jt-Ozq">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eGL-Yg-bi6" id="Hpz-Hi-6tG"/>
+                                    <outlet property="delegate" destination="eGL-Yg-bi6" id="kQR-zx-s9t"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Kn-ex-Fu3" firstAttribute="top" secondItem="L1O-2R-3GO" secondAttribute="top" id="3N9-iz-irB"/>
+                            <constraint firstItem="iEy-ek-AuT" firstAttribute="top" secondItem="6Kn-ex-Fu3" secondAttribute="bottom" id="CkX-uz-Lhh"/>
+                            <constraint firstAttribute="trailing" secondItem="6Kn-ex-Fu3" secondAttribute="trailing" id="N5v-Tc-q1M"/>
+                            <constraint firstItem="6Kn-ex-Fu3" firstAttribute="leading" secondItem="L1O-2R-3GO" secondAttribute="leading" id="hwh-4E-pvY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="xqN-Jk-rhS">
-                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="OP7-jH-JRC">
+                    <navigationItem key="navigationItem" title="Change Location" id="WmU-c2-J42">
+                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="Vqy-o0-YYS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="toggleMenu" destination="rBC-b6-zRR" id="jxw-EA-sUk"/>
+                                <action selector="toggleMenu" destination="eGL-Yg-bi6" id="gUU-V8-lXj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="locationTableView" destination="6Kn-ex-Fu3" id="gLn-rn-10G"/>
+                        <outlet property="searchTextField" destination="x99-BO-JKC" id="so5-4F-4JA"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qpk-Cr-Wt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qwK-YT-wML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="363" y="344"/>
+            <point key="canvasLocation" x="-663" y="-485"/>
         </scene>
     </scenes>
     <resources>
