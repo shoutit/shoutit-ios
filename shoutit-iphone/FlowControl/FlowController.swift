@@ -8,6 +8,16 @@
 
 import UIKit
 
-protocol FlowController {
+protocol UserAccess {
+    func requiresLoggedInUser() -> Bool
+}
+
+extension FlowController {
+    func requiresLoggedInUser() -> Bool {
+        return false
+    }
+}
+
+protocol FlowController : UserAccess{
     var navigationController: UINavigationController {get}
 }

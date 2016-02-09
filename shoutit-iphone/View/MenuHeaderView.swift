@@ -31,13 +31,11 @@ class MenuHeaderView: UIView {
     func fillWith(user: User?){
         
         if let u = user {
-            if let imagePath = u.imagePath, profileURL = NSURL(string: imagePath) {
+            if let profileURL = NSURL(string: u.image) {
                 profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
             }
             
             profileNameLabel?.text = user?.username
-            
-            
         } else {
             fillAsGuest()
         }

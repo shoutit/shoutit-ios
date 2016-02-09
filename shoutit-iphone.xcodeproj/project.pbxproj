@@ -245,6 +245,15 @@
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */; };
 		ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */; };
+		AE2CB96B1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
+		AE2CB96C1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
+		AE2CB96D1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
+		AE2CB96F1C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
+		AE2CB9701C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
+		AE2CB9711C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
+		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
+		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
+		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE4DB33E1C634C22001EB84B /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEA599791C609E0100015AA3 /* Menu.storyboard */; };
 		AE4DB33F1C634C28001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
 		AE4DB3401C634C2A001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
@@ -335,8 +344,6 @@
 		AEECB95F1C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
-		B2040ED41C625CD200F5038D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2040ED31C625CD200F5038D /* LoginViewModel.swift */; };
-		B2040ED61C625CE200F5038D /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2040ED51C625CE200F5038D /* SignupViewModel.swift */; };
 		B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D721C62638C007EB2FB /* HTMLViewController.swift */; };
 		B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2082D741C6263DD007EB2FB /* HTML.storyboard */; };
 		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
@@ -387,7 +394,6 @@
 		B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */; };
 		B2C729DA1C6223FA006F7D29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D91C6223FA006F7D29 /* LoginViewController.swift */; };
 		B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */; };
-		B2C729DE1C62240D006F7D29 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729DD1C62240D006F7D29 /* LoginWithEmailViewModel.swift */; };
 		B2E7E2E61C592B600078C743 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */; };
 		B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EB1C592B970078C743 /* Discover.storyboard */; };
 		B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EE1C592B9E0078C743 /* Chats.storyboard */; };
@@ -748,6 +754,9 @@
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewController.swift; path = View/tags/SHTagListenersTableViewController.swift; sourceTree = "<group>"; };
 		ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewModel.swift; path = ViewModel/tags/SHTagListenersTableViewModel.swift; sourceTree = "<group>"; };
+		AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
+		AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
+		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE4DB3421C635026001EB84B /* MenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuAnimationController.swift; path = Util/MenuAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDismissAnimationController.swift; path = Util/MenuDismissAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFlowController.swift; path = FlowControl/SettingsFlowController.swift; sourceTree = "<group>"; };
@@ -825,7 +834,6 @@
 		B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewController.swift; path = Controllers/LoginWithEmailViewController.swift; sourceTree = "<group>"; };
 		B2C729D91C6223FA006F7D29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Controllers/SignupViewController.swift; sourceTree = "<group>"; };
-		B2C729DD1C62240D006F7D29 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		B2E7E3101C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chats.storyboard; sourceTree = "<group>"; };
 		B2E7E3111C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3121C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Shout.storyboard; sourceTree = "<group>"; };
@@ -2045,20 +2053,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		B2040ED11C625CA300F5038D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B2040ED31C625CD200F5038D /* LoginViewModel.swift */,
-			);
-			name = ViewModel;
-			sourceTree = "<group>";
-		};
-		B2040ED21C625CB400F5038D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B2040ED51C625CE200F5038D /* SignupViewModel.swift */,
-			);
-			name = ViewModel;
 		AEE924BC1C68C1C900EFBF43 /* ChangeLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -2068,6 +2062,14 @@
 				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
 			);
 			name = ChangeLocation;
+			sourceTree = "<group>";
+		};
+		B2040ED21C625CB400F5038D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
@@ -2207,9 +2209,9 @@
 			isa = PBXGroup;
 			children = (
 				B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */,
+				AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */,
 				B2C729D71C6223E2006F7D29 /* Login */,
 				B2C729D61C6223DD006F7D29 /* Signup */,
-				B2C729D81C6223E7006F7D29 /* ViewModel */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2322,18 +2324,10 @@
 		B2C729D71C6223E2006F7D29 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */,
 				B2C729D91C6223FA006F7D29 /* LoginViewController.swift */,
-				B2040ED11C625CA300F5038D /* ViewModel */,
 			);
 			name = Login;
-			sourceTree = "<group>";
-		};
-		B2C729D81C6223E7006F7D29 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B2C729DD1C62240D006F7D29 /* LoginWithEmailViewModel.swift */,
-			);
-			name = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2765,7 +2759,6 @@
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
 				ACB803AF1C10833300420BB1 /* SHConversationsTableViewModel.swift in Sources */,
 				ACC845791C4CE94F0065A702 /* SHDiscoverShoutsHeaderCell.swift in Sources */,
-				B2040ED41C625CD200F5038D /* LoginViewModel.swift in Sources */,
 				ACDD23B41BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift in Sources */,
 				ACB803B21C108B2A00420BB1 /* SHConversations.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
@@ -2849,7 +2842,6 @@
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
 				AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
-				B2C729DE1C62240D006F7D29 /* LoginWithEmailViewModel.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
 				ACB803A91C1026E000420BB1 /* SHShoutPickerTableViewController.swift in Sources */,
@@ -2868,6 +2860,7 @@
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
+				AE2CB96B1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */,
 				AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
@@ -2904,6 +2897,7 @@
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
+				AE2CB96F1C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
 				AC74A7811BFE58BE0029CE7D /* SHFilterPriceTableModel.swift in Sources */,
@@ -2938,6 +2932,7 @@
 				ACDD23B71BFADE1300EEC6A6 /* SHFilterTagsTableViewCell.swift in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
+				AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				AC47A7361C02351F006AF406 /* SHShoutDetailTableViewModel.swift in Sources */,
 				ACDB3C8B1BF7397B0097444E /* SHStreamTableViewCell.swift in Sources */,
@@ -2960,7 +2955,6 @@
 				ACC064471C47523E0089912A /* SHLoginPopupViewController.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				ACDB3C891BF732930097444E /* SHStreamTableViewModel.swift in Sources */,
-				B2040ED61C625CE200F5038D /* SignupViewModel.swift in Sources */,
 				AC74A7781BFCD1770029CE7D /* SHShoutCalloutView.swift in Sources */,
 				6068E64B1C2468BE0061F56C /* SHSocialLoginViewController.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,
@@ -2988,11 +2982,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2CB96C1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AEE924B61C6884D600EFBF43 /* User.swift in Sources */,
 				AE8351841C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
+				AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
 				AEECB95F1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				AE4DB34C1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351981C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
@@ -3007,6 +3003,7 @@
 				AE8351681C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				AEA599801C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351881C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
+				AE2CB9701C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				AE83517C1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518C1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */,
@@ -3021,11 +3018,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2CB96D1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */,
 				AE8351731C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AEE924B71C6884D600EFBF43 /* User.swift in Sources */,
 				AE8351851C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
+				AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
 				AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				AE4DB34D1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				AE8351991C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
@@ -3040,6 +3039,7 @@
 				AE8351691C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				AEA599811C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351891C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
+				AE2CB9711C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				AE83517D1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518D1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */,

@@ -21,4 +21,8 @@ final class ShoutFlowController: FlowController {
 
         navigationController.showViewController(controller, sender: nil)
     }
+    
+    func requiresLoggedInUser() -> Bool {
+        return true
+    }
 }
