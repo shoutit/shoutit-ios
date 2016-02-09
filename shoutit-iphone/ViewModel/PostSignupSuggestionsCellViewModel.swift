@@ -25,7 +25,12 @@ enum PostSignupSuggestionsCellType {
 class PostSignupSuggestionsCellViewModel {
     
     let cellType: PostSignupSuggestionsCellType
-    let item: Suggestable?
+    var item: Suggestable? {
+        if case PostSignupSuggestionsCellType.Normal(let item) = self.cellType {
+            return item
+        }
+        return nil
+    }
     var selected: Bool = false
     
     init(item: Suggestable) {

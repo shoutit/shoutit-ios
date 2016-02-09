@@ -495,7 +495,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcm-Gs-6OL" customClass="CustomUIButton" customModule="CustomViews">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcm-Gs-6OL" customClass="CustomUIButton" customModule="shoutit_iphone">
                                 <rect key="frame" x="277" y="613" width="88" height="44"/>
                                 <color key="backgroundColor" red="0.25098039215686274" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -649,7 +649,7 @@
         <!--Post Signup Suggestions Wrapping View Controller-->
         <scene sceneID="SGC-yZ-8Hc">
             <objects>
-                <viewController id="DZF-qH-HUZ" customClass="PostSignupSuggestionsWrappingViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostSignupSuggestionsWrappingViewController" id="DZF-qH-HUZ" customClass="PostSignupSuggestionsWrappingViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qqU-Ap-tk1"/>
                         <viewControllerLayoutGuide type="bottom" id="8yj-LE-AK5"/>
@@ -680,11 +680,12 @@
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OM4-vj-24p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="iM9-A5-O26" kind="embed" id="xWL-RW-UPH"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0w1-iB-LJP" customClass="CustomUIButton" customModule="CustomViews">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0w1-iB-LJP" customClass="CustomUIButton" customModule="shoutit_iphone">
                                 <rect key="frame" x="277" y="613" width="88" height="44"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.72549019607843135" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -736,6 +737,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>

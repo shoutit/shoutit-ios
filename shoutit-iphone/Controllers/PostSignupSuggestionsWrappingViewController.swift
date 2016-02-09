@@ -8,9 +8,33 @@
 
 import UIKit
 
-class PostSignupSuggestionsWrappingViewController: UIViewController {
+protocol PostSignupSuggestionViewControllerFlowDelegate: class, LoginFinishable {}
+
+final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
+    // UI
     @IBOutlet weak var skipButton: CustomUIButton!
     @IBOutlet weak var doneButton: CustomUIButton!
     
+    // view model
+    var viewModel: PostSignupSuggestionViewModel!
+    
+    // navigation
+    weak var flowDelegate: PostSignupSuggestionViewControllerFlowDelegate?
+    
+    // MARK: - Lifecycle
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBarHidden = true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
+        if let vc = segue.destinationViewController as? PostSignupSuggestionsTableViewController {
+            vc.viewModel = viewModel
+        }
+    }
 }
