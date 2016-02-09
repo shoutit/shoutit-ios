@@ -123,8 +123,8 @@ struct Constants {
     }
     
     struct Authentication {
-        static let SH_CLIENT_ID = "shoutit-ios"
-        static let SH_CLIENT_SECRET = "209b7e713eca4774b5b2d8c20b779d91"
+        static let clientID = "shoutit-ios"
+        static let clientSecret = "209b7e713eca4774b5b2d8c20b779d91"
     }
     
     struct MixPanel {

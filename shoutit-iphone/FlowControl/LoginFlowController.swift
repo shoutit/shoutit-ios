@@ -12,18 +12,27 @@ final class LoginFlowController: FlowController {
     
     let navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, skipIntro: Bool = false) {
         
         self.navigationController = navigationController
         
         // setup navigation controller state
         navigationController.navigationBarHidden = true
         
+        if skipIntro {
+            showLoginChoice()
+        } else {
+            showIntroController()
+        }
+    }
+    
+    func showIntroController() {
         // create initial view controller
         let controller = Wireframe.introViewController()
         controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }
+    
 }
 
 extension LoginFlowController: ApplicationMainViewControllerRootObject {}

@@ -12,6 +12,7 @@ import RxCocoa
 import Material
 import ResponsiveLabel
 import Validator
+import MBProgressHUD
 
 class LoginViewController: UITableViewController {
     
@@ -29,7 +30,7 @@ class LoginViewController: UITableViewController {
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
     // view model
-    var viewModel: LoginViewModel!
+    weak var viewModel: LoginWithEmailViewModel!
     
     // RX
     let disposeBag = DisposeBag()
@@ -46,17 +47,59 @@ class LoginViewController: UITableViewController {
     
     private func setupRX() {
         
+        let loginActionFilterClosure: Void -> Bool = {[unowned self] in
+            
+            for validationResult in [Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
+                if case .Invalid(let errors) = validationResult {
+                    if let error = errors.first {
+                        self.delegate?.showErrorMessage(error.message)
+                    }
+                    return false
+                }
+            }
+            
+            return true
+        }
+        
+        // response to user actions
+        switchToSignupButton.rx_tap.subscribeNext{[weak self] in
+            self?.delegate?.presentSignup()
+        }.addDisposableTo(disposeBag)
+        
+        loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
+        }.addDisposableTo(disposeBag)
+        
+        forgotPasswordButton.rx_tap .filter{
+                if case .Invalid(let errors) = Validator.validateEmail(self.emailTextField.text) {
+                    if let error = errors.first {
+                        self.delegate?.showErrorMessage(error.message)
+                    }
+                    return false
+                }
+                
+                return true
+            }
+            .subscribeNext{[unowned self] in
+                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+                self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
+            }
+            .addDisposableTo(disposeBag)
+        
         // on return actions
         emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
-        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
-            // login
+        
+        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
         // validation
-        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
-        passwordTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        emailTextField.addValidator(Validator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {

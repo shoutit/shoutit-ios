@@ -17,12 +17,22 @@ final class Account {
     // private consts
     lazy private var archivePath: String = {
         let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("account.usr")
-        return directoryURL.absoluteString
+        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("account.data")
+        return directoryURL.path!
     }()
     
     // data
     private(set) var authData: AuthData?
+    
+    class func locationString() -> String {
+        if let location = SHAddress.getUserOrDeviceLocation() {
+            return String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
+        } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
+            return String(format: "%@, %@", arguments: [city, country])
+        }
+        
+        return NSLocalizedString("Unknown Location", comment: "")
+    }
     
     // convienience
     var isUserLoggedIn: Bool {

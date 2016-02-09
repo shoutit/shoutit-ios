@@ -16,6 +16,7 @@ class MenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? MenuTableViewController
         let rightMargin : CGFloat = 70.0
+        let menuInsets = UIEdgeInsetsMake(-1, -1, 2, 0)
         
         var overlayView : UIView {
             get {
@@ -41,7 +42,8 @@ class MenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
         toView.frame = CGRectMake(-CGRectGetWidth(transitionContext.containerView()!.frame) + rightMargin, 0, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin, CGRectGetHeight(transitionContext.containerView()!.frame))
         
         UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
-            toView.frame = CGRectMake(0, 0, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin, CGRectGetHeight(transitionContext.containerView()!.frame))
+            let destinationRect = CGRectMake(menuInsets.left, menuInsets.top, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin + menuInsets.right, CGRectGetHeight(transitionContext.containerView()!.frame) + menuInsets.bottom)
+            toView.frame = destinationRect
             overlay.alpha = 0.3
             }) { (finished) -> Void in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())

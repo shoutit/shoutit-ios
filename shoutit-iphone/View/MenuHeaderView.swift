@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MenuHeaderView: UIView {
     
@@ -18,5 +19,38 @@ class MenuHeaderView: UIView {
     
     @IBOutlet weak var createShoutButton : UIButton?
     @IBOutlet weak var changeCountryButton : UIButton?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.profileNameLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.profileNameLabel?.layer.shadowRadius = 1
+        self.profileNameLabel?.layer.shadowOpacity = 0.5;
+    }
+    
+    func fillWith(user: User?){
+        
+        if let u = user {
+            if let imagePath = u.imagePath, profileURL = NSURL(string: imagePath) {
+                profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+            }
+            
+            profileNameLabel?.text = user?.username
+        } else {
+            fillAsGuest()
+        }
+        
+        fillLocation()
+    }
+    
+    func fillAsGuest() {
+        profileImageView?.image = UIImage(named: "guest avatar")
+        profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
+    }
+    
+    func fillLocation() {
+        
+        countryNameLabel?.text = Account.locationString()
+    }
     
 }

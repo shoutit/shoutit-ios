@@ -34,10 +34,16 @@ enum ValidationError: ValidationErrorType {
 
 struct Validator {
     
-    static func validateUniversalEmailOrUsernameField(string: String) -> ValidationResult {
+    static func validateUniversalEmailOrUsernameField(string: String?) -> ValidationResult {
         
-        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError.InvalidEmailOrUsername)
-        let usernameValidationRule = ValidationRulePattern(pattern: "^[a-z0-9A-Z_-]{2,20}$", failureError: ValidationError.InvalidEmailOrUsername)
+        let error = ValidationError.InvalidEmailOrUsername
+        
+        guard let string = string else {
+            return .Invalid([error])
+        }
+        
+        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: error)
+        let usernameValidationRule = ValidationRulePattern(pattern: "^[a-z0-9A-Z_-]{2,20}$", failureError: error)
         
         if case .Valid = string.validate(rule: usernameValidationRule) {
             return .Valid
@@ -47,32 +53,63 @@ struct Validator {
     }
     
     
-    static func validateEmail(email: String) -> ValidationResult {
+    static func validateEmail(email: String?) -> ValidationResult {
         
-        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError.InvalidEmail)
+        let error = ValidationError.InvalidEmail
+        
+        guard let email = email else {
+            return .Invalid([error])
+        }
+        
+        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: error)
         return email.validate(rule: emailValidationRule)
     }
     
-    static func validatePassword(password: String) -> ValidationResult {
+    static func validatePassword(password: String?) -> ValidationResult {
         
-        let passwordValidationRule = ValidationRulePattern(pattern: "^.{6,20}$", failureError: ValidationError.InvalidPassword)
+        let error = ValidationError.InvalidPassword
+        
+        guard let password = password else {
+            return .Invalid([error])
+        }
+        
+        let passwordValidationRule = ValidationRulePattern(pattern: "^.{6,20}$", failureError: error)
         return password.validate(rule: passwordValidationRule)
     }
     
-    static func validateName(name: String) -> ValidationResult {
+    static func validateName(name: String?) -> ValidationResult {
         
-        let nameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: ValidationError.InvalidFirstname)
+        let error = ValidationError.InvalidFirstname
+        
+        guard let name = name else {
+            return .Invalid([error])
+        }
+        
+        let nameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: error)
         return name.validate(rule: nameValidationRule)
     }
     
-    static func validateFirstname(firstname: String) -> ValidationResult {
+    static func validateFirstname(firstname: String?) -> ValidationResult {
         
-        let firstnameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: ValidationError.InvalidFirstname)
+        let error = ValidationError.InvalidFirstname
+        
+        guard let firstname = firstname else {
+            return .Invalid([error])
+        }
+        
+        let firstnameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: error)
         return firstname.validate(rule: firstnameValidationRule)
     }
     
-    static func validateLastname(lastname: String) -> ValidationResult {
-        let lastnameValidationRule = ValidationRulePattern(pattern: "^.{1,30}$", failureError: ValidationError.InvalidLastname)
+    static func validateLastname(lastname: String?) -> ValidationResult {
+        
+        let error = ValidationError.InvalidLastname
+        
+        guard let lastname = lastname else {
+            return .Invalid([error])
+        }
+        
+        let lastnameValidationRule = ValidationRulePattern(pattern: "^.{1,30}$", failureError: error)
         return lastname.validate(rule: lastnameValidationRule)
     }
 }

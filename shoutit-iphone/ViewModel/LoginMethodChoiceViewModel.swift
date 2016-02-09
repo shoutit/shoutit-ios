@@ -35,7 +35,7 @@ final class LoginMethodChoiceViewModel {
             }
             
             if let token = loginResult.token {
-                let params = APIAuthService.facebookLoginParamsWithToken(token.tokenString)
+                let params = FacebookLoginParams(token: token.tokenString)
                 self.authenticateWithParameters(params)
             }
         }
@@ -43,7 +43,7 @@ final class LoginMethodChoiceViewModel {
     
     // MARK: - Private
     
-    private func authenticateWithParameters(params: [String : AnyObject]) {
+    private func authenticateWithParameters(params: AuthParams) {
         
         APIAuthService.getOauthToken(params) { (result) -> Void in
             switch result {
@@ -69,8 +69,8 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
             return
         }
         
-        if let serverAuthCode = user?.serverAuthCode {
-            let params = APIAuthService.googleLoginParamsWithToken(serverAuthCode)
+        if let serverAuthCode = user?.authentication.idToken {
+            let params = GoogleLoginParams(gplusCode: serverAuthCode)
             authenticateWithParameters(params)
         }
     }
