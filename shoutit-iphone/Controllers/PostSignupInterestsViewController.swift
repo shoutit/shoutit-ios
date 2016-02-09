@@ -21,6 +21,8 @@ class PostSignupInterestsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet var tableViewPlaceholder: TableViewPlaceholderView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // view model
     var viewModel: PostSignupInterestsViewModel!
@@ -36,11 +38,8 @@ class PostSignupInterestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup
         setupRX()
-        
-        // fetch
-        self.viewModel.fetchCategories()
+        viewModel.fetchCategories()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,22 +58,40 @@ class PostSignupInterestsViewController: UIViewController {
             .filter { (loadingState, cellViewModels) -> Bool in
                 switch loadingState {
                 case .Idle:
+                    self.activityIndicator.hidden = true
+                    self.tableView.tableHeaderView = nil
                     return false
                 case .Loading:
-                    // show activity indicator
+                    self.activityIndicator.hidden = false
+                    self.tableView.tableHeaderView = nil
                     return false
                 case .ContentUnavailable:
-                    // show placeholder
+                    self.activityIndicator.hidden = true
+                    self.tableViewPlaceholder.label.text = NSLocalizedString("Categories unavilable", comment: "")
+                    self.tableView.tableHeaderView = self.tableViewPlaceholder
                     return false
                 case .Error(let error):
-                    // display error
+                    self.activityIndicator.hidden = true
+                    self.tableViewPlaceholder.label.text = (error as NSError).localizedDescription
+                    self.tableView.tableHeaderView = self.tableViewPlaceholder
                     return false
                 case .ContentLoaded:
+                    self.activityIndicator.hidden = true
+                    self.tableView.tableHeaderView = nil
                     return true
                 }
             }
             .map{$1}.bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
                 cell.nameLabel.text = element.category.name
+                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+            }
+            .addDisposableTo(disposeBag)
+        
+        tableView
+            .rx_modelSelected(PostSignupInterestCellViewModel.self)
+            .subscribeNext { (cellViewModel) in
+                cellViewModel.selected = !cellViewModel.selected
+                self.tableView.reloadData()
             }
             .addDisposableTo(disposeBag)
         

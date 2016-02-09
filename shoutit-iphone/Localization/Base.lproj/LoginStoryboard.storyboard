@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -541,12 +542,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="cu9-mT-RsK"/>
                                 </constraints>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="8SP-jW-vtx">
+                                    <rect key="frame" x="0.0" y="78" width="315" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostSignupCategoryCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostSignupCategoryTableViewCell" rowHeight="50" id="fuP-pJ-7OO" customClass="PostSignupCategoryTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostSignupCategoryCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="PostSignupCategoryTableViewCell" rowHeight="50" id="fuP-pJ-7OO" customClass="PostSignupCategoryTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="315" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fuP-pJ-7OO" id="ozf-Bw-F4Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-Fl-Whf">
@@ -570,6 +575,8 @@
                                                 <constraint firstItem="OfY-0g-YBp" firstAttribute="centerY" secondItem="ozf-Bw-F4Z" secondAttribute="centerY" id="gGC-Py-akW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.33725490200000002" green="0.67843137249999996" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="iconImageView" destination="9yt-Fl-Whf" id="FQt-jT-CMv"/>
                                             <outlet property="nameLabel" destination="OfY-0g-YBp" id="zWj-Wp-qlr"/>
@@ -600,12 +607,34 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="8SP-jW-vtx" id="fg7-kB-AJl"/>
                         <outlet property="nextButton" destination="Gcm-Gs-6OL" id="rmc-Jw-WSn"/>
                         <outlet property="skipButton" destination="QGu-kD-nqv" id="Nmq-7z-BON"/>
                         <outlet property="tableView" destination="CSG-mV-mtv" id="oVU-ou-B9p"/>
+                        <outlet property="tableViewPlaceholder" destination="LVf-gc-rLs" id="ybV-b8-LPJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uy7-FY-8PW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="LVf-gc-rLs" customClass="TableViewPlaceholderView" customModule="shoutit_iphone" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="368" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ6-Qv-MmS">
+                            <rect key="frame" x="110" y="53" width="149" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="GZ6-Qv-MmS" firstAttribute="centerX" secondItem="LVf-gc-rLs" secondAttribute="centerXWithinMargins" id="7Ba-dE-0Xt"/>
+                        <constraint firstItem="GZ6-Qv-MmS" firstAttribute="centerY" secondItem="LVf-gc-rLs" secondAttribute="centerYWithinMargins" id="eJc-IZ-oh4"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="label" destination="GZ6-Qv-MmS" id="Ayq-It-ZwT"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="4451.5" y="292.5"/>
         </scene>

@@ -360,6 +360,7 @@
 		B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */; };
 		B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A33D1C690FB900C8B8F9 /* LoginFinishable.swift */; };
 		B253A3401C691B3F00C8B8F9 /* APITagsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A33F1C691B3F00C8B8F9 /* APITagsService.swift */; };
+		B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */; };
 		B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */; };
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
 		B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */; };
@@ -814,6 +815,7 @@
 		B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupDisplayable.swift; path = FlowControl/PostSignupDisplayable.swift; sourceTree = "<group>"; };
 		B253A33D1C690FB900C8B8F9 /* LoginFinishable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFinishable.swift; path = FlowControl/LoginFinishable.swift; sourceTree = "<group>"; };
 		B253A33F1C691B3F00C8B8F9 /* APITagsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APITagsService.swift; path = Networking/APITagsService.swift; sourceTree = "<group>"; };
+		B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewPlaceholderView.swift; path = View/TableViewPlaceholderView.swift; sourceTree = "<group>"; };
 		B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Controllers/IntroViewController.swift; sourceTree = "<group>"; };
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
 		B27DF7841C58E1CA006909D4 /* ApplicationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationMainViewController.swift; path = Controllers/ApplicationMainViewController.swift; sourceTree = "<group>"; };
@@ -2209,6 +2211,7 @@
 				6068E6461C2445690061F56C /* CustomUIButton.swift */,
 				6068E64C1C2472260061F56C /* CustomUIView.swift */,
 				AE8351661C5F521B0055C71F /* TabbarButton.swift */,
+				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3086,6 +3089,7 @@
 				AC679B401C3CE34700F45947 /* SHDiscoverFeedViewController.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
+				B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */,
 				604A0DDF1BEE9CDC002A80E7 /* SHDiscoverViewModel.swift in Sources */,
 				AC679B4B1C3D08CA00F45947 /* SHDiscoverShowMoreShoutsCell.swift in Sources */,
 				606ED3121BF940530064C53E /* SHSinglePickerTableViewModel.swift in Sources */,
