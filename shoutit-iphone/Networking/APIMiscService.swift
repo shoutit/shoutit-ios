@@ -13,6 +13,7 @@ import PureJsonSerializer
 class APIMiscService {
     
     private static let categoriesURL = APIManager.baseURL + "/misc/categories"
+    private static let suggestionURL = APIManager.baseURL + "/misc/suggestions"
     
     static func requestCategoriesWithCompletionHandler(completionHandler: Result<[Category], NSError> -> Void) {
         
@@ -30,5 +31,9 @@ class APIMiscService {
                 completionHandler(.Failure(error))
             }
         })
+    }
+    
+    static func requestSuggestionsWithParams(params: SuggestionsParams withCompletionHandler: Result<[], NSError> -> Void) {
+        
     }
 }

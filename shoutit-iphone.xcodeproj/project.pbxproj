@@ -376,6 +376,10 @@
 		B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF01C68BE0C000FA302 /* Tag.swift */; };
 		B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF21C68D585000FA302 /* APIMiscService.swift */; };
 		B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */; };
+		B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */; };
+		B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C41C6A338B0075EDA6 /* Suggestions.swift */; };
+		B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */; };
+		B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
 		B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729B01C6220EE006F7D29 /* Assets.swift */; };
@@ -831,6 +835,10 @@
 		B2ACBDF01C68BE0C000FA302 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Model/Tag.swift; sourceTree = "<group>"; };
 		B2ACBDF21C68D585000FA302 /* APIMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIMiscService.swift; path = Networking/APIMiscService.swift; sourceTree = "<group>"; };
 		B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestCellViewModel.swift; path = ViewModel/PostSignupInterestCellViewModel.swift; sourceTree = "<group>"; };
+		B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggesttionsParams.swift; path = Networking/SuggesttionsParams.swift; sourceTree = "<group>"; };
+		B2B540C41C6A338B0075EDA6 /* Suggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Suggestions.swift; path = Model/Suggestions.swift; sourceTree = "<group>"; };
+		B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedProfile.swift; path = Model/DetailedProfile.swift; sourceTree = "<group>"; };
+		B2B540C81C6A38AE0075EDA6 /* Shout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shout.swift; path = Model/Shout.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
 		B2C729B01C6220EE006F7D29 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = UIKitExtensions/Assets.swift; sourceTree = "<group>"; };
@@ -1038,6 +1046,8 @@
 				B2C729C11C6221B0006F7D29 /* Success.swift */,
 				B2ACBDEE1C68BDE2000FA302 /* Category.swift */,
 				B2ACBDF01C68BE0C000FA302 /* Tag.swift */,
+				B2B540C81C6A38AE0075EDA6 /* Shout.swift */,
+				B2B540C41C6A338B0075EDA6 /* Suggestions.swift */,
 				B2A144121C64B3D5002CD70A /* User */,
 				AC856E9E1C1AF3A300864A85 /* users */,
 				AC7026D01C19DED800262622 /* accounts */,
@@ -2156,6 +2166,7 @@
 			children = (
 				B21EA3B91C63E8900013E99F /* Params.swift */,
 				B21EA3B71C63E80E0013E99F /* AuthParams.swift */,
+				B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -2318,6 +2329,7 @@
 				B288D3E91C68B4BD00895302 /* PublicProfile.swift */,
 				B2C729C21C6221B0006F7D29 /* User.swift */,
 				B288D3EB1C68B58400895302 /* Profile.swift */,
+				B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2839,6 +2851,7 @@
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
+				B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
 				ACDB3C9C1BF7DAD10097444E /* SHApiShoutService.swift in Sources */,
 				AC74A7851BFEF8330029CE7D /* SHFilterCheckmarkTableViewController.swift in Sources */,
@@ -2958,14 +2971,17 @@
 				60D36D551BF762AA00238D62 /* SHCreateShoutViewModel.swift in Sources */,
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
 				AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */,
+				B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
 				B2C729DE1C62240D006F7D29 /* LoginWithEmailViewModel.swift in Sources */,
+				B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
 				ACB803A91C1026E000420BB1 /* SHShoutPickerTableViewController.swift in Sources */,
 				60F11D401C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift in Sources */,
 				AE8351831C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				AE4DB34B1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
+				B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */,
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				60F11D441C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,

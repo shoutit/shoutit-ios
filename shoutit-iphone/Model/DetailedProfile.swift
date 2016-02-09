@@ -1,8 +1,8 @@
 //
-//  User.swift
+//  DetailedProfile.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 29.01.2016.
+//  Created by Łukasz Kasperek on 09.02.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -10,9 +10,8 @@ import Foundation
 import Genome
 import PureJsonSerializer
 
-struct User {
+struct DetailedProfile {
     
-    // public profile
     let id: String
     let type: UserType
     let apiPath: String
@@ -39,13 +38,11 @@ struct User {
     let owner: Bool
     let pages: [User]?
     
-    // app user specific
-    let linkedAccounts: LoginAccounts?
-    let pushTokens: PushTokens?
-    let passwordSet: Bool?
+    // other user specific
+    let listening: Bool?
 }
 
-extension User: MappableObject {
+extension DetailedProfile: MappableObject {
     
     init(map: Map) throws {
         id = try map.extract("id")
@@ -73,9 +70,7 @@ extension User: MappableObject {
         listeningPath = try map.extract("listening_url")
         owner = try map.extract("is_owner")
         pages = try map.extract("pages")
-        linkedAccounts = try map.extract("linked_accounts")
-        pushTokens = try map.extract("push_tokens")
-        passwordSet = try map.extract("is_password_set")
+        listening = try map.extract("is_listening")
     }
     
     func sequence(map: Map) throws {
@@ -92,12 +87,12 @@ extension User: MappableObject {
         try activated ~> map["is_activated"]
         try imagePath ~> map["image"]
         try coverPath ~> map["cover"]
-        try gender ~> map[KeyType.Key("gender")]
+        try gender ~> map["gender"]
             .transformToJson{(gender) -> Json in
-            if let raw = gender where raw != .Unknown {
-                return .StringValue(raw.rawValue)
-            }
-            return .NullValue
+                if let raw = gender where raw != .Unknown {
+                    return .StringValue(raw.rawValue)
+                }
+                return .NullValue
         }
         
         try videoPath ~> map["video"]
@@ -113,9 +108,6 @@ extension User: MappableObject {
         try listeningPath ~> map["listening_url"]
         try owner ~> map["is_owner"]
         try pages ~> map["pages"]
-        try linkedAccounts ~> map["linked_accounts"]
-        try pushTokens ~> map["push_tokens"]
-        try passwordSet ~> map["is_password_set"]
+        try listening ~> map["is_listening"]
     }
 }
-

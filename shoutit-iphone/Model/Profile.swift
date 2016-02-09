@@ -10,7 +10,7 @@ import Foundation
 import Genome
 import PureJsonSerializer
 
-struct Profile: PublicProfile {
+struct Profile {
     
     let id: String
     let type: UserType
@@ -23,22 +23,6 @@ struct Profile: PublicProfile {
     let activated: Bool
     let imagePath: String?
     let coverPath: String?
-    let gender: Gender?
-    let videoPath: String?
-    let dateJoindedEpoch: Int
-    let bio: String?
-    let location: Address
-    let email: String
-    let website: String?
-    let shoutsPath: String?
-    let listenersCount: Int
-    let listenersPath: String?
-    let listeningMetadata: ListenersMetadata
-    let listeningPath: String?
-    let owner: Bool
-    let pages: [User]?
-    
-    // other user specific
     let listening: Bool?
 }
 
@@ -56,20 +40,6 @@ extension Profile: MappableObject {
         activated = try map.extract("is_activated")
         imagePath = try map.extract("image")
         coverPath = try map.extract("cover")
-        gender = try map["gender"].fromJson{Gender(string: $0)}
-        videoPath = try map.extract("video")
-        dateJoindedEpoch = try map.extract("date_joined")
-        bio = try map.extract("bio")
-        location = try map.extract("location")
-        email = try map.extract("email")
-        website = try map.extract("website")
-        shoutsPath = try map.extract("shouts_url")
-        listenersCount = try map.extract("listeners_count")
-        listenersPath = try map.extract("listeners_url")
-        listeningMetadata = try map.extract("listening_count")
-        listeningPath = try map.extract("listening_url")
-        owner = try map.extract("is_owner")
-        pages = try map.extract("pages")
         listening = try map.extract("is_listening")
     }
     
@@ -87,27 +57,6 @@ extension Profile: MappableObject {
         try activated ~> map["is_activated"]
         try imagePath ~> map["image"]
         try coverPath ~> map["cover"]
-        try gender ~> map[KeyType.Key("gender")]
-            .transformToJson{(gender) -> Json in
-                if let raw = gender where raw != .Unknown {
-                    return .StringValue(raw.rawValue)
-                }
-                return .NullValue
-        }
-        
-        try videoPath ~> map["video"]
-        try dateJoindedEpoch ~> map["date_joined"]
-        try bio ~> map["bio"]
-        try location ~> map["location"]
-        try email ~> map["email"]
-        try website ~> map["website"]
-        try shoutsPath ~> map["shouts_url"]
-        try listenersCount ~> map["listeners_count"]
-        try listenersPath ~> map["listeners_url"]
-        try listeningMetadata ~> map["listening_count"]
-        try listeningPath ~> map["listening_url"]
-        try owner ~> map["is_owner"]
-        try pages ~> map["pages"]
         try listening ~> map["is_listening"]
     }
 }

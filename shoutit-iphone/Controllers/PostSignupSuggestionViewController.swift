@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostSignupSuggestionViewController: UIViewController {
+class PostSignupSuggestionViewController: UITableViewController {
     
     // view model
     var viewModel: PostSignupSuggestionViewModel!
