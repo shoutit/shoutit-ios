@@ -13,4 +13,12 @@ extension UIImage {
     static func navBarLogoImage() -> UIImage {
         return UIImage(named: "logo_navbar")!
     }
+    
+    static func suggestionAccessoryView() -> UIImage {
+        return UIImage(named: "suggestions_accessory_view")!
+    }
+    
+    static func suggestionAccessoryViewSelected() -> UIImage {
+        return UIImage(named: "suggestions_accessory_view_selected")!
+    }
 }

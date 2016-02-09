@@ -15,8 +15,6 @@ class PostSignupInterestsViewModel {
     let state: Variable<LoadingState> = Variable(.Idle)
     private(set) var categories: Variable<[PostSignupInterestCellViewModel]> = Variable([])
     
-    
-    
     func fetchCategories() {
         
         state.value = .Loading

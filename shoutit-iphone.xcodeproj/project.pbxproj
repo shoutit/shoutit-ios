@@ -369,7 +369,6 @@
 		B288D3EC1C68B58400895302 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3EB1C68B58400895302 /* Profile.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
-		B2A1441F1C651BCC002CD70A /* PostSignupSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */; };
 		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
 		B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */; };
 		B2ACBDEF1C68BDE2000FA302 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDEE1C68BDE2000FA302 /* Category.swift */; };
@@ -380,6 +379,14 @@
 		B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C41C6A338B0075EDA6 /* Suggestions.swift */; };
 		B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */; };
 		B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
+		B2B540CB1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540CA1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift */; };
+		B2B540CF1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540CE1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift */; };
+		B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540D01C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift */; };
+		B2B540D31C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540D21C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift */; };
+		B2B540D61C6A51C30075EDA6 /* Suggestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540D51C6A51C30075EDA6 /* Suggestable.swift */; };
+		B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540D71C6A665E0075EDA6 /* CustomUIImageView.swift */; };
+		B2B540DB1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540DA1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift */; };
+		B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540DE1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
 		B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729B01C6220EE006F7D29 /* Assets.swift */; };
@@ -828,7 +835,6 @@
 		B288D3EB1C68B58400895302 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
-		B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionViewController.swift; path = Controllers/PostSignupSuggestionViewController.swift; sourceTree = "<group>"; };
 		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
 		B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionViewModel.swift; path = ViewModel/PostSignupSuggestionViewModel.swift; sourceTree = "<group>"; };
 		B2ACBDEE1C68BDE2000FA302 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
@@ -839,6 +845,14 @@
 		B2B540C41C6A338B0075EDA6 /* Suggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Suggestions.swift; path = Model/Suggestions.swift; sourceTree = "<group>"; };
 		B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedProfile.swift; path = Model/DetailedProfile.swift; sourceTree = "<group>"; };
 		B2B540C81C6A38AE0075EDA6 /* Shout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shout.swift; path = Model/Shout.swift; sourceTree = "<group>"; };
+		B2B540CA1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsTableViewController.swift; path = Controllers/PostSignupSuggestionsTableViewController.swift; sourceTree = "<group>"; };
+		B2B540CE1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsWrappingViewController.swift; path = Controllers/PostSignupSuggestionsWrappingViewController.swift; sourceTree = "<group>"; };
+		B2B540D01C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsCellViewModel.swift; path = ViewModel/PostSignupSuggestionsCellViewModel.swift; sourceTree = "<group>"; };
+		B2B540D21C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsSectionViewModel.swift; path = ViewModel/PostSignupSuggestionsSectionViewModel.swift; sourceTree = "<group>"; };
+		B2B540D51C6A51C30075EDA6 /* Suggestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Suggestable.swift; path = Model/Suggestable.swift; sourceTree = "<group>"; };
+		B2B540D71C6A665E0075EDA6 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIImageView.swift; path = View/CustomUIImageView.swift; sourceTree = "<group>"; };
+		B2B540DA1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsHeaderTableViewCell.swift; path = View/PostSignupSuggestionsHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		B2B540DE1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionsTableViewCell.swift; path = View/PostSignupSuggestionsTableViewCell.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
 		B2C729B01C6220EE006F7D29 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = UIKitExtensions/Assets.swift; sourceTree = "<group>"; };
@@ -1048,6 +1062,7 @@
 				B2ACBDF01C68BE0C000FA302 /* Tag.swift */,
 				B2B540C81C6A38AE0075EDA6 /* Shout.swift */,
 				B2B540C41C6A338B0075EDA6 /* Suggestions.swift */,
+				B2B540D41C6A518E0075EDA6 /* SuggestionExtensions */,
 				B2A144121C64B3D5002CD70A /* User */,
 				AC856E9E1C1AF3A300864A85 /* users */,
 				AC7026D01C19DED800262622 /* accounts */,
@@ -1071,7 +1086,6 @@
 			children = (
 				B21EA3B31C63DC3F0013E99F /* Location */,
 				AEA5997D1C60C55000015AA3 /* Protocols */,
-				6068E65B1C2538CE0061F56C /* customViews */,
 				AC7030D51C16D86E008F4C00 /* manager */,
 				6027CF671BE74F9800124C28 /* api */,
 				6027CF681BE74F9D00124C28 /* helpers */,
@@ -1336,14 +1350,6 @@
 				606116AF1BF09C6100259357 /* SHDiscoverCellViewModel.swift */,
 			);
 			name = discover;
-			sourceTree = "<group>";
-		};
-		6068E65B1C2538CE0061F56C /* customViews */ = {
-			isa = PBXGroup;
-			children = (
-				6068E65C1C2538F30061F56C /* CustomUITextField.swift */,
-			);
-			name = customViews;
 			sourceTree = "<group>";
 		};
 		606ED2F31BF807B70064C53E /* camera */ = {
@@ -2219,8 +2225,10 @@
 		B227BFF71C57D9C8003A2D76 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6068E65C1C2538F30061F56C /* CustomUITextField.swift */,
 				6068E6461C2445690061F56C /* CustomUIButton.swift */,
 				6068E64C1C2472260061F56C /* CustomUIView.swift */,
+				B2B540D71C6A665E0075EDA6 /* CustomUIImageView.swift */,
 				AE8351661C5F521B0055C71F /* TabbarButton.swift */,
 				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
 			);
@@ -2356,8 +2364,10 @@
 		B2A1441D1C651BB4002CD70A /* Suggestions */ = {
 			isa = PBXGroup;
 			children = (
-				B2A1441E1C651BCC002CD70A /* PostSignupSuggestionViewController.swift */,
+				B2B540CE1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift */,
+				B2B540CA1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift */,
 				B2A144211C651BFA002CD70A /* ViewModel */,
+				B2B540D91C6A69110075EDA6 /* Views */,
 			);
 			name = Suggestions;
 			sourceTree = "<group>";
@@ -2375,8 +2385,27 @@
 			isa = PBXGroup;
 			children = (
 				B2A144241C651C45002CD70A /* PostSignupSuggestionViewModel.swift */,
+				B2B540D21C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift */,
+				B2B540D01C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2B540D41C6A518E0075EDA6 /* SuggestionExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B2B540D51C6A51C30075EDA6 /* Suggestable.swift */,
+			);
+			name = SuggestionExtensions;
+			sourceTree = "<group>";
+		};
+		B2B540D91C6A69110075EDA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B2B540DA1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift */,
+				B2B540DE1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		B2C729AA1C622079006F7D29 /* Validator */ = {
@@ -2841,6 +2870,7 @@
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
 				AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
+				B2B540CF1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift in Sources */,
 				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
@@ -2881,6 +2911,7 @@
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
 				ACB803AF1C10833300420BB1 /* SHConversationsTableViewModel.swift in Sources */,
 				ACC845791C4CE94F0065A702 /* SHDiscoverShoutsHeaderCell.swift in Sources */,
+				B2B540DB1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift in Sources */,
 				ACDD23B41BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift in Sources */,
 				ACB803B21C108B2A00420BB1 /* SHConversations.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
@@ -2892,7 +2923,6 @@
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				606ED3021BF8A88D0064C53E /* SHPhotoPreviewViewModel.swift in Sources */,
-				B2A1441F1C651BCC002CD70A /* PostSignupSuggestionViewController.swift in Sources */,
 				AC74A77E1BFE58230029CE7D /* SHFilterPriceTableViewController.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
@@ -2980,6 +3010,7 @@
 				ACB803A91C1026E000420BB1 /* SHShoutPickerTableViewController.swift in Sources */,
 				60F11D401C2B626900FEA500 /* SHShoutMyFeedHeaderCell.swift in Sources */,
 				AE8351831C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
+				B2B540D31C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift in Sources */,
 				AE4DB34B1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */,
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
@@ -3010,8 +3041,10 @@
 				604A0DE11BEE9DCC002A80E7 /* SHTabViewController.swift in Sources */,
 				B288D3EA1C68B4BD00895302 /* PublicProfile.swift in Sources */,
 				ACF9A8CD1BEFF1FF001FB172 /* SHDiscoverCollectionViewCell.swift in Sources */,
+				B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
+				B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */,
 				AC7030D91C16E4F4008F4C00 /* SHPusherManager.swift in Sources */,
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
 				ACDB3CC11BF90DE80097444E /* SHRequestTextTableViewCell.swift in Sources */,
@@ -3023,6 +3056,7 @@
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
 				ACC845771C4CE0FE0065A702 /* SHDiscoverShoutsViewModel.swift in Sources */,
 				602414921C01F31B00DFF4DD /* SHDateTransform.swift in Sources */,
+				B2B540D61C6A51C30075EDA6 /* Suggestable.swift in Sources */,
 				ACDD23BF1BFB58DB00EEC6A6 /* SHTagProfileTableViewController.swift in Sources */,
 				60D36D601BF7944100238D62 /* SHTag.swift in Sources */,
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
@@ -3058,6 +3092,7 @@
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
+				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
 				B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */,
 				B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */,
 				ACC845811C4D5ABF0065A702 /* SHDiscoverShoutListCellViewModel.swift in Sources */,
@@ -3083,6 +3118,7 @@
 				606ED2F81BF8082E0064C53E /* SHCameraViewModel.swift in Sources */,
 				ACDB3CCD1BF94F270097444E /* SHShoutTableViewCell.swift in Sources */,
 				AC6F2B3A1BEF895800D9F5A3 /* SHDiscoverLocation.swift in Sources */,
+				B2B540CB1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift in Sources */,
 				6027CF9E1BE759C400124C28 /* TableViewControllerModelProtocol.swift in Sources */,
 				B2C729C31C6221B0006F7D29 /* Account.swift in Sources */,
 				AC5404D81C1EC19200F6ECFE /* SHMapDetatilViewController.swift in Sources */,

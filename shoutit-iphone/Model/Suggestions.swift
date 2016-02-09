@@ -10,10 +10,10 @@ import Foundation
 import Genome
 
 struct Suggestions {
-    let users: [Profile]
-    let pages: [Profile]
-    let tags: [Tag]
-    let shouts: [Shout]
+    let users: [Profile]?
+    let pages: [Profile]?
+    let tags: [Tag]?
+    let shouts: [Shout]?
 }
 
 extension Suggestions: MappableObject {
