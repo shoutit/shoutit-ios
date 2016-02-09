@@ -36,8 +36,6 @@ class MenuHeaderView: UIView {
             }
             
             profileNameLabel?.text = user?.username
-            
-            
         } else {
             fillAsGuest()
         }
