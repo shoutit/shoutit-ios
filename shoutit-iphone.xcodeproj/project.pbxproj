@@ -160,10 +160,6 @@
 		AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7941BFF31E30029CE7D /* SHCategoryTagsViewModel.swift */; };
 		AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */; };
 		AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */; };
-		AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */; };
-		AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */; };
-		AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */; };
-		AC9B39121C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */; };
 		ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */; };
 		ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ECE1BF1233700D504AA /* Enumerations.swift */; };
 		ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */; };
@@ -242,12 +238,6 @@
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */; };
 		ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */; };
-		AE2CB96B1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
-		AE2CB96C1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
-		AE2CB96D1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
-		AE2CB96F1C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
-		AE2CB9701C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
-		AE2CB9711C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -695,10 +685,7 @@
 		AC74A7961BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHFilterCheckTableViewCell.swift; path = View/tabs/stream/filter/cell/SHFilterCheckTableViewCell.swift; sourceTree = "<group>"; };
 		AC856E9F1C1AF40D00864A85 /* SHUsersMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHUsersMeta.swift; path = Model/users/SHUsersMeta.swift; sourceTree = "<group>"; };
 		AC9B39041C40EFD6005D6857 /* MK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MK.framework; path = "Pods/../build/Debug-iphoneos/MK.framework"; sourceTree = "<group>"; };
-		AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupViewController.swift; path = View/auth/SHPostSignupViewController.swift; sourceTree = "<group>"; };
 		AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupViewModel.swift; path = ViewModel/auth/SHPostSignupViewModel.swift; sourceTree = "<group>"; };
-		AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupCategoriesCell.swift; path = View/auth/SHPostSignupCategoriesCell.swift; sourceTree = "<group>"; };
-		AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPostSignupCategoriesCellViewModel.swift; path = ViewModel/auth/SHPostSignupCategoriesCellViewModel.swift; sourceTree = "<group>"; };
 		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
 		ACA77ECE1BF1233700D504AA /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerations.swift; path = Model/enums/Enumerations.swift; sourceTree = "<group>"; };
 		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
@@ -780,8 +767,6 @@
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewController.swift; path = View/tags/SHTagListenersTableViewController.swift; sourceTree = "<group>"; };
 		ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTagListenersTableViewModel.swift; path = ViewModel/tags/SHTagListenersTableViewModel.swift; sourceTree = "<group>"; };
-		AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = ViewModel/SignupViewModel.swift; sourceTree = "<group>"; };
-		AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = ViewModel/LoginViewModel.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE4DB3421C635026001EB84B /* MenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuAnimationController.swift; path = Util/MenuAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDismissAnimationController.swift; path = Util/MenuDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -1255,8 +1240,6 @@
 			children = (
 				AC1C93E51BE90BF7009400BE /* Resource */,
 				604A0DCC1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift */,
-				AC9B390B1C44A9D5005D6857 /* SHPostSignupViewController.swift */,
-				AC9B390F1C44C28C005D6857 /* SHPostSignupCategoriesCell.swift */,
 				ACC064461C47523E0089912A /* SHLoginPopupViewController.swift */,
 			);
 			name = auth;
@@ -1266,7 +1249,6 @@
 			isa = PBXGroup;
 			children = (
 				AC9B390D1C44AC51005D6857 /* SHPostSignupViewModel.swift */,
-				AC9B39111C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift */,
 				ACC064481C47526D0089912A /* SHLoginPopupViewModel.swift */,
 			);
 			name = auth;
@@ -2117,14 +2099,6 @@
 			name = ChangeLocation;
 			sourceTree = "<group>";
 		};
-		B2040ED21C625CB400F5038D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */,
-			);
-			name = ViewModel;
-			sourceTree = "<group>";
-		};
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -2496,7 +2470,6 @@
 		B2C729D71C6223E2006F7D29 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */,
 				B2C729D91C6223FA006F7D29 /* LoginViewController.swift */,
 			);
 			name = Login;
@@ -2901,7 +2874,6 @@
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
-				AC9B390C1C44A9D5005D6857 /* SHPostSignupViewController.swift in Sources */,
 				AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */,
 				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
@@ -3006,19 +2978,16 @@
 				60D36D521BF7622700238D62 /* SHCreateShoutTableViewController.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				AC74A7831BFEF7FE0029CE7D /* SHFilterCheckmarkTableViewModel.swift in Sources */,
-				AC9B39101C44C28C005D6857 /* SHPostSignupCategoriesCell.swift in Sources */,
 				ACDB3CBD1BF90D7F0097444E /* SHRequestVideoTableViewCell.swift in Sources */,
 				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* Validator.swift in Sources */,
-				AC9B390E1C44AC51005D6857 /* SHPostSignupViewModel.swift in Sources */,
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
 				ACB803AD1C1082D100420BB1 /* SHConversationsTableViewController.swift in Sources */,
 				ACDD23C21BFB5B8500EEC6A6 /* SHTagProfileTableViewModel.swift in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				B21EA3BA1C63E8900013E99F /* Params.swift in Sources */,
 				AC74A7931BFF314B0029CE7D /* SHCategoryTagsViewController.swift in Sources */,
-				AC9B39121C44C31E005D6857 /* SHPostSignupCategoriesCellViewModel.swift in Sources */,
 				B2ACBDEF1C68BDE2000FA302 /* Category.swift in Sources */,
 				ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */,
 				ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */,
@@ -3029,7 +2998,6 @@
 				AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
-				B2C729DE1C62240D006F7D29 /* LoginWithEmailViewModel.swift in Sources */,
 				B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */,
 				6027CFA41BE75B7800124C28 /* BaseViewController.swift in Sources */,
 				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
@@ -3052,7 +3020,6 @@
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
-				AE2CB96B1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				AC74A7951BFF31E30029CE7D /* SHCategoryTagsViewModel.swift in Sources */,
 				AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */,
 				AC1C93F51BE9F1EC009400BE /* ModelDelegate.swift in Sources */,
@@ -3094,7 +3061,6 @@
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
-				AE2CB96F1C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				6027CF8D1BE7529500124C28 /* SHApiManager.swift in Sources */,
@@ -3184,7 +3150,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE2CB96C1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
@@ -3205,7 +3170,6 @@
 				AE8351681C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				AEA599801C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351881C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
-				AE2CB9701C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				AE83517C1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518C1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */,
@@ -3220,7 +3184,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE2CB96D1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */,
 				6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */,
 				AE8351731C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
@@ -3241,7 +3204,6 @@
 				AE8351691C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				AEA599811C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351891C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
-				AE2CB9711C6A2B070033FCA9 /* LoginViewModel.swift in Sources */,
 				AE83517D1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518D1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */,
