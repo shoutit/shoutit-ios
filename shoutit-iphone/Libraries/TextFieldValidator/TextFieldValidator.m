@@ -47,7 +47,7 @@
     
     UIFont *font=[UIFont fontWithName:FontName size:FontSize];
     CGSize size=[self.strMsg boundingRectWithSize:CGSizeMake(fieldFrame.size.width-(PaddingInErrorPopUp*2), 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
-    size=CGSizeMake(ceilf(size.width), ceilf(size.height));
+    size= CGSizeMake(ceilf(size.width), ceilf(size.height));
     
     UIView *view=[[UIView alloc] initWithFrame:CGRectZero];
     [self insertSubview:view belowSubview:img];

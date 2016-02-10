@@ -26,7 +26,7 @@ class SHLocationManager: NSObject, CLLocationManagerDelegate {
     private override init() {
         super.init()
         clLocationManager.delegate = self
-        clLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        clLocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         clLocationManager.requestWhenInUseAuthorization()
         clLocationManager.distanceFilter = MIN_DISTANCE_TO_UPDATE_LOCATION
     }

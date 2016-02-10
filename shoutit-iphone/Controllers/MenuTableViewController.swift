@@ -37,6 +37,9 @@ class MenuTableViewController: UITableViewController, Navigation {
         
         setupBackgroundView()
         updateFooterView()
+        
+        let user = Account.sharedInstance.authData?.user
+        headerView?.fillWith(user)
     }
     
     func setupBackgroundView() {

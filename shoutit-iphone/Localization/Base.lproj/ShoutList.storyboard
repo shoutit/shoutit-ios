@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -29,7 +29,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="shShoutItemGridCell" id="aer-qs-ALN" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="200" y="64" width="200" height="239"/>
+                                        <rect key="frame" x="200" y="0.0" width="200" height="239"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
@@ -104,7 +104,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="0yP-1M-ldN" customClass="SHShoutDiscoverTitleCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="313" width="377" height="41"/>
+                                        <rect key="frame" x="112" y="249" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -149,7 +149,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="lyL-P0-Ffj" customClass="SHShoutMyFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="364" width="377" height="41"/>
+                                        <rect key="frame" x="112" y="300" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -201,7 +201,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemListCell" reuseIdentifier="shShoutItemListCell" id="4gt-tj-vc2" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="108" y="415" width="384" height="110"/>
+                                        <rect key="frame" x="108" y="351" width="384" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
@@ -321,7 +321,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverListCell" reuseIdentifier="shoutDiscoverListCell" id="hXl-TT-nkS" customClass="SHShoutDiscoverListCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="197" y="535" width="206" height="121"/>
+                                        <rect key="frame" x="197" y="471" width="206" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="206" height="121"/>
@@ -376,14 +376,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                     <constraint firstAttribute="bottom" secondItem="oxA-He-mMs" secondAttribute="bottom" constant="29" id="uev-tW-iT8"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="OA0-8j-RwM" secondAttribute="bottom" constant="5" id="zNQ-Q4-56j"/>
                                                                                 </constraints>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                        <real key="value" value="0.0"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                        <real key="value" value="4"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                </userDefinedRuntimeAttributes>
                                                                                 <variation key="default">
                                                                                     <mask key="constraints">
                                                                                         <exclude reference="uev-tW-iT8"/>
@@ -429,29 +421,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                                     <constraint firstItem="epc-xf-hEY" firstAttribute="centerX" secondItem="5KU-Oq-VnZ" secondAttribute="centerX" id="6hE-a3-s7y"/>
                                                                                     <constraint firstItem="epc-xf-hEY" firstAttribute="centerY" secondItem="5KU-Oq-VnZ" secondAttribute="centerY" id="k8v-4S-KwL"/>
                                                                                 </constraints>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                        <real key="value" value="4"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                        <real key="value" value="1"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                                        <color key="value" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                        <size key="value" width="4" height="4"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                        <real key="value" value="0.5"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                        <color key="value" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                                                        <real key="value" value="4"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -552,24 +521,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5b-Kp-hO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018" y="413"/>
-        </scene>
-        <!--Navigation View Controller-->
-        <scene sceneID="p1t-aL-eKR">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CwS-PA-1Aj" customClass="SHNavigationViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9y9-VC-836">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gpc-x8-I2a" kind="relationship" relationship="rootViewController" id="DJr-Rk-3Uw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-NX-WMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="202" y="316"/>
         </scene>
     </scenes>
     <resources>
