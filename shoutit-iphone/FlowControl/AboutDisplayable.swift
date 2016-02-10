@@ -15,6 +15,6 @@ protocol AboutDisplayable {
 extension AboutDisplayable where Self: FlowController {
     
     func showAboutInterface() {
-        // show about screen
+        fatalError("Implement about")
     }
 }

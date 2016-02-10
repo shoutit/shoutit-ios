@@ -49,7 +49,7 @@ extension User: MappableObject {
     
     init(map: Map) throws {
         id = try map.extract("id")
-        type = try map["type"].fromJson{UserType(rawValue: $0)!}
+        type = try map.extract("type") {UserType(rawValue: $0)!}
         apiPath = try map.extract("api_url")
         webPath = try map.extract("web_url")
         username = try map.extract("username")
@@ -59,7 +59,7 @@ extension User: MappableObject {
         activated = try map.extract("is_activated")
         imagePath = try map.extract("image")
         coverPath = try map.extract("cover")
-        gender = try map["gender"].fromJson{Gender(string: $0)}
+        gender = try map.extract("gender") {Gender(string: $0)}
         videoPath = try map.extract("video")
         dateJoindedEpoch = try map.extract("date_joined")
         bio = try map.extract("bio")
