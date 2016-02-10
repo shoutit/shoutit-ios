@@ -1,4 +1,23 @@
 PODS:
+  - AFNetworking (2.2.4):
+    - AFNetworking/NSURLConnection (= 2.2.4)
+    - AFNetworking/NSURLSession (= 2.2.4)
+    - AFNetworking/Reachability (= 2.2.4)
+    - AFNetworking/Security (= 2.2.4)
+    - AFNetworking/Serialization (= 2.2.4)
+    - AFNetworking/UIKit (= 2.2.4)
+  - AFNetworking/NSURLConnection (2.2.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.4):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - Alamofire (3.1.5)
   - AlamofireObjectMapper (2.1.0):
     - Alamofire (~> 3.1.0)
@@ -27,6 +46,8 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.9.1):
     - FBSDKCoreKit
+  - FTGooglePlacesAPI (1.1):
+    - AFNetworking (~> 2.2.0)
   - Genome (2.0.4):
     - PureJsonSerializer (~> 1.0.0)
   - GoogleAppUtilities (1.0.0):
@@ -100,6 +121,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
   - FBSDKShareKit (~> 4.8)
+  - FTGooglePlacesAPI
   - Genome (~> 2.0)
   - GoogleMaps (~> 1.10)
   - GoogleSignIn (~> 2.4)
@@ -129,6 +151,7 @@ DEPENDENCIES:
   - XCGLogger (~> 3.0)
 
 SPEC CHECKSUMS:
+  AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
@@ -144,6 +167,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   FBSDKLoginKit: ec22dc49bd372b064e93d6773df4ffefb3a552a2
   FBSDKShareKit: b8c8ef0ed173f9fc1b3c8df384a0202ce53008d4
+  FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3

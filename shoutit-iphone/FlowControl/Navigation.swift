@@ -39,9 +39,9 @@ enum NavigationItem : String {
     
     func icon() -> UIImage? {
         switch self {
-        case .Home: return UIImage(named: "tabChat")
+        case .Home: return UIImage(named: "menu_home")
         case .Discover: return UIImage(named: "tabDiscover")
-        case .Browse: return UIImage(named: "tabDiscover")
+        case .Browse: return UIImage(named: "menu_browse_icon")
         case .Chats: return UIImage(named: "tabChat")
         case .Orders: return UIImage(named: "cart")
         default: return UIImage(named: "tabChat")

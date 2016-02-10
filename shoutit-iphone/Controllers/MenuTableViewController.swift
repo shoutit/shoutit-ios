@@ -114,6 +114,10 @@ class MenuTableViewController: UITableViewController, Navigation {
     }
     
     func updateFooterView() {
+        if (UIScreen.mainScreen().bounds.height < tableView.frame.height) {
+            return
+        }
+        
         footerHeight = CGRectGetHeight(tableView.frame) - kTableHeaderHeight - 8 * 48.0
         
         if let footer = tableView.tableFooterView {
