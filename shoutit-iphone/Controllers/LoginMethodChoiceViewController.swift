@@ -113,6 +113,8 @@ final class LoginMethodChoiceViewController: UIViewController {
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
             MBProgressHUD.hideHUDForView(self?.view, animated: true)
+            self?.flowDelegate?.showPostSignupInterests()
+            return
             if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
             } else {
