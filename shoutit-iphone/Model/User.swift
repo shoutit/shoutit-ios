@@ -8,67 +8,114 @@
 
 import Foundation
 import Genome
+import PureJsonSerializer
 
 struct User {
     
-    // basic info
-    private(set) var id: String = ""
-    private(set) var username: String = ""
-    private(set) var email: String = ""
-    private(set) var name: String = ""
-    private(set) var firstName: String = ""
-    private(set) var lastName: String = ""
+    // public profile
+    let id: String
+    let type: UserType
+    let apiPath: String
+    let webPath: String
+    let username: String?
+    let name: String?
+    let firstName: String?
+    let lastName: String?
+    let activated: Bool
+    let imagePath: String?
+    let coverPath: String?
+    let gender: Gender?
+    let videoPath: String?
+    let dateJoindedEpoch: Int
+    let bio: String?
+    let location: Address
+    let email: String
+    let website: String?
+    let shoutsPath: String?
+    let listenersCount: Int
+    let listenersPath: String?
+    let listeningMetadata: ListenersMetadata
+    let listeningPath: String?
+    let owner: Bool
+    let pages: [User]?
     
-    // urls
-    private(set) var apiPath: String = ""
-    private(set) var webPath: String = ""
-    
-    // images
-    private(set) var image: String = ""
-    
-    // additional info
-    private(set) var gender: String = ""
-    private(set) var bio: String = ""
-    private(set) var location: Address = Address()
-    private(set) var isActivated: Bool = false
+    // app user specific
+    let linkedAccounts: LoginAccounts?
+    let pushTokens: PushTokens?
+    let passwordSet: Bool?
+}
 
-    // followers
-    private(set) var isListening: Bool = false
-    private(set) var linkedAccounts: LoginAccounts = LoginAccounts()
-    private(set) var isFollowing: Bool = false
-    private(set) var listenersCount: Int = 0
-    private(set) var listeningCount: ListenersMetadata = ListenersMetadata()
+extension User: MappableObject {
     
-    // computed properties
-    var apiURL: NSURL? {
-        return NSURL(string: apiPath)
+    init(map: Map) throws {
+        id = try map.extract("id")
+        type = try map["type"].fromJson{UserType(rawValue: $0)!}
+        apiPath = try map.extract("api_url")
+        webPath = try map.extract("web_url")
+        username = try map.extract("username")
+        name = try map.extract("name")
+        firstName = try map.extract("first_name")
+        lastName = try map.extract("last_name")
+        activated = try map.extract("is_activated")
+        imagePath = try map.extract("image")
+        coverPath = try map.extract("cover")
+        gender = try map["gender"].fromJson{Gender(string: $0)}
+        videoPath = try map.extract("video")
+        dateJoindedEpoch = try map.extract("date_joined")
+        bio = try map.extract("bio")
+        location = try map.extract("location")
+        email = try map.extract("email")
+        website = try map.extract("website")
+        shoutsPath = try map.extract("shouts_url")
+        listenersCount = try map.extract("listeners_count")
+        listenersPath = try map.extract("listeners_url")
+        listeningMetadata = try map.extract("listening_count")
+        listeningPath = try map.extract("listening_url")
+        owner = try map.extract("is_owner")
+        pages = try map.extract("pages")
+        linkedAccounts = try map.extract("linked_accounts")
+        pushTokens = try map.extract("push_tokens")
+        passwordSet = try map.extract("is_password_set")
     }
     
-    var webURL: NSURL? {
-        return NSURL(string: webPath)
+    func sequence(map: Map) throws {
+        
+        try id ~> map["id"]
+        try type ~> map["type"]
+            .transformToJson{$0.rawValue}
+        try apiPath ~> map["api_url"]
+        try webPath ~> map["web_url"]
+        try username ~> map["username"]
+        try name ~> map["name"]
+        try firstName ~> map["first_name"]
+        try lastName ~> map["last_name"]
+        try activated ~> map["is_activated"]
+        try imagePath ~> map["image"]
+        try coverPath ~> map["cover"]
+        try gender ~> map[KeyType.Key("gender")]
+            .transformToJson{(gender) -> Json in
+            if let raw = gender where raw != .Unknown {
+                return .StringValue(raw.rawValue)
+            }
+            return .NullValue
+        }
+        
+        try videoPath ~> map["video"]
+        try dateJoindedEpoch ~> map["date_joined"]
+        try bio ~> map["bio"]
+        try location ~> map["location"]
+        try email ~> map["email"]
+        try website ~> map["website"]
+        try shoutsPath ~> map["shouts_url"]
+        try listenersCount ~> map["listeners_count"]
+        try listenersPath ~> map["listeners_url"]
+        try listeningMetadata ~> map["listening_count"]
+        try listeningPath ~> map["listening_url"]
+        try owner ~> map["is_owner"]
+        try pages ~> map["pages"]
+        try linkedAccounts ~> map["linked_accounts"]
+        try pushTokens ~> map["push_tokens"]
+        try passwordSet ~> map["is_password_set"]
     }
 }
 
-extension User: BasicMappable {
-    
-    mutating func sequence(map: Map) throws {
-        try apiPath              <~> map["api_url"]
-        try webPath              <~> map["web_url"]
-        try username            <~> map["username"]
-        try bio                 <~> map["bio"]
-        try id                  <~> map["id"]
-        try location            <~> map["location"]
-        try name                <~> map["name"]
-        try firstName           <~> map["first_name"]
-        try lastName            <~> map["last_name"]
-        try isActivated         <~> map["is_activated"]
-        try image               <~> map["image"]
-        try isListening         <~> map["is_listening"]
-        try isFollowing         <~> map["is_following"]
-        try email               <~> map["email"]
-        try gender              <~> map["gender"]
-        try linkedAccounts      <~> map["linked_accounts"]
-        try listenersCount      <~> map["listeners_count"]
-        try listeningCount      <~> map["listening_count"]
-    }
-}

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol IntroViewControllerFlowDelegate: class, HelpDisplayable {
+protocol IntroViewControllerFlowDelegate: class, HelpDisplayable, LoginFinishable {
     func showLoginChoice() -> Void
 }
 
@@ -36,6 +36,12 @@ final class IntroViewController: UIViewController {
         setupRX()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBarHidden = true
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {
@@ -52,7 +58,7 @@ final class IntroViewController: UIViewController {
         skipButton
             .rx_tap
             .subscribeNext {[unowned self] in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.flowDelegate?.didFinishLoginProcessWithSuccess(false)
             }
             .addDisposableTo(disposeBag)
         

@@ -75,7 +75,6 @@ end
 # other
 pod 'CryptoSwift'
 pod 'libPusher', '~> 1.6'
-pod 'MK', '~> 1.0'
 
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|

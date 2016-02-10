@@ -9,12 +9,6 @@
 import UIKit
 import ObjectMapper
 
-enum ShoutType : String {
-    case Offer = "offer"
-    case Request = "request"
-    case VideoCV = "cv-video"
-}
-
 class SHShout: Mappable {
     
     var id: String?

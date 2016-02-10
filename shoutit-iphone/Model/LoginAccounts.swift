@@ -10,15 +10,19 @@ import Foundation
 import Genome
 
 struct LoginAccounts {
-    
-    private(set) var gplus: Bool = false
-    private(set) var facebook: Bool = false
+    let gplus: Bool
+    let facebook: Bool
 }
 
-extension LoginAccounts: BasicMappable {
+extension LoginAccounts: MappableObject {
     
-    mutating func sequence(map: Map) throws {
-        try gplus                <~> map["gplus"]
-        try facebook             <~> map["facebook"]
+    init(map: Map) throws {
+        gplus = try map.extract("gplus")
+        facebook = try map.extract("facebook")
+    }
+    
+    func sequence(map: Map) throws {
+        try gplus                ~> map["gplus"]
+        try facebook             ~> map["facebook"]
     }
 }
