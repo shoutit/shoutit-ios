@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         applyAppearance()
         
         configureLoggingServices()
-        
-        // location
-        //LocationManager.sharedInstance.startUpdatingLocation()
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
