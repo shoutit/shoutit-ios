@@ -37,7 +37,7 @@ final class ApplicationMainViewController: UIViewController {
     }
     
     private func showLogin() {
-        let navigationController = UINavigationController()
+        let navigationController = LoginNavigationViewController()
         loginFlowController = LoginFlowController(navigationController: navigationController)
         presentViewController(navigationController, animated: true, completion: nil)
     }

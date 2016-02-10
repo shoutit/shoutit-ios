@@ -92,6 +92,15 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             
         }
         
+        if flowController.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
+            let navigationController = LoginNavigationViewController()
+            
+            let loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
+            
+            return loginFlowController
+        }
+        
+        
         return flowController
     }
     
