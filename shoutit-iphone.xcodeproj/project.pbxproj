@@ -490,7 +490,7 @@
 		601EB8BB1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCellViewModel.swift; path = ViewModel/tabs/home/SHShoutItemCellViewModel.swift; sourceTree = "<group>"; };
 		601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutMyFeedHeaderCellViewModel.swift; path = ViewModel/tabs/home/SHShoutMyFeedHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		602414911C01F31B00DFF4DD /* SHDateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDateTransform.swift; path = Util/api/transforms/SHDateTransform.swift; sourceTree = "<group>"; };
-		6027CF311BE74EAE00124C28 /* shoutit-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shoutit-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
 		6027CF3B1BE74EAE00124C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		6027CF401BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
@@ -823,6 +823,7 @@
 		B2082D7A1C63844E007EB2FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = UIKitExtensions/Fonts.swift; sourceTree = "<group>"; };
 		B209AC011C6B56F400EF2B8E /* ProfileDependecies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDependecies.swift; path = Model/ProfileDependecies.swift; sourceTree = "<group>"; };
 		B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionBaseTableViewCell.swift; path = View/PostSignupSuggestionBaseTableViewCell.swift; sourceTree = "<group>"; };
+		B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "shoutit-Staging.xcconfig"; path = "OtherSources/shoutit-Staging.xcconfig"; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -1026,7 +1027,7 @@
 		6027CF321BE74EAE00124C28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6027CF311BE74EAE00124C28 /* shoutit-iphone.app */,
+				6027CF311BE74EAE00124C28 /* Shoutit.app */,
 				6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */,
 				6027CF501BE74EAE00124C28 /* shoutit-iphoneUITests.xctest */,
 			);
@@ -2242,6 +2243,7 @@
 				B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */,
 				B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */,
 				B227BFBB1C579597003A2D76 /* shoutit.xcconfig */,
+				B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */,
 				B227BFAF1C579577003A2D76 /* External */,
 			);
 			name = xcconfig;
@@ -2524,7 +2526,7 @@
 			);
 			name = "shoutit-iphone";
 			productName = "shoutit-iphone";
-			productReference = 6027CF311BE74EAE00124C28 /* shoutit-iphone.app */;
+			productReference = 6027CF311BE74EAE00124C28 /* Shoutit.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6027CF441BE74EAE00124C28 /* shoutit-iphoneTests */ = {
@@ -3550,8 +3552,6 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3577,8 +3577,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3701,8 +3699,6 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3800,8 +3796,6 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3899,8 +3893,6 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3990,8 +3982,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4080,8 +4070,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4170,8 +4158,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4260,8 +4246,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4350,8 +4334,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
