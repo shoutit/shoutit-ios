@@ -35,10 +35,11 @@ class APIMiscService {
     
     static func requestSuggestionsWithParams(params: SuggestionsParams, withCompletionHandler completionHandler: Result<Suggestions, NSError> -> Void) {
         
-        APIManager.manager.request(.GET, suggestionURL, parameters: params.params, encoding: .JSON, headers: nil).responseJSON { (response) in
+        APIManager.manager.request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseData { (response) in
             switch response.result {
-            case .Success(let json):
+            case .Success(let data):
                 do {
+                    let json = try Json.deserialize(data)
                     let suggestions = try Suggestions(js: json)
                     completionHandler(.Success(suggestions))
                 } catch let error as NSError {

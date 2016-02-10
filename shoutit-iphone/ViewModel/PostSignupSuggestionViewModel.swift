@@ -36,6 +36,8 @@ class PostSignupSuggestionViewModel {
                     let tagsSection = PostSignupSuggestionsSectionViewModel(section: .Interests, models: tags.map{$0 as Suggestable})
                     sections.append(tagsSection)
                 }
+                self.sections = sections
+                self.state.value = .ContentLoaded
             case .Failure(let error):
                 self.state.value = .Error(error)
             }

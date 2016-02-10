@@ -24,11 +24,25 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupRX()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBarHidden = true
     }
+    
+    // MARK: - Setup
+    
+    private func setupRX() {
+        
+    }
+    
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)

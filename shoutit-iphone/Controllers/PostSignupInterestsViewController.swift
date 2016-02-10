@@ -55,29 +55,29 @@ class PostSignupInterestsViewController: UIViewController {
         // table view
         Observable
             .combineLatest(viewModel.state.asObservable(), viewModel.categories.asObservable()){($0, $1)}
-            .filter { (loadingState, cellViewModels) -> Bool in
+            .filter {[weak self] (loadingState, cellViewModels) -> Bool in
                 switch loadingState {
                 case .Idle:
-                    self.activityIndicator.hidden = true
-                    self.tableView.tableHeaderView = nil
+                    self?.activityIndicator.hidden = true
+                    self?.tableView.tableHeaderView = nil
                     return false
                 case .Loading:
-                    self.activityIndicator.hidden = false
-                    self.tableView.tableHeaderView = nil
+                    self?.activityIndicator.hidden = false
+                    self?.tableView.tableHeaderView = nil
                     return false
                 case .ContentUnavailable:
-                    self.activityIndicator.hidden = true
-                    self.tableViewPlaceholder.label.text = NSLocalizedString("Categories unavilable", comment: "")
-                    self.tableView.tableHeaderView = self.tableViewPlaceholder
+                    self?.activityIndicator.hidden = true
+                    self?.tableViewPlaceholder.label.text = NSLocalizedString("Categories unavilable", comment: "")
+                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .Error(let error):
-                    self.activityIndicator.hidden = true
-                    self.tableViewPlaceholder.label.text = (error as NSError).localizedDescription
-                    self.tableView.tableHeaderView = self.tableViewPlaceholder
+                    self?.activityIndicator.hidden = true
+                    self?.tableViewPlaceholder.label.text = (error as NSError).localizedDescription
+                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .ContentLoaded:
-                    self.activityIndicator.hidden = true
-                    self.tableView.tableHeaderView = nil
+                    self?.activityIndicator.hidden = true
+                    self?.tableView.tableHeaderView = nil
                     return true
                 }
             }

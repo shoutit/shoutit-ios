@@ -733,13 +733,17 @@
         <scene sceneID="lH3-vh-UOJ">
             <objects>
                 <tableViewController id="iM9-A5-O26" customClass="PostSignupSuggestionsTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Cdg-ez-fFz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Cdg-ez-fFz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="5HQ-vm-zTg">
+                            <rect key="frame" x="0.0" y="169.5" width="375" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6GK-Tp-AQO" id="r9h-My-HfA">
@@ -765,7 +769,7 @@
                                     <outlet property="sectionTitleLabel" destination="ki9-L8-V22" id="svg-oZ-hfX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsCell" rowHeight="58" id="YoX-v2-qs9" customClass="PostSignupSuggestionsTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsCell" rowHeight="58" id="YoX-v2-qs9" customClass="PostSignupSuggestionsTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="93.5" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YoX-v2-qs9" id="fvL-jQ-q1a">
@@ -778,7 +782,7 @@
                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bf3-x5-Len" customClass="CustomUIImageView" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bf3-x5-Len" customClass="CustomUIImageView" customModule="shoutit_iphone" customModuleProvider="target">
                                             <rect key="frame" x="10" y="5" width="48" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Gbl-f0-pEk"/>
@@ -802,6 +806,7 @@
                                         <constraint firstItem="b8m-DN-9jN" firstAttribute="leading" secondItem="Bf3-x5-Len" secondAttribute="trailing" constant="12" id="50P-D7-D0O"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cl5-6M-Vue" secondAttribute="trailing" constant="45" id="Mjm-rg-yf1"/>
                                         <constraint firstItem="b8m-DN-9jN" firstAttribute="top" secondItem="fvL-jQ-q1a" secondAttribute="top" constant="5" id="Plw-Gq-Zus"/>
+                                        <constraint firstAttribute="bottom" secondItem="Bf3-x5-Len" secondAttribute="bottom" constant="5" id="UsD-uN-c7a"/>
                                         <constraint firstItem="Bf3-x5-Len" firstAttribute="top" secondItem="fvL-jQ-q1a" secondAttribute="top" constant="5" id="cta-8b-U7P"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8m-DN-9jN" secondAttribute="trailing" constant="45" id="iHK-n7-nj8"/>
                                         <constraint firstItem="Bf3-x5-Len" firstAttribute="leading" secondItem="fvL-jQ-q1a" secondAttribute="leading" constant="10" id="jAv-WO-51l"/>
@@ -821,8 +826,32 @@
                             <outlet property="delegate" destination="iM9-A5-O26" id="bVc-a6-hbv"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="activityIndicator" destination="5HQ-vm-zTg" id="QKm-My-vLB"/>
+                        <outlet property="placeholderView" destination="TfV-mf-0sq" id="Ngw-HZ-bzj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPI-tX-pIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="TfV-mf-0sq" customClass="TableViewPlaceholderView" customModule="shoutit_iphone" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpl-XO-bcH">
+                            <rect key="frame" x="112" y="53" width="149" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="zpl-XO-bcH" firstAttribute="centerX" secondItem="TfV-mf-0sq" secondAttribute="centerX" id="HjS-A4-nJQ"/>
+                        <constraint firstItem="zpl-XO-bcH" firstAttribute="centerY" secondItem="TfV-mf-0sq" secondAttribute="centerY" id="yND-Pb-vhc"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="label" destination="zpl-XO-bcH" id="uYz-Ja-dj8"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="5372.5" y="292.5"/>
         </scene>
