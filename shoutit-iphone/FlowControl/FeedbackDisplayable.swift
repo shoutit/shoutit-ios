@@ -15,6 +15,6 @@ protocol FeedbackDisplayable {
 extension FeedbackDisplayable where Self: FlowController {
     
     func showFeedbackInterface() {
-        UserVoice.presentUserVoiceInterfaceForParentViewController(navigationController)
+        UserVoice.presentUserVoiceContactUsFormForParentViewController(navigationController)
     }
 }

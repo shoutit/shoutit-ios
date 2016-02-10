@@ -1,8 +1,8 @@
 //
-//  PublicProfile.swift
+//  ProfileDependecies.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 08.02.2016.
+//  Created by Łukasz Kasperek on 10.02.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 

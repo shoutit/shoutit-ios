@@ -15,6 +15,6 @@ protocol HelpDisplayable {
 extension HelpDisplayable where Self: FlowController {
     
     func showHelpInterface() {
-        // show help screen
+        UserVoice.presentUserVoiceInterfaceForParentViewController(navigationController)
     }
 }

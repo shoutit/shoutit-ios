@@ -19,6 +19,7 @@ class PostSignupInterestsViewController: UIViewController {
     
     // IB outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet var tableViewPlaceholder: TableViewPlaceholderView!
@@ -39,6 +40,7 @@ class PostSignupInterestsViewController: UIViewController {
         super.viewDidLoad()
         
         setupRX()
+        setupAppearance()
         viewModel.fetchCategories()
     }
     
@@ -110,6 +112,18 @@ class PostSignupInterestsViewController: UIViewController {
                 self.flowDelegate?.showPostSignupSuggestions()
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    private func setupAppearance() {
+        tableViewContainer.layer.cornerRadius = 10
+        tableViewContainer.layer.borderColor = UIColor.lightGrayColor().CGColor
+        tableViewContainer.layer.borderWidth = 0.5
+        tableViewContainer.layer.shadowColor = UIColor.grayColor().CGColor
+        tableViewContainer.layer.shadowOpacity = 0.6
+        tableViewContainer.layer.shadowRadius = 3.0
+        tableViewContainer.layer.shadowOffset = CGSize(width: 2, height: 2)
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 10
     }
 }
 

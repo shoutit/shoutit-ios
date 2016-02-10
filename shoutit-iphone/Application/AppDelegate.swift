@@ -82,6 +82,7 @@ extension AppDelegate {
         config.topicId = 79840
         config.forumId = 290071
         UserVoice.initialize(config)
+        UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
         
         SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
             let userInfo = ["object": event]

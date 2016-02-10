@@ -70,6 +70,15 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
     }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let firstInSection = indexPath.row == 0
+        let lastInSection = tableView.numberOfRowsInSection(indexPath.section) == indexPath.row + 1
+        if let cell = cell as? PostSignupSuggestionBaseTableViewCell {
+            cell.setupCellForRoundedTop(firstInSection, roundedBottom: lastInSection)
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource

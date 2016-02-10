@@ -27,6 +27,7 @@ struct SuggestionsParams: Params {
     var params: [String : AnyObject] {
         return [
             "type" : type.parameters(),
+            "page_size" : pageSize,
             "country" : country,
             "state" : state,
             "city" : city

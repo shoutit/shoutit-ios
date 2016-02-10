@@ -32,7 +32,6 @@ final class LoginFlowController: FlowController {
         controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }
-    
 }
 
 extension LoginFlowController: ApplicationMainViewControllerRootObject {}

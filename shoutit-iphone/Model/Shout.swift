@@ -34,7 +34,7 @@ extension Shout: MappableObject {
         id = try map.extract("id")
         apiPath = try map.extract("api_url")
         webPath = try map.extract("web_url")
-        type = try map["type"].fromJson{ShoutType(rawValue: $0)!}
+        type = try map.extract("type") {ShoutType(rawValue: $0)!}
         location = try map.extract("location")
         title = try map.extract("title")
         text = try map.extract("text")

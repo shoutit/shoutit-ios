@@ -30,7 +30,7 @@ extension Profile: MappableObject {
     
     init(map: Map) throws {
         id = try map.extract("id")
-        type = try map["type"].fromJson{UserType(rawValue: $0)!}
+        type = try map.extract("type"){ UserType(rawValue: $0)!}
         apiPath = try map.extract("api_url")
         webPath = try map.extract("web_url")
         username = try map.extract("username")

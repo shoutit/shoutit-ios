@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol PostSignupSuggestionViewControllerFlowDelegate: class, LoginFinishable {}
 
@@ -21,6 +23,9 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     // navigation
     weak var flowDelegate: PostSignupSuggestionViewControllerFlowDelegate?
+    
+    // RX
+    let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -40,6 +45,19 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     private func setupRX() {
         
+        skipButton
+            .rx_tap
+            .subscribeNext {[unowned self] in
+                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+            }
+            .addDisposableTo(disposeBag)
+        
+        doneButton
+            .rx_tap
+            .subscribeNext {[unowned self] in
+                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - Navigation
