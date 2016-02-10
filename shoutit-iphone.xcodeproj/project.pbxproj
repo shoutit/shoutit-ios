@@ -238,6 +238,10 @@
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		ACF9E8771C051FFF00F0B615 /* SHTagListenersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8761C051FFE00F0B615 /* SHTagListenersTableViewController.swift */; };
 		ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8781C05203800F0B615 /* SHTagListenersTableViewModel.swift */; };
+		AE2CB96C1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
+		AE2CB96D1C6A2AFE0033FCA9 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96A1C6A2AFE0033FCA9 /* SignupViewModel.swift */; };
+		AE2CB9701C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
+		AE2CB9711C6A2B070033FCA9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB96E1C6A2B070033FCA9 /* LoginViewModel.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
