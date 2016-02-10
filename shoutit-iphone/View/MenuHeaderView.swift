@@ -35,7 +35,7 @@ class MenuHeaderView: UIView {
                 profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
             }
             
-            profileNameLabel?.text = user?.username
+            profileNameLabel?.text = user?.name
         } else {
             fillAsGuest()
         }
