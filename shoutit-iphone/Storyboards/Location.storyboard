@@ -76,7 +76,7 @@
         <scene sceneID="NOU-X8-czL">
             <objects>
                 <tableViewController storyboardIdentifier="LocationRootController" id="6rO-uv-M0b" customClass="ChangeLocationTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="85o-UA-Ud3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="85o-UA-Ud3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,7 +164,7 @@
                         <barButtonItem key="leftBarButtonItem" image="navMenu" id="Vqy-o0-YYS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="toggleMenu" destination="eGL-Yg-bi6" id="gUU-V8-lXj"/>
+                                <action selector="toggleMenu" destination="6rO-uv-M0b" id="ECi-Y5-w3z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

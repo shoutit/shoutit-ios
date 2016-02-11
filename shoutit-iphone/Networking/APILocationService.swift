@@ -25,12 +25,15 @@ class APILocationService {
             ]
         ]
         
-        APIManager.manager.request(.POST, url, parameters: params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
+        APIManager.manager().request(.PATCH, url, parameters: params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
             switch response.result {
             case .Success(let data):
                 do {
                     let json = try Json.deserialize(data)
                     let user = try User(js: json)
+                    
+                    Account.sharedInstance.user = user
+                    
                     completionHandler(.Success(user))
                 } catch let error as NSError {
                     completionHandler(.Failure(error))
