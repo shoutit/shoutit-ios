@@ -30,18 +30,27 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         didSet {
             currentLocationLabel.hidden = loading
             activityIndicator.hidden = !loading
+            if loading {
+                activityIndicator.startAnimating()
+            } else {
+                activityIndicator.stopAnimating()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadInitialState()
         setupObservers()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        loadInitialState()
+    }
+    
     func loadInitialState() {
-        currentLocationText = Account.locationString()
+        currentLocationText = Account.sharedInstance.locationString()
     }
     
     func setupObservers() {
@@ -61,13 +70,18 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
                     return
                 }
                 
+                self.loading = true
+                
                 APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
                     
                 }
                 
             }
             .addDisposableTo(disposeBag)
-        
+
+        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+            self.loadInitialState()
+        }.addDisposableTo(disposeBag)
     }
     
 }
