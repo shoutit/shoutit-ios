@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import FTGooglePlacesAPI
 
 class ChangeLocationTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var currentLocationLabel : UILabel!
@@ -50,6 +51,22 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
                 cell.textLabel?.text = "\(element.name!)"
             }.addDisposableTo(disposeBag)
+        
+        tableView.rx_modelSelected(FTGooglePlacesAPISearchResultItem.self)
+            .asDriver()
+            .driveNext { selectedLocation in
+                let coordinates : CLLocationCoordinate2D = selectedLocation.location.coordinate
+                
+                guard let username = Account.sharedInstance.user?.username else {
+                    return
+                }
+                
+                APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
+                    
+                }
+                
+            }
+            .addDisposableTo(disposeBag)
         
     }
     
