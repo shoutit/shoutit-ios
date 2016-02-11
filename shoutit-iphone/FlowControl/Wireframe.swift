@@ -22,7 +22,6 @@ struct Wireframe {
         case Settings = "Settings"
         case Location = "Location"
         case Help = "Help"
-        case About = "About"
         case InviteFriends = "InviteFriends"
     }
     
@@ -68,12 +67,6 @@ struct Wireframe {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupSuggestionsWrappingViewController") as! PostSignupSuggestionsWrappingViewController
     }
     
-    // MARK: - About storyboard view controllers
-    
-    static func aboutTableViewController() -> AboutTableViewController {
-        return storyboard(.About).instantiateViewControllerWithIdentifier("AboutTableViewController") as! AboutTableViewController
-    }
-    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {
@@ -102,8 +95,8 @@ struct Wireframe {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
     }
     
-    static func settingsViewController() -> UIViewController {
-        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SHSettingsTableViewController")
+    static func settingsViewController() -> SettingsTableViewController {
+        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsTableViewController") as! SettingsTableViewController
     }
     
     static func helpViewController() -> UIViewController {

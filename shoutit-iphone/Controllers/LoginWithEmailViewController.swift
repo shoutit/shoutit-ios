@@ -44,7 +44,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     var viewModel: LoginWithEmailViewModel!
     
     // RX
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // child controllers
     lazy var loginViewController: LoginViewController = {

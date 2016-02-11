@@ -354,9 +354,9 @@
 		B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D7A1C63844E007EB2FB /* Fonts.swift */; };
 		B209AC021C6B56F400EF2B8E /* ProfileDependecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC011C6B56F400EF2B8E /* ProfileDependecies.swift */; };
 		B209AC041C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */; };
-		B209AC071C6B985700EF2B8E /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B209AC061C6B985700EF2B8E /* About.storyboard */; };
-		B209AC0A1C6B9A5A00EF2B8E /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC091C6B9A5A00EF2B8E /* AboutTableViewController.swift */; };
 		B209AC0C1C6BA76B00EF2B8E /* ListenParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */; };
+		B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */; };
+		B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -831,9 +831,9 @@
 		B209AC011C6B56F400EF2B8E /* ProfileDependecies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDependecies.swift; path = Model/ProfileDependecies.swift; sourceTree = "<group>"; };
 		B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionBaseTableViewCell.swift; path = View/PostSignupSuggestionBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "shoutit-Staging.xcconfig"; path = "OtherSources/shoutit-Staging.xcconfig"; sourceTree = "<group>"; };
-		B209AC061C6B985700EF2B8E /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = About.storyboard; path = Storyboards/About.storyboard; sourceTree = "<group>"; };
-		B209AC091C6B9A5A00EF2B8E /* AboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutTableViewController.swift; path = Controllers/AboutTableViewController.swift; sourceTree = "<group>"; };
 		B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenParams.swift; path = Networking/ListenParams.swift; sourceTree = "<group>"; };
+		B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Controllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = View/SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -1131,7 +1131,6 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B209AC081C6B9A0A00EF2B8E /* About */,
 				AEE924BC1C68C1C900EFBF43 /* ChangeLocation */,
 				B2082D711C626372007EB2FB /* HTMLController */,
 				B27DF7831C58E1A8006909D4 /* ApplicationMainController */,
@@ -1140,6 +1139,7 @@
 				B25F31F01C57E00400C5DAFC /* Login */,
 				B2A144191C651B64002CD70A /* PostSignup */,
 				AEA599741C609D7E00015AA3 /* Menu */,
+				B209AC0D1C6CB38300EF2B8E /* Settings */,
 				AE8351791C5F6E420055C71F /* RootController */,
 				AE83516A1C5F59270055C71F /* Tabbar */,
 				ACC36C441C0C994D0082E0C2 /* messages */,
@@ -1238,7 +1238,6 @@
 		6027CF711BE7504B00124C28 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				B209AC061C6B985700EF2B8E /* About.storyboard */,
 				B2E7E2EE1C592B9E0078C743 /* Chats.storyboard */,
 				B2E7E2F11C592BA50078C743 /* CameraStoryboard.storyboard */,
 				B2E7E2F41C592BAD0078C743 /* Shout.storyboard */,
@@ -2155,12 +2154,21 @@
 			name = HTMLController;
 			sourceTree = "<group>";
 		};
-		B209AC081C6B9A0A00EF2B8E /* About */ = {
+		B209AC0D1C6CB38300EF2B8E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				B209AC091C6B9A5A00EF2B8E /* AboutTableViewController.swift */,
+				B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */,
+				B209AC101C6CCCCA00EF2B8E /* Views */,
 			);
-			name = About;
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		B209AC101C6CCCCA00EF2B8E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {
@@ -2703,7 +2711,6 @@
 				AC7027FF1C1AA66200262622 /* UserVoice.strings in Resources */,
 				AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */,
 				B2E7E3041C592BD60078C743 /* StreamStoryboard.storyboard in Resources */,
-				B209AC071C6B985700EF2B8E /* About.storyboard in Resources */,
 				B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */,
 				AE4DB33F1C634C28001EB84B /* Root.storyboard in Resources */,
 				AC7028031C1AA66200262622 /* uv_heart@2x.png in Resources */,
@@ -2991,6 +2998,7 @@
 				AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,
 				B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */,
 				ACDB3CA11BF885F60097444E /* SHFilter.swift in Sources */,
+				B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */,
 				ACDB3C871BF732560097444E /* SHStreamTableViewController.swift in Sources */,
 				AC7030C81C15C91F008F4C00 /* SHImageMediaItem.swift in Sources */,
 				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
@@ -3010,7 +3018,6 @@
 				ACC845751C4CE0040065A702 /* SHDiscoverShoutsViewController.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				AC7030DD1C183172008F4C00 /* SHEditProfileTableViewModel.swift in Sources */,
-				B209AC0A1C6B9A5A00EF2B8E /* AboutTableViewController.swift in Sources */,
 				60F11D481C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift in Sources */,
 				AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
 				AC7028091C1ABD0600262622 /* SHUserListTableViewModel.swift in Sources */,
@@ -3024,6 +3031,7 @@
 				6043CF081C02C94E00A9AA49 /* SHTextInputViewController.swift in Sources */,
 				AE8351871C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
 				B209AC0C1C6BA76B00EF2B8E /* ListenParams.swift in Sources */,
+				B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */,
 				606ED2FC1BF80A730064C53E /* SHCameraViewController.swift in Sources */,
 				B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */,
 				606ED2EE1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift in Sources */,

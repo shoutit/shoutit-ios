@@ -30,7 +30,7 @@ final class LoginMethodChoiceViewController: UIViewController {
     weak var flowDelegate: LoginMethodChoiceViewControllerFlowDelegate?
     
     // rx
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     

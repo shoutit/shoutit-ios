@@ -35,7 +35,7 @@ final class SignupViewController: UITableViewController {
     weak var viewModel: LoginWithEmailViewModel!
     
     // RX
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     

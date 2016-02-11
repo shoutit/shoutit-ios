@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import RxSwift
 
-protocol AboutDisplayable {
+protocol AboutDisplayable: class {
     func showAboutInterface() -> Void
 }
 
-extension AboutDisplayable where Self: FlowController, Self: AboutTableViewControllerFlowDelegate {
+extension AboutDisplayable where Self: FlowController, Self: TermsAndPolicyDisplayable {
     
     func showAboutInterface() {
-        let aboutViewController = Wireframe.aboutTableViewController()
-        aboutViewController.flowDelegate = self
+        let aboutViewController = Wireframe.settingsViewController()
+        aboutViewController.models = aboutOptions()
         navigationController.showViewController(aboutViewController, sender: nil)
+    }
+    
+    private func aboutOptions() -> Variable<[SettingsOption]> {
+        return Variable([
+            SettingsOption(name: NSLocalizedString("Terms of Service", comment: "Settings cell title")) {[unowned self] in
+                self.showTermsAndConditions()
+            },
+            SettingsOption(name: NSLocalizedString("Privacy Policy", comment: "Settings cell title")) {[unowned self] in
+                self.showPrivacyPolicy()
+            },
+            SettingsOption(name: NSLocalizedString("Legal", comment: "Settings cell title")) {[unowned self] in
+                self.showRules()
+            }
+            ])
     }
 }
