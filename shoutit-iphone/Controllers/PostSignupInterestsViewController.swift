@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 protocol PostSignupInterestsViewControllerFlowDelegate: class, PostSignupDisplayable, LoginFinishable {}
 
@@ -106,10 +107,25 @@ class PostSignupInterestsViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        nextButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
-                self.flowDelegate?.showPostSignupSuggestions()
+        let nextTap = nextButton.rx_tap
+        nextTap
+            .subscribeNext{[unowned self] in
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            }
+            .addDisposableTo(disposeBag)
+        
+        nextTap
+            .flatMapLatest{self.viewModel.listenToSelectedCategories()}
+            .subscribeNext {[weak self] (result) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                switch result {
+                case .Success:
+                    self?.flowDelegate?.showPostSignupSuggestions()
+                case .Failure(let error):
+                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                    alertViewController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+                    self?.presentViewController(alertViewController, animated: true, completion: nil)
+                }
             }
             .addDisposableTo(disposeBag)
     }

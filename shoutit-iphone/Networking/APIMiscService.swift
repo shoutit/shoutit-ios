@@ -17,7 +17,7 @@ class APIMiscService {
     
     static func requestCategoriesWithCompletionHandler(completionHandler: Result<[Category], NSError> -> Void) {
         
-        APIManager.manager.request(.GET, categoriesURL, parameters: nil, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData({ (response) in
+        APIManager.manager().request(.GET, categoriesURL, parameters: nil, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData({ (response) in
             switch response.result {
             case .Success(let data):
                 do {
@@ -35,7 +35,7 @@ class APIMiscService {
     
     static func requestSuggestionsWithParams(params: SuggestionsParams, withCompletionHandler completionHandler: Result<Suggestions, NSError> -> Void) {
         
-        APIManager.manager.request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseData { (response) in
+        APIManager.manager().request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseData { (response) in
             switch response.result {
             case .Success(let data):
                 do {

@@ -9,24 +9,28 @@
 import UIKit
 
 protocol TermsAndPolicyDisplayable {
+    func showRules() -> Void
     func showTermsAndConditions() -> Void
     func showPrivacyPolicy() -> Void
 }
 
 extension TermsAndPolicyDisplayable where Self: FlowController {
     
+    func showRules() {
+        showHTMLControllerWithHTML(.Rules)
+    }
+    
     func showTermsAndConditions() {
-        
-        let htmlController = Wireframe.htmlViewController()
-        htmlController.htmlFile = .TermsOfService
-        let navigationController = UINavigationController(rootViewController: htmlController)
-        self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
+        showHTMLControllerWithHTML(.TermsOfService)
     }
     
     func showPrivacyPolicy() {
-        
+        showHTMLControllerWithHTML(.Policy)
+    }
+    
+    private func showHTMLControllerWithHTML(htmlFile: BundledHTMLFile) {
         let htmlController = Wireframe.htmlViewController()
-        htmlController.htmlFile = .Policy
+        htmlController.htmlFile = htmlFile
         let navigationController = UINavigationController(rootViewController: htmlController)
         self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
     }

@@ -58,6 +58,7 @@ extension LoginFlowController: LoginFinishable {
     }
 }
 
+extension LoginFlowController: AboutTableViewControllerFlowDelegate {}
 extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
 extension LoginFlowController: LoginWithEmailViewControllerFlowDelegate {}
 extension LoginFlowController: PostSignupInterestsViewControllerFlowDelegate {}

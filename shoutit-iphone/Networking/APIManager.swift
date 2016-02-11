@@ -23,9 +23,17 @@ final class APIManager {
     static let baseURL = "https://api.shoutit.com/v2"
     #endif
     
-    static var manager: Alamofire.Manager = {
-        return Alamofire.Manager.sharedInstance
-    }()
+    static func manager() -> Alamofire.Manager {
+        if apiManager == nil {
+            let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            configuration.HTTPAdditionalHeaders = defaultHeaders
+            apiManager = Alamofire.Manager(configuration: configuration)
+        }
+        return apiManager!
+    }
+    
+    private static var apiManager: Alamofire.Manager?
     
     // MARK: - Token
     
@@ -38,9 +46,11 @@ final class APIManager {
     }
     
     private static func _setAuthToken(token: String?) {
-        var headers = manager.session.configuration.HTTPAdditionalHeaders ?? [:]
-        headers["Authorization"] = token
-        manager.session.configuration.HTTPAdditionalHeaders = headers
+        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
+        defaultHeaders["Authorization"] = token
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = defaultHeaders
+        apiManager = Alamofire.Manager(configuration: configuration)
     }
     
     // MARK: - Reachability

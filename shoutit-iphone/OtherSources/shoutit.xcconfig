@@ -18,7 +18,8 @@ WARNING_CFLAGS[config=*] = $(inherited) -Wall -Wextra -Wno-unused-parameter -Wno
 // Tone down xcconfigs a touch:
 GCC_TREAT_WARNINGS_AS_ERRORS = NO
 
-// Application Signing
+PRODUCT_NAME = Shoutit
+PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit
 APPLICATION_BUNDLE_IDENTIFIER = com.appunite.shoutit
 CODE_SIGN_IDENTITY = iPhone Developer
 PROVISIONING_PROFILE = $(PROFILE_UDID)

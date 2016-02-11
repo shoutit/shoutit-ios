@@ -24,6 +24,8 @@ final class HTMLViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "done"), animated: true)
         
         guard let fileName = htmlFile else {

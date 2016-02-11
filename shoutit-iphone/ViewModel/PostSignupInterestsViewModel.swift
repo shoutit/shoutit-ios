@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import RxSwift
 import RxCocoa
 
@@ -27,5 +28,11 @@ class PostSignupInterestsViewModel {
                 self.state.value = .Error(error)
             }
         }
+    }
+    
+    func listenToSelectedCategories() -> Observable<Result<Bool, NSError>> {
+        let tagNames = categories.value.filter{$0.selected}.map{$0.category.mainTag.name}
+        let params = BatchListenParams(tagNames: tagNames)
+        return APITagsService.requestBatchListenTagWithParams(params)
     }
 }

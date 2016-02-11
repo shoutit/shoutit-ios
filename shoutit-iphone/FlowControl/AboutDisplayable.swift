@@ -12,9 +12,11 @@ protocol AboutDisplayable {
     func showAboutInterface() -> Void
 }
 
-extension AboutDisplayable where Self: FlowController {
+extension AboutDisplayable where Self: FlowController, Self: AboutTableViewControllerFlowDelegate {
     
     func showAboutInterface() {
-        fatalError("Implement about")
+        let aboutViewController = Wireframe.aboutTableViewController()
+        aboutViewController.flowDelegate = self
+        navigationController.showViewController(aboutViewController, sender: nil)
     }
 }
