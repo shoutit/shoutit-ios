@@ -272,6 +272,9 @@
 		AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4DB3641C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4DB3651C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
+		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
+		AE6B1D0A1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
+		AE6B1D0B1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351681C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351691C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
@@ -791,6 +794,7 @@
 		AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsFlowController.swift; path = FlowControl/InviteFriendsFlowController.swift; sourceTree = "<group>"; };
 		AE4DB35E1C6485FA001EB84B /* MenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuHeaderView.swift; path = View/MenuHeaderView.swift; sourceTree = "<group>"; };
 		AE4DB3621C648B66001EB84B /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = ViewModel/MenuViewModel.swift; sourceTree = "<group>"; };
+		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE8351621C5F4DDD0055C71F /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Root.storyboard; path = Storyboards/Root.storyboard; sourceTree = "<group>"; };
 		AE8351661C5F521B0055C71F /* TabbarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarButton.swift; path = View/tabs/TabbarButton.swift; sourceTree = "<group>"; };
 		AE83516B1C5F595C0055C71F /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarController.swift; path = Controllers/TabbarController.swift; sourceTree = "<group>"; };
@@ -2482,6 +2486,7 @@
 				B2C729BA1C62218C006F7D29 /* APIAuthService.swift */,
 				B2ACBDF21C68D585000FA302 /* APIMiscService.swift */,
 				B253A33F1C691B3F00C8B8F9 /* APITagsService.swift */,
+				AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -2940,6 +2945,7 @@
 				ACDD23B41BFAD46D00EEC6A6 /* SHTopTagTableViewCell.swift in Sources */,
 				ACB803B21C108B2A00420BB1 /* SHConversations.swift in Sources */,
 				6027CFA01BE75B4000124C28 /* BaseTableViewController.swift in Sources */,
+				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				606ED2E81BF7EC7D0064C53E /* SHCreatePlusCollectionViewCell.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				ACB803AB1C10277200420BB1 /* SHShoutPickerTableViewModel.swift in Sources */,
@@ -3205,6 +3211,7 @@
 				AEA599801C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351881C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
 				AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
+				AE6B1D0A1C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				AE83517C1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518C1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEBB698A1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
@@ -3243,6 +3250,7 @@
 				AEA599811C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				AE8351891C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
 				AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
+				AE6B1D0B1C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				AE83517D1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518D1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AEBB698B1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
