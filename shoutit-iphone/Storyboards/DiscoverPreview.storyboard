@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bFB-q7-VAA">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Discover Preview Collection View Controller-->
+        <scene sceneID="0Xr-DW-3NP">
+            <objects>
+                <collectionViewController id="bFB-q7-VAA" customClass="DiscoverPreviewCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Pgn-6t-Wxk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vSm-bO-PLE">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="DiscoverPreviewCell" id="XhJ-Yg-spy" customClass="SHShoutItemCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaw-kk-ejP">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DFm-8I-9QD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCc-Zd-0fv">
+                                                    <rect key="frame" x="5" y="222" width="145" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Yyz-Jo-Bjr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                    <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qS8-bA-x9U">
+                                                    <rect key="frame" x="150" y="222" width="45" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="gdq-Zu-sNc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                    <color key="textColor" red="0.49019607840000001" green="0.75686274509999996" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsE-nY-AhM">
+                                                    <rect key="frame" x="5" y="203" width="190" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="ubw-G6-Esy"/>
+                                                    </constraints>
+                                                    <string key="text">Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="tsE-nY-AhM" firstAttribute="top" secondItem="DFm-8I-9QD" secondAttribute="bottom" constant="3" id="2zP-bL-ZWr"/>
+                                                <constraint firstAttribute="bottom" secondItem="qS8-bA-x9U" secondAttribute="bottom" constant="5" id="8qz-BH-oF3"/>
+                                                <constraint firstAttribute="trailing" secondItem="DFm-8I-9QD" secondAttribute="trailing" id="SK3-UF-tZs"/>
+                                                <constraint firstItem="YCc-Zd-0fv" firstAttribute="leading" secondItem="kaw-kk-ejP" secondAttribute="leading" constant="5" id="Uep-pV-atE"/>
+                                                <constraint firstItem="tsE-nY-AhM" firstAttribute="leading" secondItem="kaw-kk-ejP" secondAttribute="leading" constant="5" id="YSz-1F-Dnv"/>
+                                                <constraint firstAttribute="bottom" secondItem="YCc-Zd-0fv" secondAttribute="bottom" constant="5" id="ZcZ-Kg-Awg"/>
+                                                <constraint firstAttribute="bottom" secondItem="DFm-8I-9QD" secondAttribute="bottom" constant="39" id="Zm8-Hw-zfe"/>
+                                                <constraint firstItem="DFm-8I-9QD" firstAttribute="leading" secondItem="kaw-kk-ejP" secondAttribute="leading" id="bAP-G0-R9w"/>
+                                                <constraint firstItem="qS8-bA-x9U" firstAttribute="leading" secondItem="YCc-Zd-0fv" secondAttribute="trailing" id="fSJ-8g-7oM"/>
+                                                <constraint firstAttribute="trailing" secondItem="qS8-bA-x9U" secondAttribute="trailing" constant="5" id="kvh-lC-Jrx"/>
+                                                <constraint firstAttribute="trailing" secondItem="tsE-nY-AhM" secondAttribute="trailing" constant="5" id="mHV-DX-KRh"/>
+                                                <constraint firstItem="DFm-8I-9QD" firstAttribute="top" secondItem="kaw-kk-ejP" secondAttribute="top" id="oZe-0l-pi2"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kaw-kk-ejP" secondAttribute="bottom" id="ANF-pJ-ZCH"/>
+                                    <constraint firstAttribute="trailing" secondItem="kaw-kk-ejP" secondAttribute="trailing" id="NJJ-8k-Wt2"/>
+                                    <constraint firstItem="kaw-kk-ejP" firstAttribute="leading" secondItem="XhJ-Yg-spy" secondAttribute="leading" id="ORb-Po-4wi"/>
+                                    <constraint firstItem="kaw-kk-ejP" firstAttribute="top" secondItem="XhJ-Yg-spy" secondAttribute="top" id="ryH-Hp-wad"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="239"/>
+                                <connections>
+                                    <outlet property="name" destination="YCc-Zd-0fv" id="Ccf-QO-Pe3"/>
+                                    <outlet property="shoutImage" destination="DFm-8I-9QD" id="IzG-ND-NyV"/>
+                                    <outlet property="shoutPrice" destination="qS8-bA-x9U" id="D5a-PL-FiW"/>
+                                    <outlet property="shoutTitle" destination="tsE-nY-AhM" id="qBQ-g0-V4g"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="bFB-q7-VAA" id="Jou-cc-YUw"/>
+                            <outlet property="delegate" destination="bFB-q7-VAA" id="eLT-pn-x35"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="njG-c7-c1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="1"/>
+        </scene>
+    </scenes>
+</document>
