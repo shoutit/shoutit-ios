@@ -50,7 +50,7 @@ class MenuHeaderView: UIView {
     
     func fillLocation() {
         
-        countryNameLabel?.text = Account.locationString()
+        countryNameLabel?.text = Account.sharedInstance.locationString()
     }
     
 }

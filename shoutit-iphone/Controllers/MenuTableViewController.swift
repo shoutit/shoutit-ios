@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class MenuTableViewController: UITableViewController, Navigation {
     
     var rootController : RootController?
     let viewModel = MenuViewModel()
+    private let disposeBag = DisposeBag()
     var footerHeight : CGFloat = 0
     
     private let kTableHeaderHeight: CGFloat = 240.0
@@ -38,7 +40,11 @@ class MenuTableViewController: UITableViewController, Navigation {
         setupBackgroundView()
         updateFooterView()
         
-        let user = Account.sharedInstance.authData?.user
+        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+            self.headerView?.fillWith(user)
+        }.addDisposableTo(disposeBag)
+        
+        let user = Account.sharedInstance.user
         headerView?.fillWith(user)
     }
     
