@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 
 class RootController: UIViewController, UIViewControllerTransitioningDelegate {
-        
+    
     @IBOutlet weak var contentContainer : UIView?
     
-    var viewControllers = [NavigationItem: UIViewController]()
+    var flowControllers = [NavigationItem: FlowController]()
     
-    let disposeBag = DisposeBag()
+    private var token: dispatch_once_t = 0
+    private let disposeBag = DisposeBag()
     let presentMenuSegue = "presentMenuSegue"
     
     // MARK: Life Cycle
@@ -32,7 +33,9 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        openItem(.Home)
+        dispatch_once(&token) {
+            self.openItem(.Home)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -60,8 +63,8 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        if let loadedController = viewControllers[navigationItem] {
-            changeContentTo(loadedController)
+        if let loadedFlowController = flowControllers[navigationItem] {
+            changeContentTo(loadedFlowController.navigationController)
             return
         }
         
@@ -69,7 +72,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
         presentWith(flowController)
         
-        viewControllers[navigationItem] = flowController.navigationController
+        flowControllers[navigationItem] = flowController
         
     }
     

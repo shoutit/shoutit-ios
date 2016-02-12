@@ -22,7 +22,7 @@ final class IntroViewController: UIViewController {
     @IBOutlet weak var helpButton: UIButton!
     
     // rx
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // navigation
     weak var flowDelegate: IntroViewControllerFlowDelegate?

@@ -16,7 +16,7 @@ protocol PostSignupInterestsViewControllerFlowDelegate: class, PostSignupDisplay
 class PostSignupInterestsViewController: UIViewController {
     
     // consts
-    let cellReuseID = "PostSignupCategoryTableViewCell"
+    private let cellReuseID = "PostSignupCategoryTableViewCell"
     
     // IB outlets
     @IBOutlet weak var tableView: UITableView!
@@ -33,7 +33,7 @@ class PostSignupInterestsViewController: UIViewController {
     weak var flowDelegate: PostSignupInterestsViewControllerFlowDelegate?
     
     // Rx
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -84,7 +84,8 @@ class PostSignupInterestsViewController: UIViewController {
                     return true
                 }
             }
-            .map{$1}.bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
+            .map{$1}
+            .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
                 cell.nameLabel.text = element.category.name
                 cell.accessoryType = element.selected ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
             }

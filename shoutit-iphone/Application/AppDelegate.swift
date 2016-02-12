@@ -97,7 +97,8 @@ extension AppDelegate {
     
     func applyAppearance() {
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
+                                                            NSFontAttributeName : UIFont.systemFontOfSize(20)]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
         if #available(iOS 9.0, *) {

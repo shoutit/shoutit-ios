@@ -14,6 +14,14 @@ extension UIImage {
         return UIImage(named: "logo_navbar")!
     }
     
+    static func backButton() -> UIImage {
+        return UIImage(named: "backThin")!
+    }
+    
+    static func menuHamburger() -> UIImage {
+        return UIImage(named: "navMenu")!
+    }
+    
     static func suggestionAccessoryView() -> UIImage {
         return UIImage(named: "suggestions_accessory_view")!
     }

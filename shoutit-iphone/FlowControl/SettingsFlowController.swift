@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+
+struct SettingsOption {
+    let name: String
+    let action: (Void -> Void)
+}
 
 class SettingsFlowController: FlowController {
     let navigationController: UINavigationController
@@ -17,11 +23,68 @@ class SettingsFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.settingsViewController()
-        
+        controller.models = self.settingsOptions()
         navigationController.showViewController(controller, sender: nil)
     }
     
     func requiresLoggedInUser() -> Bool {
         return true
     }
+    
+    private func showAccountSettings() {
+        let controller = Wireframe.settingsViewController()
+        controller.models = self.accountSettingsOptions()
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    private func showNotificationsSettings() {
+        fatalError("Implement")
+    }
+    
+    private func showEmailSettings() {
+        fatalError("Implement")
+    }
+    
+    private func showPasswordSettings() {
+        fatalError("Implement")
+    }
+    
+    private func settingsOptions() -> Variable<[SettingsOption]> {
+        return Variable([
+            SettingsOption(name: NSLocalizedString("Account", comment: "Settings cell title")) {[unowned self] in
+                self.showAccountSettings()
+            },
+            SettingsOption(name: NSLocalizedString("Notification", comment: "Settings cell title")) {[unowned self] in
+                self.showNotificationsSettings()
+            },
+            SettingsOption(name: NSLocalizedString("Privacy", comment: "Settings cell title")) {[unowned self] in
+                self.showPrivacyPolicy()
+            },
+            SettingsOption(name: NSLocalizedString("Terms", comment: "Settings cell title")) {[unowned self] in
+                self.showTermsAndConditions()
+            },
+            SettingsOption(name: NSLocalizedString("About", comment: "Settings cell title")) {[unowned self] in
+                self.showAboutInterface()
+            }
+            ])
+    }
+    
+    private func accountSettingsOptions() -> Variable<[SettingsOption]> {
+        return Variable([
+            SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
+                self.showEmailSettings()
+            },
+            SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
+                self.showPasswordSettings()
+            },
+            SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
+                try! Account.sharedInstance.logout()
+                NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                self.navigationController.popToRootViewControllerAnimated(false)
+            }
+            ])
+    }
 }
+
+extension SettingsFlowController: AboutDisplayable {}
+extension SettingsFlowController: TermsAndPolicyDisplayable {}

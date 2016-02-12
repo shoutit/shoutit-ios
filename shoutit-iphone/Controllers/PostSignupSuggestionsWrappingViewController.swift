@@ -25,7 +25,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     weak var flowDelegate: PostSignupSuggestionViewControllerFlowDelegate?
     
     // RX
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
