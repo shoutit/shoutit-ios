@@ -9,6 +9,7 @@
 import Foundation
 import PureJsonSerializer
 import KeychainAccess
+import RxSwift
 
 final class Account {
     
@@ -30,13 +31,21 @@ final class Account {
     
     // data
     private(set) var authData: AuthData?
-    private(set) var user: User?
     
-    class func locationString() -> String {
-        if let location = SHAddress.getUserOrDeviceLocation() {
-            return String(format: "%@, %@, %@", arguments: [location.city, location.state, location.country])
-        } else if let city = NSUserDefaults.standardUserDefaults().stringForKey("MyLocality"), country = NSUserDefaults.standardUserDefaults().stringForKey("MyCountry") {
-            return String(format: "%@, %@", arguments: [city, country])
+    var user: User? {
+        didSet {
+            if let userObject = user {
+                _ = try? SecureCoder.writeJsonConvertibleToFile(userObject, toPath: archivePath)
+                self.userSubject.onNext(user)
+            }
+        }
+    }
+    
+    var userSubject = BehaviorSubject<User?>(value: nil)
+    
+    func locationString() -> String {
+        if let location = user?.location.address {
+            return location
         }
         
         return NSLocalizedString("Unknown Location", comment: "")
