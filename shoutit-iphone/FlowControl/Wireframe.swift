@@ -115,7 +115,7 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController")
     }
     
-    static func profileViewController() -> UIViewController {
-        return storyboard(.Profile).instantiateViewControllerWithIdentifier("SHProfileCollectionViewController")
+    static func profileViewController() -> ProfileCollectionViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
     }
 }

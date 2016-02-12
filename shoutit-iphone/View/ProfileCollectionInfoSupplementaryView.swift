@@ -29,4 +29,19 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var dateJoinedLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationFlagImageView: UIImageView!
+    
+    // constraints
+    @IBOutlet weak var avatarHeightConstraint: NSLayoutConstraint!
+    
+    
+    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.applyLayoutAttributes(layoutAttributes)
+        
+        let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
+        
+        let normalAvatarHeight: CGFloat = 76.0
+        let minimumAvatarHeight: CGFloat = 35.0
+        
+        avatarHeightConstraint.constant = max(min(1.0, attributes.scaleFactor) * normalAvatarHeight, minimumAvatarHeight)
+    }
 }

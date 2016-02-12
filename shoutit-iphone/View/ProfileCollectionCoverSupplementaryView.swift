@@ -10,4 +10,5 @@ import UIKit
 
 class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
+    @IBOutlet weak var imageView: UIImageView!
 }

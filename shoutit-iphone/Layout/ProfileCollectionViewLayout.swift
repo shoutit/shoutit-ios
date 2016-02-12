@@ -10,6 +10,17 @@ import UIKit
 
 class ProfileCollectionViewLayout: UICollectionViewLayout {
     
+    private var cachedAttributed: [ProfileCollectionViewLayoutAttributes] = []
+    
+    override func prepareLayout() {
+        
+        guard cachedAttributed.isEmpty else {
+            return
+        }
+        
+        
+    }
+    
     override func collectionViewContentSize() -> CGSize {
         
         guard let collectionView = collectionView else {

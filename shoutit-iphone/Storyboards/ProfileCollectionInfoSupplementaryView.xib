@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -200,7 +201,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUB-sy-6ep">
                     <rect key="frame" x="10" y="0.0" width="76" height="76"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="76" id="qW1-ML-dpr"/>
+                        <constraint firstAttribute="width" secondItem="HUB-sy-6ep" secondAttribute="height" multiplier="1:1" id="mvB-Sr-pde"/>
                         <constraint firstAttribute="height" constant="76" id="vRm-cY-cUX"/>
                     </constraints>
                 </imageView>
@@ -215,6 +216,7 @@
                 <constraint firstItem="KSx-YF-IBW" firstAttribute="centerY" secondItem="lmR-o2-TT5" secondAttribute="centerY" id="7dG-Iz-XUv"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="top" secondItem="zC2-Xl-F8D" secondAttribute="bottom" constant="1" id="84e-er-zAQ"/>
                 <constraint firstItem="Mwz-aW-TRC" firstAttribute="baseline" secondItem="Flv-lN-M3r" secondAttribute="baseline" id="9Rc-fK-G64"/>
+                <constraint firstItem="lmR-o2-TT5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="9hs-S8-ojf"/>
                 <constraint firstItem="mgJ-Uw-tGD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AUX-4T-fbA"/>
                 <constraint firstItem="Oxb-00-Kfy" firstAttribute="width" secondItem="Aru-iZ-s4p" secondAttribute="width" id="BT6-U0-FYm"/>
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cuo-dK-FKK"/>
@@ -228,7 +230,6 @@
                 <constraint firstItem="Aru-iZ-s4p" firstAttribute="top" secondItem="lmR-o2-TT5" secondAttribute="bottom" constant="10" id="PxN-cX-iDs"/>
                 <constraint firstItem="lmR-o2-TT5" firstAttribute="leading" secondItem="KSx-YF-IBW" secondAttribute="trailing" id="RLJ-kh-54M"/>
                 <constraint firstItem="wgK-Yu-UVt" firstAttribute="leading" secondItem="Oxb-00-Kfy" secondAttribute="trailing" id="Sn2-bv-Iee"/>
-                <constraint firstItem="HUB-sy-6ep" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VXr-OF-sof"/>
                 <constraint firstItem="KBs-Sg-PQz" firstAttribute="top" secondItem="mgJ-Uw-tGD" secondAttribute="bottom" id="aqc-C6-m43"/>
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="top" secondItem="wgK-Yu-UVt" secondAttribute="bottom" id="cI1-KN-iEV"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="baseline" secondItem="HUB-sy-6ep" secondAttribute="baseline" id="d0r-KF-Yyb"/>
@@ -251,6 +252,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="avatarHeightConstraint" destination="vRm-cY-cUX" id="nIv-s0-BrY"/>
                 <outlet property="avatarImageView" destination="HUB-sy-6ep" id="laO-pV-TwB"/>
                 <outlet property="bioLabel" destination="qLN-yo-Sdx" id="hWh-rS-8Wt"/>
                 <outlet property="buttonSectionCenterButton" destination="wgK-Yu-UVt" id="AM5-cZ-XhO"/>

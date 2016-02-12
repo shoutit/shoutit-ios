@@ -10,5 +10,5 @@ import UIKit
 
 class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     
-    
+    var scaleFactor: CGFloat = 1
 }

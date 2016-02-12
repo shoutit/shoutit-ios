@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ProfileCollectionViewModel {
     
+    let user: User
     
+    let pages: Variable
+    
+    init(user: User) {
+        self.user = user
+    }
 }
