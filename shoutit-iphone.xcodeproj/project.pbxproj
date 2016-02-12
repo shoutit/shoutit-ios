@@ -432,6 +432,8 @@
 		B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */; };
 		B2C729DA1C6223FA006F7D29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D91C6223FA006F7D29 /* LoginViewController.swift */; };
 		B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */; };
+		B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */; };
+		B2E715481C6D0336007F95CF /* ProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E715471C6D0336007F95CF /* ProfileCollectionViewModel.swift */; };
 		B2E7E2E61C592B600078C743 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */; };
 		B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EB1C592B970078C743 /* Discover.storyboard */; };
 		B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EE1C592B9E0078C743 /* Chats.storyboard */; };
@@ -907,6 +909,8 @@
 		B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewController.swift; path = Controllers/LoginWithEmailViewController.swift; sourceTree = "<group>"; };
 		B2C729D91C6223FA006F7D29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Controllers/SignupViewController.swift; sourceTree = "<group>"; };
+		B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewController.swift; path = Controllers/ProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		B2E715471C6D0336007F95CF /* ProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewModel.swift; path = ViewModel/ProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B2E7E3101C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chats.storyboard; sourceTree = "<group>"; };
 		B2E7E3111C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3121C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Shout.storyboard; sourceTree = "<group>"; };
@@ -1139,6 +1143,7 @@
 				B25F31F01C57E00400C5DAFC /* Login */,
 				B2A144191C651B64002CD70A /* PostSignup */,
 				AEA599741C609D7E00015AA3 /* Menu */,
+				B2E715431C6D02AF007F95CF /* Profile */,
 				B209AC0D1C6CB38300EF2B8E /* Settings */,
 				AE8351791C5F6E420055C71F /* RootController */,
 				AE83516A1C5F59270055C71F /* Tabbar */,
@@ -2534,6 +2539,23 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		B2E715431C6D02AF007F95CF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */,
+				B2E715461C6D0311007F95CF /* ViewModel */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		B2E715461C6D0311007F95CF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2E715471C6D0336007F95CF /* ProfileCollectionViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2979,6 +3001,7 @@
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				604A0DD31BEE605B002A80E7 /* SHApiUserService.swift in Sources */,
+				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
 				607F757F1BEABFF500F3BA86 /* SHOauthToken.swift in Sources */,
 				606ED3021BF8A88D0064C53E /* SHPhotoPreviewViewModel.swift in Sources */,
 				AC74A77E1BFE58230029CE7D /* SHFilterPriceTableViewController.swift in Sources */,
@@ -3004,6 +3027,7 @@
 				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
 				607F75761BEA6DF300F3BA86 /* SHMixpanelHelper.swift in Sources */,
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
+				B2E715481C6D0336007F95CF /* ProfileCollectionViewModel.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
