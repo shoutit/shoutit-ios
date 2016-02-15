@@ -11,7 +11,23 @@ import UIKit
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // section 1
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+            avatarImageView.layer.borderWidth = 1
+            avatarImageView.layer.cornerRadius = 5
+            avatarImageView.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var avatarContainerView: UIView! {
+        didSet {
+            avatarContainerView.layer.shadowColor = UIColor.grayColor().CGColor
+            avatarContainerView.layer.shadowOpacity = 0.6
+            avatarContainerView.layer.shadowRadius = 3.0
+            avatarContainerView.layer.shadowOffset = CGSize(width: 2, height: 2)
+            avatarContainerView.layer.masksToBounds = false
+        }
+    }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var listeningToYouLabel: UILabel!
@@ -25,6 +41,7 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // section 3
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var bioIconImageView: UIImageView!
     @IBOutlet weak var websiteLabel: UILabel!
     @IBOutlet weak var dateJoinedLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!

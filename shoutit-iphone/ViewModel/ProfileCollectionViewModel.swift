@@ -14,7 +14,8 @@ class ProfileCollectionViewModel {
     
     let user: User
     
-    let pages: Variable
+    private(set) var pages: [ProfileCollectionPageCellViewModel] = []
+    private(set) var shouts: [ProfileCollectionShoutCellViewModel] = []
     
     init(user: User) {
         self.user = user

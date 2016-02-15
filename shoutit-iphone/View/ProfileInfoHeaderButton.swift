@@ -10,11 +10,11 @@ import UIKit
 
 class ProfileInfoHeaderButton: UIButton {
     
-    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
-        
-    }
-    
-    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
-        
-    }
+//    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
+//        
+//    }
+//    
+//    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+//        
+//    }
 }

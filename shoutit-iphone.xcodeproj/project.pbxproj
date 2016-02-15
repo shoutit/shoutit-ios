@@ -389,6 +389,9 @@
 		B26CEE2F1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE2E1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift */; };
 		B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */; };
 		B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */; };
+		B26CEE381C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE371C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift */; };
+		B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CEE391C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib */; };
+		B26CEE3D1C720F2D0091470D /* ProfileCollectionViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE3C1C720F2D0091470D /* ProfileCollectionViewControllerDataSource.swift */; };
 		B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */; };
 		B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */; };
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
@@ -883,6 +886,9 @@
 		B26CEE2E1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionPageCellViewModel.swift; path = ViewModel/ProfileCollectionPageCellViewModel.swift; sourceTree = "<group>"; };
 		B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionShoutCellViewModel.swift; path = ViewModel/ProfileCollectionShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCollectionCoverSupplementaryView.xib; path = Storyboards/ProfileCollectionCoverSupplementaryView.xib; sourceTree = "<group>"; };
+		B26CEE371C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionFooterButtonSupplementeryView.swift; path = View/ProfileCollectionFooterButtonSupplementeryView.swift; sourceTree = "<group>"; };
+		B26CEE391C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCollectionFooterButtonSupplementeryView.xib; path = Storyboards/ProfileCollectionFooterButtonSupplementeryView.xib; sourceTree = "<group>"; };
+		B26CEE3C1C720F2D0091470D /* ProfileCollectionViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewControllerDataSource.swift; path = Controllers/ProfileCollectionViewControllerDataSource.swift; sourceTree = "<group>"; };
 		B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewPlaceholderView.swift; path = View/TableViewPlaceholderView.swift; sourceTree = "<group>"; };
 		B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Controllers/IntroViewController.swift; sourceTree = "<group>"; };
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
@@ -2379,6 +2385,34 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		B26CEE351C71E9510091470D /* SupplementaryViews */ = {
+			isa = PBXGroup;
+			children = (
+				B2E715521C6E05FC007F95CF /* ProfileCollectionCoverSupplementaryView.swift */,
+				B2E715541C6E068D007F95CF /* ProfileCollectionInfoSupplementaryView.swift */,
+				B2E715561C6E09F1007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.swift */,
+				B26CEE371C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift */,
+			);
+			name = SupplementaryViews;
+			sourceTree = "<group>";
+		};
+		B26CEE361C71E9600091470D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B2E715581C6E0BD7007F95CF /* PagesCollectionViewCell.swift */,
+				B2E7155A1C6E0BF1007F95CF /* ShoutsCollectionViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		B26CEE3B1C720EFF0091470D /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				B26CEE3C1C720F2D0091470D /* ProfileCollectionViewControllerDataSource.swift */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
 		B27DF77D1C58DBBA006909D4 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -2577,6 +2611,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */,
+				B26CEE3B1C720EFF0091470D /* DataSource */,
 				B2E715461C6D0311007F95CF /* ViewModel */,
 				B2E7154C1C6DF3D4007F95CF /* Layout */,
 				B2E7154F1C6E01EC007F95CF /* Views */,
@@ -2608,13 +2643,10 @@
 		B2E7154F1C6E01EC007F95CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B2E7155E1C6E1677007F95CF /* xibs */,
-				B2E715521C6E05FC007F95CF /* ProfileCollectionCoverSupplementaryView.swift */,
-				B2E715541C6E068D007F95CF /* ProfileCollectionInfoSupplementaryView.swift */,
-				B2E715561C6E09F1007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.swift */,
-				B2E715581C6E0BD7007F95CF /* PagesCollectionViewCell.swift */,
-				B2E7155A1C6E0BF1007F95CF /* ShoutsCollectionViewCell.swift */,
 				B2E715611C6E1B65007F95CF /* ProfileInfoHeaderButton.swift */,
+				B26CEE361C71E9600091470D /* Cells */,
+				B26CEE351C71E9510091470D /* SupplementaryViews */,
+				B2E7155E1C6E1677007F95CF /* xibs */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2625,6 +2657,7 @@
 				B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */,
 				B2E7155F1C6E16AF007F95CF /* ProfileCollectionInfoSupplementaryView.xib */,
 				B2E715631C6E2F85007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.xib */,
+				B26CEE391C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib */,
 				B2E715651C6E3788007F95CF /* PagesCollectionViewCell.xib */,
 				B2E715671C6E37B8007F95CF /* ShoutsCollectionViewCell.xib */,
 			);
@@ -2818,6 +2851,7 @@
 				AC7028001C1AA66200262622 /* uv_article.png in Resources */,
 				AE4DB34F1C63717A001EB84B /* Help.storyboard in Resources */,
 				60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */,
+				B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */,
 				6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */,
@@ -3034,6 +3068,7 @@
 				B2B540CF1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift in Sources */,
 				AC4122961C22BB98002C74DC /* SHStreamTagTableViewCell.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
+				B26CEE3D1C720F2D0091470D /* ProfileCollectionViewControllerDataSource.swift in Sources */,
 				607F757D1BEAB08000F3BA86 /* SHLocationManager.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
 				AC7028071C1ABC9E00262622 /* SHUserListTableViewController.swift in Sources */,
@@ -3168,6 +3203,7 @@
 				B2ACBDEF1C68BDE2000FA302 /* Category.swift in Sources */,
 				ACC36C2E1C09C3A20082E0C2 /* SHProfileCollectionViewController.swift in Sources */,
 				ACDB3C951BF7D2EE0097444E /* SHStreamMapViewController.swift in Sources */,
+				B26CEE381C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift in Sources */,
 				AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				AC679B471C3CED9700F45947 /* SHDiscoverFeedHeaderCellViewModel.swift in Sources */,
 				604A0DCD1BEE4FFE002A80E7 /* SHLoginInputTableViewCell.swift in Sources */,

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U9O-UO-ZiD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U9O-UO-ZiD">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Application Main View Controller-->
         <scene sceneID="nja-ax-IVa">
             <objects>
-                <viewController id="U9O-UO-ZiD" customClass="ApplicationMainViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U9O-UO-ZiD" customClass="ApplicationMainViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zVR-tg-WMC"/>
                         <viewControllerLayoutGuide type="bottom" id="LfO-kF-Dfi"/>
@@ -49,7 +49,7 @@
         <!--Root Controller-->
         <scene sceneID="ZhB-iz-zAX">
             <objects>
-                <viewController storyboardIdentifier="RootController" id="Wez-jI-tfg" customClass="RootController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootController" id="Wez-jI-tfg" customClass="RootController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SDi-8q-L7M"/>
                         <viewControllerLayoutGuide type="bottom" id="v1A-X8-rwP"/>
@@ -115,7 +115,7 @@
         <!--Tabbar Controller-->
         <scene sceneID="8II-Me-Mff">
             <objects>
-                <viewController id="0kv-fZ-8aZ" customClass="TabbarController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0kv-fZ-8aZ" customClass="TabbarController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cIr-Hs-4jN"/>
                         <viewControllerLayoutGuide type="bottom" id="DKA-Gf-Qca"/>
@@ -124,7 +124,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-c6-K4D" customClass="TabbarButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-c6-K4D" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,7 +141,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="home"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5a-pa-YnH" customClass="TabbarButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5a-pa-YnH" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="240" y="0.0" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -158,7 +158,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="shout"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9F-65-KVv" customClass="TabbarButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9F-65-KVv" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="360" y="0.0" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -175,7 +175,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="chats"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7d-LT-LWQ" customClass="TabbarButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7d-LT-LWQ" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="480" y="0.0" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,7 +199,7 @@
                                     <constraint firstAttribute="height" constant="1" id="kG5-ov-uyw"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccM-e5-uAL" customClass="TabbarButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccM-e5-uAL" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="120" y="0.0" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
