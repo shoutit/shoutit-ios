@@ -2747,6 +2747,8 @@
 				B2E715671C6E37B8007F95CF /* ShoutsCollectionViewCell.xib */,
 			);
 			name = xibs;
+			sourceTree = "<group>";
+		};
 		B2E715491C6DF054007F95CF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
