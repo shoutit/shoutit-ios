@@ -1,23 +1,21 @@
 //
-//  DiscoverPreviewCollectionViewController.swift
+//  HomeShoutsCollectionViewController.swift
 //  shoutit-iphone
 //
-//  Created by Piotr Bernad on 12/02/16.
+//  Created by Piotr Bernad on 15.02.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 
+class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-class DiscoverPreviewCollectionViewController: UICollectionViewController {
-    
-    let viewModel = DiscoverPreviewViewModel()
+    let viewModel = HomeShoutsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let collection = self.collectionView {
-            collection.delegate = viewModel.displayable
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
         }
     }
@@ -40,5 +38,11 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
     
         return cell
     }
-
+    
+    // MARK: Actions
+    
+    func changeCollectionViewDisplayMode() {
+        viewModel.changeDisplayModel()
+        viewModel.displayable.applyOnLayout(self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)
+    }
 }

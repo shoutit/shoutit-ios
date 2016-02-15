@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -12,7 +12,7 @@
         <!--Login Method Choice View Controller-->
         <scene sceneID="JmV-8w-MDh">
             <objects>
-                <viewController storyboardIdentifier="LoginMethodChoiceViewController" id="j8m-A5-Y2H" customClass="LoginMethodChoiceViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginMethodChoiceViewController" id="j8m-A5-Y2H" customClass="LoginMethodChoiceViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ayc-eW-lBU"/>
                         <viewControllerLayoutGuide type="bottom" id="kLd-c9-xjj"/>
@@ -205,7 +205,7 @@
         <!--Log in-->
         <scene sceneID="5eS-ne-Oek">
             <objects>
-                <tableViewController storyboardIdentifier="LoginViewController" title="Log in" id="Wji-o7-jPI" customClass="LoginViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LoginViewController" title="Log in" id="Wji-o7-jPI" customClass="LoginViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zj0-3N-Spo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,7 +362,7 @@
         <!--Login With Email View Controller-->
         <scene sceneID="VEM-5X-hLW">
             <objects>
-                <viewController storyboardIdentifier="LoginWithEmailViewController" id="el2-Zr-HBQ" customClass="LoginWithEmailViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginWithEmailViewController" id="el2-Zr-HBQ" customClass="LoginWithEmailViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Foz-eF-Ezz"/>
                         <viewControllerLayoutGuide type="bottom" id="JI8-37-MIj"/>
@@ -468,7 +468,7 @@
         <!--Post SignUp Controller Scene-->
         <scene sceneID="snR-JU-ElX">
             <objects>
-                <viewController storyboardIdentifier="PostSignupInterestsViewController" id="UdJ-L8-qZ0" userLabel="Post SignUp Controller Scene" customClass="PostSignupInterestsViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostSignupInterestsViewController" id="UdJ-L8-qZ0" userLabel="Post SignUp Controller Scene" customClass="PostSignupInterestsViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ahg-mj-OBT"/>
                         <viewControllerLayoutGuide type="bottom" id="cAk-5X-MGR"/>
@@ -526,7 +526,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGu-kD-nqv" customClass="CustomUIButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGu-kD-nqv" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="10" y="613" width="88" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -557,7 +557,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostSignupCategoryCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="PostSignupCategoryTableViewCell" rowHeight="50" id="fuP-pJ-7OO" customClass="PostSignupCategoryTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostSignupCategoryCell" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="PostSignupCategoryTableViewCell" rowHeight="50" id="fuP-pJ-7OO" customClass="PostSignupCategoryTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="315" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fuP-pJ-7OO" id="ozf-Bw-F4Z">
@@ -642,7 +642,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uy7-FY-8PW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="LVf-gc-rLs" customClass="TableViewPlaceholderView" customModule="shoutit_iphone" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="LVf-gc-rLs" customClass="TableViewPlaceholderView" customModule="Shoutit" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="368" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -668,7 +668,7 @@
         <!--Post Signup Suggestions Wrapping View Controller-->
         <scene sceneID="SGC-yZ-8Hc">
             <objects>
-                <viewController storyboardIdentifier="PostSignupSuggestionsWrappingViewController" id="DZF-qH-HUZ" customClass="PostSignupSuggestionsWrappingViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostSignupSuggestionsWrappingViewController" id="DZF-qH-HUZ" customClass="PostSignupSuggestionsWrappingViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qqU-Ap-tk1"/>
                         <viewControllerLayoutGuide type="bottom" id="8yj-LE-AK5"/>
@@ -699,7 +699,7 @@
                                     <constraint firstItem="OM4-vj-24p" firstAttribute="leading" secondItem="Vam-pG-8gB" secondAttribute="leading" constant="10" id="nWd-OG-fdc"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRB-cn-kU9" customClass="CustomUIButton" customModule="shoutit_iphone" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRB-cn-kU9" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="10" y="613" width="88" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -763,7 +763,7 @@
         <!--Post Signup Suggestions Table View Controller-->
         <scene sceneID="lH3-vh-UOJ">
             <objects>
-                <tableViewController id="iM9-A5-O26" customClass="PostSignupSuggestionsTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iM9-A5-O26" customClass="PostSignupSuggestionsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Cdg-ez-fFz">
                         <rect key="frame" x="0.0" y="0.0" width="355" height="585"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,7 +774,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="355" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6GK-Tp-AQO" id="r9h-My-HfA">
@@ -800,7 +800,7 @@
                                     <outlet property="sectionTitleLabel" destination="ki9-L8-V22" id="svg-oZ-hfX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsCell" rowHeight="58" id="YoX-v2-qs9" customClass="PostSignupSuggestionsTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsCell" rowHeight="58" id="YoX-v2-qs9" customClass="PostSignupSuggestionsTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="93.5" width="355" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YoX-v2-qs9" id="fvL-jQ-q1a">
@@ -813,7 +813,7 @@
                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bf3-x5-Len" customClass="CustomUIImageView" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bf3-x5-Len" customClass="CustomUIImageView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="5" width="48" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Gbl-f0-pEk"/>
@@ -863,7 +863,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPI-tX-pIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="TfV-mf-0sq" customClass="TableViewPlaceholderView" customModule="shoutit_iphone" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="TfV-mf-0sq" customClass="TableViewPlaceholderView" customModule="Shoutit" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -889,7 +889,7 @@
         <!--SHLoginPopupViewController-->
         <scene sceneID="ad8-7x-xdW">
             <objects>
-                <viewController restorationIdentifier="SHLoginPopupViewController" storyboardIdentifier="SHLoginPopupViewController" title="SHLoginPopupViewController" id="Lo3-1g-CBS" customClass="SHLoginPopupViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SHLoginPopupViewController" storyboardIdentifier="SHLoginPopupViewController" title="SHLoginPopupViewController" id="Lo3-1g-CBS" customClass="SHLoginPopupViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KBt-9g-AZK"/>
                         <viewControllerLayoutGuide type="bottom" id="2py-y8-ImB"/>
@@ -1026,7 +1026,7 @@
         <!--Intro View Controller-->
         <scene sceneID="f7b-el-DSH">
             <objects>
-                <viewController storyboardIdentifier="IntroViewController" id="uvR-Yt-lTb" customClass="IntroViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroViewController" id="uvR-Yt-lTb" customClass="IntroViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VCt-xf-0uz"/>
                         <viewControllerLayoutGuide type="bottom" id="kCg-f5-fVS"/>
@@ -1199,7 +1199,7 @@
         <!--Sign up-->
         <scene sceneID="Ket-w0-smK">
             <objects>
-                <tableViewController storyboardIdentifier="SignupViewController" title="Sign up" id="DkI-1W-qTm" customClass="SignupViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SignupViewController" title="Sign up" id="DkI-1W-qTm" customClass="SignupViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nqi-AQ-J5t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

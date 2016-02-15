@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240F50921C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50911C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift */; };
+		240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */; };
+		240F50981C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50971C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift */; };
+		240F509A1C71C36F00AE4A76 /* ShoutsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50991C71C36F00AE4A76 /* ShoutsDisplayable.swift */; };
+		240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F509B1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift */; };
+		240F509E1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F509D1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift */; };
+		240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */; };
+		240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A11C71D9E700AE4A76 /* HomeShoutsViewModel.swift */; };
+		240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		601EB8BC1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BB1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift */; };
 		601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */; };
@@ -485,6 +494,15 @@
 
 /* Begin PBXFileReference section */
 		0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_production.xcconfig"; sourceTree = "<group>"; };
+		240F50911C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeShoutsCollectionViewController.swift; path = Controllers/HomeShoutsCollectionViewController.swift; sourceTree = "<group>"; };
+		240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutCollectionLayoutDisplayable.swift; path = CommonProtocols/ShoutCollectionLayoutDisplayable.swift; sourceTree = "<group>"; };
+		240F50971C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewViewModel.swift; path = ViewModel/DiscoverPreviewViewModel.swift; sourceTree = "<group>"; };
+		240F50991C71C36F00AE4A76 /* ShoutsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsDisplayable.swift; path = ViewModel/ShoutsDisplayable.swift; sourceTree = "<group>"; };
+		240F509B1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsHorizontalGridLayoutDelegate.swift; path = ViewModel/ShoutsHorizontalGridLayoutDelegate.swift; sourceTree = "<group>"; };
+		240F509D1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsVerticalGridLayoutDelegate.swift; path = ViewModel/ShoutsVerticalGridLayoutDelegate.swift; sourceTree = "<group>"; };
+		240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsVerticalListLayoutDelegate.swift; path = ViewModel/ShoutsVerticalListLayoutDelegate.swift; sourceTree = "<group>"; };
+		240F50A11C71D9E700AE4A76 /* HomeShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeShoutsViewModel.swift; path = ViewModel/HomeShoutsViewModel.swift; sourceTree = "<group>"; };
+		240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewParentController.swift; path = Controllers/DiscoverPreviewParentController.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
 		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
@@ -982,6 +1000,25 @@
 				9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		240F50931C71B47F00AE4A76 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */,
+				240F50991C71C36F00AE4A76 /* ShoutsDisplayable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		240F50961C71B56700AE4A76 /* Displayables */ = {
+			isa = PBXGroup;
+			children = (
+				240F509B1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift */,
+				240F509D1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift */,
+				240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */,
+			);
+			name = Displayables;
 			sourceTree = "<group>";
 		};
 		5C715BE26A324BEA80A8404C /* Pods */ = {
@@ -2151,6 +2188,8 @@
 			children = (
 				AEDE15971C6E0BBF002D2AF7 /* DiscoverPreview.storyboard */,
 				AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */,
+				240F50971C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift */,
+				240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */,
 			);
 			name = DiscoverPreview;
 			sourceTree = "<group>";
@@ -2159,6 +2198,8 @@
 			isa = PBXGroup;
 			children = (
 				AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */,
+				240F50911C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift */,
+				240F50A11C71D9E700AE4A76 /* HomeShoutsViewModel.swift */,
 			);
 			name = HomeShouts;
 			sourceTree = "<group>";
@@ -2222,6 +2263,8 @@
 		B2190D811C5A3D78007FF33B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				240F50961C71B56700AE4A76 /* Displayables */,
+				240F50931C71B47F00AE4A76 /* Protocols */,
 				B253A3381C68F91500C8B8F9 /* StateMachine */,
 				B2C729B21C6220F9006F7D29 /* ControllerContainingController */,
 				B2C729AD1C62209E006F7D29 /* Coders/Decoders */,
@@ -2972,6 +3015,7 @@
 				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
+				240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */,
 				AC1C93FC1BEA8B03009400BE /* SHAddress.swift in Sources */,
 				B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
@@ -2984,6 +3028,7 @@
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
 				ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */,
+				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
 				B21EA3B81C63E80E0013E99F /* AuthParams.swift in Sources */,
 				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
@@ -2999,6 +3044,7 @@
 				ACF9E8791C05203800F0B615 /* SHTagListenersTableViewModel.swift in Sources */,
 				AC47A7341C02349F006AF406 /* SHShoutDetailTableViewController.swift in Sources */,
 				601EB8BC1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift in Sources */,
+				240F509A1C71C36F00AE4A76 /* ShoutsDisplayable.swift in Sources */,
 				ACF9A8D21BEFF405001FB172 /* SHDiscoverDetailViewModel.swift in Sources */,
 				ACDB3C8D1BF73B1D0097444E /* SHStreamTableViewCellModel.swift in Sources */,
 				ACB803AF1C10833300420BB1 /* SHConversationsTableViewModel.swift in Sources */,
@@ -3111,6 +3157,7 @@
 				ACF9A8CE1BEFF1FF001FB172 /* SHDiscoverCollectionViewController.swift in Sources */,
 				60F11D441C2B6B3100FEA500 /* SHShoutDiscoverListCellViewModel.swift in Sources */,
 				AEDE159B1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift in Sources */,
+				240F50981C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift in Sources */,
 				ACA77EC91BF0CB6A00D504AA /* SHLocationGetterViewController.swift in Sources */,
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
@@ -3143,6 +3190,7 @@
 				B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */,
 				AC7030D91C16E4F4008F4C00 /* SHPusherManager.swift in Sources */,
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
+				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
 				ACDB3CC11BF90DE80097444E /* SHRequestTextTableViewCell.swift in Sources */,
 				ACB803A01C0EE26C00420BB1 /* SHMessage.swift in Sources */,
@@ -3151,6 +3199,7 @@
 				ACC36C3E1C09DDEC0082E0C2 /* SHSettingsTableViewController.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
+				240F509E1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift in Sources */,
 				6027CF9C1BE759A700124C28 /* ViewControllerModelProtocol.swift in Sources */,
 				ACC845771C4CE0FE0065A702 /* SHDiscoverShoutsViewModel.swift in Sources */,
 				602414921C01F31B00DFF4DD /* SHDateTransform.swift in Sources */,
@@ -3173,6 +3222,7 @@
 				B2C729C41C6221B0006F7D29 /* Address.swift in Sources */,
 				B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */,
 				606ED2FA1BF808560064C53E /* SHCameraPreviewView.swift in Sources */,
+				240F50921C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift in Sources */,
 				AC7030BB1C1591C1008F4C00 /* SHShoutAttachment.swift in Sources */,
 				B2C729C81C6221B0006F7D29 /* Success.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
@@ -3188,6 +3238,7 @@
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
 				AC7030D71C16D8A8008F4C00 /* SHConversationPusherManager.swift in Sources */,
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
+				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
 				ACA77ED11BF1285500D504AA /* SHLocationGetterViewModel.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
@@ -3201,6 +3252,7 @@
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				ACB803B71C10A1F300420BB1 /* SHConversationTableViewCell.swift in Sources */,
 				ACDD23B71BFADE1300EEC6A6 /* SHFilterTagsTableViewCell.swift in Sources */,
+				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
 				AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,

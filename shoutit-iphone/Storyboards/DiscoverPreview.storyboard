@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bFB-q7-VAA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lqi-gb-jN0">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Discover Preview Collection View Controller-->
         <scene sceneID="0Xr-DW-3NP">
             <objects>
                 <collectionViewController id="bFB-q7-VAA" customClass="DiscoverPreviewCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Pgn-6t-Wxk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Pgn-6t-Wxk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="557"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vSm-bO-PLE">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vSm-bO-PLE">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -98,14 +98,72 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="dataSource" destination="bFB-q7-VAA" id="Jou-cc-YUw"/>
-                            <outlet property="delegate" destination="bFB-q7-VAA" id="eLT-pn-x35"/>
+                            <outlet property="dataSource" destination="bFB-q7-VAA" id="VCX-1h-tlN"/>
+                            <outlet property="delegate" destination="bFB-q7-VAA" id="yLC-O2-PGf"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njG-c7-c1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1"/>
+            <point key="canvasLocation" x="2019" y="-71.5"/>
+        </scene>
+        <!--Discover Preview Parent Controller-->
+        <scene sceneID="8iv-5B-2sb">
+            <objects>
+                <viewController id="lqi-gb-jN0" customClass="DiscoverPreviewParentController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P4i-qj-UvQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="7E1-jH-he2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Sb-fh-0xw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0h-SJ-laU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Dubai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkB-7m-dah">
+                                        <rect key="frame" x="241" y="12.5" width="118.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="WkB-7m-dah" firstAttribute="centerX" secondItem="r0h-SJ-laU" secondAttribute="centerX" id="5Yq-Xt-PVT"/>
+                                    <constraint firstItem="WkB-7m-dah" firstAttribute="centerY" secondItem="r0h-SJ-laU" secondAttribute="centerY" id="VVY-U4-hXe"/>
+                                    <constraint firstItem="WkB-7m-dah" firstAttribute="leading" secondItem="r0h-SJ-laU" secondAttribute="leading" constant="10" id="gAc-7P-Kc5"/>
+                                    <constraint firstAttribute="height" constant="44" id="rfr-6Y-V47"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gAc-7P-Kc5"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEe-xd-kB9">
+                                <rect key="frame" x="0.0" y="43" width="600" height="557"/>
+                                <connections>
+                                    <segue destination="bFB-q7-VAA" kind="embed" id="TMT-65-hUB"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="r0h-SJ-laU" secondAttribute="trailing" id="cBW-nx-cvA"/>
+                            <constraint firstItem="7E1-jH-he2" firstAttribute="top" secondItem="sEe-xd-kB9" secondAttribute="bottom" id="cPY-ef-f29"/>
+                            <constraint firstAttribute="trailing" secondItem="sEe-xd-kB9" secondAttribute="trailing" id="fr9-ok-nlv"/>
+                            <constraint firstItem="r0h-SJ-laU" firstAttribute="top" secondItem="9Sb-fh-0xw" secondAttribute="top" id="kkg-Nr-1QL"/>
+                            <constraint firstItem="sEe-xd-kB9" firstAttribute="top" secondItem="r0h-SJ-laU" secondAttribute="bottom" constant="-1" id="m33-1p-7T1"/>
+                            <constraint firstItem="r0h-SJ-laU" firstAttribute="leading" secondItem="9Sb-fh-0xw" secondAttribute="leading" id="mSa-6q-mWR"/>
+                            <constraint firstItem="sEe-xd-kB9" firstAttribute="leading" secondItem="9Sb-fh-0xw" secondAttribute="leading" id="zNy-Xt-dtI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FzT-Ch-aqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1293" y="-71"/>
         </scene>
     </scenes>
 </document>
