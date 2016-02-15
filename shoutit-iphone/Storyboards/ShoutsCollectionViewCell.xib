@@ -42,6 +42,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="AAC-NA-H9N" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" constant="5" id="0ra-j9-ssq"/>
                 <constraint firstItem="Ksa-8m-quI" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="HCB-g4-dS6"/>

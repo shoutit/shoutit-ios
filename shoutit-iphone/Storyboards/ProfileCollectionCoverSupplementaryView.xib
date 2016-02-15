@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,16 +12,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qI4-mf-7tC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BN" translatesAutoresizingMaskIntoConstraints="NO" id="qI4-mf-7tC">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                    <color key="backgroundColor" red="0.95686274509803748" green="0.95686274509803748" blue="0.94165720818528753" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="qI4-mf-7tC" secondAttribute="height" multiplier="375:211" priority="995" id="4lo-jR-oi8"/>
+                    </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H6j-P1-g6A"/>
-                <constraint firstItem="qI4-mf-7tC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MaW-tT-fqk"/>
-                <constraint firstAttribute="trailing" secondItem="qI4-mf-7tC" secondAttribute="trailing" id="UsV-HB-UGA"/>
-                <constraint firstAttribute="bottom" secondItem="qI4-mf-7tC" secondAttribute="bottom" id="fOd-ba-dwT"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qI4-mf-7tC" secondAttribute="trailing" id="4Ya-nj-m6T"/>
+                <constraint firstItem="qI4-mf-7tC" firstAttribute="top" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="8js-Al-MiM"/>
+                <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="IRj-vo-xFx"/>
+                <constraint firstItem="qI4-mf-7tC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="990" id="MaW-tT-fqk"/>
+                <constraint firstAttribute="trailing" secondItem="qI4-mf-7tC" secondAttribute="trailing" priority="990" id="Ww3-dB-jGW"/>
+                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="qI4-mf-7tC" secondAttribute="bottom" id="c1S-vf-BX2"/>
+                <constraint firstAttribute="bottom" secondItem="qI4-mf-7tC" secondAttribute="bottom" priority="990" id="fOd-ba-dwT"/>
+                <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="990" id="yZ1-JX-Q8K"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -29,4 +38,7 @@
             <point key="canvasLocation" x="345.5" y="352.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="BN" width="64" height="64"/>
+    </resources>
 </document>
