@@ -13,7 +13,7 @@ pod 'Mixpanel', '~> 2.9'
 pod 'XCGLogger', '~> 3.0'
 
 # google
-pod 'GoogleMaps', '~> 1.10'
+#pod 'GoogleMaps', '~> 1.10'
 #pod 'GoogleSignIn', '~> 2.4'
 pod 'FTGooglePlacesAPI'
 
