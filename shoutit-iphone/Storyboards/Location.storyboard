@@ -8,7 +8,7 @@
         <!--Location Getter View Controller-->
         <scene sceneID="VRP-pS-15V">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="eGL-Yg-bi6" customClass="SHLocationGetterViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="eGL-Yg-bi6" customClass="SHLocationGetterViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C7F-8X-8tc"/>
                         <viewControllerLayoutGuide type="bottom" id="iEy-ek-AuT"/>
@@ -29,7 +29,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QHl-jt-Ozq" style="IBUITableViewCellStyleDefault" id="5MX-R9-g3h" customClass="SHLocationGetterViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QHl-jt-Ozq" style="IBUITableViewCellStyleDefault" id="5MX-R9-g3h" customClass="SHLocationGetterViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5MX-R9-g3h" id="JoY-1u-v7u">
@@ -75,7 +75,7 @@
         <!--Change Location-->
         <scene sceneID="NOU-X8-czL">
             <objects>
-                <tableViewController storyboardIdentifier="LocationRootController" id="6rO-uv-M0b" customClass="ChangeLocationTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationRootController" id="6rO-uv-M0b" customClass="ChangeLocationTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="85o-UA-Ud3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

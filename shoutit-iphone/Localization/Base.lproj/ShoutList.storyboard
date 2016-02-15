@@ -9,7 +9,7 @@
         <!--Shout List View Controller-->
         <scene sceneID="Grd-hX-FJw">
             <objects>
-                <viewController storyboardIdentifier="shoutListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gpc-x8-I2a" customClass="SHShoutListViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shoutListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gpc-x8-I2a" customClass="SHShoutListViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="liC-UM-Gru"/>
                         <viewControllerLayoutGuide type="bottom" id="r7h-zn-hsW"/>
@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="shShoutItemGridCell" id="aer-qs-ALN" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="shShoutItemGridCell" id="aer-qs-ALN" customClass="SHShoutItemCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="200" y="0.0" width="200" height="239"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -103,7 +103,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <outlet property="shoutTitle" destination="nec-tP-nlv" id="PI2-s8-VGG"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="0yP-1M-ldN" customClass="SHShoutDiscoverTitleCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="0yP-1M-ldN" customClass="SHShoutDiscoverTitleCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="112" y="249" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -148,7 +148,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <outlet property="discoverLabel" destination="DSA-oL-RTK" id="45z-ll-RJb"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="lyL-P0-Ffj" customClass="SHShoutMyFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="lyL-P0-Ffj" customClass="SHShoutMyFeedHeaderCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="112" y="300" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -200,7 +200,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <outlet property="switchViewTypeButton" destination="VY5-GC-UXj" id="6TP-Pk-lAk"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemListCell" reuseIdentifier="shShoutItemListCell" id="4gt-tj-vc2" customClass="SHShoutItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemListCell" reuseIdentifier="shShoutItemListCell" id="4gt-tj-vc2" customClass="SHShoutItemCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="108" y="351" width="384" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -320,7 +320,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <outlet property="shoutType" destination="4sf-ib-MF0" id="TGt-1A-Yw7"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverListCell" reuseIdentifier="shoutDiscoverListCell" id="hXl-TT-nkS" customClass="SHShoutDiscoverListCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverListCell" reuseIdentifier="shoutDiscoverListCell" id="hXl-TT-nkS" customClass="SHShoutDiscoverListCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="197" y="471" width="206" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -340,7 +340,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverItemCell" reuseIdentifier="discoverItemCell" id="7Pc-64-uJL" customClass="SHDiscoverItemCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverItemCell" reuseIdentifier="discoverItemCell" id="7Pc-64-uJL" customClass="SHDiscoverItemCell" customModule="Shoutit" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="0.0" width="90" height="121"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
