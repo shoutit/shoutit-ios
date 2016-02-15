@@ -24,19 +24,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup left bar button item
-        if let navigationController = self.navigationController {
-            
-            let leftBarButtonItem: UIBarButtonItem
-            if self === navigationController.viewControllers[0] {
-                leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: self, action: "toggleMenu")
-            } else {
-                leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: "popViewController")
-            }
-            self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        }
-        
-        tableView.tableFooterView = UIView()
+        applyNavigationItems()
         setupRX()
     }
     
