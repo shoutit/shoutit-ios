@@ -38,30 +38,35 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
             return
         }
         
+        // set some initial values
         cachedAttributes = []
-        
         let collectionWidth = collectionView.bounds.width
         let contentYOffset = collectionView.contentOffset.y
         var yOffset: CGFloat = 0
         
+        // create attributes
         let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.Cover.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.Cover.indexPath)
         let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.Info.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.Info.indexPath)
         
+        // calculate frames
         coverAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: max(coverViewHeight - contentYOffset, collapsedCoverViewHeight))
         yOffset += (coverViewHeight - infoOverCoverViewMargin)
         infoAttributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: infoViewHeight)
         yOffset += infoViewHeight
         
-        let reachedBreakingPoint = collapsedCoverViewHeight >= coverViewHeight - contentYOffset
-        
-        if reachedBreakingPoint {
+        // add extra attributes for cover
+        if collapsedCoverViewHeight >= coverViewHeight - contentYOffset {
             coverAttributes.zIndex = 10
         } else {
             coverAttributes.zIndex = 0
         }
         
+        coverAttributes.collapseProgress = min(1, max(0, contentYOffset / (coverViewHeight - collapsedCoverViewHeight)))
+        coverAttributes.segmentScrolledUnderCoverViewLength = max(0, contentYOffset - (coverViewHeight - collapsedCoverViewHeight))
+        
+        // add extra attributes for info
         infoAttributes.zIndex = 5
-        infoAttributes.scaleFactor = max(coverViewHeight - contentYOffset, collapsedCoverViewHeight)/coverViewHeight
+        infoAttributes.scaleFactor = max(coverViewHeight - contentYOffset, collapsedCoverViewHeight)/(coverViewHeight - collapsedCoverViewHeight)
         
         cachedAttributes.append(coverAttributes)
         cachedAttributes.append(infoAttributes)
@@ -88,8 +93,8 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
                                                          height: sectionHeaderHeight,
                                                          yOffset: &yOffset)
         
-        let cellWidth = floor((collectionWidth - shoutsCellSpacing) * 0.5)
         // layout for shouts cells
+        let cellWidth = floor((collectionWidth - shoutsCellSpacing) * 0.5)
         for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
             
             let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Shouts.rawValue)

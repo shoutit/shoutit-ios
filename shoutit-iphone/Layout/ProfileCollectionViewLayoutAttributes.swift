@@ -11,10 +11,14 @@ import UIKit
 class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var scaleFactor: CGFloat = 1
+    var collapseProgress: CGFloat = 0
+    var segmentScrolledUnderCoverViewLength: CGFloat = 0
     
     override func copyWithZone(zone: NSZone) -> AnyObject {
         let copy = super.copyWithZone(zone) as! ProfileCollectionViewLayoutAttributes
         copy.scaleFactor = scaleFactor
+        copy.collapseProgress = collapseProgress
+        copy.segmentScrolledUnderCoverViewLength = segmentScrolledUnderCoverViewLength
         return copy
     }
     
@@ -29,5 +33,7 @@ class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
         }
         
         return scaleFactor == attributes.scaleFactor
+            && collapseProgress == attributes.collapseProgress
+            && segmentScrolledUnderCoverViewLength == attributes.segmentScrolledUnderCoverViewLength
     }
 }

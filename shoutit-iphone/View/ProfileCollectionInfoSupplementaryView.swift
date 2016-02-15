@@ -57,8 +57,7 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
         let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
         
         let normalAvatarHeight: CGFloat = 76.0
-        let minimumAvatarHeight: CGFloat = 35.0
         
-        avatarHeightConstraint.constant = max(min(1.0, attributes.scaleFactor) * normalAvatarHeight, minimumAvatarHeight)
+        avatarHeightConstraint.constant = min(1.0, attributes.scaleFactor) * normalAvatarHeight
     }
 }
