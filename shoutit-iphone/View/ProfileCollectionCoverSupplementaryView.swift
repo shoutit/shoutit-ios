@@ -13,13 +13,23 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     private let visibleLabelsConstraintConstantValue: CGFloat = 21
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var blurredImageView: UIImageView!
     
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var cartButton: UIButton!
     
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!
+    
+    func setCoverImage(image: UIImage) {
+        blurredImageView.image = image
+        imageView.image = image
+    }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
@@ -32,10 +42,12 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
         
         // animate blur
         let animationProgress = attributes.collapseProgress
-        if animationProgress > 0.2 {
+        if animationProgress > 0.05 {
             imageView.alpha = 1 - animationProgress
+            gradientView.alpha = 1 - animationProgress
         } else {
             imageView.alpha = 1.0
+            gradientView.alpha = 1.0
         }
     }
 }
