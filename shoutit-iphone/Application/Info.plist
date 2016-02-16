@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb353625811317277</string>
+				<string>$(FACEBOOK_URL_SCHEME)</string>
 			</array>
 		</dict>
 		<dict>
@@ -76,7 +76,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>353625811317277</string>
+	<string>$(FACEBOOK_APP_ID)</string>
 	<key>FacebookDisplayName</key>
 	<string>shoutit-iphone</string>
 	<key>LSApplicationQueriesSchemes</key>
