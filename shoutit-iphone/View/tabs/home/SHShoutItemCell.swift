@@ -23,11 +23,11 @@ class SHShoutItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewModel = SHShoutItemCellViewModel(cell: self)
+//        viewModel = SHShoutItemCellViewModel(cell: self)
     }
     
-    func setUp(viewController: UIViewController?, shout: SHShout) {
-        viewModel?.setUp(viewController, shout: shout)
-    }
+//    func setUp(viewController: UIViewController?, shout: SHShout) {
+//        viewModel?.setUp(viewController, shout: shout)
+//    }
     
 }

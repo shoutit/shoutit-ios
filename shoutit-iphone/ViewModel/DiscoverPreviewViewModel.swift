@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import RxSwift
+
+enum DiscoverPreviewState {
+    case Loading
+    case NoItems
+    case Loaded
+}
 
 class DiscoverPreviewViewModel: AnyObject {
+    
     let displayable = ShoutsDisplayable(layout: .HorizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
-
+    
+    var state = Variable(DiscoverPreviewState.Loading)
+    
     func cellReuseIdentifier() -> String {
         return reuseIdentifier
     }

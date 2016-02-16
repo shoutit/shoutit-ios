@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let viewModel = HomeShoutsViewModel()
+    let scrollOffset = Variable(CGPointZero)
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let collection = self.collectionView {
-            viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-        }
+        setupDisplayable()
     }
     
     // MARK: UICollectionViewDataSource
@@ -42,7 +43,16 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     // MARK: Actions
     
     func changeCollectionViewDisplayMode() {
+        
         viewModel.changeDisplayModel()
+        setupDisplayable()
+    }
+    
+    func setupDisplayable() {
         viewModel.displayable.applyOnLayout(self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)
+        
+        viewModel.displayable.contentOffset.asObservable().subscribeNext { (offset) -> Void in
+            self.scrollOffset.value = offset
+        }.addDisposableTo(disposeBag)
     }
 }

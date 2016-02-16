@@ -18,17 +18,17 @@ class HomeShoutsViewModel: AnyObject {
     
     func cellReuseIdentifier() -> String {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
-            return listReuseIdentifier
+            return gridReuseIdentifier
         }
         
-        return gridReuseIdentifier
+        return listReuseIdentifier
     }
     
     func changeDisplayModel() {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
-            displayable = ShoutsDisplayable(layout: .VerticalList)
+            displayable = ShoutsDisplayable(layout: .VerticalList, offset: displayable.contentOffset.value)
         } else {
-            displayable = ShoutsDisplayable(layout: .VerticalGrid)
+            displayable = ShoutsDisplayable(layout: .VerticalGrid, offset: displayable.contentOffset.value)
         }
     }
 }
