@@ -9,3 +9,7 @@
 #include "shoutit.xcconfig"
 
 PRODUCT_NAME = Shoutit Staging
+
+// facebook
+FACEBOOK_URL_SCHEME = fb1151546964858487
+FACEBOOK_APP_ID = 1151546964858487

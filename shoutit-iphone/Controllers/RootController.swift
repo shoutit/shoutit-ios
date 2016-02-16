@@ -15,19 +15,30 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var contentContainer : UIView?
     
     var flowControllers = [NavigationItem: FlowController]()
+    private var loginFlowController: LoginFlowController?
     
     private var token: dispatch_once_t = 0
     private let disposeBag = DisposeBag()
     let presentMenuSegue = "presentMenuSegue"
     
     // MARK: Life Cycle
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().rx_notification(Constants.Notification.ToggleMenuNotification).subscribeNext { notification in
-            self.toggleMenuAction()
-        }.addDisposableTo(disposeBag)
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.UserDidLogoutNotification)
+            .subscribeNext { notification in
+                self.openItem(.Home)
+            }
+            .addDisposableTo(disposeBag)
+        
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.ToggleMenuNotification)
+            .subscribeNext { notification in
+                self.toggleMenuAction()
+            }
+            .addDisposableTo(disposeBag)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,17 +74,26 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
         
+        let flowControllerToShow: FlowController
+        
         if let loadedFlowController = flowControllers[navigationItem] {
-            changeContentTo(loadedFlowController.navigationController)
+            flowControllerToShow = loadedFlowController
+        } else {
+            flowControllerToShow = flowControllerFor(navigationItem)
+            flowControllers[navigationItem] = flowControllerToShow
+        }
+        
+        if flowControllerToShow.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
+            let navigationController = LoginNavigationViewController()
+            loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
+            loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
+                self?.openItem(.Home)
+            }
+            presentWith(loginFlowController!)
             return
         }
         
-        let flowController = flowControllerFor(navigationItem)
-        
-        presentWith(flowController)
-        
-        flowControllers[navigationItem] = flowController
-        
+        presentWith(flowControllerToShow)
     }
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
@@ -82,27 +102,18 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
         switch navigationItem {
             
-        case .Home: flowController = HomeFlowController(navigationController: navController)
-        case .Discover: flowController = DiscoverFlowController(navigationController: navController)
-        case .Shout: flowController = ShoutFlowController(navigationController: navController)
-        case .Chats: flowController = ChatsFlowController(navigationController: navController)
-        case .Profile: flowController = ProfileFlowController(navigationController: navController)
-        case .Settings: flowController = SettingsFlowController(navigationController: navController)
-        case .Help: flowController = HelpFlowController(navigationController: navController)
+        case .Home: flowController          = HomeFlowController(navigationController: navController)
+        case .Discover: flowController      = DiscoverFlowController(navigationController: navController)
+        case .Shout: flowController         = ShoutFlowController(navigationController: navController)
+        case .Chats: flowController         = ChatsFlowController(navigationController: navController)
+        case .Profile: flowController       = ProfileFlowController(navigationController: navController)
+        case .Settings: flowController      = SettingsFlowController(navigationController: navController)
+        case .Help: flowController          = HelpFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
-        case .Location: flowController = LocationFlowController(navigationController: navController)
-        default: flowController = HomeFlowController(navigationController: navController)
+        case .Location: flowController      = LocationFlowController(navigationController: navController)
+        default: flowController             = HomeFlowController(navigationController: navController)
             
         }
-        
-        if flowController.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
-            let navigationController = LoginNavigationViewController()
-            
-            let loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
-            
-            return loginFlowController
-        }
-        
         
         return flowController
     }

@@ -33,6 +33,7 @@ final class ApplicationMainViewController: UIViewController {
         NSNotificationCenter.defaultCenter()
             .rx_notification(Constants.Notification.UserDidLogoutNotification)
             .subscribeNext { (_) in
+                self.loginWasPresented = true
                 self.showLogin()
             }.addDisposableTo(disposeBag)
     }
