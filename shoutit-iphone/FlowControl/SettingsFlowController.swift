@@ -38,15 +38,15 @@ class SettingsFlowController: FlowController {
     }
     
     private func showNotificationsSettings() {
-        fatalError("Implement")
+        navigationController.notImplemented()
     }
     
     private func showEmailSettings() {
-        fatalError("Implement")
+        navigationController.notImplemented()
     }
     
     private func showPasswordSettings() {
-        fatalError("Implement")
+        navigationController.notImplemented()
     }
     
     private func settingsOptions() -> Variable<[SettingsOption]> {
@@ -78,7 +78,7 @@ class SettingsFlowController: FlowController {
                 self.showPasswordSettings()
             },
             SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
-                try! Account.sharedInstance.logout()
+                _ = try? Account.sharedInstance.logout()
                 NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
                 self.navigationController.popToRootViewControllerAnimated(false)
             }
