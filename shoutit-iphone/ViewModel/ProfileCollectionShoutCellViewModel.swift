@@ -10,5 +10,4 @@ import UIKit
 
 class ProfileCollectionShoutCellViewModel: ProfileCollectionCellViewModel {
     
-    let type: ProfileCollectionCellViewModelType = ProfileCollectionCellViewModelType.Shout
 }

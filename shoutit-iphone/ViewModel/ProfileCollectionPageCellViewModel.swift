@@ -9,6 +9,4 @@
 import UIKit
 
 class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
-    
-    let type: ProfileCollectionCellViewModelType = ProfileCollectionCellViewModelType.Page
 }

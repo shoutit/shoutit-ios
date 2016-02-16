@@ -8,6 +8,52 @@
 
 import UIKit
 
+enum ProfileCollectionInfoButton {
+    case Listeners(countString: String)
+    case Listening(countString: String)
+    case Interests(countString: String)
+    case Chat
+    case Listen(isListening: Bool)
+    
+    var title: String {
+        switch self {
+        case .Listeners:
+            return NSLocalizedString("Listeners", comment: "")
+        case .Listening:
+            return NSLocalizedString("Listening", comment: "")
+        case .Interests:
+            return NSLocalizedString("Interests", comment: "")
+        case .Chat:
+            return NSLocalizedString("Chat", comment: "")
+        case .Listen(let listetning):
+            if listetning {
+                return NSLocalizedString("Stop Listening", comment: "")
+            } else {
+                return NSLocalizedString("Listen", comment: "")
+            }
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .Listeners:
+            return UIImage.profileListenersIcon()
+        case .Listening:
+            return UIImage.profileListeningIcon()
+        case .Interests:
+            return UIImage.profileTagsIcon()
+        case .Chat:
+            return UIImage.profileChatIcon()
+        case .Listen(let listetning):
+            if listetning {
+                return UIImage.profileStopListeningIcon()
+            } else {
+                return UIImage.profileListenIcon()
+            }
+        }
+    }
+}
+
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // section 1
@@ -35,9 +81,9 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var rightmostButton: UIButton!
     
     // section 2
-    @IBOutlet weak var buttonSectionLeftButton: UIButton!
-    @IBOutlet weak var buttonSectionCenterButton: UIButton!
-    @IBOutlet weak var buttonSectionRightButton: UIButton!
+    @IBOutlet weak var buttonSectionLeftButton: ProfileInfoHeaderButton!
+    @IBOutlet weak var buttonSectionCenterButton: ProfileInfoHeaderButton!
+    @IBOutlet weak var buttonSectionRightButton: ProfileInfoHeaderButton!
     
     // section 3
     @IBOutlet weak var bioLabel: UILabel!
@@ -59,5 +105,26 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
         let normalAvatarHeight: CGFloat = 76.0
         
         avatarHeightConstraint.constant = min(1.0, attributes.scaleFactor) * normalAvatarHeight
+    }
+    
+    func setButtons(buttons:[ProfileCollectionInfoButton]) {
+        assert(buttons.count == 3)
+        
+        let uiButtons = [buttonSectionLeftButton, buttonSectionCenterButton, buttonSectionRightButton]
+        for index in 0..<3 {
+            let uiButton = uiButtons[index]
+            let button = buttons[index]
+            
+            uiButton.setTitleText(button.title)
+            uiButton.setImage(button.image)
+            
+            if case .Listeners(let countString) = button {
+                uiButton.setCountText(countString)
+            } else if case .Listening(let countString) = button {
+                uiButton.setCountText(countString)
+            } else if case .Interests(let countString) = button {
+                uiButton.setCountText(countString)
+            }
+        }
     }
 }

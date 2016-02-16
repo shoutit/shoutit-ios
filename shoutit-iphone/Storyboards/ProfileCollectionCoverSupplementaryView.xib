@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BN" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-Zx-3M1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_cover_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-Zx-3M1">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                 </imageView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DDK-KL-ORc">
@@ -23,7 +23,7 @@
                     </view>
                     <blurEffect style="dark"/>
                 </visualEffectView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BN" translatesAutoresizingMaskIntoConstraints="NO" id="qI4-mf-7tC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_cover_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qI4-mf-7tC">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                     <color key="backgroundColor" red="0.95686274509803748" green="0.95686274509803748" blue="0.94165720818528753" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -147,11 +147,11 @@
         </view>
     </objects>
     <resources>
-        <image name="BN" width="64" height="64"/>
         <image name="backThin" width="24" height="24"/>
         <image name="cart" width="25" height="25"/>
         <image name="logo_navbar_white" width="93" height="24"/>
         <image name="navMenu" width="24" height="24"/>
+        <image name="profile_cover_placeholder" width="375" height="211"/>
         <image name="search" width="25" height="24"/>
     </resources>
 </document>

@@ -57,6 +57,15 @@ class ProfileCollectionViewControllerDataSource: NSObject, UICollectionViewDataS
         
         let supplementeryView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: view.kind.rawValue, forIndexPath: indexPath)
         
+        if view == .Cover {
+            
+            let coverView = supplementeryView as! ProfileCollectionCoverSupplementaryView
+        } else if view == .Info {
+            
+            let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
+            infoView.setButtons([.Listeners(countString: "3K"), .Listening(countString: "3K"), .Interests(countString: "3K")])
+        }
+        
         return supplementeryView
     }
 }

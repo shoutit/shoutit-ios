@@ -20,4 +20,6 @@ class ProfileCollectionViewModel {
     init(user: User) {
         self.user = user
     }
+    
+    
 }
