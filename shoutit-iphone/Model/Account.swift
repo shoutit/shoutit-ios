@@ -103,6 +103,8 @@ final class Account {
     func logout() throws {
         try NSFileManager.defaultManager().removeItemAtPath(archivePath)
         try keychain.remove(authDataKey)
+        user = nil
+        authData = nil
         APIManager.eraseAuthToken()
     }
 }
