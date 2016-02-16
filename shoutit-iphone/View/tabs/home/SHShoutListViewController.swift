@@ -17,8 +17,8 @@ enum ShoutViewType {
     case LIST
 }
 
-class SHShoutListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class SHShoutListViewController: UIViewController {
+    /*
     private var shouts: [SHShout] = []
     private var discoverItems: [SHDiscoverItem] = []
     private let shApiShoutsService = SHApiShoutService()
@@ -107,16 +107,17 @@ class SHShoutListViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
-    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-        switch(self.viewType) {
-        case .GRID:
-            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
-            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
-            return cell
-        case .LIST:
-            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemListCell, forIndexPath: indexPath) as! SHShoutItemCell
-            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
-            return cell
-        }
-    }
+//    private func getShoutListCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+//        switch(self.viewType) {
+//        case .GRID:
+//            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemGridCell, forIndexPath: indexPath) as! SHShoutItemCell
+//            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
+//            return cell
+//        case .LIST:
+//            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(Constants.CollectionViewCell.ShoutItemListCell, forIndexPath: indexPath) as! SHShoutItemCell
+//            cell.setUp(self, shout: self.shouts[indexPath.row - 3])
+//            return cell
+//        }
+//    }
+*/
 }

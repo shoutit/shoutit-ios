@@ -25,7 +25,7 @@ extension ShoutVerticalListLayoutDisplayable {
     func itemHeight() -> CGFloat { return 110.0 }
     
     func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
-        return CGSize(width: collectionView.bounds.width - 2 * minimumInterItemSpacingSize().width, height: itemHeight())
+        return CGSize(width: floor(collectionView.bounds.width - 2 * minimumInterItemSpacingSize().width), height: min(itemHeight(), floor(collectionView.bounds.height - 2 * minimumInterItemSpacingSize().width)))
     }
     
     func minimumInterItemSpacingSize() -> CGSize! {
@@ -49,8 +49,10 @@ extension ShoutVerticalGridLayoutDisplayable {
     
     func itemHeight() -> CGFloat { return 170.0 }
     
+    
+    
     func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
-        return CGSize(width: (collectionView.bounds.width - 3 * minimumInterItemSpacingSize().width) * 0.5, height: itemHeight())
+        return CGSize(width: floor((collectionView.bounds.width - 3 * minimumInterItemSpacingSize().width) * 0.5), height: itemHeight())
     }
     
     func minimumInterItemSpacingSize() -> CGSize! {

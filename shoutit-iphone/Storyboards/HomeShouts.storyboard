@@ -150,36 +150,27 @@
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNb-PF-lqi">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-L3-BwD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-L3-BwD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="202"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1b-KS-5qZ">
-                                                    <rect key="frame" x="5" y="222" width="145" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="aMG-d2-qOU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
-                                                    <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" misplaced="YES" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loe-1B-JpP">
-                                                    <rect key="frame" x="150" y="222" width="45" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="7fX-p4-Z49"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loe-1B-JpP">
+                                                    <rect key="frame" x="150" y="225" width="45" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
                                                     <color key="textColor" red="0.49019607840000001" green="0.75686274509999996" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M4-dj-imx">
-                                                    <rect key="frame" x="5" y="203" width="190" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="fkI-fj-skZ"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M4-dj-imx">
+                                                    <rect key="frame" x="5" y="205" width="190" height="12"/>
                                                     <string key="text">Merino Wool Slouchy Hat, Winter 
 Hat, Chunky Textured Knit Hat and more text</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1b-KS-5qZ">
+                                                    <rect key="frame" x="5" y="225" width="54" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                    <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -195,9 +186,15 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                 <constraint firstAttribute="trailing" secondItem="loe-1B-JpP" secondAttribute="trailing" constant="5" id="hWa-pi-BIy"/>
                                                 <constraint firstItem="7dg-L3-BwD" firstAttribute="top" secondItem="yNb-PF-lqi" secondAttribute="top" id="iso-nK-yxG"/>
                                                 <constraint firstItem="7dg-L3-BwD" firstAttribute="leading" secondItem="yNb-PF-lqi" secondAttribute="leading" id="j8y-e5-egm"/>
-                                                <constraint firstAttribute="bottom" secondItem="7dg-L3-BwD" secondAttribute="bottom" constant="39" id="ksb-ZJ-dNc"/>
-                                                <constraint firstItem="loe-1B-JpP" firstAttribute="leading" secondItem="c1b-KS-5qZ" secondAttribute="trailing" id="v6V-x8-tqx"/>
+                                                <constraint firstAttribute="bottom" secondItem="7dg-L3-BwD" secondAttribute="bottom" constant="40" id="ksb-ZJ-dNc"/>
+                                                <constraint firstItem="c1b-KS-5qZ" firstAttribute="top" secondItem="1M4-dj-imx" secondAttribute="bottom" constant="8" id="pvz-vk-xjb"/>
+                                                <constraint firstItem="loe-1B-JpP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c1b-KS-5qZ" secondAttribute="trailing" constant="5" id="v6V-x8-tqx"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ngg-pH-hCV"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

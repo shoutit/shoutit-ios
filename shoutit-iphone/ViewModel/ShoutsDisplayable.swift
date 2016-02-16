@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum ShoutsLayout {
     case HorizontalGrid
@@ -31,8 +32,11 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     let shoutsLayout : ShoutsLayout!
     
-    required init(layout: ShoutsLayout) {
+    var contentOffset : Variable<CGPoint>
+    
+    required init(layout: ShoutsLayout, offset: CGPoint = CGPointZero) {
         shoutsLayout = layout
+        contentOffset = Variable(offset)
         collectionLayoutDisplayable = layout.collectionLayoutDisplayable()
     }
     
@@ -57,13 +61,24 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
         return collectionLayoutDisplayable.scrollDirection()
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        contentOffset.value = scrollView.contentOffset
+    }
+    
     func applyOnLayout(collectionViewLayout: UICollectionViewFlowLayout?) {
         
         collectionViewLayout?.scrollDirection = scrollDirection()
-        collectionViewLayout?.collectionView?.delegate = self
         
-        collectionViewLayout?.collectionView?.performBatchUpdates({ () -> Void in
-            collectionViewLayout?.invalidateLayout()
-        }, completion: nil)
+        if let collectionView = collectionViewLayout?.collectionView {
+            collectionView.delegate = self
+            
+            collectionView.performBatchUpdates({ () -> Void in
+                
+                collectionView.reloadItemsAtIndexPaths(collectionView.visibleCells().map({ (cell) -> NSIndexPath in
+                    return collectionView.indexPathForCell(cell)!
+                }))
+                
+            }, completion: nil)
+        }
     }
 }
