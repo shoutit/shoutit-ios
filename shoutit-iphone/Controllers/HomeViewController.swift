@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
             let newValue = state == .Loaded
 
             if newValue != self.discoverVisible {
-                self.discoverVisible = newValue
+//                self.discoverVisible = newValue
             }
         }).addDisposableTo(disposeBag)
     }
