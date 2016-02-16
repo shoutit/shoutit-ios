@@ -15,6 +15,9 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var blurredImageView: UIImageView!
+    
     
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!
     
@@ -23,8 +26,16 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
         
         let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
         
-        let invisibleLabelsConstraintConstantValue = titleLabel.bounds.height
-        
+        // move title label
+        let invisibleLabelsConstraintConstantValue = -titleLabel.bounds.height
         titleLabelBottomConstraint.constant = min(invisibleLabelsConstraintConstantValue + attributes.segmentScrolledUnderCoverViewLength, visibleLabelsConstraintConstantValue)
+        
+        // animate blur
+        let animationProgress = attributes.collapseProgress
+        if animationProgress > 0.2 {
+            imageView.alpha = 1 - animationProgress
+        } else {
+            imageView.alpha = 1.0
+        }
     }
 }
