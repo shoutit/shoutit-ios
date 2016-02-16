@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2405803F1C7368CB009ED106 /* APIShoutsService.swift */; };
 		240F50921C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50911C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift */; };
 		240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */; };
 		240F50981C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50971C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift */; };
@@ -548,6 +549,7 @@
 
 /* Begin PBXFileReference section */
 		0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_production.xcconfig"; sourceTree = "<group>"; };
+		2405803F1C7368CB009ED106 /* APIShoutsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIShoutsService.swift; path = Networking/APIShoutsService.swift; sourceTree = "<group>"; };
 		240F50911C71AA3E00AE4A76 /* HomeShoutsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeShoutsCollectionViewController.swift; path = Controllers/HomeShoutsCollectionViewController.swift; sourceTree = "<group>"; };
 		240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutCollectionLayoutDisplayable.swift; path = CommonProtocols/ShoutCollectionLayoutDisplayable.swift; sourceTree = "<group>"; };
 		240F50971C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewViewModel.swift; path = ViewModel/DiscoverPreviewViewModel.swift; sourceTree = "<group>"; };
@@ -2785,6 +2787,7 @@
 				B253A33F1C691B3F00C8B8F9 /* APITagsService.swift */,
 				AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */,
 				241CEC341C73282B00694575 /* APIDiscoverService.swift */,
+				2405803F1C7368CB009ED106 /* APIShoutsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -3554,6 +3557,7 @@
 				ACC36C391C09D1220082E0C2 /* SHShoutSquareCollectionViewCell.swift in Sources */,
 				ACC36C4B1C0CA14A0082E0C2 /* SHMessagesViewModel.swift in Sources */,
 				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
+				240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */,
 				AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
 				ACDB3CC71BF90F990097444E /* SHRequestVideoTableViewCellModel.swift in Sources */,
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
@@ -4657,6 +4661,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

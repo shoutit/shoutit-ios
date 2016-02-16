@@ -13,7 +13,6 @@ struct Suggestions {
     let users: [Profile]?
     let pages: [Profile]?
     let tags: [Tag]?
-    let shouts: [Shout]?
 }
 
 extension Suggestions: MappableObject {
@@ -22,6 +21,5 @@ extension Suggestions: MappableObject {
         users = try map.extract("users")
         pages = try map.extract("pages")
         tags = try map.extract("tags")
-        shouts = try map.extract("shouts")
     }
 }

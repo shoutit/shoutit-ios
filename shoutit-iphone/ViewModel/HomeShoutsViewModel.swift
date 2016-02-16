@@ -16,6 +16,8 @@ class HomeShoutsViewModel: AnyObject {
     
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
+    var dataSource : Observable<[Shout]>?
+    
     func cellReuseIdentifier() -> String {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
             return gridReuseIdentifier
@@ -29,6 +31,14 @@ class HomeShoutsViewModel: AnyObject {
             displayable = ShoutsDisplayable(layout: .VerticalList, offset: displayable.contentOffset.value)
         } else {
             displayable = ShoutsDisplayable(layout: .VerticalGrid, offset: displayable.contentOffset.value)
+        }
+    }
+    
+    required init() {
+        dataSource = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+            return user?.location.country
+        }.flatMap { (location) in
+            return APIShoutsService.shouts(forCountry: location)
         }
     }
 }

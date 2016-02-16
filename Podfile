@@ -46,6 +46,7 @@ pod 'MWPhotoBrowser', '~> 2.1'
 pod 'Genome', '~> 2.0'
 pod 'ObjectMapper', '~> 1.1'
 pod 'HanekeSwift', '~> 0.10'
+pod 'Freddy'
 
 # ui controls
 pod 'Material', '~> 1.29'

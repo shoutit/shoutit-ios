@@ -11,10 +11,17 @@ import UIKit
 class DiscoverPreviewParentController: UIViewController {
     
     var discoverController : DiscoverPreviewCollectionViewController?
+    @IBOutlet weak var titleLabel : UILabel?
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let discover = segue.destinationViewController as? DiscoverPreviewCollectionViewController {
             discoverController = discover
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+
     }
 }
