@@ -46,6 +46,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.10.0):
     - FBSDKCoreKit
+  - Freddy (2.0.2)
   - FTGooglePlacesAPI (1.1):
     - AFNetworking (~> 2.2.0)
   - Genome (2.0.4):
@@ -121,6 +122,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
   - FBSDKShareKit (~> 4.8)
+  - Freddy
   - FTGooglePlacesAPI
   - Genome (~> 2.0)
   - GoogleMaps (~> 1.10)
@@ -167,6 +169,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
+  Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
   GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699

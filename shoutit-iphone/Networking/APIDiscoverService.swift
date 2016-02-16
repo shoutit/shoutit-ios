@@ -11,22 +11,22 @@ import Alamofire
 import PureJsonSerializer
 import RxSwift
 import RxCocoa
+import Freddy
 
 class APIDiscoverService {
     private static let discoverURL = APIManager.baseURL + "/discover"
     
-    static func discover(forCountry country: String, page_size: Int = 5, page: Int = 0) -> Observable<([DiscoverItem])> {
+    static func discover(forCountry country: String?, page_size: Int = 5, page: Int = 1) -> Observable<[DiscoverItem]> {
         return Observable.create({ (observer) -> Disposable in
             
-            let params: [String: AnyObject] = ["country": country, "page": page, "page_size": page_size]
+            let params: [String: AnyObject] = ["country": (country ?? ""), "page": page, "page_size": page_size]
             
-            APIManager.manager().request(.GET, discoverURL, parameters:params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
+            APIManager.manager().request(.GET, discoverURL, parameters:params, encoding: .URL, headers: nil).responseData { (response) in
                 switch response.result {
                 case .Success(let data):
                     do {
-                        let json = try Json.deserialize(data)
-
-                        let results = try [DiscoverItem](js: json)
+                        let json = try JSON(data: data)
+                        let results = try json.array("results").map(DiscoverItem.init)
                         
                         observer.on(.Next(results))
                         observer.on(.Completed)
@@ -38,6 +38,32 @@ class APIDiscoverService {
                     observer.on(.Error(error ?? RxCocoaURLError.Unknown))
                 }
             }
+            
+            return AnonymousDisposable {
+            }
+        })
+    }
+    
+    static func shouts(forDiscoverItem discoverItem: DiscoverItem) -> Observable<[DiscoverItem]> {
+        return Observable.create({ (observer) -> Disposable in
+            
+            APIManager.manager().request(.GET, discoverItem.apiUrl, encoding: .URL, headers: nil).responseData({ (response) -> Void in
+                switch response.result {
+                case .Success(let data):
+                    do {
+                        let json = try JSON(data: data)
+                        let results = try json.array("children").map(DiscoverItem.init)
+                        
+                        observer.on(.Next(results))
+                        observer.on(.Completed)
+                        
+                    } catch let error as NSError {
+                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
+                    }
+                case .Failure(let error):
+                    observer.on(.Error(error ?? RxCocoaURLError.Unknown))
+                }
+            })
             
             return AnonymousDisposable {
             }

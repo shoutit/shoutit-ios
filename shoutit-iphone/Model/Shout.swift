@@ -7,45 +7,36 @@
 //
 
 import Foundation
-import Genome
-import PureJsonSerializer
+import Freddy
 
-struct Shout {
+public struct Shout {
     let id: String
     let apiPath: String
     let webPath: String
-    let type: ShoutType
-    let location: Address
+    let image: String?
     let title: String
     let text: String
     let price: Double
     let currency: String
     let thumnailPath: String?
     let videoPath: String?
-    let user: Profile
     let datePublishedEpoch: Int
-    let category: Category
-    let tags: [Tag]
 }
 
-extension Shout: MappableObject {
+extension Shout: JSONDecodable {
     
-    init(map: Map) throws {
-        id = try map.extract("id")
-        apiPath = try map.extract("api_url")
-        webPath = try map.extract("web_url")
-        type = try map.extract("type") {ShoutType(rawValue: $0)!}
-        location = try map.extract("location")
-        title = try map.extract("title")
-        text = try map.extract("text")
-        price = try map.extract("price")
-        currency = try map.extract("currency")
-        thumnailPath = try map.extract("thumbnail")
-        videoPath = try map.extract("video_url")
-        user = try map.extract("user")
-        datePublishedEpoch = try map.extract("date_published")
-        category = try map.extract("category")
-        tags = try map.extract("tags")
+    public init(json value: JSON) throws {
+        id = try value.string("id")
+        apiPath = try value.string("api_url")
+        webPath = try value.string("web_url")
+        title = try value.string("title")
+        text = try value.string("text")
+        price = try value.double("price")
+        currency = try value.string("currency")
+        thumnailPath = try value.string("thumbnail")
+        videoPath = try value.string("video_url")
+        datePublishedEpoch = try value.int("date_published")
+        image = try value.string("image")
     }
 }
 

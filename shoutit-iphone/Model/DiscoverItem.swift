@@ -7,38 +7,26 @@
 //
 
 import Foundation
-import Genome
+import Freddy
 
-struct DiscoverItem {
-    let id: String?
-    let apiUrl: String?
-    let title: String?
-    let subtitle: String?
-    let position: Int?
-    let image: String?
-    let icon: String?
-    let description: String?
-    let cover: String?
-    let parents: [DiscoverItem]?
-    let children: [DiscoverItem]?
-    let shoutsUrl: String?
-
-    
+public struct DiscoverItem {
+    public let id: String
+    public let apiUrl: String
+    public let title: String
+    public let subtitle: String
+    public let position: Int
+    public let image: String
+    public let icon: String
 }
 
-extension DiscoverItem: MappableObject {
-    init(map: Map) throws {
-        id = try map.extract("id")
-        apiUrl = try map.extract("apiUrl")
-        title = try map.extract("title")
-        subtitle = try map.extract("subtitle")
-        position = try map.extract("position")
-        image = try map.extract("image")
-        icon = try map.extract("icon")
-        description = try map.extract("description")
-        cover = try map.extract("cover")
-        parents = try map.extract("parents")
-        children = try map.extract("children")
-        shoutsUrl = try map.extract("shoutsUrl")
+extension DiscoverItem: JSONDecodable {
+    public init(json value: JSON) throws {
+        id = try value.string("id")
+        apiUrl = try value.string("api_url")
+        title = try value.string("title")
+        subtitle = try value.string("subtitle")
+        position = try value.int("position")
+        image = try value.string("image")
+        icon = try value.string("icon")
     }
 }

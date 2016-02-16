@@ -7,19 +7,31 @@
 //
 
 import UIKit
-
+import RxSwift
+import Kingfisher
 
 class DiscoverPreviewCollectionViewController: UICollectionViewController {
     
     let viewModel = DiscoverPreviewViewModel()
     
+    private let disposeBag = DisposeBag()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let collection = self.collectionView {
-            collection.delegate = viewModel.displayable
+            
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
+            
+            viewModel.dataSource!.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
+                cell.shoutTitle.text = element.title
+                print(element.image)
+                cell.shoutImage.kf_setImageWithURL(NSURL(string: element.image)!, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+            }.addDisposableTo(disposeBag)
         }
+        
+        
+        
     }
     
     // MARK: UICollectionViewDataSource

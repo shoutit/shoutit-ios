@@ -22,6 +22,7 @@ class DiscoverPreviewViewModel: AnyObject {
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
     
     var state = Variable(DiscoverPreviewState.Loading)
+    var dataSource : Observable<[DiscoverItem]>?
     
     func cellReuseIdentifier() -> String {
         return reuseIdentifier
@@ -29,5 +30,15 @@ class DiscoverPreviewViewModel: AnyObject {
     
     func headerIdentifier() -> String {
         return discoverPreviewHeaderReuseIdentifier
+    }
+    
+    required init() {
+        dataSource = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+            return user?.location.country
+        }.flatMap { (location) in
+            return APIDiscoverService.discover(forCountry: location)
+        }.flatMap({ (items) in
+            return APIDiscoverService.shouts(forDiscoverItem: items[0])
+        })   
     }
 }
