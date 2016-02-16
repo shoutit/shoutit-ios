@@ -139,6 +139,9 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         self.addChildViewController(controller)
         
         controller.didMoveToParentViewController(self)
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
