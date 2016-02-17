@@ -24,16 +24,16 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
-            /*
-            viewModel.dataSource!.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
+    
+            viewModel.dataSource.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
                 cell.shoutTitle.text = element.title
 
                 if let thumbPath = element.thumnailPath, thumbURL = NSURL(string: thumbPath) {
                     cell.shoutImage.kf_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
                 }
                 
-                }.addDisposableTo(disposeBag)
-            */
+            }.addDisposableTo(disposeBag)
+
         }
     }
     

@@ -20,7 +20,7 @@ class APIShoutsService {
             
             let params: [String: AnyObject] = ["country": (country ?? ""), "page": page, "page_size": page_size]
             
-            APIManager.manager().request(.GET, shoutsURL, parameters:params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
+            APIManager.manager().request(.GET, shoutsURL, parameters:params, encoding: .JSON).validate(statusCode: 200..<300).responseData { (response) in
                 switch response.result {
                 case .Success(let data):
                     do {
