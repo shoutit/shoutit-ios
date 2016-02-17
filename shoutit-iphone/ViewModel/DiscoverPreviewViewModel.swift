@@ -22,7 +22,7 @@ class DiscoverPreviewViewModel: AnyObject {
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
     
     var state = Variable(DiscoverPreviewState.Loading)
-    var dataSource : Observable<[DiscoverItem]>?
+    var dataSource : Observable<[DiscoverItem]>
     
     func cellReuseIdentifier() -> String {
         return reuseIdentifier

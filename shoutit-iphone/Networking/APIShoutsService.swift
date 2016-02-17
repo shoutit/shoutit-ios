@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import Freddy
+import Argo
 import RxSwift
 import RxCocoa
 
@@ -19,18 +19,30 @@ class APIShoutsService {
         return Observable.create({ (observer) -> Disposable in
             
             let params: [String: AnyObject] = ["country": (country ?? ""), "page": page, "page_size": page_size]
-            
-            APIManager.manager().request(.GET, shoutsURL, parameters:params, encoding: .JSON).validate(statusCode: 200..<300).responseData { (response) in
+
+            APIManager.manager().request(.GET, shoutsURL, parameters:params, encoding: .URL, headers: ["Accept": "application/json"]).validate(statusCode: 200..<300).responseData { (response) in
                 switch response.result {
                 case .Success(let data):
                     do {
-                        let json = try JSON(data: data)
-                        let results = try json.array("results").map(Shout.init)
+
+                        let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                         
-                        observer.on(.Next(results))
-                        observer.on(.Completed)
+                        if let j = json, jr = j.objectForKey("results") {
+                            if let results : Decoded<[Shout]> = decode(jr) {
+                                
+                                if let value = results.value {
+                                    observer.on(.Next(value))
+                                    observer.on(.Completed)
+                                }
+                                if let err = results.error {
+                                    print(err)
+                                }
+                            }
+                        }
+                        
                         
                     } catch let error as NSError {
+                        print(error)
                         observer.on(.Error(error ?? RxCocoaURLError.Unknown))
                     }
                 case .Failure(let error):

@@ -22,6 +22,7 @@ PODS:
   - AlamofireObjectMapper (2.1.0):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
+  - Argo (2.2.0)
   - AWSCognito (2.3.4):
     - AWSCore (= 2.3.4)
   - AWSCore (2.3.4)
@@ -36,6 +37,7 @@ PODS:
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
   - CryptoSwift (0.2.3)
+  - Curry (1.4.0)
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
   - DWTagList (0.0.7)
@@ -97,10 +99,12 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.1)
+  - Argo
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
   - CryptoSwift
+  - Curry
   - DAProgressOverlayView (~> 1.0)
   - DWTagList (~> 0.0)
   - Fabric (~> 1.6)
@@ -140,12 +144,14 @@ SPEC CHECKSUMS:
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
+  Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
   AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
   AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
+  Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
   DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb

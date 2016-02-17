@@ -48,6 +48,9 @@ pod 'ObjectMapper', '~> 1.1'
 pod 'HanekeSwift', '~> 0.10'
 pod 'Freddy'
 
+pod 'Argo'
+pod 'Curry'
+
 # ui controls
 pod 'Material', '~> 1.29'
 pod 'ResponsiveLabel', '~> 1.0'
