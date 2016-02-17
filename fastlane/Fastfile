@@ -27,6 +27,8 @@ platform :ios do
 
     au_add_identity
 
+    `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
+
     #prepare cocoapods
     cocoapods
     
