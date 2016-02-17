@@ -96,6 +96,7 @@
                 <constraint firstItem="BtV-hz-FSL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5MJ-4i-L7P"/>
                 <constraint firstAttribute="bottom" secondItem="DDK-KL-ORc" secondAttribute="bottom" id="69J-TU-HYz"/>
                 <constraint firstItem="pOi-MT-3B6" firstAttribute="leading" secondItem="9DT-va-2dw" secondAttribute="trailing" id="6dR-f4-cZu"/>
+                <constraint firstItem="pOi-MT-3B6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="7OS-X1-biU"/>
                 <constraint firstItem="qI4-mf-7tC" firstAttribute="top" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="8js-Al-MiM"/>
                 <constraint firstItem="z2Y-Zx-3M1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Diz-yQ-Npb"/>
                 <constraint firstAttribute="bottom" secondItem="tZK-Bv-SiE" secondAttribute="bottom" constant="-21" id="E8w-ge-hcd"/>
@@ -130,6 +131,11 @@
                 <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="990" id="yZ1-JX-Q8K"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6dR-f4-cZu"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="backButton" destination="9DT-va-2dw" id="sel-gK-VPh"/>
                 <outlet property="blurView" destination="DDK-KL-ORc" id="UhI-TF-9Mc"/>
@@ -138,6 +144,7 @@
                 <outlet property="gradientView" destination="BtV-hz-FSL" id="VmC-Mo-EnK"/>
                 <outlet property="imageView" destination="qI4-mf-7tC" id="WHO-Wk-b2N"/>
                 <outlet property="menuButton" destination="pOi-MT-3B6" id="FqG-2j-1Z1"/>
+                <outlet property="menuButtonLeadingContainerConstraint" destination="7OS-X1-biU" id="mez-zw-pH7"/>
                 <outlet property="searchButton" destination="Brf-3r-eFC" id="1i9-Fq-9yV"/>
                 <outlet property="subtitleLabel" destination="n2A-Ck-DCK" id="LnV-Ju-sEN"/>
                 <outlet property="titleLabel" destination="tZK-Bv-SiE" id="SgR-ZC-dEZ"/>

@@ -34,6 +34,7 @@ class SettingsFlowController: FlowController {
     private func showAccountSettings() {
         let controller = Wireframe.settingsViewController()
         controller.models = self.accountSettingsOptions()
+        controller.title = NSLocalizedString("Account", comment: "")
         navigationController.showViewController(controller, sender: nil)
     }
     

@@ -8,8 +8,36 @@
 
 import UIKit
 
+enum ProfileCollectionFooterButtonType {
+    case Green
+    case Gray
+}
+
 class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
     
+    var type: ProfileCollectionFooterButtonType = .Gray {
+        didSet {
+            setupAppearanceForType(type)
+        }
+    }
     @IBOutlet weak var button: CustomUIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setupAppearanceForType(type)
+    }
+    
+    private func setupAppearanceForType(type: ProfileCollectionFooterButtonType) {
+        
+        switch type {
+        case .Green:
+            backgroundColor = UIColor.whiteColor()
+            button.backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        case .Gray:
+            backgroundColor = UIColor(shoutitColor: .BackgroundLightGray)
+            button.backgroundColor = UIColor(shoutitColor: .ButtonBackgroundGray)
+            button.setTitleColor(UIColor(shoutitColor: .FontLighterGray), forState: .Normal)
+        }
+    }
 }

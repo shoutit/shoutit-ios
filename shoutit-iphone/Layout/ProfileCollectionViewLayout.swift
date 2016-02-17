@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ProfileCollectionViewLayoutDelegate: class {
+    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool
+}
+
 class ProfileCollectionViewLayout: UICollectionViewLayout {
     
     // supplementery views consts
@@ -27,6 +31,9 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
     // on prepare layout
     private var contentHeight: CGFloat = 0.0
     private var cachedAttributes: [ProfileCollectionViewLayoutAttributes] = []
+    
+    // delegate
+    weak var delelgate: ProfileCollectionViewLayoutDelegate?
     
     override class func layoutAttributesClass() -> AnyClass {
         return ProfileCollectionViewLayoutAttributes.self
@@ -166,13 +173,17 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
         return true
     }
     
-    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, height: CGFloat, inout yOffset: CGFloat) {
+    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, var height: CGFloat, inout yOffset: CGFloat) {
         
         guard let collectionWidth = collectionView?.bounds.width else {
             return
         }
         
         let attributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: supplementary.kind.rawValue, withIndexPath: supplementary.indexPath)
+        if let delegate = delelgate where delegate.hidesSupplementeryView(supplementary) {
+            height = 0
+            attributes.hidden = true
+        }
         attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: height)
         attributes.zIndex = 5
         cachedAttributes.append(attributes)

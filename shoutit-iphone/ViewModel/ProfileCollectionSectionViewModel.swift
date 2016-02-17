@@ -10,5 +10,11 @@ import UIKit
 
 class ProfileCollectionSectionViewModel {
     
+    let title: String
+    let cells: [ProfileCollectionCellViewModel]
     
+    init(title: String, cells: [ProfileCollectionCellViewModel]) {
+        self.title = title
+        self.cells = cells
+    }
 }
