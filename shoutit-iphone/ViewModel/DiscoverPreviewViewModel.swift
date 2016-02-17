@@ -37,8 +37,14 @@ class DiscoverPreviewViewModel: AnyObject {
             return user?.location.country
         }.flatMap { (location) in
             return APIDiscoverService.discover(forCountry: location)
-        }.flatMap({ (items) in
-            return APIDiscoverService.shouts(forDiscoverItem: items[0])
-        })   
+        }
+        .map({ (items) -> DiscoverItem? in
+            if (items.count > 0) {
+                return items[0]
+            }
+            return nil
+        }).flatMap({ (item) in
+            return APIDiscoverService.shouts(forDiscoverItem: item)
+        })
     }
 }
