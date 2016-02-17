@@ -23,14 +23,18 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var name: String? {get}
     var username: String? {get}
     var isListeningToYou: Bool? {get}
+    var avatarURL: NSURL? {get}
     var coverURL: NSURL? {get}
     var infoButtons: [ProfileCollectionInfoButton] {get}
     var descriptionText: String? {get}
     var websiteString: String? {get}
-    var dateJoinedString: String {get}
+    var dateJoinedString: String? {get}
+    var locationString: String? {get}
+    var locationFlagURL: NSURL? {get}
     
     // sections
-    var sections: [ProfileCollectionSectionViewModel] {get}
+    var pagesSection: ProfileCollectionSectionViewModel {get}
+    var shoutsSection: ProfileCollectionSectionViewModel {get}
 }
 
 extension ProfileCollectionViewModelInterface {

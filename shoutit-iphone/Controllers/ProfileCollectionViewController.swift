@@ -13,6 +13,9 @@ import Kingfisher
 
 class ProfileCollectionViewController: UICollectionViewController {
     
+    // consts
+    private let placeholderCellReuseIdentier = "PlaceholderCollectionViewCellReuseIdentifier"
+    
     // view model
     var viewModel: ProfileCollectionViewModelInterface!
     
@@ -24,6 +27,10 @@ class ProfileCollectionViewController: UICollectionViewController {
         
         guard let _ = self.viewModel else {
             fatalError("Pass view model to \(self.self) instance before presenting it")
+        }
+        
+        if let layout = collectionView?.collectionViewLayout as? ProfileCollectionViewLayout {
+            layout.delegate = viewModel
         }
         
         registerReusables()
@@ -41,6 +48,7 @@ class ProfileCollectionViewController: UICollectionViewController {
         // reguster cells
         collectionView?.registerNib(UINib(nibName: "PagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ProfileCollectionViewSection.Pages.cellReuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ProfileCollectionViewSection.Shouts.cellReuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: placeholderCellReuseIdentier)
         
         // register supplementsry views
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionCoverSupplementaryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.Cover.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.Cover.rawValue)
@@ -62,9 +70,9 @@ extension ProfileCollectionViewController {
         
         switch section {
         case 0:
-            return 1//viewModel.pages.count
+            return max(1, viewModel.pagesSection.cells.count)
         case 1:
-            return 1//viewModel.shouts.count
+            return max(1, viewModel.shoutsSection.cells.count)
         default:
             assert(false)
             return 0
@@ -73,13 +81,38 @@ extension ProfileCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        if !viewModel.hasContentToDisplayInSection(indexPath.section) {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
+            if indexPath.section == ProfileCollectionViewSection.Pages.rawValue {
+                cell.placeholderTextLabel.text = NSLocalizedString("No pages available yet", comment: "")
+            } else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
+                cell.placeholderTextLabel.text = NSLocalizedString("No shouts available yet", comment: "")
+            }
+            return cell
+        }
+        
         if indexPath.section == ProfileCollectionViewSection.Pages.rawValue {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Pages.cellReuseIdentifier, forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Pages.cellReuseIdentifier, forIndexPath: indexPath) as! PagesCollectionViewCell
+            let cellViewModel = viewModel.pagesSection.cells[indexPath.row] as! ProfileCollectionPageCellViewModel
+            
+            cell.nameLabel.text = cellViewModel.profile.name
+            cell.listenersCountLabel.text = cellViewModel.listeningCountString()
+            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: nil)
+            let listenButtonImage = cellViewModel.profile.listening == true ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+            cell.listenButton.setImage(listenButtonImage, forState: .Normal)
+            
             return cell
         }
             
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
+            let cellViewModel = viewModel.shoutsSection.cells[indexPath.row] as! ProfileCollectionShoutCellViewModel
+            
+            cell.titleLabel.text = cellViewModel.shout.title
+            cell.subtitleLabel.text = cellViewModel.shout.text
+            cell.imageView.sh_setImageWithURL(cellViewModel.shout.image?.toURL(), placeholderImage: nil)
+            cell.priceLabel.text = cellViewModel.priceString()
+            
             return cell
         }
         
@@ -126,18 +159,44 @@ extension ProfileCollectionViewController {
                     cover?.blurredImageView.image = UIImage.profileCoverPlaceholder()
                 }
             })
-        case .Info:
-            let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
-            infoView.setButtons(viewModel.infoButtons)
-        case .PagesSectionHeader:
-            break
-        case .CreatePageButtonFooter:
-            break
-        case .ShoutsSectionHeader:
-            break
-        case .SeeAllShoutsButtonFooter:
-            break
             
+            // set labels
+            coverView.titleLabel.text = viewModel.name
+            coverView.subtitleLabel.text = viewModel.username
+            
+        case .Info:
+            
+            let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
+            
+            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: nil)
+            infoView.nameLabel.text = viewModel.name
+            infoView.usernameLabel.text = viewModel.username
+            if let isListening = viewModel.isListeningToYou where isListening {
+                infoView.listeningToYouLabel.hidden = false
+            } else {
+                infoView.listeningToYouLabel.hidden = true
+            }
+            infoView.bioLabel.text = viewModel.descriptionText
+            infoView.websiteLabel.text = viewModel.websiteString
+            infoView.dateJoinedLabel.text = viewModel.dateJoinedString
+            infoView.locationLabel.text = viewModel.locationString
+            infoView.locationFlagImageView.sh_setImageWithURL(viewModel.locationFlagURL, placeholderImage: nil)
+            infoView.setButtons(viewModel.infoButtons)
+            
+        case .PagesSectionHeader:
+            let pagesSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
+            pagesSectionHeader.titleLabel.text = viewModel.pagesSection.title
+        case .CreatePageButtonFooter:
+            let createPageButtonFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
+            createPageButtonFooter.type = viewModel.pagesSection.footerButtonStyle
+            createPageButtonFooter.button.setTitle(viewModel.pagesSection.footerButtonTitle, forState: .Normal)
+        case .ShoutsSectionHeader:
+            let shoutsSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
+            shoutsSectionHeader.titleLabel.text = viewModel.shoutsSection.title
+        case .SeeAllShoutsButtonFooter:
+            let seeAllShoutsFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
+            seeAllShoutsFooter.type = viewModel.shoutsSection.footerButtonStyle
+            seeAllShoutsFooter.button.setTitle(viewModel.shoutsSection.footerButtonTitle, forState: .Normal)
         }
         
         return supplementeryView

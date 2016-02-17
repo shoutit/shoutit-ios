@@ -10,4 +10,13 @@ import UIKit
 
 class ProfileCollectionShoutCellViewModel: ProfileCollectionCellViewModel {
     
+    let shout: Shout
+    
+    init(shout: Shout) {
+        self.shout = shout
+    }
+    
+    func priceString() -> String {
+        return "\(shout.price) \(shout.currency)"
+    }
 }

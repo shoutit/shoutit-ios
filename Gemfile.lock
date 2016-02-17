@@ -20,6 +20,7 @@ GEM
     cert (1.3.0)
       fastlane_core (>= 0.29.1, < 1.0.0)
       spaceship (>= 0.16.0, < 1.0.0)
+    certified (1.0.0)
     claide (0.9.1)
     cocoapods (0.39.0)
       activesupport (>= 4.0.2)
@@ -285,6 +286,7 @@ PLATFORMS
 
 DEPENDENCIES
   bitly
+  certified
   cocoapods (~> 0.39.0)
   fastlane (= 1.59.0)
   httparty

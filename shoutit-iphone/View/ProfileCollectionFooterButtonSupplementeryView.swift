@@ -15,7 +15,7 @@ enum ProfileCollectionFooterButtonType {
 
 class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
     
-    var type: ProfileCollectionFooterButtonType = .Gray {
+    var type: ProfileCollectionFooterButtonType? = .Gray {
         didSet {
             setupAppearanceForType(type)
         }
@@ -27,7 +27,11 @@ class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
         self.setupAppearanceForType(type)
     }
     
-    private func setupAppearanceForType(type: ProfileCollectionFooterButtonType) {
+    private func setupAppearanceForType(type: ProfileCollectionFooterButtonType?) {
+        
+        guard let type = type else {
+            return
+        }
         
         switch type {
         case .Green:
