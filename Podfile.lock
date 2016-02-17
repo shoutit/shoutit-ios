@@ -51,6 +51,7 @@ PODS:
     - AFNetworking (~> 2.2.0)
   - Genome (2.0.4):
     - PureJsonSerializer (~> 1.0.0)
+  - GoogleMaps (1.11.1)
   - HanekeSwift (0.10.1)
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - Freddy
   - FTGooglePlacesAPI
   - Genome (~> 2.0)
+  - GoogleMaps (~> 1.10)
   - HanekeSwift (~> 0.10)
   - JSQMessagesViewController (~> 7.2)
   - KeychainAccess (~> 2.3)
@@ -154,6 +156,7 @@ SPEC CHECKSUMS:
   Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
+  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
