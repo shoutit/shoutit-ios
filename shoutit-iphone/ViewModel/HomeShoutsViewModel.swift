@@ -16,7 +16,7 @@ class HomeShoutsViewModel: AnyObject {
     
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
-    var dataSource : Observable<[Shout]>?
+    var dataSource : Observable<[Shout]>
     
     func cellReuseIdentifier() -> String {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {

@@ -23,7 +23,7 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
-            viewModel.dataSource!.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
+            viewModel.dataSource.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
                 cell.shoutTitle.text = element.title
                 print(element.image)
                 cell.shoutImage.kf_setImageWithURL(NSURL(string: element.image)!, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))

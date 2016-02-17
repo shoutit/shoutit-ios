@@ -53,6 +53,7 @@ class APIDiscoverService {
             }
             
             APIManager.manager().request(.GET, discover.apiUrl, encoding: .URL, headers: nil).responseData({ (response) -> Void in
+
                 switch response.result {
                 case .Success(let data):
                     do {

@@ -7,9 +7,11 @@
 //
 
 import Foundation
-import Freddy
+import Argo
+import Curry
 
-public struct Shout {
+struct Shout: Decodable {
+    
     let id: String
     let apiPath: String
     let webPath: String
@@ -18,26 +20,22 @@ public struct Shout {
     let text: String
     let price: Double
     let currency: String
-    let thumnailPath: String?
-    let videoPath: String?
-    let datePublishedEpoch: Int
-}
-
-extension Shout: JSONDecodable {
+    let thumbnailPath: String?
     
-    public init(json value: JSON) throws {
-        id = try value.string("id")
-        apiPath = try value.string("api_url")
-        webPath = try value.string("web_url")
-        title = try value.string("title")
-        text = try value.string("text")
-        price = try value.double("price")
-        currency = try value.string("currency")
-        thumnailPath = try value.string("thumbnail")
-        videoPath = try value.string("video_url")
-        datePublishedEpoch = try value.int("date_published")
-        image = try value.string("image")
+    static func decode(j: JSON) -> Decoded<Shout> {
+        let f = curry(Shout.init)
+            <^> j <| "id"
+            <*> j <| "api_url"
+            <*> j <| "web_url"
+            <*> j <|? "image"
+            <*> j <| "title"
+        return f
+            <*> j <| "text"
+            <*> j <| "price"
+            <*> j <| "currency"
+            <*> j <|? "thumbnail"
     }
+    
 }
 
 enum ShoutType : String {
