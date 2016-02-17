@@ -12,14 +12,12 @@ import RxCocoa
 
 class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
-    let user: User
+    var user: User {
+        return Account.sharedInstance.user!
+    }
     
     private(set) var pages: [ProfileCollectionPageCellViewModel] = []
     private(set) var shouts: [ProfileCollectionShoutCellViewModel] = []
-    
-    init(user: User) {
-        self.user = user
-    }
     
     // MARK: - ProfileCollectionViewModelInterface
     var configuration: ProfileCollectionViewConfiguration {
