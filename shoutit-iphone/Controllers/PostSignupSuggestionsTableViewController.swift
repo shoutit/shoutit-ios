@@ -21,7 +21,7 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     var viewModel: PostSignupSuggestionViewModel!
     
     // RX
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     

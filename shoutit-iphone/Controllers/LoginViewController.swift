@@ -33,7 +33,7 @@ class LoginViewController: UITableViewController {
     weak var viewModel: LoginWithEmailViewModel!
     
     // RX
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

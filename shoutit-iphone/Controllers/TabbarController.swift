@@ -14,7 +14,7 @@ class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]!
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     var rootController : RootController?
     

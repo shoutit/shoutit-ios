@@ -18,6 +18,7 @@ enum ShoutitColor: Int {
     case MessageBubbleLightGreen = 0x91f261
     case ShoutDetailProfileImageLightGrey = 0xe8e8e8
     case DiscoverBorder = 0xc2c2c2
+    case FontGrayColor = 0x646464
 }
 
 extension UIColor {

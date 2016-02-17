@@ -44,10 +44,16 @@ class APIDiscoverService {
         })
     }
     
-    static func shouts(forDiscoverItem discoverItem: DiscoverItem) -> Observable<[DiscoverItem]> {
+    static func shouts(forDiscoverItem discoverItem: DiscoverItem?) -> Observable<[DiscoverItem]> {
         return Observable.create({ (observer) -> Disposable in
             
-            APIManager.manager().request(.GET, discoverItem.apiUrl, encoding: .URL, headers: nil).responseData({ (response) -> Void in
+            guard let discover = discoverItem else {
+                observer.on(.Next([]))
+                return AnonymousDisposable {}
+            }
+            
+            APIManager.manager().request(.GET, discover.apiUrl, encoding: .URL, headers: nil).responseData({ (response) -> Void in
+
                 switch response.result {
                 case .Success(let data):
                     do {

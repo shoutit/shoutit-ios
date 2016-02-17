@@ -18,6 +18,7 @@ final class ProfileFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.profileViewController()
+        controller.viewModel = ProfileCollectionViewModel(user: Account.sharedInstance.user!)
 
         navigationController.showViewController(controller, sender: nil)
     }

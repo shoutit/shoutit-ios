@@ -30,7 +30,7 @@ final class LoginMethodChoiceViewController: UIViewController {
     weak var flowDelegate: LoginMethodChoiceViewControllerFlowDelegate?
     
     // rx
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -118,6 +118,7 @@ final class LoginMethodChoiceViewController: UIViewController {
             if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
             } else {
+                print(self?.flowDelegate)
                 self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
             }
         }.addDisposableTo(disposeBag)

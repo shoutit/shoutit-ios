@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
         <!--Discover-->
         <scene sceneID="dYs-xU-AwL">
             <objects>
-                <collectionViewController storyboardIdentifier="SHDiscoverCollectionViewController" title="Discover" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6G-wl-0xD" customClass="SHDiscoverCollectionViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SHDiscoverCollectionViewController" title="Discover" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6G-wl-0xD" customClass="SHDiscoverCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="4mu-sT-xQa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="lWR-BX-jsh" customClass="SHDiscoverFlowLayout" customModule="shoutit_iphone" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="lWR-BX-jsh" customClass="SHDiscoverFlowLayout" customModule="Shoutit" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverCollectionViewCell" reuseIdentifier="SHDiscoverCollectionViewCell" id="j4J-iW-TlQ" customClass="SHDiscoverCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverCollectionViewCell" reuseIdentifier="SHDiscoverCollectionViewCell" id="j4J-iW-TlQ" customClass="SHDiscoverCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

@@ -11,6 +11,7 @@ import UIKit
 final class LoginFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var loginFinishedBlock: ((Bool) -> Void)?
     
     init(navigationController: UINavigationController, skipIntro: Bool = false) {
         
@@ -54,11 +55,15 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
 extension LoginFlowController: LoginFinishable {
     
     func didFinishLoginProcessWithSuccess(success: Bool) {
-        navigationController.dismissViewControllerAnimated(true, completion: nil)
+        if let loginFinishedBlock = loginFinishedBlock {
+            loginFinishedBlock(success)
+        } else {
+            navigationController.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }
 
-extension LoginFlowController: AboutTableViewControllerFlowDelegate {}
+extension LoginFlowController: TermsAndPolicyDisplayable {}
 extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
 extension LoginFlowController: LoginWithEmailViewControllerFlowDelegate {}
 extension LoginFlowController: PostSignupInterestsViewControllerFlowDelegate {}
