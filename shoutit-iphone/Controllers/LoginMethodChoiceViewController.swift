@@ -61,7 +61,6 @@ final class LoginMethodChoiceViewController: UIViewController {
         loginWithFacebookButton
             .rx_tap
             .subscribeNext{[unowned self] in
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 self.viewModel.loginWithFacebookFromViewController(self)
             }
             .addDisposableTo(disposeBag)
@@ -69,7 +68,6 @@ final class LoginMethodChoiceViewController: UIViewController {
         loginWithGoogleButton
             .rx_tap
             .subscribeNext{[unowned self] in
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 self.viewModel.loginWithGoogle()
             }
             .addDisposableTo(disposeBag)
@@ -105,21 +103,25 @@ final class LoginMethodChoiceViewController: UIViewController {
         // view model observers
         
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
-            MBProgressHUD.hideHUDForView(self?.view, animated: true)
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
             self?.presentViewController(alertController, animated: true, completion: nil)
         }.addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
-            MBProgressHUD.hideHUDForView(self?.view, animated: true)
-//            self?.flowDelegate?.showPostSignupInterests()
-//            return
             if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
             } else {
                 print(self?.flowDelegate)
                 self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+            }
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.progressHUDSubject.subscribeNext{[weak self](show) in
+            if show {
+                MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+            } else {
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
             }
         }.addDisposableTo(disposeBag)
     }
