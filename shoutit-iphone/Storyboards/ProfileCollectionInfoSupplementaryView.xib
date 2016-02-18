@@ -16,7 +16,7 @@
                     <rect key="frame" x="0.0" y="41" width="375" height="359"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-Sg-PQz">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-Sg-PQz">
                     <rect key="frame" x="0.0" y="364" width="375" height="36"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PL" translatesAutoresizingMaskIntoConstraints="NO" id="Jnv-dQ-62K">
@@ -49,7 +49,7 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-BV-DoV">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-BV-DoV">
                     <rect key="frame" x="0.0" y="292" width="375" height="36"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_website_icon" translatesAutoresizingMaskIntoConstraints="NO" id="yv1-7D-5FY">
@@ -82,7 +82,7 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uCi-xA-Th7">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uCi-xA-Th7">
                     <rect key="frame" x="0.0" y="148" width="375" height="144"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_bio_icon" translatesAutoresizingMaskIntoConstraints="NO" id="bPf-Sd-6F2">
@@ -101,8 +101,8 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="qLN-yo-Sdx" firstAttribute="leading" secondItem="bPf-Sd-6F2" secondAttribute="trailing" constant="16" id="21R-u7-SQX"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qLN-yo-Sdx" secondAttribute="bottom" constant="11" id="8Sn-1H-r6k"/>
+                        <constraint firstItem="qLN-yo-Sdx" firstAttribute="leading" secondItem="uCi-xA-Th7" secondAttribute="leading" constant="50" id="Dxn-YP-FDf"/>
                         <constraint firstAttribute="height" priority="990" constant="78" id="UNk-ey-w7d"/>
                         <constraint firstItem="qLN-yo-Sdx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uCi-xA-Th7" secondAttribute="top" constant="11" id="V2i-WZ-bn3"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qLN-yo-Sdx" secondAttribute="trailing" constant="16" id="aFH-VX-in8"/>
@@ -141,7 +141,7 @@
                         <color key="titleColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgJ-Uw-tGD">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgJ-Uw-tGD">
                     <rect key="frame" x="0.0" y="328" width="375" height="36"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_joined_icon" translatesAutoresizingMaskIntoConstraints="NO" id="XY4-eg-7VM">
@@ -276,18 +276,22 @@
                 <outlet property="avatarImageView" destination="HUB-sy-6ep" id="laO-pV-TwB"/>
                 <outlet property="bioIconImageView" destination="bPf-Sd-6F2" id="dGG-Wu-big"/>
                 <outlet property="bioLabel" destination="qLN-yo-Sdx" id="hWh-rS-8Wt"/>
+                <outlet property="bioSectionHeightConstrait" destination="UNk-ey-w7d" id="pr8-TF-wGS"/>
                 <outlet property="buttonSectionCenterButton" destination="wgK-Yu-UVt" id="AM5-cZ-XhO"/>
                 <outlet property="buttonSectionLeftButton" destination="Oxb-00-Kfy" id="Wa6-3P-Cwa"/>
                 <outlet property="buttonSectionRightButton" destination="Aru-iZ-s4p" id="erw-4B-xSg"/>
                 <outlet property="dateJoinedLabel" destination="EQN-bl-1ww" id="XtB-Sw-Bdd"/>
+                <outlet property="dateJoinedSectionHeightConstraint" destination="9Rh-xL-g9W" id="Syz-FX-wCx"/>
                 <outlet property="listeningToYouLabel" destination="Mwz-aW-TRC" id="i2Q-9P-yCd"/>
                 <outlet property="locationFlagImageView" destination="Jnv-dQ-62K" id="2gl-R9-yV7"/>
                 <outlet property="locationLabel" destination="TWk-RE-4Gq" id="CLY-aE-y57"/>
+                <outlet property="locationSectionHeightConstraint" destination="EQe-s9-TwA" id="cSY-PA-NoL"/>
                 <outlet property="nameLabel" destination="zC2-Xl-F8D" id="1Wm-0B-DwB"/>
                 <outlet property="notificationButton" destination="KSx-YF-IBW" id="5Xu-Eq-IqZ"/>
                 <outlet property="rightmostButton" destination="lmR-o2-TT5" id="dDM-EK-bxf"/>
                 <outlet property="usernameLabel" destination="Flv-lN-M3r" id="Rol-Uo-Mh6"/>
                 <outlet property="websiteLabel" destination="KDv-JO-N1f" id="b2n-rU-z4v"/>
+                <outlet property="websiteSectionHeightConstraint" destination="Vjf-kl-8v9" id="SvC-2m-rvm"/>
             </connections>
             <point key="canvasLocation" x="347.5" y="354"/>
         </view>

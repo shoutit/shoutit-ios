@@ -183,6 +183,20 @@ extension ProfileCollectionViewController {
             infoView.locationFlagImageView.sh_setImageWithURL(viewModel.locationFlagURL, placeholderImage: nil)
             infoView.setButtons(viewModel.infoButtons)
             
+            // adjust constraints for data
+            let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
+            let descriptionSectionHeight = layout.descriptionViewHeightForText(viewModel.descriptionText)
+            infoView.bioSectionHeightConstrait.constant = descriptionSectionHeight
+            let texts: [String?] = [viewModel.websiteString, viewModel.dateJoinedString, viewModel.locationString]
+            let constraints: [NSLayoutConstraint] = [infoView.websiteSectionHeightConstraint, infoView.dateJoinedSectionHeightConstraint, infoView.locationSectionHeightConstraint]
+            for index in 0..<texts.count {
+                let text = texts[index]
+                let constraint = constraints[index]
+                if text == nil || text!.isEmpty {
+                    constraint.constant = 0
+                }
+            }
+            
         case .PagesSectionHeader:
             let pagesSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
             pagesSectionHeader.titleLabel.text = viewModel.pagesSection.title

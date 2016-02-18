@@ -8,27 +8,28 @@
 
 import UIKit
 
-protocol ProfileCollectionViewLayoutDelegate: class {
+protocol ProfileCollectionViewLayoutDelegate: class, ProfileCollectionInfoSupplementaryViewDataSource {
     func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool
     func hasContentToDisplayInSection(section: Int) -> Bool
 }
 
-class ProfileCollectionViewLayout: UICollectionViewLayout {
+final class ProfileCollectionViewLayout: UICollectionViewLayout {
     
     // supplementery views consts
-    private let coverViewHeight: CGFloat = 211
-    private let collapsedCoverViewHeight: CGFloat = 64
-    private let infoViewHeight: CGFloat = 334
-    private let sectionHeaderHeight: CGFloat = 44
-    private let footerButtonHeight: CGFloat = 64
-    private let infoOverCoverViewMargin: CGFloat = 41
+    private let coverViewHeight: CGFloat                           = 211
+    private let collapsedCoverViewHeight: CGFloat                  = 64
+    private let infoViewHeight: CGFloat                            = 296
+    private let sectionHeaderHeight: CGFloat                       = 44
+    private let footerButtonHeight: CGFloat                        = 64
+    private let infoOverCoverViewMargin: CGFloat                   = 41
+    private let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
     
     // cells consts
-    private let placeholderCellHeight: CGFloat = 58
-    private let pagesCellHeight: CGFloat = 58
-    private let shoutsCellHeight: CGFloat = 183
-    private let shoutsCellSpacing: CGFloat = 10
-    private let numberOfShoutsPerRow = 2
+    private let placeholderCellHeight: CGFloat                     = 58
+    private let pagesCellHeight: CGFloat                           = 58
+    private let shoutsCellHeight: CGFloat                          = 183
+    private let shoutsCellSpacing: CGFloat                         = 10
+    private let numberOfShoutsPerRow                               = 2
     
     // on prepare layout
     private var contentHeight: CGFloat = 0.0
@@ -60,16 +61,12 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
         // calculate frames
         coverAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: max(coverViewHeight - contentYOffset, collapsedCoverViewHeight))
         yOffset += (coverViewHeight - infoOverCoverViewMargin)
-        infoAttributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: infoViewHeight)
-        yOffset += infoViewHeight
+        let height = calculateInfoSupplementaryViewHeight()
+        infoAttributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: height)
+        yOffset += height
         
         // add extra attributes for cover
-        if collapsedCoverViewHeight >= coverViewHeight - contentYOffset {
-            coverAttributes.zIndex = 10
-        } else {
-            coverAttributes.zIndex = 0
-        }
-        
+        coverAttributes.zIndex = (collapsedCoverViewHeight >= coverViewHeight - contentYOffset) ? 10 : 0
         coverAttributes.collapseProgress = min(1, max(0, contentYOffset / (coverViewHeight - collapsedCoverViewHeight)))
         coverAttributes.segmentScrolledUnderCoverViewLength = max(0, contentYOffset - (coverViewHeight - collapsedCoverViewHeight))
         
@@ -182,6 +179,8 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
         return true
     }
     
+    // MARK: - Helpers
+    
     private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, var height: CGFloat, inout yOffset: CGFloat) {
         
         guard let collectionWidth = collectionView?.bounds.width else {
@@ -211,5 +210,41 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
         attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: placeholderCellHeight)
         cachedAttributes.append(attributes)
         yOffset += placeholderCellHeight
+    }
+    
+    private func calculateInfoSupplementaryViewHeight() -> CGFloat {
+        
+        var height = infoViewHeight
+        
+        if let delegate = delegate {
+            
+            for string in [delegate.websiteString, delegate.dateJoinedString, delegate.locationString] {
+                if string == nil || string!.isEmpty {
+                    height -= defaultInfoSupplementaryViewSectionHeight
+                }
+            }
+            
+            let descriptionSectionHeight = descriptionViewHeightForText(delegate.descriptionText)
+            height += (descriptionSectionHeight - defaultInfoSupplementaryViewSectionHeight)
+        }
+        
+        return height
+    }
+    
+    func descriptionViewHeightForText(text: String?) -> CGFloat {
+        
+        guard let collectionWidth = collectionView?.bounds.width else {
+            return defaultInfoSupplementaryViewSectionHeight
+        }
+        
+        guard let text = text else {
+            return 0
+        }
+        
+        let horizontalMargins: CGFloat = 50 + 16
+        let size = CGSize(width: collectionWidth - horizontalMargins, height: CGFloat.max)
+        let textSize = (text as NSString).boundingRectWithSize(size , options: [NSStringDrawingOptions.UsesLineFragmentOrigin], attributes: [NSFontAttributeName : UIFont.systemFontOfSize(12)], context: nil).size
+        let verticalMargins: CGFloat = 11 + 11
+        return max(textSize.height + verticalMargins, defaultInfoSupplementaryViewSectionHeight)
     }
 }

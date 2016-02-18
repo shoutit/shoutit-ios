@@ -8,6 +8,16 @@
 
 import UIKit
 
+protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
+    var avatarURL: NSURL? {get}
+    var infoButtons: [ProfileCollectionInfoButton] {get}
+    var descriptionText: String? {get}
+    var websiteString: String? {get}
+    var dateJoinedString: String? {get}
+    var locationString: String? {get}
+    var locationFlagURL: NSURL? {get}
+}
+
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // section 1
@@ -49,6 +59,10 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // constraints
     @IBOutlet weak var avatarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bioSectionHeightConstrait: NSLayoutConstraint!
+    @IBOutlet weak var websiteSectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateJoinedSectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var locationSectionHeightConstraint: NSLayoutConstraint!
     
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
