@@ -33,6 +33,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRX()
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -50,6 +55,12 @@ class HomeViewController: UIViewController {
         if let homeShoutsController = self.homeShoutsController {
             changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
             bindToCollectionOffset()
+            
+            homeShoutsController.collectionView?.rx_modelSelected(Shout.self)
+                .asDriver()
+                .driveNext { [weak self] selectedShout in
+                    self?.performSegueWithIdentifier("showSingleShout", sender: nil)
+                }.addDisposableTo(disposeBag)
         }
         
         if let discoverParent = self.discoverParentController, collectionController = discoverParent.discoverController {
@@ -62,6 +73,13 @@ class HomeViewController: UIViewController {
             let newValue = state == .Loaded
             self.discoverVisible = newValue
         }).addDisposableTo(disposeBag)
+        
+        discoverController.collectionView?.rx_modelSelected(DiscoverItem.self)
+            .asDriver()
+            .driveNext { [weak self] selectedShout in
+                self?.performSegueWithIdentifier("showSingleDiscoverItem", sender: nil)
+            }.addDisposableTo(disposeBag)
+        
     }
     
     func bindToCollectionOffset() {
@@ -84,7 +102,15 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func filterAction(sender: AnyObject) {
+        notImplemented()
     }
     
+    @IBAction func searchAction(sender: AnyObject) {
+        notImplemented()
+    }
+    
+    @IBAction func cartAction(sender: AnyObject) {
+        notImplemented()
+    }
     
 }

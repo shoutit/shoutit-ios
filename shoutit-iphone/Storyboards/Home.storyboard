@@ -96,6 +96,7 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="9fl-Jy-3uV">
                         <barButtonItem key="leftBarButtonItem" image="navMenu" id="gQY-HL-pNy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,15 +104,48 @@
                                 <action selector="toggleMenu" destination="Upf-uN-bxG" id="WoN-fF-5Qj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Z7m-3s-GrW">
+                            <view key="customView" contentMode="scaleToFill" id="wJN-eu-PdR">
+                                <rect key="frame" x="20" y="5.5" width="80" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxF-O8-Jze">
+                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
+                                        <state key="normal" title="search" image="search"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="xJT-Jk-Cw2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGh-MK-qo6">
+                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
+                                        <state key="normal" title="cart" image="cart"/>
+                                        <connections>
+                                            <action selector="cartAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="8X2-mz-oWA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="changeLayoutButton" destination="vTR-Ii-qKk" id="GZF-iA-iie"/>
                         <outlet property="discoverHeight" destination="MeC-UW-xIs" id="0F1-Kv-2V6"/>
+                        <segue destination="hDZ-qp-EuW" kind="show" identifier="showSingleShout" id="udG-d1-1i6"/>
+                        <segue destination="MWI-ef-n7k" kind="show" identifier="showSingleDiscoverItem" id="b8m-YQ-PFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUV-ZK-3ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="71"/>
+            <point key="canvasLocation" x="180" y="9"/>
+        </scene>
+        <!--singleShoutViewController-->
+        <scene sceneID="df0-o0-oBX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shout" referencedIdentifier="singleShoutViewController" id="hDZ-qp-EuW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nWK-0i-bbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-241"/>
         </scene>
         <!--DiscoverPreview-->
         <scene sceneID="mhw-z1-XbC">
@@ -127,7 +161,15 @@
                 <viewControllerPlaceholder storyboardName="HomeShouts" id="yW9-m1-kXq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jk-lh-Yt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="134"/>
+            <point key="canvasLocation" x="844" y="-100"/>
+        </scene>
+        <!--singleDiscoverItem-->
+        <scene sceneID="lY1-jC-COh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="singleDiscoverItem" id="MWI-ef-n7k" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Re-mz-LAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871.5" y="-34"/>
         </scene>
         <!--Shout List View Controller-->
         <scene sceneID="4ID-7N-xhy">
