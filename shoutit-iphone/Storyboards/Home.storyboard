@@ -42,7 +42,10 @@
                                             <constraint firstAttribute="width" constant="24" id="CvU-qx-oK4"/>
                                             <constraint firstAttribute="height" constant="24" id="nsr-9d-tZa"/>
                                         </constraints>
-                                        <state key="normal" image="filterShoutList"/>
+                                        <state key="normal" image="filterIcon"/>
+                                        <connections>
+                                            <action selector="filterAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="jMT-LC-S7D"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTR-Ii-qKk">
                                         <rect key="frame" x="566" y="15" width="24" height="24"/>
@@ -51,6 +54,7 @@
                                             <constraint firstAttribute="width" constant="24" id="yJT-k6-rWD"/>
                                         </constraints>
                                         <state key="normal" image="shoutsAsList"/>
+                                        <state key="selected" image="shoutsAsGrid"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcc-xA-8Xa">
                                         <rect key="frame" x="10" y="17" width="67" height="20.5"/>
@@ -278,18 +282,18 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZm-ow-8yC">
-                                                            <rect key="frame" x="341" y="10" width="26" height="22"/>
+                                                            <rect key="frame" x="344" y="10" width="23" height="22"/>
                                                             <state key="normal" image="shoutsAsList"/>
                                                             <connections>
                                                                 <action selector="switchViewType:" destination="Bv6-ya-z53" eventType="touchUpInside" id="mvK-1g-rx3"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hR-tr-8GA">
-                                                            <rect key="frame" x="312" y="10" width="19" height="22"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hR-tr-8GA">
+                                                            <rect key="frame" x="315" y="10" width="19" height="22"/>
                                                             <state key="normal" image="filterShoutList"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY FEED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-qF-xRA">
-                                                            <rect key="frame" x="10" y="10" width="72" height="21"/>
+                                                            <rect key="frame" x="10" y="10" width="71.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -644,11 +648,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
+        <image name="filterIcon" width="20" height="20"/>
         <image name="filterShoutList" width="19" height="21"/>
         <image name="headbarLogoWhite" width="77" height="20"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>
-        <image name="shoutsAsList" width="26" height="21"/>
+        <image name="shoutsAsGrid" width="22" height="21"/>
+        <image name="shoutsAsList" width="23" height="17"/>
     </resources>
 </document>

@@ -1,4 +1,4 @@
-//
+ //
 //  DiscoverPreviewViewModel.swift
 //  shoutit-iphone
 //
@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 enum DiscoverPreviewState {
+    case NotLoaded
     case Loading
     case NoItems
     case Loaded
@@ -23,6 +24,9 @@ class DiscoverPreviewViewModel: AnyObject {
     
     var state = Variable(DiscoverPreviewState.Loading)
     var dataSource : Observable<[DiscoverItem]>
+    var mainItemObservable : Observable<DiscoverItem?>
+    
+    private let disposeBag = DisposeBag()
     
     func cellReuseIdentifier() -> String {
         return reuseIdentifier
@@ -33,18 +37,33 @@ class DiscoverPreviewViewModel: AnyObject {
     }
     
     required init() {
-        dataSource = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+        
+        mainItemObservable = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
             return user?.location.country
         }.flatMap { (location) in
             return APIDiscoverService.discover(forCountry: location)
-        }
-        .map({ (items) -> DiscoverItem? in
+        }.map({ (items) -> DiscoverItem? in
             if (items.count > 0) {
                 return items[0]
             }
             return nil
-        }).flatMap({ (item) in
+        }).share()
+        
+        dataSource = mainItemObservable.flatMap({ (item) in
             return APIDiscoverService.shouts(forDiscoverItem: item)
-        })
+        }).share()
+        
+        mainItemObservable.subscribeNext { (mainItem) -> Void in
+            if let _ = mainItem {
+                self.state.value = .Loading
+            } else {
+                self.state.value = .NoItems
+            }
+        }.addDisposableTo(disposeBag)
+
+        dataSource.subscribeNext { (items) -> Void in
+            self.state.value = .Loaded
+        }.addDisposableTo(disposeBag)
+
     }
 }

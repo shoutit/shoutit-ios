@@ -7,26 +7,28 @@
 //
 
 import Foundation
-import Freddy
+import Argo
+import Curry
 
-public struct DiscoverItem {
-    public let id: String
-    public let apiUrl: String
-    public let title: String
-    public let subtitle: String
-    public let position: Int
-    public let image: String
-    public let icon: String
-}
-
-extension DiscoverItem: JSONDecodable {
-    public init(json value: JSON) throws {
-        id = try value.string("id")
-        apiUrl = try value.string("api_url")
-        title = try value.string("title")
-        subtitle = try value.string("subtitle")
-        position = try value.int("position")
-        image = try value.string("image")
-        icon = try value.string("icon")
+struct DiscoverItem: Decodable {
+    let id: String
+    let apiUrl: String
+    let title: String
+    let subtitle: String?
+    let position: Int
+    let image: String?
+    let icon: String?
+    
+    
+    static func decode(j: JSON) -> Decoded<DiscoverItem> {
+        let f = curry(DiscoverItem.init)
+            <^> j <| "id"
+            <*> j <| "api_url"
+            <*> j <| "title"
+        return f
+            <*> j <|? "subtitle"
+            <*> j <| "position"
+            <*> j <|? "image"
+            <*> j <|? "icon"
     }
 }

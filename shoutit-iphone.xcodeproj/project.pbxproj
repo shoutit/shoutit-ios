@@ -1469,7 +1469,6 @@
 				AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */,
 				B2082D741C6263DD007EB2FB /* HTML.storyboard */,
 				AEECB9551C648E4300276E4A /* Location.storyboard */,
-				AEDE15921C6DE5CD002D2AF7 /* Home.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2338,6 +2337,7 @@
 		AEDE15941C6DF071002D2AF7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				AEDE15921C6DE5CD002D2AF7 /* Home.storyboard */,
 				AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */,
 			);
 			name = Home;

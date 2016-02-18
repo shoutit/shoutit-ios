@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
     
     func setupRX() {
         if let homeShoutsController = self.homeShoutsController {
-            changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode", forControlEvents: .TouchUpInside)
+            changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
             bindToCollectionOffset()
         }
         
@@ -60,10 +60,7 @@ class HomeViewController: UIViewController {
     func bindToDiscoverItems(discoverController: DiscoverPreviewCollectionViewController) {
         discoverController.viewModel.state.asObservable().subscribeNext({ (state) -> Void in
             let newValue = state == .Loaded
-
-            if newValue != self.discoverVisible {
-                self.discoverVisible = newValue
-            }
+            self.discoverVisible = newValue
         }).addDisposableTo(disposeBag)
     }
     
@@ -85,5 +82,9 @@ class HomeViewController: UIViewController {
         self.discoverHeight.constant = newHeight
         self.view.layoutIfNeeded()
     }
+    
+    @IBAction func filterAction(sender: AnyObject) {
+    }
+    
     
 }

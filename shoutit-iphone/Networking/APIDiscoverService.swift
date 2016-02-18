@@ -11,7 +11,7 @@ import Alamofire
 import PureJsonSerializer
 import RxSwift
 import RxCocoa
-import Freddy
+import Argo
 
 class APIDiscoverService {
     private static let discoverURL = APIManager.baseURL + "/discover"
@@ -25,11 +25,20 @@ class APIDiscoverService {
                 switch response.result {
                 case .Success(let data):
                     do {
-                        let json = try JSON(data: data)
-                        let results = try json.array("results").map(DiscoverItem.init)
                         
-                        observer.on(.Next(results))
-                        observer.on(.Completed)
+                        let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                        
+                        if let j = json, jr = j.objectForKey("results") {
+                            if let results : Decoded<[DiscoverItem]> = decode(jr) {
+                                if let value = results.value {
+                                    observer.on(.Next(value))
+                                    observer.on(.Completed)
+                                }
+                                if let err = results.error {
+                                    print(err)
+                                }
+                            }
+                        }
                         
                     } catch let error as NSError {
                         observer.on(.Error(error ?? RxCocoaURLError.Unknown))
@@ -57,11 +66,20 @@ class APIDiscoverService {
                 switch response.result {
                 case .Success(let data):
                     do {
-                        let json = try JSON(data: data)
-                        let results = try json.array("children").map(DiscoverItem.init)
+                        let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                         
-                        observer.on(.Next(results))
-                        observer.on(.Completed)
+                        if let j = json, jr = j.objectForKey("children") {
+                            if let results : Decoded<[DiscoverItem]> = decode(jr) {
+                                if let value = results.value {
+                                    observer.on(.Next(value))
+                                    observer.on(.Completed)
+                                    return
+                                }
+                                if let err = results.error {
+                                    observer.on(.Error(err))
+                                }
+                            }
+                        }
                         
                     } catch let error as NSError {
                         observer.on(.Error(error ?? RxCocoaURLError.Unknown))

@@ -24,26 +24,20 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
             viewModel.dataSource.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
+                print(element)
+                
                 cell.shoutTitle.text = element.title
-                print(element.image)
-                cell.shoutImage.kf_setImageWithURL(NSURL(string: element.image)!, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+                
+                if let imagePath = element.image, imageURL = NSURL(string: imagePath) {
+                    cell.shoutImage.kf_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+                }
+                
             }.addDisposableTo(disposeBag)
         }
-        
-        
-        
+
     }
     
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath)

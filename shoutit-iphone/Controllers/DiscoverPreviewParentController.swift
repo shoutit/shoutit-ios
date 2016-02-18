@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class DiscoverPreviewParentController: UIViewController {
     
     var discoverController : DiscoverPreviewCollectionViewController?
+    
+    private let disposeBag = DisposeBag()
+    
     @IBOutlet weak var titleLabel : UILabel?
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let discover = segue.destinationViewController as? DiscoverPreviewCollectionViewController {
@@ -22,6 +27,10 @@ class DiscoverPreviewParentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        discoverController?.viewModel.mainItemObservable.subscribeNext { (item) -> Void in
+            if let discover = item {
+                self.titleLabel?.text = discover.title
+            }
+        }.addDisposableTo(disposeBag)
     }
-}
+}   
