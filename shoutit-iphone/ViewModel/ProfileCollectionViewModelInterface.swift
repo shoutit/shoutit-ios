@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum ProfileCollectionViewConfiguration {
     case MyProfile
@@ -28,6 +29,10 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     // sections
     var pagesSection: ProfileCollectionSectionViewModel {get}
     var shoutsSection: ProfileCollectionSectionViewModel {get}
+    
+    // fetchin
+    func reloadContent()
+    var reloadSubject: PublishSubject<Void> {get}
 }
 
 // MARK: - Default implementations

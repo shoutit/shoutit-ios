@@ -72,8 +72,11 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = nil
         
         if let error = error {
-            GIDSignIn.sharedInstance().signOut()
-            errorSubject.onNext(error)
+            if error.code != -5 {
+                GIDSignIn.sharedInstance().signOut()
+                errorSubject.onNext(error)
+            }
+            self.progressHUDSubject.onNext(false)
             return
         }
         

@@ -17,7 +17,7 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
     }
     
     func listeningCountString() -> String {
-        let numberString = NumberFormatters.sharedInstance.numberToShortString(0)
+        let numberString = NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)
         return NSLocalizedString("Listeners \(numberString)", comment: "")
     }
 }
