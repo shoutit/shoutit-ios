@@ -46,6 +46,7 @@ class ProfileCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = true
+        viewModel.reloadContent()
     }
     
     // MARK: - Setup

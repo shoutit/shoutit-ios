@@ -18,20 +18,19 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(Account.sharedInstance.user?.pages ?? [])
-        
-        reloadContent()
     }
     
     func reloadContent() {
-        fetchShouts().subscribe { (event) in
+        fetchShouts().subscribe {[weak self] (event) in
             switch event {
             case .Next(let value):
-                self.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels(value)
+                self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels(value)
             case .Error(let error as NSError):
-                self.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([], errorMessage: error.localizedDescription)
+                self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([], errorMessage: error.localizedDescription)
             default:
                 break
             }
+            self?.reloadSubject.onNext(())
         }.addDisposableTo(disposeBag)
     }
     
