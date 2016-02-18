@@ -24,11 +24,17 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var cartButton: UIButton!
     
+    @IBOutlet weak var menuButtonLeadingContainerConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!
     
     func setCoverImage(image: UIImage) {
         blurredImageView.image = image
         imageView.image = image
+    }
+    
+    func setBackButtonHidden(hidden: Bool) {
+        backButton.hidden = hidden
+        menuButtonLeadingContainerConstraint.constant = hidden ? 0 : 44
     }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {

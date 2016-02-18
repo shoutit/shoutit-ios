@@ -9,4 +9,15 @@
 import UIKit
 
 class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
+    
+    let profile: Profile
+    
+    init(profile: Profile) {
+        self.profile = profile
+    }
+    
+    func listeningCountString() -> String {
+        let numberString = NumberFormatters.sharedInstance.numberToShortString(0)
+        return NSLocalizedString("Listeners \(numberString)", comment: "")
+    }
 }

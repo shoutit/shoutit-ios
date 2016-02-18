@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ProfileCollectionViewLayoutDelegate: class {
+    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool
+    func hasContentToDisplayInSection(section: Int) -> Bool
+}
+
 class ProfileCollectionViewLayout: UICollectionViewLayout {
     
     // supplementery views consts
@@ -19,6 +24,7 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
     private let infoOverCoverViewMargin: CGFloat = 41
     
     // cells consts
+    private let placeholderCellHeight: CGFloat = 58
     private let pagesCellHeight: CGFloat = 58
     private let shoutsCellHeight: CGFloat = 183
     private let shoutsCellSpacing: CGFloat = 10
@@ -27,6 +33,9 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
     // on prepare layout
     private var contentHeight: CGFloat = 0.0
     private var cachedAttributes: [ProfileCollectionViewLayoutAttributes] = []
+    
+    // delegate
+    weak var delegate: ProfileCollectionViewLayoutDelegate?
     
     override class func layoutAttributesClass() -> AnyClass {
         return ProfileCollectionViewLayoutAttributes.self
@@ -76,14 +85,17 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
                                                          yOffset: &yOffset)
         
         // layout for pages cells
-        for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Pages.rawValue) {
-            
-            let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Pages.rawValue)
-            let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-            attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: pagesCellHeight)
-            cachedAttributes.append(attributes)
-            
-            yOffset += pagesCellHeight
+        if let delegate = delegate where delegate.hasContentToDisplayInSection(ProfileCollectionViewSection.Pages.rawValue) == false {
+            addPlaceholderCellForSection(ProfileCollectionViewSection.Pages.rawValue, yOffset: &yOffset)
+        } else {
+            for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Pages.rawValue) {
+                let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Pages.rawValue)
+                let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+                attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: pagesCellHeight)
+                cachedAttributes.append(attributes)
+                
+                yOffset += pagesCellHeight
+            }
         }
         
         addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.CreatePageButtonFooter,
@@ -94,18 +106,22 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
                                                          yOffset: &yOffset)
         
         // layout for shouts cells
-        let cellWidth = floor((collectionWidth - shoutsCellSpacing) * 0.5)
-        for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
-            
-            let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Shouts.rawValue)
-            let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-            let leftCell = item % numberOfShoutsPerRow == 0
-            let x = leftCell ? shoutsCellSpacing : cellWidth + CGFloat(numberOfShoutsPerRow) * shoutsCellSpacing
-            attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: shoutsCellHeight)
-            cachedAttributes.append(attributes)
-            
-            if !leftCell || item + 1 == collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
-                yOffset += shoutsCellHeight
+        if let delegate = delegate where delegate.hasContentToDisplayInSection(ProfileCollectionViewSection.Shouts.rawValue) == false {
+            addPlaceholderCellForSection(ProfileCollectionViewSection.Shouts.rawValue, yOffset: &yOffset)
+        } else {
+            let cellWidth = floor((collectionWidth - shoutsCellSpacing) * 0.5)
+            for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
+                
+                let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Shouts.rawValue)
+                let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+                let leftCell = item % numberOfShoutsPerRow == 0
+                let x = leftCell ? shoutsCellSpacing : cellWidth + CGFloat(numberOfShoutsPerRow) * shoutsCellSpacing
+                attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: shoutsCellHeight)
+                cachedAttributes.append(attributes)
+                
+                if !leftCell || item + 1 == collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
+                    yOffset += shoutsCellHeight
+                }
             }
         }
         
@@ -166,17 +182,34 @@ class ProfileCollectionViewLayout: UICollectionViewLayout {
         return true
     }
     
-    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, height: CGFloat, inout yOffset: CGFloat) {
+    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, var height: CGFloat, inout yOffset: CGFloat) {
         
         guard let collectionWidth = collectionView?.bounds.width else {
             return
         }
         
         let attributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: supplementary.kind.rawValue, withIndexPath: supplementary.indexPath)
+        if let delegate = delegate where delegate.hidesSupplementeryView(supplementary) {
+            height = 0
+            attributes.hidden = true
+        }
         attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: height)
         attributes.zIndex = 5
         cachedAttributes.append(attributes)
         
         yOffset += height
+    }
+    
+    private func addPlaceholderCellForSection(section: Int, inout yOffset: CGFloat) {
+        
+        guard let collectionWidth = collectionView?.bounds.width else {
+            return
+        }
+        
+        let indexPath = NSIndexPath(forItem: 0, inSection: section)
+        let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: placeholderCellHeight)
+        cachedAttributes.append(attributes)
+        yOffset += placeholderCellHeight
     }
 }
