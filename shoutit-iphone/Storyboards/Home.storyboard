@@ -42,7 +42,10 @@
                                             <constraint firstAttribute="width" constant="24" id="CvU-qx-oK4"/>
                                             <constraint firstAttribute="height" constant="24" id="nsr-9d-tZa"/>
                                         </constraints>
-                                        <state key="normal" image="filterShoutList"/>
+                                        <state key="normal" image="filterIcon"/>
+                                        <connections>
+                                            <action selector="filterAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="jMT-LC-S7D"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTR-Ii-qKk">
                                         <rect key="frame" x="566" y="15" width="24" height="24"/>
@@ -51,6 +54,7 @@
                                             <constraint firstAttribute="width" constant="24" id="yJT-k6-rWD"/>
                                         </constraints>
                                         <state key="normal" image="shoutsAsList"/>
+                                        <state key="selected" image="shoutsAsGrid"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcc-xA-8Xa">
                                         <rect key="frame" x="10" y="17" width="67" height="20.5"/>
@@ -92,6 +96,7 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="9fl-Jy-3uV">
                         <barButtonItem key="leftBarButtonItem" image="navMenu" id="gQY-HL-pNy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,15 +104,48 @@
                                 <action selector="toggleMenu" destination="Upf-uN-bxG" id="WoN-fF-5Qj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Z7m-3s-GrW">
+                            <view key="customView" contentMode="scaleToFill" id="wJN-eu-PdR">
+                                <rect key="frame" x="20" y="5.5" width="80" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxF-O8-Jze">
+                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
+                                        <state key="normal" title="search" image="search"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="xJT-Jk-Cw2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGh-MK-qo6">
+                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
+                                        <state key="normal" title="cart" image="cart"/>
+                                        <connections>
+                                            <action selector="cartAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="8X2-mz-oWA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="changeLayoutButton" destination="vTR-Ii-qKk" id="GZF-iA-iie"/>
                         <outlet property="discoverHeight" destination="MeC-UW-xIs" id="0F1-Kv-2V6"/>
+                        <segue destination="hDZ-qp-EuW" kind="show" identifier="showSingleShout" id="udG-d1-1i6"/>
+                        <segue destination="MWI-ef-n7k" kind="show" identifier="showSingleDiscoverItem" id="b8m-YQ-PFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUV-ZK-3ic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="71"/>
+            <point key="canvasLocation" x="180" y="9"/>
+        </scene>
+        <!--singleShoutViewController-->
+        <scene sceneID="df0-o0-oBX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shout" referencedIdentifier="singleShoutViewController" id="hDZ-qp-EuW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nWK-0i-bbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-241"/>
         </scene>
         <!--DiscoverPreview-->
         <scene sceneID="mhw-z1-XbC">
@@ -123,7 +161,15 @@
                 <viewControllerPlaceholder storyboardName="HomeShouts" id="yW9-m1-kXq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jk-lh-Yt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="134"/>
+            <point key="canvasLocation" x="844" y="-100"/>
+        </scene>
+        <!--singleDiscoverItem-->
+        <scene sceneID="lY1-jC-COh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="singleDiscoverItem" id="MWI-ef-n7k" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Re-mz-LAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871.5" y="-34"/>
         </scene>
         <!--Shout List View Controller-->
         <scene sceneID="4ID-7N-xhy">
@@ -278,18 +324,18 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZm-ow-8yC">
-                                                            <rect key="frame" x="341" y="10" width="26" height="22"/>
+                                                            <rect key="frame" x="344" y="10" width="23" height="22"/>
                                                             <state key="normal" image="shoutsAsList"/>
                                                             <connections>
                                                                 <action selector="switchViewType:" destination="Bv6-ya-z53" eventType="touchUpInside" id="mvK-1g-rx3"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hR-tr-8GA">
-                                                            <rect key="frame" x="312" y="10" width="19" height="22"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hR-tr-8GA">
+                                                            <rect key="frame" x="315" y="10" width="19" height="22"/>
                                                             <state key="normal" image="filterShoutList"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY FEED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-qF-xRA">
-                                                            <rect key="frame" x="10" y="10" width="72" height="21"/>
+                                                            <rect key="frame" x="10" y="10" width="71.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -644,11 +690,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
+        <image name="filterIcon" width="20" height="20"/>
         <image name="filterShoutList" width="19" height="21"/>
         <image name="headbarLogoWhite" width="77" height="20"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>
-        <image name="shoutsAsList" width="26" height="21"/>
+        <image name="shoutsAsGrid" width="22" height="21"/>
+        <image name="shoutsAsList" width="23" height="17"/>
     </resources>
 </document>

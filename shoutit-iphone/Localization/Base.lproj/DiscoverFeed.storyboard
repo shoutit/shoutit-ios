@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--DiscoverFeed-->
         <scene sceneID="rpa-Qv-7Qs">
             <objects>
-                <viewController storyboardIdentifier="SHDiscoverFeedViewController" id="rN8-91-9Cy" userLabel="DiscoverFeed" customClass="SHDiscoverFeedViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHDiscoverFeedViewController" id="rN8-91-9Cy" userLabel="DiscoverFeed" customClass="SHDiscoverFeedViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w7p-kZ-vJR"/>
                         <viewControllerLayoutGuide type="bottom" id="wiX-2v-oER"/>
@@ -32,8 +32,8 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverFeedHeaderCell" reuseIdentifier="discoverFeedHeaderCell" id="fz9-Pr-MEj" customClass="SHDiscoverFeedHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="91" width="355" height="132"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverFeedHeaderCell" reuseIdentifier="discoverFeedHeaderCell" id="fz9-Pr-MEj" customClass="SHDiscoverFeedHeaderCell" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="90.5" width="355" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="132"/>
@@ -73,7 +73,7 @@
                                         </constraints>
                                         <size key="customSize" width="355" height="132"/>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHDiscoverFeedCell" id="mTI-O7-HwC" customClass="SHDiscoverFeedCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SHDiscoverFeedCell" id="mTI-O7-HwC" customClass="SHDiscoverFeedCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="418" y="74" width="172" height="165"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -121,7 +121,7 @@
                                             <outlet property="discoverTitle" destination="SaX-Me-LRG" id="yuz-WT-eyL"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShoutHeaderCell" reuseIdentifier="discoverShoutHeaderCell" id="fwN-Wp-Pl0" customClass="SHDiscoverShoutHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShoutHeaderCell" reuseIdentifier="discoverShoutHeaderCell" id="fwN-Wp-Pl0" customClass="SHDiscoverShoutHeaderCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="10" y="313" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -157,7 +157,7 @@
                                         </constraints>
                                         <size key="customSize" width="355" height="44"/>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverShoutsCell" reuseIdentifier="SHDiscoverShoutsCell" id="G0R-la-HIL" customClass="SHDiscoverShoutsCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverShoutsCell" reuseIdentifier="SHDiscoverShoutsCell" id="G0R-la-HIL" customClass="SHDiscoverShoutsCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="418" y="249" width="172" height="172"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -167,10 +167,10 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHg-iy-Xva">
                                                     <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QpH-p6-Do1">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpH-p6-Do1">
                                                             <rect key="frame" x="0.0" y="0.0" width="172" height="127"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Ha..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0B-jj-x9H">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Merino Wool Slouchy Ha..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0B-jj-x9H">
                                                             <rect key="frame" x="5" y="132" width="162" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
@@ -228,7 +228,7 @@
                                             <outlet property="shoutTitle" destination="X0B-jj-x9H" id="DxK-hO-DUC"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShowMoreShoutsCell" reuseIdentifier="discoverShowMoreShoutsCell" id="qyV-SO-bNf" customClass="SHDiscoverShowMoreShoutsCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="discoverShowMoreShoutsCell" reuseIdentifier="discoverShowMoreShoutsCell" id="qyV-SO-bNf" customClass="SHDiscoverShowMoreShoutsCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="10" y="431" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -344,7 +344,7 @@
         <!--Discover Shouts View Controller-->
         <scene sceneID="II1-bE-Hh4">
             <objects>
-                <viewController storyboardIdentifier="SHDiscoverShoutsViewController" id="fXl-cU-4jy" customClass="SHDiscoverShoutsViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHDiscoverShoutsViewController" id="fXl-cU-4jy" customClass="SHDiscoverShoutsViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jeE-wd-QYz"/>
                         <viewControllerLayoutGuide type="bottom" id="M9z-RF-JeN"/>
@@ -363,7 +363,7 @@
                                     <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverShoutsHeaderCell" reuseIdentifier="SHDiscoverShoutsHeaderCell" id="w6h-gZ-jRm" customClass="SHDiscoverShoutsHeaderCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHDiscoverShoutsHeaderCell" reuseIdentifier="SHDiscoverShoutsHeaderCell" id="w6h-gZ-jRm" customClass="SHDiscoverShoutsHeaderCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="10" y="61" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -438,7 +438,7 @@
                                             <outlet property="shoutViewType" destination="GGG-ec-Wu5" id="oTS-CN-sBQ"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHExtraDiscoverCell" reuseIdentifier="SHExtraDiscoverCell" id="4kV-Xc-H8C" customClass="SHExtraDiscoverCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHExtraDiscoverCell" reuseIdentifier="SHExtraDiscoverCell" id="4kV-Xc-H8C" customClass="SHExtraDiscoverCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="395" y="0.0" width="172" height="172"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -448,10 +448,10 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgr-g9-ROn">
                                                     <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="345-ad-Oct">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="345-ad-Oct">
                                                             <rect key="frame" x="0.0" y="0.0" width="172" height="127"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Ha..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rF-Iw-dEf">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Merino Wool Slouchy Ha..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rF-Iw-dEf">
                                                             <rect key="frame" x="5" y="132" width="162" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -582,7 +582,7 @@
         <image name="headbarLogoWhite" width="77" height="20"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
-        <image name="shoutsAsList" width="26" height="21"/>
+        <image name="shoutsAsList" width="23" height="17"/>
         <image name="tabDiscover" width="31" height="30"/>
     </resources>
 </document>
