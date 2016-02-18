@@ -83,4 +83,10 @@ extension UIImage {
     static func profileWebsiteIcon() -> UIImage {
         return UIImage(named: "profile_website_icon")!
     }
+    
+    // MARK: - Placeholders
+    
+    static func avatarPlaceholder() -> UIImage {
+        return UIImage(named: "guest avatar")!
+    }
 }
