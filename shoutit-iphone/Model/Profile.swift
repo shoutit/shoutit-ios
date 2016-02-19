@@ -24,6 +24,7 @@ struct Profile {
     let imagePath: String?
     let coverPath: String?
     let listening: Bool?
+    let listenersCount: Int
 }
 
 extension Profile: MappableObject {
@@ -41,6 +42,7 @@ extension Profile: MappableObject {
         imagePath = try map.extract("image")
         coverPath = try map.extract("cover")
         listening = try map.extract("is_listening")
+        listenersCount = try map.extract("listeners_count")
     }
     
     func sequence(map: Map) throws {
@@ -58,5 +60,6 @@ extension Profile: MappableObject {
         try imagePath ~> map["image"]
         try coverPath ~> map["cover"]
         try listening ~> map["is_listening"]
+        try listenersCount ~> map["listeners_count"]
     }
 }

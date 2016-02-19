@@ -10,9 +10,6 @@ import UIKit
 
 class GradientView: UIView {
     
-    @IBInspectable var topColor: UIColor!
-    @IBInspectable var bottomColot: UIColor!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.clearColor()

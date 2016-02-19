@@ -12,9 +12,27 @@ import RxCocoa
 
 class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
+    let disposeBag = DisposeBag()
+    let reloadSubject: PublishSubject<Void> = PublishSubject()
+    
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(Account.sharedInstance.user?.pages ?? [])
+        
+        reloadContent()
+    }
+    
+    func reloadContent() {
+        fetchShouts().subscribe { (event) in
+            switch event {
+            case .Next(let value):
+                self.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels(value)
+            case .Error(let error as NSError):
+                self.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([], errorMessage: error.localizedDescription)
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
     }
     
     var user: User {
@@ -87,19 +105,28 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return false
     }
     
+    // MARK: - Fetch
+    
+    func fetchShouts() -> Observable<[Shout]> {
+        let params = UserShoutsParams(username: "me", pageSize: 4, shoutType: nil)
+        return APIUsersService.shoutsForUserWithParams(params)
+    }
+    
     // MARK: - Helpers
     
-    private static func pagesSectionWithModels(pages: [Profile]) -> ProfileCollectionSectionViewModel {
+    private static func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel {
         let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
         let title = NSLocalizedString("My Pages", comment: "")
         let footerTitle = NSLocalizedString("Create Page", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green)
+        let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage)
     }
     
-    private static func shoutsSectionWithModels(shouts: [Shout]) -> ProfileCollectionSectionViewModel {
+    private static func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("My Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray)
+        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
     }
 }

@@ -25,13 +25,20 @@ class ProfileCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let _ = self.viewModel else {
+        guard let viewModel = self.viewModel else {
             fatalError("Pass view model to \(self.self) instance before presenting it")
         }
         
         if let layout = collectionView?.collectionViewLayout as? ProfileCollectionViewLayout {
             layout.delegate = viewModel
         }
+        
+        viewModel.reloadSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] in
+                self?.collectionView?.reloadData()
+            }
+            .addDisposableTo(disposeBag)
         
         registerReusables()
     }
@@ -83,10 +90,11 @@ extension ProfileCollectionViewController {
         
         if !viewModel.hasContentToDisplayInSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
-            if indexPath.section == ProfileCollectionViewSection.Pages.rawValue {
-                cell.placeholderTextLabel.text = NSLocalizedString("No pages available yet", comment: "")
-            } else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
-                cell.placeholderTextLabel.text = NSLocalizedString("No shouts available yet", comment: "")
+            let sectionViewModel = indexPath.section == 0 ? viewModel.pagesSection : viewModel.shoutsSection
+            if let errorMessage = sectionViewModel.errorMessage {
+                cell.placeholderTextLabel.text = errorMessage
+            } else {
+                cell.placeholderTextLabel.text = sectionViewModel.noContentMessage
             }
             return cell
         }
@@ -182,6 +190,20 @@ extension ProfileCollectionViewController {
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.sh_setImageWithURL(viewModel.locationFlagURL, placeholderImage: nil)
             infoView.setButtons(viewModel.infoButtons)
+            
+            // adjust constraints for data
+            let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
+            let descriptionSectionHeight = layout.descriptionViewHeightForText(viewModel.descriptionText)
+            infoView.bioSectionHeightConstrait.constant = descriptionSectionHeight
+            let texts: [String?] = [viewModel.websiteString, viewModel.dateJoinedString, viewModel.locationString]
+            let constraints: [NSLayoutConstraint] = [infoView.websiteSectionHeightConstraint, infoView.dateJoinedSectionHeightConstraint, infoView.locationSectionHeightConstraint]
+            for index in 0..<texts.count {
+                let text = texts[index]
+                let constraint = constraints[index]
+                if text == nil || text!.isEmpty {
+                    constraint.constant = 0
+                }
+            }
             
         case .PagesSectionHeader:
             let pagesSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView

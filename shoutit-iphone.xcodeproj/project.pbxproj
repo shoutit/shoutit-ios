@@ -399,6 +399,8 @@
 		B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */; };
 		B22D19731C75098E00A620F3 /* PlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22D19721C75098E00A620F3 /* PlaceholderCollectionViewCell.xib */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
+		B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */; };
+		B23ABC921C76084B00CC69E6 /* UserShoutsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */; };
 		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
 		B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */; };
@@ -949,6 +951,8 @@
 		B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlcaholderCollectionViewCell.swift; path = View/PlcaholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		B22D19721C75098E00A620F3 /* PlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlaceholderCollectionViewCell.xib; path = Storyboards/PlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
+		B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIUsersService.swift; path = Networking/APIUsersService.swift; sourceTree = "<group>"; };
+		B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserShoutsParams.swift; path = Networking/UserShoutsParams.swift; sourceTree = "<group>"; };
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupCategoryTableViewCell.swift; path = View/PostSignupCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -2494,6 +2498,7 @@
 				B21EA3B71C63E80E0013E99F /* AuthParams.swift */,
 				B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */,
 				B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */,
+				B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -2557,6 +2562,25 @@
 				B28379A01C737950009AFF01 /* GradientView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B23ABC8D1C75E5C900CC69E6 /* SpecificViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B2E715471C6D0336007F95CF /* ProfileCollectionViewModel.swift */,
+			);
+			name = SpecificViewModels;
+			sourceTree = "<group>";
+		};
+		B23ABC8E1C75E5F100CC69E6 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				B28379A21C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift */,
+				B28379A41C738898009AFF01 /* ProfileCollectionCellViewModel.swift */,
+				B26CEE2E1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift */,
+				B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */,
+			);
+			name = Universal;
 			sourceTree = "<group>";
 		};
 		B250E1C91C593F680010AB2D /* Displayables */ = {
@@ -2814,6 +2838,7 @@
 				AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */,
 				241CEC341C73282B00694575 /* APIDiscoverService.swift */,
 				2405803F1C7368CB009ED106 /* APIShoutsService.swift */,
+				B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -2849,11 +2874,8 @@
 			isa = PBXGroup;
 			children = (
 				B28379A61C749382009AFF01 /* Interface */,
-				B2E715471C6D0336007F95CF /* ProfileCollectionViewModel.swift */,
-				B28379A21C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift */,
-				B28379A41C738898009AFF01 /* ProfileCollectionCellViewModel.swift */,
-				B26CEE2E1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift */,
-				B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */,
+				B23ABC8D1C75E5C900CC69E6 /* SpecificViewModels */,
+				B23ABC8E1C75E5F100CC69E6 /* Universal */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -3334,6 +3356,7 @@
 				AC1AA9751C4E41DF00CA4ACB /* SHExtraDiscoverCell.swift in Sources */,
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
+				B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */,
 				ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */,
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
 				B21EA3B81C63E80E0013E99F /* AuthParams.swift in Sources */,
@@ -3380,6 +3403,7 @@
 				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
 				ACC36C481C0CA0A00082E0C2 /* SHMessagesViewController.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
+				B23ABC921C76084B00CC69E6 /* UserShoutsParams.swift in Sources */,
 				606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */,
 				ACB803A41C0F40F700420BB1 /* SHSystemMessageMediaItem.swift in Sources */,
 				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,

@@ -15,23 +15,30 @@ import FBSDKLoginKit
 final class LoginMethodChoiceViewModel {
     
     let loginSuccessSubject = PublishSubject<Bool>()
+    let progressHUDSubject = PublishSubject<Bool>()
     let errorSubject = PublishSubject<NSError>()
     
     // MARK: - Actions
     
     func loginWithGoogle() {
+        progressHUDSubject.onNext(true)
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
     
     func loginWithFacebookFromViewController(viewController: UIViewController) {
-        
+        progressHUDSubject.onNext(true)
         let facebookLoginManager = FBSDKLoginManager()
         facebookLoginManager.logInWithReadPermissions(Constants.Facebook.loginReadPermissions, fromViewController: viewController) { (loginResult, error) -> Void in
             
             if let error = error {
                 self.errorSubject.onNext(error)
+                self.progressHUDSubject.onNext(false)
                 return
+            }
+            
+            if loginResult.isCancelled {
+                self.progressHUDSubject.onNext(false)
             }
             
             if let token = loginResult.token {
@@ -46,6 +53,7 @@ final class LoginMethodChoiceViewModel {
     private func authenticateWithParameters(params: AuthParams) {
         
         APIAuthService.getOauthToken(params) { (result) -> Void in
+            self.progressHUDSubject.onNext(false)
             switch result {
             case .Success(let authData):
                 try! Account.sharedInstance.loginUserWithAuthData(authData)
@@ -64,8 +72,11 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = nil
         
         if let error = error {
-            GIDSignIn.sharedInstance().signOut()
-            errorSubject.onNext(error)
+            if error.code != -5 {
+                GIDSignIn.sharedInstance().signOut()
+                errorSubject.onNext(error)
+            }
+            self.progressHUDSubject.onNext(false)
             return
         }
         
