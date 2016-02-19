@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -66,8 +67,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                 .filter({ (reload) -> Bool in
                     return reload
                 })
-                .flatMap({ reload in
-                    return self.viewModel.dataSource
+                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
+                    return (self?.viewModel.dataSource!)!
                 })
                 .bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
                     cell.shoutTitle.text = element.title
