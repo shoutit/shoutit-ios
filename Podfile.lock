@@ -78,6 +78,8 @@ PODS:
     - MZAppearance
   - Nimble (3.0.0)
   - ObjectMapper (1.1.2)
+  - Ogra (2.1.0):
+    - Argo
   - PureJsonSerializer (1.0.2)
   - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
@@ -127,6 +129,7 @@ DEPENDENCIES:
   - MZFormSheetPresentationController (~> 2.2)
   - Nimble (= 3.0.0)
   - ObjectMapper (~> 1.1)
+  - Ogra (~> 2.1)
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
@@ -177,6 +180,7 @@ SPEC CHECKSUMS:
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
+  Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b
   PureJsonSerializer: 81d6bc0e21ed4b837193279aa3d29981f75f9057
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793

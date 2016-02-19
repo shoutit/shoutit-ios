@@ -7,18 +7,20 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
+import Ogra
 
 struct AuthData {
     
     // token type
-    private(set) var guest: Bool = false
+    //private(set) var guest: Bool = false
     
     // token
     let accessToken: String
     let refreshToken: String
     let tokenType: String
-    let expiresIn: Int
+    let expiresInEpoch: Int
     
     // user
     let user: User
@@ -28,25 +30,32 @@ struct AuthData {
     let scope: String
 }
 
-extension AuthData: MappableObject {
+extension AuthData: Decodable {
     
-    init(map: Map) throws {
-        accessToken = try map.extract("access_token")
-        expiresIn = try map.extract("expires_in")
-        isNewSignUp = try map.extract("new_signup")
-        refreshToken = try map.extract("refresh_token")
-        scope = try map.extract("scope")
-        tokenType = try map.extract("token_type")
-        user = try map.extract("user")
+    static func decode(j: JSON) -> Decoded<AuthData> {
+        let f = curry(AuthData.init)
+            <^> j <| "access_token"
+            <*> j <| "refresh_token"
+            <*> j <| "token_type"
+        return f
+            <*> j <| "expires_in"
+            <*> j <| "user"
+            <*> j <| "new_signup"
+            <*> j <| "scope"
     }
+}
+
+extension AuthData: Encodable {
     
-    func sequence(map: Map) throws {
-        try accessToken         ~> map["access_token"]
-        try expiresIn           ~> map["expires_in"]
-        try isNewSignUp         ~> map["new_signup"]
-        try refreshToken        ~> map["refresh_token"]
-        try scope               ~> map["scope"]
-        try tokenType           ~> map["token_type"]
-        try user                ~> map["user"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "access_token"    : self.accessToken.encode(),
+            "refresh_token"  : self.refreshToken.encode(),
+            "token_type" : self.tokenType.encode(),
+            "expires_in"    : self.expiresInEpoch.encode(),
+            "user"  : self.user.encode(),
+            "new_signup" : self.isNewSignUp.encode(),
+            "scope" : self.scope.encode(),
+            ])
     }
 }

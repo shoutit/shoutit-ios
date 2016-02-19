@@ -50,6 +50,7 @@ pod 'Freddy'
 
 pod 'Argo'
 pod 'Curry'
+pod 'Ogra', '~> 2.1'
 
 # ui controls
 pod 'Material', '~> 1.29'
