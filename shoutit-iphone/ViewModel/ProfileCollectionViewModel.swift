@@ -38,8 +38,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return Account.sharedInstance.user!
     }
     
-    private(set) var pagesSection: ProfileCollectionSectionViewModel
-    private(set) var shoutsSection: ProfileCollectionSectionViewModel
+    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
+    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>
     
     // MARK: - ProfileCollectionViewModelInterface
     var configuration: ProfileCollectionViewConfiguration {
@@ -90,8 +90,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return user.location.city
     }
     
-    var locationFlagURL: NSURL? {
-        return nil
+    var locationFlag: UIImage? {
+        return UIImage(named: user.location.country)
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {
@@ -113,7 +113,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Helpers
     
-    private static func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel {
+    private static func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
         let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
         let title = NSLocalizedString("My Pages", comment: "")
         let footerTitle = NSLocalizedString("Create Page", comment: "")
@@ -121,7 +121,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage)
     }
     
-    private static func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel {
+    private static func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("My Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")

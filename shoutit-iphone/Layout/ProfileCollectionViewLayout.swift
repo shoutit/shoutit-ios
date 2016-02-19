@@ -106,7 +106,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         if let delegate = delegate where delegate.hasContentToDisplayInSection(ProfileCollectionViewSection.Shouts.rawValue) == false {
             addPlaceholderCellForSection(ProfileCollectionViewSection.Shouts.rawValue, yOffset: &yOffset)
         } else {
-            let cellWidth = floor((collectionWidth - shoutsCellSpacing) * 0.5)
+            let cellWidth = floor((collectionWidth - 3 * shoutsCellSpacing) * 0.5)
             for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
                 
                 let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Shouts.rawValue)
@@ -116,8 +116,12 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
                 attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: shoutsCellHeight)
                 cachedAttributes.append(attributes)
                 
-                if !leftCell || item + 1 == collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
+                let isLastCell = item + 1 == collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue)
+                if !leftCell || isLastCell {
                     yOffset += shoutsCellHeight
+                    if (!isLastCell) {
+                        yOffset += shoutsCellSpacing
+                    }
                 }
             }
         }

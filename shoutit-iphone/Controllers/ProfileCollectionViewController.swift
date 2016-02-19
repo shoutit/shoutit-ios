@@ -91,18 +91,15 @@ extension ProfileCollectionViewController {
         
         if !viewModel.hasContentToDisplayInSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
-            let sectionViewModel = indexPath.section == 0 ? viewModel.pagesSection : viewModel.shoutsSection
-            if let errorMessage = sectionViewModel.errorMessage {
-                cell.placeholderTextLabel.text = errorMessage
-            } else {
-                cell.placeholderTextLabel.text = sectionViewModel.noContentMessage
-            }
+            let errorMessage = indexPath.section == 0 ? viewModel.pagesSection.errorMessage : viewModel.shoutsSection.errorMessage
+            let noContentMessage = indexPath.section == 0 ? viewModel.pagesSection.noContentMessage : viewModel.shoutsSection.noContentMessage
+            cell.placeholderTextLabel.text = errorMessage ?? noContentMessage
             return cell
         }
         
         if indexPath.section == ProfileCollectionViewSection.Pages.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Pages.cellReuseIdentifier, forIndexPath: indexPath) as! PagesCollectionViewCell
-            let cellViewModel = viewModel.pagesSection.cells[indexPath.row] as! ProfileCollectionPageCellViewModel
+            let cellViewModel = viewModel.pagesSection.cells[indexPath.row]
             
             cell.nameLabel.text = cellViewModel.profile.name
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
@@ -115,7 +112,7 @@ extension ProfileCollectionViewController {
             
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            let cellViewModel = viewModel.shoutsSection.cells[indexPath.row] as! ProfileCollectionShoutCellViewModel
+            let cellViewModel = viewModel.shoutsSection.cells[indexPath.row]
             
             cell.titleLabel.text = cellViewModel.shout.title
             cell.subtitleLabel.text = cellViewModel.shout.text
@@ -189,7 +186,7 @@ extension ProfileCollectionViewController {
             infoView.websiteLabel.text = viewModel.websiteString
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
-            infoView.locationFlagImageView.sh_setImageWithURL(viewModel.locationFlagURL, placeholderImage: nil)
+            infoView.locationFlagImageView.image = viewModel.locationFlag
             infoView.setButtons(viewModel.infoButtons)
             
             // adjust constraints for data
