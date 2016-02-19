@@ -7,59 +7,50 @@
 //
 
 import Foundation
-import Genome
-import PureJsonSerializer
+import Argo
+import Ogra
 
 class SecureCoder {
     
     // MARK: - WRITE
     
-    static func writeJson(json: Json, toFileAtPath path: String) {
-        let string = json.serialize()
-        NSKeyedArchiver.archiveRootObject(string as NSString, toFile: path)
-    }
-    
-    static func writeJsonConvertibleToFile(object: JsonConvertibleType, toPath path: String) throws {
-        let json = try object.jsonRepresentation()
-        writeJson(json, toFileAtPath: path)
+    static func writeObject<T: Encodable>(object: T, toFileAtPath path: String) {
+        let json = object.encode()
+        let dictionary = json.JSONObject()
+        NSKeyedArchiver.archiveRootObject(dictionary, toFile: path)
     }
     
     // MARK: - READ
     
-    static func readJsonFromFile(path: String) throws -> Json? {
+    static func readObjectFromFile<T: Decodable where T == T.DecodedType>(path: String) -> T? {
         
         guard let contents = NSKeyedUnarchiver.unarchiveObjectWithFile(path) else {
             return nil
         }
         
-        guard let string = contents as? String where string.characters.count > 0 else {
-            return nil
-        }
-        
-        return try Json.deserialize(string)
+        let decoded: Decoded<T> = Argo.decode(contents)
+        return decoded.value
     }
+    
     
     // MARK: - TO DATA
     
-    static func dataWithJsonConvertible(json: JsonConvertibleType) throws -> NSData {
+    static func dataWithJsonConvertible<T: Encodable>(object: T) -> NSData {
         
-        let json = try json.jsonRepresentation()
-        let stringRepresentation = json.serialize()
-        return NSKeyedArchiver.archivedDataWithRootObject(stringRepresentation)
+        let json = object.encode()
+        let dictionary = json.JSONObject()
+        return NSKeyedArchiver.archivedDataWithRootObject(dictionary)
     }
     
     // MARK: - FROM DATA
     
-    static func jsonWithNSData(data: NSData) throws -> Json? {
+    static func objectWithData<T: Decodable where T == T.DecodedType>(data: NSData) -> T? {
         
         guard let contents = NSKeyedUnarchiver.unarchiveObjectWithData(data) else {
             return nil
         }
         
-        guard let string = contents as? String where string.characters.count > 0 else {
-            return nil
-        }
-        
-        return try Json.deserialize(string)
+        let decoded: Decoded<T> = Argo.decode(contents)
+        return decoded.value
     }
 }

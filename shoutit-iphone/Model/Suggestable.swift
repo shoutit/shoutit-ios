@@ -27,7 +27,7 @@ extension Profile: Suggestable {
         return self.name!
     }
     var suggestionId: String {
-        return self.username!
+        return self.username
     }
     var thumbnailURL: NSURL? {
         return (self.imagePath != nil) ? NSURL(string: self.imagePath!) : nil
@@ -42,6 +42,9 @@ extension Tag: Suggestable {
         return self.name
     }
     var thumbnailURL: NSURL? {
-        return NSURL(string: self.imagePath)
+        guard let path = self.imagePath else {
+            return nil
+        }
+        return NSURL(string: path)
     }
 }

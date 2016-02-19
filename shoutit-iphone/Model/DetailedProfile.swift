@@ -33,11 +33,11 @@ struct DetailedProfile {
     let website: String?
     let shoutsPath: String?
     let listenersCount: Int
-    let listenersPath: String?
+    let listenersPath: String
     let listeningMetadata: ListenersMetadata
     let listeningPath: String?
     let owner: Bool
-    let pages: [User]?
+    let pages: [User]
     let listening: Bool?
 }
 
@@ -51,7 +51,7 @@ extension DetailedProfile: Decodable {
             <*> j <| "web_url"
             <*> j <| "username"
         let b = a
-            <*> j <| "name"
+            <*> j <|? "name"
             <*> j <|? "first_name"
             <*> j <|? "last_name"
             <*> j <| "is_activated"

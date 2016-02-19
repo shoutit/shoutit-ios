@@ -11,6 +11,8 @@ import Argo
 import Curry
 import Ogra
 
+// MARK: - User type
+
 enum UserType: String {
     case Profile = "Profile"
     case Page = "Page"
@@ -21,14 +23,10 @@ extension UserType: Decodable {
     static func decode(j: JSON) -> Decoded<UserType> {
         switch j {
         case .String(let string):
-            switch string {
-            case UserType.Profile.rawValue:
-                return pure(.Profile)
-            case UserType.Page.rawValue:
-                return pure(.Page)
-            default:
-                return .typeMismatch("User type", actual: j)
+            if let userType = UserType(rawValue: string) {
+                return pure(userType)
             }
+            return .typeMismatch("UserType", actual: j)
         default:
             return .typeMismatch("String", actual: j)
         }
@@ -38,21 +36,35 @@ extension UserType: Decodable {
 extension UserType: Encodable {
     
     func encode() -> JSON {
-        return self.rawValue
+        return self.rawValue.encode()
     }
 }
 
+// MARK: - Gender
+
 enum Gender: String {
-    
-    init?(string: String?) {
-        if let string = string {
-            self.init(rawValue: string)!
-        } else {
-            self.init(rawValue: "unknown")
-        }
-    }
-    
-    case Unknown = "unknown"
     case Male = "male"
     case Female = "female"
+}
+
+extension Gender: Decodable {
+    
+    static func decode(j: JSON) -> Decoded<Gender> {
+        switch j {
+        case .String(let string):
+            if let gender = Gender(rawValue: string) {
+                return pure(gender)
+            }
+            return .typeMismatch("Gender", actual: j)
+        default:
+            return .typeMismatch("String", actual: j)
+        }
+    }
+}
+
+extension Gender: Encodable {
+    
+    func encode() -> JSON {
+        return self.rawValue.encode()
+    }
 }

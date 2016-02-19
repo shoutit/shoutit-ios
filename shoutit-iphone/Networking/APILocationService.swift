@@ -8,8 +8,8 @@
 //
 
 import UIKit
+import Argo
 import Alamofire
-import PureJsonSerializer
 
 class APILocationService {
     private static let usersURL = APIManager.baseURL + "/users/*"
@@ -29,12 +29,13 @@ class APILocationService {
             switch response.result {
             case .Success(let data):
                 do {
-                    let json = try Json.deserialize(data)
-                    let user = try User(js: json)
-                    
-                    Account.sharedInstance.user = user
-                    
-                    completionHandler(.Success(user))
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                    if let decoded: Decoded<User> = decode(json), let user = decoded.value {
+                        Account.sharedInstance.user = user
+                        completionHandler(.Success(user))
+                    } else {
+                        throw ParseError.User
+                    }
                 } catch let error as NSError {
                     completionHandler(.Failure(error))
                 }
