@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
         <!--Conversations-->
         <scene sceneID="XQ4-rL-JLC">
             <objects>
-                <tableViewController storyboardIdentifier="SHConversationsTableViewController" title="Conversations" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdm-hj-mhG" customClass="SHConversationsTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHConversationsTableViewController" title="Conversations" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdm-hj-mhG" customClass="SHConversationsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="VUe-zc-rf7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHConversationTableViewCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="SHConversationTableViewCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHConversationTableViewCell" rowHeight="70" id="zEB-Ku-U38" customClass="SHConversationTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zEB-Ku-U38" id="kBB-ug-ILC">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-Ub-bSa">
@@ -128,7 +128,7 @@
         <!--Title-->
         <scene sceneID="pXf-Zg-PsV">
             <objects>
-                <viewController storyboardIdentifier="SHMessagesViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="stp-iW-Dmi" customClass="SHMessagesViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHMessagesViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="stp-iW-Dmi" customClass="SHMessagesViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CnS-6v-us2"/>
                         <viewControllerLayoutGuide type="bottom" id="ElR-oE-c3F"/>
@@ -161,7 +161,7 @@
         <!--Shout Picker Table View Controller-->
         <scene sceneID="NwO-Uv-HMn">
             <objects>
-                <tableViewController storyboardIdentifier="SHShoutPickerTableViewController" id="rbG-Uc-VMW" customClass="SHShoutPickerTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHShoutPickerTableViewController" id="rbG-Uc-VMW" customClass="SHShoutPickerTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="zXL-HU-T7Q">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,7 @@
         <!--Map Detatil View Controller-->
         <scene sceneID="jy3-mj-soY">
             <objects>
-                <viewController storyboardIdentifier="SHMapDetatilViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cHn-sp-JVf" customClass="SHMapDetatilViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHMapDetatilViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cHn-sp-JVf" customClass="SHMapDetatilViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y0J-BO-3Lw"/>
                         <viewControllerLayoutGuide type="bottom" id="3jE-fw-aen"/>

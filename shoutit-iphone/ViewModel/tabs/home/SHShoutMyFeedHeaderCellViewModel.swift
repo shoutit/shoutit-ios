@@ -10,6 +10,7 @@ import UIKit
 
 class SHShoutMyFeedHeaderCellViewModel: NSObject {
 
+    /*
     private let cell: SHShoutMyFeedHeaderCell
     private var viewController: SHShoutListViewController?
     
@@ -32,5 +33,5 @@ class SHShoutMyFeedHeaderCellViewModel: NSObject {
             }
         }
     }
-    
+    */
 }

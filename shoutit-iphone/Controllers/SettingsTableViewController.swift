@@ -55,4 +55,10 @@ class SettingsTableViewController: UITableViewController {
     func popViewController() {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
 }

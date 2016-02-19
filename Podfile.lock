@@ -22,6 +22,7 @@ PODS:
   - AlamofireObjectMapper (2.1.0):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
+  - Argo (2.2.0)
   - AWSCognito (2.3.4):
     - AWSCore (= 2.3.4)
   - AWSCore (2.3.4)
@@ -36,6 +37,7 @@ PODS:
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
   - CryptoSwift (0.2.3)
+  - Curry (1.4.0)
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
   - DWTagList (0.0.7)
@@ -46,26 +48,12 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.10.0):
     - FBSDKCoreKit
+  - Freddy (2.0.2)
   - FTGooglePlacesAPI (1.1):
     - AFNetworking (~> 2.2.0)
   - Genome (2.0.4):
     - PureJsonSerializer (~> 1.0.0)
-  - GoogleAppUtilities (1.0.0):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleAuthUtilities (1.0.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
   - GoogleMaps (1.11.1)
-  - GoogleNetworkingUtilities (1.0.0):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSignIn (2.4.0):
-    - GoogleAppUtilities (~> 1.0)
-    - GoogleAuthUtilities (~> 1.0)
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.0.3)
-  - GoogleUtilities (1.1.0):
-    - GoogleSymbolUtilities (~> 1.0.0)
   - HanekeSwift (0.10.1)
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
@@ -111,20 +99,22 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.1)
+  - Argo
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
   - CryptoSwift
+  - Curry
   - DAProgressOverlayView (~> 1.0)
   - DWTagList (~> 0.0)
   - Fabric (~> 1.6)
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
   - FBSDKShareKit (~> 4.8)
+  - Freddy
   - FTGooglePlacesAPI
   - Genome (~> 2.0)
   - GoogleMaps (~> 1.10)
-  - GoogleSignIn (~> 2.4)
   - HanekeSwift (~> 0.10)
   - JSQMessagesViewController (~> 7.2)
   - KeychainAccess (~> 2.3)
@@ -154,12 +144,14 @@ SPEC CHECKSUMS:
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
+  Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
   AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
   AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
+  Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
   DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb
@@ -167,15 +159,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
+  Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
-  GoogleAppUtilities: c01c6a5671e9da8b9d690fdaec5959d6c2aac699
-  GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
-  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
-  GoogleSignIn: 79929b51e6299c69f1197bbd9c7a1367d523ecd8
-  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
-  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d

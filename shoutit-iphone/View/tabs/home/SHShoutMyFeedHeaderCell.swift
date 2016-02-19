@@ -14,16 +14,16 @@ class SHShoutMyFeedHeaderCell: UICollectionViewCell {
     
     var viewModel: SHShoutMyFeedHeaderCellViewModel?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        viewModel = SHShoutMyFeedHeaderCellViewModel(cell: self)
-    }
-    
-    func setUp(viewController: SHShoutListViewController) {
-        viewModel?.setUp(viewController)
-    }
-    
-    @IBAction func switchViewType(sender: AnyObject) {
-        viewModel?.toggleSwitchView()
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        viewModel = SHShoutMyFeedHeaderCellViewModel(cell: self)
+//    }
+//    
+//    func setUp(viewController: SHShoutListViewController) {
+//        viewModel?.setUp(viewController)
+//    }
+//    
+//    @IBAction func switchViewType(sender: AnyObject) {
+//        viewModel?.toggleSwitchView()
+//    }
 }

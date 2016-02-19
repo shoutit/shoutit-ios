@@ -14,7 +14,7 @@ pod 'XCGLogger', '~> 3.0'
 
 # google
 pod 'GoogleMaps', '~> 1.10'
-pod 'GoogleSignIn', '~> 2.4'
+#pod 'GoogleSignIn', '~> 2.4'
 pod 'FTGooglePlacesAPI'
 
 # facebook
@@ -46,6 +46,10 @@ pod 'MWPhotoBrowser', '~> 2.1'
 pod 'Genome', '~> 2.0'
 pod 'ObjectMapper', '~> 1.1'
 pod 'HanekeSwift', '~> 0.10'
+pod 'Freddy'
+
+pod 'Argo'
+pod 'Curry'
 
 # ui controls
 pod 'Material', '~> 1.29'

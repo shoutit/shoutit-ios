@@ -37,7 +37,7 @@ struct User {
     let listeningMetadata: ListenersMetadata
     let listeningPath: String?
     let owner: Bool
-    let pages: [User]?
+    let pages: [Profile]?
     
     // app user specific
     let linkedAccounts: LoginAccounts?

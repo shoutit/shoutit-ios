@@ -14,7 +14,7 @@ struct Wireframe {
         case Root = "Root"
         case Login = "LoginStoryboard"
         case HTML = "HTML"
-        case Home = "ShoutList"
+        case Home = "Home"
         case Discover = "Discover"
         case Shout = "Shout"
         case Chats = "Chats"
@@ -76,7 +76,7 @@ struct Wireframe {
     // MARK: - Home storyboard view controllers
 
     static func homeViewController() -> UIViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("shoutListViewController")
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController")
     }
     
     static func browseViewController() -> UIViewController {
@@ -115,7 +115,7 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController")
     }
     
-    static func profileViewController() -> UIViewController {
-        return storyboard(.Profile).instantiateViewControllerWithIdentifier("SHProfileCollectionViewController")
+    static func profileViewController() -> ProfileCollectionViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
     }
 }

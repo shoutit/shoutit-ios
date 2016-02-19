@@ -5,6 +5,36 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
+        <!--Profile Collection View Controller-->
+        <scene sceneID="wxu-0T-cCR">
+            <objects>
+                <collectionViewController storyboardIdentifier="ProfileCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Bz0-cz-z19" customClass="ProfileCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NDg-tt-FAe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewLayout key="collectionViewLayout" id="cL8-UN-CEQ" customClass="ProfileCollectionViewLayout" customModule="Shoutit" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FeT-TA-kFP">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Bz0-cz-z19" id="gCT-Ki-W5C"/>
+                            <outlet property="delegate" destination="Bz0-cz-z19" id="bZ1-pL-enp"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LWw-sM-9ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1185" y="-299"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="zed-eb-MGX">
             <objects>
@@ -293,7 +323,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5b-7O-QCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-690" y="-263.02816901408448"/>
+            <point key="canvasLocation" x="-480" y="-299"/>
         </scene>
         <!--Profile-->
         <scene sceneID="k7V-5O-YTa">

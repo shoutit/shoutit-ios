@@ -7,46 +7,35 @@
 //
 
 import Foundation
-import Genome
-import PureJsonSerializer
+import Argo
+import Curry
 
-struct Shout {
+struct Shout: Decodable {
+    
     let id: String
     let apiPath: String
     let webPath: String
-    let type: ShoutType
-    let location: Address
+    let image: String?
     let title: String
     let text: String
     let price: Double
     let currency: String
-    let thumnailPath: String?
-    let videoPath: String?
-    let user: Profile
-    let datePublishedEpoch: Int
-    let category: Category
-    let tags: [Tag]
-}
-
-extension Shout: MappableObject {
+    let thumbnailPath: String?
     
-    init(map: Map) throws {
-        id = try map.extract("id")
-        apiPath = try map.extract("api_url")
-        webPath = try map.extract("web_url")
-        type = try map.extract("type") {ShoutType(rawValue: $0)!}
-        location = try map.extract("location")
-        title = try map.extract("title")
-        text = try map.extract("text")
-        price = try map.extract("price")
-        currency = try map.extract("currency")
-        thumnailPath = try map.extract("thumbnail")
-        videoPath = try map.extract("video_url")
-        user = try map.extract("user")
-        datePublishedEpoch = try map.extract("date_published")
-        category = try map.extract("category")
-        tags = try map.extract("tags")
+    static func decode(j: JSON) -> Decoded<Shout> {
+        let f = curry(Shout.init)
+            <^> j <| "id"
+            <*> j <| "api_url"
+            <*> j <| "web_url"
+            <*> j <|? "image"
+            <*> j <| "title"
+        return f
+            <*> j <| "text"
+            <*> j <| "price"
+            <*> j <| "currency"
+            <*> j <|? "thumbnail"
     }
+    
 }
 
 enum ShoutType : String {

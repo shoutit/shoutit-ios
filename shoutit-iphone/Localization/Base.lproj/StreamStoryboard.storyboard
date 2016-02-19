@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Stream-->
         <scene sceneID="uN7-UK-qKQ">
             <objects>
-                <tableViewController storyboardIdentifier="SHStreamTableViewController" title="Stream" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdq-rL-FBA" customClass="SHStreamTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SHStreamTableViewController" title="Stream" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vdq-rL-FBA" customClass="SHStreamTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="rIX-aS-WXx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
         <!--Stream Map View Controller-->
         <scene sceneID="n05-IK-5Pr">
             <objects>
-                <viewController storyboardIdentifier="SHStreamMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fWh-IX-YI5" customClass="SHStreamMapViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHStreamMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fWh-IX-YI5" customClass="SHStreamMapViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2AX-vW-nAJ"/>
                         <viewControllerLayoutGuide type="bottom" id="q0Z-QC-YJo"/>
@@ -58,7 +58,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A51-4O-Tih" customClass="CustomMapView" customModule="shoutit_iphone" customModuleProvider="target">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A51-4O-Tih" customClass="CustomMapView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <connections>
                                     <outlet property="delegate" destination="fWh-IX-YI5" id="8lB-e4-UFp"/>
@@ -87,8 +87,8 @@
         <!--Title-->
         <scene sceneID="bKL-ii-gPJ">
             <objects>
-                <tableViewController storyboardIdentifier="SHShoutDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jfq-Pw-XRn" customClass="SHShoutDetailTableViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="10" sectionFooterHeight="10" id="xWk-ve-VoE">
+                <tableViewController storyboardIdentifier="SHShoutDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jfq-Pw-XRn" customClass="SHShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="10" sectionFooterHeight="10" id="xWk-ve-VoE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -110,7 +110,7 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                     <cells>
-                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHShoutDetailImageCollectionViewCell" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHShoutDetailImageCollectionViewCell" reuseIdentifier="SHShoutDetailImageCollectionViewCell" id="yYg-TI-vRA" customClass="SHShoutDetailImageCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -134,7 +134,7 @@
                                                 <outlet property="shoutImageView" destination="vbp-wW-Tce" id="Gb1-ee-fvu"/>
                                             </connections>
                                         </collectionViewCell>
-                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHYouTubeVideoCollectionViewCell" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHYouTubeVideoCollectionViewCell" reuseIdentifier="SHYouTubeVideoCollectionViewCell" id="2wh-47-Spd" customClass="SHYouTubeVideoCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="320" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -170,7 +170,7 @@
                                                 <outlet property="ytPlayerView" destination="Mju-YY-JRh" id="Epu-CO-JcE"/>
                                             </connections>
                                         </collectionViewCell>
-                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHAmazonVideoCollectionViewCell" reuseIdentifier="SHAmazonVideoCollectionViewCell" id="XEl-0J-RM1" customClass="SHAmazonVideoCollectionViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SHAmazonVideoCollectionViewCell" reuseIdentifier="SHAmazonVideoCollectionViewCell" id="XEl-0J-RM1" customClass="SHAmazonVideoCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="640" y="0.0" width="320" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -498,7 +498,7 @@
         <!--Location Getter View Controller-->
         <scene sceneID="3h0-gQ-pyh">
             <objects>
-                <viewController storyboardIdentifier="SHLocationGetterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yJP-2J-oFK" customClass="SHLocationGetterViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHLocationGetterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yJP-2J-oFK" customClass="SHLocationGetterViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AG6-AW-UxO"/>
                         <viewControllerLayoutGuide type="bottom" id="KRx-Y3-QgX"/>
@@ -519,15 +519,15 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QTw-Tc-N7K" style="IBUITableViewCellStyleDefault" id="Mhz-cZ-eim" customClass="SHLocationGetterViewCell" customModule="shoutit_iphone" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="QTw-Tc-N7K" style="IBUITableViewCellStyleDefault" id="Mhz-cZ-eim" customClass="SHLocationGetterViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhz-cZ-eim" id="FnC-li-omI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QTw-Tc-N7K">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
