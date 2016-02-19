@@ -29,7 +29,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
         NSNotificationCenter.defaultCenter()
             .rx_notification(Constants.Notification.UserDidLogoutNotification)
-            .subscribeNext { notification in
+            .subscribeNext { [unowned self] notification in
                 self.openItem(.Home)
             }
             .addDisposableTo(disposeBag)
@@ -69,6 +69,10 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     // MARK: Content Managing
     
+    func invalidateControllersCache() {
+        flowControllers.removeAll()
+    }
+    
     func openItem(navigationItem: NavigationItem) {
         
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
@@ -88,6 +92,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             let navigationController = LoginNavigationViewController()
             loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
             loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
+                self?.invalidateControllersCache()
                 self?.openItem(.Home)
             }
             presentWith(loginFlowController!)

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -61,18 +62,19 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-            
+        
+    
             retry.asObservable()
                 .filter({ (reload) -> Bool in
                     return reload
                 })
-                .flatMap({ reload in
-                    return self.viewModel.dataSource
+                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
+                    return (self?.viewModel.dataSource!)!
                 })
                 .bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
                     cell.shoutTitle.text = element.title
                     cell.name.text = element.text
-                    cell.shoutPrice.text = "\(element.price) $"
+                    cell.shoutPrice.text = "$\(element.price)"
                 
                     if let thumbPath = element.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
                         cell.shoutImage.kf_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
