@@ -7,28 +7,23 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
 
 struct Tag {
     let id: String
     let name: String
     let apiPath: String
-    let imagePath: String
+    let imagePath: String?
 }
 
-extension Tag: MappableObject {
+extension Tag: Decodable {
     
-    init(map: Map) throws {
-        id = try map.extract("id")
-        name = try map.extract("name")
-        apiPath = try map.extract("api_url")
-        imagePath = try map.extract("image")
-    }
-    
-    func sequence(map: Map) throws {
-        try id ~> map["id"]
-        try name ~> map["name"]
-        try apiPath ~> map["api_url"]
-        try imagePath ~> map["image"]
+    static func decode(j: JSON) -> Decoded<Tag> {
+        return curry(Tag.init)
+            <^> j <| "id"
+            <*> j <| "name"
+            <*> j <| "api_url"
+            <*> j <|? "image"
     }
 }

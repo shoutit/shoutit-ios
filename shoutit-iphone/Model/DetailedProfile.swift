@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import Genome
-import PureJsonSerializer
+import Argo
+import Curry
+import Ogra
 
 struct DetailedProfile {
     
@@ -16,7 +17,7 @@ struct DetailedProfile {
     let type: UserType
     let apiPath: String
     let webPath: String
-    let username: String?
+    let username: String
     let name: String?
     let firstName: String?
     let lastName: String?
@@ -37,77 +38,78 @@ struct DetailedProfile {
     let listeningPath: String?
     let owner: Bool
     let pages: [User]?
-    
-    // other user specific
     let listening: Bool?
 }
 
-extension DetailedProfile: MappableObject {
+extension DetailedProfile: Decodable {
     
-    init(map: Map) throws {
-        id = try map.extract("id")
-        type = try map.extract("type"){ UserType(rawValue: $0)!}
-        apiPath = try map.extract("api_url")
-        webPath = try map.extract("web_url")
-        username = try map.extract("username")
-        name = try map.extract("name")
-        firstName = try map.extract("first_name")
-        lastName = try map.extract("last_name")
-        activated = try map.extract("is_activated")
-        imagePath = try map.extract("image")
-        coverPath = try map.extract("cover")
-        gender = try map.extract("gender") {Gender(string: $0)}
-        videoPath = try map.extract("video")
-        dateJoindedEpoch = try map.extract("date_joined")
-        bio = try map.extract("bio")
-        location = try map.extract("location")
-        email = try map.extract("email")
-        website = try map.extract("website")
-        shoutsPath = try map.extract("shouts_url")
-        listenersCount = try map.extract("listeners_count")
-        listenersPath = try map.extract("listeners_url")
-        listeningMetadata = try map.extract("listening_count")
-        listeningPath = try map.extract("listening_url")
-        owner = try map.extract("is_owner")
-        pages = try map.extract("pages")
-        listening = try map.extract("is_listening")
+    static func decode(j: JSON) -> Decoded<DetailedProfile> {
+        let a =  curry(DetailedProfile.init)
+            <^> j <| "id"
+            <*> j <| "type"
+            <*> j <| "api_url"
+            <*> j <| "web_url"
+            <*> j <| "username"
+        let b = a
+            <*> j <| "name"
+            <*> j <|? "first_name"
+            <*> j <|? "last_name"
+            <*> j <| "is_activated"
+        let c = b
+            <*> j <|? "image"
+            <*> j <|? "cover"
+            <*> j <|? "gender"
+            <*> j <|? "video"
+        let d = c
+            <*> j <| "date_joined"
+            <*> j <|? "bio"
+            <*> j <| "location"
+            <*> j <| "email"
+        let e = d
+            <*> j <|? "website"
+            <*> j <|? "shouts_url"
+            <*> j <| "listeners_count"
+            <*> j <| "listeners_url"
+        let f = e
+            <*> j <| "listening_count"
+            <*> j <|? "listening_url"
+            <*> j <| "is_owner"
+            <*> j <|| "pages"
+            <*> j <|? "listening"
+        return f
     }
+}
+
+extension DetailedProfile: Encodable {
     
-    func sequence(map: Map) throws {
-        
-        try id ~> map["id"]
-        try type ~> map["type"]
-            .transformToJson{$0.rawValue}
-        try apiPath ~> map["api_url"]
-        try webPath ~> map["web_url"]
-        try username ~> map["username"]
-        try name ~> map["name"]
-        try firstName ~> map["first_name"]
-        try lastName ~> map["last_name"]
-        try activated ~> map["is_activated"]
-        try imagePath ~> map["image"]
-        try coverPath ~> map["cover"]
-        try gender ~> map["gender"]
-            .transformToJson{(gender) -> Json in
-                if let raw = gender where raw != .Unknown {
-                    return .StringValue(raw.rawValue)
-                }
-                return .NullValue
-        }
-        
-        try videoPath ~> map["video"]
-        try dateJoindedEpoch ~> map["date_joined"]
-        try bio ~> map["bio"]
-        try location ~> map["location"]
-        try email ~> map["email"]
-        try website ~> map["website"]
-        try shoutsPath ~> map["shouts_url"]
-        try listenersCount ~> map["listeners_count"]
-        try listenersPath ~> map["listeners_url"]
-        try listeningMetadata ~> map["listening_count"]
-        try listeningPath ~> map["listening_url"]
-        try owner ~> map["is_owner"]
-        try pages ~> map["pages"]
-        try listening ~> map["is_listening"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "id" : self.id.encode(),
+            "type" : self.type.encode(),
+            "api_url" : self.apiPath.encode(),
+            "web_url" : self.webPath.encode(),
+            "username" : self.username.encode(),
+            "name" : self.name.encode(),
+            "first_name" : self.firstName.encode(),
+            "last_name" : self.lastName.encode(),
+            "is_activated" : self.activated.encode(),
+            "image" : self.imagePath.encode(),
+            "cover" : self.coverPath.encode(),
+            "gender" : self.gender.encode(),
+            "video" : self.videoPath.encode(),
+            "date_joined" : self.dateJoindedEpoch.encode(),
+            "bio" : self.bio.encode(),
+            "location" : self.location.encode(),
+            "email" : self.email.encode(),
+            "website" : self.website.encode(),
+            "shouts_url" : self.shoutsPath.encode(),
+            "listeners_count" : self.listenersCount.encode(),
+            "listeners_url" : self.listenersPath.encode(),
+            "listening_count" : self.listeningMetadata.encode(),
+            "listening_url" : self.listeningPath.encode(),
+            "is_owner" : self.owner.encode(),
+            "pages" : self.pages.encode(),
+            "listening" : self.listening.encode(),
+            ])
     }
 }

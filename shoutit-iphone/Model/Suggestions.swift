@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
 
 struct Suggestions {
     let users: [Profile]?
@@ -15,11 +16,12 @@ struct Suggestions {
     let tags: [Tag]?
 }
 
-extension Suggestions: MappableObject {
+extension Suggestions: Decodable {
     
-    init(map: Map) throws {
-        users = try map.extract("users")
-        pages = try map.extract("pages")
-        tags = try map.extract("tags")
+    static func decode(j: JSON) -> Decoded<Suggestions> {
+        return curry(Suggestions.init)
+            <^> j <|| "users"
+            <*> j <|| "pages"
+            <*> j <|| "tags"
     }
 }

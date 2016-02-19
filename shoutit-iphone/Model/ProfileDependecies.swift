@@ -7,10 +7,39 @@
 //
 
 import Foundation
+import Argo
+import Curry
+import Ogra
 
 enum UserType: String {
     case Profile = "Profile"
     case Page = "Page"
+}
+
+extension UserType: Decodable {
+    
+    static func decode(j: JSON) -> Decoded<UserType> {
+        switch j {
+        case .String(let string):
+            switch string {
+            case UserType.Profile.rawValue:
+                return pure(.Profile)
+            case UserType.Page.rawValue:
+                return pure(.Page)
+            default:
+                return .typeMismatch("User type", actual: j)
+            }
+        default:
+            return .typeMismatch("String", actual: j)
+        }
+    }
+}
+
+extension UserType: Encodable {
+    
+    func encode() -> JSON {
+        return self.rawValue
+    }
 }
 
 enum Gender: String {
