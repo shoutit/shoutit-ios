@@ -15,7 +15,7 @@ import RxCocoa
 class APIShoutsService {
     private static let shoutsURL = APIManager.baseURL + "/shouts"
     
-    static func shouts(forCountry country: String?, page_size: Int = 25, page: Int = 1) -> Observable<[Shout]> {
+    static func shouts(forCountry country: String?, page_size: Int = 20, page: Int = 1) -> Observable<[Shout]> {
         return Observable.create({ (observer) -> Disposable in
             
             let params: [String: AnyObject] = ["country": (country ?? ""), "page": page, "page_size": page_size]

@@ -72,7 +72,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                 .bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
                     cell.shoutTitle.text = element.title
                     cell.name.text = element.text
-                    cell.shoutPrice.text = "\(element.price) $"
+                    cell.shoutPrice.text = "$\(element.price)"
                 
                     if let thumbPath = element.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
                         cell.shoutImage.kf_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
