@@ -62,7 +62,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-            
+        
+    
             retry.asObservable()
                 .filter({ (reload) -> Bool in
                     return reload
