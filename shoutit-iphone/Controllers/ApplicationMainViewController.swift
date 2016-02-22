@@ -22,7 +22,6 @@ final class ApplicationMainViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var loginFlowController: LoginFlowController?
-    private var loginWasPresented = false
     private(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
@@ -33,7 +32,6 @@ final class ApplicationMainViewController: UIViewController {
         NSNotificationCenter.defaultCenter()
             .rx_notification(Constants.Notification.UserDidLogoutNotification)
             .subscribeNext { (_) in
-                self.loginWasPresented = true
                 self.showLogin()
             }.addDisposableTo(disposeBag)
     }
@@ -41,9 +39,8 @@ final class ApplicationMainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !Account.sharedInstance.isUserLoggedIn && !loginWasPresented {
+        if !Account.sharedInstance.isUserLoggedIn {
             _ = try? Account.sharedInstance.logout()
-            loginWasPresented = true
             showLogin()
         }
     }

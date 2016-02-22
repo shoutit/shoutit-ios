@@ -415,6 +415,7 @@
 		B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CEE391C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib */; };
 		B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */; };
 		B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */; };
+		B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9481C7B8D1000527306 /* IntroViewModel.swift */; };
 		B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */; };
 		B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */; };
 		B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27DF7811C58DCCA006909D4 /* FlowController.swift */; };
@@ -970,6 +971,7 @@
 		B26CEE391C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCollectionFooterButtonSupplementeryView.xib; path = Storyboards/ProfileCollectionFooterButtonSupplementeryView.xib; sourceTree = "<group>"; };
 		B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ScrollViewResize.swift"; path = "UIKitExtensions/UIViewController+ScrollViewResize.swift"; sourceTree = "<group>"; };
 		B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedMaterialTextField.swift; path = View/BorderedMaterialTextField.swift; sourceTree = "<group>"; };
+		B27AF9481C7B8D1000527306 /* IntroViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewModel.swift; path = ViewModel/IntroViewModel.swift; sourceTree = "<group>"; };
 		B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewPlaceholderView.swift; path = View/TableViewPlaceholderView.swift; sourceTree = "<group>"; };
 		B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Controllers/IntroViewController.swift; sourceTree = "<group>"; };
 		B27DF7811C58DCCA006909D4 /* FlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowController.swift; path = FlowControl/FlowController.swift; sourceTree = "<group>"; };
@@ -2653,10 +2655,19 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		B27AF94A1C7B8D1400527306 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B27AF9481C7B8D1000527306 /* IntroViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B27DF77D1C58DBBA006909D4 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
 				B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */,
+				B27AF94A1C7B8D1400527306 /* ViewModel */,
 			);
 			name = Intro;
 			sourceTree = "<group>";
@@ -3343,6 +3354,7 @@
 				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
 				606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */,
 				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
+				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				ACDB3C9E1BF7DB1A0097444E /* SHApiTagsService.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,

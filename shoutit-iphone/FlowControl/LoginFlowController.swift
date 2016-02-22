@@ -30,6 +30,7 @@ final class LoginFlowController: FlowController {
     func showIntroController() {
         // create initial view controller
         let controller = Wireframe.introViewController()
+        controller.viewModel = IntroViewModel()
         controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }

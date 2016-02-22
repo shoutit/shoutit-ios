@@ -37,7 +37,7 @@ class APIAuthService {
     
     static func getOauthToken(params: AuthParams, completionHandler: Result<AuthData, NSError> -> Void) {
         
-        APIManager.manager().request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseJSON { (response) in
+        APIManager.manager().request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil).responseJSON { (response) in
             switch response.result {
             case .Success(let json):
                     do {

@@ -81,7 +81,7 @@ extension User: Decodable {
             <*> j <|? "listening_count"
             <*> j <|? "listening_url"
             <*> j <|? "is_owner"
-            <*> j <|| "pages"
+            <*> j <|| "pages" <|> .Success([])
         let g = f
             <*> j <|? "linked_accounts"
             <*> j <|? "push_tokens"
