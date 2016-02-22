@@ -43,10 +43,8 @@ pod 'SDWebImage', '~> 3.7'
 pod 'MWPhotoBrowser', '~> 2.1'
 
 # serialization
-pod 'Genome', '~> 2.0'
 pod 'ObjectMapper', '~> 1.1'
 pod 'HanekeSwift', '~> 0.10'
-pod 'Freddy'
 
 pod 'Argo'
 pod 'Curry'
