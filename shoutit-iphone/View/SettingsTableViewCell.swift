@@ -10,7 +10,11 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
     
-    // UI
+    // views
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
+    
+    // constraints
+    @IBOutlet weak var separatorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var separatorMarginConstraint: NSLayoutConstraint!
 }

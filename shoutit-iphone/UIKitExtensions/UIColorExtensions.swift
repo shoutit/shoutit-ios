@@ -22,11 +22,19 @@ enum ShoutitColor: Int {
     case FontGrayColor = 0x646464
     case ButtonBackgroundGray = 0xD6D6D6
     case FontLighterGray = 0x58585A
+    case SeparatorGray = 0xe0e0e0
+    
+    var alpha: Float {
+        switch self {
+        default:
+            return 1.0
+        }
+    }
 }
 
 extension UIColor {
     
     convenience init(shoutitColor: ShoutitColor) {
-        self.init(hex: shoutitColor.rawValue)!
+        self.init(hex: shoutitColor.rawValue, alpha: shoutitColor.alpha)!
     }
 }
