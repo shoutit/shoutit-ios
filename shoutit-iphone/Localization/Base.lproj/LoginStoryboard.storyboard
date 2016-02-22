@@ -220,7 +220,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5j-dd-Kjd" customClass="TextField" customModule="Material">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5j-dd-Kjd" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="38" width="335" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="bCx-YO-TOL"/>
@@ -243,7 +243,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-nR-IJq" customClass="TextField" customModule="Material">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-nR-IJq" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="25" width="335" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="LPO-cm-vZA"/>
@@ -1273,7 +1273,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RaH-ti-Eac" customClass="TextField" customModule="Material">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RaH-ti-Eac" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="38" width="335" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="LT9-3l-m3i"/>
@@ -1296,7 +1296,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N11-JB-SIw" customClass="TextField" customModule="Material">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N11-JB-SIw" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="25" width="335" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="Y06-Yl-uCD"/>
@@ -1319,7 +1319,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iKX-Fx-ZOg" customClass="TextField" customModule="Material">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iKX-Fx-ZOg" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="25" width="335" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="0pq-NY-AJO"/>

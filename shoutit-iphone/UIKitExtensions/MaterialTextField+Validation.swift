@@ -12,7 +12,7 @@ import RxCocoa
 import Material
 import Validator
 
-extension Material.TextField {
+extension BorderedMaterialTextField {
     
     func addValidator(validator: (String -> ValidationResult), withDisposeBag disposeBag: DisposeBag) {
         
