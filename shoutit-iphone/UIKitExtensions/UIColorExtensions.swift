@@ -23,6 +23,7 @@ enum ShoutitColor: Int {
     case ButtonBackgroundGray = 0xD6D6D6
     case FontLighterGray = 0x58585A
     case SeparatorGray = 0xe0e0e0
+    case TextFieldLightBlueColor = 0x40C4FF
     
     var alpha: Float {
         switch self {

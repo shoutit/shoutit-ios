@@ -23,7 +23,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 406
+    let signupViewHeight: CGFloat = 416
     let loginViewHeight: CGFloat = 326
     
     //
@@ -34,6 +34,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
     
@@ -73,6 +74,13 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         title = signupViewController.title
         containerHeightConstraint.constant = signupViewHeight
         addInitialViewController(signupViewController)
+        
+        // signup up for keyboard presentation notifications
+        setupKeyboardNotifcationListenerForScrollView(scrollView)
+    }
+    
+    deinit {
+        removeKeyboardNotificationListeners()
     }
     
     // MARK: - Setup
