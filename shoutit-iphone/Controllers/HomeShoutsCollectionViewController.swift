@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -16,6 +15,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let scrollOffset = Variable(CGPointZero)
     let disposeBag = DisposeBag()
     var retry = Variable(true)
+    var items : [Shout] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,32 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
     
-        // Configure the cell
+        let element = items[indexPath.item]
+        
+        cell.shoutTitle.text = element.title
+        cell.name.text = element.text
+        cell.shoutPrice.text = "$\(element.price)"
+        cell.shoutCountryImage.image = UIImage(named:  element.location.country)
+        
+        if let categoryIcon = element.category.icon {
+            cell.shoutCategoryImage.sh_setImageWithURL(NSURL(string: categoryIcon), placeholderImage: nil)
+        }
+        
+        if let thumbPath = element.image, thumbURL = NSURL(string: thumbPath) {
+            cell.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        }
     
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     
@@ -62,7 +83,6 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-        
     
             retry.asObservable()
                 .filter({ (reload) -> Bool in
@@ -70,18 +90,10 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                 })
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.dataSource!)!
-                })
-                .bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
-                    cell.shoutTitle.text = element.title
-                    cell.name.text = element.text
-                    cell.shoutPrice.text = "$\(element.price)"
-                
-                    if let thumbPath = element.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
-                        cell.shoutImage.kf_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
-                    }
-                
-                }.addDisposableTo(disposeBag)
-            
+                }).subscribeNext({ [weak self] (shouts) -> Void in
+                    self?.items = shouts
+                    self?.collectionView?.reloadData()
+                }).addDisposableTo(disposeBag)
         }
     }
 }

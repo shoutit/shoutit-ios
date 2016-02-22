@@ -3,8 +3,9 @@ platform :ios, '8.0'
 use_frameworks!
 
 # RX
-pod 'RxSwift', '~> 2.1'
-pod 'RxCocoa', '~> 2.1'
+pod 'RxSwift', '~> 2.2'
+pod 'RxCocoa', '~> 2.2'
+pod 'RxDataSources', '~> 0.5'
 
 # logging
 pod 'Fabric', '~> 1.6'
@@ -37,6 +38,7 @@ pod 'KeychainAccess', '~> 2.3'
 # validation
 pod 'Validator', '~> 1.1'
 
+
 #images
 pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'
@@ -62,8 +64,10 @@ pod 'SMCalloutView', '~> 2.1'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
+pod 'DZNEmptyDataSet'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
+
 
 def testing_pods
     pod 'Quick', '~> 0.8.0'
