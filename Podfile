@@ -5,7 +5,6 @@ use_frameworks!
 # RX
 pod 'RxSwift', '~> 2.2'
 pod 'RxCocoa', '~> 2.2'
-pod 'RxDataSources', '~> 0.5'
 
 # logging
 pod 'Fabric', '~> 1.6'
