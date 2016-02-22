@@ -75,9 +75,8 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         containerHeightConstraint.constant = signupViewHeight
         addInitialViewController(signupViewController)
         
-        // signup up for keyboard notiifcations
+        // signup up for keyboard presentation notifications
         setupKeyboardNotifcationListenerForScrollView(scrollView)
-        //NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidShowNotification, object: <#T##AnyObject?#>, queue: <#T##NSOperationQueue?#>, usingBlock: <#T##(NSNotification) -> Void#>)
     }
     
     deinit {
