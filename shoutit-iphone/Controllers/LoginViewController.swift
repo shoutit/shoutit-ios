@@ -49,7 +49,7 @@ class LoginViewController: UITableViewController {
         
         let loginActionFilterClosure: Void -> Bool = {[unowned self] in
             
-            for validationResult in [Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
+            for validationResult in [Validator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
                 if case .Invalid(let errors) = validationResult {
                     if let error = errors.first {
                         self.delegate?.showErrorMessage(error.message)
@@ -99,7 +99,6 @@ class LoginViewController: UITableViewController {
         
         // validation
         emailTextField.addValidator(Validator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
-        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {
@@ -129,7 +128,7 @@ class LoginViewController: UITableViewController {
             textField.titleLabel = UILabel()
             textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
             textField.titleLabelColor = MaterialColor.grey.lighten1
-            textField.titleLabelActiveColor = UIColor(shoutitColor: .PrimaryGreen)
+            textField.titleLabelActiveColor = UIColor(shoutitColor: .TextFieldLightBlueColor)
             textField.clearButtonMode = .WhileEditing
             
             textField.detailLabel = UILabel()
