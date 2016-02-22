@@ -11,6 +11,14 @@ import UIKit
 class LocationFlowController: FlowController {
     let navigationController: UINavigationController
     
+    var finishedBlock: ((Bool) -> Void)? {
+        didSet {
+            if let locationController = self.navigationController.viewControllers[0] as? ChangeLocationTableViewController {
+                locationController.finishedBlock = finishedBlock
+            }
+        }
+    }
+    
     init(navigationController: UINavigationController) {
         
         self.navigationController = navigationController

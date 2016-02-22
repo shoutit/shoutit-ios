@@ -102,6 +102,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             flowControllers[navigationItem] = flowControllerToShow
         }
         
+        if let locationFlowController = flowControllerToShow as? LocationFlowController {
+            locationFlowController.finishedBlock = {[weak self](success) -> Void in
+                self?.openItem(.Home)
+            }
+
+        }
+        
         if flowControllerToShow.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
             let navigationController = LoginNavigationViewController()
             loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)

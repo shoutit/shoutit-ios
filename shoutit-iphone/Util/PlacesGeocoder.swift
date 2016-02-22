@@ -25,11 +25,12 @@ public final class PlacesGeocoder: AnyObject {
                 observer.on(.Next([]))
             } else {
                 let request = FTGooglePlacesAPITextSearchRequest(query: query)
-                request.types = ["address"]
                 
                 FTGooglePlacesAPIService.executeSearchRequest(request, withCompletionHandler: { (response, error) -> Void in
                     if let results =  response.results {
                         observer.on(.Next(results))
+                    } else {
+                        observer.on(.Next([]))
                     }
                     
                     observer.on(.Completed)

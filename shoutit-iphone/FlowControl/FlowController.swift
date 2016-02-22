@@ -18,6 +18,6 @@ extension FlowController {
     }
 }
 
-protocol FlowController : UserAccess{
+protocol FlowController : UserAccess {
     var navigationController: UINavigationController {get}
 }

@@ -51,6 +51,13 @@ class MenuHeaderView: UIView {
     func fillLocation() {
         
         countryNameLabel?.text = Account.sharedInstance.locationString()
+        
+        if let flagName = Account.sharedInstance.user?.location.country {
+            countryFlagImageView?.hidden = false
+            countryFlagImageView?.image = UIImage(named: flagName)
+        } else {
+            countryFlagImageView?.hidden = true
+        }
     }
     
 }

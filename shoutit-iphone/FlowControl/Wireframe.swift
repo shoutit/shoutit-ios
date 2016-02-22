@@ -107,8 +107,8 @@ struct Wireframe {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController")
     }
     
-    static func locationViewController() -> UIViewController {
-        return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController")
+    static func locationViewController() -> ChangeLocationTableViewController {
+        return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController") as! ChangeLocationTableViewController
     }
     
     static func chatsViewController() -> UIViewController {

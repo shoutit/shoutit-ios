@@ -15,6 +15,8 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
     @IBOutlet weak var searchBar : UISearchBar!
     
+    var finishedBlock: ((Bool) -> Void)?
+    
     private let disposeBag = DisposeBag()
     private let viewModel = ChangeLocationViewModel()
     private let cellIdentifier = "ChangeLocationCellIdentifier"
@@ -73,7 +75,10 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
                 self.loading = true
                 
                 APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
-                    
+                    if let finish = self.finishedBlock {
+                        self.searchBar.text = ""
+                        finish(true)
+                    }
                 }
                 
             }

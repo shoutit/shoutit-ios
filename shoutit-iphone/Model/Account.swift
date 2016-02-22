@@ -44,8 +44,8 @@ final class Account {
     var userSubject = BehaviorSubject<User?>(value: nil)
     
     func locationString() -> String {
-        if let location = user?.location.address {
-            return location
+        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
+            return "\(city), \(state), \(country)"
         }
         
         return NSLocalizedString("Unknown Location", comment: "")
