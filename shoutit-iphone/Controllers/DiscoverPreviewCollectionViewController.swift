@@ -29,7 +29,7 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
                 cell.shoutTitle.text = element.title
                 
                 if let imagePath = element.image, imageURL = NSURL(string: imagePath) {
-                    cell.shoutImage.kf_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+                    cell.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
                 }
                 
             }.addDisposableTo(disposeBag)

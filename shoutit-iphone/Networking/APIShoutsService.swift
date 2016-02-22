@@ -28,6 +28,7 @@ class APIShoutsService {
                         let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                         
                         if let j = json, jr = j.objectForKey("results") {
+                            print(jr)
                             if let results : Decoded<[Shout]> = decode(jr) {
                                 
                                 if let value = results.value {
