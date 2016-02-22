@@ -53,4 +53,8 @@ class TabbarButton: UIButton {
     override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
         return CGRectMake(0, CGRectGetMaxY(contentRect) - textHeight, CGRectGetWidth(contentRect), textHeight)
     }
+    
+    func tabNavigationItem() -> NavigationItem? {
+        return NavigationItem(rawValue: self.navigationItem)
+    }
 }

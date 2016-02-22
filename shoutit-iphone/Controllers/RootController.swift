@@ -22,6 +22,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     private let disposeBag = DisposeBag()
     let presentMenuSegue = "presentMenuSegue"
     
+    var currentNavigationItem : NavigationItem? {
+        didSet {
+            self.tabbarController?.selectedNavigationItem = currentNavigationItem
+        }
+    }
+    var tabbarController : TabbarController?
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -53,6 +60,11 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if var destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
+            destination.selectedNavigationItem = self.currentNavigationItem
+        }
+        
+        if var destination = segue.destinationViewController as? TabbarController {
+            self.tabbarController = destination
         }
         
         if segue.identifier == presentMenuSegue {
@@ -74,6 +86,8 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     }
     
     func openItem(navigationItem: NavigationItem) {
+        
+        self.currentNavigationItem = navigationItem
         
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)

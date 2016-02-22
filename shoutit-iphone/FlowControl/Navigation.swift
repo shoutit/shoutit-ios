@@ -53,4 +53,6 @@ protocol Navigation {
     weak var rootController : RootController? {get set}
     
     func triggerActionWithItem(navigationItem: NavigationItem)
+    
+    var selectedNavigationItem : NavigationItem? {get set}
 }

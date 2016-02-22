@@ -16,9 +16,12 @@ class MenuTableViewController: UITableViewController, Navigation {
     private let disposeBag = DisposeBag()
     var footerHeight : CGFloat = 0
     
+    var selectedNavigationItem : NavigationItem?
+    
     private let kTableHeaderHeight: CGFloat = 240.0
     
     @IBOutlet var headerView : MenuHeaderView?
+    @IBOutlet var versionLabel : UILabel?
     
     var overlayView : UIView? {
         didSet {
@@ -46,6 +49,18 @@ class MenuTableViewController: UITableViewController, Navigation {
         
         let user = Account.sharedInstance.user
         headerView?.fillWith(user)
+        
+        if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String, build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
+            
+            #if STAGING
+                let appName = "Shoutit Staging"
+            #else
+                let appName = "Shoutit"
+            #endif
+            
+            versionLabel?.text = "\(appName) \(version) (\(build))"
+        }
+        
     }
     
     func setupBackgroundView() {
@@ -73,7 +88,7 @@ class MenuTableViewController: UITableViewController, Navigation {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! MenuCell
         let item = viewModel.navigationItemForIndexPath(indexPath)
         
-        cell.bindWith(item)
+        cell.bindWith(item, current: item == self.selectedNavigationItem)
         
         return cell
     }

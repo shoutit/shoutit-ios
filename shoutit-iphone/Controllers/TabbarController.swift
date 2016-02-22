@@ -12,17 +12,25 @@ import RxCocoa
 
 class TabbarController: UIViewController, Navigation {
 
-    @IBOutlet var tabs: [TabbarButton]!
+    @IBOutlet var tabs: [TabbarButton]?
     
     private let disposeBag = DisposeBag()
     
     var rootController : RootController?
     
+    var selectedNavigationItem : NavigationItem? {
+        didSet {
+            tabs?.each { button in
+                button.selected = button.tabNavigationItem() == self.selectedNavigationItem
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         
-        tabs.each { button in
+        tabs!.each { button in
             button.rx_tap.subscribeNext {
-                self.tabs.each { $0.selected = false }
+                self.tabs!.each { $0.selected = false }
                 
                 button.selected = true
                 
@@ -31,7 +39,7 @@ class TabbarController: UIViewController, Navigation {
             }.addDisposableTo(self.disposeBag)
         }
         
-        tabs.first?.selected = true
+//        tabs!.first?.selected = true
     }
     
     func triggerActionWithItem(navigationItem : NavigationItem) {
