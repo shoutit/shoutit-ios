@@ -69,6 +69,12 @@ struct SignupParams: AuthParams {
     }
 }
 
+//struct LoginGuestParams: AuthParams {
+//    
+//    
+//    
+//}
+
 struct FacebookLoginParams: AuthParams {
     
     let token: String
