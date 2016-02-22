@@ -35,7 +35,7 @@ final class Account {
     var user: User? {
         didSet {
             if let userObject = user {
-                _ = try? SecureCoder.writeJsonConvertibleToFile(userObject, toPath: archivePath)
+                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 self.userSubject.onNext(user)
             }
         }
@@ -60,24 +60,9 @@ final class Account {
     
     init() {
         
-        // try to restore auth data object
-        do {
-            
-            // get user
-            let json = try SecureCoder.readJsonFromFile(archivePath)
-            if let json = json {
-                user = try User(js: json)
-            }
-            
-            // get auth data
-            let data = keychain[data: authDataKey]
-            if let data = data, let json = try SecureCoder.jsonWithNSData(data) {
-                authData = try AuthData(js: json)
-            }
-            
-        }  catch {
-            assert(false, "Error while unarchiving user data")
-            _ = try? logout()
+        user = SecureCoder.readObjectFromFile(archivePath)
+        if let data = keychain[data: authDataKey] {
+            authData = SecureCoder.objectWithData(data)
         }
         
         if let authData = self.authData {
@@ -88,9 +73,9 @@ final class Account {
     func loginUserWithAuthData(authData: AuthData) throws {
         
         // save
-        let data = try SecureCoder.dataWithJsonConvertible(authData)
+        let data = SecureCoder.dataWithJsonConvertible(authData)
         try keychain.set(data, key: authDataKey)
-        try SecureCoder.writeJsonConvertibleToFile(authData.user, toPath: archivePath)
+        SecureCoder.writeObject(authData.user, toFileAtPath: archivePath)
         
         // set instance vars
         self.authData = authData

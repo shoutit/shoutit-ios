@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import PureJsonSerializer
+import Argo
 
 class APIMiscService {
     
@@ -17,31 +17,38 @@ class APIMiscService {
     
     static func requestCategoriesWithCompletionHandler(completionHandler: Result<[Category], NSError> -> Void) {
         
-        APIManager.manager().request(.GET, categoriesURL, parameters: nil, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData({ (response) in
-            switch response.result {
-            case .Success(let data):
-                do {
-                    let json = try Json.deserialize(data)
-                    let categories = try [Category](js: json)
-                    completionHandler(.Success(categories))
-                } catch let error as NSError {
+        APIManager.manager().request(.GET, categoriesURL, parameters: nil, encoding: .JSON, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+                
+                switch response.result {
+                case .Success(let json):
+                    do {
+                        if let decoded: Decoded<[Category]> = decode(json), categories = decoded.value {
+                            completionHandler(.Success(categories))
+                        } else {
+                            throw ParseError.Categories
+                        }
+                    } catch let error as NSError {
+                        completionHandler(.Failure(error))
+                    }
+                case .Failure(let error):
                     completionHandler(.Failure(error))
                 }
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
-        })
+        }
     }
     
     static func requestSuggestionsWithParams(params: SuggestionsParams, withCompletionHandler completionHandler: Result<Suggestions, NSError> -> Void) {
         
-        APIManager.manager().request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseData { (response) in
+        APIManager.manager().request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseJSON { (response) in
             switch response.result {
-            case .Success(let data):
+            case .Success(let json):
                 do {
-                    let json = try Json.deserialize(data)
-                    let suggestions = try Suggestions(js: json)
-                    completionHandler(.Success(suggestions))
+                    if let decoded: Decoded<Suggestions> = decode(json), let suggestions = decoded.value {
+                        completionHandler(.Success(suggestions))
+                    } else {
+                        throw ParseError.Suggestions
+                    }
                 } catch let error as NSError {
                     completionHandler(.Failure(error))
                 }

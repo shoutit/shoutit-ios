@@ -7,22 +7,30 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
+import Ogra
 
 struct PushTokens {
     let apns: String?
     let gcm: String?
 }
 
-extension PushTokens: MappableObject {
+extension PushTokens: Decodable {
     
-    init(map: Map) throws {
-        apns = try map.extract("apns")
-        gcm = try map.extract("gcm")
+    static func decode(j: JSON) -> Decoded<PushTokens> {
+        return curry(PushTokens.init)
+            <^> j <|? "apns"
+            <*> j <|? "gcm"
     }
+}
+
+extension PushTokens: Encodable {
     
-    func sequence(map: Map) throws {
-        try apns ~> map["apns"]
-        try gcm ~> map["gcm"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "apns"    : self.apns.encode(),
+            "gcm"  : self.gcm.encode()
+            ])
     }
 }

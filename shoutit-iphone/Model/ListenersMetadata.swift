@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
+import Ogra
 
 struct ListenersMetadata {
     let pages: Int
@@ -15,17 +17,23 @@ struct ListenersMetadata {
     let tags: Int
 }
 
-extension ListenersMetadata: MappableObject {
+extension ListenersMetadata: Decodable {
     
-    init(map: Map) throws {
-        pages = try map.extract("pages")
-        users = try map.extract("users")
-        tags = try map.extract("tags")
+    static func decode(j: JSON) -> Decoded<ListenersMetadata> {
+        return curry(ListenersMetadata.init)
+            <^> j <| "pages"
+            <*> j <| "users"
+            <*> j <| "tags"
     }
+}
+
+extension ListenersMetadata: Encodable {
     
-    func sequence(map: Map) throws {
-        try pages                   ~> map["pages"]
-        try users                   ~> map["users"]
-        try tags                    ~> map["tags"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "pages"    : self.pages.encode(),
+            "users"  : self.users.encode(),
+            "tags" : self.tags.encode(),
+            ])
     }
 }

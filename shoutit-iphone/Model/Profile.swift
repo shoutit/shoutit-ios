@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import Genome
-import PureJsonSerializer
+import Argo
+import Curry
+import Ogra
 
 struct Profile {
     
@@ -16,7 +17,7 @@ struct Profile {
     let type: UserType
     let apiPath: String
     let webPath: String
-    let username: String?
+    let username: String
     let name: String?
     let firstName: String?
     let lastName: String?
@@ -27,39 +28,46 @@ struct Profile {
     let listenersCount: Int
 }
 
-extension Profile: MappableObject {
+extension Profile: Decodable {
     
-    init(map: Map) throws {
-        id = try map.extract("id")
-        type = try map.extract("type"){ UserType(rawValue: $0)!}
-        apiPath = try map.extract("api_url")
-        webPath = try map.extract("web_url")
-        username = try map.extract("username")
-        name = try map.extract("name")
-        firstName = try map.extract("first_name")
-        lastName = try map.extract("last_name")
-        activated = try map.extract("is_activated")
-        imagePath = try map.extract("image")
-        coverPath = try map.extract("cover")
-        listening = try map.extract("is_listening")
-        listenersCount = try map.extract("listeners_count")
+    static func decode(j: JSON) -> Decoded<Profile> {
+        let a =  curry(Profile.init)
+            <^> j <| "id"
+            <*> j <| "type"
+            <*> j <| "api_url"
+            <*> j <| "web_url"
+            <*> j <| "username"
+        let b = a
+            <*> j <|? "name"
+            <*> j <|? "first_name"
+            <*> j <|? "last_name"
+            <*> j <| "is_activated"
+        let c = b
+            <*> j <|? "image"
+            <*> j <|? "cover"
+            <*> j <|? "is_listening"
+            <*> j <| "listeners_count"
+        return c
     }
+}
+
+extension Profile: Encodable {
     
-    func sequence(map: Map) throws {
-        
-        try id ~> map["id"]
-        try type ~> map["type"]
-            .transformToJson{$0.rawValue}
-        try apiPath ~> map["api_url"]
-        try webPath ~> map["web_url"]
-        try username ~> map["username"]
-        try name ~> map["name"]
-        try firstName ~> map["first_name"]
-        try lastName ~> map["last_name"]
-        try activated ~> map["is_activated"]
-        try imagePath ~> map["image"]
-        try coverPath ~> map["cover"]
-        try listening ~> map["is_listening"]
-        try listenersCount ~> map["listeners_count"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "id" : self.id.encode(),
+            "type" : self.type.encode(),
+            "api_url" : self.apiPath.encode(),
+            "web_url" : self.webPath.encode(),
+            "username" : self.username.encode(),
+            "name" : self.name.encode(),
+            "first_name" : self.firstName.encode(),
+            "last_name" : self.lastName.encode(),
+            "is_activated" : self.activated.encode(),
+            "image" : self.imagePath.encode(),
+            "cover" : self.coverPath.encode(),
+            "is_listening" : self.listening.encode(),
+            "listeners_count" : self.listenersCount.encode(),
+            ])
     }
 }

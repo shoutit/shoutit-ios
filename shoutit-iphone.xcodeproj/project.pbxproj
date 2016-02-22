@@ -453,6 +453,7 @@
 		B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985FAF1C7295CC00EEA9A2 /* QuartzCore.framework */; };
 		B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985FB11C7295D400EEA9A2 /* Security.framework */; };
 		B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */; };
+		B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DEABF1C777993008864B8 /* ShoutItErrors.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
 		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
@@ -1005,6 +1006,7 @@
 		B2985FAF1C7295CC00EEA9A2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B2985FB11C7295D400EEA9A2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Debug.swift"; path = "UIKitExtensions/UIViewController+Debug.swift"; sourceTree = "<group>"; };
+		B29DEABF1C777993008864B8 /* ShoutItErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutItErrors.swift; path = Other/ShoutItErrors.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
 		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
@@ -2451,6 +2453,7 @@
 		B2190D811C5A3D78007FF33B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B29DEABE1C777954008864B8 /* Errors */,
 				240F50961C71B56700AE4A76 /* Displayables */,
 				240F50931C71B47F00AE4A76 /* Protocols */,
 				B253A3381C68F91500C8B8F9 /* StateMachine */,
@@ -2715,6 +2718,14 @@
 				B28379AE1C74C2DE009AFF01 /* NumberFormatters.swift */,
 			);
 			name = Formatters;
+			sourceTree = "<group>";
+		};
+		B29DEABE1C777954008864B8 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				B29DEABF1C777993008864B8 /* ShoutItErrors.swift */,
+			);
+			name = Errors;
 			sourceTree = "<group>";
 		};
 		B2A144121C64B3D5002CD70A /* User */ = {
@@ -3331,6 +3342,7 @@
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
 				AC27E7031BF9F9AD00AB6BAA /* SHFilterViewController.swift in Sources */,
 				AC679B431C3CE42500F45947 /* SHDiscoverFeedViewModel.swift in Sources */,
+				B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				B2E715591C6E0BD7007F95CF /* PagesCollectionViewCell.swift in Sources */,
 				B28379AF1C74C2DE009AFF01 /* NumberFormatters.swift in Sources */,

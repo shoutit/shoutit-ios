@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
 
 struct Category {
     let name: String
@@ -15,11 +16,13 @@ struct Category {
     let mainTag: Tag
 }
 
-extension Category: MappableObject {
+extension Category: Decodable {
     
-    init(map: Map) throws {
-        name = try map.extract("name")
-        slug = try map.extract("slug")
-        mainTag = try map.extract("main_tag")
+    static func decode(j: JSON) -> Decoded<Category> {
+        return curry(Category.init)
+            <^> j <| "name"
+            <*> j <| "slug"
+            <*> j <| "main_tag"
     }
 }
+

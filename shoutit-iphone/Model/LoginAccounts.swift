@@ -7,22 +7,30 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
+import Ogra
 
 struct LoginAccounts {
     let gplus: Bool
     let facebook: Bool
 }
 
-extension LoginAccounts: MappableObject {
+extension LoginAccounts: Decodable {
     
-    init(map: Map) throws {
-        gplus = try map.extract("gplus")
-        facebook = try map.extract("facebook")
+    static func decode(j: JSON) -> Decoded<LoginAccounts> {
+        return curry(LoginAccounts.init)
+            <^> j <| "gplus"
+            <*> j <| "facebook"
     }
+}
+
+extension LoginAccounts: Encodable {
     
-    func sequence(map: Map) throws {
-        try gplus                ~> map["gplus"]
-        try facebook             ~> map["facebook"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "gplus"    : self.gplus.encode(),
+            "facebook"  : self.facebook.encode()
+            ])
     }
 }

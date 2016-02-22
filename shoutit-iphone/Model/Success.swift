@@ -7,16 +7,17 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
 
 struct Success {
     let message: String
 }
 
-extension Success: MappableObject {
-    
-    init(map: Map) throws {
-        message = try map.extract("success")
+extension Success: Decodable {
+    static func decode(j: JSON) -> Decoded<Success> {
+        return curry(Success.init)
+            <^> j <| "message"
     }
 }
 

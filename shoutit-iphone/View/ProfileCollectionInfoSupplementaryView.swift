@@ -15,7 +15,7 @@ protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
     var websiteString: String? {get}
     var dateJoinedString: String? {get}
     var locationString: String? {get}
-    var locationFlagURL: NSURL? {get}
+    var locationFlag: UIImage? {get}
 }
 
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {

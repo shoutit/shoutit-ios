@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Argo
 import Alamofire
 
 class APIAuthService {
@@ -20,8 +21,11 @@ class APIAuthService {
             switch response.result {
             case .Success(let json):
                 do {
-                    let success = try Success(js: json)
-                    completionHandler(.Success(success))
+                    if let s: Decoded<Success> = decode(json), let success = s.value {
+                        completionHandler(.Success(success))
+                    } else {
+                        throw ParseError.Success
+                    }
                 } catch let error as NSError {
                     completionHandler(.Failure(error))
                 }
@@ -36,11 +40,12 @@ class APIAuthService {
         APIManager.manager().request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseJSON { (response) in
             switch response.result {
             case .Success(let json):
-                print(response.response)
-                print(json)
                     do {
-                        let authResponse = try AuthData(js: json)
-                        completionHandler(.Success(authResponse))
+                        if let decoded: Decoded<AuthData> = decode(json), let authData = decoded.value {
+                            completionHandler(.Success(authData))
+                        } else {
+                            throw ParseError.AuthData
+                        }
                     } catch let error as NSError {
                         completionHandler(.Failure(error))
                     }

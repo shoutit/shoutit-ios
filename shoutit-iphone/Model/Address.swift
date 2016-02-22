@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import Genome
+import Argo
+import Curry
+import Ogra
 
 struct Address {
     
@@ -20,25 +22,32 @@ struct Address {
     let state: String
 }
 
-extension Address: MappableObject {
+extension Address: Decodable {
     
-    init(map: Map) throws {
-        address = try map.extract("address")
-        city = try map.extract("city")
-        country = try map.extract("country")
-        latitude = try map.extract("latitude")
-        longitude = try map.extract("longitude")
-        postalCode = try map.extract("postal_code")
-        state = try map.extract("state")
+    static func decode(j: JSON) -> Decoded<Address> {
+        let f = curry(Address.init)
+            <^> j <| "address"
+            <*> j <| "city"
+            <*> j <| "country"
+        return f
+            <*> j <|? "latitude"
+            <*> j <|? "longitude"
+            <*> j <| "postal_code"
+            <*> j <| "state"
     }
+}
+
+extension Address: Encodable {
     
-    func sequence(map: Map) throws {
-        try address         ~> map["address"]
-        try city            ~> map["city"]
-        try country         ~> map["country"]
-        try latitude        ~> map["latitude"]
-        try longitude       ~> map["longitude"]
-        try postalCode      ~> map["postal_code"]
-        try state           ~> map["state"]
+    func encode() -> JSON {
+        return JSON.Object([
+            "address"    : self.address.encode(),
+            "city"  : self.city.encode(),
+            "country" : self.country.encode(),
+            "latitude"    : self.latitude.encode(),
+            "longitude"  : self.longitude.encode(),
+            "postal_code" : self.postalCode.encode(),
+            "state" : self.state.encode(),
+        ])
     }
 }

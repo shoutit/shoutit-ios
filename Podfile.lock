@@ -48,11 +48,8 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.10.0):
     - FBSDKCoreKit
-  - Freddy (2.0.2)
   - FTGooglePlacesAPI (1.1):
     - AFNetworking (~> 2.2.0)
-  - Genome (2.0.4):
-    - PureJsonSerializer (~> 1.0.0)
   - GoogleMaps (1.11.1)
   - HanekeSwift (0.10.1)
   - JSQMessagesViewController (7.2.0):
@@ -78,7 +75,8 @@ PODS:
     - MZAppearance
   - Nimble (3.0.0)
   - ObjectMapper (1.1.2)
-  - PureJsonSerializer (1.0.2)
+  - Ogra (2.1.0):
+    - Argo
   - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.10)
@@ -111,9 +109,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.7)
   - FBSDKLoginKit (~> 4.7)
   - FBSDKShareKit (~> 4.8)
-  - Freddy
   - FTGooglePlacesAPI
-  - Genome (~> 2.0)
   - GoogleMaps (~> 1.10)
   - HanekeSwift (~> 0.10)
   - JSQMessagesViewController (~> 7.2)
@@ -127,6 +123,7 @@ DEPENDENCIES:
   - MZFormSheetPresentationController (~> 2.2)
   - Nimble (= 3.0.0)
   - ObjectMapper (~> 1.1)
+  - Ogra (~> 2.1)
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
@@ -159,9 +156,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
-  Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
-  Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
@@ -177,7 +172,7 @@ SPEC CHECKSUMS:
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
-  PureJsonSerializer: 81d6bc0e21ed4b837193279aa3d29981f75f9057
+  Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
