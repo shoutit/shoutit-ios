@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import PureJsonSerializer
 import RxSwift
 import RxCocoa
 import Argo

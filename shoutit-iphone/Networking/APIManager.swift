@@ -12,7 +12,6 @@ import Alamofire
 import CryptoSwift
 import Haneke
 import ReachabilitySwift
-import Genome
 
 final class APIManager {
     

@@ -11,6 +11,7 @@ import XCGLogger
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
+import UIViewAppearanceSwift
 
 // Initialize Logger as global instance
 let log = XCGLogger.defaultInstance()
@@ -105,7 +106,8 @@ extension AppDelegate {
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         } else {
-            
+            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
+            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
         
     }

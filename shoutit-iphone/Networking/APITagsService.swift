@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Alamofire
-import PureJsonSerializer
 
 class APITagsService {
     
