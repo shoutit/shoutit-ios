@@ -36,6 +36,14 @@ class HomeViewController: UIViewController {
         setupNavigationBar()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let discoverController = discoverParentController?.discoverController, discoverCollection = discoverController.collectionView {
+            discoverCollection.reloadData()
+        }
+    }
+    
     func setupNavigationBar() {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
@@ -69,9 +77,9 @@ class HomeViewController: UIViewController {
     }
     
     func bindToDiscoverItems(discoverController: DiscoverPreviewCollectionViewController) {
-        discoverController.viewModel.state.asObservable().subscribeNext({ (state) -> Void in
+        discoverController.viewModel.state.asObservable().subscribeNext({ [weak self] (state) -> Void in
             let newValue = state == .Loaded
-            self.discoverVisible = newValue
+            self?.discoverVisible = newValue
         }).addDisposableTo(disposeBag)
         
         discoverController.collectionView?.rx_modelSelected(DiscoverItem.self)
@@ -84,20 +92,19 @@ class HomeViewController: UIViewController {
     
     func bindToCollectionOffset() {
         
-        homeShoutsController!.scrollOffset.asObservable().map({ (offset) -> CGFloat in
+        homeShoutsController!.scrollOffset.asObservable().map({ [unowned self] (offset) -> CGFloat in
             let newHeight : CGFloat = self.maxDiscoverHeight - (offset ?? CGPointZero).y
             return max(min(self.maxDiscoverHeight, newHeight), 0)
         })
-        .subscribeNext({ (newHeight) -> Void in
-            self.layoutDiscoverSectionWith(newHeight)
+        .subscribeNext({ [weak self] (newHeight) -> Void in
+            self?.layoutDiscoverSectionWith(newHeight)
         }).addDisposableTo(disposeBag)
     }
     
     func layoutDiscoverSectionWith(newHeight: CGFloat) {
-        let alpha = newHeight / self.maxDiscoverHeight
-        self.discoverParentController?.view.alpha = alpha
-        
+        self.discoverParentController?.view.alpha = newHeight / self.maxDiscoverHeight
         self.discoverHeight.constant = newHeight
+        
         self.view.layoutIfNeeded()
     }
     
