@@ -46,6 +46,7 @@ class ProfileCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = true
+        viewModel.reloadContent()
     }
     
     // MARK: - Setup
@@ -176,7 +177,7 @@ extension ProfileCollectionViewController {
             
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
             
-            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: nil)
+            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.avatarPlaceholder())
             infoView.nameLabel.text = viewModel.name
             infoView.usernameLabel.text = viewModel.username
             if let isListening = viewModel.isListeningToYou where isListening {

@@ -15,6 +15,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var contentContainer : UIView?
     
     var flowControllers = [NavigationItem: FlowController]()
+    var currentControllerConstraints: [NSLayoutConstraint] = []
     private var loginFlowController: LoginFlowController?
     
     private var token: dispatch_once_t = 0
@@ -125,14 +126,17 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     func presentWith(flowController: FlowController) {
         
-        if let navigationController : UINavigationController = flowController.navigationController {
-            changeContentTo(navigationController)
-        } else {
+        guard let navigationController : UINavigationController = flowController.navigationController else  {
             fatalError("Flow Controller did not return UIViewController")
         }
+        
+        changeContentTo(navigationController)
     }
     
     func removeCurrentContent() {
+        
+        contentContainer?.removeConstraints(currentControllerConstraints)
+        
         if let currentContent = contentContainer?.subviews[0] {
             currentContent.removeFromSuperview()
         }
@@ -150,6 +154,11 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         controller.willMoveToParentViewController(self)
         
         contentContainer?.addSubview(controller.view!)
+        let views = ["child" : controller.view!]
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        currentControllerConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[child]|", options: [], metrics: nil, views: views)
+        currentControllerConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
+        contentContainer?.addConstraints(currentControllerConstraints)
         
         self.addChildViewController(controller)
         
