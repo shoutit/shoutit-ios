@@ -466,6 +466,7 @@
 		B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */; };
 		B2AE6B781C7CC50900370276 /* LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B771C7CC50900370276 /* LoggedUser.swift */; };
 		B2AE6B7A1C7CC52300370276 /* GuestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B791C7CC52300370276 /* GuestUser.swift */; };
+		B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */; };
 		B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */; };
 		B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C41C6A338B0075EDA6 /* Suggestions.swift */; };
 		B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */; };
@@ -1023,6 +1024,7 @@
 		B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestCellViewModel.swift; path = ViewModel/PostSignupInterestCellViewModel.swift; sourceTree = "<group>"; };
 		B2AE6B771C7CC50900370276 /* LoggedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoggedUser.swift; path = Model/LoggedUser.swift; sourceTree = "<group>"; };
 		B2AE6B791C7CC52300370276 /* GuestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuestUser.swift; path = Model/GuestUser.swift; sourceTree = "<group>"; };
+		B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailTableViewController.swift; path = Controllers/ShoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggesttionsParams.swift; path = Networking/SuggesttionsParams.swift; sourceTree = "<group>"; };
 		B2B540C41C6A338B0075EDA6 /* Suggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Suggestions.swift; path = Model/Suggestions.swift; sourceTree = "<group>"; };
 		B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedProfile.swift; path = Model/DetailedProfile.swift; sourceTree = "<group>"; };
@@ -1377,6 +1379,7 @@
 				B2190D771C5A29DC007FF33B /* LoginMethodChoice */,
 				B25F31F01C57E00400C5DAFC /* Login */,
 				B2A144191C651B64002CD70A /* PostSignup */,
+				B2AE6B7B1C7CE75A00370276 /* ShoutDetail */,
 				AEA599741C609D7E00015AA3 /* Menu */,
 				B2E715431C6D02AF007F95CF /* Profile */,
 				B209AC0D1C6CB38300EF2B8E /* Settings */,
@@ -2807,6 +2810,14 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		B2AE6B7B1C7CE75A00370276 /* ShoutDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */,
+			);
+			name = ShoutDetail;
+			sourceTree = "<group>";
+		};
 		B2B540D41C6A518E0075EDA6 /* SuggestionExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -3394,6 +3405,7 @@
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
 				B21EA3B81C63E80E0013E99F /* AuthParams.swift in Sources */,
 				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
+				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
 				ACB803BB1C11A29E00420BB1 /* SHMessagesMeta.swift in Sources */,
