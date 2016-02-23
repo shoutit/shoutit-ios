@@ -89,4 +89,8 @@ extension UIImage {
     static func avatarPlaceholder() -> UIImage {
         return UIImage(named: "guest avatar")!
     }
+    
+    static func backgroundPattern() -> UIImage {
+        return UIImage(named: "auth_screen_bg_pattern")!
+    }
 }
