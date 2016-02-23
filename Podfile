@@ -3,8 +3,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 # RX
-pod 'RxSwift', '~> 2.2'
-pod 'RxCocoa', '~> 2.2'
+pod 'RxSwift', '~> 2.1'
+pod 'RxCocoa', '~> 2.1'
 
 # logging
 pod 'Fabric', '~> 1.6'

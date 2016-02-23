@@ -80,9 +80,9 @@ PODS:
   - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.10)
-  - RxCocoa (2.2.0):
-    - RxSwift (~> 2.2)
-  - RxSwift (2.2.0)
+  - RxCocoa (2.1.0):
+    - RxSwift (~> 2.0)
+  - RxSwift (2.1.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -128,8 +128,8 @@ DEPENDENCIES:
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
-  - RxCocoa (~> 2.2)
-  - RxSwift (~> 2.2)
+  - RxCocoa (~> 2.1)
+  - RxSwift (~> 2.1)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
   - SVProgressHUD
@@ -189,8 +189,8 @@ SPEC CHECKSUMS:
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
-  RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
-  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
+  RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
+  RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
