@@ -125,7 +125,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func fetchShouts() -> Observable<[Shout]> {
         let params = UserShoutsParams(username: "me", pageSize: 4, shoutType: nil)
-        return APIUsersService.shoutsForUserWithParams(params)
+        return APIShoutsService.shoutsForUserWithParams(params)
     }
     
     // MARK: - Helpers

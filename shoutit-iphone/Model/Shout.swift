@@ -25,7 +25,7 @@ struct Shout: Decodable {
     let category: Category
     
     let location: Address?
-    let user: DetailedProfile
+    let user: Profile
     let videoPath: String?
     let typeString: String
     let publishedAt: Int?
