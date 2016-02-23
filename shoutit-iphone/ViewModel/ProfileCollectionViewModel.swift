@@ -69,8 +69,15 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var infoButtons: [ProfileCollectionInfoButton] {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
-        let listeningCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata.users)
-        let interestsCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata.tags)
+        
+        var listeningCountString = ""
+        var interestsCountString = ""
+        
+        if let listningMetadata = user.listeningMetadata {
+            listeningCountString = NumberFormatters.sharedInstance.numberToShortString(listningMetadata.users)
+            interestsCountString = NumberFormatters.sharedInstance.numberToShortString(listningMetadata.tags)
+        }
+        
         return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]
     }
     
@@ -83,15 +90,15 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var dateJoinedString: String? {
-        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoindedEpoch)
+        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoindedEpoch!)
     }
     
     var locationString: String? {
-        return user.location.city
+        return user.location?.city
     }
     
     var locationFlag: UIImage? {
-        return UIImage(named: user.location.country)
+        return UIImage(named: (user.location?.country ?? "country_placeholder"))
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {

@@ -64,11 +64,11 @@ class HomeViewController: UIViewController {
             changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
             bindToCollectionOffset()
             
-            homeShoutsController.collectionView?.rx_modelSelected(Shout.self)
-                .asDriver()
-                .driveNext { [weak self] selectedShout in
+            homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
+                if let _ = selectedShout {
                     self?.performSegueWithIdentifier("showSingleShout", sender: nil)
-                }.addDisposableTo(disposeBag)
+                }
+            }.addDisposableTo(disposeBag)
         }
         
         if let discoverParent = self.discoverParentController, collectionController = discoverParent.discoverController {

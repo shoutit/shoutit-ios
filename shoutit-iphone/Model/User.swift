@@ -27,18 +27,18 @@ struct User {
     let coverPath: String?
     let gender: Gender?
     let videoPath: String?
-    let dateJoindedEpoch: Int
+    let dateJoindedEpoch: Int?
     let bio: String?
-    let location: Address
-    let email: String
+    let location: Address?
+    let email: String?
     let website: String?
     let shoutsPath: String?
     let listenersCount: Int
-    let listenersPath: String
-    let listeningMetadata: ListenersMetadata
+    let listenersPath: String?
+    let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
-    let owner: Bool
-    let pages: [Profile]
+    let owner: Bool?
+    let pages: [Profile]?
     
     // app user specific
     let linkedAccounts: LoginAccounts?
@@ -66,20 +66,20 @@ extension User: Decodable {
             <*> j <|? "gender"
             <*> j <|? "video"
         let d = c
-            <*> j <| "date_joined"
+            <*> j <|? "date_joined"
             <*> j <|? "bio"
-            <*> j <| "location"
-            <*> j <| "email"
+            <*> j <|? "location"
+            <*> j <|? "email"
         let e = d
             <*> j <|? "website"
             <*> j <|? "shouts_url"
             <*> j <| "listeners_count"
-            <*> j <| "listeners_url"
+            <*> j <|? "listeners_url"
         let f = e
-            <*> j <| "listening_count"
+            <*> j <|? "listening_count"
             <*> j <|? "listening_url"
-            <*> j <| "is_owner"
-            <*> j <|| "pages"
+            <*> j <|? "is_owner"
+            <*> j <||? "pages"
         let g = f
             <*> j <|? "linked_accounts"
             <*> j <|? "push_tokens"
