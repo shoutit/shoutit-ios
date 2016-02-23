@@ -35,17 +35,29 @@ class APIAuthService {
         }
     }
     
-    static func getOauthToken(params: AuthParams, completionHandler: Result<AuthData, NSError> -> Void) {
+    static func getOauthToken(params: AuthParams, completionHandler: Result<(AuthData, User), NSError> -> Void) {
         
         APIManager.manager().request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil).responseJSON { (response) in
             switch response.result {
             case .Success(let json):
                     do {
+                        var auth: AuthData?
+                        var user: User?
+                        
                         if let decoded: Decoded<AuthData> = decode(json), let authData = decoded.value {
-                            completionHandler(.Success(authData))
+                            auth = authData
+                        }
+                        
+                        if let userJson = json["user"] as? [String : AnyObject] {
+                            user = SecureCoder.userWithDictionary(userJson)
+                        }
+                        
+                        if let user = user, let auth = auth {
+                            completionHandler(.Success(auth, user))
                         } else {
                             throw ParseError.AuthData
                         }
+
                     } catch let error as NSError {
                         completionHandler(.Failure(error))
                     }

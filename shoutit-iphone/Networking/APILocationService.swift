@@ -30,7 +30,7 @@ class APILocationService {
             case .Success(let data):
                 do {
                     let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                    if let decoded: Decoded<User> = decode(json), let user = decoded.value {
+                    if let userJson = json as? [String : AnyObject], user = SecureCoder.userWithDictionary(userJson) {
                         Account.sharedInstance.user = user
                         completionHandler(.Success(user))
                     } else {

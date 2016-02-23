@@ -48,9 +48,9 @@ class HomeShoutsViewModel: AnyObject {
     
     func retriveHomeShouts(user: User?) -> Observable<[Shout]>! {
         if let usr = user {
-            return APIShoutsService.shouts(forCountry: usr.location?.country)
+            return APIShoutsService.shouts(forCountry: usr.location.country)
         }
         
-        return APIShoutsService.shouts(forCountry: user?.location?.country)
+        return APIShoutsService.shouts(forCountry: user?.location.country)
     }
 }

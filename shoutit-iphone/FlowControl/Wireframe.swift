@@ -84,7 +84,7 @@ struct Wireframe {
     }
     
     static func ordersViewController() -> UIViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("IntroViewController")
+        return UIViewController()
     }
     
     static func discoverViewController() -> UIViewController {

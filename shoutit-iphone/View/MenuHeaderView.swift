@@ -31,12 +31,12 @@ class MenuHeaderView: UIView {
     
     func fillWith(user: User?){
         
-        if let u = user {
-            if let path = u.imagePath, profileURL = NSURL(string: path) {
+        if let user = user as? LoggedUser {
+            if let path = user.imagePath, profileURL = NSURL(string: path) {
                 profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
             }
             
-            profileNameLabel?.text = user?.name
+            profileNameLabel?.text = user.name
         } else {
             fillAsGuest()
         }
@@ -53,7 +53,7 @@ class MenuHeaderView: UIView {
         
         countryNameLabel?.text = Account.sharedInstance.locationString()
         
-        if let flagName = Account.sharedInstance.user?.location?.country {
+        if let flagName = Account.sharedInstance.user?.location.country {
             countryFlagImageView?.hidden = false
             countryFlagImageView?.image = UIImage(named: flagName)
         } else {

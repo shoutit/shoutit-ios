@@ -28,7 +28,7 @@
                                         <constraint firstAttribute="height" constant="75" id="BaA-ve-YJ0"/>
                                     </constraints>
                                 </view>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guest avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
                                     <rect key="frame" x="268" y="35" width="64" height="64"/>
                                     <gestureRecognizers/>
                                     <constraints>
@@ -305,7 +305,7 @@
     <resources>
         <image name="PL" width="64" height="64"/>
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
-        <image name="profile" width="169" height="151"/>
+        <image name="guest avatar" width="66" height="66"/>
         <image name="tabShout" width="30" height="30"/>
     </resources>
 </document>

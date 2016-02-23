@@ -138,6 +138,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         case .Help: flowController          = HelpFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
         case .Location: flowController      = LocationFlowController(navigationController: navController)
+        case .Orders: flowController        = OrdersFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
             
         }

@@ -17,7 +17,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
-        let pages = Account.sharedInstance.user?.pages ?? []
+        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
     }
     
@@ -38,8 +38,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    var user: User {
-        return Account.sharedInstance.user!
+    var user: LoggedUser {
+        return Account.sharedInstance.user as! LoggedUser
     }
     
     private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
@@ -100,15 +100,15 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var dateJoinedString: String? {
-        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoindedEpoch!)
+        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoinedEpoch)
     }
     
     var locationString: String? {
-        return user.location?.city
+        return user.location.city
     }
     
     var locationFlag: UIImage? {
-        return UIImage(named: (user.location?.country ?? "country_placeholder"))
+        return UIImage(named: (user.location.country ?? "country_placeholder"))
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {
