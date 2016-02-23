@@ -87,7 +87,7 @@ extension UIImage {
     // MARK: - Placeholders
     
     static func avatarPlaceholder() -> UIImage {
-        return UIImage(named: "guest avatar")!
+        return UIImage(named: "profile")!
     }
     
     static func backgroundPattern() -> UIImage {

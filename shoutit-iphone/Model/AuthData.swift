@@ -22,9 +22,6 @@ struct AuthData {
     let tokenType: String
     let expiresInEpoch: Int
     
-    // user
-    let user: User
-    
     // other
     let isNewSignUp: Bool
     let scope: String
@@ -37,11 +34,11 @@ extension AuthData: Decodable {
             <^> j <| "access_token"
             <*> j <| "refresh_token"
             <*> j <| "token_type"
-        return f
+        let g = f
             <*> j <| "expires_in"
-            <*> j <| "user"
             <*> j <| "new_signup"
             <*> j <| "scope"
+        return g
     }
 }
 
@@ -53,7 +50,6 @@ extension AuthData: Encodable {
             "refresh_token"  : self.refreshToken.encode(),
             "token_type" : self.tokenType.encode(),
             "expires_in"    : self.expiresInEpoch.encode(),
-            "user"  : self.user.encode(),
             "new_signup" : self.isNewSignUp.encode(),
             "scope" : self.scope.encode(),
             ])

@@ -17,13 +17,14 @@ class IntroViewModel {
     
     func fetchGuestUser() {
         
+        self.progressHUDSubject.onNext(true)
         let params = LoginGuestParams()
         
         APIAuthService.getOauthToken(params) { (result) -> Void in
             self.progressHUDSubject.onNext(false)
             switch result {
-            case .Success(let authData):
-                try! Account.sharedInstance.loginUserWithAuthData(authData)
+            case .Success((let authData, let user)):
+                try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                 self.loginSuccessSubject.onNext(())
             case .Failure(let error):
                 self.errorSubject.onNext(error)

@@ -37,7 +37,6 @@ pod 'KeychainAccess', '~> 2.3'
 # validation
 pod 'Validator', '~> 1.1'
 
-
 #images
 pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'

@@ -39,7 +39,7 @@ final class ApplicationMainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !Account.sharedInstance.isUserLoggedIn {
+        if !Account.sharedInstance.isUserAuthenticated {
             _ = try? Account.sharedInstance.logout()
             showLogin()
         }
