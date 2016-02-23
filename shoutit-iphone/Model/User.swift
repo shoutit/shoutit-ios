@@ -28,9 +28,9 @@ struct User {
     let coverPath: String?
     let gender: Gender?
     let videoPath: String?
-    let dateJoindedEpoch: Int
+    let dateJoindedEpoch: Int?
     let bio: String?
-    let location: Address
+    let location: Address?
     let email: String?
     let website: String?
     let shoutsPath: String?
@@ -39,7 +39,7 @@ struct User {
     let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
     let owner: Bool?
-    let pages: [Profile]
+    let pages: [Profile]?
     
     // app user specific
     let linkedAccounts: LoginAccounts?
@@ -68,9 +68,9 @@ extension User: Decodable {
             <*> j <|? "gender"
             <*> j <|? "video"
         let d = c
-            <*> j <| "date_joined"
+            <*> j <|? "date_joined"
             <*> j <|? "bio"
-            <*> j <| "location"
+            <*> j <|? "location"
             <*> j <|? "email"
         let e = d
             <*> j <|? "website"
@@ -81,7 +81,7 @@ extension User: Decodable {
             <*> j <|? "listening_count"
             <*> j <|? "listening_url"
             <*> j <|? "is_owner"
-            <*> j <|| "pages" <|> .Success([])
+            <*> j <||? "pages"
         let g = f
             <*> j <|? "linked_accounts"
             <*> j <|? "push_tokens"

@@ -52,7 +52,7 @@ class MenuHeaderView: UIView {
         
         countryNameLabel?.text = Account.sharedInstance.locationString()
         
-        if let flagName = Account.sharedInstance.user?.location.country {
+        if let flagName = Account.sharedInstance.user?.location?.country {
             countryFlagImageView?.hidden = false
             countryFlagImageView?.image = UIImage(named: flagName)
         } else {

@@ -24,10 +24,11 @@ struct Shout: Decodable {
     let thumbnailPath: String?
     let category: Category
     
-    let location: Address
+    let location: Address?
     let user: User
     let videoPath: String?
     let typeString: String
+    let publishedAt: Int?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -43,10 +44,11 @@ struct Shout: Decodable {
             <*> j <|? "thumbnail"
             <*> j <| "category"
         let c = b
-            <*> j <| "location"
+            <*> j <|? "location"
             <*> j <| "user"
             <*> j <|? "video_url"
             <*> j <| "type"
+            <*> j <|? "date_published"
         
         return c
     }

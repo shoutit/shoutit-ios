@@ -8,13 +8,19 @@
 
 import UIKit
 import RxSwift
+import DZNEmptyDataSet
 
-class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     let viewModel = HomeShoutsViewModel()
     let scrollOffset = Variable(CGPointZero)
     let disposeBag = DisposeBag()
+    let selectionDisposeBag = DisposeBag()
+    
     var retry = Variable(true)
+    
+    var selectedItem = BehaviorSubject<Shout?>(value: nil)
+    
     var items : [Shout] = []
     
     override func viewDidLoad() {
@@ -38,20 +44,14 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     
         let element = items[indexPath.item]
         
-        cell.shoutTitle.text = element.title
-        cell.name.text = element.text
-        cell.shoutPrice.text = "$\(element.price)"
-        cell.shoutCountryImage.image = UIImage(named:  element.location.country)
-        
-        if let categoryIcon = element.category.icon {
-            cell.shoutCategoryImage.sh_setImageWithURL(NSURL(string: categoryIcon), placeholderImage: nil)
-        }
-        
-        if let thumbPath = element.image, thumbURL = NSURL(string: thumbPath) {
-            cell.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
-        }
-    
+        cell.bindWith(Shout: element)
+            
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let element = items[indexPath.item]
+        self.selectedItem.on(.Next(element))
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,6 +62,15 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         return 1
     }
     
+    // MARK: Empty Data Set
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No shouts available", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(20)])
+    }
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
     
     // MARK: Actions
     
@@ -77,6 +86,12 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         viewModel.displayable.contentOffset.asObservable().subscribeNext { (offset) -> Void in
             self.scrollOffset.value = offset
         }.addDisposableTo(disposeBag)
+        
+        viewModel.displayable.selectedIndexPath.asObservable().subscribeNext { [weak self] (indexPath) -> Void in
+            if let selectedIndexPath = indexPath, element = self?.items[selectedIndexPath.item] {
+                self?.selectedItem.on(.Next(element))
+            }
+        }.addDisposableTo(selectionDisposeBag)
     }
     
     func setupDataSource() {
@@ -94,6 +109,9 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                     self?.items = shouts
                     self?.collectionView?.reloadData()
                 }).addDisposableTo(disposeBag)
+            
+            collection.emptyDataSetDelegate = self
+            collection.emptyDataSetSource = self
         }
     }
 }
