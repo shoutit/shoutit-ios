@@ -9,7 +9,6 @@
 import Foundation
 import MapKit
 import ObjectMapper
-import Haneke
 
 class SHAddress: Mappable {
 
@@ -41,34 +40,7 @@ class SHAddress: Mappable {
         if let oauthToken = SHOauthToken.getFromCache() {
             shAddress = oauthToken.user?.location
         }
-        if shAddress == nil {
-            shAddress = getFromCache()
-        }
         return shAddress
-    }
-    
-    static func getFromCache() -> SHAddress? {
-        var shAddress: SHAddress? = nil
-        let semaphore = dispatch_semaphore_create(0)
-        getFromCache { (address) -> () in
-            shAddress = address
-            dispatch_semaphore_signal(semaphore)
-        }
-        while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW) != 0) {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 0))
-        }
-        return shAddress
-    }
-    
-    static func getFromCache(address: SHAddress? -> ()) {
-        Shared.stringCache.fetch(key: Constants.Cache.SHAddress)
-            .onSuccess({ (cachedString) -> () in
-                if let shAddress = Mapper<SHAddress>().map(cachedString) {
-                    address(shAddress)
-                }
-            }).onFailure { (error) -> () in
-                address(nil)
-        }
     }
     
 }

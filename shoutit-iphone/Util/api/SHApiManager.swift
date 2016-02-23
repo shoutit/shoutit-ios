@@ -11,14 +11,11 @@ import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
 import CryptoSwift
-import Haneke
 import ReachabilitySwift
 
 class SHApiManager: NSObject {
 
     static var sharedInstance = SHApiManager()
-    
-    private let cache = Shared.stringCache
     
     // Base Urls
 //    #if DEBUG
@@ -89,19 +86,11 @@ class SHApiManager: NSObject {
             if cacheKey == nil {
                 cacheKey = getCacheKey(request)
             }
-            cache.fetch(key: cacheKey!).onSuccess { (cachedObject) -> () in
-                if let mappedObject = Mapper<R>().map(cachedObject) {
-                    cacheResponse?(mappedObject)
-                }
-            }
         }
         request.responseObject { (response: Response<R, NSError>) -> Void in
             NetworkActivityManager.removeActivity()
             switch (response.result) {
             case .Success(let result):
-                if let stringResponse = Mapper().toJSONString(result), let apiCacheKey = cacheKey {
-                    self.cache.set(value: stringResponse, key: apiCacheKey)
-                }
                 log.debug("Success request : \(result)")
             case .Failure(let error):
                 log.debug("error with request : \(error)")
@@ -116,19 +105,11 @@ class SHApiManager: NSObject {
             if cacheKey == nil {
                 cacheKey = getCacheKey(request)
             }
-            cache.fetch(key: cacheKey!).onSuccess { (cachedObject) -> () in
-                if let mappedObject = Mapper<R>().mapArray(cachedObject) {
-                    cacheResponse?(mappedObject)
-                }
-            }
         }
         request.responseArray { (response: Response<[R], NSError>) -> Void in
             NetworkActivityManager.removeActivity()
             switch (response.result) {
             case .Success(let result):
-                if let stringResponse = Mapper().toJSONString(result), let apiCacheKey = cacheKey {
-                    self.cache.set(value: stringResponse, key: apiCacheKey)
-                }
                 log.debug("Success request : \(result)")
             case .Failure(let error):
                 log.debug("error with request : \(error)")

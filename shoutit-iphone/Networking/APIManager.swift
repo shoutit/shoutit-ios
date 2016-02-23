@@ -10,7 +10,6 @@ import UIKit
 import ObjectMapper
 import Alamofire
 import CryptoSwift
-import Haneke
 import ReachabilitySwift
 
 final class APIManager {

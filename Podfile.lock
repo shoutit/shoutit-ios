@@ -52,7 +52,6 @@ PODS:
   - FTGooglePlacesAPI (1.1):
     - AFNetworking (~> 2.2.0)
   - GoogleMaps (1.11.1)
-  - HanekeSwift (0.10.1)
   - JSQMessagesViewController (7.2.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -82,9 +81,6 @@ PODS:
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.10)
   - RxCocoa (2.2.0):
-    - RxSwift (~> 2.2)
-  - RxDataSources (0.5):
-    - RxCocoa (~> 2.2)
     - RxSwift (~> 2.2)
   - RxSwift (2.2.0)
   - SDWebImage (3.7.5):
@@ -117,7 +113,6 @@ DEPENDENCIES:
   - FBSDKShareKit (~> 4.8)
   - FTGooglePlacesAPI
   - GoogleMaps (~> 1.10)
-  - HanekeSwift (~> 0.10)
   - JSQMessagesViewController (~> 7.2)
   - KeychainAccess (~> 2.3)
   - Kingfisher (~> 1.8)
@@ -134,7 +129,6 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
   - RxCocoa (~> 2.2)
-  - RxDataSources (~> 0.5)
   - RxSwift (~> 2.2)
   - SDWebImage (~> 3.7)
   - SMCalloutView (~> 2.1)
@@ -178,7 +172,6 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
@@ -197,7 +190,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
   RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
-  RxDataSources: dc37b814dd4efd761e1e65521b977677e4197614
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481

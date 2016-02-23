@@ -45,8 +45,6 @@ pod 'MWPhotoBrowser', '~> 2.1'
 
 # serialization
 pod 'ObjectMapper', '~> 1.1'
-pod 'HanekeSwift', '~> 0.10'
-
 pod 'Argo'
 pod 'Curry'
 pod 'Ogra', '~> 2.1'

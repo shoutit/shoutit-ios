@@ -9,7 +9,6 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
-import Haneke
 
 class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
 
@@ -148,7 +147,5 @@ class SHLoginPopupViewModel: NSObject, GIDSignInDelegate {
     
     private func handleOauthResponseError(error: String) {
         log.debug("error logging in")
-        // Clear OauthToken cache
-        Shared.stringCache.removeAll()
     }
 }
