@@ -34,6 +34,8 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     var contentOffset : Variable<CGPoint>
     
+    var selectedIndexPath = BehaviorSubject<NSIndexPath?>(value: nil)
+    
     required init(layout: ShoutsLayout, offset: CGPoint = CGPointZero) {
         shoutsLayout = layout
         contentOffset = Variable(offset)
@@ -57,6 +59,10 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
         return collectionLayoutDisplayable.headerSize(collectionView)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexPath.on(.Next(indexPath))
+    }
+    
     func scrollDirection() -> UICollectionViewScrollDirection {
         return collectionLayoutDisplayable.scrollDirection()
     }
@@ -72,15 +78,15 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
         if let collectionView = collectionViewLayout?.collectionView {
             collectionView.delegate = self
             
-            collectionView.reloadData()
+//            collectionView.reloadData()
             
-//            collectionView.performBatchUpdates({ () -> Void in
-//            
-//                collectionView.reloadItemsAtIndexPaths(collectionView.visibleCells().map({ (cell) -> NSIndexPath in
-//                    return collectionView.indexPathForCell(cell)!
-//                }))
-//                
-//            }, completion: nil)
+            collectionView.performBatchUpdates({ () -> Void in
+            
+                collectionView.reloadItemsAtIndexPaths(collectionView.visibleCells().map({ (cell) -> NSIndexPath in
+                    return collectionView.indexPathForCell(cell)!
+                }))
+                
+            }, completion: nil)
         }
     }
 }
