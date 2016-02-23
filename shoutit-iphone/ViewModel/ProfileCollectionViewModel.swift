@@ -17,7 +17,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
-        let pages = Array((Account.sharedInstance.user?.pages ?? []).prefix(4))
+        let pages = Account.sharedInstance.user?.pages ?? []
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
     }
     
