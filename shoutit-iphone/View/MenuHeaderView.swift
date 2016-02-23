@@ -12,6 +12,7 @@ import Kingfisher
 class MenuHeaderView: UIView {
     
     @IBOutlet weak var profileImageView : UIImageView?
+    @IBOutlet weak var coverImageView: UIImageView?
     @IBOutlet weak var profileNameLabel : UILabel?
     
     @IBOutlet weak var countryNameLabel : UILabel?

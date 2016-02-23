@@ -14,11 +14,13 @@ class MenuTableViewController: UITableViewController, Navigation {
     var rootController : RootController?
     let viewModel = MenuViewModel()
     private let disposeBag = DisposeBag()
-    var footerHeight : CGFloat = 0
     
     var selectedNavigationItem : NavigationItem?
     
+    private let kTablePrimaryCellHeight: CGFloat = 48.0
+    private let kTableSecondaryCellHeight: CGFloat = 44.0
     private let kTableHeaderHeight: CGFloat = 240.0
+    private let kTableFooterHeight: CGFloat = 44.0
     
     @IBOutlet var headerView : MenuHeaderView?
     @IBOutlet var versionLabel : UILabel?
@@ -40,8 +42,13 @@ class MenuTableViewController: UITableViewController, Navigation {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBackgroundView()
-        updateFooterView()
+        // add border
+        tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        tableView.layer.borderWidth = 1
+        
+        // lock scroll
+        let contentHeight = kTableHeaderHeight + kTableFooterHeight + 5 * kTablePrimaryCellHeight + 3 * kTableSecondaryCellHeight
+        tableView.scrollEnabled = contentHeight > tableView.frame.height
         
         Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
             self.headerView?.fillWith(user)
@@ -61,16 +68,6 @@ class MenuTableViewController: UITableViewController, Navigation {
             versionLabel?.text = "\(appName) \(version) (\(build))"
         }
         
-    }
-    
-    func setupBackgroundView() {
-        let backgroundView = UIImageView(image: UIImage(named: "auth_screen_bg_pattern"))
-        backgroundView.backgroundColor = UIColor.lightGrayColor()
-        backgroundView.contentMode = .ScaleAspectFill
-        tableView.backgroundView = backgroundView
-        
-        tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
-        tableView.layer.borderWidth = 1
     }
     
     // MARK: Table View Handling
@@ -99,7 +96,10 @@ class MenuTableViewController: UITableViewController, Navigation {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 48.0
+        if case (0..<5) = indexPath.row {
+            return kTablePrimaryCellHeight
+        }
+        return kTableSecondaryCellHeight
     }
     
     // MARK: User Interactions
@@ -125,28 +125,6 @@ class MenuTableViewController: UITableViewController, Navigation {
     func triggerActionWithItem(navigationItem: NavigationItem) {
         if let root = self.rootController {
             root.openItem(navigationItem)
-        }
-    }
-    
-    // MARK: Scroll Handling
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        updateFooterView()
-    }
-    
-    func updateFooterView() {
-        if (UIScreen.mainScreen().bounds.height < tableView.frame.height) {
-            return
-        }
-        
-        footerHeight = CGRectGetHeight(tableView.frame) - kTableHeaderHeight - 8 * 48.0
-        
-        if let footer = tableView.tableFooterView {
-            if tableView.contentOffset.y > 0 {
-                footer.frame.size.height = footerHeight + tableView.contentOffset.y
-            } else {
-                footer.frame.size.height = footerHeight
-            }
         }
     }
 }
