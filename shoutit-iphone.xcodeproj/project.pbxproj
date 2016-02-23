@@ -17,7 +17,6 @@
 		240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */; };
 		240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A11C71D9E700AE4A76 /* HomeShoutsViewModel.swift */; };
 		240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */; };
-		241898D01C7B72BC00D2D820 /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241898CF1C7B72BC00D2D820 /* UIView+Autolayout.swift */; };
 		241CEC351C73282B00694575 /* APIDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC341C73282B00694575 /* APIDiscoverService.swift */; };
 		241CEC371C732CDE00694575 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC361C732CDE00694575 /* DiscoverItem.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
@@ -573,7 +572,6 @@
 		240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsVerticalListLayoutDelegate.swift; path = ViewModel/ShoutsVerticalListLayoutDelegate.swift; sourceTree = "<group>"; };
 		240F50A11C71D9E700AE4A76 /* HomeShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeShoutsViewModel.swift; path = ViewModel/HomeShoutsViewModel.swift; sourceTree = "<group>"; };
 		240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewParentController.swift; path = Controllers/DiscoverPreviewParentController.swift; sourceTree = "<group>"; };
-		241898CF1C7B72BC00D2D820 /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Autolayout.swift"; path = "Util/UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		241CEC341C73282B00694575 /* APIDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIDiscoverService.swift; path = Networking/APIDiscoverService.swift; sourceTree = "<group>"; };
 		241CEC361C732CDE00694575 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItem.swift; path = Model/DiscoverItem.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2918,7 +2916,6 @@
 				B28379A91C749F32009AFF01 /* UIImageView+Networking.swift */,
 				B23ABC891C751B5900CC69E6 /* StringExtensions.swift */,
 				B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */,
-				241898CF1C7B72BC00D2D820 /* UIView+Autolayout.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3461,7 +3458,6 @@
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				B2E715481C6D0336007F95CF /* ProfileCollectionViewModel.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
-				241898D01C7B72BC00D2D820 /* UIView+Autolayout.swift in Sources */,
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				60F11D3C1C2B61AD00FEA500 /* SHShoutDiscoverTitleCell.swift in Sources */,
