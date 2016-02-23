@@ -9,7 +9,6 @@
 import UIKit
 import MessageUI
 import FBSDKLoginKit
-import Haneke
 
 class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, GIDSignInDelegate, GIDSignInUIDelegate{
     private let viewController: SHSettingsTableViewController
@@ -158,7 +157,6 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
                 if let oauthToken = SHOauthToken.getFromCache() {
                     oauthToken.logOut()
                 }
-                Shared.stringCache.removeAll()
             }))
             self.viewController.presentViewController(ac, animated: true, completion: nil)
         }
@@ -291,7 +289,6 @@ class SHSettingsTableViewModel: NSObject, UITableViewDelegate, MFMailComposeView
     private func handleOauthResponseError() {
         log.debug("error logging in")
         // Clear OauthToken cache
-        Shared.stringCache.removeAll()
         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("LoginError", comment: "Could not log you in, please try again!"), preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Ok"), style: UIAlertActionStyle.Cancel, handler: nil))
         self.viewController.presentViewController(alert, animated: true, completion: nil)

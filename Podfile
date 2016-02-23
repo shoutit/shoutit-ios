@@ -37,6 +37,7 @@ pod 'KeychainAccess', '~> 2.3'
 # validation
 pod 'Validator', '~> 1.1'
 
+
 #images
 pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'
@@ -44,8 +45,6 @@ pod 'MWPhotoBrowser', '~> 2.1'
 
 # serialization
 pod 'ObjectMapper', '~> 1.1'
-pod 'HanekeSwift', '~> 0.10'
-
 pod 'Argo'
 pod 'Curry'
 pod 'Ogra', '~> 2.1'
@@ -62,8 +61,10 @@ pod 'SMCalloutView', '~> 2.1'
 pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
+pod 'DZNEmptyDataSet'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
+
 
 def testing_pods
     pod 'Quick', '~> 0.8.0'

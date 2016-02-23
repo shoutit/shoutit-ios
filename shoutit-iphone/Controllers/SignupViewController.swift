@@ -18,9 +18,9 @@ final class SignupViewController: UITableViewController {
     typealias _PatternTapResponder = @convention(block) (String!) -> Void
     
     // UI
-    @IBOutlet weak var nameTextField: TextField!
-    @IBOutlet weak var emailTextField: TextField!
-    @IBOutlet weak var passwordTextField: TextField!
+    @IBOutlet weak var nameTextField: BorderedMaterialTextField!
+    @IBOutlet weak var emailTextField: BorderedMaterialTextField!
+    @IBOutlet weak var passwordTextField: BorderedMaterialTextField!
     @IBOutlet weak var signupButton: CustomUIButton!
     @IBOutlet weak var termsAndPolicyLabel: ResponsiveLabel!
     @IBOutlet weak var switchToLoginButton: UIButton!

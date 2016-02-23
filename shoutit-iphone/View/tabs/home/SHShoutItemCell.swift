@@ -20,14 +20,5 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutCountryImage: UIImageView!
     @IBOutlet weak var shoutCategoryImage: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-//        viewModel = SHShoutItemCellViewModel(cell: self)
-    }
-    
-//    func setUp(viewController: UIViewController?, shout: SHShout) {
-//        viewModel?.setUp(viewController, shout: shout)
-//    }
-    
+    var currentLayout : ShoutsLayout?
 }

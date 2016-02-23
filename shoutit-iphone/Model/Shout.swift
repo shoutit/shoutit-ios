@@ -17,23 +17,42 @@ struct Shout: Decodable {
     let webPath: String
     let image: String?
     let title: String
+    
     let text: String
     let price: Double
     let currency: String
     let thumbnailPath: String?
+    let category: Category
+    
+    let location: Address
+    let user: User
+    let videoPath: String?
+    let typeString: String
     
     static func decode(j: JSON) -> Decoded<Shout> {
-        let f = curry(Shout.init)
+        let a = curry(Shout.init)
             <^> j <| "id"
             <*> j <| "api_url"
             <*> j <| "web_url"
             <*> j <|? "image"
             <*> j <| "title"
-        return f
+        let b = a
             <*> j <| "text"
             <*> j <| "price"
             <*> j <| "currency"
             <*> j <|? "thumbnail"
+            <*> j <| "category"
+        let c = b
+            <*> j <| "location"
+            <*> j <| "user"
+            <*> j <|? "video_url"
+            <*> j <| "type"
+        
+        return c
+    }
+    
+    func type() -> ShoutType? {
+        return ShoutType(rawValue: self.typeString)
     }
     
 }

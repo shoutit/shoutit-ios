@@ -112,7 +112,6 @@ final class LoginMethodChoiceViewController: UIViewController {
             if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
             } else {
-                print(self?.flowDelegate)
                 self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
             }
         }.addDisposableTo(disposeBag)

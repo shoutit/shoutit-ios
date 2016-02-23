@@ -8,7 +8,6 @@
 
 import Foundation
 import ObjectMapper
-import Haneke
 
 class SHDiscoverLocation: Mappable {
     

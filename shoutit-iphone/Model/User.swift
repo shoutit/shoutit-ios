@@ -16,13 +16,14 @@ struct User {
     // public profile
     let id: String
     let type: UserType
+    let isGuest: Bool
     let apiPath: String
-    let webPath: String
+    let webPath: String?
     let username: String
     let name: String?
     let firstName: String?
     let lastName: String?
-    let activated: Bool
+    let activated: Bool?
     let imagePath: String?
     let coverPath: String?
     let gender: Gender?
@@ -30,14 +31,14 @@ struct User {
     let dateJoindedEpoch: Int
     let bio: String?
     let location: Address
-    let email: String
+    let email: String?
     let website: String?
     let shoutsPath: String?
-    let listenersCount: Int
-    let listenersPath: String
-    let listeningMetadata: ListenersMetadata
+    let listenersCount: Int?
+    let listenersPath: String?
+    let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
-    let owner: Bool
+    let owner: Bool?
     let pages: [Profile]
     
     // app user specific
@@ -52,14 +53,15 @@ extension User: Decodable {
         let a = curry(User.init)
             <^> j <| "id"
             <*> j <| "type"
+            <*> j <| "is_guest" <|> .Success(false)
             <*> j <| "api_url"
-            <*> j <| "web_url"
+            <*> j <|? "web_url"
             <*> j <| "username"
         let b = a
             <*> j <|? "name"
             <*> j <|? "first_name"
             <*> j <|? "last_name"
-            <*> j <| "is_activated"
+            <*> j <|? "is_activated"
         let c = b
             <*> j <|? "image"
             <*> j <|? "cover"
@@ -69,17 +71,17 @@ extension User: Decodable {
             <*> j <| "date_joined"
             <*> j <|? "bio"
             <*> j <| "location"
-            <*> j <| "email"
+            <*> j <|? "email"
         let e = d
             <*> j <|? "website"
             <*> j <|? "shouts_url"
-            <*> j <| "listeners_count"
-            <*> j <| "listeners_url"
+            <*> j <|? "listeners_count"
+            <*> j <|? "listeners_url"
         let f = e
-            <*> j <| "listening_count"
+            <*> j <|? "listening_count"
             <*> j <|? "listening_url"
-            <*> j <| "is_owner"
-            <*> j <|| "pages"
+            <*> j <|? "is_owner"
+            <*> j <|| "pages" <|> .Success([])
         let g = f
             <*> j <|? "linked_accounts"
             <*> j <|? "push_tokens"
@@ -125,3 +127,60 @@ extension User: Encodable {
     }
 }
 
+// MARK: - User type
+
+enum UserType: String {
+    case Profile = "Profile"
+    case Page = "Page"
+}
+
+extension UserType: Decodable {
+    
+    static func decode(j: JSON) -> Decoded<UserType> {
+        switch j {
+        case .String(let string):
+            if let userType = UserType(rawValue: string) {
+                return pure(userType)
+            }
+            return .typeMismatch("UserType", actual: j)
+        default:
+            return .typeMismatch("String", actual: j)
+        }
+    }
+}
+
+extension UserType: Encodable {
+    
+    func encode() -> JSON {
+        return self.rawValue.encode()
+    }
+}
+
+// MARK: - Gender
+
+enum Gender: String {
+    case Male = "male"
+    case Female = "female"
+}
+
+extension Gender: Decodable {
+    
+    static func decode(j: JSON) -> Decoded<Gender> {
+        switch j {
+        case .String(let string):
+            if let gender = Gender(rawValue: string) {
+                return pure(gender)
+            }
+            return .typeMismatch("Gender", actual: j)
+        default:
+            return .typeMismatch("String", actual: j)
+        }
+    }
+}
+
+extension Gender: Encodable {
+    
+    func encode() -> JSON {
+        return self.rawValue.encode()
+    }
+}

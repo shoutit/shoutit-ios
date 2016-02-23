@@ -17,8 +17,8 @@ import MBProgressHUD
 class LoginViewController: UITableViewController {
     
     // UI
-    @IBOutlet weak var emailTextField: TextField!
-    @IBOutlet weak var passwordTextField: TextField!
+    @IBOutlet weak var emailTextField: BorderedMaterialTextField!
+    @IBOutlet weak var passwordTextField: BorderedMaterialTextField!
     @IBOutlet weak var loginButton: CustomUIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var switchToSignupButton: UIButton!

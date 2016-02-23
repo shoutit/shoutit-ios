@@ -17,21 +17,25 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
-        pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(Account.sharedInstance.user?.pages ?? [])
+        let pages = Array((Account.sharedInstance.user?.pages ?? []).prefix(4))
+        pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
     }
     
     func reloadContent() {
-        fetchShouts().subscribe {[weak self] (event) in
-            switch event {
-            case .Next(let value):
-                self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels(value)
-            case .Error(let error as NSError):
-                self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([], errorMessage: error.localizedDescription)
-            default:
-                break
+        fetchShouts()
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let value):
+                    let shouts = Array(value.prefix(4))
+                    self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels(shouts)
+                case .Error(let error as NSError):
+                    self?.shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([], errorMessage: error.localizedDescription)
+                default:
+                    break
+                }
+                self?.reloadSubject.onNext(())
             }
-            self?.reloadSubject.onNext(())
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
     }
     
     var user: User {
@@ -68,9 +72,12 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
-        let listeningCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata.users)
-        let interestsCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata.tags)
+        guard user.isGuest == false else {
+            return []
+        }
+        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount!)
+        let listeningCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata!.users)
+        let interestsCountString = NumberFormatters.sharedInstance.numberToShortString(user.listeningMetadata!.tags)
         return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]
     }
     

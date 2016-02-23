@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectMapper
-import Haneke
 import MZFormSheetPresentationController
 
 class SHOauthToken: Mappable {
@@ -46,9 +45,6 @@ class SHOauthToken: Mappable {
     func updateUser(user: SHUser?) {
         if let shUser = user {
             self.user = shUser
-        }
-        if let stringResponse = Mapper().toJSONString(self) {
-            Shared.stringCache.set(value: stringResponse, key: Constants.Cache.OauthToken)
         }
         // TODO Throw an event that user is updated
     }
@@ -100,14 +96,7 @@ class SHOauthToken: Mappable {
     }
     
     static func getFromCache(oauthToken: SHOauthToken? -> ()) {
-        Shared.stringCache.fetch(key: Constants.Cache.OauthToken)
-            .onSuccess({ (cachedString) -> () in
-                if let shOauthToken = Mapper<SHOauthToken>().map(cachedString) {
-                    oauthToken(shOauthToken)
-                }
-            }).onFailure { (error) -> () in
-                oauthToken(nil)
-        }
+        oauthToken(nil)
     }
     
     func logOut() {
