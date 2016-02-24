@@ -17,8 +17,16 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
-        let pages = Array((Account.sharedInstance.user?.pages ?? []).prefix(4))
+        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
+        Account.sharedInstance.userSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext { (user) in
+                if let _ = user {
+                    self.reloadContent()
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
     
     func reloadContent() {
@@ -38,8 +46,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    var user: User {
-        return Account.sharedInstance.user!
+    var user: LoggedUser {
+        return Account.sharedInstance.user as! LoggedUser
     }
     
     private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
@@ -100,15 +108,15 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var dateJoinedString: String? {
-        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoindedEpoch!)
+        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoinedEpoch)
     }
     
     var locationString: String? {
-        return user.location?.city
+        return user.location.city
     }
     
     var locationFlag: UIImage? {
-        return UIImage(named: (user.location?.country ?? "country_placeholder"))
+        return UIImage(named: (user.location.country ?? "country_placeholder"))
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {
@@ -125,7 +133,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func fetchShouts() -> Observable<[Shout]> {
         let params = UserShoutsParams(username: "me", pageSize: 4, shoutType: nil)
-        return APIUsersService.shoutsForUserWithParams(params)
+        return APIShoutsService.shoutsForUserWithParams(params)
     }
     
     // MARK: - Helpers

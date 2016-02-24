@@ -42,8 +42,8 @@ class LoginWithEmailViewModel {
         
         APIAuthService.getOauthToken(params) { (result) -> Void in
             switch result {
-            case .Success(let authData):
-                try! Account.sharedInstance.loginUserWithAuthData(authData)
+            case .Success((let authData, let user)):
+                try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                 self.loginSuccessSubject.onNext(authData.isNewSignUp)
             case .Failure(let error):
                 self.errorSubject.onNext(error)

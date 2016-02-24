@@ -14,7 +14,7 @@ class SecureCoder {
     
     // MARK: - WRITE
     
-    static func writeObject<T: Encodable>(object: T, toFileAtPath path: String) {
+    static func writeObject(object: Encodable, toFileAtPath path: String) {
         let json = object.encode()
         let dictionary = json.JSONObject()
         NSKeyedArchiver.archiveRootObject(dictionary, toFile: path)
@@ -35,7 +35,7 @@ class SecureCoder {
     
     // MARK: - TO DATA
     
-    static func dataWithJsonConvertible<T: Encodable>(object: T) -> NSData {
+    static func dataWithJsonConvertible(object: Encodable) -> NSData {
         
         let json = object.encode()
         let dictionary = json.JSONObject()
@@ -52,5 +52,44 @@ class SecureCoder {
         
         let decoded: Decoded<T> = Argo.decode(contents)
         return decoded.value
+    }
+}
+
+// MARK: - User
+
+extension SecureCoder {
+    
+    static func readUserFromFile(path: String) -> User? {
+        
+        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String : AnyObject] else {
+            return nil
+        }
+        
+        return userWithDictionary(contents)
+    }
+    
+    static func userWithData(data: NSData) -> User? {
+        
+        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String : AnyObject] else {
+            return nil
+        }
+        
+        return userWithDictionary(contents)
+    }
+    
+    static func userWithDictionary(json: [String : AnyObject]) -> User? {
+        
+        guard let isGuest = (json["is_guest"] as? NSNumber)?.boolValue else {
+            let decoded: Decoded<LoggedUser> = Argo.decode(json)
+            return decoded.value
+        }
+        
+        if isGuest {
+            let decoded: Decoded<GuestUser> = Argo.decode(json)
+            return decoded.value
+        } else {
+            let decoded: Decoded<LoggedUser> = Argo.decode(json)
+            return decoded.value
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10112" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
@@ -14,6 +14,20 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-w3-aCX">
                     <rect key="frame" x="0.0" y="41" width="375" height="359"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="listening to you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwz-aW-TRC" customClass="CustomUILabel" customModule="Shoutit" customModuleProvider="target">
+                            <rect key="frame" x="159" y="21" width="87" height="14"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-Sg-PQz">
@@ -190,23 +204,11 @@
                     <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flv-lN-M3r">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flv-lN-M3r">
                     <rect key="frame" x="96" y="62" width="58" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="listening to you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwz-aW-TRC" customClass="CustomUILabel" customModule="Shoutit" customModuleProvider="target">
-                    <rect key="frame" x="159" y="62" width="87" height="14"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="3"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjU-iS-YJ7">
                     <rect key="frame" x="10" y="0.0" width="76" height="76"/>
@@ -239,7 +241,6 @@
                 <constraint firstItem="KBs-Sg-PQz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7W5-Vx-3PJ"/>
                 <constraint firstItem="KSx-YF-IBW" firstAttribute="centerY" secondItem="lmR-o2-TT5" secondAttribute="centerY" id="7dG-Iz-XUv"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="top" secondItem="zC2-Xl-F8D" secondAttribute="bottom" constant="1" id="84e-er-zAQ"/>
-                <constraint firstItem="Mwz-aW-TRC" firstAttribute="baseline" secondItem="Flv-lN-M3r" secondAttribute="baseline" id="9Rc-fK-G64"/>
                 <constraint firstItem="lmR-o2-TT5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="9hs-S8-ojf"/>
                 <constraint firstItem="mgJ-Uw-tGD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AUX-4T-fbA"/>
                 <constraint firstItem="EvR-w3-aCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="41" id="Ay2-Bq-tvg"/>
@@ -247,7 +248,6 @@
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cuo-dK-FKK"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="leading" secondItem="zC2-Xl-F8D" secondAttribute="leading" id="Czh-CM-fst"/>
                 <constraint firstItem="ZEb-BV-DoV" firstAttribute="top" secondItem="uCi-xA-Th7" secondAttribute="bottom" id="FOO-Qw-QXh"/>
-                <constraint firstItem="KSx-YF-IBW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mwz-aW-TRC" secondAttribute="trailing" constant="1" id="KCd-PY-icx"/>
                 <constraint firstAttribute="bottom" secondItem="KBs-Sg-PQz" secondAttribute="bottom" id="MUD-mg-wC3"/>
                 <constraint firstAttribute="trailing" secondItem="uCi-xA-Th7" secondAttribute="trailing" id="OtB-RY-rFQ"/>
                 <constraint firstItem="Aru-iZ-s4p" firstAttribute="top" secondItem="lmR-o2-TT5" secondAttribute="bottom" constant="10" id="PxN-cX-iDs"/>
@@ -256,7 +256,6 @@
                 <constraint firstItem="KBs-Sg-PQz" firstAttribute="top" secondItem="mgJ-Uw-tGD" secondAttribute="bottom" id="aqc-C6-m43"/>
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="top" secondItem="wgK-Yu-UVt" secondAttribute="bottom" id="cI1-KN-iEV"/>
                 <constraint firstAttribute="trailing" secondItem="mgJ-Uw-tGD" secondAttribute="trailing" id="dFr-gp-XjR"/>
-                <constraint firstItem="Mwz-aW-TRC" firstAttribute="leading" secondItem="Flv-lN-M3r" secondAttribute="trailing" constant="5" id="fRr-Vu-QEM"/>
                 <constraint firstItem="yjU-iS-YJ7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="fiz-UI-bUR"/>
                 <constraint firstItem="zC2-Xl-F8D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="96" id="hXE-40-ZBX"/>
                 <constraint firstItem="ZEb-BV-DoV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="huQ-N9-EeP"/>
