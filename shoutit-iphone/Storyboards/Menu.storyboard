@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Menu Table View Controller-->
@@ -186,11 +186,21 @@
                                     <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-l7-lbN">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="fun-lW-We2"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="QxO-l7-lbN" firstAttribute="top" secondItem="KfA-dd-ooM" secondAttribute="top" id="9z3-q3-Cq8"/>
                                 <constraint firstItem="H2H-0n-97D" firstAttribute="centerX" secondItem="KfA-dd-ooM" secondAttribute="centerX" id="GbI-xB-t9k"/>
                                 <constraint firstItem="H2H-0n-97D" firstAttribute="centerY" secondItem="KfA-dd-ooM" secondAttribute="centerY" id="ffy-PP-SxF"/>
+                                <constraint firstItem="QxO-l7-lbN" firstAttribute="leading" secondItem="KfA-dd-ooM" secondAttribute="leading" id="qdG-w5-Svs"/>
+                                <constraint firstAttribute="trailing" secondItem="QxO-l7-lbN" secondAttribute="trailing" id="zmC-Nz-pQI"/>
                             </constraints>
                         </view>
                         <prototypes>

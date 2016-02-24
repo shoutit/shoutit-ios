@@ -101,9 +101,9 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             let retryObservable = retry.asObservable().filter{$0}
             let userChangeObservable = Account.sharedInstance.userSubject
+            let combined = Observable.combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
             
-            Observable.zip(retryObservable, userChangeObservable) { (_, _) -> Void in
-            }
+            combined
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveHomeShouts())!
                     })
@@ -112,17 +112,6 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                         self?.collectionView?.reloadData()
                         })
                 .addDisposableTo(disposeBag)
-            
-//            retry.asObservable()
-//                .filter({ (reload) -> Bool in
-//                    return reload
-//                })
-//                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
-//                    return (self?.viewModel.retriveHomeShouts())!
-//                }).subscribeNext({ [weak self] (shouts) -> Void in
-//                    self?.items = shouts
-//                    self?.collectionView?.reloadData()
-//                }).addDisposableTo(disposeBag)
             
             collection.emptyDataSetDelegate = self
             collection.emptyDataSetSource = self
