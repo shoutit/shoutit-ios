@@ -38,7 +38,7 @@ class APIAuthService {
         }
     }
     
-    static func getOauthToken(params: AuthParams, completionHandler: Result<(AuthData, User), NSError> -> Void) {
+    static func getOauthToken<T: User where T: Decodable, T == T.DecodedType>(params: AuthParams, completionHandler: Result<(AuthData, T), NSError> -> Void) {
         
         APIManager.manager()
             .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil)
@@ -48,20 +48,29 @@ class APIAuthService {
             case .Success(let json):
                     do {
                         var auth: AuthData?
-                        var user: User?
                         
                         if let decoded: Decoded<AuthData> = decode(json), let authData = decoded.value {
                             auth = authData
+                        } else {
+                            throw ParseError.User
                         }
                         
                         if let userJson = json["user"] as? [String : AnyObject] {
-                            user = SecureCoder.userWithDictionary(userJson)
-                        }
-                        
-                        if let user = user, let auth = auth {
-                            completionHandler(.Success(auth, user))
-                        } else {
-                            throw ParseError.AuthData
+                            
+                            let docoded: Decoded<T> = decode(userJson)
+                            let user: T? = docoded.value
+                            
+                            if let user = user as? LoggedUser {
+                                Account.sharedInstance.loggedUser = user
+                            } else if let user = user as? GuestUser {
+                                Account.sharedInstance.guestUser = user
+                            }
+                            
+                            if let user = user, let auth = auth {
+                                completionHandler(.Success(auth, user))
+                            } else {
+                                throw ParseError.User
+                            }
                         }
 
                     } catch let error as NSError {

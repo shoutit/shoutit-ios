@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Alamofire
 
 class IntroViewModel {
     
@@ -20,7 +21,7 @@ class IntroViewModel {
         self.progressHUDSubject.onNext(true)
         let params = LoginGuestParams()
         
-        APIAuthService.getOauthToken(params) { (result) -> Void in
+        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, GuestUser), NSError>) -> Void in
             self.progressHUDSubject.onNext(false)
             switch result {
             case .Success((let authData, let user)):

@@ -31,13 +31,26 @@ final class Account {
     // data
     var apnsToken: String?
     private(set) var authData: AuthData?
-    var user: User? {
+    var loggedUser: LoggedUser? {
         didSet {
-        if let userObject = user {
-            self.userSubject.onNext(userObject)
-            SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+            if let userObject = loggedUser {
+                self.userSubject.onNext(userObject)
+                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+            }
         }
+    }
+    
+    var guestUser: GuestUser? {
+        didSet {
+            if let userObject = guestUser {
+                self.userSubject.onNext(userObject)
+                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+            }
         }
+    }
+    
+    var user: User? {
+        return loggedUser ?? guestUser
     }
     
     var userSubject = BehaviorSubject<User?>(value: nil)
@@ -63,7 +76,15 @@ final class Account {
     
     init() {
         
-        user = SecureCoder.readUserFromFile(archivePath)
+//        if let decoded: Decoded<User> = decode(json), let user = decoded.value {
+//            Account.sharedInstance.user = user
+//            completionHandler(.Success(user))
+//        } else {
+//            throw ParseError.User
+//        }
+        guestUser = SecureCoder.readObjectFromFile(archivePath)
+        loggedUser = SecureCoder.readObjectFromFile(archivePath)
+        assert(guestUser == nil || loggedUser == nil)
         
         if let data = keychain[data: authDataKey] {
             authData = SecureCoder.objectWithData(data)
@@ -74,7 +95,7 @@ final class Account {
         }
     }
     
-    func loginUser(user: User, withAuthData authData: AuthData) throws {
+    func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
         
         // save
         let data = SecureCoder.dataWithJsonConvertible(authData)
@@ -82,7 +103,11 @@ final class Account {
         
         // set instance vars
         self.authData = authData
-        self.user = user
+        if let user = user as? LoggedUser {
+            loggedUser = user
+        } else if let user = user as? GuestUser {
+            guestUser = user
+        }
         
         // update apimanager token
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
@@ -91,7 +116,8 @@ final class Account {
     func logout() throws {
         try NSFileManager.defaultManager().removeItemAtPath(archivePath)
         try keychain.remove(authDataKey)
-        user = nil
+        loggedUser = nil
+        guestUser = nil
         authData = nil
         APIManager.eraseAuthToken()
     }

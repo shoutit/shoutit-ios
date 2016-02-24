@@ -57,39 +57,39 @@ class SecureCoder {
 
 // MARK: - User
 
-extension SecureCoder {
-    
-    static func readUserFromFile(path: String) -> User? {
-        
-        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String : AnyObject] else {
-            return nil
-        }
-        
-        return userWithDictionary(contents)
-    }
-    
-    static func userWithData(data: NSData) -> User? {
-        
-        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String : AnyObject] else {
-            return nil
-        }
-        
-        return userWithDictionary(contents)
-    }
-    
-    static func userWithDictionary(json: [String : AnyObject]) -> User? {
-        
-        guard let isGuest = (json["is_guest"] as? NSNumber)?.boolValue else {
-            let decoded: Decoded<LoggedUser> = Argo.decode(json)
-            return decoded.value
-        }
-        
-        if isGuest {
-            let decoded: Decoded<GuestUser> = Argo.decode(json)
-            return decoded.value
-        } else {
-            let decoded: Decoded<LoggedUser> = Argo.decode(json)
-            return decoded.value
-        }
-    }
-}
+//extension SecureCoder {
+//    
+//    static func readUserFromFile(path: String) -> User? {
+//        
+//        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? [String : AnyObject] else {
+//            return nil
+//        }
+//        
+//        return userWithDictionary(contents)
+//    }
+//    
+//    static func userWithData(data: NSData) -> User? {
+//        
+//        guard let contents = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String : AnyObject] else {
+//            return nil
+//        }
+//        
+//        return userWithDictionary(contents)
+//    }
+//    
+//    static func userWithDictionary(json: [String : AnyObject]) -> User? {
+//        
+//        guard let isGuest = (json["is_guest"] as? NSNumber)?.boolValue else {
+//            let decoded: Decoded<LoggedUser> = Argo.decode(json)
+//            return decoded.value
+//        }
+//        
+//        if isGuest {
+//            let decoded: Decoded<GuestUser> = Argo.decode(json)
+//            return decoded.value
+//        } else {
+//            let decoded: Decoded<LoggedUser> = Argo.decode(json)
+//            return decoded.value
+//        }
+//    }
+//}
