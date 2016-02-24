@@ -1,8 +1,8 @@
 //
-//  DetailedProfile.swift
+//  LoggedUser.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 09.02.2016.
+//  Created by Łukasz Kasperek on 23.02.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -11,49 +11,58 @@ import Argo
 import Curry
 import Ogra
 
-struct DetailedProfile {
+struct LoggedUser: User {
     
+    var isGuest: Bool {
+        return false
+    }
+    
+    // public profile
     let id: String
     let type: UserType
     let apiPath: String
     let webPath: String
     let username: String
-    let name: String?
-    let firstName: String?
-    let lastName: String?
+    let name: String
+    let firstName: String
+    let lastName: String
     let activated: Bool
     let imagePath: String?
     let coverPath: String?
     let gender: Gender?
     let videoPath: String?
-    let dateJoindedEpoch: Int
-    let bio: String?
+    let dateJoinedEpoch: Int
+    let bio: String
     let location: Address
     let email: String
     let website: String?
     let shoutsPath: String?
-    let listenersCount: Int
-    let listenersPath: String
-    let listeningMetadata: ListenersMetadata
+    let listenersCount: Int?
+    let listenersPath: String?
+    let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
-    let owner: Bool
-    let pages: [DetailedProfile]
-    let listening: Bool?
+    let owner: Bool?
+    let pages: [Profile]?
+    
+    // app user specific
+    let linkedAccounts: LoginAccounts?
+    let pushTokens: PushTokens
+    let passwordSet: Bool?
 }
 
-extension DetailedProfile: Decodable {
+extension LoggedUser: Decodable {
     
-    static func decode(j: JSON) -> Decoded<DetailedProfile> {
-        let a =  curry(DetailedProfile.init)
+    static func decode(j: JSON) -> Decoded<LoggedUser> {
+        let a = curry(LoggedUser.init)
             <^> j <| "id"
             <*> j <| "type"
             <*> j <| "api_url"
             <*> j <| "web_url"
             <*> j <| "username"
         let b = a
-            <*> j <|? "name"
-            <*> j <|? "first_name"
-            <*> j <|? "last_name"
+            <*> j <| "name"
+            <*> j <| "first_name"
+            <*> j <| "last_name"
             <*> j <| "is_activated"
         let c = b
             <*> j <|? "image"
@@ -62,30 +71,35 @@ extension DetailedProfile: Decodable {
             <*> j <|? "video"
         let d = c
             <*> j <| "date_joined"
-            <*> j <|? "bio"
+            <*> j <| "bio"
             <*> j <| "location"
             <*> j <| "email"
         let e = d
             <*> j <|? "website"
             <*> j <|? "shouts_url"
-            <*> j <| "listeners_count"
-            <*> j <| "listeners_url"
+            <*> j <|? "listeners_count"
+            <*> j <|? "listeners_url"
         let f = e
-            <*> j <| "listening_count"
+            <*> j <|? "listening_count"
             <*> j <|? "listening_url"
-            <*> j <| "is_owner"
-            <*> j <|| "pages"
-            <*> j <|? "listening"
-        return f
+            <*> j <|? "is_owner"
+            <*> j <||? "pages"
+        let g = f
+            <*> j <|? "linked_accounts"
+            <*> j <| "push_tokens"
+            <*> j <|? "is_password_set"
+        
+        return g
     }
 }
 
-extension DetailedProfile: Encodable {
+extension LoggedUser {
     
     func encode() -> JSON {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
+            "is_guest" : false.encode(),
             "api_url" : self.apiPath.encode(),
             "web_url" : self.webPath.encode(),
             "username" : self.username.encode(),
@@ -97,7 +111,7 @@ extension DetailedProfile: Encodable {
             "cover" : self.coverPath.encode(),
             "gender" : self.gender.encode(),
             "video" : self.videoPath.encode(),
-            "date_joined" : self.dateJoindedEpoch.encode(),
+            "date_joined" : self.dateJoinedEpoch.encode(),
             "bio" : self.bio.encode(),
             "location" : self.location.encode(),
             "email" : self.email.encode(),
@@ -109,7 +123,9 @@ extension DetailedProfile: Encodable {
             "listening_url" : self.listeningPath.encode(),
             "is_owner" : self.owner.encode(),
             "pages" : self.pages.encode(),
-            "listening" : self.listening.encode(),
+            "linked_accounts" : self.linkedAccounts.encode(),
+            "push_tokens" : self.pushTokens.encode(),
+            "is_password_set" : self.passwordSet.encode()
             ])
     }
 }

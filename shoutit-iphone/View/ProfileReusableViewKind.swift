@@ -32,8 +32,6 @@ enum ProfileCollectionViewSupplementaryView {
     
     init?(indexPath: NSIndexPath) {
         for view in [Cover, Info, PagesSectionHeader, CreatePageButtonFooter, ShoutsSectionHeader, SeeAllShoutsButtonFooter] {
-            print(view.indexPath)
-            print(indexPath)
             if view.indexPath == indexPath {
                 self = view
                 return

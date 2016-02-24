@@ -50,7 +50,7 @@ struct LoginParams: AuthParams {
     let email: String
     let password: String
     
-    let grantType = "shoutit_signin"
+    let grantType = "shoutit_login"
     var authParams: [String : AnyObject] {
         return [
             "email": email,
@@ -78,11 +78,17 @@ struct SignupParams: AuthParams {
 struct LoginGuestParams: AuthParams {
     
     let grantType = "shoutit_guest"
+    var apns: NSObject {
+        if let token = Account.sharedInstance.apnsToken {
+            return token as NSString
+        }
+        return NSNull()
+    }
     
     var authParams: [String : AnyObject] {
         return [
             "user":
-                ["push_tokens" : ["apns" : "0f744707bebcf74f9b7c25d48e3358945f6aa01da5ddb387462c7eaf61bbad78", "gcm" : NSNull()]] // example token. won't be neccessery later
+                ["push_tokens" : ["apns" : apns, "gcm" : NSNull()]]
         ]
     }
 }

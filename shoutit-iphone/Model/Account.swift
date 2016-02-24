@@ -29,21 +29,21 @@ final class Account {
     }()
     
     // data
+    var apnsToken: String?
     private(set) var authData: AuthData?
-    
     var user: User? {
         didSet {
-            if let userObject = user {
-                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
-                self.userSubject.onNext(user)
-            }
+        if let userObject = user {
+            self.userSubject.onNext(userObject)
+            SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+        }
         }
     }
     
     var userSubject = BehaviorSubject<User?>(value: nil)
     
     func locationString() -> String {
-        if let city = user?.location?.city, state = user?.location?.state, country = user?.location?.country {
+        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
             return "\(city), \(state), \(country)"
         }
         
@@ -51,15 +51,20 @@ final class Account {
     }
     
     // convienience
-    var isUserLoggedIn: Bool {
+    var isUserAuthenticated: Bool {
         return authData != nil && user != nil
+    }
+    
+    var isUserLoggedIn: Bool {
+        return isUserAuthenticated && user!.isGuest == false
     }
     
     // MARK - Lifecycle
     
     init() {
         
-        user = SecureCoder.readObjectFromFile(archivePath)
+        user = SecureCoder.readUserFromFile(archivePath)
+        
         if let data = keychain[data: authDataKey] {
             authData = SecureCoder.objectWithData(data)
         }
@@ -69,16 +74,15 @@ final class Account {
         }
     }
     
-    func loginUserWithAuthData(authData: AuthData) throws {
+    func loginUser(user: User, withAuthData authData: AuthData) throws {
         
         // save
         let data = SecureCoder.dataWithJsonConvertible(authData)
         try keychain.set(data, key: authDataKey)
-        SecureCoder.writeObject(authData.user, toFileAtPath: archivePath)
         
         // set instance vars
         self.authData = authData
-        self.user = authData.user
+        self.user = user
         
         // update apimanager token
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
