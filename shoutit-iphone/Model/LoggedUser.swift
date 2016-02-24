@@ -99,7 +99,6 @@ extension LoggedUser {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
-            "is_guest" : false.encode(),
             "api_url" : self.apiPath.encode(),
             "web_url" : self.webPath.encode(),
             "username" : self.username.encode(),

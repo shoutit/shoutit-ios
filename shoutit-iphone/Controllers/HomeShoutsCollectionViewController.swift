@@ -98,17 +98,31 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-    
-            retry.asObservable()
-                .filter({ (reload) -> Bool in
-                    return reload
-                })
+            
+            let retryObservable = retry.asObservable().filter{$0}
+            let userChangeObservable = Account.sharedInstance.userSubject
+            
+            Observable.zip(retryObservable, userChangeObservable) { (_, _) -> Void in
+            }
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
-                    return (self?.viewModel.dataSource!)!
-                }).subscribeNext({ [weak self] (shouts) -> Void in
-                    self?.items = shouts
-                    self?.collectionView?.reloadData()
-                }).addDisposableTo(disposeBag)
+                    return (self?.viewModel.retriveHomeShouts())!
+                    })
+                .subscribeNext({ [weak self] (shouts) -> Void in
+                        self?.items = shouts
+                        self?.collectionView?.reloadData()
+                        })
+                .addDisposableTo(disposeBag)
+            
+//            retry.asObservable()
+//                .filter({ (reload) -> Bool in
+//                    return reload
+//                })
+//                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
+//                    return (self?.viewModel.retriveHomeShouts())!
+//                }).subscribeNext({ [weak self] (shouts) -> Void in
+//                    self?.items = shouts
+//                    self?.collectionView?.reloadData()
+//                }).addDisposableTo(disposeBag)
             
             collection.emptyDataSetDelegate = self
             collection.emptyDataSetSource = self

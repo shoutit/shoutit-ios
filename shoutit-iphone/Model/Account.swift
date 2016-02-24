@@ -76,12 +76,6 @@ final class Account {
     
     init() {
         
-//        if let decoded: Decoded<User> = decode(json), let user = decoded.value {
-//            Account.sharedInstance.user = user
-//            completionHandler(.Success(user))
-//        } else {
-//            throw ParseError.User
-//        }
         guestUser = SecureCoder.readObjectFromFile(archivePath)
         loggedUser = SecureCoder.readObjectFromFile(archivePath)
         assert(guestUser == nil || loggedUser == nil)

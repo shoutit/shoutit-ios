@@ -41,7 +41,7 @@ class LoginWithEmailViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, GuestUser), NSError>) -> Void in
+        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, LoggedUser), NSError>) -> Void in
             switch result {
             case .Success((let authData, let user)):
                 try! Account.sharedInstance.loginUser(user, withAuthData: authData)

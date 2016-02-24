@@ -62,7 +62,6 @@ class HomeViewController: UIViewController {
     func setupRX() {
         if let homeShoutsController = self.homeShoutsController {
             changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
-            bindToCollectionOffset()
             
             homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
                 if let _ = selectedShout {
@@ -73,6 +72,7 @@ class HomeViewController: UIViewController {
         
         if let discoverParent = self.discoverParentController, collectionController = discoverParent.discoverController {
             bindToDiscoverItems(collectionController)
+            bindToCollectionOffset()
         }
     }
     

@@ -16,7 +16,7 @@ class HomeShoutsViewModel: AnyObject {
     
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
-    var dataSource : Observable<[Shout]>?
+    let disposeBag = DisposeBag()
     var dataSubject : PublishSubject<[Shout]>?
     
     func cellReuseIdentifier() -> String {
@@ -37,16 +37,12 @@ class HomeShoutsViewModel: AnyObject {
         return displayable.shoutsLayout
     }
     
-    required init() {
-        
-        let subject = Account.sharedInstance.userSubject
-        
-        dataSource = subject.asObservable().flatMap { (user) -> Observable<[Shout]> in
-            return self.retriveHomeShouts(user)
+    func retriveHomeShouts() -> Observable<[Shout]> {
+        let user = Account.sharedInstance.user
+        if let user = user where user.isGuest == false {
+            return APIUsersService.homeShouts()
+        } else {
+            return APIShoutsService.shouts(forCountry: user?.location.country)
         }
-    }
-    
-    func retriveHomeShouts(user: User?) -> Observable<[Shout]> {
-        return APIShoutsService.shouts(forCountry: user?.location.country)
     }
 }
