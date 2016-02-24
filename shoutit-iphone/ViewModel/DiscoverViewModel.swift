@@ -30,6 +30,10 @@ enum DiscoverSection : Int {
         default: return DiscoverCollectionShoutsHeaderReuseIdentifier
         }
     }
+    
+    func footerIdentifier() -> String {
+        return DiscoverCollectionShoutsFooterReuseIdentifier
+    }
 }
 
 private let DiscoverCollectionCellReuseIdentifier = "DiscoverCollectionCellReuseIdentifier"
@@ -37,6 +41,7 @@ private let DiscoverCollectionShoutsCellReuseIdentifier = "DiscoverCollectionSho
 
 private let DiscoverCollectionHeaderReuseIdentifier = "DiscoverCollectionHeaderReuseIdentifier"
 private let DiscoverCollectionShoutsHeaderReuseIdentifier = "DiscoverCollectionShoutsHeaderReuseIdentifier"
+private let DiscoverCollectionShoutsFooterReuseIdentifier = "DiscoverCollectionShoutsFooterReuseIdentifier"
 
 class DiscoverViewModel: AnyObject, DiscoverRequest {
     let items = BehaviorSubject<DiscoverResult?>(value: nil)

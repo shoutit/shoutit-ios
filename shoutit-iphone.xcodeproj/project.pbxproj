@@ -27,6 +27,11 @@
 		249FD6D41C7DB1B600859851 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */; };
 		249FD6D61C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */; };
 		249FD6D81C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6D71C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift */; };
+		249FD6DA1C7DBE2700859851 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6D91C7DBE2700859851 /* ShadowView.swift */; };
+		249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6DC1C7DC39C00859851 /* DiscoverHeaderView.swift */; };
+		249FD6DF1C7DC73B00859851 /* DiscoverShoutFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6DE1C7DC73B00859851 /* DiscoverShoutFooterView.xib */; };
+		249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E01C7DDB5000859851 /* BorderedButton.swift */; };
+		249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		601EB8BC1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BB1C2B925200D4C1AE /* SHShoutItemCellViewModel.swift */; };
 		601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */; };
@@ -590,6 +595,11 @@
 		249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverHeaderView.xib; path = View/DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverShoutsHeaderView.xib; path = View/DiscoverShoutsHeaderView.xib; sourceTree = "<group>"; };
 		249FD6D71C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverCollectionViewFlowLayout.swift; path = Layout/DiscoverCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		249FD6D91C7DBE2700859851 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShadowView.swift; path = View/ShadowView.swift; sourceTree = "<group>"; };
+		249FD6DC1C7DC39C00859851 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverHeaderView.swift; path = View/DiscoverHeaderView.swift; sourceTree = "<group>"; };
+		249FD6DE1C7DC73B00859851 /* DiscoverShoutFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverShoutFooterView.xib; path = View/DiscoverShoutFooterView.xib; sourceTree = "<group>"; };
+		249FD6E01C7DDB5000859851 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedButton.swift; path = View/BorderedButton.swift; sourceTree = "<group>"; };
+		249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutFooterView.swift; path = View/DiscoverShoutFooterView.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
 		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
@@ -1230,10 +1240,21 @@
 				244FD9A71C7C7ABF0048CC82 /* DiscoverViewModel.swift */,
 				249FD6D11C7DA57400859851 /* DiscoverDisplayable.swift */,
 				249FD6D71C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift */,
-				249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */,
-				249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */,
+				249FD6DB1C7DC37000859851 /* SupplementaryViews */,
 			);
 			name = Discover;
+			sourceTree = "<group>";
+		};
+		249FD6DB1C7DC37000859851 /* SupplementaryViews */ = {
+			isa = PBXGroup;
+			children = (
+				249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */,
+				249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */,
+				249FD6DC1C7DC39C00859851 /* DiscoverHeaderView.swift */,
+				249FD6DE1C7DC73B00859851 /* DiscoverShoutFooterView.xib */,
+				249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */,
+			);
+			name = SupplementaryViews;
 			sourceTree = "<group>";
 		};
 		5C715BE26A324BEA80A8404C /* Pods */ = {
@@ -2602,6 +2623,8 @@
 				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
 				B28379A01C737950009AFF01 /* GradientView.swift */,
 				B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */,
+				249FD6D91C7DBE2700859851 /* ShadowView.swift */,
+				249FD6E01C7DDB5000859851 /* BorderedButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3197,6 +3220,7 @@
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				B2E7E2FE1C592BCE0078C743 /* Profile.storyboard in Resources */,
 				ACDB3CBB1BF90CBC0097444E /* SHRequestVideoTableViewCell.xib in Resources */,
+				249FD6DF1C7DC73B00859851 /* DiscoverShoutFooterView.xib in Resources */,
 				B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */,
 				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2E7E30A1C592BE60078C743 /* ShoutList.storyboard in Resources */,
@@ -3584,6 +3608,7 @@
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,
 				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,
 				606ED3171BF966D70064C53E /* SHCurrency.swift in Sources */,
+				249FD6DA1C7DBE2700859851 /* ShadowView.swift in Sources */,
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC27E7051BF9F9EC00AB6BAA /* SHFilterViewModel.swift in Sources */,
@@ -3661,6 +3686,7 @@
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
 				B2C729C91C6221B0006F7D29 /* User.swift in Sources */,
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
+				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
 				AC7030D71C16D8A8008F4C00 /* SHConversationPusherManager.swift in Sources */,
 				ACDB3C981BF7D33C0097444E /* SHStreamMapViewModel.swift in Sources */,
 				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
@@ -3716,8 +3742,10 @@
 				AC7030BD1C159249008F4C00 /* SHLocationAttachment.swift in Sources */,
 				B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */,
 				6043CF0D1C0343EC00A9AA49 /* SHAmazonAWS.swift in Sources */,
+				249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */,
 				ACDB3CBF1BF90DBC0097444E /* SHRequestImageTableViewCell.swift in Sources */,
 				601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */,
+				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
 				ACC36C411C09DEAC0082E0C2 /* SHSettingsTableViewModel.swift in Sources */,
 				AC679B401C3CE34700F45947 /* SHDiscoverFeedViewController.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,

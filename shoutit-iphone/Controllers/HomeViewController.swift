@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
         discoverController.collectionView?.rx_modelSelected(DiscoverItem.self)
             .asDriver()
             .driveNext { [weak self] selectedShout in
-                self?.performSegueWithIdentifier("showSingleDiscoverItem", sender: nil)
+                _ = DiscoverFlowController(navigationController: (self?.navigationController)!, discoverItem: selectedShout)
             }.addDisposableTo(disposeBag)
         
     }

@@ -7,21 +7,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t6X-hH-dyV">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t6X-hH-dyV" customClass="DiscoverHeaderView" customModule="Shoutit" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="555" height="183"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xN-p8-S5O">
                     <rect key="frame" x="0.0" y="0.0" width="555" height="183"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-pb-mai">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-pb-mai" customClass="ShadowView" customModule="Shoutit" customModuleProvider="target">
                             <rect key="frame" x="10" y="10" width="535" height="163"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_bg_pattern" translatesAutoresizingMaskIntoConstraints="NO" id="yJK-On-hLm">
                             <rect key="frame" x="10" y="10" width="535" height="163"/>
@@ -56,6 +51,10 @@
                 <constraint firstItem="8xN-p8-S5O" firstAttribute="top" secondItem="t6X-hH-dyV" secondAttribute="top" id="SNK-4E-ntS"/>
                 <constraint firstItem="8xN-p8-S5O" firstAttribute="leading" secondItem="t6X-hH-dyV" secondAttribute="leading" id="zvB-8R-4BR"/>
             </constraints>
+            <connections>
+                <outlet property="backgroundImageView" destination="yJK-On-hLm" id="M3h-Rm-B8E"/>
+                <outlet property="titleLabel" destination="1SC-nb-8Ha" id="Zv1-9g-n1M"/>
+            </connections>
             <point key="canvasLocation" x="457.5" y="688.5"/>
         </collectionReusableView>
     </objects>

@@ -22,6 +22,14 @@ class SHShoutItemCell: UICollectionViewCell {
 
 extension SHShoutItemCell {
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        self.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        self.layer.cornerRadius = 3.0
+    }
+    
     func bindWith(Shout shout: Shout) {
         self.shoutTitle.text = shout.title
         

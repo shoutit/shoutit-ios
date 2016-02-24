@@ -24,6 +24,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     func registerNibs() {
         self.collectionView?.registerNib(UINib(nibName: "DiscoverHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.SubItems.headerIdentifier())
         self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.Shouts.headerIdentifier())
+        self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: DiscoverSection.Shouts.footerIdentifier())
     }
     
     func loadItems() {
@@ -43,7 +44,19 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             vm.retriveDiscoverItems()
         }
     }
+    
+    // MARK: UICollectionView Delegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            if let element = self.viewModel?.discoverItems()[indexPath.item] {
+                _ = DiscoverFlowController(navigationController: self.navigationController!, discoverItem: element)
+            }
+        }
+    }
 
+    // MARK: UICollectionView Data Source
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -84,13 +97,37 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), forIndexPath: indexPath)
+        if kind == UICollectionElementKindSectionFooter {
+            let footer =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.footerIdentifier(), forIndexPath: indexPath)
+            
+            return footer
+        }
+        
+        let header =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), forIndexPath: indexPath)
+        
+        if let discoverHeader = header as? DiscoverHeaderView {
+            discoverHeader.titleLabel.text = self.viewModel!.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
+        }
+        
+        return header
     }
     
     // MARK: UICollectionView Flow Layout Delegate
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width - 20.0, height: (section == 0 ? 140.0 : 44.0))
+        if section == 1 {
+            return self.viewModel!.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSizeZero
+        }
+        
+        return CGSize(width: collectionView.bounds.width - 20.0, height: 140.0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if section == 1 && self.viewModel!.shoutsItems().count > 0 {
+            return CGSize(width: collectionView.bounds.width - 20.0, height: 54.0)
+        }
+        
+        return CGSizeZero
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
