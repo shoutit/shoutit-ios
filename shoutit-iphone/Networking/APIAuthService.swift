@@ -17,27 +17,33 @@ class APIAuthService {
     
     static func resetPassword(params: ResetPasswordParams, completionHandler: Result<Success, NSError> -> Void) {
         
-        APIManager.manager().request(.POST, authResetPasswordURL, parameters: params.params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseJSON { (response) in
-            switch response.result {
-            case .Success(let json):
-                do {
-                    if let s: Decoded<Success> = decode(json), let success = s.value {
-                        completionHandler(.Success(success))
-                    } else {
-                        throw ParseError.Success
+        APIManager.manager()
+            .request(.POST, authResetPasswordURL, parameters: params.params, encoding: .JSON, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+                switch response.result {
+                case .Success(let json):
+                    do {
+                        if let s: Decoded<Success> = decode(json), let success = s.value {
+                            completionHandler(.Success(success))
+                        } else {
+                            throw ParseError.Success
+                        }
+                    } catch let error as NSError {
+                        completionHandler(.Failure(error))
                     }
-                } catch let error as NSError {
+                case .Failure(let error):
                     completionHandler(.Failure(error))
                 }
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
         }
     }
     
     static func getOauthToken(params: AuthParams, completionHandler: Result<(AuthData, User), NSError> -> Void) {
         
-        APIManager.manager().request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil).responseJSON { (response) in
+        APIManager.manager()
+            .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
             switch response.result {
             case .Success(let json):
                     do {

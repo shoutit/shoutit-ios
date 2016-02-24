@@ -50,7 +50,7 @@ struct LoginParams: AuthParams {
     let email: String
     let password: String
     
-    let grantType = "shoutit_signin"
+    let grantType = "shoutit_login"
     var authParams: [String : AnyObject] {
         return [
             "email": email,
@@ -88,7 +88,7 @@ struct LoginGuestParams: AuthParams {
     var authParams: [String : AnyObject] {
         return [
             "user":
-                ["push_tokens" : ["apns" : apns, "gcm" : NSNull()]] // example token. won't be neccessery later
+                ["push_tokens" : ["apns" : apns, "gcm" : NSNull()]]
         ]
     }
 }

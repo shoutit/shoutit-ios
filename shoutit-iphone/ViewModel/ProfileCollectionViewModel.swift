@@ -19,6 +19,14 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
         let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
+        Account.sharedInstance.userSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext { (user) in
+                if let _ = user {
+                    self.reloadContent()
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
     
     func reloadContent() {
