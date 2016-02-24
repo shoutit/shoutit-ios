@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import Argo
 
+typealias DiscoverResult = (mainItem:DiscoverItem?, retrivedItems:[DiscoverItem]?)
+
 class APIDiscoverService {
     private static let discoverURL = APIManager.baseURL + "/discover"
     
@@ -52,11 +54,10 @@ class APIDiscoverService {
         })
     }
     
-    static func shouts(forDiscoverItem discoverItem: DiscoverItem?) -> Observable<[DiscoverItem]> {
+    static func discoverItems(forDiscoverItem discoverItem: DiscoverItem?) -> Observable<DiscoverResult> {
         return Observable.create({ (observer) -> Disposable in
             
             guard let discover = discoverItem else {
-                observer.on(.Next([]))
                 return AnonymousDisposable {}
             }
             
@@ -70,7 +71,7 @@ class APIDiscoverService {
                         if let j = json, jr = j.objectForKey("children") {
                             if let results : Decoded<[DiscoverItem]> = decode(jr) {
                                 if let value = results.value {
-                                    observer.on(.Next(value))
+                                    observer.on(.Next((discover, value)))
                                     observer.on(.Completed)
                                     return
                                 }

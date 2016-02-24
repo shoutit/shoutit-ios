@@ -46,4 +46,13 @@ extension SHShoutItemCell {
         }
         
     }
+    
+    func bindWith(DiscoverItem discoverItem: DiscoverItem) {
+        self.shoutTitle.text = discoverItem.title
+        
+        if let imagePath = discoverItem.image, imageURL = NSURL(string: imagePath) {
+            self.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        }
+
+    }
 }

@@ -49,8 +49,6 @@ extension ShoutVerticalGridLayoutDisplayable {
     
     func itemHeight() -> CGFloat { return 170.0 }
     
-    
-    
     func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
         return CGSize(width: floor((collectionView.bounds.width - 3 * minimumInterItemSpacingSize().width) * 0.5), height: itemHeight())
     }

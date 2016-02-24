@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Curry
 
-struct DiscoverItem: Decodable {
+struct DiscoverItem: Decodable, Hashable, Equatable {
     let id: String
     let apiUrl: String
     let title: String
@@ -18,7 +18,6 @@ struct DiscoverItem: Decodable {
     let position: Int
     let image: String?
     let icon: String?
-    
     
     static func decode(j: JSON) -> Decoded<DiscoverItem> {
         let f = curry(DiscoverItem.init)
@@ -31,4 +30,16 @@ struct DiscoverItem: Decodable {
             <*> j <|? "image"
             <*> j <|? "icon"
     }
+    
+    
+    var hashValue: Int {
+        get {
+            return self.id.hashValue
+        }
+    }
+    
+}
+
+func ==(lhs: DiscoverItem, rhs: DiscoverItem) -> Bool {
+    return lhs.id == rhs.id
 }

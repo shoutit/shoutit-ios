@@ -24,14 +24,7 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
             viewModel.dataSource.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
-                print(element)
-                
-                cell.shoutTitle.text = element.title
-                
-                if let imagePath = element.image, imageURL = NSURL(string: imagePath) {
-                    cell.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
-                }
-                
+                cell.bindWith(DiscoverItem: element)
             }.addDisposableTo(disposeBag)
         }
 
