@@ -11,7 +11,7 @@ import RxSwift
 
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var viewModel : DiscoverViewModel?
+    var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -32,17 +32,15 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             viewModel = DiscoverGeneralViewModel()
         }
         
-        if let vm = viewModel {
-            vm.items.asObservable().subscribeNext({ [weak self] (result) -> Void in
-                self?.collectionView?.reloadSections(NSIndexSet(index: 0))
+        viewModel.items.asObservable().subscribeNext({ [weak self] (result) -> Void in
+            self?.collectionView?.reloadSections(NSIndexSet(index: 0))
             }).addDisposableTo(disposeBag)
-            
-            vm.shouts.asObservable().subscribeNext({ [weak self] (result) -> Void in
-                self?.collectionView?.reloadSections(NSIndexSet(index: 1))
+        
+        viewModel.shouts.asObservable().subscribeNext({ [weak self] (result) -> Void in
+            self?.collectionView?.reloadSections(NSIndexSet(index: 1))
             }).addDisposableTo(disposeBag)
-            
-            vm.retriveDiscoverItems()
-        }
+        
+        viewModel.retriveDiscoverItems()
     }
     
     // MARK: UICollectionView Delegate
@@ -62,11 +60,6 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        guard let viewModel = self.viewModel else {
-            return 0
-        }
-        
         if section == 0 {
             return viewModel.discoverItems().count
         }
@@ -75,7 +68,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel!.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath)
     
         // Configure Shout cell
         if indexPath.section == 1 {
@@ -106,7 +99,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         let header =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), forIndexPath: indexPath)
         
         if let discoverHeader = header as? DiscoverHeaderView {
-            discoverHeader.titleLabel.text = self.viewModel!.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
+            discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
         }
         
         return header
@@ -123,7 +116,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if section == 1 && self.viewModel!.shoutsItems().count > 0 {
+        if section == 1 && self.viewModel.shoutsItems().count > 0 {
             return CGSize(width: collectionView.bounds.width - 20.0, height: 54.0)
         }
         
