@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="844" y="-100"/>
         </scene>
-        <!--singleDiscoverItem-->
+        <!--SHDiscoverCollectionViewController-->
         <scene sceneID="lY1-jC-COh">
             <objects>
-                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="singleDiscoverItem" id="MWI-ef-n7k" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="SHDiscoverCollectionViewController" id="MWI-ef-n7k" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Re-mz-LAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="871.5" y="-34"/>

@@ -12,12 +12,16 @@ final class DiscoverFlowController: FlowController {
     
     let navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
         
         self.navigationController = navigationController
         
         // create initial view controller
         let controller = Wireframe.discoverViewController()
+        
+        if let item = discoverItem {
+            controller.viewModel = DiscoverGivenItemViewModel(discoverItem: item)
+        }
 
         navigationController.showViewController(controller, sender: nil)
     }

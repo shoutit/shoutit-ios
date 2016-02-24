@@ -18,6 +18,7 @@ class SHDiscoverShoutCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         viewModel = SHDiscoverShoutCellViewModel(cell: self)
     }
 

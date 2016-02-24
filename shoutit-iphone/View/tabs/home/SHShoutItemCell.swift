@@ -22,6 +22,14 @@ class SHShoutItemCell: UICollectionViewCell {
 
 extension SHShoutItemCell {
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        self.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        self.layer.cornerRadius = 3.0
+    }
+    
     func bindWith(Shout shout: Shout) {
         self.shoutTitle.text = shout.title
         
@@ -45,5 +53,14 @@ extension SHShoutItemCell {
             self.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         }
         
+    }
+    
+    func bindWith(DiscoverItem discoverItem: DiscoverItem) {
+        self.shoutTitle.text = discoverItem.title
+        
+        if let imagePath = discoverItem.image, imageURL = NSURL(string: imagePath) {
+            self.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        }
+
     }
 }

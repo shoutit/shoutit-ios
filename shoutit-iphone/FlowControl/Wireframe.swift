@@ -87,8 +87,8 @@ struct Wireframe {
         return UIViewController()
     }
     
-    static func discoverViewController() -> UIViewController {
-        return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController")
+    static func discoverViewController() -> DiscoverCollectionViewController {
+        return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController") as! DiscoverCollectionViewController
     }
     
     static func shoutViewController() -> UIViewController {
