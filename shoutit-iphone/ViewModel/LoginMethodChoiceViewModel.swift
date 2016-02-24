@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Alamofire
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -52,7 +53,7 @@ final class LoginMethodChoiceViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        APIAuthService.getOauthToken(params) { (result) -> Void in
+        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, LoggedUser), NSError>) -> Void in
             self.progressHUDSubject.onNext(false)
             switch result {
             case .Success((let authData, let user)):

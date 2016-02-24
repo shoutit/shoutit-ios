@@ -30,11 +30,23 @@ class APILocationService {
             case .Success(let data):
                 do {
                     let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                    if let userJson = json as? [String : AnyObject], user = SecureCoder.userWithDictionary(userJson) {
-                        Account.sharedInstance.user = user
-                        completionHandler(.Success(user))
-                    } else {
+                    guard let userJson = json as? [String : AnyObject] else {
                         throw ParseError.User
+                    }
+                    
+                    let docodedLogged: Decoded<LoggedUser> = Argo.decode(userJson)
+                    let loggedUser: LoggedUser? = docodedLogged.value
+                    
+                    let docodedGuest: Decoded<GuestUser> = Argo.decode(userJson)
+                    let guestUser: GuestUser? = docodedGuest.value
+                    
+                    Account.sharedInstance.guestUser = guestUser
+                    Account.sharedInstance.loggedUser = loggedUser
+                    
+                    if guestUser == nil && loggedUser == nil {
+                        throw ParseError.User
+                    } else {
+                        completionHandler(.Success(guestUser ?? loggedUser!))
                     }
                 } catch let error as NSError {
                     completionHandler(.Failure(error))

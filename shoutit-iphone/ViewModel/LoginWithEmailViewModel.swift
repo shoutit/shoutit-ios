@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Alamofire
 
 class LoginWithEmailViewModel {
     
@@ -40,7 +41,7 @@ class LoginWithEmailViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        APIAuthService.getOauthToken(params) { (result) -> Void in
+        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, GuestUser), NSError>) -> Void in
             switch result {
             case .Success((let authData, let user)):
                 try! Account.sharedInstance.loginUser(user, withAuthData: authData)
