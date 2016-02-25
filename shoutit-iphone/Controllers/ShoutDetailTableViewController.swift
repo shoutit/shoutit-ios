@@ -6,4 +6,14 @@
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class ShoutDetailTableViewController: UITableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // setup table view
+        
+    }
+}
