@@ -36,7 +36,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
         
         // reload shouts
-        fetchShouts()
+        fetchShouts()?
             .subscribe {[weak self] (event) in
                 switch event {
                 case .Next(let value):
@@ -52,8 +52,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    var user: LoggedUser {
-        return Account.sharedInstance.user as! LoggedUser
+    var user: LoggedUser? {
+        return Account.sharedInstance.user as? LoggedUser
     }
     
     private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
@@ -66,11 +66,11 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // user data
     var name: String? {
-        return user.name
+        return user?.name
     }
     
     var username: String? {
-        return user.username
+        return user?.username
     }
     
     var isListeningToYou: Bool? {
@@ -78,17 +78,16 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var avatarURL: NSURL? {
-        return (user.imagePath != nil) ? NSURL(string: user.imagePath!) : nil
+        return (user?.imagePath != nil) ? NSURL(string: user!.imagePath!) : nil
     }
     
     var coverURL: NSURL? {
-        return (user.coverPath != nil) ? NSURL(string: user.coverPath!) : nil
+        return (user?.coverPath != nil) ? NSURL(string: user!.coverPath!) : nil
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
     
-        guard user.isGuest == false else {
-            assert(false)
+        guard let user = user else {
             return []
         }
 
@@ -106,23 +105,24 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var descriptionText: String? {
-        return user.bio
+        return user?.bio
     }
     
     var websiteString: String? {
-        return user.website
+        return user?.website
     }
     
     var dateJoinedString: String? {
+        guard let user = user else {return nil}
         return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoinedEpoch)
     }
     
     var locationString: String? {
-        return user.location.city
+        return user?.location.city
     }
     
     var locationFlag: UIImage? {
-        return UIImage(named: (user.location.country ?? "country_placeholder"))
+        return UIImage(named: (user?.location.country ?? "country_placeholder"))
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {
@@ -137,7 +137,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]> {
+    func fetchShouts() -> Observable<[Shout]>? {
+        guard let user = user else {return nil}
         let params = UserShoutsParams(username: user.username, pageSize: 4, shoutType: nil)
         return APIShoutsService.shoutsForUserWithParams(params)
     }

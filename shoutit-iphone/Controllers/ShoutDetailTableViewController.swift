@@ -10,6 +10,8 @@ import UIKit
 
 final class ShoutDetailTableViewController: UITableViewController {
     
+    @IBOutlet weak var headerView: ShoutDetailTableHeaderView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

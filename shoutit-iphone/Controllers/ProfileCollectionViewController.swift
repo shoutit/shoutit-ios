@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable {
+    func performActionForButtonType(type: ProfileCollectionInfoButton) -> Void
+}
+
 class ProfileCollectionViewController: UICollectionViewController {
     
     // consts
@@ -18,6 +22,9 @@ class ProfileCollectionViewController: UICollectionViewController {
     
     // view model
     var viewModel: ProfileCollectionViewModelInterface!
+    
+    // navigation
+    weak var flowDelegate: ProfileCollectionViewControllerFlowDelegate?
     
     // rx
     let disposeBag = DisposeBag()
@@ -145,6 +152,7 @@ extension ProfileCollectionViewController {
                     self.toggleMenu()
                 }
                 .addDisposableTo(disposeBag)
+            
             if let navigationController = navigationController where self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
             } else {
@@ -155,6 +163,22 @@ extension ProfileCollectionViewController {
                     }
                     .addDisposableTo(disposeBag)
             }
+            
+            coverView.cartButton
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    self.flowDelegate?.showCart()
+                }
+                .addDisposableTo(disposeBag)
+            
+            coverView
+                .searchButton
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    self.flowDelegate?.showSearch()
+                }
+                .addDisposableTo(disposeBag)
+            
             
             // setup cover image
             
@@ -187,7 +211,7 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
-            infoView.setButtons(viewModel.infoButtons)
+            setButtons(viewModel.infoButtons, inSupplementaryView: infoView)
             
             // adjust constraints for data
             let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
@@ -210,6 +234,12 @@ extension ProfileCollectionViewController {
             let createPageButtonFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             createPageButtonFooter.type = viewModel.pagesSection.footerButtonStyle
             createPageButtonFooter.button.setTitle(viewModel.pagesSection.footerButtonTitle, forState: .Normal)
+            createPageButtonFooter.button
+                .rx_tap
+                .subscribeNext {[unowned self] in
+                    self.flowDelegate?.showCreateShout()
+                }
+                .addDisposableTo(disposeBag)
         case .ShoutsSectionHeader:
             let shoutsSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
             shoutsSectionHeader.titleLabel.text = viewModel.shoutsSection.title
@@ -217,8 +247,68 @@ extension ProfileCollectionViewController {
             let seeAllShoutsFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             seeAllShoutsFooter.type = viewModel.shoutsSection.footerButtonStyle
             seeAllShoutsFooter.button.setTitle(viewModel.shoutsSection.footerButtonTitle, forState: .Normal)
+            seeAllShoutsFooter.button
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    guard let username = self.viewModel.username else {return}
+                    self.flowDelegate?.showShoutsForUsername(username)
+                }
+                .addDisposableTo(disposeBag)
         }
         
         return supplementeryView
+    }
+}
+
+// MARK: - Info supplementary view hydration
+
+extension ProfileCollectionViewController {
+    
+    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView) {
+        
+        for button in buttons {
+            switch button.defaultPosition {
+            case .SmallLeft:
+                hydrateButton(sView.notificationButton, withButtonModel: button)
+            case .SmallRight:
+                hydrateButton(sView.rightmostButton, withButtonModel: button)
+            case .BigLeft:
+                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button)
+            case .BigCenter:
+                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button)
+            case .BigRight:
+                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button)
+            }
+        }
+    }
+    
+    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton) {
+        
+        if case .HiddenButton = buttonModel {
+            button.hidden = true
+            return
+        }
+        
+        button
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.performActionForButtonType(buttonModel)
+            }
+            .addDisposableTo(disposeBag)
+        
+        if let button = button as? ProfileInfoHeaderButton {
+            button.setTitleText(buttonModel.title)
+            button.setImage(buttonModel.image)
+            
+            if case .Listeners(let countString) = buttonModel {
+                button.setCountText(countString)
+            } else if case .Listening(let countString) = buttonModel {
+                button.setCountText(countString)
+            } else if case .Interests(let countString) = buttonModel {
+                button.setCountText(countString)
+            }
+        } else {
+            button.setImage(buttonModel.image, forState: .Normal)
+        }
     }
 }

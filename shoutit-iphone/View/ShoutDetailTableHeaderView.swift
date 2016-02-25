@@ -1,5 +1,5 @@
 //
-//  ShoutDetailOtherShoutsCollectionViewController.swift
+//  ShoutDetailTableHeaderView.swift
 //  shoutit-iphone
 //
 //  Created by Łukasz Kasperek on 25.02.2016.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ShoutDetailOtherShoutsCollectionViewController: UICollectionViewController {
+class ShoutDetailTableHeaderView: UIView {
     
 }
