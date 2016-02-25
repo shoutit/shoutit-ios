@@ -19,7 +19,7 @@ struct Shout: Decodable {
     let title: String
     
     let text: String
-    let price: Double
+    let price: Int
     let currency: String
     let thumbnailPath: String?
     let category: Category

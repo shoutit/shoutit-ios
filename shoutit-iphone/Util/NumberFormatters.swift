@@ -32,4 +32,11 @@ class NumberFormatters {
         
         return "\(sign)\(Int(roundedNum))\(units[exp-1])";
     }
+    
+    static func priceStringWithPrice(price: Int, currency: String) -> String {
+        let major = price / 100
+        let minor = price % 100
+        let minorString = String(format: "%\(02)d", minor)
+        return "\(major).\(minorString) \(currency)"
+    }
 }
