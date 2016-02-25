@@ -10,4 +10,5 @@ import UIKit
 
 class ShoutDetailButtonTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var button: CustomUIButton!
 }

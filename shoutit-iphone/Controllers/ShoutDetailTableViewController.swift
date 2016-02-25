@@ -19,3 +19,37 @@ final class ShoutDetailTableViewController: UITableViewController {
         
     }
 }
+
+// MARK: - Cells
+
+extension ShoutDetailTableViewController {
+    
+    enum Cell {
+        case SectionHeader
+        case Description
+        case KeyValue
+        case Regular
+        case Button
+        case OtherShouts
+        case RelatedShouts
+        
+        var reuseIdentifier: String {
+            switch self {
+            case .SectionHeader:
+                return "SectionHeader"
+            case .Description:
+                return "Description"
+            case .KeyValue:
+                return "KeyValue"
+            case .Regular:
+                return "Regular"
+            case .Button:
+                return "Button"
+            case .OtherShouts:
+                return "OtherShouts"
+            case .RelatedShouts:
+                return "RelatedShouts"
+            }
+        }
+    }
+}

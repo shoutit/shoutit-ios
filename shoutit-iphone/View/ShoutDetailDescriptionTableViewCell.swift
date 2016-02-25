@@ -10,4 +10,5 @@ import UIKit
 
 class ShoutDetailDescriptionTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var descriptionLabel: UILabel!
 }
