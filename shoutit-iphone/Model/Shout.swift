@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Curry
 
-struct Shout: Decodable {
+struct Shout: Decodable, Hashable, Equatable {
     
     let id: String
     let apiPath: String
@@ -53,10 +53,20 @@ struct Shout: Decodable {
         return c
     }
     
+    var hashValue: Int {
+        get {
+            return self.id.hashValue
+        }
+    }
+    
     func type() -> ShoutType? {
         return ShoutType(rawValue: self.typeString)
     }
     
+}
+
+func ==(lhs: Shout, rhs: Shout) -> Bool {
+    return lhs.id == rhs.id
 }
 
 enum ShoutType : String {

@@ -50,7 +50,11 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
                 _ = DiscoverFlowController(navigationController: self.navigationController!, discoverItem: element)
             }
+            return
         }
+        
+        self.performSegueWithIdentifier("showSingleShout", sender: nil)
+        
     }
 
     // MARK: UICollectionView Data Source
@@ -93,6 +97,10 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         if kind == UICollectionElementKindSectionFooter {
             let footer =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.footerIdentifier(), forIndexPath: indexPath)
             
+            if let discoverFooter = footer as? DiscoverShoutFooterView {
+                discoverFooter.showShoutsButton.addTarget(self, action: "showDiscoverShouts", forControlEvents: .TouchUpInside)
+            }
+            
             return footer
         }
         
@@ -108,35 +116,34 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     // MARK: UICollectionView Flow Layout Delegate
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 1 {
-            return self.viewModel!.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSizeZero
-        }
         
-        return CGSize(width: collectionView.bounds.width - 20.0, height: 140.0)
+        return self.viewModel.headerSize(collectionView, section: section)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if section == 1 && self.viewModel.shoutsItems().count > 0 {
-            return CGSize(width: collectionView.bounds.width - 20.0, height: 54.0)
-        }
-        
-        return CGSizeZero
+
+        return self.viewModel.footerSize(collectionView, section: section)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return self.viewModel!.displayable.sizeForItem(AtIndexPath: indexPath, collectionView: collectionView)
+        return self.viewModel.itemSize(indexPath, collectionView: collectionView)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return self.viewModel!.displayable.minimumInterItemSpacingSize().width
+        return self.viewModel.minimumInteritemSpacingForSection(section)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let interItemSpacing = self.viewModel!.displayable.minimumInterItemSpacingSize()
         
-        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, interItemSpacing.height, interItemSpacing.width)
+        return self.viewModel.insetsForSection(section)
     }
 
+    // MARK: Actions
+    func showDiscoverShouts() {
+        if let navigationController = self.navigationController {
+            _ = DiscoverShoutsFlowController(navigationController: navigationController, discoverItem: self.viewModel.mainItem())
+        }
+    }
 }

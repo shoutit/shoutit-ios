@@ -35,12 +35,12 @@ class SHAddress: Mappable {
         state           <- map["state"]
     }
     
-    static func getUserOrDeviceLocation() -> SHAddress? {
-        var shAddress: SHAddress? = nil
-        if let oauthToken = SHOauthToken.getFromCache() {
-            shAddress = oauthToken.user?.location
-        }
-        return shAddress
-    }
+//    static func getUserOrDeviceLocation() -> SHAddress? {
+//        var shAddress: SHAddress? = nil
+//        if let oauthToken = SHOauthToken.getFromCache() {
+//            shAddress = oauthToken.user?.location
+//        }
+//        return shAddress
+//    }
     
 }

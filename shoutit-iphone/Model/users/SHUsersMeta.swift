@@ -12,8 +12,8 @@ import ObjectMapper
 class SHUsersMeta: Mappable {
     var next = String()
     var previous = String()
-    var users = [SHUser]()
-    var results = [SHUser]()
+//    var users = [SHUser]()
+//    var results = [SHUser]()
     var count = 0
     
     required init?(_ map: Map) {
@@ -27,8 +27,8 @@ class SHUsersMeta: Mappable {
     func mapping(map: Map) {
         next                   <- map["next"]
         previous               <- map["previous"]
-        users                  <- map["users"]
+//        users                  <- map["users"]
         count                  <- map["count"]
-        results                <- map["results"]
+//        results                <- map["results"]
     }
 }

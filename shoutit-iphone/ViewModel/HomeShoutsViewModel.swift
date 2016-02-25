@@ -18,6 +18,17 @@ class HomeShoutsViewModel: AnyObject {
     
     let disposeBag = DisposeBag()
     var dataSubject : PublishSubject<[Shout]>?
+    var loadNextPage : PublishSubject<Bool>? = PublishSubject()
+    var loadedPages : [Int] = [1]
+    var loadingPages : [Int] = []
+    
+    init() {
+        self.displayable.loadNextPage = self.loadNextPage
+        
+        self.loadNextPage?.subscribeNext({ [weak self] (shouldLoad) -> Void in
+            self?.tryToLoadNextPage()
+        }).addDisposableTo(disposeBag)
+    }
     
     func cellReuseIdentifier() -> String {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
@@ -29,15 +40,15 @@ class HomeShoutsViewModel: AnyObject {
     
     func changeDisplayModel() -> ShoutsLayout {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
-            displayable = ShoutsDisplayable(layout: .VerticalList, offset: displayable.contentOffset.value)
+            displayable = ShoutsDisplayable(layout: .VerticalList, offset: displayable.contentOffset.value, pageSubject: self.loadNextPage)
         } else {
-            displayable = ShoutsDisplayable(layout: .VerticalGrid, offset: displayable.contentOffset.value)
+            displayable = ShoutsDisplayable(layout: .VerticalGrid, offset: displayable.contentOffset.value, pageSubject: self.loadNextPage)
         }
         
         return displayable.shoutsLayout
     }
     
-    func retriveHomeShouts() -> Observable<[Shout]> {
+    func retriveShouts() -> Observable<[Shout]> {
         let user = Account.sharedInstance.user
         if let user = user where user.isGuest == false {
             return APIUsersService.homeShouts()
@@ -45,4 +56,40 @@ class HomeShoutsViewModel: AnyObject {
             return APIShoutsService.shouts(forCountry: user?.location.country)
         }
     }
+    
+    func loadMorePage(page: Int) -> Observable<[Shout]> {
+        // Override This method for load more
+        return Observable.empty()
+    }
+    
+    func tryToLoadNextPage() {
+        if loadingPages.count > 0 {
+            return
+        }
+        
+        let pageToLoad = (self.loadedPages.last ?? 1) + 1
+        
+        if self.loadingPages.contains(pageToLoad) {
+            return
+        }
+        
+        loadPage(pageToLoad)
+        
+        
+    }
+    
+    func loadPage(page: Int) {
+        self.loadingPages.append(page)
+        
+        self.loadMorePage(page).subscribeNext { [weak self] (newItems) -> Void in
+            self?.loadedPages.append(page)
+            
+            if let index = self?.loadingPages.indexOf(page) {
+                self?.loadingPages.removeAtIndex(index)
+            }
+            
+            self?.dataSubject?.onNext(newItems)
+        }.addDisposableTo(disposeBag)
+    }
+    
 }

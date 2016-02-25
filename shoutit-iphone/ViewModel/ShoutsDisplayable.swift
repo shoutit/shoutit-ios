@@ -34,12 +34,15 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     var contentOffset : Variable<CGPoint>
     
+    var loadNextPage : PublishSubject<Bool>?
+    
     var selectedIndexPath = BehaviorSubject<NSIndexPath?>(value: nil)
     
-    required init(layout: ShoutsLayout, offset: CGPoint = CGPointZero) {
+    required init(layout: ShoutsLayout, offset: CGPoint = CGPointZero, pageSubject pSub: PublishSubject<Bool>? = nil) {
         shoutsLayout = layout
         contentOffset = Variable(offset)
         collectionLayoutDisplayable = layout.collectionLayoutDisplayable()
+        loadNextPage = pSub
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -69,6 +72,12 @@ class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         contentOffset.value = scrollView.contentOffset
+        
+        let shouldLoadNextPage = (scrollView.contentOffset.y) > (scrollView.contentSize.height - 1.5 * scrollView.frame.height)
+        
+        if shouldLoadNextPage {
+            self.loadNextPage?.onNext(true)
+        }
     }
     
     func applyOnLayout(collectionViewLayout: UICollectionViewFlowLayout?) {
