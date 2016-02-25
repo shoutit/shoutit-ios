@@ -30,6 +30,12 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     func reloadContent() {
+        
+        // reload pages
+        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
+        pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
+        
+        // reload shouts
         fetchShouts()
             .subscribe {[weak self] (event) in
                 switch event {
