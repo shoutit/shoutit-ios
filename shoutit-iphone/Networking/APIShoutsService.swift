@@ -132,8 +132,6 @@ class APIShoutsService {
                                     }
                                 }
                             }
-                            
-                            
                         } catch let error as NSError {
                             print(error)
                             observer.on(.Error(error ?? RxCocoaURLError.Unknown))
@@ -142,6 +140,20 @@ class APIShoutsService {
                         observer.on(.Error(error ?? RxCocoaURLError.Unknown))
                     }
                 })
+            
+            return NopDisposable.instance
+        }
+    }
+    
+    static func retrieveShoutWithId(id: String) -> Observable<Shout> {
+        
+        return Observable.create {(observer) -> Disposable in
+            
+            let request = APIManager.manager().request(.GET, <#T##URLString: URLStringConvertible##URLStringConvertible#>, parameters: <#T##[String : AnyObject]?#>, encoding: <#T##ParameterEncoding#>, headers: <#T##[String : String]?#>)
+            
+            let cancel = AnonymousDisposable {
+                
+            }
             
             return NopDisposable.instance
         }

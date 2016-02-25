@@ -10,13 +10,29 @@ import UIKit
 
 final class ShoutDetailTableViewController: UITableViewController {
     
+    // UI
     @IBOutlet weak var headerView: ShoutDetailTableHeaderView!
+    
+    // view model
+    var viewModel: ShoutDetailViewModel!
+    
+    // data sources
+    private var dataSource: ShoutDetailTableViewDataSource!
+    private var otherShoutsDataSource: ShoutDetailOtherShoutsCollectionViewDataSource!
+    private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
+    private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup table view
+        // setup data sources
+        dataSource = ShoutDetailTableViewDataSource(viewModel: viewModel)
+        otherShoutsDataSource = ShoutDetailOtherShoutsCollectionViewDataSource(viewModel: viewModel)
+        relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(viewModel: viewModel)
+        imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(viewModel: viewModel)
         
+        // setup table view
+        tableView.estimatedRowHeight = 40
     }
 }
 

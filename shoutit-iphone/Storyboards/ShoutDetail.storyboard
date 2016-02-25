@@ -554,7 +554,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="zLB-8P-gtL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oR-3p-WB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="-258"/>
+            <point key="canvasLocation" x="510" y="-253"/>
         </scene>
     </scenes>
     <resources>

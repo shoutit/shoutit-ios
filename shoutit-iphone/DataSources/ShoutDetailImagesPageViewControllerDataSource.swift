@@ -1,5 +1,5 @@
 //
-//  ShoutDetailTableViewDataSource.swift
+//  ShoutDetailImagesPageViewControllerDataSource.swift
 //  shoutit-iphone
 //
 //  Created by Łukasz Kasperek on 25.02.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
+class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
     
     let viewModel: ShoutDetailViewModel
     
@@ -16,6 +16,4 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         self.viewModel = viewModel
         super.init()
     }
-    
-    
 }
