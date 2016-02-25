@@ -110,7 +110,7 @@ extension ProfileCollectionViewController {
             
             cell.nameLabel.text = cellViewModel.profile.name
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
-            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: nil)
+            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage(named: "image_placeholder"))
             let listenButtonImage = cellViewModel.profile.listening == true ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
             
@@ -123,7 +123,7 @@ extension ProfileCollectionViewController {
             
             cell.titleLabel.text = cellViewModel.shout.title
             cell.subtitleLabel.text = cellViewModel.shout.text
-            cell.imageView.sh_setImageWithURL(cellViewModel.shout.image?.toURL(), placeholderImage: nil)
+            cell.imageView.sh_setImageWithURL(cellViewModel.shout.image?.toURL(), placeholderImage: UIImage.backgroundPattern())
             cell.priceLabel.text = cellViewModel.priceString()
             
             return cell
