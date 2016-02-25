@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -15,11 +15,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-8m-quI">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-8m-quI">
                         <rect key="frame" x="0.0" y="0.0" width="172" height="129"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ksa-8m-quI" secondAttribute="height" multiplier="4:3" id="ACz-RC-OXF"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ACz-RC-OXF"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-XU-Ie9">
                         <rect key="frame" x="5" y="134" width="31" height="15"/>
@@ -45,6 +50,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="AAC-NA-H9N" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" constant="5" id="0ra-j9-ssq"/>
+                <constraint firstAttribute="bottom" secondItem="Ksa-8m-quI" secondAttribute="bottom" constant="43" id="CfA-9u-u1W"/>
                 <constraint firstItem="Ksa-8m-quI" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="HCB-g4-dS6"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w8U-XU-Ie9" secondAttribute="trailing" constant="5" id="Kix-da-P1M"/>
                 <constraint firstAttribute="trailing" secondItem="gKZ-XP-tPO" secondAttribute="trailing" constant="5" id="a82-AP-TsY"/>

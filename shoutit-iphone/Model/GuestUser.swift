@@ -13,12 +13,9 @@ import Ogra
 
 struct GuestUser: User {
     
-    var isGuest: Bool {
-        return true
-    }
-    
     let id: String
     let type: UserType
+    let isGuest: Bool
     let apiPath: String
     let username: String
     let dateJoinedEpoch: Int
@@ -32,6 +29,7 @@ extension GuestUser: Decodable {
         let a = curry(GuestUser.init)
             <^> j <| "id"
             <*> j <| "type"
+            <*> j <| "is_guest"
             <*> j <| "api_url"
             <*> j <| "username"
         let b = a
@@ -49,7 +47,7 @@ extension GuestUser {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
-            "is_guest" : true.encode(),
+            "is_guest" : self.isGuest.encode(),
             "api_url" : self.apiPath.encode(),
             "username" : self.username.encode(),
             "date_joined" : self.dateJoinedEpoch.encode(),
