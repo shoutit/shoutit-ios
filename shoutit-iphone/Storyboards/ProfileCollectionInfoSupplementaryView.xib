@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10112" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-w3-aCX">
                     <rect key="frame" x="0.0" y="41" width="375" height="359"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="listening to you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwz-aW-TRC" customClass="CustomUILabel" customModule="Shoutit" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="listening to you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwz-aW-TRC" customClass="CustomUILabel" customModule="Shoutit" customModuleProvider="target">
                             <rect key="frame" x="159" y="21" width="87" height="14"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -248,11 +248,15 @@
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cuo-dK-FKK"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="leading" secondItem="zC2-Xl-F8D" secondAttribute="leading" id="Czh-CM-fst"/>
                 <constraint firstItem="ZEb-BV-DoV" firstAttribute="top" secondItem="uCi-xA-Th7" secondAttribute="bottom" id="FOO-Qw-QXh"/>
+                <constraint firstItem="KSx-YF-IBW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zC2-Xl-F8D" secondAttribute="trailing" id="IZV-b9-CwP"/>
+                <constraint firstItem="Mwz-aW-TRC" firstAttribute="leading" secondItem="Flv-lN-M3r" secondAttribute="trailing" constant="5" id="JsL-ZV-fBf"/>
                 <constraint firstAttribute="bottom" secondItem="KBs-Sg-PQz" secondAttribute="bottom" id="MUD-mg-wC3"/>
                 <constraint firstAttribute="trailing" secondItem="uCi-xA-Th7" secondAttribute="trailing" id="OtB-RY-rFQ"/>
                 <constraint firstItem="Aru-iZ-s4p" firstAttribute="top" secondItem="lmR-o2-TT5" secondAttribute="bottom" constant="10" id="PxN-cX-iDs"/>
                 <constraint firstItem="lmR-o2-TT5" firstAttribute="leading" secondItem="KSx-YF-IBW" secondAttribute="trailing" id="RLJ-kh-54M"/>
                 <constraint firstItem="wgK-Yu-UVt" firstAttribute="leading" secondItem="Oxb-00-Kfy" secondAttribute="trailing" id="Sn2-bv-Iee"/>
+                <constraint firstItem="KSx-YF-IBW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mwz-aW-TRC" secondAttribute="trailing" id="TBF-Td-3ZQ"/>
+                <constraint firstItem="KSx-YF-IBW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Flv-lN-M3r" secondAttribute="trailing" id="aDU-Ry-W6U"/>
                 <constraint firstItem="KBs-Sg-PQz" firstAttribute="top" secondItem="mgJ-Uw-tGD" secondAttribute="bottom" id="aqc-C6-m43"/>
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="top" secondItem="wgK-Yu-UVt" secondAttribute="bottom" id="cI1-KN-iEV"/>
                 <constraint firstAttribute="trailing" secondItem="mgJ-Uw-tGD" secondAttribute="trailing" id="dFr-gp-XjR"/>
@@ -265,6 +269,7 @@
                 <constraint firstAttribute="trailing" secondItem="EvR-w3-aCX" secondAttribute="trailing" id="omH-Ns-jol"/>
                 <constraint firstAttribute="bottom" secondItem="EvR-w3-aCX" secondAttribute="bottom" id="pp4-oX-qM2"/>
                 <constraint firstItem="Aru-iZ-s4p" firstAttribute="leading" secondItem="wgK-Yu-UVt" secondAttribute="trailing" id="tG5-NZ-z9V"/>
+                <constraint firstItem="Mwz-aW-TRC" firstAttribute="bottom" secondItem="Flv-lN-M3r" secondAttribute="bottom" id="tc1-ZN-fNm"/>
                 <constraint firstAttribute="trailing" secondItem="lmR-o2-TT5" secondAttribute="trailing" id="yOd-da-INC"/>
                 <constraint firstItem="Oxb-00-Kfy" firstAttribute="width" secondItem="wgK-Yu-UVt" secondAttribute="width" id="ycV-F0-BWE"/>
             </constraints>
