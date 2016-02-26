@@ -13,8 +13,6 @@ class DiscoverShoutsViewModel: HomeShoutsViewModel {
     
     let discoverItem : DiscoverItem
     
-    var currentPage : Int = 1
-    
     init(discoverItem: DiscoverItem) {
         self.discoverItem = discoverItem
     }
@@ -24,6 +22,11 @@ class DiscoverShoutsViewModel: HomeShoutsViewModel {
     }
     
     override func retriveShouts() -> Observable<[Shout]> {
-        return APIShoutsService.shouts(forDiscoverItem: self.discoverItem, page_size: 25, page: self.currentPage)
+        return APIShoutsService.shouts(forDiscoverItem: self.discoverItem, page_size: 20)
+    }
+    
+    override func loadMorePage(page: Int) -> Observable<[Shout]> {
+        print("loading page \(page)")
+        return APIShoutsService.shouts(forDiscoverItem: self.discoverItem, page_size: 20, page: self.currentPage)
     }
 }

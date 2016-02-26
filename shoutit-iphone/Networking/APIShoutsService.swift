@@ -33,7 +33,6 @@ class APIShoutsService {
                             let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                             
                             if let j = json, jr = j.objectForKey("results") {
-                                print(jr)
                                 if let results : Decoded<[Shout]> = decode(jr) {
                                     
                                     if let value = results.value {
@@ -67,7 +66,7 @@ class APIShoutsService {
             
             let params: [String: AnyObject] = ["page": page, "page_size": page_size]
             
-            APIManager.manager().request(.GET, shoutsURL + "?discover=\(discoverItem.id)", parameters:params, encoding: .URL, headers: ["Accept": "application/json"]).validate(statusCode: 200..<300).responseData { (response) in
+            let request = APIManager.manager().request(.GET, shoutsURL + "?discover=\(discoverItem.id)", parameters:params, encoding: .URL, headers: ["Accept": "application/json"]).validate(statusCode: 200..<300).responseData { (response) in
                 switch response.result {
                 case .Success(let data):
                     do {
@@ -75,8 +74,8 @@ class APIShoutsService {
                         let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                         
                         if let j = json, jr = j.objectForKey("results") {
-                            print(jr)
                             if let results : Decoded<[Shout]> = decode(jr) {
+                                print(jr)
                                 
                                 if let value = results.value {
                                     observer.on(.Next(value))
@@ -99,9 +98,14 @@ class APIShoutsService {
                 }
             }
             
+            debugPrint(request)
+            
             return AnonymousDisposable {
             }
+            
+            
         })
+        
     }
 
     static func shoutsForUserWithParams(params: UserShoutsParams) -> Observable<[Shout]> {

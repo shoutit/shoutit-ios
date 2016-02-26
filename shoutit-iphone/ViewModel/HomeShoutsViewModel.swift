@@ -17,10 +17,12 @@ class HomeShoutsViewModel: AnyObject {
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
     let disposeBag = DisposeBag()
-    var dataSubject : PublishSubject<[Shout]>?
+    var dataSubject : PublishSubject<[Shout]>? = PublishSubject()
     var loadNextPage : PublishSubject<Bool>? = PublishSubject()
     var loadedPages : [Int] = [1]
     var loadingPages : [Int] = []
+    
+    var currentPage : Int = 1
     
     init() {
         self.displayable.loadNextPage = self.loadNextPage
@@ -58,8 +60,14 @@ class HomeShoutsViewModel: AnyObject {
     }
     
     func loadMorePage(page: Int) -> Observable<[Shout]> {
-        // Override This method for load more
-        return Observable.empty()
+        let user = Account.sharedInstance.user
+        
+        if let user = user where user.isGuest == false {
+            return Observable.empty()
+        } else {
+            return APIShoutsService.shouts(forCountry: user?.location.country, page_size:  20, page: page)
+        }
+        
     }
     
     func tryToLoadNextPage() {
@@ -88,8 +96,11 @@ class HomeShoutsViewModel: AnyObject {
                 self?.loadingPages.removeAtIndex(index)
             }
             
+            self?.currentPage = page
+            
             self?.dataSubject?.onNext(newItems)
-        }.addDisposableTo(disposeBag)
+        }
+        .addDisposableTo(disposeBag)
     }
     
 }
