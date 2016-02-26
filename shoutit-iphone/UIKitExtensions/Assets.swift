@@ -86,7 +86,7 @@ extension UIImage {
     
     // MARK: - Placeholders
     
-    static func avatarPlaceholder() -> UIImage {
+    static func squareAvatarPlaceholder() -> UIImage {
         return UIImage(named: "profile")!
     }
     

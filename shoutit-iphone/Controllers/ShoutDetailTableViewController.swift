@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ShoutDetailTableViewControllerFlowDelegate: class {
+    
+}
+
 final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
@@ -16,11 +20,23 @@ final class ShoutDetailTableViewController: UITableViewController {
     // view model
     var viewModel: ShoutDetailViewModel!
     
+    // navigation
+    weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
+    
     // data sources
     private var dataSource: ShoutDetailTableViewDataSource!
     private var otherShoutsDataSource: ShoutDetailOtherShoutsCollectionViewDataSource!
     private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
-    private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource!
+    private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
+        didSet {
+            photosPageViewController.dataSource = imagesDataSource
+        }
+    }
+    
+    // children
+    private var photosPageViewController: UIPageViewController!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,38 +50,13 @@ final class ShoutDetailTableViewController: UITableViewController {
         // setup table view
         tableView.estimatedRowHeight = 40
     }
-}
-
-// MARK: - Cells
-
-extension ShoutDetailTableViewController {
     
-    enum Cell {
-        case SectionHeader
-        case Description
-        case KeyValue
-        case Regular
-        case Button
-        case OtherShouts
-        case RelatedShouts
-        
-        var reuseIdentifier: String {
-            switch self {
-            case .SectionHeader:
-                return "SectionHeader"
-            case .Description:
-                return "Description"
-            case .KeyValue:
-                return "KeyValue"
-            case .Regular:
-                return "Regular"
-            case .Button:
-                return "Button"
-            case .OtherShouts:
-                return "OtherShouts"
-            case .RelatedShouts:
-                return "RelatedShouts"
-            }
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let pageViewController = segue.destinationViewController as? UIPageViewController {
+            photosPageViewController = pageViewController
         }
     }
 }
+

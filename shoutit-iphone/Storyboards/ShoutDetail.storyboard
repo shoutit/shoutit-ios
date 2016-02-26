@@ -9,7 +9,7 @@
         <!--Shout Detail Table View Controller-->
         <scene sceneID="9Y9-zQ-BN6">
             <objects>
-                <tableViewController id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ShoutDetailTableViewController" id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dRc-Rn-XKo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,17 +73,18 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2c-Q6-8hK">
-                                            <rect key="frame" x="539" y="395" width="31" height="14"/>
+                                            <rect key="frame" x="539" y="449" width="31" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-en-aRa" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-en-aRa" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="419" width="560" height="44"/>
                                             <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="JyP-bl-utV"/>
                                             </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <inset key="imageEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Add to Cart" image="cart"/>
                                             <userDefinedRuntimeAttributes>
@@ -93,7 +94,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFV-cQ-2AI">
-                                            <rect key="frame" x="10" y="392" width="33" height="17"/>
+                                            <rect key="frame" x="10" y="446" width="33" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -101,8 +102,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="bMb-en-aRa" firstAttribute="top" secondItem="RFV-cQ-2AI" secondAttribute="bottom" constant="10" id="1uH-Rg-r6k"/>
                                         <constraint firstAttribute="bottom" secondItem="bMb-en-aRa" secondAttribute="bottom" constant="10" id="45r-sn-96R"/>
+                                        <constraint firstAttribute="bottom" secondItem="RFV-cQ-2AI" secondAttribute="bottom" constant="10" id="8ee-HH-Efr"/>
                                         <constraint firstAttribute="bottom" secondItem="3UM-EM-oSg" secondAttribute="bottom" constant="90" id="Dxe-SM-uWn"/>
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="top" secondItem="Vsg-dp-01X" secondAttribute="top" constant="5" id="Ezk-f9-29J"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="centerY" secondItem="GHt-NY-HdP" secondAttribute="centerY" id="GAK-2u-ZQk"/>
@@ -117,10 +118,10 @@
                                         <constraint firstItem="Gdc-UE-KK9" firstAttribute="top" secondItem="Vsg-dp-01X" secondAttribute="top" constant="50" id="YrH-7V-wyN"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ibG-bb-S7x" secondAttribute="trailing" constant="10" id="cR6-5j-EXa"/>
                                         <constraint firstAttribute="trailing" secondItem="tO4-jw-2Gj" secondAttribute="trailing" constant="10" id="dL7-6D-Gg2"/>
+                                        <constraint firstItem="X2c-Q6-8hK" firstAttribute="baseline" secondItem="RFV-cQ-2AI" secondAttribute="baseline" id="eZN-dv-kcR"/>
                                         <constraint firstItem="X2c-Q6-8hK" firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" id="fqL-ZJ-3ev"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3UM-EM-oSg" secondAttribute="trailing" constant="10" id="oeT-YW-Ckn"/>
                                         <constraint firstItem="3UM-EM-oSg" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="10" id="ovy-e8-idk"/>
-                                        <constraint firstItem="bMb-en-aRa" firstAttribute="top" secondItem="X2c-Q6-8hK" secondAttribute="bottom" constant="10" id="pgb-nC-2GD"/>
                                         <constraint firstItem="OF4-56-wbL" firstAttribute="top" secondItem="GHt-NY-HdP" secondAttribute="top" id="qLw-eV-zAj"/>
                                         <constraint firstItem="Gdc-UE-KK9" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" id="uOu-ej-NuL"/>
                                         <constraint firstItem="ibG-bb-S7x" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="trailing" constant="10" id="wlr-fl-fyG"/>

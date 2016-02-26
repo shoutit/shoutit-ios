@@ -11,6 +11,7 @@ import UIKit
 class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     let viewModel: ShoutDetailViewModel
+    private(set) var collectionView: IndexedCollectionView?
     
     init(viewModel: ShoutDetailViewModel) {
         self.viewModel = viewModel

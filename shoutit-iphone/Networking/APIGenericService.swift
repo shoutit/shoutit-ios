@@ -44,7 +44,7 @@ class APIGenericService {
                             }
                         }
                         guard let j = nestedJson else {
-                            assert(false)
+                            assert(false, ParseError.InvalidJson.message)
                             observer.onError(ParseError.InvalidJson)
                             return
                         }
@@ -108,6 +108,7 @@ class APIGenericService {
                     } else {
                         json = originalJson
                     }
+                    
                     let decoded: Decoded<[T]> = decode(json)
                     switch decoded {
                     case .Success(let objects):

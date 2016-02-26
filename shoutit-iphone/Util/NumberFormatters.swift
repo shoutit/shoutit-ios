@@ -36,7 +36,10 @@ class NumberFormatters {
     static func priceStringWithPrice(price: Int, currency: String) -> String {
         let major = price / 100
         let minor = price % 100
-        let minorString = String(format: "%\(02)d", minor)
-        return "\(major).\(minorString) \(currency)"
+        if minor > 0 {
+            let minorString = String(format: "%\(02)d", minor)
+            return "\(major).\(minorString) \(currency)"
+        }
+        return "\(major) \(currency)"
     }
 }

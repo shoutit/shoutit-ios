@@ -29,3 +29,4 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         fatalError()
     }
 }
+

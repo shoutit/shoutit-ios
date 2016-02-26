@@ -17,6 +17,7 @@ struct Wireframe {
         case Home = "Home"
         case Discover = "Discover"
         case Shout = "Shout"
+        case ShoutDetail = "ShoutDetail"
         case Chats = "Chats"
         case Profile = "Profile"
         case Settings = "Settings"
@@ -71,6 +72,12 @@ struct Wireframe {
     
     static func htmlViewController() -> HTMLViewController {
         return storyboard(.HTML).instantiateInitialViewController() as! HTMLViewController
+    }
+    
+    // MARK: - ShoutDetail storyboard view controllers
+    
+    static func shoutDetailTableViewController() -> ShoutDetailTableViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShoutDetailTableViewController") as! ShoutDetailTableViewController
     }
     
     // MARK: - Home storyboard view controllers

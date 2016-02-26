@@ -38,3 +38,5 @@ extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {
         }
     }
 }
+
+extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}

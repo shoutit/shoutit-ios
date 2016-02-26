@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable {
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {
     func performActionForButtonType(type: ProfileCollectionInfoButton) -> Void
 }
 
@@ -70,6 +70,25 @@ class ProfileCollectionViewController: UICollectionViewController {
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionInfoSupplementaryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.Info.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.Info.rawValue)
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionSectionHeaderSupplementaryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.SectionHeader.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.SectionHeader.rawValue)
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionFooterButtonSupplementeryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.FooterButton.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.FooterButton.rawValue)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension ProfileCollectionViewController {
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        switch indexPath.section {
+        case 0:
+            let page = viewModel.pagesSection.cells[indexPath.row].profile
+            flowDelegate?.showPage(page)
+        case 1:
+            let shout = viewModel.shoutsSection.cells[indexPath.row].shout
+            flowDelegate?.showShout(shout)
+        default:
+            assert(false)
+        }
     }
 }
 
@@ -198,7 +217,7 @@ extension ProfileCollectionViewController {
             
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
             
-            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.avatarPlaceholder())
+            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.squareAvatarPlaceholder())
             infoView.nameLabel.text = viewModel.name
             infoView.usernameLabel.text = viewModel.username
             if let isListening = viewModel.isListeningToYou where isListening {
