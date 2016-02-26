@@ -26,6 +26,9 @@
 		249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */; };
 		249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */; };
 		249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */; };
+		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
+		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
+		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
 		249FD6D21C7DA57400859851 /* DiscoverDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6D11C7DA57400859851 /* DiscoverDisplayable.swift */; };
 		249FD6D41C7DB1B600859851 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */; };
 		249FD6D61C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */; };
@@ -500,6 +503,9 @@
 		249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsViewModel.swift; path = Controllers/DiscoverShoutsViewModel.swift; sourceTree = "<group>"; };
 		249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsParentViewController.swift; path = Controllers/DiscoverShoutsParentViewController.swift; sourceTree = "<group>"; };
 		249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsFlowController.swift; path = FlowControl/DiscoverShoutsFlowController.swift; sourceTree = "<group>"; };
+		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
+		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
+		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
 		249FD6D11C7DA57400859851 /* DiscoverDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverDisplayable.swift; path = Layout/DiscoverDisplayable.swift; sourceTree = "<group>"; };
 		249FD6D31C7DB1B600859851 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverHeaderView.xib; path = View/DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		249FD6D51C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverShoutsHeaderView.xib; path = View/DiscoverShoutsHeaderView.xib; sourceTree = "<group>"; };
@@ -1109,6 +1115,15 @@
 			name = "Discover Shouts";
 			sourceTree = "<group>";
 		};
+		2499EA691C80937A0086DEA9 /* CreateShout */ = {
+			isa = PBXGroup;
+			children = (
+				2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */,
+				2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */,
+			);
+			name = CreateShout;
+			sourceTree = "<group>";
+		};
 		249FD6DB1C7DC37000859851 /* SupplementaryViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1281,6 +1296,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2499EA691C80937A0086DEA9 /* CreateShout */,
 				2493247E1C7EFB7900A1AB6A /* Discover Shouts */,
 				244FD9A01C7C79DF0048CC82 /* Discover */,
 				AEDE159C1C6E0DA1002D2AF7 /* HomeShouts */,
@@ -2330,6 +2346,7 @@
 				B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */,
 				249FD6D91C7DBE2700859851 /* ShadowView.swift */,
 				249FD6E01C7DDB5000859851 /* BorderedButton.swift */,
+				2499EA671C8079B50086DEA9 /* SelectButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3127,6 +3144,7 @@
 				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
+				2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */,
 				B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				B2E715591C6E0BD7007F95CF /* PagesCollectionViewCell.swift in Sources */,
@@ -3147,6 +3165,7 @@
 				60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */,
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				60D36D5A1BF78C8E00238D62 /* SHMedia.swift in Sources */,
+				2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */,
 				B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */,
 				249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */,
 				ACC064491C47526D0089912A /* SHLoginPopupViewModel.swift in Sources */,
@@ -3370,6 +3389,7 @@
 				249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */,
 				601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */,
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
+				2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */,
