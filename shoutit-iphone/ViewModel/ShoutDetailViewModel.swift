@@ -18,6 +18,8 @@ class ShoutDetailViewModel {
     }
     
     private(set) var cellModels: [ShoutDetailTableViewCellViewModel]
+    private(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = []
+    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = []
     
     init(shout: Shout) {
         self.shout = shout

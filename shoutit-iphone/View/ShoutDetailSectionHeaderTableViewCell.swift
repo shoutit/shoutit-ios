@@ -10,4 +10,5 @@ import UIKit
 
 class ShoutDetailSectionHeaderTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
 }

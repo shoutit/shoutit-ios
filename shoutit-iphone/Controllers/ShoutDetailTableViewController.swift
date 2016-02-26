@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol ShoutDetailTableViewControllerFlowDelegate: class {
     
@@ -20,11 +21,33 @@ final class ShoutDetailTableViewController: UITableViewController {
     // view model
     var viewModel: ShoutDetailViewModel!
     
+    // RX
+    let disposeBag = DisposeBag()
+    
     // navigation
     weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
     
     // data sources
-    private var dataSource: ShoutDetailTableViewDataSource!
+    private var dataSource: ShoutDetailTableViewDataSource! {
+        didSet {
+            tableView.dataSource = dataSource
+            
+            dataSource.otherShoutsCollectionViewSetSubject
+                .observeOn(MainScheduler.instance)
+                .subscribeNext{[weak self] (collectionView) in
+                    collectionView.delegate = self
+                }
+                .addDisposableTo(disposeBag)
+            
+            dataSource.relatedShoutsCollectionViewSetSubject
+                .observeOn(MainScheduler.instance)
+                .subscribeNext{[weak self] (collectionView) in
+                    collectionView.delegate = self
+                }
+                .addDisposableTo(disposeBag)
+            
+        }
+    }
     private var otherShoutsDataSource: ShoutDetailOtherShoutsCollectionViewDataSource!
     private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
     private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
@@ -51,12 +74,24 @@ final class ShoutDetailTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 40
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBarHidden = false
+    }
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let pageViewController = segue.destinationViewController as? UIPageViewController {
             photosPageViewController = pageViewController
         }
+    }
+}
+
+extension ShoutDetailTableViewController: UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
     }
 }
 

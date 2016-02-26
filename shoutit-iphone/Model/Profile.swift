@@ -18,8 +18,8 @@ struct Profile {
     let apiPath: String
     let webPath: String
     let username: String
-    let name: String?
-    let firstName: String?
+    let name: String
+    let firstName: String
     let lastName: String?
     let activated: Bool
     let imagePath: String?
@@ -38,8 +38,8 @@ extension Profile: Decodable {
             <*> j <| "web_url"
             <*> j <| "username"
         let b = a
-            <*> j <|? "name"
-            <*> j <|? "first_name"
+            <*> j <| "name"
+            <*> j <| "first_name"
             <*> j <|? "last_name"
             <*> j <| "is_activated"
         let c = b

@@ -10,6 +10,7 @@ import UIKit
 
 class ShoutDetailRelatedShoutsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    static let cellReuseIdentifier = "ShoutDetailRelatedShoutsCollectionViewCell"
     let viewModel: ShoutDetailViewModel
     
     init(viewModel: ShoutDetailViewModel) {
