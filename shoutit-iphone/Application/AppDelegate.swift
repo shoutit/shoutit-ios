@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        SHMixpanelHelper.closeApp()
+//        SHMixpanelHelper.closeApp()
     }
     
     // MARK: - Push notifications
@@ -91,11 +91,9 @@ extension AppDelegate {
             log.setup(.None, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #endif
         
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         SHAmazonAWS.configureS3()
-        SHMixpanelHelper.openApp()
-        
-        SHLocationManager.sharedInstance.startUpdating()
+//        SHMixpanelHelper.openApp()
         
         //UserVoice
         let config = UVConfig(site: "shoutit.uservoice.com")
@@ -105,10 +103,10 @@ extension AppDelegate {
         UserVoice.initialize(config)
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
         
-        SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
-            let userInfo = ["object": event]
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.kMessagePushNotification, object: nil, userInfo: userInfo)
-        }
+//        SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
+//            let userInfo = ["object": event]
+//            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.kMessagePushNotification, object: nil, userInfo: userInfo)
+//        }
     }
     
     func applyAppearance() {

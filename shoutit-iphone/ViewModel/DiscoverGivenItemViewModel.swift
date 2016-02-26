@@ -25,7 +25,7 @@ class DiscoverGivenItemViewModel: DiscoverViewModel {
             self?.items.on(.Next((mainItem, itms)))
             
             if let mainDiscover = mainItem {
-                APIShoutsService.shouts(forDiscoverItem: mainDiscover).subscribeNext({ [weak self] (shouts) -> Void in
+                APIShoutsService.shouts(forDiscoverItem: mainDiscover, page_size: 4, page: 4).subscribeNext({ [weak self] (shouts) -> Void in
                     self?.shouts.on(.Next(shouts))
                 }).addDisposableTo((self?.disposeBag)!)
             }

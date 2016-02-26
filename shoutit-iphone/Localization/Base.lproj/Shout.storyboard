@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Create Shout Scroll View Controller-->
@@ -34,10 +34,117 @@
             </objects>
             <point key="canvasLocation" x="-997.5" y="-81.338028169014081"/>
         </scene>
+        <!--Create Shout-->
+        <scene sceneID="YER-za-XS7">
+            <objects>
+                <tableViewController storyboardIdentifier="shCreateShoutTableViewController" id="vi7-2B-9jh" customClass="CreateShoutTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="mhQ-oV-r1G">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Rdk-TL-ayt">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="364"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add photos and videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kE2-fo-MaD">
+                                    <rect key="frame" x="212" y="22" width="176" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-2h-loU">
+                                    <rect key="frame" x="0.0" y="50" width="600" height="80"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="Vni-4r-A1o"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LJu-fT-snU">
+                                        <size key="itemSize" width="74" height="74"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <cells>
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PQn-o1-TjY">
+                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="c7S-ue-NA9">
+                                                        <rect key="frame" x="23" y="23" width="28" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="fzj-2F-MJD"/>
+                                                            <constraint firstAttribute="width" constant="28" id="gYf-il-6H7"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <color key="backgroundColor" red="0.78431372549019607" green="0.90196078431372551" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="c7S-ue-NA9" firstAttribute="centerX" secondItem="PQn-o1-TjY" secondAttribute="centerX" id="cSa-ZD-oSq"/>
+                                                <constraint firstItem="c7S-ue-NA9" firstAttribute="centerY" secondItem="PQn-o1-TjY" secondAttribute="centerY" id="rSL-ca-NsU"/>
+                                            </constraints>
+                                        </collectionViewCell>
+                                    </cells>
+                                </collectionView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji7-9Y-OEz" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="150.5" width="560" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="oFd-4D-hig"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Request">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="promptText" value="Type"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="changeTypeAction:" destination="vi7-2B-9jh" eventType="touchUpInside" id="ams-mA-TG8"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="ji7-9Y-OEz" firstAttribute="leading" secondItem="Rdk-TL-ayt" secondAttribute="leading" constant="20" id="3JK-BR-AEc"/>
+                                <constraint firstItem="kE2-fo-MaD" firstAttribute="centerX" secondItem="Rdk-TL-ayt" secondAttribute="centerX" id="8MB-CC-ctp"/>
+                                <constraint firstItem="kE2-fo-MaD" firstAttribute="top" secondItem="Rdk-TL-ayt" secondAttribute="top" constant="22" id="beU-bc-0yk"/>
+                                <constraint firstItem="Cjf-2h-loU" firstAttribute="top" secondItem="kE2-fo-MaD" secondAttribute="bottom" constant="8" id="giV-Ma-Ysf"/>
+                                <constraint firstAttribute="trailing" secondItem="Cjf-2h-loU" secondAttribute="trailing" id="lrx-9D-bfl"/>
+                                <constraint firstItem="Cjf-2h-loU" firstAttribute="leading" secondItem="Rdk-TL-ayt" secondAttribute="leading" id="mGd-mN-0cy"/>
+                                <constraint firstItem="ji7-9Y-OEz" firstAttribute="top" secondItem="Cjf-2h-loU" secondAttribute="bottom" constant="20" id="myJ-Bk-EDB"/>
+                                <constraint firstAttribute="trailing" secondItem="ji7-9Y-OEz" secondAttribute="trailing" constant="20" id="y9y-BP-vgp"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCell" id="3NB-Gg-FJh">
+                                <rect key="frame" x="0.0" y="392" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3NB-Gg-FJh" id="nHj-Xf-F24">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vi7-2B-9jh" id="FJR-ae-yOU"/>
+                            <outlet property="delegate" destination="vi7-2B-9jh" id="QnQ-m8-8XW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Create Shout" id="dlP-sh-64t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3e-hk-IXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-261" y="-635"/>
+        </scene>
         <!--New Shout-->
         <scene sceneID="b56-b9-tNH">
             <objects>
-                <tableViewController storyboardIdentifier="shCreateShoutTableViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Scb-dR-f27" customClass="SHCreateShoutTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Scb-dR-f27" customClass="SHCreateShoutTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KM1-EX-PqB">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -533,7 +640,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0o-qE-J0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="GpM-Uz-qG7"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="-97.183098591549282"/>
+            <point key="canvasLocation" x="242" y="-44"/>
         </scene>
         <!--Location Selection View Controller-->
         <scene sceneID="9oL-uQ-clQ">
@@ -784,6 +891,7 @@
         <image name="RemoveMedia" width="100" height="100"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="near_me.png" width="100" height="100"/>
+        <image name="photo_icon" width="30" height="27"/>
         <image name="tabShout" width="30" height="30"/>
     </resources>
 </document>

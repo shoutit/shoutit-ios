@@ -10,7 +10,6 @@ import UIKit
 
 class SHShoutItemCell: UICollectionViewCell {
     
-    private var viewModel: SHShoutItemCellViewModel?
     @IBOutlet weak var shoutImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var shoutTitle: UILabel!
@@ -61,6 +60,6 @@ extension SHShoutItemCell {
         if let imagePath = discoverItem.image, imageURL = NSURL(string: imagePath) {
             self.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         }
-
+        
     }
 }

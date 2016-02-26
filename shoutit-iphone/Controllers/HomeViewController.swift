@@ -92,9 +92,13 @@ class HomeViewController: UIViewController {
     
     func bindToCollectionOffset() {
         
-        homeShoutsController!.scrollOffset.asObservable().map({ [unowned self] (offset) -> CGFloat in
-            let newHeight : CGFloat = self.maxDiscoverHeight - (offset ?? CGPointZero).y
-            return max(min(self.maxDiscoverHeight, newHeight), 0)
+        homeShoutsController!.scrollOffset.asObservable().map({ [weak self] (offset) -> CGFloat in
+            if let welf = self {
+                let newHeight : CGFloat = welf.maxDiscoverHeight - (offset ?? CGPointZero).y
+                return max(min(welf.maxDiscoverHeight, newHeight), 0)
+            }
+            
+            return 0
         })
         .subscribeNext({ [weak self] (newHeight) -> Void in
             self?.layoutDiscoverSectionWith(newHeight)

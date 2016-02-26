@@ -24,7 +24,7 @@ extension Suggestable {
 extension Profile: Suggestable {
     
     var suggestionTitle: String {
-        return self.name!
+        return self.name
     }
     var suggestionId: String {
         return self.username

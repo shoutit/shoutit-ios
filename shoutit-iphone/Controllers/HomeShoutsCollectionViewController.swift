@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    let viewModel = HomeShoutsViewModel()
+    var viewModel = HomeShoutsViewModel()
     let scrollOffset = Variable(CGPointZero)
     let disposeBag = DisposeBag()
     let selectionDisposeBag = DisposeBag()
@@ -105,16 +105,29 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             combined
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
-                    return (self?.viewModel.retriveHomeShouts())!
+                    return (self?.viewModel.retriveShouts())!
                     })
                 .subscribeNext({ [weak self] (shouts) -> Void in
-                        self?.items = shouts
-                        self?.collectionView?.reloadData()
-                        })
+                    self?.items = shouts
+                    self?.collectionView?.reloadData()
+                })
                 .addDisposableTo(disposeBag)
             
             collection.emptyDataSetDelegate = self
             collection.emptyDataSetSource = self
         }
+        
+        viewModel.dataSubject?.subscribeNext({ [weak self] (shouts) -> Void in
+            
+            shouts.each({ (shout) -> () in
+                self?.items.append(shout)
+            })
+            
+            if let itms = self?.items {
+                self?.items = itms.unique()
+            }
+            
+            self?.collectionView?.reloadData()
+        }).addDisposableTo(disposeBag)
     }
 }
