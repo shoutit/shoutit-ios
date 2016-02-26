@@ -12,45 +12,65 @@ import Curry
 
 struct Shout: Decodable {
     
+    // MARK: Basic fields
     let id: String
     let apiPath: String
     let webPath: String
-    let image: String?
+    let typeString: String
+    let location: Address?
     let title: String
-    
     let text: String
     let price: Int
     let currency: String
     let thumbnailPath: String?
-    let category: Category
-    
-    let location: Address?
-    let user: Profile
     let videoPath: String?
-    let typeString: String
-    let publishedAt: Int?
+    let user: Profile
+    let publishedAtEpoch: Int?
+    let category: Category
+    let tags: [Tag]?
+    let filters: [Filter]?
+    
+    // MARK: - Detail fields
+    let imagePaths: [String]?
+    let videos: [Video]?
+    let publishedOn: String?
+    let replyPath: String?
+    let relatedRequests: [Shout]?
+    let relatedOffers: [Shout]?
+    let conversations: String?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
             <^> j <| "id"
             <*> j <| "api_url"
             <*> j <| "web_url"
-            <*> j <|? "image"
-            <*> j <| "title"
+            <*> j <| "type"
+            <*> j <|? "location"
         let b = a
+            <*> j <| "title"
             <*> j <| "text"
             <*> j <| "price"
             <*> j <| "currency"
-            <*> j <|? "thumbnail"
-            <*> j <| "category"
         let c = b
-            <*> j <|? "location"
-            <*> j <| "user"
+            <*> j <|? "thumbnail"
             <*> j <|? "video_url"
-            <*> j <| "type"
+            <*> j <| "user"
             <*> j <|? "date_published"
+        let d = c
+            <*> j <| "category"
+            <*> j <||? "tags"
+            <*> j <||? "filters"
+        let e = d
+            <*> j <||? "images"
+            <*> j <||? "videos"
+            <*> j <|? "published_on"
+            <*> j <|? "reply_url"
+        let f = e
+            <*> j <||? "related_requests"
+            <*> j <||? "related_offers"
+            <*> j <|? "conversations"
         
-        return c
+        return f
     }
     
     func type() -> ShoutType? {

@@ -17,5 +17,15 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         super.init()
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        fatalError()
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        fatalError()
+    }
 }

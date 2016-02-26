@@ -103,59 +103,21 @@ class APIShoutsService {
             }
         })
     }
-
+    
     static func shoutsForUserWithParams(params: UserShoutsParams) -> Observable<[Shout]> {
-        
-        return Observable.create{ (observer) -> Disposable in
-            
-            APIManager.manager()
-                .request(.GET, shoutsURL, parameters: params.params, encoding: .URL, headers: ["Accept": "application/json"])
-                .validate(statusCode: 200..<300)
-                .responseData({ (response) in
-                    
-                    switch response.result {
-                    case .Success(let data):
-                        
-                        do {
-                            
-                            let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                            
-                            if let j = json, jr = j.objectForKey("results") {
-                                if let results : Decoded<[Shout]> = decode(jr) {
-                                    
-                                    if let value = results.value {
-                                        observer.on(.Next(value))
-                                        observer.on(.Completed)
-                                    }
-                                    if let err = results.error {
-                                        print(err)
-                                    }
-                                }
-                            }
-                        } catch let error as NSError {
-                            print(error)
-                            observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                        }
-                    case .Failure(let error):
-                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                    }
-                })
-            
-            return NopDisposable.instance
-        }
+        return APIGenericService.requestWithMethod(.GET,
+                                                   url: shoutsURL,
+                                                   params: params,
+                                                   encoding: .URL,
+                                                   responseJsonPath: ["results"],
+                                                   headers: ["Accept": "application/json"])
     }
     
     static func retrieveShoutWithId(id: String) -> Observable<Shout> {
-        
-        return Observable.create {(observer) -> Disposable in
-            
-            let request = APIManager.manager().request(.GET, <#T##URLString: URLStringConvertible##URLStringConvertible#>, parameters: <#T##[String : AnyObject]?#>, encoding: <#T##ParameterEncoding#>, headers: <#T##[String : String]?#>)
-            
-            let cancel = AnonymousDisposable {
-                
-            }
-            
-            return NopDisposable.instance
-        }
+        let url = shoutsURL + "/\(id)"
+        return APIGenericService.requestWithMethod(.GET,
+                                                   url: url,
+                                                   params: NopParams())
     }
+
 }

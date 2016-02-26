@@ -16,4 +16,16 @@ class ShoutDetailRelatedShoutsCollectionViewDataSource: NSObject, UICollectionVi
         self.viewModel = viewModel
         super.init()
     }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        fatalError()
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        fatalError()
+    }
 }

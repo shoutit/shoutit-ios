@@ -11,3 +11,14 @@ import Foundation
 protocol Params {
     var params: [String : AnyObject] {get}
 }
+
+struct NopParams: Params {
+    
+    init?() {
+        return nil
+    }
+    
+    var params: [String : AnyObject] {
+        return [:]
+    }
+}

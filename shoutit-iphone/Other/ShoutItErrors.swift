@@ -13,15 +13,19 @@ protocol ShoutitError: ErrorType {
 }
 
 enum ParseError: ShoutitError {
+    case InvalidJson
     case AuthData
     case Categories
     case Suggestions
     case User
     case Success
+    case Shouts
     
     var message: String {
         assert(false)
         switch self {
+        case .InvalidJson:
+            return NSLocalizedString("Could not get your data", comment: "")
         case .AuthData:
             return NSLocalizedString("Could not authorize", comment: "")
         case .Categories:
@@ -30,6 +34,8 @@ enum ParseError: ShoutitError {
             return NSLocalizedString("Could not load suggestions", comment: "")
         case .User:
             return NSLocalizedString("Could not get user.", comment: "")
+        case .Shouts:
+            return NSLocalizedString("Could not get shouts.", comment: "")
         case .Success:
             return ""
         }

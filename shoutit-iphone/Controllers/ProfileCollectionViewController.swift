@@ -123,7 +123,7 @@ extension ProfileCollectionViewController {
             
             cell.titleLabel.text = cellViewModel.shout.title
             cell.subtitleLabel.text = cellViewModel.shout.text
-            cell.imageView.sh_setImageWithURL(cellViewModel.shout.image?.toURL(), placeholderImage: UIImage.backgroundPattern())
+            cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.backgroundPattern())
             cell.priceLabel.text = cellViewModel.priceString()
             
             return cell

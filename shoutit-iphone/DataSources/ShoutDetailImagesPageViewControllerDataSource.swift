@@ -16,4 +16,12 @@ class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControl
         self.viewModel = viewModel
         super.init()
     }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        fatalError()
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        fatalError()
+    }
 }
