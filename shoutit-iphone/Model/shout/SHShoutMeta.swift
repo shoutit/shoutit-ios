@@ -13,7 +13,7 @@ class SHShoutMeta: Mappable {
     
     private(set) var next = String()
     private(set) var previous = String()
-    var results = [SHShout]()
+//    var results = [SHShout]()
     
     required init?(_ map: Map) {
         
@@ -23,6 +23,6 @@ class SHShoutMeta: Mappable {
     func mapping(map: Map) {
         next               <- map["next"]
         previous           <- map["previous"]
-        results            <- map["results"]
+//        results            <- map["results"]
     }
 }

@@ -47,15 +47,15 @@ class SHMixpanelHelper: NSObject {
     private static func trackApp(isAppOpening: Bool) -> Bool {
         let eventName = isAppOpening ? "app_open" : "app_leave"
         let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-        if let oauthToken = SHOauthToken.getFromCache(),
-            let accessToken = oauthToken.accessToken where accessToken.characters.count > 0,
-            let user = oauthToken.user {
-                mixpanel.identify(user.id)
-                mixpanel.track(eventName, properties: ["signed_user": true])
-                return true
-        } else {
-            mixpanel.track(eventName, properties: ["signed_user": false])
-        }
+//        if let oauthToken = SHOauthToken.getFromCache(),
+//            let accessToken = oauthToken.accessToken where accessToken.characters.count > 0,
+//            let user = oauthToken.user {
+//                mixpanel.identify(user.id)
+//                mixpanel.track(eventName, properties: ["signed_user": true])
+//                return true
+//        } else {
+//            mixpanel.track(eventName, properties: ["signed_user": false])
+//        }
         return false
     }
 }

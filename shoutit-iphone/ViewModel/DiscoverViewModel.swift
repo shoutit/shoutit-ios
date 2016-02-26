@@ -93,4 +93,35 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
             return []
         }
     }
+    
+    func headerSize(collectionView: UICollectionView, section: Int) -> CGSize {
+        if section == 1 {
+            return self.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSizeZero
+        }
+        
+        return CGSize(width: collectionView.bounds.width - 20.0, height: 140.0)
+    }
+    
+    func footerSize(collectionView: UICollectionView, section: Int) -> CGSize {
+        if section == 1 && self.shoutsItems().count > 0 {
+            return CGSize(width: collectionView.bounds.width - 20.0, height: 54.0)
+        }
+        
+        return CGSizeZero
+    }
+    
+    func itemSize(indexPath: NSIndexPath, collectionView: UICollectionView) -> CGSize {
+        return self.displayable.sizeForItem(AtIndexPath: indexPath, collectionView: collectionView)
+    }
+    
+    func minimumInteritemSpacingForSection(section: Int) -> CGFloat {
+        return self.displayable.minimumInterItemSpacingSize().width
+    }
+    
+    func insetsForSection(section: Int) -> UIEdgeInsets {
+        let interItemSpacing = self.displayable.minimumInterItemSpacingSize()
+        
+        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, interItemSpacing.height, interItemSpacing.width)
+    }
+    
 }
