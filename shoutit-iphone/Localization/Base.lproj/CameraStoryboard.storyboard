@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hZQ-9o-tYc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hZQ-9o-tYc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--ShoutIT-->
         <scene sceneID="bIL-p2-QCQ">
             <objects>
-                <viewController storyboardIdentifier="SHCameraViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0Z-EN-A1D" customClass="SHCameraViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHCameraViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0Z-EN-A1D" customClass="SHCameraViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1fp-NW-mf8"/>
                         <viewControllerLayoutGuide type="bottom" id="t9C-Mu-uZc"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ahz-bA-XCh" customClass="SHCameraPreviewView" customModule="shoutit_iphone" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ahz-bA-XCh" customClass="SHCameraPreviewView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaW-tw-s3x">
@@ -181,7 +181,7 @@
         <!--PhotoPreview-->
         <scene sceneID="BjR-va-xVu">
             <objects>
-                <viewController storyboardIdentifier="SHPhotoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="PhotoPreview" modalTransitionStyle="partialCurl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wW7-p1-emq" customClass="SHPhotoPreviewViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHPhotoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="PhotoPreview" modalTransitionStyle="partialCurl" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wW7-p1-emq" customClass="SHPhotoPreviewViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w6E-R2-8ow"/>
                         <viewControllerLayoutGuide type="bottom" id="hz9-Ek-6nW"/>
@@ -248,7 +248,7 @@
         <!--VideoPreview-->
         <scene sceneID="Sce-Zk-MRa">
             <objects>
-                <viewController storyboardIdentifier="SHVideoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="VideoPreview" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="07x-bq-AvW" customClass="SHVideoPreviewViewController" customModule="shoutit_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHVideoPreviewViewController" autoresizesArchivedViewToFullSize="NO" title="VideoPreview" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="07x-bq-AvW" customClass="SHVideoPreviewViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t8H-Df-bjL"/>
                         <viewControllerLayoutGuide type="bottom" id="g76-WK-WZs"/>

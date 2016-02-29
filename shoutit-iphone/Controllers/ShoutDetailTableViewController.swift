@@ -98,7 +98,7 @@ final class ShoutDetailTableViewController: UITableViewController {
         headerView.authorNameLabel.text = viewModel.shout.user.name
         headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.locationLabel.text = viewModel.locationString()
-        headerView.shoutTypeLabel.text = viewModel.shout.type()?.displayString
+        headerView.shoutTypeLabel.text = viewModel.shout.type()?.title()
         headerView.titleLabel.text = viewModel.shout.title
         headerView.priceLabel.text = viewModel.priceString()
         headerView.availabilityLabel.text = ""

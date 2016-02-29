@@ -94,14 +94,11 @@ enum ShoutType : String {
     case Request = "request"
     case VideoCV = "cv-video"
     
-    var displayString: String {
+    func title() -> String {
         switch self {
-        case .Offer:
-            return NSLocalizedString("Offer", comment: "Shout type")
-        case .Request:
-            return NSLocalizedString("Request", comment: "Shout type")
-        case .VideoCV:
-            return NSLocalizedString("Video CV", comment: "Shout type")
+        case .Offer: return NSLocalizedString("Shout", comment: "")
+        case .Request: return NSLocalizedString("Request", comment: "")
+        default: return ""
         }
     }
 }
