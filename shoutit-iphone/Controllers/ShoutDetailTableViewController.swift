@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable {
     
 }
 
@@ -19,7 +19,13 @@ final class ShoutDetailTableViewController: UITableViewController {
     @IBOutlet weak var headerView: ShoutDetailTableHeaderView!
     
     // view model
-    var viewModel: ShoutDetailViewModel!
+    var viewModel: ShoutDetailViewModel! {
+        didSet {
+            viewModel.reloadSubject.debounce(0.5, scheduler: MainScheduler.instance).subscribeNext {[weak self] in
+                self?.tableView.reloadData()
+            }.addDisposableTo(disposeBag)
+        }
+    }
     
     // RX
     let disposeBag = DisposeBag()
@@ -35,6 +41,7 @@ final class ShoutDetailTableViewController: UITableViewController {
             dataSource.otherShoutsCollectionViewSetSubject
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[weak self] (collectionView) in
+                    collectionView.dataSource = self?.otherShoutsDataSource
                     collectionView.delegate = self
                 }
                 .addDisposableTo(disposeBag)
@@ -42,6 +49,7 @@ final class ShoutDetailTableViewController: UITableViewController {
             dataSource.relatedShoutsCollectionViewSetSubject
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[weak self] (collectionView) in
+                    collectionView.dataSource = self?.relatedShoutsDataSource
                     collectionView.delegate = self
                 }
                 .addDisposableTo(disposeBag)
@@ -72,11 +80,27 @@ final class ShoutDetailTableViewController: UITableViewController {
         
         // setup table view
         tableView.estimatedRowHeight = 40
+        
+        // display data
+        hydrateHeader()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = false
+        viewModel.reloadShoutDetails()
+    }
+    
+    // MARK: - Setup
+    
+    private func hydrateHeader() {
+        headerView.authorNameLabel.text = viewModel.shout.user.name
+        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.locationLabel.text = viewModel.locationString()
+        headerView.shoutTypeLabel.text = viewModel.shout.type()?.displayString
+        headerView.titleLabel.text = viewModel.shout.title
+        headerView.priceLabel.text = viewModel.priceString()
+        headerView.availabilityLabel.text = ""
     }
     
     // MARK: - Navigation
@@ -92,6 +116,38 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        guard let index = (collectionView as? IndexedCollectionView)?.index else {
+            assert(false)
+            return
+        }
+        
+        let cellViewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
+        
+        guard case .Content(let shout) = cellViewModels[indexPath.row] else {
+            return
+        }
+        
+        flowDelegate?.showShout(shout)
+    }
+}
+
+extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        guard let index = (collectionView as? IndexedCollectionView)?.index else {
+            assert(false)
+            return (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+        }
+        
+        let viewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
+        if let first = viewModels.first, case ShoutDetailShoutCellViewModel.Content = first {
+            return (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+        }
+        
+        return collectionView.bounds.size
     }
 }
 

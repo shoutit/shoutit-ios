@@ -11,8 +11,8 @@ import Foundation
 enum ShoutDetailTableViewCellViewModel {
     case SectionHeader(title: String)
     case Description(description: String)
-    case KeyValue(key: String, value: String)
-    case Regular(title: String)
+    case KeyValue(rowInSection: Int, key: String, value: String)
+    case Regular(rowInSection: Int, title: String)
     case Button(title: String, type: ShoutDetailTableViewCellButtonType)
     case OtherShouts
     case RelatedShouts

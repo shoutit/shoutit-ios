@@ -123,5 +123,14 @@ class APIShoutsService {
                                                    url: url,
                                                    params: NopParams())
     }
+    
+    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
+        let url = shoutsURL + "/\(params.shout.id)/related"
+        return APIGenericService.requestWithMethod(.GET, url: url,
+                                                   params: params,
+                                                   encoding: .URL,
+                                                   responseJsonPath: ["results"],
+                                                   headers: ["Accept": "application/json"])
+    }
 
 }

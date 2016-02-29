@@ -18,7 +18,7 @@ struct UserShoutsParams: Params {
         return [
             "username" : username,
             "page_size" : pageSize,
-            "shout_type" :  (shoutType != nil) ? shoutType!.rawValue : "all"
+            "shout_type" : shoutType?.rawValue ?? "all"
         ]
     }
 }

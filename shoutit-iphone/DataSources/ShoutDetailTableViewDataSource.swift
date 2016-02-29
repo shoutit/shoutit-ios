@@ -59,13 +59,15 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             let descriptionCell = cell as! ShoutDetailDescriptionTableViewCell
             descriptionCell.descriptionLabel.text = description
             
-        case .KeyValue(let key, let value):
+        case .KeyValue(let row, let key, let value):
             let keyValueCell = cell as! ShoutDetailKeyValueTableViewCell
+            keyValueCell.setBackgroundForRow(row)
             keyValueCell.keyLabel.text = key
             keyValueCell.valueLabel.text = value
             
-        case .Regular(let title):
+        case .Regular(let row, let title):
             let regularCell = cell as! ShoutDetailRegularTableViewCell
+            regularCell.setBackgroundForRow(row)
             regularCell.titleLabel.text = title
             
         case .Button(let title, _):
@@ -75,19 +77,20 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         case .OtherShouts:
             let otherShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             otherShoutsCollectionView = otherShoutsCell.collectionView
-            otherShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailOtherShoutsCollectionViewDataSource.cellReuseIdentifier)
+            
+            otherShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
+            otherShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
             
         case .RelatedShouts:
             let relatedShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             relatedShoutsCollectionView = relatedShoutsCell.collectionView
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailRelatedShoutsCollectionViewDataSource.cellReuseIdentifier)
+            
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "SeeAllCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier)
         }
         
         return cell
     }
-    
-    // MARK: - Helpers
-    
-    
 }
 

@@ -8,19 +8,62 @@
 
 import UIKit
 
-struct ShoutDetailShoutCellViewModel {
+enum ShoutDetailShoutCellViewModel {
     
-    let shout: Shout
+    case Content(shout: Shout)
+    case NoContent(message: String)
+    case Loading
+    case Error(error: ErrorType)
+    case SeeAll
     
-    var title: String {
+    static var placeholderCellReuseIdentifier: String {
+        return "PlaceholderCellReuseIdentifier"
+    }
+    
+    static var contentCellReuseIdentifier: String {
+        return "ContentCellReuseIdentifier"
+    }
+    
+    static var seeAllCellReuseIdentifier: String {
+        return "SeeAllCellReuseIdentifier"
+    }
+    
+    var cellReuseIdentifier: String {
+        switch self {
+        case .Error, .NoContent, .Loading:
+            return ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier
+        case .Content:
+            return ShoutDetailShoutCellViewModel.contentCellReuseIdentifier
+        case .SeeAll:
+            return ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier
+        }
+    }
+    
+    var title: String? {
+        guard case .Content(let shout) = self else {
+            return nil
+        }
         return shout.title
     }
     
-    var authorName: String {
+    var authorName: String? {
+        guard case .Content(let shout) = self else {
+            return nil
+        }
         return shout.user.name
     }
     
-    var priceString: String {
+    var priceString: String? {
+        guard case .Content(let shout) = self else {
+            return nil
+        }
         return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+    }
+    
+    var errorMessage: String? {
+        guard case .Error(let error) = self else {
+            return nil
+        }
+        return error.sh_message
     }
 }

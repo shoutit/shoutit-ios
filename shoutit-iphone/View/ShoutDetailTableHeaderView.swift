@@ -11,6 +11,7 @@ import UIKit
 class ShoutDetailTableHeaderView: UIView {
     
     @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var authorProfileImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var shoutTypeLabel: UILabel!
     @IBOutlet weak var pageViewControllerContainer: UIView!

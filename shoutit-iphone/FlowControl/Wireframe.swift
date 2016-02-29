@@ -80,6 +80,10 @@ struct Wireframe {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShoutDetailTableViewController") as! ShoutDetailTableViewController
     }
     
+    static func photoBrowserPhotoViewController() -> PhotoBrowserPhotoViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
+    }
+    
     // MARK: - Home storyboard view controllers
 
     static func homeViewController() -> UIViewController {

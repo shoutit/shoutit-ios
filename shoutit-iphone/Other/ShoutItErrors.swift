@@ -8,6 +8,15 @@
 
 import Foundation
 
+extension ErrorType {
+    var sh_message: String {
+        if let e = self as? ShoutitError {
+            return e.message
+        }
+        return (self as NSError).localizedDescription
+    }
+}
+
 protocol ShoutitError: ErrorType {
     var message: String {get}
 }
