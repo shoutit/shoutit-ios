@@ -23,6 +23,7 @@ final class ShoutDetailTableViewController: UITableViewController {
         didSet {
             viewModel.reloadSubject.debounce(0.5, scheduler: MainScheduler.instance).subscribeNext {[weak self] in
                 self?.tableView.reloadData()
+                self?.photosPageViewController.setViewControllers(self?.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
             }.addDisposableTo(disposeBag)
         }
     }
@@ -60,7 +61,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
     private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
         didSet {
-            photosPageViewController.dataSource = imagesDataSource
+            //photosPageViewController.dataSource = imagesDataSource
         }
     }
     
@@ -147,7 +148,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
             return (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
         }
         
-        return collectionView.bounds.size
+        return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height)
     }
 }
 

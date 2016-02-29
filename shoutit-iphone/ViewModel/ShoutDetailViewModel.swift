@@ -43,8 +43,17 @@ final class ShoutDetailViewModel {
                 switch event {
                 case .Next(let shout):
                     self?.shout = shout
-                    if let sSelf = self where shout.imagePaths == nil || shout.imagePaths?.count == 0 {
-                        sSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: sSelf.noImagesMessage)]
+                    guard let strongSelf = self, let imagePaths = shout.imagePaths else { return }
+                    if imagePaths.count == 0 {
+                        strongSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: strongSelf.noImagesMessage)]
+                    } else {
+                        strongSelf.imagesViewModels = imagePaths.flatMap{path in
+                            if let url = path.toURL() {
+                                return ShoutDetailShoutImageViewModel.Image(url: url)
+                            } else {
+                                return nil
+                            }
+                        }
                     }
                 case .Error(let error):
                     if let sSelf = self {

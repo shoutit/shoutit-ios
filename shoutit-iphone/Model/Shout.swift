@@ -33,11 +33,11 @@ struct Shout: Decodable, Hashable, Equatable {
     // MARK: - Detail fields
     let imagePaths: [String]?
     let videos: [Video]?
-    let publishedOn: String?
+    //let publishedOn: String?
     let replyPath: String?
     let relatedRequests: [Shout]?
     let relatedOffers: [Shout]?
-    let conversations: String?
+    //let conversations: String?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -63,12 +63,12 @@ struct Shout: Decodable, Hashable, Equatable {
         let e = d
             <*> j <||? "images"
             <*> j <||? "videos"
-            <*> j <|? "published_on"
+            //<*> j <|? "published_on"
             <*> j <|? "reply_url"
         let f = e
             <*> j <||? "related_requests"
             <*> j <||? "related_offers"
-            <*> j <|? "conversations"
+            //<*> j <|? "conversations"
         
         return f
     }
