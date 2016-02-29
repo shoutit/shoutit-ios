@@ -16,6 +16,7 @@ struct Category {
     let image: String?
     let slug: String
     let mainTag: Tag
+    let filters: [Filter]?
 }
 
 extension Category: Decodable {
@@ -27,6 +28,8 @@ extension Category: Decodable {
             <*> j <|? "image"
             <*> j <| "slug"
             <*> j <| "main_tag"
+            <*> j <||? "filters"
+        
     }
 }
 

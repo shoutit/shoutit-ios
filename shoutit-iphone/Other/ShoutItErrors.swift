@@ -15,6 +15,7 @@ protocol ShoutitError: ErrorType {
 enum ParseError: ShoutitError {
     case AuthData
     case Categories
+    case Currency
     case Suggestions
     case User
     case Success
@@ -28,6 +29,8 @@ enum ParseError: ShoutitError {
             return NSLocalizedString("Could not load categories", comment: "")
         case .Suggestions:
             return NSLocalizedString("Could not load suggestions", comment: "")
+        case .Currency:
+            return NSLocalizedString("Could not load currencies", comment: "")
         case .User:
             return NSLocalizedString("Could not get user.", comment: "")
         case .Success:
