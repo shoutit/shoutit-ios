@@ -15,6 +15,15 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     
+    private var detailedUser: DetailedProfile?
+    
+    var user: ProfileCollectionUser? {
+        return detailedUser ?? Account.sharedInstance.user as? LoggedUser
+    }
+    
+    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
+    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>
+    
     init() {
         shoutsSection = ProfileCollectionViewModel.shoutsSectionWithModels([])
         let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
@@ -31,9 +40,13 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func reloadContent() {
         
-        // reload pages
-        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
-        pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
+        // reload user
+        fetchUser()?
+            .subscribeNext {[weak self] (detailedProfile) in
+                self?.detailedUser = detailedProfile
+                self?.reloadSubject.onNext(())
+            }
+            .addDisposableTo(disposeBag)
         
         // reload shouts
         fetchShouts()?
@@ -52,17 +65,12 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    var user: LoggedUser? {
-        return Account.sharedInstance.user as? LoggedUser
+    private func reloadPages() {
+        let pages = user?.pages ?? []
+        pagesSection = ProfileCollectionViewModel.pagesSectionWithModels(pages)
     }
-    
-    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>
-    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>
     
     // MARK: - ProfileCollectionViewModelInterface
-    var configuration: ProfileCollectionViewConfiguration {
-        return .MyProfile
-    }
     
     // user data
     var name: String? {
@@ -91,7 +99,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             return []
         }
 
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount!)
+        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
         
         var listeningCountString = ""
         var interestsCountString = ""
@@ -113,16 +121,16 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var dateJoinedString: String? {
-        guard let user = user else {return nil}
-        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(user.dateJoinedEpoch)
+        guard let user = user, let epoch = user.dateJoinedEpoch_optional else {return nil}
+        return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(epoch)
     }
     
     var locationString: String? {
-        return user?.location.city
+        return user?.location_optional?.city
     }
     
     var locationFlag: UIImage? {
-        return UIImage(named: (user?.location.country ?? "country_placeholder"))
+        return UIImage(named: (user?.location_optional?.country ?? "country_placeholder"))
     }
     
     func hasContentToDisplayInSection(section: Int) -> Bool {
@@ -141,6 +149,11 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         guard let user = user else {return nil}
         let params = UserShoutsParams(username: user.username, pageSize: 4, shoutType: nil)
         return APIShoutsService.shoutsForUserWithParams(params)
+    }
+    
+    func fetchUser() -> Observable<DetailedProfile>? {
+        guard let user = user else {return nil}
+        return APIUsersService.retrieveUserWithUsername(user.username)
     }
     
     // MARK: - Helpers

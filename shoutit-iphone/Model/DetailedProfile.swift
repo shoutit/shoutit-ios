@@ -18,7 +18,7 @@ struct DetailedProfile {
     let apiPath: String
     let webPath: String
     let username: String
-    let name: String?
+    let name: String
     let firstName: String?
     let lastName: String?
     let activated: Bool
@@ -28,8 +28,8 @@ struct DetailedProfile {
     let listenersCount: Int
     let gender: Gender?
     let videoPath: Video?
-    let dateJoindedEpoch: Int
-    let bio: String?
+    let dateJoinedEpoch: Int
+    let bio: String
     let location: Address
     let email: String
     let website: String?
@@ -39,7 +39,7 @@ struct DetailedProfile {
     let isListener: Bool?
     let shoutsPath: String?
     let listenersPath: String
-    let listeningMetadata: ListenersMetadata
+    let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
     let owner: Bool
     let messagePath: String?
@@ -57,7 +57,7 @@ extension DetailedProfile: Decodable {
             <*> j <| "web_url"
             <*> j <| "username"
         let b = a
-            <*> j <|? "name"
+            <*> j <| "name"
             <*> j <|? "first_name"
             <*> j <|? "last_name"
             <*> j <| "is_activated"
@@ -70,7 +70,7 @@ extension DetailedProfile: Decodable {
             <*> j <|? "video"
         let d = c
             <*> j <| "date_joined"
-            <*> j <|? "bio"
+            <*> j <| "bio"
             <*> j <| "location"
             <*> j <| "email"
         let e = d
@@ -82,7 +82,7 @@ extension DetailedProfile: Decodable {
             <*> j <|? "shouts_url"
             <*> j <| "listeners_url"
         let f = e
-            <*> j <| "listening_count"
+            <*> j <|? "listening_count"
             <*> j <|? "listening_url"
             <*> j <| "is_owner"
             <*> j <|? "message_url"

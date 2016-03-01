@@ -9,16 +9,7 @@
 import UIKit
 import RxSwift
 
-enum ProfileCollectionViewConfiguration {
-    case MyProfile
-    //case Profile
-    //case Page
-    //case Tag
-}
-
 protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayoutDelegate, ProfileCollectionInfoSupplementaryViewDataSource {
-    
-    var configuration: ProfileCollectionViewConfiguration {get}
     
     // user data
     var name: String? {get}

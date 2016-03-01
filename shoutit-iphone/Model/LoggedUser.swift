@@ -37,7 +37,7 @@ struct LoggedUser: User {
     let email: String
     let website: String?
     let shoutsPath: String?
-    let listenersCount: Int?
+    let listenersCount: Int
     let listenersPath: String?
     let listeningMetadata: ListenersMetadata?
     let listeningPath: String?
@@ -77,7 +77,7 @@ extension LoggedUser: Decodable {
         let e = d
             <*> j <|? "website"
             <*> j <|? "shouts_url"
-            <*> j <|? "listeners_count"
+            <*> j <| "listeners_count"
             <*> j <|? "listeners_url"
         let f = e
             <*> j <|? "listening_count"
