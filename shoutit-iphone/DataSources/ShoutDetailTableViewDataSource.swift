@@ -58,17 +58,20 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         case .Description(let description):
             let descriptionCell = cell as! ShoutDetailDescriptionTableViewCell
             descriptionCell.descriptionLabel.text = description
+            descriptionCell.setBorders(cellIsFirst: true, cellIsLast: true)
             
-        case .KeyValue(let row, let key, let value):
+        case .KeyValue(let row, let sectionRowsCount, let key, let value):
             let keyValueCell = cell as! ShoutDetailKeyValueTableViewCell
             keyValueCell.setBackgroundForRow(row)
             keyValueCell.keyLabel.text = key
             keyValueCell.valueLabel.text = value
+            keyValueCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
-        case .Regular(let row, let title):
+        case .Regular(let row, let sectionRowsCount, let title):
             let regularCell = cell as! ShoutDetailRegularTableViewCell
             regularCell.setBackgroundForRow(row)
             regularCell.titleLabel.text = title
+            regularCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
         case .Button(let title, _):
             let buttonCell = cell as! ShoutDetailButtonTableViewCell

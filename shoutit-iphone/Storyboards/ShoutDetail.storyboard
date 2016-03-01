@@ -234,6 +234,7 @@
                                 <outlet property="authorNameLabel" destination="OF4-56-wbL" id="7ME-VG-8Hq"/>
                                 <outlet property="authorProfileImageView" destination="GHt-NY-HdP" id="fre-4y-VSw"/>
                                 <outlet property="availabilityLabel" destination="X2c-Q6-8hK" id="R86-LS-e0K"/>
+                                <outlet property="internalContainerView" destination="Vsg-dp-01X" id="y2t-YR-Rvr"/>
                                 <outlet property="locationLabel" destination="ibG-bb-S7x" id="fMQ-43-mXp"/>
                                 <outlet property="pageViewControllerContainer" destination="Gdc-UE-KK9" id="GXg-mh-oSr"/>
                                 <outlet property="priceLabel" destination="RFV-cQ-2AI" id="5p6-i3-QTB"/>
@@ -249,7 +250,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2g-bD-JDa">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2g-bD-JDa" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="0.0" width="580" height="100"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxt-8o-2k0">
@@ -279,6 +280,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="Vxt-8o-2k0" id="KBb-2V-aaj"/>
+                                    <outlet property="internalContentView" destination="c2g-bD-JDa" id="f5R-Ur-bPv"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KeyValue" rowHeight="40" id="5Q0-9C-YJP" customClass="ShoutDetailKeyValueTableViewCell" customModule="Shoutit" customModuleProvider="target">
@@ -288,7 +290,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMW-bd-2cG">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMW-bd-2cG" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="0.0" width="580" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvU-8u-sz5">
@@ -344,7 +346,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gs2-qT-9Gm">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gs2-qT-9Gm" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="0.0" width="580" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SK-UK-Q7I">
@@ -397,6 +399,12 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </button>

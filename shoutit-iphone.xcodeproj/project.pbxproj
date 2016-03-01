@@ -386,6 +386,7 @@
 		B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DEABF1C777993008864B8 /* ShoutItErrors.swift */; };
 		B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */; };
 		B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */; };
+		B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E221C85F69400F5E257 /* BorderedView.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
 		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
@@ -951,6 +952,7 @@
 		B29DEABF1C777993008864B8 /* ShoutItErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutItErrors.swift; path = Other/ShoutItErrors.swift; sourceTree = "<group>"; };
 		B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Tabbar.swift"; path = "UIKitExtensions/UIViewController+Tabbar.swift"; sourceTree = "<group>"; };
 		B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDetailContainerViewController.swift; path = Controllers/ShowDetailContainerViewController.swift; sourceTree = "<group>"; };
+		B2A03E221C85F69400F5E257 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedView.swift; path = View/BorderedView.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
 		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
@@ -2483,6 +2485,7 @@
 				2499EA671C8079B50086DEA9 /* SelectButton.swift */,
 				248328FE1C842FC60042B0DB /* FormTextField.swift */,
 				248329021C846B470042B0DB /* RightArrowSelectButton.swift */,
+				B2A03E221C85F69400F5E257 /* BorderedView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3579,6 +3582,7 @@
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
 				249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */,
 				B2C729C81C6221B0006F7D29 /* Success.swift in Sources */,
+				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,
 				601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */,

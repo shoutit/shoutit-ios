@@ -91,8 +91,9 @@ final class ShoutDetailViewModel {
                 defer { self?.reloadSubject.onNext() }
                 switch event {
                 case .Next(let relatedShouts):
+                    print("======================Related shouts count: \(relatedShouts.count) ===========================")
                     if let strongSelf = self {
-                        strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(relatedShouts, withSeeAllCell: false)
+                        strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(relatedShouts, withSeeAllCell: true)
                     }
                 case .Error(let error):
                     if let strongSelf = self {
@@ -204,10 +205,11 @@ extension ShoutDetailViewModel {
         
         // details
         models.append(.SectionHeader(title: NSLocalizedString("Details", comment: "Shout details")))
+        let detailsTuples = detailsWithShout(shout)
         var index = 0
-        models += detailsWithShout(shout).reduce([ShoutDetailTableViewCellViewModel]()) { (array, tuple) -> [ShoutDetailTableViewCellViewModel] in
+        models += detailsTuples.reduce([ShoutDetailTableViewCellViewModel]()) { (array, tuple) -> [ShoutDetailTableViewCellViewModel] in
             defer { index += 1 }
-            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, key: tuple.0, value: tuple.1)]
+            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1)]
         }
         
         // other

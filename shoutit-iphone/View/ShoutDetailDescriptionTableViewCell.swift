@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailDescriptionTableViewCell: UITableViewCell {
+class ShoutDetailDescriptionTableViewCell: ShoutDetailBackgroundSwappableTableViewCell {
     
     @IBOutlet weak var descriptionLabel: UILabel!
 }
