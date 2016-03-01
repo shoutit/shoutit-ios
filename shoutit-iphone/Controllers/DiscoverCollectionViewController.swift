@@ -9,10 +9,15 @@
 import UIKit
 import RxSwift
 
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable {
+    
+}
+
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
+    var flowDelegate: DiscoverCollectionViewControllerFlowDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +58,9 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             return
         }
         
-        self.performSegueWithIdentifier("showSingleShout", sender: nil)
-        
+        if let shout = self.viewModel?.shoutsItems()[indexPath.item] {
+            flowDelegate?.showShout(shout)
+        }
     }
 
     // MARK: UICollectionView Data Source

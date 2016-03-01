@@ -18,7 +18,11 @@ final class HomeFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.homeViewController()
+        controller.flowDelegate = self
 
         navigationController.showViewController(controller, sender: nil)
     }
 }
+
+extension HomeFlowController: HomeViewControllerFlowDelegate {}
+extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}

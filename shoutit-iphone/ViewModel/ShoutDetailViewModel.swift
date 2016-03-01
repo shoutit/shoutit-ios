@@ -21,7 +21,7 @@ final class ShoutDetailViewModel {
     }
     
     // messages
-    private let noImagesMessage = NSLocalizedString("No images are avialable", comment: "Message for shout with no images")
+    private let noImagesMessage = NSLocalizedString("No images are available", comment: "Message for shout with no images")
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models

@@ -9,12 +9,21 @@
 import UIKit
 import RxSwift
 
+protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable {}
+
 class DiscoverShoutsParentViewController: UIViewController {
+    
+    // UI
     @IBOutlet weak var changeLayoutButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
+    // view model
     var viewModel : DiscoverShoutsViewModel!
     
+    // navigation
+    weak var flowDelegate: DiscoverShoutsParentViewControllerFlowDelegate?
+    
+    // RX
     private let disposeBag = DisposeBag()
     
     var shoutsCollectionViewController : DiscoverShoutsCollectionViewController!
@@ -42,8 +51,8 @@ class DiscoverShoutsParentViewController: UIViewController {
         self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
         
         shoutsCollectionViewController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
-            if let _ = selectedShout {
-                self?.performSegueWithIdentifier("showSingleShout", sender: nil)
+            if let shout = selectedShout {
+                self?.flowDelegate?.showShout(shout)
             }
         }.addDisposableTo(disposeBag)
     }

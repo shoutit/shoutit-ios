@@ -18,6 +18,7 @@ final class DiscoverFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.discoverViewController()
+        controller.flowDelegate = self
         
         if let item = discoverItem {
             controller.viewModel = DiscoverGivenItemViewModel(discoverItem: item)
@@ -26,3 +27,6 @@ final class DiscoverFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
 }
+
+extension DiscoverFlowController: DiscoverCollectionViewControllerFlowDelegate {}
+extension DiscoverFlowController: ShoutDetailTableViewControllerFlowDelegate {}

@@ -90,8 +90,8 @@ struct Wireframe {
     
     // MARK: - Home storyboard view controllers
 
-    static func homeViewController() -> UIViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController")
+    static func homeViewController() -> HomeViewController {
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
     }
     
     static func browseViewController() -> UIViewController {

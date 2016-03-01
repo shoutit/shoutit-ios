@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="g7K-MK-j0D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10112" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="g7K-MK-j0D">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
     </dependencies>
     <scenes>
         <!--Discover-->
@@ -154,7 +154,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                     </navigationItem>
                     <connections>
                         <segue destination="PMN-NQ-FPZ" kind="show" identifier="showDiscoverShouts" id="Yaq-AC-jhJ"/>
-                        <segue destination="ywV-kL-nuK" kind="show" identifier="showSingleShout" id="gkB-YL-e3g"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bQ-Hn-HS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,7 +286,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-25-5NW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
-                                                    <rect key="frame" x="339" y="45" width="39.5" height="20.5"/>
+                                                    <rect key="frame" x="339" y="45" width="40" height="21"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -302,13 +301,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XR2-l8-Hdh">
-                                                    <rect key="frame" x="115" y="5" width="247" height="50.5"/>
+                                                    <rect key="frame" x="115" y="5" width="247" height="51"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-ve-3cT">
-                                                    <rect key="frame" x="115" y="48" width="64" height="14.5"/>
+                                                    <rect key="frame" x="115" y="48" width="64" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -328,13 +327,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-rE-D1W">
-                                                    <rect key="frame" x="318" y="88" width="60.5" height="17"/>
+                                                    <rect key="frame" x="318" y="88" width="61" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-FE-ywc">
-                                                    <rect key="frame" x="344" y="48" width="29.5" height="14.5"/>
+                                                    <rect key="frame" x="344" y="48" width="30" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -493,14 +492,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
             </objects>
             <point key="canvasLocation" x="826" y="-328"/>
         </scene>
-        <!--singleShoutViewController-->
-        <scene sceneID="yFR-53-9Mc">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Shout" referencedIdentifier="singleShoutViewController" id="ywV-kL-nuK" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7wL-e3-7Uu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="404" y="294"/>
-        </scene>
         <!--Home-->
         <scene sceneID="Slz-f6-fw8">
             <objects>
@@ -540,7 +531,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <state key="selected" image="shoutsAsGrid"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-mC-5Uf">
-                                        <rect key="frame" x="10" y="17" width="67" height="20.5"/>
+                                        <rect key="frame" x="10" y="17" width="67" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -599,7 +590,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                     <connections>
                         <outlet property="changeLayoutButton" destination="Ar5-rc-pe0" id="PH6-AD-cBw"/>
                         <outlet property="titleLabel" destination="x6d-mC-5Uf" id="rGN-nr-Eiu"/>
-                        <segue destination="ywV-kL-nuK" kind="show" identifier="showSingleShout" id="eA7-Gy-56i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymi-1p-xQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -619,7 +609,4 @@ Hat, Chunky Textured Knit Hat and more text</string>
         <image name="shoutsAsGrid" width="22" height="21"/>
         <image name="shoutsAsList" width="23" height="17"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="eA7-Gy-56i"/>
-    </inferredMetricsTieBreakers>
 </document>

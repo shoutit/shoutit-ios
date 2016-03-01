@@ -17,6 +17,7 @@ class DiscoverShoutsFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.discoverShoutsViewController()
+        controller.flowDelegate = self
         
         if let item = discoverItem {
             controller.viewModel = DiscoverShoutsViewModel(discoverItem: item)
@@ -25,3 +26,6 @@ class DiscoverShoutsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
 }
+
+extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}

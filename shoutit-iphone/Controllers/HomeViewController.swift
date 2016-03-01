@@ -9,10 +9,17 @@
 import UIKit
 import RxSwift
 
+protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable {
+    
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var changeLayoutButton: UIButton!
     @IBOutlet weak var discoverHeight: NSLayoutConstraint!
+    
+    // navigation
+    weak var flowDelegate: HomeViewControllerFlowDelegate?
     
     private let disposeBag = DisposeBag()
     
@@ -64,8 +71,8 @@ class HomeViewController: UIViewController {
             changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
             
             homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
-                if let _ = selectedShout {
-                    self?.performSegueWithIdentifier("showSingleShout", sender: nil)
+                if let shout = selectedShout {
+                    self?.flowDelegate?.showShout(shout)
                 }
             }.addDisposableTo(disposeBag)
         }
