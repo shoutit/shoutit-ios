@@ -24,21 +24,27 @@ struct DetailedProfile {
     let activated: Bool
     let imagePath: String?
     let coverPath: String?
+    let isListening: Bool
+    let listenersCount: Int
     let gender: Gender?
-    let videoPath: String?
+    let videoPath: Video?
     let dateJoindedEpoch: Int
     let bio: String?
     let location: Address
     let email: String
     let website: String?
+    let linkedAccounts: LoginAccounts?
+    let pushTokens: PushTokens?
+    let isPasswordSet: Bool?
+    let isListener: Bool?
     let shoutsPath: String?
-    let listenersCount: Int
     let listenersPath: String
     let listeningMetadata: ListenersMetadata
     let listeningPath: String?
     let owner: Bool
-    let pages: [DetailedProfile]
-    let listening: Bool?
+    let messagePath: String?
+    let pages: [Profile]?
+    let admins: [Profile]?
 }
 
 extension DetailedProfile: Decodable {
@@ -58,6 +64,8 @@ extension DetailedProfile: Decodable {
         let c = b
             <*> j <|? "image"
             <*> j <|? "cover"
+            <*> j <| "is_listening"
+            <*> j <| "listeners_count"
             <*> j <|? "gender"
             <*> j <|? "video"
         let d = c
@@ -67,49 +75,20 @@ extension DetailedProfile: Decodable {
             <*> j <| "email"
         let e = d
             <*> j <|? "website"
+            <*> j <|? "linked_accounts"
+            <*> j <|? "push_tokens"
+            <*> j <|? "is_password_set"
+            <*> j <|? "is_listener"
             <*> j <|? "shouts_url"
-            <*> j <| "listeners_count"
             <*> j <| "listeners_url"
         let f = e
             <*> j <| "listening_count"
             <*> j <|? "listening_url"
             <*> j <| "is_owner"
-            <*> j <|| "pages"
-            <*> j <|? "listening"
+            <*> j <|? "message_url"
+            <*> j <||? "pages"
+            <*> j <||? "admins"
         return f
     }
 }
 
-extension DetailedProfile: Encodable {
-    
-    func encode() -> JSON {
-        return JSON.Object([
-            "id" : self.id.encode(),
-            "type" : self.type.encode(),
-            "api_url" : self.apiPath.encode(),
-            "web_url" : self.webPath.encode(),
-            "username" : self.username.encode(),
-            "name" : self.name.encode(),
-            "first_name" : self.firstName.encode(),
-            "last_name" : self.lastName.encode(),
-            "is_activated" : self.activated.encode(),
-            "image" : self.imagePath.encode(),
-            "cover" : self.coverPath.encode(),
-            "gender" : self.gender.encode(),
-            "video" : self.videoPath.encode(),
-            "date_joined" : self.dateJoindedEpoch.encode(),
-            "bio" : self.bio.encode(),
-            "location" : self.location.encode(),
-            "email" : self.email.encode(),
-            "website" : self.website.encode(),
-            "shouts_url" : self.shoutsPath.encode(),
-            "listeners_count" : self.listenersCount.encode(),
-            "listeners_url" : self.listenersPath.encode(),
-            "listening_count" : self.listeningMetadata.encode(),
-            "listening_url" : self.listeningPath.encode(),
-            "is_owner" : self.owner.encode(),
-            "pages" : self.pages.encode(),
-            "listening" : self.listening.encode(),
-            ])
-    }
-}

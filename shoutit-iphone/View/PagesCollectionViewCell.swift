@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import RxSwift
 
 class PagesCollectionViewCell: UICollectionViewCell {
+    
+    var reuseDisposeBag: DisposeBag?
     
     @IBOutlet weak var thumnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenButton: UIButton!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = nil
+    }
 }

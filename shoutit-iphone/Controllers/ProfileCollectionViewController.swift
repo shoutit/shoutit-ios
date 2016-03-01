@@ -132,6 +132,10 @@ extension ProfileCollectionViewController {
             cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage(named: "image_placeholder"))
             let listenButtonImage = cellViewModel.profile.listening == true ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
+            cell.reuseDisposeBag = DisposeBag()
+            cell.listenButton.rx_tap.asDriver().driveNext {
+                
+            }.addDisposableTo(cell.reuseDisposeBag!)
             
             return cell
         }

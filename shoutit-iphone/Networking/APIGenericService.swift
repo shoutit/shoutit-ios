@@ -14,6 +14,36 @@ import RxCocoa
 
 class APIGenericService {
     
+    static func basicRequestWithMethod<P: Params>(
+        method: Alamofire.Method,
+        url: URLStringConvertible,
+        params: P?,
+        encoding: ParameterEncoding = .URL,
+        headers: [String: String]? = nil) -> Observable<Void> {
+        
+        return Observable.create {(observer) -> Disposable in
+            
+            let request = APIManager.manager()
+                .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
+                .validate(statusCode: 200..<300)
+            let cancel = AnonymousDisposable {
+                request.cancel()
+            }
+            
+            request.responseData{ (response) in
+                switch response.result {
+                case .Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case .Failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return cancel
+        }
+    }
+    
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
         method: Alamofire.Method,
         url: URLStringConvertible,
