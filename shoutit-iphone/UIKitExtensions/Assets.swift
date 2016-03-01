@@ -14,6 +14,10 @@ extension UIImage {
         return UIImage(named: "logo_navbar")!
     }
     
+    static func navBarLogoWhite() -> UIImage {
+        return UIImage(named: "logo_navbar_white")!
+    }
+    
     static func backButton() -> UIImage {
         return UIImage(named: "backThin")!
     }

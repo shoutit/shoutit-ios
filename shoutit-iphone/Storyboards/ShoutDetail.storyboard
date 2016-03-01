@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Shout Detail Table View Controller-->
+        <!--Title-->
         <scene sceneID="9Y9-zQ-BN6">
             <objects>
                 <tableViewController storyboardIdentifier="ShoutDetailTableViewController" id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -54,19 +55,19 @@
                                             <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                    <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UM-EM-oSg">
-                                            <rect key="frame" x="10" y="326" width="40" height="13"/>
+                                            <rect key="frame" x="10" y="326" width="40" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -103,7 +104,7 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="bMb-en-aRa" secondAttribute="bottom" constant="10" id="45r-sn-96R"/>
                                         <constraint firstAttribute="bottom" secondItem="RFV-cQ-2AI" secondAttribute="bottom" constant="10" id="8ee-HH-Efr"/>
-                                        <constraint firstAttribute="bottom" secondItem="3UM-EM-oSg" secondAttribute="bottom" constant="90" id="Dxe-SM-uWn"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3UM-EM-oSg" secondAttribute="bottom" constant="36" id="Dxe-SM-uWn"/>
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="top" secondItem="Vsg-dp-01X" secondAttribute="top" constant="5" id="Ezk-f9-29J"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="centerY" secondItem="GHt-NY-HdP" secondAttribute="centerY" id="GAK-2u-ZQk"/>
                                         <constraint firstItem="ibG-bb-S7x" firstAttribute="bottom" secondItem="GHt-NY-HdP" secondAttribute="bottom" id="KDB-yC-Q3D"/>
@@ -456,6 +457,14 @@
                             <outlet property="delegate" destination="RnF-Sf-jf2" id="ZA1-iW-EqH"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="Arc-jR-c3o">
+                        <rightBarButtonItems>
+                            <barButtonItem image="cart" id="jfr-Ng-cE5"/>
+                            <barButtonItem image="search" id="ik3-iH-tnv"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1300"/>
                     <connections>
@@ -466,10 +475,10 @@
             </objects>
             <point key="canvasLocation" x="-179" y="200"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Photo Browser Page View Controller-->
         <scene sceneID="IDw-wf-U4y">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="zLB-8P-gtL" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zLB-8P-gtL" customClass="PhotoBrowserPageViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oR-3p-WB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="510" y="-253"/>
@@ -526,5 +535,6 @@
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
+        <image name="search" width="25" height="24"/>
     </resources>
 </document>

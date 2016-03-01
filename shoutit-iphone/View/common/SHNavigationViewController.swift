@@ -34,10 +34,6 @@ class SHNavigationViewController: UINavigationController, UINavigationController
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         if self.viewControllers.count > 1 {

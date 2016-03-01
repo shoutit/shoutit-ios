@@ -18,9 +18,18 @@ class CustomUILabel: UILabel {
         }
     }
     
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet {
+            applyBorder()
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor = UIColor.clearColor()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         applyCornerRadius()
+        applyBorder()
     }
     
     override func drawTextInRect(rect: CGRect) {
@@ -37,5 +46,10 @@ class CustomUILabel: UILabel {
     private func applyCornerRadius() {
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = cornerRadius > 0
+    }
+    
+    private func applyBorder() {
+        layer.borderWidth = borderWidth / UIScreen.mainScreen().scale
+        layer.borderColor = borderColor.CGColor
     }
 }

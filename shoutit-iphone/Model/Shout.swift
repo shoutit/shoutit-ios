@@ -96,7 +96,7 @@ enum ShoutType : String {
     
     func title() -> String {
         switch self {
-        case .Offer: return NSLocalizedString("Shout", comment: "")
+        case .Offer: return NSLocalizedString("Offer", comment: "")
         case .Request: return NSLocalizedString("Request", comment: "")
         default: return ""
         }

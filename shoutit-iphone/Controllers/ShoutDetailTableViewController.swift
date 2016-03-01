@@ -23,7 +23,8 @@ final class ShoutDetailTableViewController: UITableViewController {
         didSet {
             viewModel.reloadSubject.debounce(0.5, scheduler: MainScheduler.instance).subscribeNext {[weak self] in
                 self?.tableView.reloadData()
-                self?.photosPageViewController.setViewControllers(self?.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+                self?.hydrateHeader()
+                
             }.addDisposableTo(disposeBag)
         }
     }
@@ -61,17 +62,21 @@ final class ShoutDetailTableViewController: UITableViewController {
     private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
     private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
         didSet {
-            //photosPageViewController.dataSource = imagesDataSource
+            photosPageViewController.dataSource = imagesDataSource
+            photosPageViewController.delegate = imagesDataSource
         }
     }
     
     // children
-    private var photosPageViewController: UIPageViewController!
+    private var photosPageViewController: PhotoBrowserPageViewController!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup navigation bar
+        self.navigationItem.titleView = UIImageView(image: UIImage.navBarLogoWhite())
         
         // setup data sources
         dataSource = ShoutDetailTableViewDataSource(viewModel: viewModel)
@@ -102,15 +107,20 @@ final class ShoutDetailTableViewController: UITableViewController {
         headerView.titleLabel.text = viewModel.shout.title
         headerView.priceLabel.text = viewModel.priceString()
         headerView.availabilityLabel.text = ""
+        
+        photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
     }
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let pageViewController = segue.destinationViewController as? UIPageViewController {
+        if let pageViewController = segue.destinationViewController as? PhotoBrowserPageViewController {
             photosPageViewController = pageViewController
         }
     }
+    
+    
 }
 
 extension ShoutDetailTableViewController: UICollectionViewDelegate {
