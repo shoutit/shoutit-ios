@@ -107,6 +107,13 @@ final class ShoutDetailTableViewController: UITableViewController {
         
         photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
+        
+        // size
+        let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        let header = headerView
+        tableView.tableHeaderView = nil
+        headerView.frame = CGRect(x: 0, y: 0, width: header.bounds.width, height: size.height)
+        tableView.tableHeaderView = header
     }
     
     // MARK: - Navigation
