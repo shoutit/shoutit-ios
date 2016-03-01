@@ -3,10 +3,103 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Show Detail Container View Controller-->
+        <scene sceneID="ei6-Bb-sQi">
+            <objects>
+                <viewController storyboardIdentifier="ShowDetailContainerViewController" id="PrV-RL-Ryp" customClass="ShowDetailContainerViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ohy-Yc-h1I"/>
+                        <viewControllerLayoutGuide type="bottom" id="GoU-zm-rf7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZWU-tc-uSC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aY-ze-4zK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <connections>
+                                    <segue destination="RnF-Sf-jf2" kind="embed" id="URL-vy-AHk"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3MQ-S9-rTI">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlw-u9-I8B" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="Call" image="shoutdetail_tab_call"/>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-M3-3o4" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="300" y="0.0" width="150" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="Chat" image="shoutdetail_tab_chat"/>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS6-vn-fHD" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="450" y="0.0" width="150" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="More" image="shoutdetail_tab_tabmore"/>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-c1-KFK" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="0.0" width="150" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="Video call" image="shoutdetail_tab_videocall"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="cS6-vn-fHD" secondAttribute="width" id="0ht-y0-Sts"/>
+                                    <constraint firstItem="cS6-vn-fHD" firstAttribute="leading" secondItem="kqz-M3-3o4" secondAttribute="trailing" id="0wN-Cl-O1x"/>
+                                    <constraint firstItem="cS6-vn-fHD" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="1Lv-C6-51b"/>
+                                    <constraint firstAttribute="bottom" secondItem="dlw-u9-I8B" secondAttribute="bottom" id="5D7-jf-bp1"/>
+                                    <constraint firstItem="kqz-M3-3o4" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="Ks8-oH-BIN"/>
+                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="p0q-c1-KFK" secondAttribute="width" id="Q1q-Y0-dIa"/>
+                                    <constraint firstAttribute="bottom" secondItem="kqz-M3-3o4" secondAttribute="bottom" id="Xqy-zq-hGh"/>
+                                    <constraint firstItem="kqz-M3-3o4" firstAttribute="leading" secondItem="p0q-c1-KFK" secondAttribute="trailing" id="bNd-Gp-Nkq"/>
+                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="leading" secondItem="3MQ-S9-rTI" secondAttribute="leading" id="cGs-Sj-kan"/>
+                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="kqz-M3-3o4" secondAttribute="width" id="f6L-AV-D89"/>
+                                    <constraint firstItem="p0q-c1-KFK" firstAttribute="leading" secondItem="dlw-u9-I8B" secondAttribute="trailing" id="h9M-rO-LTq"/>
+                                    <constraint firstAttribute="trailing" secondItem="cS6-vn-fHD" secondAttribute="trailing" id="igc-Po-BbP"/>
+                                    <constraint firstItem="p0q-c1-KFK" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="n2c-Of-Owc"/>
+                                    <constraint firstAttribute="height" constant="49" id="rYQ-Yl-OeG"/>
+                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="s2h-sB-pu5"/>
+                                    <constraint firstAttribute="bottom" secondItem="cS6-vn-fHD" secondAttribute="bottom" id="sYq-fT-Vbf"/>
+                                    <constraint firstAttribute="bottom" secondItem="p0q-c1-KFK" secondAttribute="bottom" id="ujR-Wy-oee"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8aY-ze-4zK" firstAttribute="leading" secondItem="ZWU-tc-uSC" secondAttribute="leading" id="7j4-Xu-NXY"/>
+                            <constraint firstItem="3MQ-S9-rTI" firstAttribute="top" secondItem="8aY-ze-4zK" secondAttribute="bottom" id="ABI-gr-uld"/>
+                            <constraint firstAttribute="trailing" secondItem="8aY-ze-4zK" secondAttribute="trailing" id="GLR-ka-zFo"/>
+                            <constraint firstAttribute="trailing" secondItem="3MQ-S9-rTI" secondAttribute="trailing" id="Gv4-96-WUV"/>
+                            <constraint firstItem="3MQ-S9-rTI" firstAttribute="leading" secondItem="ZWU-tc-uSC" secondAttribute="leading" id="TGW-Rr-C74"/>
+                            <constraint firstItem="8aY-ze-4zK" firstAttribute="top" secondItem="ZWU-tc-uSC" secondAttribute="topMargin" id="jcK-7L-Fez"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="3MQ-S9-rTI" secondAttribute="bottom" id="lb9-LH-Etz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Arc-jR-c3o">
+                        <rightBarButtonItems>
+                            <barButtonItem image="cart" id="jfr-Ng-cE5"/>
+                            <barButtonItem image="search" id="ik3-iH-tnv"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outletCollection property="tabBatButtons" destination="dlw-u9-I8B" collectionClass="NSMutableArray" id="sYS-fQ-pN8"/>
+                        <outletCollection property="tabBatButtons" destination="p0q-c1-KFK" collectionClass="NSMutableArray" id="6Qo-gc-rYw"/>
+                        <outletCollection property="tabBatButtons" destination="kqz-M3-3o4" collectionClass="NSMutableArray" id="mUN-HS-FRR"/>
+                        <outletCollection property="tabBatButtons" destination="cS6-vn-fHD" collectionClass="NSMutableArray" id="p7r-pQ-sMH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3e-gc-J11" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-988" y="235"/>
+        </scene>
+        <!--Shout Detail Table View Controller-->
         <scene sceneID="9Y9-zQ-BN6">
             <objects>
                 <tableViewController storyboardIdentifier="ShoutDetailTableViewController" id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -458,12 +551,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="Arc-jR-c3o">
-                        <rightBarButtonItems>
-                            <barButtonItem image="cart" id="jfr-Ng-cE5"/>
-                            <barButtonItem image="search" id="ik3-iH-tnv"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1300"/>
@@ -536,5 +623,9 @@
     <resources>
         <image name="cart" width="25" height="25"/>
         <image name="search" width="25" height="24"/>
+        <image name="shoutdetail_tab_call" width="29" height="28"/>
+        <image name="shoutdetail_tab_chat" width="24" height="23"/>
+        <image name="shoutdetail_tab_tabmore" width="30" height="6"/>
+        <image name="shoutdetail_tab_videocall" width="30" height="16"/>
     </resources>
 </document>

@@ -34,6 +34,32 @@ extension UIImage {
         return UIImage(named: "listen_icon_green")!
     }
     
+    // MARK: - Shout detail
+    
+    static func shoutDetailTabBarCallImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_call")!
+    }
+    
+    static func shoutDetailTabBarVideoCallImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_videocall")!
+    }
+    
+    static func shoutDetailTabBarChatImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_chat")!
+    }
+    
+    static func shoutDetailTabBarMoreImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_tabmore")!
+    }
+    
+    static func shoutDetailTabBarEditImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_edit")!
+    }
+    
+    static func shoutDetailTabBarDeleteImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_delete")!
+    }
+    
     // MARK: - Profile
     
     static func profileBioIcon() -> UIImage {

@@ -1,3 +1,6 @@
+
+
+
 //
 //  RootController.swift
 //  shoutit-iphone
@@ -12,7 +15,10 @@ import RxCocoa
 
 class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    private let defaultTabBarHeight: CGFloat = 49
+    
     @IBOutlet weak var contentContainer : UIView?
+    @IBOutlet weak var tabbarHeightConstraint: NSLayoutConstraint!
     
     var flowControllers = [NavigationItem: FlowController]()
     var currentControllerConstraints: [NSLayoutConstraint] = []
@@ -63,7 +69,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             destination.selectedNavigationItem = self.currentNavigationItem
         }
         
-        if var destination = segue.destinationViewController as? TabbarController {
+        if let destination = segue.destinationViewController as? TabbarController {
             self.tabbarController = destination
         }
         
@@ -125,6 +131,10 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
         let navController = SHNavigationViewController()
+        navController.willShowViewControllerPreferringTabBarHidden = {[unowned self] (hidden) in
+            self.tabbarHeightConstraint.constant = hidden ? 0 : self.defaultTabBarHeight
+            self.view.layoutIfNeeded()
+        }
         let flowController : FlowController
         
         switch navigationItem {

@@ -384,6 +384,8 @@
 		B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985FB11C7295D400EEA9A2 /* Security.framework */; };
 		B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */; };
 		B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DEABF1C777993008864B8 /* ShoutItErrors.swift */; };
+		B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */; };
+		B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
 		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
@@ -947,6 +949,8 @@
 		B2985FB11C7295D400EEA9A2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Debug.swift"; path = "UIKitExtensions/UIViewController+Debug.swift"; sourceTree = "<group>"; };
 		B29DEABF1C777993008864B8 /* ShoutItErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutItErrors.swift; path = Other/ShoutItErrors.swift; sourceTree = "<group>"; };
+		B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Tabbar.swift"; path = "UIKitExtensions/UIViewController+Tabbar.swift"; sourceTree = "<group>"; };
+		B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDetailContainerViewController.swift; path = Controllers/ShowDetailContainerViewController.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
 		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
@@ -2365,7 +2369,6 @@
 				240F50961C71B56700AE4A76 /* Displayables */,
 				240F50931C71B47F00AE4A76 /* Protocols */,
 				B253A3381C68F91500C8B8F9 /* StateMachine */,
-				B2C729B21C6220F9006F7D29 /* ControllerContainingController */,
 				B2C729AD1C62209E006F7D29 /* Coders/Decoders */,
 				B2C729AA1C622079006F7D29 /* Validator */,
 				AE83516F1C5F64370055C71F /* Extensions */,
@@ -2581,6 +2584,7 @@
 		B27DF7801C58DC94006909D4 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B2A03E1D1C85C6EC00F5E257 /* ControllerExtensions */,
 				AE8351741C5F6B8F0055C71F /* Protocols */,
 				B27DF7871C5916BD006909D4 /* Wireframe */,
 				B250E1C91C593F680010AB2D /* Displayables */,
@@ -2651,6 +2655,15 @@
 			name = Errors;
 			sourceTree = "<group>";
 		};
+		B2A03E1D1C85C6EC00F5E257 /* ControllerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B2C729B31C622124006F7D29 /* ContainerController.swift */,
+				B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */,
+			);
+			name = ControllerExtensions;
+			sourceTree = "<group>";
+		};
 		B2A144121C64B3D5002CD70A /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -2715,6 +2728,7 @@
 		B2AE6B7B1C7CE75A00370276 /* ShoutDetail */ = {
 			isa = PBXGroup;
 			children = (
+				B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */,
 				B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */,
 				B2B5CFFA1C7F1CBC0068A6AF /* ViewModel */,
 				B2B5D02E1C7F86CB0068A6AF /* DataSources */,
@@ -2834,14 +2848,6 @@
 				B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */,
 			);
 			name = Coders/Decoders;
-			sourceTree = "<group>";
-		};
-		B2C729B21C6220F9006F7D29 /* ControllerContainingController */ = {
-			isa = PBXGroup;
-			children = (
-				B2C729B31C622124006F7D29 /* ContainerController.swift */,
-			);
-			name = ControllerContainingController;
 			sourceTree = "<group>";
 		};
 		B2C729B51C62213C006F7D29 /* Networking */ = {
@@ -3404,6 +3410,7 @@
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionPageCellViewModel.swift in Sources */,
 				ACDD23BB1BFB52C400EEC6A6 /* SHFilterCenterTableViewCell.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
+				B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */,
 				240F509A1C71C36F00AE4A76 /* ShoutsDisplayable.swift in Sources */,
 				B2B5D0151C7F293B0068A6AF /* ShoutDetailButtonTableViewCell.swift in Sources */,
 				B2B5CFFE1C7F1CFE0068A6AF /* ShoutDetailViewModel.swift in Sources */,
@@ -3610,6 +3617,7 @@
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
 				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
 				240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */,
+				B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */,
 				AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
 				AC1C93F71BE9FA56009400BE /* Model.swift in Sources */,
 				AC7030C61C15C858008F4C00 /* SHImageAttachment.swift in Sources */,

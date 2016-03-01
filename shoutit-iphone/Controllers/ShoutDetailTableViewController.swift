@@ -75,9 +75,6 @@ final class ShoutDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup navigation bar
-        self.navigationItem.titleView = UIImageView(image: UIImage.navBarLogoWhite())
-        
         // setup data sources
         dataSource = ShoutDetailTableViewDataSource(viewModel: viewModel)
         otherShoutsDataSource = ShoutDetailOtherShoutsCollectionViewDataSource(viewModel: viewModel)

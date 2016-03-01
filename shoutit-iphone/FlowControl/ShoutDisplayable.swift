@@ -16,7 +16,7 @@ extension ShoutDisplayable where Self: FlowController, Self: ShoutDetailTableVie
     
     func showShout(shout: Shout) {
         
-        let controller = Wireframe.shoutDetailTableViewController()
+        let controller = Wireframe.shoutDetailContainerViewController()
         controller.viewModel = ShoutDetailViewModel(shout: shout)
         controller.flowDelegate = self
         

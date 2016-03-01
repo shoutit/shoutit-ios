@@ -24,6 +24,7 @@ final class ShoutDetailViewModel {
     private let noImagesMessage = NSLocalizedString("No images are avialable", comment: "Message for shout with no images")
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
+    // child view models
     private(set) var cellModels: [ShoutDetailTableViewCellViewModel]
     private(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
     private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
@@ -33,6 +34,8 @@ final class ShoutDetailViewModel {
         self.shout = shout
         self.cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
     }
+    
+    // MARK: - Actions
     
     func reloadShoutDetails() {
         
@@ -102,20 +105,6 @@ final class ShoutDetailViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    private func fetchShoutDetails() -> Observable<Shout> {
-        return APIShoutsService.retrieveShoutWithId(self.shout.id)
-    }
-    
-    private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = UserShoutsParams(username: shout.user.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
-    }
-    
-    private func fetchRelatedShouts() -> Observable<[Shout]> {
-        let params = RelatedShoutsParams(shout: shout, page: 0, pageSize: 6, type: nil)
-        return APIShoutsService.relatedShoutsWithParams(params)
-    }
-    
     // MARK: - To display
     
     func locationString() -> String? {
@@ -127,6 +116,13 @@ final class ShoutDetailViewModel {
     
     func priceString() -> String? {
         return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+    }
+    
+    func tabbarButtons() -> [ShoutDetailTabbarButton] {
+        if shout.user.id == Account.sharedInstance.user?.id {
+            return [.Edit, .Delete, .Chats, .More]
+        }
+        return [.Call, .VideoCall, .Chat, .More]
     }
     
     // MARK: - Helpers
@@ -177,6 +173,20 @@ final class ShoutDetailViewModel {
         }
         
         return viewModels
+    }
+    
+    private func fetchShoutDetails() -> Observable<Shout> {
+        return APIShoutsService.retrieveShoutWithId(self.shout.id)
+    }
+    
+    private func fetchOtherShouts() -> Observable<[Shout]> {
+        let params = UserShoutsParams(username: shout.user.username, pageSize: 4, shoutType: nil)
+        return APIShoutsService.shoutsForUserWithParams(params)
+    }
+    
+    private func fetchRelatedShouts() -> Observable<[Shout]> {
+        let params = RelatedShoutsParams(shout: shout, page: 0, pageSize: 6, type: nil)
+        return APIShoutsService.relatedShoutsWithParams(params)
     }
 }
 

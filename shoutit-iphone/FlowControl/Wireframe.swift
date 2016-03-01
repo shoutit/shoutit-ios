@@ -76,6 +76,10 @@ struct Wireframe {
     
     // MARK: - ShoutDetail storyboard view controllers
     
+    static func shoutDetailContainerViewController() -> ShowDetailContainerViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShowDetailContainerViewController") as! ShowDetailContainerViewController
+    }
+    
     static func shoutDetailTableViewController() -> ShoutDetailTableViewController {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShoutDetailTableViewController") as! ShoutDetailTableViewController
     }
