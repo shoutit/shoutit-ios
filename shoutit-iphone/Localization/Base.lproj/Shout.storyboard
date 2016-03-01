@@ -220,11 +220,11 @@
                                     <outlet property="selectButton" destination="JAQ-ZA-HOP" id="rSQ-87-Fpo"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="89" id="Czx-jM-0bA" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="481" width="600" height="89"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Czx-jM-0bA" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="481" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Czx-jM-0bA" id="IoV-81-pXc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygX-W4-fss" customClass="RightArrowSelectButton" customModule="Shoutit" customModuleProvider="target">
@@ -249,21 +249,59 @@
                                     <outlet property="selectButton" destination="ygX-W4-fss" id="i6c-dy-KJ6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="89" id="HFJ-Ts-iX9">
-                                <rect key="frame" x="0.0" y="570" width="600" height="89"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="HFJ-Ts-iX9">
+                                <rect key="frame" x="0.0" y="540" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFJ-Ts-iX9" id="Vc0-S2-Qkf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCj-gD-P8F" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="29" y="43" width="542" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="qEB-U0-iJF"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ui1-T0-AW0"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="centerY" secondItem="Vc0-S2-Qkf" secondAttribute="centerY" id="0Hn-8P-2b4"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZCj-gD-P8F" secondAttribute="trailing" constant="29" id="PzG-GZ-Zgt"/>
+                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="leading" secondItem="Vc0-S2-Qkf" secondAttribute="leading" constant="29" id="ZVs-Hx-xMX"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="659" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-pO-O7x" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="8" width="560" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="Kyd-5O-nrT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <inset key="contentEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="10"/>
+                                            <state key="normal" title="Currency">
+                                                <color key="titleColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="XyM-pO-O7x" secondAttribute="trailing" constant="20" id="F7p-H8-9tk"/>
+                                        <constraint firstItem="XyM-pO-O7x" firstAttribute="leading" secondItem="FRE-Wk-clz" secondAttribute="leading" constant="20" id="Nlg-uO-VBM"/>
+                                        <constraint firstItem="XyM-pO-O7x" firstAttribute="top" secondItem="FRE-Wk-clz" secondAttribute="top" constant="8" id="fAM-9u-GnQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="XyM-pO-O7x" secondAttribute="bottom" constant="8" id="k6b-JR-GfT"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="selectButton" destination="XyM-pO-O7x" id="0c7-Bq-q2S"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
