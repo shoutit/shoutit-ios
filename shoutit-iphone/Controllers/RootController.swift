@@ -109,7 +109,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         }
         
         if let locationFlowController = flowControllerToShow as? LocationFlowController {
-            locationFlowController.finishedBlock = {[weak self](success) -> Void in
+            locationFlowController.finishedBlock = {[weak self](success, place) -> Void in
                 self?.openItem(.Home)
             }
 

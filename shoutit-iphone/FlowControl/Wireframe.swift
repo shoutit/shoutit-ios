@@ -137,4 +137,8 @@ struct Wireframe {
     static func profileViewController() -> ProfileCollectionViewController {
         return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
     }
+    
+    static func changeShoutLocationController() -> SelectShoutLocationViewController {
+        return storyboard(.Location).instantiateViewControllerWithIdentifier("ShoutLocationController") as! SelectShoutLocationViewController
+    }
 }

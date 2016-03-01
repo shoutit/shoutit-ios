@@ -14,6 +14,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     private let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
     let disposeBag = DisposeBag()
     
+    var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
+    
     var viewModel : CreateShoutViewModel! = CreateShoutViewModel()
     @IBOutlet var headerView : CreateShoutTableHeaderView!
     
@@ -34,25 +36,38 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     // RX
     
     func setupRX() {
-        viewModel.currentType.asObservable().subscribeNext { [weak self] (type) -> Void in
-            self?.headerView.fillWithType(type)
-        }.addDisposableTo(disposeBag)
+        viewModel
+            .currentType
+            .asDriver()
+            .driveNext { [weak self] (type) -> Void in
+                self?.headerView.fillWithType(type)
+            }
+            .addDisposableTo(disposeBag)
         
-        viewModel.currencies.asObservable().subscribeNext { [weak self] (currencies) -> Void in
-            self?.headerView.currencyButton.optionsLoaded = currencies.count > 0
-        }.addDisposableTo(disposeBag)
+        viewModel
+            .currencies
+            .asDriver()
+            .driveNext { [weak self] (currencies) -> Void in
+                self?.headerView.currencyButton.optionsLoaded = currencies.count > 0
+            }
+            .addDisposableTo(disposeBag)
         
-        viewModel.selectedCurrency.asObservable().subscribeNext { [weak self] (currency) -> Void in
-            self?.headerView.setCurrency(currency)
-        }.addDisposableTo(disposeBag)
+        viewModel
+            .selectedCurrency
+            .asDriver()
+            .driveNext { [weak self] (currency) -> Void in
+                self?.viewModel.selectedFilters = [:]
+                self?.headerView.setCurrency(currency)
+            }
+            .addDisposableTo(disposeBag)
         
-        viewModel.categories.asObservable().subscribeNext { [weak self] (categories) -> Void in
-            self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-        }.addDisposableTo(disposeBag)
-        
-        viewModel.selectedCategory.asObservable().subscribeNext { [weak self] (category) -> Void in
-           self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic) 
-        }.addDisposableTo(disposeBag)
+        viewModel
+            .categories
+            .asDriver()
+            .driveNext({ [weak self] (category) -> Void in
+                self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: Shout Type Selection
@@ -91,12 +106,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
-    
-    @IBAction func selectCategory(sender: UIButton) {
-        let actionSheetController = viewModel.categoriesActionSheet(nil)
-        
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
-    }
 
     // MARK: - Table view data source
 
@@ -113,11 +122,70 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         self.viewModel.fillCell(cell, forIndexPath: indexPath)
         
-        if indexPath.section == 0 && indexPath.row == 0 {
-            if let locationCell = cell as? CreateShoutSelectCell {
-                locationCell.selectButton.addTarget(self, action: "selectCategory:", forControlEvents: .TouchUpInside)
-            }
+        guard let selectCell = cell as? CreateShoutSelectCell else {
+            return cell
         }
+        
+        if let existingDisposable = disposables[indexPath] {
+            existingDisposable?.dispose()
+        }
+        
+        
+        if indexPath.section == 1 {
+            
+            let disposable = selectCell.selectButton
+                .rx_controlEvent(.TouchUpInside)
+                .asDriver()
+                .driveNext({ [weak self] () -> Void in
+                    
+                    let controller = Wireframe.changeShoutLocationController()
+                    
+                    controller.finishedBlock = { (success, place) -> Void in
+                        self?.viewModel.selectedLocation = place
+                        self?.tableView.reloadData()
+                    }
+                    
+                    self?.navigationController?.showViewController(controller, sender: nil)
+
+                })
+            
+            disposables[indexPath] = disposable
+            
+            return selectCell
+        }
+        
+        if indexPath.row == 0 {
+            
+            let disposable = selectCell.selectButton
+                .rx_controlEvent(.TouchUpInside)
+                .asDriver()
+                .driveNext({ [weak self] () -> Void in
+                    let actionSheetController = self?.viewModel.categoriesActionSheet({ (alertAction) -> Void in
+                        self?.tableView.reloadData()
+                    })
+                    self?.presentViewController(actionSheetController!, animated: true, completion: nil)
+                    })
+            
+            disposables[indexPath] = disposable
+          
+            return selectCell
+        }
+        
+        let disposable = selectCell.selectButton
+            .rx_controlEvent(.TouchUpInside)
+            .asDriver()
+            .driveNext({ [weak self] () -> Void in
+                guard let actionSheetController = self?.viewModel.filterActionSheet(forIndexPath: indexPath, handler: { (alertAction) -> Void in
+                    self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }) else {
+                    return
+                }
+                
+                self?.presentViewController(actionSheetController, animated: true, completion: nil)
+                
+                })
+        
+        disposables[indexPath] = disposable
         
         return cell
     }

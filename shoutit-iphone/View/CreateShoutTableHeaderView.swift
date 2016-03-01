@@ -13,14 +13,14 @@ class CreateShoutTableHeaderView: UIView {
     @IBOutlet var currencyButton : SelectButton!
     
     func fillWithType(type: ShoutType) {
-        typeButton.titleLabel?.text = type.title()
+        typeButton.setTitle(type.title(), forState: .Normal)
     }
     
     func setCurrency(currency: Currency?) {
         if let curr = currency {
-            self.currencyButton.titleLabel?.text = curr.code
+            self.currencyButton.setTitle(curr.code, forState: .Normal)
         } else {
-            self.currencyButton.titleLabel?.text = NSLocalizedString("Currency", comment: "")
+            self.currencyButton.setTitle(NSLocalizedString("Currency", comment: ""), forState: .Normal)
         }
     }
 }

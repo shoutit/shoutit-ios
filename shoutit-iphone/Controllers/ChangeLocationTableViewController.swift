@@ -15,7 +15,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
     @IBOutlet weak var searchBar : UISearchBar!
     
-    var finishedBlock: ((Bool) -> Void)?
+    var finishedBlock: ((Bool, FTGooglePlacesAPISearchResultItem?) -> Void)?
     
     private let disposeBag = DisposeBag()
     private let viewModel = ChangeLocationViewModel()
@@ -68,25 +68,28 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             .driveNext { selectedLocation in
                 let coordinates : CLLocationCoordinate2D = selectedLocation.location.coordinate
                 
-                guard let username = Account.sharedInstance.user?.username else {
-                    return
-                }
-                
-                self.loading = true
-                
-                APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
-                    if let finish = self.finishedBlock {
-                        self.searchBar.text = ""
-                        finish(true)
-                    }
-                }
-                
+                self.finishWithCoordinates(coordinates, place: selectedLocation)
             }
             .addDisposableTo(disposeBag)
 
         Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
             self.loadInitialState()
         }.addDisposableTo(disposeBag)
+    }
+    
+    func finishWithCoordinates(coordinates: CLLocationCoordinate2D, place: FTGooglePlacesAPISearchResultItem) {
+        guard let username = Account.sharedInstance.user?.username else {
+            return
+        }
+        
+        self.loading = true
+        
+        APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
+            if let finish = self.finishedBlock {
+                self.searchBar.text = ""
+                finish(true, place)
+            }
+        }
     }
     
 }
