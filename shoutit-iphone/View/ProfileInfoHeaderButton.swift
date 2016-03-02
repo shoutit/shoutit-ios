@@ -46,8 +46,8 @@ class ProfileInfoHeaderButton: UIButton {
         
         iconImageView?.addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 28.0))
         iconImageView?.addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 28.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: iconImageView!, attribute: .Bottom, multiplier: 1.0, constant: -5.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: iconImageView!, attribute: .CenterX, multiplier: 1.0, constant: countText == nil ? 0 : 10))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: iconImageView!, attribute: .Bottom, multiplier: 1.0, constant: -2.0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: iconImageView!, attribute: .CenterX, multiplier: 1.0, constant: countText == nil ? 0 : 8))
         
         guard let countText = countText else {
             return
@@ -66,6 +66,6 @@ class ProfileInfoHeaderButton: UIButton {
         addSubview(countLabel!)
         
         addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Trailing, relatedBy: .Equal, toItem: countLabel!, attribute: .Leading, multiplier: 1.0, constant: -5.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: countLabel!, attribute: .Bottom, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .CenterY, relatedBy: .Equal, toItem: countLabel!, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
     }
 }
