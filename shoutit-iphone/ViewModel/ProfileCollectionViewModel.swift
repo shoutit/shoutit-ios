@@ -115,7 +115,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
         
         if let profile = profile {
-            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: profile.listening ?? false), .More]
+            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: profile.listening ?? false), .HiddenButton(position: .SmallLeft), .More]
         } else {
             
             var listeningCountString = ""
