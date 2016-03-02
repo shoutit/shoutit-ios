@@ -55,6 +55,6 @@ extension Address: Encodable {
 
 extension FTGooglePlacesAPISearchResultItem {
     func toAddressObject() -> Address {
-        return Address(address: self.addressString, city: "", country: "", latitude: self.location.coordinate.latitude, longitude: self.location.coordinate.longitude, postalCode: "", state: "")
+        return Address(address: self.name, city: "", country: "", latitude: self.location.coordinate.latitude, longitude: self.location.coordinate.longitude, postalCode: "", state: "")
     }
 }

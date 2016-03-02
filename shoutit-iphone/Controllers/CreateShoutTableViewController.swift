@@ -229,6 +229,11 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         print(parameters)
         
         APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { (shout) -> Void in
+            let confirmation = Wireframe.shoutConfirmationController()
+            
+            confirmation.shout = shout
+            
+            self.navigationController?.pushViewController(confirmation, animated: true)
             
         }, onError: { (error) -> Void in
             let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)

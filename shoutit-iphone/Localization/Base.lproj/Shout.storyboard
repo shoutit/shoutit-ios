@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Create Shout Scroll View Controller-->
@@ -325,6 +326,123 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3e-hk-IXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-251" y="-607"/>
+        </scene>
+        <!--Shout Confirmation View Controller-->
+        <scene sceneID="fIo-sU-qg3">
+            <objects>
+                <viewController storyboardIdentifier="shoutConfirmation" id="07n-fA-NOx" customClass="ShoutConfirmationViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ook-2p-i8x"/>
+                        <viewControllerLayoutGuide type="bottom" id="UA4-qR-Z1D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3rb-Ev-US1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LpN-f7-g7r">
+                                <rect key="frame" x="0.0" y="146.5" width="600" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws1-lB-UsQ">
+                                        <rect key="frame" x="236.5" y="10" width="126.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your shout will appear on Shoutit soon." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ws-rTF">
+                                        <rect key="frame" x="151" y="40.5" width="298" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqA-Zk-PKv">
+                                        <rect key="frame" x="20" y="85" width="560" height="30"/>
+                                        <state key="normal" title="Add more details">
+                                            <color key="titleColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editShoutAction:" destination="07n-fA-NOx" eventType="touchUpInside" id="gDc-XX-cFP"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wL-mM-p5l">
+                                        <rect key="frame" x="292" y="125" width="16" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yoo-Nj-lhn" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="156" width="560" height="44"/>
+                                        <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ydG-vV-WAj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="Create another Shout">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createNewShoutAction:" destination="07n-fA-NOx" eventType="touchUpInside" id="4E2-ib-ZfA"/>
+                                            <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="z5v-uN-b7n"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="smS-Ws-rTF" firstAttribute="centerX" secondItem="LpN-f7-g7r" secondAttribute="centerX" id="180-ND-wYJ"/>
+                                    <constraint firstItem="Ws1-lB-UsQ" firstAttribute="centerX" secondItem="LpN-f7-g7r" secondAttribute="centerX" id="2PE-ur-8He"/>
+                                    <constraint firstAttribute="trailing" secondItem="pqA-Zk-PKv" secondAttribute="trailing" constant="20" id="4nv-8V-XKM"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yoo-Nj-lhn" secondAttribute="trailing" constant="20" id="8Zc-xF-Zgg"/>
+                                    <constraint firstItem="Yoo-Nj-lhn" firstAttribute="top" secondItem="5wL-mM-p5l" secondAttribute="bottom" constant="10" id="Dvq-3Q-BOn"/>
+                                    <constraint firstItem="pqA-Zk-PKv" firstAttribute="leading" secondItem="LpN-f7-g7r" secondAttribute="leading" constant="20" id="GK6-dr-Qy5"/>
+                                    <constraint firstItem="Yoo-Nj-lhn" firstAttribute="leading" secondItem="LpN-f7-g7r" secondAttribute="leading" constant="20" id="OfS-GM-bY8"/>
+                                    <constraint firstItem="Ws1-lB-UsQ" firstAttribute="top" secondItem="LpN-f7-g7r" secondAttribute="top" constant="10" id="Pxq-zY-Qid"/>
+                                    <constraint firstItem="5wL-mM-p5l" firstAttribute="centerX" secondItem="LpN-f7-g7r" secondAttribute="centerX" id="XJt-bp-aqq"/>
+                                    <constraint firstItem="smS-Ws-rTF" firstAttribute="top" secondItem="pqA-Zk-PKv" secondAttribute="bottom" constant="20" id="aep-6n-HLl"/>
+                                    <constraint firstItem="5wL-mM-p5l" firstAttribute="top" secondItem="pqA-Zk-PKv" secondAttribute="bottom" constant="10.5" id="hcy-2R-Hsx"/>
+                                    <constraint firstItem="smS-Ws-rTF" firstAttribute="top" secondItem="Ws1-lB-UsQ" secondAttribute="bottom" constant="10" id="pV0-J2-tx2"/>
+                                    <constraint firstItem="smS-Ws-rTF" firstAttribute="top" secondItem="Ws1-lB-UsQ" secondAttribute="bottom" constant="24" id="sCg-gb-jxc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yoo-Nj-lhn" secondAttribute="bottom" id="wqq-c4-A3K"/>
+                                    <constraint firstAttribute="height" constant="200" id="x18-he-oAG"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aep-6n-HLl"/>
+                                        <exclude reference="sCg-gb-jxc"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guy-cj-iYw">
+                                <rect key="frame" x="54" y="346.5" width="240" height="253.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-vb-yxE">
+                                <rect key="frame" x="20" y="20" width="240" height="126.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TDG-vb-yxE" firstAttribute="leading" secondItem="3rb-Ev-US1" secondAttribute="leading" constant="20" id="82i-g4-4Mg"/>
+                            <constraint firstItem="TDG-vb-yxE" firstAttribute="height" secondItem="guy-cj-iYw" secondAttribute="height" multiplier="0.5" id="IUQ-Q5-Pnc"/>
+                            <constraint firstItem="UA4-qR-Z1D" firstAttribute="top" secondItem="guy-cj-iYw" secondAttribute="bottom" id="RKJ-H3-yuG"/>
+                            <constraint firstItem="guy-cj-iYw" firstAttribute="leading" secondItem="3rb-Ev-US1" secondAttribute="leading" constant="54" id="S3z-xO-YNl"/>
+                            <constraint firstItem="guy-cj-iYw" firstAttribute="top" secondItem="LpN-f7-g7r" secondAttribute="bottom" id="Z0a-f0-xRP"/>
+                            <constraint firstAttribute="trailing" secondItem="guy-cj-iYw" secondAttribute="trailing" constant="306" id="Z5U-UV-x2V"/>
+                            <constraint firstItem="LpN-f7-g7r" firstAttribute="top" secondItem="TDG-vb-yxE" secondAttribute="bottom" id="ZMc-OI-WpH"/>
+                            <constraint firstItem="LpN-f7-g7r" firstAttribute="leading" secondItem="3rb-Ev-US1" secondAttribute="leading" id="lbf-U3-sTT"/>
+                            <constraint firstAttribute="trailing" secondItem="TDG-vb-yxE" secondAttribute="trailing" constant="340" id="nk3-gu-p67"/>
+                            <constraint firstItem="TDG-vb-yxE" firstAttribute="top" secondItem="ook-2p-i8x" secondAttribute="bottom" id="noB-fw-9IV"/>
+                            <constraint firstAttribute="trailing" secondItem="LpN-f7-g7r" secondAttribute="trailing" id="owj-se-P26"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VnH-lM-Jmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="430" y="-1170"/>
         </scene>
         <!--Select Shout Images Controller-->
         <scene sceneID="JZR-GA-IMl">
