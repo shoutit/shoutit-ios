@@ -13,6 +13,11 @@ class ShoutConfirmationViewController: UIViewController {
     var shout : Shout!
     
     @IBAction func editShoutAction(sender: AnyObject) {
+        let editController = Wireframe.editShoutController()
+        editController.shout = shout
+        
+        self.navigationController?.viewControllers = [Wireframe.shoutViewController()]
+        self.navigationController?.pushViewController(editController, animated: true)
         
     }
     

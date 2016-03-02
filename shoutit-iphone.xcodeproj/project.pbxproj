@@ -39,6 +39,7 @@
 		249671591C870ECD0011B078 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
 		2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */; };
 		2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */; };
+		249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671601C8758650011B078 /* EditShoutTableViewController.swift */; };
 		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
 		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
 		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
@@ -569,6 +570,7 @@
 		249671581C870ECD0011B078 /* FilterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterResult.swift; path = Model/FilterResult.swift; sourceTree = "<group>"; };
 		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
 		2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutConfirmationViewController.swift; path = Controllers/ShoutConfirmationViewController.swift; sourceTree = "<group>"; };
+		249671601C8758650011B078 /* EditShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutTableViewController.swift; path = Controllers/EditShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1262,6 +1264,14 @@
 			name = ShoutConfirmation;
 			sourceTree = "<group>";
 		};
+		2496715F1C87584C0011B078 /* EdiShout */ = {
+			isa = PBXGroup;
+			children = (
+				249671601C8758650011B078 /* EditShoutTableViewController.swift */,
+			);
+			name = EdiShout;
+			sourceTree = "<group>";
+		};
 		2499EA691C80937A0086DEA9 /* CreateShout */ = {
 			isa = PBXGroup;
 			children = (
@@ -1453,6 +1463,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2496715F1C87584C0011B078 /* EdiShout */,
 				2496715C1C874F890011B078 /* ShoutConfirmation */,
 				2499EA691C80937A0086DEA9 /* CreateShout */,
 				2493247E1C7EFB7900A1AB6A /* Discover Shouts */,
@@ -3655,6 +3666,7 @@
 				248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */,
 				AC7030CC1C15D77E008F4C00 /* SHVideoMediaItem.swift in Sources */,
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
+				249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */,
 				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
 				240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */,
 				B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */,

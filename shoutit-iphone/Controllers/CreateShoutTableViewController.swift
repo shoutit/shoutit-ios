@@ -17,16 +17,21 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
     
-    var viewModel : CreateShoutViewModel! = CreateShoutViewModel()
+    var viewModel : CreateShoutViewModel!
+    
     @IBOutlet var headerView : CreateShoutTableHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViewModel()
         setupRX()
         loadData()
     }
     
+    func createViewModel() {
+        viewModel = CreateShoutViewModel()
+    }
     
     // Load Data
     func loadData() {
