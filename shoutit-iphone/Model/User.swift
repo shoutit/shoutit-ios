@@ -28,6 +28,7 @@ protocol User: Encodable {
 enum UserType: String {
     case Profile = "Profile"
     case Page = "Page"
+    case User = "user"
 }
 
 extension UserType: Decodable {

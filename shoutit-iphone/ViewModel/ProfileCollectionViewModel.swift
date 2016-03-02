@@ -40,10 +40,13 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func reloadContent() {
         
+        reloadPages()
+        
         // reload user
         fetchUser()?
             .subscribeNext {[weak self] (detailedProfile) in
                 self?.detailedUser = detailedProfile
+                self?.reloadPages()
                 self?.reloadSubject.onNext(())
             }
             .addDisposableTo(disposeBag)

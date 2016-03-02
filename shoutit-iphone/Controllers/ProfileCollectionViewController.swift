@@ -130,11 +130,21 @@ extension ProfileCollectionViewController {
             cell.nameLabel.text = cellViewModel.profile.name
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
             cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage(named: "image_placeholder"))
-            let listenButtonImage = cellViewModel.profile.listening == true ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+            let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
             cell.reuseDisposeBag = DisposeBag()
-            cell.listenButton.rx_tap.asDriver().driveNext {
-                
+            cell.listenButton.rx_tap.asDriver().driveNext {[unowned self, unowned cellViewModel] in
+                cellViewModel.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell, weak self] (event) in
+                    switch event {
+                    case .Next(let listening):
+                        let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+                        cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                    case .Completed:
+                        self?.viewModel.reloadContent()
+                    default:
+                        break
+                    }
+                }).addDisposableTo(self.disposeBag)
             }.addDisposableTo(cell.reuseDisposeBag!)
             
             return cell
