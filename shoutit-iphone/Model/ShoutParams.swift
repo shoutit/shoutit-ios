@@ -38,7 +38,10 @@ extension ShoutParams: Encodable {
         values["type"] = self.type.value.rawValue.encode()
         values["title"] = self.title.value.encode()
         values["text"] = self.text.value.encode()
-        values["price"] = self.price.value.encode()
+        
+        if self.price.value > 0 {
+            values["price"] = self.price.value.encode()
+        }
         
         if let currency = self.currency.value?.code {
             values["currency"] = currency.encode()
@@ -64,7 +67,7 @@ extension ShoutParams: Encodable {
         if shoutFilters.count > 0 {
             values["filters"] = shoutFilters.encode()
         }
-        
+
         return JSON.Object(values)
     }
 }

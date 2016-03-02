@@ -37,6 +37,7 @@
 		249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */; };
 		249671571C86E7B30011B078 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		249671591C870ECD0011B078 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
+		2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */; };
 		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
 		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
 		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
@@ -565,6 +566,7 @@
 		249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsFlowController.swift; path = FlowControl/DiscoverShoutsFlowController.swift; sourceTree = "<group>"; };
 		249671561C86E7B30011B078 /* ShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutParams.swift; path = Model/ShoutParams.swift; sourceTree = "<group>"; };
 		249671581C870ECD0011B078 /* FilterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterResult.swift; path = Model/FilterResult.swift; sourceTree = "<group>"; };
+		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
 		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1235,6 +1237,7 @@
 			children = (
 				248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */,
 				248329041C847D7E0042B0DB /* CreateShoutSelectCell.swift */,
+				2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3543,6 +3546,7 @@
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
 				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
+				2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				B2E715511C6E02EE007F95CF /* ProfileCollectionViewLayoutAttributes.swift in Sources */,
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,

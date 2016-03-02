@@ -139,8 +139,8 @@ class APIShoutsService {
         return Observable.create{ (observer) -> Disposable in
             
             APIManager.manager()
-                .request(.POST, shoutsURL, parameters: params, encoding: .URL, headers: ["Accept": "application/json"])
-                .validate(statusCode: 200..<300)
+                .request(.POST, shoutsURL, parameters: params, encoding: .JSON, headers: ["Accept": "application/json"])
+                .validate(statusCode: 200..<401)
                 .responseData({ (response) in
                     
                     switch response.result {
