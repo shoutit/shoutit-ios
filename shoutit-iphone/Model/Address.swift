@@ -10,6 +10,7 @@ import Foundation
 import Argo
 import Curry
 import Ogra
+import FTGooglePlacesAPI
 
 struct Address {
     
@@ -49,5 +50,11 @@ extension Address: Encodable {
             "postal_code" : self.postalCode.encode(),
             "state" : self.state.encode(),
         ])
+    }
+}
+
+extension FTGooglePlacesAPISearchResultItem {
+    func toAddressObject() -> Address {
+        return Address(address: self.addressString, city: "", country: "", latitude: self.location.coordinate.latitude, longitude: self.location.coordinate.longitude, postalCode: "", state: "")
     }
 }

@@ -12,30 +12,46 @@ import FTGooglePlacesAPI
 
 class CreateShoutViewModel: NSObject {
     
-    var currentType = Variable(ShoutType.Request)
-    
-    var currencies : Variable<[Currency]> = Variable([])
-    var selectedCurrency : Variable<Currency?> = Variable(nil)
-    
-    var selectedLocation : FTGooglePlacesAPISearchResultItem?
+    var shoutParams : ShoutParams!
     
     var filters : Variable<[Filter]?> = Variable([])
-    var selectedFilters : [Filter: FilterValue] = [:]
-    
     var categories : Variable<[Category]> = Variable([])
-    var selectedCategory : Variable<Category?> = Variable(nil)
+    var currencies : Variable<[Currency]> = Variable([])
     
     let createShoutCellCategory = "CreateShoutCellCategory"
     let createShoutCellDescription = "CreateShoutCellDescription"
     let createShoutCellOption = "CreateShoutCellOption"
     let createShoutCellLocation = "CreateShoutCellLocation"
     
+    override init() {
+        shoutParams = ShoutParams(type: Variable(ShoutType.Request), title: Variable(""),
+                                text: Variable(nil), price: Variable(nil), currency: Variable(nil),
+                                images: Variable([]), videos:  Variable([]), category: Variable(nil),
+                                location:  Variable(Account.sharedInstance.loggedUser?.location),
+                                publishToFacebook: Variable(false), filters: Variable([:]))
+    }
+    
+    init(shout: Shout) {
+        var images = []
+        
+        if let img = shout.image {
+            images = [img]
+        }
+        
+        shoutParams = ShoutParams(type: Variable(shout.type()!), title: Variable(shout.title),
+                                text: Variable(shout.text), price: Variable(shout.price),
+                                currency: Variable(nil), images: Variable(images as? [String]),
+                                videos:  Variable([]), category: Variable(shout.category),
+                                location:  Variable(Account.sharedInstance.loggedUser?.location),
+                                publishToFacebook: Variable(false), filters: Variable([:]))
+    }
+    
     func changeToRequest() {
-        self.currentType.value = .Request
+        self.shoutParams.type.value = .Request
     }
     
     func changeToShout() {
-        self.currentType.value = .Offer
+        self.shoutParams.type.value = .Offer
     }
     
     // MARK: TableView Data Source
@@ -117,12 +133,14 @@ extension CreateShoutViewModel {
         if indexPath.section == 0 && indexPath.row == 0 {
             fillCategoryCell(cell as? CreateShoutSelectCell)
         } else if indexPath.section == 0 {
+            
             if let filters = self.filters.value {
                 if (indexPath.row - 2) >= 0 && (indexPath.row - 2 <= filters.count) {
                     let filter = filters[indexPath.row - 2]
                     fillFilterCell(cell as? CreateShoutSelectCell, withFilter: filter)
                 }
             }
+            
         } else if indexPath.section == 1 {
             fillLocationCell(cell as? CreateShoutSelectCell)
         }
@@ -131,7 +149,7 @@ extension CreateShoutViewModel {
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
         cell?.selectButton.optionsLoaded = self.categories.value.count > 0
         
-        if let category = self.selectedCategory.value {
+        if let category = shoutParams.category.value {
             cell?.selectButton.setTitle(category.name, forState: .Normal)
         } else {
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
@@ -140,15 +158,15 @@ extension CreateShoutViewModel {
     
     func fillFilterCell(cell: CreateShoutSelectCell?, withFilter: Filter?) {
         if let filter = withFilter {
-            cell?.fillWithFilter(filter, currentValue: self.selectedFilters[filter])
+            cell?.fillWithFilter(filter, currentValue: shoutParams.filters.value[filter])
         }
     }
     
     func fillLocationCell(cell: CreateShoutSelectCell?) {
-        if self.selectedLocation != nil {
-            cell?.selectButton.setTitle(self.selectedLocation?.addressString, forState: .Normal)
+        if let location = shoutParams.location.value {
+            cell?.selectButton.setTitle(location.address, forState: .Normal)
         } else {
-            cell?.selectButton.setTitle(Account.sharedInstance.locationString(), forState: .Normal)
+            cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
         }
     }
 }
@@ -171,7 +189,7 @@ extension CreateShoutViewModel {
         self.currencies.value.each { (currency) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(currency.name) (\(currency.code))", style: .Default, handler: { [weak self] (alertAction) in
                 
-                self?.selectedCurrency.value = currency
+                self?.shoutParams.currency.value = currency
                 
                 if let completion = handler {
                     completion(alertAction)
@@ -190,7 +208,8 @@ extension CreateShoutViewModel {
         self.categories.value.each { (category) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(category.name)", style: .Default, handler: { [weak self] (alertAction) in
                 
-                self?.selectedCategory.value = category
+                self?.shoutParams.filters.value = [:]
+                self?.shoutParams.category.value = category
                 
                 if let filters = category.filters {
                     self?.filters.value = filters
@@ -224,7 +243,7 @@ extension CreateShoutViewModel {
         filter.values?.each { (value) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(value.name)", style: .Default, handler: { (alertAction) in
                 
-                self.selectedFilters[filter] = value
+                self.shoutParams.filters.value[filter] = value
                 
                 if let completion = handler {
                     completion(alertAction)

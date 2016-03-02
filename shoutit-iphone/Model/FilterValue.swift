@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct FilterValue: Hashable, Equatable {
     let name: String
@@ -32,4 +33,10 @@ extension FilterValue: Decodable {
 
 func ==(lhs: FilterValue, rhs: FilterValue) -> Bool {
     return lhs.value == rhs.value
+}
+
+extension FilterValue: Encodable {
+    func encode() -> JSON {
+        return JSON.Object(["slug": value.encode()])
+    }
 }

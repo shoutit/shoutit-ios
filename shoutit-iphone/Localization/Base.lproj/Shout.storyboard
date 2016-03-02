@@ -132,6 +132,8 @@
                             </constraints>
                             <connections>
                                 <outlet property="currencyButton" destination="onr-sH-VzS" id="sGY-FO-fgE"/>
+                                <outlet property="priceTextField" destination="Woj-57-1w2" id="7A4-rG-eon"/>
+                                <outlet property="titleTextField" destination="WZp-Em-qUh" id="zIA-o9-TEa"/>
                                 <outlet property="typeButton" destination="ji7-9Y-OEz" id="Yd6-cd-BPd"/>
                             </connections>
                         </view>
@@ -154,6 +156,9 @@
                                             <real key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="PQ6-0B-C6W"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share on Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQ9-Fz-rYZ">
                                     <rect key="frame" x="20" y="5" width="155.5" height="40"/>
@@ -276,11 +281,11 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="659" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-pO-O7x" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-pO-O7x" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="8" width="560" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Kyd-5O-nrT"/>
