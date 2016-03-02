@@ -37,11 +37,11 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             viewModel = DiscoverGeneralViewModel()
         }
         
-        viewModel.items.asObservable().subscribeNext({ [weak self] (result) -> Void in
+        viewModel.items.asObservable().observeOn(MainScheduler.instance).subscribeNext {[weak self] (result) in
             self?.collectionView?.reloadSections(NSIndexSet(index: 0))
-            }).addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
         
-        viewModel.shouts.asObservable().subscribeNext({ [weak self] (result) -> Void in
+        viewModel.shouts.asObservable().observeOn(MainScheduler.instance).subscribeNext({ [weak self] (result) -> Void in
             self?.collectionView?.reloadSections(NSIndexSet(index: 1))
             }).addDisposableTo(disposeBag)
         

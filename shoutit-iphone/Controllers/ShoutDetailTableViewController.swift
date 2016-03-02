@@ -105,7 +105,7 @@ final class ShoutDetailTableViewController: UITableViewController {
         headerView.priceLabel.text = viewModel.priceString()
         headerView.availabilityLabel.text = ""
         
-        photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
         
         // size

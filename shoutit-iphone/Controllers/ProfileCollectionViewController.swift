@@ -260,6 +260,8 @@ extension ProfileCollectionViewController {
                 let constraint = constraints[index]
                 if text == nil || text!.isEmpty {
                     constraint.constant = 0
+                } else {
+                    constraint.constant = layout.defaultInfoSupplementaryViewSectionHeight
                 }
             }
             
