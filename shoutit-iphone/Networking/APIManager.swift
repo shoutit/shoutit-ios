@@ -11,6 +11,7 @@ import ObjectMapper
 import Alamofire
 import CryptoSwift
 import ReachabilitySwift
+import Kingfisher
 
 final class APIManager {
     
@@ -49,6 +50,12 @@ final class APIManager {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = defaultHeaders
         apiManager = Alamofire.Manager(configuration: configuration)
+        
+        KingfisherManager.sharedManager.downloader.requestModifier = {(request: NSMutableURLRequest) in
+            var headerFields = request.allHTTPHeaderFields ?? [String : String]()
+            headerFields["Authorization"] = token
+            request.allHTTPHeaderFields = headerFields
+        }
     }
     
     // MARK: - Reachability

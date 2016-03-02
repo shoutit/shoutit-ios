@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum ProfileCollectionFooterButtonType {
     case Green
@@ -14,6 +15,8 @@ enum ProfileCollectionFooterButtonType {
 }
 
 class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
+    
+    var reuseDisposeBag: DisposeBag?
     
     var type: ProfileCollectionFooterButtonType? = .Gray {
         didSet {

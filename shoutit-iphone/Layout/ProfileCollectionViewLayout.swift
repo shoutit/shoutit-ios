@@ -18,7 +18,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
     // supplementery views consts
     private let coverViewHeight: CGFloat                           = 211
     private let collapsedCoverViewHeight: CGFloat                  = 64
-    private let infoViewHeight: CGFloat                            = 296
+    private let infoViewHeight: CGFloat                            = 286
     private let sectionHeaderHeight: CGFloat                       = 44
     private let footerButtonHeight: CGFloat                        = 64
     private let infoOverCoverViewMargin: CGFloat                   = 41
@@ -241,7 +241,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             return defaultInfoSupplementaryViewSectionHeight
         }
         
-        guard let text = text else {
+        guard let text = text where text.characters.count > 0 else {
             return 0
         }
         

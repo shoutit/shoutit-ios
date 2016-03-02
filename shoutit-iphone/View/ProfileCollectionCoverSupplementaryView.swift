@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
+    var reuseDisposeBag: DisposeBag?
     private let visibleLabelsConstraintConstantValue: CGFloat = 21
     
     @IBOutlet weak var imageView: UIImageView!
