@@ -134,7 +134,7 @@ class APIShoutsService {
     }
 
 
-    static func createShoutWithParams(params: [String : AnyObject]) -> Observable<[Shout]> {
+    static func createShoutWithParams(params: [String : AnyObject]) -> Observable<Shout> {
         
         return Observable.create{ (observer) -> Disposable in
             
@@ -150,8 +150,8 @@ class APIShoutsService {
                             
                             let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                             
-                            if let j = json, jr = j.objectForKey("results") {
-                                if let results : Decoded<[Shout]> = decode(jr) {
+                            if let j = json {
+                                if let results : Decoded<Shout> = decode(j) {
                                     
                                     if let value = results.value {
                                         observer.on(.Next(value))

@@ -17,16 +17,21 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
     
-    var viewModel : CreateShoutViewModel! = CreateShoutViewModel()
+    var viewModel : CreateShoutViewModel!
+    
     @IBOutlet var headerView : CreateShoutTableHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViewModel()
         setupRX()
         loadData()
     }
     
+    func createViewModel() {
+        viewModel = CreateShoutViewModel()
+    }
     
     // Load Data
     func loadData() {
@@ -229,6 +234,11 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         print(parameters)
         
         APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { (shout) -> Void in
+            let confirmation = Wireframe.shoutConfirmationController()
+            
+            confirmation.shout = shout
+            
+            self.navigationController?.pushViewController(confirmation, animated: true)
             
         }, onError: { (error) -> Void in
             let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)

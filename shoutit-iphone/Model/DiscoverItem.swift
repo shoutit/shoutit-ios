@@ -17,6 +17,7 @@ struct DiscoverItem: Decodable, Hashable, Equatable {
     let subtitle: String?
     let position: Int
     let image: String?
+    let cover: String?
     let icon: String?
     
     static func decode(j: JSON) -> Decoded<DiscoverItem> {
@@ -28,6 +29,7 @@ struct DiscoverItem: Decodable, Hashable, Equatable {
             <*> j <|? "subtitle"
             <*> j <| "position"
             <*> j <|? "image"
+            <*> j <|? "cover"
             <*> j <|? "icon"
     }
     

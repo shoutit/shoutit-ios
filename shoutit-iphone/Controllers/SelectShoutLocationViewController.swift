@@ -15,5 +15,7 @@ class SelectShoutLocationViewController: ChangeLocationTableViewController {
         if let finish = self.finishedBlock {
             finish(true, place)
         }
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
