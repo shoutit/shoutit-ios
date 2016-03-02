@@ -18,6 +18,7 @@ final class ProfileFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.profileViewController()
+        controller.flowDelegate = self
         controller.viewModel = ProfileCollectionViewModel()
 
         navigationController.showViewController(controller, sender: nil)
@@ -27,3 +28,15 @@ final class ProfileFlowController: FlowController {
         return true
     }
 }
+
+extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {
+    
+    func performActionForButtonType(type: ProfileCollectionInfoButton) {
+        switch type {
+        default:
+            navigationController.notImplemented()
+        }
+    }
+}
+
+extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}

@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Category {
     let name: String
@@ -16,6 +17,7 @@ struct Category {
     let image: String?
     let slug: String
     let mainTag: Tag
+    let filters: [Filter]?
 }
 
 extension Category: Decodable {
@@ -27,6 +29,16 @@ extension Category: Decodable {
             <*> j <|? "image"
             <*> j <| "slug"
             <*> j <| "main_tag"
+            <*> j <||? "filters"
+        
     }
 }
 
+
+extension Category: Encodable {
+    
+    func encode() -> JSON {
+        return JSON.Object([
+            "slug"    : self.slug.encode() ])
+    }
+}

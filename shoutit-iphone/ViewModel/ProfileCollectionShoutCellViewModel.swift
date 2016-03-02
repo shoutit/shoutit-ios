@@ -17,6 +17,6 @@ class ProfileCollectionShoutCellViewModel: ProfileCollectionCellViewModel {
     }
     
     func priceString() -> String {
-        return "\(shout.price) \(shout.currency)"
+        return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
     }
 }

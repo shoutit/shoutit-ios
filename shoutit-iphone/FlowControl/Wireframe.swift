@@ -17,6 +17,7 @@ struct Wireframe {
         case Home = "Home"
         case Discover = "Discover"
         case Shout = "Shout"
+        case ShoutDetail = "ShoutDetail"
         case Chats = "Chats"
         case Profile = "Profile"
         case Settings = "Settings"
@@ -73,10 +74,24 @@ struct Wireframe {
         return storyboard(.HTML).instantiateInitialViewController() as! HTMLViewController
     }
     
+    // MARK: - ShoutDetail storyboard view controllers
+    
+    static func shoutDetailContainerViewController() -> ShowDetailContainerViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShowDetailContainerViewController") as! ShowDetailContainerViewController
+    }
+    
+    static func shoutDetailTableViewController() -> ShoutDetailTableViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("ShoutDetailTableViewController") as! ShoutDetailTableViewController
+    }
+    
+    static func photoBrowserPhotoViewController() -> PhotoBrowserPhotoViewController {
+        return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
+    }
+    
     // MARK: - Home storyboard view controllers
 
-    static func homeViewController() -> UIViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController")
+    static func homeViewController() -> HomeViewController {
+        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
     }
     
     static func browseViewController() -> UIViewController {
@@ -121,5 +136,9 @@ struct Wireframe {
     
     static func profileViewController() -> ProfileCollectionViewController {
         return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
+    }
+    
+    static func changeShoutLocationController() -> SelectShoutLocationViewController {
+        return storyboard(.Location).instantiateViewControllerWithIdentifier("ShoutLocationController") as! SelectShoutLocationViewController
     }
 }

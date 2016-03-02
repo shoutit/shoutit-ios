@@ -9,16 +9,7 @@
 import UIKit
 import RxSwift
 
-enum ProfileCollectionViewConfiguration {
-    case MyProfile
-    //case Profile
-    //case Page
-    //case Tag
-}
-
 protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayoutDelegate, ProfileCollectionInfoSupplementaryViewDataSource {
-    
-    var configuration: ProfileCollectionViewConfiguration {get}
     
     // user data
     var name: String? {get}
@@ -27,8 +18,8 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var coverURL: NSURL? {get}
     
     // sections
-    var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {get}
-    var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {get}
+    var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>! {get}
+    var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
     
     // fetchin
     func reloadContent()

@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {
+    func performActionForButtonType(type: ProfileCollectionInfoButton) -> Void
+}
+
 class ProfileCollectionViewController: UICollectionViewController {
     
     // consts
@@ -18,6 +22,9 @@ class ProfileCollectionViewController: UICollectionViewController {
     
     // view model
     var viewModel: ProfileCollectionViewModelInterface!
+    
+    // navigation
+    weak var flowDelegate: ProfileCollectionViewControllerFlowDelegate?
     
     // rx
     let disposeBag = DisposeBag()
@@ -34,7 +41,7 @@ class ProfileCollectionViewController: UICollectionViewController {
         }
         
         viewModel.reloadSubject
-            .observeOn(MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribeNext {[weak self] in
                 self?.collectionView?.reloadData()
             }
@@ -53,7 +60,7 @@ class ProfileCollectionViewController: UICollectionViewController {
     
     private func registerReusables() {
         
-        // reguster cells
+        // register cells
         collectionView?.registerNib(UINib(nibName: "PagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ProfileCollectionViewSection.Pages.cellReuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ProfileCollectionViewSection.Shouts.cellReuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: placeholderCellReuseIdentier)
@@ -63,6 +70,25 @@ class ProfileCollectionViewController: UICollectionViewController {
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionInfoSupplementaryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.Info.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.Info.rawValue)
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionSectionHeaderSupplementaryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.SectionHeader.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.SectionHeader.rawValue)
         collectionView?.registerNib(UINib(nibName: "ProfileCollectionFooterButtonSupplementeryView", bundle: nil), forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryViewKind.FooterButton.rawValue, withReuseIdentifier: ProfileCollectionViewSupplementaryViewKind.FooterButton.rawValue)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension ProfileCollectionViewController {
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        switch indexPath.section {
+        case 0:
+            let page = viewModel.pagesSection.cells[indexPath.row].profile
+            flowDelegate?.showPage(page)
+        case 1:
+            let shout = viewModel.shoutsSection.cells[indexPath.row].shout
+            flowDelegate?.showShout(shout)
+        default:
+            assert(false)
+        }
     }
 }
 
@@ -103,9 +129,23 @@ extension ProfileCollectionViewController {
             
             cell.nameLabel.text = cellViewModel.profile.name
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
-            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: nil)
-            let listenButtonImage = cellViewModel.profile.listening == true ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage(named: "image_placeholder"))
+            let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
+            cell.reuseDisposeBag = DisposeBag()
+            cell.listenButton.rx_tap.asDriver().driveNext {[unowned self, unowned cellViewModel] in
+                cellViewModel.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell, weak self] (event) in
+                    switch event {
+                    case .Next(let listening):
+                        let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+                        cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                    case .Completed:
+                        self?.viewModel.reloadContent()
+                    default:
+                        break
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }.addDisposableTo(cell.reuseDisposeBag!)
             
             return cell
         }
@@ -116,7 +156,7 @@ extension ProfileCollectionViewController {
             
             cell.titleLabel.text = cellViewModel.shout.title
             cell.subtitleLabel.text = cellViewModel.shout.text
-            cell.imageView.sh_setImageWithURL(cellViewModel.shout.image?.toURL(), placeholderImage: nil)
+            cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
             cell.priceLabel.text = cellViewModel.priceString()
             
             return cell
@@ -145,6 +185,7 @@ extension ProfileCollectionViewController {
                     self.toggleMenu()
                 }
                 .addDisposableTo(disposeBag)
+            
             if let navigationController = navigationController where self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
             } else {
@@ -155,6 +196,22 @@ extension ProfileCollectionViewController {
                     }
                     .addDisposableTo(disposeBag)
             }
+            
+            coverView.cartButton
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    self.flowDelegate?.showCart()
+                }
+                .addDisposableTo(disposeBag)
+            
+            coverView
+                .searchButton
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    self.flowDelegate?.showSearch()
+                }
+                .addDisposableTo(disposeBag)
+            
             
             // setup cover image
             
@@ -174,7 +231,7 @@ extension ProfileCollectionViewController {
             
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
             
-            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.avatarPlaceholder())
+            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.squareAvatarPlaceholder())
             infoView.nameLabel.text = viewModel.name
             infoView.usernameLabel.text = viewModel.username
             if let isListening = viewModel.isListeningToYou where isListening {
@@ -187,7 +244,7 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
-            infoView.setButtons(viewModel.infoButtons)
+            setButtons(viewModel.infoButtons, inSupplementaryView: infoView)
             
             // adjust constraints for data
             let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
@@ -210,6 +267,12 @@ extension ProfileCollectionViewController {
             let createPageButtonFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             createPageButtonFooter.type = viewModel.pagesSection.footerButtonStyle
             createPageButtonFooter.button.setTitle(viewModel.pagesSection.footerButtonTitle, forState: .Normal)
+            createPageButtonFooter.button
+                .rx_tap
+                .subscribeNext {[unowned self] in
+                    self.flowDelegate?.showCreateShout()
+                }
+                .addDisposableTo(disposeBag)
         case .ShoutsSectionHeader:
             let shoutsSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
             shoutsSectionHeader.titleLabel.text = viewModel.shoutsSection.title
@@ -217,8 +280,68 @@ extension ProfileCollectionViewController {
             let seeAllShoutsFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             seeAllShoutsFooter.type = viewModel.shoutsSection.footerButtonStyle
             seeAllShoutsFooter.button.setTitle(viewModel.shoutsSection.footerButtonTitle, forState: .Normal)
+            seeAllShoutsFooter.button
+                .rx_tap
+                .subscribeNext{[unowned self] in
+                    guard let username = self.viewModel.username else {return}
+                    self.flowDelegate?.showShoutsForUsername(username)
+                }
+                .addDisposableTo(disposeBag)
         }
         
         return supplementeryView
+    }
+}
+
+// MARK: - Info supplementary view hydration
+
+extension ProfileCollectionViewController {
+    
+    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView) {
+        
+        for button in buttons {
+            switch button.defaultPosition {
+            case .SmallLeft:
+                hydrateButton(sView.notificationButton, withButtonModel: button)
+            case .SmallRight:
+                hydrateButton(sView.rightmostButton, withButtonModel: button)
+            case .BigLeft:
+                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button)
+            case .BigCenter:
+                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button)
+            case .BigRight:
+                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button)
+            }
+        }
+    }
+    
+    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton) {
+        
+        if case .HiddenButton = buttonModel {
+            button.hidden = true
+            return
+        }
+        
+        button
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.flowDelegate?.performActionForButtonType(buttonModel)
+            }
+            .addDisposableTo(disposeBag)
+        
+        if let button = button as? ProfileInfoHeaderButton {
+            button.setTitleText(buttonModel.title)
+            button.setImage(buttonModel.image)
+            
+            if case .Listeners(let countString) = buttonModel {
+                button.setCountText(countString)
+            } else if case .Listening(let countString) = buttonModel {
+                button.setCountText(countString)
+            } else if case .Interests(let countString) = buttonModel {
+                button.setCountText(countString)
+            }
+        } else {
+            button.setImage(buttonModel.image, forState: .Normal)
+        }
     }
 }

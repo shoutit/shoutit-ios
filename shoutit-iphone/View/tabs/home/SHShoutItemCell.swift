@@ -32,7 +32,7 @@ extension SHShoutItemCell {
     func bindWith(Shout shout: Shout) {
         self.shoutTitle.text = shout.title
         
-        if let publishedAt = shout.publishedAt {
+        if let publishedAt = shout.publishedAtEpoch {
             self.name.text = "\(shout.text) \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
         } else {
             self.name.text = shout.text

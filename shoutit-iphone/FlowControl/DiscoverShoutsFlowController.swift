@@ -17,11 +17,23 @@ class DiscoverShoutsFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.discoverShoutsViewController()
+        controller.flowDelegate = self
         
         if let item = discoverItem {
             controller.viewModel = DiscoverShoutsViewModel(discoverItem: item)
         }
         
         navigationController.showViewController(controller, sender: nil)
+    }
+}
+
+extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: ProfileCollectionViewControllerFlowDelegate {
+    func performActionForButtonType(type: ProfileCollectionInfoButton) {
+        switch type {
+        default:
+            navigationController.notImplemented()
+        }
     }
 }

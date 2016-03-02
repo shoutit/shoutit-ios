@@ -107,13 +107,39 @@ class APIShoutsService {
         })
         
     }
-
+    
     static func shoutsForUserWithParams(params: UserShoutsParams) -> Observable<[Shout]> {
+        return APIGenericService.requestWithMethod(.GET,
+                                                   url: shoutsURL,
+                                                   params: params,
+                                                   encoding: .URL,
+                                                   responseJsonPath: ["results"],
+                                                   headers: ["Accept": "application/json"])
+    }
+    
+    static func retrieveShoutWithId(id: String) -> Observable<Shout> {
+        let url = shoutsURL + "/\(id)"
+        return APIGenericService.requestWithMethod(.GET,
+                                                   url: url,
+                                                   params: NopParams())
+    }
+    
+    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
+        let url = shoutsURL + "/\(params.shout.id)/related"
+        return APIGenericService.requestWithMethod(.GET, url: url,
+                                                   params: params,
+                                                   encoding: .URL,
+                                                   responseJsonPath: ["results"],
+                                                   headers: ["Accept": "application/json"])
+    }
+
+
+    static func createShoutWithParams(params: [String : AnyObject]) -> Observable<[Shout]> {
         
         return Observable.create{ (observer) -> Disposable in
             
             APIManager.manager()
-                .request(.GET, shoutsURL, parameters: params.params, encoding: .URL, headers: ["Accept": "application/json"])
+                .request(.POST, shoutsURL, parameters: params, encoding: .URL, headers: ["Accept": "application/json"])
                 .validate(statusCode: 200..<300)
                 .responseData({ (response) in
                     
