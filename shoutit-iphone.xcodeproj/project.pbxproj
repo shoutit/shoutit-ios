@@ -35,6 +35,8 @@
 		249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */; };
 		249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */; };
 		249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */; };
+		249671571C86E7B30011B078 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
+		249671591C870ECD0011B078 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
 		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
 		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
 		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
@@ -561,6 +563,8 @@
 		249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsViewModel.swift; path = Controllers/DiscoverShoutsViewModel.swift; sourceTree = "<group>"; };
 		249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsParentViewController.swift; path = Controllers/DiscoverShoutsParentViewController.swift; sourceTree = "<group>"; };
 		249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsFlowController.swift; path = FlowControl/DiscoverShoutsFlowController.swift; sourceTree = "<group>"; };
+		249671561C86E7B30011B078 /* ShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutParams.swift; path = Model/ShoutParams.swift; sourceTree = "<group>"; };
+		249671581C870ECD0011B078 /* FilterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterResult.swift; path = Model/FilterResult.swift; sourceTree = "<group>"; };
 		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1254,6 +1258,7 @@
 				248328F41C84238C0042B0DB /* Pictures */,
 				2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */,
 				2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */,
+				249671561C86E7B30011B078 /* ShoutParams.swift */,
 			);
 			name = CreateShout;
 			sourceTree = "<group>";
@@ -1382,6 +1387,7 @@
 			isa = PBXGroup;
 			children = (
 				248329081C8487900042B0DB /* FilterValue.swift */,
+				249671581C870ECD0011B078 /* FilterResult.swift */,
 				B2C729BC1C6221B0006F7D29 /* Account.swift */,
 				248329001C8443080042B0DB /* Currency.swift */,
 				B2C729BD1C6221B0006F7D29 /* Address.swift */,
@@ -3471,6 +3477,7 @@
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				B2E715481C6D0336007F95CF /* ProfileCollectionViewModel.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
+				249671571C86E7B30011B078 /* ShoutParams.swift in Sources */,
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
@@ -3558,6 +3565,7 @@
 				B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */,
 				B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */,
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
+				249671591C870ECD0011B078 /* FilterResult.swift in Sources */,
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
 				ACDB3CC11BF90DE80097444E /* SHRequestTextTableViewCell.swift in Sources */,

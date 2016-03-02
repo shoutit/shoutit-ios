@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class CreateShoutTableViewController: UITableViewController, ShoutTypeController {
 
@@ -36,38 +37,43 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     // RX
     
     func setupRX() {
-        viewModel
-            .currentType
+        viewModel.shoutParams
+            .type
             .asDriver()
             .driveNext { [weak self] (type) -> Void in
                 self?.headerView.fillWithType(type)
             }
             .addDisposableTo(disposeBag)
         
-        viewModel
-            .currencies
+        viewModel.currencies
             .asDriver()
             .driveNext { [weak self] (currencies) -> Void in
                 self?.headerView.currencyButton.optionsLoaded = currencies.count > 0
             }
             .addDisposableTo(disposeBag)
         
-        viewModel
-            .selectedCurrency
+        viewModel.shoutParams.currency
             .asDriver()
             .driveNext { [weak self] (currency) -> Void in
-                self?.viewModel.selectedFilters = [:]
                 self?.headerView.setCurrency(currency)
             }
             .addDisposableTo(disposeBag)
         
-        viewModel
-            .categories
+        viewModel.categories
             .asDriver()
             .driveNext({ [weak self] (category) -> Void in
                 self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             })
             .addDisposableTo(disposeBag)
+        
+        headerView.titleTextField.rx_text.flatMap({ (text) -> Observable<String?> in
+            return Observable.just(text)
+        }).bindTo(viewModel.shoutParams.title).addDisposableTo(disposeBag)
+        
+        headerView.priceTextField.rx_text.flatMap({ (stringValue) -> Observable<Int?> in
+            return Observable.just(Int(stringValue))
+        }).bindTo(viewModel.shoutParams.price).addDisposableTo(disposeBag)
+        
     }
     
     // MARK: Shout Type Selection
@@ -141,7 +147,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = { (success, place) -> Void in
-                        self?.viewModel.selectedLocation = place
+                        self?.viewModel.shoutParams.location.value = place?.toAddressObject()
                         self?.tableView.reloadData()
                     }
                     
@@ -207,6 +213,13 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.viewModel.sectionTitle(section)
+    }
+    
+    @IBAction func submitAction() {
+        let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
+        APIShoutsService.createShoutWithParams(parameters).subscribeNext { (shout) -> Void in
+            
+        }.addDisposableTo(disposeBag)
     }
 
 }

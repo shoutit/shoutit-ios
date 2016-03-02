@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Category {
     let name: String
@@ -33,3 +34,11 @@ extension Category: Decodable {
     }
 }
 
+
+extension Category: Encodable {
+    
+    func encode() -> JSON {
+        return JSON.Object([
+            "slug"    : self.slug.encode() ])
+    }
+}

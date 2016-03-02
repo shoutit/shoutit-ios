@@ -132,6 +132,8 @@
                             </constraints>
                             <connections>
                                 <outlet property="currencyButton" destination="onr-sH-VzS" id="sGY-FO-fgE"/>
+                                <outlet property="priceTextField" destination="Woj-57-1w2" id="7A4-rG-eon"/>
+                                <outlet property="titleTextField" destination="WZp-Em-qUh" id="zIA-o9-TEa"/>
                                 <outlet property="typeButton" destination="ji7-9Y-OEz" id="Yd6-cd-BPd"/>
                             </connections>
                         </view>
@@ -154,6 +156,9 @@
                                             <real key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="PQ6-0B-C6W"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share on Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQ9-Fz-rYZ">
                                     <rect key="frame" x="20" y="5" width="156" height="40"/>
