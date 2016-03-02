@@ -76,10 +76,10 @@ final class ShoutDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // setup data sources
-        dataSource = ShoutDetailTableViewDataSource(viewModel: viewModel)
-        otherShoutsDataSource = ShoutDetailOtherShoutsCollectionViewDataSource(viewModel: viewModel)
-        relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(viewModel: viewModel)
-        imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(viewModel: viewModel)
+        dataSource = ShoutDetailTableViewDataSource(controller: self)
+        otherShoutsDataSource = ShoutDetailOtherShoutsCollectionViewDataSource(controller: self)
+        relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
+        imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
         
         // setup table view
         tableView.estimatedRowHeight = 40

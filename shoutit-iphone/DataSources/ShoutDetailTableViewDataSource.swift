@@ -11,7 +11,10 @@ import RxSwift
 
 class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
-    let viewModel: ShoutDetailViewModel
+    unowned let controller: ShoutDetailTableViewController
+    var viewModel: ShoutDetailViewModel {
+        return controller.viewModel
+    }
     
     let otherShoutsCollectionViewSetSubject = PublishSubject<IndexedCollectionView>()
     let relatedShoutsCollectionViewSetSubject = PublishSubject<IndexedCollectionView>()
@@ -32,8 +35,8 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    init(viewModel: ShoutDetailViewModel) {
-        self.viewModel = viewModel
+    init(controller: ShoutDetailTableViewController) {
+        self.controller = controller
         super.init()
     }
     
@@ -73,9 +76,22 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             regularCell.titleLabel.text = title
             regularCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
-        case .Button(let title, _):
+        case .Button(let title, let type):
             let buttonCell = cell as! ShoutDetailButtonTableViewCell
             buttonCell.button.setTitle(title, forState: .Normal)
+            buttonCell.reuseDisposeBag = DisposeBag()
+            buttonCell.button
+                .rx_tap
+                .asDriver()
+                .driveNext{[unowned self] in
+                    switch type {
+                    case .Policies:
+                        break
+                    case .VisitProfile:
+                        self.controller.flowDelegate?.showProfile(self.viewModel.shout.user)
+                    }
+                }
+                .addDisposableTo(buttonCell.reuseDisposeBag!)
             
         case .OtherShouts:
             let otherShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell

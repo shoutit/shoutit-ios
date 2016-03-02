@@ -24,14 +24,14 @@ struct DetailedProfile {
     let activated: Bool
     let imagePath: String?
     let coverPath: String?
-    let isListening: Bool
+    let isListening: Bool?
     let listenersCount: Int
     let gender: Gender?
     let videoPath: Video?
     let dateJoinedEpoch: Int
     let bio: String
     let location: Address
-    let email: String
+    let email: String?
     let website: String?
     let linkedAccounts: LoginAccounts?
     let pushTokens: PushTokens?
@@ -64,7 +64,7 @@ extension DetailedProfile: Decodable {
         let c = b
             <*> j <|? "image"
             <*> j <|? "cover"
-            <*> j <| "is_listening"
+            <*> j <|? "is_listening"
             <*> j <| "listeners_count"
             <*> j <|? "gender"
             <*> j <|? "video"
@@ -72,7 +72,7 @@ extension DetailedProfile: Decodable {
             <*> j <| "date_joined"
             <*> j <| "bio"
             <*> j <| "location"
-            <*> j <| "email"
+            <*> j <|? "email"
         let e = d
             <*> j <|? "website"
             <*> j <|? "linked_accounts"
@@ -92,3 +92,7 @@ extension DetailedProfile: Decodable {
     }
 }
 
+extension DetailedProfile: ProfileCollectionUser {
+    var dateJoinedEpoch_optional: Int? {return dateJoinedEpoch}
+    var location_optional: Address? {return location}
+}

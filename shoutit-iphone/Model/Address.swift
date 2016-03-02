@@ -14,7 +14,7 @@ import FTGooglePlacesAPI
 
 struct Address {
     
-    let address: String
+    let address: String?
     let city: String
     let country: String
     let latitude: Double?
@@ -27,7 +27,7 @@ extension Address: Decodable {
     
     static func decode(j: JSON) -> Decoded<Address> {
         let f = curry(Address.init)
-            <^> j <| "address"
+            <^> j <|? "address"
             <*> j <| "city"
             <*> j <| "country"
         return f

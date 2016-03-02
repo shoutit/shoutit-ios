@@ -128,3 +128,8 @@ extension LoggedUser {
             ])
     }
 }
+
+extension LoggedUser: ProfileCollectionUser {
+    var dateJoinedEpoch_optional: Int? {return dateJoinedEpoch}
+    var location_optional: Address? {return location}
+}

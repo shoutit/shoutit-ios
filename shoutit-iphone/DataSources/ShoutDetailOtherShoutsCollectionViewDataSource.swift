@@ -10,10 +10,13 @@ import UIKit
 
 class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    let viewModel: ShoutDetailViewModel
+    unowned let controller: ShoutDetailTableViewController
+    var viewModel: ShoutDetailViewModel {
+        return controller.viewModel
+    }
     
-    init(viewModel: ShoutDetailViewModel) {
-        self.viewModel = viewModel
+    init(controller: ShoutDetailTableViewController) {
+        self.controller = controller
         super.init()
     }
     

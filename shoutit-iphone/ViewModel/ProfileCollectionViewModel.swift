@@ -19,7 +19,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private var detailedUser: DetailedProfile?
     
     var user: ProfileCollectionUser? {
-        return detailedUser ?? Account.sharedInstance.user as? LoggedUser
+        return detailedUser ?? profile ?? Account.sharedInstance.user as? LoggedUser
     }
     
     private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>!

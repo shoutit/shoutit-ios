@@ -218,7 +218,7 @@ extension ShoutDetailViewModel {
         models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
         models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(shout.user.firstName)", comment: "Shout detail")))
         models.append(.OtherShouts)
-        models.append(.Button(title: NSLocalizedString("Visit \(shout.user.firstName)'s profile", comment: "Shout Detail"), type: .Policies))
+        models.append(.Button(title: NSLocalizedString("Visit \(shout.user.firstName)'s profile", comment: "Shout Detail"), type: .VisitProfile))
         models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
         models.append(.RelatedShouts)
         
