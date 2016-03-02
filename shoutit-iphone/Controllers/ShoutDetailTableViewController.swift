@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ProfileDisplayable {
     
 }
 
@@ -123,8 +123,6 @@ final class ShoutDetailTableViewController: UITableViewController {
             photosPageViewController = pageViewController
         }
     }
-    
-    
 }
 
 extension ShoutDetailTableViewController: UICollectionViewDelegate {

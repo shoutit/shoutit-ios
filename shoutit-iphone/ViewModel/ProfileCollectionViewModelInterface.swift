@@ -18,8 +18,8 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var coverURL: NSURL? {get}
     
     // sections
-    var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {get}
-    var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {get}
+    var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>! {get}
+    var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
     
     // fetchin
     func reloadContent()

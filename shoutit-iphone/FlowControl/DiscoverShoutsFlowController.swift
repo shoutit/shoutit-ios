@@ -29,3 +29,11 @@ class DiscoverShoutsFlowController: FlowController {
 
 extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: ProfileCollectionViewControllerFlowDelegate {
+    func performActionForButtonType(type: ProfileCollectionInfoButton) {
+        switch type {
+        default:
+            navigationController.notImplemented()
+        }
+    }
+}

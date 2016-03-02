@@ -389,6 +389,7 @@
 		B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */; };
 		B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */; };
 		B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E221C85F69400F5E257 /* BorderedView.swift */; };
+		B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A101881C87113C005074C4 /* ProfileDisplayable.swift */; };
 		B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144171C64BE68002CD70A /* PushTokens.swift */; };
 		B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */; };
 		B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */; };
@@ -957,6 +958,7 @@
 		B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Tabbar.swift"; path = "UIKitExtensions/UIViewController+Tabbar.swift"; sourceTree = "<group>"; };
 		B2A03E201C85D53900F5E257 /* ShowDetailContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDetailContainerViewController.swift; path = Controllers/ShowDetailContainerViewController.swift; sourceTree = "<group>"; };
 		B2A03E221C85F69400F5E257 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedView.swift; path = View/BorderedView.swift; sourceTree = "<group>"; };
+		B2A101881C87113C005074C4 /* ProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDisplayable.swift; path = FlowControl/ProfileDisplayable.swift; sourceTree = "<group>"; };
 		B2A144171C64BE68002CD70A /* PushTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushTokens.swift; path = Model/PushTokens.swift; sourceTree = "<group>"; };
 		B2A1441A1C651B99002CD70A /* PostSignupInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewController.swift; path = Controllers/PostSignupInterestsViewController.swift; sourceTree = "<group>"; };
 		B2A144221C651C26002CD70A /* PostSignupInterestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestsViewModel.swift; path = ViewModel/PostSignupInterestsViewModel.swift; sourceTree = "<group>"; };
@@ -2530,6 +2532,7 @@
 				B2B5D0241C7F5CAE0068A6AF /* AllShoutsDisplayable.swift */,
 				B2B5D03D1C80AABC0068A6AF /* ShoutDisplayable.swift */,
 				B2B5D03F1C80AAE80068A6AF /* PageDisplayable.swift */,
+				B2A101881C87113C005074C4 /* ProfileDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -3572,6 +3575,7 @@
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
 				60D36D601BF7944100238D62 /* SHTag.swift in Sources */,
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
+				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
 				AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,

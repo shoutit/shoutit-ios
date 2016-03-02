@@ -49,10 +49,12 @@ class APIAuthService {
                     do {
                         var auth: AuthData?
                         
-                        if let decoded: Decoded<AuthData> = decode(json), let authData = decoded.value {
+                        let decoded: Decoded<AuthData> = decode(json)
+                        switch decoded {
+                        case .Success(let authData):
                             auth = authData
-                        } else {
-                            throw ParseError.User
+                        case .Failure(let error):
+                            throw error
                         }
                         
                         if let userJson = json["user"] as? [String : AnyObject] {

@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class ShoutDetailButtonTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag: DisposeBag?
+    
     @IBOutlet weak var button: CustomUIButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = nil
+    }
 }
