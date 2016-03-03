@@ -85,6 +85,16 @@ struct Shout: Decodable, Hashable, Equatable {
     
 }
 
+extension Shout {
+    func priceText() -> String? {
+        if let price = self.price {
+            return "\(price)"
+        }
+        
+        return nil
+    }
+}
+
 func ==(lhs: Shout, rhs: Shout) -> Bool {
     return lhs.id == rhs.id
 }

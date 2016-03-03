@@ -28,6 +28,9 @@ struct ShoutParams {
     var location:  Variable<Address?>
     var publishToFacebook:  Variable<Bool>
     var filters:  Variable<[Filter: FilterValue]>
+    
+    var shout: Shout?
+    
 }
 
 extension ShoutParams: Encodable {

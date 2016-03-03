@@ -26,10 +26,12 @@ class APIMiscService {
                 switch response.result {
                 case .Success(let json):
                     do {
-                        if let decoded: Decoded<[Category]> = decode(json), categories = decoded.value {
+                        let decoded: Decoded<[Category]> = decode(json)
+                        switch decoded {
+                        case .Success(let categories):
                             completionHandler(.Success(categories))
-                        } else {
-                            throw ParseError.Categories
+                        case .Failure(let error):
+                            throw error
                         }
                     } catch let error as NSError {
                         completionHandler(.Failure(error))

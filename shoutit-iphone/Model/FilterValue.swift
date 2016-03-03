@@ -13,11 +13,11 @@ import Ogra
 
 struct FilterValue: Hashable, Equatable {
     let name: String
-    let value: String
+    let slug: String
     
     var hashValue: Int {
         get {
-            return self.value.hashValue
+            return slug.hashValue
         }
     }
 }
@@ -27,16 +27,16 @@ extension FilterValue: Decodable {
     static func decode(j: JSON) -> Decoded<FilterValue> {
         return curry(FilterValue.init)
             <^> j <| "name"
-            <*> j <| "value"
+            <*> j <| "slug"
     }
 }
 
 func ==(lhs: FilterValue, rhs: FilterValue) -> Bool {
-    return lhs.value == rhs.value
+    return lhs.slug == rhs.slug
 }
 
 extension FilterValue: Encodable {
     func encode() -> JSON {
-        return JSON.Object(["slug": value.encode()])
+        return JSON.Object(["slug": slug.encode()])
     }
 }

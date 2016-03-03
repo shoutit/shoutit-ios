@@ -122,11 +122,17 @@ class ShowDetailContainerViewController: UIViewController {
                 case .Chats:
                     self.notImplemented()
                 case .Edit:
-                    self.notImplemented()
+                    self.showEditController()
                 case .Delete:
                     self.notImplemented()
                 }
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    private func showEditController() {
+        let editController = Wireframe.editShoutController()
+        editController.shout = viewModel.shout
+        self.navigationController?.pushViewController(editController, animated: true)
     }
 }

@@ -11,13 +11,19 @@ import Argo
 import Curry
 import Ogra
 
-struct Category {
+struct Category: Hashable, Equatable {
     let name: String
     let icon: String?
     let image: String?
     let slug: String
     let mainTag: Tag
     let filters: [Filter]?
+    
+    var hashValue: Int {
+        get {
+            return self.slug.hashValue
+        }
+    }
 }
 
 extension Category: Decodable {
@@ -41,4 +47,8 @@ extension Category: Encodable {
         return JSON.Object([
             "slug"    : self.slug.encode() ])
     }
+}
+
+func ==(lhs: Category, rhs: Category) -> Bool {
+    return lhs.slug == rhs.slug
 }
