@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -738,17 +738,17 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="585"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OM4-vj-24p">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="585"/>
+                                        <rect key="frame" x="10" y="41" width="355" height="481"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="iM9-A5-O26" kind="embed" id="xWL-RW-UPH"/>
+                                            <segue destination="UGA-XJ-RNc" kind="embed" id="dXL-np-SOO"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="OM4-vj-24p" firstAttribute="top" secondItem="Vam-pG-8gB" secondAttribute="top" id="MbJ-Kv-2ab"/>
-                                    <constraint firstAttribute="bottom" secondItem="OM4-vj-24p" secondAttribute="bottom" id="jnT-iS-Kib"/>
+                                    <constraint firstItem="OM4-vj-24p" firstAttribute="top" secondItem="Vam-pG-8gB" secondAttribute="top" constant="41" id="MbJ-Kv-2ab"/>
+                                    <constraint firstAttribute="bottom" secondItem="OM4-vj-24p" secondAttribute="bottom" constant="63" id="jnT-iS-Kib"/>
                                     <constraint firstAttribute="trailing" secondItem="OM4-vj-24p" secondAttribute="trailing" constant="10" id="lHJ-8L-uzP"/>
                                     <constraint firstItem="OM4-vj-24p" firstAttribute="leading" secondItem="Vam-pG-8gB" secondAttribute="leading" constant="10" id="nWd-OG-fdc"/>
                                 </constraints>
@@ -818,133 +818,13 @@
             </objects>
             <point key="canvasLocation" x="4896.5" y="292.5"/>
         </scene>
-        <!--Post Signup Suggestions Table View Controller-->
-        <scene sceneID="lH3-vh-UOJ">
+        <!--Page View Controller-->
+        <scene sceneID="UC7-Az-cmz">
             <objects>
-                <tableViewController id="iM9-A5-O26" customClass="PostSignupSuggestionsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Cdg-ez-fFz">
-                        <rect key="frame" x="0.0" y="0.0" width="355" height="585"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="5HQ-vm-zTg">
-                            <rect key="frame" x="0.0" y="169.5" width="355" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsHeaderCell" id="6GK-Tp-AQO" customClass="PostSignupSuggestionsHeaderTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="355" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6GK-Tp-AQO" id="r9h-My-HfA">
-                                    <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Suggested" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki9-L8-V22">
-                                            <rect key="frame" x="146" y="11" width="83" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ki9-L8-V22" firstAttribute="centerY" secondItem="r9h-My-HfA" secondAttribute="centerY" id="GN8-Cx-PxF"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ki9-L8-V22" secondAttribute="trailing" constant="16" id="a3D-Ku-g6Q"/>
-                                        <constraint firstItem="ki9-L8-V22" firstAttribute="centerX" secondItem="r9h-My-HfA" secondAttribute="centerX" id="qpa-wH-KCR"/>
-                                        <constraint firstItem="ki9-L8-V22" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r9h-My-HfA" secondAttribute="leading" constant="16" id="zKf-9Y-EpP"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="sectionTitleLabel" destination="ki9-L8-V22" id="svg-oZ-hfX"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostSignupSuggestionsCell" rowHeight="58" id="YoX-v2-qs9" customClass="PostSignupSuggestionsTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93.5" width="355" height="58"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YoX-v2-qs9" id="fvL-jQ-q1a">
-                                    <rect key="frame" x="0.0" y="0.0" width="355" height="57.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-DN-9jN">
-                                            <rect key="frame" x="70" y="5" width="43" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bf3-x5-Len" customClass="CustomUIImageView" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="5" width="48" height="48"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="Gbl-f0-pEk"/>
-                                                <constraint firstAttribute="width" constant="48" id="xhC-Ch-12T"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Listeners" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl5-6M-Vue">
-                                            <rect key="frame" x="70" y="36" width="72" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="cl5-6M-Vue" firstAttribute="leading" secondItem="b8m-DN-9jN" secondAttribute="leading" id="0WF-eV-Xh0"/>
-                                        <constraint firstItem="b8m-DN-9jN" firstAttribute="leading" secondItem="Bf3-x5-Len" secondAttribute="trailing" constant="12" id="50P-D7-D0O"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cl5-6M-Vue" secondAttribute="trailing" constant="45" id="Mjm-rg-yf1"/>
-                                        <constraint firstItem="b8m-DN-9jN" firstAttribute="top" secondItem="fvL-jQ-q1a" secondAttribute="top" constant="5" id="Plw-Gq-Zus"/>
-                                        <constraint firstAttribute="bottom" secondItem="Bf3-x5-Len" secondAttribute="bottom" constant="5" id="UsD-uN-c7a"/>
-                                        <constraint firstItem="Bf3-x5-Len" firstAttribute="top" secondItem="fvL-jQ-q1a" secondAttribute="top" constant="5" id="cta-8b-U7P"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8m-DN-9jN" secondAttribute="trailing" constant="45" id="iHK-n7-nj8"/>
-                                        <constraint firstItem="Bf3-x5-Len" firstAttribute="leading" secondItem="fvL-jQ-q1a" secondAttribute="leading" constant="10" id="jAv-WO-51l"/>
-                                        <constraint firstAttribute="bottom" secondItem="cl5-6M-Vue" secondAttribute="bottom" constant="5" id="qRu-uG-pOU"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="listenersCountLabel" destination="cl5-6M-Vue" id="xGb-2g-QuE"/>
-                                    <outlet property="nameLabel" destination="b8m-DN-9jN" id="lBT-UI-2lt"/>
-                                    <outlet property="thumbnailImageView" destination="Bf3-x5-Len" id="AUI-51-gxU"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="iM9-A5-O26" id="Yl9-yQ-y2P"/>
-                            <outlet property="delegate" destination="iM9-A5-O26" id="bVc-a6-hbv"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="activityIndicator" destination="5HQ-vm-zTg" id="QKm-My-vLB"/>
-                        <outlet property="placeholderView" destination="TfV-mf-0sq" id="Ngw-HZ-bzj"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IPI-tX-pIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="TfV-mf-0sq" customClass="TableViewPlaceholderView" customModule="Shoutit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="372" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content unavailable" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpl-XO-bcH">
-                            <rect key="frame" x="112" y="53" width="149" height="21"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="zpl-XO-bcH" firstAttribute="centerX" secondItem="TfV-mf-0sq" secondAttribute="centerX" id="HjS-A4-nJQ"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zpl-XO-bcH" secondAttribute="trailing" constant="10" id="aKs-VR-gKt"/>
-                        <constraint firstItem="zpl-XO-bcH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TfV-mf-0sq" secondAttribute="leading" constant="10" id="rXg-p3-LxG"/>
-                        <constraint firstItem="zpl-XO-bcH" firstAttribute="centerY" secondItem="TfV-mf-0sq" secondAttribute="centerY" id="yND-Pb-vhc"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="label" destination="zpl-XO-bcH" id="uYz-Ja-dj8"/>
-                    </connections>
-                </view>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="UGA-XJ-RNc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bD0-lA-Wz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5372.5" y="292.5"/>
+            <point key="canvasLocation" x="5326.5" y="291.5"/>
         </scene>
         <!--SHLoginPopupViewController-->
         <scene sceneID="ad8-7x-xdW">

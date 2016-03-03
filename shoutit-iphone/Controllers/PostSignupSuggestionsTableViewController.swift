@@ -11,26 +11,45 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-final class PostSignupSuggestionsTableViewController: UITableViewController {
+final class PostSignupSuggestionsTableViewController<SuggestableType: Suggestable>: UITableViewController {
     
     // UI
-    @IBOutlet var placeholderView: TableViewPlaceholderView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    lazy var placeholderView: TableViewPlaceholderView = {
+        return NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+    }()
+    var activityIndicator: UIActivityIndicatorView?
     
     // view model
     var viewModel: PostSignupSuggestionViewModel!
+    var sectionViewModel: PostSignupSuggestionsSectionViewModel<SuggestableType>!
     
     // RX
     private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
+    init() {
+        super.init(style: .Plain)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register cells
+        tableView.registerNib(UINib(nibName: "PostSignupSuggestionsHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsHeaderTableViewCell")
+        tableView.registerNib(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
+        
+        // configure table view
+        tableView.separatorStyle = .None
         tableView.estimatedRowHeight = 44
+        
+        // configure rx
         setupRX()
-        viewModel.fetchSections()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        activityIndicator?.center = tableView.center
+        super.viewWillLayoutSubviews()
     }
     
     private func setupRX() {
@@ -39,21 +58,21 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
             .subscribeNext {[weak self] (state) in
                 switch state {
                 case .Idle:
-                    self?.activityIndicator.hidden = true
+                    self?.showActivityIndicatorView(false)
                     self?.tableView.tableHeaderView = nil
                 case .Loading:
-                    self?.activityIndicator.hidden = false
+                    self?.showActivityIndicatorView(true)
                     self?.tableView.tableHeaderView = nil
                 case .ContentUnavailable:
-                    self?.activityIndicator.hidden = true
-                    self?.placeholderView.label.text = NSLocalizedString("Categories unavilable", comment: "")
+                    self?.showActivityIndicatorView(false)
+                    self?.placeholderView.label.text = NSLocalizedString("Categories unava'ilable", comment: "")
                     self?.tableView.tableHeaderView = self?.placeholderView
                 case .Error(let error):
-                    self?.activityIndicator.hidden = true
-                    self?.placeholderView.label.text = (error as NSError).localizedDescription
+                    self?.showActivityIndicatorView(false)
+                    self?.placeholderView.label.text = error.sh_message
                     self?.tableView.tableHeaderView = self?.placeholderView
                 case .ContentLoaded:
-                    self?.activityIndicator.hidden = true
+                    self?.showActivityIndicatorView(false)
                     self?.tableView.tableHeaderView = nil
                 }
                 
@@ -63,13 +82,14 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         
         tableView.rx_itemSelected
             .subscribeNext{[unowned self] (indexPath) in
-                let section = self.viewModel.sections[indexPath.section]
-                let cellViewModel = section.cells[indexPath.row]
+                let cellViewModel = self.sectionViewModel.cells[indexPath.row]
                 cellViewModel.selected = !cellViewModel.selected
                 self.tableView.reloadData()
             }
             .addDisposableTo(disposeBag)
     }
+    
+    // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -79,18 +99,15 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
             cell.setupCellForRoundedTop(firstInSection, roundedBottom: lastInSection)
         }
     }
-}
-
-// MARK: - UITableViewDataSource
-
-extension PostSignupSuggestionsTableViewController {
+    
+    // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         guard case LoadingState.ContentLoaded = viewModel.state.value else {
             return 0
         }
         
-        return viewModel.sections.count
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,8 +115,7 @@ extension PostSignupSuggestionsTableViewController {
             return 0
         }
         
-        let section = viewModel.sections[section]
-        return section.cells.count
+        return sectionViewModel.cells.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -107,8 +123,7 @@ extension PostSignupSuggestionsTableViewController {
             fatalError()
         }
         
-        let section = viewModel.sections[indexPath.section]
-        let cellViewModel = section.cells[indexPath.row]
+        let cellViewModel = sectionViewModel.cells[indexPath.row]
         
         switch cellViewModel.cellType {
         case .Header(let title):
@@ -121,10 +136,36 @@ extension PostSignupSuggestionsTableViewController {
             if let thumbnailURL = item.thumbnailURL {
                 cell.thumbnailImageView.kf_setImageWithURL(thumbnailURL)
             }
-            let accessoryViewImage = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
-            let accessoryView = UIImageView(image: accessoryViewImage)
-            cell.accessoryView = accessoryView
+            
+            let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
+            cell.listenButton.setImage(image, forState: .Normal)
+            
             return cell
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func showActivityIndicatorView(show: Bool) {
+        
+        if (activityIndicator == nil) {
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        }
+        
+        let indicator = activityIndicator!
+        
+        if show {
+            if indicator.isAnimating() {
+                return
+            }
+            tableView.addSubview(indicator)
+            indicator.startAnimating()
+        } else {
+            if !indicator.isAnimating() {
+                return
+            }
+            indicator.stopAnimating()
+            indicator.removeFromSuperview()
         }
     }
 }

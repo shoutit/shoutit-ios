@@ -109,11 +109,11 @@ final class LoginMethodChoiceViewController: UIViewController {
         }.addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
-            if isNewSignup {
+            //if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
-            } else {
-                self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
-            }
+            //} else {
+                //self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+            //}
         }.addDisposableTo(disposeBag)
         
         viewModel.progressHUDSubject.subscribeNext{[weak self](show) in

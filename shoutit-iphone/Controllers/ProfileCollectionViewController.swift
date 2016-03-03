@@ -81,9 +81,15 @@ extension ProfileCollectionViewController {
         
         switch indexPath.section {
         case 0:
+            if indexPath.row > viewModel.pagesSection.cells.count - 1 {
+                return
+            }
             let page = viewModel.pagesSection.cells[indexPath.row].profile
             flowDelegate?.showPage(page)
         case 1:
+            if indexPath.row > viewModel.shoutsSection.cells.count - 1 {
+                return
+            }
             let shout = viewModel.shoutsSection.cells[indexPath.row].shout
             flowDelegate?.showShout(shout)
         default:

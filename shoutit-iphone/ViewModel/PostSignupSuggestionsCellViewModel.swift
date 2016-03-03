@@ -8,24 +8,24 @@
 
 import UIKit
 
-enum PostSignupSuggestionsCellType {
+enum PostSignupSuggestionsCellType<SuggestableType: Suggestable> {
     case Header(title: String)
-    case Normal(item: Suggestable)
+    case Normal(item: SuggestableType)
     
     var reuseIdentifier: String {
         switch self {
         case .Header(title: _):
-            return "PostSignupSuggestionsHeaderCell"
+            return "PostSignupSuggestionsHeaderTableViewCell"
         case .Normal(item: _):
-            return "PostSignupSuggestionsCell"
+            return "PostSignupSuggestionsTableViewCell"
         }
     }
 }
 
-class PostSignupSuggestionsCellViewModel {
+class PostSignupSuggestionsCellViewModel<SuggestableType: Suggestable> {
     
-    let cellType: PostSignupSuggestionsCellType
-    var item: Suggestable? {
+    let cellType: PostSignupSuggestionsCellType<SuggestableType>
+    var item: SuggestableType? {
         if case PostSignupSuggestionsCellType.Normal(let item) = self.cellType {
             return item
         }
@@ -33,7 +33,7 @@ class PostSignupSuggestionsCellViewModel {
     }
     var selected: Bool = false
     
-    init(item: Suggestable) {
+    init(item: SuggestableType) {
         self.cellType = .Normal(item: item)
     }
     

@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import RxSwift
 
 class PostSignupSuggestionsTableViewCell: PostSignupSuggestionBaseTableViewCell {
+    
+    var reuseDisposeBag: DisposeBag?
     
     @IBOutlet weak var thumbnailImageView: CustomUIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
+    @IBOutlet weak var listenButton: UIButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = nil
+    }
 }

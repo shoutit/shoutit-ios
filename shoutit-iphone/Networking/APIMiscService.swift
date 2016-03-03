@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Argo
+import RxSwift
 
 class APIMiscService {
     
@@ -39,24 +40,8 @@ class APIMiscService {
         }
     }
     
-    static func requestSuggestionsWithParams(params: SuggestionsParams, withCompletionHandler completionHandler: Result<Suggestions, NSError> -> Void) {
-        
-        APIManager.manager().request(.GET, suggestionURL, parameters: params.params, encoding: .URL, headers: nil).responseJSON { (response) in
-            switch response.result {
-            case .Success(let json):
-                do {
-                    if let decoded: Decoded<Suggestions> = decode(json), let suggestions = decoded.value {
-                        completionHandler(.Success(suggestions))
-                    } else {
-                        throw ParseError.Suggestions
-                    }
-                } catch let error as NSError {
-                    completionHandler(.Failure(error))
-                }
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
-        }
+    static func requestSuggestionsWithParams(params: SuggestionsParams) -> Observable<Suggestions> {
+        return APIGenericService.requestWithMethod(.GET, url: suggestionURL, params: params, encoding: .URL)
     }
     
     static func requestCurrenciesWithCompletionHandler(completionHandler: Result<[Currency], NSError> -> Void) {
