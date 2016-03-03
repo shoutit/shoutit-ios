@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {
-    func performActionForButtonType(type: ProfileCollectionInfoButton) -> Void
-}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -253,7 +251,7 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
-            setButtons(viewModel.infoButtons, inSupplementaryView: infoView)
+            setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag!)
             
             // adjust constraints for data
             let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
@@ -310,37 +308,51 @@ extension ProfileCollectionViewController {
 
 extension ProfileCollectionViewController {
     
-    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView) {
+    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView, disposeBag: DisposeBag) {
         
         for button in buttons {
             switch button.defaultPosition {
             case .SmallLeft:
-                hydrateButton(sView.notificationButton, withButtonModel: button)
+                hydrateButton(sView.notificationButton, withButtonModel: button, disposeBag: disposeBag)
             case .SmallRight:
-                hydrateButton(sView.rightmostButton, withButtonModel: button)
+                hydrateButton(sView.rightmostButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigLeft:
-                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigCenter:
-                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigRight:
-                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button, disposeBag: disposeBag)
             }
         }
     }
     
-    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton) {
+    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton, disposeBag: DisposeBag) {
         
         if case .HiddenButton = buttonModel {
             button.hidden = true
             return
         }
         
-        button
-            .rx_tap
-            .subscribeNext{[unowned self] in
-                self.flowDelegate?.performActionForButtonType(buttonModel)
+        switch buttonModel {
+        case .Listen(let isListening):
+            if let observable = viewModel.listenToUser() {
+                button.rx_tap.flatMapFirst({[weak button] () -> Observable<Void> in
+                    if let button = button as? ProfileInfoHeaderButton {
+                        let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
+                        button.setImage(switchedModel.image, countText: nil)
+                        button.setTitleText(switchedModel.title)
+                    }
+                    return observable
+                }).subscribeError({[weak button] (_) in
+                    if let button = button as? ProfileInfoHeaderButton {
+                        button.setImage(buttonModel.image, countText: nil)
+                        button.setTitleText(buttonModel.title)
+                    }
+                }).addDisposableTo(disposeBag)
             }
-            .addDisposableTo(disposeBag)
+        default:
+            break
+        }
         
         if let button = button as? ProfileInfoHeaderButton {
             button.setTitleText(buttonModel.title)

@@ -26,11 +26,4 @@ final class HomeFlowController: FlowController {
 
 extension HomeFlowController: HomeViewControllerFlowDelegate {}
 extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {
-    func performActionForButtonType(type: ProfileCollectionInfoButton) {
-        switch type {
-        default:
-            navigationController.notImplemented()
-        }
-    }
-}
+extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}

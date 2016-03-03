@@ -118,7 +118,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
         
         if let profile = profile {
-            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: profile.listening ?? false), .HiddenButton(position: .SmallLeft), .More]
+            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: detailedUser?.isListening ?? profile.listening ?? false), .HiddenButton(position: .SmallLeft), .More]
         } else {
             
             var listeningCountString = ""
@@ -182,6 +182,18 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     func fetchUser() -> Observable<DetailedProfile>? {
         guard let user = user else {return nil}
         return APIUsersService.retrieveUserWithUsername(user.username)
+    }
+    
+    func listenToUser() -> Observable<Void>? {
+        guard let profile = profile, let listening = profile.listening else {return nil}
+        let listen = !(detailedUser?.isListening ?? listening)
+        let retrieveUser = APIUsersService.retrieveUserWithUsername(profile.username).map {[weak self] (profile) -> Void in
+            self?.detailedUser = profile
+            self?.reloadSubject.onNext()
+        }
+        return APIUsersService.listen(listen, toUserWithUsername: profile.username).flatMap{() -> Observable<Void> in
+            return retrieveUser
+        }
     }
     
     // MARK: - Helpers

@@ -29,14 +29,6 @@ final class ProfileFlowController: FlowController {
     }
 }
 
-extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {
-    
-    func performActionForButtonType(type: ProfileCollectionInfoButton) {
-        switch type {
-        default:
-            navigationController.notImplemented()
-        }
-    }
-}
+extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {}
 
 extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}
