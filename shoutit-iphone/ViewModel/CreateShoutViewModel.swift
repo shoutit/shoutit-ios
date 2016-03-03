@@ -28,24 +28,32 @@ class CreateShoutViewModel: NSObject {
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
                                 images: Variable([]), videos:  Variable([]), category: Variable(nil),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]))
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil)
     }
     
     init(shout: Shout) {
         
         shoutParams = ShoutParams(type: Variable(shout.type()!), title: Variable(shout.title),
                                 text: Variable(shout.text), price: Variable(shout.price),
-                                currency: Variable(nil), images: Variable(shout.imagePaths),
+            currency: Variable(nil), images: Variable(shout.imagePaths),
                                 videos:  Variable([]), category: Variable(shout.category),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]))
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout)
     }
     
     func changeToRequest() {
+        if let _ = self.shoutParams.shout {
+            return
+        }
+        
         self.shoutParams.type.value = .Request
     }
     
     func changeToShout() {
+        if let _ = self.shoutParams.shout {
+            return
+        }
+        
         self.shoutParams.type.value = .Offer
     }
     
@@ -104,6 +112,7 @@ extension CreateShoutViewModel {
             switch result {
             case .Success(let currencies):
                 self.currencies.value = currencies
+                self.fillCurrencyFromShout()
             case .Failure(let error):
                 print(error)
             }
@@ -115,8 +124,38 @@ extension CreateShoutViewModel {
             switch result {
             case .Success(let categories):
                 self.categories.value = categories
+                self.fillCategoryFromShout()
             case .Failure(let error):
                 print(error)
+            }
+        }
+    }
+}
+// fill with shout data
+extension CreateShoutViewModel {
+    
+    func fillCategoryFromShout() {
+        guard let shout = self.shoutParams.shout else {
+            return
+        }
+        
+        for cat in self.categories.value {
+            if shout.category == cat {
+                self.shoutParams.category.value = cat
+                return
+            }
+        }
+    }
+    
+    func fillCurrencyFromShout() {
+        guard let shout = self.shoutParams.shout else {
+            return
+        }
+        
+        for currency in self.currencies.value {
+            if currency.code == shout.currency {
+                self.shoutParams.currency.value = currency
+                return
             }
         }
     }

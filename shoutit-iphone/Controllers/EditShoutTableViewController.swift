@@ -18,4 +18,15 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         self.tableView.reloadData()
         
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fillWithShoutData()
+    }
+    
+    func fillWithShoutData() {
+        self.headerView.titleTextField.text = self.shout.title
+        self.headerView.priceTextField.text = self.shout.priceText()
+    }
 }

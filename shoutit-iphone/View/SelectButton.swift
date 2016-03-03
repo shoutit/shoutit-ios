@@ -81,10 +81,10 @@ class SelectButton: UIButton {
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
         if self.promptAvailable() {
-            return CGRectInset(bounds, 10, 5)
+            return CGRectMake(bounds.origin.x + 10, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
         }
-        
-        return CGRectInset(bounds, 10, 0)
+
+        return CGRectMake(bounds.origin.x + 10, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
     }
     
     func promptAvailable() -> Bool {
