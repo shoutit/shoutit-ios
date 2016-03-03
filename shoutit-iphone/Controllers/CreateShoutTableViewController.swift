@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class CreateShoutTableViewController: UITableViewController, ShoutTypeController {
 
@@ -252,19 +253,27 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         print(parameters)
         
-        APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { (shout) -> Void in
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in
+            
+            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+            
             let confirmation = Wireframe.shoutConfirmationController()
             
             confirmation.shout = shout
             
-            self.navigationController?.pushViewController(confirmation, animated: true)
+            self?.navigationController?.pushViewController(confirmation, animated: true)
             
-        }, onError: { (error) -> Void in
+        }, onError: { [weak self] (error) -> Void in
+            
+            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+            
             let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             
-            self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+            self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
             
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }

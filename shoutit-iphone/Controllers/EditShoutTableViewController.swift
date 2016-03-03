@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class EditShoutTableViewController: CreateShoutTableViewController {
 
@@ -38,16 +39,22 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         
         print(parameters)
         
-        APIShoutsService.updateShoutWithParams(parameters, uid: self.shout.id).subscribe(onNext: { (shout) -> Void in
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        APIShoutsService.updateShoutWithParams(parameters, uid: self.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
             
-            self.navigationController?.popViewControllerAnimated(true)
+            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
             
-            }, onError: { (error) -> Void in
+            self?.navigationController?.popViewControllerAnimated(true)
+            
+            }, onError: { [weak self] (error) -> Void in
+                MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                
                 let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
                 
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
                 
-                self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+                self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
                 
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
