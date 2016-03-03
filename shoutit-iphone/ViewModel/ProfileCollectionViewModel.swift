@@ -39,10 +39,8 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             pagesSection = pagesSectionWithModels(pages)
             Account.sharedInstance.userSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext { (user) in
-                    if let _ = user {
-                        self.reloadContent()
-                    }
+                .subscribeNext { (_) in
+                    self.invalidateUser()
                 }
                 .addDisposableTo(disposeBag)
         }
@@ -76,6 +74,11 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 self?.reloadSubject.onNext(())
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    private func invalidateUser() {
+        detailedUser = nil
+        reloadContent()
     }
     
     private func reloadPages() {

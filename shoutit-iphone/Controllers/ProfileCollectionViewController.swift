@@ -139,8 +139,8 @@ extension ProfileCollectionViewController {
             let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
             cell.reuseDisposeBag = DisposeBag()
-            cell.listenButton.rx_tap.asDriver().driveNext {[unowned self, unowned cellViewModel] in
-                cellViewModel.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell, weak self] (event) in
+            cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+                cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let listening):
                         let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
@@ -150,7 +150,7 @@ extension ProfileCollectionViewController {
                     default:
                         break
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).addDisposableTo(cell.reuseDisposeBag!)
             }.addDisposableTo(cell.reuseDisposeBag!)
             
             return cell
