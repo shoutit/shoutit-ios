@@ -31,12 +31,12 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         } else {
             self.profile = profile
         }
-        shoutsSection = shoutsSectionWithModels([])
+        shoutsSection = shoutsSectionWithModels([], isLoading: true)
         if let _ = self.profile {
-            pagesSection = pagesSectionWithModels([])
+            pagesSection = pagesSectionWithModels([], isLoading: true)
         } else {
             let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
-            pagesSection = pagesSectionWithModels(pages)
+            pagesSection = pagesSectionWithModels(pages, isLoading: true)
             Account.sharedInstance.userSubject
                 .observeOn(MainScheduler.instance)
                 .subscribeNext { (_) in
@@ -48,7 +48,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func reloadContent() {
         
-        reloadPages()
+        reloadPages(currentlyLoading: true)
         
         // reload user
         fetchUser()?
@@ -81,9 +81,9 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         reloadContent()
     }
     
-    private func reloadPages() {
+    private func reloadPages(currentlyLoading loading: Bool = false) {
         let pages = user?.pages ?? []
-        pagesSection = pagesSectionWithModels(pages)
+        pagesSection = pagesSectionWithModels(pages, isLoading: loading)
     }
     
     // MARK: - ProfileCollectionViewModelInterface
@@ -198,7 +198,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Helpers
     
-    private func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
+    private func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil, isLoading loading: Bool = false) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
         let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
         let title: String
         if let profile = profile {
@@ -208,10 +208,10 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
         let footerTitle = NSLocalizedString("Create Page", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage)
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage, isLoading: loading)
     }
     
-    private func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    private func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil, isLoading loading: Bool = false) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title: String
         if let profile = profile {
@@ -221,6 +221,6 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
         let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage, isLoading: loading)
     }
 }

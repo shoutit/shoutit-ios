@@ -121,9 +121,12 @@ extension ProfileCollectionViewController {
         
         if !viewModel.hasContentToDisplayInSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
+            let isLoading = indexPath.section == 0 ? viewModel.pagesSection.isLoading : viewModel.shoutsSection.isLoading
+            cell.setupCellForActivityIndicator(isLoading)
             let errorMessage = indexPath.section == 0 ? viewModel.pagesSection.errorMessage : viewModel.shoutsSection.errorMessage
             let noContentMessage = indexPath.section == 0 ? viewModel.pagesSection.noContentMessage : viewModel.shoutsSection.noContentMessage
             cell.placeholderTextLabel.text = errorMessage ?? noContentMessage
+            
             return cell
         }
         
