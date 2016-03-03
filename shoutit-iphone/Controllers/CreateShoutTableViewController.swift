@@ -71,6 +71,18 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             })
             .addDisposableTo(disposeBag)
         
+        viewModel.filters
+            .asDriver()
+            .driveNext { [weak self] (filters) -> Void in
+                self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            }.addDisposableTo(disposeBag)
+        
+        viewModel.shoutParams.category
+            .asDriver()
+            .driveNext { (category) -> Void in
+                self.tableView.reloadData()
+            }.addDisposableTo(disposeBag)
+        
         headerView.titleTextField.rx_text.flatMap({ (text) -> Observable<String?> in
             return Observable.just(text)
         }).bindTo(viewModel.shoutParams.title).addDisposableTo(disposeBag)
@@ -138,9 +150,16 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         }
         
         if let textCell = cell as? CreateShoutTextCell {
+            
             let disposable = textCell.textField.rx_text.flatMap({ (text) -> Observable<String?> in
                 return Observable.just(text)
             }).bindTo(viewModel.shoutParams.text)
+            
+            if let shout = self.viewModel.shoutParams.shout {
+                if textCell.textField.text == "" {
+                    textCell.textField.text = shout.text
+                }
+            }
             
             disposables[indexPath] = disposable
             

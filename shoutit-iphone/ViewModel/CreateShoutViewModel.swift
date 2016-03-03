@@ -141,7 +141,7 @@ extension CreateShoutViewModel {
         
         for cat in self.categories.value {
             if shout.category == cat {
-                self.shoutParams.category.value = cat
+                self.setCategory(cat)
                 return
             }
         }
@@ -242,12 +242,7 @@ extension CreateShoutViewModel {
         self.categories.value.each { (category) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(category.name)", style: .Default, handler: { [weak self] (alertAction) in
                 
-                self?.shoutParams.filters.value = [:]
-                self?.shoutParams.category.value = category
-                
-                if let filters = category.filters {
-                    self?.filters.value = filters
-                }
+                self?.setCategory(category)
                 
                 if let completion = handler {
                     completion(alertAction)
@@ -258,6 +253,26 @@ extension CreateShoutViewModel {
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
+    }
+    
+    func setCategory(category: Category) {
+        
+        self.shoutParams.filters.value = [:]
+        self.shoutParams.category.value = category
+        
+        if let filters = category.filters {
+            if let shout = self.shoutParams.shout, shoutFilters = shout.filters {
+                for filter in filters {
+                    for fl in shoutFilters {
+                        if fl == filter {
+                            self.shoutParams.filters.value[fl] = fl.value
+                        }
+                    }
+                }
+            }
+            
+            self.filters.value = filters
+        }
     }
     
     func filterActionSheet(forIndexPath indexPath: NSIndexPath, handler: ((UIAlertAction) -> Void)?) -> UIAlertController? {
@@ -272,7 +287,7 @@ extension CreateShoutViewModel {
         
         let filter = filters[indexPath.row - 2]
         
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select \(filter.name)", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select \(filter.name ?? "")", comment: ""), message: "", preferredStyle: .ActionSheet)
         
         filter.values?.each { (value) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(value.name)", style: .Default, handler: { (alertAction) in
