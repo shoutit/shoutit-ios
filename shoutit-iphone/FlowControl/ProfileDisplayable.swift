@@ -18,7 +18,11 @@ extension ProfileDisplayable where Self: FlowController, Self: ProfileCollection
         
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        controller.viewModel = ProfileCollectionViewModel(profile: profile)
+        if profile.id == Account.sharedInstance.user?.id {
+            controller.viewModel = MyProfileCollectionViewModel()
+        } else {
+            controller.viewModel = UserProfileCollectionViewModel(profile: profile)
+        }
         
         navigationController.navigationBarHidden = true
         navigationController.showViewController(controller, sender: nil)

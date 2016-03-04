@@ -82,6 +82,10 @@ extension UIImage {
         return UIImage(named: "profile_joined_icon")!
     }
     
+    static func profileAboutIcon() -> UIImage {
+        return UIImage(named: "profile_about_icon")!
+    }
+    
     static func profileListenIcon() -> UIImage {
         return UIImage(named: "listen_icon")!
     }

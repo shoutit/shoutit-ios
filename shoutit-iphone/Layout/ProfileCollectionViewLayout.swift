@@ -8,9 +8,13 @@
 
 import UIKit
 
+enum ProfileCollectionSectionContentMode {
+    case Default, Placeholder, Hidden
+}
+
 protocol ProfileCollectionViewLayoutDelegate: class, ProfileCollectionInfoSupplementaryViewDataSource {
     func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool
-    func hasContentToDisplayInSection(section: Int) -> Bool
+    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode
 }
 
 final class ProfileCollectionViewLayout: UICollectionViewLayout {
@@ -82,9 +86,9 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
                                                          yOffset: &yOffset)
         
         // layout for pages cells
-        if let delegate = delegate where delegate.hasContentToDisplayInSection(ProfileCollectionViewSection.Pages.rawValue) == false {
+        if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Pages.rawValue) == .Placeholder {
             addPlaceholderCellForSection(ProfileCollectionViewSection.Pages.rawValue, yOffset: &yOffset)
-        } else {
+        } else if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Pages.rawValue) == .Default {
             for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Pages.rawValue) {
                 let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Pages.rawValue)
                 let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
@@ -103,9 +107,9 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
                                                          yOffset: &yOffset)
         
         // layout for shouts cells
-        if let delegate = delegate where delegate.hasContentToDisplayInSection(ProfileCollectionViewSection.Shouts.rawValue) == false {
+        if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Shouts.rawValue) == .Placeholder {
             addPlaceholderCellForSection(ProfileCollectionViewSection.Shouts.rawValue, yOffset: &yOffset)
-        } else {
+        } else if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Shouts.rawValue) == .Default {
             let cellWidth = floor((collectionWidth - 3 * shoutsCellSpacing) * 0.5)
             for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
                 
