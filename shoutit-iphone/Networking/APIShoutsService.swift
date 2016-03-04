@@ -176,4 +176,47 @@ class APIShoutsService {
             return NopDisposable.instance
         }
     }
+    
+    static func updateShoutWithParams(params: [String : AnyObject], uid: String) -> Observable<Shout> {
+        
+        return Observable.create{ (observer) -> Disposable in
+            
+            APIManager.manager()
+                .request(.PATCH, shoutsURL + "/\(uid)", parameters: params, encoding: .JSON, headers: ["Accept": "application/json"])
+                .validate(statusCode: 200..<401)
+                .responseData({ (response) in
+                    
+                    switch response.result {
+                    case .Success(let data):
+                        
+                        do {
+                            
+                            let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                            
+                            if let j = json {
+                                if let results : Decoded<Shout> = decode(j) {
+                                    
+                                    if let value = results.value {
+                                        observer.on(.Next(value))
+                                        observer.on(.Completed)
+                                    }
+                                    if let err = results.error {
+                                        print(err)
+                                    }
+                                }
+                            }
+                            
+                            
+                        } catch let error as NSError {
+                            print(error)
+                            observer.on(.Error(error ?? RxCocoaURLError.Unknown))
+                        }
+                    case .Failure(let error):
+                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
+                    }
+                })
+            
+            return NopDisposable.instance
+        }
+    }
 }

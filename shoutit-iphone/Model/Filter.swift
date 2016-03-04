@@ -13,6 +13,7 @@ struct Filter: Hashable, Equatable {
     let name: String?
     let slug: String
     let values: [FilterValue]?
+    let value: FilterValue?
     
     var hashValue: Int {
         get {
@@ -24,10 +25,13 @@ struct Filter: Hashable, Equatable {
 extension Filter: Decodable {
     
     static func decode(j: JSON) -> Decoded<Filter> {
-        return curry(Filter.init)
+        
+        let f = curry(Filter.init)
             <^> j <|? "name"
             <*> j <| "slug"
             <*> j <||? "values"
+        return f
+            <*> j <|? "value"
     }
 }
 
