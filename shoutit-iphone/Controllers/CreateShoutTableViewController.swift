@@ -180,7 +180,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = { (success, place) -> Void in
-                        self?.viewModel.shoutParams.location.value = place?.toAddressObject()
+                        self?.viewModel.shoutParams.location.value = place
                         self?.tableView.reloadData()
                     }
                     
