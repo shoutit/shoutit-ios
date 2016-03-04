@@ -16,7 +16,7 @@ pod 'XCGLogger', '~> 3.0'
 pod 'GoogleMaps', '~> 1.10'
 #pod 'GoogleSignIn', '~> 2.4'
 pod 'FTGooglePlacesAPI'
-pod 'HNKGooglePlacesAutocomplete'
+pod 'GooglePlaces', :git => 'https://github.com/piotrbernad/Swift-Google-Maps-API'
 
 # facebook
 pod 'FBSDKCoreKit', '~> 4.7'

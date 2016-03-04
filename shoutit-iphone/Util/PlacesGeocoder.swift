@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FTGooglePlacesAPI
+import GooglePlaces
 import RxSwift
 
 public final class PlacesGeocoder: AnyObject {
@@ -15,26 +15,36 @@ public final class PlacesGeocoder: AnyObject {
     static let GooglePlacesApiKey = "AIzaSyBld5731YUMSNuLBO5Gu2L4Tsj-CrQZGIg"
     
     class func setup() {
-        FTGooglePlacesAPIService.provideAPIKey(GooglePlacesApiKey)
+        GooglePlaces.provideAPIKey(GooglePlacesApiKey)
     }
     
     
-    public func rx_response(query: String!) -> Observable<([AnyObject])> {
+    public func rx_response(query: String!) -> Observable<([GooglePlaces.PlaceAutocompleteResponse.Prediction])> {
         return Observable.create { observer in
             if query.characters.count == 0 {
                 observer.on(.Next([]))
             } else {
-                let request = FTGooglePlacesAPITextSearchRequest(query: query)
                 
-                FTGooglePlacesAPIService.executeSearchRequest(request, withCompletionHandler: { (response, error) -> Void in
-                    if let results =  response.results {
-                        observer.on(.Next(results))
+                GooglePlaces.placeAutocomplete(forInput: query, types: [.Geocode], completion: { (response, error) -> Void in
+                    // Check Status Code
+                    guard response?.status == GooglePlaces.StatusCode.OK else {
+                        // Status Code is Not OK
+                        observer.on(.Next([]))
+                        
+                        debugPrint(response?.errorMessage)
+                        return
+                    }
+                    
+                    // Use .predictions to access response details
+                    debugPrint("first matched result: \(response?.predictions.first?.description)")
+                    
+                    if let predictions = response?.predictions {
+                        observer.on(.Next(predictions))
                     } else {
                         observer.on(.Next([]))
                     }
-                    
-                    observer.on(.Completed)
                 })
+                
             }
       
             return AnonymousDisposable {
@@ -42,6 +52,28 @@ public final class PlacesGeocoder: AnyObject {
             }
         }
         
+        
+    }
+    
+    public func rx_details(placeId: String) -> Observable<GooglePlaces.PlaceDetailsResponse.Result?> {
+        return Observable.create { observer in
+            
+            GooglePlaces.placeDetails(forPlaceID: placeId, completion: { (response, error) -> Void in
+                guard response?.status == GooglePlaces.StatusCode.OK else {
+                    // Status Code is Not OK
+                    observer.on(.Next(nil))
+                    
+                    debugPrint(response?.errorMessage)
+                    return
+                }
+                
+                observer.on(.Next(response?.result))
+            })
+            
+            return AnonymousDisposable {
+                
+            }
+        }
         
     }
     

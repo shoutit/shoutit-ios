@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import FTGooglePlacesAPI
+import GooglePlaces
 
 class SelectShoutLocationViewController: ChangeLocationTableViewController {
 
-    override func finishWithCoordinates(coordinates: CLLocationCoordinate2D, place: FTGooglePlacesAPISearchResultItem) {
+    override func finishWithAddress(address: Address) {
         if let finish = self.finishedBlock {
-            finish(true, place)
+            finish(true, address)
         }
         
         self.navigationController?.popViewControllerAnimated(true)
-    }
+    }    
 }
