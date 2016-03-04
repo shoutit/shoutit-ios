@@ -37,11 +37,11 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             viewModel = DiscoverGeneralViewModel()
         }
         
-        viewModel.items.asObservable().subscribeNext({ [weak self] (result) -> Void in
+        viewModel.items.asObservable().observeOn(MainScheduler.instance).subscribeNext {[weak self] (result) in
             self?.collectionView?.reloadSections(NSIndexSet(index: 0))
-            }).addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
         
-        viewModel.shouts.asObservable().subscribeNext({ [weak self] (result) -> Void in
+        viewModel.shouts.asObservable().observeOn(MainScheduler.instance).subscribeNext({ [weak self] (result) -> Void in
             self?.collectionView?.reloadSections(NSIndexSet(index: 1))
             }).addDisposableTo(disposeBag)
         
@@ -114,6 +114,11 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         
         if let discoverHeader = header as? DiscoverHeaderView {
             discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
+            if let coverPath = self.viewModel.mainItem()?.image, coverURL = NSURL(string: coverPath) {
+                discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
+            } else {
+                discoverHeader.backgroundImageView.image = UIImage(named: "auth_screen_bg_pattern")
+            }
         }
         
         return header

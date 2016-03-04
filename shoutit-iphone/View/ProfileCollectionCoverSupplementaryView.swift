@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
+    var reuseDisposeBag: DisposeBag?
     private let visibleLabelsConstraintConstantValue: CGFloat = 21
     
     @IBOutlet weak var imageView: UIImageView!
@@ -44,7 +46,8 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
         
         // move title label
         let invisibleLabelsConstraintConstantValue = -titleLabel.bounds.height
-        titleLabelBottomConstraint.constant = min(invisibleLabelsConstraintConstantValue + attributes.segmentScrolledUnderCoverViewLength, visibleLabelsConstraintConstantValue)
+        let offset: CGFloat = 5
+        titleLabelBottomConstraint.constant = min(invisibleLabelsConstraintConstantValue + attributes.segmentScrolledUnderCoverViewLength - offset, visibleLabelsConstraintConstantValue)
         
         // animate blur
         let animationProgress = attributes.collapseProgress

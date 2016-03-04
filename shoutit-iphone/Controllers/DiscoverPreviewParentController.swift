@@ -27,10 +27,15 @@ class DiscoverPreviewParentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        discoverController?.viewModel.mainItemObservable.subscribeNext { (item) -> Void in
-            if let discover = item {
-                self.titleLabel?.text = discover.title
+        discoverController?
+            .viewModel
+            .mainItemObservable
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (item) -> Void in
+                if let discover = item {
+                    self?.titleLabel?.text = discover.title
+                }
             }
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
     }
 }   

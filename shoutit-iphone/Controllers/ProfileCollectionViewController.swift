@@ -177,6 +177,7 @@ extension ProfileCollectionViewController {
         case .Cover:
             
             let coverView = supplementeryView as! ProfileCollectionCoverSupplementaryView
+            coverView.reuseDisposeBag = DisposeBag()
             
             // setup navigation bar buttons
             coverView.menuButton
@@ -184,17 +185,18 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.toggleMenu()
                 }
-                .addDisposableTo(disposeBag)
+                .addDisposableTo(coverView.reuseDisposeBag!)
             
             if let navigationController = navigationController where self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
             } else {
                 coverView.backButton
                     .rx_tap
-                    .subscribeNext{[unowned self] in
+                    .asDriver()
+                    .driveNext{[unowned self] in
                         self.navigationController?.popViewControllerAnimated(true)
                     }
-                    .addDisposableTo(disposeBag)
+                    .addDisposableTo(coverView.reuseDisposeBag!)
             }
             
             coverView.cartButton
@@ -202,7 +204,7 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
-                .addDisposableTo(disposeBag)
+                .addDisposableTo(coverView.reuseDisposeBag!)
             
             coverView
                 .searchButton
@@ -210,7 +212,7 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showSearch()
                 }
-                .addDisposableTo(disposeBag)
+                .addDisposableTo(coverView.reuseDisposeBag!)
             
             
             // setup cover image
@@ -230,6 +232,7 @@ extension ProfileCollectionViewController {
         case .Info:
             
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
+            infoView.reuseDisposeBag = DisposeBag()
             
             infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.squareAvatarPlaceholder())
             infoView.nameLabel.text = viewModel.name
@@ -257,6 +260,8 @@ extension ProfileCollectionViewController {
                 let constraint = constraints[index]
                 if text == nil || text!.isEmpty {
                     constraint.constant = 0
+                } else {
+                    constraint.constant = layout.defaultInfoSupplementaryViewSectionHeight
                 }
             }
             
@@ -265,6 +270,7 @@ extension ProfileCollectionViewController {
             pagesSectionHeader.titleLabel.text = viewModel.pagesSection.title
         case .CreatePageButtonFooter:
             let createPageButtonFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
+            createPageButtonFooter.reuseDisposeBag = DisposeBag()
             createPageButtonFooter.type = viewModel.pagesSection.footerButtonStyle
             createPageButtonFooter.button.setTitle(viewModel.pagesSection.footerButtonTitle, forState: .Normal)
             createPageButtonFooter.button
@@ -272,12 +278,13 @@ extension ProfileCollectionViewController {
                 .subscribeNext {[unowned self] in
                     self.flowDelegate?.showCreateShout()
                 }
-                .addDisposableTo(disposeBag)
+                .addDisposableTo(createPageButtonFooter.reuseDisposeBag!)
         case .ShoutsSectionHeader:
             let shoutsSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
             shoutsSectionHeader.titleLabel.text = viewModel.shoutsSection.title
         case .SeeAllShoutsButtonFooter:
             let seeAllShoutsFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
+            seeAllShoutsFooter.reuseDisposeBag = DisposeBag()
             seeAllShoutsFooter.type = viewModel.shoutsSection.footerButtonStyle
             seeAllShoutsFooter.button.setTitle(viewModel.shoutsSection.footerButtonTitle, forState: .Normal)
             seeAllShoutsFooter.button
@@ -286,7 +293,7 @@ extension ProfileCollectionViewController {
                     guard let username = self.viewModel.username else {return}
                     self.flowDelegate?.showShoutsForUsername(username)
                 }
-                .addDisposableTo(disposeBag)
+                .addDisposableTo(seeAllShoutsFooter.reuseDisposeBag!)
         }
         
         return supplementeryView
@@ -331,14 +338,15 @@ extension ProfileCollectionViewController {
         
         if let button = button as? ProfileInfoHeaderButton {
             button.setTitleText(buttonModel.title)
-            button.setImage(buttonModel.image)
             
             if case .Listeners(let countString) = buttonModel {
-                button.setCountText(countString)
+                button.setImage(buttonModel.image, countText: countString)
             } else if case .Listening(let countString) = buttonModel {
-                button.setCountText(countString)
+                button.setImage(buttonModel.image, countText: countString)
             } else if case .Interests(let countString) = buttonModel {
-                button.setCountText(countString)
+                button.setImage(buttonModel.image, countText: countString)
+            } else {
+                button.setImage(buttonModel.image, countText: nil)
             }
         } else {
             button.setImage(buttonModel.image, forState: .Normal)

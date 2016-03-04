@@ -57,7 +57,12 @@ enum ShoutDetailShoutCellViewModel {
         guard case .Content(let shout) = self else {
             return nil
         }
-        return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+        
+        if let price = shout.price, currency = shout.currency {
+            return NumberFormatters.priceStringWithPrice(price, currency: currency)
+        }
+        
+        return nil
     }
     
     var errorMessage: String? {

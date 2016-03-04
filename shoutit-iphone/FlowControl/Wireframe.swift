@@ -141,4 +141,13 @@ struct Wireframe {
     static func changeShoutLocationController() -> SelectShoutLocationViewController {
         return storyboard(.Location).instantiateViewControllerWithIdentifier("ShoutLocationController") as! SelectShoutLocationViewController
     }
+    
+    static func shoutConfirmationController() -> ShoutConfirmationViewController {
+        return storyboard(.Shout).instantiateViewControllerWithIdentifier("shoutConfirmation") as! ShoutConfirmationViewController
+    }
+    
+    static func editShoutController() -> EditShoutTableViewController {
+        return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutTableViewController
+    }
+    
 }

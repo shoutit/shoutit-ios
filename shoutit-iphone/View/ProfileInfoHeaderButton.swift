@@ -33,7 +33,7 @@ class ProfileInfoHeaderButton: UIButton {
         addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: mainLabel!, attribute: .Top, multiplier: 1.0, constant: -5.0))
     }
     
-    func setImage(image: UIImage) {
+    func setImage(image: UIImage, countText: String?) {
         
         if let iconImageView = iconImageView {
             iconImageView.image = image
@@ -46,14 +46,15 @@ class ProfileInfoHeaderButton: UIButton {
         
         iconImageView?.addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 28.0))
         iconImageView?.addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 28.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: iconImageView!, attribute: .Bottom, multiplier: 1.0, constant: -5.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: iconImageView!, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-    }
-    
-    func setCountText(text: String) {
+        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: iconImageView!, attribute: .Bottom, multiplier: 1.0, constant: -2.0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: iconImageView!, attribute: .CenterX, multiplier: 1.0, constant: countText == nil ? 0 : 8))
+        
+        guard let countText = countText else {
+            return
+        }
         
         if let countLabel = countLabel {
-            countLabel.text = text
+            countLabel.text = countText
             return
         }
         
@@ -61,10 +62,10 @@ class ProfileInfoHeaderButton: UIButton {
         countLabel?.translatesAutoresizingMaskIntoConstraints = false
         countLabel?.font = UIFont.systemFontOfSize(14)
         countLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
-        countLabel?.text = text
+        countLabel?.text = countText
         addSubview(countLabel!)
         
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: countLabel!, attribute: .Leading, multiplier: 1.0, constant: -7.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: countLabel!, attribute: .Bottom, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .Trailing, relatedBy: .Equal, toItem: countLabel!, attribute: .Leading, multiplier: 1.0, constant: -5.0))
+        addConstraint(NSLayoutConstraint(item: iconImageView!, attribute: .CenterY, relatedBy: .Equal, toItem: countLabel!, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
     }
 }

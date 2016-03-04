@@ -116,7 +116,11 @@ final class ShoutDetailViewModel {
     }
     
     func priceString() -> String? {
-        return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+        if let price = shout.price, currency = shout.currency {
+            return NumberFormatters.priceStringWithPrice(price, currency: currency)
+        }
+        
+        return nil
     }
     
     func tabbarButtons() -> [ShoutDetailTabbarButton] {

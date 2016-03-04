@@ -18,11 +18,11 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
     // supplementery views consts
     private let coverViewHeight: CGFloat                           = 211
     private let collapsedCoverViewHeight: CGFloat                  = 64
-    private let infoViewHeight: CGFloat                            = 296
+    private let infoViewHeight: CGFloat                            = 292
     private let sectionHeaderHeight: CGFloat                       = 44
     private let footerButtonHeight: CGFloat                        = 64
     private let infoOverCoverViewMargin: CGFloat                   = 41
-    private let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
+    let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
     
     // cells consts
     private let placeholderCellHeight: CGFloat                     = 58
@@ -241,7 +241,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             return defaultInfoSupplementaryViewSectionHeight
         }
         
-        guard let text = text else {
+        guard let text = text where text.characters.count > 0 else {
             return 0
         }
         
@@ -249,6 +249,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         let size = CGSize(width: collectionWidth - horizontalMargins, height: CGFloat.max)
         let textSize = (text as NSString).boundingRectWithSize(size , options: [NSStringDrawingOptions.UsesLineFragmentOrigin], attributes: [NSFontAttributeName : UIFont.systemFontOfSize(12)], context: nil).size
         let verticalMargins: CGFloat = 11 + 11
-        return max(textSize.height + verticalMargins, defaultInfoSupplementaryViewSectionHeight)
+        let calculatedSize = floor(verticalMargins + textSize.height)
+        return max(calculatedSize, defaultInfoSupplementaryViewSectionHeight)
     }
 }

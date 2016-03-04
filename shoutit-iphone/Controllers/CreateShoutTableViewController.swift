@@ -17,16 +17,21 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
     
-    var viewModel : CreateShoutViewModel! = CreateShoutViewModel()
+    var viewModel : CreateShoutViewModel!
+    
     @IBOutlet var headerView : CreateShoutTableHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViewModel()
         setupRX()
         loadData()
     }
     
+    func createViewModel() {
+        viewModel = CreateShoutViewModel()
+    }
     
     // Load Data
     func loadData() {
@@ -128,14 +133,22 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         self.viewModel.fillCell(cell, forIndexPath: indexPath)
         
-        guard let selectCell = cell as? CreateShoutSelectCell else {
-            return cell
-        }
-        
         if let existingDisposable = disposables[indexPath] {
             existingDisposable?.dispose()
         }
         
+        if let textCell = cell as? CreateShoutTextCell {
+            let disposable = textCell.textField.rx_text.flatMap({ (text) -> Observable<String?> in
+                return Observable.just(text)
+            }).bindTo(viewModel.shoutParams.text)
+            
+            disposables[indexPath] = disposable
+            
+        }
+        
+        guard let selectCell = cell as? CreateShoutSelectCell else {
+            return cell
+        }
         
         if indexPath.section == 1 {
             
@@ -217,9 +230,24 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     @IBAction func submitAction() {
         let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
-        APIShoutsService.createShoutWithParams(parameters).subscribeNext { (shout) -> Void in
+        
+        print(parameters)
+        
+        APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { (shout) -> Void in
+            let confirmation = Wireframe.shoutConfirmationController()
             
-        }.addDisposableTo(disposeBag)
+            confirmation.shout = shout
+            
+            self.navigationController?.pushViewController(confirmation, animated: true)
+            
+        }, onError: { (error) -> Void in
+            let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            
+            self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+            
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 
 }

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
+    
+    var reuseDisposeBag: DisposeBag?
     
     // section 1
     @IBOutlet weak var avatarImageView: UIImageView! {

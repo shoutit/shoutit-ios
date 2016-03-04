@@ -37,6 +37,9 @@
 		249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */; };
 		249671571C86E7B30011B078 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		249671591C870ECD0011B078 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
+		2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */; };
+		2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */; };
+		249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671601C8758650011B078 /* EditShoutTableViewController.swift */; };
 		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
 		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
 		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
@@ -565,6 +568,9 @@
 		249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsFlowController.swift; path = FlowControl/DiscoverShoutsFlowController.swift; sourceTree = "<group>"; };
 		249671561C86E7B30011B078 /* ShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutParams.swift; path = Model/ShoutParams.swift; sourceTree = "<group>"; };
 		249671581C870ECD0011B078 /* FilterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterResult.swift; path = Model/FilterResult.swift; sourceTree = "<group>"; };
+		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
+		2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutConfirmationViewController.swift; path = Controllers/ShoutConfirmationViewController.swift; sourceTree = "<group>"; };
+		249671601C8758650011B078 /* EditShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutTableViewController.swift; path = Controllers/EditShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1235,6 +1241,7 @@
 			children = (
 				248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */,
 				248329041C847D7E0042B0DB /* CreateShoutSelectCell.swift */,
+				2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1247,6 +1254,22 @@
 				249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */,
 			);
 			name = "Discover Shouts";
+			sourceTree = "<group>";
+		};
+		2496715C1C874F890011B078 /* ShoutConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */,
+			);
+			name = ShoutConfirmation;
+			sourceTree = "<group>";
+		};
+		2496715F1C87584C0011B078 /* EdiShout */ = {
+			isa = PBXGroup;
+			children = (
+				249671601C8758650011B078 /* EditShoutTableViewController.swift */,
+			);
+			name = EdiShout;
 			sourceTree = "<group>";
 		};
 		2499EA691C80937A0086DEA9 /* CreateShout */ = {
@@ -1440,6 +1463,8 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2496715F1C87584C0011B078 /* EdiShout */,
+				2496715C1C874F890011B078 /* ShoutConfirmation */,
 				2499EA691C80937A0086DEA9 /* CreateShout */,
 				2493247E1C7EFB7900A1AB6A /* Discover Shouts */,
 				244FD9A01C7C79DF0048CC82 /* Discover */,
@@ -3454,6 +3479,7 @@
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				6027CF8F1BE7532C00124C28 /* NetworkActivityManager.swift in Sources */,
 				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
+				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
 				B23ABC921C76084B00CC69E6 /* UserShoutsParams.swift in Sources */,
 				606116AE1BF09B4E00259357 /* SHCellViewModelProtocol.swift in Sources */,
@@ -3543,6 +3569,7 @@
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
 				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
+				2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
 				B2E715511C6E02EE007F95CF /* ProfileCollectionViewLayoutAttributes.swift in Sources */,
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,
@@ -3639,6 +3666,7 @@
 				248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */,
 				AC7030CC1C15D77E008F4C00 /* SHVideoMediaItem.swift in Sources */,
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
+				249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */,
 				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
 				240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */,
 				B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */,

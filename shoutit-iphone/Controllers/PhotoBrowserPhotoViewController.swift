@@ -45,7 +45,11 @@ class PhotoBrowserPhotoViewController: UIViewController {
                 if let _ = image {
                     self?.showImage()
                 } else if let error = error {
+                    #if DEBUG
                     self?.showMessage(error.localizedDescription)
+                    #else
+                    self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
+                    #endif
                 }
                 
             }
