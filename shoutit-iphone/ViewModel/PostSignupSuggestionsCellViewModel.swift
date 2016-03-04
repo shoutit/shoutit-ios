@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
-enum PostSignupSuggestionsCellType<SuggestableType: Suggestable> {
+enum PostSignupSuggestionsCellType {
     case Header(title: String)
-    case Normal(item: SuggestableType)
+    case Normal(item: Suggestable)
     
     var reuseIdentifier: String {
         switch self {
@@ -22,10 +23,10 @@ enum PostSignupSuggestionsCellType<SuggestableType: Suggestable> {
     }
 }
 
-class PostSignupSuggestionsCellViewModel<SuggestableType: Suggestable> {
+class PostSignupSuggestionsCellViewModel {
     
-    let cellType: PostSignupSuggestionsCellType<SuggestableType>
-    var item: SuggestableType? {
+    let cellType: PostSignupSuggestionsCellType
+    var item: Suggestable? {
         if case PostSignupSuggestionsCellType.Normal(let item) = self.cellType {
             return item
         }
@@ -33,11 +34,38 @@ class PostSignupSuggestionsCellViewModel<SuggestableType: Suggestable> {
     }
     var selected: Bool = false
     
-    init(item: SuggestableType) {
+    let disposeBag = DisposeBag()
+    
+    init(item: Suggestable) {
         self.cellType = .Normal(item: item)
     }
     
     init(sectionTitle: String) {
         self.cellType = .Header(title: sectionTitle)
+    }
+    
+    func listen() -> Observable<Void> {
+        guard let item = item else {
+            fatalError()
+        }
+        let selected = !self.selected
+        return Observable.create{[weak self] (observer) -> Disposable in
+            self?.selected = selected
+            observer.onNext()
+            APIUsersService.listen(selected, toUserWithUsername: item.listenId).subscribe{ (event) in
+                switch event {
+                case .Completed:
+                    observer.onCompleted()
+                case .Error:
+                    self?.selected = !selected
+                    observer.onNext()
+                    observer.onCompleted()
+                case .Next:
+                    break
+                }
+            }.addDisposableTo(self!.disposeBag)
+            
+            return NopDisposable.instance
+        }
     }
 }

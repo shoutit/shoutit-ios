@@ -15,8 +15,8 @@ class PostSignupSuggestionViewModel {
     private let disposeBag = DisposeBag()
     let state: Variable<LoadingState> = Variable(.Idle)
     
-    private(set) var usersSection: PostSignupSuggestionsSectionViewModel<Profile> = PostSignupSuggestionsSectionViewModel<Profile>(section: .Users, models:[])
-    private(set) var pagesSection: PostSignupSuggestionsSectionViewModel<Profile> = PostSignupSuggestionsSectionViewModel<Profile>(section: .Pages, models:[])
+    private(set) var usersSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .Users, models:[])
+    private(set) var pagesSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .Pages, models:[])
     
     func fetchSections() {
         
@@ -28,12 +28,10 @@ class PostSignupSuggestionViewModel {
                 switch event {
                 case .Next(let suggestions):
                     if let users = suggestions.users {
-                        let usersSection = PostSignupSuggestionsSectionViewModel(section: .Users, models: users)
-                        self.usersSection = usersSection
+                        self.usersSection.updateCellsWithModels(users.map{$0 as Suggestable})
                     }
                     if let pages = suggestions.pages {
-                        let pagesSection = PostSignupSuggestionsSectionViewModel(section: .Pages, models: pages)
-                        self.pagesSection = pagesSection
+                        self.pagesSection.updateCellsWithModels(pages.map{$0 as Suggestable})
                     }
                     self.state.value = .ContentLoaded
                 case .Error(let error):

@@ -22,14 +22,19 @@ enum PostSignupSuggestionsSection {
     }
 }
 
-class PostSignupSuggestionsSectionViewModel<SuggestableType: Suggestable> {
+class PostSignupSuggestionsSectionViewModel {
     
     let section: PostSignupSuggestionsSection
-    var cells: [PostSignupSuggestionsCellViewModel<SuggestableType>]
+    private(set) var cells: [PostSignupSuggestionsCellViewModel]
     
-    init(section: PostSignupSuggestionsSection, models: [SuggestableType]) {
+    init(section: PostSignupSuggestionsSection, models: [Suggestable]) {
         self.section = section
-        let headerCellViewModel = PostSignupSuggestionsCellViewModel<SuggestableType>(sectionTitle: section.title)
-        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel<SuggestableType>(item: $0)}
+        let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
+        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
+    }
+    
+    func updateCellsWithModels(models: [Suggestable]) {
+        let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
+        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }
 }

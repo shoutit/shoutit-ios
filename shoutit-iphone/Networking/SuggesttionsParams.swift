@@ -45,22 +45,31 @@ struct SuggestionsTypes: OptionSetType {
     static let Tags = SuggestionsTypes(rawValue: 1 << 2)
     static let Shouts = SuggestionsTypes(rawValue: 1 << 3)
     
-    func parameters() -> [String] {
+    func parameters() -> String {
         
-        var array = [String]()
+        var params = ""
         if self.contains(.Users) {
-            array.append("users")
+            params += "users"
         }
         if self.contains(.Pages) {
-            array.append("pages")
+            if !params.isEmpty {
+                params += ","
+            }
+            params += "pages"
         }
         if self.contains(.Tags) {
-            array.append("tags")
+            if !params.isEmpty {
+                params += ","
+            }
+            params += "tags"
         }
         if self.contains(.Shouts) {
-            array.append("shouts")
+            if !params.isEmpty {
+                params += ","
+            }
+            params += "shouts"
         }
         
-        return array
+        return params
     }
 }

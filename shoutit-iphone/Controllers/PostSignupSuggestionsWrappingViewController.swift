@@ -15,13 +15,17 @@ protocol PostSignupSuggestionViewControllerFlowDelegate: class, LoginFinishable 
 final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     // UI
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var skipButton: CustomUIButton!
     @IBOutlet weak var doneButton: CustomUIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     // children controllers
     private var pageViewController: UIPageViewController! {
         didSet {
             pageViewController?.dataSource = self
+            pageViewController?.delegate = self
         }
     }
     
@@ -40,6 +44,11 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         super.viewDidLoad()
         
         setupRX()
+        setupAppearance()
+        
+        // setup page control
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
         
         viewModel.fetchSections()
     }
@@ -69,6 +78,19 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
+    private func setupAppearance() {
+        shadowView.layer.cornerRadius = 10
+        shadowView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        shadowView.layer.borderWidth = 0.5
+        shadowView.layer.shadowColor = UIColor.grayColor().CGColor
+        shadowView.layer.shadowOpacity = 0.6
+        shadowView.layer.shadowRadius = 3.0
+        shadowView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        shadowView.layer.masksToBounds = false
+        containerView.clipsToBounds = true
+        containerView.layer.cornerRadius = 10
+    }
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -85,7 +107,7 @@ extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDataS
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        if let vc = viewController as? PostSignupSuggestionsTableViewController<Profile> where vc.sectionViewModel.section == .Pages {
+        if let vc = viewController as? PostSignupSuggestionsTableViewController where vc.sectionViewModel.section == .Pages {
             return suggestionsViewControllerForSection(.Users)
         }
         
@@ -94,24 +116,16 @@ extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDataS
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        if let vc = viewController as? PostSignupSuggestionsTableViewController<Profile> where vc.sectionViewModel.section == .Users {
+        if let vc = viewController as? PostSignupSuggestionsTableViewController where vc.sectionViewModel.section == .Users {
             return suggestionsViewControllerForSection(.Pages)
         }
         
         return nil
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 2
-    }
-    
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
-    }
-    
     func suggestionsViewControllerForSection(section: PostSignupSuggestionsSection) -> UIViewController {
         
-        let viewController = PostSignupSuggestionsTableViewController<Profile>()
+        let viewController = Wireframe.postSignupSuggestionsTableViewController()
         viewController.viewModel = viewModel
         
         switch section {
@@ -122,5 +136,24 @@ extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDataS
         }
         
         return viewController
+    }
+}
+
+extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(pageViewController: UIPageViewController,
+                            willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        
+        guard let viewController = pendingViewControllers.first as? PostSignupSuggestionsTableViewController else {
+            assert(false)
+            return
+        }
+        
+        switch viewController.sectionViewModel.section {
+        case .Users:
+            pageControl.currentPage = 0
+        case .Pages:
+            pageControl.currentPage = 1
+        }
     }
 }

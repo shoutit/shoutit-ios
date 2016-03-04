@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class PostSignupSuggestionsTableViewCell: PostSignupSuggestionBaseTableViewCell {
+class PostSignupSuggestionsTableViewCell: UITableViewCell {
     
     var reuseDisposeBag: DisposeBag?
     
@@ -17,6 +17,12 @@ class PostSignupSuggestionsTableViewCell: PostSignupSuggestionBaseTableViewCell 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var separatorViewHeightConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        separatorViewHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

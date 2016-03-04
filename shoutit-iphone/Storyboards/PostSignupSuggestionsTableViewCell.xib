@@ -46,13 +46,23 @@
                         </constraints>
                         <state key="normal" image="listen_icon"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S97-R9-XC3">
+                        <rect key="frame" x="70" y="57" width="520" height="1"/>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="vxv-Ah-otp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="KZ7-CZ-FMm" firstAttribute="leading" secondItem="5OJ-d8-p54" secondAttribute="trailing" constant="12" id="0Ns-mT-mhQ"/>
                     <constraint firstItem="5OJ-d8-p54" firstAttribute="top" secondItem="iAl-IQ-Hwp" secondAttribute="top" constant="5" id="3Oe-oD-CHG"/>
+                    <constraint firstItem="S97-R9-XC3" firstAttribute="leading" secondItem="iAl-IQ-Hwp" secondAttribute="leading" constant="70" id="99L-IQ-6C0"/>
                     <constraint firstItem="dYU-1c-rXz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ny6-0g-pQL" secondAttribute="trailing" constant="5" id="IGB-Vs-Otq"/>
+                    <constraint firstAttribute="bottom" secondItem="S97-R9-XC3" secondAttribute="bottom" id="PMj-qN-qLf"/>
                     <constraint firstItem="Ny6-0g-pQL" firstAttribute="leading" secondItem="KZ7-CZ-FMm" secondAttribute="leading" id="SXd-wj-lBf"/>
                     <constraint firstAttribute="trailing" secondItem="dYU-1c-rXz" secondAttribute="trailing" id="Uh0-s6-j2t"/>
+                    <constraint firstAttribute="trailing" secondItem="S97-R9-XC3" secondAttribute="trailing" constant="10" id="WrD-1K-T1w"/>
                     <constraint firstAttribute="bottom" secondItem="Ny6-0g-pQL" secondAttribute="bottom" constant="5" id="eVB-AO-6Xq"/>
                     <constraint firstItem="5OJ-d8-p54" firstAttribute="leading" secondItem="iAl-IQ-Hwp" secondAttribute="leading" constant="10" id="fkr-Qd-wbn"/>
                     <constraint firstItem="dYU-1c-rXz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KZ7-CZ-FMm" secondAttribute="trailing" constant="5" id="jHF-Xc-ly4"/>
@@ -66,6 +76,7 @@
                 <outlet property="listenButton" destination="dYU-1c-rXz" id="avw-Nn-lqe"/>
                 <outlet property="listenersCountLabel" destination="Ny6-0g-pQL" id="eNM-ZR-vI7"/>
                 <outlet property="nameLabel" destination="KZ7-CZ-FMm" id="aFV-o5-53a"/>
+                <outlet property="separatorViewHeightConstraint" destination="vxv-Ah-otp" id="Vlp-qb-WYA"/>
                 <outlet property="thumbnailImageView" destination="5OJ-d8-p54" id="Snn-fW-MZt"/>
             </connections>
         </tableViewCell>

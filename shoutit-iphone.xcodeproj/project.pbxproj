@@ -304,7 +304,6 @@
 		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
 		B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D781C636422007EB2FB /* UITextField+Extensions.swift */; };
 		B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D7A1C63844E007EB2FB /* Fonts.swift */; };
-		B209AC041C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */; };
 		B209AC0C1C6BA76B00EF2B8E /* ListenParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */; };
 		B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */; };
 		B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */; };
@@ -881,7 +880,6 @@
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
 		B2082D781C636422007EB2FB /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+Extensions.swift"; path = "UIKitExtensions/UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		B2082D7A1C63844E007EB2FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = UIKitExtensions/Fonts.swift; sourceTree = "<group>"; };
-		B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionBaseTableViewCell.swift; path = View/PostSignupSuggestionBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "shoutit-Staging.xcconfig"; path = "OtherSources/shoutit-Staging.xcconfig"; sourceTree = "<group>"; };
 		B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenParams.swift; path = Networking/ListenParams.swift; sourceTree = "<group>"; };
 		B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Controllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -2807,7 +2805,6 @@
 		B2B540D91C6A69110075EDA6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */,
 				B2B540DA1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift */,
 				B2B540DE1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift */,
 				B24D17B21C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib */,
@@ -3537,7 +3534,6 @@
 				B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */,
 				B2B5D0381C80691E0068A6AF /* Filter.swift in Sources */,
 				AE83517F1C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
-				B209AC041C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift in Sources */,
 				B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */,
 				AE83517B1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518B1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
