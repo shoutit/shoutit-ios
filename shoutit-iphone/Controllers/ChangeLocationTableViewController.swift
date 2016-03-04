@@ -8,14 +8,15 @@
 
 import UIKit
 import RxSwift
-import FTGooglePlacesAPI
+import GooglePlaces
+import CoreLocation
 
 class ChangeLocationTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var currentLocationLabel : UILabel!
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
     @IBOutlet weak var searchBar : UISearchBar!
     
-    var finishedBlock: ((Bool, FTGooglePlacesAPISearchResultItem?) -> Void)?
+    var finishedBlock: ((Bool, Address?) -> Void)?
     
     private let disposeBag = DisposeBag()
     private let viewModel = ChangeLocationViewModel()
@@ -60,15 +61,29 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
 
         viewModel.finalObservable?
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
-                cell.textLabel?.text = "\(element.name!)"
+                cell.textLabel?.text = "\(element.description!)"
             }.addDisposableTo(disposeBag)
         
-        tableView.rx_modelSelected(FTGooglePlacesAPISearchResultItem.self)
+        
+        tableView.rx_modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)
             .asDriver()
             .driveNext { selectedLocation in
-                let coordinates : CLLocationCoordinate2D = selectedLocation.location.coordinate
-                
-                self.finishWithCoordinates(coordinates, place: selectedLocation)
+         
+                self.loading = true
+
+                if let place = selectedLocation.place {
+                    switch (place) {
+                    case .PlaceID(let plId):
+                        self.viewModel.geocoder.rx_details(plId).subscribeNext({ [weak self] (place) -> Void in
+                            if let address = place?.toAddressObject() {
+                                self?.finishWithAddress(address)
+                            }
+                        }).addDisposableTo(self.disposeBag)
+                    default: return
+                    }
+                    
+                }
+
             }
             .addDisposableTo(disposeBag)
 
@@ -77,19 +92,20 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         }.addDisposableTo(disposeBag)
     }
     
-    func finishWithCoordinates(coordinates: CLLocationCoordinate2D, place: FTGooglePlacesAPISearchResultItem) {
+    func finishWithAddress(address: Address) {
         guard let username = Account.sharedInstance.user?.username else {
             return
         }
         
-        self.loading = true
+        let coords = CLLocationCoordinate2D(latitude: address.latitude ?? 0, longitude: address.longitude ?? 0)
         
-        APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
+            APILocationService.updateLocation(username, coordinates:coords, completionHandler: { (result) -> Void in
+            
             if let finish = self.finishedBlock {
                 self.searchBar.text = ""
-                finish(true, place)
+                finish(true, address)
             }
-        }
+        })
     }
     
 }

@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import FTGooglePlacesAPI
+import GooglePlaces
 
 class LocationFlowController: FlowController {
     let navigationController: UINavigationController
     
-    var finishedBlock: ((Bool, FTGooglePlacesAPISearchResultItem?) -> Void)? {
+    var finishedBlock: ((Bool, Address?) -> Void)? {
         didSet {
             if let locationController = self.navigationController.viewControllers[0] as? ChangeLocationTableViewController {
                 locationController.finishedBlock = finishedBlock
