@@ -76,6 +76,7 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.2.1):
     - MZAppearance
+  - Nemo (1.0)
   - Nimble (3.0.0)
   - ObjectMapper (1.1.2)
   - Ogra (2.1.0):
@@ -126,6 +127,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (~> 2.1)
   - MZFormSheetPresentationController (~> 2.2)
+  - Nemo
   - Nimble (= 3.0.0)
   - ObjectMapper (~> 1.1)
   - Ogra (~> 2.1)
@@ -193,6 +195,7 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
+  Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
   Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b

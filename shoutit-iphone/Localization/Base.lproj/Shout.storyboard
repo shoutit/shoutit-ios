@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -507,28 +507,39 @@
                             <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shoutImageCellIdentifier" id="xHr-6C-eE8">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shoutImageCellIdentifier" id="5G3-L1-hw2" customClass="ShoutMediaCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="10" y="3" width="74" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TCn-CZ-afF">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9i7-Q0-Q3w">
                                             <rect key="frame" x="23" y="23" width="28" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="28" id="B8E-s5-53t"/>
-                                                <constraint firstAttribute="height" constant="28" id="S02-ci-RIw"/>
+                                                <constraint firstAttribute="height" constant="28" id="863-0x-7Hf"/>
+                                                <constraint firstAttribute="width" constant="28" id="C7X-zJ-IT4"/>
                                             </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sKr-Pg-72d">
+                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="TCn-CZ-afF" firstAttribute="centerY" secondItem="xHr-6C-eE8" secondAttribute="centerY" id="nPO-7M-dqD"/>
-                                    <constraint firstItem="TCn-CZ-afF" firstAttribute="centerX" secondItem="xHr-6C-eE8" secondAttribute="centerX" id="qXa-PH-157"/>
+                                    <constraint firstItem="sKr-Pg-72d" firstAttribute="leading" secondItem="5G3-L1-hw2" secondAttribute="leading" id="Dys-PJ-tiR"/>
+                                    <constraint firstAttribute="bottom" secondItem="sKr-Pg-72d" secondAttribute="bottom" id="Ebq-Cd-IQG"/>
+                                    <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerX" secondItem="5G3-L1-hw2" secondAttribute="centerX" id="SAN-57-JXw"/>
+                                    <constraint firstAttribute="trailing" secondItem="sKr-Pg-72d" secondAttribute="trailing" id="SQD-xM-ntc"/>
+                                    <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerY" secondItem="5G3-L1-hw2" secondAttribute="centerY" id="ew8-7O-0rQ"/>
+                                    <constraint firstItem="sKr-Pg-72d" firstAttribute="top" secondItem="5G3-L1-hw2" secondAttribute="top" id="rHS-39-YJd"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="sKr-Pg-72d" id="J5b-QX-Cbe"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -1589,7 +1600,7 @@
                             <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shoutImageCellIdentifier" id="ybG-75-R4I">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shoutImageCellIdentifier" id="ybG-75-R4I" customClass="ShoutMediaCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="10" y="3" width="74" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1603,14 +1614,25 @@
                                                 <constraint firstAttribute="width" constant="28" id="b5v-4m-l1B"/>
                                             </constraints>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zsz-aK-6yD">
+                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zsz-aK-6yD" secondAttribute="bottom" id="2g6-FE-dnu"/>
                                     <constraint firstItem="8od-ou-IDi" firstAttribute="centerX" secondItem="ybG-75-R4I" secondAttribute="centerX" id="8hC-QK-mm3"/>
+                                    <constraint firstItem="zsz-aK-6yD" firstAttribute="top" secondItem="ybG-75-R4I" secondAttribute="top" id="Ch4-47-d1i"/>
                                     <constraint firstItem="8od-ou-IDi" firstAttribute="centerY" secondItem="ybG-75-R4I" secondAttribute="centerY" id="OTv-UT-X9b"/>
+                                    <constraint firstItem="zsz-aK-6yD" firstAttribute="leading" secondItem="ybG-75-R4I" secondAttribute="leading" id="Xeq-v0-Sp5"/>
+                                    <constraint firstAttribute="trailing" secondItem="zsz-aK-6yD" secondAttribute="trailing" id="lQN-Sa-7KY"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="zsz-aK-6yD" id="HaU-Xu-uVy"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
