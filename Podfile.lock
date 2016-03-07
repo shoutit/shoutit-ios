@@ -1,4 +1,5 @@
 PODS:
+  - ACPDownload (1.1.0)
   - AFNetworking (2.2.4):
     - AFNetworking/NSURLConnection (= 2.2.4)
     - AFNetworking/NSURLSession (= 2.2.4)
@@ -22,6 +23,9 @@ PODS:
   - AlamofireObjectMapper (2.1.0):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
+  - AmazonS3RequestManager (0.10.1):
+    - Alamofire (~> 3.0)
+    - SWXMLHash (~> 2.0)
   - Argo (2.2.0)
   - AWSCognito (2.3.4):
     - AWSCore (= 2.3.4)
@@ -94,14 +98,17 @@ PODS:
   - SocketRocket (0.4.1)
   - SVProgressHUD (1.1.3)
   - SVPullToRefresh (0.4.1)
+  - SWXMLHash (2.1.0)
   - UIViewAppearanceSwift (0.0.1)
   - URBMediaFocusViewController (0.5.8)
   - Validator (1.1)
   - XCGLogger (3.2)
 
 DEPENDENCIES:
+  - ACPDownload (~> 1.1.0)
   - Alamofire (~> 3.1.0)
   - AlamofireObjectMapper (~> 2.1)
+  - AmazonS3RequestManager
   - Argo
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
@@ -162,9 +169,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/levantAJ/UIViewAppearanceSwift.git
 
 SPEC CHECKSUMS:
+  ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
+  AmazonS3RequestManager: 49d58c31cbe9a2972972b7ec632343a09d78fab1
   Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
   AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
@@ -209,6 +218,7 @@ SPEC CHECKSUMS:
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SWXMLHash: 7257a358b3ab2f7a209e0b4e4cf552e8b6df5f0f
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
   URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1
   Validator: 30b7e50f1f82b0e5b2dd14f54fc2f2533e70e5d6

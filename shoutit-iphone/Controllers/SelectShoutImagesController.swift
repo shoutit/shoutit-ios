@@ -18,11 +18,13 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
     var attachments : [Int : MediaAttachment]!
     
     var mediaPicker : MediaPickerController!
+    var mediaUploader : MediaUploader!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         mediaPicker = MediaPickerController(delegate: self)
+        mediaUploader = MediaUploader(bucket: .ShoutImage)
         
         attachments = [:]
     }
@@ -38,7 +40,11 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
         
-        cell.fillWith(attachments[indexPath.item])
+        let attachment = attachments[indexPath.item]
+        cell.fillWith(attachment)
+        
+        let task = self.mediaUploader.taskForAttachment(attachment)
+        cell.fillWith(task)
         
         return cell
     }
@@ -61,22 +67,31 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
             return
         }
         
+        var newAttachmentIdx : Int?
+        
         if let selectedIdx = selectedIdx {
-            self.attachments[selectedIdx] = attachment
-            self.collectionView?.reloadData()
+            newAttachmentIdx = selectedIdx
             self.selectedIdx = nil
-            return
+        } else if let idx = firstEmptyIndex() {
+            newAttachmentIdx = idx
         }
         
-        if let idx = firstEmptyIndex() {
+        
+        if let idx = newAttachmentIdx {
             self.attachments[idx] = attachment
+            
+            startUploadingAttachment(attachment)
+            
             self.collectionView?.reloadData()
+            
             return
         }
-        
-        
         
         toManyImagesAlert()
+    }
+    
+    func startUploadingAttachment(attachment: MediaAttachment) {
+        mediaUploader.uploadAttachment(attachment)
     }
     
     func checkIfAttachmentCanBeAdded(attachment: MediaAttachment) -> Bool {

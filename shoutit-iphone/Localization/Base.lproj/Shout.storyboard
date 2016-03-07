@@ -525,13 +525,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxB-6n-5vU" customClass="ACPDownloadView">
+                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="fxB-6n-5vU" firstAttribute="top" secondItem="5G3-L1-hw2" secondAttribute="top" id="2s0-9E-TCW"/>
+                                    <constraint firstAttribute="trailing" secondItem="fxB-6n-5vU" secondAttribute="trailing" id="8rm-uc-Y5e"/>
+                                    <constraint firstAttribute="bottom" secondItem="fxB-6n-5vU" secondAttribute="bottom" id="9GB-7P-g5L"/>
                                     <constraint firstItem="sKr-Pg-72d" firstAttribute="leading" secondItem="5G3-L1-hw2" secondAttribute="leading" id="Dys-PJ-tiR"/>
                                     <constraint firstAttribute="bottom" secondItem="sKr-Pg-72d" secondAttribute="bottom" id="Ebq-Cd-IQG"/>
+                                    <constraint firstItem="fxB-6n-5vU" firstAttribute="leading" secondItem="5G3-L1-hw2" secondAttribute="leading" id="Ocf-2g-ONE"/>
                                     <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerX" secondItem="5G3-L1-hw2" secondAttribute="centerX" id="SAN-57-JXw"/>
                                     <constraint firstAttribute="trailing" secondItem="sKr-Pg-72d" secondAttribute="trailing" id="SQD-xM-ntc"/>
                                     <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerY" secondItem="5G3-L1-hw2" secondAttribute="centerY" id="ew8-7O-0rQ"/>
@@ -539,6 +547,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="sKr-Pg-72d" id="J5b-QX-Cbe"/>
+                                    <outlet property="progressView" destination="fxB-6n-5vU" id="aim-Z0-VL4"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1618,6 +1627,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csj-Ry-bfd" customClass="ACPDownloadView">
+                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -1625,13 +1638,18 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="zsz-aK-6yD" secondAttribute="bottom" id="2g6-FE-dnu"/>
                                     <constraint firstItem="8od-ou-IDi" firstAttribute="centerX" secondItem="ybG-75-R4I" secondAttribute="centerX" id="8hC-QK-mm3"/>
+                                    <constraint firstAttribute="trailing" secondItem="csj-Ry-bfd" secondAttribute="trailing" id="BL1-Jo-XYL"/>
                                     <constraint firstItem="zsz-aK-6yD" firstAttribute="top" secondItem="ybG-75-R4I" secondAttribute="top" id="Ch4-47-d1i"/>
+                                    <constraint firstAttribute="bottom" secondItem="csj-Ry-bfd" secondAttribute="bottom" id="Erq-56-6jB"/>
                                     <constraint firstItem="8od-ou-IDi" firstAttribute="centerY" secondItem="ybG-75-R4I" secondAttribute="centerY" id="OTv-UT-X9b"/>
                                     <constraint firstItem="zsz-aK-6yD" firstAttribute="leading" secondItem="ybG-75-R4I" secondAttribute="leading" id="Xeq-v0-Sp5"/>
                                     <constraint firstAttribute="trailing" secondItem="zsz-aK-6yD" secondAttribute="trailing" id="lQN-Sa-7KY"/>
+                                    <constraint firstItem="csj-Ry-bfd" firstAttribute="leading" secondItem="ybG-75-R4I" secondAttribute="leading" id="t26-Fd-V93"/>
+                                    <constraint firstItem="csj-Ry-bfd" firstAttribute="top" secondItem="ybG-75-R4I" secondAttribute="top" id="tIJ-FZ-jt4"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="zsz-aK-6yD" id="HaU-Xu-uVy"/>
+                                    <outlet property="progressView" destination="csj-Ry-bfd" id="PaF-W2-J8M"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

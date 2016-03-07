@@ -26,6 +26,7 @@ pod 'FBSDKShareKit', '~> 4.8'
 # amazon
 pod 'AWSS3', '~> 2.3'
 pod 'AWSCognito', '~> 2.3'
+pod 'AmazonS3RequestManager'
 
 # networking
 pod 'Alamofire', '~> 3.1.0'
@@ -63,6 +64,7 @@ pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
 pod 'DZNEmptyDataSet'
+pod 'ACPDownload', '~> 1.1.0'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
 

@@ -80,7 +80,7 @@ class MediaPickerController: NSObject, MediaPicker  {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let attachment = MediaAttachment(type: .Image, image: image, originalData: nil, remoteURL: nil, thumbRemoteURL: nil)
+            let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
             self.attachmentSelected(attachment)
         }
     }

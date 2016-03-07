@@ -19,7 +19,7 @@ struct MediaPickerSettings {
     var maximumVideos : Int = 1
 }
 
-struct MediaAttachment {
+struct MediaAttachment : Hashable, Equatable {
     
     let type: PHAssetMediaType
     
@@ -28,12 +28,29 @@ struct MediaAttachment {
     
     var remoteURL: NSURL?
     var thumbRemoteURL: NSURL?
+    
+    var uid: String!
+    
+    func remoteFilename(user: User) -> String {
+        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id)"
+    }
+    
+    static func generateUid() -> String {
+        return NSUUID().UUIDString
+    }
+    
+    var hashValue: Int {
+        get {
+            return self.uid.hashValue
+        }
+    }
+
 }
 
-typealias MediaPickerError = ErrorType
-extension MediaPickerError {
-    
+func ==(lhs: MediaAttachment, rhs: MediaAttachment) -> Bool {
+    return lhs.uid == rhs.uid
 }
+
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
@@ -43,12 +60,14 @@ protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDele
     
 }
 
-extension MediaPicker {
-    
+extension UIImage {
+    func dataRepresentation() -> NSData? {
+        return UIImageJPEGRepresentation(self, 0.7)
+    }
 }
 
 extension PHAsset {
     func asMediaAttachment(image: UIImage? = nil) -> MediaAttachment {
-        return MediaAttachment(type: self.mediaType, image: image, originalData: nil, remoteURL: nil, thumbRemoteURL: nil)
+        return MediaAttachment(type: self.mediaType, image: image, originalData: image?.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
     }
 }
