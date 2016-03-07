@@ -20,8 +20,8 @@ extension Suggestions: Decodable {
     
     static func decode(j: JSON) -> Decoded<Suggestions> {
         return curry(Suggestions.init)
-            <^> j <|| "users"
-            <*> j <|| "pages"
-            <*> j <|| "tags"
+            <^> j <||? "users"
+            <*> j <||? "pages"
+            <*> j <||? "tags"
     }
 }

@@ -8,7 +8,13 @@
 
 import UIKit
 
-class PostSignupSuggestionsHeaderTableViewCell: PostSignupSuggestionBaseTableViewCell {
+class PostSignupSuggestionsHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
+    @IBOutlet weak var separatorViewHeightConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        separatorViewHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+    }
 }

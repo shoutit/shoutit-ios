@@ -68,6 +68,10 @@ struct Wireframe {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupSuggestionsWrappingViewController") as! PostSignupSuggestionsWrappingViewController
     }
     
+    static func postSignupSuggestionsTableViewController() -> PostSignupSuggestionsTableViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupSuggestionsTableViewController") as! PostSignupSuggestionsTableViewController
+    }
+    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {

@@ -11,7 +11,6 @@ import UIKit
 enum PostSignupSuggestionsSection {
     case Users
     case Pages
-    case Interests
     
     var title: String {
         switch self {
@@ -19,8 +18,6 @@ enum PostSignupSuggestionsSection {
             return NSLocalizedString("Suggested Users", comment: "")
         case .Pages:
             return NSLocalizedString("Suggested Pages", comment: "")
-        case .Interests:
-            return NSLocalizedString("Suggested Interests", comment: "")
         }
     }
 }
@@ -28,10 +25,15 @@ enum PostSignupSuggestionsSection {
 class PostSignupSuggestionsSectionViewModel {
     
     let section: PostSignupSuggestionsSection
-    var cells: [PostSignupSuggestionsCellViewModel]
+    private(set) var cells: [PostSignupSuggestionsCellViewModel]
     
     init(section: PostSignupSuggestionsSection, models: [Suggestable]) {
         self.section = section
+        let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
+        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
+    }
+    
+    func updateCellsWithModels(models: [Suggestable]) {
         let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
         self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }

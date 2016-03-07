@@ -23,8 +23,11 @@ class PostSignupInterestsViewController: UIViewController {
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet var tableViewPlaceholder: TableViewPlaceholderView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
+        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
+        return view
+    }()
     
     // view model
     var viewModel: PostSignupInterestsViewModel!
@@ -61,25 +64,21 @@ class PostSignupInterestsViewController: UIViewController {
             .filter {[weak self] (loadingState, cellViewModels) -> Bool in
                 switch loadingState {
                 case .Idle:
-                    self?.activityIndicator.hidden = true
                     self?.tableView.tableHeaderView = nil
                     return false
                 case .Loading:
-                    self?.activityIndicator.hidden = false
-                    self?.tableView.tableHeaderView = nil
+                    self?.tableViewPlaceholder.showActivity()
+                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .ContentUnavailable:
-                    self?.activityIndicator.hidden = true
-                    self?.tableViewPlaceholder.label.text = NSLocalizedString("Categories unavilable", comment: "")
+                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("Categories unavilable", comment: ""))
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .Error(let error):
-                    self?.activityIndicator.hidden = true
-                    self?.tableViewPlaceholder.label.text = (error as NSError).localizedDescription
+                    self?.tableViewPlaceholder.showMessage(error.sh_message)
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .ContentLoaded:
-                    self?.activityIndicator.hidden = true
                     self?.tableView.tableHeaderView = nil
                     return true
                 }

@@ -9,20 +9,18 @@
 import Foundation
 
 protocol Suggestable {
+    var listenId: String {get}
     var suggestionTitle: String {get}
     var suggestionId: String {get} // user for api requests
     var thumbnailURL: NSURL? {get}
     var listenersCount: Int {get}
 }
 
-extension Suggestable {
-    var listenersCount: Int {
-        return 5000
-    }
-}
-
 extension Profile: Suggestable {
     
+    var listenId: String {
+        return self.username
+    }
     var suggestionTitle: String {
         return self.name
     }
@@ -35,6 +33,9 @@ extension Profile: Suggestable {
 }
 
 extension Tag: Suggestable {
+    var listenId: String {
+        return self.id
+    }
     var suggestionTitle: String {
         return self.name
     }
@@ -46,5 +47,8 @@ extension Tag: Suggestable {
             return nil
         }
         return NSURL(string: path)
+    }
+    var listenersCount: Int {
+        return 0
     }
 }

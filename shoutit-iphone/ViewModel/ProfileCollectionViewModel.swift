@@ -31,18 +31,16 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         } else {
             self.profile = profile
         }
-        shoutsSection = shoutsSectionWithModels([])
+        shoutsSection = shoutsSectionWithModels([], isLoading: true)
         if let _ = self.profile {
-            pagesSection = pagesSectionWithModels([])
+            pagesSection = pagesSectionWithModels([], isLoading: true)
         } else {
             let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
-            pagesSection = pagesSectionWithModels(pages)
+            pagesSection = pagesSectionWithModels(pages, isLoading: true)
             Account.sharedInstance.userSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext { (user) in
-                    if let _ = user {
-                        self.reloadContent()
-                    }
+                .subscribeNext { (_) in
+                    self.invalidateUser()
                 }
                 .addDisposableTo(disposeBag)
         }
@@ -50,7 +48,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func reloadContent() {
         
-        reloadPages()
+        reloadPages(currentlyLoading: true)
         
         // reload user
         fetchUser()?
@@ -78,9 +76,14 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    private func reloadPages() {
+    private func invalidateUser() {
+        detailedUser = nil
+        reloadContent()
+    }
+    
+    private func reloadPages(currentlyLoading loading: Bool = false) {
         let pages = user?.pages ?? []
-        pagesSection = pagesSectionWithModels(pages)
+        pagesSection = pagesSectionWithModels(pages, isLoading: loading)
     }
     
     // MARK: - ProfileCollectionViewModelInterface
@@ -115,7 +118,7 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
         
         if let profile = profile {
-            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: profile.listening ?? false), .HiddenButton(position: .SmallLeft), .More]
+            return [.Listeners(countString: listenersCountString), .Chat, .Listen(isListening: detailedUser?.isListening ?? profile.listening ?? false), .HiddenButton(position: .SmallLeft), .More]
         } else {
             
             var listeningCountString = ""
@@ -181,9 +184,21 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return APIUsersService.retrieveUserWithUsername(user.username)
     }
     
+    func listenToUser() -> Observable<Void>? {
+        guard let profile = profile, let listening = profile.listening else {return nil}
+        let listen = !(detailedUser?.isListening ?? listening)
+        let retrieveUser = APIUsersService.retrieveUserWithUsername(profile.username).map {[weak self] (profile) -> Void in
+            self?.detailedUser = profile
+            self?.reloadSubject.onNext()
+        }
+        return APIUsersService.listen(listen, toUserWithUsername: profile.username).flatMap{() -> Observable<Void> in
+            return retrieveUser
+        }
+    }
+    
     // MARK: - Helpers
     
-    private func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
+    private func pagesSectionWithModels(pages: [Profile], errorMessage: String? = nil, isLoading loading: Bool = false) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
         let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
         let title: String
         if let profile = profile {
@@ -193,10 +208,10 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
         let footerTitle = NSLocalizedString("Create Page", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage)
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Green, noContentMessage: noContentMessage, errorMessage: errorMessage, isLoading: loading)
     }
     
-    private func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    private func shoutsSectionWithModels(shouts: [Shout], errorMessage: String? = nil, isLoading loading: Bool = false) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title: String
         if let profile = profile {
@@ -206,6 +221,6 @@ class ProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
         let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage, isLoading: loading)
     }
 }

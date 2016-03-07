@@ -30,11 +30,4 @@ final class DiscoverFlowController: FlowController {
 
 extension DiscoverFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension DiscoverFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension DiscoverFlowController: ProfileCollectionViewControllerFlowDelegate {
-    func performActionForButtonType(type: ProfileCollectionInfoButton) {
-        switch type {
-        default:
-            navigationController.notImplemented()
-        }
-    }
-}
+extension DiscoverFlowController: ProfileCollectionViewControllerFlowDelegate {}
