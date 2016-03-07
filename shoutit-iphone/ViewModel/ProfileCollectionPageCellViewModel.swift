@@ -37,9 +37,10 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
                 switch event {
                 case .Completed:
                     observer.onNext(self.isListening)
-                case .Error:
+                case .Error(let error):
                     self.isListening = !self.isListening
                     observer.onNext(self.isListening)
+                    observer.onError(error)
                 default:
                     break
                 }

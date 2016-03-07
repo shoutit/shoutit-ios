@@ -1489,6 +1489,7 @@
 				B2AE6B7B1C7CE75A00370276 /* ShoutDetail */,
 				AEA599741C609D7E00015AA3 /* Menu */,
 				B2E715431C6D02AF007F95CF /* Profile */,
+				B211AAD81C8A07CE00C9E8DB /* EditProfile */,
 				B209AC0D1C6CB38300EF2B8E /* Settings */,
 				AE8351791C5F6E420055C71F /* RootController */,
 				AE83516A1C5F59270055C71F /* Tabbar */,
@@ -2391,6 +2392,13 @@
 				B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B211AAD81C8A07CE00C9E8DB /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = EditProfile;
 			sourceTree = "<group>";
 		};
 		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {

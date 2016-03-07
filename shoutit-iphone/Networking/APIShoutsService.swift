@@ -151,7 +151,7 @@ class APIShoutsService {
                             
                             if let j = json {
                                 if let results : Decoded<Shout> = decode(j) {
-                                    
+                                    print(json)
                                     if let value = results.value {
                                         observer.on(.Next(value))
                                         observer.on(.Completed)
@@ -161,7 +161,6 @@ class APIShoutsService {
                                     }
                                 }
                             }
-                            
                             
                         } catch let error as NSError {
                             print(error)

@@ -80,7 +80,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = user?.pages ?? []
+        let pages = detailedUser?.pages ?? user?.pages ?? []
         pagesSection = pagesSectionWithModels(pages, isLoading: loading)
     }
     
