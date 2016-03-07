@@ -309,7 +309,6 @@
 		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
 		B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D781C636422007EB2FB /* UITextField+Extensions.swift */; };
 		B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D7A1C63844E007EB2FB /* Fonts.swift */; };
-		B209AC041C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */; };
 		B209AC0C1C6BA76B00EF2B8E /* ListenParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */; };
 		B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */; };
 		B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */; };
@@ -340,6 +339,9 @@
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */; };
 		B23ABC921C76084B00CC69E6 /* UserShoutsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */; };
+		B24D17B31C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B21C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib */; };
+		B24D17B51C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B41C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib */; };
+		B24D17B81C886D7F00FB9614 /* TableViewPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */; };
 		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
 		B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */; };
@@ -888,7 +890,6 @@
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
 		B2082D781C636422007EB2FB /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+Extensions.swift"; path = "UIKitExtensions/UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		B2082D7A1C63844E007EB2FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = UIKitExtensions/Fonts.swift; sourceTree = "<group>"; };
-		B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupSuggestionBaseTableViewCell.swift; path = View/PostSignupSuggestionBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "shoutit-Staging.xcconfig"; path = "OtherSources/shoutit-Staging.xcconfig"; sourceTree = "<group>"; };
 		B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenParams.swift; path = Networking/ListenParams.swift; sourceTree = "<group>"; };
 		B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Controllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -919,6 +920,9 @@
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
 		B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIUsersService.swift; path = Networking/APIUsersService.swift; sourceTree = "<group>"; };
 		B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserShoutsParams.swift; path = Networking/UserShoutsParams.swift; sourceTree = "<group>"; };
+		B24D17B21C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostSignupSuggestionsHeaderTableViewCell.xib; path = Storyboards/PostSignupSuggestionsHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		B24D17B41C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostSignupSuggestionsTableViewCell.xib; path = Storyboards/PostSignupSuggestionsTableViewCell.xib; sourceTree = "<group>"; };
+		B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewPlaceholderView.xib; path = Storyboards/TableViewPlaceholderView.xib; sourceTree = "<group>"; };
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupCategoryTableViewCell.swift; path = View/PostSignupCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -1598,13 +1602,13 @@
 		6027CF711BE7504B00124C28 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				B24D17B61C886D6500FB9614 /* Xibs */,
 				B2B5D0431C80CFCC0068A6AF /* Cells */,
 				B2E7E2EE1C592B9E0078C743 /* Chats.storyboard */,
 				B2E7E2F11C592BA50078C743 /* CameraStoryboard.storyboard */,
 				B2E7E2F41C592BAD0078C743 /* Shout.storyboard */,
 				B2E7E2EB1C592B970078C743 /* Discover.storyboard */,
 				B2E7E2F71C592BB90078C743 /* FilterStoryboard.storyboard */,
-				B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */,
 				B2E7E2FD1C592BC80078C743 /* LoginStoryboard.storyboard */,
 				B2E7E2E81C592B600078C743 /* MainStoryboard.storyboard */,
 				B2E7E3001C592BCE0078C743 /* Profile.storyboard */,
@@ -2578,6 +2582,15 @@
 			name = Universal;
 			sourceTree = "<group>";
 		};
+		B24D17B61C886D6500FB9614 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */,
+				B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
 		B250E1C91C593F680010AB2D /* Displayables */ = {
 			isa = PBXGroup;
 			children = (
@@ -2823,9 +2836,10 @@
 		B2B540D91C6A69110075EDA6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B209AC031C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift */,
 				B2B540DA1C6A69320075EDA6 /* PostSignupSuggestionsHeaderTableViewCell.swift */,
 				B2B540DE1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift */,
+				B24D17B21C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib */,
+				B24D17B41C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3191,8 +3205,10 @@
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
 				AC7030D21C16C983008F4C00 /* SHLocationMessageCell.xib in Resources */,
+				B24D17B51C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib in Resources */,
 				AE4DB3571C638E46001EB84B /* InviteFriends.storyboard in Resources */,
 				B2E7E2F51C592BB90078C743 /* FilterStoryboard.storyboard in Resources */,
+				B24D17B31C886C2900FB9614 /* PostSignupSuggestionsHeaderTableViewCell.xib in Resources */,
 				AC70280D1C1AC1BA00262622 /* SHUserTableViewCell.xib in Resources */,
 				606ED2FE1BF80DFA0064C53E /* CameraView.xib in Resources */,
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
@@ -3201,6 +3217,7 @@
 				B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */,
 				B22D19731C75098E00A620F3 /* PlaceholderCollectionViewCell.xib in Resources */,
 				AE4DB33E1C634C22001EB84B /* Menu.storyboard in Resources */,
+				B24D17B81C886D7F00FB9614 /* TableViewPlaceholderView.xib in Resources */,
 				AC7030D11C16C982008F4C00 /* SHImageMediaItem.xib in Resources */,
 				60DD76DC1C02096F007C5334 /* SHEmptyContentView.xib in Resources */,
 				B2E7E2F21C592BAD0078C743 /* Shout.storyboard in Resources */,
@@ -3550,7 +3567,6 @@
 				B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */,
 				B2B5D0381C80691E0068A6AF /* Filter.swift in Sources */,
 				AE83517F1C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
-				B209AC041C6B639C00EF2B8E /* PostSignupSuggestionBaseTableViewCell.swift in Sources */,
 				B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */,
 				AE83517B1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518B1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,

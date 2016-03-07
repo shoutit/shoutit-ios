@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum PostSignupSuggestionsCellType {
     case Header(title: String)
@@ -15,9 +16,9 @@ enum PostSignupSuggestionsCellType {
     var reuseIdentifier: String {
         switch self {
         case .Header(title: _):
-            return "PostSignupSuggestionsHeaderCell"
+            return "PostSignupSuggestionsHeaderTableViewCell"
         case .Normal(item: _):
-            return "PostSignupSuggestionsCell"
+            return "PostSignupSuggestionsTableViewCell"
         }
     }
 }
@@ -33,11 +34,38 @@ class PostSignupSuggestionsCellViewModel {
     }
     var selected: Bool = false
     
+    let disposeBag = DisposeBag()
+    
     init(item: Suggestable) {
         self.cellType = .Normal(item: item)
     }
     
     init(sectionTitle: String) {
         self.cellType = .Header(title: sectionTitle)
+    }
+    
+    func listen() -> Observable<Void> {
+        guard let item = item else {
+            fatalError()
+        }
+        let selected = !self.selected
+        return Observable.create{[weak self] (observer) -> Disposable in
+            self?.selected = selected
+            observer.onNext()
+            APIUsersService.listen(selected, toUserWithUsername: item.listenId).subscribe{ (event) in
+                switch event {
+                case .Completed:
+                    observer.onCompleted()
+                case .Error:
+                    self?.selected = !selected
+                    observer.onNext()
+                    observer.onCompleted()
+                case .Next:
+                    break
+                }
+            }.addDisposableTo(self!.disposeBag)
+            
+            return NopDisposable.instance
+        }
     }
 }

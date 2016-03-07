@@ -113,8 +113,7 @@ class APIShoutsService {
                                                    url: shoutsURL,
                                                    params: params,
                                                    encoding: .URL,
-                                                   responseJsonPath: ["results"],
-                                                   headers: ["Accept": "application/json"])
+                                                   responseJsonPath: ["results"])
     }
     
     static func retrieveShoutWithId(id: String) -> Observable<Shout> {

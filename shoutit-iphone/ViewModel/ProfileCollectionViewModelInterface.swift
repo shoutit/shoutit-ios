@@ -24,6 +24,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     // fetchin
     func reloadContent()
     var reloadSubject: PublishSubject<Void> {get}
+    func listenToUser() -> Observable<Void>?
 }
 
 // MARK: - Default implementations

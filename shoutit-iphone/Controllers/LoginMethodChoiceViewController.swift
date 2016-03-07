@@ -130,6 +130,10 @@ extension LoginMethodChoiceViewController: GIDSignInUIDelegate {
     
     func signIn(signIn: GIDSignIn!,
          presentViewController viewController: UIViewController!) {
+        if let viewController = viewController as? UINavigationController {
+            viewController.navigationBar.tintColor = UIColor(shoutitColor: .PrimaryGreen)
+            viewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        }
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     

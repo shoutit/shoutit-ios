@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {
-    func performActionForButtonType(type: ProfileCollectionInfoButton) -> Void
-}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -81,9 +79,15 @@ extension ProfileCollectionViewController {
         
         switch indexPath.section {
         case 0:
+            if indexPath.row > viewModel.pagesSection.cells.count - 1 {
+                return
+            }
             let page = viewModel.pagesSection.cells[indexPath.row].profile
             flowDelegate?.showPage(page)
         case 1:
+            if indexPath.row > viewModel.shoutsSection.cells.count - 1 {
+                return
+            }
             let shout = viewModel.shoutsSection.cells[indexPath.row].shout
             flowDelegate?.showShout(shout)
         default:
@@ -117,9 +121,12 @@ extension ProfileCollectionViewController {
         
         if !viewModel.hasContentToDisplayInSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
+            let isLoading = indexPath.section == 0 ? viewModel.pagesSection.isLoading : viewModel.shoutsSection.isLoading
+            cell.setupCellForActivityIndicator(isLoading)
             let errorMessage = indexPath.section == 0 ? viewModel.pagesSection.errorMessage : viewModel.shoutsSection.errorMessage
             let noContentMessage = indexPath.section == 0 ? viewModel.pagesSection.noContentMessage : viewModel.shoutsSection.noContentMessage
             cell.placeholderTextLabel.text = errorMessage ?? noContentMessage
+            
             return cell
         }
         
@@ -133,8 +140,8 @@ extension ProfileCollectionViewController {
             let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
             cell.reuseDisposeBag = DisposeBag()
-            cell.listenButton.rx_tap.asDriver().driveNext {[unowned self, unowned cellViewModel] in
-                cellViewModel.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell, weak self] (event) in
+            cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+                cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let listening):
                         let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
@@ -144,7 +151,7 @@ extension ProfileCollectionViewController {
                     default:
                         break
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).addDisposableTo(cell.reuseDisposeBag!)
             }.addDisposableTo(cell.reuseDisposeBag!)
             
             return cell
@@ -247,7 +254,7 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
-            setButtons(viewModel.infoButtons, inSupplementaryView: infoView)
+            setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag!)
             
             // adjust constraints for data
             let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
@@ -304,37 +311,51 @@ extension ProfileCollectionViewController {
 
 extension ProfileCollectionViewController {
     
-    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView) {
+    func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView, disposeBag: DisposeBag) {
         
         for button in buttons {
             switch button.defaultPosition {
             case .SmallLeft:
-                hydrateButton(sView.notificationButton, withButtonModel: button)
+                hydrateButton(sView.notificationButton, withButtonModel: button, disposeBag: disposeBag)
             case .SmallRight:
-                hydrateButton(sView.rightmostButton, withButtonModel: button)
+                hydrateButton(sView.rightmostButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigLeft:
-                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionLeftButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigCenter:
-                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionCenterButton, withButtonModel: button, disposeBag: disposeBag)
             case .BigRight:
-                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button)
+                hydrateButton(sView.buttonSectionRightButton, withButtonModel: button, disposeBag: disposeBag)
             }
         }
     }
     
-    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton) {
+    private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton, disposeBag: DisposeBag) {
         
         if case .HiddenButton = buttonModel {
             button.hidden = true
             return
         }
         
-        button
-            .rx_tap
-            .subscribeNext{[unowned self] in
-                self.flowDelegate?.performActionForButtonType(buttonModel)
+        switch buttonModel {
+        case .Listen(let isListening):
+            if let observable = viewModel.listenToUser() {
+                button.rx_tap.flatMapFirst({[weak button] () -> Observable<Void> in
+                    if let button = button as? ProfileInfoHeaderButton {
+                        let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
+                        button.setImage(switchedModel.image, countText: nil)
+                        button.setTitleText(switchedModel.title)
+                    }
+                    return observable
+                }).subscribeError({[weak button] (_) in
+                    if let button = button as? ProfileInfoHeaderButton {
+                        button.setImage(buttonModel.image, countText: nil)
+                        button.setTitleText(buttonModel.title)
+                    }
+                }).addDisposableTo(disposeBag)
             }
-            .addDisposableTo(disposeBag)
+        default:
+            break
+        }
         
         if let button = button as? ProfileInfoHeaderButton {
             button.setTitleText(buttonModel.title)

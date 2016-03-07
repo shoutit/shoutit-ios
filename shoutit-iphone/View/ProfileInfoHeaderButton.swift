@@ -37,6 +37,8 @@ class ProfileInfoHeaderButton: UIButton {
         
         if let iconImageView = iconImageView {
             iconImageView.image = image
+            countLabel?.text = countText
+            return
         }
         
         iconImageView = UIImageView()
