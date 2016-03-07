@@ -22,6 +22,9 @@
 		244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */; };
 		244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */; };
 		244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A71C7C7ABF0048CC82 /* DiscoverViewModel.swift */; };
+		246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */; };
+		246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18241C8D89A000DD6DE0 /* MediaUploader.swift */; };
+		246C18271C8D89CF00DD6DE0 /* MediaUploadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */; };
 		248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328F61C8423C40042B0DB /* CreateShoutProtocols.swift */; };
 		248328FA1C8426210042B0DB /* SelectShoutImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328F91C8426210042B0DB /* SelectShoutImagesController.swift */; };
 		248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */; };
@@ -555,6 +558,9 @@
 		244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGivenItemViewModel.swift; path = ViewModel/DiscoverGivenItemViewModel.swift; sourceTree = "<group>"; };
 		244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGeneralViewModel.swift; path = ViewModel/DiscoverGeneralViewModel.swift; sourceTree = "<group>"; };
 		244FD9A71C7C7ABF0048CC82 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverViewModel.swift; path = ViewModel/DiscoverViewModel.swift; sourceTree = "<group>"; };
+		246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerController.swift; path = Controllers/MediaPickerController.swift; sourceTree = "<group>"; };
+		246C18241C8D89A000DD6DE0 /* MediaUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploader.swift; path = Controllers/MediaUploader.swift; sourceTree = "<group>"; };
+		246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploadingTask.swift; path = Model/MediaUploadingTask.swift; sourceTree = "<group>"; };
 		248328F61C8423C40042B0DB /* CreateShoutProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutProtocols.swift; path = CommonProtocols/CreateShoutProtocols.swift; sourceTree = "<group>"; };
 		248328F91C8426210042B0DB /* SelectShoutImagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectShoutImagesController.swift; path = Controllers/SelectShoutImagesController.swift; sourceTree = "<group>"; };
 		248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableHeaderView.swift; path = View/CreateShoutTableHeaderView.swift; sourceTree = "<group>"; };
@@ -1217,6 +1223,15 @@
 			name = Discover;
 			sourceTree = "<group>";
 		};
+		246C18231C8D896500DD6DE0 /* MediaUploader */ = {
+			isa = PBXGroup;
+			children = (
+				246C18241C8D89A000DD6DE0 /* MediaUploader.swift */,
+				246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */,
+			);
+			name = MediaUploader;
+			sourceTree = "<group>";
+		};
 		248328F41C84238C0042B0DB /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1468,6 +1483,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				246C18231C8D896500DD6DE0 /* MediaUploader */,
 				AE5140031C8B16FC00663A0C /* MediaPicker */,
 				2496715F1C87584C0011B078 /* EdiShout */,
 				2496715C1C874F890011B078 /* ShoutConfirmation */,
@@ -2255,6 +2271,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */,
+				246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */,
 			);
 			name = MediaPicker;
 			sourceTree = "<group>";
@@ -3458,6 +3475,7 @@
 				AE180F851C7F8EB20069BB1A /* HomeShoutsCollectionViewController.swift in Sources */,
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
+				246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */,
 				AE180F861C7F8F150069BB1A /* AuthParams.swift in Sources */,
 				AC74A7971BFF717E0029CE7D /* SHFilterCheckTableViewCell.swift in Sources */,
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
@@ -3514,6 +3532,7 @@
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
 				AC47A73A1C030B1A006AF406 /* SHAmazonVideoCollectionViewCell.swift in Sources */,
 				B22D3EFA1C861E840091490B /* ProfileCollectionModelInterface.swift in Sources */,
+				246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */,
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				B2E715481C6D0336007F95CF /* ProfileCollectionViewModel.swift in Sources */,
 				602F4CA51C020A980051B737 /* SHLoadMoreView.swift in Sources */,
@@ -3705,6 +3724,7 @@
 				249FD6D21C7DA57400859851 /* DiscoverDisplayable.swift in Sources */,
 				AC7030C41C15AD01008F4C00 /* SHLocationMediaItem.swift in Sources */,
 				B2B5D0171C7F29740068A6AF /* ShoutDetailCollectionViewContainerTableViewCell.swift in Sources */,
+				246C18271C8D89CF00DD6DE0 /* MediaUploadingTask.swift in Sources */,
 				B2B5D0211C7F5C580068A6AF /* SearchDisplayable.swift in Sources */,
 				AE8351711C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */,

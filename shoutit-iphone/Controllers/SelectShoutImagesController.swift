@@ -8,36 +8,25 @@
 
 import UIKit
 import RxSwift
-import Nemo
 
-class SelectShoutImagesController: UICollectionViewController, MediaPicker {
+class SelectShoutImagesController: UICollectionViewController, MediaPickerControllerDelegate {
     
     private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
     
-    var pickerSettings : MediaPickerSettings!
-    var attachmentAtIndex : [Int : MediaAttachment?]!
     var selectedIdx : Int?
-
-    var presentingSubject : BehaviorSubject<UIViewController?>!
+    
+    var attachments : [Int : MediaAttachment]!
+    
+    var mediaPicker : MediaPickerController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        presentingSubject = BehaviorSubject(value: nil)
+        mediaPicker = MediaPickerController(delegate: self)
         
-        self.attachmentAtIndex = [:]
+        attachments = [:]
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        pickerSettings = MediaPickerSettings()
-    }
-    
-    func selectedImages() -> [UIImage] {
-        return []
-    }
-    
+
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -49,94 +38,115 @@ class SelectShoutImagesController: UICollectionViewController, MediaPicker {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
         
-        if let attachment = self.attachmentAtIndex[indexPath.item] {
-            cell.fillWith(attachment)
-        }
+        cell.fillWith(attachments[indexPath.item])
         
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if self.attachmentAtIndex[indexPath.item] != nil {
+        if attachments[indexPath.item] != nil {
             selectedIdx = indexPath.item
-        } else {
-            selectedIdx = nil
+            showEditAlert()
+            return
         }
         
+        selectedIdx = nil
         
-        showMediaPickerController()
+        mediaPicker.showMediaPickerController()
     }
     
-    func showMediaPickerController() {
-        let controller = mediaPickerController(self.pickerSettings, sender: nil)
-        
-        controller.delegate = self
-        
-        self.presentingSubject.onNext(controller)
-    }
-    
-    
-
-    func attachmentSelected(attachment: MediaAttachment) {
+    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+        if checkIfAttachmentCanBeAdded(attachment) == false {
+            return
+        }
         
         if let selectedIdx = selectedIdx {
-            self.attachmentAtIndex[selectedIdx] = attachment
+            self.attachments[selectedIdx] = attachment
+            self.collectionView?.reloadData()
+            self.selectedIdx = nil
+            return
+        }
+        
+        if let idx = firstEmptyIndex() {
+            self.attachments[idx] = attachment
             self.collectionView?.reloadData()
             return
         }
         
-        for (idx, attach) in self.attachmentAtIndex {
-            if attach == nil {
-                self.attachmentAtIndex[idx] = attachment
+        
+        
+        toManyImagesAlert()
+    }
+    
+    func checkIfAttachmentCanBeAdded(attachment: MediaAttachment) -> Bool {
+        if attachment.type == .Video {
+            if checkIfVideoCanBeAdded() == false {
+                toManyMoviesAlert()
+                return false
             }
         }
         
-        self.collectionView?.reloadData()
+        return true
     }
+    
+    func checkIfVideoCanBeAdded() -> Bool {
+        var numberOfVideosAttached = 0
+        
+        for (_, attachment) in self.attachments {
+            if attachment.type == .Video {
+                numberOfVideosAttached += 1
+            }
+        }
+        
+        return numberOfVideosAttached < self.mediaPicker.pickerSettings.maximumVideos
+    }
+    
+    func toManyImagesAlert() {
+        let alert = UIAlertController(title: "Cannot add more images", message: "You can select only 5 images.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func toManyMoviesAlert() {
+        let alert = UIAlertController(title: "Cannot add more videos", message: "You can select only 1 video.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showEditAlert() {
+        let alert = UIAlertController(title: "Edit Shout Media", message: "", preferredStyle: .ActionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (alertAction) in
+            self.selectedIdx = nil
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Change", style: .Default, handler: { (alertAction) in
+            self.mediaPicker.showMediaPickerController()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (alertAction) in
+            if let selectedIdx = self.selectedIdx {
+                self.attachments[selectedIdx] = nil
+            }
+            
+            self.collectionView?.reloadData()
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func firstEmptyIndex() -> Int? {
+        for idx in 0...5 {
+            if attachments[idx] == nil {
+                return idx
+            }
+        }
+        
+        return nil
+    }
+    
 }
 
-extension SelectShoutImagesController {
-    func mediaPickerController(settings: MediaPickerSettings = MediaPickerSettings(), sender: AnyObject? = nil) -> PhotosMenuController {
-        let photosMenuController = Nemo.PhotosMenuController()
-        
-        if let popoverPresentationController = photosMenuController.popoverPresentationController {
-            popoverPresentationController.barButtonItem = sender as? UIBarButtonItem
-        }
-        
-        return photosMenuController
-    }
-    
-    func photosMenuController(controller: PhotosMenuController, didPickPhotos photos: [PHAsset]) {
-        for photo in photos {
-            
-            let options = PHImageRequestOptions()
-            
-            options.deliveryMode = .Opportunistic
-            options.synchronous = true
-            
-            PHImageManager.defaultManager().requestImageForAsset(photo,
-                targetSize: self.pickerSettings.targetSize,
-                contentMode: self.pickerSettings.contentMode,
-                options: options,
-                resultHandler: { (result, info) -> Void in
-                    
-                    let attachment = photo.asMediaAttachment(result)
-                    self.attachmentSelected(attachment)
-            })
-        }
-        
-    }
-    
-    func photosMenuControllerDidCancel(controller: PhotosMenuController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let attachment = MediaAttachment(type: .Image, image: image, originalData: nil, remoteURL: nil, thumbRemoteURL: nil)
-            self.attachmentSelected(attachment)
-        }
-        
-    }
-}

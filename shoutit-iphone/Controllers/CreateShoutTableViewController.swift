@@ -97,8 +97,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     // MARK: Media Selection
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let mediaController = segue.destinationViewController as? SelectShoutImagesController {
-            mediaController.presentingSubject.asDriver(onErrorRecover: { (error) -> Driver<UIViewController?> in
+        if let imagesController = segue.destinationViewController as? SelectShoutImagesController {
+            imagesController.mediaPicker.presentingSubject.asDriver(onErrorRecover: { (error) -> Driver<UIViewController?> in
                 return Driver.just(nil)
             }).driveNext({ [weak self] (controllerToShow) -> Void in
                 if let controllerToShow = controllerToShow {
