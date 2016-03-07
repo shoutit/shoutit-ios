@@ -88,11 +88,11 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // user data
     var name: String? {
-        return user?.name
+        return detailedUser?.name ?? user?.name
     }
     
     var username: String? {
-        return user?.username
+        return detailedUser?.username ?? user?.username
     }
     
     var isListeningToYou: Bool? {
@@ -113,21 +113,24 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             return []
         }
         
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(user.listenersCount)
+        let listenersCount = detailedUser?.listenersCount ?? user.listenersCount
+        let listeningMetadata = detailedUser?.listeningMetadata ?? user.listeningMetadata
+        
+        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(listenersCount)
         
         var listeningCountString = ""
         var interestsCountString = ""
         
-        if let listningMetadata = user.listeningMetadata {
-            listeningCountString = NumberFormatters.sharedInstance.numberToShortString(listningMetadata.users)
-            interestsCountString = NumberFormatters.sharedInstance.numberToShortString(listningMetadata.tags)
+        if let listeningMetadata = listeningMetadata {
+            listeningCountString = NumberFormatters.sharedInstance.numberToShortString(listeningMetadata.users)
+            interestsCountString = NumberFormatters.sharedInstance.numberToShortString(listeningMetadata.tags)
         }
         
         return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]
     }
     
     var descriptionText: String? {
-        return user?.bio
+        return detailedUser?.bio ?? user?.bio
     }
     
     var descriptionIcon: UIImage? {
@@ -135,16 +138,16 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var websiteString: String? {
-        return user?.website
+        return detailedUser?.website ?? user?.website
     }
     
     var dateJoinedString: String? {
-        guard let epoch = user?.dateJoinedEpoch else {return nil}
+        guard let epoch = detailedUser?.dateJoinedEpoch ?? user?.dateJoinedEpoch else {return nil}
         return NSLocalizedString("Joined", comment: "User profile date joined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(epoch)
     }
     
     var locationString: String? {
-        return user?.location.city
+        return detailedUser?.location.city ?? user?.location.city
     }
     
     var locationFlag: UIImage? {

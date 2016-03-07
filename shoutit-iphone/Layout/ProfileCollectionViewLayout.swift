@@ -25,7 +25,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
     private let infoViewHeight: CGFloat                            = 292
     private let sectionHeaderHeight: CGFloat                       = 44
     private let footerButtonHeight: CGFloat                        = 64
-    private let infoOverCoverViewMargin: CGFloat                   = 41
+    private let infoOverCoverViewMargin: CGFloat                   = 34
     let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
     
     // cells consts

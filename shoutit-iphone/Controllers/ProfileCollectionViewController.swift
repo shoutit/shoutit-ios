@@ -168,7 +168,7 @@ extension ProfileCollectionViewController {
             let cellViewModel = viewModel.shoutsSection.cells[indexPath.row]
             
             cell.titleLabel.text = cellViewModel.shout.title
-            cell.subtitleLabel.text = cellViewModel.shout.text
+            cell.subtitleLabel.text = cellViewModel.shout.user.name
             cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
             cell.priceLabel.text = cellViewModel.priceString()
             

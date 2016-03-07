@@ -1,4 +1,4 @@
-//
+ //
 //  PostSignupSuggestionsCellViewModel.swift
 //  shoutit-iphone
 //
@@ -52,7 +52,7 @@ class PostSignupSuggestionsCellViewModel {
         return Observable.create{[weak self] (observer) -> Disposable in
             self?.selected = selected
             observer.onNext()
-            APIUsersService.listen(selected, toUserWithUsername: item.listenId).subscribe{ (event) in
+            APIProfileService.listen(selected, toProfileWithUsername: item.listenId).subscribe{ (event) in
                 switch event {
                 case .Completed:
                     observer.onCompleted()

@@ -33,7 +33,7 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
             self.isListening = !self.isListening
             observer.onNext(self.isListening)
             
-            APIUsersService.listen(self.isListening, toUserWithUsername: self.profile.username).subscribe{ (event) in
+            APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username).subscribe{ (event) in
                 switch event {
                 case .Completed:
                     observer.onNext(self.isListening)

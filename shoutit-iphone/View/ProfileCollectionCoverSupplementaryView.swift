@@ -46,7 +46,7 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
         
         // move title label
         let invisibleLabelsConstraintConstantValue = -titleLabel.bounds.height
-        let offset: CGFloat = 5
+        let offset: CGFloat = 8
         titleLabelBottomConstraint.constant = min(invisibleLabelsConstraintConstantValue + attributes.segmentScrolledUnderCoverViewLength - offset, visibleLabelsConstraintConstantValue)
         
         // animate blur
