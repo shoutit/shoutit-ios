@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -54,7 +54,7 @@
                                     <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji7-9Y-OEz" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji7-9Y-OEz" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="20" y="150" width="560" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="oFd-4D-hig"/>
@@ -71,7 +71,7 @@
                                         <action selector="changeTypeAction:" destination="vi7-2B-9jh" eventType="touchUpInside" id="ams-mA-TG8"/>
                                     </connections>
                                 </button>
-                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s4-KE-dNg">
+                                <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2s4-KE-dNg">
                                     <rect key="frame" x="0.0" y="50" width="600" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="KO5-GA-C0k"/>
@@ -80,7 +80,7 @@
                                         <segue destination="Pac-9I-fcr" kind="embed" id="Ebq-xB-Etc"/>
                                     </connections>
                                 </containerView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZp-Em-qUh" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZp-Em-qUh" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="29" y="236" width="542" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="go0-wd-YLu"/>
@@ -88,7 +88,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woj-57-1w2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woj-57-1w2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="29" y="300" width="266" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="lhO-h5-wHe"/>
@@ -96,7 +96,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onr-sH-VzS" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onr-sH-VzS" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="315" y="280" width="265" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="cw2-71-dTh"/>
@@ -343,13 +343,13 @@
                                 <rect key="frame" x="0.0" y="96" width="600" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws1-lB-UsQ">
-                                        <rect key="frame" x="236" y="46" width="126.5" height="20.5"/>
+                                        <rect key="frame" x="236" y="46" width="127" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your shout will appear on Shoutit soon." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ws-rTF">
-                                        <rect key="frame" x="151" y="76" width="298" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your shout will appear on Shoutit soon." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ws-rTF">
+                                        <rect key="frame" x="151" y="76" width="298" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -381,7 +381,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wL-mM-p5l">
-                                        <rect key="frame" x="288" y="235" width="23.5" height="20.5"/>
+                                        <rect key="frame" x="288" y="235" width="24" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -406,15 +406,15 @@
                                             <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="z5v-uN-b7n"/>
                                         </connections>
                                     </button>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPE-wN-urm">
-                                        <rect key="frame" x="331" y="245" width="248.5" height="1"/>
+                                    <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPE-wN-urm">
+                                        <rect key="frame" x="331" y="245" width="249" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="QyB-eh-pPy"/>
                                         </constraints>
                                     </view>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4w-UV-a8o">
-                                        <rect key="frame" x="20" y="245" width="248.5" height="1"/>
+                                    <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4w-UV-a8o">
+                                        <rect key="frame" x="20" y="245" width="249" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nxZ-c6-CcY"/>
@@ -464,11 +464,11 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guy-cj-iYw">
-                                <rect key="frame" x="54" y="446" width="240" height="153.5"/>
+                                <rect key="frame" x="54" y="446" width="240" height="154"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-vb-yxE">
-                                <rect key="frame" x="20" y="20" width="240" height="76.5"/>
+                                <rect key="frame" x="20" y="20" width="240" height="77"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1301,7 +1301,7 @@
                                     <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-JP-1oA" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-JP-1oA" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="20" y="150" width="560" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="L7Y-vl-bQ5"/>
@@ -1318,7 +1318,7 @@
                                         <action selector="changeTypeAction:" destination="ROm-97-W4n" eventType="touchUpInside" id="sDO-Zi-rBs"/>
                                     </connections>
                                 </button>
-                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3t-vQ-ysn">
+                                <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3t-vQ-ysn">
                                     <rect key="frame" x="0.0" y="50" width="600" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="wlf-7l-LHN"/>
@@ -1327,7 +1327,7 @@
                                         <segue destination="1yu-Ga-0aF" kind="embed" id="Vai-Am-Uyv"/>
                                     </connections>
                                 </containerView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bmj-6X-nXY" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bmj-6X-nXY" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="29" y="236" width="542" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="Aeg-G4-gaM"/>
@@ -1335,7 +1335,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-Do-k8L" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-Do-k8L" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="29" y="300" width="266" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="4fN-vv-Pes"/>
@@ -1343,7 +1343,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IP5-9V-1xn" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IP5-9V-1xn" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="315" y="280" width="265" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="b1E-9V-74C"/>

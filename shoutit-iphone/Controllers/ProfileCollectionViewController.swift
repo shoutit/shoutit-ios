@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -360,6 +360,10 @@ extension ProfileCollectionViewController {
                     }
                 }).addDisposableTo(disposeBag)
             }
+        case .EditProfile:
+            button.rx_tap.asDriver().driveNext{[weak self] in
+                self?.flowDelegate?.showEditProfile()
+            }.addDisposableTo(disposeBag)
         default:
             break
         }

@@ -82,7 +82,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var isListeningToYou: Bool? {
-        return profile.listening
+        return detailedUser?.isListener
     }
     
     var avatarURL: NSURL? {

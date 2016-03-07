@@ -24,6 +24,7 @@ struct Wireframe {
         case Location = "Location"
         case Help = "Help"
         case InviteFriends = "InviteFriends"
+        case EditProfile = "EditProfile"
     }
     
     // General
@@ -90,6 +91,12 @@ struct Wireframe {
     
     static func photoBrowserPhotoViewController() -> PhotoBrowserPhotoViewController {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
+    }
+    
+    // MARK: - Edit profile storyboard controllers
+    
+    static func editProfileTableViewController() -> EditProfileTableViewController {
+        return storyboard(.EditProfile).instantiateViewControllerWithIdentifier("EditProfileTableViewController") as! EditProfileTableViewController
     }
     
     // MARK: - Home storyboard view controllers
