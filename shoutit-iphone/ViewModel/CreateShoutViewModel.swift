@@ -211,8 +211,16 @@ extension CreateShoutViewModel {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Type", comment: ""), message: "", preferredStyle: .ActionSheet)
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Request", comment: ""), style: .Default, handler: handler))
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Shout", comment: ""), style: .Default, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Offer", comment: ""), style: .Default, handler: handler))
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        
+        return actionSheetController
+    }
+    
+    func mediaNotReadyAlertController() -> UIAlertController {
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "", preferredStyle: .ActionSheet)
+        
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
         
         return actionSheetController
     }

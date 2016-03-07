@@ -14,11 +14,11 @@ enum MediaUploaderBucket {
     case ShoutImage
     case TagImage
     
-    func bucketBaseURL() -> NSURL? {
+    func bucketBasePath() -> String {
         switch (self) {
-        case .UserImage: return NSURL(string: "https://shout-image.static.shoutit.com")
-        case .ShoutImage: return NSURL(string: "https://user-image.static.shoutit.com")
-        case .TagImage: return NSURL(string: "https://tag-image.static.shoutit.com")
+        case .UserImage: return "https://user-image.static.shoutit.com/"
+        case .ShoutImage: return "https://shout-image.static.shoutit.com/"
+        case .TagImage: return "https://tag-image.static.shoutit.com/"
         }
     }
     
@@ -51,7 +51,7 @@ class MediaUploader: AnyObject {
     }
     
     func createAmazonS3Manager() {
-        amazonManager = AmazonS3RequestManager(bucket: self.bucket.bucketName(), region: .EUCentral1, accessKey: amazonAccessKey, secret: amazonSecretKey)
+        amazonManager = AmazonS3RequestManager(bucket: self.bucket.bucketName(), region: .EUWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
     }
     
     func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
@@ -75,9 +75,10 @@ class MediaUploader: AnyObject {
         }
         
         if let data = task.attachment.originalData {
-            let request = amazonManager.putObject(data, destinationPath: task.attachment.remoteFilename(user))
+            let destination = task.attachment.remoteFilename(user)
+            let request = amazonManager.putObject(data, destinationPath: destination)
             task.request = request
-            return
+            task.attachment.remoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
         }
         
     }

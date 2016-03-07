@@ -28,7 +28,8 @@ class MediaUploadingTask: NSObject {
     }
     
     var uid : String!
-    var status = MediaUploadingTaskStatus.Uploading
+    
+    var status : Variable<MediaUploadingTaskStatus> = Variable(.Uploading)
     var progress : Variable<Float> = Variable(0)
     
     required init(attachment: MediaAttachment) {
@@ -42,7 +43,8 @@ class MediaUploadingTask: NSObject {
     }
     
     func changeStatusTo(status: MediaUploadingTaskStatus) {
-        self.status = status
+        self.status.value = status
+        
         debugPrint(request)
     }
     
@@ -67,6 +69,7 @@ class MediaUploadingTask: NSObject {
                 
                 if let _ = response {
                     self.changeStatusTo(.Uploaded)
+                    
                     return
                 }
 

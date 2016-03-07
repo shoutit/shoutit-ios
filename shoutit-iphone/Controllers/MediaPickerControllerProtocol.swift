@@ -32,7 +32,7 @@ struct MediaAttachment : Hashable, Equatable {
     var uid: String!
     
     func remoteFilename(user: User) -> String {
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id)"
+        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).jpg"
     }
     
     static func generateUid() -> String {

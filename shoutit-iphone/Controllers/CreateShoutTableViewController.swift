@@ -22,6 +22,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     @IBOutlet var headerView : CreateShoutTableHeaderView!
     
+    weak var imagesController : SelectShoutImagesController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,6 +100,9 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let imagesController = segue.destinationViewController as? SelectShoutImagesController {
+            
+            self.imagesController = imagesController
+            
             imagesController.mediaPicker.presentingSubject.asDriver(onErrorRecover: { (error) -> Driver<UIViewController?> in
                 return Driver.just(nil)
             }).driveNext({ [weak self] (controllerToShow) -> Void in
@@ -262,7 +267,57 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         return self.viewModel.sectionTitle(section)
     }
     
+    func attachmentsReady() -> Bool {
+        
+        guard let activetasks = self.imagesController?.mediaUploader.tasks else {
+            return true
+        }
+        
+        for task in activetasks {
+            if task.status.value != MediaUploadingTaskStatus.Uploaded {
+                return false
+            }
+        }
+        
+        return true
+        
+    }
+    
+    func assignAttachments() {
+        guard let attachments = self.imagesController?.attachments else {
+            return
+        }
+        
+        var urls : [String] = []
+        
+        for (_, attachment) in attachments {
+            if let path = attachment.remoteURL?.absoluteString {
+                urls.append(path)
+            }
+        }
+        
+        if let activeTasks = self.imagesController?.mediaUploader.tasks {
+            for task in activeTasks {
+                if let path = task.attachment.remoteURL?.absoluteString {
+                    urls.append(path)
+                }
+            }
+        }
+        
+        self.viewModel.shoutParams.images.value = urls.unique()
+        
+    }
+    
     @IBAction func submitAction() {
+        
+        if attachmentsReady() == false {
+            let alert = viewModel.mediaNotReadyAlertController()
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        assignAttachments()
+        
         let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
         
         print(parameters)
@@ -289,7 +344,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             
             self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
             
-        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 
 }

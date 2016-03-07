@@ -83,6 +83,8 @@ class MediaPickerController: NSObject, MediaPicker  {
             let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
             self.attachmentSelected(attachment)
         }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func attachmentSelected(attachment: MediaAttachment) {

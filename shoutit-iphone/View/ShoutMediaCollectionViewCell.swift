@@ -18,7 +18,14 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
     private var disposeBag = DisposeBag()
     
     func fillWith(attachment: MediaAttachment?) {
-        self.imageView.image = attachment?.image
+        
+        if attachment?.image != nil {
+            self.imageView.image = attachment?.image
+        } else if attachment?.remoteURL != nil {
+            self.imageView.sh_setImageWithURL(attachment?.remoteURL, placeholderImage: nil)
+        } else {
+            self.imageView.image = nil
+        }
     }
     
     func fillWith(uploadTask: MediaUploadingTask?) {
@@ -27,22 +34,34 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
             return
         }
         
-        self.progressView.hidden = false
+        fillWithTaskStatus(task.status.value)
         
-        switch (task.status) {
-        case .Uploading:
-            self.progressView.setIndicatorStatus(.Running)
+        task.progress.asDriver().driveNext({ [weak self] (progress) -> Void in
+            self?.progressView.setProgress(progress, animated: true)
+        }).addDisposableTo(disposeBag)
+        
+        task.status.asDriver().driveNext { [weak self] (status) -> Void in
+            self?.fillWithTaskStatus(status)
+        }.addDisposableTo(disposeBag)
+    }
+    
+    func fillWithTaskStatus(status: MediaUploadingTaskStatus) {
+        switch (status) {
             
-            task.progress.asDriver().driveNext({ (progress) -> Void in
-                self.progressView.setProgress(progress, animated: true)
-            }).addDisposableTo(disposeBag)
-        case .Error:
-            self.progressView.setIndicatorStatus(.None)
-        case .Uploaded:
+        case .Uploading:
+            self.progressView.hidden = false
             self.progressView.setIndicatorStatus(.Running)
-            self.progressView.setProgress(1.0, animated: true)
+            break
+            
+        case .Error:
+            self.progressView.hidden = true
+            self.progressView.setIndicatorStatus(.None)
+            break
+            
+        case .Uploaded:
+            self.progressView.hidden = true
+            break
         }
-        
     }
     
     override func prepareForReuse() {
