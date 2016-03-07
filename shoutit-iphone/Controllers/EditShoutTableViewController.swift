@@ -15,6 +15,8 @@ class EditShoutTableViewController: CreateShoutTableViewController {
  
     override func createViewModel() {
         viewModel = CreateShoutViewModel(shout: shout)
+        viewModel.showFilters = true
+        viewModel.showType = false
         
         self.tableView.reloadData()
         

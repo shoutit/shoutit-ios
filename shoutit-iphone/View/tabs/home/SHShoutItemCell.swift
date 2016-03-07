@@ -11,10 +11,11 @@ import UIKit
 class SHShoutItemCell: UICollectionViewCell {
     
     @IBOutlet weak var shoutImage: UIImageView!
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var name: UILabel?
     @IBOutlet weak var shoutTitle: UILabel!
     @IBOutlet weak var shoutPrice: UILabel!
     @IBOutlet weak var shoutType: UILabel?
+    @IBOutlet weak var shoutSubtitle: UILabel?
     @IBOutlet weak var shoutCountryImage: UIImageView?
     @IBOutlet weak var shoutCategoryImage: UIImageView?
 }
@@ -32,7 +33,13 @@ extension SHShoutItemCell {
     func bindWith(Shout shout: Shout) {
         self.shoutTitle.text = shout.title
         
-        self.name.text = shout.user.name
+        self.name?.text = shout.user.name
+        
+        if let publishedAt = shout.publishedAtEpoch {
+            self.shoutSubtitle?.text = "\(shout.text) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
+        } else {
+            self.shoutSubtitle?.text = shout.text
+        }
         
         self.shoutPrice.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
         
@@ -47,6 +54,8 @@ extension SHShoutItemCell {
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
             self.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         }
+        
+        self.shoutType?.text = shout.type()?.title()
         
     }
     

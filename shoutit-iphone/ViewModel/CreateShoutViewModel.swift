@@ -23,6 +23,9 @@ class CreateShoutViewModel: NSObject {
     let createShoutCellOption = "CreateShoutCellOption"
     let createShoutCellLocation = "CreateShoutCellLocation"
     
+    var showFilters = false
+    var showType = true
+    
     override init() {
         shoutParams = ShoutParams(type: Variable(ShoutType.Request), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
@@ -68,18 +71,23 @@ class CreateShoutViewModel: NSObject {
             return 1
         }
         
+        if self.showFilters == false {
+            return 2
+        }
+        
         return (self.filters.value?.count ?? 0) + 2
     }
     
     func sectionTitle(section: Int) -> String {
         if section == 0 {
-            return NSLocalizedString("Details", comment: "")
+            return NSLocalizedString(" Details", comment: "")
         }
         
-        return NSLocalizedString("Location", comment: "")
+        return NSLocalizedString(" Location", comment: "")
     }
     
     func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
+        
         if indexPath.section == 0 && indexPath.row == 1 {
             return 80.0
         }
