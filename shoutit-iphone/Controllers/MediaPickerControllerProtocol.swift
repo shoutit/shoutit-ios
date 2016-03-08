@@ -31,8 +31,19 @@ struct MediaAttachment : Hashable, Equatable {
     
     var uid: String!
     
+    var videoDuration : Float?
+    let provider = "shoutit_s3"
+    
     func remoteFilename(user: User) -> String {
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).jpg"
+        if self.type == .Image {
+            return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).jpg"
+        }
+        
+        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).mp4"
+    }
+    
+    func thumbRemoteFilename(user: User) -> String {
+        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id)_thumbnail.jpg"
     }
     
     static func generateUid() -> String {
@@ -68,6 +79,6 @@ extension UIImage {
 
 extension PHAsset {
     func asMediaAttachment(image: UIImage? = nil) -> MediaAttachment {
-        return MediaAttachment(type: self.mediaType, image: image, originalData: image?.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
+        return MediaAttachment(type: self.mediaType, image: image, originalData: image?.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Nemo
+import MobileCoreServices
 
 protocol MediaPickerControllerDelegate {
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
@@ -18,6 +19,8 @@ class MediaPickerController: NSObject, MediaPicker  {
 
     var pickerSettings : MediaPickerSettings!
     var selectedAttachments : [MediaAttachment]!
+    
+    let videoProcessor = VideoProcessor()
     
     var presentingSubject : BehaviorSubject<UIViewController?>!
     
@@ -44,7 +47,7 @@ class MediaPickerController: NSObject, MediaPicker  {
     }
     
     func mediaPickerController(settings: MediaPickerSettings = MediaPickerSettings(), sender: AnyObject? = nil) -> PhotosMenuController {
-        let photosMenuController = Nemo.PhotosMenuController()
+        let photosMenuController = CaptureViewController()
         
         if let popoverPresentationController = photosMenuController.popoverPresentationController {
             popoverPresentationController.barButtonItem = sender as? UIBarButtonItem
@@ -80,11 +83,33 @@ class MediaPickerController: NSObject, MediaPicker  {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
+            let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
             self.attachmentSelected(attachment)
         }
         
+        if let type = info[UIImagePickerControllerMediaType] as? String {
+            if type == (kUTTypeMovie as String) {
+                processVideoFromURL(info[UIImagePickerControllerMediaURL] as? NSURL)
+            }
+        }
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func processVideoFromURL(url: NSURL?) {
+        guard let url = url else {
+            return
+        }
+        
+        videoProcessor.generateMovieData(url) { (data) -> Void in
+            guard let data = data else {
+                return
+            }
+            
+            let image = self.videoProcessor.generateThumbImage(url)
+            let attachment = MediaAttachment(type: .Video, image: image, originalData: data, remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: self.videoProcessor.videoDuration(url))
+            self.attachmentSelected(attachment)
+        }
     }
     
     func attachmentSelected(attachment: MediaAttachment) {

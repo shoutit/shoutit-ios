@@ -72,7 +72,7 @@ class CreateShoutViewModel: NSObject {
         }
         
         if self.showFilters == false {
-            return 2
+            return 1
         }
         
         return (self.filters.value?.count ?? 0) + 2

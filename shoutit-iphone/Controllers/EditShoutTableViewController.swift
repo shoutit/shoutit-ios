@@ -39,7 +39,7 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         var idx = 0
         
         self.shout.imagePaths?.each({ (imgPath) -> () in
-            attachments[idx] = MediaAttachment(type: .Image, image: nil, originalData: nil, remoteURL: NSURL(string:imgPath), thumbRemoteURL: nil, uid: MediaAttachment.generateUid())
+            attachments[idx] = MediaAttachment(type: .Image, image: nil, originalData: nil, remoteURL: NSURL(string:imgPath), thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
             idx += 1
         })
         

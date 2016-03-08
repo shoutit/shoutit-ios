@@ -25,6 +25,9 @@
 		246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */; };
 		246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18241C8D89A000DD6DE0 /* MediaUploader.swift */; };
 		246C18271C8D89CF00DD6DE0 /* MediaUploadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */; };
+		246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */; };
+		246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */; };
+		246C182E1C8EECE300DD6DE0 /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */; };
 		248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328F61C8423C40042B0DB /* CreateShoutProtocols.swift */; };
 		248328FA1C8426210042B0DB /* SelectShoutImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328F91C8426210042B0DB /* SelectShoutImagesController.swift */; };
 		248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */; };
@@ -563,6 +566,9 @@
 		246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerController.swift; path = Controllers/MediaPickerController.swift; sourceTree = "<group>"; };
 		246C18241C8D89A000DD6DE0 /* MediaUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploader.swift; path = Controllers/MediaUploader.swift; sourceTree = "<group>"; };
 		246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploadingTask.swift; path = Model/MediaUploadingTask.swift; sourceTree = "<group>"; };
+		246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = Controllers/CaptureViewController.swift; sourceTree = "<group>"; };
+		246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoProcessor.swift; path = Controllers/VideoProcessor.swift; sourceTree = "<group>"; };
 		248328F61C8423C40042B0DB /* CreateShoutProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutProtocols.swift; path = CommonProtocols/CreateShoutProtocols.swift; sourceTree = "<group>"; };
 		248328F91C8426210042B0DB /* SelectShoutImagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectShoutImagesController.swift; path = Controllers/SelectShoutImagesController.swift; sourceTree = "<group>"; };
 		248328FC1C842C550042B0DB /* CreateShoutTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableHeaderView.swift; path = View/CreateShoutTableHeaderView.swift; sourceTree = "<group>"; };
@@ -668,7 +674,6 @@
 		607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMixpanelHelper.swift; path = Util/helpers/SHMixpanelHelper.swift; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
 		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
-		60D36D541BF762AA00238D62 /* SHCreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCreateShoutViewModel.swift; path = ViewModel/tabs/create/SHCreateShoutViewModel.swift; sourceTree = "<group>"; };
 		60D36D591BF78C8E00238D62 /* SHMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHMedia.swift; path = Model/shout/SHMedia.swift; sourceTree = "<group>"; };
 		60D36D5D1BF78D5F00238D62 /* SHCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHCategory.swift; path = Model/shout/SHCategory.swift; sourceTree = "<group>"; };
 		60D36D5F1BF7944100238D62 /* SHTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHTag.swift; path = Model/shout/SHTag.swift; sourceTree = "<group>"; };
@@ -1108,6 +1113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
 				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
@@ -1161,6 +1167,7 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */,
 				B2985FB11C7295D400EEA9A2 /* Security.framework */,
 				B2985FAF1C7295CC00EEA9A2 /* QuartzCore.framework */,
 				B2985FAD1C7295C200EEA9A2 /* OpenGLES.framework */,
@@ -1234,6 +1241,14 @@
 				246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */,
 			);
 			name = MediaUploader;
+			sourceTree = "<group>";
+		};
+		246C182A1C8EE90600DD6DE0 /* CaptureController */ = {
+			isa = PBXGroup;
+			children = (
+				246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */,
+			);
+			name = CaptureController;
 			sourceTree = "<group>";
 		};
 		248328F41C84238C0042B0DB /* Pictures */ = {
@@ -1487,6 +1502,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				246C182A1C8EE90600DD6DE0 /* CaptureController */,
 				246C18231C8D896500DD6DE0 /* MediaUploader */,
 				AE5140031C8B16FC00663A0C /* MediaPicker */,
 				2496715F1C87584C0011B078 /* EdiShout */,
@@ -1826,7 +1842,6 @@
 		60D36D531BF7624E00238D62 /* create */ = {
 			isa = PBXGroup;
 			children = (
-				60D36D541BF762AA00238D62 /* SHCreateShoutViewModel.swift */,
 				606ED2ED1BF7EE6A0064C53E /* SHCreatePlusViewModel.swift */,
 				606ED2EF1BF7EE7E0064C53E /* SHCreateImageViewModel.swift */,
 				606ED2F11BF7EE8F0064C53E /* SHCreateVideoViewModel.swift */,
@@ -2276,6 +2291,7 @@
 			children = (
 				AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */,
 				246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */,
+				246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */,
 			);
 			name = MediaPicker;
 			sourceTree = "<group>";
@@ -3469,6 +3485,7 @@
 				248328FF1C842FC60042B0DB /* FormTextField.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
+				246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */,
 				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
@@ -3621,6 +3638,7 @@
 				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */,
 				AC27E7091BFA26D900AB6BAA /* SHTagMeta.swift in Sources */,
+				246C182E1C8EECE300DD6DE0 /* VideoProcessor.swift in Sources */,
 				B2E715511C6E02EE007F95CF /* ProfileCollectionViewLayoutAttributes.swift in Sources */,
 				B2C729C61C6221B0006F7D29 /* ListenersMetadata.swift in Sources */,
 				60DBB55B1C2B5A1400243487 /* SHShoutListViewController.swift in Sources */,

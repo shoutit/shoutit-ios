@@ -74,6 +74,25 @@ class MediaUploader: AnyObject {
             fatalError("Uploading without user account not supported.")
         }
         
+        if task.attachment.type == .Image {
+            uploadImageAttachment(task, user: user)
+            return
+        }
+        
+        uploadVideoAttachment(task, user: user)
+        
+    }
+    
+    func uploadImageAttachment(task: MediaUploadingTask, user: User) {
+        if let data = task.attachment.originalData {
+            let destination = task.attachment.remoteFilename(user)
+            let request = amazonManager.putObject(data, destinationPath: destination)
+            task.request = request
+            task.attachment.remoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
+        }
+    }
+    
+    func uploadVideoAttachment(task: MediaUploadingTask, user: User) {
         if let data = task.attachment.originalData {
             let destination = task.attachment.remoteFilename(user)
             let request = amazonManager.putObject(data, destinationPath: destination)
@@ -81,6 +100,13 @@ class MediaUploader: AnyObject {
             task.attachment.remoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
         }
         
+        if let data = task.attachment.image?.dataRepresentation() {
+            let destination = task.attachment.thumbRemoteFilename(user)
+            
+            amazonManager.putObject(data, destinationPath: destination)
+            
+            task.attachment.thumbRemoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
+        }
     }
     
     func taskForAttachment(attachment: MediaAttachment?) -> MediaUploadingTask? {
