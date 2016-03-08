@@ -105,9 +105,18 @@ class APIDiscoverService {
                         let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                         
                         if let j = json, jr = j.objectForKey("children") {
+                            
+                            var mainItemParsed : DiscoverItem?
+                            
+                            if let mainItemResults : Decoded<DiscoverItem> = decode(j) {
+                                if let v = mainItemResults.value {
+                                    mainItemParsed = v
+                                }
+                            }
+                            
                             if let results : Decoded<[DiscoverItem]> = decode(jr) {
                                 if let value = results.value {
-                                    observer.on(.Next((discover, value)))
+                                    observer.on(.Next((mainItemParsed ?? discover, value)))
                                     observer.on(.Completed)
                                     return
                                 }

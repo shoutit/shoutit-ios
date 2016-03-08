@@ -23,6 +23,9 @@ class CreateShoutViewModel: NSObject {
     let createShoutCellOption = "CreateShoutCellOption"
     let createShoutCellLocation = "CreateShoutCellLocation"
     
+    var showFilters = false
+    var showType = true
+    
     override init() {
         shoutParams = ShoutParams(type: Variable(ShoutType.Request), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
@@ -68,18 +71,23 @@ class CreateShoutViewModel: NSObject {
             return 1
         }
         
+        if self.showFilters == false {
+            return 1
+        }
+        
         return (self.filters.value?.count ?? 0) + 2
     }
     
     func sectionTitle(section: Int) -> String {
         if section == 0 {
-            return NSLocalizedString("Details", comment: "")
+            return NSLocalizedString(" Details", comment: "")
         }
         
-        return NSLocalizedString("Location", comment: "")
+        return NSLocalizedString(" Location", comment: "")
     }
     
     func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
+        
         if indexPath.section == 0 && indexPath.row == 1 {
             return 80.0
         }
@@ -211,8 +219,16 @@ extension CreateShoutViewModel {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Type", comment: ""), message: "", preferredStyle: .ActionSheet)
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Request", comment: ""), style: .Default, handler: handler))
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Shout", comment: ""), style: .Default, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Offer", comment: ""), style: .Default, handler: handler))
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        
+        return actionSheetController
+    }
+    
+    func mediaNotReadyAlertController() -> UIAlertController {
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "", preferredStyle: .ActionSheet)
+        
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
         
         return actionSheetController
     }

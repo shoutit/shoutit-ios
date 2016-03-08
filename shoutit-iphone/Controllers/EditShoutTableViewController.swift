@@ -15,6 +15,8 @@ class EditShoutTableViewController: CreateShoutTableViewController {
  
     override func createViewModel() {
         viewModel = CreateShoutViewModel(shout: shout)
+        viewModel.showFilters = true
+        viewModel.showType = false
         
         self.tableView.reloadData()
         
@@ -32,9 +34,28 @@ class EditShoutTableViewController: CreateShoutTableViewController {
  
         self.headerView.priceTextField.text = self.shout.priceText()
         self.viewModel.shoutParams.price.value = self.shout.price
+        
+        var attachments : [Int : MediaAttachment] = [:]
+        var idx = 0
+        
+        self.shout.imagePaths?.each({ (imgPath) -> () in
+            attachments[idx] = MediaAttachment(type: .Image, image: nil, originalData: nil, remoteURL: NSURL(string:imgPath), thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
+            idx += 1
+        })
+        
+        self.imagesController?.attachments = attachments;
+        self.imagesController?.collectionView?.reloadData()
     }
     
     override func submitAction() {
+        if attachmentsReady() == false {
+            let alert = viewModel.mediaNotReadyAlertController()
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        assignAttachments()
+        
         let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
         
         print(parameters)

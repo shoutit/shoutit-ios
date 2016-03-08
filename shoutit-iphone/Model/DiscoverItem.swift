@@ -25,12 +25,13 @@ struct DiscoverItem: Decodable, Hashable, Equatable {
             <^> j <| "id"
             <*> j <| "api_url"
             <*> j <| "title"
-        return f
+        let g = f
             <*> j <|? "subtitle"
             <*> j <| "position"
             <*> j <|? "image"
             <*> j <|? "cover"
             <*> j <|? "icon"
+        return g
     }
     
     
