@@ -18,7 +18,9 @@ extension EditProfileDisplayable where Self: FlowController {
         
         let controller = Wireframe.editProfileTableViewController()
         controller.viewModel = EditProfileTableViewModel()
-        
-        navigationController.showViewController(controller, sender: nil)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        nav.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController.presentViewController(nav, animated: true, completion: nil)
     }
 }

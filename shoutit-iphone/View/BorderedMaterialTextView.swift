@@ -11,6 +11,14 @@ import Material
 
 public class BorderedMaterialTextView: UITextView {
     
+    var intrinsicContentSizeDidChange:(Void -> Void)?
+    
+    var editing = false
+    
+    public override func intrinsicContentSize() -> CGSize {
+        return self.contentSize
+    }
+    
     /**
      This property is the same as clipsToBounds. It crops any of the view's
      contents from bleeding past the view's frame. If an image is set using
@@ -127,6 +135,15 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /**
+     A property that sets the distance between the textField and
+     bottomBorderLayer.
+     */
+    public var bottomBorderLayerDistance: CGFloat = 2
+    
+    /// The bottom border layer.
+    public private(set) lazy var bottomBorderLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
      A property that sets the shadowOffset, shadowOpacity, and shadowRadius
      for the backing layer. This is the preferred method of setting depth
      in order to maintain consitency across UI objects.
@@ -225,6 +242,9 @@ public class BorderedMaterialTextView: UITextView {
     public var titleLabelColor: UIColor? {
         didSet {
             titleLabel?.textColor = titleLabelColor
+            MaterialAnimation.animationDisabled { [unowned self] in
+                self.bottomBorderLayer.borderColor = self.titleLabelColor?.CGColor
+            }
         }
     }
     
@@ -236,6 +256,58 @@ public class BorderedMaterialTextView: UITextView {
      titleLabel.
      */
     public var titleLabelAnimationDistance: CGFloat = 8
+    
+    /**
+     The detail UILabel that is displayed when the detailLabelHidden property
+     is set to false.
+     */
+    public var detailLabel: UILabel? {
+        didSet {
+            prepareDetailLabel()
+        }
+    }
+    
+    /**
+     The color of the detailLabel text when the detailLabelHidden property
+     is set to false.
+     */
+    public var detailLabelActiveColor: UIColor? {
+        didSet {
+            if !detailLabelHidden {
+                detailLabel?.textColor = detailLabelActiveColor
+                MaterialAnimation.animationDisabled { [unowned self] in
+                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                }
+            }
+        }
+    }
+    
+    /**
+     A property that sets the distance between the textField and
+     detailLabel.
+     */
+    public var detailLabelAnimationDistance: CGFloat = 8
+    
+    /**
+     :name:	detailLabelHidden
+     */
+    public var detailLabelHidden: Bool = true {
+        didSet {
+            if detailLabelHidden {
+                detailLabel?.textColor = titleLabelColor
+                MaterialAnimation.animationDisabled { [unowned self] in
+                    self.bottomBorderLayer.borderColor = self.editing ? self.titleLabelActiveColor?.CGColor : self.titleLabelColor?.CGColor
+                }
+                hideDetailLabel()
+            } else {
+                detailLabel?.textColor = detailLabelActiveColor
+                MaterialAnimation.animationDisabled { [unowned self] in
+                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                }
+                showDetailLabel()
+            }
+        }
+    }
     
     /// Placeholder UILabel view.
     public var placeholderLabel: UILabel? {
@@ -324,11 +396,22 @@ public class BorderedMaterialTextView: UITextView {
         super.layoutSubviews()
         placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
         titleLabel?.frame.size.width = bounds.width
+        if self.intrinsicContentSize() != self.bounds.size {
+            self.invalidateIntrinsicContentSize()
+            self.intrinsicContentSizeDidChange?()
+        }
     }
     
     /// Overriding the layout callback for sublayers.
     public override func layoutSublayersOfLayer(layer: CALayer) {
         super.layoutSublayersOfLayer(layer)
+        if self.layer == layer {
+            bottomBorderLayer.frame = CGRectMake(-9, -20, bounds.width + 18, bounds.height + bottomBorderLayerDistance + 20)
+            bottomBorderLayer.backgroundColor = UIColor.clearColor().CGColor
+            bottomBorderLayer.borderWidth = 1.0
+            bottomBorderLayer.cornerRadius = 5.0
+            layoutShape()
+        }
         if self.layer == layer {
             layoutShape()
         }
@@ -399,7 +482,11 @@ public class BorderedMaterialTextView: UITextView {
     
     /// Notification handler for when text editing began.
     internal func handleTextViewTextDidBegin() {
+        editing = true
         titleLabel?.textColor = titleLabelActiveColor
+        MaterialAnimation.animationDisabled { [unowned self] in
+            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelActiveColor?.CGColor : self.detailLabelActiveColor?.CGColor
+        }
     }
     
     /// Notification handler for when text changed.
@@ -410,6 +497,11 @@ public class BorderedMaterialTextView: UITextView {
         
         if 0 < text?.utf16.count {
             showTitleLabel()
+            if !detailLabelHidden {
+                MaterialAnimation.animationDisabled { [unowned self] in
+                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                }
+            }
         } else if 0 == text?.utf16.count {
             hideTitleLabel()
         }
@@ -417,12 +509,16 @@ public class BorderedMaterialTextView: UITextView {
     
     /// Notification handler for when text editing ended.
     internal func handleTextViewTextDidEnd() {
+        editing = false
         if 0 < text?.utf16.count {
             showTitleLabel()
         } else if 0 == text?.utf16.count {
             hideTitleLabel()
         }
         titleLabel?.textColor = titleLabelColor
+        MaterialAnimation.animationDisabled { [unowned self] in
+            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.CGColor : self.detailLabelActiveColor?.CGColor
+        }
     }
     
     /// Manages the layout for the shape of the view instance.
@@ -446,6 +542,12 @@ public class BorderedMaterialTextView: UITextView {
         removeNotificationHandlers()
         prepareNotificationHandlers()
         reloadView()
+        prepareBottomBorderLayer()
+    }
+    
+    /// Prepares the bottomBorderLayer property.
+    private func prepareBottomBorderLayer() {
+        layer.addSublayer(bottomBorderLayer)
     }
     
     /// prepares the placeholderLabel property.
@@ -471,6 +573,19 @@ public class BorderedMaterialTextView: UITextView {
                 showTitleLabel()
             } else {
                 v.alpha = 0
+            }
+        }
+    }
+    
+    /// Prepares the detailLabel property.
+    private func prepareDetailLabel() {
+        if let v: UILabel = detailLabel {
+            v.hidden = true
+            addSubview(v)
+            if detailLabelHidden {
+                v.alpha = 0
+            } else {
+                showDetailLabel()
             }
         }
     }
@@ -505,6 +620,33 @@ public class BorderedMaterialTextView: UITextView {
                 }) { _ in
                     v.hidden = true
                 }
+            }
+        }
+    }
+    
+    /// Shows and animates the detailLabel property.
+    private func showDetailLabel() {
+        if let v: UILabel = detailLabel {
+            if v.hidden {
+                let h: CGFloat = v.font.pointSize
+                v.frame = CGRectMake(0, bounds.height + bottomBorderLayerDistance, bounds.width, h)
+                v.hidden = false
+                UIView.animateWithDuration(0.25, animations: { [unowned self] in
+                    v.frame.origin.y = self.frame.height + self.bottomBorderLayerDistance + self.detailLabelAnimationDistance
+                    v.alpha = 1
+                    })
+            }
+        }
+    }
+    
+    /// Hides and animates the detailLabel property.
+    private func hideDetailLabel() {
+        if let v: UILabel = detailLabel {
+            UIView.animateWithDuration(0.25, animations: {
+                v.alpha = 0
+                v.frame.origin.y = v.frame.height + 20
+            }) { _ in
+                v.hidden = true
             }
         }
     }

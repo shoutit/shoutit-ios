@@ -10,4 +10,9 @@ import Foundation
 
 class EditProfileTableViewModel {
     
+    let cells: [EditProfileCellViewModel]
+    
+    init() {
+        self.cells = [.Name(value: ""), .Username(value: ""), .Bio(value: ""), .Location(value:Account.sharedInstance.loggedUser!.location), .Website(value: "")]
+    }
 }
