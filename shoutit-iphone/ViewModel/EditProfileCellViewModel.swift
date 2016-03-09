@@ -23,6 +23,17 @@ enum EditProfileCellViewModel {
         }
     }
     
+    var stringValueRepresentation: String? {
+        switch self {
+        case .Name(let value): return value
+        case .Username(let value): return value
+        case .Bio(let value): return value
+        case .Website(let value): return value
+        default:
+            return nil
+        }
+    }
+    
     var placeholderText: String? {
         switch self {
         case .Name:
@@ -33,8 +44,8 @@ enum EditProfileCellViewModel {
             return NSLocalizedString("Bio", comment: "Edit profile placeholder text")
         case .Website:
             return NSLocalizedString("Website", comment: "Edit profile placeholder text")
-        default:
-            return nil
+        case .Location:
+            return NSLocalizedString("Location", comment: "Edit profile placeholder text")
         }
     }
 }

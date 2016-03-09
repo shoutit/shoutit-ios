@@ -36,7 +36,7 @@
                                             <state key="normal" image="photo_icon_big_white"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerX" secondItem="Nw9-vy-db6" secondAttribute="centerX" id="5H8-9H-z6e"/>
                                         <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerY" secondItem="Nw9-vy-db6" secondAttribute="centerY" id="T4U-qD-VJ7"/>
@@ -56,7 +56,7 @@
                                                     <state key="normal" image="photo_icon_small_white"/>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.87" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="KmB-F7-TAH" firstAttribute="leading" secondItem="ToL-cJ-4wd" secondAttribute="leading" id="NfU-hd-ig5"/>
                                                 <constraint firstAttribute="bottom" secondItem="KmB-F7-TAH" secondAttribute="bottom" id="Olx-me-KQV"/>
@@ -137,12 +137,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-7Y-B9a" customClass="LabeledSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-7Y-B9a" customClass="LabeledSelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="10" width="560" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Arp-M5-FGS"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <state key="normal" title="Location">
                                                 <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
@@ -201,6 +200,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelBarButtonItem" destination="pYY-Ux-Kk4" id="nkh-41-nVb"/>
+                        <outlet property="headerView" destination="TW9-sT-Oqv" id="rXq-I9-g8p"/>
                         <outlet property="saveBarButtonItem" destination="8j2-SF-1qK" id="INW-H3-dDW"/>
                     </connections>
                 </tableViewController>

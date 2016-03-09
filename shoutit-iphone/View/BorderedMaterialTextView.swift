@@ -504,9 +504,9 @@ public class BorderedMaterialTextView: UITextView {
         if 0 < text?.utf16.count {
             showTitleLabel()
             if !detailLabelHidden {
-                MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.CGColor
-                }
+//                MaterialAnimation.animationDisabled { [unowned self] in
+//                    self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.CGColor
+//                }
             }
         } else if 0 == text?.utf16.count {
             hideTitleLabel()

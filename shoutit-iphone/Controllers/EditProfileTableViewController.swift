@@ -17,7 +17,8 @@ class EditProfileTableViewController: UITableViewController {
     // RX
     private let disposeBag = DisposeBag()
     
-    // nav bar
+    // UI
+    @IBOutlet weak var headerView: EditProfileTableViewHeaderView!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
@@ -27,6 +28,11 @@ class EditProfileTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 70
+        
+        // setup photos
+        headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
+        
         setupRX()
     }
     
@@ -67,9 +73,10 @@ extension EditProfileTableViewController {
         
         if let cell = cell as? EditProfileTextFieldTableViewCell {
             cell.textField.placeholder = cellViewModel.placeholderText
+            cell.textField.text = cellViewModel.stringValueRepresentation
         } else if let cell = cell as? EditProfileTextViewTableViewCell {
             cell.textView.placeholderLabel?.text = cellViewModel.placeholderText
-            
+            cell.textView.text = cellViewModel.stringValueRepresentation
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
@@ -90,6 +97,10 @@ extension EditProfileTableViewController {
                 cell.textView.layoutIfNeeded()
             }
         } else if let cell = cell as? EditProfileSelectButtonTableViewCell {
+            let data = viewModel.locationTuple()
+            cell.selectButton.smallTitleLabel.text = cellViewModel.placeholderText
+            cell.selectButton.setTitle(data?.0, forState: .Normal)
+            cell.selectButton.setImage(data?.1, forState: .Normal)
             cell.selectButton
                 .rx_tap
                 .asDriver()

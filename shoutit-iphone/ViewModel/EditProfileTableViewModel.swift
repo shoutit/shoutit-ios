@@ -10,14 +10,12 @@ import Foundation
 
 class EditProfileTableViewModel {
     
+    let user: LoggedUser
     let cells: [EditProfileCellViewModel]
     
     init() {
         precondition(Account.sharedInstance.loggedUser != nil)
-        guard let user = Account.sharedInstance.loggedUser else {
-            cells = []
-            return
-        }
+        user = Account.sharedInstance.loggedUser!
         cells = [.Name(value: user.name),
                  .Username(value: user.username),
                  .Bio(value: user.bio),
@@ -27,17 +25,19 @@ class EditProfileTableViewModel {
     
     // MARK: - Convenience methods
     
-    func locationString() -> (String, UIImage?)? {
-        let location = cells.filter { (cellViewModel) -> Bool in
+    func locationTuple() -> (String, UIImage?)? {
+        let locationViewModel = cells.filter { (cellViewModel) -> Bool in
             if case EditProfileCellViewModel.Location = cellViewModel {
                 return true
             }
             return false
         }.first
         
-        if let location = location {
-        }
+        guard case EditProfileCellViewModel.Location(let location)? = locationViewModel else { return nil }
         
-        return nil
+        let locationString = "\(location.city), \(location.country)"
+        let flag = UIImage(named: location.country)
+        
+        return (locationString, flag)
     }
 }
