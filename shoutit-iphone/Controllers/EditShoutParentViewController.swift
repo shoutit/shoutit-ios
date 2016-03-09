@@ -13,12 +13,19 @@ class EditShoutParentViewController: CreateShoutParentViewController {
 
     var shout : Shout!
     var editController : EditShoutTableViewController!
+    var dismissAfter : Bool = false
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? EditShoutTableViewController {
             destination.shout = shout
             editController = destination
         }
+        
+        if let destination = segue.destinationViewController as? CreateShoutTableViewController {
+            self.createShoutTableController = destination
+            self.createShoutTableController.type = self.type
+        }
+
     }
     
     override func setTitle() {
@@ -49,7 +56,11 @@ class EditShoutParentViewController: CreateShoutParentViewController {
             
             MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
             
-            self?.navigationController?.popViewControllerAnimated(true)
+            if (self?.dismissAfter ?? false) == true{
+                self?.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self?.navigationController?.popViewControllerAnimated(true)
+            }
             
         }, onError: { [weak self] (error) -> Void in
                 MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)

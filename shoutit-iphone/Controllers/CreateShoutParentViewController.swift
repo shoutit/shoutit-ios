@@ -138,6 +138,7 @@ class CreateShoutParentViewController: UIViewController {
         if let confirmation = segue.sourceViewController as? ShoutConfirmationViewController {
             let editController = Wireframe.editShoutController()
             editController.shout = confirmation.shout
+            editController.dismissAfter = true
             self.navigationController?.viewControllers = [editController]
         }
     }
