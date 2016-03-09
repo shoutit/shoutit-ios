@@ -46,37 +46,4 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         self.imagesController?.attachments = attachments;
         self.imagesController?.collectionView?.reloadData()
     }
-    
-    override func submitAction() {
-        if attachmentsReady() == false {
-            let alert = viewModel.mediaNotReadyAlertController()
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            return
-        }
-        
-        assignAttachments()
-        
-        let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
-        
-        print(parameters)
-        
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        
-        APIShoutsService.updateShoutWithParams(parameters, uid: self.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
-            
-            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-            
-            self?.navigationController?.popViewControllerAnimated(true)
-            
-            }, onError: { [weak self] (error) -> Void in
-                MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-                
-                let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
-                
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-                
-                self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
-                
-            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-    }
 }

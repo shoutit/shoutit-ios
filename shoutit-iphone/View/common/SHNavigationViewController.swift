@@ -11,6 +11,7 @@ import UIKit
 class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
     
     var willShowViewControllerPreferringTabBarHidden: (Bool -> Void)?
+    var ignoreToggleMenu : Bool = false
 
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
@@ -38,6 +39,11 @@ class SHNavigationViewController: UINavigationController, UINavigationController
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
+        
+        if ignoreToggleMenu {
+            return
+        }
+        
         if self.viewControllers.count > 1 {
             viewController.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "backThin"), style: .Plain, target: viewController, action: "pop"), UIBarButtonItem(image: UIImage(named: "navMenu"), style: .Plain, target: viewController, action: "toggleMenu")]
         } else {

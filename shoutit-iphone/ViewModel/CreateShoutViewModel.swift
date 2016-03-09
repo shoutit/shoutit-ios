@@ -26,8 +26,8 @@ class CreateShoutViewModel: NSObject {
     var showFilters = false
     var showType = true
     
-    override init() {
-        shoutParams = ShoutParams(type: Variable(ShoutType.Request), title: Variable(""),
+    init(type: ShoutType = ShoutType.Request) {
+        shoutParams = ShoutParams(type: Variable(type), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
                                 images: Variable([]), videos:  Variable([]), category: Variable(nil),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
@@ -93,6 +93,14 @@ class CreateShoutViewModel: NSObject {
         }
         
         return 70.0
+    }
+    
+    func heightForHeaderAt(section: Int) -> CGFloat {
+        if section == 0 && self.showFilters == false {
+            return 0.0
+        }
+        
+        return 40.0
     }
     
     func cellIdentifierAt(indexPath: NSIndexPath) -> String {

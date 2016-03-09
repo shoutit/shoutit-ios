@@ -150,8 +150,16 @@ struct Wireframe {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("shoutConfirmation") as! ShoutConfirmationViewController
     }
     
-    static func editShoutController() -> EditShoutTableViewController {
-        return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutTableViewController
+    static func editShoutController() -> EditShoutParentViewController {
+        return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutParentViewController
+    }
+    
+    static func createShoutWithTypeController(type: ShoutType) -> CreateShoutParentViewController {
+        let controller =  storyboard(.Shout).instantiateViewControllerWithIdentifier("createShoutParentController") as! CreateShoutParentViewController
+
+        controller.type = type
+        
+        return controller
     }
     
 }

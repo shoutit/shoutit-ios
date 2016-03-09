@@ -93,6 +93,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     func openItem(navigationItem: NavigationItem) {
         
+        // Woooot!
+        // Create Shout Controller should be presented above root Controller, so skip flow controller logic
+        if navigationItem == .Shout {
+            showCreateShout()
+            return
+        }
+        
         self.currentNavigationItem = navigationItem
         
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
@@ -127,6 +134,21 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         }
         
         presentWith(flowControllerToShow)
+    }
+    
+    func showCreateShout() {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        let navController = SHNavigationViewController()
+        let shoutsFlowController = ShoutFlowController(navigationController: navController)
+        
+        navController.modalPresentationStyle = .Custom
+        navController.transitioningDelegate = self
+        
+        // present directly above current content
+        self.presentViewController(shoutsFlowController.navigationController, animated: true, completion: nil)
     }
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
@@ -198,11 +220,22 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     }
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MenuAnimationController()
+        if let _ = presented as? MenuTableViewController {
+           return MenuAnimationController()
+        }
+       
+        return OverlayAnimationController()
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MenuDismissAnimationController()
+        if let _ = dismissed as? MenuTableViewController {
+            return MenuDismissAnimationController()
+        }
+        
+        return OverlayDismissAnimationController()
+    }
+    
+    @IBAction func unwindToRootController(segue: UIStoryboardSegue) {
     }
     
 }
