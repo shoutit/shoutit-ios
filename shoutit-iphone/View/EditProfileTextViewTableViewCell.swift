@@ -21,7 +21,7 @@ class EditProfileTextViewTableViewCell: UITableViewCell {
         
         textView.placeholderLabel = UILabel()
         textView.placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .Regular)
-        textView.placeholderLabel!.textColor = UIColor(shoutitColor: .PlaceholderGray)
+        textView.placeholderLabel!.textColor = UIColor(shoutitColor: .DiscoverBorder)
         
         textView.titleLabel = UILabel()
         textView.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)

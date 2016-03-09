@@ -21,6 +21,12 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     var editing = false
+    var didLayoutSubviews = false
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        textContainer.lineFragmentPadding = 0
+    }
     
     /**
      This property is the same as clipsToBounds. It crops any of the view's
@@ -399,6 +405,7 @@ public class BorderedMaterialTextView: UITextView {
         super.layoutSubviews()
         placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
         titleLabel?.frame.size.width = bounds.width
+        updateDetailLabelFrameSilently()
     }
     
     /// Overriding the layout callback for sublayers.
@@ -473,9 +480,9 @@ public class BorderedMaterialTextView: UITextView {
             MaterialLayout.alignToParent(self,
                                          child: p,
                                          top: textContainerInset.top,
-                                         left: textContainerInset.left + textContainer.lineFragmentPadding,
+                                         left: textContainerInset.left,
                                          bottom: textContainerInset.bottom,
-                                         right: textContainerInset.right + textContainer.lineFragmentPadding)
+                                         right: textContainerInset.right)
         }
     }
     
@@ -484,7 +491,7 @@ public class BorderedMaterialTextView: UITextView {
         editing = true
         titleLabel?.textColor = titleLabelActiveColor
         MaterialAnimation.animationDisabled { [unowned self] in
-            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelActiveColor?.CGColor : self.detailLabelActiveColor?.CGColor
+            self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.CGColor
         }
     }
     
@@ -498,7 +505,7 @@ public class BorderedMaterialTextView: UITextView {
             showTitleLabel()
             if !detailLabelHidden {
                 MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                    self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.CGColor
                 }
             }
         } else if 0 == text?.utf16.count {
@@ -636,7 +643,7 @@ public class BorderedMaterialTextView: UITextView {
             if v.hidden {
                 let h: CGFloat = v.font.pointSize
                 let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
-                v.frame = CGRectMake(bounds.width - size.width - 5, bounds.height + bottomBorderLayerDistance, size.width + 5, h)
+                v.frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
                 v.hidden = false
                 v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
                 v.alpha = 1
@@ -648,11 +655,23 @@ public class BorderedMaterialTextView: UITextView {
         if let v: UILabel = detailLabel {
             let h: CGFloat = v.font.pointSize
             let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
-            v.frame = CGRectMake(bounds.width - size.width - 5, bounds.height + bottomBorderLayerDistance, size.width + 5, h)
+            v.frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
             UIView.animateWithDuration(0.25, animations: { [unowned self] in
                 v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
                 v.alpha = 1
                 })
+        }
+    }
+    
+    private func updateDetailLabelFrameSilently() {
+        
+        if let v: UILabel = detailLabel {
+            let h: CGFloat = v.font.pointSize
+            let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
+            let frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
+            if frame != v.frame {
+                v.frame = frame
+            }
         }
     }
     
