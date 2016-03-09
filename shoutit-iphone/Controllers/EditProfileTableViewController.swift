@@ -98,7 +98,7 @@ extension EditProfileTableViewController {
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = { (success, place) -> Void in
-                        self?.viewModel.shoutParams.location.value = place
+                        //self?.viewModel.shoutParams.location.value = place
                         self?.tableView.reloadData()
                     }
                     

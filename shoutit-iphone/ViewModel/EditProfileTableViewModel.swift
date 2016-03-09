@@ -24,4 +24,20 @@ class EditProfileTableViewModel {
                  .Location(value:user.location),
                  .Website(value: user.website ?? "")]
     }
+    
+    // MARK: - Convenience methods
+    
+    func locationString() -> (String, UIImage?)? {
+        let location = cells.filter { (cellViewModel) -> Bool in
+            if case EditProfileCellViewModel.Location = cellViewModel {
+                return true
+            }
+            return false
+        }.first
+        
+        if let location = location {
+        }
+        
+        return nil
+    }
 }
