@@ -89,6 +89,16 @@ class CreateShoutParentViewController: UIViewController {
         self.createShoutTableController.viewModel.shoutParams.images.value = urls.unique()
         
     }
+    /*
+    func imageAttachmentObject(attachment: MediaAttachment) -> String? {
+        
+    }
+
+    
+    func videoAttachmentObject(attachment: MediaAttachment) -> Video? {
+        
+    }
+    */
     
     @IBAction func submitAction() {
         

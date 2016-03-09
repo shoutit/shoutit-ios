@@ -89,11 +89,36 @@ class MediaPickerController: NSObject, MediaPicker  {
         
         if let type = info[UIImagePickerControllerMediaType] as? String {
             if type == (kUTTypeMovie as String) {
+                
+                if videoCanBeProcessed(info[UIImagePickerControllerMediaURL] as? NSURL) == false {
+                    picker.dismissViewControllerAnimated(true, completion: {
+                        self.showToLongVideoAlert()
+                    })
+                }
+                
                 processVideoFromURL(info[UIImagePickerControllerMediaURL] as? NSURL)
             }
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func videoCanBeProcessed(url: NSURL?) -> Bool {
+        guard let url = url else {
+            return true
+        }
+        
+        let duration = videoProcessor.videoDuration(url)
+        
+        return duration < 60.0
+    }
+    
+    func showToLongVideoAlert() {
+        let alertController = UIAlertController(title: NSLocalizedString("Video is too long", comment:""), message: NSLocalizedString("The maximum length of the video is 60 seconds. Choose a shorter movie.", comment: ""), preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        self.presentingSubject.onNext(alertController)
+        return
     }
     
     func processVideoFromURL(url: NSURL?) {

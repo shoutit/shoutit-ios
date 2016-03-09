@@ -21,6 +21,8 @@ struct MediaPickerSettings {
 
 struct MediaAttachment : Hashable, Equatable {
     
+    static let maximumImageWidth : CGFloat = 1024.0
+    
     let type: PHAssetMediaType
     
     var image: UIImage?
@@ -71,9 +73,39 @@ protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDele
     
 }
 
+extension MediaAttachment {
+    func asVideoObject() -> Video {
+        return Video(path: self.remoteURL!.absoluteString, thumbnailPath:  self.thumbRemoteURL!.absoluteString, provider: self.provider, idOnProvider: (self.remoteURL?.lastPathComponent ?? ""), duration: Int(self.videoDuration ?? 0))
+    }
+}
+
 extension UIImage {
+    
+    static func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        if newWidth > image.size.width {
+            return image
+        }
+        
+        let scale = newWidth / image.size.height
+        
+        let newHeight = image.size.width * scale
+        
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     func dataRepresentation() -> NSData? {
-        return UIImageJPEGRepresentation(self, 0.7)
+        let resizedImage = UIImage.resizeImage(self, newWidth: MediaAttachment.maximumImageWidth)
+        
+        return UIImageJPEGRepresentation(resizedImage, 0.7)
     }
 }
 
