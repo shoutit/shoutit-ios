@@ -158,6 +158,9 @@ class APIShoutsService {
                                     }
                                     if let err = results.error {
                                         print(err)
+                                        print(json)
+                                        
+                                        observer.on(.Error(err ?? RxCocoaURLError.Unknown))
                                     }
                                 }
                             }

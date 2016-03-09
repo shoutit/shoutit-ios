@@ -285,8 +285,8 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-4T-9jB">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-25-5NW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
-                                                    <rect key="frame" x="339" y="45" width="40" height="21"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-25-5NW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
+                                                    <rect key="frame" x="339.5" y="45.5" width="39.5" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -300,40 +300,34 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XR2-l8-Hdh">
-                                                    <rect key="frame" x="115" y="5" width="247" height="51"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-ve-3cT">
-                                                    <rect key="frame" x="115" y="48" width="64" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-ve-3cT">
+                                                    <rect key="frame" x="115" y="48.5" width="64" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="US" translatesAutoresizingMaskIntoConstraints="NO" id="ffa-jz-1g2" userLabel="shoutCountry">
-                                                    <rect key="frame" x="115" y="81" width="24" height="24"/>
+                                                    <rect key="frame" x="115" y="83" width="21" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="4nc-Yf-qtX"/>
-                                                        <constraint firstAttribute="height" constant="24" id="GVZ-6a-vg3"/>
+                                                        <constraint firstAttribute="width" constant="21" id="4nc-Yf-qtX"/>
+                                                        <constraint firstAttribute="height" constant="21" id="GVZ-6a-vg3"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-zE-8e0" userLabel="shoutCategory">
-                                                    <rect key="frame" x="161" y="81" width="24" height="24"/>
+                                                    <rect key="frame" x="158" y="83" width="21" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="KsD-Cn-5i9"/>
-                                                        <constraint firstAttribute="width" constant="24" id="Xcg-3y-Vao"/>
+                                                        <constraint firstAttribute="height" constant="21" id="KsD-Cn-5i9"/>
+                                                        <constraint firstAttribute="width" constant="21" id="Xcg-3y-Vao"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-rE-D1W">
-                                                    <rect key="frame" x="318" y="88" width="61" height="17"/>
+                                                    <rect key="frame" x="318.5" y="88" width="60.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-FE-ywc">
-                                                    <rect key="frame" x="344" y="48" width="30" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-FE-ywc">
+                                                    <rect key="frame" x="344.5" y="48.5" width="29.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -353,16 +347,22 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                     </variation>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutListMessage" translatesAutoresizingMaskIntoConstraints="NO" id="5hO-AS-ttW">
-                                                    <rect key="frame" x="207" y="80" width="25" height="25"/>
+                                                    <rect key="frame" x="201" y="81" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="1Tc-7h-gsC"/>
                                                         <constraint firstAttribute="width" constant="25" id="YNU-FV-G0d"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XR2-l8-Hdh">
+                                                    <rect key="frame" x="115" y="5" width="247" height="51"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ffa-jz-1g2" secondAttribute="bottom" constant="5" id="21q-is-maK"/>
+                                                <constraint firstAttribute="bottom" secondItem="ffa-jz-1g2" secondAttribute="bottom" constant="6" id="21q-is-maK"/>
                                                 <constraint firstItem="TS1-25-5NW" firstAttribute="width" secondItem="HG0-FE-ywc" secondAttribute="width" constant="10" id="4vZ-nm-66j"/>
                                                 <constraint firstItem="Yu8-ve-3cT" firstAttribute="top" secondItem="XR2-l8-Hdh" secondAttribute="bottom" constant="10" id="60m-Vb-aed"/>
                                                 <constraint firstAttribute="trailing" secondItem="XR2-l8-Hdh" secondAttribute="trailing" constant="22" id="83P-Nv-zJP"/>
@@ -375,13 +375,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                 <constraint firstItem="ZPd-Dh-WPK" firstAttribute="leading" secondItem="5V3-4T-9jB" secondAttribute="leading" constant="5" id="Hig-8q-NZ0"/>
                                                 <constraint firstItem="ZPd-Dh-WPK" firstAttribute="top" secondItem="5V3-4T-9jB" secondAttribute="top" constant="5" id="OIV-3E-uTW"/>
                                                 <constraint firstItem="XR2-l8-Hdh" firstAttribute="top" secondItem="ZPd-Dh-WPK" secondAttribute="top" id="POL-7k-6H4"/>
-                                                <constraint firstAttribute="bottom" secondItem="5hO-AS-ttW" secondAttribute="bottom" constant="5" id="Urt-8o-7Tu"/>
+                                                <constraint firstAttribute="bottom" secondItem="5hO-AS-ttW" secondAttribute="bottom" constant="4" id="Urt-8o-7Tu"/>
                                                 <constraint firstItem="TS1-25-5NW" firstAttribute="height" secondItem="HG0-FE-ywc" secondAttribute="height" constant="6" id="bAs-Q8-xlc"/>
                                                 <constraint firstItem="TS1-25-5NW" firstAttribute="centerY" secondItem="HG0-FE-ywc" secondAttribute="centerY" id="bnM-xk-0IE"/>
                                                 <constraint firstItem="XR2-l8-Hdh" firstAttribute="leading" secondItem="ZPd-Dh-WPK" secondAttribute="trailing" constant="10" id="cAU-m6-NgV"/>
                                                 <constraint firstAttribute="bottom" secondItem="axF-rE-D1W" secondAttribute="bottom" constant="5" id="hOa-kN-XFU"/>
                                                 <constraint firstAttribute="trailing" secondItem="axF-rE-D1W" secondAttribute="trailing" constant="5" id="ixt-id-NZw"/>
-                                                <constraint firstAttribute="bottom" secondItem="aNS-zE-8e0" secondAttribute="bottom" constant="5" id="jkH-ur-Nwn"/>
+                                                <constraint firstAttribute="bottom" secondItem="aNS-zE-8e0" secondAttribute="bottom" constant="6" id="jkH-ur-Nwn"/>
                                                 <constraint firstItem="HG0-FE-ywc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yu8-ve-3cT" secondAttribute="trailing" constant="20" id="rFS-Ol-eok"/>
                                                 <constraint firstItem="Yu8-ve-3cT" firstAttribute="leading" secondItem="XR2-l8-Hdh" secondAttribute="leading" id="s7o-SL-HH2"/>
                                                 <constraint firstItem="aNS-zE-8e0" firstAttribute="leading" secondItem="ffa-jz-1g2" secondAttribute="trailing" constant="22" id="v9c-Sb-IRa"/>
@@ -398,11 +398,11 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 </constraints>
                                 <size key="customSize" width="384" height="110"/>
                                 <connections>
-                                    <outlet property="name" destination="Yu8-ve-3cT" id="tYK-6Z-7Iw"/>
                                     <outlet property="shoutCategoryImage" destination="aNS-zE-8e0" id="SYR-4h-890"/>
                                     <outlet property="shoutCountryImage" destination="ffa-jz-1g2" id="pcg-9w-k5Q"/>
                                     <outlet property="shoutImage" destination="ZPd-Dh-WPK" id="OVZ-bC-JDm"/>
                                     <outlet property="shoutPrice" destination="axF-rE-D1W" id="d7b-Zx-zes"/>
+                                    <outlet property="shoutSubtitle" destination="Yu8-ve-3cT" id="rU9-vN-Zie"/>
                                     <outlet property="shoutTitle" destination="XR2-l8-Hdh" id="ecc-LQ-3MX"/>
                                     <outlet property="shoutType" destination="HG0-FE-ywc" id="Fn1-Df-skY"/>
                                 </connections>

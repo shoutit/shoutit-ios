@@ -121,7 +121,7 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
     func insetsForSection(section: Int) -> UIEdgeInsets {
         let interItemSpacing = self.displayable.minimumInterItemSpacingSize()
         
-        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, interItemSpacing.height, interItemSpacing.width)
+        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, section == 0 ? 0 : interItemSpacing.height, interItemSpacing.width)
     }
     
 }

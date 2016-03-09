@@ -26,6 +26,7 @@ pod 'FBSDKShareKit', '~> 4.8'
 # amazon
 pod 'AWSS3', '~> 2.3'
 pod 'AWSCognito', '~> 2.3'
+pod 'AmazonS3RequestManager'
 
 # networking
 pod 'Alamofire', '~> 3.1.0'
@@ -42,6 +43,7 @@ pod 'Validator', '~> 1.1'
 pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'
 pod 'MWPhotoBrowser', '~> 2.1'
+pod 'Nemo'
 
 # serialization
 pod 'ObjectMapper', '~> 1.1'
@@ -62,6 +64,7 @@ pod 'JSQMessagesViewController', '~> 7.2'
 pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
 pod 'DZNEmptyDataSet'
+pod 'ACPDownload', '~> 1.1.0'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
 
