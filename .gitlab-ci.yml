@@ -7,7 +7,7 @@ before_script:
 
 production:
   type: build
-  script: "bundle exec fastlane production"
+  script: "bundle exec fastlane staging"
   tags:
     - ios9.0
   only:
