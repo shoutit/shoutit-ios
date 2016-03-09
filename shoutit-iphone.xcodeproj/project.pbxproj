@@ -18,6 +18,11 @@
 		240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */; };
 		241CEC351C73282B00694575 /* APIDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC341C73282B00694575 /* APIDiscoverService.swift */; };
 		241CEC371C732CDE00694575 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC361C732CDE00694575 /* DiscoverItem.swift */; };
+		242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */; };
+		242EE81B1C90626C00621A5E /* EditShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */; };
+		2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */; };
+		2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */; };
+		2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */; };
 		244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A11C7C79F30048CC82 /* DiscoverCollectionViewController.swift */; };
 		244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */; };
 		244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */; };
@@ -572,6 +577,11 @@
 		240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewParentController.swift; path = Controllers/DiscoverPreviewParentController.swift; sourceTree = "<group>"; };
 		241CEC341C73282B00694575 /* APIDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIDiscoverService.swift; path = Networking/APIDiscoverService.swift; sourceTree = "<group>"; };
 		241CEC361C732CDE00694575 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItem.swift; path = Model/DiscoverItem.swift; sourceTree = "<group>"; };
+		242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutParentViewController.swift; path = Controllers/CreateShoutParentViewController.swift; sourceTree = "<group>"; };
+		242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutParentViewController.swift; path = Controllers/EditShoutParentViewController.swift; sourceTree = "<group>"; };
+		2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutPopupViewController.swift; path = Controllers/CreateShoutPopupViewController.swift; sourceTree = "<group>"; };
+		2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayAnimationController.swift; path = Controllers/OverlayAnimationController.swift; sourceTree = "<group>"; };
+		2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayDismissAnimationController.swift; path = Other/OverlayDismissAnimationController.swift; sourceTree = "<group>"; };
 		244FD9A11C7C79F30048CC82 /* DiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverCollectionViewController.swift; path = Controllers/DiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGivenItemViewModel.swift; path = ViewModel/DiscoverGivenItemViewModel.swift; sourceTree = "<group>"; };
 		244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGeneralViewModel.swift; path = ViewModel/DiscoverGeneralViewModel.swift; sourceTree = "<group>"; };
@@ -1246,6 +1256,14 @@
 			name = Displayables;
 			sourceTree = "<group>";
 		};
+		2437D97D1C9027C500FCBFC5 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
 		244FD9A01C7C79DF0048CC82 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -1333,6 +1351,7 @@
 			isa = PBXGroup;
 			children = (
 				249671601C8758650011B078 /* EditShoutTableViewController.swift */,
+				242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */,
 			);
 			name = EdiShout;
 			sourceTree = "<group>";
@@ -1340,6 +1359,7 @@
 		2499EA691C80937A0086DEA9 /* CreateShout */ = {
 			isa = PBXGroup;
 			children = (
+				2437D97D1C9027C500FCBFC5 /* Popup */,
 				248328FB1C842C2B0042B0DB /* Views */,
 				248328F81C8425980042B0DB /* ShoutImageController */,
 				248328F51C8423990042B0DB /* Protocols */,
@@ -1347,6 +1367,7 @@
 				2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */,
 				2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */,
 				249671561C86E7B30011B078 /* ShoutParams.swift */,
+				242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */,
 			);
 			name = CreateShout;
 			sourceTree = "<group>";
@@ -2310,6 +2331,8 @@
 			children = (
 				AE4DB3421C635026001EB84B /* MenuAnimationController.swift */,
 				AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */,
+				2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */,
+				2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */,
 			);
 			name = Segue;
 			sourceTree = "<group>";
@@ -3552,6 +3575,7 @@
 				246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */,
 				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
+				2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
 				B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */,
 				B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */,
@@ -3605,6 +3629,7 @@
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
+				242EE81B1C90626C00621A5E /* EditShoutParentViewController.swift in Sources */,
 				241CEC371C732CDE00694575 /* DiscoverItem.swift in Sources */,
 				606ED3021BF8A88D0064C53E /* SHPhotoPreviewViewModel.swift in Sources */,
 				AC74A77E1BFE58230029CE7D /* SHFilterPriceTableViewController.swift in Sources */,
@@ -3736,6 +3761,7 @@
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
 				ACDB3CC11BF90DE80097444E /* SHRequestTextTableViewCell.swift in Sources */,
+				242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */,
 				B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */,
 				B2E7155D1C6E11F4007F95CF /* ProfileReusableViewKind.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
@@ -3755,6 +3781,7 @@
 				ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
+				2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */,
 				ACC36C431C0A0EFA0082E0C2 /* SHProfileFlowLayout.swift in Sources */,
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
@@ -3797,6 +3824,7 @@
 				606ED3001BF8A85D0064C53E /* SHPhotoPreviewViewController.swift in Sources */,
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				ACDD23B71BFADE1300EEC6A6 /* SHFilterTagsTableViewCell.swift in Sources */,
+				2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */,
 				248329031C846B470042B0DB /* RightArrowSelectButton.swift in Sources */,
 				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,

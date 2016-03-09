@@ -16,11 +16,14 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     private let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
     let disposeBag = DisposeBag()
     
+    var type : ShoutType!
+    
     var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
     
     var viewModel : CreateShoutViewModel!
     
     @IBOutlet var headerView : CreateShoutTableHeaderView!
+    @IBOutlet var footerView : UIView!
     
     weak var imagesController : SelectShoutImagesController?
     
@@ -33,7 +36,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     }
     
     func createViewModel() {
-        viewModel = CreateShoutViewModel()
+        viewModel = CreateShoutViewModel(type: type)
     }
     
     // Load Data
@@ -45,14 +48,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     // RX
     
     func setupRX() {
-        viewModel.shoutParams
-            .type
-            .asDriver()
-            .driveNext { [weak self] (type) -> Void in
-                self?.headerView.fillWithType(type)
-            }
-            .addDisposableTo(disposeBag)
-        
         viewModel.currencies
             .asDriver()
             .driveNext { [weak self] (currencies) -> Void in
@@ -249,7 +244,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.0
+        return self.viewModel.heightForHeaderAt(section)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -267,84 +262,5 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         return self.viewModel.sectionTitle(section)
     }
     
-    func attachmentsReady() -> Bool {
-        
-        guard let activetasks = self.imagesController?.mediaUploader.tasks else {
-            return true
-        }
-        
-        for task in activetasks {
-            if task.status.value != MediaUploadingTaskStatus.Uploaded {
-                return false
-            }
-        }
-        
-        return true
-        
-    }
     
-    func assignAttachments() {
-        guard let attachments = self.imagesController?.attachments else {
-            return
-        }
-        
-        var urls : [String] = []
-        
-        for (_, attachment) in attachments {
-            if let path = attachment.remoteURL?.absoluteString {
-                urls.append(path)
-            }
-        }
-        
-        if let activeTasks = self.imagesController?.mediaUploader.tasks {
-            for task in activeTasks {
-                if let path = task.attachment.remoteURL?.absoluteString {
-                    urls.append(path)
-                }
-            }
-        }
-        
-        self.viewModel.shoutParams.images.value = urls.unique()
-        
-    }
-    
-    @IBAction func submitAction() {
-        
-        if attachmentsReady() == false {
-            let alert = viewModel.mediaNotReadyAlertController()
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            return
-        }
-        
-        assignAttachments()
-        
-        let parameters = viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
-        
-        print(parameters)
-        
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        
-        APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in
-            
-            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-            
-            let confirmation = Wireframe.shoutConfirmationController()
-            
-            confirmation.shout = shout
-            
-            self?.navigationController?.pushViewController(confirmation, animated: true)
-            
-        }, onError: { [weak self] (error) -> Void in
-            
-            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-            
-            let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
-            
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-            
-            self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
-            
-            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-    }
-
 }
