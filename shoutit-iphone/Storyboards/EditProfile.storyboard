@@ -130,37 +130,8 @@
                                     <outlet property="textField" destination="qbQ-9y-MTg" id="9E3-kd-Eth"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileTextViewCell" rowHeight="85" id="Lok-Ge-eKD" customClass="EditProfileTextViewTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="362" width="600" height="85"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lok-Ge-eKD" id="4CE-nw-a1W">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UBj-vK-RHg" customClass="BorderedMaterialTextView" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="30" width="542" height="45"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="2JA-3s-5xm"/>
-                                            </constraints>
-                                            <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="UBj-vK-RHg" secondAttribute="trailing" constant="29" id="4FC-Hi-How"/>
-                                        <constraint firstItem="UBj-vK-RHg" firstAttribute="top" secondItem="4CE-nw-a1W" secondAttribute="top" constant="30" id="Ugu-uu-Jqf"/>
-                                        <constraint firstItem="UBj-vK-RHg" firstAttribute="leading" secondItem="4CE-nw-a1W" secondAttribute="leading" constant="29" id="uGZ-W2-SVd"/>
-                                        <constraint firstAttribute="bottom" secondItem="UBj-vK-RHg" secondAttribute="bottom" constant="10" id="xMY-YF-EhV"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="textView" destination="UBj-vK-RHg" id="XLM-sh-j6c"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileSelectButtonCell" rowHeight="70" id="W9T-Md-wlk" customClass="EditProfileSelectButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="447" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="362" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9T-Md-wlk" id="dJy-O5-9uj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -186,6 +157,36 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="37H-7Y-B9a" id="ewD-Vc-tzG"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileTextViewCell" rowHeight="135" id="Lok-Ge-eKD" customClass="EditProfileTextViewTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="432" width="600" height="135"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lok-Ge-eKD" id="4CE-nw-a1W">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UBj-vK-RHg" customClass="BorderedMaterialTextView" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="29" y="30" width="542" height="75"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="75" id="OKS-nI-PfQ"/>
+                                            </constraints>
+                                            <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="UBj-vK-RHg" secondAttribute="trailing" constant="29" id="4FC-Hi-How"/>
+                                        <constraint firstItem="UBj-vK-RHg" firstAttribute="top" secondItem="4CE-nw-a1W" secondAttribute="top" priority="990" constant="30" id="Ugu-uu-Jqf"/>
+                                        <constraint firstItem="UBj-vK-RHg" firstAttribute="leading" secondItem="4CE-nw-a1W" secondAttribute="leading" constant="29" id="uGZ-W2-SVd"/>
+                                        <constraint firstAttribute="bottom" secondItem="UBj-vK-RHg" secondAttribute="bottom" priority="990" constant="30" id="xMY-YF-EhV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="heightConstraint" destination="OKS-nI-PfQ" id="MCI-LJ-BJx"/>
+                                    <outlet property="textView" destination="UBj-vK-RHg" id="E5K-r2-UGn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

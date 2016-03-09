@@ -68,11 +68,26 @@ extension EditProfileTableViewController {
         if let cell = cell as? EditProfileTextFieldTableViewCell {
             cell.textField.placeholder = cellViewModel.placeholderText
         } else if let cell = cell as? EditProfileTextViewTableViewCell {
-            cell.textView.intrinsicContentSizeDidChange = {[weak tableView] in
-                if let tableView = tableView {
-                    tableView.beginUpdates()
-                    tableView.endUpdates()
+            cell.textView.placeholderLabel?.text = cellViewModel.placeholderText
+            
+            cell.textView.rx_text
+                .observeOn(MainScheduler.instance)
+                .distinctUntilChanged()
+                .subscribeNext{[weak textView = cell.textView] (text) in
+                    textView?.detailLabel?.text = "\(text.characters.count)/250"
                 }
+                .addDisposableTo(cell.disposeBag)
+            
+            cell.textView.contentSizeDidChange = {[weak tableView, weak cell] (size) in
+                guard let cell = cell else { return }
+                guard let tableView = tableView else { return }
+                guard let heightConstraint = cell.heightConstraint else { return }
+                guard heightConstraint.constant != size.height else { return }
+                tableView.beginUpdates()
+                heightConstraint.constant = max(75, size.height)
+                tableView.endUpdates()
+                cell.textView.setNeedsLayout()
+                cell.textView.layoutIfNeeded()
             }
         } else if let cell = cell as? EditProfileSelectButtonTableViewCell {
             

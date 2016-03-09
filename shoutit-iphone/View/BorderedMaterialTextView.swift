@@ -11,13 +11,16 @@ import Material
 
 public class BorderedMaterialTextView: UITextView {
     
-    var intrinsicContentSizeDidChange:(Void -> Void)?
+    var contentSizeDidChange:(CGSize -> Void)? {
+        didSet {
+            let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.max))
+            if textSize != self.bounds.size {
+                contentSizeDidChange?(textSize)
+            }
+        }
+    }
     
     var editing = false
-    
-    public override func intrinsicContentSize() -> CGSize {
-        return self.contentSize
-    }
     
     /**
      This property is the same as clipsToBounds. It crops any of the view's
@@ -138,7 +141,7 @@ public class BorderedMaterialTextView: UITextView {
      A property that sets the distance between the textField and
      bottomBorderLayer.
      */
-    public var bottomBorderLayerDistance: CGFloat = 2
+    public var bottomBorderLayerDistance: CGFloat = 22
     
     /// The bottom border layer.
     public private(set) lazy var bottomBorderLayer: CAShapeLayer = CAShapeLayer()
@@ -255,7 +258,7 @@ public class BorderedMaterialTextView: UITextView {
      A property that sets the distance between the textView and
      titleLabel.
      */
-    public var titleLabelAnimationDistance: CGFloat = 8
+    public var titleLabelAnimationDistance: CGFloat = 4
     
     /**
      The detail UILabel that is displayed when the detailLabelHidden property
@@ -286,7 +289,7 @@ public class BorderedMaterialTextView: UITextView {
      A property that sets the distance between the textField and
      detailLabel.
      */
-    public var detailLabelAnimationDistance: CGFloat = 8
+    public var detailLabelAnimationDistance: CGFloat = 6
     
     /**
      :name:	detailLabelHidden
@@ -396,10 +399,6 @@ public class BorderedMaterialTextView: UITextView {
         super.layoutSubviews()
         placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
         titleLabel?.frame.size.width = bounds.width
-        if self.intrinsicContentSize() != self.bounds.size {
-            self.invalidateIntrinsicContentSize()
-            self.intrinsicContentSizeDidChange?()
-        }
     }
     
     /// Overriding the layout callback for sublayers.
@@ -505,6 +504,12 @@ public class BorderedMaterialTextView: UITextView {
         } else if 0 == text?.utf16.count {
             hideTitleLabel()
         }
+        
+        let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.max))
+        if textSize.height != self.bounds.size.height {
+            contentSizeDidChange?(textSize)
+            updateDetailLabelFrame()
+        }
     }
     
     /// Notification handler for when text editing ended.
@@ -543,6 +548,7 @@ public class BorderedMaterialTextView: UITextView {
         prepareNotificationHandlers()
         reloadView()
         prepareBottomBorderLayer()
+        prepareDetailLabel()
     }
     
     /// Prepares the bottomBorderLayer property.
@@ -629,13 +635,24 @@ public class BorderedMaterialTextView: UITextView {
         if let v: UILabel = detailLabel {
             if v.hidden {
                 let h: CGFloat = v.font.pointSize
-                v.frame = CGRectMake(0, bounds.height + bottomBorderLayerDistance, bounds.width, h)
+                let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
+                v.frame = CGRectMake(bounds.width - size.width - 5, bounds.height + bottomBorderLayerDistance, size.width + 5, h)
                 v.hidden = false
-                UIView.animateWithDuration(0.25, animations: { [unowned self] in
-                    v.frame.origin.y = self.frame.height + self.bottomBorderLayerDistance + self.detailLabelAnimationDistance
-                    v.alpha = 1
-                    })
+                v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
+                v.alpha = 1
             }
+        }
+    }
+    
+    private func updateDetailLabelFrame() {
+        if let v: UILabel = detailLabel {
+            let h: CGFloat = v.font.pointSize
+            let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
+            v.frame = CGRectMake(bounds.width - size.width - 5, bounds.height + bottomBorderLayerDistance, size.width + 5, h)
+            UIView.animateWithDuration(0.25, animations: { [unowned self] in
+                v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
+                v.alpha = 1
+                })
         }
     }
     
