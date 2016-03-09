@@ -13,6 +13,15 @@ class EditProfileTableViewModel {
     let cells: [EditProfileCellViewModel]
     
     init() {
-        self.cells = [.Name(value: ""), .Username(value: ""), .Bio(value: ""), .Location(value:Account.sharedInstance.loggedUser!.location), .Website(value: "")]
+        precondition(Account.sharedInstance.loggedUser != nil)
+        guard let user = Account.sharedInstance.loggedUser else {
+            cells = []
+            return
+        }
+        cells = [.Name(value: user.name),
+                 .Username(value: user.username),
+                 .Bio(value: user.bio),
+                 .Location(value:user.location),
+                 .Website(value: user.website ?? "")]
     }
 }

@@ -7,7 +7,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class EditProfileSelectButtonTableViewCell: UITableViewCell {
+    
+    var disposeBag = DisposeBag()
+    
     @IBOutlet weak var selectButton: LabeledSelectButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
 }

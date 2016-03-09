@@ -90,7 +90,22 @@ extension EditProfileTableViewController {
                 cell.textView.layoutIfNeeded()
             }
         } else if let cell = cell as? EditProfileSelectButtonTableViewCell {
-            
+            cell.selectButton
+                .rx_tap
+                .asDriver()
+                .driveNext({ [weak self] () -> Void in
+                    
+                    let controller = Wireframe.changeShoutLocationController()
+                    
+                    controller.finishedBlock = { (success, place) -> Void in
+                        self?.viewModel.shoutParams.location.value = place
+                        self?.tableView.reloadData()
+                    }
+                    
+                    self?.navigationController?.showViewController(controller, sender: nil)
+                    
+                })
+                .addDisposableTo(cell.disposeBag)
         }
         
         return cell
