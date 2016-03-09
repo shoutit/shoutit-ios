@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Video {
     let path: String
@@ -27,5 +28,18 @@ extension Video: Decodable {
             <*> j <| "provider"
             <*> j <| "id_on_provider"
             <*> j <| "duration"
+    }
+    
+}
+
+extension Video: Encodable {
+    func encode() -> JSON {
+        return JSON.Object([
+            "url"    : self.path.encode(),
+            "thumbnail"  : self.thumbnailPath.encode(),
+            "provider" : self.provider.encode(),
+            "id_on_provider"    : self.idOnProvider.encode(),
+            "duration"  : self.duration.encode()
+            ])
     }
 }
