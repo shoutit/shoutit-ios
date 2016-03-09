@@ -17,6 +17,12 @@ final class ShoutFlowController: FlowController {
         self.navigationController = navigationController
         
         // create initial view controller
+        if let snavigation = navigationController as? SHNavigationViewController {
+            snavigation.ignoreToggleMenu = true
+        }
+        
+        navigationController.navigationBarHidden = true
+        
         let controller = Wireframe.shoutViewController()
 
         navigationController.showViewController(controller, sender: nil)

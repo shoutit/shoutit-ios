@@ -9,14 +9,9 @@
 import UIKit
 
 class CreateShoutTableHeaderView: UIView {
-    @IBOutlet var typeButton : UIButton!
     @IBOutlet var currencyButton : SelectButton!
     @IBOutlet var titleTextField : UITextField!
     @IBOutlet var priceTextField : UITextField!
-    
-    func fillWithType(type: ShoutType) {
-        typeButton.setTitle(type.title(), forState: .Normal)
-    }
     
     func setCurrency(currency: Currency?) {
         if let curr = currency {
