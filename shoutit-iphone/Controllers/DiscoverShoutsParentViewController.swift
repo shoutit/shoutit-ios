@@ -51,8 +51,8 @@ class DiscoverShoutsParentViewController: UIViewController {
         self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
         
         shoutsCollectionViewController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
-            if let shout = selectedShout {
-                self?.flowDelegate?.showShout(shout)
+            if let shout = selectedShout, let flowDelegate = self?.flowDelegate {
+                flowDelegate.showShout(shout)
             }
         }.addDisposableTo(disposeBag)
     }

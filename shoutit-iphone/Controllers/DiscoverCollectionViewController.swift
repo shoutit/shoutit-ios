@@ -157,8 +157,6 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
 
     // MARK: Actions
     func showDiscoverShouts() {
-        if let navigationController = self.navigationController {
-            _ = DiscoverShoutsFlowController(navigationController: navigationController, discoverItem: self.viewModel.mainItem())
-        }
+        self.flowDelegate?.showShoutsForDiscoverItem(self.viewModel.mainItem())
     }
 }
