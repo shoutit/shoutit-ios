@@ -32,6 +32,11 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup layer
+        view.layer.borderColor = UIColor.lightGrayColor().CGColor
+        view.layer.borderWidth = 0.5
+        view.layer.cornerRadius = 10
+        
         // register cells
         tableView.registerNib(UINib(nibName: "PostSignupSuggestionsHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsHeaderTableViewCell")
         tableView.registerNib(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")

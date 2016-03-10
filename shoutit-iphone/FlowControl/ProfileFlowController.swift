@@ -19,7 +19,7 @@ final class ProfileFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        controller.viewModel = ProfileCollectionViewModel()
+        controller.viewModel = MyProfileCollectionViewModel()
 
         navigationController.showViewController(controller, sender: nil)
     }

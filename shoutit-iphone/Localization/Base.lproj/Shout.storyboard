@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -60,12 +60,12 @@
                                 <rect key="frame" x="20" y="168" width="560" height="164"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you posting?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4A-6j-khU">
-                                        <rect key="frame" x="192" y="23" width="175.5" height="20.5"/>
+                                        <rect key="frame" x="192" y="23" width="176" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArL-Gz-lqw" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArL-Gz-lqw" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="12" y="56" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -85,7 +85,7 @@
                                             <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="eWA-Aj-noW"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-pW-gaf" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-pW-gaf" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="12" y="108" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.25098039215686274" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -234,13 +234,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add photos and videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kE2-fo-MaD">
-                                    <rect key="frame" x="212" y="22" width="176" height="20.5"/>
+                                    <rect key="frame" x="212" y="22" width="176" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s4-KE-dNg">
-                                    <rect key="frame" x="0.0" y="50.5" width="600" height="80"/>
+                                    <rect key="frame" x="0.0" y="51" width="600" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="KO5-GA-C0k"/>
                                     </constraints>
@@ -249,7 +249,7 @@
                                     </connections>
                                 </containerView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZp-Em-qUh" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="160.5" width="542" height="34"/>
+                                    <rect key="frame" x="29" y="161" width="542" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="go0-wd-YLu"/>
                                     </constraints>
@@ -257,7 +257,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woj-57-1w2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="224.5" width="265.5" height="34"/>
+                                    <rect key="frame" x="29" y="225" width="266" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="lhO-h5-wHe"/>
                                     </constraints>
@@ -265,7 +265,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onr-sH-VzS" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="314.5" y="204.5" width="265.5" height="56"/>
+                                    <rect key="frame" x="315" y="205" width="265" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="cw2-71-dTh"/>
                                     </constraints>
@@ -459,13 +459,13 @@
                                 <rect key="frame" x="0.0" y="96" width="600" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws1-lB-UsQ">
-                                        <rect key="frame" x="236" y="46" width="126.5" height="20.5"/>
+                                        <rect key="frame" x="236" y="46" width="127" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your shout will appear on Shoutit soon." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ws-rTF">
-                                        <rect key="frame" x="151" y="76" width="298" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your shout will appear on Shoutit soon." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ws-rTF">
+                                        <rect key="frame" x="151" y="76" width="298" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -497,7 +497,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wL-mM-p5l">
-                                        <rect key="frame" x="288" y="235" width="23.5" height="20.5"/>
+                                        <rect key="frame" x="288" y="235" width="24" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -521,15 +521,15 @@
                                             <segue destination="peX-bG-jmb" kind="unwind" unwindAction="unwindToCreateShoutParent:" id="sNF-z2-4g0"/>
                                         </connections>
                                     </button>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPE-wN-urm">
-                                        <rect key="frame" x="331" y="245" width="248.5" height="1"/>
+                                    <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPE-wN-urm">
+                                        <rect key="frame" x="331" y="245" width="249" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="QyB-eh-pPy"/>
                                         </constraints>
                                     </view>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4w-UV-a8o">
-                                        <rect key="frame" x="20" y="245" width="248.5" height="1"/>
+                                    <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4w-UV-a8o">
+                                        <rect key="frame" x="20" y="245" width="249" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nxZ-c6-CcY"/>
@@ -579,11 +579,11 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guy-cj-iYw">
-                                <rect key="frame" x="54" y="446" width="240" height="153.5"/>
+                                <rect key="frame" x="54" y="446" width="240" height="154"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-vb-yxE">
-                                <rect key="frame" x="20" y="20" width="240" height="76.5"/>
+                                <rect key="frame" x="20" y="20" width="240" height="77"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPz-0p-0vc">
@@ -1521,13 +1521,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add photos and videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ws-Aq-gda">
-                                    <rect key="frame" x="212" y="22" width="176" height="20.5"/>
+                                    <rect key="frame" x="212" y="22" width="176" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I51-X9-rjf">
-                                    <rect key="frame" x="0.0" y="50.5" width="600" height="80"/>
+                                    <rect key="frame" x="0.0" y="51" width="600" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="Mj0-zq-hM4"/>
                                     </constraints>
@@ -1536,7 +1536,7 @@
                                     </connections>
                                 </containerView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XgN-88-Js2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="160.5" width="542" height="34"/>
+                                    <rect key="frame" x="29" y="161" width="542" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="IUO-pN-kGy"/>
                                     </constraints>
@@ -1544,7 +1544,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHx-Ug-d24" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="224.5" width="265.5" height="34"/>
+                                    <rect key="frame" x="29" y="225" width="266" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="TDA-7J-EV4"/>
                                     </constraints>
@@ -1552,7 +1552,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3WJ-yE-7d1" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="314.5" y="204.5" width="265.5" height="56"/>
+                                    <rect key="frame" x="315" y="205" width="265" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="7ew-rD-jHJ"/>
                                     </constraints>

@@ -97,16 +97,29 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             let otherShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             otherShoutsCollectionView = otherShoutsCell.collectionView
             
-            otherShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
-            otherShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
+            otherShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil),
+                                                   forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
+            otherShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
+                                                   forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
+            
+            otherShoutsCell.collectionView.contentSizeDidChange = {[weak tableView, weak otherShoutsCell] (contentSize) in
+                if let tableView = tableView, let cell = otherShoutsCell where cell.collectionViewHeightConstraint.constant != contentSize.height {
+                    cell.collectionViewHeightConstraint.constant = contentSize.height
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+                }
+            }
             
         case .RelatedShouts:
             let relatedShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             relatedShoutsCollectionView = relatedShoutsCell.collectionView
             
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "SeeAllCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier)
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil),
+                                                     forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
+                                                     forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
+            relatedShoutsCollectionView?.registerNib(UINib(nibName: "SeeAllCollectionViewCell", bundle: nil),
+                                                     forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier)
         }
         
         return cell

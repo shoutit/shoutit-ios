@@ -42,6 +42,7 @@ class ProfileInfoHeaderButton: UIButton {
         }
         
         iconImageView = UIImageView()
+        iconImageView?.contentMode = .Center
         iconImageView?.translatesAutoresizingMaskIntoConstraints = false
         iconImageView?.image = image
         addSubview(iconImageView!)

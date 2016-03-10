@@ -36,9 +36,9 @@ extension SHShoutItemCell {
         self.name?.text = shout.user.name
         
         if let publishedAt = shout.publishedAtEpoch {
-            self.shoutSubtitle?.text = "\(shout.text) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
+            self.shoutSubtitle?.text = "\(shout.user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
         } else {
-            self.shoutSubtitle?.text = shout.text
+            self.shoutSubtitle?.text = shout.user.name
         }
         
         self.shoutPrice.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)

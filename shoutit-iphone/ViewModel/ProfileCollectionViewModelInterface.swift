@@ -31,7 +31,15 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 
 extension ProfileCollectionViewModelInterface {
     
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        return false
+    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
+        if section == 0 {
+            return pagesSection.cells.count > 0 ? .Default : .Placeholder
+        }
+        if section == 1 {
+            return shoutsSection.cells.count > 1 ? .Default : .Placeholder
+        }
+        
+        assert(false)
+        return .Default
     }
 }

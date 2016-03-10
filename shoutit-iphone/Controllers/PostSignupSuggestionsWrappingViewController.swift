@@ -80,8 +80,6 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     private func setupAppearance() {
         shadowView.layer.cornerRadius = 10
-        shadowView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        shadowView.layer.borderWidth = 0.5
         shadowView.layer.shadowColor = UIColor.grayColor().CGColor
         shadowView.layer.shadowOpacity = 0.6
         shadowView.layer.shadowRadius = 3.0

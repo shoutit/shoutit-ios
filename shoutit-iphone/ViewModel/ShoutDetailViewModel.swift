@@ -13,6 +13,8 @@ final class ShoutDetailViewModel {
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
+    let reloadOtherShoutsSubject: PublishSubject<Void> = PublishSubject()
+    let reloadRelatedShoutsSubject: PublishSubject<Void> = PublishSubject()
     
     private(set) var shout: Shout {
         didSet {
@@ -70,12 +72,12 @@ final class ShoutDetailViewModel {
         
         fetchOtherShouts()
             .subscribe {[weak self] (event) in
-                defer { self?.reloadSubject.onNext() }
+                defer { self?.reloadOtherShoutsSubject.onNext() }
                 switch event {
                 case .Next(let otherShouts):
                     if let strongSelf = self {
                         print(otherShouts)
-                        strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(otherShouts, withSeeAllCell: false)
+                        strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(otherShouts.prefix(4)), withSeeAllCell: false)
                     }
                 case .Error(let error):
                     if let strongSelf = self {
@@ -89,12 +91,11 @@ final class ShoutDetailViewModel {
         
         fetchRelatedShouts()
             .subscribe {[weak self] (event) in
-                defer { self?.reloadSubject.onNext() }
+                defer { self?.reloadRelatedShoutsSubject.onNext() }
                 switch event {
                 case .Next(let relatedShouts):
-                    print("======================Related shouts count: \(relatedShouts.count) ===========================")
                     if let strongSelf = self {
-                        strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(relatedShouts, withSeeAllCell: true)
+                        strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(relatedShouts.prefix(6)), withSeeAllCell: true)
                     }
                 case .Error(let error):
                     if let strongSelf = self {

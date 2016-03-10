@@ -71,12 +71,3 @@ extension Profile: Encodable {
             ])
     }
 }
-
-extension Profile: ProfileCollectionUser {
-    var listeningMetadata: ListenersMetadata? { return nil }
-    var bio: String { return "" }
-    var website: String? { return nil }
-    var dateJoinedEpoch_optional: Int? { return nil }
-    var location_optional: Address? { return nil }
-    var pages: [Profile]? { return nil }
-}

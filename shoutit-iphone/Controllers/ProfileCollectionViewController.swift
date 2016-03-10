@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -106,20 +106,26 @@ extension ProfileCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch section {
-        case 0:
-            return max(1, viewModel.pagesSection.cells.count)
-        case 1:
-            return max(1, viewModel.shoutsSection.cells.count)
-        default:
-            assert(false)
+        switch viewModel.sectionContentModeForSection(section) {
+        case .Default:
+            if section == 0 {
+                return viewModel.pagesSection.cells.count
+            } else if section == 1 {
+                return viewModel.shoutsSection.cells.count
+            } else {
+                assert(false)
+                return 0
+            }
+        case .Placeholder:
+            return 1
+        case .Hidden:
             return 0
         }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        if !viewModel.hasContentToDisplayInSection(indexPath.section) {
+        if case ProfileCollectionSectionContentMode.Placeholder = viewModel.sectionContentModeForSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
             let isLoading = indexPath.section == 0 ? viewModel.pagesSection.isLoading : viewModel.shoutsSection.isLoading
             cell.setupCellForActivityIndicator(isLoading)
@@ -162,7 +168,7 @@ extension ProfileCollectionViewController {
             let cellViewModel = viewModel.shoutsSection.cells[indexPath.row]
             
             cell.titleLabel.text = cellViewModel.shout.title
-            cell.subtitleLabel.text = cellViewModel.shout.text
+            cell.subtitleLabel.text = cellViewModel.shout.user.name
             cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
             cell.priceLabel.text = cellViewModel.priceString()
             
@@ -250,6 +256,7 @@ extension ProfileCollectionViewController {
                 infoView.listeningToYouLabel.hidden = true
             }
             infoView.bioLabel.text = viewModel.descriptionText
+            infoView.bioIconImageView.image = viewModel.descriptionIcon
             infoView.websiteLabel.text = viewModel.websiteString
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
@@ -353,6 +360,10 @@ extension ProfileCollectionViewController {
                     }
                 }).addDisposableTo(disposeBag)
             }
+        case .EditProfile:
+            button.rx_tap.asDriver().driveNext{[weak self] in
+                self?.flowDelegate?.showEditProfile()
+            }.addDisposableTo(disposeBag)
         default:
             break
         }

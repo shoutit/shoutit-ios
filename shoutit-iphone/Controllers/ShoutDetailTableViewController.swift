@@ -16,16 +16,35 @@ protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, Pr
 final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
-    @IBOutlet weak var headerView: ShoutDetailTableHeaderView!
+    @IBOutlet var headerView: ShoutDetailTableHeaderView!
     
     // view model
     var viewModel: ShoutDetailViewModel! {
         didSet {
-            viewModel.reloadSubject.debounce(0.5, scheduler: MainScheduler.instance).subscribeNext {[weak self] in
-                self?.tableView.reloadData()
-                self?.hydrateHeader()
-                
-            }.addDisposableTo(disposeBag)
+            viewModel
+                .reloadSubject
+                .observeOn(MainScheduler.instance)
+                .subscribeNext {[weak self] in
+                    self?.tableView.reloadData()
+                    self?.hydrateHeader()
+                }
+                .addDisposableTo(disposeBag)
+            
+            viewModel
+                .reloadOtherShoutsSubject
+                .observeOn(MainScheduler.instance)
+                .subscribeNext {[weak self] in
+                    self?.dataSource.otherShoutsCollectionView?.reloadData()
+                }
+                .addDisposableTo(disposeBag)
+            
+            viewModel
+                .reloadRelatedShoutsSubject
+                .observeOn(MainScheduler.instance)
+                .subscribeNext {[weak self] in
+                    self?.dataSource.relatedShoutsCollectionView?.reloadData()
+                }
+                .addDisposableTo(disposeBag)
         }
     }
     
@@ -104,16 +123,18 @@ final class ShoutDetailTableViewController: UITableViewController {
         headerView.titleLabel.text = viewModel.shout.title
         headerView.priceLabel.text = viewModel.priceString()
         headerView.availabilityLabel.text = ""
+        let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
+        headerView.setConstraintForPriceLabelVisible(visible)
         
         photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
         
         // size
         let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-        let header = headerView
-        tableView.tableHeaderView = nil
-        headerView.frame = CGRect(x: 0, y: 0, width: header.bounds.width, height: size.height)
-        tableView.tableHeaderView = header
+        if !CGSizeEqualToSize(size, headerView.frame.size) {
+            headerView.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width, height: size.height)
+            tableView.tableHeaderView = headerView
+        }
     }
     
     // MARK: - Navigation
@@ -157,10 +178,21 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         
         let viewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
         if let first = viewModels.first, case ShoutDetailShoutCellViewModel.Content = first {
-            return (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+            let itemSize = (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+            if index == 1 {
+                return itemSize
+            }
+            
+            let ratio = itemSize.height / itemSize.width
+            let spacings: CGFloat = 3 * 10
+            let numberOfColumns: CGFloat = 2
+            let itemWidth = floor((collectionView.bounds.width - spacings) / numberOfColumns)
+            let itemHeight = floor(itemWidth * ratio)
+            return CGSize(width: itemWidth, height: itemHeight)
         }
         
-        return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height)
+        // placeholder size
+        return CGSize(width: collectionView.bounds.width - 20, height: 120)
     }
 }
 

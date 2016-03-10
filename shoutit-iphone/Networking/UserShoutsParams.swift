@@ -16,7 +16,7 @@ struct UserShoutsParams: Params {
     
     var params: [String : AnyObject] {
         return [
-            "username" : username,
+            "user" : username,
             "page_size" : pageSize,
             "shout_type" : shoutType?.rawValue ?? "all"
         ]
