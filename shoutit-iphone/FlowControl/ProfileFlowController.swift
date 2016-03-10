@@ -32,3 +32,5 @@ final class ProfileFlowController: FlowController {
 extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {}
 
 extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}
+
+extension ProfileFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}

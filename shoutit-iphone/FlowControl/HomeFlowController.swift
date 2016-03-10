@@ -27,3 +27,4 @@ final class HomeFlowController: FlowController {
 extension HomeFlowController: HomeViewControllerFlowDelegate {}
 extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}
+extension HomeFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}

@@ -42,7 +42,7 @@ class VideoProcessor: AnyObject {
         let asset = AVAsset(URL: url)
         if let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality) {
             
-            let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/ tempVideo.mp4"
+            let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/tempVideo\(NSDate().timeIntervalSince1970).mp4"
             exporter.outputURL = NSURL(fileURLWithPath: documentPath)
 
             
@@ -56,8 +56,7 @@ class VideoProcessor: AnyObject {
                             let data = NSData(contentsOfURL: outputURL)
                             handler(data: data)
                         }
-                    }
-                    if exporter.status == .Failed {
+                    } else {
                         print(exporter.error)
                     }
                 })

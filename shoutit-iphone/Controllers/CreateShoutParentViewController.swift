@@ -71,23 +71,48 @@ class CreateShoutParentViewController: UIViewController {
         }
         
         var urls : [String] = []
+        var videos : [Video] = []
         
         for (_, attachment) in attachments {
-            if let path = attachment.remoteURL?.absoluteString {
+            if let path = imageAttachmentObject(attachment) {
                 urls.append(path)
+            }
+            if let video = videoAttachmentObject(attachment) {
+                videos.append(video)
             }
         }
         
         if let activeTasks = self.createShoutTableController.imagesController?.mediaUploader.tasks {
             for task in activeTasks {
-                if let path = task.attachment.remoteURL?.absoluteString {
+                if let path = imageAttachmentObject(task.attachment) {
                     urls.append(path)
+                }
+                if let video = videoAttachmentObject(task.attachment) {
+                    videos.append(video)
                 }
             }
         }
         
         self.createShoutTableController.viewModel.shoutParams.images.value = urls.unique()
+        self.createShoutTableController.viewModel.shoutParams.videos.value = videos
         
+    }
+    
+    func imageAttachmentObject(attachment: MediaAttachment) -> String? {
+        if attachment.type == .Image {
+            return attachment.remoteURL?.absoluteString
+        }
+        
+        return nil
+    }
+
+    
+    func videoAttachmentObject(attachment: MediaAttachment) -> Video? {
+        if attachment.type == .Video {
+            return attachment.asVideoObject()
+        }
+        
+        return nil
     }
     
     @IBAction func submitAction() {

@@ -53,6 +53,8 @@ extension SHShoutItemCell {
         
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
             self.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        } else {
+            self.shoutImage.image = UIImage(named:"auth_screen_bg_pattern")
         }
         
         self.shoutType?.text = shout.type()?.title()
@@ -64,6 +66,8 @@ extension SHShoutItemCell {
         
         if let imagePath = discoverItem.image, imageURL = NSURL(string: imagePath) {
             self.shoutImage.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        } else {
+            self.shoutImage.image = UIImage(named:"auth_screen_bg_pattern")
         }
         
     }
