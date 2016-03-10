@@ -17,23 +17,20 @@ protocol MediaPickerControllerDelegate {
 
 class MediaPickerController: NSObject, MediaPicker  {
 
-    var pickerSettings : MediaPickerSettings!
-    var selectedAttachments : [MediaAttachment]!
+    var pickerSettings : MediaPickerSettings
+    var selectedAttachments : [MediaAttachment]
     
     let videoProcessor = VideoProcessor()
     
-    var presentingSubject : BehaviorSubject<UIViewController?>!
+    var presentingSubject : BehaviorSubject<UIViewController?>
     
     var delegate : MediaPickerControllerDelegate?
     
-    init(delegate: MediaPickerControllerDelegate? = nil) {
-        super.init()
-    
-        presentingSubject = BehaviorSubject(value: nil)
-        
+    init(delegate: MediaPickerControllerDelegate? = nil, settings: MediaPickerSettings = MediaPickerSettings()) {
+        self.pickerSettings = settings
+        self.presentingSubject = BehaviorSubject(value: nil)
         self.selectedAttachments = []
-        
-        pickerSettings = MediaPickerSettings()
+        super.init()
         
         self.delegate = delegate
     }
@@ -48,6 +45,7 @@ class MediaPickerController: NSObject, MediaPicker  {
     
     func mediaPickerController(settings: MediaPickerSettings = MediaPickerSettings(), sender: AnyObject? = nil) -> PhotosMenuController {
         let photosMenuController = CaptureViewController()
+        photosMenuController.allowsVideos = settings.allowsVideos
         
         if let popoverPresentationController = photosMenuController.popoverPresentationController {
             popoverPresentationController.barButtonItem = sender as? UIBarButtonItem

@@ -16,6 +16,10 @@ class SelectShoutLocationViewController: ChangeLocationTableViewController {
             finish(true, address)
         }
         
+        popController()
+    }
+    
+    func popController() {
         self.navigationController?.popViewControllerAnimated(true)
-    }    
+    }
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Edit Profile-->
@@ -27,6 +28,11 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nw9-vy-db6">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
                                     <subviews>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTd-vg-eQa" customClass="ACPDownloadView">
+                                            <rect key="frame" x="260" y="66" width="80" height="80"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvp-Qm-jyI">
                                             <rect key="frame" x="260" y="66" width="80" height="80"/>
                                             <constraints>
@@ -39,7 +45,11 @@
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerX" secondItem="Nw9-vy-db6" secondAttribute="centerX" id="5H8-9H-z6e"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerY" secondItem="mvp-Qm-jyI" secondAttribute="centerY" id="5ct-Mu-uYg"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="width" secondItem="mvp-Qm-jyI" secondAttribute="width" id="CWh-h0-PCx"/>
                                         <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerY" secondItem="Nw9-vy-db6" secondAttribute="centerY" id="T4U-qD-VJ7"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="height" secondItem="mvp-Qm-jyI" secondAttribute="height" id="fpg-o3-H5y"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerX" secondItem="mvp-Qm-jyI" secondAttribute="centerX" id="hAF-Fq-5F3"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-CQ-4gm">
@@ -55,12 +65,21 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                                                     <state key="normal" image="photo_icon_small_white"/>
                                                 </button>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sK-wT-OwL" customClass="ACPDownloadView">
+                                                    <rect key="frame" x="19" y="19" width="38" height="38"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="2sK-wT-OwL" firstAttribute="width" secondItem="KmB-F7-TAH" secondAttribute="width" multiplier="0.5" id="CGc-xG-a4n"/>
                                                 <constraint firstItem="KmB-F7-TAH" firstAttribute="leading" secondItem="ToL-cJ-4wd" secondAttribute="leading" id="NfU-hd-ig5"/>
                                                 <constraint firstAttribute="bottom" secondItem="KmB-F7-TAH" secondAttribute="bottom" id="Olx-me-KQV"/>
                                                 <constraint firstItem="KmB-F7-TAH" firstAttribute="top" secondItem="ToL-cJ-4wd" secondAttribute="top" id="P52-gj-Ysz"/>
+                                                <constraint firstItem="2sK-wT-OwL" firstAttribute="centerX" secondItem="KmB-F7-TAH" secondAttribute="centerX" id="bcb-Gr-t5x"/>
+                                                <constraint firstItem="2sK-wT-OwL" firstAttribute="height" secondItem="KmB-F7-TAH" secondAttribute="height" multiplier="0.5" id="mrE-qi-DN9"/>
+                                                <constraint firstItem="2sK-wT-OwL" firstAttribute="centerY" secondItem="KmB-F7-TAH" secondAttribute="centerY" id="udQ-oN-lcA"/>
                                                 <constraint firstAttribute="trailing" secondItem="KmB-F7-TAH" secondAttribute="trailing" id="us9-Td-v5O"/>
                                             </constraints>
                                         </view>
@@ -97,8 +116,10 @@
                                 <outlet property="avatarButtonOverlay" destination="ToL-cJ-4wd" id="Mwr-4z-Qvt"/>
                                 <outlet property="avatarContainerView" destination="Ned-CQ-4gm" id="zbP-bf-0wA"/>
                                 <outlet property="avatarImageView" destination="XRy-QQ-Qcz" id="wI3-HD-tDs"/>
+                                <outlet property="avatarUploadProgressView" destination="2sK-wT-OwL" id="NGX-3Z-24W"/>
                                 <outlet property="coverButton" destination="mvp-Qm-jyI" id="QQ8-KT-vhC"/>
                                 <outlet property="coverImageView" destination="Bkh-Oj-JTl" id="HI9-kj-EzH"/>
+                                <outlet property="coverUploadProgressView" destination="FTd-vg-eQa" id="gzt-Vp-khF"/>
                             </connections>
                         </view>
                         <prototypes>

@@ -18,7 +18,7 @@ enum MediaUploadingTaskStatus : Int {
 
 class MediaUploadingTask: NSObject {
     
-    var attachment : MediaAttachment!
+    var attachment : MediaAttachment
     var request : Alamofire.Request? {
         didSet {
             trackProgress()
@@ -33,13 +33,9 @@ class MediaUploadingTask: NSObject {
     var progress : Variable<Float> = Variable(0)
     
     required init(attachment: MediaAttachment) {
-        super.init()
         self.attachment = attachment
-        self.uid = generateUid()
-    }
-    
-    func generateUid() -> String {
-        return NSUUID().UUIDString
+        self.uid = NSUUID().UUIDString
+        super.init()
     }
     
     func changeStatusTo(status: MediaUploadingTaskStatus) {

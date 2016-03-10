@@ -23,4 +23,9 @@ class APIProfileService {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
     }
+    
+    static func editUserWithUsername(username: String, withParams params: EditProfileParams) -> Observable<LoggedUser> {
+        let url = APIManager.baseURL + "/profiles/\(username)"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+    }
 }

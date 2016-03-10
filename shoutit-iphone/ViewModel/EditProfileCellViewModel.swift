@@ -42,6 +42,4 @@ enum EditProfileCellViewModel {
     init(location: Address) {
         self = .Location(value: location, placeholder: NSLocalizedString("Location", comment: "Edit profile placeholder text"))
     }
-    
-    // MARK: - Mutation
 }

@@ -17,6 +17,7 @@ struct MediaPickerSettings {
     var videoLength : NSTimeInterval = 10.0
     var maximumItems : Int = 5
     var maximumVideos : Int = 1
+    var allowsVideos: Bool = true
 }
 
 struct MediaAttachment : Hashable, Equatable {
@@ -65,7 +66,7 @@ func ==(lhs: MediaAttachment, rhs: MediaAttachment) -> Bool {
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    var pickerSettings : MediaPickerSettings! { get set }
+    var pickerSettings : MediaPickerSettings { get set }
 
     func attachmentSelected(attachment: MediaAttachment)
     
