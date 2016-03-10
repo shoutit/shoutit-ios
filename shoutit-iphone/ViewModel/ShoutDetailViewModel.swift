@@ -217,11 +217,11 @@ extension ShoutDetailViewModel {
         var index = 0
         models += detailsTuples.reduce([ShoutDetailTableViewCellViewModel]()) { (array, tuple) -> [ShoutDetailTableViewCellViewModel] in
             defer { index += 1 }
-            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1)]
+            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1, imageName: tuple.2, filter: tuple.3)]
         }
         
         // other
-        models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
+        //models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
         models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(shout.user.firstName)", comment: "Shout detail")))
         models.append(.OtherShouts)
         models.append(.Button(title: NSLocalizedString("Visit \(shout.user.firstName)'s profile", comment: "Shout Detail"), type: .VisitProfile))
@@ -231,24 +231,31 @@ extension ShoutDetailViewModel {
         return models
     }
     
-    static func detailsWithShout(shout: Shout) -> [(String, String)] {
+    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?)] {
         
-        var details: [(String, String)] = []
+        var details: [(String, String, String?, Filter?)] = []
         
         // date
         if let epoch = shout.publishedAtEpoch {
             let key = NSLocalizedString("Date", comment: "Shout details")
             let value = DateFormatters.sharedInstance.stringFromDateEpoch(epoch)
-            details.append((key, value))
+            details.append((key, value, nil, nil))
         }
         
         // category
-        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name))
+        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil))
+        
+        // add filters
+        shout.filters?.forEach{ (filter) in
+            if let key = filter.name, value = filter.value?.name {
+                details.append((key, value, nil, filter))
+            }
+        }
         
         // location
         if let city = shout.location?.city {
             let key = NSLocalizedString("Location", comment: "Shout detail")
-            details.append((key, city))
+            details.append((key, city, shout.location?.country, nil))
         }
         
         return details

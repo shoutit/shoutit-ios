@@ -103,7 +103,7 @@
         <scene sceneID="9Y9-zQ-BN6">
             <objects>
                 <tableViewController storyboardIdentifier="ShoutDetailTableViewController" id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dRc-Rn-XKo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dRc-Rn-XKo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
@@ -244,7 +244,7 @@
                             </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Description" rowHeight="100" id="2hL-jZ-fuN" customClass="ShoutDetailDescriptionTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Description" rowHeight="100" id="2hL-jZ-fuN" customClass="ShoutDetailDescriptionTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="467" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hL-jZ-fuN" id="cOr-0u-031">
@@ -284,7 +284,7 @@
                                     <outlet property="internalContentView" destination="c2g-bD-JDa" id="f5R-Ur-bPv"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KeyValue" rowHeight="40" id="5Q0-9C-YJP" customClass="ShoutDetailKeyValueTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="KeyValue" rowHeight="40" id="5Q0-9C-YJP" customClass="ShoutDetailKeyValueTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="567" width="600" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Q0-9C-YJP" id="SKT-QE-U4D">
@@ -306,6 +306,13 @@
                                                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QFW-oS-pjM">
+                                                    <rect key="frame" x="548" y="9" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="Vy2-t7-yha"/>
+                                                        <constraint firstAttribute="width" constant="24" id="mBt-lO-d1w"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -313,7 +320,9 @@
                                                 <constraint firstItem="ZvU-8u-sz5" firstAttribute="leading" secondItem="JMW-bd-2cG" secondAttribute="leading" constant="10" id="3Ug-0S-Ryb"/>
                                                 <constraint firstItem="mYl-ac-2Q9" firstAttribute="leading" secondItem="JMW-bd-2cG" secondAttribute="leading" constant="110" id="Evp-iD-r0E"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZvU-8u-sz5" secondAttribute="bottom" constant="7" id="L9H-dt-dNi"/>
+                                                <constraint firstAttribute="trailing" secondItem="QFW-oS-pjM" secondAttribute="trailing" constant="8" id="eOq-El-0dd"/>
                                                 <constraint firstItem="ZvU-8u-sz5" firstAttribute="top" secondItem="JMW-bd-2cG" secondAttribute="top" constant="7" id="g3X-fo-IGt"/>
+                                                <constraint firstItem="QFW-oS-pjM" firstAttribute="centerY" secondItem="mYl-ac-2Q9" secondAttribute="centerY" id="l5K-YM-qvC"/>
                                                 <constraint firstItem="mYl-ac-2Q9" firstAttribute="centerY" secondItem="ZvU-8u-sz5" secondAttribute="centerY" id="sms-cZ-NOR"/>
                                                 <constraint firstAttribute="height" constant="40" id="t2P-e4-R8g"/>
                                             </constraints>
@@ -335,12 +344,13 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="iconImageView" destination="QFW-oS-pjM" id="umj-md-4d5"/>
                                     <outlet property="internalContentView" destination="JMW-bd-2cG" id="djS-hr-YWc"/>
                                     <outlet property="keyLabel" destination="ZvU-8u-sz5" id="Xge-jo-nfW"/>
                                     <outlet property="valueLabel" destination="mYl-ac-2Q9" id="3Aa-Qa-NhD"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Regular" rowHeight="40" id="msa-Tv-qg4" customClass="ShoutDetailRegularTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Regular" rowHeight="40" id="msa-Tv-qg4" customClass="ShoutDetailRegularTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="607" width="600" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="msa-Tv-qg4" id="7hk-UW-aai">
@@ -380,7 +390,7 @@
                                     <outlet property="titleLabel" destination="5SK-UK-Q7I" id="kpu-3s-t0o"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Button" rowHeight="49" id="rw5-xd-wOc" customClass="ShoutDetailButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Button" rowHeight="49" id="rw5-xd-wOc" customClass="ShoutDetailButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="647" width="600" height="49"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rw5-xd-wOc" id="Van-vl-REx">
@@ -429,7 +439,7 @@
                                     <outlet property="button" destination="Eem-sc-Nfz" id="grg-qa-rLt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionHeader" rowHeight="54" id="Xkh-Vt-OI9" customClass="ShoutDetailSectionHeaderTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeader" rowHeight="54" id="Xkh-Vt-OI9" customClass="ShoutDetailSectionHeaderTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="696" width="600" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xkh-Vt-OI9" id="V35-bO-mG3">
@@ -461,7 +471,7 @@
                                     <outlet property="titleLabel" destination="TJp-qU-nfC" id="dNs-II-Nwr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherShouts" rowHeight="354" id="Igx-3c-7Ds" customClass="ShoutDetailCollectionViewContainerTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OtherShouts" rowHeight="354" id="Igx-3c-7Ds" customClass="ShoutDetailCollectionViewContainerTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="750" width="600" height="354"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Igx-3c-7Ds" id="vZd-Wz-Y5L">
@@ -508,7 +518,7 @@
                                     <outlet property="collectionViewHeightConstraint" destination="43a-RI-bmJ" id="fta-5o-0iS"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RelatedShouts" rowHeight="130" id="ULW-i4-ahR" customClass="ShoutDetailCollectionViewContainerTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RelatedShouts" rowHeight="130" id="ULW-i4-ahR" customClass="ShoutDetailCollectionViewContainerTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="1104" width="600" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULW-i4-ahR" id="LCu-Cs-1gR">
