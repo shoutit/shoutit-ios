@@ -71,12 +71,22 @@ extension EditProfileTableViewController {
         let cellViewModel = viewModel.cells[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
         
-        if let cell = cell as? EditProfileTextFieldTableViewCell {
-            cell.textField.placeholder = cellViewModel.placeholderText
-            cell.textField.text = cellViewModel.stringValueRepresentation
-        } else if let cell = cell as? EditProfileTextViewTableViewCell {
-            cell.textView.placeholderLabel?.text = cellViewModel.placeholderText
-            cell.textView.text = cellViewModel.stringValueRepresentation
+        switch cellViewModel {
+        case .BasicText(let value, let placeholder):
+            let cell = cell as! EditProfileTextFieldTableViewCell
+            cell.textField.placeholder = placeholder
+            cell.textField.text = value
+            cell.textField
+                .rx_text
+                .asDriver()
+                .driveNext{[unowned self] (text) in
+                    
+                }
+                .addDisposableTo(cell.disposeBag)
+        case .RichText(let value, let placeholder):
+            let cell = cell as! EditProfileTextViewTableViewCell
+            cell.textView.placeholderLabel?.text = placeholder
+            cell.textView.text = value
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
@@ -96,11 +106,10 @@ extension EditProfileTableViewController {
                 cell.textView.setNeedsLayout()
                 cell.textView.layoutIfNeeded()
             }
-        } else if let cell = cell as? EditProfileSelectButtonTableViewCell {
-            let data = viewModel.locationTuple()
-            cell.selectButton.smallTitleLabel.text = cellViewModel.placeholderText
-            cell.selectButton.setTitle(data?.0, forState: .Normal)
-            cell.selectButton.setImage(data?.1, forState: .Normal)
+        case .Location(let value, let placeholder):
+            let cell = cell as! EditProfileSelectButtonTableViewCell
+            cell.selectButton.smallTitleLabel.text = placeholder
+            cell.selectButton.setTitle(value.address, forState: .Normal)
             cell.selectButton
                 .rx_tap
                 .asDriver()
@@ -108,16 +117,20 @@ extension EditProfileTableViewController {
                     
                     let controller = Wireframe.changeShoutLocationController()
                     
-                    controller.finishedBlock = { (success, place) -> Void in
-                        //self?.viewModel.shoutParams.location.value = place
-                        self?.tableView.reloadData()
+                    controller.finishedBlock = {[weak indexPath](success, place) -> Void in
+                        if let place = place, indexPath = indexPath {
+                            let newViewModel = EditProfileCellViewModel(location: place)
+                            self?.viewModel.cells[indexPath.row] = newViewModel
+                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        }
                     }
                     
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
-                })
+                    })
                 .addDisposableTo(cell.disposeBag)
         }
+        
         
         return cell
     }

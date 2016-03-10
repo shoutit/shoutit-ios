@@ -11,33 +11,19 @@ import Foundation
 class EditProfileTableViewModel {
     
     let user: LoggedUser
-    let cells: [EditProfileCellViewModel]
+    var cells: [EditProfileCellViewModel]
     
     init() {
         precondition(Account.sharedInstance.loggedUser != nil)
         user = Account.sharedInstance.loggedUser!
-        cells = [.Name(value: user.name),
-                 .Username(value: user.username),
-                 .Bio(value: user.bio),
-                 .Location(value:user.location),
-                 .Website(value: user.website ?? "")]
+        cells = [EditProfileCellViewModel(name: user.name),
+                 EditProfileCellViewModel(username: user.username),
+                 EditProfileCellViewModel(bio: user.bio),
+                 EditProfileCellViewModel(location: user.location),
+                 EditProfileCellViewModel(website: user.website ?? "")]
     }
     
-    // MARK: - Convenience methods
+    // MARK: - Mutation
     
-    func locationTuple() -> (String, UIImage?)? {
-        let locationViewModel = cells.filter { (cellViewModel) -> Bool in
-            if case EditProfileCellViewModel.Location = cellViewModel {
-                return true
-            }
-            return false
-        }.first
-        
-        guard case EditProfileCellViewModel.Location(let location)? = locationViewModel else { return nil }
-        
-        let locationString = "\(location.city), \(location.country)"
-        let flag = UIImage(named: location.country)
-        
-        return (locationString, flag)
-    }
+    
 }

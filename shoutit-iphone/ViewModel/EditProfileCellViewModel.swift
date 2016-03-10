@@ -9,43 +9,39 @@
 import Foundation
 
 enum EditProfileCellViewModel {
-    case Name(value: String)
-    case Username(value: String)
-    case Bio(value: String)
-    case Location(value: Address)
-    case Website(value: String)
+    case BasicText(value: String, placeholder: String)
+    case RichText(value: String, placeholder: String)
+    case Location(value: Address, placeholder: String)
     
     var reuseIdentifier: String {
         switch self {
-        case .Name, .Username, .Website: return "EditProfileTextFieldCell"
-        case .Bio: return "EditProfileTextViewCell"
+        case .BasicText: return "EditProfileTextFieldCell"
+        case .RichText: return "EditProfileTextViewCell"
         case .Location: return "EditProfileSelectButtonCell"
         }
     }
     
-    var stringValueRepresentation: String? {
-        switch self {
-        case .Name(let value): return value
-        case .Username(let value): return value
-        case .Bio(let value): return value
-        case .Website(let value): return value
-        default:
-            return nil
-        }
+    // MARK: - Conenience init
+    
+    init(name: String) {
+        self = .BasicText(value: name, placeholder: NSLocalizedString("Name", comment: "Edit profile placeholder text"))
     }
     
-    var placeholderText: String? {
-        switch self {
-        case .Name:
-            return NSLocalizedString("Name", comment: "Edit profile placeholder text")
-        case .Username:
-            return NSLocalizedString("Username", comment: "Edit profile placeholder text")
-        case .Bio:
-            return NSLocalizedString("Bio", comment: "Edit profile placeholder text")
-        case .Website:
-            return NSLocalizedString("Website", comment: "Edit profile placeholder text")
-        case .Location:
-            return NSLocalizedString("Location", comment: "Edit profile placeholder text")
-        }
+    init(username: String) {
+        self = .BasicText(value: username, placeholder: NSLocalizedString("Username", comment: "Edit profile placeholder text"))
     }
+    
+    init(bio: String) {
+        self = .RichText(value: bio, placeholder: NSLocalizedString("Bio", comment: "Edit profile placeholder text"))
+    }
+    
+    init(website: String) {
+        self = .BasicText(value: website, placeholder: NSLocalizedString("Website", comment: "Edit profile placeholder text"))
+    }
+    
+    init(location: Address) {
+        self = .Location(value: location, placeholder: NSLocalizedString("Location", comment: "Edit profile placeholder text"))
+    }
+    
+    // MARK: - Mutation
 }
