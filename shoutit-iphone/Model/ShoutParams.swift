@@ -21,7 +21,7 @@ struct ShoutParams {
     var currency:  Variable<Currency?>
     
     var images:  Variable<[String]?>
-    var videos:  Variable<[String]?>
+    var videos:  Variable<[Video]?>
     
     var category:  Variable<Category?>
     

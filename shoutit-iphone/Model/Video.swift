@@ -24,7 +24,7 @@ extension Video: Decodable {
     static func decode(j: JSON) -> Decoded<Video> {
         return curry(Video.init)
             <^> j <| "url"
-            <*> j <| "thumbnail"
+            <*> j <| "thumbnail_url"
             <*> j <| "provider"
             <*> j <| "id_on_provider"
             <*> j <| "duration"
@@ -36,7 +36,7 @@ extension Video: Encodable {
     func encode() -> JSON {
         return JSON.Object([
             "url"    : self.path.encode(),
-            "thumbnail"  : self.thumbnailPath.encode(),
+            "thumbnail_url"  : self.thumbnailPath.encode(),
             "provider" : self.provider.encode(),
             "id_on_provider"    : self.idOnProvider.encode(),
             "duration"  : self.duration.encode()

@@ -74,8 +74,13 @@ protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDele
 }
 
 extension MediaAttachment {
-    func asVideoObject() -> Video {
-        return Video(path: self.remoteURL!.absoluteString, thumbnailPath:  self.thumbRemoteURL!.absoluteString, provider: self.provider, idOnProvider: (self.remoteURL?.lastPathComponent ?? ""), duration: Int(self.videoDuration ?? 0))
+    func asVideoObject() -> Video? {
+        
+        if let remoteURL = self.remoteURL {
+            return Video(path: remoteURL.absoluteString, thumbnailPath: (self.thumbRemoteURL?.absoluteString ?? ""), provider: self.provider, idOnProvider: (remoteURL.lastPathComponent ?? ""), duration: Int(self.videoDuration ?? 0))
+        }
+        
+        return nil
     }
 }
 
