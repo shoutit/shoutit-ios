@@ -23,7 +23,7 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
     
     func listeningCountString() -> String {
         let numberString = NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)
-        return NSLocalizedString("Listeners \(numberString)", comment: "")
+        return NSLocalizedString("\(numberString) Listeners", comment: "")
     }
     
     func toggleIsListening() -> Observable<Bool> {

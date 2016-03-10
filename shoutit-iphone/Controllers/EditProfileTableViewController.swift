@@ -189,7 +189,6 @@ extension EditProfileTableViewController {
                         }
                     }
                     
-                    //self?.presentViewController(controller, animated: true, completion: nil)
                     controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: "popController")
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
