@@ -18,12 +18,29 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
     
     var items : [DiscoverItem] = []
     
+    let selectedModel : Variable<DiscoverItem?> = Variable(nil)
+    let seeAllSubject = BehaviorSubject<DiscoverPreviewCollectionViewController?>(value: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
+            
+            viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).driveNext({ [weak self] (indexPath) -> Void in
+                
+                if let indexPath = indexPath {
+                    if indexPath.item == self?.items.count {
+                        self?.seeAllSubject.onNext(self)
+                        return
+                    }
+                    
+                    let element = self?.items[indexPath.item]
+                    self?.selectedModel.value = element
+                }
+                
+            }).addDisposableTo(disposeBag)
             
             viewModel.dataSource.subscribeNext({ [weak self] (items) -> Void in
                 self?.items = items
@@ -36,6 +53,11 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        if indexPath.item == self.items.count {
+            return collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
+        }
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
     
         let element = items[indexPath.item]
@@ -46,7 +68,7 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return (items.count > 0) ? items.count + 1 : 0
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

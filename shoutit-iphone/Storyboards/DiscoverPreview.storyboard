@@ -70,6 +70,40 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                     <outlet property="shoutTitle" destination="tsE-nY-AhM" id="qBQ-g0-V4g"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverPreviewCellSeeAll" id="Ie4-0n-rQL">
+                                <rect key="frame" x="0.0" y="318" width="200" height="239"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Lt-fs-885">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="See All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg4-zL-xAD">
+                                                    <rect key="frame" x="68" y="109" width="53" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.25098039215686274" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Wg4-zL-xAD" firstAttribute="centerY" secondItem="9Lt-fs-885" secondAttribute="centerY" id="4uw-cE-ha9"/>
+                                                <constraint firstItem="Wg4-zL-xAD" firstAttribute="centerX" secondItem="9Lt-fs-885" secondAttribute="centerX" id="wba-2G-AZW"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="9Lt-fs-885" firstAttribute="leading" secondItem="Ie4-0n-rQL" secondAttribute="leading" id="GCc-IP-LOr"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Lt-fs-885" secondAttribute="trailing" id="ImO-rn-ARM"/>
+                                    <constraint firstItem="9Lt-fs-885" firstAttribute="top" secondItem="Ie4-0n-rQL" secondAttribute="top" id="MOF-X5-k2H"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Lt-fs-885" secondAttribute="bottom" id="mae-1f-H9K"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="239"/>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="bFB-q7-VAA" id="VCX-1h-tlN"/>

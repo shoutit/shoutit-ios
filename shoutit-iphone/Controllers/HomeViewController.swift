@@ -89,11 +89,15 @@ class HomeViewController: UIViewController {
             self?.discoverVisible = newValue
         }).addDisposableTo(disposeBag)
         
-        discoverController.collectionView?.rx_modelSelected(DiscoverItem.self)
-            .asDriver()
-            .driveNext { [weak self] selectedShout in
-                _ = DiscoverFlowController(navigationController: (self?.navigationController)!, discoverItem: selectedShout)
-            }.addDisposableTo(disposeBag)
+        discoverController.selectedModel.asDriver().driveNext { (item) -> Void in
+            if let item = item {
+                self.flowDelegate?.showDiscoverForDiscoverItem(item)
+            }
+        }.addDisposableTo(disposeBag)
+        
+        discoverController.seeAllSubject.asObservable().skip(1).subscribeNext { (controller) -> Void in
+            self.flowDelegate?.showDiscover()
+        }.addDisposableTo(disposeBag)
         
     }
     

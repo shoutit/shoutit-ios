@@ -30,3 +30,4 @@ class DiscoverShoutsFlowController: FlowController {
 extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ProfileCollectionViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: DiscoverCollectionViewControllerFlowDelegate {}
