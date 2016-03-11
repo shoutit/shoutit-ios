@@ -47,6 +47,7 @@ final class ShoutDetailViewModel {
                 defer { self?.reloadSubject.onNext() }
                 switch event {
                 case .Next(let shout):
+                    print(shout.location)
                     self?.shout = shout
                     guard let strongSelf = self, let imagePaths = shout.imagePaths else { return }
                     if imagePaths.count == 0 {
