@@ -191,7 +191,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
                 .asDriver()
                 .driveNext({ [weak self] () -> Void in
                     
-                    let controller = Wireframe.changeShoutLocationController()
+                    let controller = Wireframe.changeShoutLocationController() 
                     
                     controller.finishedBlock = { (success, place) -> Void in
                         self?.viewModel.shoutParams.location.value = place
