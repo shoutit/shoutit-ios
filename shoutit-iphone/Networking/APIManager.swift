@@ -12,6 +12,7 @@ import Alamofire
 import CryptoSwift
 import ReachabilitySwift
 import Kingfisher
+import Timberjack
 
 final class APIManager {
     
@@ -25,7 +26,7 @@ final class APIManager {
     static func manager() -> Alamofire.Manager {
         if apiManager == nil {
             let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let configuration = Timberjack.defaultSessionConfiguration()
             configuration.HTTPAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.Manager(configuration: configuration)
         }

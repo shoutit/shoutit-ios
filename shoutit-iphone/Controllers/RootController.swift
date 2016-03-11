@@ -64,6 +64,11 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
                 self.toggleMenuAction()
             }
             .addDisposableTo(disposeBag)
+        
+        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+            self.invalidateControllersCache()
+            self.openItem(.Home)
+        }.addDisposableTo(disposeBag)
     }
     
     override func viewDidAppear(animated: Bool) {
