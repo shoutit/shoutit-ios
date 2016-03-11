@@ -9,33 +9,15 @@
 import UIKit
 import Argo
 import Alamofire
+import RxSwift
 
 class APIAuthService {
     
     private static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
     private static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
     
-    static func resetPassword(params: ResetPasswordParams, completionHandler: Result<Success, NSError> -> Void) {
-        
-        APIManager.manager()
-            .request(.POST, authResetPasswordURL, parameters: params.params, encoding: .JSON, headers: nil)
-            .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
-                switch response.result {
-                case .Success(let json):
-                    do {
-                        if let s: Decoded<Success> = decode(json), let success = s.value {
-                            completionHandler(.Success(success))
-                        } else {
-                            throw ParseError.Success
-                        }
-                    } catch let error as NSError {
-                        completionHandler(.Failure(error))
-                    }
-                case .Failure(let error):
-                    completionHandler(.Failure(error))
-                }
-        }
+    static func resetPassword(params: ResetPasswordParams) -> Observable<Success> {
+        return APIGenericService.requestWithMethod(.POST, url: authResetPasswordURL, params: params, encoding: .JSON)
     }
     
     static func getOauthToken<T: User where T: Decodable, T == T.DecodedType>(params: AuthParams, completionHandler: Result<(AuthData, T), NSError> -> Void) {

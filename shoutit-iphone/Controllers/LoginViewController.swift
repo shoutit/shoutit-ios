@@ -71,19 +71,10 @@ class LoginViewController: UITableViewController {
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
-        forgotPasswordButton.rx_tap .filter{
-                if case .Invalid(let errors) = Validator.validateEmail(self.emailTextField.text) {
-                    if let error = errors.first {
-                        self.delegate?.showErrorMessage(error.message)
-                    }
-                    return false
-                }
-                
-                return true
-            }
-            .subscribeNext{[unowned self] in
-                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
-                self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
+        forgotPasswordButton.rx_tap
+            .asDriver()
+            .driveNext {[weak self] in
+                self?.delegate?.presentResetPassword()
             }
             .addDisposableTo(disposeBag)
         

@@ -358,6 +358,116 @@
             </objects>
             <point key="canvasLocation" x="3778.5" y="533"/>
         </scene>
+        <!--Reset password-->
+        <scene sceneID="8xm-bN-9gB">
+            <objects>
+                <tableViewController storyboardIdentifier="ResetPasswordViewController" title="Reset password" id="HYX-k8-0GR" customClass="ResetPasswordViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pi9-Mf-CkD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="IYx-Wr-2wi">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="uA6-hU-Rl8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uA6-hU-Rl8" id="LpK-Vh-JdD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X4Y-Df-Xe1" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="38" width="335" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="f5V-rM-zo8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="X4Y-Df-Xe1" firstAttribute="top" secondItem="LpK-Vh-JdD" secondAttribute="top" constant="38" id="X7Q-ov-heI"/>
+                                                <constraint firstAttribute="trailing" secondItem="X4Y-Df-Xe1" secondAttribute="trailing" constant="20" id="jvP-h7-mEI"/>
+                                                <constraint firstItem="X4Y-Df-Xe1" firstAttribute="leading" secondItem="LpK-Vh-JdD" secondAttribute="leading" constant="20" id="qkz-f0-ElH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8rM-7W-FgZ">
+                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8rM-7W-FgZ" id="xp2-SO-Ugu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiB-S8-6Dt" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="44"/>
+                                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="xdC-7T-0uv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <state key="normal" title="Reset password">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RiB-S8-6Dt" firstAttribute="top" secondItem="xp2-SO-Ugu" secondAttribute="top" id="1sR-wF-Zak"/>
+                                                <constraint firstItem="RiB-S8-6Dt" firstAttribute="leading" secondItem="xp2-SO-Ugu" secondAttribute="leading" constant="20" id="Bg8-le-bLb"/>
+                                                <constraint firstAttribute="trailing" secondItem="RiB-S8-6Dt" secondAttribute="trailing" constant="20" id="uji-CJ-Bve"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Q3q-BD-EQC">
+                                        <rect key="frame" x="0.0" y="144" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3q-BD-EQC" id="YXS-hg-RH6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAm-Q7-PXd" userLabel="Forgot your password?">
+                                                    <rect key="frame" x="20" y="5" width="335" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="Gbg-MK-myZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <state key="normal" title="Back to log in">
+                                                        <color key="titleColor" red="0.25098039220000001" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QAm-Q7-PXd" firstAttribute="top" secondItem="YXS-hg-RH6" secondAttribute="top" constant="5" id="64B-fl-03c"/>
+                                                <constraint firstItem="QAm-Q7-PXd" firstAttribute="leading" secondItem="YXS-hg-RH6" secondAttribute="leading" constant="20" id="Y3N-Zk-g74"/>
+                                                <constraint firstAttribute="trailing" secondItem="QAm-Q7-PXd" secondAttribute="trailing" constant="20" id="qwc-l6-arr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="HYX-k8-0GR" id="2tB-fm-GsR"/>
+                            <outlet property="delegate" destination="HYX-k8-0GR" id="s0L-hg-UBJ"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="400"/>
+                    <connections>
+                        <outlet property="backToLoginButton" destination="QAm-Q7-PXd" id="TJ1-7U-IPy"/>
+                        <outlet property="emailTextField" destination="X4Y-Df-Xe1" id="gcr-tl-j0o"/>
+                        <outlet property="resetPasswordButton" destination="RiB-S8-6Dt" id="yte-Bi-MGV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xD2-jC-p4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3778.5" y="1040"/>
+        </scene>
         <!--Login With Email View Controller-->
         <scene sceneID="VEM-5X-hLW">
             <objects>
