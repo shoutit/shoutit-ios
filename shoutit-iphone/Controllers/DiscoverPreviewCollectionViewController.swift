@@ -15,7 +15,9 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
     let viewModel = DiscoverPreviewViewModel()
     
     private let disposeBag = DisposeBag()
-        
+    
+    var items : [DiscoverItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,21 +25,33 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
-            viewModel.dataSource.bindTo((collection.rx_itemsWithCellIdentifier(viewModel.cellReuseIdentifier(), cellType: SHShoutItemCell.self))) { (item, element, cell) in
-                cell.bindWith(DiscoverItem: element)
-            }.addDisposableTo(disposeBag)
+            viewModel.dataSource.subscribeNext({ [weak self] (items) -> Void in
+                self?.items = items
+                self?.collectionView?.reloadData()
+            }).addDisposableTo(disposeBag)
         }
 
     }
     
     // MARK: UICollectionViewDataSource
+    
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
     
+        let element = items[indexPath.item]
+        cell.bindWith(DiscoverItem: element)
         // Configure the cell
     
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
     }
 
 }
