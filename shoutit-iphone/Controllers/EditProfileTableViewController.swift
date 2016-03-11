@@ -135,7 +135,7 @@ extension EditProfileTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
         
         switch cellViewModel {
-        case .BasicText(let value, let placeholder):
+        case .BasicText(let value, let placeholder, _):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             cell.textField.text = value
@@ -146,7 +146,7 @@ extension EditProfileTableViewController {
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .RichText(let value, let placeholder):
+        case .RichText(let value, let placeholder, _):
             let cell = cell as! EditProfileTextViewTableViewCell
             cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
@@ -170,7 +170,7 @@ extension EditProfileTableViewController {
                 cell.textView.setNeedsLayout()
                 cell.textView.layoutIfNeeded()
             }
-        case .Location(let value, let placeholder):
+        case .Location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
             cell.selectButton.smallTitleLabel.text = placeholder
             cell.selectButton.setTitle(value.address, forState: .Normal)
