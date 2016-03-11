@@ -29,6 +29,17 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     let presentMenuSegue = "presentMenuSegue"
     
     var currentNavigationItem : NavigationItem? {
+        willSet(newItem) {
+            guard let newItem = newItem else {
+                return
+            }
+            
+            if currentNavigationItem == newItem {
+                if let flow = flowControllers[newItem] {
+                    flow.navigationController.popToRootViewControllerAnimated(true)
+                }
+            }
+        }
         didSet {
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
