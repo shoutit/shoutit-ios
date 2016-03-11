@@ -32,7 +32,6 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        reloadData()
     }
     
     func reloadData() {
@@ -103,7 +102,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             let userChangeObservable = Account.sharedInstance.userSubject
             let combined = Observable.combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
             
-            combined
+            combined.debounce(2, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
                     })

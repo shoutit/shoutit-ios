@@ -43,7 +43,7 @@ extension SHShoutItemCell {
         
         self.shoutPrice.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
         
-        if let country = shout.location?.country, countryImage = UIImage(named:  country), countryImageView = self.shoutCategoryImage {
+        if let country = shout.location?.country, countryImage = UIImage(named:  country), countryImageView = self.shoutCountryImage {
             countryImageView.image = countryImage
         }
         

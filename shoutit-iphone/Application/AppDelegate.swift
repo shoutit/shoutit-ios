@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import Fabric
 import Crashlytics
 import UIViewAppearanceSwift
+import Timberjack
 
 // Initialize Logger as global instance
 let log = XCGLogger.defaultInstance()
@@ -22,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        Timberjack.register()
+        
+        Timberjack.logStyle = .Verbose
         
         applyAppearance()
         
