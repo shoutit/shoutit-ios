@@ -21,6 +21,9 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>! {get}
     var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
     
+    //
+    var hidesListenButtons: Bool {get}
+    
     // fetchin
     func reloadContent()
     var reloadSubject: PublishSubject<Void> {get}
@@ -30,6 +33,10 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 // MARK: - Default implementations
 
 extension ProfileCollectionViewModelInterface {
+    
+    var hidesListenButtons: Bool {
+        return false
+    }
     
     func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
         if section == 0 {

@@ -73,6 +73,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     // MARK: - ProfileCollectionViewModelInterface
     
     // user data
+    
     var name: String? {
         return profile.name
     }
@@ -94,7 +95,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)
+        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(detailedProfile?.listenersCount ?? profile.listenersCount)
         return [.Listeners(countString: listenersCountString),
                 .Chat,
                 .Listen(isListening: detailedProfile?.isListening ?? profile.listening ?? false),

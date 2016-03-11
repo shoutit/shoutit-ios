@@ -107,6 +107,7 @@ final class Account {
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
     }
     
+    
     func logout() throws {
         try NSFileManager.defaultManager().removeItemAtPath(archivePath)
         try keychain.remove(authDataKey)

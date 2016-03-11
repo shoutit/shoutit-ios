@@ -146,6 +146,21 @@ final class ShoutDetailTableViewController: UITableViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
+extension ShoutDetailTableViewController {
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cellModel = viewModel.cellModels[indexPath.row]
+        if case .KeyValue(_, _, _, _, _, let filter?) = cellModel {
+            let filter = filter
+            print(filter.name)
+            self.notImplemented()
+        }
+        
+    }
+}
+
 extension ShoutDetailTableViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

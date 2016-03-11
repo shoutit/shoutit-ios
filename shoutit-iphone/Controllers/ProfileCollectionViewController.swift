@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -82,8 +82,13 @@ extension ProfileCollectionViewController {
             if indexPath.row > viewModel.pagesSection.cells.count - 1 {
                 return
             }
-            let page = viewModel.pagesSection.cells[indexPath.row].profile
-            flowDelegate?.showPage(page)
+            let profile = viewModel.pagesSection.cells[indexPath.row].profile
+            switch profile.type {
+            case .Page:
+                flowDelegate?.showPage(profile)
+            case .User:
+                flowDelegate?.showProfile(profile)
+            }
         case 1:
             if indexPath.row > viewModel.shoutsSection.cells.count - 1 {
                 return
@@ -159,6 +164,10 @@ extension ProfileCollectionViewController {
                     }
                 }).addDisposableTo(cell.reuseDisposeBag!)
             }.addDisposableTo(cell.reuseDisposeBag!)
+            
+            if Account.sharedInstance.loggedUser?.id == cellViewModel.profile.id || viewModel.hidesListenButtons {
+                cell.listenButton.hidden = true
+            }
             
             return cell
         }

@@ -63,11 +63,14 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             descriptionCell.descriptionLabel.text = description
             descriptionCell.setBorders(cellIsFirst: true, cellIsLast: true)
             
-        case .KeyValue(let row, let sectionRowsCount, let key, let value):
+        case .KeyValue(let row, let sectionRowsCount, let key, let value, let imageName, _):
             let keyValueCell = cell as! ShoutDetailKeyValueTableViewCell
             keyValueCell.setBackgroundForRow(row)
             keyValueCell.keyLabel.text = key
             keyValueCell.valueLabel.text = value
+            if let imageName = imageName {
+                keyValueCell.iconImageView.image = UIImage(named: imageName)
+            }
             keyValueCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
         case .Regular(let row, let sectionRowsCount, let title):

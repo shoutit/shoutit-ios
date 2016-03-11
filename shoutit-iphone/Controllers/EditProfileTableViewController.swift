@@ -9,8 +9,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class EditProfileTableViewController: UITableViewController {
+    
+    enum UploadType {
+        case Cover
+        case Avatar
+    }
     
     var viewModel: EditProfileTableViewModel!
     
@@ -21,6 +27,22 @@ class EditProfileTableViewController: UITableViewController {
     @IBOutlet weak var headerView: EditProfileTableViewHeaderView!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
+    
+    // children
+    lazy var mediaPickerController: MediaPickerController = {[unowned self] in
+        var pickerSettings = MediaPickerSettings()
+        pickerSettings.allowsVideos = false
+        let controller = MediaPickerController(delegate: self, settings: pickerSettings)
+        
+        controller.presentingSubject.observeOn(MainScheduler.instance).subscribeNext {[weak self] controller in
+            guard let controller = controller else { return }
+            self?.presentViewController(controller, animated: true, completion: nil)
+        }.addDisposableTo(self.disposeBag)
+        
+        return controller
+    }()
+    
+    var uploadType: UploadType?
     
     // MARK: - Lifecycle
     
@@ -52,6 +74,47 @@ class EditProfileTableViewController: UITableViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
+        
+        headerView.coverButton
+            .rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.uploadType = .Cover
+                self.mediaPickerController.showMediaPickerController()
+            }
+            .addDisposableTo(disposeBag)
+        
+        headerView.avatarButton
+            .rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.uploadType = .Avatar
+                self.mediaPickerController.showMediaPickerController()
+            }
+            .addDisposableTo(disposeBag)
+        
+        saveBarButtonItem
+            .rx_tap
+            .flatMapFirst {[unowned self] () -> Observable<EditProfileTableViewModel.OperationStatus> in
+                return self.viewModel.save()
+            }
+            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+                switch status {
+                case .Error(let error):
+                    let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
+                    self?.presentViewController(alertController, animated: true, completion: nil)
+                case .Progress(let show):
+                    if show {
+                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                    } else {
+                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    }
+                case .Ready:
+                    self?.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
 }
 
@@ -80,7 +143,7 @@ extension EditProfileTableViewController {
                 .rx_text
                 .asDriver()
                 .driveNext{[unowned self] (text) in
-                    
+                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
                 }
                 .addDisposableTo(cell.disposeBag)
         case .RichText(let value, let placeholder):
@@ -90,7 +153,8 @@ extension EditProfileTableViewController {
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
-                .subscribeNext{[weak textView = cell.textView] (text) in
+                .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
                     textView?.detailLabel?.text = "\(text.characters.count)/250"
                 }
                 .addDisposableTo(cell.disposeBag)
@@ -125,6 +189,7 @@ extension EditProfileTableViewController {
                         }
                     }
                     
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: "popController")
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
                     })
@@ -133,5 +198,35 @@ extension EditProfileTableViewController {
         
         
         return cell
+    }
+}
+
+extension EditProfileTableViewController: MediaPickerControllerDelegate {
+    
+    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+        
+        guard let uploadType = uploadType else { return }
+        
+        let task = uploadType == .Cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
+        let progressType: EditProfileTableViewHeaderView.ProgressType = uploadType == .Avatar ? .Avatar : .Cover
+        let progressView = uploadType == .Avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
+        let imageView = uploadType == .Cover ? self.headerView.coverImageView : self.headerView.avatarImageView
+        imageView.image = attachment.image
+        
+        task.status
+            .asDriver()
+            .driveNext{[weak self] (status) in
+                self?.headerView.hydrateProgressView(progressType, withStatus: status)
+            }
+            .addDisposableTo(disposeBag)
+        
+        task.progress
+            .asDriver()
+            .driveNext{[weak progressView] (progress) in
+                progressView?.setProgress(progress, animated: true)
+            }
+            .addDisposableTo(disposeBag)
+        
+        self.uploadType = nil
     }
 }

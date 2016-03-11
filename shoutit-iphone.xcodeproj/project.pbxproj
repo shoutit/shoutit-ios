@@ -483,6 +483,7 @@
 		B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */; };
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
 		B2B9AA8F1C8DC95800AFE67E /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B9AA8E1C8DC95800AFE67E /* EditProfile.storyboard */; };
+		B2C4ABC01C91F00900DF3C47 /* EditProfileParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4ABBF1C91F00900DF3C47 /* EditProfileParams.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
 		B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729B01C6220EE006F7D29 /* Assets.swift */; };
@@ -1085,6 +1086,7 @@
 		B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewController.swift; path = Controllers/EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewModel.swift; path = ViewModel/EditProfileTableViewModel.swift; sourceTree = "<group>"; };
 		B2B9AA8E1C8DC95800AFE67E /* EditProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EditProfile.storyboard; path = Storyboards/EditProfile.storyboard; sourceTree = "<group>"; };
+		B2C4ABBF1C91F00900DF3C47 /* EditProfileParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileParams.swift; path = Networking/EditProfileParams.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
 		B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCoder.swift; path = Util/SecureCoder.swift; sourceTree = "<group>"; };
 		B2C729B01C6220EE006F7D29 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = UIKitExtensions/Assets.swift; sourceTree = "<group>"; };
@@ -2569,6 +2571,7 @@
 				B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */,
 				B23ABC911C76084B00CC69E6 /* UserShoutsParams.swift */,
 				B2A849381C847EE800176EB0 /* RelatedShoutsParams.swift */,
+				B2C4ABBF1C91F00900DF3C47 /* EditProfileParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3560,6 +3563,7 @@
 				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
 				B2B5D0281C7F690C0068A6AF /* ProfileCollectionInfoSupplementeryViewModel.swift in Sources */,
 				606ED2F21BF7EE8F0064C53E /* SHCreateVideoViewModel.swift in Sources */,
+				B2C4ABC01C91F00900DF3C47 /* EditProfileParams.swift in Sources */,
 				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
 				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
