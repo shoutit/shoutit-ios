@@ -17,10 +17,6 @@ final class EditProfileTableViewModel {
         case Progress(show: Bool)
     }
     
-    let updateReadySubject: PublishSubject<Void> = PublishSubject()
-    let messageSubject: PublishSubject<String> = PublishSubject()
-    let progressSubject: PublishSubject<Bool> = PublishSubject()
-    
     let user: LoggedUser
     var cells: [EditProfileCellViewModel]
     
@@ -34,7 +30,8 @@ final class EditProfileTableViewModel {
     init() {
         precondition(Account.sharedInstance.loggedUser != nil)
         user = Account.sharedInstance.loggedUser!
-        cells = [EditProfileCellViewModel(name: user.name),
+        cells = [EditProfileCellViewModel(firstname: user.firstName),
+                 EditProfileCellViewModel(lastname: user.lastName),
                  EditProfileCellViewModel(username: user.username),
                  EditProfileCellViewModel(bio: user.bio),
                  EditProfileCellViewModel(location: user.location),
@@ -44,17 +41,22 @@ final class EditProfileTableViewModel {
     // MARK: - Mutation
     
     func mutateModelForIndex(index: Int, withString string: String) {
-        switch index {
-        case 0:
+        let currentModel = cells[index]
+        switch currentModel.identity {
+        case .Firstname:
+            cells[index] = EditProfileCellViewModel(firstname: string)
+        case .Lastname:
+            cells[index] = EditProfileCellViewModel(lastname: string)
+        case .Name:
             cells[index] = EditProfileCellViewModel(name: string)
-        case 1:
+        case .Username:
             cells[index] = EditProfileCellViewModel(username: string)
-        case 2:
+        case .Bio:
             cells[index] = EditProfileCellViewModel(bio: string)
-        case 4:
+        case .Website:
             cells[index] = EditProfileCellViewModel(website: string)
-        default:
-            assertionFailure()
+        case .Location:
+            break
         }
     }
     
@@ -114,49 +116,54 @@ final class EditProfileTableViewModel {
             throw LightError(message: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
         
-        let bioCellViewModel = cells[2]
-        if case .RichText(let bio, _) = bioCellViewModel {
-            if bio.characters.count > 250 {
-                throw LightError(message: NSLocalizedString("Bio has too many characters", comment: ""))
+        for cell in cells {
+            if case .RichText(let bio, _, .Bio) = cell {
+                if bio.characters.count > 250 {
+                    throw LightError(message: NSLocalizedString("Bio has too many characters", comment: ""))
+                }
             }
         }
     }
     
     private func composeParameters() -> EditProfileParams {
         
+        var firstname: String?
+        var lastname: String?
         var name: String?
         var username: String?
         var bio: String?
         var website: String?
         var location: Address?
         
-        for (index, cellModel) in cells.enumerate() {
-            switch index {
-            case 0:
-                if case .BasicText(let value, _) = cellModel {
-                    name = value
-                }
-            case 1:
-                if case .BasicText(let value, _) = cellModel {
-                    username = value
-                }
-            case 2:
-                if case .RichText(let value, _) = cellModel {
-                    bio = value
-                }
-            case 3:
-                if case .Location(let value, _) = cellModel {
-                    location = value
-                }
-            case 4:
-                if case .BasicText(let value, _) = cellModel {
-                    website = value
-                }
+        for cell in cells {
+            switch cell {
+            case .BasicText(let value, _, .Firstname):
+                firstname = value
+            case .BasicText(let value, _, .Lastname):
+                lastname = value
+            case .BasicText(let value, _, .Name):
+                name = value
+            case .BasicText(let value, _, .Username):
+                username = value
+            case .RichText(let value, _, .Bio):
+                bio = value
+            case .Location(let value, _, .Location):
+                location = value
+            case .BasicText(let value, _, .Website):
+                website = value
             default:
                 break
             }
         }
         
-        return EditProfileParams(name: name, username: username, bio: bio, website: website, location: location, imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString, coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString)
+        return EditProfileParams(firstname: firstname,
+                                 lastname: lastname,
+                                 name: name,
+                                 username: username,
+                                 bio: bio,
+                                 website: website,
+                                 location: location,
+                                 imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString,
+                                 coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString)
     }
 }
