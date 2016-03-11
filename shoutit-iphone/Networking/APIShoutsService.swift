@@ -38,13 +38,13 @@ class APIShoutsService {
                                     if let value = results.value {
                                         observer.on(.Next(value))
                                         observer.on(.Completed)
+                                        return
                                     }
                                     if let err = results.error {
                                         print(err)
                                     }
                                 }
                             }
-                            
                             
                         } catch let error as NSError {
                             print(error)

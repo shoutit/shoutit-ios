@@ -129,5 +129,9 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             self?.collectionView?.reloadData()
         }).addDisposableTo(disposeBag)
+        
+        viewModel.loading.asDriver().driveNext { (loading) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = loading
+        }.addDisposableTo(disposeBag)
     }
 }

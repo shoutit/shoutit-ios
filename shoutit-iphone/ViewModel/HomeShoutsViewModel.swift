@@ -22,6 +22,8 @@ class HomeShoutsViewModel: AnyObject {
     var loadedPages : [Int] = [1]
     var loadingPages : [Int] = []
     
+    var loading : Variable<Bool> = Variable(false)
+    
     var currentPage : Int = 1
     
     init() {
@@ -89,7 +91,12 @@ class HomeShoutsViewModel: AnyObject {
     func loadPage(page: Int) {
         self.loadingPages.append(page)
         
+        self.loading.value = true
+        
         self.loadMorePage(page).subscribeNext { [weak self] (newItems) -> Void in
+            
+            self?.loading.value = false
+            
             self?.loadedPages.append(page)
             
             if let index = self?.loadingPages.indexOf(page) {
