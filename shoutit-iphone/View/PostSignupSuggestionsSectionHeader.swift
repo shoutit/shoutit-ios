@@ -1,5 +1,5 @@
 //
-//  PostSignupSuggestionsHeaderTableViewCell.swift
+//  PostSignupSuggestionsSectionHeader.swift
 //  shoutit-iphone
 //
 //  Created by Łukasz Kasperek on 09.02.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostSignupSuggestionsHeaderTableViewCell: UITableViewCell {
+class PostSignupSuggestionsSectionHeader: UIView {
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
     @IBOutlet weak var separatorViewHeightConstraint: NSLayoutConstraint!
