@@ -164,7 +164,7 @@ final class SignupViewController: UITableViewController {
             textField.titleLabel = UILabel()
             textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
             textField.titleLabelColor = MaterialColor.grey.lighten1
-            textField.titleLabelActiveColor = UIColor(shoutitColor: .TextFieldLightBlueColor)
+            textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
             textField.clearButtonMode = .WhileEditing
             
             textField.detailLabel = UILabel()

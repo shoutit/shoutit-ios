@@ -26,7 +26,7 @@ class EditProfileTextViewTableViewCell: UITableViewCell {
         textView.titleLabel = UILabel()
         textView.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
         textView.titleLabelColor = UIColor(shoutitColor: .DiscoverBorder)
-        textView.titleLabelActiveColor = UIColor(shoutitColor: .TextFieldLightBlueColor)
+        textView.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
         
         textView.detailLabel = UILabel()
         textView.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)

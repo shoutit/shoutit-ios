@@ -14,6 +14,11 @@ protocol PostSignupSuggestionViewControllerFlowDelegate: class, LoginFinishable 
 
 final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
+    enum DoneButtonMode {
+        case Next
+        case Done
+    }
+    
     // UI
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var containerView: UIView!
@@ -37,6 +42,35 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
     // RX
     private let disposeBag = DisposeBag()
+    private var doneButtonDisposeBag = DisposeBag()
+    
+    // done button
+    private var doneButtonMode: DoneButtonMode! {
+        didSet {
+            doneButtonDisposeBag = DisposeBag()
+            guard let mode = doneButtonMode else { return }
+            switch mode {
+            case .Next:
+                doneButton.setTitle(NSLocalizedString("Next", comment: ""), forState: .Normal)
+                doneButton.backgroundColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
+                doneButton
+                    .rx_tap
+                    .subscribeNext {[unowned self] in
+                        self.flipToNextViewController()
+                    }
+                    .addDisposableTo(doneButtonDisposeBag)
+            case .Done:
+                doneButton.setTitle(NSLocalizedString("Done", comment: ""), forState: .Normal)
+                doneButton.backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
+                doneButton
+                    .rx_tap
+                    .subscribeNext {[unowned self] in
+                        self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+                    }
+                    .addDisposableTo(doneButtonDisposeBag)
+            }
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -49,6 +83,9 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         // setup page control
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
+        
+        // setup done button
+        doneButtonMode = .Next
         
         viewModel.fetchSections()
     }
@@ -64,13 +101,6 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     private func setupRX() {
         
         skipButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
-                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
-            }
-            .addDisposableTo(disposeBag)
-        
-        doneButton
             .rx_tap
             .subscribeNext {[unowned self] in
                 self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
@@ -97,6 +127,15 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         if let vc = segue.destinationViewController as? UIPageViewController {
             pageViewController = vc
             vc.setViewControllers([self.suggestionsViewControllerForSection(.Users)], direction: .Forward, animated: false, completion: nil)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func flipToNextViewController() {
+        let currentController = pageViewController.viewControllers?.first
+        if let vc = currentController as? PostSignupSuggestionsTableViewController where vc.sectionViewModel.section == .Users {
+            pageViewController.setViewControllers([suggestionsViewControllerForSection(.Pages)], direction: .Forward, animated: true, completion: nil)
         }
     }
 }
@@ -131,6 +170,8 @@ extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDataS
             viewController.sectionViewModel = viewModel.usersSection
         case .Pages:
             viewController.sectionViewModel = viewModel.pagesSection
+            // when last view controller appears for the first time, change button to done
+            self.doneButtonMode = .Done
         }
         
         return viewController
