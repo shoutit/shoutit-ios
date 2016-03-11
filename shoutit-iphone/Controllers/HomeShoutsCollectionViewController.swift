@@ -17,6 +17,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let disposeBag = DisposeBag()
     let selectionDisposeBag = DisposeBag()
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     var retry = Variable(true)
     
     var selectedItem = BehaviorSubject<Shout?>(value: nil)
@@ -131,7 +133,36 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         }).addDisposableTo(disposeBag)
         
         viewModel.loading.asDriver().driveNext { (loading) -> Void in
+            
             UIApplication.sharedApplication().networkActivityIndicatorVisible = loading
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: loading ? 50.0 : 0, right: 0)
+            })
+            
+            if loading {
+                self.showActivityIndicatorView()
+                self.layoutActivityIndicatorView()
+            } else {
+                self.hideActivityIndicatorView()
+            }
+            
         }.addDisposableTo(disposeBag)
+    }
+    
+    func showActivityIndicatorView() {
+        collectionView?.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    func layoutActivityIndicatorView() {
+        if let collectionView = collectionView {
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 40.0, height: 40.0)
+            activityIndicator.center = CGPoint(x: collectionView.center.x, y: collectionView.contentSize.height + 30.0)
+        }
+    }
+    
+    func hideActivityIndicatorView() {
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
 }

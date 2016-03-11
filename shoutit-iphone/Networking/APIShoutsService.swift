@@ -42,6 +42,7 @@ class APIShoutsService {
                                     }
                                     if let err = results.error {
                                         print(err)
+                                        observer.on(.Next([]))
                                     }
                                 }
                             }
@@ -202,6 +203,7 @@ class APIShoutsService {
                                         observer.on(.Completed)
                                     }
                                     if let err = results.error {
+                                        observer.on(.Error(err ?? RxCocoaURLError.Unknown))
                                         print(err)
                                     }
                                 }

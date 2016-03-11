@@ -22,3 +22,12 @@ struct NopParams: Params {
         return [:]
     }
 }
+
+struct PageParams: Params {
+    var page : Int
+    var pageSize : Int
+    
+    var params: [String : AnyObject] {
+        return ["page":self.page, "page_size": self.pageSize]
+    }
+}

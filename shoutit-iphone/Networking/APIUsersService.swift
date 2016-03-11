@@ -16,10 +16,10 @@ class APIUsersService {
     
     private static let usersHomeShoutsURL = APIManager.baseURL + "/profiles/me/home"
     
-    static func homeShouts() -> Observable<[Shout]> {
+    static func homeShouts(page_size: Int = 20, page: Int = 1) -> Observable<[Shout]> {
         return APIGenericService.requestWithMethod(.GET,
                                                    url: usersHomeShoutsURL,
-                                                   params: NopParams(),
+                                                   params: PageParams(page: page, pageSize: page_size),
                                                    encoding: .URL,
                                                    responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
