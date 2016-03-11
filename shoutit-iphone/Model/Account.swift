@@ -30,7 +30,11 @@ final class Account {
     
     // data
     var apnsToken: String?
-    private(set) var authData: AuthData?
+    private(set) var authData: AuthData? {
+        didSet {
+            self.loginSubject.onNext()
+        }
+    }
     var loggedUser: LoggedUser? {
         didSet {
             if let userObject = loggedUser {
@@ -53,7 +57,8 @@ final class Account {
         return loggedUser ?? guestUser
     }
     
-    var userSubject = BehaviorSubject<User?>(value: nil)
+    var userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
+    var loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
