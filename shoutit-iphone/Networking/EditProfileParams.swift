@@ -10,6 +10,8 @@ import Foundation
 
 struct EditProfileParams: Params {
     
+    let firstname: String?
+    let lastname: String?
     let name: String?
     let username: String?
     let bio: String?
@@ -20,6 +22,8 @@ struct EditProfileParams: Params {
     
     var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
+        p["first_name"] = firstname
+        p["last_name"] = lastname
         p["name"] = name
         p["username"] = username
         p["bio"] = bio
