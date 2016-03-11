@@ -165,9 +165,7 @@ extension ProfileCollectionViewController {
                 }).addDisposableTo(cell.reuseDisposeBag!)
             }.addDisposableTo(cell.reuseDisposeBag!)
             
-            if Account.sharedInstance.loggedUser?.id == cellViewModel.profile.id || viewModel.hidesListenButtons {
-                cell.listenButton.hidden = true
-            }
+            cell.listenButton.hidden = Account.sharedInstance.loggedUser?.id == cellViewModel.profile.id
             
             return cell
         }

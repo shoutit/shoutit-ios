@@ -11,6 +11,7 @@ import RxSwift
 
 class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
+    private(set) var otherShoutsHeight: CGFloat = 130
     unowned let controller: ShoutDetailTableViewController
     var viewModel: ShoutDetailViewModel {
         return controller.viewModel
@@ -70,6 +71,8 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             keyValueCell.valueLabel.text = value
             if let imageName = imageName {
                 keyValueCell.iconImageView.image = UIImage(named: imageName)
+            } else {
+                keyValueCell.iconImageView.image = nil
             }
             keyValueCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
@@ -105,12 +108,10 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             otherShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
                                                    forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
             
-            otherShoutsCell.collectionView.contentSizeDidChange = {[weak tableView, weak otherShoutsCell] (contentSize) in
-                if let tableView = tableView, let cell = otherShoutsCell where cell.collectionViewHeightConstraint.constant != contentSize.height {
-                    cell.collectionViewHeightConstraint.constant = contentSize.height
-                    tableView.beginUpdates()
-                    tableView.endUpdates()
-                }
+            otherShoutsCell.collectionView.contentSizeDidChange = {[weak tableView, weak self] (contentSize) in
+                self?.otherShoutsHeight = contentSize.height
+                tableView?.beginUpdates()
+                tableView?.endUpdates()
             }
             
         case .RelatedShouts:

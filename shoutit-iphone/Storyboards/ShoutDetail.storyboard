@@ -254,7 +254,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2g-bD-JDa" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="10" y="0.0" width="580" height="100"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxt-8o-2k0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxt-8o-2k0">
                                                     <rect key="frame" x="10" y="10" width="36" height="80"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
@@ -265,8 +265,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vxt-8o-2k0" secondAttribute="trailing" constant="10" id="3oa-b7-EzN"/>
                                                 <constraint firstItem="Vxt-8o-2k0" firstAttribute="leading" secondItem="c2g-bD-JDa" secondAttribute="leading" constant="10" id="GZ7-D9-SGP"/>
-                                                <constraint firstAttribute="bottom" secondItem="Vxt-8o-2k0" secondAttribute="bottom" constant="10" id="TMN-2B-Ovv"/>
-                                                <constraint firstItem="Vxt-8o-2k0" firstAttribute="top" secondItem="c2g-bD-JDa" secondAttribute="top" constant="10" id="cDE-hR-BoC"/>
+                                                <constraint firstItem="Vxt-8o-2k0" firstAttribute="centerY" secondItem="c2g-bD-JDa" secondAttribute="centerY" id="uB0-d7-Vtg"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -455,7 +454,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="TJp-qU-nfC" secondAttribute="bottom" constant="12" id="8CT-eg-na3"/>
                                         <constraint firstItem="TJp-qU-nfC" firstAttribute="top" secondItem="V35-bO-mG3" secondAttribute="top" constant="22" id="Jfk-vO-4qi"/>
                                         <constraint firstItem="TJp-qU-nfC" firstAttribute="centerX" secondItem="V35-bO-mG3" secondAttribute="centerX" id="xrZ-yp-JGo"/>
                                     </constraints>
@@ -481,9 +479,6 @@
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6J-PU-E3q" customClass="IndexedCollectionView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="354"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="354" id="43a-RI-bmJ"/>
-                                            </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zdw-tD-tZO">
                                                 <size key="itemSize" width="172" height="172"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -515,7 +510,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="collectionView" destination="I6J-PU-E3q" id="DBu-at-PUS"/>
-                                    <outlet property="collectionViewHeightConstraint" destination="43a-RI-bmJ" id="fta-5o-0iS"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RelatedShouts" rowHeight="130" id="ULW-i4-ahR" customClass="ShoutDetailCollectionViewContainerTableViewCell" customModule="Shoutit" customModuleProvider="target">
@@ -528,9 +522,6 @@
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-T6-aZk" customClass="IndexedCollectionView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="130" id="fmZ-yu-Gm8"/>
-                                            </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M66-Po-8Wb">
                                                 <size key="itemSize" width="120" height="120"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -568,7 +559,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="collectionView" destination="2K8-T6-aZk" id="7sY-Pw-rdW"/>
-                                    <outlet property="collectionViewHeightConstraint" destination="fmZ-yu-Gm8" id="uDL-hm-d3p"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -609,7 +599,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LfB-Zs-tb6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LfB-Zs-tb6">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVW-DI-OK5">
