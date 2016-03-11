@@ -17,10 +17,15 @@ protocol IntroViewControllerFlowDelegate: class, HelpDisplayable, LoginFinishabl
 
 final class IntroViewController: UIViewController {
     
+    // consts
+    let numberOfPagesInScrollView: CGFloat = 3
+    
     // subviews
     @IBOutlet weak var loginButton: CustomUIButton!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     // view model
     var viewModel: IntroViewModel!
@@ -38,6 +43,7 @@ final class IntroViewController: UIViewController {
         
         //
         setupRX()
+        scrollView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,5 +99,14 @@ final class IntroViewController: UIViewController {
                 self.flowDelegate?.showHelpInterface()
             }
             .addDisposableTo(disposeBag)
+    }
+}
+
+extension IntroViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let pageWidth = scrollView.contentSize.width / numberOfPagesInScrollView
+        let page = floor((scrollView.contentOffset.x + 0.5 * pageWidth) / pageWidth)
+        pageControl.currentPage = Int(page)
     }
 }
