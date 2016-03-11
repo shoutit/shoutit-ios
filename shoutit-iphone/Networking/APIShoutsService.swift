@@ -18,8 +18,8 @@ class APIShoutsService {
     
     static func shouts(forCountry country: String?, page_size: Int = 20, page: Int = 1) -> Observable<[Shout]> {
         return Observable.create({ (observer) -> Disposable in
-            
-            let params: [String: AnyObject] = ["country": (country ?? "") as NSString, "page": page as NSNumber, "page_size": page_size as NSNumber]
+            let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+            let params: [String: AnyObject] = ["country": (country ?? countryCode) as NSString, "page": page as NSNumber, "page_size": page_size as NSNumber]
 
             APIManager.manager()
                 .request(.GET, shoutsURL, parameters:params, encoding: .URL, headers: ["Accept": "application/json"])

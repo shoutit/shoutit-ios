@@ -14,7 +14,7 @@ import RxCocoa
 
 class APIUsersService {
     
-    private static let usersHomeShoutsURL = APIManager.baseURL + "/users/me/home"
+    private static let usersHomeShoutsURL = APIManager.baseURL + "/profiles/me/home"
     
     static func homeShouts() -> Observable<[Shout]> {
         return APIGenericService.requestWithMethod(.GET,

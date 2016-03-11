@@ -201,6 +201,7 @@
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
+		AE3A54881C92CA9700803571 /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE3A54871C92CA9700803571 /* Browse.storyboard */; };
 		AE4DB33E1C634C22001EB84B /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEA599791C609E0100015AA3 /* Menu.storyboard */; };
 		AE4DB33F1C634C28001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
 		AE4DB3401C634C2A001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
@@ -872,6 +873,7 @@
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
+		AE3A54871C92CA9700803571 /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Browse.storyboard; path = Storyboards/Browse.storyboard; sourceTree = "<group>"; };
 		AE4DB3421C635026001EB84B /* MenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuAnimationController.swift; path = Util/MenuAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDismissAnimationController.swift; path = Util/MenuDismissAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFlowController.swift; path = FlowControl/SettingsFlowController.swift; sourceTree = "<group>"; };
@@ -1689,6 +1691,7 @@
 				AEECB9551C648E4300276E4A /* Location.storyboard */,
 				B2B5D0031C7F1EA00068A6AF /* ShoutDetail.storyboard */,
 				B2B9AA8E1C8DC95800AFE67E /* EditProfile.storyboard */,
+				AE3A54871C92CA9700803571 /* Browse.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -3323,6 +3326,7 @@
 				AC7030D11C16C982008F4C00 /* SHImageMediaItem.xib in Resources */,
 				60DD76DC1C02096F007C5334 /* SHEmptyContentView.xib in Resources */,
 				B2E7E2F21C592BAD0078C743 /* Shout.storyboard in Resources */,
+				AE3A54881C92CA9700803571 /* Browse.storyboard in Resources */,
 				249FD6D61C7DB1DC00859851 /* DiscoverShoutsHeaderView.xib in Resources */,
 				AC7028041C1AA66200262622 /* uv_idea.png in Resources */,
 				B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */,
