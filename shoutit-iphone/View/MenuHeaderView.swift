@@ -36,6 +36,10 @@ class MenuHeaderView: UIView {
                 profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
             }
             
+            if let path = user.coverPath, coverURL = NSURL(string: path) {
+                coverImageView?.kf_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+            }
+            
             profileNameLabel?.text = user.name
         } else {
             fillAsGuest()
@@ -47,6 +51,7 @@ class MenuHeaderView: UIView {
     func fillAsGuest() {
         profileImageView?.image = UIImage(named: "guest avatar")
         profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
+        coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
     }
     
     func fillLocation() {

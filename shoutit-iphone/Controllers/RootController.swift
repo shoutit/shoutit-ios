@@ -29,6 +29,17 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     let presentMenuSegue = "presentMenuSegue"
     
     var currentNavigationItem : NavigationItem? {
+        willSet(newItem) {
+            guard let newItem = newItem else {
+                return
+            }
+            
+            if currentNavigationItem == newItem {
+                if let flow = flowControllers[newItem] {
+                    flow.navigationController.popToRootViewControllerAnimated(true)
+                }
+            }
+        }
         didSet {
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
@@ -53,6 +64,11 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
                 self.toggleMenuAction()
             }
             .addDisposableTo(disposeBag)
+        
+        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+            self.invalidateControllersCache()
+            self.openItem(.Home)
+        }.addDisposableTo(disposeBag)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -171,6 +187,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
         case .Location: flowController      = LocationFlowController(navigationController: navController)
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)
+        case .Browse: flowController        = BrowseFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
             
         }

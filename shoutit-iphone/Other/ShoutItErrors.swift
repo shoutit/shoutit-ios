@@ -21,6 +21,10 @@ protocol ShoutitError: ErrorType {
     var message: String {get}
 }
 
+struct LightError: ShoutitError {
+    let message: String
+}
+
 enum ParseError: ShoutitError {
     case InvalidJson
     case AuthData

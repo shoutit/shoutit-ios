@@ -29,7 +29,8 @@ struct DetailedProfile {
     let gender: Gender?
     let videoPath: Video?
     let dateJoinedEpoch: Int
-    let bio: String
+    let bio: String?
+    let about: String?
     let location: Address
     let email: String?
     let website: String?
@@ -70,7 +71,8 @@ extension DetailedProfile: Decodable {
             <*> j <|? "video"
         let d = c
             <*> j <| "date_joined"
-            <*> j <| "bio"
+            <*> j <|? "bio"
+            <*> j <|? "about"
             <*> j <| "location"
             <*> j <|? "email"
         let e = d
@@ -90,9 +92,4 @@ extension DetailedProfile: Decodable {
             <*> j <||? "admins"
         return f
     }
-}
-
-extension DetailedProfile: ProfileCollectionUser {
-    var dateJoinedEpoch_optional: Int? {return dateJoinedEpoch}
-    var location_optional: Address? {return location}
 }

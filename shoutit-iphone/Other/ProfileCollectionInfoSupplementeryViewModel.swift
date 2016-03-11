@@ -12,6 +12,7 @@ protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
     var avatarURL: NSURL? {get}
     var infoButtons: [ProfileCollectionInfoButton] {get}
     var descriptionText: String? {get}
+    var descriptionIcon: UIImage? {get}
     var websiteString: String? {get}
     var dateJoinedString: String? {get}
     var locationString: String? {get}

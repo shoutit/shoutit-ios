@@ -23,7 +23,7 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
     
     func listeningCountString() -> String {
         let numberString = NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)
-        return NSLocalizedString("Listeners \(numberString)", comment: "")
+        return NSLocalizedString("\(numberString) Listeners", comment: "")
     }
     
     func toggleIsListening() -> Observable<Bool> {
@@ -33,13 +33,14 @@ class ProfileCollectionPageCellViewModel: ProfileCollectionCellViewModel {
             self.isListening = !self.isListening
             observer.onNext(self.isListening)
             
-            APIUsersService.listen(self.isListening, toUserWithUsername: self.profile.username).subscribe{ (event) in
+            APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username).subscribe{ (event) in
                 switch event {
                 case .Completed:
                     observer.onNext(self.isListening)
-                case .Error:
+                case .Error(let error):
                     self.isListening = !self.isListening
                     observer.onNext(self.isListening)
+                    observer.onError(error)
                 default:
                     break
                 }

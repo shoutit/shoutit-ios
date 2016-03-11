@@ -22,6 +22,9 @@ class HomeShoutsViewModel: AnyObject {
     var loadedPages : [Int] = [1]
     var loadingPages : [Int] = []
     
+    var loading : Variable<Bool> = Variable(false)
+    var finishedLoading = false
+    
     var currentPage : Int = 1
     
     init() {
@@ -63,7 +66,7 @@ class HomeShoutsViewModel: AnyObject {
         let user = Account.sharedInstance.user
         
         if let user = user where user.isGuest == false {
-            return Observable.empty()
+            return APIUsersService.homeShouts(20, page: page)
         } else {
             return APIShoutsService.shouts(forCountry: user?.location.country, page_size:  20, page: page)
         }
@@ -82,25 +85,44 @@ class HomeShoutsViewModel: AnyObject {
         }
         
         loadPage(pageToLoad)
-        
-        
     }
     
     func loadPage(page: Int) {
+        if finishedLoading {
+            self.loading.value = false
+            return
+        }
+        
         self.loadingPages.append(page)
         
-        self.loadMorePage(page).subscribeNext { [weak self] (newItems) -> Void in
-            self?.loadedPages.append(page)
-            
-            if let index = self?.loadingPages.indexOf(page) {
-                self?.loadingPages.removeAtIndex(index)
-            }
-            
-            self?.currentPage = page
-            
-            self?.dataSubject?.onNext(newItems)
-        }
-        .addDisposableTo(disposeBag)
+        self.loading.value = true
+        
+        self.loadMorePage(page)
+            .subscribe(onNext: { [weak self] (newItems) -> Void in
+                
+                if newItems.count == 0 {
+                    self?.finishedLoading = true
+                }
+                
+                self?.loading.value = false
+                
+                self?.loadedPages.append(page)
+                
+                if let index = self?.loadingPages.indexOf(page) {
+                    self?.loadingPages.removeAtIndex(index)
+                }
+                
+                self?.currentPage = page
+                
+                self?.dataSubject?.onNext(newItems)
+                
+                }, onError: { [weak self] (error) -> Void in
+                    self?.finishedLoading = true
+                }, onCompleted: { [weak self] (completed) -> Void in
+                    self?.finishedLoading = true
+                }, onDisposed: { () -> Void in
+                    
+            }).addDisposableTo(disposeBag)
     }
     
 }

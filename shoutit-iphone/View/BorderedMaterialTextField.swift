@@ -271,11 +271,11 @@ public class BorderedMaterialTextField : UITextField {
     public var titleLabelAnimationDistance: CGFloat = 4
     
     /// An override to the text property.
-//    public override var text: String? {
-//        didSet {
-//        textFieldDidChange(self)
-//        }
-//    }
+    public override var text: String? {
+        didSet {
+        textFieldDidChange(self)
+        }
+    }
     
     /**
      The detail UILabel that is displayed when the detailLabelHidden property
@@ -452,7 +452,7 @@ public class BorderedMaterialTextField : UITextField {
     }
     
     /// Handler for text editing began.
-    internal func textFieldDidBegin(textField: TextField) {
+    internal func textFieldDidBegin(textField: BorderedMaterialTextField) {
         titleLabel?.textColor = titleLabelActiveColor
         MaterialAnimation.animationDisabled { [unowned self] in
             self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelActiveColor?.CGColor : self.detailLabelActiveColor?.CGColor
@@ -460,7 +460,7 @@ public class BorderedMaterialTextField : UITextField {
     }
     
     /// Handler for text changed.
-    internal func textFieldDidChange(textField: TextField) {
+    internal func textFieldDidChange(textField: BorderedMaterialTextField) {
         if 0 < text?.utf16.count {
             showTitleLabel()
             if !detailLabelHidden {
@@ -474,7 +474,7 @@ public class BorderedMaterialTextField : UITextField {
     }
     
     /// Handler for text editing ended.
-    internal func textFieldDidEnd(textField: TextField) {
+    internal func textFieldDidEnd(textField: BorderedMaterialTextField) {
         if 0 < text?.utf16.count {
             showTitleLabel()
         } else if 0 == text?.utf16.count {

@@ -12,9 +12,15 @@ protocol PageDisplayable {
     func showPage(page: Profile) -> Void
 }
 
-extension PageDisplayable where Self: FlowController {
+extension PageDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
     
     func showPage(page: Profile) {
-        navigationController.notImplemented()
+        
+        let controller = Wireframe.profileViewController()
+        controller.flowDelegate = self
+        controller.viewModel = PageProfileCollectionViewModel(profile: page)
+        
+        navigationController.navigationBarHidden = true
+        navigationController.showViewController(controller, sender: nil)
     }
 }

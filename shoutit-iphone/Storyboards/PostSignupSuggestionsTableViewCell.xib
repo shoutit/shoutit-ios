@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBQ-8y-DNl" id="iAl-IQ-Hwp">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="57.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZ7-CZ-FMm">
@@ -20,7 +20,7 @@
                         <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5OJ-d8-p54" customClass="CustomUIImageView" customModule="Shoutit" customModuleProvider="target">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5OJ-d8-p54" customClass="CustomUIImageView" customModule="Shoutit" customModuleProvider="target">
                         <rect key="frame" x="10" y="5" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="XNY-Hi-2do"/>
@@ -54,6 +54,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="KZ7-CZ-FMm" firstAttribute="leading" secondItem="5OJ-d8-p54" secondAttribute="trailing" constant="12" id="0Ns-mT-mhQ"/>
                     <constraint firstItem="5OJ-d8-p54" firstAttribute="top" secondItem="iAl-IQ-Hwp" secondAttribute="top" constant="5" id="3Oe-oD-CHG"/>
@@ -71,6 +72,7 @@
                     <constraint firstAttribute="bottom" secondItem="5OJ-d8-p54" secondAttribute="bottom" constant="5" id="w7E-0N-jrz"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="listenButton" destination="dYU-1c-rXz" id="avw-Nn-lqe"/>

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Array {
-    func each(each: (Element) -> ()){
+    func each(@noescape each: (Element) -> ()){
         for object: Element in self {
             each(object)
         }

@@ -21,6 +21,9 @@ class ShoutDetailTableHeaderView: UIView {
     @IBOutlet weak var availabilityLabel: UILabel!
     @IBOutlet weak var addToCartButton: CustomUIButton!
     
+    // constraints
+    @IBOutlet weak var titleLabelToBottomConstraints: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,5 +31,9 @@ class ShoutDetailTableHeaderView: UIView {
         internalContainerView.layer.cornerRadius = 4
         internalContainerView.layer.borderWidth = 1 / UIScreen.mainScreen().scale
         internalContainerView.layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
+    }
+    
+    func setConstraintForPriceLabelVisible(visible: Bool) {
+        titleLabelToBottomConstraints.constant = visible ? 30 : 0
     }
 }

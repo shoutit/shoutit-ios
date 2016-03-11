@@ -22,6 +22,8 @@ final class DiscoverFlowController: FlowController {
         
         if let item = discoverItem {
             controller.viewModel = DiscoverGivenItemViewModel(discoverItem: item)
+        } else {
+            controller.viewModel = DiscoverGeneralViewModel()
         }
 
         navigationController.showViewController(controller, sender: nil)

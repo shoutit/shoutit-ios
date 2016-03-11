@@ -15,6 +15,7 @@ struct Wireframe {
         case Login = "LoginStoryboard"
         case HTML = "HTML"
         case Home = "Home"
+        case Browse = "Browse"
         case Discover = "Discover"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -24,6 +25,7 @@ struct Wireframe {
         case Location = "Location"
         case Help = "Help"
         case InviteFriends = "InviteFriends"
+        case EditProfile = "EditProfile"
     }
     
     // General
@@ -92,6 +94,12 @@ struct Wireframe {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
     }
     
+    // MARK: - Edit profile storyboard controllers
+    
+    static func editProfileTableViewController() -> EditProfileTableViewController {
+        return storyboard(.EditProfile).instantiateViewControllerWithIdentifier("EditProfileTableViewController") as! EditProfileTableViewController
+    }
+    
     // MARK: - Home storyboard view controllers
 
     static func homeViewController() -> HomeViewController {
@@ -99,7 +107,7 @@ struct Wireframe {
     }
     
     static func browseViewController() -> UIViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("IntroViewController")
+        return storyboard(.Browse).instantiateInitialViewController()!
     }
     
     static func ordersViewController() -> UIViewController {

@@ -28,3 +28,4 @@ extension HomeFlowController: HomeViewControllerFlowDelegate {}
 extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}
 extension HomeFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
+extension HomeFlowController: DiscoverCollectionViewControllerFlowDelegate {}

@@ -89,17 +89,22 @@ class HomeViewController: UIViewController {
             self?.discoverVisible = newValue
         }).addDisposableTo(disposeBag)
         
-        discoverController.collectionView?.rx_modelSelected(DiscoverItem.self)
-            .asDriver()
-            .driveNext { [weak self] selectedShout in
-                _ = DiscoverFlowController(navigationController: (self?.navigationController)!, discoverItem: selectedShout)
-            }.addDisposableTo(disposeBag)
+        discoverController.selectedModel.asDriver().driveNext { (item) -> Void in
+            if let item = item {
+                self.flowDelegate?.showDiscoverForDiscoverItem(item)
+            }
+        }.addDisposableTo(disposeBag)
+        
+        discoverController.seeAllSubject.asObservable().skip(1).subscribeNext { (controller) -> Void in
+            self.flowDelegate?.showDiscover()
+        }.addDisposableTo(disposeBag)
         
     }
     
     func bindToCollectionOffset() {
         
         homeShoutsController!.scrollOffset.asObservable().map({ [weak self] (offset) -> CGFloat in
+            
             if let welf = self {
                 let newHeight : CGFloat = welf.maxDiscoverHeight - (offset ?? CGPointZero).y
                 return max(min(welf.maxDiscoverHeight, newHeight), 0)
@@ -114,7 +119,10 @@ class HomeViewController: UIViewController {
     
     func layoutDiscoverSectionWith(newHeight: CGFloat) {
         self.discoverParentController?.view.alpha = newHeight / self.maxDiscoverHeight
-        self.discoverHeight.constant = newHeight
+        
+        if discoverHeight.constant != newHeight {
+            self.discoverHeight.constant = newHeight
+        }
         
         self.view.layoutIfNeeded()
     }
