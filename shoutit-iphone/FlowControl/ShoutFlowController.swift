@@ -21,8 +21,6 @@ final class ShoutFlowController: FlowController {
             snavigation.ignoreToggleMenu = true
         }
         
-        navigationController.navigationBarHidden = true
-        
         let controller = Wireframe.shoutViewController()
 
         navigationController.showViewController(controller, sender: nil)

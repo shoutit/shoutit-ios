@@ -58,11 +58,6 @@ class EditProfileTableViewController: UITableViewController {
         setupRX()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = false
-    }
-    
     // MARK: - Setup
     
     private func setupRX() {

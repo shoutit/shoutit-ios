@@ -39,6 +39,7 @@ class SHNavigationViewController: UINavigationController, UINavigationController
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
+        setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
         
         if ignoreToggleMenu {
             return
