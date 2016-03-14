@@ -38,7 +38,6 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         view.layer.cornerRadius = 10
         
         // register cells
-        tableView.registerNib(UINib(nibName: "PostSignupSuggestionsHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsHeaderTableViewCell")
         tableView.registerNib(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
         
         // configure table view
@@ -115,28 +114,32 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         }
         
         let cellViewModel = sectionViewModel.cells[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostSignupSuggestionsTableViewCell", forIndexPath: indexPath) as! PostSignupSuggestionsTableViewCell
+        cell.nameLabel.text = cellViewModel.item.suggestionTitle
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: UIImage.squareAvatarPlaceholder())
         
-        switch cellViewModel.cellType {
-        case .Header(let title):
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.cellType.reuseIdentifier, forIndexPath: indexPath) as! PostSignupSuggestionsHeaderTableViewCell
-            cell.sectionTitleLabel.text = title
-            return cell
-        case .Normal(let item):
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.cellType.reuseIdentifier, forIndexPath: indexPath) as! PostSignupSuggestionsTableViewCell
-            cell.nameLabel.text = item.suggestionTitle
-            cell.thumbnailImageView.sh_setImageWithURL(item.thumbnailURL, placeholderImage: UIImage.squareAvatarPlaceholder())
-            
-            let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
-            cell.listenButton.setImage(image, forState: .Normal)
-            
-            cell.reuseDisposeBag = DisposeBag()
-            cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<Void> in
-                return cellViewModel.listen()
-            }).subscribeNext({[weak self] () in
-                self?.tableView.reloadData()
+        let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
+        cell.listenButton.setImage(image, forState: .Normal)
+        
+        cell.reuseDisposeBag = DisposeBag()
+        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<Void> in
+            return cellViewModel.listen()
+        }).subscribeNext({[weak self] () in
+            self?.tableView.reloadData()
             }).addDisposableTo(cell.reuseDisposeBag!)
-            
-            return cell
-        }
+        
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = NSBundle.mainBundle().loadNibNamed("PostSignupSuggestionsSectionHeader", owner: nil, options: nil).first as! PostSignupSuggestionsSectionHeader
+        view.sectionTitleLabel.text = sectionViewModel.section.title
+        
+        return view
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
 }

@@ -62,6 +62,10 @@ struct Wireframe {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
     }
     
+    static func resetPasswordViewController() -> ResetPasswordViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("ResetPasswordViewController") as! ResetPasswordViewController
+    }
+    
     static func postSignupInterestsViewController() -> PostSignupInterestsViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupInterestsViewController") as! PostSignupInterestsViewController
     }

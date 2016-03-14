@@ -29,12 +29,10 @@ class PostSignupSuggestionsSectionViewModel {
     
     init(section: PostSignupSuggestionsSection, models: [Suggestable]) {
         self.section = section
-        let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
-        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
+        self.cells = models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }
     
     func updateCellsWithModels(models: [Suggestable]) {
-        let headerCellViewModel = PostSignupSuggestionsCellViewModel(sectionTitle: section.title)
-        self.cells = [headerCellViewModel] + models.map{PostSignupSuggestionsCellViewModel(item: $0)}
+        self.cells = models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }
 }

@@ -78,10 +78,10 @@ class SettingsFlowController: FlowController {
             SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
                 self.showPasswordSettings()
             },
-            SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
+            SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[weak self] in
                 _ = try? Account.sharedInstance.logout()
                 NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
-                self.navigationController.popToRootViewControllerAnimated(false)
+                self?.navigationController.popToRootViewControllerAnimated(false)
             }
             ])
     }

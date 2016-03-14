@@ -100,16 +100,12 @@ final class ShoutDetailTableViewController: UITableViewController {
         relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
         imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
         
-        // setup table view
-        tableView.estimatedRowHeight = 40
-        
         // display data
         hydrateHeader()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = false
         viewModel.reloadShoutDetails()
     }
     
@@ -157,7 +153,33 @@ extension ShoutDetailTableViewController {
             print(filter.name)
             self.notImplemented()
         }
-        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellModel = viewModel.cellModels[indexPath.row]
+        switch cellModel {
+        case .SectionHeader:
+            return 54
+        case .Description(let description):
+            let horizontalMargins: CGFloat = 2 * 20
+            let verticalMargins: CGFloat = 2 * 10
+            let availableWidth = tableView.bounds.width - horizontalMargins
+            let size = (description as NSString).boundingRectWithSize(CGSize(width: availableWidth, height: CGFloat.max),
+                                                                      options: [NSStringDrawingOptions.UsesLineFragmentOrigin],
+                                                                      attributes: [NSFontAttributeName : UIFont.sh_systemFontOfSize(14, weight: .Regular)],
+                                                                      context: nil).size
+            return size.height + verticalMargins
+        case .KeyValue:
+            return 40
+        case .Regular:
+            return 40
+        case .Button:
+            return 49
+        case .OtherShouts:
+            return dataSource.otherShoutsHeight
+        case .RelatedShouts:
+            return 130
+        }
     }
 }
 

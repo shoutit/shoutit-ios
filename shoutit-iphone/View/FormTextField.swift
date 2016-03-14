@@ -19,7 +19,7 @@ class FormTextField: BorderedMaterialTextField {
         self.titleLabel = UILabel()
         self.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
         self.titleLabelColor = MaterialColor.grey.lighten1
-        self.titleLabelActiveColor = UIColor(shoutitColor: .TextFieldLightBlueColor)
+        self.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
         self.clearButtonMode = .WhileEditing
         
         self.detailLabel = UILabel()

@@ -118,7 +118,7 @@ final class EditProfileTableViewModel {
         
         for cell in cells {
             if case .RichText(let bio, _, .Bio) = cell {
-                if bio.characters.count > 250 {
+                if bio.characters.count > 50 {
                     throw LightError(message: NSLocalizedString("Bio has too many characters", comment: ""))
                 }
             }

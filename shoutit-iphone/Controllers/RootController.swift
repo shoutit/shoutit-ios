@@ -65,7 +65,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             }
             .addDisposableTo(disposeBag)
         
-        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+        Account.sharedInstance.loginSubject.subscribeNext {
             self.invalidateControllersCache()
             self.openItem(.Home)
         }.addDisposableTo(disposeBag)

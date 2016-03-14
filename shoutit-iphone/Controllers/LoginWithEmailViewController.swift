@@ -16,6 +16,7 @@ protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, H
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
     func presentSignup()
+    func presentResetPassword()
     func showErrorMessage(message: String)
 }
 
@@ -25,6 +26,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     let animationDuration: Double = 0.25
     let signupViewHeight: CGFloat = 416
     let loginViewHeight: CGFloat = 326
+    let resetPasswordViewHeight: CGFloat = 188
     
     //
     private var timer: NSTimer?
@@ -60,6 +62,12 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         controller.viewModel = self.viewModel
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
+        return controller
+    }()
+    lazy var resetPasswordViewController: ResetPasswordViewController = {
+        let controller = Wireframe.resetPasswordViewController()
+        controller.viewModel = self.viewModel
+        controller.delegate = self
         return controller
     }()
     
@@ -111,7 +119,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         // view model subjects
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.sh_message, preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                 self?.presentViewController(alertController, animated: true, completion: nil)
             }
@@ -152,13 +160,20 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
     func presentLogin() {
         title = loginViewController.title
         containerHeightConstraint.constant = loginViewHeight
-        cycleFromViewController(signupViewController, toViewController: loginViewController, animated: true)
+        let currentChild: UIViewController = self.childViewControllers.contains(signupViewController) ? signupViewController : resetPasswordViewController
+        cycleFromViewController(currentChild, toViewController: loginViewController, animated: true)
     }
     
     func presentSignup() {
         title = signupViewController.title
         containerHeightConstraint.constant = signupViewHeight
         cycleFromViewController(loginViewController, toViewController: signupViewController, animated: true)
+    }
+    
+    func presentResetPassword() {
+        title = resetPasswordViewController.title
+        containerHeightConstraint.constant = resetPasswordViewHeight
+        cycleFromViewController(loginViewController, toViewController: resetPasswordViewController, animated: true)
     }
     
     func showErrorMessage(message: String) {

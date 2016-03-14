@@ -18,6 +18,7 @@ extension AboutDisplayable where Self: FlowController, Self: TermsAndPolicyDispl
     func showAboutInterface() {
         let aboutViewController = Wireframe.settingsViewController()
         aboutViewController.models = aboutOptions()
+        aboutViewController.title = NSLocalizedString("About", comment: "About screen title")
         navigationController.showViewController(aboutViewController, sender: nil)
     }
     

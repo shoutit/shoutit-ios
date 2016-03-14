@@ -10,6 +10,7 @@ import UIKit
 
 enum ShoutitColor: Int {
     case PrimaryGreen = 0x4caf50
+    case ShoutitButtonGreen = 0x4CB950
     case BackgroundWhite = 0xfafafa
     case BackgroundLightGray = 0xF4F4F4
     case BackgroundGrey = 0x333333
@@ -23,7 +24,7 @@ enum ShoutitColor: Int {
     case ButtonBackgroundGray = 0xD6D6D6
     case FontLighterGray = 0x58585A
     case SeparatorGray = 0xe0e0e0
-    case TextFieldLightBlueColor = 0x40C4FF
+    case ShoutitLightBlueColor = 0x40C4FF
     case CellBackgroundGrayColor = 0xEFEFEF
     case PlaceholderGray = 0x8c8c8c
     

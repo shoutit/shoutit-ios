@@ -155,10 +155,6 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (user?.location.country ?? "country_placeholder"))
     }
     
-    var hidesListenButtons: Bool {
-        return true
-    }
-    
     func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
         if case .CreatePageButtonFooter = view {
             return true
