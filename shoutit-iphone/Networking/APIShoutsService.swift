@@ -103,10 +103,11 @@ class APIShoutsService {
             
             return AnonymousDisposable {
             }
-            
-            
         })
-        
+    }
+    
+    static func listShoutsWithParams(params: FilteredShoutsParams) -> Observable<[Shout]> {
+        return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
     static func shoutsForUserWithParams(params: UserShoutsParams) -> Observable<[Shout]> {

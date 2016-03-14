@@ -81,7 +81,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         cachedAttributes.append(coverAttributes)
         cachedAttributes.append(infoAttributes)
         
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.PagesSectionHeader,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.ListSectionHeader,
                                                          height: sectionHeaderHeight,
                                                          yOffset: &yOffset)
         
@@ -102,7 +102,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.CreatePageButtonFooter,
                                                          height: footerButtonHeight,
                                                          yOffset: &yOffset)
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.ShoutsSectionHeader,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.GridSectionHeader,
                                                          height: sectionHeaderHeight,
                                                          yOffset: &yOffset)
         

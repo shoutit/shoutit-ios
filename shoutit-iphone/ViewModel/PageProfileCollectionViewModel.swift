@@ -17,13 +17,13 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private let profile: Profile
     private var detailedProfile: DetailedProfile?
     
-    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>!
-    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
+    private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
+    private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     init(profile: Profile) {
         self.profile = profile
-        shoutsSection = shoutsSectionWithModels([], isLoading: true)
-        pagesSection = pagesSectionWithModels([], isLoading: true)
+        gridSection = gridSectionWithModels([], isLoading: true)
+        listSection = listSectionWithModels([], isLoading: true)
     }
     
     func reloadContent() {
@@ -31,7 +31,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         reloadPages(currentlyLoading: true)
         
         // reload user
-        fetchProfile()?
+        fetchProfile()
             .subscribe({[weak self] (event) in
                 switch event {
                 case .Next(let detailedProfile):
@@ -49,14 +49,14 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
         
         // reload shouts
-        fetchShouts()?
+        fetchShouts()
             .subscribe {[weak self] (event) in
                 switch event {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
-                    self?.shoutsSection = self?.shoutsSectionWithModels(shouts, isLoading: false)
+                    self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                 case .Error(let error as NSError):
-                    self?.shoutsSection = self?.shoutsSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
                 default:
                     break
                 }
@@ -65,14 +65,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
     }
     
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedProfile?.admins ?? []
-        pagesSection = pagesSectionWithModels(pages, isLoading: loading)
-    }
-    
     // MARK: - ProfileCollectionViewModelInterface
-    
-    // user data
     
     var name: String? {
         return profile.name
@@ -86,8 +79,8 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return detailedProfile?.isListener
     }
     
-    var avatarURL: NSURL? {
-        return (profile.imagePath != nil) ? NSURL(string: profile.imagePath!) : nil
+    var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
+        return .Remote(url: profile.imagePath?.toURL())
     }
     
     var coverURL: NSURL? {
@@ -101,7 +94,6 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 .Listen(isListening: detailedProfile?.isListening ?? profile.listening ?? false),
                 .HiddenButton(position: .SmallLeft),
                 .More]
-        
     }
     
     var descriptionText: String? {
@@ -133,8 +125,8 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         switch view {
         case .CreatePageButtonFooter:
             return true
-        case .PagesSectionHeader:
-            return self.pagesSection.cells.count == 0 && !pagesSection.isLoading
+        case .ListSectionHeader:
+            return self.listSection.cells.count == 0 && !listSection.isLoading
         default:
             return false
         }
@@ -142,37 +134,37 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
         if section == 0 {
-            if pagesSection.isLoading {
+            if listSection.isLoading {
                 return .Placeholder
-            } else if pagesSection.cells.count > 0 {
+            } else if listSection.cells.count > 0 {
                 return .Default
             } else {
                 return .Hidden
             }
         }
         if section == 1 {
-            return shoutsSection.cells.count > 1 ? .Default : .Placeholder
+            return gridSection.cells.count > 1 ? .Default : .Placeholder
         }
         
-        assert(false)
+        assertionFailure()
         return .Default
     }
     
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]>? {
+    func fetchShouts() -> Observable<[Shout]> {
         let params = UserShoutsParams(username: profile.username, pageSize: 4, shoutType: nil)
         return APIShoutsService.shoutsForUserWithParams(params)
     }
     
-    func fetchProfile() -> Observable<DetailedProfile>? {
+    func fetchProfile() -> Observable<DetailedProfile> {
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
     
-    func listenToUser() -> Observable<Void>? {
+    func listen() -> Observable<Void>? {
         guard let listening = profile.listening else {return nil}
         let listen = !(detailedProfile?.isListening ?? listening)
-        let retrieveUser = fetchProfile()!.map {[weak self] (profile) -> Void in
+        let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedProfile = profile
             self?.reloadSubject.onNext()
         }
@@ -183,8 +175,13 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Helpers
     
-    private func pagesSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
-        let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
+    private func reloadPages(currentlyLoading loading: Bool = false) {
+        let pages = detailedProfile?.admins ?? []
+        listSection = listSectionWithModels(pages, isLoading: loading)
+    }
+    
+    private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
+        let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
         let title = NSLocalizedString("\(profile.name) Admins", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,
@@ -194,7 +191,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                                                  errorMessage: errorMessage)
     }
     
-    private func shoutsSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("\(profile.name) Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -78,21 +78,26 @@ extension ProfileCollectionViewController {
         
         switch indexPath.section {
         case 0:
-            if indexPath.row > viewModel.pagesSection.cells.count - 1 {
+            if indexPath.row > viewModel.listSection.cells.count - 1 {
                 return
             }
-            let profile = viewModel.pagesSection.cells[indexPath.row].profile
-            switch profile.type {
-            case .Page:
-                flowDelegate?.showPage(profile)
-            case .User:
-                flowDelegate?.showProfile(profile)
+            
+            switch viewModel.listSection.cells[indexPath.row].model {
+            case .TagModel(let tag):
+                flowDelegate?.showTag(tag)
+            case .ProfileModel(let profile):
+                switch profile.type {
+                case .Page:
+                    flowDelegate?.showPage(profile)
+                case .User:
+                    flowDelegate?.showProfile(profile)
+                }
             }
         case 1:
-            if indexPath.row > viewModel.shoutsSection.cells.count - 1 {
+            if indexPath.row > viewModel.gridSection.cells.count - 1 {
                 return
             }
-            let shout = viewModel.shoutsSection.cells[indexPath.row].shout
+            let shout = viewModel.gridSection.cells[indexPath.row].shout
             flowDelegate?.showShout(shout)
         default:
             assert(false)
@@ -113,9 +118,9 @@ extension ProfileCollectionViewController {
         switch viewModel.sectionContentModeForSection(section) {
         case .Default:
             if section == 0 {
-                return viewModel.pagesSection.cells.count
+                return viewModel.listSection.cells.count
             } else if section == 1 {
-                return viewModel.shoutsSection.cells.count
+                return viewModel.gridSection.cells.count
             } else {
                 assert(false)
                 return 0
@@ -131,10 +136,10 @@ extension ProfileCollectionViewController {
         
         if case ProfileCollectionSectionContentMode.Placeholder = viewModel.sectionContentModeForSection(indexPath.section) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(placeholderCellReuseIdentier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
-            let isLoading = indexPath.section == 0 ? viewModel.pagesSection.isLoading : viewModel.shoutsSection.isLoading
+            let isLoading = indexPath.section == 0 ? viewModel.listSection.isLoading : viewModel.gridSection.isLoading
             cell.setupCellForActivityIndicator(isLoading)
-            let errorMessage = indexPath.section == 0 ? viewModel.pagesSection.errorMessage : viewModel.shoutsSection.errorMessage
-            let noContentMessage = indexPath.section == 0 ? viewModel.pagesSection.noContentMessage : viewModel.shoutsSection.noContentMessage
+            let errorMessage = indexPath.section == 0 ? viewModel.listSection.errorMessage : viewModel.gridSection.errorMessage
+            let noContentMessage = indexPath.section == 0 ? viewModel.listSection.noContentMessage : viewModel.gridSection.noContentMessage
             cell.placeholderTextLabel.text = errorMessage ?? noContentMessage
             
             return cell
@@ -142,14 +147,15 @@ extension ProfileCollectionViewController {
         
         if indexPath.section == ProfileCollectionViewSection.Pages.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Pages.cellReuseIdentifier, forIndexPath: indexPath) as! PagesCollectionViewCell
-            let cellViewModel = viewModel.pagesSection.cells[indexPath.row]
+            let cellViewModel = viewModel.listSection.cells[indexPath.row]
             
-            cell.nameLabel.text = cellViewModel.profile.name
+            cell.nameLabel.text = cellViewModel.name()
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
-            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage(named: "image_placeholder"))
+            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.thumbnailURL(), placeholderImage: UIImage(named: "image_placeholder"))
             let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
-            cell.reuseDisposeBag = DisposeBag()
+            cell.listenButton.hidden = cellViewModel.hidesListeningButton()
+            
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
@@ -161,17 +167,15 @@ extension ProfileCollectionViewController {
                     default:
                         break
                     }
-                }).addDisposableTo(cell.reuseDisposeBag!)
-            }.addDisposableTo(cell.reuseDisposeBag!)
-            
-            cell.listenButton.hidden = Account.sharedInstance.loggedUser?.id == cellViewModel.profile.id
+                }).addDisposableTo(cell.reuseDisposeBag)
+            }.addDisposableTo(cell.reuseDisposeBag)
             
             return cell
         }
             
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            let cellViewModel = viewModel.shoutsSection.cells[indexPath.row]
+            let cellViewModel = viewModel.gridSection.cells[indexPath.row]
             
             cell.titleLabel.text = cellViewModel.shout.title
             cell.subtitleLabel.text = cellViewModel.shout.user.name
@@ -253,7 +257,15 @@ extension ProfileCollectionViewController {
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
             infoView.reuseDisposeBag = DisposeBag()
             
-            infoView.avatarImageView.sh_setImageWithURL(viewModel.avatarURL, placeholderImage: UIImage.squareAvatarPlaceholder())
+            switch viewModel.avatar {
+            case .Local(let image):
+                infoView.avatarImageView.contentMode = .Center
+                infoView.avatarImageView.image = image
+            case .Remote(let url):
+                infoView.avatarImageView.contentMode = .ScaleAspectFill
+                infoView.avatarImageView.sh_setImageWithURL(url, placeholderImage: UIImage.squareAvatarPlaceholder())
+            }
+            
             infoView.nameLabel.text = viewModel.name
             infoView.usernameLabel.text = viewModel.username
             if let isListening = viewModel.isListeningToYou where isListening {
@@ -285,28 +297,28 @@ extension ProfileCollectionViewController {
                 }
             }
             
-        case .PagesSectionHeader:
-            let pagesSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
-            pagesSectionHeader.titleLabel.text = viewModel.pagesSection.title
+        case .ListSectionHeader:
+            let listSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
+            listSectionHeader.titleLabel.text = viewModel.listSection.title
         case .CreatePageButtonFooter:
             let createPageButtonFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             createPageButtonFooter.reuseDisposeBag = DisposeBag()
-            createPageButtonFooter.type = viewModel.pagesSection.footerButtonStyle
-            createPageButtonFooter.button.setTitle(viewModel.pagesSection.footerButtonTitle, forState: .Normal)
+            createPageButtonFooter.type = viewModel.listSection.footerButtonStyle
+            createPageButtonFooter.button.setTitle(viewModel.listSection.footerButtonTitle, forState: .Normal)
             createPageButtonFooter.button
                 .rx_tap
                 .subscribeNext {[unowned self] in
                     self.flowDelegate?.showCreateShout()
                 }
                 .addDisposableTo(createPageButtonFooter.reuseDisposeBag!)
-        case .ShoutsSectionHeader:
-            let shoutsSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
-            shoutsSectionHeader.titleLabel.text = viewModel.shoutsSection.title
+        case .GridSectionHeader:
+            let gridSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
+            gridSectionHeader.titleLabel.text = viewModel.gridSection.title
         case .SeeAllShoutsButtonFooter:
             let seeAllShoutsFooter = supplementeryView as! ProfileCollectionFooterButtonSupplementeryView
             seeAllShoutsFooter.reuseDisposeBag = DisposeBag()
-            seeAllShoutsFooter.type = viewModel.shoutsSection.footerButtonStyle
-            seeAllShoutsFooter.button.setTitle(viewModel.shoutsSection.footerButtonTitle, forState: .Normal)
+            seeAllShoutsFooter.type = viewModel.gridSection.footerButtonStyle
+            seeAllShoutsFooter.button.setTitle(viewModel.gridSection.footerButtonTitle, forState: .Normal)
             seeAllShoutsFooter.button
                 .rx_tap
                 .subscribeNext{[unowned self] in
@@ -351,7 +363,7 @@ extension ProfileCollectionViewController {
         
         switch buttonModel {
         case .Listen(let isListening):
-            if let observable = viewModel.listenToUser() {
+            if let observable = viewModel.listen() {
                 button.rx_tap.flatMapFirst({[weak button] () -> Observable<Void> in
                     if let button = button as? ProfileInfoHeaderButton {
                         let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)

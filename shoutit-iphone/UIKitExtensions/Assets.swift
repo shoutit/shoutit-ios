@@ -118,6 +118,10 @@ extension UIImage {
         return UIImage(named: "profile_website_icon")!
     }
     
+    static func profileTagAvatar() -> UIImage {
+        return UIImage(named: "profile_avatar_tag")!
+    }
+    
     // MARK: - Placeholders
     
     static func squareAvatarPlaceholder() -> UIImage {

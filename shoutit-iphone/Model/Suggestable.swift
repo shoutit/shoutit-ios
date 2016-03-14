@@ -31,24 +31,3 @@ extension Profile: Suggestable {
         return (self.imagePath != nil) ? NSURL(string: self.imagePath!) : nil
     }
 }
-
-extension Tag: Suggestable {
-    var listenId: String {
-        return self.id
-    }
-    var suggestionTitle: String {
-        return self.name
-    }
-    var suggestionId: String {
-        return self.name
-    }
-    var thumbnailURL: NSURL? {
-        guard let path = self.imagePath else {
-            return nil
-        }
-        return NSURL(string: path)
-    }
-    var listenersCount: Int {
-        return 0
-    }
-}

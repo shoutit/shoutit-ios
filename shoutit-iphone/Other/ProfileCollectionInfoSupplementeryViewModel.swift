@@ -8,8 +8,14 @@
 
 import Foundation
 
+enum ProfileCollectionInfoSupplementeryViewAvatar {
+    case Remote(url: NSURL?)
+    case Local(image: UIImage?)
+}
+
 protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
-    var avatarURL: NSURL? {get}
+    
+    var avatar: ProfileCollectionInfoSupplementeryViewAvatar {get}
     var infoButtons: [ProfileCollectionInfoButton] {get}
     var descriptionText: String? {get}
     var descriptionIcon: UIImage? {get}
@@ -28,6 +34,7 @@ enum ProfileCollectionInfoButton {
     case Notification
     case EditProfile
     case More
+    case Custom(title: String, icon: UIImage?)
     case HiddenButton(position: ProfileCollectionInfoButtonPosition)
     
     var title: String {
@@ -46,6 +53,8 @@ enum ProfileCollectionInfoButton {
             } else {
                 return NSLocalizedString("Listen", comment: "")
             }
+        case .Custom(let title, _):
+            return title
         default:
             return ""
         }
@@ -73,6 +82,8 @@ enum ProfileCollectionInfoButton {
             return UIImage.profileEditUserIcon()
         case .More:
             return UIImage.profileMoreIcon()
+        case .Custom(_, let icon):
+            return icon ?? UIImage()
         case .HiddenButton:
             return UIImage()
         }
@@ -96,6 +107,8 @@ enum ProfileCollectionInfoButton {
             return .SmallRight
         case .More:
             return .SmallRight
+        case .Custom:
+            return .BigCenter
         case .HiddenButton(let position):
             return position
         }

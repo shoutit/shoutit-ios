@@ -11,7 +11,7 @@ import RxSwift
 
 class PagesCollectionViewCell: UICollectionViewCell {
     
-    var reuseDisposeBag: DisposeBag?
+    var reuseDisposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet weak var thumnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -20,6 +20,6 @@ class PagesCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        reuseDisposeBag = nil
+        reuseDisposeBag = DisposeBag()
     }
 }

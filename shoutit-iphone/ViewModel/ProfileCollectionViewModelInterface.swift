@@ -18,13 +18,13 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var coverURL: NSURL? {get}
     
     // sections
-    var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>! {get}
-    var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
+    var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
+    var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
     
     // fetchin
     func reloadContent()
     var reloadSubject: PublishSubject<Void> {get}
-    func listenToUser() -> Observable<Void>?
+    func listen() -> Observable<Void>?
 }
 
 // MARK: - Default implementations
@@ -33,13 +33,13 @@ extension ProfileCollectionViewModelInterface {
     
     func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
         if section == 0 {
-            return pagesSection.cells.count > 0 ? .Default : .Placeholder
+            return listSection.cells.count > 0 ? .Default : .Placeholder
         }
         if section == 1 {
-            return shoutsSection.cells.count > 1 ? .Default : .Placeholder
+            return gridSection.cells.count > 1 ? .Default : .Placeholder
         }
         
-        assert(false)
+        assertionFailure()
         return .Default
     }
 }
