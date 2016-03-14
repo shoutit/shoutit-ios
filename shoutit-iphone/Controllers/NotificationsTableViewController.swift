@@ -24,11 +24,16 @@ class NotificationsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         reloadNotifications()
+        
+        self.refreshControl = UIRefreshControl()
+        
+        self.refreshControl?.addTarget(self, action: "reloadNotifications", forControlEvents: .ValueChanged)
 
     }
     
-    func reloadNotifications() {
+    @IBAction func reloadNotifications() {
         APINotificationsService.requestNotifications().subscribeNext { [weak self] (messages) -> Void in
+            self?.refreshControl?.endRefreshing()
             self?.messages = messages
             self?.tableView.reloadData()
         }.addDisposableTo(disposeBag)
