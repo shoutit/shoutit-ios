@@ -7,12 +7,27 @@
 //
 
 import Foundation
+import RxSwift
 
 class SearchViewModel {
+    
+    let reloadSubject: PublishSubject<Void> = PublishSubject()
     
     let context: SearchContext
     
     init(context: SearchContext) {
         self.context = context
+    }
+    
+    func reloadContent() {
+        if case .General = context {
+            fetchCategories()
+        }
+    }
+    
+    // MARK: - Hydrate models
+    
+    private func fetchCategories() {
+        
     }
 }

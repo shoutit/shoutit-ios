@@ -20,7 +20,12 @@ class SearchViewController: UIViewController {
             searchBar.layer.borderWidth = 1.0
         }
     }
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedControlSectionHeightConstraint: NSLayoutConstraint!
     
@@ -54,6 +59,12 @@ class SearchViewController: UIViewController {
             .driveNext { (segment) in
                 
             }
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .reloadSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext{[weak self] in self?.tableView.reloadData()}
             .addDisposableTo(disposeBag)
     }
     

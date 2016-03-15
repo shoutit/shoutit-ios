@@ -110,6 +110,11 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
+    static func listCategories() -> Observable<[Category]> {
+        let url = APIManager.baseURL + "/shouts/categories"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
+    }
+    
     static func shoutsForUserWithParams(params: UserShoutsParams) -> Observable<[Shout]> {
         return APIGenericService.requestWithMethod(.GET,
                                                    url: shoutsURL,

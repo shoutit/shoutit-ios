@@ -525,6 +525,9 @@
 		B2D9B1121C98840E00924941 /* SearchRecentsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B1111C98840E00924941 /* SearchRecentsHeaderView.swift */; };
 		B2D9B1141C98845200924941 /* SearchCategoriesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D9B1131C98845200924941 /* SearchCategoriesHeaderView.xib */; };
 		B2D9B1161C98848A00924941 /* SearchRecentsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D9B1151C98848A00924941 /* SearchRecentsHeaderView.xib */; };
+		B2D9B1181C9897B400924941 /* SearchSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B1171C9897B400924941 /* SearchSectionViewModel.swift */; };
+		B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B1191C98981900924941 /* SearchCategoryCellViewModel.swift */; };
+		B2D9B11C1C98984300924941 /* SearchSuggestionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B11B1C98984300924941 /* SearchSuggestionCellViewModel.swift */; };
 		B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */; };
 		B2E107191C9700B200F7F4EF /* TagProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E107181C9700B200F7F4EF /* TagProfileCollectionViewModel.swift */; };
 		B2E1071B1C9711BC00F7F4EF /* RelatedTagsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1071A1C9711BC00F7F4EF /* RelatedTagsParams.swift */; };
@@ -1155,6 +1158,9 @@
 		B2D9B1111C98840E00924941 /* SearchRecentsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchRecentsHeaderView.swift; path = View/SearchRecentsHeaderView.swift; sourceTree = "<group>"; };
 		B2D9B1131C98845200924941 /* SearchCategoriesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchCategoriesHeaderView.xib; path = Storyboards/SearchCategoriesHeaderView.xib; sourceTree = "<group>"; };
 		B2D9B1151C98848A00924941 /* SearchRecentsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchRecentsHeaderView.xib; path = Storyboards/SearchRecentsHeaderView.xib; sourceTree = "<group>"; };
+		B2D9B1171C9897B400924941 /* SearchSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchSectionViewModel.swift; path = ViewModel/SearchSectionViewModel.swift; sourceTree = "<group>"; };
+		B2D9B1191C98981900924941 /* SearchCategoryCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCategoryCellViewModel.swift; path = ViewModel/SearchCategoryCellViewModel.swift; sourceTree = "<group>"; };
+		B2D9B11B1C98984300924941 /* SearchSuggestionCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchSuggestionCellViewModel.swift; path = ViewModel/SearchSuggestionCellViewModel.swift; sourceTree = "<group>"; };
 		B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+NavigationBar.swift"; path = "UIKitExtensions/UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		B2E107181C9700B200F7F4EF /* TagProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagProfileCollectionViewModel.swift; path = ViewModel/TagProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B2E1071A1C9711BC00F7F4EF /* RelatedTagsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelatedTagsParams.swift; path = Networking/RelatedTagsParams.swift; sourceTree = "<group>"; };
@@ -3194,6 +3200,9 @@
 			isa = PBXGroup;
 			children = (
 				B2D9B0FE1C9849CB00924941 /* SearchViewModel.swift */,
+				B2D9B1171C9897B400924941 /* SearchSectionViewModel.swift */,
+				B2D9B1191C98981900924941 /* SearchCategoryCellViewModel.swift */,
+				B2D9B11B1C98984300924941 /* SearchSuggestionCellViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -3784,6 +3793,7 @@
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
+				B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */,
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
 				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
@@ -3933,6 +3943,7 @@
 				242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */,
 				B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */,
 				B2E7155D1C6E11F4007F95CF /* ProfileReusableViewKind.swift in Sources */,
+				B2D9B11C1C98984300924941 /* SearchSuggestionCellViewModel.swift in Sources */,
 				604A0DDC1BEE9C8A002A80E7 /* CollectionViewControllerModelProtocol.swift in Sources */,
 				604A0DCB1BEE478C002A80E7 /* SHSuccess.swift in Sources */,
 				240F509E1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift in Sources */,
@@ -3940,6 +3951,7 @@
 				602414921C01F31B00DFF4DD /* SHDateTransform.swift in Sources */,
 				B2B540D61C6A51C30075EDA6 /* Suggestable.swift in Sources */,
 				B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */,
+				B2D9B1181C9897B400924941 /* SearchSectionViewModel.swift in Sources */,
 				B2B5D02A1C7F7DB50068A6AF /* IndexedCollectionView.swift in Sources */,
 				B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */,
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
