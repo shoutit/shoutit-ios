@@ -9,14 +9,18 @@
 import UIKit
 
 class ConversationTableViewCell: UITableViewCell {
-    @IBOutlet weak var participantsLabel: UILabel!
-    @IBOutlet weak var messagePreviewLabel: UILabel!
+    @IBOutlet weak var firstLineLabel: UILabel!
+    @IBOutlet weak var secondLineLabel: UILabel!
+    @IBOutlet weak var thirdLineLabel: UILabel?
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var participantsImageView: UIImageView!
 
     func bindWithConversation(conversation: Conversation) {
-        self.messagePreviewLabel.text = conversation.lastMessage?.text
-        self.participantsLabel.text = conversation.participantsText()
+        self.firstLineLabel.attributedText = conversation.firstLineText()
+        self.secondLineLabel.attributedText = conversation.secondLineText()
+        self.thirdLineLabel?.attributedText = conversation.thirdLineText()
+
         self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(conversation.modifiedAt)
+        self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage(named: ""))
     }
 }

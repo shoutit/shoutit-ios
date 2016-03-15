@@ -10,6 +10,11 @@ import Foundation
 import Argo
 import Curry
 
+enum ConversationType : String {
+    case Chat = "chat"
+    case AboutShout = "about_shout"
+}
+
 struct Conversation: Decodable, Hashable, Equatable {
     let id: String
     let createdAt: Int
@@ -19,6 +24,8 @@ struct Conversation: Decodable, Hashable, Equatable {
     let typeString: String
     let users: [Profile]?
     let lastMessage: Message?
+    let shout: Shout?
+    let readby: [ReadBy]?
  
     var hashValue: Int {
         get {
@@ -40,8 +47,16 @@ struct Conversation: Decodable, Hashable, Equatable {
         let c = b
             <*> j <||? "users"
             <*> j <|? "last_message"
+            <*> j <|? "about"
+            
+        let d = c
+            <*> j <||? "read_by"
         
-        return c
+        return d
+    }
+    
+    func type() -> ConversationType {
+        return ConversationType(rawValue: self.typeString)!
     }
 }
 
@@ -50,13 +65,89 @@ func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 }
 
 extension Conversation {
-    func participantsText() -> String? {
+    func firstLineText() -> NSAttributedString? {
+        if self.type() == .Chat {
+            return NSAttributedString(string: participantNames())
+        }
+        
+        return shoutTitle()
+    }
+    
+    func shoutTitle() -> NSAttributedString? {
+        guard let shout = self.shout else {
+            return NSAttributedString(string: "Shout discussion")
+        }
+        
+        let attributedString = NSMutableAttributedString(string: shout.title, attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
+        
+        return attributedString
+    }
+    
+    func participantNames() -> String {
         var names : [String] = []
         
         self.users?.each({ (profile) -> () in
-            names.append(profile.firstName)
+            if profile.id != Account.sharedInstance.user?.id {
+                names.append(profile.name)
+            }
         })
         
+        if self.users?.count > 2 {
+            names.insert(NSLocalizedString("You", comment: ""), atIndex: 0)
+        }
+        
         return names.joinWithSeparator(", ")
+    }
+    
+    func secondLineText() -> NSAttributedString? {
+        if self.type() == .Chat {
+            return NSAttributedString(string: lastMessageText())
+        }
+        
+        return NSAttributedString(string: participantNames())
+    }
+    
+    func thirdLineText() -> NSAttributedString? {
+        return NSAttributedString(string: lastMessageText())
+    }
+    
+    func lastMessageText() -> String {
+        guard let msg = lastMessage else {
+            return ""
+        }
+        
+        if let text = msg.text {
+            return text
+        }
+        
+        return NSLocalizedString("Attachment", comment: "")
+    }
+    
+    func imageURL() -> NSURL? {
+        var url : NSURL?
+        
+        self.users?.each({ (profile) -> () in
+            if profile.id != Account.sharedInstance.user?.id {
+                if let path = profile.imagePath {
+                    url = NSURL(string: path)
+                    return
+                }
+            }
+        })
+        
+        return url
+    }
+    
+    func isRead() -> Bool {
+        
+        if let readby = self.readby {
+            for read in readby {
+                if read.profileId == Account.sharedInstance.user?.id {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
 }

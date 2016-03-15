@@ -9,6 +9,9 @@
 import UIKit
 import RxSwift
 import DZNEmptyDataSet
+import MBProgressHUD
+
+protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable {}
 
 class ConversationListTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
@@ -19,8 +22,13 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     
     private let disposeBag = DisposeBag()
     
+    weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MBProgressHUD.showHUDAddedTo(self.tableView, animated: true)
+        
         reloadConversationList()
         
         self.refreshControl = UIRefreshControl()
@@ -39,12 +47,14 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     }
     
     func reloadConversationList() {
-        APIChatsService.requestConversations().subscribe(onNext: { (conversations) -> Void in
-            self.conversations = conversations
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }, onError: { (error) -> Void in
-            self.refreshControl?.endRefreshing()
+        APIChatsService.requestConversations().subscribe(onNext: { [weak self] (conversations) -> Void in
+            self?.conversations = conversations
+            self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
+            MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
+        }, onError: { [weak self] (error) -> Void in
+            self?.refreshControl?.endRefreshing()
+            MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
         }, onCompleted: nil , onDisposed: nil).addDisposableTo(disposeBag)
     }
     
@@ -67,6 +77,16 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     }
     
     func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String {
-        return directConversationCellIdentifier
+        if conversations[indexPath.row].type() == .Chat {
+            return directConversationCellIdentifier
+        }
+        
+        return groupConversationCellIdentifier
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let conversation = conversations[indexPath.row]
+        
+        self.flowDelegate?.showConversation(conversation)
     }
 }

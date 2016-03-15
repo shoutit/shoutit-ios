@@ -19,4 +19,10 @@ class APIChatsService {
     static func requestConversations() -> Observable<[Conversation]> {
         return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
     }
+    
+    /*
+    static func startConversationWithUsername(username: String) -> Observable<Conversation> {
+        
+    }
+    */
 }

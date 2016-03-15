@@ -18,6 +18,8 @@ final class ChatsFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.chatsViewController()
+        
+        controller.flowDelegate = self
 
         navigationController.showViewController(controller, sender: nil)
     }
@@ -26,3 +28,11 @@ final class ChatsFlowController: FlowController {
         return true
     }
 }
+
+extension ChatsFlowController: ConversationListTableViewControllerFlowDelegate {}
+extension ChatsFlowController: ConversationViewControllerFlowDelegate {}
+extension ChatsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
+extension ChatsFlowController: ProfileCollectionViewControllerFlowDelegate {}
+extension ChatsFlowController: NotificationsTableViewControllerFlowDelegate {}
+extension ChatsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
+extension ChatsFlowController: DiscoverCollectionViewControllerFlowDelegate {}
