@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -51,6 +51,11 @@ class ProfileCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.reloadContent()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        navigationController?.navigationBarHidden = false
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Setup
@@ -382,6 +387,10 @@ extension ProfileCollectionViewController {
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
             }.addDisposableTo(disposeBag)
+        case .Notification:
+            button.rx_tap.asDriver().driveNext{[weak self] in
+                self?.flowDelegate?.showNotifications()
+                }.addDisposableTo(disposeBag)
         default:
             break
         }

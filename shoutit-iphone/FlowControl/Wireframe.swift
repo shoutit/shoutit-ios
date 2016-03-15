@@ -26,6 +26,7 @@ struct Wireframe {
         case Help = "Help"
         case InviteFriends = "InviteFriends"
         case EditProfile = "EditProfile"
+        case Notifications = "Notifications"
     }
     
     // General
@@ -172,6 +173,10 @@ struct Wireframe {
         controller.type = type
         
         return controller
+    }
+    
+    static func notificationsController() -> NotificationsTableViewController {
+        return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }
     
 }
