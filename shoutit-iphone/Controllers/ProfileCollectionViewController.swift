@@ -53,9 +53,8 @@ class ProfileCollectionViewController: UICollectionViewController {
         viewModel.reloadContent()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        navigationController?.navigationBarHidden = false
-        super.viewWillDisappear(animated)
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Setup
@@ -415,14 +414,5 @@ extension ProfileCollectionViewController {
         } else {
             button.setImage(buttonModel.image, forState: .Normal)
         }
-    }
-}
-
-// MARK: - NavigationBarContext
-
-extension ProfileCollectionViewController {
-    
-    override func prefersNavigationBarHidden() -> Bool {
-        return true
     }
 }

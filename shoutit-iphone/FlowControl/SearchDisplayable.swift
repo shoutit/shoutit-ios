@@ -9,6 +9,7 @@
 import Foundation
 
 enum SearchContext {
+    case General
     case ProfileShouts(profile: Profile)
     case TagShouts(tag: Tag)
     case DiscoverShouts(item: DiscoverItem)
@@ -20,7 +21,10 @@ protocol SearchDisplayable {
 
 extension SearchDisplayable where Self: FlowController {
     
-    func showSearch() {
-        navigationController.notImplemented()
+    func showSearchInContext(context: SearchContext) {
+        let controller = Wireframe.searchViewController()
+        let nav = ModalNavigationController(rootViewController: controller)
+        controller.viewModel = SearchViewModel(context: context)
+        navigationController.presentViewController(nav, animated: true, completion: nil)
     }
 }

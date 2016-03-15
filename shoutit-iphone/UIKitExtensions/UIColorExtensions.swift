@@ -27,6 +27,8 @@ enum ShoutitColor: Int {
     case ShoutitLightBlueColor = 0x40C4FF
     case CellBackgroundGrayColor = 0xEFEFEF
     case PlaceholderGray = 0x8c8c8c
+    case SearchBarGray = 0xf7f7f7
+    case SearchBarTextFieldGray = 0xE2E3E6
     
     var alpha: Float {
         switch self {
