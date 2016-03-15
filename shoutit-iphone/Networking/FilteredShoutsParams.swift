@@ -10,6 +10,9 @@ import Foundation
 
 struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     
+    let searchPhrase: String?
+    let discoverId: String?
+    let username: String?
     let tag: String?
     let page: Int?
     let pageSize: Int?
