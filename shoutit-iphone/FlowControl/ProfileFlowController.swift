@@ -36,3 +36,5 @@ extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension ProfileFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 
 extension ProfileFlowController: DiscoverCollectionViewControllerFlowDelegate {}
+
+extension ProfileFlowController: NotificationsTableViewControllerFlowDelegate {}
