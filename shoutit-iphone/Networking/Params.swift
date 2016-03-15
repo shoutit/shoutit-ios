@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Ogra
 
 protocol Params {
     var params: [String : AnyObject] {get}
@@ -60,5 +61,17 @@ struct PageParams: Params {
     
     var params: [String : AnyObject] {
         return ["page":self.page, "page_size": self.pageSize]
+    }
+}
+
+struct MessageParams: Params {
+    let message: Message
+    
+    init(message: Message) {
+        self.message = message
+    }
+    
+    var params: [String : AnyObject] {
+        return self.message.encode().JSONObject() as! [String: AnyObject]
     }
 }

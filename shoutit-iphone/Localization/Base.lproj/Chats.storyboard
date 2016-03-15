@@ -167,32 +167,22 @@
             <point key="canvasLocation" x="-455" y="113"/>
         </scene>
         <!--Conversation View Controller-->
-        <scene sceneID="BXS-fR-msF">
+        <scene sceneID="UE0-sJ-VNI">
             <objects>
-                <tableViewController storyboardIdentifier="conversationController" id="y8Q-fj-gRu" customClass="ConversationViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B3N-MF-dBh">
+                <viewController storyboardIdentifier="conversationController" id="mhG-kG-xgO" customClass="ConversationViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6um-68-Lo7"/>
+                        <viewControllerLayoutGuide type="bottom" id="WDM-BF-0aM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Mk-o4-AuX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FxU-tr-xP9">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FxU-tr-xP9" id="YAP-fX-Vfc">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="y8Q-fj-gRu" id="rNJ-cO-Bn1"/>
-                            <outlet property="delegate" destination="y8Q-fj-gRu" id="iQF-f4-60L"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pRP-Ah-50X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UgW-K4-7g0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5" y="130"/>
+            <point key="canvasLocation" x="-53" y="156"/>
         </scene>
         <!--Title-->
         <scene sceneID="pXf-Zg-PsV">

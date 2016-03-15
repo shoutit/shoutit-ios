@@ -30,6 +30,7 @@
 		2463B6911C981D5000BFE6BA /* ReadBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6901C981D5000BFE6BA /* ReadBy.swift */; };
 		2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6931C98291300BFE6BA /* ConversationViewController.swift */; };
 		2463B6961C982A5A00BFE6BA /* ChatDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6951C982A5A00BFE6BA /* ChatDisplayable.swift */; };
+		2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6981C984A5E00BFE6BA /* ConversationViewModel.swift */; };
 		246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */; };
 		246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18241C8D89A000DD6DE0 /* MediaUploader.swift */; };
 		246C18271C8D89CF00DD6DE0 /* MediaUploadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */; };
@@ -612,6 +613,7 @@
 		2463B6901C981D5000BFE6BA /* ReadBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadBy.swift; path = Model/ReadBy.swift; sourceTree = "<group>"; };
 		2463B6931C98291300BFE6BA /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationViewController.swift; path = Controllers/ConversationViewController.swift; sourceTree = "<group>"; };
 		2463B6951C982A5A00BFE6BA /* ChatDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDisplayable.swift; sourceTree = "<group>"; };
+		2463B6981C984A5E00BFE6BA /* ConversationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationViewModel.swift; path = ViewModel/ConversationViewModel.swift; sourceTree = "<group>"; };
 		246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerController.swift; path = Controllers/MediaPickerController.swift; sourceTree = "<group>"; };
 		246C18241C8D89A000DD6DE0 /* MediaUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploader.swift; path = Controllers/MediaUploader.swift; sourceTree = "<group>"; };
 		246C18261C8D89CF00DD6DE0 /* MediaUploadingTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaUploadingTask.swift; path = Model/MediaUploadingTask.swift; sourceTree = "<group>"; };
@@ -1327,9 +1329,18 @@
 		2463B6921C9828FB00BFE6BA /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				2463B6971C984A4600BFE6BA /* ViewModel */,
 				2463B6931C98291300BFE6BA /* ConversationViewController.swift */,
 			);
 			name = Conversation;
+			sourceTree = "<group>";
+		};
+		2463B6971C984A4600BFE6BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2463B6981C984A5E00BFE6BA /* ConversationViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		246C18231C8D896500DD6DE0 /* MediaUploader */ = {
@@ -3721,6 +3732,7 @@
 				AE180F851C7F8EB20069BB1A /* HomeShoutsCollectionViewController.swift in Sources */,
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */,
+				2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */,
 				AC0656DD1C00CB580059E39D /* SHFilterMeta.swift in Sources */,
 				246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */,
 				AE180F861C7F8F150069BB1A /* AuthParams.swift in Sources */,

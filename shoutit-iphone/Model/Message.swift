@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Message: Decodable, Hashable, Equatable {
     
@@ -36,6 +37,16 @@ struct Message: Decodable, Hashable, Equatable {
         return b
     }
     
+    static func messageWithText(text: String) -> Message {
+        return Message(id: "", createdAt: 0, readPath: nil, user: nil, text: text)
+    }
+    
+}
+
+extension Message: Encodable {
+    func encode() -> JSON {
+        return JSON.Object(["text": (self.text ?? "").encode()])
+    }
 }
 
 func ==(lhs: Message, rhs: Message) -> Bool {
