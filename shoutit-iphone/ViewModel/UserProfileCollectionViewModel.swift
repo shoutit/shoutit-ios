@@ -123,14 +123,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var locationFlag: UIImage? {
         return UIImage(named: (detailedUser?.location.country ?? "country_placeholder"))
     }
-    
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        if case .CreatePageButtonFooter = view {
-            return true
-        }
-        return false
-    }
-    
+
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {

@@ -121,35 +121,6 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (detailedProfile?.location.country ?? "country_placeholder"))
     }
     
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        switch view {
-        case .CreatePageButtonFooter:
-            return true
-        case .ListSectionHeader:
-            return self.listSection.cells.count == 0 && !listSection.isLoading
-        default:
-            return false
-        }
-    }
-    
-    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
-        if section == 0 {
-            if listSection.isLoading {
-                return .Placeholder
-            } else if listSection.cells.count > 0 {
-                return .Default
-            } else {
-                return .Hidden
-            }
-        }
-        if section == 1 {
-            return gridSection.cells.count > 1 ? .Default : .Placeholder
-        }
-        
-        assertionFailure()
-        return .Default
-    }
-    
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {

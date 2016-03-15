@@ -105,17 +105,6 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
     }
     
-    // MARK: - ProfileCollectionViewLayoutDelegate
-    
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        switch view {
-        case .CreatePageButtonFooter:
-            return true
-        default:
-            return false
-        }
-    }
-    
     // MARK: - ProfileCollectionInfoSupplementaryViewDataSource
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
