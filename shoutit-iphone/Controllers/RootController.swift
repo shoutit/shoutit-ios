@@ -172,6 +172,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         navController.willShowViewControllerPreferringTabBarHidden = {[unowned self] (hidden) in
             self.tabbarHeightConstraint.constant = hidden ? 0 : self.defaultTabBarHeight
             self.view.layoutIfNeeded()
+            self.view.setNeedsDisplay()
         }
         let flowController : FlowController
         

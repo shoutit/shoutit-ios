@@ -30,3 +30,5 @@ extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}
 extension HomeFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension HomeFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension HomeFlowController: NotificationsTableViewControllerFlowDelegate {}
+extension HomeFlowController: ConversationListTableViewControllerFlowDelegate {}
+extension HomeFlowController: ConversationViewControllerFlowDelegate {}

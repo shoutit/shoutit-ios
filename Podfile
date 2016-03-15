@@ -66,6 +66,7 @@ pod 'URBMediaFocusViewController', '~> 0.5'
 pod 'MZFormSheetPresentationController', '~> 2.2'
 pod 'DZNEmptyDataSet'
 pod 'ACPDownload', '~> 1.1.0'
+pod 'SlackTextViewController'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
 

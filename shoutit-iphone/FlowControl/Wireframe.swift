@@ -154,8 +154,8 @@ struct Wireframe {
         return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController") as! ChangeLocationTableViewController
     }
     
-    static func chatsViewController() -> UIViewController {
-        return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController")
+    static func chatsViewController() -> ConversationListTableViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController") as! ConversationListTableViewController
     }
     
     static func profileViewController() -> ProfileCollectionViewController {
@@ -184,6 +184,10 @@ struct Wireframe {
     
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
+    }
+    
+    static func conversationController() -> ConversationViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationController") as! ConversationViewController
     }
     
 }

@@ -51,12 +51,19 @@ extension Notification {
             return followAttributedText()
         }
         
+        if type == "new_message" {
+            return messageAttributedText()
+        }
+        
         return nil
     }
     
     func imageURL() -> NSURL? {
         if type == "new_listen" {
             return followImageURL()
+        }
+        if type == "new_message" {
+            return messageImageURL()
         }
         
         return nil
@@ -83,7 +90,43 @@ extension Notification {
         return attributedString
     }
     
+    func messageAttributedText() -> NSAttributedString? {
+        
+        let base = NSLocalizedString("%%x: %%mm", comment: "")
+        
+        var name = NSLocalizedString("Someone", comment: "")
+        
+        if let profile = object?.message?.user {
+            name = profile.name
+        }
+        
+        var text = base.stringByReplacingOccurrencesOfString("%%x", withString: name)
+        
+        var msgText : String? = nil
+        
+        if let msg = object?.message, txt = msg.text {
+            msgText = txt
+        }
+        
+        text = text.stringByReplacingOccurrencesOfString("%%mm", withString: msgText ?? NSLocalizedString("Sends you message", comment: ""))
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        
+        let range = (text as NSString).rangeOfString(name)
+        
+        attributedString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: range)
+        
+        return attributedString
+    }
     
+    func messageImageURL() -> NSURL? {
+        
+        if let message = object?.message, imagePath = message.user?.imagePath {
+            return NSURL(string: imagePath)
+        }
+        
+        return nil
+    }
     
     func followImageURL() -> NSURL? {
         if let profile = object?.profile, imagePath = profile.imagePath {
