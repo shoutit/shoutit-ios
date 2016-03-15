@@ -512,6 +512,7 @@
 		B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */; };
 		B2C729DA1C6223FA006F7D29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729D91C6223FA006F7D29 /* LoginViewController.swift */; };
 		B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */; };
+		B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */; };
 		B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */; };
 		B2E7154B1C6DF078007F95CF /* UIViewController+NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */; };
 		B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E7154D1C6DF561007F95CF /* ProfileCollectionViewLayout.swift */; };
@@ -1124,6 +1125,7 @@
 		B2C729D41C6223DA006F7D29 /* LoginWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewController.swift; path = Controllers/LoginWithEmailViewController.swift; sourceTree = "<group>"; };
 		B2C729D91C6223FA006F7D29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Controllers/SignupViewController.swift; sourceTree = "<group>"; };
+		B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+NavigationBar.swift"; path = "UIKitExtensions/UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewController.swift; path = Controllers/ProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+NavigationItems.swift"; path = "UIKitExtensions/UIViewController+NavigationItems.swift"; sourceTree = "<group>"; };
 		B2E7154D1C6DF561007F95CF /* ProfileCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewLayout.swift; path = Layout/ProfileCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -2892,6 +2894,7 @@
 			children = (
 				B2C729B31C622124006F7D29 /* ContainerController.swift */,
 				B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */,
+				B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */,
 			);
 			name = ControllerExtensions;
 			sourceTree = "<group>";
@@ -3735,6 +3738,7 @@
 				B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */,
 				B2B5D0381C80691E0068A6AF /* Filter.swift in Sources */,
 				AE83517F1C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
+				B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */,
 				B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */,
 				AE83517B1C5F6E620055C71F /* RootController.swift in Sources */,
 				AE83518B1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,

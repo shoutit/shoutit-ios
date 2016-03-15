@@ -127,8 +127,8 @@ struct Wireframe {
         return storyboard(.Discover).instantiateViewControllerWithIdentifier("discoverShoutsParent") as! DiscoverShoutsParentViewController
     }
     
-    static func shoutViewController() -> UIViewController {
-        return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController")
+    static func shoutViewController() -> CreateShoutPopupViewController {
+        return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController") as! CreateShoutPopupViewController
     }
     
     static func settingsViewController() -> SettingsTableViewController {

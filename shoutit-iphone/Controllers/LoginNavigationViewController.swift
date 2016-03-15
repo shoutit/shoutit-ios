@@ -9,5 +9,15 @@
 import UIKit
 
 class LoginNavigationViewController: UINavigationController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+}
 
+extension LoginNavigationViewController: UINavigationControllerDelegate {
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
+    }
 }

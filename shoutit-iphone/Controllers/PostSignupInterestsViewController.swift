@@ -48,12 +48,6 @@ class PostSignupInterestsViewController: UIViewController {
         viewModel.fetchCategories()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBarHidden = true
-    }
-    
     // MARK: - Setup
     
     private func setupRX() {
@@ -140,6 +134,14 @@ class PostSignupInterestsViewController: UIViewController {
         tableViewContainer.layer.shadowOffset = CGSize(width: 2, height: 2)
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 10
+    }
+}
+
+// MARK: - NaviagtionBarContext
+
+extension PostSignupInterestsViewController {
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
     }
 }
 

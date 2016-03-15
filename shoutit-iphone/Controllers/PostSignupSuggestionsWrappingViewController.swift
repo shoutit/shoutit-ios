@@ -90,12 +90,6 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         viewModel.fetchSections()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBarHidden = true
-    }
-    
     // MARK: - Setup
     
     private func setupRX() {
@@ -194,5 +188,13 @@ extension PostSignupSuggestionsWrappingViewController: UIPageViewControllerDeleg
         case .Pages:
             pageControl.currentPage = 1
         }
+    }
+}
+
+// MARK: - NavigationBarContext
+
+extension PostSignupSuggestionsWrappingViewController {
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
     }
 }
