@@ -46,12 +46,6 @@ final class IntroViewController: UIViewController {
         scrollView.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBarHidden = true
-    }
-    
     // MARK: - Setup
     
     private func setupRX() {
@@ -108,5 +102,14 @@ extension IntroViewController: UIScrollViewDelegate {
         let pageWidth = scrollView.contentSize.width / numberOfPagesInScrollView
         let page = floor((scrollView.contentOffset.x + 0.5 * pageWidth) / pageWidth)
         pageControl.currentPage = Int(page)
+    }
+}
+
+// MARK: - NavigationBarContext
+
+extension IntroViewController {
+    
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
     }
 }

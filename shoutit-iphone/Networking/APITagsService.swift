@@ -13,49 +13,24 @@ import Alamofire
 
 class APITagsService {
     
-    private static let tagListenURL = APIManager.baseURL + "/tags/*/listen"
     private static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
     
     // MARK: - Traditional
     
-    static func requestListenTagWithName(name: String, withCompletionHandler completionHandler: Result<Bool, NSError> -> Void) {
-        
-        let url = tagListenURL.stringByReplacingOccurrencesOfString("*", withString: name)
-        
-        APIManager.manager().request(.POST, url, parameters: nil, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
-            switch response.result {
-            case .Success:
-                completionHandler(.Success(true))
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
-        }
+    static func listen(listen: Bool, toTagWithName name: String) -> Observable<Void> {
+        let url = APIManager.baseURL + "/tags/\(name)/listen"
+        let method: Alamofire.Method = listen ? .POST : .DELETE
+        return APIGenericService.basicRequestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
-    static func requestListenTagDeleteWithName(name: String, withCompletionHandler completionHandler: Result<Bool, NSError> -> Void) {
-        
-        let url = tagListenURL.stringByReplacingOccurrencesOfString("*", withString: name)
-        
-        APIManager.manager().request(.DELETE, url, parameters: nil, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
-            switch response.result {
-            case .Success:
-                completionHandler(.Success(true))
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
-        }
+    static func retrieveTagWithName(name: String) -> Observable<Tag> {
+        let url = APIManager.baseURL + "/tags/\(name)"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
     }
     
-    static func requestBatchListenTagWithParams(params: BatchListenParams, withCompletionHandler completionHandler: Result<Bool, NSError> -> Void) {
-        
-        APIManager.manager().request(.POST, batchTagListenURL, parameters: params.params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
-            switch response.result {
-            case .Success:
-                completionHandler(.Success(true))
-            case .Failure(let error):
-                completionHandler(.Failure(error))
-            }
-        }
+    static func retrieveRelatedTagsForTagWithName(name: String, params: RelatedTagsParams) -> Observable<[Tag]> {
+        let url = APIManager.baseURL + "/tags/\(name)/related"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
     // MARK: - RX
@@ -63,10 +38,22 @@ class APITagsService {
     static func requestBatchListenTagWithParams(params: BatchListenParams) -> Observable<Result<Bool, NSError>> {
         
         return Observable.create { (observer) -> Disposable in
-            self.requestBatchListenTagWithParams(params, withCompletionHandler: { (result) in
-                observer.onNext(result)
-            })
-            return NopDisposable.instance
+            
+            let request = APIManager.manager().request(.POST, batchTagListenURL, parameters: params.params, encoding: .JSON, headers: nil)
+            let cancel = AnonymousDisposable {
+                request.cancel()
+            }
+            
+            request.validate(statusCode: 200..<300).responseData { (response) in
+                switch response.result {
+                case .Success:
+                    observer.onNext(.Success(true))
+                case .Failure(let error):
+                    observer.onNext(.Failure(error))
+                }
+            }
+            
+            return cancel
         }
     }
 }

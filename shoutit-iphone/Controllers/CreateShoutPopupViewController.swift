@@ -17,12 +17,6 @@ class CreateShoutPopupViewController: UIViewController {
             createShoutController.type = selectedType
         }
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBarHidden = false
-    }
 
     @IBAction func createOffer() {
         selectedType = .Offer
@@ -33,5 +27,10 @@ class CreateShoutPopupViewController: UIViewController {
         selectedType = .Request
         self.performSegueWithIdentifier("createShoutSegue", sender: nil)
     }
+}
 
+extension CreateShoutPopupViewController {
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
+    }
 }

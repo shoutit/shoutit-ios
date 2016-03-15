@@ -130,7 +130,7 @@ class APIGenericService {
                             }
                         }
                         guard let j = nestedJson else {
-                            assert(false)
+                            assertionFailure()
                             observer.onError(ParseError.InvalidJson)
                             return
                         }

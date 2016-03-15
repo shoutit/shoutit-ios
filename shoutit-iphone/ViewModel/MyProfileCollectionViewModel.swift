@@ -20,13 +20,13 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return Account.sharedInstance.user as? LoggedUser
     }
     
-    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>!
-    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
+    private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
+    private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     init() {
-        shoutsSection = shoutsSectionWithModels([], isLoading: true)
+        gridSection = gridSectionWithModels([], isLoading: true)
         let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
-        pagesSection = pagesSectionWithModels(pages, isLoading: true)
+        listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
             .observeOn(MainScheduler.instance)
             .subscribeNext { (_) in
@@ -63,25 +63,15 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 switch event {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
-                    self?.shoutsSection = self?.shoutsSectionWithModels(shouts, isLoading: false)
+                    self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                 case .Error(let error as NSError):
-                    self?.shoutsSection = self?.shoutsSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
                 default:
                     break
                 }
                 self?.reloadSubject.onNext(())
             }
             .addDisposableTo(disposeBag)
-    }
-    
-    private func invalidateUser() {
-        detailedUser = nil
-        reloadContent()
-    }
-    
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedUser?.pages ?? user?.pages ?? []
-        pagesSection = pagesSectionWithModels(pages, isLoading: loading)
     }
     
     // MARK: - ProfileCollectionViewModelInterface
@@ -100,8 +90,8 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return false
     }
     
-    var avatarURL: NSURL? {
-        return (user?.imagePath != nil) ? NSURL(string: user!.imagePath!) : nil
+    var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
+        return .Remote(url: user?.imagePath?.toURL())
     }
     
     var coverURL: NSURL? {
@@ -175,14 +165,24 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return APIUsersService.retrieveUserWithUsername(user.username)
     }
     
-    func listenToUser() -> Observable<Void>? {
+    func listen() -> Observable<Void>? {
         return nil
     }
     
     // MARK: - Helpers
     
-    private func pagesSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
-        let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
+    private func invalidateUser() {
+        detailedUser = nil
+        reloadContent()
+    }
+    
+    private func reloadPages(currentlyLoading loading: Bool = false) {
+        let pages = detailedUser?.pages ?? user?.pages ?? []
+        listSection = listSectionWithModels(pages, isLoading: loading)
+    }
+    
+    private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
+        let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
         let title = NSLocalizedString("My Pages", comment: "")
         let footerTitle = NSLocalizedString("Create Page", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
@@ -195,7 +195,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                                                  errorMessage: errorMessage)
     }
     
-    private func shoutsSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("My Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")

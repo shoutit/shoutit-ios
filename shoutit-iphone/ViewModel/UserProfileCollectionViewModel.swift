@@ -17,13 +17,13 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private let profile: Profile
     private var detailedUser: DetailedProfile?
     
-    private(set) var pagesSection: ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel>!
-    private(set) var shoutsSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
+    private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
+    private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     init(profile: Profile) {
         self.profile = profile
-        shoutsSection = shoutsSectionWithModels([], isLoading: true)
-        pagesSection = pagesSectionWithModels([], isLoading: true)
+        gridSection = gridSectionWithModels([], isLoading: true)
+        listSection = listSectionWithModels([], isLoading: true)
     }
     
     func reloadContent() {
@@ -31,7 +31,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         reloadPages(currentlyLoading: true)
         
         // reload user
-        fetchProfile()?
+        fetchProfile()
             .subscribe({[weak self] (event) in
                 switch event {
                 case .Next(let detailedProfile):
@@ -49,25 +49,20 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             .addDisposableTo(disposeBag)
         
         // reload shouts
-        fetchShouts()?
+        fetchShouts()
             .subscribe {[weak self] (event) in
                 switch event {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
-                    self?.shoutsSection = self?.shoutsSectionWithModels(shouts, isLoading: false)
+                    self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                 case .Error(let error as NSError):
-                    self?.shoutsSection = self?.shoutsSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
                 default:
                     break
                 }
                 self?.reloadSubject.onNext(())
             }
             .addDisposableTo(disposeBag)
-    }
-    
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedUser?.pages ?? []
-        pagesSection = pagesSectionWithModels(pages, isLoading: loading)
     }
     
     // MARK: - ProfileCollectionViewModelInterface
@@ -86,8 +81,8 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return detailedUser?.isListener
     }
     
-    var avatarURL: NSURL? {
-        return (profile.imagePath != nil) ? NSURL(string: profile.imagePath!) : nil
+    var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
+        return .Remote(url: profile.imagePath?.toURL())
     }
     
     var coverURL: NSURL? {
@@ -138,19 +133,19 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]>? {
+    func fetchShouts() -> Observable<[Shout]> {
         let params = UserShoutsParams(username: profile.username, pageSize: 4, shoutType: nil)
         return APIShoutsService.shoutsForUserWithParams(params)
     }
     
-    func fetchProfile() -> Observable<DetailedProfile>? {
+    func fetchProfile() -> Observable<DetailedProfile> {
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
     
-    func listenToUser() -> Observable<Void>? {
+    func listen() -> Observable<Void>? {
         guard let listening = profile.listening else {return nil}
         let listen = !(detailedUser?.isListening ?? listening)
-        let retrieveUser = fetchProfile()!.map {[weak self] (profile) -> Void in
+        let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedUser = profile
             self?.reloadSubject.onNext()
         }
@@ -161,8 +156,13 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Helpers
     
-    private func pagesSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionPageCellViewModel> {
-        let cells = pages.map{ProfileCollectionPageCellViewModel(profile: $0)}
+    private func reloadPages(currentlyLoading loading: Bool = false) {
+        let pages = detailedUser?.pages ?? []
+        listSection = listSectionWithModels(pages, isLoading: loading)
+    }
+    
+    private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
+        let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
         let title = NSLocalizedString("\(profile.firstName) Pages", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,
@@ -172,7 +172,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                                                  errorMessage: errorMessage)
     }
     
-    private func shoutsSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("\(profile.firstName) Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")

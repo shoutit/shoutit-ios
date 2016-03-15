@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ProfileDisplayable {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ProfileDisplayable, TagDisplayable {
     
 }
 
@@ -149,9 +149,7 @@ extension ShoutDetailTableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellModel = viewModel.cellModels[indexPath.row]
         if case .KeyValue(_, _, _, _, _, let filter?) = cellModel {
-            let filter = filter
-            print(filter.name)
-            self.notImplemented()
+            self.flowDelegate?.showTag(filter)
         }
     }
     

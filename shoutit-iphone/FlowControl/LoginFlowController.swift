@@ -17,9 +17,6 @@ final class LoginFlowController: FlowController {
         
         self.navigationController = navigationController
         
-        // setup navigation controller state
-        navigationController.navigationBarHidden = true
-        
         if skipIntro {
             showLoginChoice()
         } else {
@@ -42,10 +39,6 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
     
     func showLoginChoice() {
         
-        // setup navigation controller state
-        navigationController.navigationBarHidden = false
-        
-        // create controller
         let controller = Wireframe.loginMethodChoiceViewController()
         controller.viewModel = LoginMethodChoiceViewModel()
         controller.flowDelegate = self

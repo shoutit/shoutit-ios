@@ -25,13 +25,13 @@ enum ProfileCollectionViewSection: Int {
 enum ProfileCollectionViewSupplementaryView {
     case Cover
     case Info
-    case PagesSectionHeader
+    case ListSectionHeader
     case CreatePageButtonFooter
-    case ShoutsSectionHeader
+    case GridSectionHeader
     case SeeAllShoutsButtonFooter
     
     init?(indexPath: NSIndexPath) {
-        for view in [Cover, Info, PagesSectionHeader, CreatePageButtonFooter, ShoutsSectionHeader, SeeAllShoutsButtonFooter] {
+        for view in [Cover, Info, ListSectionHeader, CreatePageButtonFooter, GridSectionHeader, SeeAllShoutsButtonFooter] {
             if view.indexPath == indexPath {
                 self = view
                 return
@@ -47,11 +47,11 @@ enum ProfileCollectionViewSupplementaryView {
             return NSIndexPath(forItem: 0, inSection: 0)
         case .Info:
             return NSIndexPath(forItem: 1, inSection: 0)
-        case .PagesSectionHeader:
+        case .ListSectionHeader:
             return NSIndexPath(forItem: 2, inSection: 0)
         case .CreatePageButtonFooter:
             return NSIndexPath(forItem: 3, inSection: 0)
-        case .ShoutsSectionHeader:
+        case .GridSectionHeader:
             return NSIndexPath(forItem: 4, inSection: 0)
         case .SeeAllShoutsButtonFooter:
             return NSIndexPath(forItem: 5, inSection: 0)
@@ -64,7 +64,7 @@ enum ProfileCollectionViewSupplementaryView {
             return ProfileCollectionViewSupplementaryViewKind.Cover
         case .Info:
             return ProfileCollectionViewSupplementaryViewKind.Info
-        case .PagesSectionHeader, .ShoutsSectionHeader:
+        case .ListSectionHeader, .GridSectionHeader:
             return ProfileCollectionViewSupplementaryViewKind.SectionHeader
         case .CreatePageButtonFooter, .SeeAllShoutsButtonFooter:
             return ProfileCollectionViewSupplementaryViewKind.FooterButton

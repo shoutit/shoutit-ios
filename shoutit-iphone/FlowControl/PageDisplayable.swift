@@ -20,7 +20,6 @@ extension PageDisplayable where Self: FlowController, Self: ProfileCollectionVie
         controller.flowDelegate = self
         controller.viewModel = PageProfileCollectionViewModel(profile: page)
         
-        navigationController.navigationBarHidden = true
         navigationController.showViewController(controller, sender: nil)
     }
 }

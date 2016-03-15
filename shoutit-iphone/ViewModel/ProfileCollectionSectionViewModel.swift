@@ -18,7 +18,14 @@ class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel> {
     let footerButtonStyle: ProfileCollectionFooterButtonType?
     let cells: [T]
     
-    init(title: String, cells: [T], isLoading: Bool, footerButtonTitle: String? = nil, footerButtonStyle: ProfileCollectionFooterButtonType? = nil, noContentMessage: String = NSLocalizedString("No content available yet", comment: ""), errorMessage: String? = nil) {
+    init(title: String,
+         cells: [T],
+         isLoading: Bool,
+         footerButtonTitle: String? = nil,
+         footerButtonStyle: ProfileCollectionFooterButtonType? = nil,
+         noContentMessage: String = NSLocalizedString("No content available yet", comment: ""),
+         errorMessage: String? = nil) {
+        
         self.title = title
         self.cells = cells
         self.footerButtonTitle = footerButtonTitle

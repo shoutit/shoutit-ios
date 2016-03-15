@@ -24,7 +24,6 @@ extension ProfileDisplayable where Self: FlowController, Self: ProfileCollection
             controller.viewModel = UserProfileCollectionViewModel(profile: profile)
         }
         
-        navigationController.navigationBarHidden = true
         navigationController.showViewController(controller, sender: nil)
     }
 }
