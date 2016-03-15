@@ -26,6 +26,22 @@ struct Profile {
     let coverPath: String?
     let listening: Bool?
     let listenersCount: Int
+    
+    static func profileWithUser(user: LoggedUser) -> Profile {
+        return Profile(id: user.id,
+                       type: user.type,
+                       apiPath: user.apiPath,
+                       webPath: user.webPath,
+                       username: user.username,
+                       name: user.name,
+                       firstName: user.firstName,
+                       lastName: user.lastName,
+                       activated: user.activated,
+                       imagePath: user.imagePath,
+                       coverPath: user.coverPath,
+                       listening: nil,
+                       listenersCount: user.listenersCount)
+    }
 }
 
 extension Profile: Decodable {
@@ -35,19 +51,19 @@ extension Profile: Decodable {
             <^> j <| "id"
             <*> j <| "type"
             <*> j <| "api_url"
+        let b = a
             <*> j <| "web_url"
             <*> j <| "username"
-        let b = a
             <*> j <| "name"
             <*> j <| "first_name"
             <*> j <|? "last_name"
-            <*> j <| "is_activated"
         let c = b
+            <*> j <| "is_activated"
             <*> j <|? "image"
             <*> j <|? "cover"
             <*> j <|? "is_listening"
-            <*> j <| "listeners_count"
         return c
+            <*> j <| "listeners_count"
     }
 }
 

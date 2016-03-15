@@ -20,6 +20,11 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return Account.sharedInstance.user as? LoggedUser
     }
     
+    var model: ProfileCollectionViewModelMainModel? {
+        guard let user = user else { return nil }
+        return .ProfileModel(profile: Profile.profileWithUser(user))
+    }
+    
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     

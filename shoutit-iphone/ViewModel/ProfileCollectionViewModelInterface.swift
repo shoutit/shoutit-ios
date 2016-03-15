@@ -9,8 +9,14 @@
 import UIKit
 import RxSwift
 
+enum ProfileCollectionViewModelMainModel {
+    case ProfileModel(profile: Profile)
+    case TagModel(tag: Tag)
+}
+
 protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayoutDelegate, ProfileCollectionInfoSupplementaryViewDataSource {
     
+    var model: ProfileCollectionViewModelMainModel? {get}
     // user data
     var name: String? {get}
     var username: String? {get}

@@ -16,6 +16,9 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private let profile: Profile
     private var detailedProfile: DetailedProfile?
+    var model: ProfileCollectionViewModelMainModel? {
+        return .ProfileModel(profile: profile)
+    }
     
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!

@@ -205,7 +205,6 @@ extension ProfileCollectionViewController {
         case .Cover:
             
             let coverView = supplementeryView as! ProfileCollectionCoverSupplementaryView
-            coverView.reuseDisposeBag = DisposeBag()
             
             // setup navigation bar buttons
             coverView.menuButton
@@ -213,7 +212,7 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.toggleMenu()
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             if let navigationController = navigationController where self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
@@ -224,7 +223,7 @@ extension ProfileCollectionViewController {
                     .driveNext{[unowned self] in
                         self.navigationController?.popViewControllerAnimated(true)
                     }
-                    .addDisposableTo(coverView.reuseDisposeBag!)
+                    .addDisposableTo(coverView.reuseDisposeBag)
             }
             
             coverView.cartButton
@@ -232,15 +231,21 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             coverView
                 .searchButton
                 .rx_tap
                 .subscribeNext{[unowned self] in
-                    self.flowDelegate?.showSearch()
+                    guard let model = self.viewModel.model else { return }
+                    switch model {
+                    case .TagModel(let tag):
+                        self.flowDelegate?.showSearchInContext(.TagShouts(tag: tag))
+                    case .ProfileModel(let profile):
+                        self.flowDelegate?.showSearchInContext(.ProfileShouts(profile: profile))
+                    }
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             
             // setup cover image

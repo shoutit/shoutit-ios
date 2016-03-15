@@ -8,8 +8,14 @@
 
 import Foundation
 
+enum SearchContext {
+    case ProfileShouts(profile: Profile)
+    case TagShouts(tag: Tag)
+    case DiscoverShouts(item: DiscoverItem)
+}
+
 protocol SearchDisplayable {
-    func showSearch() -> Void
+    func showSearchInContext(context: SearchContext) -> Void
 }
 
 extension SearchDisplayable where Self: FlowController {
