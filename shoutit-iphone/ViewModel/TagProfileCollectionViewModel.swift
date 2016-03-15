@@ -34,12 +34,12 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     var nameParameter: String? {
-        return tag?.name ?? filter?.slug
+        return tag?.name ?? filter?.value?.slug
     }
     
     // user data
     var name: String? {
-        return tag?.name ?? filter?.name
+        return tag?.name ?? filter?.value?.name
     }
     
     var username: String? { return nil }
@@ -47,11 +47,6 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var coverURL: NSURL? {return nil}
     
     func reloadContent() {
-        
-        fetchTag()?.subscribe({ (event) in
-            
-        }).addDisposableTo(disposeBag)
-        
         
         // reload user
         fetchTag()?
@@ -151,13 +146,13 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchRelatedTags() -> Observable<[Tag]>? {
         guard let name = nameParameter else { return nil }
-        let params = RelatedTagsParams(tagName: name, pageSize: 3, page: 0, category: nil, city: nil, state: nil, country: nil)
+        let params = RelatedTagsParams(tagName: name, pageSize: 3, page: 1, category: nil, city: nil, state: nil, country: nil)
         return APITagsService.retrieveRelatedTagsForTagWithName(name, params: params)
     }
     
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let name = nameParameter else { return nil }
-        let params = FilteredShoutsParams(tag: name, page: 0, pageSize: 4, country: nil, state: nil, city: nil)
+        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
