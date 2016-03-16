@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Conversations-->
@@ -164,9 +165,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm0-oI-998" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="113"/>
+            <point key="canvasLocation" x="-572" y="113"/>
         </scene>
-        <!--Conversation View Controller-->
+        <!--Title-->
         <scene sceneID="UE0-sJ-VNI">
             <objects>
                 <viewController storyboardIdentifier="conversationController" id="mhG-kG-xgO" customClass="ConversationViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -179,10 +180,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="hWB-iW-Kpv">
+                        <rightBarButtonItems>
+                            <barButtonItem image="more" id="NeR-WC-mNg">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                            <barButtonItem image="conversationVideoCall" id="60Z-y3-M4s">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgW-K4-7g0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="156"/>
+            <point key="canvasLocation" x="-210" y="113"/>
         </scene>
         <!--Title-->
         <scene sceneID="pXf-Zg-PsV">
@@ -234,7 +245,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ips-mV-6YF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="475" y="288"/>
+            <point key="canvasLocation" x="433" y="135"/>
         </scene>
         <!--Map Detatil View Controller-->
         <scene sceneID="jy3-mj-soY">
@@ -274,7 +285,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="conversationVideoCall" width="24" height="24"/>
         <image name="messagesTabBar" width="22" height="25"/>
+        <image name="more" width="24" height="24"/>
         <image name="navMenu" width="24" height="24"/>
     </resources>
 </document>
