@@ -14,13 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meH-cO-wgS">
-                        <rect key="frame" x="20" y="3" width="36" height="36"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="VVk-Zm-shW"/>
-                            <constraint firstAttribute="height" constant="36" id="rpO-p3-aoq"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ0-1e-7T0">
                         <rect key="frame" x="80" y="11" width="44" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -41,9 +34,16 @@
                             <constraint firstAttribute="height" constant="1" id="foR-aY-jlM"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meH-cO-wgS">
+                        <rect key="frame" x="23" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="VVk-Zm-shW"/>
+                            <constraint firstAttribute="height" constant="30" id="rpO-p3-aoq"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="meH-cO-wgS" firstAttribute="leading" secondItem="lyk-eA-TA2" secondAttribute="leading" constant="20" id="76s-em-zab"/>
+                    <constraint firstItem="meH-cO-wgS" firstAttribute="leading" secondItem="lyk-eA-TA2" secondAttribute="leading" constant="23" id="76s-em-zab"/>
                     <constraint firstItem="BJb-VW-Uv7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bQ0-1e-7T0" secondAttribute="trailing" constant="20" id="7F3-EO-aFV"/>
                     <constraint firstAttribute="trailing" secondItem="3Ef-zR-b1c" secondAttribute="trailing" id="Bvq-MT-DpP"/>
                     <constraint firstItem="BJb-VW-Uv7" firstAttribute="centerY" secondItem="lyk-eA-TA2" secondAttribute="centerY" id="GS4-pR-v9s"/>
@@ -59,6 +59,7 @@
                 <outlet property="disclosureIndicatorImageView" destination="BJb-VW-Uv7" id="3UQ-ic-P1r"/>
                 <outlet property="separator" destination="3Ef-zR-b1c" id="evJ-12-GmR"/>
                 <outlet property="separatorHeightConstraint" destination="foR-aY-jlM" id="s1R-aM-fKy"/>
+                <outlet property="separatorLeadingConstraint" destination="ok3-Gq-Hs6" id="CSr-uO-ezE"/>
                 <outlet property="thumbnailImageView" destination="meH-cO-wgS" id="Ual-cI-8Ya"/>
                 <outlet property="titleLabel" destination="bQ0-1e-7T0" id="FWe-dr-ob5"/>
             </connections>

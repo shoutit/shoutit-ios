@@ -57,6 +57,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
                     .rx_tap
                     .subscribeNext {[unowned self] in
                         self.flipToNextViewController()
+                        self.pageControl.currentPage += 1
                     }
                     .addDisposableTo(doneButtonDisposeBag)
             case .Done:

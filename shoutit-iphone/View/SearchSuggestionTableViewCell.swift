@@ -26,4 +26,10 @@ class SearchSuggestionTableViewCell: UITableViewCell {
         leadingImageView.hidden = !show
         labelLeadingConstraint.constant = show ? 50 : 10
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        leadingImageView.image = nil
+        trailingImageView.image = nil
+    }
 }

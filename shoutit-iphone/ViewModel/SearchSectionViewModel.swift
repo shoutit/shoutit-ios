@@ -11,10 +11,13 @@ import Foundation
 enum SearchSectionViewModel {
     
     enum HeaderType {
-        
+        case None
+        case TitleCentered(title: String)
+        case TitleAlignedLeftWithButton(title: String, buttonTitle: String)
     }
-    case Categories(cells: [SearchCategoryCellViewModel])
-    case Suggestions(cells: [SearchSuggestionCellViewModel])
     
-    
+    case Categories(cells: [SearchCategoryCellViewModel], header: HeaderType)
+    case Suggestions(cells: [SearchSuggestionCellViewModel], header: HeaderType)
+    case LoadingPlaceholder
+    case MessagePlaceholder(message: String?, image: UIImage?)
 }

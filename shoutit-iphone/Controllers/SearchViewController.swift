@@ -12,6 +12,15 @@ import RxCocoa
 
 class SearchViewController: UIViewController {
     
+    enum Cell {
+        
+    }
+    
+    // consts
+    private let animationDuration: NSTimeInterval = 0.25
+    private let categoryCellReuseId = "SearchCategoryTableViewCell"
+    private let suggestionCellReuseId = "SearchSuggestionTableViewCell"
+    
     // UI
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
@@ -29,6 +38,12 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedControlSectionHeightConstraint: NSLayoutConstraint!
     
+    lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
+        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
+        return view
+    }()
+    
     // view model
     var viewModel: SearchViewModel!
     
@@ -43,6 +58,12 @@ class SearchViewController: UIViewController {
         
         setupAppearance()
         setupRX()
+        registerReusables()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadContent()
     }
     
     override func prefersNavigationBarHidden() -> Bool {
@@ -53,32 +74,89 @@ class SearchViewController: UIViewController {
     
     private func setupRX() {
         
+        // user actions observers
         segmentedControl
             .rx_value
+            .skip(1)
+            .observeOn(MainScheduler.instance)
+            .subscribeNext{[weak self] (segment) in
+                if segment == 0 { self?.viewModel.segmentedControlState.value = .Shouts }
+                else if segment == 1 { self?.viewModel.segmentedControlState.value = .Users }
+            }
+            .addDisposableTo(disposeBag)
+        
+        // view model observers
+        viewModel
+            .sectionViewModel
             .asDriver()
-            .driveNext { (segment) in
-                
+            .driveNext {[weak self] (sectionViewModel) in
+                switch sectionViewModel {
+                case .Categories, .Suggestions:
+                    self?.tableView.tableHeaderView = nil
+                case .LoadingPlaceholder:
+                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
+                    self?.tableViewPlaceholder.showActivity()
+                case .MessagePlaceholder(let message, let image):
+                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
+                    self?.tableViewPlaceholder.showMessage(message, image: image)
+                }
+                self?.tableView.reloadData()
             }
             .addDisposableTo(disposeBag)
         
         viewModel
-            .reloadSubject
-            .observeOn(MainScheduler.instance)
-            .subscribeNext{[weak self] in self?.tableView.reloadData()}
+            .segmentedControlState
+            .asDriver()
+            .distinctUntilChanged()
+            .throttle(animationDuration)
+            .driveNext {[weak self] (state) in
+                if case .Hidden = state {
+                    self?.showSegmentedControl(false)
+                } else {
+                    self?.showSegmentedControl(true)
+                }
+            }
             .addDisposableTo(disposeBag)
     }
     
     private func setupAppearance() {
+        
+        // search bar
         let textField = searchBar.searchForTextField()
         textField?.backgroundColor = UIColor(shoutitColor: .SearchBarTextFieldGray)
+        searchBar.placeholder = viewModel.searchBarPlaceholder()
+        
+        // table view
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+    }
+    
+    private func registerReusables() {
+        self.tableView.registerNib(UINib(nibName: categoryCellReuseId, bundle: nil), forCellReuseIdentifier: categoryCellReuseId)
+        self.tableView.registerNib(UINib(nibName: suggestionCellReuseId, bundle: nil), forCellReuseIdentifier: suggestionCellReuseId)
     }
     
     // MARK: - Helpers
     
     private func showSegmentedControl(show: Bool) {
         segmentedControlSectionHeightConstraint.constant = show ? 44 : 0
-        UIView.animateWithDuration(0.25) { 
+        UIView.animateWithDuration(animationDuration) {
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func sectionPlaceholderWithType(type: SearchSectionViewModel.HeaderType) -> UIView? {
+        switch type {
+        case .None:
+            return nil
+        case .TitleCentered(let title):
+            let headerView = NSBundle.mainBundle().loadNibNamed("SearchCategoriesHeaderView", owner: nil, options: nil).first as! SearchCategoriesHeaderView
+            headerView.titleLabel.text = title
+            return headerView
+        case .TitleAlignedLeftWithButton(let title, let buttonTitle):
+            let headerView = NSBundle.mainBundle().loadNibNamed("SearchRecentsHeaderView", owner: nil, options: nil).first as! SearchRecentsHeaderView
+            headerView.titleLabel.text = title
+            headerView.clearButton.setTitle(buttonTitle, forState: .Normal)
+            return headerView
         }
     }
 }
@@ -90,28 +168,62 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        switch viewModel.sectionViewModel.value {
+        case .LoadingPlaceholder, .MessagePlaceholder:
+            return 0
+        case .Categories(let cells, _):
+            return cells.count
+        case .Suggestions(let cells, _):
+            return cells.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        fatalError()
+        switch viewModel.sectionViewModel.value {
+        case .LoadingPlaceholder, .MessagePlaceholder:
+            fatalError()
+        case .Categories(let cells, _):
+            let cellModel = cells[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier(categoryCellReuseId, forIndexPath: indexPath) as! SearchCategoryTableViewCell
+            cell.titleLabel.text = cellModel.category.name
+            cell.thumbnailImageView.sh_setImageWithURL(cellModel.category.icon?.toURL(), placeholderImage: nil)
+            let numberOfRows = self.tableView(tableView, numberOfRowsInSection: indexPath.section)
+            cell.setConstraintForPosition(isLast: indexPath.row == numberOfRows - 1)
+            return cell
+        case .Suggestions(let cells, _):
+            let cellModel = cells[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier(suggestionCellReuseId, forIndexPath: indexPath) as! SearchSuggestionTableViewCell
+            return cell
+        }
     }
 }
 
 extension SearchViewController: UITableViewDelegate {
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch viewModel.sectionViewModel.value {
+        case .LoadingPlaceholder, .MessagePlaceholder:
+            return nil
+        case .Categories(_, let header):
+            return sectionPlaceholderWithType(header)
+        case .Suggestions(_, let header):
+            return sectionPlaceholderWithType(header)
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        if case .General = viewModel.context {
-            showSegmentedControl(true)
-        }
+        self.viewModel.searchState.value = .Active
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.viewModel.searchState.value = searchText.utf16.count > 0 ? .Typing(phrase: searchText) : .Active
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        showSegmentedControl(false)
+        self.viewModel.searchState.value = .Inactive
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {

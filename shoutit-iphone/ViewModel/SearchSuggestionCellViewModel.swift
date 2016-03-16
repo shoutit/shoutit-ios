@@ -8,13 +8,8 @@
 
 import Foundation
 
-struct SearchSuggestionCellViewModel {
-    
-    enum SuggestionType {
-        case RecentSearch
-        case API
-        case Typing
-    }
-    
-    let type: SuggestionType
+
+enum SearchSuggestionCellViewModel {
+    case RecentSearch(phrase: String)
+    case Result
 }
