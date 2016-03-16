@@ -43,6 +43,29 @@ struct Message: Decodable, Hashable, Equatable {
     
 }
 
+extension Message {
+    func dateString() -> String {
+        return DateFormatters.sharedInstance.stringFromDateEpoch(self.createdAt)
+    }
+    
+    func isOutgoingCell() -> Bool {
+        if let user = user, currentUser = Account.sharedInstance.user {
+            return user.id == currentUser.id
+        }
+        
+        return true
+    }
+    
+    func isSameSenderAs(message: Message?) -> Bool {
+        if let user = user, secondUser = message?.user {
+            return user.id == secondUser.id
+        }
+        
+        return false
+    }
+}
+
+
 extension Message: Encodable {
     func encode() -> JSON {
         return JSON.Object(["text": (self.text ?? "").encode()])

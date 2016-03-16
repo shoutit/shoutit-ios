@@ -29,3 +29,16 @@ extension Array where Element:Equatable {
         return result
     }
 }
+
+public extension SequenceType {
+    
+    /// Categorises elements of self into a dictionary, with the keys given by keyFunc
+    func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
+        var dict: [U:[Generator.Element]] = [:]
+        for el in self {
+            let key = keyFunc(el)
+            if case nil = dict[key]?.append(el) { dict[key] = [el] }
+        }
+        return dict
+    }
+}

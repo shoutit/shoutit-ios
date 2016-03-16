@@ -9,6 +9,11 @@
 import Foundation
 import RxSwift
 
+let conversationTextCellIdentifier = "conversationTextCellIdentifier"
+let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
+let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
+let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
+
 protocol ConversationPresenter {
     func showSendingError(error: NSError) -> Void
 }
@@ -16,7 +21,8 @@ protocol ConversationPresenter {
 class ConversationViewModel {
     private var conversation: Conversation
     
-    let messages : Variable<[Message]> = Variable([])
+    let messages : Variable<[String:[Message]]> = Variable([:])
+    var sortedMessages : [Message] = []
     
     private var delegate : ConversationPresenter?
     
@@ -27,26 +33,77 @@ class ConversationViewModel {
         self.delegate = delegate
     }
     
+    
     func fetchMessages() {
         APIChatsService.getMessagesForConversation(self.conversation).subscribeNext {[weak self] (messages) -> Void in
             self?.appendMessages(messages)
         }.addDisposableTo(disposeBag)
     }
     
-    func handleError(error: NSError) {
-        
-    }
-    
     func appendMessages(newMessages: [Message]) {
         var base: [Message] = []
         
-        base.appendContentsOf(self.messages.value)
+        for (_, msgs) in messages.value {
+            base.appendContentsOf(msgs)
+        }
+        
         base.appendContentsOf(newMessages)
         
-        self.messages.value = base.unique().sort({ (msg, msg2) -> Bool in
+        base = base.unique().sort({ (msg, msg2) -> Bool in
             return msg.createdAt > msg2.createdAt
         })
         
+        sortedMessages = base
+        
+        let result = base.categorise { $0.dateString() }
+        
+        self.messages.value = result
+    }
+    
+    func cellIdentifierAtIndexPath(indexPath: NSIndexPath) -> String {
+        let msg = messageAtIndexPath(indexPath)
+        
+        if msg.isOutgoingCell() {
+            return conversationOutGoingTextCellIdentifier
+        }
+        
+        return conversationIncomingTextCellIdentifier
+    }
+    
+    func previousMessageFor(message: Message) -> Message? {
+        guard let idx = sortedMessages.indexOf(message) else {
+            return nil
+        }
+        
+        if idx + 1 < sortedMessages.count {
+            return sortedMessages[idx+1]
+        }
+        
+        return nil
+    }
+    
+    func messageAtIndexPath(indexPath: NSIndexPath) -> Message {
+        guard let day = Array(self.messages.value.keys)[indexPath.section] as String? else {
+            fatalError("No Message at Given Index")
+        }
+        
+        guard let messagesFromGivenDay : [Message] = self.messages.value[day] else {
+            fatalError("No Message at Given Index")
+        }
+        
+        return messagesFromGivenDay[indexPath.row]
+    }
+    
+    func sectionTitle(section: Int) -> String? {
+        return Array(self.messages.value.keys)[section] as String
+    }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        if let day = Array(self.messages.value.keys)[section] as String?, messagesFromGivenDay : [Message] = self.messages.value[day] {
+            return messagesFromGivenDay.count
+        }
+        
+        return 0
     }
     
     func sendMessageWithText(text: String) -> Bool {

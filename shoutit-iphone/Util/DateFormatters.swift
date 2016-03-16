@@ -16,15 +16,36 @@ class DateFormatters {
     
     init() {
         formatter = NSDateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
+        
     }
     
     func stringFromDateEpoch(epoch: Int) -> String {
         let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
+        
+        setDayFormat()
+        
         return stringFromDate(date)
     }
     
     func stringFromDate(date: NSDate) -> String {
+        setDayFormat()
+        
+        return formatter.stringFromDate(date)
+    }
+    
+    func setDayFormat() {
+        formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
+    }
+    
+    func setHourFormat() {
+        formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+    }
+    
+    func hourStringFromEpoch(epoch: Int) -> String {
+        let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
+        
+        setHourFormat()
+        
         return formatter.stringFromDate(date)
     }
 }
