@@ -127,8 +127,8 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {
-        let params = UserShoutsParams(username: profile.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     func fetchProfile() -> Observable<DetailedProfile> {
