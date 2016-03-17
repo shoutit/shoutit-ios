@@ -14,7 +14,7 @@ class SearchSuggestionTableViewCell: UITableViewCell {
     var reuseDisposeBag = DisposeBag()
     
     @IBOutlet weak var leadingImageView: UIImageView!
-    @IBOutlet weak var fillButton: UIButton!
+    @IBOutlet weak var accessoryButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var separator: UIView!
     @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!

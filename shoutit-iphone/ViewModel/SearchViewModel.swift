@@ -80,6 +80,12 @@ final class SearchViewModel {
     
     func searchWithPhrase(phrase: String) {
         recentSearches.insert(phrase, atIndex: 0)
+        reloadContent()
+    }
+    
+    func removeRecentSearchPhrase(phrase: String) {
+        recentSearches.removeElementIfExists(phrase)
+        reloadContent()
     }
     
     func clearRecentSearches() {

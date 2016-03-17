@@ -48,6 +48,10 @@ extension UIImage {
         return UIImage(named: "search_users_placeholder")!
     }
     
+    static func searchRecentRemoveIcon() -> UIImage {
+        return UIImage(named: "search_recent_remove")!
+    }
+    
     // MARK: - Shout detail
     
     static func shoutDetailTabBarCallImage() -> UIImage {

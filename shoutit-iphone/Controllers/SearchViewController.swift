@@ -196,18 +196,28 @@ extension SearchViewController: UITableViewDataSource {
             case .APISuggestion(let phrase):
                 cell.titleLabel.text = phrase
                 cell.showLeadingIcon(nil)
+                cell.accessoryButton.setImage(UIImage.searchFillArrow(), forState: .Normal)
+                cell.accessoryButton
+                    .rx_tap
+                    .asDriver()
+                    .driveNext{[weak self] () in
+                        self?.searchBar.text = cell.titleLabel.text
+                    }
+                    .addDisposableTo(cell.reuseDisposeBag)
+                return cell
             case .RecentSearch(let phrase):
                 cell.titleLabel.text = phrase
                 cell.showLeadingIcon(UIImage.searchRecentsIcon())
+                cell.accessoryButton.setImage(UIImage.searchRecentRemoveIcon(), forState: .Normal)
+                cell.accessoryButton
+                    .rx_tap
+                    .asDriver()
+                    .driveNext{[weak self] () in
+                        self?.viewModel.removeRecentSearchPhrase(phrase)
+                    }
+                    .addDisposableTo(cell.reuseDisposeBag)
+                return cell
             }
-            cell.fillButton
-                .rx_tap
-                .asDriver()
-                .driveNext{[weak self] () in
-                    self?.searchBar.text = cell.titleLabel.text
-                }
-                .addDisposableTo(cell.reuseDisposeBag)
-            return cell
         }
     }
 }

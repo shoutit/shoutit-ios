@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Hk-J8-vZJ" id="9WA-FW-hjg">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDF-aZ-gQC">
@@ -56,7 +56,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="fillButton" destination="iV3-n8-kTc" id="dCE-q1-ThZ"/>
+                <outlet property="accessoryButton" destination="iV3-n8-kTc" id="Czv-nA-TOj"/>
                 <outlet property="labelLeadingConstraint" destination="nlI-lf-riX" id="jKI-Lc-VW9"/>
                 <outlet property="leadingImageView" destination="HBa-Nj-TN5" id="qK8-qE-mER"/>
                 <outlet property="separator" destination="d6U-ot-bYk" id="blu-J6-zUl"/>
