@@ -10,6 +10,7 @@ import Foundation
 import Argo
 import Curry
 import Ogra
+import Pusher
 
 struct Message: Decodable, Hashable, Equatable {
     
@@ -40,6 +41,7 @@ struct Message: Decodable, Hashable, Equatable {
     static func messageWithText(text: String) -> Message {
         return Message(id: "", createdAt: 0, readPath: nil, user: nil, text: text)
     }
+    
     
 }
 

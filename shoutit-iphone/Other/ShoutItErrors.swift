@@ -57,3 +57,14 @@ enum ParseError: ShoutitError {
         }
     }
 }
+
+enum PusherError: ShoutitError {
+    case WrongChannelName
+    
+    var message: String {
+        switch self {
+        case .WrongChannelName:
+            return NSLocalizedString("Could not subscribe to channel. Wrong Channel Name", comment: "")
+        }
+    }
+}

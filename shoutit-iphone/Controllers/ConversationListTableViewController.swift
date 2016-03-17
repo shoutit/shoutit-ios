@@ -21,6 +21,7 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     private let groupConversationCellIdentifier = "groupConversationCellIdentifier"
     
     private let disposeBag = DisposeBag()
+    private var conversationDisposeBag : DisposeBag?
     
     weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
     
@@ -49,6 +50,7 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     func reloadConversationList() {
         APIChatsService.requestConversations().subscribe(onNext: { [weak self] (conversations) -> Void in
             self?.conversations = conversations
+            self?.renewConversationSubscriptions()
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
@@ -88,5 +90,19 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         let conversation = conversations[indexPath.row]
         
         self.flowDelegate?.showConversation(conversation)
+    }
+    
+    func renewConversationSubscriptions() {
+        // release existing subsriptions
+        conversationDisposeBag = DisposeBag()
+        
+        for conversation in self.conversations {
+            let idx = self.conversations.indexOf(conversation)!
+            
+            PusherClient.sharedInstance.conversationObservable(conversation).subscribeNext({ [weak self] (event) -> Void in
+                self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
+            }).addDisposableTo(disposeBag)
+        }
+        
     }
 }

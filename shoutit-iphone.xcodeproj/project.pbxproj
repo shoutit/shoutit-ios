@@ -86,6 +86,8 @@
 		249FD6DF1C7DC73B00859851 /* DiscoverShoutFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249FD6DE1C7DC73B00859851 /* DiscoverShoutFooterView.xib */; };
 		249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E01C7DDB5000859851 /* BorderedButton.swift */; };
 		249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */; };
+		24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */; };
+		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8BD1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift */; };
 		602414921C01F31B00DFF4DD /* SHDateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602414911C01F31B00DFF4DD /* SHDateTransform.swift */; };
@@ -676,6 +678,8 @@
 		249FD6DE1C7DC73B00859851 /* DiscoverShoutFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverShoutFooterView.xib; path = View/DiscoverShoutFooterView.xib; sourceTree = "<group>"; };
 		249FD6E01C7DDB5000859851 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedButton.swift; path = View/BorderedButton.swift; sourceTree = "<group>"; };
 		249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutFooterView.swift; path = View/DiscoverShoutFooterView.swift; sourceTree = "<group>"; };
+		24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherClient.swift; path = Networking/PusherClient.swift; sourceTree = "<group>"; };
+		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
 		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
@@ -1343,6 +1347,7 @@
 		2463B6921C9828FB00BFE6BA /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				24D3B0C01C9AF7E100DE1600 /* New Group */,
 				249F78231C9963B600FCB9A6 /* Views */,
 				2463B6971C984A4600BFE6BA /* ViewModel */,
 				2463B6931C98291300BFE6BA /* ConversationViewController.swift */,
@@ -1510,6 +1515,22 @@
 				249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */,
 			);
 			name = SupplementaryViews;
+			sourceTree = "<group>";
+		};
+		24D3B0BD1C9AA67800DE1600 /* Pusher */ = {
+			isa = PBXGroup;
+			children = (
+				24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */,
+				24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */,
+			);
+			name = Pusher;
+			sourceTree = "<group>";
+		};
+		24D3B0C01C9AF7E100DE1600 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		5C715BE26A324BEA80A8404C /* Pods */ = {
@@ -3197,6 +3218,7 @@
 		B2C729B51C62213C006F7D29 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				24D3B0BD1C9AA67800DE1600 /* Pusher */,
 				B2C729B61C62216A006F7D29 /* APIManager.swift */,
 				B21EA3B61C63E7A30013E99F /* Params */,
 				B2C729B91C62217D006F7D29 /* Services */,
@@ -3733,6 +3755,7 @@
 				244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */,
 				B2B5D01D1C7F55250068A6AF /* CreateShoutDisplayable.swift in Sources */,
 				248328FF1C842FC60042B0DB /* FormTextField.swift in Sources */,
+				24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */,
 				606ED30F1BF940270064C53E /* SHSinglePickerTableViewController.swift in Sources */,
 				AC7030CA1C15D6A6008F4C00 /* SHVideoAttachment.swift in Sources */,
 				246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */,
@@ -4042,6 +4065,7 @@
 				B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */,
 				604A0DD01BEE58BC002A80E7 /* SHApiMiscService.swift in Sources */,
 				B2B5D0191C7F36400068A6AF /* ShoutDetailDescriptionTableViewCell.swift in Sources */,
+				24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */,
 				606ED3091BF8AF1D0064C53E /* SHVideoPreviewViewModel.swift in Sources */,
 				B28379A11C737950009AFF01 /* GradientView.swift in Sources */,
 				AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */,
