@@ -11,16 +11,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Hk-J8-vZJ" id="9WA-FW-hjg">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vqe-sb-WL0">
-                        <rect key="frame" x="292" y="13" width="18" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="18" id="5Zr-Di-aZM"/>
-                            <constraint firstAttribute="height" constant="18" id="XQv-7f-hzm"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDF-aZ-gQC">
                         <rect key="frame" x="50" y="12" width="40" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -41,29 +34,39 @@
                             <constraint firstAttribute="width" constant="18" id="F7o-tr-Rkf"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iV3-n8-kTc">
+                        <rect key="frame" x="284" y="-1" width="36" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="Ga5-LY-YKf"/>
+                        </constraints>
+                        <state key="normal" image="search_fill_arrow"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="d6U-ot-bYk" secondAttribute="bottom" id="1me-oL-hK4"/>
                     <constraint firstItem="HBa-Nj-TN5" firstAttribute="centerY" secondItem="9WA-FW-hjg" secondAttribute="centerY" id="2KV-XZ-EKc"/>
-                    <constraint firstItem="vqe-sb-WL0" firstAttribute="centerY" secondItem="9WA-FW-hjg" secondAttribute="centerY" id="D1Q-Jl-w1C"/>
-                    <constraint firstItem="vqe-sb-WL0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YDF-aZ-gQC" secondAttribute="trailing" constant="16" id="EHs-Rs-CVv"/>
+                    <constraint firstAttribute="bottom" secondItem="iV3-n8-kTc" secondAttribute="bottom" constant="0.5" id="6WT-Zo-nat"/>
                     <constraint firstItem="d6U-ot-bYk" firstAttribute="leading" secondItem="YDF-aZ-gQC" secondAttribute="leading" id="NFe-N0-5hl"/>
-                    <constraint firstAttribute="trailing" secondItem="vqe-sb-WL0" secondAttribute="trailing" constant="10" id="cEm-Te-fdh"/>
+                    <constraint firstItem="iV3-n8-kTc" firstAttribute="top" secondItem="9WA-FW-hjg" secondAttribute="top" constant="-1" id="XTB-1B-avd"/>
                     <constraint firstItem="HBa-Nj-TN5" firstAttribute="leading" secondItem="9WA-FW-hjg" secondAttribute="leading" constant="10" id="eP1-1P-LEu"/>
+                    <constraint firstAttribute="trailing" secondItem="iV3-n8-kTc" secondAttribute="trailing" id="fQI-6g-5RJ"/>
                     <constraint firstItem="YDF-aZ-gQC" firstAttribute="centerY" secondItem="9WA-FW-hjg" secondAttribute="centerY" id="kkc-WT-tkL"/>
                     <constraint firstItem="YDF-aZ-gQC" firstAttribute="leading" secondItem="9WA-FW-hjg" secondAttribute="leading" constant="50" id="nlI-lf-riX"/>
                     <constraint firstAttribute="trailing" secondItem="d6U-ot-bYk" secondAttribute="trailing" id="v0v-Qb-MhK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="fillButton" destination="iV3-n8-kTc" id="dCE-q1-ThZ"/>
                 <outlet property="labelLeadingConstraint" destination="nlI-lf-riX" id="jKI-Lc-VW9"/>
                 <outlet property="leadingImageView" destination="HBa-Nj-TN5" id="qK8-qE-mER"/>
                 <outlet property="separator" destination="d6U-ot-bYk" id="blu-J6-zUl"/>
                 <outlet property="separatorHeightConstraint" destination="t3y-Hw-dbT" id="JWc-IB-IHg"/>
                 <outlet property="titleLabel" destination="YDF-aZ-gQC" id="i0y-Kj-iKR"/>
-                <outlet property="trailingImageView" destination="vqe-sb-WL0" id="dam-JF-bGI"/>
             </connections>
             <point key="canvasLocation" x="445" y="362"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="search_fill_arrow" width="16" height="17"/>
+    </resources>
 </document>

@@ -11,5 +11,5 @@ import Foundation
 
 enum SearchSuggestionCellViewModel {
     case RecentSearch(phrase: String)
-    case Result
+    case APISuggestion(phrase: String)
 }

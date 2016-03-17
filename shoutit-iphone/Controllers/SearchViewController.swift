@@ -12,10 +12,6 @@ import RxCocoa
 
 class SearchViewController: UIViewController {
     
-    enum Cell {
-        
-    }
-    
     // consts
     private let animationDuration: NSTimeInterval = 0.25
     private let categoryCellReuseId = "SearchCategoryTableViewCell"
@@ -156,6 +152,9 @@ class SearchViewController: UIViewController {
             let headerView = NSBundle.mainBundle().loadNibNamed("SearchRecentsHeaderView", owner: nil, options: nil).first as! SearchRecentsHeaderView
             headerView.titleLabel.text = title
             headerView.clearButton.setTitle(buttonTitle, forState: .Normal)
+            headerView.clearButton.rx_tap.asDriver().driveNext{[unowned self] () in
+                self.viewModel.clearRecentSearches()
+            }.addDisposableTo(disposeBag)
             return headerView
         }
     }
@@ -193,6 +192,21 @@ extension SearchViewController: UITableViewDataSource {
         case .Suggestions(let cells, _):
             let cellModel = cells[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(suggestionCellReuseId, forIndexPath: indexPath) as! SearchSuggestionTableViewCell
+            switch cellModel {
+            case .APISuggestion(let phrase):
+                cell.titleLabel.text = phrase
+                cell.showLeadingIcon(nil)
+            case .RecentSearch(let phrase):
+                cell.titleLabel.text = phrase
+                cell.showLeadingIcon(UIImage.searchRecentsIcon())
+            }
+            cell.fillButton
+                .rx_tap
+                .asDriver()
+                .driveNext{[weak self] () in
+                    self?.searchBar.text = cell.titleLabel.text
+                }
+                .addDisposableTo(cell.reuseDisposeBag)
             return cell
         }
     }
@@ -220,6 +234,13 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         self.viewModel.searchState.value = searchText.utf16.count > 0 ? .Typing(phrase: searchText) : .Active
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        guard let phrase = searchBar.text where phrase.utf16.count > 0 else {
+            return
+        }
+        viewModel.searchWithPhrase(phrase)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {

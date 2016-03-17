@@ -23,6 +23,13 @@ final class SearchViewModel {
         case Users
     }
     
+    // consts
+    lazy private var archivePath: String = {
+        let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("recent_searches.data")
+        return directoryURL.path!
+    }()
+    
     // RX
     private let disposeBag = DisposeBag()
     private var requestDisposeBag = DisposeBag()
@@ -33,12 +40,21 @@ final class SearchViewModel {
     var segmentedControlState: Variable<SegmentedControlState>
     var sectionViewModel: Variable<SearchSectionViewModel>
     
+    // recents
+    lazy var recentSearches: [String] = {[unowned self] in
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(self.archivePath) as? [String] ?? []
+    }()
+    
     init(context: SearchContext) {
         self.context = context
         self.searchState = Variable(.Inactive)
         self.segmentedControlState = Variable(.Hidden)
         self.sectionViewModel = Variable(.LoadingPlaceholder)
         setupRX()
+    }
+    
+    deinit {
+        NSKeyedArchiver.archiveRootObject(recentSearches, toFile: archivePath)
     }
     
     // MARK: - Actions
@@ -48,12 +64,27 @@ final class SearchViewModel {
         // dispose current requestes
         requestDisposeBag = DisposeBag()
         
-        switch (context, searchState.value) {
-        case (.General, .Inactive):
+        switch (context, searchState.value, segmentedControlState.value) {
+        case (.General, .Inactive, _):
             fetchCategories()
+        case (.General, .Active, .Shouts):
+            setSectionViewModelWithRecentSearches()
+        case (.General, _, .Users):
+            setSectionViewModelWithUsersPlaceholder()
+        case (.General, .Typing(let phrase), .Shouts):
+            loadSuggestionsForPhrase(phrase)
         default:
             break
         }
+    }
+    
+    func searchWithPhrase(phrase: String) {
+        recentSearches.insert(phrase, atIndex: 0)
+    }
+    
+    func clearRecentSearches() {
+        recentSearches = []
+        reloadContent()
     }
     
     // MARK: - Getter methods
@@ -80,18 +111,22 @@ final class SearchViewModel {
             .distinctUntilChanged()
             .subscribeNext {[unowned self] (searchState) in
                 switch searchState {
-                case .Active:
+                case .Active, .Typing:
                     if case (.General, .Hidden) = (self.context, self.segmentedControlState.value) {
                         self.segmentedControlState.value = .Shouts
                     }
+                    self.reloadContent()
                 case .Inactive:
                     self.segmentedControlState.value = .Hidden
-                case .Typing(let phrase):
-                    if case (.General, .Hidden) = (self.context, self.segmentedControlState.value) {
-                        self.segmentedControlState.value = .Shouts
-                    }
-                    self.fetchShoutsForNewPhrase(phrase)
                 }
+            }
+            .addDisposableTo(disposeBag)
+        
+        segmentedControlState
+            .asObservable()
+            .distinctUntilChanged()
+            .subscribeNext {[weak self] (_) in
+                self?.reloadContent()
             }
             .addDisposableTo(disposeBag)
     }
@@ -114,7 +149,7 @@ final class SearchViewModel {
             .addDisposableTo(requestDisposeBag)
     }
     
-    private func fetchShoutsForNewPhrase(phrase: String) {
+    private func loadSuggestionsForPhrase(phrase: String) {
         
     }
     
@@ -130,6 +165,22 @@ final class SearchViewModel {
             let cells = categories.map{SearchCategoryCellViewModel(category: $0)}
             self.sectionViewModel.value = SearchSectionViewModel.Categories(cells: cells, header: header)
         }
+    }
+    
+    private func setSectionViewModelWithRecentSearches() {
+        
+        let searches = self.recentSearches
+        if searches.count == 0 {
+            self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: nil, image: nil)
+        } else {
+            let header = SearchSectionViewModel.HeaderType.TitleAlignedLeftWithButton(title: NSLocalizedString("Recent searches", comment: "Recent searches header"), buttonTitle: NSLocalizedString("CLEAR", comment: "recent searches clear button title"))
+            let cells = searches.map{SearchSuggestionCellViewModel.RecentSearch(phrase: $0)}
+            self.sectionViewModel.value = SearchSectionViewModel.Suggestions(cells: cells, header: header)
+        }
+    }
+    
+    private func setSectionViewModelWithUsersPlaceholder() {
+        self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: NSLocalizedString("Search Users", comment: "Search users placeholder"), image: UIImage.searchUsersPlaceholder())
     }
     
     // MARK: - Compose requests

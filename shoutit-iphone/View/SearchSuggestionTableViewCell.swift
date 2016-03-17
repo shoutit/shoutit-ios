@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchSuggestionTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var leadingImageView: UIImageView!
-    @IBOutlet weak var trailingImageView: UIImageView!
+    @IBOutlet weak var fillButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var separator: UIView!
     @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!
@@ -22,14 +25,15 @@ class SearchSuggestionTableViewCell: UITableViewCell {
         separatorHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
     }
     
-    func showLeadingImageView(show: Bool) {
-        leadingImageView.hidden = !show
-        labelLeadingConstraint.constant = show ? 50 : 10
+    func showLeadingIcon(icon: UIImage?) {
+        leadingImageView.image = icon
+        leadingImageView.hidden = icon == nil
+        labelLeadingConstraint.constant = icon != nil ? 50 : 10
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         leadingImageView.image = nil
-        trailingImageView.image = nil
+        reuseDisposeBag = DisposeBag()
     }
 }
