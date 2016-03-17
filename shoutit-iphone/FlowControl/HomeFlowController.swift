@@ -11,6 +11,7 @@ import UIKit
 final class HomeFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var searchFlowController: SearchFlowController?
     
     init(navigationController: UINavigationController) {
         

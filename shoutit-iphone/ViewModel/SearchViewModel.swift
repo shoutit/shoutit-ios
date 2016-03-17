@@ -78,7 +78,7 @@ final class SearchViewModel {
         }
     }
     
-    func searchWithPhrase(phrase: String) {
+    func savePhraseToRecentSearches(phrase: String) {
         recentSearches.insert(phrase, atIndex: 0)
         reloadContent()
     }

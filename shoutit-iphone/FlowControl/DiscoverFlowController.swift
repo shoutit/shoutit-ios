@@ -11,6 +11,7 @@ import UIKit
 final class DiscoverFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var searchFlowController: SearchFlowController?
     
     init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
         

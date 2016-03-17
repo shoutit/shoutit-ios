@@ -86,6 +86,10 @@ struct Wireframe {
         return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
     }
     
+    static func searchUserResultsTableViewController() -> SearchUserResultsTableViewController {
+        return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchUserResultsTableViewController") as! SearchUserResultsTableViewController
+    }
+    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {

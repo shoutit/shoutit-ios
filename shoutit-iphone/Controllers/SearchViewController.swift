@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol SearchViewControllerFlowDelegate: class {
+    func showUserSearchResultsWithPhrase(phrase: String) -> Void
+}
+
 class SearchViewController: UIViewController {
     
     // consts
@@ -45,6 +49,9 @@ class SearchViewController: UIViewController {
     
     // RX
     private let disposeBag = DisposeBag()
+    
+    // navigation
+    weak var flowDelegate: SearchViewControllerFlowDelegate?
     
     // MARK: - Lifecycle
     
@@ -158,6 +165,16 @@ class SearchViewController: UIViewController {
             return headerView
         }
     }
+    
+    private func showSearchResultsForPhrase(phrase: String) {
+        switch viewModel.segmentedControlState.value {
+        case .Users:
+            flowDelegate?.showUserSearchResultsWithPhrase(phrase)
+        default:
+            // show shouts results
+            break
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -234,6 +251,26 @@ extension SearchViewController: UITableViewDelegate {
             return sectionPlaceholderWithType(header)
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch viewModel.sectionViewModel.value {
+        case .Categories(let cells, _):
+            let model = cells[indexPath.row]
+
+        case .Suggestions(let cells, _):
+            let model = cells[indexPath.row]
+            switch model {
+            case .APISuggestion(let phrase):
+                viewModel.savePhraseToRecentSearches(phrase)
+                showSearchResultsForPhrase(phrase)
+            case .RecentSearch(let phrase):
+                showSearchResultsForPhrase(phrase)
+            }
+        default:
+            break
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -250,7 +287,8 @@ extension SearchViewController: UISearchBarDelegate {
         guard let phrase = searchBar.text where phrase.utf16.count > 0 else {
             return
         }
-        viewModel.searchWithPhrase(phrase)
+        viewModel.savePhraseToRecentSearches(phrase)
+        showSearchResultsForPhrase(phrase)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {

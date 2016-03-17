@@ -112,5 +112,23 @@
             </objects>
             <point key="canvasLocation" x="411" y="408"/>
         </scene>
+        <!--Search User Results Table View Controller-->
+        <scene sceneID="zY8-Yc-3Of">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchUserResultsTableViewController" id="w21-In-4v1" customClass="SearchUserResultsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aop-xS-886">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="w21-In-4v1" id="HmP-u7-4hI"/>
+                            <outlet property="delegate" destination="w21-In-4v1" id="xEH-e4-jqg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5e-kc-oor" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="408"/>
+        </scene>
     </scenes>
 </document>
