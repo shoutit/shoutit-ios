@@ -9,10 +9,11 @@
 import UIKit
 import RxSwift
 import MBProgressHUD
+import DZNEmptyDataSet
 
 protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, NotificationsDisplayable {}
 
-class NotificationsTableViewController: UITableViewController {
+class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     private let cellIdentifier = "NotificationsCellIdentifier"
     private let disposeBag = DisposeBag()
@@ -28,7 +29,14 @@ class NotificationsTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         
         self.refreshControl?.addTarget(self, action: "reloadNotifications", forControlEvents: .ValueChanged)
+        
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
 
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: NSLocalizedString("No notifications to show", comment: ""))
     }
     
     @IBAction func reloadNotifications() {
