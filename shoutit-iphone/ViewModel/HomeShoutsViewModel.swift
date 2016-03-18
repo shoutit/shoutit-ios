@@ -23,7 +23,7 @@ class HomeShoutsViewModel: AnyObject {
     var loadingPages : [Int] = []
     
     var loading : Variable<Bool> = Variable(false)
-    var finishedLoading = false
+    private var finishedLoading = false
     
     var currentPage : Int = 1
     
@@ -122,8 +122,7 @@ class HomeShoutsViewModel: AnyObject {
                 
                 }, onError: { [weak self] (error) -> Void in
                     self?.finishedLoading = true
-                }, onCompleted: { [weak self] (completed) -> Void in
-                    self?.finishedLoading = true
+                }, onCompleted: {(completed) -> Void in
                 }, onDisposed: { () -> Void in
                     
             }).addDisposableTo(disposeBag)

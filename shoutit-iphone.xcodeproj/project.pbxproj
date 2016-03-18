@@ -587,6 +587,7 @@
 		B2F524761C9B0AB600EA622F /* SearchUserProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524751C9B0AB600EA622F /* SearchUserProfileCellViewModel.swift */; };
 		B2F5247A1C9C605800EA622F /* SearchShoutsResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524791C9C605800EA622F /* SearchShoutsResultsCollectionViewController.swift */; };
 		B2F5247D1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F5247C1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift */; };
+		B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1245,6 +1246,7 @@
 		B2F524751C9B0AB600EA622F /* SearchUserProfileCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchUserProfileCellViewModel.swift; path = ViewModel/SearchUserProfileCellViewModel.swift; sourceTree = "<group>"; };
 		B2F524791C9C605800EA622F /* SearchShoutsResultsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsCollectionViewController.swift; path = Controllers/SearchShoutsResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		B2F5247C1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsCollectionViewLayout.swift; path = Layout/SearchShoutsResultsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+LoggedUser.swift"; path = "Util/UIViewController+LoggedUser.swift"; sourceTree = "<group>"; };
 		B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_production.xcconfig"; sourceTree = "<group>"; };
 		BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; sourceTree = "<group>"; };
 		C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
@@ -3397,6 +3399,7 @@
 				B28379A91C749F32009AFF01 /* UIImageView+Networking.swift */,
 				B23ABC891C751B5900CC69E6 /* StringExtensions.swift */,
 				B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */,
+				B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4194,6 +4197,7 @@
 				249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */,
 				B2C729C81C6221B0006F7D29 /* Success.swift in Sources */,
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
+				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,
 				2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,

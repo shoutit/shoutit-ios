@@ -161,6 +161,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
             
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+                guard self != nil && self!.validateLoggedUser() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let listening):

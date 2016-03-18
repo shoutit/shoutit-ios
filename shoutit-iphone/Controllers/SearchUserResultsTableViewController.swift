@@ -116,6 +116,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
         cell.listenButton.setImage(listenButtonImage, forState: .Normal)
         cell.listenButton.hidden = cellModel.hidesListeningButton()
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
+            guard self != nil && self!.validateLoggedUser() else { return }
             cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                 switch event {
                 case .Next(let listening):
