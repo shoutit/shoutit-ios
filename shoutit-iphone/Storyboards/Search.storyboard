@@ -145,6 +145,35 @@
             </objects>
             <point key="canvasLocation" x="1114" y="408"/>
         </scene>
+        <!--Search Shouts Results Collection View Controller-->
+        <scene sceneID="tdt-t9-xe0">
+            <objects>
+                <collectionViewController storyboardIdentifier="SearchShoutsResultsCollectionViewController" id="KZH-Ve-wP5" customClass="SearchShoutsResultsCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WOc-V3-1bo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewLayout key="collectionViewLayout" id="gTW-gC-Zmm" customClass="SearchShoutsResultsCollectionViewLayout" customModule="Shoutit" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mXX-t1-hlk">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="KZH-Ve-wP5" id="X1Q-fH-q1a"/>
+                            <outlet property="delegate" destination="KZH-Ve-wP5" id="06i-5Y-Lfc"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VdN-Mo-PwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1797" y="408"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
