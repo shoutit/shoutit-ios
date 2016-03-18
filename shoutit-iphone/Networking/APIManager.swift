@@ -57,6 +57,8 @@ final class APIManager {
             headerFields["Authorization"] = token
             request.allHTTPHeaderFields = headerFields
         }
+        
+        PusherClient.sharedInstance.setAuthorizationToken(token)
     }
     
     // MARK: - Reachability

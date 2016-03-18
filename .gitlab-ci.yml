@@ -4,6 +4,9 @@ before_script:
   - rm -rf Gemfile.lock
   - gem install bundler
   - bundle install
+cache:
+  paths:
+    - Pods/
 
 production:
   type: build
@@ -19,6 +22,9 @@ alpha:
     - artifacts
   only:
     - /^staging-.*$/
+  artifacts:
+    paths:
+      - *.ipa
 testflight:
   type: build
   script: "bundle exec fastlane testflight"

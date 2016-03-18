@@ -14,6 +14,13 @@ let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
 let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
 let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
 
+enum ConversationDataState : Int {
+    case NotLoaded
+    case RestLoaded
+    case PusherLoaded
+    
+}
+
 protocol ConversationPresenter {
     func showSendingError(error: NSError) -> Void
 }
@@ -33,11 +40,40 @@ class ConversationViewModel {
         self.delegate = delegate
     }
     
+    func createSocketObservable() {
+        // handle presence/typing/join/left
+        PusherClient.sharedInstance.conversationObservable(self.conversation).subscribeNext { (event) -> Void in
+            
+        }.addDisposableTo(disposeBag)
+        
+        // handle messages
+        PusherClient.sharedInstance.mainChannelObservable()
+        .filter({ (event) -> Bool in
+            return event.eventType() == .NewMessage
+        })
+        .map({ (event) -> Message? in
+            let msg : Message? = event.object()
+            return msg
+        })
+        .filter({ [weak self] (msg) -> Bool in
+            if let msg : Message = msg {
+                return msg.conversationId == self?.conversation.id
+            }
+            return false
+        })
+        .subscribeNext {[weak self] (msg) -> Void in
+            if let msg : Message = msg {
+                self?.appendMessages([msg])
+            }
+        }.addDisposableTo(disposeBag)
+    }
     
     func fetchMessages() {
         APIChatsService.getMessagesForConversation(self.conversation).subscribeNext {[weak self] (messages) -> Void in
             self?.appendMessages(messages)
         }.addDisposableTo(disposeBag)
+        
+        createSocketObservable()
     }
     
     func appendMessages(newMessages: [Message]) {
@@ -50,7 +86,7 @@ class ConversationViewModel {
         base.appendContentsOf(newMessages)
         
         base = base.unique().sort({ (msg, msg2) -> Bool in
-            return msg.createdAt > msg2.createdAt
+            return msg.createdAt < msg2.createdAt
         })
         
         sortedMessages = base

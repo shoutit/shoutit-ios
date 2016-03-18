@@ -151,3 +151,10 @@ extension Conversation {
         return false
     }
 }
+
+// Pusher Extensions
+extension Conversation {
+    func channelName() -> String {
+        return "presence-c-\(self.id)"
+    }
+}
