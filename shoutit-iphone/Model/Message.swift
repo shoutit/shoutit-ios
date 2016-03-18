@@ -15,6 +15,7 @@ import Pusher
 struct Message: Decodable, Hashable, Equatable {
     
     let id: String
+    let conversationId: String?
     let createdAt: Int
     let readPath: String?
     let user: Profile?
@@ -29,6 +30,7 @@ struct Message: Decodable, Hashable, Equatable {
     static func decode(j: JSON) -> Decoded<Message> {
         let a = curry(Message.init)
             <^> j <| "id"
+            <*> j <|? "conversation_id"
             <*> j <| "created_at"
             <*> j <|? "read_url"
         let b = a
@@ -39,7 +41,7 @@ struct Message: Decodable, Hashable, Equatable {
     }
     
     static func messageWithText(text: String) -> Message {
-        return Message(id: "", createdAt: 0, readPath: nil, user: nil, text: text)
+        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text)
     }
     
     

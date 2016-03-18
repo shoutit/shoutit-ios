@@ -97,18 +97,22 @@ extension PusherClient : PTPusherDelegate {
     
     func pusher(pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
         debugPrint("PUSHER DID RECEIVE ERROR EVENT")
+        print(errorEvent)
+        print(errorEvent.data)
     }
     
     func pusher(pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
-        
+        print(error)
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
         debugPrint("PUSHER DID DISCONNECT WITH ERROR")
+        print(error)
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
         debugPrint("FAILED WITH ERROR")
+        print(error)
     }
 }
 
