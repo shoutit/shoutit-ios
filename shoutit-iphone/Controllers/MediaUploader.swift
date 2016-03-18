@@ -83,6 +83,14 @@ class MediaUploader: AnyObject {
         
     }
     
+    func removeAttachment(attachment: MediaAttachment) {
+        if let task = self.taskForAttachment(attachment) {
+            if let idx = self.tasks.indexOf(task) {
+                self.tasks.removeAtIndex(idx)
+            }
+        }
+    }
+    
     func uploadImageAttachment(task: MediaUploadingTask, user: User) {
         if let data = task.attachment.originalData {
             let destination = task.attachment.remoteFilename(user)

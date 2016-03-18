@@ -144,7 +144,10 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         
         alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (alertAction) in
             if let selectedIdx = self.selectedIdx {
-                self.attachments[selectedIdx] = nil
+                if let attachment = self.attachments[selectedIdx] {
+                    self.mediaUploader.removeAttachment(attachment)
+                    self.attachments[selectedIdx] = nil
+                }
             }
             
             self.collectionView?.reloadData()
