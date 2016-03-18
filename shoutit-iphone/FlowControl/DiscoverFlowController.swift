@@ -11,7 +11,6 @@ import UIKit
 final class DiscoverFlowController: FlowController {
     
     let navigationController: UINavigationController
-    var searchFlowController: SearchFlowController?
     
     init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
         
@@ -31,6 +30,7 @@ final class DiscoverFlowController: FlowController {
     }
 }
 
+extension DiscoverFlowController: SearchViewControllerFlowDelegate {}
 extension DiscoverFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension DiscoverFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension DiscoverFlowController: ProfileCollectionViewControllerFlowDelegate {}

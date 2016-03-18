@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Search View Controller-->
@@ -112,11 +113,11 @@
             </objects>
             <point key="canvasLocation" x="411" y="408"/>
         </scene>
-        <!--Search User Results Table View Controller-->
+        <!--Results-->
         <scene sceneID="zY8-Yc-3Of">
             <objects>
                 <tableViewController storyboardIdentifier="SearchUserResultsTableViewController" id="w21-In-4v1" customClass="SearchUserResultsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aop-xS-886">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aop-xS-886">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,10 +126,28 @@
                             <outlet property="delegate" destination="w21-In-4v1" id="xEH-e4-jqg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Results" id="XzG-ri-d5v">
+                        <rightBarButtonItems>
+                            <barButtonItem image="cart" id="i5G-Bx-Oh8">
+                                <connections>
+                                    <action selector="filterAction:" destination="w21-In-4v1" id="2Hc-iD-x7g"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="search" id="gfS-aU-KWM">
+                                <connections>
+                                    <action selector="searchAction:" destination="w21-In-4v1" id="wfr-5t-SKF"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5e-kc-oor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1114" y="408"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cart" width="25" height="25"/>
+        <image name="search" width="25" height="24"/>
+    </resources>
 </document>

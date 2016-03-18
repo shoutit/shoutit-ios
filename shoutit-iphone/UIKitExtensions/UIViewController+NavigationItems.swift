@@ -18,7 +18,7 @@ extension UIViewController {
             if self === navigationController.viewControllers[0] {
                 leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: self, action: "toggleMenu")
             } else {
-                leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: "popViewController")
+                leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: "pop")
             }
             self.navigationItem.leftBarButtonItem = leftBarButtonItem
         }

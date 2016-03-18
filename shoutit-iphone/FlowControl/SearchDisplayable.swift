@@ -16,16 +16,25 @@ enum SearchContext {
 }
 
 protocol SearchDisplayable {
-    
-    var searchFlowController: SearchFlowController? {get set}
     func showSearchInContext(context: SearchContext) -> Void
+    func showUserSearchResultsWithPhrase(phrase: String) -> Void
+}
+
+extension SearchDisplayable where Self: FlowController, Self: SearchViewControllerFlowDelegate {
+    
+    func showSearchInContext(context: SearchContext) {
+        let controller = Wireframe.searchViewController()
+        controller.flowDelegate = self
+        controller.viewModel = SearchViewModel(context: context)
+        navigationController.showViewController(controller, sender: nil)
+    }
 }
 
 extension SearchDisplayable where Self: FlowController {
     
-    mutating func showSearchInContext(context: SearchContext) {
-        let nav = ModalNavigationController()
-        self.searchFlowController = SearchFlowController(navigationController: nav, context: context)
-        navigationController.presentViewController(nav, animated: true, completion: nil)
+    func showUserSearchResultsWithPhrase(phrase: String) {
+        let controller = Wireframe.searchUserResultsTableViewController()
+        controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
+        navigationController.showViewController(controller, sender: nil)
     }
 }

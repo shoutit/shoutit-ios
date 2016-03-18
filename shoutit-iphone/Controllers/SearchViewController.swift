@@ -73,6 +73,10 @@ class SearchViewController: UIViewController {
         return true
     }
     
+    override func prefersTabbarHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {
@@ -83,8 +87,8 @@ class SearchViewController: UIViewController {
             .skip(1)
             .observeOn(MainScheduler.instance)
             .subscribeNext{[weak self] (segment) in
-                if segment == 0 { self?.viewModel.segmentedControlState.value = .Shouts }
-                else if segment == 1 { self?.viewModel.segmentedControlState.value = .Users }
+                if segment == 0 { self?.viewModel.segmentedControlState.value = .Shown(option: .Shouts) }
+                else if segment == 1 { self?.viewModel.segmentedControlState.value = .Shown(option: .Users) }
             }
             .addDisposableTo(disposeBag)
         
@@ -168,7 +172,7 @@ class SearchViewController: UIViewController {
     
     private func showSearchResultsForPhrase(phrase: String) {
         switch viewModel.segmentedControlState.value {
-        case .Users:
+        case .Shown(option: .Users):
             flowDelegate?.showUserSearchResultsWithPhrase(phrase)
         default:
             // show shouts results
@@ -262,7 +266,7 @@ extension SearchViewController: UITableViewDelegate {
             let model = cells[indexPath.row]
             switch model {
             case .APISuggestion(let phrase):
-                viewModel.savePhraseToRecentSearches(phrase)
+                viewModel.savePhraseToRecentSearchesIfApplicable(phrase)
                 showSearchResultsForPhrase(phrase)
             case .RecentSearch(let phrase):
                 showSearchResultsForPhrase(phrase)
@@ -276,7 +280,11 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.viewModel.searchState.value = .Active
+        if let text = searchBar.text where text.utf16.count > 0 {
+            self.viewModel.searchState.value = .Typing(phrase: text)
+        } else {
+            self.viewModel.searchState.value = .Active
+        }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -287,8 +295,9 @@ extension SearchViewController: UISearchBarDelegate {
         guard let phrase = searchBar.text where phrase.utf16.count > 0 else {
             return
         }
-        viewModel.savePhraseToRecentSearches(phrase)
+        viewModel.savePhraseToRecentSearchesIfApplicable(phrase)
         showSearchResultsForPhrase(phrase)
+        searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -296,6 +305,6 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

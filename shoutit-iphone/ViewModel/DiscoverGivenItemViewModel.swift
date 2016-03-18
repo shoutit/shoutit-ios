@@ -25,7 +25,7 @@ class DiscoverGivenItemViewModel: DiscoverViewModel {
             self?.items.on(.Next((mainItem, itms)))
             
             if let mainDiscover = mainItem {
-                let params = FilteredShoutsParams(discoverId: mainDiscover.id, page: 4, pageSize: 4)
+                let params = FilteredShoutsParams(discoverId: mainDiscover.id, page: 1, pageSize: 4)
                 APIShoutsService.listShoutsWithParams(params).subscribeNext({ [weak self] (shouts) -> Void in
                     self?.shouts.on(.Next(shouts))
                 }).addDisposableTo((self?.disposeBag)!)

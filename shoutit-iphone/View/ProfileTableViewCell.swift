@@ -17,6 +17,13 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var listenersCountLabel: UILabel!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        heightConstraint.constant = 1 / UIScreen.mainScreen().scale
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

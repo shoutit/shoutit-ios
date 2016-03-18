@@ -17,10 +17,14 @@ final class SearchViewModel {
         case Typing(phrase: String)
     }
     
-    enum SegmentedControlState {
-        case Hidden
-        case Shouts
-        case Users
+    enum SegmentedControlState: Equatable {
+        
+        enum Option {
+            case Shouts
+            case Users
+        }
+        case Hidden(option: Option)
+        case Shown(option: Option)
     }
     
     // consts
@@ -41,20 +45,16 @@ final class SearchViewModel {
     var sectionViewModel: Variable<SearchSectionViewModel>
     
     // recents
-    lazy var recentSearches: [String] = {[unowned self] in
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(self.archivePath) as? [String] ?? []
+    lazy var recentSearches: Set<String> = {[unowned self] in
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(self.archivePath) as? Set<String> ?? Set()
     }()
     
     init(context: SearchContext) {
         self.context = context
         self.searchState = Variable(.Inactive)
-        self.segmentedControlState = Variable(.Hidden)
+        self.segmentedControlState = Variable(.Hidden(option: .Shouts))
         self.sectionViewModel = Variable(.LoadingPlaceholder)
         setupRX()
-    }
-    
-    deinit {
-        NSKeyedArchiver.archiveRootObject(recentSearches, toFile: archivePath)
     }
     
     // MARK: - Actions
@@ -67,29 +67,35 @@ final class SearchViewModel {
         switch (context, searchState.value, segmentedControlState.value) {
         case (.General, .Inactive, _):
             fetchCategories()
-        case (.General, .Active, .Shouts):
+        case (.General, .Active, .Shown(option: .Shouts)):
             setSectionViewModelWithRecentSearches()
-        case (.General, _, .Users):
+        case (.General, _, .Shown(option: .Users)):
             setSectionViewModelWithUsersPlaceholder()
-        case (.General, .Typing(let phrase), .Shouts):
+        case (.General, .Typing(let phrase), .Shown(option: .Shouts)):
             loadSuggestionsForPhrase(phrase)
         default:
             break
         }
     }
     
-    func savePhraseToRecentSearches(phrase: String) {
-        recentSearches.insert(phrase, atIndex: 0)
+    func savePhraseToRecentSearchesIfApplicable(phrase: String) {
+        if case .Shown(option: .Users) = segmentedControlState.value {
+            return
+        }
+        recentSearches.insert(phrase)
+        saveRecentSearches()
         reloadContent()
     }
     
     func removeRecentSearchPhrase(phrase: String) {
-        recentSearches.removeElementIfExists(phrase)
+        recentSearches.remove(phrase)
+        saveRecentSearches()
         reloadContent()
     }
     
     func clearRecentSearches() {
-        recentSearches = []
+        recentSearches.removeAll()
+        saveRecentSearches()
         reloadContent()
     }
     
@@ -118,12 +124,14 @@ final class SearchViewModel {
             .subscribeNext {[unowned self] (searchState) in
                 switch searchState {
                 case .Active, .Typing:
-                    if case (.General, .Hidden) = (self.context, self.segmentedControlState.value) {
-                        self.segmentedControlState.value = .Shouts
+                    if case (.General, .Hidden(let option)) = (self.context, self.segmentedControlState.value) {
+                        self.segmentedControlState.value = .Shown(option: option)
                     }
                     self.reloadContent()
                 case .Inactive:
-                    self.segmentedControlState.value = .Hidden
+                    if case (.General, .Shown(let option)) = (self.context, self.segmentedControlState.value) {
+                        self.segmentedControlState.value = .Hidden(option: option)
+                    }
                 }
             }
             .addDisposableTo(disposeBag)
@@ -207,6 +215,12 @@ final class SearchViewModel {
         
         return APIShoutsService.listShoutsWithParams(params)
     }
+    
+    // MARK: - Helpers
+    
+    private func saveRecentSearches() {
+        NSKeyedArchiver.archiveRootObject(recentSearches, toFile: archivePath)
+    }
 }
 
 func ==(lhs: SearchViewModel.SearchState, rhs: SearchViewModel.SearchState) -> Bool {
@@ -216,6 +230,17 @@ func ==(lhs: SearchViewModel.SearchState, rhs: SearchViewModel.SearchState) -> B
     case (.Active, .Active):
         return true
     case (.Typing(let l), .Typing(let r)):
+        return l == r
+    default:
+        return false
+    }
+}
+
+func ==(lhs: SearchViewModel.SegmentedControlState, rhs: SearchViewModel.SegmentedControlState) -> Bool {
+    switch (lhs, rhs) {
+    case (.Shown(let l), .Shown(let r)):
+        return l == r
+    case (.Hidden(let l), .Hidden(let r)):
         return l == r
     default:
         return false

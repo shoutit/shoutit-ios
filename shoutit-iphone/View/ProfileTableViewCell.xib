@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keZ-f9-ncs" id="9cv-Xh-8DW">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CRr-rb-yHk">
@@ -40,10 +40,18 @@
                         </constraints>
                         <state key="normal" image="listen_icon"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l68-pJ-Sew">
+                        <rect key="frame" x="76" y="69" width="244" height="1"/>
+                        <color key="backgroundColor" red="0.74509803921568629" green="0.74509803921568629" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="CVH-By-iea"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="g1Q-PO-OMg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rEs-gp-bg2" secondAttribute="trailing" constant="10" id="3E5-49-6sx"/>
                     <constraint firstItem="g1Q-PO-OMg" firstAttribute="top" secondItem="9cv-Xh-8DW" secondAttribute="top" id="JfZ-et-Gyj"/>
+                    <constraint firstAttribute="trailing" secondItem="l68-pJ-Sew" secondAttribute="trailing" id="Kk3-8c-7Zo"/>
                     <constraint firstItem="CRr-rb-yHk" firstAttribute="top" secondItem="9cv-Xh-8DW" secondAttribute="top" constant="8" id="MH3-h5-pej"/>
                     <constraint firstAttribute="bottom" secondItem="CRr-rb-yHk" secondAttribute="bottom" constant="8" id="PUm-GA-2C7"/>
                     <constraint firstItem="CRr-rb-yHk" firstAttribute="leading" secondItem="9cv-Xh-8DW" secondAttribute="leading" constant="10" id="Zep-km-nRD"/>
@@ -54,12 +62,16 @@
                     <constraint firstAttribute="trailing" secondItem="g1Q-PO-OMg" secondAttribute="trailing" id="ddn-MJ-Owx"/>
                     <constraint firstItem="rEs-gp-bg2" firstAttribute="top" secondItem="CRr-rb-yHk" secondAttribute="top" id="fMQ-MA-l0Z"/>
                     <constraint firstAttribute="bottom" secondItem="g1Q-PO-OMg" secondAttribute="bottom" id="pBA-lI-7Ls"/>
+                    <constraint firstItem="l68-pJ-Sew" firstAttribute="leading" secondItem="rEs-gp-bg2" secondAttribute="leading" id="poq-TX-1TX"/>
+                    <constraint firstAttribute="bottom" secondItem="l68-pJ-Sew" secondAttribute="bottom" id="w27-dC-naJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="heightConstraint" destination="CVH-By-iea" id="Mnk-45-wTo"/>
                 <outlet property="listenButton" destination="g1Q-PO-OMg" id="7jG-py-YvN"/>
                 <outlet property="listenersCountLabel" destination="65E-qU-DBM" id="QXa-Pa-yuc"/>
                 <outlet property="nameLabel" destination="rEs-gp-bg2" id="esn-s6-zt1"/>
+                <outlet property="separatorView" destination="l68-pJ-Sew" id="hwd-3x-3fC"/>
                 <outlet property="thumbnailImageView" destination="CRr-rb-yHk" id="xjM-De-drJ"/>
             </connections>
             <point key="canvasLocation" x="409" y="334"/>

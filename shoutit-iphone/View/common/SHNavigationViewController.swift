@@ -46,9 +46,9 @@ class SHNavigationViewController: UINavigationController, UINavigationController
         }
         
         if self.viewControllers.count > 1 {
-            viewController.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "backThin"), style: .Plain, target: viewController, action: "pop"), UIBarButtonItem(image: UIImage(named: "navMenu"), style: .Plain, target: viewController, action: "toggleMenu")]
+            viewController.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: "pop"), UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: "toggleMenu")]
         } else {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navMenu"), style: .Plain, target: viewController, action: "toggleMenu")
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: "toggleMenu")
         }
     }
     

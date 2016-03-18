@@ -11,7 +11,6 @@ import UIKit
 final class ProfileFlowController: FlowController {
     
     let navigationController: UINavigationController
-    var searchFlowController: SearchFlowController?
     
     init(navigationController: UINavigationController) {
         
@@ -30,12 +29,9 @@ final class ProfileFlowController: FlowController {
     }
 }
 
+extension ProfileFlowController: SearchViewControllerFlowDelegate {}
 extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {}
-
 extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-
 extension ProfileFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
-
 extension ProfileFlowController: DiscoverCollectionViewControllerFlowDelegate {}
-
 extension ProfileFlowController: NotificationsTableViewControllerFlowDelegate {}

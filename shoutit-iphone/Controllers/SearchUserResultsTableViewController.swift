@@ -37,6 +37,25 @@ final class SearchUserResultsTableViewController: UITableViewController {
         setupRX()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadContent()
+    }
+    
+    override func prefersTabbarHidden() -> Bool {
+        return true
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func filterAction(sender: AnyObject) {
+        notImplemented()
+    }
+    
+    @IBAction func searchAction(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     // MARK: - Setup
     
     private func registerReusables() {
@@ -102,7 +121,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
                     let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                     cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
                 case .Completed:
-                    self?.viewModel.reloadContent()
+                    self?.viewModel.reloadItemAtIndex(indexPath.row)
                 default:
                     break
                 }
@@ -110,5 +129,11 @@ final class SearchUserResultsTableViewController: UITableViewController {
             }.addDisposableTo(cell.reuseDisposeBag)
         
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 64
     }
 }

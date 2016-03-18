@@ -11,7 +11,6 @@ import UIKit
 final class HomeFlowController: FlowController {
     
     let navigationController: UINavigationController
-    var searchFlowController: SearchFlowController?
     
     init(navigationController: UINavigationController) {
         
@@ -25,6 +24,7 @@ final class HomeFlowController: FlowController {
     }
 }
 
+extension HomeFlowController: SearchViewControllerFlowDelegate {}
 extension HomeFlowController: HomeViewControllerFlowDelegate {}
 extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}

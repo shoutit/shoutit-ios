@@ -9,6 +9,7 @@
 import UIKit
 
 class DiscoverShoutsFlowController: FlowController {
+    
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
@@ -27,6 +28,7 @@ class DiscoverShoutsFlowController: FlowController {
     }
 }
 
+extension DiscoverShoutsFlowController: SearchViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ProfileCollectionViewControllerFlowDelegate {}
