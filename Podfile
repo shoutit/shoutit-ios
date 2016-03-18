@@ -1,5 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+source 'https://github.com/twilio/cocoapod-specs.git'
+
+platform :ios, '8.1'
 use_frameworks!
 
 # RX
@@ -39,6 +41,9 @@ pod 'KeychainAccess', '~> 2.3'
 
 # validation
 pod 'Validator', '~> 1.1'
+
+# video calls
+pod 'TwilioConversationsClient'
 
 #images
 pod 'Kingfisher', '~> 1.8'
