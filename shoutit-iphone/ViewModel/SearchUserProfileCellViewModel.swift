@@ -23,6 +23,10 @@ class SearchUserProfileCellViewModel {
         return NSLocalizedString("\(NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)) Listeners", comment: "")
     }
     
+    func hidesListeningButton() -> Bool {
+        return Account.sharedInstance.loggedUser?.id == profile.id
+    }
+    
     func toggleIsListening() -> Observable<Bool> {
         
         return Observable.create{[weak self] (observer) -> Disposable in

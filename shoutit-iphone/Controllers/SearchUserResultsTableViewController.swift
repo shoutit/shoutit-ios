@@ -114,6 +114,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
         cell.thumbnailImageView.sh_setImageWithURL(cellModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         let listenButtonImage = cellModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
         cell.listenButton.setImage(listenButtonImage, forState: .Normal)
+        cell.listenButton.hidden = cellModel.hidesListeningButton()
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
             cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                 switch event {
