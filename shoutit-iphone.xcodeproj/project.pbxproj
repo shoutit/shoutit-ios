@@ -3341,6 +3341,7 @@
 				5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */,
 				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
+				AEC3CBC51C9B5DF300C99B4E /* Send Watch Notification */,
 			);
 			buildRules = (
 			);
@@ -3619,6 +3620,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AEC3CBC51C9B5DF300C99B4E /* Send Watch Notification */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Send Watch Notification";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f ~/finished_compiling.sh  ]; then\n    sh ~/finished_compiling.sh Shoutit\nfi";
 		};
 		B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
