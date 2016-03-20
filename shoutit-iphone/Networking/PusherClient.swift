@@ -142,6 +142,20 @@ extension PusherClient {
         }
     }
     
+    func conversationMessagesObservable(conversation: Conversation) -> Observable<Message> {
+        return mainChannelObservable().filter({ (event) -> Bool in
+            return event.eventType() == .NewMessage
+        })
+        .flatMap({ (event) -> Observable<Message> in
+            if let msg : Message = event.object() {
+                if msg.conversationId == conversation.id {
+                    return Observable.just(msg)
+                }
+            }
+            return Observable.never()
+        })
+    }
+    
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
             let cancel = AnonymousDisposable {

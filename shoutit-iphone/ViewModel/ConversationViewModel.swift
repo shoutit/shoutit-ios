@@ -86,7 +86,7 @@ class ConversationViewModel {
         base.appendContentsOf(newMessages)
         
         base = base.unique().sort({ (msg, msg2) -> Bool in
-            return msg.createdAt < msg2.createdAt
+            return msg.createdAt > msg2.createdAt
         })
         
         sortedMessages = base

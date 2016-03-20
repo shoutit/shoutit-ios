@@ -38,7 +38,7 @@ class DateFormatters {
     }
     
     func setHourFormat() {
-        formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy HH:mm")
     }
     
     func hourStringFromEpoch(epoch: Int) -> String {

@@ -99,7 +99,10 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         for conversation in self.conversations {
             let idx = self.conversations.indexOf(conversation)!
             
-            PusherClient.sharedInstance.conversationObservable(conversation).subscribeNext({ [weak self] (event) -> Void in
+            PusherClient.sharedInstance.conversationMessagesObservable(conversation).subscribeNext({ [weak self] (msg) -> Void in
+                let updatedConversation = conversation.copyWithLastMessage(msg)
+                self?.conversations.removeAtIndex(idx)
+                self?.conversations.insert(updatedConversation, atIndex: idx)
                 self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
             }).addDisposableTo(disposeBag)
         }
