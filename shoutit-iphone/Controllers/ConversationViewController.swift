@@ -43,7 +43,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         
         viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
             self?.tableView.reloadData()
-            }.addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.typingUsers.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (profile) -> Void in
+            guard let profile = profile else {
+                return
+            }
+            
+            self?.typingIndicatorView.insertUsername(profile.username)
+        }.addDisposableTo(disposeBag)
     }
     
     func registerSupplementaryViews() {
@@ -124,4 +132,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         navigationController?.presentViewController(controller, animated: true, completion: nil)
     }
     
+    override func textViewDidChange(textView: UITextView) {
+        super.textViewDidChange(textView)
+
+        viewModel.sendTypingEvent()
+    }
 }

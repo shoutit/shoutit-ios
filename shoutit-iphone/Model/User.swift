@@ -21,6 +21,21 @@ protocol User: Encodable {
     var dateJoinedEpoch: Int {get}
     var location: Address {get}
     var pushTokens: PushTokens {get}
+    
+}
+
+extension User {
+    func basicEncodedProfile() -> [String: AnyObject]! {
+        guard var fullProfile = self.encode().JSONObject() as? [String: AnyObject] else {
+            return [:]
+        }
+        
+        fullProfile["push_tokens"] = nil
+        fullProfile["linked_accounts"] = nil
+        fullProfile["location"] = nil
+        
+        return fullProfile
+    }
 }
 
 // MARK: - User type

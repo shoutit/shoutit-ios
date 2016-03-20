@@ -9,6 +9,8 @@
 import Foundation
 import Pusher
 import RxSwift
+import Argo
+import Ogra
 
 final class PusherClient : NSObject {
     
@@ -187,5 +189,17 @@ extension PusherClient {
         }
         
         return nil
+    }
+    
+    func sendTypingEventToConversation(conversation: Conversation) {
+        guard let user = Account.sharedInstance.user else {
+            return
+        }
+    
+        let eventName = "client-" + PusherEventType.UserTyping.rawValue
+        let data = user.basicEncodedProfile()
+        let channelName = conversation.channelName()
+        
+        pusherInstance.sendEventNamed(eventName, data: data, channel: channelName)
     }
 }

@@ -28,8 +28,11 @@ protocol ConversationPresenter {
 class ConversationViewModel {
     private var conversation: Conversation
     
-    let messages : Variable<[String:[Message]]> = Variable([:])
+    let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
+    
+    let typingUsers : PublishSubject<Profile?> = PublishSubject()
+    let nowTyping : PublishSubject<Bool> = PublishSubject()
     
     private var delegate : ConversationPresenter?
     
@@ -47,21 +50,7 @@ class ConversationViewModel {
         }.addDisposableTo(disposeBag)
         
         // handle messages
-        PusherClient.sharedInstance.mainChannelObservable()
-        .filter({ (event) -> Bool in
-            return event.eventType() == .NewMessage
-        })
-        .map({ (event) -> Message? in
-            let msg : Message? = event.object()
-            return msg
-        })
-        .filter({ [weak self] (msg) -> Bool in
-            if let msg : Message = msg {
-                return msg.conversationId == self?.conversation.id
-            }
-            return false
-        })
-        .subscribeNext {[weak self] (msg) -> Void in
+        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation).subscribeNext {[weak self] (msg) -> Void in
             if let msg : Message = msg {
                 self?.appendMessages([msg])
             }
@@ -74,6 +63,19 @@ class ConversationViewModel {
         }.addDisposableTo(disposeBag)
         
         createSocketObservable()
+        registerForTyping()
+    }
+    
+    func registerForTyping() {
+        nowTyping.asObservable()
+            .window(timeSpan: 3, count: 10000, scheduler: MainScheduler.instance)
+            .flatMapLatest({ (obs) -> Observable<Bool> in
+                return obs.take(1)
+            })
+            .subscribeNext { _ in
+                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation)
+            }.addDisposableTo(disposeBag)
+
     }
     
     func appendMessages(newMessages: [Message]) {
@@ -91,7 +93,7 @@ class ConversationViewModel {
         
         sortedMessages = base
         
-        let result = base.categorise { $0.dateString() }
+        let result = base.categorise { $0.day() }
         
         self.messages.value = result
     }
@@ -119,7 +121,7 @@ class ConversationViewModel {
     }
     
     func messageAtIndexPath(indexPath: NSIndexPath) -> Message {
-        guard let day = Array(self.messages.value.keys)[indexPath.section] as String? else {
+        guard let day = sortedDays()[indexPath.section] as NSDate? else {
             fatalError("No Message at Given Index")
         }
         
@@ -130,12 +132,25 @@ class ConversationViewModel {
         return messagesFromGivenDay[indexPath.row]
     }
     
+    func sortedDays() -> [NSDate] {
+        let base : [NSDate] = Array(self.messages.value.keys)
+        
+        return base.sort({ (first, second) -> Bool in
+            return first.compare(second) == .OrderedDescending
+        })
+    }
+    
+    func sendTypingEvent() {
+        self.nowTyping.onNext(true)
+    }
+    
     func sectionTitle(section: Int) -> String? {
-        return Array(self.messages.value.keys)[section] as String
+        let date : NSDate = sortedDays()[section]
+        return DateFormatters.sharedInstance.stringFromDate(date)
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-        if let day = Array(self.messages.value.keys)[section] as String?, messagesFromGivenDay : [Message] = self.messages.value[day] {
+        if let day = sortedDays()[section] as NSDate?, messagesFromGivenDay : [Message] = self.messages.value[day] {
             return messagesFromGivenDay.count
         }
         

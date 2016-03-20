@@ -52,6 +52,12 @@ extension Message {
         return DateFormatters.sharedInstance.stringFromDateEpoch(self.createdAt)
     }
     
+    func day() -> NSDate {
+        let unitFlags: NSCalendarUnit = [.Day, .Month, .Year]
+        let comps = NSCalendar.currentCalendar().components(unitFlags, fromDate: NSDate(timeIntervalSince1970: NSTimeInterval(self.createdAt)))
+        return NSCalendar.currentCalendar().dateFromComponents(comps)!
+    }
+    
     func isOutgoingCell() -> Bool {
         if let user = user, currentUser = Account.sharedInstance.user {
             return user.id == currentUser.id
