@@ -18,8 +18,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
     var conversation: Conversation!
     
     var viewModel : ConversationViewModel!
+    var loadMoreView : ConversationLoadMoreFooter?
     
     private let disposeBag = DisposeBag()
+    private var loadMoreBag = DisposeBag()
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         
         setupDataSource()
         setNavigationTitle()
+        
+        setLoadMoreFooter()
     }
     
     func setNavigationTitle() {
@@ -72,6 +76,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
         
         typingIndicatorView.interval = 3.0
+        textView.placeholder = NSLocalizedString("Type a message", comment: "")
     }
     
     override func prefersTabbarHidden() -> Bool {
@@ -81,7 +86,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
     override class func tableViewStyleForCoder(decoder: NSCoder!) -> UITableViewStyle {
         return UITableViewStyle.Plain
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierAtIndexPath(indexPath)) as! ConversationCell
         
@@ -106,6 +111,31 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         view.transform = tableView.transform
         
         return view
+    }
+    
+    func setLoadMoreFooter() {
+        loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
+        
+        loadMoreView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80.0)
+        loadMoreView?.layoutIfNeeded()
+        loadMoreView?.transform = tableView.transform
+        
+        loadMoreView?.setState(.ReadyToLoad)
+        loadMoreView?.loadMoreButton.addTarget(self, action: "loadMore", forControlEvents: .TouchUpInside)
+        
+        loadMoreBag = DisposeBag()
+        
+        viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
+            self?.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self?.tableView.frame.width ?? 220), height: 80.0)
+            self?.loadMoreView?.setState(state)
+            self?.tableView.reloadData()
+        }).addDisposableTo(loadMoreBag)
+        
+        self.tableView.tableFooterView = loadMoreView
+    }
+    
+    func loadMore() {
+        viewModel.triggerLoadMore()
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

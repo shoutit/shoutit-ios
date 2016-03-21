@@ -11,6 +11,7 @@ import RxSwift
 
 let conversationTextCellIdentifier = "conversationTextCellIdentifier"
 let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
+let conversationLoadMoreIdentifier = "conversationLoadMoreIdentifier"
 let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
 let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
 
@@ -33,6 +34,7 @@ class ConversationViewModel {
     
     let typingUsers : PublishSubject<Profile?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
+    let loadMoreState = Variable(LoadMoreState.NoMore)
     
     private var delegate : ConversationPresenter?
     
@@ -64,6 +66,9 @@ class ConversationViewModel {
     func fetchMessages() {
         APIChatsService.getMessagesForConversation(self.conversation).subscribeNext {[weak self] (messages) -> Void in
             self?.appendMessages(messages)
+            if messages.count > 0 {
+                self?.loadMoreState.value = .ReadyToLoad
+            }
         }.addDisposableTo(disposeBag)
         
         createSocketObservable()
@@ -80,6 +85,26 @@ class ConversationViewModel {
                 PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation)
             }.addDisposableTo(disposeBag)
 
+    }
+    
+    func triggerLoadMore() {
+        loadMoreState.value = .Loading
+        
+        if let lastMessage = sortedMessages.last {
+            APIChatsService.moreMessagesForConversation(self.conversation, lastMessageEpoch:  lastMessage.createdAt)
+                .subscribe(onNext: { [weak self] (messages) -> Void in
+                    self?.appendMessages(messages)
+                    if messages.count > 0 {
+                        self?.loadMoreState.value = .ReadyToLoad
+                    } else {
+                        self?.loadMoreState.value = .NoMore
+                    }
+                }, onError: { [weak self] (error) -> Void in
+                    self?.loadMoreState.value = .ReadyToLoad
+                }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+        } else {
+            loadMoreState.value = .NoMore
+        }
     }
     
     func appendMessages(newMessages: [Message]) {
