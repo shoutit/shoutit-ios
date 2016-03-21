@@ -27,8 +27,7 @@ class DiscoverShoutsViewModel: HomeShoutsViewModel {
     }
     
     override func loadMorePage(page: Int) -> Observable<[Shout]> {
-        print("loading page \(page)")
-        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: self.currentPage, pageSize: 20)
+        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: page, pageSize: 20)
         return APIShoutsService.listShoutsWithParams(params)
     }
 }

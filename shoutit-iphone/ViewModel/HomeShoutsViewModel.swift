@@ -17,7 +17,7 @@ class HomeShoutsViewModel: AnyObject {
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
     let disposeBag = DisposeBag()
-    var dataSubject : PublishSubject<[Shout]>? = PublishSubject()
+    let dataSubject : PublishSubject<[Shout]> = PublishSubject()
     var loadNextPage : PublishSubject<Bool>? = PublishSubject()
     var loadedPages : [Int] = [1]
     var loadingPages : [Int] = []
@@ -77,7 +77,7 @@ class HomeShoutsViewModel: AnyObject {
         
     }
     
-    func tryToLoadNextPage() {
+    private func tryToLoadNextPage() {
         if loadingPages.count > 0 {
             return
         }
@@ -91,7 +91,7 @@ class HomeShoutsViewModel: AnyObject {
         loadPage(pageToLoad)
     }
     
-    func loadPage(page: Int) {
+    private func loadPage(page: Int) {
         if finishedLoading {
             self.loading.value = false
             return
@@ -118,7 +118,7 @@ class HomeShoutsViewModel: AnyObject {
                 
                 self?.currentPage = page
                 
-                self?.dataSubject?.onNext(newItems)
+                self?.dataSubject.onNext(newItems)
                 
                 }, onError: { [weak self] (error) -> Void in
                     self?.finishedLoading = true

@@ -31,8 +31,6 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func reloadContent() {
         
-        reloadPages(currentlyLoading: true)
-        
         // reload user
         fetchProfile()
             .subscribe({[weak self] (event) in

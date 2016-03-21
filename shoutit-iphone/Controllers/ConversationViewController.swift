@@ -37,7 +37,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         navigationItem.title = conversation.firstLineText()?.string
     }
     
-    func setupDataSource() {
+    private func setupDataSource() {
         viewModel = ConversationViewModel(conversation: self.conversation, delegate: self)
         viewModel.fetchMessages()
         
