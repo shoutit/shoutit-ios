@@ -52,6 +52,10 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         loadInitialState()
     }
     
+    @IBAction func dismiss() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func loadInitialState() {
         currentLocationText = Account.sharedInstance.locationString()
     }

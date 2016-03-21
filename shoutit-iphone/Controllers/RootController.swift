@@ -131,21 +131,22 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             flowControllers[navigationItem] = flowControllerToShow
         }
         
+        // Location Controller Should Be Presented Modally instead of within tabbar
         if let locationFlowController = flowControllerToShow as? LocationFlowController {
-            locationFlowController.finishedBlock = {[weak self](success, place) -> Void in
-                self?.openItem(.Home)
+            
+            locationFlowController.finishedBlock = { (success, place) -> Void in
+                if let controller = locationFlowController.navigationController.visibleViewController as? ChangeLocationTableViewController {
+                    controller.dismiss()
+                }
             }
-
+            
+            presentFlowControllerModally(locationFlowController)
+            return
         }
         
+        // Check if controller requires logged user
         if flowControllerToShow.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
-            let navigationController = LoginNavigationViewController()
-            loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
-            loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
-                self?.invalidateControllersCache()
-                self?.openItem(.Home)
-            }
-            presentWith(loginFlowController!)
+            promptUserForLogin(navigationItem)
             return
         }
         
@@ -157,6 +158,11 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
         
+        if !Account.sharedInstance.isUserLoggedIn {
+            promptUserForLogin(.Shout)
+            return
+        }
+        
         let navController = SHNavigationViewController()
         let shoutsFlowController = ShoutFlowController(navigationController: navController)
         
@@ -165,6 +171,35 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
         // present directly above current content
         self.presentViewController(shoutsFlowController.navigationController, animated: true, completion: nil)
+    }
+    
+    func presentFlowControllerModally(flowController: FlowController) {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        if let navController = flowController.navigationController as? SHNavigationViewController {
+            navController.ignoreToggleMenu = true
+        }
+        
+        self.presentViewController(flowController.navigationController, animated: true, completion: nil)
+    }
+    
+    func promptUserForLogin(destinationNavigationItem: NavigationItem) {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        let navigationController = LoginNavigationViewController()
+        loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
+        loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
+            self?.invalidateControllersCache()
+            self?.loginFlowController?.navigationController.dismissViewControllerAnimated(true, completion: nil)
+            self?.openItem(destinationNavigationItem)
+        }
+        
+        self.presentViewController(navigationController, animated: true, completion: nil)
+        
     }
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {

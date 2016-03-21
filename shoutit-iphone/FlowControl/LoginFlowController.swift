@@ -42,6 +42,7 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
         let controller = Wireframe.loginMethodChoiceViewController()
         controller.viewModel = LoginMethodChoiceViewModel()
         controller.flowDelegate = self
+        controller.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: controller, action: "dismiss")
         navigationController.showViewController(controller, sender: nil)
     }
 }
