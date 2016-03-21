@@ -197,11 +197,7 @@ class ConversationViewModel {
                 self?.appendMessages([message])
             }, onError: { [weak self] (error) -> Void in
                 self?.delegate?.showSendingError(error as NSError)
-            }, onCompleted: { () -> Void in
-                
-            }, onDisposed: { () -> Void in
-                
-        }).addDisposableTo(disposeBag)
+            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         return true
     }

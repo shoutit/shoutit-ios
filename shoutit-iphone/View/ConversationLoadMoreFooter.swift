@@ -21,13 +21,22 @@ class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
 
     func setState(state: LoadMoreState) {
         
-        loadMoreButton.hidden = (state == .Loading || state == .NoMore)
+        loadMoreButton.hidden = (state == .Loading)
         activityIndicatorView.hidden = (state == .ReadyToLoad || state == .NoMore)
 
+        if state == .NoMore {
+            loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: ""), forState: .Normal)
+            loadMoreButton.enabled = false
+        } else {
+            loadMoreButton.setTitle(NSLocalizedString("Tap to load archive messages", comment: ""), forState: .Normal)
+            loadMoreButton.enabled = true
+        }
+        
         if state == .Loading {
             activityIndicatorView.startAnimating()
         } else {
             activityIndicatorView.stopAnimating()
         }
+        
     }
 }
