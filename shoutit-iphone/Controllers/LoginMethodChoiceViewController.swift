@@ -53,6 +53,10 @@ final class LoginMethodChoiceViewController: UIViewController {
         setupRX()
     }
     
+    func dismiss() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {

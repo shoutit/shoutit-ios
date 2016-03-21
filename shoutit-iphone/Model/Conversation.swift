@@ -58,6 +58,10 @@ struct Conversation: Decodable, Hashable, Equatable {
     func type() -> ConversationType {
         return ConversationType(rawValue: self.typeString)!
     }
+    
+    func copyWithLastMessage(message: Message?) -> Conversation {
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, shout: self.shout, readby: self.readby)
+    }
 }
 
 func ==(lhs: Conversation, rhs: Conversation) -> Bool {

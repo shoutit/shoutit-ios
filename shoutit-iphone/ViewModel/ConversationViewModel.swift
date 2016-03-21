@@ -11,6 +11,7 @@ import RxSwift
 
 let conversationTextCellIdentifier = "conversationTextCellIdentifier"
 let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
+let conversationLoadMoreIdentifier = "conversationLoadMoreIdentifier"
 let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
 let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
 
@@ -28,8 +29,12 @@ protocol ConversationPresenter {
 class ConversationViewModel {
     private var conversation: Conversation
     
-    let messages : Variable<[String:[Message]]> = Variable([:])
+    let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
+    
+    let typingUsers : PublishSubject<Profile?> = PublishSubject()
+    let nowTyping : PublishSubject<Bool> = PublishSubject()
+    let loadMoreState = Variable(LoadMoreState.NoMore)
     
     private var delegate : ConversationPresenter?
     
@@ -43,25 +48,15 @@ class ConversationViewModel {
     func createSocketObservable() {
         // handle presence/typing/join/left
         PusherClient.sharedInstance.conversationObservable(self.conversation).subscribeNext { (event) -> Void in
-            
+            if event.eventType() == .UserTyping {
+                if let user : Profile = event.object() {
+                    self.typingUsers.onNext(user)
+                }
+            }
         }.addDisposableTo(disposeBag)
         
         // handle messages
-        PusherClient.sharedInstance.mainChannelObservable()
-        .filter({ (event) -> Bool in
-            return event.eventType() == .NewMessage
-        })
-        .map({ (event) -> Message? in
-            let msg : Message? = event.object()
-            return msg
-        })
-        .filter({ [weak self] (msg) -> Bool in
-            if let msg : Message = msg {
-                return msg.conversationId == self?.conversation.id
-            }
-            return false
-        })
-        .subscribeNext {[weak self] (msg) -> Void in
+        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation).subscribeNext {[weak self] (msg) -> Void in
             if let msg : Message = msg {
                 self?.appendMessages([msg])
             }
@@ -71,9 +66,45 @@ class ConversationViewModel {
     func fetchMessages() {
         APIChatsService.getMessagesForConversation(self.conversation).subscribeNext {[weak self] (messages) -> Void in
             self?.appendMessages(messages)
+            if messages.count > 0 {
+                self?.loadMoreState.value = .ReadyToLoad
+            }
         }.addDisposableTo(disposeBag)
         
         createSocketObservable()
+        registerForTyping()
+    }
+    
+    func registerForTyping() {
+        nowTyping.asObservable()
+            .window(timeSpan: 3, count: 10000, scheduler: MainScheduler.instance)
+            .flatMapLatest({ (obs) -> Observable<Bool> in
+                return obs.take(1)
+            })
+            .subscribeNext { _ in
+                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation)
+            }.addDisposableTo(disposeBag)
+
+    }
+    
+    func triggerLoadMore() {
+        loadMoreState.value = .Loading
+        
+        if let lastMessage = sortedMessages.last {
+            APIChatsService.moreMessagesForConversation(self.conversation, lastMessageEpoch:  lastMessage.createdAt)
+                .subscribe(onNext: { [weak self] (messages) -> Void in
+                    self?.appendMessages(messages)
+                    if messages.count > 0 {
+                        self?.loadMoreState.value = .ReadyToLoad
+                    } else {
+                        self?.loadMoreState.value = .NoMore
+                    }
+                }, onError: { [weak self] (error) -> Void in
+                    self?.loadMoreState.value = .ReadyToLoad
+                }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+        } else {
+            loadMoreState.value = .NoMore
+        }
     }
     
     func appendMessages(newMessages: [Message]) {
@@ -86,12 +117,12 @@ class ConversationViewModel {
         base.appendContentsOf(newMessages)
         
         base = base.unique().sort({ (msg, msg2) -> Bool in
-            return msg.createdAt < msg2.createdAt
+            return msg.createdAt > msg2.createdAt
         })
         
         sortedMessages = base
         
-        let result = base.categorise { $0.dateString() }
+        let result = base.categorise { $0.day() }
         
         self.messages.value = result
     }
@@ -119,7 +150,7 @@ class ConversationViewModel {
     }
     
     func messageAtIndexPath(indexPath: NSIndexPath) -> Message {
-        guard let day = Array(self.messages.value.keys)[indexPath.section] as String? else {
+        guard let day = sortedDays()[indexPath.section] as NSDate? else {
             fatalError("No Message at Given Index")
         }
         
@@ -130,12 +161,25 @@ class ConversationViewModel {
         return messagesFromGivenDay[indexPath.row]
     }
     
+    func sortedDays() -> [NSDate] {
+        let base : [NSDate] = Array(self.messages.value.keys)
+        
+        return base.sort({ (first, second) -> Bool in
+            return first.compare(second) == .OrderedDescending
+        })
+    }
+    
+    func sendTypingEvent() {
+        self.nowTyping.onNext(true)
+    }
+    
     func sectionTitle(section: Int) -> String? {
-        return Array(self.messages.value.keys)[section] as String
+        let date : NSDate = sortedDays()[section]
+        return DateFormatters.sharedInstance.stringFromDate(date)
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-        if let day = Array(self.messages.value.keys)[section] as String?, messagesFromGivenDay : [Message] = self.messages.value[day] {
+        if let day = sortedDays()[section] as NSDate?, messagesFromGivenDay : [Message] = self.messages.value[day] {
             return messagesFromGivenDay.count
         }
         
@@ -153,11 +197,7 @@ class ConversationViewModel {
                 self?.appendMessages([message])
             }, onError: { [weak self] (error) -> Void in
                 self?.delegate?.showSendingError(error as NSError)
-            }, onCompleted: { () -> Void in
-                
-            }, onDisposed: { () -> Void in
-                
-        }).addDisposableTo(disposeBag)
+            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         return true
     }

@@ -27,6 +27,10 @@ class APIChatsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
     }
     
+    static func moreMessagesForConversation(conversation: Conversation, lastMessageEpoch: Int) -> Observable<[Message]> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + "?before=\(lastMessageEpoch)"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    }
     
     static func replyWithMessage(message: Message, onConversation conversation: Conversation) -> Observable<Message> {
         let url = replyURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
