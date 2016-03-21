@@ -36,10 +36,53 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         setNavigationTitle()
         
         setLoadMoreFooter()
+        
+        if let shout = conversation.shout {
+            setTopicShout(shout)
+        }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        if let _ = conversation.shout {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+        }
     }
     
     func setNavigationTitle() {
         navigationItem.title = conversation.firstLineText()?.string
+    }
+    
+    func setTopicShout(shout: Shout) {
+        guard let shoutView = NSBundle.mainBundle().loadNibNamed("ConversationShoutHeader", owner: self, options: nil)[0] as? ConversationShoutHeader else {
+            return
+        }
+        
+        shoutView.tapGesture.addTarget(self, action: "showShout")
+        shoutView.translatesAutoresizingMaskIntoConstraints = false
+        
+        shoutView.bindWith(Shout: shout)
+        
+        view.addSubview(shoutView)
+        
+        view.addConstraints([NSLayoutConstraint(item: shoutView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0),
+                            NSLayoutConstraint(item: shoutView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0),
+                            NSLayoutConstraint(item: shoutView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 64.0)])
+        
+        shoutView.addConstraint(NSLayoutConstraint(item: shoutView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64.0))
+        
+        shoutView.clipsToBounds = true
+        
+        shoutView.layoutIfNeeded()
+        
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+    }
+    
+    func showShout() {
+        if let shout = self.conversation.shout {
+            self.flowDelegate?.showShout(shout)
+        }        
     }
     
     func setupDataSource() {

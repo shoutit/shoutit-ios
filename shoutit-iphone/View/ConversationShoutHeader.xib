@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConversationShoutHeader" customModule="Shoutit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMJ-IT-ywI">
+                    <rect key="frame" x="68" y="48.5" width="64" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynP-Vc-Rk0">
+                    <rect key="frame" x="529.5" y="573" width="60.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dEI-6g-nRK">
+                    <rect key="frame" x="10" y="10" width="48" height="48"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="4XH-MD-dB3"/>
+                        <constraint firstAttribute="height" constant="48" id="qeI-Yb-awA"/>
+                        <constraint firstAttribute="height" constant="100" id="ye7-6x-2ef"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ye7-6x-2ef"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWE-K7-uf7">
+                    <rect key="frame" x="68" y="10" width="444" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-hy-yLp" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
+                    <rect key="frame" x="550.5" y="10" width="39.5" height="20.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5w-aU-LfK">
+                    <rect key="frame" x="555" y="13.5" width="29.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="MWE-K7-uf7" firstAttribute="top" secondItem="dEI-6g-nRK" secondAttribute="top" id="0L5-6Z-8NV"/>
+                <constraint firstAttribute="trailing" secondItem="8ml-hy-yLp" secondAttribute="trailing" constant="10" id="3Hd-Is-mAl"/>
+                <constraint firstItem="MWE-K7-uf7" firstAttribute="leading" secondItem="dEI-6g-nRK" secondAttribute="trailing" constant="10" id="3iR-KE-k42"/>
+                <constraint firstItem="tMJ-IT-ywI" firstAttribute="top" secondItem="MWE-K7-uf7" secondAttribute="bottom" constant="5" id="EqM-HW-4w8"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tMJ-IT-ywI" secondAttribute="bottom" constant="5" id="Fbh-VJ-4kp"/>
+                <constraint firstItem="tMJ-IT-ywI" firstAttribute="leading" secondItem="MWE-K7-uf7" secondAttribute="leading" id="GTE-ms-Md7"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MWE-K7-uf7" secondAttribute="trailing" constant="10" id="HZg-do-YzU"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="width" secondItem="w5w-aU-LfK" secondAttribute="width" constant="10" id="Inm-vn-IKW"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="centerY" secondItem="w5w-aU-LfK" secondAttribute="centerY" id="LRz-uE-HQ6"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="bYf-cX-ztS"/>
+                <constraint firstItem="ynP-Vc-Rk0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tMJ-IT-ywI" secondAttribute="trailing" constant="10" id="d2f-6L-afQ"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tMJ-IT-ywI" secondAttribute="trailing" constant="10" id="fS0-nT-q30"/>
+                <constraint firstAttribute="trailing" secondItem="ynP-Vc-Rk0" secondAttribute="trailing" constant="10" id="foT-vz-T9X"/>
+                <constraint firstItem="dEI-6g-nRK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gja-SV-yGc"/>
+                <constraint firstAttribute="bottom" secondItem="ynP-Vc-Rk0" secondAttribute="bottom" constant="10" id="h2e-WX-RA5"/>
+                <constraint firstItem="dEI-6g-nRK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="nAJ-RB-hyx"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="centerX" secondItem="w5w-aU-LfK" secondAttribute="centerX" id="nc6-UG-FXB"/>
+                <constraint firstItem="ynP-Vc-Rk0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MWE-K7-uf7" secondAttribute="trailing" constant="10" id="u6V-DB-bSH"/>
+                <constraint firstItem="8ml-hy-yLp" firstAttribute="height" secondItem="w5w-aU-LfK" secondAttribute="height" constant="6" id="wwg-8G-bwr"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="dEI-6g-nRK" id="az2-hC-pv3"/>
+                <outlet property="priceLabel" destination="ynP-Vc-Rk0" id="M2B-ra-gkg"/>
+                <outlet property="subtitleLabel" destination="tMJ-IT-ywI" id="9fp-ph-0Wz"/>
+                <outlet property="tapGesture" destination="7uX-K0-JCP" id="b4c-YA-iUI"/>
+                <outlet property="titleLabel" destination="MWE-K7-uf7" id="2aq-b9-PDZ"/>
+                <outlet property="typeLabel" destination="w5w-aU-LfK" id="TI7-We-dHR"/>
+                <outletCollection property="gestureRecognizers" destination="7uX-K0-JCP" appends="YES" id="NeX-bZ-gDB"/>
+            </connections>
+            <point key="canvasLocation" x="517" y="492"/>
+        </view>
+        <tapGestureRecognizer id="7uX-K0-JCP"/>
+    </objects>
+</document>
