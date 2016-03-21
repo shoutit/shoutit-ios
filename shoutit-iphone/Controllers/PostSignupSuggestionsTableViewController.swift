@@ -47,6 +47,11 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         setupRX()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.scrollEnabled = tableView.contentSize.height > tableView.frame.height
+    }
+    
     private func setupRX() {
         
         viewModel.state.asObservable()
@@ -83,10 +88,6 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 44
-        }
-        
         return 58
     }
     
