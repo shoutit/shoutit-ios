@@ -70,6 +70,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter {
         rightButton.setImage(UIImage(named: "send"), forState: .Normal)
         rightButton.setTitle("", forState: .Normal)
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
+        
+        typingIndicatorView.interval = 3.0
     }
     
     override func prefersTabbarHidden() -> Bool {

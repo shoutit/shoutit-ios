@@ -46,7 +46,11 @@ class ConversationViewModel {
     func createSocketObservable() {
         // handle presence/typing/join/left
         PusherClient.sharedInstance.conversationObservable(self.conversation).subscribeNext { (event) -> Void in
-            
+            if event.eventType() == .UserTyping {
+                if let user : Profile = event.object() {
+                    self.typingUsers.onNext(user)
+                }
+            }
         }.addDisposableTo(disposeBag)
         
         // handle messages

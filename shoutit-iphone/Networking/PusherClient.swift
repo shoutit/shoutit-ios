@@ -132,11 +132,11 @@ extension PusherClient {
             
             let channel = self.pusherInstance.subscribeToChannelNamed(channelName)
             
-            channel.bindToEventNamed("new_message", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("new_listen", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.NewListen.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
@@ -166,15 +166,15 @@ extension PusherClient {
             
             let channel = self.pusherInstance.subscribeToChannelNamed(conversation.channelName())
             
-            channel.bindToEventNamed("user_is_typing", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("joined_chat", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("left_chat", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.LeftChat.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
