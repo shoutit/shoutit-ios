@@ -8,6 +8,15 @@
 
 import UIKit
 
-class SearchShoutsResultsCollectionViewController: UICollectionViewController {
+final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
+    // view model
+    var viewModel: SearchShoutsResultsViewModel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        precondition(viewModel != nil)
+        
+        
+    }
 }

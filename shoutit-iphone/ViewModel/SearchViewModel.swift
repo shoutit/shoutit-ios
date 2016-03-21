@@ -199,23 +199,6 @@ final class SearchViewModel {
     
     // MARK: - Compose requests
     
-    private func fetchShoutsWithSearchPhrase(phrase: String, context: SearchContext, page: Int) -> Observable<[Shout]> {
-        let pageSize = 20
-        let params: FilteredShoutsParams
-        switch context {
-        case .General:
-            params = FilteredShoutsParams(searchPhrase: phrase, page: page, pageSize: pageSize)
-        case .DiscoverShouts(let item):
-            params = FilteredShoutsParams(searchPhrase: phrase, discoverId: item.id, page: page, pageSize: pageSize)
-        case .ProfileShouts(let profile):
-            params = FilteredShoutsParams(searchPhrase: phrase, username: profile.username, page: page, pageSize: pageSize)
-        case .TagShouts(let tag):
-            params = FilteredShoutsParams(searchPhrase: phrase, tag: tag.name, page: page, pageSize: pageSize)
-        }
-        
-        return APIShoutsService.listShoutsWithParams(params)
-    }
-    
     // MARK: - Helpers
     
     private func saveRecentSearches() {

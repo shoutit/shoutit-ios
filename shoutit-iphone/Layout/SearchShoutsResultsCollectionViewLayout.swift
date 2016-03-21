@@ -8,7 +8,12 @@
 
 import UIKit
 
-class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
+final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
+    
+    enum LayoutMode {
+        case Grid
+        case List
+    }
     
     enum HeaderKind: String {
         case Categories = "SearchShoutsResultsCategoriesHeaderSupplementeryView"
