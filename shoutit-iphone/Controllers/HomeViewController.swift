@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable {
+protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
     
 }
 
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func searchAction(sender: AnyObject) {
-        notImplemented()
+        self.flowDelegate?.showSearchInContext(.General)
     }
     
     @IBAction func cartAction(sender: AnyObject) {

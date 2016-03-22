@@ -29,12 +29,11 @@ class DiscoverGeneralViewModel: DiscoverViewModel {
             self?.items.on(.Next((mainItem,itms)))
             
             if let mainDiscover = mainItem {
-                APIShoutsService.shouts(forDiscoverItem: mainDiscover, page_size: 4, page: 1).subscribeNext({ [weak self] (shouts) -> Void in
+                let params = FilteredShoutsParams(discoverId: mainDiscover.id, page: 1, pageSize: 4)
+                APIShoutsService.listShoutsWithParams(params).subscribeNext({ [weak self] (shouts) -> Void in
                     self?.shouts.on(.Next(shouts))
                 }).addDisposableTo((self?.disposeBag)!)
             }
-            
-            
         }.addDisposableTo(disposeBag)
     }
 }

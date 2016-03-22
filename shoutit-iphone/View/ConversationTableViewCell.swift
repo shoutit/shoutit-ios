@@ -23,4 +23,8 @@ class ConversationTableViewCell: UITableViewCell {
         self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(conversation.modifiedAt ?? conversation.createdAt)
         self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage(named: ""))
     }
+    
+    override func prepareForReuse() {
+        self.participantsImageView.image = nil
+    }
 }

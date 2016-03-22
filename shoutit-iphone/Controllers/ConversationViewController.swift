@@ -239,4 +239,11 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         return lbl
     }
+    
+    @IBAction func moreAction() {
+        let alert = viewModel.moreActionAlert { [weak self] in
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
 }

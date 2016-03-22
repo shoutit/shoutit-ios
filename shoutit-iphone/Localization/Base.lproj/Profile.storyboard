@@ -9,7 +9,7 @@
         <scene sceneID="wxu-0T-cCR">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Bz0-cz-z19" customClass="ProfileCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NDg-tt-FAe">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="NDg-tt-FAe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>

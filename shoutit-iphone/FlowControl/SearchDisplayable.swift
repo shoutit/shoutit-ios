@@ -8,13 +8,33 @@
 
 import Foundation
 
+enum SearchContext {
+    case General
+    case ProfileShouts(profile: Profile)
+    case TagShouts(tag: Tag)
+    case DiscoverShouts(item: DiscoverItem)
+}
+
 protocol SearchDisplayable {
-    func showSearch() -> Void
+    func showSearchInContext(context: SearchContext) -> Void
+    func showUserSearchResultsWithPhrase(phrase: String) -> Void
+}
+
+extension SearchDisplayable where Self: FlowController, Self: SearchViewControllerFlowDelegate {
+    
+    func showSearchInContext(context: SearchContext) {
+        let controller = Wireframe.searchViewController()
+        controller.flowDelegate = self
+        controller.viewModel = SearchViewModel(context: context)
+        navigationController.showViewController(controller, sender: nil)
+    }
 }
 
 extension SearchDisplayable where Self: FlowController {
     
-    func showSearch() {
-        navigationController.notImplemented()
+    func showUserSearchResultsWithPhrase(phrase: String) {
+        let controller = Wireframe.searchUserResultsTableViewController()
+        controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
+        navigationController.showViewController(controller, sender: nil)
     }
 }

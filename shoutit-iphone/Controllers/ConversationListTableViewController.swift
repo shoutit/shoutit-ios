@@ -39,6 +39,12 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         self.tableView.emptyDataSetSource = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadConversationList()
+    }
+    
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: NSLocalizedString("No conversations to show", comment: ""))
     }

@@ -81,7 +81,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDisplayable()
     }
     
-    func setupDisplayable() {
+    private func setupDisplayable() {
         viewModel.displayable.applyOnLayout(self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)
         
         viewModel.displayable.contentOffset.asObservable().subscribeNext { (offset) -> Void in
@@ -95,7 +95,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         }.addDisposableTo(selectionDisposeBag)
     }
     
-    func setupDataSource() {
+    private func setupDataSource() {
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
@@ -118,7 +118,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             collection.emptyDataSetSource = self
         }
         
-        viewModel.dataSubject?.subscribeNext({ [weak self] (shouts) -> Void in
+        viewModel.dataSubject.subscribeNext({ [weak self] (shouts) -> Void in
             
             shouts.each({ (shout) -> () in
                 self?.items.append(shout)
@@ -148,19 +148,19 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         }.addDisposableTo(disposeBag)
     }
     
-    func showActivityIndicatorView() {
+    private func showActivityIndicatorView() {
         collectionView?.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
     
-    func layoutActivityIndicatorView() {
+    private func layoutActivityIndicatorView() {
         if let collectionView = collectionView {
             activityIndicator.frame = CGRect(x: 0, y: 0, width: 40.0, height: 40.0)
             activityIndicator.center = CGPoint(x: collectionView.center.x, y: collectionView.contentSize.height + 30.0)
         }
     }
     
-    func hideActivityIndicatorView() {
+    private func hideActivityIndicatorView() {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }

@@ -16,6 +16,10 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let filter: Filter?
     private(set) var tag: Tag?
+    var model: ProfileCollectionViewModelMainModel? {
+        guard let tag = tag else { return nil }
+        return .TagModel(tag: tag)
+    }
     
     init(filter: Filter) {
         self.filter = filter
@@ -102,17 +106,6 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
         return APITagsService.listen(listen, toTagWithName: name).flatMap{ () -> Observable<Void> in
             return reloadTag
-        }
-    }
-    
-    // MARK: - ProfileCollectionViewLayoutDelegate
-    
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        switch view {
-        case .CreatePageButtonFooter:
-            return true
-        default:
-            return false
         }
     }
     

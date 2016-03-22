@@ -20,6 +20,11 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return Account.sharedInstance.user as? LoggedUser
     }
     
+    var model: ProfileCollectionViewModelMainModel? {
+        guard let user = user else { return nil }
+        return .ProfileModel(profile: Profile.profileWithUser(user))
+    }
+    
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
@@ -36,8 +41,6 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     func reloadContent() {
-        
-        reloadPages(currentlyLoading: true)
         
         // reload user
         fetchUser()?
@@ -148,19 +151,12 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (user?.location.country ?? "country_placeholder"))
     }
     
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        if case .CreatePageButtonFooter = view {
-            return true
-        }
-        return false
-    }
-    
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]>? {
         guard let user = user else {return nil}
-        let params = UserShoutsParams(username: user.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
+        let params = FilteredShoutsParams(username: user.username, page: 1, pageSize: 4)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     func fetchUser() -> Observable<DetailedProfile>? {

@@ -80,6 +80,7 @@ class PostSignupInterestsViewController: UIViewController {
             .map{$1}
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
                 cell.nameLabel.text = element.category.name
+                cell.iconImageView.sh_setImageWithURL(element.category.icon?.toURL(), placeholderImage: nil)
                 cell.accessoryType = element.selected ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
             }
             .addDisposableTo(disposeBag)

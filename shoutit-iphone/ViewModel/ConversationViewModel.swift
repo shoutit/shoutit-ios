@@ -65,17 +65,44 @@ class ConversationViewModel {
     
     func createConversation(message: Message) {
         
+        if let shout = self.conversation.value.shout {
+            createConversationAboutShout(shout, message: message)
+            return
+        }
+        
         guard let username = self.conversation.value.users?.first?.value.username else {
             debugPrint("could not create conversation without username")
             return
         }
         
-        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
+        createConversationWithUsername(username, message: message)
+    }
+    
+    func createConversationAboutShout(shout: Shout, message: Message) {
+        APIChatsService.startConversationAboutShout(shout, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
             self?.conversation.value = conversation
             self?.fetchMessages()
         }, onError: { (error) -> Void in
             debugPrint(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
+    func createConversationWithUsername(username: String, message: Message) {
+        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
+            self?.conversation.value = conversation
+            self?.fetchMessages()
+        }, onError: { (error) -> Void in
+                debugPrint(error)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
+    func deleteConversation() -> Observable<Void> {
+        
+        if conversation.value.id == "" {
+            return Observable.empty()
+        }
+        
+        return APIChatsService.deleteConversation(self.conversation.value)
     }
     
     func fetchMessages() {
@@ -230,6 +257,24 @@ class ConversationViewModel {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        
+        return alert
+    }
+    
+    func moreActionAlert(cancelAction: (() -> Void)?) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
+            self.deleteConversation().subscribe(onNext: nil, onError: { (error) in
+                debugPrint(error)
+            }, onCompleted: {
+                if let completion = cancelAction {
+                    completion()
+                }
+            }, onDisposed: nil).addDisposableTo(self.disposeBag)
+        }))
         
         return alert
     }

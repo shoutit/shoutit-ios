@@ -34,6 +34,24 @@ extension UIImage {
         return UIImage(named: "listen_icon_green")!
     }
     
+    // MARK - Search
+    
+    static func searchFillArrow() -> UIImage {
+        return UIImage(named: "search_fill_arrow")!
+    }
+    
+    static func searchRecentsIcon() -> UIImage {
+        return UIImage(named: "search_recents_icon")!
+    }
+    
+    static func searchUsersPlaceholder() -> UIImage {
+        return UIImage(named: "search_users_placeholder")!
+    }
+    
+    static func searchRecentRemoveIcon() -> UIImage {
+        return UIImage(named: "search_recent_remove")!
+    }
+    
     // MARK: - Shout detail
     
     static func shoutDetailTabBarCallImage() -> UIImage {
