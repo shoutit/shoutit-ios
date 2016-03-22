@@ -150,7 +150,7 @@ extension EditProfileTableViewController {
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
-                    textView?.detailLabel?.text = "\(text.characters.count)/50"
+                    textView?.detailLabel?.text = "\(text.utf16.count)/50"
                 }
                 .addDisposableTo(cell.disposeBag)
             
