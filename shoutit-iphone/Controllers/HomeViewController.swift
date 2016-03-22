@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
     
     func setupRX() {
         if let homeShoutsController = self.homeShoutsController {
-            changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
+            changeLayoutButton.addTarget(homeShoutsController, action: #selector(HomeShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
             
             homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
                 if let shout = selectedShout {

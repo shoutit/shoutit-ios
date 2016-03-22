@@ -362,6 +362,7 @@ extension ProfileCollectionViewController {
                 hydrateButton(sView.buttonSectionRightButton, withButtonModel: button, disposeBag: disposeBag)
             }
         }
+        sView.layoutButtons()
     }
     
     private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton, disposeBag: DisposeBag) {

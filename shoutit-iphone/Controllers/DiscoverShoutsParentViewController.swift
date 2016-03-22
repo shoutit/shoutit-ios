@@ -48,7 +48,7 @@ class DiscoverShoutsParentViewController: UIViewController {
     }
     
     func setupRX() {
-        self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
+        self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: #selector(DiscoverShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
         
         shoutsCollectionViewController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
             if let shout = selectedShout, let flowDelegate = self?.flowDelegate {

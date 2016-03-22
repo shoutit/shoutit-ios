@@ -503,9 +503,9 @@ public class BorderedMaterialTextField : UITextField {
             } else {
                 v.alpha = 0
             }
-            addTarget(self, action: "textFieldDidBegin:", forControlEvents: .EditingDidBegin)
-            addTarget(self, action: "textFieldDidChange:", forControlEvents: .EditingChanged)
-            addTarget(self, action: "textFieldDidEnd:", forControlEvents: .EditingDidEnd)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidBegin(_:)), forControlEvents: .EditingDidBegin)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidEnd(_:)), forControlEvents: .EditingDidEnd)
         }
     }
     
@@ -519,9 +519,9 @@ public class BorderedMaterialTextField : UITextField {
             } else {
                 showDetailLabel()
             }
-            addTarget(self, action: "textFieldDidBegin:", forControlEvents: .EditingDidBegin)
-            addTarget(self, action: "textFieldDidChange:", forControlEvents: .EditingChanged)
-            addTarget(self, action: "textFieldDidEnd:", forControlEvents: .EditingDidEnd)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidBegin(_:)), forControlEvents: .EditingDidBegin)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+            addTarget(self, action: #selector(BorderedMaterialTextField.textFieldDidEnd(_:)), forControlEvents: .EditingDidEnd)
         }
     }
     
