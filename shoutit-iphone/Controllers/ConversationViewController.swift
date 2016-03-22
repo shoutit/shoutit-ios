@@ -222,8 +222,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
         let attributedText : NSAttributedString
-        
-        if viewModel.loadMoreState.value == .ReadyToLoad {
+        if self.conversation.id == "" {
+            attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
+        } else if viewModel.loadMoreState.value == .ReadyToLoad {
             attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
         } else {
             attributedText = NSAttributedString(string: NSLocalizedString("Loading Messages...", comment: ""))

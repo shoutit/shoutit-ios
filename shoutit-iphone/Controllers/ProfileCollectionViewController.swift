@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -387,6 +387,10 @@ extension ProfileCollectionViewController {
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
             }.addDisposableTo(disposeBag)
+        case .Chat:
+            button.rx_tap.asDriver().driveNext({ [weak self] in
+                self?.startChat()
+            }).addDisposableTo(disposeBag)
         case .Notification:
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showNotifications()
@@ -410,6 +414,35 @@ extension ProfileCollectionViewController {
         } else {
             button.setImage(buttonModel.image, forState: .Normal)
         }
+    }
+    
+    func startChat() {
+        
+        if viewModel.isListeningToYou != true {
+            let alert = UIAlertController(title: NSLocalizedString("You can only start a chat with your listeners", comment: ""), message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        if let conv = viewModel.conversation {
+            self.flowDelegate?.showConversation(conv)
+            return
+        }
+        
+        guard let profile = viewModel.basicProfile else {
+            debugPrint("Could not create conversation without profile")
+            return
+        }
+        
+        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, shout: nil, readby: nil)
+        
+        self.flowDelegate?.showConversation(conversation)
     }
 }
 

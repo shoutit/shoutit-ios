@@ -27,27 +27,27 @@ protocol ConversationPresenter {
 }
 
 class ConversationViewModel {
-    private var conversation: Conversation
+    private var conversation: Variable<Conversation>!
     
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
     
     let typingUsers : PublishSubject<Profile?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
-    let loadMoreState = Variable(LoadMoreState.NoMore)
+    let loadMoreState = Variable(LoadMoreState.NotReady)
     
     private var delegate : ConversationPresenter?
     
     private let disposeBag = DisposeBag()
     
     init(conversation: Conversation, delegate: ConversationPresenter? = nil) {
-        self.conversation = conversation
+        self.conversation = Variable(conversation)
         self.delegate = delegate
     }
     
     func createSocketObservable() {
         // handle presence/typing/join/left
-        PusherClient.sharedInstance.conversationObservable(self.conversation).subscribeNext { (event) -> Void in
+        PusherClient.sharedInstance.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
             if event.eventType() == .UserTyping {
                 if let user : Profile = event.object() {
                     self.typingUsers.onNext(user)
@@ -56,15 +56,34 @@ class ConversationViewModel {
         }.addDisposableTo(disposeBag)
         
         // handle messages
-        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation).subscribeNext {[weak self] (msg) -> Void in
+        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation.value).subscribeNext {[weak self] (msg) -> Void in
             if let msg : Message = msg {
                 self?.appendMessages([msg])
             }
         }.addDisposableTo(disposeBag)
     }
     
+    func createConversation(message: Message) {
+        
+        guard let username = self.conversation.value.users?.first?.value.username else {
+            debugPrint("could not create conversation without username")
+            return
+        }
+        
+        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
+            self?.conversation.value = conversation
+            self?.fetchMessages()
+        }, onError: { (error) -> Void in
+            debugPrint(error)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
     func fetchMessages() {
-        APIChatsService.getMessagesForConversation(self.conversation).subscribeNext {[weak self] (messages) -> Void in
+        if self.conversation.value.id == "" {
+            return
+        }
+        
+        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (messages) -> Void in
             self?.appendMessages(messages)
             if messages.count > 0 {
                 self?.loadMoreState.value = .ReadyToLoad
@@ -82,7 +101,7 @@ class ConversationViewModel {
                 return obs.take(1)
             })
             .subscribeNext { _ in
-                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation)
+                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation.value)
             }.addDisposableTo(disposeBag)
 
     }
@@ -91,7 +110,7 @@ class ConversationViewModel {
         loadMoreState.value = .Loading
         
         if let lastMessage = sortedMessages.last {
-            APIChatsService.moreMessagesForConversation(self.conversation, lastMessageEpoch:  lastMessage.createdAt)
+            APIChatsService.moreMessagesForConversation(self.conversation.value, lastMessageEpoch:  lastMessage.createdAt)
                 .subscribe(onNext: { [weak self] (messages) -> Void in
                     self?.appendMessages(messages)
                     if messages.count > 0 {
@@ -193,7 +212,12 @@ class ConversationViewModel {
         
         let msg = Message.messageWithText(text)
         
-        APIChatsService.replyWithMessage(msg, onConversation: self.conversation).subscribe(onNext: { [weak self] (message) -> Void in
+        if self.conversation.value.id == "" {
+            self.createConversation(msg)
+            return true
+        }
+        
+        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
             }, onError: { [weak self] (error) -> Void in
                 self?.delegate?.showSendingError(error as NSError)

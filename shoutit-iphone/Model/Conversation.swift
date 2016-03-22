@@ -16,13 +16,14 @@ enum ConversationType : String {
 }
 
 struct Conversation: Decodable, Hashable, Equatable {
+    
     let id: String
     let createdAt: Int
-    let modifiedAt: Int
+    let modifiedAt: Int?
     let apiPath: String?
     let webPath: String?
     let typeString: String
-    let users: [Profile]?
+    let users: [Box<Profile>]?
     let lastMessage: Message?
     let shout: Shout?
     let readby: [ReadBy]?
@@ -37,7 +38,7 @@ struct Conversation: Decodable, Hashable, Equatable {
         let a = curry(Conversation.init)
             <^> j <| "id"
             <*> j <| "created_at"
-            <*> j <| "modified_at"
+            <*> j <|? "modified_at"
         
         let b = a
             <*> j <|? "api_url"
@@ -91,8 +92,8 @@ extension Conversation {
         var names : [String] = []
         
         self.users?.each({ (profile) -> () in
-            if profile.id != Account.sharedInstance.user?.id {
-                names.append(profile.name)
+            if profile.value.id != Account.sharedInstance.user?.id {
+                names.append(profile.value.name)
             }
         })
         
@@ -131,8 +132,8 @@ extension Conversation {
         var url : NSURL?
         
         self.users?.each({ (profile) -> () in
-            if profile.id != Account.sharedInstance.user?.id {
-                if let path = profile.imagePath {
+            if profile.value.id != Account.sharedInstance.user?.id {
+                if let path = profile.value.imagePath {
                     url = NSURL(string: path)
                     return
                 }
