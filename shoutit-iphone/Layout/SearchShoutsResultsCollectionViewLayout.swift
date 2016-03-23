@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchShoutsResultsCollectionViewLayoutDelegate: class {
     func sectionTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.SectionType
-    func cellTypeForIndexPath(indexPath: NSIndexPath) -> SearchShoutsResultsCollectionViewLayout.CellType
+    func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType
 }
 
 final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
@@ -93,139 +93,6 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
         let collectionWidth = collectionView.bounds.width
         let contentYOffset = collectionView.contentOffset.y
         let numberOfSections = collectionView.numberOfSections()
-        let categoriesSectionIndex: Int? = numberOfSections == 1 ? nil : 1
-        let shoutsSectionIndex: Int = numberOfSections == 1 ? 1 : 2
-        
-        // calculate widths
-        let fullWidthCellWidth = collectionWidth - 2 * cellSpacing
-        let regularCellWidth = floor((collectionWidth - 3 * cellSpacing) * 0.5)
-        
-        // calculate heights
-        let regularCellHeight = regularCellWidth
-        let categoriesSectionHeight: CGFloat?
-        if let categoriesSectionIndex = categoriesSectionIndex {
-            let numberOfItems = collectionView.numberOfItemsInSection(categoriesSectionIndex)
-            let numberOfRows = (numberOfItems - 1) / 2 + (numberOfItems % 2) + 1
-            categoriesSectionHeight = CGFloat(numberOfRows) * regularCellHeight + CGFloat(numberOfRows + 1) * cellSpacing
-        } else {
-            categoriesSectionHeight = nil
-        }
-        let shoutsSectionHeight: CGFloat
-        do {
-            let numberOfItems = collectionView.numberOfItemsInSection(shoutsSectionIndex)
-            let numberOfRows = numberOfItems / 2 + numberOfItems % 2
-            shoutsSectionHeight = CGFloat(numberOfRows) * regularCellHeight + CGFloat(numberOfRows + 1) * cellSpacing
-        }
-        
-        // categories section attributes
-        if let categoriesSectionIndex = categoriesSectionIndex, categoriesSectionHeight = categoriesSectionHeight {
-            let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: HeaderKind.Categories.rawValue, withIndexPath: HeaderKind.Categories.indexPath)
-            headerAttributes.zIndex = headersZIndex
-            if contentYOffset <= categoriesSectionHeight {
-                headerAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: categoriesHeaderHeight)
-            } else {
-                let y = categoriesSectionHeight - contentYOffset
-                headerAttributes.frame = CGRect(x: 0, y: y, width: collectionWidth, height: categoriesHeaderHeight)
-                cachedAttributes.append(headerAttributes)
-            }
-            yPosition += categoriesHeaderHeight
-            
-            if let delegate = self.delegate where delegate.sectionContentModeForSection(categoriesSectionIndex) == .Placeholder {
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: 0, inSection: shoutsSectionIndex))
-                attributes.frame = CGRect(x: 0, y: yPosition, width: collectionWidth, height: placeholderHeight)
-                cachedAttributes.append(attributes)
-                yPosition += placeholderHeight
-                yPosition += cellSpacing
-                return
-            }
-            
-            let numberOfItemsInCategoriesSection = collectionView.numberOfItemsInSection(categoriesSectionIndex)
-            for item in 0..<numberOfItemsInCategoriesSection {
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: categoriesSectionIndex))
-                if item == 0 {
-                    attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: fullWidthCellWidth, height: firstCellHeight)
-                    yPosition += firstCellHeight
-                    yPosition += cellSpacing
-                } else {
-                    let cellIsFirstInRow = item % 2 == 1
-                    let cellIsLastInSection = numberOfItemsInCategoriesSection == item + 1
-                    let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
-                    attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
-                    if !cellIsFirstInRow || cellIsLastInSection {
-                        yPosition += regularCellHeight
-                        yPosition += cellSpacing
-                    }
-                }
-                cachedAttributes.append(attributes)
-            }
-        }
-        
-        // shouts section attributes
-        do {
-            let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: HeaderKind.Shouts.rawValue, withIndexPath: HeaderKind.Shouts.indexPath)
-            headerAttributes.zIndex = headersZIndex
-            if let categoriesSectionHeight = categoriesSectionHeight where yPosition <= categoriesSectionHeight {
-                headerAttributes.frame = CGRect(x: 0, y: yPosition, width: collectionWidth, height: shoutsHeaderHeight)
-            } else {
-                let y = shoutsSectionHeight + (categoriesSectionHeight == nil ? 0 : categoriesHeaderHeight) + (categoriesSectionHeight ?? 0) - contentYOffset
-                headerAttributes.frame = CGRect(x: 0, y: y, width: collectionWidth, height: shoutsHeaderHeight)
-            }
-            yPosition += shoutsHeaderHeight
-            yPosition += cellSpacing
-            cachedAttributes.append(headerAttributes)
-            
-            if let delegate = self.delegate where delegate.sectionContentModeForSection(shoutsSectionIndex) == .Placeholder {
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: 0, inSection: shoutsSectionIndex))
-                attributes.frame = CGRect(x: 0, y: yPosition, width: collectionWidth, height: placeholderHeight)
-                cachedAttributes.append(attributes)
-                yPosition += placeholderHeight
-                yPosition += cellSpacing
-                return
-            }
-            
-            let numberOfItemsInSection = collectionView.numberOfItemsInSection(shoutsSectionIndex)
-            switch mode {
-            case .Grid:
-                for item in 0..<numberOfItemsInSection {
-                    let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: shoutsSectionIndex))
-                    let cellIsFirstInRow = item % 2 == 0
-                    let cellIsLastInSection = numberOfItemsInSection == item + 1
-                    let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
-                    attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
-                    if !cellIsFirstInRow || cellIsLastInSection {
-                        yPosition += regularCellHeight
-                        yPosition += cellSpacing
-                    }
-                    cachedAttributes.append(attributes)
-                }
-            case .List:
-                for item in 0..<numberOfItemsInSection {
-                    let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: shoutsSectionIndex))
-                    attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: regularCellHeight)
-                    yPosition += regularCellHeight
-                    yPosition += cellSpacing
-                    cachedAttributes.append(attributes)
-                }
-            }
-        }
-        
-        self.contentHeight = yPosition
-    }
-    
-    func prepareLayoutA() {
-        
-        guard let collectionView = collectionView else {
-            return
-        }
-        
-        // set some initial values
-        cachedAttributes = []
-        var yPosition: CGFloat = 0
-        
-        // collect data
-        let collectionWidth = collectionView.bounds.width
-        let contentYOffset = collectionView.contentOffset.y
-        let numberOfSections = collectionView.numberOfSections()
         
         // calculate cell sizes
         let fullWidthCellWidth = collectionWidth - 2 * cellSpacing
@@ -244,28 +111,69 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
             headerAttributes.zIndex = headersZIndex
             let headerHeight = sectionType.headerHeight
             let sectionHeight = sectionHeights[section]
-            let previousHeaderHeights = sectionHeaderHeights.filter{$0.0 < section}.map{$0.1}.reduce(0) { $0 + $1 }
-            let previousSectionHeights = sectionHeights.filter{$0.0 < section}.map{$0.1}.reduce(0) { $0 + $1 }
+            let previousHeaderHeights = sectionHeaderHeights[0..<section].reduce(0) { $0 + $1 }
+            let previousSectionHeights = sectionHeights[0..<section].reduce(0) { $0 + $1 }
             let previousHeight = previousHeaderHeights + previousSectionHeights
             
             if contentYOffset >= previousHeight && contentYOffset <= previousHeight + sectionHeight {
-                
-            }
-            if contentYOffset <= categoriesSectionHeight {
-                headerAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: categoriesHeaderHeight)
+                headerAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: headerHeight)
             } else {
-                let y = categoriesSectionHeight - contentYOffset
-                headerAttributes.frame = CGRect(x: 0, y: y, width: collectionWidth, height: categoriesHeaderHeight)
-                cachedAttributes.append(headerAttributes)
+                headerAttributes.frame = CGRect(x: 0, y: yPosition, width: collectionWidth, height: headerHeight)
             }
+            yPosition += headerHeight
+            yPosition += cellSpacing
+            cachedAttributes.append(headerAttributes)
             
-            if yPosition <= categoriesSectionHeight {
-                headerAttributes.frame = CGRect(x: 0, y: yPosition, width: collectionWidth, height: shoutsHeaderHeight)
-            } else {
-                let y = shoutsSectionHeight + (categoriesSectionHeight == nil ? 0 : categoriesHeaderHeight) + (categoriesSectionHeight ?? 0) - contentYOffset
-                headerAttributes.frame = CGRect(x: 0, y: y, width: collectionWidth, height: shoutsHeaderHeight)
+            // cells attributes
+            let cellCount = collectionView.numberOfItemsInSection(section)
+            switch sectionType {
+            case .Regular:
+                for item in 0..<cellCount {
+                    let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
+                    if item == 0 {
+                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: fullWidthCellWidth, height: firstCellHeight)
+                        yPosition += firstCellHeight
+                        yPosition += cellSpacing
+                    } else {
+                        let cellIsFirstInRow = item % 2 == 1
+                        let cellIsLastInSection = cellCount == item + 1
+                        let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
+                        attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        if !cellIsFirstInRow || cellIsLastInSection {
+                            yPosition += regularCellHeight
+                            yPosition += cellSpacing
+                        }
+                    }
+                    cachedAttributes.append(attributes)
+                }
+            case .LayoutModeDependent:
+                switch mode {
+                case .Grid:
+                    for item in 0..<cellCount {
+                        let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
+                        let cellIsFirstInRow = item % 2 == 0
+                        let cellIsLastInSection = cellCount == item + 1
+                        let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
+                        attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        if !cellIsFirstInRow || cellIsLastInSection {
+                            yPosition += regularCellHeight
+                            yPosition += cellSpacing
+                        }
+                        cachedAttributes.append(attributes)
+                    }
+                case .List:
+                    for item in 0..<cellCount {
+                        let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
+                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: regularCellHeight)
+                        yPosition += regularCellHeight
+                        yPosition += cellSpacing
+                        cachedAttributes.append(attributes)
+                    }
+                }
             }
         }
+        
+        self.contentHeight = yPosition
     }
     
     override func collectionViewContentSize() -> CGSize {
@@ -328,11 +236,21 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
         
         switch sectionType {
         case .Regular:
-            numberOfRows = (numberOfItems - 1) / 2 + (numberOfItems % 2) + 1
+            let basicNumber = (numberOfItems - 1) / 2 + (numberOfItems % 2) + 1
+            if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && basicNumber % 2 == 1 {
+                numberOfRows = basicNumber + 1
+            } else {
+                numberOfRows = basicNumber
+            }
         case .LayoutModeDependent:
             switch mode {
             case .Grid:
-                numberOfRows = numberOfItems / 2 + numberOfItems % 2
+                let basicNumber = numberOfItems / 2 + numberOfItems % 2
+                if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && basicNumber % 2 == 0 {
+                    numberOfRows = basicNumber + 1
+                } else {
+                    numberOfRows = basicNumber
+                }
             case .List:
                 numberOfRows = numberOfItems
             }
