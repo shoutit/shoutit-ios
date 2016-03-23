@@ -145,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="1114" y="408"/>
         </scene>
-        <!--Search Shouts Results Collection View Controller-->
+        <!--Search results-->
         <scene sceneID="tdt-t9-xe0">
             <objects>
                 <collectionViewController storyboardIdentifier="SearchShoutsResultsCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="KZH-Ve-wP5" customClass="SearchShoutsResultsCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -171,13 +171,13 @@
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Search results" id="U0e-yr-YM8">
+                        <rightBarButtonItems>
+                            <barButtonItem image="cart" id="RnK-bG-teS"/>
+                            <barButtonItem image="search" id="ZrG-rU-IN3"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </collectionViewController>
-                <navigationItem title="Search results" id="U0e-yr-YM8">
-                    <rightBarButtonItems>
-                        <barButtonItem image="cart" id="RnK-bG-teS"/>
-                        <barButtonItem image="search" id="ZrG-rU-IN3"/>
-                    </rightBarButtonItems>
-                </navigationItem>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdN-Mo-PwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1797" y="408"/>

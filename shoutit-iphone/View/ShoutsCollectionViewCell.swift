@@ -34,8 +34,6 @@ class ShoutsCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 4
         layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
         layer.borderWidth = 1 / UIScreen.mainScreen().scale
-        
-        setupViewForMode(.Regular)
     }
     
     func hydrateWithShout(shout: Shout) {
