@@ -63,6 +63,7 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
     // consts
     private let cellSpacing: CGFloat = 10
     private let firstCellHeight: CGFloat = 150
+    private let listTypeCellHeight: CGFloat = 110
     private let headersZIndex: Int = 10
     
     // on prepare layout
@@ -180,8 +181,8 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
             case (.LayoutModeDependent, .List):
                 for item in 0..<cellCount {
                     let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
-                    attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: regularCellHeight)
-                    yPosition += regularCellHeight
+                    attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: listTypeCellHeight)
+                    yPosition += listTypeCellHeight
                     yPosition += cellSpacing
                     cachedAttributes.append(attributes)
                 }
@@ -247,30 +248,32 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
         
         let numberOfItems = collectionView.numberOfItemsInSection(section)
         let sectionType = delegate?.sectionTypeForSection(section) ?? .LayoutModeDependent
-        let numberOfRows: Int
         
         switch sectionType {
         case .Regular:
             let basicNumber = (numberOfItems - 1) / 2 + (numberOfItems % 2) + 1
+            let numberOfRows: Int
             if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && basicNumber % 2 == 1 {
                 numberOfRows = basicNumber + 1
             } else {
                 numberOfRows = basicNumber
             }
+            return CGFloat(numberOfRows) * itemSize.height + CGFloat(numberOfRows + 1) * cellSpacing
         case .LayoutModeDependent:
             switch mode {
             case .Grid:
                 let basicNumber = numberOfItems / 2 + numberOfItems % 2
+                let numberOfRows: Int
                 if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && basicNumber % 2 == 0 {
                     numberOfRows = basicNumber + 1
                 } else {
                     numberOfRows = basicNumber
                 }
+                return CGFloat(numberOfRows) * itemSize.height + CGFloat(numberOfRows + 1) * cellSpacing
             case .List:
-                numberOfRows = numberOfItems
+                let numberOfRows = numberOfItems
+                return CGFloat(numberOfRows) * listTypeCellHeight + CGFloat(numberOfRows + 1) * cellSpacing
             }
         }
-        
-        return CGFloat(numberOfRows) * itemSize.height + CGFloat(numberOfRows + 1) * cellSpacing
     }
 }

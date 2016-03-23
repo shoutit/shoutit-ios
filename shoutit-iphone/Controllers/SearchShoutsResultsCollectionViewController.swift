@@ -22,7 +22,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
             case .Shout:
                 return "ShoutsCollectionViewCell"
             case .ShoutExtended:
-                return "ShoutsExtendedCollectionViewCell"
+                return "ShoutsExpandedCollectionViewCell"
             case .Placeholder:
                 return "PlaceholderCollectionViewCell"
                 
@@ -59,7 +59,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     private func prepareReusables() {
         collectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "ShoutsExtendedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.ShoutExtended.resuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.ShoutExtended.resuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Placeholder.resuseIdentifier)
         
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
@@ -74,6 +74,17 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
                 self?.collectionView?.reloadData()
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    // MARK: - Helpers
+    
+    private func toggleLayout() {
+        guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
+        let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
+        let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
+        UIView.animateWithDuration(0.3) {[weak self] in
+            self?.collectionView?.collectionViewLayout = newLayout
+        }
     }
 }
 
@@ -162,8 +173,8 @@ extension SearchShoutsResultsCollectionViewController {
         view.layoutButton
             .rx_tap
             .asDriver()
-            .driveNext{
-                
+            .driveNext{[weak self] in
+                self?.toggleLayout()
             }
             .addDisposableTo(view.reuseDisposeBag)
 
@@ -180,7 +191,7 @@ extension SearchShoutsResultsCollectionViewController {
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > scrollView.contentSize.height - 50 {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.shoutsSection.fetchNextPage()
         }
     }
