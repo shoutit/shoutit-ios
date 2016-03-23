@@ -160,11 +160,11 @@ extension PusherClient {
     
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
-            let cancel = AnonymousDisposable {
-                
-            }
-            
             let channel = self.pusherInstance.subscribeToChannelNamed(conversation.channelName())
+            
+            let cancel = AnonymousDisposable {
+                channel.removeAllBindings()
+            }
             
             channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
@@ -196,7 +196,7 @@ extension PusherClient {
             return
         }
     
-        let eventName = "client-" + PusherEventType.UserTyping.rawValue
+        let eventName = PusherEventType.UserTyping.rawValue
         let data = user.basicEncodedProfile()
         let channelName = conversation.channelName()
         

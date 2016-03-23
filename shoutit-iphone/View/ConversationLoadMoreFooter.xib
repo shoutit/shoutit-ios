@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-P5-Xfj">
-                    <rect key="frame" x="192" y="285" width="216" height="30"/>
+                    <rect key="frame" x="192" y="10" width="216" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Tap to load archive messages">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,8 +27,14 @@
                 <constraint firstItem="pIa-ta-8hP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="URx-9G-6yT"/>
                 <constraint firstItem="pIa-ta-8hP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eGM-TN-KLQ"/>
                 <constraint firstItem="Ach-P5-Xfj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iUu-Ax-jbZ"/>
+                <constraint firstItem="Ach-P5-Xfj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="wde-no-P3F"/>
                 <constraint firstItem="Ach-P5-Xfj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xih-va-CLI"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="xih-va-CLI"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="activityIndicatorView" destination="pIa-ta-8hP" id="EOg-Df-Ck1"/>
                 <outlet property="loadMoreButton" destination="Ach-P5-Xfj" id="06x-iE-gTQ"/>
