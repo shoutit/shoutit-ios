@@ -50,6 +50,11 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         setupRX()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadContent()
+    }
+    
     // MARK: - Setup
     
     private func prepareReusables() {
@@ -57,8 +62,8 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         collectionView?.registerNib(UINib(nibName: "ShoutsExtendedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.ShoutExtended.resuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Placeholder.resuseIdentifier)
         
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forCellWithReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forCellWithReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
     }
     
     private func setupRX() {
@@ -88,6 +93,8 @@ extension SearchShoutsResultsCollectionViewController {
         case .Loaded(let cells, _):
             return cells.count
         case .LoadingMore(let cells, _, _):
+            return cells.count
+        case .LoadedAllContent(let cells, _):
             return cells.count
         case .Error, .NoContent, .Loading:
             return 1
@@ -121,6 +128,9 @@ extension SearchShoutsResultsCollectionViewController {
         switch viewModel.shoutsSection.state.value {
         case .Idle:
             fatalError()
+        case .LoadedAllContent(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            return shoutCellWithModel(cellViewModel)
         case .Loaded(let cells, _):
             let cellViewModel = cells[indexPath.row]
             return shoutCellWithModel(cellViewModel)
@@ -167,6 +177,12 @@ extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - 50 {
+            viewModel.shoutsSection.fetchNextPage()
+        }
     }
 }
 

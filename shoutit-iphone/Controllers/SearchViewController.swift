@@ -10,9 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SearchViewControllerFlowDelegate: class {
-    func showUserSearchResultsWithPhrase(phrase: String) -> Void
-}
+protocol SearchViewControllerFlowDelegate: class, SearchDisplayable {}
 
 class SearchViewController: UIViewController {
     
@@ -70,10 +68,6 @@ class SearchViewController: UIViewController {
     }
     
     override func prefersNavigationBarHidden() -> Bool {
-        return true
-    }
-    
-    override func prefersTabbarHidden() -> Bool {
         return true
     }
     
@@ -175,7 +169,7 @@ class SearchViewController: UIViewController {
         case .Shown(option: .Users):
             flowDelegate?.showUserSearchResultsWithPhrase(phrase)
         default:
-            // show shouts results
+            flowDelegate?.showShoutsSearchResultsWithPhrase(phrase, context: viewModel.context)
             break
         }
     }

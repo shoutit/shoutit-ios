@@ -13,6 +13,9 @@ extension SearchShoutsResultsViewModel {
     
     class ShoutsSection {
         
+        // consta
+        private let pageSize = 20
+        
         unowned var parent: SearchShoutsResultsViewModel
         
         private var requestDisposeBag = DisposeBag()
@@ -33,6 +36,7 @@ extension SearchShoutsResultsViewModel {
         }
         
         func fetchNextPage() {
+            if case .LoadedAllContent = state.value { return }
             guard case .Loaded(let cells, let page) = state.value else { return }
             let pageToLoad = page + 1
             self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
@@ -61,6 +65,7 @@ extension SearchShoutsResultsViewModel {
                     case .Next(let results):
                         self?.updateViewModelWithResult(results, forPage: page)
                     case .Error(let error):
+                        print(error)
                         self?.state.value = .Error(error)
                     default:
                         break
@@ -72,7 +77,6 @@ extension SearchShoutsResultsViewModel {
         private func fetchShoutsAtPage(page: Int) -> Observable<SearchShoutsResults> {
             let phrase = parent.searchPhrase
             let context = parent.context
-            let pageSize = 20
             let params: FilteredShoutsParams
             switch context {
             case .General:
@@ -96,7 +100,11 @@ extension SearchShoutsResultsViewModel {
             
             if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
                 cells += result.results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
-                state.value = .Loaded(cells: cells, page: page)
+                if cells.count < pageSize {
+                    state.value = .LoadedAllContent(cells: cells, page: page)
+                } else {
+                    state.value = .Loaded(cells: cells, page: page)
+                }
                 return
             }
             

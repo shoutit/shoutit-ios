@@ -25,6 +25,7 @@
                     <state key="normal" title="Button" image="share_icon"/>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="iKJ-KA-pZ5" firstAttribute="leading" secondItem="dDF-HW-x1D" secondAttribute="leading" constant="10" id="7rd-c9-gtb"/>
                 <constraint firstItem="6tb-Yb-NYL" firstAttribute="top" secondItem="dDF-HW-x1D" secondAttribute="top" id="Ff6-gE-0A9"/>

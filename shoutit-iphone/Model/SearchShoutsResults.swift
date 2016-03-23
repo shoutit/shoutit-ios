@@ -12,8 +12,8 @@ import Curry
 
 struct SearchShoutsResults {
     let count: Int
-    let previousPath: String
-    let nextPath: String
+    let previousPath: String?
+    let nextPath: String?
     let results: [Shout]
 }
 
@@ -22,9 +22,9 @@ extension SearchShoutsResults: Decodable {
     static func decode(j: JSON) -> Decoded<SearchShoutsResults> {
         let a = curry(SearchShoutsResults.init)
             <^> j <| "count"
-            <*> j <| "previous"
+            <*> j <|? "previous"
         let b = a
-            <*> j <| "next"
+            <*> j <|? "next"
             <*> j <|| "results"
         return b
     }
