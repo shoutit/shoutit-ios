@@ -259,7 +259,7 @@ extension SearchViewController: UITableViewDelegate {
         switch viewModel.sectionViewModel.value {
         case .Categories(let cells, _):
             let model = cells[indexPath.row]
-
+            flowDelegate?.showSearchInContext(.CategoryShouts(category: model.category))
         case .Suggestions(let cells, _):
             let model = cells[indexPath.row]
             switch model {

@@ -12,6 +12,7 @@ enum SearchContext {
     case General
     case ProfileShouts(profile: Profile)
     case TagShouts(tag: Tag)
+    case CategoryShouts(category: Category)
     case DiscoverShouts(item: DiscoverItem)
 }
 
@@ -31,17 +32,19 @@ extension SearchDisplayable where Self: FlowController, Self: SearchViewControll
     }
 }
 
-extension SearchDisplayable where Self: FlowController {
+extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsTableViewControllerFlowDelegate, Self: SearchShoutsResultsCollectionViewControllerFlowDelegate {
     
     func showUserSearchResultsWithPhrase(phrase: String) {
         let controller = Wireframe.searchUserResultsTableViewController()
         controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
+        controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }
     
     func showShoutsSearchResultsWithPhrase(phrase: String, context: SearchContext) {
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
         controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: phrase, inContext: context)
+        controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)
     }
 }

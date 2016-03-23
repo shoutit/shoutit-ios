@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 
+protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable {}
+
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
     // consts
@@ -29,6 +31,9 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // view model
     var viewModel: SearchShoutsResultsViewModel!
+    
+    // navigation
+    weak var flowDelegate: SearchShoutsResultsCollectionViewControllerFlowDelegate?
     
     // RX
     let disposeBag = DisposeBag()
@@ -78,7 +83,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
         let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
         let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
-        let image = newMode == .List ? UIImage.shoutsLayoutListIcon() : UIImage.shoutsLayoutGridIcon()
+        let image = newMode == .List ? UIImage.shoutsLayoutGridIcon() : UIImage.shoutsLayoutListIcon()
         sender?.setImage(image, forState: .Normal)
         UIView.animateWithDuration(0.3) {[weak self] in
             self?.collectionView?.collectionViewLayout = newLayout
@@ -178,7 +183,19 @@ extension SearchShoutsResultsCollectionViewController {
 extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        switch viewModel.shoutsSection.state.value {
+        case .LoadedAllContent(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        case .Loaded(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        case .LoadingMore(let cells, _, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        default:
+            return
+        }
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

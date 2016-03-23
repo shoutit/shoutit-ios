@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 
+protocol SearchUserResultsTableViewControllerFlowDelegate: class, ProfileDisplayable {}
+
 final class SearchUserResultsTableViewController: UITableViewController {
     
     // consts
@@ -23,6 +25,9 @@ final class SearchUserResultsTableViewController: UITableViewController {
     
     // view model
     var viewModel: SearchUserResultsViewModel!
+    
+    // navigation
+    weak var flowDelegate: SearchUserResultsTableViewControllerFlowDelegate?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -142,5 +147,21 @@ final class SearchUserResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 64
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cells: [SearchUserProfileCellViewModel]
+        switch viewModel.state.value {
+        case .LoadedAllContent(let c, _):
+            cells = c
+        case .Loaded(let c, _):
+            cells = c
+        case .LoadingMore(let c, _, _):
+            cells = c
+        default:
+            preconditionFailure()
+        }
+        let cellViewModel = cells[indexPath.row]
+        flowDelegate?.showProfile(cellViewModel.profile)
     }
 }

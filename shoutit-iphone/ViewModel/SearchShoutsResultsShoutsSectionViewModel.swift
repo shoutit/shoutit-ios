@@ -87,6 +87,8 @@ extension SearchShoutsResultsViewModel {
                 params = FilteredShoutsParams(searchPhrase: phrase, username: profile.username, page: page, pageSize: pageSize)
             case .TagShouts(let tag):
                 params = FilteredShoutsParams(searchPhrase: phrase, tag: tag.name, page: page, pageSize: pageSize)
+            case .CategoryShouts(let category):
+                params = FilteredShoutsParams(searchPhrase: phrase, tag: category.slug, page: page, pageSize: pageSize)
             }
             
             return APIShoutsService.searchShoutsWithParams(params)

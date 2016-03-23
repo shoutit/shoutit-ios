@@ -111,6 +111,8 @@ final class SearchViewModel {
             return NSLocalizedString("Search in \(profile.name) shouts", comment: "Search text field placeholder")
         case .TagShouts(let tag):
             return NSLocalizedString("Search in \(tag.name) shouts", comment: "Search text field placeholder")
+        case .CategoryShouts(let category):
+            return NSLocalizedString("Search in \(category.name) shouts", comment: "Search text field placeholder")
         }
     }
     
