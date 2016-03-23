@@ -100,6 +100,14 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             
             self?.typingIndicatorView.insertUsername(profile.firstName)
         }.addDisposableTo(disposeBag)
+        
+        viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
+            guard let controller = controller else {
+                return
+            }
+            self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
+            
+        }.addDisposableTo(disposeBag)
     }
     
     func registerSupplementaryViews() {

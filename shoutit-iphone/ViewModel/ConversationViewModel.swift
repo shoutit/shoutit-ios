@@ -35,6 +35,7 @@ class ConversationViewModel {
     let typingUsers : PublishSubject<Profile?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
     let loadMoreState = Variable(LoadMoreState.NotReady)
+    let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
     
     private var delegate : ConversationPresenter?
     
