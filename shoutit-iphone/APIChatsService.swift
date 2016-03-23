@@ -40,12 +40,12 @@ class APIChatsService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
-    static func startConversationWithUsername(username: String, message: Message) -> Observable<Conversation> {
+    static func startConversationWithUsername(username: String, message: Message) -> Observable<Message> {
         let url = conversationWithUserURL.stringByReplacingOccurrencesOfString("*", withString: username)
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
-    static func startConversationAboutShout(shout: Shout, message: Message) -> Observable<Conversation> {
+    static func startConversationAboutShout(shout: Shout, message: Message) -> Observable<Message> {
         let url = replyShoutsURL.stringByReplacingOccurrencesOfString("*", withString: shout.id)
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }

@@ -79,8 +79,9 @@ class ConversationViewModel {
     }
     
     func createConversationAboutShout(shout: Shout, message: Message) {
-        APIChatsService.startConversationAboutShout(shout, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
-            self?.conversation.value = conversation
+        APIChatsService.startConversationAboutShout(shout, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
+            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby)
+            self?.conversation.value = newConversation
             self?.fetchMessages()
         }, onError: { (error) -> Void in
             debugPrint(error)
@@ -88,8 +89,9 @@ class ConversationViewModel {
     }
     
     func createConversationWithUsername(username: String, message: Message) {
-        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (conversation) -> Void in
-            self?.conversation.value = conversation
+        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
+            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby)
+            self?.conversation.value = newConversation
             self?.fetchMessages()
         }, onError: { (error) -> Void in
                 debugPrint(error)

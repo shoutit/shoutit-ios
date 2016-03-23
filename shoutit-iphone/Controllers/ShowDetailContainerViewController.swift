@@ -116,7 +116,7 @@ class ShowDetailContainerViewController: UIViewController {
                 case .VideoCall:
                     self.notImplemented()
                 case .Chat:
-                    self.notImplemented()
+                    self.startChat()
                 case .More:
                     self.notImplemented()
                 case .Chats:
@@ -134,5 +134,24 @@ class ShowDetailContainerViewController: UIViewController {
         let editController = Wireframe.editShoutController()
         editController.shout = viewModel.shout
         self.navigationController?.pushViewController(editController, animated: true)
+    }
+    
+    func startChat() {
+        print(self.viewModel.shout.conversations)
+        
+        if self.viewModel.shout.conversations?.count == 0 {
+            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, shout: viewModel.shout, readby: nil)
+            
+            self.flowDelegate?.showConversation(conversation)
+            
+            return
+        }
+        
+        
+        if self.viewModel.shout.conversations?.count  > 1 {
+            print("multiple conversations")
+        } else {
+            self.flowDelegate?.showConversation((self.viewModel.shout.conversations?.first!)!)
+        }
     }
 }

@@ -98,7 +98,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
                 return
             }
             
-            self?.typingIndicatorView.insertUsername(profile.username)
+            self?.typingIndicatorView.insertUsername(profile.firstName)
         }.addDisposableTo(disposeBag)
     }
     
