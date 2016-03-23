@@ -19,6 +19,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     var conversation: Conversation!
     
     var viewModel : ConversationViewModel!
+    let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
     
     private let disposeBag = DisposeBag()
@@ -36,6 +37,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         setNavigationTitle()
         
         setLoadMoreFooter()
+        
+        setupAttachmentManager()
         
         if let shout = conversation.shout {
             setTopicShout(shout)
@@ -110,10 +113,27 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         }.addDisposableTo(disposeBag)
     }
     
+    func setupAttachmentManager() {
+        attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
+            self?.viewModel.sendMessageWithAttachment(attachment)
+        }.addDisposableTo(disposeBag)
+        
+        attachmentManager.presentingSubject.subscribeNext { [weak self] (controller) in
+            guard let controller = controller else {
+                return
+            }
+            self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
+            
+            }.addDisposableTo(disposeBag)
+    }
+    
     func registerSupplementaryViews() {
         tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
         tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
         tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
+        
+        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: conversationIncomingLocationCellIdentifier)
+        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingLocationCellIdentifier)
     }
     
     func customizeTable() {
@@ -221,8 +241,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func didPressLeftButton(sender: AnyObject!) {
-        self.flowDelegate?.showAttachmentController({ (type) in
-            print(type)
+        self.flowDelegate?.showAttachmentController({ [weak self] (type) in
+            self?.attachmentManager.requestAttachmentWithType(type)
         }, transitionDelegate: self)
     }
     

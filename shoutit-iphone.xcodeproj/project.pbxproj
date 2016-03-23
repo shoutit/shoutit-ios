@@ -225,6 +225,11 @@
 		AE180F861C7F8F150069BB1A /* AuthParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B71C63E80E0013E99F /* AuthParams.swift */; };
 		AE180F871C7F8F560069BB1A /* SHMixpanelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F75751BEA6DF300F3BA86 /* SHMixpanelHelper.swift */; };
 		AE180F881C7F8F910069BB1A /* APIAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729BA1C62218C006F7D29 /* APIAuthService.swift */; };
+		AE18BACD1CA2D3AD001C73EC /* MessageAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */; };
+		AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */; };
+		AE18BAD11CA2F80B001C73EC /* IncomingLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE18BAD01CA2F80B001C73EC /* IncomingLocationCell.xib */; };
+		AE18BAD31CA2F824001C73EC /* OutgoingLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */; };
+		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -971,6 +976,11 @@
 		ACF9A8CF1BEFF371001FB172 /* SHDiscoverDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHDiscoverDetailViewController.swift; path = View/tabs/discover/SHDiscoverDetailViewController.swift; sourceTree = "<group>"; };
 		ACF9E8731C05195400F0B615 /* UIButton+imageText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+imageText.h"; path = "Util/extensions/UIButton+imageText.h"; sourceTree = "<group>"; };
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
+		AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageAttachment.swift; path = Model/MessageAttachment.swift; sourceTree = "<group>"; };
+		AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentManager.swift; path = Other/ConversationAttachmentManager.swift; sourceTree = "<group>"; };
+		AE18BAD01CA2F80B001C73EC /* IncomingLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingLocationCell.xib; path = View/IncomingLocationCell.xib; sourceTree = "<group>"; };
+		AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingLocationCell.xib; path = View/OutgoingLocationCell.xib; sourceTree = "<group>"; };
+		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE3A54871C92CA9700803571 /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Browse.storyboard; path = Storyboards/Browse.storyboard; sourceTree = "<group>"; };
@@ -1439,6 +1449,7 @@
 			isa = PBXGroup;
 			children = (
 				2463B6981C984A5E00BFE6BA /* ConversationViewModel.swift */,
+				AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1585,6 +1596,9 @@
 				240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */,
 				24A843F81CA02107007FF9E8 /* ConversationShoutHeader.xib */,
 				24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */,
+				AE18BAD01CA2F80B001C73EC /* IncomingLocationCell.xib */,
+				AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */,
+				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1749,6 +1763,7 @@
 				B2B5D0391C806EBC0068A6AF /* Video.swift */,
 				241CEC361C732CDE00694575 /* DiscoverItem.swift */,
 				B2FE53961CA08A6D007E23F5 /* SearchShoutsResults.swift */,
+				AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */,
 				24826B521C96E1DD00032FC9 /* Conversation.swift */,
 				B2B540C41C6A338B0075EDA6 /* Suggestions.swift */,
 				B2B540D41C6A518E0075EDA6 /* SuggestionExtensions */,
@@ -3732,9 +3747,11 @@
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
 				B2E7E3071C592BDE0078C743 /* TagStoryboard.storyboard in Resources */,
 				AEDE15981C6E0BBF002D2AF7 /* DiscoverPreview.storyboard in Resources */,
+				AE18BAD31CA2F824001C73EC /* OutgoingLocationCell.xib in Resources */,
 				B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */,
 				B22D19731C75098E00A620F3 /* PlaceholderCollectionViewCell.xib in Resources */,
 				AE4DB33E1C634C22001EB84B /* Menu.storyboard in Resources */,
+				AE18BAD11CA2F80B001C73EC /* IncomingLocationCell.xib in Resources */,
 				B24D17B81C886D7F00FB9614 /* TableViewPlaceholderView.xib in Resources */,
 				AC7030D11C16C982008F4C00 /* SHImageMediaItem.xib in Resources */,
 				249F78251C9963CF00FCB9A6 /* ConversationDayHeader.xib in Resources */,
@@ -4044,6 +4061,7 @@
 				248320F51C99975D00C12D90 /* BubbleView.swift in Sources */,
 				248320F11C996E7000C12D90 /* ConversationTextCell.swift in Sources */,
 				B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */,
+				AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */,
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
 				AC7026D21C19DF2A00262622 /* SHLoginAccounts.swift in Sources */,
 				AE180F851C7F8EB20069BB1A /* HomeShoutsCollectionViewController.swift in Sources */,
@@ -4081,6 +4099,7 @@
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
+				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
 				B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */,
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
 				60F11D461C2B6CBA00FEA500 /* SHDiscoverItemCell.swift in Sources */,
@@ -4131,6 +4150,7 @@
 				B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */,
 				B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
+				AE18BACD1CA2D3AD001C73EC /* MessageAttachment.swift in Sources */,
 				6027CF761BE7510B00124C28 /* SplashViewModel.swift in Sources */,
 				60F11D481C2B6CF100FEA500 /* SHDiscoverItemCellViewModel.swift in Sources */,
 				B2B5D0421C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift in Sources */,

@@ -69,6 +69,8 @@ PODS:
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
   - Material (1.31.1)
+  - MBMapSnapshotter (1.0):
+    - AFNetworking (~> 2.0)
   - MBProgressHUD (0.9.2)
   - Mixpanel (2.9.3):
     - Mixpanel/Mixpanel (= 2.9.3)
@@ -132,6 +134,7 @@ DEPENDENCIES:
   - Kingfisher (~> 1.8)
   - libPusher (~> 1.6)
   - Material (~> 1.29)
+  - MBMapSnapshotter
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (~> 2.1)
@@ -203,6 +206,7 @@ SPEC CHECKSUMS:
   Kingfisher: 9e37d2a78a082dc123bfe8a16de65de85518daae
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
   Material: 482520d78d73fa935fd57d2a62a095655e0bb7f0
+  MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c

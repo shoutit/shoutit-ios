@@ -10,7 +10,7 @@ import Foundation
 
 protocol ChatDisplayable {
     func showConversation(conversation: Conversation) -> Void
-    func showAttachmentController(completion: ((type: ConversationAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
+    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
 }
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
@@ -24,7 +24,7 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func showAttachmentController(completion: ((type: ConversationAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate? = nil) -> Void {
+    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate? = nil) -> Void {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion

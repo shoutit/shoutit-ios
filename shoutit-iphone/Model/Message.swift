@@ -20,6 +20,7 @@ struct Message: Decodable, Hashable, Equatable {
     let readPath: String?
     let user: Profile?
     let text: String?
+    let attachments: [MessageAttachment]?
     
     var hashValue: Int {
         get {
@@ -36,14 +37,18 @@ struct Message: Decodable, Hashable, Equatable {
         let b = a
             <*> j <|? "user"
             <*> j <|? "text"
+            <*> j <||? "attachments"
         
         return b
     }
     
     static func messageWithText(text: String) -> Message {
-        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text)
+        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
     }
     
+    static func messageWithAttachment(attachment: MessageAttachment) -> Message {
+        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: nil, attachments: [attachment])
+    }
     
 }
 
@@ -73,12 +78,30 @@ extension Message {
         
         return false
     }
+    
+    func attachment() -> MessageAttachment? {
+        guard let attachments = attachments else {
+            return nil
+        }
+        
+        return attachments.first
+    }
 }
 
 
 extension Message: Encodable {
     func encode() -> JSON {
-        return JSON.Object(["text": (self.text ?? "").encode()])
+        var encoded : [String: JSON] = [:]
+        
+        if let text = text {
+            encoded["text"] = text.encode()
+        }
+        
+        if let attachments = attachments, attachment = attachments.first {
+            encoded["attachments"] = [attachment.encode()].encode()
+        }
+        
+        return JSON.Object(encoded)
     }
 }
 

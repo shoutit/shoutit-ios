@@ -12,14 +12,20 @@ import RxSwift
 let conversationTextCellIdentifier = "conversationTextCellIdentifier"
 let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
 let conversationLoadMoreIdentifier = "conversationLoadMoreIdentifier"
+
+// text cells
 let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
 let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
+
+// location cells
+
+let conversationIncomingLocationCellIdentifier = "conversationIncomingLocationCell"
+let conversationOutGoingLocationCellIdentifier = "conversationOutGoingLocationCell"
 
 enum ConversationDataState : Int {
     case NotLoaded
     case RestLoaded
     case PusherLoaded
-    
 }
 
 protocol ConversationPresenter {
@@ -179,11 +185,23 @@ class ConversationViewModel {
     func cellIdentifierAtIndexPath(indexPath: NSIndexPath) -> String {
         let msg = messageAtIndexPath(indexPath)
         
-        if msg.isOutgoingCell() {
-            return conversationOutGoingTextCellIdentifier
+        if let _ = msg.attachment() {
+            return cellIdentifierForMessageWithAttachment(msg)
         }
         
-        return conversationIncomingTextCellIdentifier
+        return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier
+    }
+    
+    func cellIdentifierForMessageWithAttachment(msg: Message) -> String {
+        guard let attachment = msg.attachment() else {
+            fatalError("this should not happend")
+        }
+        
+        if attachment.type() == .Location {
+            return msg.isOutgoingCell() ? conversationOutGoingLocationCellIdentifier: conversationIncomingLocationCellIdentifier
+        }
+        
+        return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier
     }
     
     func previousMessageFor(message: Message) -> Message? {
@@ -249,6 +267,23 @@ class ConversationViewModel {
         
         APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
+            }, onError: { [weak self] (error) -> Void in
+                self?.delegate?.showSendingError(error as NSError)
+            }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+        
+        return true
+    }
+    
+    func sendMessageWithAttachment(attachment: MessageAttachment) -> Bool {
+        let msg = Message.messageWithAttachment(attachment)
+        
+        if self.conversation.value.id == "" {
+            self.createConversation(msg)
+            return true
+        }
+        
+        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
+            self?.appendMessages([message])
             }, onError: { [weak self] (error) -> Void in
                 self?.delegate?.showSendingError(error as NSError)
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)

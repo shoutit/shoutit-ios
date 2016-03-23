@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="conversationOutGoingLocationCell" rowHeight="129" id="g8v-jk-wog" customClass="ConversationLocationCell" customModule="Shoutit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="368" height="129"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g8v-jk-wog" id="RH8-dM-RaS">
+                <rect key="frame" x="0.0" y="0.0" width="368" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEG-k1-mjz" customClass="BubbleView" customModule="Shoutit" customModuleProvider="target">
+                        <rect key="frame" x="138" y="5" width="210" height="123.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="18:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV0-ML-JbT">
+                        <rect key="frame" x="296" y="109" width="32" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-DE-Heu">
+                        <rect key="frame" x="143" y="5" width="200" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="Pqe-DV-mrQ"/>
+                            <constraint firstAttribute="width" constant="200" id="hqA-mI-EW1"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="BV0-ML-JbT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dEG-k1-mjz" secondAttribute="leading" constant="5" id="9I4-LU-IMk"/>
+                    <constraint firstAttribute="trailing" secondItem="dEG-k1-mjz" secondAttribute="trailing" constant="20" id="EPf-4p-c3W"/>
+                    <constraint firstItem="bhJ-DE-Heu" firstAttribute="leading" secondItem="dEG-k1-mjz" secondAttribute="leading" constant="5" id="Ilh-wy-ghy"/>
+                    <constraint firstAttribute="trailing" secondItem="bhJ-DE-Heu" secondAttribute="trailing" constant="25" id="SoC-tS-clG"/>
+                    <constraint firstItem="dEG-k1-mjz" firstAttribute="top" secondItem="RH8-dM-RaS" secondAttribute="top" constant="5" id="TRM-pI-FDl"/>
+                    <constraint firstItem="bhJ-DE-Heu" firstAttribute="top" secondItem="RH8-dM-RaS" secondAttribute="top" constant="5" id="UrV-bk-d8r"/>
+                    <constraint firstAttribute="bottom" secondItem="BV0-ML-JbT" secondAttribute="bottom" constant="5" id="a7I-ke-Xw4"/>
+                    <constraint firstAttribute="trailing" secondItem="BV0-ML-JbT" secondAttribute="trailing" constant="40" id="aMq-Yw-9VG"/>
+                    <constraint firstItem="dEG-k1-mjz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RH8-dM-RaS" secondAttribute="leading" constant="40" id="oBW-Qg-frq"/>
+                    <constraint firstAttribute="bottom" secondItem="dEG-k1-mjz" secondAttribute="bottom" id="pTb-1q-frd"/>
+                    <constraint firstItem="BV0-ML-JbT" firstAttribute="top" secondItem="bhJ-DE-Heu" secondAttribute="bottom" constant="4" id="z0j-AZ-otf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="locationSnapshot" destination="bhJ-DE-Heu" id="2Xu-Aa-gjb"/>
+                <outlet property="timeLabel" destination="BV0-ML-JbT" id="5Ky-Jg-AjZ"/>
+            </connections>
+            <point key="canvasLocation" x="505" y="388.5"/>
+        </tableViewCell>
+    </objects>
+</document>
