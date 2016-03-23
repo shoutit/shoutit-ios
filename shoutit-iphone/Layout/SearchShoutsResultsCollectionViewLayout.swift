@@ -137,8 +137,17 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
                     } else {
                         let cellIsFirstInRow = item % 2 == 1
                         let cellIsLastInSection = cellCount == item + 1
-                        let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
-                        attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        
+                        if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && cellIsLastInSection {
+                            if !cellIsFirstInRow {
+                                yPosition += cellSpacing
+                                yPosition += regularCellHeight
+                            }
+                            attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        } else {
+                            let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
+                            attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        }
                         if !cellIsFirstInRow || cellIsLastInSection {
                             yPosition += regularCellHeight
                             yPosition += cellSpacing
@@ -153,8 +162,17 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
                         let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
                         let cellIsFirstInRow = item % 2 == 0
                         let cellIsLastInSection = cellCount == item + 1
-                        let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
-                        attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        
+                        if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && cellIsLastInSection {
+                            if !cellIsFirstInRow {
+                                yPosition += cellSpacing
+                                yPosition += regularCellHeight
+                            }
+                            attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        } else {
+                            let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
+                            attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        }
                         if !cellIsFirstInRow || cellIsLastInSection {
                             yPosition += regularCellHeight
                             yPosition += cellSpacing
