@@ -561,6 +561,7 @@
 		B2E53E921CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E53E911CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift */; };
 		B2E53E941CA1A82500F43481 /* SearchShoutsResultsShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E53E931CA1A82500F43481 /* SearchShoutsResultsShoutCellViewModel.swift */; };
 		B2E53E961CA1AA6F00F43481 /* PagedViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E53E951CA1AA6F00F43481 /* PagedViewModelState.swift */; };
+		B2E53E9A1CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E53E991CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib */; };
 		B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */; };
 		B2E7154B1C6DF078007F95CF /* UIViewController+NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */; };
 		B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E7154D1C6DF561007F95CF /* ProfileCollectionViewLayout.swift */; };
@@ -1237,6 +1238,7 @@
 		B2E53E911CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsCategoryCellViewModel.swift; path = ViewModel/SearchShoutsResultsCategoryCellViewModel.swift; sourceTree = "<group>"; };
 		B2E53E931CA1A82500F43481 /* SearchShoutsResultsShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsShoutCellViewModel.swift; path = ViewModel/SearchShoutsResultsShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B2E53E951CA1AA6F00F43481 /* PagedViewModelState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagedViewModelState.swift; path = Util/PagedViewModelState.swift; sourceTree = "<group>"; };
+		B2E53E991CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutsExpandedCollectionViewCell.xib; path = Storyboards/ShoutsExpandedCollectionViewCell.xib; sourceTree = "<group>"; };
 		B2E715441C6D02FD007F95CF /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewController.swift; path = Controllers/ProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+NavigationItems.swift"; path = "UIKitExtensions/UIViewController+NavigationItems.swift"; sourceTree = "<group>"; };
 		B2E7154D1C6DF561007F95CF /* ProfileCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionViewLayout.swift; path = Layout/ProfileCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -3292,6 +3294,7 @@
 				B22D19721C75098E00A620F3 /* PlaceholderCollectionViewCell.xib */,
 				B2B5D0441C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib */,
 				B2A849361C846B7800176EB0 /* SeeAllCollectionViewCell.xib */,
+				B2E53E991CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib */,
 			);
 			name = CollectionViewCommonCells;
 			sourceTree = "<group>";
@@ -3779,6 +3782,7 @@
 				B2B5D0451C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib in Resources */,
 				B276CE8E1C982767006434D5 /* Search.storyboard in Resources */,
 				AEDE15931C6DE5CD002D2AF7 /* Home.storyboard in Resources */,
+				B2E53E9A1CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib in Resources */,
 				24826B3D1C96980500032FC9 /* Notifications.storyboard in Resources */,
 				B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */,
 				B2D9B1161C98848A00924941 /* SearchRecentsHeaderView.xib in Resources */,

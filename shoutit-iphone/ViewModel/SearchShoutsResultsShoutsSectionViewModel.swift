@@ -19,11 +19,13 @@ extension SearchShoutsResultsViewModel {
         private(set) var state: Variable<PagedViewModelState<SearchShoutsResultsShoutCellViewModel>> = Variable(.Idle)
         
         // data
-        private(set) var numberOfResults: Int
+        private(set) var numberOfResults: Int = 0
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent
         }
+        
+        // MARK - Actions
         
         func reloadContent() {
             state.value = .Loading
@@ -36,6 +38,18 @@ extension SearchShoutsResultsViewModel {
             self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
             fetchPage(pageToLoad)
         }
+        
+        // MARK: - To display
+        
+        func sectionTitle() -> String {
+            return NSLocalizedString("Results for '\(parent.searchPhrase)'", comment: "Search results section header")
+        }
+        
+        func resultsCountString() -> String {
+            return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
+        }
+        
+        // MARK: Fetch
         
         private func fetchPage(page: Int) {
             
@@ -54,8 +68,6 @@ extension SearchShoutsResultsViewModel {
                 }
                 .addDisposableTo(requestDisposeBag)
         }
-        
-        // MARK: Fetch
         
         private func fetchShoutsAtPage(page: Int) -> Observable<SearchShoutsResults> {
             let phrase = parent.searchPhrase
@@ -95,7 +107,7 @@ extension SearchShoutsResultsViewModel {
                 state.value = .NoContent
             }
             
-            state.value = State.Loaded(cells: results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}, page: page)
+            state.value = PagedViewModelState.Loaded(cells: results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}, page: page)
         }
     }
 }

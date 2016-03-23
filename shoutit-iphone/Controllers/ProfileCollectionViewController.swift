@@ -181,11 +181,7 @@ extension ProfileCollectionViewController {
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
-            
-            cell.titleLabel.text = cellViewModel.shout.title
-            cell.subtitleLabel.text = cellViewModel.shout.user.name
-            cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
-            cell.priceLabel.text = cellViewModel.priceString()
+            cell.hydrateWithShout(cellViewModel.shout)
             
             return cell
         }

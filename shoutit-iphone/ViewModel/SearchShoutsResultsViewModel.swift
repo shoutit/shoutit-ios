@@ -11,14 +11,6 @@ import RxSwift
 
 final class SearchShoutsResultsViewModel {
     
-    enum State {
-        case Idle
-        case Loading
-        case Loaded(cells: [T], page: Int)
-        case NoContent
-        case Error(ErrorType)
-    }
-    
     let context: SearchContext
     let searchPhrase: String
     

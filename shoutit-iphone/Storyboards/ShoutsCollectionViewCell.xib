@@ -66,8 +66,8 @@
             <connections>
                 <outlet property="imageView" destination="Ksa-8m-quI" id="0Bb-sY-n8D"/>
                 <outlet property="priceLabel" destination="gKZ-XP-tPO" id="szV-vv-Aek"/>
-                <outlet property="subtitleLabel" destination="AAC-NA-H9N" id="SAU-iI-V4I"/>
                 <outlet property="titleLabel" destination="w8U-XU-Ie9" id="Cch-N0-2Yc"/>
+                <outlet property="userNameLabel" destination="AAC-NA-H9N" id="EhV-fq-EJF"/>
             </connections>
             <point key="canvasLocation" x="348" y="288"/>
         </collectionViewCell>

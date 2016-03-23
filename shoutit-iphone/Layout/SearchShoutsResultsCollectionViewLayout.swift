@@ -126,8 +126,8 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
             
             // cells attributes
             let cellCount = collectionView.numberOfItemsInSection(section)
-            switch sectionType {
-            case .Regular:
+            switch (sectionType, mode) {
+            case (.Regular, _):
                 for item in 0..<cellCount {
                     let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
                     if item == 0 {
@@ -155,38 +155,35 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
                     }
                     cachedAttributes.append(attributes)
                 }
-            case .LayoutModeDependent:
-                switch mode {
-                case .Grid:
-                    for item in 0..<cellCount {
-                        let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
-                        let cellIsFirstInRow = item % 2 == 0
-                        let cellIsLastInSection = cellCount == item + 1
-                        
-                        if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && cellIsLastInSection {
-                            if !cellIsFirstInRow {
-                                yPosition += cellSpacing
-                                yPosition += regularCellHeight
-                            }
-                            attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
-                        } else {
-                            let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
-                            attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
-                        }
-                        if !cellIsFirstInRow || cellIsLastInSection {
-                            yPosition += regularCellHeight
+            case (.LayoutModeDependent, .Grid):
+                for item in 0..<cellCount {
+                    let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
+                    let cellIsFirstInRow = item % 2 == 0
+                    let cellIsLastInSection = cellCount == item + 1
+                    
+                    if let delegate = delegate where delegate.lastCellTypeForSection(section) == .Placeholder && cellIsLastInSection {
+                        if !cellIsFirstInRow {
                             yPosition += cellSpacing
+                            yPosition += regularCellHeight
                         }
-                        cachedAttributes.append(attributes)
+                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                    } else {
+                        let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
+                        attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
                     }
-                case .List:
-                    for item in 0..<cellCount {
-                        let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
-                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: regularCellHeight)
+                    if !cellIsFirstInRow || cellIsLastInSection {
                         yPosition += regularCellHeight
                         yPosition += cellSpacing
-                        cachedAttributes.append(attributes)
                     }
+                    cachedAttributes.append(attributes)
+                }
+            case (.LayoutModeDependent, .List):
+                for item in 0..<cellCount {
+                    let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: item, inSection: section))
+                    attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: collectionWidth - 2 * cellSpacing, height: regularCellHeight)
+                    yPosition += regularCellHeight
+                    yPosition += cellSpacing
+                    cachedAttributes.append(attributes)
                 }
             }
         }
