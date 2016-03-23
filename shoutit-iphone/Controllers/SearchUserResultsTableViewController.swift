@@ -46,16 +46,6 @@ final class SearchUserResultsTableViewController: UITableViewController {
         return true
     }
     
-    // MARK: - Actions
-    
-    @IBAction func filterAction(sender: AnyObject) {
-        notImplemented()
-    }
-    
-    @IBAction func searchAction(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
     // MARK: - Setup
     
     private func registerReusables() {
@@ -73,7 +63,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
                 case .Loading:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .Loaded:
+                case .Loaded, .LoadedAllContent, .LoadingMore:
                     self?.tableView.tableHeaderView = nil
                 case .NoContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
@@ -94,15 +84,30 @@ final class SearchUserResultsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard case .Loaded(let cells, _) = viewModel.state.value else {
+
+        switch viewModel.state.value {
+        case .LoadedAllContent(let cells, _):
+            return cells.count
+        case .Loaded(let cells, _):
+            return cells.count
+        case .LoadingMore(let cells, _, _):
+            return cells.count
+        default:
             return 0
         }
-        
-        return cells.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard case .Loaded(let cells, _) = viewModel.state.value else {
+        
+        let cells: [SearchUserProfileCellViewModel]
+        switch viewModel.state.value {
+        case .LoadedAllContent(let c, _):
+            cells = c
+        case .Loaded(let c, _):
+            cells = c
+        case .LoadingMore(let c, _, _):
+            cells = c
+        default:
             preconditionFailure()
         }
         

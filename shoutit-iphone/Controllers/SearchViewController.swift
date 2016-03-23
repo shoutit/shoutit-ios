@@ -136,6 +136,10 @@ class SearchViewController: UIViewController {
         self.tableView.registerNib(UINib(nibName: suggestionCellReuseId, bundle: nil), forCellReuseIdentifier: suggestionCellReuseId)
     }
     
+    // MARK: - Navigation
+    
+    @IBAction func unwindToSearch(segue: UIStoryboardSegue) {}
+    
     // MARK: - Helpers
     
     private func showSegmentedControl(show: Bool) {

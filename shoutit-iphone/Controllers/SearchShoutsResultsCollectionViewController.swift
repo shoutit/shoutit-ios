@@ -74,10 +74,12 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // MARK: - Helpers
     
-    private func toggleLayout() {
+    private func toggleLayout(sender: UIButton?) {
         guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
         let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
         let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
+        let image = newMode == .List ? UIImage.shoutsLayoutListIcon() : UIImage.shoutsLayoutGridIcon()
+        sender?.setImage(image, forState: .Normal)
         UIView.animateWithDuration(0.3) {[weak self] in
             self?.collectionView?.collectionViewLayout = newLayout
         }
@@ -162,8 +164,8 @@ extension SearchShoutsResultsCollectionViewController {
         view.layoutButton
             .rx_tap
             .asDriver()
-            .driveNext{[weak self] in
-                self?.toggleLayout()
+            .driveNext{[weak view, weak self] in
+                self?.toggleLayout(view?.layoutButton)
             }
             .addDisposableTo(view.reuseDisposeBag)
 

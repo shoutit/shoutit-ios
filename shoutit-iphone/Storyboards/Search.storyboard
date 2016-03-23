@@ -128,20 +128,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Results" id="XzG-ri-d5v">
                         <rightBarButtonItems>
-                            <barButtonItem image="cart" id="i5G-Bx-Oh8">
-                                <connections>
-                                    <action selector="filterAction:" destination="w21-In-4v1" id="2Hc-iD-x7g"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem image="cart" id="i5G-Bx-Oh8"/>
                             <barButtonItem image="search" id="gfS-aU-KWM">
                                 <connections>
-                                    <action selector="searchAction:" destination="w21-In-4v1" id="wfr-5t-SKF"/>
+                                    <segue destination="atJ-xs-7Ln" kind="unwind" unwindAction="unwindToSearch:" id="79Y-Kw-O3d"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5e-kc-oor" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="atJ-xs-7Ln" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1114" y="408"/>
         </scene>
@@ -174,11 +171,16 @@
                     <navigationItem key="navigationItem" title="Search results" id="U0e-yr-YM8">
                         <rightBarButtonItems>
                             <barButtonItem image="cart" id="RnK-bG-teS"/>
-                            <barButtonItem image="search" id="ZrG-rU-IN3"/>
+                            <barButtonItem image="search" id="ZrG-rU-IN3">
+                                <connections>
+                                    <segue destination="d4B-fT-vNC" kind="unwind" unwindAction="unwindToSearch:" id="GQy-Gq-YSi"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdN-Mo-PwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="d4B-fT-vNC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1797" y="408"/>
         </scene>
