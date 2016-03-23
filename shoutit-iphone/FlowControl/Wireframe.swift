@@ -198,4 +198,8 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationController") as! ConversationViewController
     }
     
+    static func conversationAttachmentController() -> ConversationAttachmentViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationAttachmentViewController") as! ConversationAttachmentViewController
+    }
+    
 }

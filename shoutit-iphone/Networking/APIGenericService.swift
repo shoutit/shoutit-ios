@@ -88,6 +88,7 @@ class APIGenericService {
                         observer.onNext(object)
                         observer.onCompleted()
                     case .Failure(let decodeError):
+                        debugPrint(json)
                         observer.onError(decodeError)
                     }
                 case .Failure(let error):

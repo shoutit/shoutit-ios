@@ -13,8 +13,11 @@ import Alamofire
 
 class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
+    private static let conversationWithUserURL = APIManager.baseURL + "/users/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
+    private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
+    private static let conversationURL = APIManager.baseURL + "/conversations/*"
 
     // MARK: - Traditional
 
@@ -37,9 +40,18 @@ class APIChatsService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
-    /*
-    static func startConversationWithUsername(username: String) -> Observable<Conversation> {
-        
+    static func startConversationWithUsername(username: String, message: Message) -> Observable<Conversation> {
+        let url = conversationWithUserURL.stringByReplacingOccurrencesOfString("*", withString: username)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
-    */
+    
+    static func startConversationAboutShout(shout: Shout, message: Message) -> Observable<Conversation> {
+        let url = replyShoutsURL.stringByReplacingOccurrencesOfString("*", withString: shout.id)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
+    }
+    
+    static func deleteConversation(conversation: Conversation) -> Observable<Void> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
+    }
 }

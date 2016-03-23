@@ -9,6 +9,7 @@
 import UIKit
 
 enum LoadMoreState {
+    case NotReady
     case ReadyToLoad
     case Loading
     case NoMore
@@ -21,8 +22,8 @@ class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
 
     func setState(state: LoadMoreState) {
         
-        loadMoreButton.hidden = (state == .Loading)
-        activityIndicatorView.hidden = (state == .ReadyToLoad || state == .NoMore)
+        loadMoreButton.hidden = (state == .Loading || state == .NotReady)
+        activityIndicatorView.hidden = (state == .ReadyToLoad || state == .NoMore || state == .NotReady)
 
         if state == .NoMore {
             loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: ""), forState: .Normal)

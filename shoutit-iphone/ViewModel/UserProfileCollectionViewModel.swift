@@ -14,7 +14,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     
-    private let profile: Profile
+    let profile: Profile
     private var detailedUser: DetailedProfile?
     var model: ProfileCollectionViewModelMainModel? {
         return .ProfileModel(profile: profile)
@@ -76,6 +76,14 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var username: String? {
         return profile.username
+    }
+    
+    var basicProfile: Profile? {
+        return profile
+    }
+    
+    var conversation: Conversation? {
+        return detailedUser?.conversation
     }
     
     var isListeningToYou: Bool? {

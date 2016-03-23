@@ -101,6 +101,9 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return (user?.coverPath != nil) ? NSURL(string: user!.coverPath!) : nil
     }
     
+    var conversation: Conversation? { return nil }
+    var basicProfile: Profile? { return nil }
+    
     var infoButtons: [ProfileCollectionInfoButton] {
         
         guard let user = user else {

@@ -36,3 +36,5 @@ extension DiscoverFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension DiscoverFlowController: ProfileCollectionViewControllerFlowDelegate {}
 extension DiscoverFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension DiscoverFlowController: NotificationsTableViewControllerFlowDelegate {}
+extension DiscoverFlowController: ConversationViewControllerFlowDelegate {}
+extension DiscoverFlowController: ConversationListTableViewControllerFlowDelegate {}

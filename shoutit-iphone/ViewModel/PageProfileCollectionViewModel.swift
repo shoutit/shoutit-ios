@@ -76,6 +76,14 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
+    var conversation: Conversation? {
+        return nil // profile.conversation
+    }
+    
+    var basicProfile: Profile? {
+        return profile
+    }
+    
     var isListeningToYou: Bool? {
         return detailedProfile?.isListener
     }

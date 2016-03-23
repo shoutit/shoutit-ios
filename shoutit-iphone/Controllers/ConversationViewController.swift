@@ -13,7 +13,7 @@ import DZNEmptyDataSet
 
 protocol ConversationViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable {}
 
-class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: ConversationViewControllerFlowDelegate?
     
     var conversation: Conversation!
@@ -123,6 +123,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         rightButton.setTitle("", forState: .Normal)
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
         
+        leftButton.setImage(UIImage(named: "attach"), forState: .Normal)
+        leftButton.setTitle("", forState: .Normal)
+        leftButton.tintColor = UIColor(shoutitColor: ShoutitColor.FontGrayColor)
+        
         typingIndicatorView.interval = 3.0
         textView.placeholder = NSLocalizedString("Type a message", comment: "")
     }
@@ -208,6 +212,12 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         }
     }
     
+    override func didPressLeftButton(sender: AnyObject!) {
+        self.flowDelegate?.showAttachmentController({ (type) in
+            print(type)
+        }, transitionDelegate: self)
+    }
+    
     func showSendingError(error: NSError) -> Void {
         let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.localizedDescription)
         
@@ -222,8 +232,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
         let attributedText : NSAttributedString
-        
-        if viewModel.loadMoreState.value == .ReadyToLoad {
+        if self.conversation.id == "" {
+            attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
+        } else if viewModel.loadMoreState.value == .ReadyToLoad {
             attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
         } else {
             attributedText = NSAttributedString(string: NSLocalizedString("Loading Messages...", comment: ""))
@@ -237,5 +248,22 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         lbl.textColor = UIColor.lightGrayColor()
         
         return lbl
+    }
+    
+    @IBAction func moreAction() {
+        let alert = viewModel.moreActionAlert { [weak self] in
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+extension ConversationViewController {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return OverlayAnimationController()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return OverlayDismissAnimationController()
     }
 }

@@ -12,7 +12,6 @@ import Curry
 import Ogra
 
 struct Profile {
-    
     let id: String
     let type: UserType
     let apiPath: String
