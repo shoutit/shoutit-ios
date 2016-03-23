@@ -14,25 +14,13 @@ final class SearchShoutsResultsViewModel {
     let context: SearchContext
     let searchPhrase: String
     
+    private(set) var shoutsSection: ShoutsSection!
+    private(set) var categoriesSection: CategoriesSection!
+    
     init(searchPhrase: String, inContext context: SearchContext) {
         self.searchPhrase = searchPhrase
         self.context = context
-    }
-    
-    private func fetchShoutsWithSearchPhrase(phrase: String, context: SearchContext, page: Int) -> Observable<[SearchShoutsResults]> {
-        let pageSize = 20
-        let params: FilteredShoutsParams
-        switch context {
-        case .General:
-            params = FilteredShoutsParams(searchPhrase: phrase, page: page, pageSize: pageSize)
-        case .DiscoverShouts(let item):
-            params = FilteredShoutsParams(searchPhrase: phrase, discoverId: item.id, page: page, pageSize: pageSize)
-        case .ProfileShouts(let profile):
-            params = FilteredShoutsParams(searchPhrase: phrase, username: profile.username, page: page, pageSize: pageSize)
-        case .TagShouts(let tag):
-            params = FilteredShoutsParams(searchPhrase: phrase, tag: tag.name, page: page, pageSize: pageSize)
-        }
-        
-        return APIShoutsService.searchShoutsWithParams(params)
+        self.shoutsSection = ShoutsSection(parent: self)
+        self.categoriesSection = CategoriesSection(parent: self)
     }
 }

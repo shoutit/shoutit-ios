@@ -20,7 +20,7 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
-    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<[SearchShoutsResults]> {
+    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<SearchShoutsResults> {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL)
     }
     

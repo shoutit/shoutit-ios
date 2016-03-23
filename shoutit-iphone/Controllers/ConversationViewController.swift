@@ -59,7 +59,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             return
         }
         
-        shoutView.tapGesture.addTarget(self, action: "showShout")
+        shoutView.tapGesture.addTarget(self, action: #selector(ConversationViewController.showShout))
         shoutView.translatesAutoresizingMaskIntoConstraints = false
         
         shoutView.bindWith(Shout: shout)
@@ -183,7 +183,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         loadMoreView?.transform = tableView.transform
         
         loadMoreView?.setState(.ReadyToLoad)
-        loadMoreView?.loadMoreButton.addTarget(self, action: "loadMore", forControlEvents: .TouchUpInside)
+        loadMoreView?.loadMoreButton.addTarget(self, action: #selector(ConversationViewController.loadMore), forControlEvents: .TouchUpInside)
         
         loadMoreBag = DisposeBag()
         

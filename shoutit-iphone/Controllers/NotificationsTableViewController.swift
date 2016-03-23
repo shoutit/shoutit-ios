@@ -28,7 +28,7 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
         
         self.refreshControl = UIRefreshControl()
         
-        self.refreshControl?.addTarget(self, action: "reloadNotifications", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(reloadNotifications), forControlEvents: .ValueChanged)
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self

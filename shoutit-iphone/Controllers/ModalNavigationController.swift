@@ -23,7 +23,7 @@ extension ModalNavigationController: UINavigationControllerDelegate {
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
         
         if viewController !== self.viewControllers[0] {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: "pop")
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: #selector(UIViewController.pop))
         }
     }
 }

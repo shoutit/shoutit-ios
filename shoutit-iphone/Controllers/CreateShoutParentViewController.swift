@@ -24,7 +24,7 @@ class CreateShoutParentViewController: UIViewController {
         
         setTitle()
        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "dismiss")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
     }
     
     func setTitle() {

@@ -36,10 +36,7 @@ class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollectionView
         switch cellViewModel {
         case .Content(let shout):
             let contentCell = cell as! ShoutsCollectionViewCell
-            contentCell.imageView.sh_setImageWithURL(shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
-            contentCell.titleLabel.text = cellViewModel.title
-            contentCell.subtitleLabel.text = cellViewModel.authorName
-            contentCell.priceLabel.text = cellViewModel.priceString
+            contentCell.hydrateWithShout(shout)
         case .NoContent(let message):
             let noContentCell = cell as! PlcaholderCollectionViewCell
             noContentCell.setupCellForActivityIndicator(false)

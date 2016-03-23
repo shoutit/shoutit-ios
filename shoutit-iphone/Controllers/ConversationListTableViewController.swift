@@ -33,7 +33,7 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         reloadConversationList()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: "reloadConversationList", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.reloadConversationList), forControlEvents: .ValueChanged)
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self

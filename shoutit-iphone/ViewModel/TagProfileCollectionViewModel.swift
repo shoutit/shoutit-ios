@@ -117,7 +117,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var infoButtons: [ProfileCollectionInfoButton] {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(tag?.listenersCount ?? 0)
         return [.Listeners(countString: listenersCountString),
-                .Custom(title: "<not implemented>", icon: nil),
+                .HiddenButton(position: .BigCenter),
                 .Listen(isListening: tag?.isListening ?? false),
                 .HiddenButton(position: .SmallLeft),
                 .More]
