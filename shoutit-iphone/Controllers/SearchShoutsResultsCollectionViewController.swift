@@ -14,14 +14,11 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     // consts
     enum CellType {
         case Shout
-        case ShoutExtended
         case Placeholder
         
         var resuseIdentifier: String {
             switch self {
             case .Shout:
-                return "ShoutsCollectionViewCell"
-            case .ShoutExtended:
                 return "ShoutsExpandedCollectionViewCell"
             case .Placeholder:
                 return "PlaceholderCollectionViewCell"
@@ -58,8 +55,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     // MARK: - Setup
     
     private func prepareReusables() {
-        collectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.ShoutExtended.resuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Placeholder.resuseIdentifier)
         
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
@@ -114,8 +110,6 @@ extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let collectionViewLayoutType = (collectionView.collectionViewLayout as! SearchShoutsResultsCollectionViewLayout).mode
-        
         let placeholderCellWithMessage: (message: String?, activityIndicator: Bool) -> PlcaholderCollectionViewCell = {(message, activity) in
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Placeholder.resuseIdentifier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
             cell.setupCellForActivityIndicator(activity)
@@ -126,12 +120,7 @@ extension SearchShoutsResultsCollectionViewController {
         let shoutCellWithModel: (SearchShoutsResultsShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
-            switch collectionViewLayoutType {
-            case .Grid:
-                cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            case .List:
-                cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.ShoutExtended.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            }
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             cell.hydrateWithShout(cellViewModel.shout)
             return cell
         }

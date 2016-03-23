@@ -389,6 +389,7 @@
 		B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2471C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift */; };
 		B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */; };
 		B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */; };
+		B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */; };
 		B24D17B31C886C2900FB9614 /* PostSignupSuggestionsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B21C886C2900FB9614 /* PostSignupSuggestionsSectionHeader.xib */; };
 		B24D17B51C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B41C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib */; };
 		B24D17B81C886D7F00FB9614 /* TableViewPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */; };
@@ -1065,6 +1066,7 @@
 		B23CA2471C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTextViewTableViewCell.swift; path = View/EditProfileTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileSelectButtonTableViewCell.swift; path = View/EditProfileSelectButtonTableViewCell.swift; sourceTree = "<group>"; };
 		B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileCellViewModel.swift; path = ViewModel/EditProfileCellViewModel.swift; sourceTree = "<group>"; };
+		B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsCollectionViewLayoutAttributes.swift; path = Layout/ShoutsCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		B24D17B21C886C2900FB9614 /* PostSignupSuggestionsSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostSignupSuggestionsSectionHeader.xib; path = Storyboards/PostSignupSuggestionsSectionHeader.xib; sourceTree = "<group>"; };
 		B24D17B41C886CB300FB9614 /* PostSignupSuggestionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostSignupSuggestionsTableViewCell.xib; path = Storyboards/PostSignupSuggestionsTableViewCell.xib; sourceTree = "<group>"; };
 		B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewPlaceholderView.xib; path = Storyboards/TableViewPlaceholderView.xib; sourceTree = "<group>"; };
@@ -3537,6 +3539,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F5247C1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift */,
+				B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -4238,6 +4241,7 @@
 				606ED2F01BF7EE7E0064C53E /* SHCreateImageViewModel.swift in Sources */,
 				B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
+				B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */,
 				606116B41BF2563F00259357 /* SHProgressHUD.swift in Sources */,
 				B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */,
 				B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */,
