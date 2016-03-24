@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -820,6 +820,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_bg_pattern" translatesAutoresizingMaskIntoConstraints="NO" id="m3G-go-skS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_screen_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="1MZ-DS-70t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-pG-8gB">
                                 <rect key="frame" x="10" y="100" width="355" height="402"/>
                                 <subviews>
@@ -830,9 +833,6 @@
                                             <segue destination="UGA-XJ-RNc" kind="embed" id="dXL-np-SOO"/>
                                         </connections>
                                     </containerView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_screen_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="1MZ-DS-70t">
-                                        <rect key="frame" x="-10" y="-100" width="375" height="667"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -893,6 +893,9 @@
                             <constraint firstItem="Vam-pG-8gB" firstAttribute="top" secondItem="qqU-Ap-tk1" secondAttribute="bottom" priority="900" constant="80" id="I5S-O5-bif"/>
                             <constraint firstItem="8yj-LE-AK5" firstAttribute="top" secondItem="m3G-go-skS" secondAttribute="bottom" id="J9q-se-iso"/>
                             <constraint firstItem="8yj-LE-AK5" firstAttribute="top" secondItem="YRB-cn-kU9" secondAttribute="bottom" constant="10" id="OTf-mh-UGl"/>
+                            <constraint firstItem="1MZ-DS-70t" firstAttribute="height" secondItem="m3G-go-skS" secondAttribute="height" id="R5s-0b-T8Q"/>
+                            <constraint firstItem="1MZ-DS-70t" firstAttribute="centerX" secondItem="m3G-go-skS" secondAttribute="centerX" id="RNL-vt-jgC"/>
+                            <constraint firstItem="1MZ-DS-70t" firstAttribute="width" secondItem="m3G-go-skS" secondAttribute="width" id="WPJ-S8-BGm"/>
                             <constraint firstAttribute="trailing" secondItem="0w1-iB-LJP" secondAttribute="trailing" constant="10" id="a6o-5a-N6f"/>
                             <constraint firstItem="R2c-vh-czW" firstAttribute="top" secondItem="OM4-vj-24p" secondAttribute="bottom" constant="8" id="ayW-Ot-n0P"/>
                             <constraint firstAttribute="trailing" secondItem="Vam-pG-8gB" secondAttribute="trailing" constant="10" id="cjG-u9-zAG"/>
@@ -900,6 +903,7 @@
                             <constraint firstItem="YRB-cn-kU9" firstAttribute="leading" secondItem="QPK-ZS-lJ2" secondAttribute="leading" constant="10" id="edm-ye-V3M"/>
                             <constraint firstAttribute="trailing" secondItem="m3G-go-skS" secondAttribute="trailing" id="iVt-8a-K0e"/>
                             <constraint firstItem="YRB-cn-kU9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vam-pG-8gB" secondAttribute="bottom" constant="40" id="jOx-Dy-BFd"/>
+                            <constraint firstItem="1MZ-DS-70t" firstAttribute="centerY" secondItem="m3G-go-skS" secondAttribute="centerY" id="pgF-1D-HDU"/>
                             <constraint firstItem="R2c-vh-czW" firstAttribute="centerX" secondItem="QPK-ZS-lJ2" secondAttribute="centerX" id="pmT-qA-db4"/>
                         </constraints>
                     </view>
