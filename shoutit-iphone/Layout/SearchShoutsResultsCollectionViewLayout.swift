@@ -144,7 +144,7 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
                                 yPosition += cellSpacing
                                 yPosition += regularCellHeight
                             }
-                            attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                            attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: fullWidthCellWidth, height: regularCellHeight)
                         } else {
                             let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
                             attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)
@@ -167,7 +167,7 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
                             yPosition += cellSpacing
                             yPosition += regularCellHeight
                         }
-                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: regularCellWidth, height: regularCellHeight)
+                        attributes.frame = CGRect(x: cellSpacing, y: yPosition, width: fullWidthCellWidth, height: regularCellHeight)
                     } else {
                         let x = cellIsFirstInRow ? cellSpacing : regularCellHeight + 2 * cellSpacing
                         attributes.frame = CGRect(x: x, y: yPosition, width: regularCellWidth, height: regularCellHeight)

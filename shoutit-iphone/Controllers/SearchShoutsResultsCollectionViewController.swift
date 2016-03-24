@@ -83,6 +83,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
         let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
         let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
+        newLayout.delegate = self
         let image = newMode == .List ? UIImage.shoutsLayoutGridIcon() : UIImage.shoutsLayoutListIcon()
         sender?.setImage(image, forState: .Normal)
         UIView.animateWithDuration(0.3) {[weak self] in
@@ -215,7 +216,7 @@ extension SearchShoutsResultsCollectionViewController: SearchShoutsResultsCollec
     
     func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
         switch viewModel.shoutsSection.state.value {
-        case .Loaded, .LoadingMore:
+        case .Loaded, .LoadingMore, .LoadedAllContent:
             return .Regular
         default:
             return .Placeholder

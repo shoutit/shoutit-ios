@@ -164,4 +164,10 @@ final class SearchUserResultsTableViewController: UITableViewController {
         let cellViewModel = cells[indexPath.row]
         flowDelegate?.showProfile(cellViewModel.profile)
     }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            viewModel.fetchNextPage()
+        }
+    }
 }

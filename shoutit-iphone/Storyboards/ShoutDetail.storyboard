@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Show Detail Container View Controller-->
@@ -82,12 +81,30 @@
                             <constraint firstAttribute="bottomMargin" secondItem="3MQ-S9-rTI" secondAttribute="bottom" id="lb9-LH-Etz"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Arc-jR-c3o">
-                        <rightBarButtonItems>
-                            <barButtonItem image="cart" id="jfr-Ng-cE5"/>
-                            <barButtonItem image="search" id="ik3-iH-tnv"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="1er-lj-bZk">
+                            <view key="customView" contentMode="scaleToFill" id="66g-kL-iNo">
+                                <rect key="frame" x="20" y="6" width="80" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV8-L0-XaT">
+                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
+                                        <state key="normal" title="search" image="search"/>
+                                        <connections>
+                                            <action selector="searchAction" destination="PrV-RL-Ryp" eventType="touchUpInside" id="1hi-wU-eFn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uco-nZ-Gfz">
+                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
+                                        <state key="normal" title="cart" image="cart"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outletCollection property="tabBatButtons" destination="dlw-u9-I8B" collectionClass="NSMutableArray" id="sYS-fQ-pN8"/>
                         <outletCollection property="tabBatButtons" destination="p0q-c1-KFK" collectionClass="NSMutableArray" id="6Qo-gc-rYw"/>
