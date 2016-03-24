@@ -31,7 +31,8 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          state: String? = nil,
          city: String? = nil,
          shoutType: ShoutType? = nil,
-         useLocaleBasedCountryCodeWhenNil: Bool = false) {
+         useLocaleBasedCountryCodeWhenNil: Bool = false,
+         includeCurrentUserLocation: Bool = false) {
         
         self.searchPhrase = searchPhrase
         self.discoverId = discoverId
@@ -39,14 +40,16 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.tag = tag
         self.page = page
         self.pageSize = pageSize
-        if country == nil && useLocaleBasedCountryCodeWhenNil {
+        self.shoutType = shoutType
+        
+        let location = includeCurrentUserLocation ? Account.sharedInstance.user?.location : nil
+        if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
             self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
         } else {
-            self.country = country
+            self.country = country ?? location?.country
         }
-        self.state = state
-        self.city = city
-        self.shoutType = shoutType
+        self.state = state ?? location?.state
+        self.city = city ?? location?.city
     }
     
     var params: [String : AnyObject] {

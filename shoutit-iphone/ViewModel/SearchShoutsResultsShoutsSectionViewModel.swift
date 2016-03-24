@@ -80,15 +80,39 @@ extension SearchShoutsResultsViewModel {
             let params: FilteredShoutsParams
             switch context {
             case .General:
-                params = FilteredShoutsParams(searchPhrase: phrase, page: page, pageSize: pageSize)
+                params = FilteredShoutsParams(searchPhrase: phrase,
+                                              page: page,
+                                              pageSize: pageSize,
+                                              useLocaleBasedCountryCodeWhenNil: true,
+                                              includeCurrentUserLocation: true)
             case .DiscoverShouts(let item):
-                params = FilteredShoutsParams(searchPhrase: phrase, discoverId: item.id, page: page, pageSize: pageSize)
+                params = FilteredShoutsParams(searchPhrase: phrase,
+                                              discoverId: item.id,
+                                              page: page,
+                                              pageSize: pageSize,
+                                              useLocaleBasedCountryCodeWhenNil: true,
+                                              includeCurrentUserLocation: true)
             case .ProfileShouts(let profile):
-                params = FilteredShoutsParams(searchPhrase: phrase, username: profile.username, page: page, pageSize: pageSize)
+                params = FilteredShoutsParams(searchPhrase: phrase,
+                                              username: profile.username,
+                                              page: page,
+                                              pageSize: pageSize,
+                                              useLocaleBasedCountryCodeWhenNil: true,
+                                              includeCurrentUserLocation: true)
             case .TagShouts(let tag):
-                params = FilteredShoutsParams(searchPhrase: phrase, tag: tag.name, page: page, pageSize: pageSize)
+                params = FilteredShoutsParams(searchPhrase: phrase,
+                                              tag: tag.name,
+                                              page: page,
+                                              pageSize: pageSize,
+                                              useLocaleBasedCountryCodeWhenNil: true,
+                                              includeCurrentUserLocation: true)
             case .CategoryShouts(let category):
-                params = FilteredShoutsParams(searchPhrase: phrase, tag: category.slug, page: page, pageSize: pageSize)
+                params = FilteredShoutsParams(searchPhrase: phrase,
+                                              tag: category.slug,
+                                              page: page,
+                                              pageSize: pageSize,
+                                              useLocaleBasedCountryCodeWhenNil: true,
+                                              includeCurrentUserLocation: true)
             }
             
             return APIShoutsService.searchShoutsWithParams(params)
