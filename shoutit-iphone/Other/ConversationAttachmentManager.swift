@@ -8,10 +8,17 @@
 
 import Foundation
 import RxSwift
+import Nemo
 
-final class ConversationAttachmentManager {
+final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     let attachmentSelected : PublishSubject<MessageAttachment> = PublishSubject()
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
+    
+    let disposeBag = DisposeBag()
+    
+    var tasks : [MediaUploadingTask: Disposable] = [:]
+    
+    var uploader = MediaUploader(bucket: .ShoutImage)
     
     func requestAttachmentWithType(type: MessageAttachmentType) {
         switch type {
@@ -51,11 +58,60 @@ final class ConversationAttachmentManager {
     }
     
     private func requestImageAttachment() {
+        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100), targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, videoLength: 10.0, maximumItems: 1, maximumVideos: 0, allowsVideos: false)
+        
+        let mediaPicker = MediaPickerController(delegate: self, settings: settings)
+        
+        mediaPicker.presentingSubject.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (controller) in
+            guard let controller = controller else {
+                return
+            }
+            
+            self?.presentingSubject.onNext(controller)
+            
+        }.addDisposableTo(disposeBag)
+        
+        mediaPicker.showMediaPickerController()
         
     }
     
-    private func requestVideoAttachment() {
+    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+        let task = uploader.uploadAttachment(attachment)
         
+        let subscription = task.status.asDriver().driveNext { [weak self] (status) in
+            if status == .Uploaded {
+                self?.taskCompleted(task)
+            }
+        }
+        
+        tasks[task] = subscription
+    }
+    
+    func taskCompleted(task: MediaUploadingTask) {
+        let subscription = tasks[task]
+        
+        subscription?.dispose()
+        
+        let attachment = task.attachment.asMessageAttachment()
+        
+        self.attachmentSelected.onNext(attachment)
+    }
+    
+    private func requestVideoAttachment() {
+        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100), targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, videoLength: 10.0, maximumItems: 1, maximumVideos: 1, allowsVideos: true)
+        
+        let mediaPicker = MediaPickerController(delegate: self, settings: settings)
+        
+        mediaPicker.presentingSubject.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (controller) in
+            guard let controller = controller else {
+                return
+            }
+            
+            self?.presentingSubject.onNext(controller)
+            
+            }.addDisposableTo(disposeBag)
+        
+        mediaPicker.showMediaPickerController()
     }
     
     private func requestShoutAttachment() {

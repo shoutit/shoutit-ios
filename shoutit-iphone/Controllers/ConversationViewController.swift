@@ -52,7 +52,6 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         }
         
-//        self.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self.tableView.frame.width ?? 220), height: 60.0)
     }
     
     func setNavigationTitle() {
@@ -210,7 +209,6 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         loadMoreBag = DisposeBag()
         
         viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
-//            self?.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self?.tableView.frame.width ?? 220), height: footerHeight)
             self?.loadMoreView?.setState(state)
             self?.tableView.reloadData()
         }).addDisposableTo(loadMoreBag)
