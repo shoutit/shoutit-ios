@@ -28,6 +28,7 @@ final class SearchViewModel {
     }
     
     // consts
+    let minimumNumberOfCharactersForAutocompletion = 2
     lazy private var archivePath: String = {
         let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("recent_searches.data")
@@ -65,15 +66,38 @@ final class SearchViewModel {
         requestDisposeBag = DisposeBag()
         
         switch (context, searchState.value, segmentedControlState.value) {
-        case (.General, .Inactive, _):
-            fetchCategories()
+        case (_, _, .Shown(option: .Users)):
+            setSectionViewModelWithUsersPlaceholder()
+        case (_, .Typing(let phrase), .Shown(option: .Shouts)):
+            loadSuggestionsForPhrase(phrase)
+        case (_, .Typing(let phrase), .Hidden):
+            loadSuggestionsForPhrase(phrase)
+        case (_, .Active, .Hidden):
+            setSectionViewModelWithEmptyScreen()
+        // Active
         case (.General, .Active, .Shown(option: .Shouts)):
             setSectionViewModelWithRecentSearches()
-        case (.General, _, .Shown(option: .Users)):
-            setSectionViewModelWithUsersPlaceholder()
-        case (.General, .Typing(let phrase), .Shown(option: .Shouts)):
-            loadSuggestionsForPhrase(phrase)
+        case (.ProfileShouts, .Active, .Shown(option: .Shouts)):
+            setSectionViewModelWithEmptyScreen()
+        case (.TagShouts, .Active, .Shown(option: .Shouts)):
+            setSectionViewModelWithEmptyScreen()
+        case (.CategoryShouts, .Active, .Shown(option: .Shouts)):
+            setSectionViewModelWithEmptyScreen()
+        case (.DiscoverShouts, .Active, .Shown(option: .Shouts)):
+            setSectionViewModelWithEmptyScreen()
+        // Inactive
+        case (.General, .Inactive, _):
+            fetchCategories()
+        case (.ProfileShouts, .Inactive, _):
+            setSectionViewModelWithEmptyScreen()
+        case (.TagShouts, .Inactive, _):
+            setSectionViewModelWithEmptyScreen()
+        case (.CategoryShouts, .Inactive, _):
+            setSectionViewModelWithEmptyScreen()
+        case (.DiscoverShouts, .Inactive, _):
+            setSectionViewModelWithEmptyScreen()
         default:
+            assertionFailure()
             break
         }
     }
@@ -166,7 +190,24 @@ final class SearchViewModel {
     }
     
     private func loadSuggestionsForPhrase(phrase: String) {
-        
+        let params: AutocompletionParams
+        if case SearchContext.CategoryShouts(let category) = context {
+            params = AutocompletionParams(phrase: phrase, categoryName: category.name, country: Account.sharedInstance.user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
+        } else {
+            params = AutocompletionParams(phrase: phrase, categoryName: nil, country: Account.sharedInstance.user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
+        }
+        APIShoutsService.getAutocompletionWithParams(params)
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let autocompletions):
+                    self?.setSectionsViewModelWithAutocompletion(autocompletions)
+                case .Error(let error):
+                    self?.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: error.sh_message, image: nil)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(requestDisposeBag)
     }
     
     // MARK: - Create cell view models
@@ -183,14 +224,28 @@ final class SearchViewModel {
         }
     }
     
+    private func setSectionViewModelWithEmptyScreen() {
+        self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: nil, image: nil)
+    }
+    
     private func setSectionViewModelWithRecentSearches() {
         
         let searches = self.recentSearches
         if searches.count == 0 {
-            self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: nil, image: nil)
+            setSectionViewModelWithEmptyScreen()
         } else {
             let header = SearchSectionViewModel.HeaderType.TitleAlignedLeftWithButton(title: NSLocalizedString("Recent searches", comment: "Recent searches header"), buttonTitle: NSLocalizedString("CLEAR", comment: "recent searches clear button title"))
             let cells = searches.map{SearchSuggestionCellViewModel.RecentSearch(phrase: $0)}
+            self.sectionViewModel.value = SearchSectionViewModel.Suggestions(cells: cells, header: header)
+        }
+    }
+    
+    private func setSectionsViewModelWithAutocompletion(autocompletionTerms: [AutocompletionTerm]) {
+        if autocompletionTerms.count == 0 {
+            setSectionViewModelWithEmptyScreen()
+        } else {
+            let header = SearchSectionViewModel.HeaderType.None
+            let cells = autocompletionTerms.map{SearchSuggestionCellViewModel.APISuggestion(phrase: $0.term)}
             self.sectionViewModel.value = SearchSectionViewModel.Suggestions(cells: cells, header: header)
         }
     }

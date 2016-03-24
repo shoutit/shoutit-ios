@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
     
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
         let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
-        view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
+        view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: max(self.tableView.bounds.height * 0.8, 300))
         return view
     }()
     
@@ -123,9 +123,11 @@ class SearchViewController: UIViewController {
     private func setupAppearance() {
         
         // search bar
-        let textField = searchBar.searchForTextField()
+        let textField: UITextField? = searchBar.searchForView()
         textField?.backgroundColor = UIColor(shoutitColor: .SearchBarTextFieldGray)
         searchBar.placeholder = viewModel.searchBarPlaceholder()
+        let button: UIButton? = searchBar.searchForView()
+        button?.enabled = true
         
         // table view
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
@@ -246,7 +248,8 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch viewModel.sectionViewModel.value {
         case .LoadingPlaceholder, .MessagePlaceholder:
-            return nil
+            let view = UIView(frame: CGRect.zero)
+            return view
         case .Categories(_, let header):
             return sectionPlaceholderWithType(header)
         case .Suggestions(_, let header):
@@ -278,7 +281,7 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        if let text = searchBar.text where text.utf16.count > 0 {
+        if let text = searchBar.text where text.utf16.count >= viewModel.minimumNumberOfCharactersForAutocompletion {
             self.viewModel.searchState.value = .Typing(phrase: text)
         } else {
             self.viewModel.searchState.value = .Active
@@ -286,7 +289,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        self.viewModel.searchState.value = searchText.utf16.count > 0 ? .Typing(phrase: searchText) : .Active
+        self.viewModel.searchState.value = searchText.utf16.count >= viewModel.minimumNumberOfCharactersForAutocompletion ? .Typing(phrase: searchText) : .Active
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -299,7 +302,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        self.viewModel.searchState.value = .Inactive
+        //self.viewModel.searchState.value = .Inactive
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {

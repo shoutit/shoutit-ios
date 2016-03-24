@@ -58,8 +58,7 @@ class HomeShoutsViewModel: AnyObject {
         if let user = user where user.isGuest == false {
             return APIUsersService.homeShouts()
         } else {
-            let countryCode = user?.location.country ?? NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
-            let params = FilteredShoutsParams(page: 1, pageSize: 20, country: countryCode)
+            let params = FilteredShoutsParams(page: 1, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
             return APIShoutsService.listShoutsWithParams(params)
         }
     }
@@ -70,8 +69,7 @@ class HomeShoutsViewModel: AnyObject {
         if let user = user where user.isGuest == false {
             return APIUsersService.homeShouts(20, page: page)
         } else {
-            let countryCode = user?.location.country ?? NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
-            let params = FilteredShoutsParams(page: page, pageSize: 20, country: countryCode)
+            let params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
             return APIShoutsService.listShoutsWithParams(params)
         }
         

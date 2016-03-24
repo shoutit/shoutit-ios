@@ -10,14 +10,14 @@ import UIKit
 
 extension UIView {
     
-    func searchForTextField() -> UITextField? {
-        if let view = self as? UITextField {
+    func searchForView<T>() -> T? {
+        if let view = self as? T {
             return view
         }
         
         for subview in self.subviews {
-            if let textField = subview.searchForTextField() {
-                return textField
+            if let view: T = subview.searchForView() {
+                return view
             }
         }
         
