@@ -202,4 +202,7 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationAttachmentViewController") as! ConversationAttachmentViewController
     }
     
+    static func conversationLocationController() -> ConversationLocationController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationLocationController") as! ConversationLocationController
+    }
 }

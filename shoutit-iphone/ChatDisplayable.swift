@@ -11,6 +11,7 @@ import Foundation
 protocol ChatDisplayable {
     func showConversation(conversation: Conversation) -> Void
     func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
+    func showLocation(coordinate: CLLocationCoordinate2D) -> Void
 }
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
@@ -32,5 +33,13 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         controller.modalPresentationStyle = .Custom
         
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func showLocation(coordinate: CLLocationCoordinate2D) -> Void {
+        let controller = Wireframe.conversationLocationController()
+        
+        controller.coordinates = coordinate
+        
+        self.navigationController.showViewController(controller, sender: nil)
     }
 }

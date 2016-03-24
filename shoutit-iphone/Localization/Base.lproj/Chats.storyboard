@@ -7,6 +7,39 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--Conversation Location Controller-->
+        <scene sceneID="cT9-rw-idO">
+            <objects>
+                <viewController storyboardIdentifier="ConversationLocationController" id="iO8-g1-TkD" customClass="ConversationLocationController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WnU-aS-PoD"/>
+                        <viewControllerLayoutGuide type="bottom" id="g6W-JZ-SHc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tmc-G2-tim">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xMZ-nO-bsS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g6W-JZ-SHc" firstAttribute="top" secondItem="xMZ-nO-bsS" secondAttribute="bottom" id="428-xO-zcm"/>
+                            <constraint firstItem="xMZ-nO-bsS" firstAttribute="leading" secondItem="tmc-G2-tim" secondAttribute="leading" id="4nX-n7-eag"/>
+                            <constraint firstItem="xMZ-nO-bsS" firstAttribute="top" secondItem="tmc-G2-tim" secondAttribute="top" id="oSX-uC-xhU"/>
+                            <constraint firstAttribute="trailing" secondItem="xMZ-nO-bsS" secondAttribute="trailing" id="vT9-vZ-dPB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="xMZ-nO-bsS" id="vz6-RX-UsO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zrP-2h-99u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Location" id="1Cm-xk-7AD"/>
+            </objects>
+            <point key="canvasLocation" x="-941" y="113"/>
+        </scene>
         <!--Conversations-->
         <scene sceneID="XQ4-rL-JLC">
             <objects>

@@ -14,6 +14,8 @@ class ConversationLocationCell: ConversationCell {
     @IBOutlet weak var locationSnapshot: UIImageView!
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var showLabel: UILabel?
     
     override func bindWithMessage(message: Message, previousMessage: Message?) {
         if let imgview = avatarImageView {
@@ -25,6 +27,10 @@ class ConversationLocationCell: ConversationCell {
         if message.isSameSenderAs(previousMessage) {
             hideImageView()
         }
+        
+    
+        self.activityIndicator?.startAnimating()
+        self.showLabel?.hidden = true
         
         guard let latitude = message.attachment()?.location?.latitude, longitude = message.attachment()?.location?.longitude else {
             return
@@ -61,7 +67,8 @@ class ConversationLocationCell: ConversationCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        self.activityIndicator?.hidden = false
+        self.showLabel?.hidden = true
         unHideImageView()
     }
     
@@ -76,6 +83,9 @@ class ConversationLocationCell: ConversationCell {
         
         snapshooter.startWithCompletionHandler { [weak self] (snapshot, error) in
             self?.locationSnapshot.image = snapshot?.image
+            self?.activityIndicator?.stopAnimating()
+            self?.activityIndicator?.hidden = true
+            self?.showLabel?.hidden = false
         }
         
     }

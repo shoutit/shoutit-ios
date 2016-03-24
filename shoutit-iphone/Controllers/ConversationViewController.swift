@@ -51,6 +51,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if let _ = conversation.shout {
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         }
+        
+//        self.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self.tableView.frame.width ?? 220), height: 60.0)
     }
     
     func setNavigationTitle() {
@@ -124,7 +126,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             }
             self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
             
-            }.addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
     }
     
     func registerSupplementaryViews() {
@@ -208,7 +210,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         loadMoreBag = DisposeBag()
         
         viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
-            self?.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self?.tableView.frame.width ?? 220), height: footerHeight)
+//            self?.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self?.tableView.frame.width ?? 220), height: footerHeight)
             self?.loadMoreView?.setState(state)
             self?.tableView.reloadData()
         }).addDisposableTo(loadMoreBag)
@@ -230,6 +232,22 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.numberOfRowsInSection(section)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let msg = self.viewModel.messageAtIndexPath(indexPath)
+        
+        guard let attachment = msg.attachment() else {
+            return
+        }
+        
+        if attachment.type() == .Location {
+            if let coordinates = msg.attachment()?.location?.coordinate() {
+                self.flowDelegate?.showLocation(coordinates)
+            }
+            return
+        }
+        
     }
     
     override func didPressRightButton(sender: AnyObject!) {

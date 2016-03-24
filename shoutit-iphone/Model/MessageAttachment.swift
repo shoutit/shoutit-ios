@@ -86,6 +86,9 @@ struct MessageLocation: Decodable, Encodable {
                             "latitude": latitude.encode()])
     }
     
+    func coordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(latitude, longitude)
+    }
 }
 
 struct MessageImage:  Decodable, Encodable {
