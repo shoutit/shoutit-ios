@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import MWPhotoBrowser
 
 protocol ChatDisplayable {
     func showConversation(conversation: Conversation) -> Void
     func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
+    func showImagePreview(imageURL: NSURL) -> Void
 }
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
@@ -41,5 +43,17 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         controller.coordinates = coordinate
         
         self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showImagePreview(imageURL: NSURL) -> Void {
+        let controller = MWPhotoBrowser(photos: [MWPhoto(URL: imageURL)])
+        
+        self.navigationController.showViewController(controller, sender: nil)
+    }
+}
+
+extension MWPhotoBrowser {
+    override func prefersTabbarHidden() -> Bool {
+        return true
     }
 }

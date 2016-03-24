@@ -130,11 +130,18 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func registerSupplementaryViews() {
         tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
+        
         tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
         tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
         
         tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: conversationIncomingLocationCellIdentifier)
         tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingLocationCellIdentifier)
+        
+        
+        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
+        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
+        
+        
     }
     
     func customizeTable() {
@@ -242,6 +249,13 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if attachment.type() == .Location {
             if let coordinates = msg.attachment()?.location?.coordinate() {
                 self.flowDelegate?.showLocation(coordinates)
+            }
+            return
+        }
+        
+        if attachment.type() == .Image {
+            if let imagePath = msg.attachment()?.imagePath(), imageUrl = NSURL(string: imagePath) {
+                self.flowDelegate?.showImagePreview(imageUrl)
             }
             return
         }

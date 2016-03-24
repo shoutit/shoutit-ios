@@ -18,9 +18,12 @@ let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
 let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
 
 // location cells
-
 let conversationIncomingLocationCellIdentifier = "conversationIncomingLocationCell"
 let conversationOutGoingLocationCellIdentifier = "conversationOutGoingLocationCell"
+
+// picture cells
+let conversationOutGoingPictureCell = "conversationOutGoingPictureCell"
+let conversationIncomingPictureCell = "conversationIncomingPictureCell"
 
 enum ConversationDataState : Int {
     case NotLoaded
@@ -199,6 +202,10 @@ class ConversationViewModel {
         
         if attachment.type() == .Location {
             return msg.isOutgoingCell() ? conversationOutGoingLocationCellIdentifier: conversationIncomingLocationCellIdentifier
+        }
+        
+        if attachment.type() == .Image {
+            return msg.isOutgoingCell() ? conversationOutGoingPictureCell : conversationIncomingPictureCell
         }
         
         return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier

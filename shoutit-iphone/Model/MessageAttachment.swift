@@ -71,6 +71,12 @@ struct MessageAttachment: Decodable {
     }
 }
 
+extension MessageAttachment {
+    func imagePath() -> String? {
+        return self.images?.first
+    }
+}
+
 struct MessageLocation: Decodable, Encodable {
     let longitude: Double
     let latitude: Double
@@ -89,18 +95,4 @@ struct MessageLocation: Decodable, Encodable {
     func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
-}
-
-struct MessageImage:  Decodable, Encodable {
-    let imagePath: String
-    
-    static func decode(j: JSON) -> Decoded<MessageImage> {
-        return curry(MessageImage.init)
-            <^> j <| "image_url"
-    }
-    
-    func encode() -> JSON {
-        return JSON.Object(["image_url": imagePath.encode()])
-    }
-    
 }
