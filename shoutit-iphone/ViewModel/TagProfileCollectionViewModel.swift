@@ -130,7 +130,6 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var locationString: String? {return nil}
     var locationFlag: UIImage? {return nil}
     var conversation: Conversation? {return nil}
-    var basicProfile: Profile? { return nil }
     // MARK: - Helpers
     
     private func fetchTag() -> Observable<Tag>? {

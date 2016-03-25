@@ -36,6 +36,11 @@ class APIShoutsService {
                                                    params: NopParams())
     }
     
+    static func getAutocompletionWithParams(params: AutocompletionParams) -> Observable<[AutocompletionTerm]> {
+        let url = shoutsURL + "/autocomplete"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
+    }
+    
     static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
         let url = shoutsURL + "/\(params.shout.id)/related"
         return APIGenericService.requestWithMethod(.GET, url: url,

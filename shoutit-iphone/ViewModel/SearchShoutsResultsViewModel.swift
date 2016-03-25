@@ -23,4 +23,9 @@ final class SearchShoutsResultsViewModel {
         self.shoutsSection = ShoutsSection(parent: self)
         self.categoriesSection = CategoriesSection(parent: self)
     }
+    
+    func reloadContent() {
+        shoutsSection.reloadContent()
+        categoriesSection.reloadContent()
+    }
 }

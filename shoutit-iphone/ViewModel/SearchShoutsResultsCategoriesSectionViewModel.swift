@@ -20,5 +20,9 @@ extension SearchShoutsResultsViewModel {
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent
         }
+        
+        func reloadContent() {
+            
+        }
     }
 }

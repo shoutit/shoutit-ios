@@ -24,7 +24,7 @@ enum FontWeight {
         case Medium:
             return "HelveticaNeue-Medium"
         case Semibold:
-            return "HelveticaNeue-Semibold"
+            return "HelveticaNeue-Medium"
         case Bold:
             return "HelveticaNeue-Bold"
         }

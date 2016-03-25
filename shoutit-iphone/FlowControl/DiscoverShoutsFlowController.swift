@@ -28,6 +28,8 @@ class DiscoverShoutsFlowController: FlowController {
     }
 }
 
+extension DiscoverShoutsFlowController: SearchUserResultsTableViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: SearchViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ShoutDetailTableViewControllerFlowDelegate {}
