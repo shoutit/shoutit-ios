@@ -330,6 +330,7 @@
 		AEADF33C1CA5518A0051DABA /* OutgoingVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */; };
 		AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */; };
 		AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */; };
+		AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -1033,6 +1034,7 @@
 		AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoCell.xib; sourceTree = "<group>"; };
 		AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationVideoCell.swift; path = View/ConversationVideoCell.swift; sourceTree = "<group>"; };
 		AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectShoutController.swift; path = Controllers/ConversationSelectShoutController.swift; sourceTree = "<group>"; };
+		AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectShoutTableViewCell.swift; path = View/ConversationSelectShoutTableViewCell.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2716,6 +2718,7 @@
 			isa = PBXGroup;
 			children = (
 				AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */,
+				AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */,
 			);
 			name = ConversationSelectShout;
 			sourceTree = "<group>";
@@ -4071,6 +4074,7 @@
 				AC27E7071BFA171500AB6BAA /* SHShoutMeta.swift in Sources */,
 				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				ACC36C321C09C3F80082E0C2 /* SHProfileCollectionViewModel.swift in Sources */,
+				AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
 				2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */,
 				B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */,

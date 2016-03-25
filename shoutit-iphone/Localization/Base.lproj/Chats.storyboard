@@ -412,6 +412,116 @@
             </objects>
             <point key="canvasLocation" x="775" y="135"/>
         </scene>
+        <!--Conversation Select Shout Controller-->
+        <scene sceneID="7zr-MS-nhM">
+            <objects>
+                <tableViewController storyboardIdentifier="ConversationSelectShoutController" id="9MV-yR-6B2" customClass="ConversationSelectShoutController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="juf-EO-iLl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationSelectShoutCellIdentifier" rowHeight="70" id="Nyo-Rn-PCv" customClass="ConversationSelectShoutTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nyo-Rn-PCv" id="k7n-LB-9q3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqz-XK-Qpa" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="275" y="7" width="39.5" height="20.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mye-V5-ukj">
+                                            <rect key="frame" x="10" y="10" width="48" height="48"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="81n-sa-rtg"/>
+                                                <constraint firstAttribute="height" constant="100" id="As9-b2-s0R"/>
+                                                <constraint firstAttribute="width" constant="48" id="MVh-WI-tCZ"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="As9-b2-s0R"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcT-Tt-k2b">
+                                            <rect key="frame" x="68" y="10" width="171.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDG-Al-JRl">
+                                            <rect key="frame" x="68" y="32" width="64" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6b-2a-MEJ">
+                                            <rect key="frame" x="280" y="10" width="29.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyo-AD-bj5">
+                                            <rect key="frame" x="249" y="94" width="60.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QDG-Al-JRl" secondAttribute="trailing" constant="10" id="1aN-6w-EkQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Uyo-AD-bj5" secondAttribute="bottom" constant="10" id="80f-oo-piX"/>
+                                        <constraint firstAttribute="trailing" secondItem="Uyo-AD-bj5" secondAttribute="trailing" constant="10" id="Awo-ah-TyW"/>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="centerX" secondItem="c6b-2a-MEJ" secondAttribute="centerX" id="Cvf-jV-0Ua"/>
+                                        <constraint firstItem="pcT-Tt-k2b" firstAttribute="top" secondItem="mye-V5-ukj" secondAttribute="top" id="DZT-lN-bED"/>
+                                        <constraint firstItem="mye-V5-ukj" firstAttribute="top" secondItem="k7n-LB-9q3" secondAttribute="top" constant="10" id="IfP-y3-UGK"/>
+                                        <constraint firstItem="Uyo-AD-bj5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QDG-Al-JRl" secondAttribute="trailing" constant="10" id="Isa-XD-kS8"/>
+                                        <constraint firstItem="QDG-Al-JRl" firstAttribute="top" secondItem="pcT-Tt-k2b" secondAttribute="bottom" constant="5" id="K55-T2-mbp"/>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="height" secondItem="c6b-2a-MEJ" secondAttribute="height" constant="6" id="MfK-6c-DSu"/>
+                                        <constraint firstItem="pcT-Tt-k2b" firstAttribute="leading" secondItem="mye-V5-ukj" secondAttribute="trailing" constant="10" id="V7f-Bb-UXg"/>
+                                        <constraint firstItem="Uyo-AD-bj5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pcT-Tt-k2b" secondAttribute="trailing" constant="10" id="aGH-nj-o5M"/>
+                                        <constraint firstItem="c6b-2a-MEJ" firstAttribute="top" secondItem="k7n-LB-9q3" secondAttribute="top" constant="10" id="aHN-Pe-Pm6"/>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="centerY" secondItem="c6b-2a-MEJ" secondAttribute="centerY" id="gba-UP-ed1"/>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pcT-Tt-k2b" secondAttribute="trailing" constant="10" id="hPf-Lw-5QT"/>
+                                        <constraint firstAttribute="trailing" secondItem="c6b-2a-MEJ" secondAttribute="trailing" constant="10" id="itt-Fg-BbI"/>
+                                        <constraint firstItem="mye-V5-ukj" firstAttribute="leading" secondItem="k7n-LB-9q3" secondAttribute="leading" constant="10" id="l7q-BB-JU1"/>
+                                        <constraint firstItem="Dqz-XK-Qpa" firstAttribute="width" secondItem="c6b-2a-MEJ" secondAttribute="width" constant="10" id="mrO-oX-dNT"/>
+                                        <constraint firstItem="QDG-Al-JRl" firstAttribute="leading" secondItem="pcT-Tt-k2b" secondAttribute="leading" id="sHU-fT-pEI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="priceLabel" destination="Uyo-AD-bj5" id="eHx-2N-beL"/>
+                                    <outlet property="shoutImageView" destination="mye-V5-ukj" id="X9u-yC-Cc3"/>
+                                    <outlet property="shoutTypeLabel" destination="c6b-2a-MEJ" id="Yhc-ez-0bL"/>
+                                    <outlet property="subtitleLabel" destination="QDG-Al-JRl" id="oDS-aM-zrY"/>
+                                    <outlet property="titleLabel" destination="pcT-Tt-k2b" id="cya-gv-U3M"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9MV-yR-6B2" id="q3a-v3-5bj"/>
+                            <outlet property="delegate" destination="9MV-yR-6B2" id="gVx-OB-jjE"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LID-JA-wTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1147" y="52"/>
+        </scene>
         <!--Shout Picker Table View Controller-->
         <scene sceneID="NwO-Uv-HMn">
             <objects>

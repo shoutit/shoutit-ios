@@ -129,6 +129,12 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             guard let controller = controller else {
                 return
             }
+            
+            if let shoutSelection = controller as? ConversationSelectShoutController {
+                self?.navigationController?.showViewController(shoutSelection, sender: nil)
+                return
+            }
+            
             self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
             
         }.addDisposableTo(disposeBag)

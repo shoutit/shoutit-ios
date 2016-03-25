@@ -89,14 +89,12 @@ struct Shout: Decodable, Hashable, Equatable {
 extension Shout: Encodable {
     func encode() -> JSON {
         return JSON.Object(["id":self.id.encode(),
-            "id":self.id.encode(),
             "api_url":self.apiPath.encode(),
             "web_url":self.webPath.encode(),
             "type":self.typeString.encode(),
             "title":self.title.encode(),
             "text":self.text.encode(),
-            "user":self.user.encode(),
-            "category":self.category.encode()
+            "user":self.user.encode()
             ])
     }
 }

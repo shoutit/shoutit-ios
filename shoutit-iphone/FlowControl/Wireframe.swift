@@ -190,6 +190,10 @@ struct Wireframe {
         return controller
     }
     
+    static func selectShoutAttachmentController() -> ConversationSelectShoutController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationSelectShoutController") as! ConversationSelectShoutController
+    }
+    
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }

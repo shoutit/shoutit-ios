@@ -115,6 +115,15 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     }
     
     private func requestShoutAttachment() {
+
+        let controller = Wireframe.selectShoutAttachmentController()
+        
+        controller.shoutPublishSubject.subscribeNext { [weak self] (shout) in
+            let attachment = MessageAttachment(shout: shout, location: nil, videos: nil, images: nil)
+            self?.attachmentSelected.onNext(attachment)
+        }.addDisposableTo(disposeBag)
+        
+        self.presentingSubject.onNext(controller)
         
     }
     
