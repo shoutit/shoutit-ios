@@ -58,7 +58,7 @@ class APIMiscService {
                         if let decoded: Decoded<[Currency]> = decode(json), categories = decoded.value {
                             completionHandler(.Success(categories))
                         } else {
-                            throw ParseError.Currency
+                            throw InternalParseError.Currency
                         }
                     } catch let error as NSError {
                         completionHandler(.Failure(error))

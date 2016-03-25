@@ -25,17 +25,16 @@ class APIGenericService {
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-                .validate(statusCode: 200..<300)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
             
-            request.responseData{ (response) in
-                switch response.result {
-                case .Success:
+            request.responseJSON{ (response) in
+                do {
+                    _ = try validateResponseAndExtractJson(response)
                     observer.onNext()
                     observer.onCompleted()
-                case .Failure(let error):
+                } catch let error {
                     observer.onError(error)
                 }
             }
@@ -56,42 +55,18 @@ class APIGenericService {
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-                .validate(statusCode: 200..<300)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
             
             request.responseJSON{ (response) in
-                switch response.result {
-                case .Success(let originalJson):
-                    
-                    let json: AnyObject
-                    if let paths = responseJsonPath {
-                        var nestedJson: AnyObject? = originalJson
-                        for path in paths {
-                            if let nested = nestedJson as? [String : AnyObject] {
-                                nestedJson = nested[path]
-                            }
-                        }
-                        guard let j = nestedJson else {
-                            assert(false, ParseError.InvalidJson.message)
-                            observer.onError(ParseError.InvalidJson)
-                            return
-                        }
-                        json = j
-                    } else {
-                        json = originalJson
-                    }
-                    let decoded: Decoded<T> = decode(json)
-                    switch decoded {
-                    case .Success(let object):
-                        observer.onNext(object)
-                        observer.onCompleted()
-                    case .Failure(let decodeError):
-                        debugPrint(json)
-                        observer.onError(decodeError)
-                    }
-                case .Failure(let error):
+                do {
+                    let originalJson = try validateResponseAndExtractJson(response)
+                    let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
+                    let object: T = try parseJson(json)
+                    observer.onNext(object)
+                    observer.onCompleted()
+                } catch let error {
                     observer.onError(error)
                 }
             }
@@ -113,48 +88,93 @@ class APIGenericService {
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-                .validate(statusCode: 200..<300)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
             
             request.responseJSON{ (response) in
-                switch response.result {
-                case .Success(let originalJson):
-                    
-                    let json: AnyObject
-                    if let paths = responseJsonPath {
-                        var nestedJson: AnyObject? = originalJson
-                        for path in paths {
-                            if let nested = nestedJson as? [String : AnyObject] {
-                                nestedJson = nested[path]
-                            }
-                        }
-                        guard let j = nestedJson else {
-                            assertionFailure()
-                            observer.onError(ParseError.InvalidJson)
-                            return
-                        }
-                        json = j
-                    } else {
-                        json = originalJson
-                    }
-                    
-                    let decoded: Decoded<[T]> = decode(json)
-                    switch decoded {
-                    case .Success(let objects):
-                        observer.onNext(objects)
-                        observer.onCompleted()
-                    case .Failure(let decodeError):
-                        assert(false, decodeError.description)
-                        observer.onError(decodeError)
-                    }
-                case .Failure(let error):
+                do {
+                    let originalJson = try validateResponseAndExtractJson(response)
+                    let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
+                    let object: [T] = try parseJsonArray(json)
+                    observer.onNext(object)
+                    observer.onCompleted()
+                } catch let error {
                     observer.onError(error)
                 }
             }
             
             return cancel
+        }
+    }
+    
+    // MARK: - Private
+    
+    private static func validateResponseAndExtractJson(response: Response<AnyObject, NSError>) throws -> AnyObject {
+        
+        switch response.result {
+        case .Success(let originalJson):
+            if let httpResponse = response.response where (200..<300) ~= httpResponse.statusCode {
+                return originalJson
+            }
+            
+            guard let json = originalJson as? [String : AnyObject], let errorJson = json["error"] else {
+                assertionFailure()
+                throw InternalParseError.InvalidJson
+            }
+            
+            let decoded: Decoded<APIError> = decode(errorJson)
+            switch decoded {
+            case .Success(let error):
+                throw error
+            case .Failure(let decodeError):
+                assertionFailure(decodeError.description)
+                throw decodeError
+            }
+            
+        case .Failure(let error):
+            throw error
+        }
+    }
+    
+    private static func extractJsonFromJson(json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
+        guard let components = components else {
+            return json
+        }
+        
+        var nestedJson: AnyObject? = json
+        for path in components {
+            if let nested = nestedJson as? [String : AnyObject] {
+                nestedJson = nested[path]
+            }
+        }
+        guard let j = nestedJson else {
+            assertionFailure(InternalParseError.InvalidJson.userMessage)
+            throw InternalParseError.InvalidJson
+        }
+        
+        return j
+    }
+    
+    private static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> T {
+        let decoded: Decoded<T> = decode(json)
+        switch decoded {
+        case .Success(let object):
+            return object
+        case .Failure(let decodeError):
+            assertionFailure(decodeError.description)
+            throw decodeError
+        }
+    }
+    
+    private static func parseJsonArray<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> [T] {
+        let decoded: Decoded<[T]> = decode(json)
+        switch decoded {
+        case .Success(let object):
+            return object
+        case .Failure(let decodeError):
+            assertionFailure(decodeError.description)
+            throw decodeError
         }
     }
 }

@@ -31,7 +31,7 @@ class APILocationService {
                 do {
                     let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                     guard let userJson = json as? [String : AnyObject] else {
-                        throw ParseError.User
+                        throw InternalParseError.User
                     }
                     
                     let docodedLogged: Decoded<LoggedUser> = Argo.decode(userJson)
@@ -44,7 +44,7 @@ class APILocationService {
                     Account.sharedInstance.loggedUser = loggedUser
                     
                     if guestUser == nil && loggedUser == nil {
-                        throw ParseError.User
+                        throw InternalParseError.User
                     } else {
                         completionHandler(.Success(guestUser ?? loggedUser!))
                     }

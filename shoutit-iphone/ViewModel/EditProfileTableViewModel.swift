@@ -110,16 +110,16 @@ final class EditProfileTableViewModel {
     
     private func contentReady() throws {
         if let task = avatarUploadTask where task.status.value == .Uploading {
-            throw LightError(message: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
         if let task = coverUploadTask where task.status.value == .Uploading {
-            throw LightError(message: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
         
         for cell in cells {
             if case .RichText(let bio, _, .Bio) = cell {
                 if bio.characters.count > 50 {
-                    throw LightError(message: NSLocalizedString("Bio has too many characters", comment: ""))
+                    throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
                 }
             }
         }

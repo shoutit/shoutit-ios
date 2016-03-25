@@ -16,7 +16,7 @@ class DiscoverGeneralViewModel: DiscoverViewModel {
         Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
             return user?.location.country
         }.flatMap { (location) in
-                return APIDiscoverService.discover(forCountry: location)
+            return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
         }.map({ (items) -> DiscoverItem? in
                 if (items.count > 0) {
                     return items[0]

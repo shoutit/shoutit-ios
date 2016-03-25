@@ -53,7 +53,7 @@ class APIAuthService {
                             if let user = user, let auth = auth {
                                 completionHandler(.Success(auth, user))
                             } else {
-                                throw ParseError.User
+                                throw InternalParseError.User
                             }
                         }
 

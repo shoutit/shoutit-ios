@@ -17,41 +17,9 @@ typealias DiscoverResult = (mainItem:DiscoverItem?, retrivedItems:[DiscoverItem]
 class APIDiscoverService {
     private static let discoverURL = APIManager.baseURL + "/discover"
     
-    static func discover(forCountry country: String?, page_size: Int = 5, page: Int = 1) -> Observable<[DiscoverItem]> {
-        return Observable.create({ (observer) -> Disposable in
-            
-            let params: [String: AnyObject] = ["country": (country ?? "") as NSString, "page": page as NSNumber, "page_size": page_size as NSNumber]
-            
-            APIManager.manager().request(.GET, discoverURL, parameters:params, encoding: .URL, headers: nil).responseData { (response) in
-                switch response.result {
-                case .Success(let data):
-                    do {
-                        
-                        let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                        
-                        if let j = json, jr = j.objectForKey("results") {
-                            if let results : Decoded<[DiscoverItem]> = decode(jr) {
-                                if let value = results.value {
-                                    observer.on(.Next(value))
-                                    observer.on(.Completed)
-                                }
-                                if let err = results.error {
-                                    print(err)
-                                }
-                            }
-                        }
-                        
-                    } catch let error as NSError {
-                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                    }
-                case .Failure(let error):
-                    observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                }
-            }
-            
-            return AnonymousDisposable {
-            }
-        })
+    class func discoverItemsWithParams(params: FilteredDiscoverItemsParams) -> Observable<[DiscoverItem]> {
+        let url = APIManager.baseURL + "/discover"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
     static func discoverItemDetails(forDiscoverItem discoverItem: DiscoverItem) -> Observable<[DiscoverItem]> {
