@@ -43,13 +43,16 @@ struct Message: Decodable, Hashable, Equatable {
     }
     
     static func messageWithText(text: String) -> Message {
-        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
+        return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
     }
     
     static func messageWithAttachment(attachment: MessageAttachment) -> Message {
-        return Message(id: "", conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: nil, attachments: [attachment])
+        return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: nil, attachments: [attachment])
     }
     
+    static func generateId() -> String {
+        return NSProcessInfo.processInfo().globallyUniqueString
+    }
 }
 
 extension Message {

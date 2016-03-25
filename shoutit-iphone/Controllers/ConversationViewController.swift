@@ -21,6 +21,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     var viewModel : ConversationViewModel!
     let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
+    var titleView : ConversationTitleView!
     
     private let disposeBag = DisposeBag()
     private var loadMoreBag = DisposeBag()
@@ -33,9 +34,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         customizeInputView()
         customizeTable()
         
-        setupDataSource()
-        setNavigationTitle()
+        setTitleView()
+        hideSendingMessage()
         
+        setupDataSource()
         setLoadMoreFooter()
         
         setupAttachmentManager()
@@ -52,10 +54,6 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         }
         
-    }
-    
-    func setNavigationTitle() {
-        navigationItem.title = conversation.firstLineText()?.string
     }
     
     func setTopicShout(shout: Shout) {
@@ -80,7 +78,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         shoutView.layoutIfNeeded()
         
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(20.0, 0, 130.0, 0)
     }
     
     func showShout() {
@@ -103,6 +101,14 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             }
             
             self?.typingIndicatorView.insertUsername(profile.firstName)
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
+            if messages.count > 0 {
+                self?.showSendingMessage()
+            } else {
+                self?.hideSendingMessage()
+            }
         }.addDisposableTo(disposeBag)
         
         viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
@@ -223,6 +229,12 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         self.tableView.tableFooterView = loadMoreView
     }
     
+    func setTitleView() {
+        titleView = NSBundle.mainBundle().loadNibNamed("ConversationTitleViewMessage", owner: self, options: nil)[0] as? ConversationTitleView
+        self.navigationItem.titleView = titleView
+        
+    }
+    
     func loadMore() {
         viewModel.triggerLoadMore()
     }
@@ -313,6 +325,16 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             self?.navigationController?.popViewControllerAnimated(true)
         }
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+extension ConversationViewController {
+    func showSendingMessage() {
+        titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+    }
+    
+    func hideSendingMessage() {
+        titleView.setTitle(conversation.firstLineText()?.string, message: nil)
     }
 }
 

@@ -45,6 +45,7 @@ class ConversationViewModel {
     let nowTyping : PublishSubject<Bool> = PublishSubject()
     let loadMoreState = Variable(LoadMoreState.NotReady)
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
+    let sendingMessages : Variable<[Message]> = Variable([])
     
     private var delegate : ConversationPresenter?
     
@@ -75,6 +76,8 @@ class ConversationViewModel {
     
     func createConversation(message: Message) {
         
+        self.addToSending(message)
+        
         if let shout = self.conversation.value.shout {
             createConversationAboutShout(shout, message: message)
             return
@@ -93,8 +96,10 @@ class ConversationViewModel {
             let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby)
             self?.conversation.value = newConversation
             self?.fetchMessages()
-        }, onError: { (error) -> Void in
+            self?.removeFromSending(message)
+        }, onError: { [weak self] (error) -> Void in
             debugPrint(error)
+            self?.removeFromSending(message)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
@@ -103,8 +108,10 @@ class ConversationViewModel {
             let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby)
             self?.conversation.value = newConversation
             self?.fetchMessages()
-        }, onError: { (error) -> Void in
+            self?.removeFromSending(msg)
+        }, onError: { [weak self] (error) -> Void in
                 debugPrint(error)
+                self?.removeFromSending(message)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
@@ -272,10 +279,14 @@ class ConversationViewModel {
             return true
         }
         
+        self.addToSending(msg)
+        
         APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
+                self?.removeFromSending(msg)
             }, onError: { [weak self] (error) -> Void in
                 self?.delegate?.showSendingError(error as NSError)
+                self?.removeFromSending(msg)
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         return true
@@ -289,14 +300,35 @@ class ConversationViewModel {
             return true
         }
         
+        self.addToSending(msg)
+        
         APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
             self?.appendMessages([message])
+            self?.removeFromSending(msg)
             }, onError: { [weak self] (error) -> Void in
+                self?.removeFromSending(msg)
                 self?.delegate?.showSendingError(error as NSError)
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         return true
     }
+    
+    func removeFromSending(msg: Message) {
+        var copy = self.sendingMessages.value
+        
+        copy.removeElementIfExists(msg)
+        
+        self.sendingMessages.value = copy
+    }
+    
+    func addToSending(msg: Message) {
+        var copy = self.sendingMessages.value
+        
+        copy.append(msg)
+        
+        self.sendingMessages.value = copy
+    }
+    
     
     func alertControllerWithTitle(title: String?, message: String?) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

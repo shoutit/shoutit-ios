@@ -41,4 +41,8 @@ class ConversationLocationController: UIViewController, MKMapViewDelegate {
         
         return annotationView
     }
+    
+    override func prefersTabbarHidden() -> Bool {
+        return true
+    }
 }

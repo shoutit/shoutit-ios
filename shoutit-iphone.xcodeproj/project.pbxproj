@@ -324,6 +324,8 @@
 		AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */; };
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
+		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
+		AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3371CA545850051DABA /* ConversationTitleView.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -1021,6 +1023,8 @@
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
 		AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingPictureCell.xib; path = View/IncomingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingPictureCell.xib; sourceTree = "<group>"; };
+		AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationTitleViewMessage.xib; sourceTree = "<group>"; };
+		AEADF3371CA545850051DABA /* ConversationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationTitleView.swift; path = View/ConversationTitleView.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1618,6 +1622,8 @@
 				246DEA741CA423DE009DF436 /* ConversationImageCell.swift */,
 				AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */,
 				AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */,
+				AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */,
+				AEADF3371CA545850051DABA /* ConversationTitleView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3834,6 +3840,7 @@
 				ACC36C2A1C07B6170082E0C2 /* SHStreamTagTableViewCell.xib in Resources */,
 				B2A849371C846B7800176EB0 /* SeeAllCollectionViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
+				AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
 				B2D9B10C1C9881CF00924941 /* SearchSuggestionTableViewCell.xib in Resources */,
 				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
@@ -4417,6 +4424,7 @@
 				601EB8BE1C2B9B1D00D4C1AE /* SHShoutMyFeedHeaderCellViewModel.swift in Sources */,
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
 				2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */,
+				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,
 				ACDD23B91BFB49A600EEC6A6 /* SHFilterStandardTableViewCell.swift in Sources */,
 				B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */,
