@@ -13,6 +13,11 @@ protocol MessagePresenting {
 }
 
 class ConversationCell: UITableViewCell, MessagePresenting {
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .None
@@ -20,5 +25,35 @@ class ConversationCell: UITableViewCell, MessagePresenting {
     
     func bindWithMessage(message: Message, previousMessage: Message?) {
         fatalError("Please Implement this method in subclass")
+    }
+    
+    func setImageWith(imgview: UIImageView, message: Message) {
+        if let imagePath = message.user?.imagePath, imgUrl = NSURL(string: imagePath) {
+            imgview.sh_setImageWithURL(imgUrl, placeholderImage: nil)
+        } else {
+            hideImageView()
+        }
+    }
+    
+    func hideImageView() {
+        avatarImageView?.hidden = true
+        
+        imageHeightConstraint?.constant = 5.0
+        
+        layoutIfNeeded()
+    }
+    
+    func unHideImageView() {
+        avatarImageView?.hidden = false
+        
+        imageHeightConstraint?.constant = 40.0
+        
+        layoutIfNeeded()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        unHideImageView()
     }
 }

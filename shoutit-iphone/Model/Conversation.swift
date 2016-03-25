@@ -125,6 +125,16 @@ extension Conversation {
             return text
         }
         
+        if msg.attachment()?.type() == .Location {
+            return NSLocalizedString("Location", comment: "")
+        } else if msg.attachment()?.type() == .Image {
+            return NSLocalizedString("Image", comment: "")
+        } else if msg.attachment()?.type() == .Video {
+            return NSLocalizedString("Video", comment: "")
+        } else if msg.attachment()?.type() == .Shout {
+            return NSLocalizedString("Shout", comment: "")
+        }
+        
         return NSLocalizedString("Attachment", comment: "")
     }
     

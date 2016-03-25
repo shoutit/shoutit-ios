@@ -19,7 +19,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     var conversation: Conversation!
     
     var viewModel : ConversationViewModel!
+    let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
+    var titleView : ConversationTitleView!
     
     private let disposeBag = DisposeBag()
     private var loadMoreBag = DisposeBag()
@@ -32,10 +34,13 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         customizeInputView()
         customizeTable()
         
-        setupDataSource()
-        setNavigationTitle()
+        setTitleView()
+        hideSendingMessage()
         
+        setupDataSource()
         setLoadMoreFooter()
+        
+        setupAttachmentManager()
         
         if let shout = conversation.shout {
             setTopicShout(shout)
@@ -48,10 +53,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if let _ = conversation.shout {
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         }
-    }
-    
-    func setNavigationTitle() {
-        navigationItem.title = conversation.firstLineText()?.string
+        
     }
     
     func setTopicShout(shout: Shout) {
@@ -76,7 +78,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         shoutView.layoutIfNeeded()
         
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(20.0, 0, 130.0, 0)
     }
     
     func showShout() {
@@ -101,6 +103,14 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             self?.typingIndicatorView.insertUsername(profile.firstName)
         }.addDisposableTo(disposeBag)
         
+        viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
+            if messages.count > 0 {
+                self?.showSendingMessage()
+            } else {
+                self?.hideSendingMessage()
+            }
+        }.addDisposableTo(disposeBag)
+        
         viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
             guard let controller = controller else {
                 return
@@ -110,10 +120,41 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         }.addDisposableTo(disposeBag)
     }
     
+    func setupAttachmentManager() {
+        attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
+            self?.viewModel.sendMessageWithAttachment(attachment)
+        }.addDisposableTo(disposeBag)
+        
+        attachmentManager.presentingSubject.subscribeNext { [weak self] (controller) in
+            guard let controller = controller else {
+                return
+            }
+            
+            if let shoutSelection = controller as? ConversationSelectShoutController {
+                self?.navigationController?.showViewController(shoutSelection, sender: nil)
+                return
+            }
+            
+            self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
+            
+        }.addDisposableTo(disposeBag)
+    }
+    
     func registerSupplementaryViews() {
         tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
+        
         tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
         tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
+        
+        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: conversationIncomingLocationCellIdentifier)
+        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingLocationCellIdentifier)
+        
+        
+        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
+        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
+        
+        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingVideoCell)
+        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: conversationIncomingVideoCell)
     }
     
     func customizeTable() {
@@ -188,12 +229,17 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         loadMoreBag = DisposeBag()
         
         viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
-            self?.loadMoreView?.frame = CGRect(x: 0, y: 0, width: (self?.tableView.frame.width ?? 220), height: footerHeight)
             self?.loadMoreView?.setState(state)
             self?.tableView.reloadData()
         }).addDisposableTo(loadMoreBag)
         
         self.tableView.tableFooterView = loadMoreView
+    }
+    
+    func setTitleView() {
+        titleView = NSBundle.mainBundle().loadNibNamed("ConversationTitleViewMessage", owner: self, options: nil)[0] as? ConversationTitleView
+        self.navigationItem.titleView = titleView
+        
     }
     
     func loadMore() {
@@ -212,6 +258,36 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         return self.viewModel.numberOfRowsInSection(section)
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let msg = self.viewModel.messageAtIndexPath(indexPath)
+        
+        guard let attachment = msg.attachment() else {
+            return
+        }
+        
+        if attachment.type() == .Location {
+            if let coordinates = msg.attachment()?.location?.coordinate() {
+                self.flowDelegate?.showLocation(coordinates)
+            }
+            return
+        }
+        
+        if attachment.type() == .Image {
+            if let imagePath = msg.attachment()?.imagePath(), imageUrl = NSURL(string: imagePath) {
+                self.flowDelegate?.showImagePreview(imageUrl)
+            }
+            return
+        }
+        
+        if attachment.type() == .Video {
+            if let videoPath = msg.attachment()?.videoPath(), videoURL = NSURL(string: videoPath) {
+                self.flowDelegate?.showVideoPreview(videoURL)
+            }
+            return
+        }
+        
+    }
+    
     override func didPressRightButton(sender: AnyObject!) {
         textView.refreshFirstResponder()
         
@@ -221,8 +297,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func didPressLeftButton(sender: AnyObject!) {
-        self.flowDelegate?.showAttachmentController({ (type) in
-            print(type)
+        self.flowDelegate?.showAttachmentController({ [weak self] (type) in
+            self?.attachmentManager.requestAttachmentWithType(type)
         }, transitionDelegate: self)
     }
     
@@ -263,6 +339,16 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             self?.navigationController?.popViewControllerAnimated(true)
         }
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+extension ConversationViewController {
+    func showSendingMessage() {
+        titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+    }
+    
+    func hideSendingMessage() {
+        titleView.setTitle(conversation.firstLineText()?.string, message: nil)
     }
 }
 

@@ -55,7 +55,9 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     
     func reloadConversationList() {
         APIChatsService.requestConversations().subscribe(onNext: { [weak self] (conversations) -> Void in
-            self?.conversations = conversations
+            self?.conversations = conversations.filter({ (conversation) -> Bool in
+                return conversation.users?.count > 1
+            })
             self?.renewConversationSubscriptions()
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()

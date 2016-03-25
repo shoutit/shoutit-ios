@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Shout: Decodable, Hashable, Equatable {
     
@@ -83,6 +84,19 @@ struct Shout: Decodable, Hashable, Equatable {
         return ShoutType(rawValue: self.typeString)
     }
     
+}
+
+extension Shout: Encodable {
+    func encode() -> JSON {
+        return JSON.Object(["id":self.id.encode(),
+            "api_url":self.apiPath.encode(),
+            "web_url":self.webPath.encode(),
+            "type":self.typeString.encode(),
+            "title":self.title.encode(),
+            "text":self.text.encode(),
+            "user":self.user.encode()
+            ])
+    }
 }
 
 extension Shout {
