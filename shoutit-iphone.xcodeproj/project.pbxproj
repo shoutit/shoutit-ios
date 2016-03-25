@@ -326,6 +326,10 @@
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
 		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
 		AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3371CA545850051DABA /* ConversationTitleView.swift */; };
+		AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3391CA5517A0051DABA /* IncomingVideoCell.xib */; };
+		AEADF33C1CA5518A0051DABA /* OutgoingVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */; };
+		AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */; };
+		AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -1025,6 +1029,10 @@
 		AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationTitleViewMessage.xib; sourceTree = "<group>"; };
 		AEADF3371CA545850051DABA /* ConversationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationTitleView.swift; path = View/ConversationTitleView.swift; sourceTree = "<group>"; };
+		AEADF3391CA5517A0051DABA /* IncomingVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoCell.xib; sourceTree = "<group>"; };
+		AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoCell.xib; sourceTree = "<group>"; };
+		AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationVideoCell.swift; path = View/ConversationVideoCell.swift; sourceTree = "<group>"; };
+		AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectShoutController.swift; path = Controllers/ConversationSelectShoutController.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1624,6 +1632,9 @@
 				AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */,
 				AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */,
 				AEADF3371CA545850051DABA /* ConversationTitleView.swift */,
+				AEADF3391CA5517A0051DABA /* IncomingVideoCell.xib */,
+				AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */,
+				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1829,6 +1840,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AEADF33F1CA565730051DABA /* ConversationSelectShout */,
 				246DEA711CA40619009DF436 /* ConversationLocation */,
 				AEF1E66C1CA1D35A0054640C /* ConversationAttachment */,
 				B2F524661C9AF5F300EA622F /* SearchShoutResults */,
@@ -2698,6 +2710,14 @@
 				AE4DB35E1C6485FA001EB84B /* MenuHeaderView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		AEADF33F1CA565730051DABA /* ConversationSelectShout */ = {
+			isa = PBXGroup;
+			children = (
+				AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */,
+			);
+			name = ConversationSelectShout;
 			sourceTree = "<group>";
 		};
 		AEDE15941C6DF071002D2AF7 /* Home */ = {
@@ -3759,6 +3779,7 @@
 				B2E715601C6E16AF007F95CF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
+				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
 				B2E715661C6E3788007F95CF /* PagesCollectionViewCell.xib in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
@@ -3798,6 +3819,7 @@
 				AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */,
 				B2E7E3041C592BD60078C743 /* StreamStoryboard.storyboard in Resources */,
 				B2D9B1141C98845200924941 /* SearchCategoriesHeaderView.xib in Resources */,
+				AEADF33C1CA5518A0051DABA /* OutgoingVideoCell.xib in Resources */,
 				B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */,
 				B2B5D0041C7F1EA00068A6AF /* ShoutDetail.storyboard in Resources */,
 				AE4DB33F1C634C28001EB84B /* Root.storyboard in Resources */,
@@ -4235,6 +4257,7 @@
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
 				AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */,
+				AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */,
 				ACA77ECF1BF1233700D504AA /* Enumerations.swift in Sources */,
 				B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */,
 				B2E1071D1C97311700F7F4EF /* TagDisplayable.swift in Sources */,
@@ -4332,6 +4355,7 @@
 				606ED2FA1BF808560064C53E /* SHCameraPreviewView.swift in Sources */,
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
 				249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */,
+				AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */,
 				B2C729C81C6221B0006F7D29 /* Success.swift in Sources */,
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,

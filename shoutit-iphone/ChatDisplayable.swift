@@ -14,6 +14,7 @@ protocol ChatDisplayable {
     func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
+    func showVideoPreview(videoURL: NSURL) -> Void
 }
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
@@ -47,6 +48,12 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
     
     func showImagePreview(imageURL: NSURL) -> Void {
         let controller = MWPhotoBrowser(photos: [MWPhoto(URL: imageURL)])
+        
+        self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showVideoPreview(videoURL: NSURL) -> Void {
+        let controller = MWPhotoBrowser(photos: [MWPhoto(videoURL: videoURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }

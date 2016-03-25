@@ -147,7 +147,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
         tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
         
-        
+        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingVideoCell)
+        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: conversationIncomingVideoCell)
     }
     
     func customizeTable() {
@@ -268,6 +269,13 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if attachment.type() == .Image {
             if let imagePath = msg.attachment()?.imagePath(), imageUrl = NSURL(string: imagePath) {
                 self.flowDelegate?.showImagePreview(imageUrl)
+            }
+            return
+        }
+        
+        if attachment.type() == .Video {
+            if let videoPath = msg.attachment()?.videoPath(), videoURL = NSURL(string: videoPath) {
+                self.flowDelegate?.showVideoPreview(videoURL)
             }
             return
         }

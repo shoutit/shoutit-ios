@@ -25,6 +25,12 @@ class ConversationImageCell: ConversationCell {
         self.activityIndicator?.startAnimating()
         self.activityIndicator?.hidden = false
         
+        
+        setThumbMessage(message)
+        
+    }
+    
+    func setThumbMessage(message: Message) {
         guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
             return
         }
@@ -33,7 +39,5 @@ class ConversationImageCell: ConversationCell {
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
         }
-        
-        
     }
 }

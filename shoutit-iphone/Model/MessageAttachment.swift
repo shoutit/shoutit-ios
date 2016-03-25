@@ -73,7 +73,15 @@ struct MessageAttachment: Decodable {
 
 extension MessageAttachment {
     func imagePath() -> String? {
+        if self.type() == .Video {
+            return self.videos?.first?.thumbnailPath
+        }
+        
         return self.images?.first
+    }
+    
+    func videoPath() -> String? {
+        return self.videos?.first?.path
     }
 }
 

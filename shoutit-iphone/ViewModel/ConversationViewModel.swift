@@ -25,6 +25,10 @@ let conversationOutGoingLocationCellIdentifier = "conversationOutGoingLocationCe
 let conversationOutGoingPictureCell = "conversationOutGoingPictureCell"
 let conversationIncomingPictureCell = "conversationIncomingPictureCell"
 
+// video cells
+let conversationOutGoingVideoCell = "conversationOutGoingVideoCell"
+let conversationIncomingVideoCell = "conversationIncomingVideoCell"
+
 enum ConversationDataState : Int {
     case NotLoaded
     case RestLoaded
@@ -213,6 +217,10 @@ class ConversationViewModel {
         
         if attachment.type() == .Image {
             return msg.isOutgoingCell() ? conversationOutGoingPictureCell : conversationIncomingPictureCell
+        }
+        
+        if attachment.type() == .Video {
+            return msg.isOutgoingCell() ? conversationOutGoingVideoCell : conversationIncomingVideoCell
         }
         
         return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier
