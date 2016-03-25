@@ -17,23 +17,23 @@ class DiscoverGeneralViewModel: DiscoverViewModel {
             return user?.location.country
         }.flatMap { (location) in
             return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
-        }.map({ (items) -> DiscoverItem? in
+        }.map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
                     return items[0]
                 }
                 return nil
-        }).flatMap({ (item) in
-            return APIDiscoverService.discoverItems(forDiscoverItem: item)
-        }).subscribeNext { [weak self] (mainItem, itms) -> Void in
+        }
+        .filter { $0 != nil }
+        .flatMap{ (item) in
+            return APIDiscoverService.discoverItems(forDiscoverItem: item!)
+        }.subscribeNext { [weak self] detailedItem -> Void in
             
-            self?.items.on(.Next((mainItem,itms)))
+            self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
             
-            if let mainDiscover = mainItem {
-                let params = FilteredShoutsParams(discoverId: mainDiscover.id, page: 1, pageSize: 4)
-                APIShoutsService.listShoutsWithParams(params).subscribeNext({ [weak self] (shouts) -> Void in
-                    self?.shouts.on(.Next(shouts))
+            let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
+            APIShoutsService.listShoutsWithParams(params).subscribeNext({ [weak self] (shouts) -> Void in
+                self?.shouts.on(.Next(shouts))
                 }).addDisposableTo((self?.disposeBag)!)
-            }
         }.addDisposableTo(disposeBag)
     }
 }

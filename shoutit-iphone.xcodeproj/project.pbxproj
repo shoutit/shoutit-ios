@@ -373,6 +373,7 @@
 		B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */; };
 		B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */; };
 		B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD61C89F65400C9E8DB /* APIProfileService.swift */; };
+		B21217CA1CA5A280001BAEFC /* DetailedDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -1076,6 +1077,7 @@
 		B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileCollectionViewModel.swift; path = ViewModel/UserProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageProfileCollectionViewModel.swift; path = ViewModel/PageProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD61C89F65400C9E8DB /* APIProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIProfileService.swift; path = Networking/APIProfileService.swift; sourceTree = "<group>"; };
+		B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedDiscoverItem.swift; path = Model/DetailedDiscoverItem.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -1829,6 +1831,7 @@
 				B2B540C81C6A38AE0075EDA6 /* Shout.swift */,
 				B2B5D0391C806EBC0068A6AF /* Video.swift */,
 				241CEC361C732CDE00694575 /* DiscoverItem.swift */,
+				B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */,
 				B2FE53961CA08A6D007E23F5 /* SearchShoutsResults.swift */,
 				AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */,
 				24826B521C96E1DD00032FC9 /* Conversation.swift */,
@@ -4228,6 +4231,7 @@
 				B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */,
 				24826B531C96E1DD00032FC9 /* Conversation.swift in Sources */,
 				B2B5D0341C7F88000068A6AF /* ShoutDetailRelatedShoutsCollectionViewDataSource.swift in Sources */,
+				B21217CA1CA5A280001BAEFC /* DetailedDiscoverItem.swift in Sources */,
 				B2E7154B1C6DF078007F95CF /* UIViewController+NavigationItems.swift in Sources */,
 				AC7030C81C15C91F008F4C00 /* SHImageMediaItem.swift in Sources */,
 				249F78271C99641D00FCB9A6 /* ConversationDayHeader.swift in Sources */,

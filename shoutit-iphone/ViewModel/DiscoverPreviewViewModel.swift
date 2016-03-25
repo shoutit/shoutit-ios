@@ -49,11 +49,15 @@ class DiscoverPreviewViewModel: AnyObject {
             return nil
         }.share()
         
-        dataSource = mainItemObservable.flatMap({ (item) -> Observable<DiscoverResult> in
-            return APIDiscoverService.discoverItems(forDiscoverItem: item)
-        }).flatMap({ (mainItem, items) -> Observable<[DiscoverItem]> in
-            return Observable.just(items ?? [])
-        }).share()
+        dataSource = mainItemObservable
+            .filter{$0 != nil}
+            .flatMap{ (item) -> Observable<DetailedDiscoverItem> in
+                return APIDiscoverService.discoverItems(forDiscoverItem: item!)
+            }
+            .flatMap{ detailedItem -> Observable<[DiscoverItem]> in
+                return Observable.just(detailedItem.children)
+            }
+            .share()
         
         mainItemObservable.subscribeNext { (mainItem) -> Void in
             if let _ = mainItem {
