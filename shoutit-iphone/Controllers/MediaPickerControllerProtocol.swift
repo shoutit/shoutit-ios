@@ -60,6 +60,19 @@ struct MediaAttachment : Hashable, Equatable {
     }
 
 }
+extension MediaAttachment {
+    func asMessageAttachment() -> MessageAttachment {
+        if self.type == .Image {
+            return MessageAttachment(shout: nil, location: nil, videos: nil, images: [(self.remoteURL?.absoluteString)!])
+        }
+        
+        if self.type == .Video {
+            return MessageAttachment(shout: nil, location: nil, videos: [self.asVideoObject()!], images: nil)
+        }
+        
+        return MessageAttachment(shout: nil, location: nil, videos: nil, images: nil)
+    }
+}
 
 func ==(lhs: MediaAttachment, rhs: MediaAttachment) -> Bool {
     return lhs.uid == rhs.uid

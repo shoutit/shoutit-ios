@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hrR-1X-n3j" customClass="ConversationTitleView" customModule="Shoutit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="276" height="41.5"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversation Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr4-hf-D2L">
+                    <rect key="frame" x="5" y="0.0" width="266" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx5-yJ-bDC">
+                    <rect key="frame" x="88" y="25" width="100.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="YCH-yR-1DD">
+                    <rect key="frame" x="64" y="22.5" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Wr4-hf-D2L" firstAttribute="top" secondItem="hrR-1X-n3j" secondAttribute="top" id="2Dt-rz-Cfz"/>
+                <constraint firstItem="Wr4-hf-D2L" firstAttribute="leading" secondItem="hrR-1X-n3j" secondAttribute="leading" constant="5" id="6je-wr-pKl"/>
+                <constraint firstItem="Wr4-hf-D2L" firstAttribute="centerX" secondItem="hrR-1X-n3j" secondAttribute="centerX" id="9G3-tH-6Da"/>
+                <constraint firstItem="xx5-yJ-bDC" firstAttribute="leading" secondItem="YCH-yR-1DD" secondAttribute="trailing" constant="4" id="HzM-aE-boB"/>
+                <constraint firstAttribute="trailing" secondItem="Wr4-hf-D2L" secondAttribute="trailing" constant="5" id="I7f-5r-eG2"/>
+                <constraint firstItem="YCH-yR-1DD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hrR-1X-n3j" secondAttribute="leading" constant="5" id="Yfp-Xg-zPC"/>
+                <constraint firstItem="xx5-yJ-bDC" firstAttribute="centerX" secondItem="hrR-1X-n3j" secondAttribute="centerX" id="jLg-YD-FXH"/>
+                <constraint firstItem="YCH-yR-1DD" firstAttribute="centerY" secondItem="xx5-yJ-bDC" secondAttribute="centerY" id="qlG-bu-zzy"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xx5-yJ-bDC" secondAttribute="trailing" constant="5" id="rNm-TO-VKp"/>
+                <constraint firstAttribute="bottom" secondItem="xx5-yJ-bDC" secondAttribute="bottom" constant="2" id="v4M-AM-Klw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="activityIndicator" destination="YCH-yR-1DD" id="rwx-3e-9Tx"/>
+                <outlet property="messageLabel" destination="xx5-yJ-bDC" id="mDc-He-KUK"/>
+                <outlet property="titleLabel" destination="Wr4-hf-D2L" id="1uV-Eq-OQQ"/>
+                <outlet property="titleLabelTopConstraint" destination="2Dt-rz-Cfz" id="PNR-8a-OWD"/>
+            </connections>
+            <point key="canvasLocation" x="394" y="258.75"/>
+        </view>
+    </objects>
+</document>

@@ -8,16 +8,9 @@
 
 import UIKit
 
-enum ConversationAttachmentType : Int {
-    case Photo
-    case Shout
-    case Location
-    case Video
-}
-
 class ConversationAttachmentViewController: UIViewController {
 
-    var completion: ((type: ConversationAttachmentType) -> Void)!
+    var completion: ((type: MessageAttachmentType) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,23 +19,25 @@ class ConversationAttachmentViewController: UIViewController {
     }
     
     @IBAction func photoAction() {
-        completion(type: ConversationAttachmentType.Photo)
-        dismiss()
+        dismissWithType(MessageAttachmentType.Image)
     }
     
     @IBAction func shoutAction() {
-        completion(type: ConversationAttachmentType.Shout)
-        dismiss()
+        dismissWithType(MessageAttachmentType.Shout)
     }
     
     @IBAction func locationAction() {
-        completion(type: ConversationAttachmentType.Location)
-        dismiss()
+        dismissWithType(MessageAttachmentType.Location)
     }
     
     @IBAction func videoAction() {
-        completion(type: ConversationAttachmentType.Video)
-        dismiss()
+        dismissWithType(MessageAttachmentType.Video)
+    }
+    
+    private func dismissWithType(type: MessageAttachmentType) {
+        self.dismissViewControllerAnimated(true) { 
+            self.completion(type: type)
+        }
     }
     
     @IBAction func dismiss() {

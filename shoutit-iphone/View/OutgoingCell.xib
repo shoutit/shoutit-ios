@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -29,11 +29,11 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koJ-De-uIq">
                         <rect key="frame" x="288" y="10" width="39.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="18:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-jk-yTg">
-                        <rect key="frame" x="296" y="71" width="32" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="18:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-jk-yTg">
+                        <rect key="frame" x="308" y="71" width="20" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -43,6 +43,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="koJ-De-uIq" secondAttribute="trailing" constant="40" id="2yy-9u-gLi"/>
                     <constraint firstAttribute="bottom" secondItem="bJY-jk-yTg" secondAttribute="bottom" constant="5" id="5P7-sa-MSq"/>
+                    <constraint firstItem="XRh-1M-scP" firstAttribute="width" relation="greaterThanOrEqual" secondItem="bJY-jk-yTg" secondAttribute="width" constant="-20" id="7OS-yW-hdb"/>
                     <constraint firstItem="XRh-1M-scP" firstAttribute="top" secondItem="vdq-8Y-lpW" secondAttribute="top" constant="5" id="9sk-gE-R0q"/>
                     <constraint firstAttribute="trailing" secondItem="XRh-1M-scP" secondAttribute="trailing" constant="20" id="9tD-UH-Qjw"/>
                     <constraint firstItem="koJ-De-uIq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vdq-8Y-lpW" secondAttribute="leading" constant="40" id="JS8-KF-zTG"/>

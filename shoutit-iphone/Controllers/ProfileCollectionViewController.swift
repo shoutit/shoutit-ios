@@ -420,6 +420,18 @@ extension ProfileCollectionViewController {
     
     func startChat() {
         
+        guard let _ = Account.sharedInstance.loggedUser else {
+            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
         if viewModel.isListeningToYou != true {
             let alert = UIAlertController(title: NSLocalizedString("You can only start a chat with your listeners", comment: ""), message: nil, preferredStyle: .Alert)
             

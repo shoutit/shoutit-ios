@@ -105,7 +105,17 @@ class ShowDetailContainerViewController: UIViewController {
     // MARK: - Actions
     
     func startChat() {
-        print(self.viewModel.shout.conversations)
+        guard let _ = Account.sharedInstance.loggedUser else {
+            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
         
         if self.viewModel.shout.conversations?.count == 0 {
             let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, shout: viewModel.shout, readby: nil)
