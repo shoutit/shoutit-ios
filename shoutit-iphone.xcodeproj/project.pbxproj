@@ -331,6 +331,9 @@
 		AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */; };
 		AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */; };
 		AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */; };
+		AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3441CA58A910051DABA /* IncomingShoutCell.xib */; };
+		AEADF3471CA58A9F0051DABA /* OutgoingShoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3461CA58A9F0051DABA /* OutgoingShoutCell.xib */; };
+		AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -1035,6 +1038,9 @@
 		AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationVideoCell.swift; path = View/ConversationVideoCell.swift; sourceTree = "<group>"; };
 		AEADF3401CA565A30051DABA /* ConversationSelectShoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectShoutController.swift; path = Controllers/ConversationSelectShoutController.swift; sourceTree = "<group>"; };
 		AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectShoutTableViewCell.swift; path = View/ConversationSelectShoutTableViewCell.swift; sourceTree = "<group>"; };
+		AEADF3441CA58A910051DABA /* IncomingShoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingShoutCell.xib; path = View/IncomingShoutCell.xib; sourceTree = "<group>"; };
+		AEADF3461CA58A9F0051DABA /* OutgoingShoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingShoutCell.xib; sourceTree = "<group>"; };
+		AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationShoutCell.swift; path = View/ConversationShoutCell.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1637,6 +1643,9 @@
 				AEADF3391CA5517A0051DABA /* IncomingVideoCell.xib */,
 				AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */,
 				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
+				AEADF3441CA58A910051DABA /* IncomingShoutCell.xib */,
+				AEADF3461CA58A9F0051DABA /* OutgoingShoutCell.xib */,
+				AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3814,6 +3823,7 @@
 				B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */,
 				248320ED1C996D1C00C12D90 /* IncomingCell.xib in Resources */,
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
+				AEADF3471CA58A9F0051DABA /* OutgoingShoutCell.xib in Resources */,
 				B2E7E2F81C592BC20078C743 /* Launch Screen.xib in Resources */,
 				ACC36C361C09CA600082E0C2 /* SHHeaderProfileReusableView.xib in Resources */,
 				B2E7E2E61C592B600078C743 /* MainStoryboard.storyboard in Resources */,
@@ -3831,6 +3841,7 @@
 				AC7028001C1AA66200262622 /* uv_article.png in Resources */,
 				249FD6D41C7DB1B600859851 /* DiscoverHeaderView.xib in Resources */,
 				AE4DB34F1C63717A001EB84B /* Help.storyboard in Resources */,
+				AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */,
 				60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */,
 				B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
@@ -4232,6 +4243,7 @@
 				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
 				B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */,
 				B2C729D01C62224A006F7D29 /* FeedbackDisplayable.swift in Sources */,
+				AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */,
 				24826B4E1C96DED800032FC9 /* ConversationListTableViewController.swift in Sources */,
 				241CEC351C73282B00694575 /* APIDiscoverService.swift in Sources */,
 				24826B4B1C96B57C00032FC9 /* AttachedObject.swift in Sources */,

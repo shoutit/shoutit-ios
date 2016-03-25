@@ -94,7 +94,8 @@ extension Shout: Encodable {
             "type":self.typeString.encode(),
             "title":self.title.encode(),
             "text":self.text.encode(),
-            "user":self.user.encode()
+            "user":self.user.encode(),
+            "price": self.price.encode()
             ])
     }
 }

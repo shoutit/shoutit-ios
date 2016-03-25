@@ -153,8 +153,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
         tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
         
+        
         tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingVideoCell)
         tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: conversationIncomingVideoCell)
+        
+        
+        tableView.registerNib(UINib(nibName: "OutgoingShoutCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingShoutCell)
+        tableView.registerNib(UINib(nibName: "IncomingShoutCell", bundle: nil), forCellReuseIdentifier: conversationIncomingShoutCell)
+        
+        
     }
     
     func customizeTable() {
@@ -282,6 +289,13 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if attachment.type() == .Video {
             if let videoPath = msg.attachment()?.videoPath(), videoURL = NSURL(string: videoPath) {
                 self.flowDelegate?.showVideoPreview(videoURL)
+            }
+            return
+        }
+        
+        if attachment.type() == .Shout {
+            if let shout = msg.attachment()?.shout {
+                self.flowDelegate?.showShout(shout)
             }
             return
         }

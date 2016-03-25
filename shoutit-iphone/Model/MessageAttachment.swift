@@ -77,6 +77,10 @@ extension MessageAttachment {
             return self.videos?.first?.thumbnailPath
         }
         
+        if self.type() == .Shout {
+            return self.shout?.thumbnailPath
+        }
+        
         return self.images?.first
     }
     
