@@ -12,6 +12,8 @@ import FTGooglePlacesAPI
 
 class CreateShoutViewModel: NSObject {
     
+    private let disposeBag = DisposeBag()
+    
     var shoutParams : ShoutParams!
     
     var filters : Variable<[Filter]?> = Variable([])
@@ -124,27 +126,33 @@ class CreateShoutViewModel: NSObject {
 // Fetch Data
 extension CreateShoutViewModel {
     func fetchCurrencies() {
-        APIMiscService.requestCurrenciesWithCompletionHandler { (result) -> Void in
-            switch result {
-            case .Success(let currencies):
-                self.currencies.value = currencies
-                self.fillCurrencyFromShout()
-            case .Failure(let error):
+        APIMiscService.requestCurrencies().subscribe {[weak self] (event) in
+            switch event {
+            case .Next(let currencies):
+                self?.currencies.value = currencies
+                self?.fillCurrencyFromShout()
+            case .Error(let error):
                 print(error)
+            default:
+                break
             }
-        }
+        }.addDisposableTo(disposeBag)
     }
     
     func fetchCategories() {
-        APIMiscService.requestCategoriesWithCompletionHandler { (result) -> Void in
-            switch result {
-            case .Success(let categories):
-                self.categories.value = categories
-                self.fillCategoryFromShout()
-            case .Failure(let error):
-                print(error)
+        APIMiscService.requestCategories()
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let categories):
+                    self?.categories.value = categories
+                    self?.fillCategoryFromShout()
+                case .Error(let error):
+                    print(error)
+                default:
+                    break
+                }
             }
-        }
+            .addDisposableTo(disposeBag)
     }
 }
 // fill with shout data

@@ -75,7 +75,6 @@ class APIGenericService {
         }
     }
     
-    // array version
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
         method: Alamofire.Method,
         url: URLStringConvertible,
@@ -108,9 +107,9 @@ class APIGenericService {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Helpers
     
-    private static func validateResponseAndExtractJson(response: Response<AnyObject, NSError>) throws -> AnyObject {
+    static func validateResponseAndExtractJson(response: Response<AnyObject, NSError>) throws -> AnyObject {
         
         switch response.result {
         case .Success(let originalJson):
@@ -137,7 +136,7 @@ class APIGenericService {
         }
     }
     
-    private static func extractJsonFromJson(json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
+    static func extractJsonFromJson(json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
         guard let components = components else {
             return json
         }
@@ -156,7 +155,7 @@ class APIGenericService {
         return j
     }
     
-    private static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> T {
+    static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> T {
         let decoded: Decoded<T> = decode(json)
         switch decoded {
         case .Success(let object):
@@ -167,7 +166,7 @@ class APIGenericService {
         }
     }
     
-    private static func parseJsonArray<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> [T] {
+    static func parseJsonArray<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> [T] {
         let decoded: Decoded<[T]> = decode(json)
         switch decoded {
         case .Success(let object):

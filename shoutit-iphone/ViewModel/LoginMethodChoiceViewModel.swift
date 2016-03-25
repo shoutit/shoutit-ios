@@ -17,7 +17,7 @@ final class LoginMethodChoiceViewModel {
     
     let loginSuccessSubject = PublishSubject<Bool>()
     let progressHUDSubject = PublishSubject<Bool>()
-    let errorSubject = PublishSubject<NSError>()
+    let errorSubject = PublishSubject<ErrorType>()
     
     // MARK: - Actions
     

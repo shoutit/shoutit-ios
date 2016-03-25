@@ -374,6 +374,7 @@
 		B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */; };
 		B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD61C89F65400C9E8DB /* APIProfileService.swift */; };
 		B21217CA1CA5A280001BAEFC /* DetailedDiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */; };
+		B21217CC1CA5BD78001BAEFC /* CoordinateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -1078,6 +1079,7 @@
 		B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageProfileCollectionViewModel.swift; path = ViewModel/PageProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD61C89F65400C9E8DB /* APIProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIProfileService.swift; path = Networking/APIProfileService.swift; sourceTree = "<group>"; };
 		B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedDiscoverItem.swift; path = Model/DetailedDiscoverItem.swift; sourceTree = "<group>"; };
+		B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoordinateParams.swift; path = Networking/CoordinateParams.swift; sourceTree = "<group>"; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -2927,6 +2929,7 @@
 				B2F524731C9AFC2800EA622F /* SearchParams.swift */,
 				B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */,
 				B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */,
+				B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -4246,6 +4249,7 @@
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
+				B21217CC1CA5BD78001BAEFC /* CoordinateParams.swift in Sources */,
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */,
 				B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */,

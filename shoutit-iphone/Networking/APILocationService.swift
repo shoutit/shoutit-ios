@@ -10,52 +10,42 @@
 import UIKit
 import Argo
 import Alamofire
+import RxSwift
 
 class APILocationService {
     private static let usersURL = APIManager.baseURL + "/users/*"
     
-    static func updateLocation(userName: String, coordinates: CLLocationCoordinate2D, completionHandler: Result<User, NSError> -> Void) {
-        
-        let url = usersURL.stringByReplacingOccurrencesOfString("*", withString: userName)
-        
-        let params: [String: AnyObject] = [
-            "location" : [
-                "latitude": coordinates.latitude,
-                "longitude": coordinates.longitude
-            ]
-        ]
-        
-        APIManager.manager().request(.PATCH, url, parameters: params, encoding: .JSON, headers: nil).validate(statusCode: 200..<300).responseData { (response) in
-            switch response.result {
-            case .Success(let data):
+    static func updateLocationForUser(username: String, withParams params: CoordinateParams) -> Observable<User> {
+        let url = usersURL.stringByReplacingOccurrencesOfString("*", withString: username)
+        return Observable.create {(observer) -> Disposable in
+            
+            let request = APIManager.manager()
+                .request(.PATCH, url, parameters: params.params, encoding: .JSON)
+            let cancel = AnonymousDisposable {
+                request.cancel()
+            }
+            
+            request.responseJSON{ (response) in
                 do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                    guard let userJson = json as? [String : AnyObject] else {
-                        throw InternalParseError.User
+                    let json = try APIGenericService.validateResponseAndExtractJson(response)
+                    let loggedUser: LoggedUser? = try? APIGenericService.parseJson(json)
+                    let guestUser: GuestUser? = try? APIGenericService.parseJson(json)
+                    
+                    guard (guestUser != nil || loggedUser != nil) && (guestUser == nil || loggedUser == nil) else {
+                        throw InternalParseError.InvalidJson
                     }
-                    
-                    let docodedLogged: Decoded<LoggedUser> = Argo.decode(userJson)
-                    let loggedUser: LoggedUser? = docodedLogged.value
-                    
-                    let docodedGuest: Decoded<GuestUser> = Argo.decode(userJson)
-                    let guestUser: GuestUser? = docodedGuest.value
                     
                     Account.sharedInstance.guestUser = guestUser
                     Account.sharedInstance.loggedUser = loggedUser
                     
-                    if guestUser == nil && loggedUser == nil {
-                        throw InternalParseError.User
-                    } else {
-                        completionHandler(.Success(guestUser ?? loggedUser!))
-                    }
-                } catch let error as NSError {
-                    completionHandler(.Failure(error))
+                    observer.onNext(guestUser ?? loggedUser!)
+                    observer.onCompleted()
+                } catch let error {
+                    observer.onError(error)
                 }
-            case .Failure(let error):
-                completionHandler(.Failure(error))
             }
             
+            return cancel
         }
     }
-
 }

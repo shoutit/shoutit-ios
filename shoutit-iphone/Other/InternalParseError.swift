@@ -10,18 +10,12 @@ import Foundation
 
 enum InternalParseError: ShoutitError {
     case InvalidJson
-    case Currency
-    case User
     
     var userMessage: String {
-        assert(false)
+        assertionFailure()
         switch self {
         case .InvalidJson:
             return NSLocalizedString("Could not get your data", comment: "")
-        case .Currency:
-            return NSLocalizedString("Could not load currencies", comment: "")
-        case .User:
-            return NSLocalizedString("Could not get user.", comment: "")
         }
     }
 }
