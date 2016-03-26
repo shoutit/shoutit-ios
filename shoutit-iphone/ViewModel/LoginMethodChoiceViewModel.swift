@@ -15,6 +15,7 @@ import FBSDKLoginKit
 
 final class LoginMethodChoiceViewModel {
     
+    private let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Bool>()
     let progressHUDSubject = PublishSubject<Bool>()
     let errorSubject = PublishSubject<ErrorType>()
@@ -53,16 +54,21 @@ final class LoginMethodChoiceViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, LoggedUser), NSError>) -> Void in
-            self.progressHUDSubject.onNext(false)
-            switch result {
-            case .Success((let authData, let user)):
-                try! Account.sharedInstance.loginUser(user, withAuthData: authData)
-                self.loginSuccessSubject.onNext(authData.isNewSignUp)
-            case .Failure(let error):
-                self.errorSubject.onNext(error)
+        let observable: Observable<(AuthData, LoggedUser)> = APIAuthService.getOAuthToken(params)
+        observable
+            .subscribe {[weak self] (event) in
+                self?.progressHUDSubject.onNext(false)
+                switch event {
+                case .Next(let authData, let user):
+                    try! Account.sharedInstance.loginUser(user, withAuthData: authData)
+                    self?.loginSuccessSubject.onNext(authData.isNewSignUp)
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
             }
-        }
+            .addDisposableTo(disposeBag)
     }
 }
 

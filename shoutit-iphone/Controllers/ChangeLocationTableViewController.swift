@@ -101,15 +101,15 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             return
         }
         
-        let coords = CLLocationCoordinate2D(latitude: address.latitude ?? 0, longitude: address.longitude ?? 0)
+        let coordinates = CLLocationCoordinate2D(latitude: address.latitude ?? 0, longitude: address.longitude ?? 0)
+        let params = CoordinateParams(coordinates: coordinates)
         
-            APILocationService.updateLocation(username, coordinates:coords, completionHandler: { (result) -> Void in
-            
-            if let finish = self.finishedBlock {
-                self.searchBar.text = ""
+        APILocationService.updateLocationForUser(username, withParams: params).subscribeNext {[weak self] (_) in
+            if let finish = self?.finishedBlock {
+                self?.searchBar.text = ""
                 finish(true, address)
             }
-        })
+        }.addDisposableTo(disposeBag)
     }
     
 }
