@@ -11,14 +11,6 @@ import RxSwift
 
 class SearchUserResultsViewModel {
     
-    enum State {
-        case Idle
-        case Loading
-        case Loaded(cells: [SearchUserProfileCellViewModel], page: Int)
-        case NoContent
-        case Error(ErrorType)
-    }
-    
     let searchPhrase: String
     
     // consts
@@ -27,7 +19,7 @@ class SearchUserResultsViewModel {
     // RX
     private let disposeBag = DisposeBag()
     private var requestDisposeBag = DisposeBag()
-    private(set) var state: Variable<State> = Variable(.Idle)
+    private(set) var state: Variable<PagedViewModelState<SearchUserProfileCellViewModel>> = Variable(.Idle)
     
     init(searchPhrase: String) {
         self.searchPhrase = searchPhrase
@@ -46,8 +38,11 @@ class SearchUserResultsViewModel {
     }
     
     func fetchNextPage() {
-        guard case .Loaded(_, let page) = state.value else { return }
-        fetchPage(page + 1)
+        if case .LoadedAllContent = state.value { return }
+        guard case .Loaded(let cells, let page) = state.value else { return }
+        let pageToLoad = page + 1
+        self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
+        fetchPage(pageToLoad)
     }
     
     // MARK: - Fetch
@@ -95,10 +90,14 @@ class SearchUserResultsViewModel {
     // MARK: - Helpers
     
     private func appendProfiles(profiles: [Profile], forPage page: Int) {
-        	
-        if case .Loaded(var models, let page) = state.value {
-            models += profiles.map{SearchUserProfileCellViewModel(profile: $0)}
-            state.value = State.Loaded(cells: models, page: page)
+        
+        if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
+            cells += profiles.map{SearchUserProfileCellViewModel(profile: $0)}
+            if cells.count < pageSize {
+                state.value = .LoadedAllContent(cells: cells, page: page)
+            } else {
+                state.value = .Loaded(cells: cells, page: page)
+            }
             return
         }
         
@@ -109,7 +108,7 @@ class SearchUserResultsViewModel {
             return
         }
         
-        state.value = State.Loaded(cells: profiles.map{SearchUserProfileCellViewModel(profile: $0)}, page: page)
+        state.value = .Loaded(cells: profiles.map{SearchUserProfileCellViewModel(profile: $0)}, page: page)
     }
     
     private func reloadProfiles(profiles: [Profile], atPage page: Int) {

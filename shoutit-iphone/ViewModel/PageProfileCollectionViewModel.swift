@@ -80,10 +80,6 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return nil // profile.conversation
     }
     
-    var basicProfile: Profile? {
-        return profile
-    }
-    
     var isListeningToYou: Bool? {
         return detailedProfile?.isListener
     }

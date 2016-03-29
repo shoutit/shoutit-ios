@@ -78,10 +78,6 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
-    var basicProfile: Profile? {
-        return profile
-    }
-    
     var conversation: Conversation? {
         return detailedUser?.conversation
     }

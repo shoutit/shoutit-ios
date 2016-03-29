@@ -19,7 +19,11 @@ class PostSignupInterestsViewController: UIViewController {
     private let cellReuseID = "PostSignupCategoryTableViewCell"
     
     // IB outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+        }
+    }
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -65,7 +69,7 @@ class PostSignupInterestsViewController: UIViewController {
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .ContentUnavailable:
-                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("Categories unavilable", comment: ""))
+                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("Categories unavilable", comment: "Post signup 1 placeholder"))
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
                 case .Error(let error):
@@ -111,15 +115,17 @@ class PostSignupInterestsViewController: UIViewController {
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
-            .subscribeNext {[weak self] (result) in
+            .subscribe{[weak self] (event) in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                switch result {
-                case .Success:
+                switch event {
+                case .Next:
                     self?.flowDelegate?.showPostSignupSuggestions()
-                case .Failure(let error):
-                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                case .Error(let error):
+                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.sh_message, preferredStyle: .Alert)
                     alertViewController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                     self?.presentViewController(alertViewController, animated: true, completion: nil)
+                default:
+                    break
                 }
             }
             .addDisposableTo(disposeBag)
@@ -143,6 +149,13 @@ class PostSignupInterestsViewController: UIViewController {
 extension PostSignupInterestsViewController {
     override func prefersNavigationBarHidden() -> Bool {
         return true
+    }
+}
+
+extension PostSignupInterestsViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .None
     }
 }
 

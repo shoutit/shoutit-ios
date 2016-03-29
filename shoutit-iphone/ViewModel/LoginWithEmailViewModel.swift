@@ -45,14 +45,19 @@ class LoginWithEmailViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, LoggedUser), NSError>) -> Void in
-            switch result {
-            case .Success((let authData, let user)):
-                try! Account.sharedInstance.loginUser(user, withAuthData: authData)
-                self.loginSuccessSubject.onNext(authData.isNewSignUp)
-            case .Failure(let error):
-                self.errorSubject.onNext(error)
+        let observable: Observable<(AuthData, LoggedUser)> = APIAuthService.getOAuthToken(params)
+        observable
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let authData, let user):
+                    try! Account.sharedInstance.loginUser(user, withAuthData: authData)
+                    self?.loginSuccessSubject.onNext(authData.isNewSignUp)
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
             }
-        }
+            .addDisposableTo(disposeBag)
     }
 }

@@ -183,6 +183,6 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
         UIView.animateWithDuration(0.5) {[weak self] in
             self?.errorMessageLabel.alpha = 1.0
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideMessageLabel", userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(LoginWithEmailViewController.hideMessageLabel), userInfo: nil, repeats: false)
     }
 }

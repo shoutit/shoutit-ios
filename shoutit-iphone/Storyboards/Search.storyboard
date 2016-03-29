@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Search View Controller-->
@@ -126,32 +125,44 @@
                             <outlet property="delegate" destination="w21-In-4v1" id="xEH-e4-jqg"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Results" id="XzG-ri-d5v">
-                        <rightBarButtonItems>
-                            <barButtonItem image="cart" id="i5G-Bx-Oh8">
-                                <connections>
-                                    <action selector="filterAction:" destination="w21-In-4v1" id="2Hc-iD-x7g"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="search" id="gfS-aU-KWM">
-                                <connections>
-                                    <action selector="searchAction:" destination="w21-In-4v1" id="wfr-5t-SKF"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="DmO-jH-ghg">
+                            <view key="customView" contentMode="scaleToFill" id="vxk-OS-LlQ">
+                                <rect key="frame" x="20" y="6" width="80" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioE-zg-gfo">
+                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
+                                        <state key="normal" title="search" image="search"/>
+                                        <connections>
+                                            <segue destination="atJ-xs-7Ln" kind="unwind" unwindAction="unwindToSearch:" id="0Q4-dO-FCg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35k-OA-xTT">
+                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
+                                        <state key="normal" title="cart" image="cart"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5e-kc-oor" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="atJ-xs-7Ln" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1114" y="408"/>
         </scene>
-        <!--Search Shouts Results Collection View Controller-->
+        <!--Search results-->
         <scene sceneID="tdt-t9-xe0">
             <objects>
-                <collectionViewController storyboardIdentifier="SearchShoutsResultsCollectionViewController" id="KZH-Ve-wP5" customClass="SearchShoutsResultsCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SearchShoutsResultsCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="KZH-Ve-wP5" customClass="SearchShoutsResultsCollectionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WOc-V3-1bo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="gTW-gC-Zmm" customClass="SearchShoutsResultsCollectionViewLayout" customModule="Shoutit" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mXX-t1-hlk">
@@ -169,8 +180,34 @@
                             <outlet property="delegate" destination="KZH-Ve-wP5" id="06i-5Y-Lfc"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Search results" id="U0e-yr-YM8">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="rCf-aK-4Yd">
+                            <view key="customView" contentMode="scaleToFill" id="Z8G-dM-fGC">
+                                <rect key="frame" x="20" y="6" width="80" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hX3-Eu-W27">
+                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
+                                        <state key="normal" title="search" image="search"/>
+                                        <connections>
+                                            <segue destination="d4B-fT-vNC" kind="unwind" unwindAction="unwindToSearch:" id="jz1-af-Pz5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjI-1Q-STd">
+                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
+                                        <state key="normal" title="cart" image="cart"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdN-Mo-PwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="d4B-fT-vNC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1797" y="408"/>
         </scene>

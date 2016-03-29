@@ -23,7 +23,6 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var isListeningToYou: Bool? {get}
     var coverURL: NSURL? {get}
     var conversation: Conversation? {get}
-    var basicProfile: Profile? {get}
     
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}

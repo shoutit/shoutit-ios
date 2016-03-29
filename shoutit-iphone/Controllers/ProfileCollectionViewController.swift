@@ -31,7 +31,7 @@ class ProfileCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         guard let viewModel = self.viewModel else {
-            fatalError("Pass view model to \(self.self) instance before presenting it")
+            preconditionFailure("Pass view model to \(self.self) instance before presenting it")
         }
         
         if let layout = collectionView?.collectionViewLayout as? ProfileCollectionViewLayout {
@@ -449,7 +449,7 @@ extension ProfileCollectionViewController {
             return
         }
         
-        guard let profile = viewModel.basicProfile else {
+        guard let model = viewModel.model, case .ProfileModel(let profile) = model where profile.id != Account.sharedInstance.user?.id else {
             debugPrint("Could not create conversation without profile")
             return
         }

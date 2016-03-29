@@ -102,7 +102,6 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var conversation: Conversation? { return nil }
-    var basicProfile: Profile? { return nil }
     
     var infoButtons: [ProfileCollectionInfoButton] {
         

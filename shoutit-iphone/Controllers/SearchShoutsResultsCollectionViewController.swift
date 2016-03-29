@@ -9,20 +9,19 @@
 import UIKit
 import RxSwift
 
+protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable {}
+
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
     // consts
     enum CellType {
         case Shout
-        case ShoutExtended
         case Placeholder
         
         var resuseIdentifier: String {
             switch self {
             case .Shout:
-                return "ShoutsCollectionViewCell"
-            case .ShoutExtended:
-                return "ShoutsExtendedCollectionViewCell"
+                return "ShoutsExpandedCollectionViewCell"
             case .Placeholder:
                 return "PlaceholderCollectionViewCell"
                 
@@ -32,6 +31,9 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // view model
     var viewModel: SearchShoutsResultsViewModel!
+    
+    // navigation
+    weak var flowDelegate: SearchShoutsResultsCollectionViewControllerFlowDelegate?
     
     // RX
     let disposeBag = DisposeBag()
@@ -50,15 +52,19 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         setupRX()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadContent()
+    }
+    
     // MARK: - Setup
     
     private func prepareReusables() {
-        collectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "ShoutsExtendedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.ShoutExtended.resuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Placeholder.resuseIdentifier)
         
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forCellWithReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forCellWithReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
+        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
     }
     
     private func setupRX() {
@@ -69,6 +75,20 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
                 self?.collectionView?.reloadData()
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    // MARK: - Helpers
+    
+    private func toggleLayout(sender: UIButton?) {
+        guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
+        let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
+        let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
+        newLayout.delegate = self
+        let image = newMode == .List ? UIImage.shoutsLayoutGridIcon() : UIImage.shoutsLayoutListIcon()
+        sender?.setImage(image, forState: .Normal)
+        UIView.animateWithDuration(0.3) {[weak self] in
+            self?.collectionView?.collectionViewLayout = newLayout
+        }
     }
 }
 
@@ -89,14 +109,14 @@ extension SearchShoutsResultsCollectionViewController {
             return cells.count
         case .LoadingMore(let cells, _, _):
             return cells.count
+        case .LoadedAllContent(let cells, _):
+            return cells.count
         case .Error, .NoContent, .Loading:
             return 1
         }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let collectionViewLayoutType = (collectionView.collectionViewLayout as! SearchShoutsResultsCollectionViewLayout).mode
         
         let placeholderCellWithMessage: (message: String?, activityIndicator: Bool) -> PlcaholderCollectionViewCell = {(message, activity) in
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Placeholder.resuseIdentifier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
@@ -108,12 +128,7 @@ extension SearchShoutsResultsCollectionViewController {
         let shoutCellWithModel: (SearchShoutsResultsShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
-            switch collectionViewLayoutType {
-            case .Grid:
-                cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            case .List:
-                cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.ShoutExtended.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            }
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             cell.hydrateWithShout(cellViewModel.shout)
             return cell
         }
@@ -121,6 +136,9 @@ extension SearchShoutsResultsCollectionViewController {
         switch viewModel.shoutsSection.state.value {
         case .Idle:
             fatalError()
+        case .LoadedAllContent(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            return shoutCellWithModel(cellViewModel)
         case .Loaded(let cells, _):
             let cellViewModel = cells[indexPath.row]
             return shoutCellWithModel(cellViewModel)
@@ -152,8 +170,8 @@ extension SearchShoutsResultsCollectionViewController {
         view.layoutButton
             .rx_tap
             .asDriver()
-            .driveNext{
-                
+            .driveNext{[weak view, weak self] in
+                self?.toggleLayout(view?.layoutButton)
             }
             .addDisposableTo(view.reuseDisposeBag)
 
@@ -166,7 +184,25 @@ extension SearchShoutsResultsCollectionViewController {
 extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        switch viewModel.shoutsSection.state.value {
+        case .LoadedAllContent(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        case .Loaded(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        case .LoadingMore(let cells, _, _):
+            let cellViewModel = cells[indexPath.row]
+            flowDelegate?.showShout(cellViewModel.shout)
+        default:
+            return
+        }
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            viewModel.shoutsSection.fetchNextPage()
+        }
     }
 }
 
@@ -180,7 +216,7 @@ extension SearchShoutsResultsCollectionViewController: SearchShoutsResultsCollec
     
     func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
         switch viewModel.shoutsSection.state.value {
-        case .Loaded, .LoadingMore:
+        case .Loaded, .LoadingMore, .LoadedAllContent:
             return .Regular
         default:
             return .Placeholder

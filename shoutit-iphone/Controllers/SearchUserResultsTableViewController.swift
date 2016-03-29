@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 
+protocol SearchUserResultsTableViewControllerFlowDelegate: class, ProfileDisplayable {}
+
 final class SearchUserResultsTableViewController: UITableViewController {
     
     // consts
@@ -23,6 +25,9 @@ final class SearchUserResultsTableViewController: UITableViewController {
     
     // view model
     var viewModel: SearchUserResultsViewModel!
+    
+    // navigation
+    weak var flowDelegate: SearchUserResultsTableViewControllerFlowDelegate?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -46,16 +51,6 @@ final class SearchUserResultsTableViewController: UITableViewController {
         return true
     }
     
-    // MARK: - Actions
-    
-    @IBAction func filterAction(sender: AnyObject) {
-        notImplemented()
-    }
-    
-    @IBAction func searchAction(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
     // MARK: - Setup
     
     private func registerReusables() {
@@ -73,7 +68,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
                 case .Loading:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .Loaded:
+                case .Loaded, .LoadedAllContent, .LoadingMore:
                     self?.tableView.tableHeaderView = nil
                 case .NoContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
@@ -94,15 +89,30 @@ final class SearchUserResultsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard case .Loaded(let cells, _) = viewModel.state.value else {
+
+        switch viewModel.state.value {
+        case .LoadedAllContent(let cells, _):
+            return cells.count
+        case .Loaded(let cells, _):
+            return cells.count
+        case .LoadingMore(let cells, _, _):
+            return cells.count
+        default:
             return 0
         }
-        
-        return cells.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard case .Loaded(let cells, _) = viewModel.state.value else {
+        
+        let cells: [SearchUserProfileCellViewModel]
+        switch viewModel.state.value {
+        case .LoadedAllContent(let c, _):
+            cells = c
+        case .Loaded(let c, _):
+            cells = c
+        case .LoadingMore(let c, _, _):
+            cells = c
+        default:
             preconditionFailure()
         }
         
@@ -137,5 +147,27 @@ final class SearchUserResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 64
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cells: [SearchUserProfileCellViewModel]
+        switch viewModel.state.value {
+        case .LoadedAllContent(let c, _):
+            cells = c
+        case .Loaded(let c, _):
+            cells = c
+        case .LoadingMore(let c, _, _):
+            cells = c
+        default:
+            preconditionFailure()
+        }
+        let cellViewModel = cells[indexPath.row]
+        flowDelegate?.showProfile(cellViewModel.profile)
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            viewModel.fetchNextPage()
+        }
     }
 }

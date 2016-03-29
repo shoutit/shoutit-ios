@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable {
     
 }
 

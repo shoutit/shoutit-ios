@@ -13,6 +13,8 @@ enum PagedViewModelState <T> {
     case Loading
     case Loaded(cells: [T], page: Int)
     case LoadingMore(cells: [T], currentPage: Int, loadingPage: Int)
+    case LoadedAllContent(cells: [T], page: Int)
     case NoContent
     case Error(ErrorType)
 }
+

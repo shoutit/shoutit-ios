@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable {
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
     
 }
 
@@ -46,6 +46,16 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             }).addDisposableTo(disposeBag)
         
         viewModel.retriveDiscoverItems()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func searchAction(sender: AnyObject) {
+        if let discoverItem = viewModel.mainItem() {
+            flowDelegate?.showSearchInContext(.DiscoverShouts(item: discoverItem))
+        } else {
+            flowDelegate?.showSearchInContext(.General)
+        }
     }
     
     // MARK: UICollectionView Delegate

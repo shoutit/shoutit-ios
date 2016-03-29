@@ -21,5 +21,3 @@ func !? <T>(wrapped: T?, @autoclosure nilDefault: () -> (value: T, text: String)
     assert(wrapped != nil, nilDefault().text)
     return wrapped ?? nilDefault().value
 }
-
-

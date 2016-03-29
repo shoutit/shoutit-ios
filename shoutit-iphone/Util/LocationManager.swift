@@ -8,11 +8,13 @@
 
 import Foundation
 import CoreLocation
+import RxSwift
 
 final class LocationManager: NSObject {
     
     static let sharedInstance = LocationManager()
     
+    private let disposeBag = DisposeBag()
     private let locationManager = CLLocationManager()
     private (set) var currentLocation = CLLocation() {
         didSet {
@@ -58,9 +60,10 @@ final class LocationManager: NSObject {
         guard let username = Account.sharedInstance.user?.username else {
             return
         }
-        APILocationService.updateLocation(username, coordinates: coordinates) { (result) -> Void in
-            
-        }
+        let coordinateParams = CoordinateParams(coordinates: coordinates)
+        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext { (_) in
+            print("location updated")
+        }.addDisposableTo(disposeBag)
     }
     
 }

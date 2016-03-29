@@ -52,6 +52,14 @@ extension UIImage {
         return UIImage(named: "search_recent_remove")!
     }
     
+    static func shoutsLayoutListIcon() -> UIImage {
+        return UIImage(named: "shoutsAsList")!
+    }
+    
+    static func shoutsLayoutGridIcon() -> UIImage {
+        return UIImage(named: "shoutsAsGrid")!
+    }
+    
     // MARK: - Shout detail
     
     static func shoutDetailTabBarCallImage() -> UIImage {

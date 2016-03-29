@@ -17,6 +17,7 @@ class CreateShoutParentViewController: UIViewController {
     var type : ShoutType!
     
     let disposeBag = DisposeBag()
+    var onAppearBlock: (Void -> Void)?
 
     
     override func viewDidLoad() {
@@ -25,6 +26,12 @@ class CreateShoutParentViewController: UIViewController {
         setTitle()
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppearBlock?()
+        onAppearBlock = nil
     }
     
     func setTitle() {
@@ -125,7 +132,7 @@ class CreateShoutParentViewController: UIViewController {
         
         assignAttachments()
         
-        let parameters = self.createShoutTableController.viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
+        let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
         print(parameters)
         
@@ -145,7 +152,7 @@ class CreateShoutParentViewController: UIViewController {
                 
                 MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
                 
-                let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
                 
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
                 
@@ -156,13 +163,26 @@ class CreateShoutParentViewController: UIViewController {
 
 
     @IBAction func unwindToCreateShoutParent(segue: UIStoryboardSegue) {
-        self.navigationController?.viewControllers = [Wireframe.createShoutWithTypeController(self.type)]
+        deferCreateShoutAction()
+        
     }
     
     @IBAction func unwindToEditShoutParent(segue: UIStoryboardSegue) {
         if let confirmation = segue.sourceViewController as? ShoutConfirmationViewController {
+            deferEditShoutActionWithShout(confirmation.shout)
+        }
+    }
+    
+    private func deferCreateShoutAction() {
+        onAppearBlock = {[unowned self] in
+            self.navigationController?.viewControllers = [Wireframe.createShoutWithTypeController(self.type)]
+        }
+    }
+    
+    private func deferEditShoutActionWithShout(shout: Shout) {
+        onAppearBlock = {[unowned self] in
             let editController = Wireframe.editShoutController()
-            editController.shout = confirmation.shout
+            editController.shout = shout
             editController.dismissAfter = true
             self.navigationController?.viewControllers = [editController]
         }

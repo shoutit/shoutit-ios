@@ -25,20 +25,5 @@ class ShoutConfirmationViewController: UIViewController {
             createAnotherButton.setTitle("Create another Request", forState: .Normal)
             descriptionlabel.text = NSLocalizedString("Your request will appear on Shoutit soon.", comment:"")
         }
-        
-    }
-    
-    @IBAction func editShoutAction(sender: AnyObject) {
-        let editController = Wireframe.editShoutController()
-        editController.shout = shout
-        
-        
-        self.navigationController?.pushViewController(editController, animated: true)
-        self.navigationController?.viewControllers = [Wireframe.shoutViewController(), editController]
-    }
-    
-    @IBAction func createNewShoutAction(sender: AnyObject) {
-        self.navigationController?.viewControllers = [Wireframe.shoutViewController(), self]
-        self.navigationController?.popViewControllerAnimated(true)
     }
 }
