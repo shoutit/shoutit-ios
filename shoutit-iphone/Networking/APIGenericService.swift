@@ -155,13 +155,15 @@ class APIGenericService {
         return j
     }
     
-    static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> T {
+    static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject, failureExpected: Bool = false) throws -> T {
         let decoded: Decoded<T> = decode(json)
         switch decoded {
         case .Success(let object):
             return object
         case .Failure(let decodeError):
-            assertionFailure(decodeError.description)
+            if !failureExpected {
+                assertionFailure("\(decodeError.description) in model of type \(T.self)")
+            }
             throw decodeError
         }
     }

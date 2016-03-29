@@ -57,7 +57,7 @@ final class SignupViewController: UITableViewController {
             for validationResult in [Validator.validateName(self.nameTextField.text), Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
                 if case .Invalid(let errors) = validationResult {
                     if let error = errors.first {
-                        self.delegate?.showErrorMessage(error.message)
+                        self.delegate?.showLoginErrorMessage(error.message)
                     }
                     return false
                 }

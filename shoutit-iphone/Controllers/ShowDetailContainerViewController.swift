@@ -105,15 +105,7 @@ class ShowDetailContainerViewController: UIViewController {
     // MARK: - Actions
     
     func startChat() {
-        guard let _ = Account.sharedInstance.loggedUser else {
-            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
-            
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
-                
-            }))
-            
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            
+        guard userIsLoggedIn() else {
             return
         }
         

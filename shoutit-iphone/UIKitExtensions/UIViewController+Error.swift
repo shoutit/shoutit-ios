@@ -9,8 +9,8 @@
 import UIKit
 import ObjectiveC
 
-var vc_associatedTimerObjectHandle: UnsafePointer<UInt8> = nil
-var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8> = nil
+var vc_associatedTimerObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 0)
+var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 1)
 
 extension UIViewController {
     
@@ -41,7 +41,8 @@ extension UIViewController {
             barView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(barView)
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[bar]|", options: [], metrics: nil, views: ["bar" : barView]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[bar(>=40)", options: [], metrics: nil, views: ["bar" : barView]))
+            view.addConstraint(NSLayoutConstraint(item: barView, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0))
+            barView.addConstraint(NSLayoutConstraint(item: barView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 40))
             
             // hide
             barView.alpha = 0.0
@@ -59,10 +60,10 @@ extension UIViewController {
     // MARK: - Public API
     
     func showError(error: ErrorType) {
-        showErrorMessege(error.sh_message)
+        showErrorMessage(error.sh_message)
     }
     
-    func showErrorMessege(message: String) {
+    func showErrorMessage(message: String) {
         errorBarView.errorMessageLabel.text = message
         errorBarView.hidden = false
         errorBarView.layer.removeAllAnimations()

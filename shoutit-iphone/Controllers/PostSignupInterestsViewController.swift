@@ -121,9 +121,7 @@ class PostSignupInterestsViewController: UIViewController {
                 case .Next:
                     self?.flowDelegate?.showPostSignupSuggestions()
                 case .Error(let error):
-                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.sh_message, preferredStyle: .Alert)
-                    alertViewController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-                    self?.presentViewController(alertViewController, animated: true, completion: nil)
+                    self?.showError(error)
                 default:
                     break
                 }
