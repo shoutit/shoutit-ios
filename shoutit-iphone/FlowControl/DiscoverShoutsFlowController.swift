@@ -38,3 +38,4 @@ extension DiscoverShoutsFlowController: DiscoverCollectionViewControllerFlowDele
 extension DiscoverShoutsFlowController: NotificationsTableViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ConversationViewControllerFlowDelegate {}
 extension DiscoverShoutsFlowController: ConversationListTableViewControllerFlowDelegate {}
+extension DiscoverShoutsFlowController: CallingOutViewControllerFlowDelegate {}

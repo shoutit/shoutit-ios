@@ -161,7 +161,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
             
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
-                guard self != nil && self!.validateLoggedUser() else { return }
+                guard self != nil && self!.userIsLoggedIn() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let listening):
@@ -420,27 +420,13 @@ extension ProfileCollectionViewController {
     
     func startChat() {
         
-        guard let _ = Account.sharedInstance.loggedUser else {
-            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
-            
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
-                
-            }))
-            
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            
+        guard userIsLoggedIn() else {
             return
         }
         
         if viewModel.isListeningToYou != true {
-            let alert = UIAlertController(title: NSLocalizedString("You can only start a chat with your listeners", comment: ""), message: nil, preferredStyle: .Alert)
-            
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
-                
-            }))
-            
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            
+            let error = LightError(userMessage: NSLocalizedString("You can only start a chat with your listeners", comment: ""))
+            showError(error)
             return
         }
         

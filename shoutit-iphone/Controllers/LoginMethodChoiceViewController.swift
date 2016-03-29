@@ -107,9 +107,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         // view model observers
         
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
-            let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-            self?.presentViewController(alertController, animated: true, completion: nil)
+            self?.showError(error)
         }.addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in

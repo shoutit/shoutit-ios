@@ -65,6 +65,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             }
             .addDisposableTo(disposeBag)
         
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.IncomingCallNotification)
+            .subscribeNext { notification in
+                self.incomingCall(notification)
+            }
+            .addDisposableTo(disposeBag)
+        
         Account.sharedInstance.loginSubject.subscribeNext {
             self.invalidateControllersCache()
             self.openItem(.Home)
@@ -99,6 +106,34 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBAction func toggleMenuAction() {
         self.performSegueWithIdentifier(presentMenuSegue, sender: nil)
+    }
+    
+    func incomingCall(notification: NSNotification) {
+        let invitation = notification.object as! TWCIncomingInvite
+        
+        let controller = UIAlertController(title: NSLocalizedString("Incoming call", comment: ""), message: nil, preferredStyle: .Alert)
+        
+        controller.addAction(UIAlertAction(title: NSLocalizedString("Answear", comment: ""), style: .Default, handler: { (action) in
+            
+            let media = TWCLocalMedia()
+            
+            invitation.acceptWithLocalMedia(media, completion: { (conversation, error) in
+                if let error = error {
+                    debugPrint(error)
+                    return
+                }
+                
+                if let conversation = conversation {
+                    self.showVideoConversation(conversation)
+                }
+            })
+        }))
+        
+        controller.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            invitation.reject()
+        }))
+        
+        self.showViewController(controller, sender: nil)
     }
     
     // MARK: Content Managing
@@ -294,3 +329,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
 }
 
 extension RootController: ApplicationMainViewControllerRootObject {}
+extension RootController {
+    func showVideoConversation(conversation: TWCConversation, media: TWCLocalMedia) -> Void {
+        let controller = Wireframe.videoCallController()
+        
+        controller.conversation = conversation
+        controller.localMedia = media
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+}

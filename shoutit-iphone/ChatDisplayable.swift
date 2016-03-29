@@ -16,9 +16,10 @@ protocol ChatDisplayable {
     func showImagePreview(imageURL: NSURL) -> Void
     func showVideoPreview(videoURL: NSURL) -> Void
     func startVideoCallWithProfile(profile: Profile) -> Void
+    func showVideoConversation(conversation: TWCConversation) -> Void
 }
 
-extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
+extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate {
     
     func showConversation(conversation: Conversation) {
         let controller = Wireframe.conversationController()
@@ -63,6 +64,14 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         let controller = Wireframe.callingoutController()
         
         controller.callingToProfile = profile
+        
+        self.navigationController.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func showVideoConversation(conversation: TWCConversation) -> Void {
+        let controller = Wireframe.videoCallController()
+        
+        controller.conversation = conversation
         
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }

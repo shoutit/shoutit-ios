@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol CallingOutViewControllerFlowDelegate: class, ChatDisplayable {}
+
 class CallingOutViewController: UIViewController {
 
+    weak var flowDelegate: CallingOutViewControllerFlowDelegate?
+    
     var callingToProfile: Profile!
     
     override func viewDidLoad() {
@@ -22,10 +26,22 @@ class CallingOutViewController: UIViewController {
                 return
             }
             
-            print("connected")
+            if let conversation = conversation {
+                let controller = Wireframe.videoCallController()
+                
+                controller.conversation = conversation
+                controller.localMedia = TWCLocalMedia()
+                
+                self?.presentViewController(controller, animated: true, completion: nil)
+            }
+
         }
     }
 
+    @IBAction func cancelAction(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func prefersTabbarHidden() -> Bool {
         return true
     }
@@ -34,7 +50,7 @@ class CallingOutViewController: UIViewController {
         let alert = UIAlertController(title: NSLocalizedString("Could not establish connection right now.", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
-            
+            self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)

@@ -64,13 +64,7 @@ class EditShoutParentViewController: CreateShoutParentViewController {
             
         }, onError: { [weak self] (error) -> Void in
                 MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-                
-                let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
-                
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-                
-                self?.navigationController?.presentViewController(alertController, animated: true, completion: nil)
-                
+                self?.showError(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 }

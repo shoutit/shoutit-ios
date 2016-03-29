@@ -65,10 +65,12 @@ extension Twilio {
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
         debugPrint("did cancel invite")
+        
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
-        debugPrint("did receive invite")
+        let notification = NSNotification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func conversationsClientDidStopListeningForInvites(conversationsClient: TwilioConversationsClient, error: NSError?) {

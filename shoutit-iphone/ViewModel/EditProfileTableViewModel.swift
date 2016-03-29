@@ -33,7 +33,7 @@ final class EditProfileTableViewModel {
         cells = [EditProfileCellViewModel(firstname: user.firstName),
                  EditProfileCellViewModel(lastname: user.lastName),
                  EditProfileCellViewModel(username: user.username),
-                 EditProfileCellViewModel(bio: user.bio),
+                 EditProfileCellViewModel(bio: user.bio ?? ""),
                  EditProfileCellViewModel(location: user.location),
                  EditProfileCellViewModel(website: user.website ?? "")]
     }

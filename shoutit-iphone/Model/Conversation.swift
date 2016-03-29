@@ -79,11 +79,11 @@ extension Conversation {
     }
     
     func shoutTitle() -> NSAttributedString? {
-        guard let shout = self.shout else {
+        guard let shoutTitle = shout?.title else {
             return NSAttributedString(string: "Shout discussion")
         }
         
-        let attributedString = NSMutableAttributedString(string: (shout.title ?? ""), attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
+        let attributedString = NSMutableAttributedString(string: shoutTitle, attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
         
         return attributedString
     }

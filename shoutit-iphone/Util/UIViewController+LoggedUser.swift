@@ -18,7 +18,7 @@ extension UIViewController {
         action()
     }
     
-    func validateLoggedUser() -> Bool {
+    func userIsLoggedIn() -> Bool {
         if Account.sharedInstance.user == nil || Account.sharedInstance.user!.isGuest {
             displayUserMustBeLoggedInAlert()
             return false
@@ -27,8 +27,7 @@ extension UIViewController {
     }
     
     func displayUserMustBeLoggedInAlert() {
-        let alert = UIAlertController(title: nil, message: NSLocalizedString("You must be logged in to perform this action", comment: ""), preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let error = LightError(userMessage: NSLocalizedString("You must be logged in to perform this action", comment: ""))
+        showError(error)
     }
 }

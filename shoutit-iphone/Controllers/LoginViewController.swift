@@ -52,7 +52,7 @@ class LoginViewController: UITableViewController {
             for validationResult in [Validator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
                 if case .Invalid(let errors) = validationResult {
                     if let error = errors.first {
-                        self.delegate?.showErrorMessage(error.message)
+                        self.delegate?.showLoginErrorMessage(error.message)
                     }
                     return false
                 }

@@ -102,25 +102,9 @@ class ShowDetailContainerViewController: UIViewController {
         return true
     }
     
-    func checkIfLoggedIn() -> Bool {
-        guard let _ = Account.sharedInstance.loggedUser else {
-            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
-            
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
-                
-            }))
-            
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
-            
-            return false
-        }
-        
-        return true
-    }
-    
     func videoCall() {
-        if checkIfLoggedIn() == false {
-            return
+        guard userIsLoggedIn() else {
+          return
         }
         
         self.flowDelegate?.startVideoCallWithProfile(viewModel.shout.user)
@@ -130,7 +114,7 @@ class ShowDetailContainerViewController: UIViewController {
     // MARK: - Actions
     
     func startChat() {
-        if checkIfLoggedIn() == false {
+        guard userIsLoggedIn() else {
             return
         }
         

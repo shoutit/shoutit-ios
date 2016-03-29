@@ -32,7 +32,7 @@ struct LoggedUser: User {
     let gender: Gender?
     let videoPath: String?
     let dateJoinedEpoch: Int
-    let bio: String
+    let bio: String?
     let location: Address
     let email: String
     let website: String?
@@ -71,7 +71,7 @@ extension LoggedUser: Decodable {
             <*> j <|? "video"
         let d = c
             <*> j <| "date_joined"
-            <*> j <| "bio"
+            <*> j <|? "bio"
             <*> j <| "location"
             <*> j <| "email"
         let e = d
