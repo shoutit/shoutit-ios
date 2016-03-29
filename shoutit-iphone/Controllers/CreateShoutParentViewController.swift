@@ -132,7 +132,7 @@ class CreateShoutParentViewController: UIViewController {
         
         assignAttachments()
         
-        let parameters = self.createShoutTableController.viewModel.shoutParams.encode().JSONObject() as! [String : AnyObject]
+        let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
         print(parameters)
         
@@ -152,7 +152,7 @@ class CreateShoutParentViewController: UIViewController {
                 
                 MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
                 
-                let alertController = UIAlertController(title: NSLocalizedString((error as NSError!).localizedDescription, comment: ""), message: "", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
                 
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
                 

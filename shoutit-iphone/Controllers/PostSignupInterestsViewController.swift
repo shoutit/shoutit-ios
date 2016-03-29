@@ -115,15 +115,17 @@ class PostSignupInterestsViewController: UIViewController {
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
-            .subscribeNext {[weak self] (result) in
+            .subscribe{[weak self] (event) in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                switch result {
-                case .Success:
+                switch event {
+                case .Next:
                     self?.flowDelegate?.showPostSignupSuggestions()
-                case .Failure(let error):
-                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                case .Error(let error):
+                    let alertViewController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.sh_message, preferredStyle: .Alert)
                     alertViewController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
                     self?.presentViewController(alertViewController, animated: true, completion: nil)
+                default:
+                    break
                 }
             }
             .addDisposableTo(disposeBag)

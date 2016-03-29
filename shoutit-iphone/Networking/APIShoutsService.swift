@@ -51,92 +51,12 @@ class APIShoutsService {
     }
 
 
-    static func createShoutWithParams(params: [String : AnyObject]) -> Observable<Shout> {
-        
-        return Observable.create{ (observer) -> Disposable in
-            
-            APIManager.manager()
-                .request(.POST, shoutsURL, parameters: params, encoding: .JSON, headers: ["Accept": "application/json"])
-                .validate(statusCode: 200..<401)
-                .responseData({ (response) in
-                    
-                    switch response.result {
-                    case .Success(let data):
-                        
-                        do {
-                            
-                            let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                            
-                            if let j = json {
-                                if let results : Decoded<Shout> = decode(j) {
-                                    print(json)
-                                    if let value = results.value {
-                                        observer.on(.Next(value))
-                                        observer.on(.Completed)
-                                    }
-                                    if let err = results.error {
-                                        print(err)
-                                        print(json)
-                                        
-                                        observer.on(.Error(err ?? RxCocoaURLError.Unknown))
-                                    }
-                                }
-                            }
-                            
-                        } catch let error as NSError {
-                            print(error)
-                            observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                        }
-                    case .Failure(let error):
-                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                    }
-                })
-            
-            return NopDisposable.instance
-        }
+    static func createShoutWithParams(params: Argo.JSON) -> Observable<Shout> {
+        return APIGenericService.requestWithMethod(.POST, url: shoutsURL, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func updateShoutWithParams(params: [String : AnyObject], uid: String) -> Observable<Shout> {
-        
-        return Observable.create{ (observer) -> Disposable in
-            
-            APIManager.manager()
-                .request(.PATCH, shoutsURL + "/\(uid)", parameters: params, encoding: .JSON, headers: ["Accept": "application/json"])
-                .validate(statusCode: 200..<401)
-                .responseData({ (response) in
-                    
-                    switch response.result {
-                    case .Success(let data):
-                        
-                        do {
-                            
-                            let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                            
-                            if let j = json {
-                                if let results : Decoded<Shout> = decode(j) {
-                                    
-                                    if let value = results.value {
-                                        observer.on(.Next(value))
-                                        observer.on(.Completed)
-                                    }
-                                    if let err = results.error {
-                                        observer.on(.Error(err ?? RxCocoaURLError.Unknown))
-                                        print(err)
-                                    }
-                                }
-                            }
-                            
-                            
-                        } catch let error as NSError {
-                            print(error)
-                            observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                        }
-                    case .Failure(let error):
-                        observer.on(.Error(error ?? RxCocoaURLError.Unknown))
-                    }
-                })
-            
-            return NopDisposable.instance
-        }
+    static func updateShoutWithParams(params: Argo.JSON, uid: String) -> Observable<Shout> {
+        let url = shoutsURL + "/\(uid)"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
 }

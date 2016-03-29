@@ -20,49 +20,35 @@ class APIAuthService {
         return APIGenericService.requestWithMethod(.POST, url: authResetPasswordURL, params: params, encoding: .JSON)
     }
     
-    static func getOauthToken<T: User where T: Decodable, T == T.DecodedType>(params: AuthParams, completionHandler: Result<(AuthData, T), NSError> -> Void) {
+    static func getOAuthToken<T: User where T: Decodable, T == T.DecodedType>(params: AuthParams) -> Observable<(AuthData, T)> {
         
-        APIManager.manager()
-            .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON, headers: nil)
-            .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
-            switch response.result {
-            case .Success(let json):
-                    do {
-                        var auth: AuthData?
-                        
-                        let decoded: Decoded<AuthData> = decode(json)
-                        switch decoded {
-                        case .Success(let authData):
-                            auth = authData
-                        case .Failure(let error):
-                            throw error
-                        }
-                        
-                        if let userJson = json["user"] as? [String : AnyObject] {
-                            
-                            let docoded: Decoded<T> = decode(userJson)
-                            let user: T? = docoded.value
-                            
-                            if let user = user as? LoggedUser {
-                                Account.sharedInstance.loggedUser = user
-                            } else if let user = user as? GuestUser {
-                                Account.sharedInstance.guestUser = user
-                            }
-                            
-                            if let user = user, let auth = auth {
-                                completionHandler(.Success(auth, user))
-                            } else {
-                                throw ParseError.User
-                            }
-                        }
-
-                    } catch let error as NSError {
-                        completionHandler(.Failure(error))
-                    }
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+        return Observable.create {(observer) -> Disposable in
+            
+            let request = APIManager.manager()
+                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON)
+            let cancel = AnonymousDisposable {
+                request.cancel()
             }
+            
+            request.responseJSON{ (response) in
+                do {
+                    let json = try APIGenericService.validateResponseAndExtractJson(response)
+                    let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["user"])
+                    let authData: AuthData = try APIGenericService.parseJson(json)
+                    let user: T = try APIGenericService.parseJson(userJson)
+                    if let user = user as? LoggedUser {
+                        Account.sharedInstance.loggedUser = user
+                    } else if let user = user as? GuestUser {
+                        Account.sharedInstance.guestUser = user
+                    }
+                    observer.onNext((authData, user))
+                    observer.onCompleted()
+                } catch let error {
+                    observer.onError(error)
+                }
+            }
+            
+            return cancel
         }
     }
 }
