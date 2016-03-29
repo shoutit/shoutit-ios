@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-Zd-vAr" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="10" width="258" height="44"/>
+                                        <rect key="frame" x="20" y="10" width="257.5" height="44"/>
                                         <color key="backgroundColor" red="0.25098039220000001" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AWQ-bq-70s"/>
@@ -38,7 +38,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9i5-7q-LZP" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="323" y="10" width="257" height="44"/>
+                                        <rect key="frame" x="322.5" y="10" width="257.5" height="44"/>
                                         <color key="backgroundColor" red="0.29803921570000003" green="0.72549019609999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="IQw-RX-cp5"/>
@@ -69,13 +69,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have already clicked on the link that was sent to you, you may click “Verify” now." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-kw-tkU">
-                                        <rect key="frame" x="20" y="143" width="560" height="14"/>
+                                        <rect key="frame" x="20" y="142.5" width="560" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wQK-uY-5kn" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="89" width="560" height="34"/>
+                                        <rect key="frame" x="20" y="88.5" width="560" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="GHj-gr-pV0"/>
                                         </constraints>
@@ -83,7 +83,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-mg-M4d">
-                                        <rect key="frame" x="20" y="11" width="560" height="58"/>
+                                        <rect key="frame" x="20" y="11" width="560" height="57.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="406" id="P3x-zv-lbN"/>
                                         </constraints>
