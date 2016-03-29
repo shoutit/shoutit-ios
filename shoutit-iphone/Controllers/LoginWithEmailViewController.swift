@@ -23,10 +23,10 @@ protocol LoginWithEmailViewControllerChildDelegate: class {
 final class LoginWithEmailViewController: UIViewController, ContainerController {
     
     // animation
-    let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 416
-    let loginViewHeight: CGFloat = 326
-    let resetPasswordViewHeight: CGFloat = 188
+    internal let animationDuration: Double = 0.25
+    private let signupViewHeight: CGFloat = 416
+    private let loginViewHeight: CGFloat = 326
+    private let resetPasswordViewHeight: CGFloat = 188
     
     //
     private var timer: NSTimer?
