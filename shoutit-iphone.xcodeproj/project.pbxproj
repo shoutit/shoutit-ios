@@ -275,6 +275,8 @@
 		AE4DB3641C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4DB3651C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */; };
+		AE6432FB1CAAD40000729AA6 /* VideoCalls.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */; };
+		AE6432FE1CAAD45E00729AA6 /* CallingOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6432FD1CAAD45E00729AA6 /* CallingOutViewController.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0A1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0B1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
@@ -1033,6 +1035,8 @@
 		AE4DB35E1C6485FA001EB84B /* MenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuHeaderView.swift; path = View/MenuHeaderView.swift; sourceTree = "<group>"; };
 		AE4DB3621C648B66001EB84B /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = ViewModel/MenuViewModel.swift; sourceTree = "<group>"; };
 		AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerControllerProtocol.swift; path = Controllers/MediaPickerControllerProtocol.swift; sourceTree = "<group>"; };
+		AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = VideoCalls.storyboard; path = Storyboards/VideoCalls.storyboard; sourceTree = "<group>"; };
+		AE6432FD1CAAD45E00729AA6 /* CallingOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CallingOutViewController.swift; path = Controllers/CallingOutViewController.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE8351621C5F4DDD0055C71F /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Root.storyboard; path = Storyboards/Root.storyboard; sourceTree = "<group>"; };
 		AE8351661C5F521B0055C71F /* TabbarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarButton.swift; path = View/tabs/TabbarButton.swift; sourceTree = "<group>"; };
@@ -1905,6 +1909,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE6432FC1CAAD43100729AA6 /* VideoCalls */,
 				AEADF33F1CA565730051DABA /* ConversationSelectShout */,
 				246DEA711CA40619009DF436 /* ConversationLocation */,
 				AEF1E66C1CA1D35A0054640C /* ConversationAttachment */,
@@ -2058,6 +2063,7 @@
 				AE3A54871C92CA9700803571 /* Browse.storyboard */,
 				24826B3C1C96980500032FC9 /* Notifications.storyboard */,
 				B276CE8D1C982767006434D5 /* Search.storyboard */,
+				AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2713,6 +2719,14 @@
 				246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */,
 			);
 			name = MediaPicker;
+			sourceTree = "<group>";
+		};
+		AE6432FC1CAAD43100729AA6 /* VideoCalls */ = {
+			isa = PBXGroup;
+			children = (
+				AE6432FD1CAAD45E00729AA6 /* CallingOutViewController.swift */,
+			);
+			name = VideoCalls;
 			sourceTree = "<group>";
 		};
 		AE83516A1C5F59270055C71F /* Tabbar */ = {
@@ -3855,6 +3869,7 @@
 				ACDB3CCF1BF94FD90097444E /* SHShoutTableViewCell.xib in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
+				AE6432FB1CAAD40000729AA6 /* VideoCalls.storyboard in Resources */,
 				B2E715661C6E3788007F95CF /* PagesCollectionViewCell.xib in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
@@ -4382,6 +4397,7 @@
 				606116A81BF0947600259357 /* SHDiscoverFlowLayout.swift in Sources */,
 				ACBB7BBF1C2942160052C12B /* SHListenersMeta.swift in Sources */,
 				AC856EA01C1AF40D00864A85 /* SHUsersMeta.swift in Sources */,
+				AE6432FE1CAAD45E00729AA6 /* CallingOutViewController.swift in Sources */,
 				24826B451C969BA400032FC9 /* NotificationsDisplayable.swift in Sources */,
 				606ED3071BF8AEF80064C53E /* SHVideoPreviewViewController.swift in Sources */,
 				B2F524761C9B0AB600EA622F /* SearchUserProfileCellViewModel.swift in Sources */,

@@ -15,6 +15,7 @@ protocol ChatDisplayable {
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
     func showVideoPreview(videoURL: NSURL) -> Void
+    func startVideoCallWithProfile(profile: Profile) -> Void
 }
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate {
@@ -56,6 +57,14 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         let controller = MWPhotoBrowser(photos: [MWPhoto(videoURL: videoURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func startVideoCallWithProfile(profile: Profile) -> Void {
+        let controller = Wireframe.callingoutController()
+        
+        controller.callingToProfile = profile
+        
+        self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
 }
 

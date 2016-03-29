@@ -28,6 +28,7 @@ struct Wireframe {
         case EditProfile = "EditProfile"
         case Notifications = "Notifications"
         case Search = "Search"
+        case VideoCalls = "VideoCalls"
     }
     
     // General
@@ -208,5 +209,9 @@ struct Wireframe {
     
     static func conversationLocationController() -> ConversationLocationController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationLocationController") as! ConversationLocationController
+    }
+    
+    static func callingoutController() -> CallingOutViewController {
+        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("CallingOutViewController") as! CallingOutViewController
     }
 }

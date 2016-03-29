@@ -41,7 +41,7 @@ class APIChatsService {
     }
     
     static func twilioVideoAuth() -> Observable<TwilioAuth> {
-        return APIGenericService.requestWithMethod(.GET, url: twilioURL, params: NopParams())
+        return APIGenericService.requestWithMethod(.POST, url: twilioURL, params: NopParams())
     }
         
     static func startConversationWithUsername(username: String, message: Message) -> Observable<Message> {
