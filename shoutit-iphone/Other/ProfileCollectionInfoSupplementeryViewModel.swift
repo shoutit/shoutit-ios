@@ -17,6 +17,7 @@ protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {get}
     var infoButtons: [ProfileCollectionInfoButton] {get}
+    var hidesVerifyAccountButton: Bool {get}
     var descriptionText: String? {get}
     var descriptionIcon: UIImage? {get}
     var websiteString: String? {get}

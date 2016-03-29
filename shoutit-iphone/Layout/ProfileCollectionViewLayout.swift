@@ -22,11 +22,12 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
     // supplementery views consts
     private let coverViewHeight: CGFloat                           = 211
     private let collapsedCoverViewHeight: CGFloat                  = 64
-    private let infoViewHeight: CGFloat                            = 292
+    private let infoViewHeight: CGFloat                            = 336
     private let sectionHeaderHeight: CGFloat                       = 44
     private let footerButtonHeight: CGFloat                        = 64
     private let infoOverCoverViewMargin: CGFloat                   = 34
     let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
+    let defaultVerifyButtonHeight: CGFloat = 44
     
     // cells consts
     private let placeholderCellHeight: CGFloat                     = 58
@@ -230,6 +231,10 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
                 if string == nil || string!.isEmpty {
                     height -= defaultInfoSupplementaryViewSectionHeight
                 }
+            }
+            
+            if delegate.hidesVerifyAccountButton {
+                height -= defaultVerifyButtonHeight
             }
             
             let descriptionSectionHeight = descriptionViewHeightForText(delegate.descriptionText)

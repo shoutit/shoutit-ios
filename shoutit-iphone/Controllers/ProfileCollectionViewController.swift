@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -261,7 +261,6 @@ extension ProfileCollectionViewController {
         case .Info:
             
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
-            infoView.reuseDisposeBag = DisposeBag()
             
             switch viewModel.avatar {
             case .Local(let image):
@@ -285,7 +284,13 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
-            setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag!)
+            setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag)
+            infoView.verifyAccountButton
+                .rx_tap.asDriver()
+                .driveNext{ [weak self] in
+                    self?.flowDelegate?.showVerifyEmailView()
+                }
+                .addDisposableTo(infoView.reuseDisposeBag)
             
             // adjust constraints for data
             let layout = collectionView.collectionViewLayout as! ProfileCollectionViewLayout
@@ -302,6 +307,7 @@ extension ProfileCollectionViewController {
                     constraint.constant = layout.defaultInfoSupplementaryViewSectionHeight
                 }
             }
+            infoView.verifyAccountButtonHeightConstraint.constant = viewModel.hidesVerifyAccountButton ? 0 : layout.defaultVerifyButtonHeight
             
         case .ListSectionHeader:
             let listSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView

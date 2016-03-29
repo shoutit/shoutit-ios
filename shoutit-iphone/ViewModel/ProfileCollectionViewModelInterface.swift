@@ -38,6 +38,10 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 
 extension ProfileCollectionViewModelInterface {
     
+    var hidesVerifyAccountButton: Bool {
+        return true
+    }
+    
     func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
         
         if section == 0 {

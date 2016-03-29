@@ -103,6 +103,10 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var conversation: Conversation? { return nil }
     
+    var hidesVerifyAccountButton: Bool {
+        return false//user?.activated ?? true
+    }
+    
     var infoButtons: [ProfileCollectionInfoButton] {
         
         guard let user = user else {
