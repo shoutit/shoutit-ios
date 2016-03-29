@@ -83,7 +83,7 @@ extension Conversation {
             return NSAttributedString(string: "Shout discussion")
         }
         
-        let attributedString = NSMutableAttributedString(string: shout.title, attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
+        let attributedString = NSMutableAttributedString(string: (shout.title ?? ""), attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
         
         return attributedString
     }

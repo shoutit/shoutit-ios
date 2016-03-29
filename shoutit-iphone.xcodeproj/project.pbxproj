@@ -239,6 +239,10 @@
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE3A54881C92CA9700803571 /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE3A54871C92CA9700803571 /* Browse.storyboard */; };
+		AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */; };
+		AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */; };
+		AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */; };
+		AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */; };
 		AE4DB33E1C634C22001EB84B /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEA599791C609E0100015AA3 /* Menu.storyboard */; };
 		AE4DB33F1C634C28001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
 		AE4DB3401C634C2A001EB84B /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8351621C5F4DDD0055C71F /* Root.storyboard */; };
@@ -1015,6 +1019,10 @@
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE3A54871C92CA9700803571 /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Browse.storyboard; path = Storyboards/Browse.storyboard; sourceTree = "<group>"; };
+		AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		AE4DB3421C635026001EB84B /* MenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuAnimationController.swift; path = Util/MenuAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDismissAnimationController.swift; path = Util/MenuDismissAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFlowController.swift; path = FlowControl/SettingsFlowController.swift; sourceTree = "<group>"; };
@@ -1359,6 +1367,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
+				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
+				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
+				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
+				AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */,
+				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
 				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
@@ -1373,7 +1387,6 @@
 				B2985F9F1C72958E00EEA9A2 /* libc++.tbd in Frameworks */,
 				B2985FA01C72958E00EEA9A2 /* libc++abi.tbd in Frameworks */,
 				B2985F9A1C72955100EEA9A2 /* ImageIO.framework in Frameworks */,
-				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
 				B2985F961C72953800EEA9A2 /* CoreText.framework in Frameworks */,
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
@@ -1381,7 +1394,6 @@
 				B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
-				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
@@ -1413,6 +1425,10 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */,
+				AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */,
+				AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */,
+				AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */,
 				246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */,
 				B2985FB11C7295D400EEA9A2 /* Security.framework */,
 				B2985FAF1C7295CC00EEA9A2 /* QuartzCore.framework */,

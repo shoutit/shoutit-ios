@@ -207,9 +207,9 @@ extension ShoutDetailViewModel {
         var models: [ShoutDetailTableViewCellViewModel] = []
         
         // description
-        if shout.text.characters.count > 0 {
+        if shout.text?.characters.count > 0 {
             models.append(.SectionHeader(title: NSLocalizedString("Description", comment: "Shout details")))
-            models.append(.Description(description: shout.text))
+            models.append(.Description(description: shout.text ?? ""))
         }
         
         // details

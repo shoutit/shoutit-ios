@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import TwilioConversationsClient
 
 final class Twilio {
     static let sharedInstance = Twilio()
