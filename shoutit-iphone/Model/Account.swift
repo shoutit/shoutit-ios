@@ -98,8 +98,7 @@ final class Account {
         
         // save
         let data = SecureCoder.dataWithJsonConvertible(authData)
-        
-//        try keychain.set(data, key: authDataKey)
+        try keychain.set(data, key: authDataKey)
         
         
         // set instance vars

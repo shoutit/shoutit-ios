@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable {
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
     
 }
 
@@ -46,6 +46,16 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             }).addDisposableTo(disposeBag)
         
         viewModel.retriveDiscoverItems()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func searchAction(sender: AnyObject) {
+        if let discoverItem = viewModel.mainItem() {
+            flowDelegate?.showSearchInContext(.DiscoverShouts(item: discoverItem))
+        } else {
+            flowDelegate?.showSearchInContext(.General)
+        }
     }
     
     // MARK: UICollectionView Delegate
@@ -104,7 +114,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
             let footer =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.footerIdentifier(), forIndexPath: indexPath)
             
             if let discoverFooter = footer as? DiscoverShoutFooterView {
-                discoverFooter.showShoutsButton.addTarget(self, action: "showDiscoverShouts", forControlEvents: .TouchUpInside)
+                discoverFooter.showShoutsButton.addTarget(self, action: #selector(DiscoverCollectionViewController.showDiscoverShouts), forControlEvents: .TouchUpInside)
             }
             
             return footer

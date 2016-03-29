@@ -53,6 +53,10 @@ final class LoginMethodChoiceViewController: UIViewController {
         setupRX()
     }
     
+    func dismiss() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {
@@ -103,7 +107,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         // view model observers
         
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
             self?.presentViewController(alertController, animated: true, completion: nil)
         }.addDisposableTo(disposeBag)

@@ -14,8 +14,11 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     
-    private let profile: Profile
+    let profile: Profile
     private var detailedUser: DetailedProfile?
+    var model: ProfileCollectionViewModelMainModel? {
+        return .ProfileModel(profile: profile)
+    }
     
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
@@ -27,8 +30,6 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     func reloadContent() {
-        
-        reloadPages(currentlyLoading: true)
         
         // reload user
         fetchProfile()
@@ -77,6 +78,10 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
+    var conversation: Conversation? {
+        return detailedUser?.conversation
+    }
+    
     var isListeningToYou: Bool? {
         return detailedUser?.isListener
     }
@@ -123,19 +128,12 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var locationFlag: UIImage? {
         return UIImage(named: (detailedUser?.location.country ?? "country_placeholder"))
     }
-    
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        if case .CreatePageButtonFooter = view {
-            return true
-        }
-        return false
-    }
-    
+
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {
-        let params = UserShoutsParams(username: profile.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     func fetchProfile() -> Observable<DetailedProfile> {

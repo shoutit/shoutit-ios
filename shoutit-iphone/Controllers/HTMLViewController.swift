@@ -26,7 +26,7 @@ final class HTMLViewController: UIViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "done"), animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(HTMLViewController.done)), animated: true)
         
         guard let fileName = htmlFile else {
             assert(false)

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable {}
 
 class ProfileCollectionViewController: UICollectionViewController {
     
@@ -31,7 +31,7 @@ class ProfileCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         guard let viewModel = self.viewModel else {
-            fatalError("Pass view model to \(self.self) instance before presenting it")
+            preconditionFailure("Pass view model to \(self.self) instance before presenting it")
         }
         
         if let layout = collectionView?.collectionViewLayout as? ProfileCollectionViewLayout {
@@ -53,9 +53,8 @@ class ProfileCollectionViewController: UICollectionViewController {
         viewModel.reloadContent()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        navigationController?.navigationBarHidden = false
-        super.viewWillDisappear(animated)
+    override func prefersNavigationBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Setup
@@ -162,6 +161,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
             
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+                guard self != nil && self!.validateLoggedUser() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let listening):
@@ -181,11 +181,7 @@ extension ProfileCollectionViewController {
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
-            
-            cell.titleLabel.text = cellViewModel.shout.title
-            cell.subtitleLabel.text = cellViewModel.shout.user.name
-            cell.imageView.sh_setImageWithURL(cellViewModel.shout.thumbnailPath?.toURL(), placeholderImage: UIImage.shoutsPlaceholderImage())
-            cell.priceLabel.text = cellViewModel.priceString()
+            cell.hydrateWithShout(cellViewModel.shout)
             
             return cell
         }
@@ -205,7 +201,6 @@ extension ProfileCollectionViewController {
         case .Cover:
             
             let coverView = supplementeryView as! ProfileCollectionCoverSupplementaryView
-            coverView.reuseDisposeBag = DisposeBag()
             
             // setup navigation bar buttons
             coverView.menuButton
@@ -213,7 +208,7 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.toggleMenu()
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             if let navigationController = navigationController where self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
@@ -224,7 +219,7 @@ extension ProfileCollectionViewController {
                     .driveNext{[unowned self] in
                         self.navigationController?.popViewControllerAnimated(true)
                     }
-                    .addDisposableTo(coverView.reuseDisposeBag!)
+                    .addDisposableTo(coverView.reuseDisposeBag)
             }
             
             coverView.cartButton
@@ -232,15 +227,21 @@ extension ProfileCollectionViewController {
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             coverView
                 .searchButton
                 .rx_tap
                 .subscribeNext{[unowned self] in
-                    self.flowDelegate?.showSearch()
+                    guard let model = self.viewModel.model else { return }
+                    switch model {
+                    case .TagModel(let tag):
+                        self.flowDelegate?.showSearchInContext(.TagShouts(tag: tag))
+                    case .ProfileModel(let profile):
+                        self.flowDelegate?.showSearchInContext(.ProfileShouts(profile: profile))
+                    }
                 }
-                .addDisposableTo(coverView.reuseDisposeBag!)
+                .addDisposableTo(coverView.reuseDisposeBag)
             
             
             // setup cover image
@@ -357,6 +358,7 @@ extension ProfileCollectionViewController {
                 hydrateButton(sView.buttonSectionRightButton, withButtonModel: button, disposeBag: disposeBag)
             }
         }
+        sView.layoutButtons()
     }
     
     private func hydrateButton(button: UIButton, withButtonModel buttonModel: ProfileCollectionInfoButton, disposeBag: DisposeBag) {
@@ -387,6 +389,10 @@ extension ProfileCollectionViewController {
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
             }.addDisposableTo(disposeBag)
+        case .Chat:
+            button.rx_tap.asDriver().driveNext({ [weak self] in
+                self?.startChat()
+            }).addDisposableTo(disposeBag)
         case .Notification:
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showNotifications()
@@ -411,13 +417,45 @@ extension ProfileCollectionViewController {
             button.setImage(buttonModel.image, forState: .Normal)
         }
     }
-}
-
-// MARK: - NavigationBarContext
-
-extension ProfileCollectionViewController {
     
-    override func prefersNavigationBarHidden() -> Bool {
-        return true
+    func startChat() {
+        
+        guard let _ = Account.sharedInstance.loggedUser else {
+            let alert = UIAlertController(title: NSLocalizedString("Please log in to continue", comment: ""), message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        if viewModel.isListeningToYou != true {
+            let alert = UIAlertController(title: NSLocalizedString("You can only start a chat with your listeners", comment: ""), message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        if let conv = viewModel.conversation {
+            self.flowDelegate?.showConversation(conv)
+            return
+        }
+        
+        guard let model = viewModel.model, case .ProfileModel(let profile) = model where profile.id != Account.sharedInstance.user?.id else {
+            debugPrint("Could not create conversation without profile")
+            return
+        }
+        
+        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, shout: nil, readby: nil)
+        
+        self.flowDelegate?.showConversation(conversation)
     }
 }

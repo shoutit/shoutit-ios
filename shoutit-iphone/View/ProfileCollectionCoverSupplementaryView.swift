@@ -11,7 +11,7 @@ import RxSwift
 
 class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
-    var reuseDisposeBag: DisposeBag?
+    var reuseDisposeBag: DisposeBag = DisposeBag()
     private let visibleLabelsConstraintConstantValue: CGFloat = 21
     
     @IBOutlet weak var imageView: UIImageView!
@@ -58,5 +58,10 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
             imageView.alpha = 1.0
             gradientView.alpha = 1.0
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
     }
 }

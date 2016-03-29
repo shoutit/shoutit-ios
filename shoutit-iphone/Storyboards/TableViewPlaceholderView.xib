@@ -14,27 +14,42 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2RP-Lz-Pva">
                     <rect key="frame" x="290" y="260" width="20" height="20"/>
                 </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Content unavailable" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-dy-4cC">
-                    <rect key="frame" x="226" y="261" width="149" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content unavailable" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-dy-4cC">
+                    <rect key="frame" x="226" y="260" width="149" height="21"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oVs-Dl-pLL">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="2RP-Lz-Pva" firstAttribute="centerY" secondItem="M0k-Ry-6yu" secondAttribute="centerY" constant="-30" id="71b-VL-mPz"/>
                 <constraint firstItem="fbK-dy-4cC" firstAttribute="centerX" secondItem="M0k-Ry-6yu" secondAttribute="centerX" id="9cs-pc-47c"/>
+                <constraint firstItem="fbK-dy-4cC" firstAttribute="top" secondItem="oVs-Dl-pLL" secondAttribute="bottom" constant="8" id="B2B-Ql-F8G"/>
+                <constraint firstItem="oVs-Dl-pLL" firstAttribute="leading" secondItem="M0k-Ry-6yu" secondAttribute="leading" id="HyF-5j-LvW"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fbK-dy-4cC" secondAttribute="trailing" constant="10" id="Oid-f2-3oM"/>
+                <constraint firstItem="oVs-Dl-pLL" firstAttribute="centerX" secondItem="M0k-Ry-6yu" secondAttribute="centerX" id="R3T-6C-8JN"/>
+                <constraint firstItem="oVs-Dl-pLL" firstAttribute="top" secondItem="M0k-Ry-6yu" secondAttribute="top" id="SMS-24-6jq"/>
+                <constraint firstAttribute="trailing" secondItem="oVs-Dl-pLL" secondAttribute="trailing" id="SxC-4W-FWE"/>
                 <constraint firstItem="2RP-Lz-Pva" firstAttribute="centerX" secondItem="M0k-Ry-6yu" secondAttribute="centerX" id="c97-88-Ixk"/>
                 <constraint firstItem="fbK-dy-4cC" firstAttribute="centerY" secondItem="M0k-Ry-6yu" secondAttribute="centerY" constant="-30" id="fbo-sT-8Q6"/>
                 <constraint firstItem="fbK-dy-4cC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M0k-Ry-6yu" secondAttribute="leading" constant="10" id="oTX-d2-b9P"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="R3T-6C-8JN"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="activityIndicatorView" destination="2RP-Lz-Pva" id="1AB-lb-J2B"/>
+                <outlet property="imageView" destination="oVs-Dl-pLL" id="1qf-dV-0RT"/>
                 <outlet property="label" destination="fbK-dy-4cC" id="Ocz-BN-S4D"/>
+                <outlet property="labelToViewCenterYConstraint" destination="fbo-sT-8Q6" id="dWC-eU-kpg"/>
             </connections>
-            <point key="canvasLocation" x="5864" y="-148.5"/>
+            <point key="canvasLocation" x="5864" y="-149"/>
         </view>
     </objects>
 </document>

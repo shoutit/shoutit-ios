@@ -16,6 +16,9 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private let profile: Profile
     private var detailedProfile: DetailedProfile?
+    var model: ProfileCollectionViewModelMainModel? {
+        return .ProfileModel(profile: profile)
+    }
     
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
@@ -27,8 +30,6 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     func reloadContent() {
-        
-        reloadPages(currentlyLoading: true)
         
         // reload user
         fetchProfile()
@@ -73,6 +74,10 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var username: String? {
         return profile.username
+    }
+    
+    var conversation: Conversation? {
+        return nil // profile.conversation
     }
     
     var isListeningToYou: Bool? {
@@ -121,40 +126,11 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (detailedProfile?.location.country ?? "country_placeholder"))
     }
     
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        switch view {
-        case .CreatePageButtonFooter:
-            return true
-        case .ListSectionHeader:
-            return self.listSection.cells.count == 0 && !listSection.isLoading
-        default:
-            return false
-        }
-    }
-    
-    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
-        if section == 0 {
-            if listSection.isLoading {
-                return .Placeholder
-            } else if listSection.cells.count > 0 {
-                return .Default
-            } else {
-                return .Hidden
-            }
-        }
-        if section == 1 {
-            return gridSection.cells.count > 1 ? .Default : .Placeholder
-        }
-        
-        assertionFailure()
-        return .Default
-    }
-    
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {
-        let params = UserShoutsParams(username: profile.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     func fetchProfile() -> Observable<DetailedProfile> {

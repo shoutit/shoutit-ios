@@ -8,13 +8,43 @@
 
 import Foundation
 
-protocol SearchDisplayable {
-    func showSearch() -> Void
+enum SearchContext {
+    case General
+    case ProfileShouts(profile: Profile)
+    case TagShouts(tag: Tag)
+    case CategoryShouts(category: Category)
+    case DiscoverShouts(item: DiscoverItem)
 }
 
-extension SearchDisplayable where Self: FlowController {
+protocol SearchDisplayable {
+    func showSearchInContext(context: SearchContext) -> Void
+    func showUserSearchResultsWithPhrase(phrase: String) -> Void
+    func showShoutsSearchResultsWithPhrase(phrase: String, context: SearchContext) -> Void
+}
+
+extension SearchDisplayable where Self: FlowController, Self: SearchViewControllerFlowDelegate {
     
-    func showSearch() {
-        navigationController.notImplemented()
+    func showSearchInContext(context: SearchContext) {
+        let controller = Wireframe.searchViewController()
+        controller.flowDelegate = self
+        controller.viewModel = SearchViewModel(context: context)
+        navigationController.showViewController(controller, sender: nil)
+    }
+}
+
+extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsTableViewControllerFlowDelegate, Self: SearchShoutsResultsCollectionViewControllerFlowDelegate {
+    
+    func showUserSearchResultsWithPhrase(phrase: String) {
+        let controller = Wireframe.searchUserResultsTableViewController()
+        controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
+        controller.flowDelegate = self
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showShoutsSearchResultsWithPhrase(phrase: String, context: SearchContext) {
+        let controller = Wireframe.searchShoutsResultsCollectionViewController()
+        controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: phrase, inContext: context)
+        controller.flowDelegate = self
+        navigationController.showViewController(controller, sender: nil)
     }
 }

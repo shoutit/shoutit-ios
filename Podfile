@@ -50,6 +50,7 @@ pod 'Kingfisher', '~> 1.8'
 pod 'SDWebImage', '~> 3.7'
 pod 'MWPhotoBrowser', '~> 2.1'
 pod 'Nemo'
+pod 'MBMapSnapshotter'
 
 # serialization
 pod 'ObjectMapper', '~> 1.1'

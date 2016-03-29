@@ -16,6 +16,10 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let filter: Filter?
     private(set) var tag: Tag?
+    var model: ProfileCollectionViewModelMainModel? {
+        guard let tag = tag else { return nil }
+        return .TagModel(tag: tag)
+    }
     
     init(filter: Filter) {
         self.filter = filter
@@ -105,17 +109,6 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         }
     }
     
-    // MARK: - ProfileCollectionViewLayoutDelegate
-    
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
-        switch view {
-        case .CreatePageButtonFooter:
-            return true
-        default:
-            return false
-        }
-    }
-    
     // MARK: - ProfileCollectionInfoSupplementaryViewDataSource
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
@@ -124,7 +117,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var infoButtons: [ProfileCollectionInfoButton] {
         let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(tag?.listenersCount ?? 0)
         return [.Listeners(countString: listenersCountString),
-                .Custom(title: "<not implemented>", icon: nil),
+                .HiddenButton(position: .BigCenter),
                 .Listen(isListening: tag?.isListening ?? false),
                 .HiddenButton(position: .SmallLeft),
                 .More]
@@ -136,7 +129,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var dateJoinedString: String? {return nil}
     var locationString: String? {return nil}
     var locationFlag: UIImage? {return nil}
-    
+    var conversation: Conversation? {return nil}
     // MARK: - Helpers
     
     private func fetchTag() -> Observable<Tag>? {

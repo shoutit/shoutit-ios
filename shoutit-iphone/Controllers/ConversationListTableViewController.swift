@@ -33,10 +33,16 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         reloadConversationList()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: "reloadConversationList", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.reloadConversationList), forControlEvents: .ValueChanged)
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadConversationList()
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -49,7 +55,9 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
     
     func reloadConversationList() {
         APIChatsService.requestConversations().subscribe(onNext: { [weak self] (conversations) -> Void in
-            self?.conversations = conversations
+            self?.conversations = conversations.filter({ (conversation) -> Bool in
+                return conversation.users?.count > 1
+            })
             self?.renewConversationSubscriptions()
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
@@ -99,7 +107,10 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         for conversation in self.conversations {
             let idx = self.conversations.indexOf(conversation)!
             
-            PusherClient.sharedInstance.conversationObservable(conversation).subscribeNext({ [weak self] (event) -> Void in
+            PusherClient.sharedInstance.conversationMessagesObservable(conversation).subscribeNext({ [weak self] (msg) -> Void in
+                let updatedConversation = conversation.copyWithLastMessage(msg)
+                self?.conversations.removeAtIndex(idx)
+                self?.conversations.insert(updatedConversation, atIndex: idx)
                 self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
             }).addDisposableTo(disposeBag)
         }

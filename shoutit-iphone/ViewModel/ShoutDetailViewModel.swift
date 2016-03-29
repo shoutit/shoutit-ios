@@ -188,8 +188,8 @@ final class ShoutDetailViewModel {
     }
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = UserShoutsParams(username: shout.user.username, pageSize: 4, shoutType: nil)
-        return APIShoutsService.shoutsForUserWithParams(params)
+        let params = FilteredShoutsParams(username: shout.user.username, page: 1, pageSize: 4)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     private func fetchRelatedShouts() -> Observable<[Shout]> {

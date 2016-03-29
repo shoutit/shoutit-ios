@@ -15,8 +15,6 @@ extension UIViewController {
     }
     
     @IBAction func pop() {
-        if let navigationController = self.navigationController {
-            navigationController.popViewControllerAnimated(true)
-        }
+        navigationController?.popViewControllerAnimated(true)
     }
 }

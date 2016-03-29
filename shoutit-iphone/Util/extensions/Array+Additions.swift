@@ -28,6 +28,18 @@ extension Array where Element:Equatable {
         
         return result
     }
+    
+    mutating func removeElementIfExists(element: Element) {
+        var indexToRemove: Int?
+        for (index, value) in self.enumerate() {
+            if element == value {
+                indexToRemove = index
+            }
+        }
+        if let index = indexToRemove {
+            self.removeAtIndex(index)
+        }
+    }
 }
 
 public extension SequenceType {

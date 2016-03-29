@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dDF-HW-x1D" customClass="SearchShoutsResultsCategoriesHeaderSupplementeryView" customModule="Shoutit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKJ-KA-pZ5">
+                    <rect key="frame" x="10" y="11" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tb-Yb-NYL">
+                    <rect key="frame" x="337" y="0.0" width="38" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="Euk-QD-kfg"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="share_icon"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iKJ-KA-pZ5" firstAttribute="leading" secondItem="dDF-HW-x1D" secondAttribute="leading" constant="10" id="7rd-c9-gtb"/>
+                <constraint firstItem="6tb-Yb-NYL" firstAttribute="top" secondItem="dDF-HW-x1D" secondAttribute="top" id="Ff6-gE-0A9"/>
+                <constraint firstAttribute="trailing" secondItem="6tb-Yb-NYL" secondAttribute="trailing" id="UFN-IR-OhC"/>
+                <constraint firstItem="iKJ-KA-pZ5" firstAttribute="centerY" secondItem="dDF-HW-x1D" secondAttribute="centerY" id="Xur-Df-dLv"/>
+                <constraint firstAttribute="bottom" secondItem="6tb-Yb-NYL" secondAttribute="bottom" id="cDH-Uj-lP8"/>
+                <constraint firstItem="6tb-Yb-NYL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iKJ-KA-pZ5" secondAttribute="trailing" constant="16" id="e0Z-IU-6CC"/>
+            </constraints>
+            <connections>
+                <outlet property="shareButton" destination="6tb-Yb-NYL" id="lH0-kE-xko"/>
+                <outlet property="titleLabel" destination="iKJ-KA-pZ5" id="0e3-wB-5c6"/>
+            </connections>
+            <point key="canvasLocation" x="474.5" y="320"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="share_icon" width="17" height="23"/>
+    </resources>
+</document>

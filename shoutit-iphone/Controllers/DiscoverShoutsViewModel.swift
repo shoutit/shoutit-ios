@@ -22,11 +22,12 @@ class DiscoverShoutsViewModel: HomeShoutsViewModel {
     }
     
     override func retriveShouts() -> Observable<[Shout]> {
-        return APIShoutsService.shouts(forDiscoverItem: self.discoverItem, page_size: 20)
+        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: 1, pageSize: 20)
+        return APIShoutsService.listShoutsWithParams(params)
     }
     
     override func loadMorePage(page: Int) -> Observable<[Shout]> {
-        print("loading page \(page)")
-        return APIShoutsService.shouts(forDiscoverItem: self.discoverItem, page_size: 20, page: self.currentPage)
+        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: page, pageSize: 20)
+        return APIShoutsService.listShoutsWithParams(params)
     }
 }

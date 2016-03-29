@@ -20,11 +20,11 @@ enum FontWeight {
         case .Light:
             return "HelveticaNeue-Light"
         case .Regular:
-            return "HelveticaNeue-Regular"
+            return "HelveticaNeue"
         case Medium:
             return "HelveticaNeue-Medium"
         case Semibold:
-            return "HelveticaNeue-Semibold"
+            return "HelveticaNeue-Medium"
         case Bold:
             return "HelveticaNeue-Bold"
         }

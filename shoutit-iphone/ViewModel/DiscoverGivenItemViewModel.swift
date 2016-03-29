@@ -20,17 +20,18 @@ class DiscoverGivenItemViewModel: DiscoverViewModel {
     
     override func retriveDiscoverItems() {
         
-        APIDiscoverService.discoverItems(forDiscoverItem: self.itemToShow).subscribeNext { [weak self] (mainItem, itms) -> Void in
-            
-            self?.items.on(.Next((mainItem, itms)))
-            
-            if let mainDiscover = mainItem {
-                APIShoutsService.shouts(forDiscoverItem: mainDiscover, page_size: 4, page: 4).subscribeNext({ [weak self] (shouts) -> Void in
-                    self?.shouts.on(.Next(shouts))
-                }).addDisposableTo((self?.disposeBag)!)
+        APIDiscoverService
+            .discoverItems(forDiscoverItem: self.itemToShow)
+            .subscribeNext { [weak self] detailedItem -> Void in
+                self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
+                APIShoutsService.listShoutsWithParams(params)
+                    .subscribeNext{ [weak self] (shouts) -> Void in
+                        self?.shouts.on(.Next(shouts))
+                    }
+                    .addDisposableTo((self?.disposeBag)!)
             }
-            
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
         
     }
 }

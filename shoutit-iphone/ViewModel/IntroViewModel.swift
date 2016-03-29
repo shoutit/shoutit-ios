@@ -12,24 +12,30 @@ import Alamofire
 
 class IntroViewModel {
     
+    private let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Void>()
     let progressHUDSubject = PublishSubject<Bool>()
-    let errorSubject = PublishSubject<NSError>()
+    let errorSubject = PublishSubject<ErrorType>()
     
     func fetchGuestUser() {
         
         self.progressHUDSubject.onNext(true)
         let params = LoginGuestParams()
         
-        APIAuthService.getOauthToken(params) { (result: Result<(AuthData, GuestUser), NSError>) -> Void in
-            self.progressHUDSubject.onNext(false)
-            switch result {
-            case .Success((let authData, let user)):
-                try! Account.sharedInstance.loginUser(user, withAuthData: authData)
-                self.loginSuccessSubject.onNext(())
-            case .Failure(let error):
-                self.errorSubject.onNext(error)
+        let observable: Observable<(AuthData, GuestUser)> = APIAuthService.getOAuthToken(params)
+        observable
+            .subscribe {[weak self] (event) in
+                self?.progressHUDSubject.onNext(false)
+                switch event {
+                case .Next((let authData, let user)):
+                    try! Account.sharedInstance.loginUser(user, withAuthData: authData)
+                    self?.loginSuccessSubject.onNext(())
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
             }
-        }
+            .addDisposableTo(disposeBag)
     }
 }

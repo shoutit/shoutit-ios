@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -129,6 +129,7 @@
                     <rect key="frame" x="0.0" y="92" width="125" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="2sX-Dq-Sy7"/>
+                        <constraint firstAttribute="width" constant="125" id="wqi-Gh-Lmo"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
@@ -138,6 +139,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgK-Yu-UVt" customClass="ProfileInfoHeaderButton" customModule="Shoutit" customModuleProvider="target">
                     <rect key="frame" x="125" y="92" width="125" height="56"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="125" id="41D-Z9-uCX"/>
                         <constraint firstAttribute="height" constant="56" id="c5y-IM-saL"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -148,6 +150,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aru-iZ-s4p" customClass="ProfileInfoHeaderButton" customModule="Shoutit" customModuleProvider="target">
                     <rect key="frame" x="250" y="92" width="125" height="56"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="125" id="AK7-Gd-Irp"/>
                         <constraint firstAttribute="height" constant="56" id="GJT-Ht-4g2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -245,7 +248,6 @@
                 <constraint firstItem="lmR-o2-TT5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="9hs-S8-ojf"/>
                 <constraint firstItem="mgJ-Uw-tGD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AUX-4T-fbA"/>
                 <constraint firstItem="EvR-w3-aCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="Ay2-Bq-tvg"/>
-                <constraint firstItem="Oxb-00-Kfy" firstAttribute="width" secondItem="Aru-iZ-s4p" secondAttribute="width" id="BT6-U0-FYm"/>
                 <constraint firstItem="uCi-xA-Th7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cuo-dK-FKK"/>
                 <constraint firstItem="Flv-lN-M3r" firstAttribute="leading" secondItem="zC2-Xl-F8D" secondAttribute="leading" id="Czh-CM-fst"/>
                 <constraint firstItem="ZEb-BV-DoV" firstAttribute="top" secondItem="uCi-xA-Th7" secondAttribute="bottom" id="FOO-Qw-QXh"/>
@@ -272,7 +274,6 @@
                 <constraint firstItem="Aru-iZ-s4p" firstAttribute="leading" secondItem="wgK-Yu-UVt" secondAttribute="trailing" id="tG5-NZ-z9V"/>
                 <constraint firstItem="Mwz-aW-TRC" firstAttribute="bottom" secondItem="Flv-lN-M3r" secondAttribute="bottom" id="tc1-ZN-fNm"/>
                 <constraint firstAttribute="trailing" secondItem="lmR-o2-TT5" secondAttribute="trailing" id="yOd-da-INC"/>
-                <constraint firstItem="Oxb-00-Kfy" firstAttribute="width" secondItem="wgK-Yu-UVt" secondAttribute="width" id="ycV-F0-BWE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
@@ -288,8 +289,11 @@
                 <outlet property="bioLabel" destination="qLN-yo-Sdx" id="hWh-rS-8Wt"/>
                 <outlet property="bioSectionHeightConstrait" destination="UNk-ey-w7d" id="pr8-TF-wGS"/>
                 <outlet property="buttonSectionCenterButton" destination="wgK-Yu-UVt" id="AM5-cZ-XhO"/>
+                <outlet property="buttonSectionCenterButtonWidthConstraint" destination="41D-Z9-uCX" id="RQ7-YE-K62"/>
                 <outlet property="buttonSectionLeftButton" destination="Oxb-00-Kfy" id="Wa6-3P-Cwa"/>
+                <outlet property="buttonSectionLeftButtonWidthConstraint" destination="wqi-Gh-Lmo" id="ETY-XZ-U68"/>
                 <outlet property="buttonSectionRightButton" destination="Aru-iZ-s4p" id="erw-4B-xSg"/>
+                <outlet property="buttonSectionRightButtonWidthConstraint" destination="AK7-Gd-Irp" id="zkc-OG-Z7A"/>
                 <outlet property="dateJoinedLabel" destination="EQN-bl-1ww" id="XtB-Sw-Bdd"/>
                 <outlet property="dateJoinedSectionHeightConstraint" destination="9Rh-xL-g9W" id="Syz-FX-wCx"/>
                 <outlet property="listeningToYouLabel" destination="Mwz-aW-TRC" id="i2Q-9P-yCd"/>

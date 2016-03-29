@@ -13,6 +13,11 @@ import RxSwift
 
 class APIProfileService {
     
+    static func searchProfileWithParams(params: SearchParams) -> Observable<[Profile]> {
+        let url = APIManager.baseURL + "/profiles"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
+    }
+    
     static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/\(username)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE

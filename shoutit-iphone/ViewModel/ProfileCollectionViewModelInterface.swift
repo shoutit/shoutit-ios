@@ -9,13 +9,20 @@
 import UIKit
 import RxSwift
 
+enum ProfileCollectionViewModelMainModel {
+    case ProfileModel(profile: Profile)
+    case TagModel(tag: Tag)
+}
+
 protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayoutDelegate, ProfileCollectionInfoSupplementaryViewDataSource {
     
+    var model: ProfileCollectionViewModelMainModel? {get}
     // user data
     var name: String? {get}
     var username: String? {get}
     var isListeningToYou: Bool? {get}
     var coverURL: NSURL? {get}
+    var conversation: Conversation? {get}
     
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
@@ -32,14 +39,36 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 extension ProfileCollectionViewModelInterface {
     
     func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
+        
         if section == 0 {
-            return listSection.cells.count > 0 ? .Default : .Placeholder
+            if listSection.isLoading {
+                return .Placeholder
+            }
+            return listSection.cells.count > 0 ? .Default : .Hidden
         }
         if section == 1 {
-            return gridSection.cells.count > 1 ? .Default : .Placeholder
+            if gridSection.isLoading {
+                return .Placeholder
+            }
+            return gridSection.cells.count > 0 ? .Default : .Hidden
         }
         
         assertionFailure()
         return .Default
+    }
+    
+    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
+        switch view {
+        case .CreatePageButtonFooter:
+            return true
+        case .ListSectionHeader:
+            return self.listSection.cells.count == 0 && !listSection.isLoading
+        case .GridSectionHeader:
+            return self.gridSection.cells.count == 0 && !gridSection.isLoading
+        case .SeeAllShoutsButtonFooter:
+            return self.gridSection.cells.count == 0
+        default:
+            return false
+        }
     }
 }

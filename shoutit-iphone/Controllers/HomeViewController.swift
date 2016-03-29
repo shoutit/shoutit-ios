@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable {
+protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
     
 }
 
@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
     
     func setupRX() {
         if let homeShoutsController = self.homeShoutsController {
-            changeLayoutButton.addTarget(homeShoutsController, action: "changeCollectionViewDisplayMode:", forControlEvents: .TouchUpInside)
+            changeLayoutButton.addTarget(homeShoutsController, action: #selector(HomeShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
             
             homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
                 if let shout = selectedShout {
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func searchAction(sender: AnyObject) {
-        notImplemented()
+        self.flowDelegate?.showSearchInContext(.General)
     }
     
     @IBAction func cartAction(sender: AnyObject) {

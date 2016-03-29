@@ -17,13 +17,13 @@ class HomeShoutsViewModel: AnyObject {
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
     let disposeBag = DisposeBag()
-    var dataSubject : PublishSubject<[Shout]>? = PublishSubject()
+    let dataSubject : PublishSubject<[Shout]> = PublishSubject()
     var loadNextPage : PublishSubject<Bool>? = PublishSubject()
     var loadedPages : [Int] = [1]
     var loadingPages : [Int] = []
     
     var loading : Variable<Bool> = Variable(false)
-    var finishedLoading = false
+    private var finishedLoading = false
     
     var currentPage : Int = 1
     
@@ -58,7 +58,8 @@ class HomeShoutsViewModel: AnyObject {
         if let user = user where user.isGuest == false {
             return APIUsersService.homeShouts()
         } else {
-            return APIShoutsService.shouts(forCountry: user?.location.country)
+            let params = FilteredShoutsParams(page: 1, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
+            return APIShoutsService.listShoutsWithParams(params)
         }
     }
     
@@ -68,12 +69,13 @@ class HomeShoutsViewModel: AnyObject {
         if let user = user where user.isGuest == false {
             return APIUsersService.homeShouts(20, page: page)
         } else {
-            return APIShoutsService.shouts(forCountry: user?.location.country, page_size:  20, page: page)
+            let params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
+            return APIShoutsService.listShoutsWithParams(params)
         }
         
     }
     
-    func tryToLoadNextPage() {
+    private func tryToLoadNextPage() {
         if loadingPages.count > 0 {
             return
         }
@@ -87,7 +89,7 @@ class HomeShoutsViewModel: AnyObject {
         loadPage(pageToLoad)
     }
     
-    func loadPage(page: Int) {
+    private func loadPage(page: Int) {
         if finishedLoading {
             self.loading.value = false
             return
@@ -114,12 +116,11 @@ class HomeShoutsViewModel: AnyObject {
                 
                 self?.currentPage = page
                 
-                self?.dataSubject?.onNext(newItems)
+                self?.dataSubject.onNext(newItems)
                 
                 }, onError: { [weak self] (error) -> Void in
                     self?.finishedLoading = true
-                }, onCompleted: { [weak self] (completed) -> Void in
-                    self?.finishedLoading = true
+                }, onCompleted: {(completed) -> Void in
                 }, onDisposed: { () -> Void in
                     
             }).addDisposableTo(disposeBag)

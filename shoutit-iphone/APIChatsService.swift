@@ -13,10 +13,12 @@ import Alamofire
 
 class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
+    private static let conversationWithUserURL = APIManager.baseURL + "/users/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
-    
+    private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
+    private static let conversationURL = APIManager.baseURL + "/conversations/*"
     // MARK: - Traditional
 
     static func requestConversations() -> Observable<[Conversation]> {
@@ -28,6 +30,10 @@ class APIChatsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
     }
     
+    static func moreMessagesForConversation(conversation: Conversation, lastMessageEpoch: Int) -> Observable<[Message]> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + "?before=\(lastMessageEpoch)"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    }
     
     static func replyWithMessage(message: Message, onConversation conversation: Conversation) -> Observable<Message> {
         let url = replyURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
@@ -37,10 +43,20 @@ class APIChatsService {
     static func twilioVideoAuth() -> Observable<TwilioAuth> {
         return APIGenericService.requestWithMethod(.GET, url: twilioURL, params: NopParams())
     }
-    
-    /*
-    static func startConversationWithUsername(username: String) -> Observable<Conversation> {
         
+    static func startConversationWithUsername(username: String, message: Message) -> Observable<Message> {
+        let url = conversationWithUserURL.stringByReplacingOccurrencesOfString("*", withString: username)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
-    */
+    
+    static func startConversationAboutShout(shout: Shout, message: Message) -> Observable<Message> {
+        let url = replyShoutsURL.stringByReplacingOccurrencesOfString("*", withString: shout.id)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
+    }
+    
+    static func deleteConversation(conversation: Conversation) -> Observable<Void> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
+
+    }
 }

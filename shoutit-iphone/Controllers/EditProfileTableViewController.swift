@@ -150,7 +150,7 @@ extension EditProfileTableViewController {
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
-                    textView?.detailLabel?.text = "\(text.characters.count)/50"
+                    textView?.detailLabel?.text = "\(text.utf16.count)/50"
                 }
                 .addDisposableTo(cell.disposeBag)
             
@@ -184,7 +184,7 @@ extension EditProfileTableViewController {
                         }
                     }
                     
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: "popController")
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
                     })

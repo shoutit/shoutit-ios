@@ -9,6 +9,8 @@
 import Foundation
 import Pusher
 import RxSwift
+import Argo
+import Ogra
 
 final class PusherClient : NSObject {
     
@@ -130,11 +132,11 @@ extension PusherClient {
             
             let channel = self.pusherInstance.subscribeToChannelNamed(channelName)
             
-            channel.bindToEventNamed("new_message", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("new_listen", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.NewListen.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
@@ -142,23 +144,37 @@ extension PusherClient {
         }
     }
     
+    func conversationMessagesObservable(conversation: Conversation) -> Observable<Message> {
+        return mainChannelObservable().filter({ (event) -> Bool in
+            return event.eventType() == .NewMessage
+        })
+        .flatMap({ (event) -> Observable<Message> in
+            if let msg : Message = event.object() {
+                if msg.conversationId == conversation.id {
+                    return Observable.just(msg)
+                }
+            }
+            return Observable.never()
+        })
+    }
+    
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
-            let cancel = AnonymousDisposable {
-                
-            }
-            
             let channel = self.pusherInstance.subscribeToChannelNamed(conversation.channelName())
             
-            channel.bindToEventNamed("user_is_typing", handleWithBlock: { (event) -> Void in
+            let cancel = AnonymousDisposable {
+                channel.removeAllBindings()
+            }
+            
+            channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("joined_chat", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
-            channel.bindToEventNamed("left_chat", handleWithBlock: { (event) -> Void in
+            channel.bindToEventNamed(PusherEventType.LeftChat.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
@@ -173,5 +189,17 @@ extension PusherClient {
         }
         
         return nil
+    }
+    
+    func sendTypingEventToConversation(conversation: Conversation) {
+        guard let user = Account.sharedInstance.user else {
+            return
+        }
+    
+        let eventName = PusherEventType.UserTyping.rawValue
+        let data = user.basicEncodedProfile()
+        let channelName = conversation.channelName()
+        
+        pusherInstance.sendEventNamed(eventName, data: data, channel: channelName)
     }
 }

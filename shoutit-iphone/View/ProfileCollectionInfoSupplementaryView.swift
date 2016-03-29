@@ -13,6 +13,12 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag?
     
+    override var frame: CGRect {
+        didSet {
+            layoutButtons()
+        }
+    }
+    
     // section 1
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
@@ -41,6 +47,10 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var buttonSectionLeftButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionCenterButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionRightButton: ProfileInfoHeaderButton!
+    @IBOutlet weak var buttonSectionLeftButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var buttonSectionCenterButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var buttonSectionRightButtonWidthConstraint: NSLayoutConstraint!
+    
     
     // section 3
     @IBOutlet weak var bioLabel: UILabel!
@@ -57,14 +67,42 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var dateJoinedSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var locationSectionHeightConstraint: NSLayoutConstraint!
     
+    // computed vars
+    var buttonSectionButtons: [ProfileInfoHeaderButton]? {
+        if let left = buttonSectionLeftButton,
+            center = buttonSectionCenterButton,
+            right = buttonSectionRightButton {
+            return [left, center, right]
+        }
+        return nil
+    }
+    var buttonSectionButtonsWidthConstraints: [NSLayoutConstraint]? {
+        if let left = buttonSectionLeftButtonWidthConstraint,
+            center = buttonSectionCenterButtonWidthConstraint,
+            right = buttonSectionRightButtonWidthConstraint {
+            return [left, center, right]
+        }
+        return nil
+    }
+    
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
         
         let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
-        
         let normalAvatarHeight: CGFloat = 76.0
-        
         avatarHeightConstraint.constant = min(1.0, attributes.scaleFactor) * normalAvatarHeight
+    }
+    
+    func layoutButtons() {
+        guard let buttons = buttonSectionButtons, constraints = buttonSectionButtonsWidthConstraints else {
+            return
+        }
+        let numberOfButtons = buttons
+            .reduce(0) {$0 + ($1.hidden == false ? 1 : 0)}
+        let buttonWidth = frame.width / CGFloat(numberOfButtons)
+        for (button, constraint) in zip(buttons, constraints) {
+            constraint.constant = button.hidden ? 0 : buttonWidth
+        }
     }
 }

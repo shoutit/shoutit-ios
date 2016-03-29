@@ -50,12 +50,6 @@ class SettingsTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
     }
-
-    // MARK: - Navigation
-
-    func popViewController() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     // MARK: - UITableViewDelegate
     

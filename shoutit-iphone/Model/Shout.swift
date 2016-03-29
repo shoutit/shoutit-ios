@@ -9,6 +9,7 @@
 import Foundation
 import Argo
 import Curry
+import Ogra
 
 struct Shout: Decodable, Hashable, Equatable {
     
@@ -37,7 +38,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let replyPath: String?
     let relatedRequests: [Shout]?
     let relatedOffers: [Shout]?
-    //let conversations: String?
+    let conversations: [Conversation]?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -68,7 +69,7 @@ struct Shout: Decodable, Hashable, Equatable {
         let f = e
             <*> j <||? "related_requests"
             <*> j <||? "related_offers"
-            //<*> j <|? "conversations"
+            <*> j <||? "conversations"
         
         return f
     }
@@ -83,6 +84,20 @@ struct Shout: Decodable, Hashable, Equatable {
         return ShoutType(rawValue: self.typeString)
     }
     
+}
+
+extension Shout: Encodable {
+    func encode() -> JSON {
+        return JSON.Object(["id":self.id.encode(),
+            "api_url":self.apiPath.encode(),
+            "web_url":self.webPath.encode(),
+            "type":self.typeString.encode(),
+            "title":self.title.encode(),
+            "text":self.text.encode(),
+            "user":self.user.encode(),
+            "price": self.price.encode()
+            ])
+    }
 }
 
 extension Shout {

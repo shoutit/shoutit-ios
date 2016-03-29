@@ -161,10 +161,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Change Location" id="WmU-c2-J42">
-                        <barButtonItem key="leftBarButtonItem" image="navMenu" id="Vqy-o0-YYS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vqy-o0-YYS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="toggleMenu" destination="6rO-uv-M0b" id="ECi-Y5-w3z"/>
+                                <action selector="dismiss" destination="6rO-uv-M0b" id="EtP-Dw-k1u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -278,7 +278,4 @@
             <point key="canvasLocation" x="895" y="-499"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="navMenu" width="24" height="24"/>
-    </resources>
 </document>

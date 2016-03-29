@@ -46,6 +46,7 @@ struct DetailedProfile {
     let messagePath: String?
     let pages: [Profile]?
     let admins: [Profile]?
+    let conversation: Conversation?
 }
 
 extension DetailedProfile: Decodable {
@@ -90,6 +91,8 @@ extension DetailedProfile: Decodable {
             <*> j <|? "message_url"
             <*> j <||? "pages"
             <*> j <||? "admins"
-        return f
+        let g = f
+            <*> j <|? "conversation"
+        return g
     }
 }
