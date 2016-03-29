@@ -17,7 +17,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
-    var flowDelegate: DiscoverCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: DiscoverCollectionViewControllerFlowDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

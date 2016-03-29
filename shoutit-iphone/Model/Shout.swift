@@ -19,8 +19,8 @@ struct Shout: Decodable, Hashable, Equatable {
     let webPath: String
     let typeString: String
     let location: Address?
-    let title: String
-    let text: String
+    let title: String?
+    let text: String?
     let price: Int?
     let currency: String?
     let thumbnailPath: String?
@@ -48,8 +48,8 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <| "type"
             <*> j <|? "location"
         let b = a
-            <*> j <| "title"
-            <*> j <| "text"
+            <*> j <|? "title"
+            <*> j <|? "text"
             <*> j <|? "price"
             <*> j <|? "currency"
         let c = b

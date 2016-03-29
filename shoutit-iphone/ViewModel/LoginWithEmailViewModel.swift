@@ -38,7 +38,6 @@ class LoginWithEmailViewModel {
                 self.errorSubject.onNext(error)
             case .Completed:
                 break
-                
             }
         }.addDisposableTo(disposeBag)
     }
