@@ -46,7 +46,13 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
     }
     
     func createCapturer() {
-        self.camera = self.localMedia.addCameraTrack()
+        
+        do {
+            try self.camera = self.localMedia.sh_addCameraTrack()
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
+        }
+        
         
         guard self.camera != nil else {
             fatalError("Could not create camera")
@@ -57,26 +63,6 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
         }
         
         videoTrack.delegate = self
-        
-        var error : UnsafeMutablePointer<NSError> = nil
-        
-        if self.localMedia.addTrack(videoTrack, error: error) == false {
-            
-        }
-
-//        do {
-//            try
-//        } catch let error {
-//            print(error)
-//        }
-//
-//        
-//        if let error = error {
-//            debugPrint(error.localizedDescription)
-//            debugPrint(error)
-//            fatalError("Could not add track to local media")
-//        }
-        
         
         videoTrack.attach(self.myVideoPreView)
         

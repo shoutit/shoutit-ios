@@ -281,6 +281,7 @@
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0A1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0B1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
+		AE7FFFE01CAC55A7009F3FBC /* TWCLocalMedia+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */; };
 		AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351681C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
 		AE8351691C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
@@ -1043,6 +1044,8 @@
 		AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = VideoCalls.storyboard; path = Storyboards/VideoCalls.storyboard; sourceTree = "<group>"; };
 		AE6432FD1CAAD45E00729AA6 /* CallingOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CallingOutViewController.swift; path = Controllers/CallingOutViewController.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
+		AE7FFFDE1CAC55A7009F3FBC /* TWCLocalMedia+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TWCLocalMedia+Additions.h"; path = "Other/TWCLocalMedia+Additions.h"; sourceTree = "<group>"; };
+		AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TWCLocalMedia+Additions.m"; path = "Other/TWCLocalMedia+Additions.m"; sourceTree = "<group>"; };
 		AE8351621C5F4DDD0055C71F /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Root.storyboard; path = Storyboards/Root.storyboard; sourceTree = "<group>"; };
 		AE8351661C5F521B0055C71F /* TabbarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarButton.swift; path = View/tabs/TabbarButton.swift; sourceTree = "<group>"; };
 		AE83516B1C5F595C0055C71F /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarController.swift; path = Controllers/TabbarController.swift; sourceTree = "<group>"; };
@@ -2229,6 +2232,7 @@
 		607F75771BEA6F0300F3BA86 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AE7FFFDA1CAC550C009F3FBC /* twilio wrapper */,
 				AC7027D01C1AA66200262622 /* libUserVoice.a */,
 				AC7027D11C1AA66200262622 /* UVHeaders */,
 				AC7027D61C1AA66200262622 /* UVResources */,
@@ -2736,6 +2740,15 @@
 				AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */,
 			);
 			name = VideoCalls;
+			sourceTree = "<group>";
+		};
+		AE7FFFDA1CAC550C009F3FBC /* twilio wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				AE7FFFDE1CAC55A7009F3FBC /* TWCLocalMedia+Additions.h */,
+				AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */,
+			);
+			name = "twilio wrapper";
 			sourceTree = "<group>";
 		};
 		AE83516A1C5F59270055C71F /* Tabbar */ = {
@@ -4488,6 +4501,7 @@
 				B2C729C81C6221B0006F7D29 /* Success.swift in Sources */,
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,
+				AE7FFFE01CAC55A7009F3FBC /* TWCLocalMedia+Additions.m in Sources */,
 				2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,

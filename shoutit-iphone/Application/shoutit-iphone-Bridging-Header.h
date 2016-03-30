@@ -19,3 +19,4 @@
 #import <MZAppearance/MZAppearance.h>
 #import <MZFormSheetPresentationController/MZFormSheetPresentationController.h>
 #import <TwilioConversationsClient/TwilioConversationsClient.h>
+#import "TWCLocalMedia+Additions.h"
