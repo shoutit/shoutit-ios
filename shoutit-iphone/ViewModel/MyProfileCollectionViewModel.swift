@@ -104,7 +104,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var conversation: Conversation? { return nil }
     
     var hidesVerifyAccountButton: Bool {
-        return false//user?.activated ?? true
+        return user?.isActivated ?? true
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
@@ -164,7 +164,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func fetchUser() -> Observable<DetailedProfile>? {
         guard let user = user else {return nil}
-        return APIUsersService.retrieveUserWithUsername(user.username)
+        return APIProfileService.retrieveProfileWithUsername(user.username)
     }
     
     func listen() -> Observable<Void>? {

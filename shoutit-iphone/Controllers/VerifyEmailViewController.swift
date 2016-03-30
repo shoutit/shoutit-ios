@@ -14,7 +14,11 @@ import MBProgressHUD
 
 class VerifyEmailViewController: UIViewController {
     
+    typealias VerifyEmailSuccessBlock = (String -> Void)?
+    
     var viewModel: VerifyEmailViewModel!
+    
+    var successBlock: VerifyEmailSuccessBlock?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -49,16 +53,16 @@ class VerifyEmailViewController: UIViewController {
         resendButton
             .rx_tap
             .asDriver()
-            .driveNext {
-                
+            .driveNext{ [unowned self] in
+                self.viewModel.verifyEmail()
             }
             .addDisposableTo(disposeBag)
         
         verifyButton
             .rx_tap
             .asDriver()
-            .driveNext {
-                
+            .driveNext {[unowned self] in
+                self.viewModel.updateUser()
             }
             .addDisposableTo(disposeBag)
         
@@ -69,6 +73,40 @@ class VerifyEmailViewController: UIViewController {
                 self?.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
+        
+        // subjects
+        
+        viewModel.progressSubject
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (show) in
+                if show {
+                    MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                } else {
+                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.successSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (message) in
+                let block = self?.successBlock
+                self?.navigationController?.dismissViewControllerAnimated(true, completion: {
+                    block??(message)
+                })
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.errorSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (error) in
+                self?.showError(error)
+            }
+            .addDisposableTo(disposeBag)
+        
+        // text field
+        emailTextField.rx_text.bindTo(viewModel.email).addDisposableTo(disposeBag)
         
         // validation
         emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
@@ -88,5 +126,7 @@ class VerifyEmailViewController: UIViewController {
         emailTextField.detailLabel = UILabel()
         emailTextField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
         emailTextField.detailLabelActiveColor = MaterialColor.red.accent3
+        
+        emailTextField.text = viewModel.email.value
     }
 }

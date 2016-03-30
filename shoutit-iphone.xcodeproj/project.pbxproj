@@ -370,8 +370,8 @@
 		B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */; };
 		B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */; };
 		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
-		B20EDBC91CAABCE500AD9F2A /* ErrorAlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */; };
-		B20EDBCC1CAABD2300AD9F2A /* ErrorAlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */; };
+		B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */; };
+		B20EDBCC1CAABD2300AD9F2A /* AlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */; };
 		B211AAD11C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD01C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift */; };
 		B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */; };
 		B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */; };
@@ -437,6 +437,7 @@
 		B2778F931CAAEC5400BBDD5F /* VerifyEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2778F921CAAEC5400BBDD5F /* VerifyEmail.storyboard */; };
 		B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */; };
 		B2778F971CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */; };
+		B2778F991CAC11E400BBDD5F /* EmailParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F981CAC11E400BBDD5F /* EmailParams.swift */; };
 		B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */; };
 		B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */; };
 		B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9481C7B8D1000527306 /* IntroViewModel.swift */; };
@@ -1082,8 +1083,8 @@
 		B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Controllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = View/SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Error.swift"; path = "UIKitExtensions/UIViewController+Error.swift"; sourceTree = "<group>"; };
-		B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ErrorAlertBarView.xib; path = Storyboards/ErrorAlertBarView.xib; sourceTree = "<group>"; };
-		B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertBarView.swift; path = View/ErrorAlertBarView.swift; sourceTree = "<group>"; };
+		B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertBarView.xib; path = Storyboards/AlertBarView.xib; sourceTree = "<group>"; };
+		B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertBarView.swift; path = View/AlertBarView.swift; sourceTree = "<group>"; };
 		B211AAD01C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProfileCollectionViewModel.swift; path = ViewModel/MyProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileCollectionViewModel.swift; path = ViewModel/UserProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageProfileCollectionViewModel.swift; path = ViewModel/PageProfileCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -1148,6 +1149,7 @@
 		B2778F921CAAEC5400BBDD5F /* VerifyEmail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = VerifyEmail.storyboard; path = Storyboards/VerifyEmail.storyboard; sourceTree = "<group>"; };
 		B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailDisplayable.swift; path = FlowControl/VerifyEmailDisplayable.swift; sourceTree = "<group>"; };
 		B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+BottomConstraintResize.swift"; path = "UIKitExtensions/UIViewController+BottomConstraintResize.swift"; sourceTree = "<group>"; };
+		B2778F981CAC11E400BBDD5F /* EmailParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailParams.swift; path = Networking/EmailParams.swift; sourceTree = "<group>"; };
 		B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ScrollViewResize.swift"; path = "UIKitExtensions/UIViewController+ScrollViewResize.swift"; sourceTree = "<group>"; };
 		B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedMaterialTextField.swift; path = View/BorderedMaterialTextField.swift; sourceTree = "<group>"; };
 		B27AF9481C7B8D1000527306 /* IntroViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewModel.swift; path = ViewModel/IntroViewModel.swift; sourceTree = "<group>"; };
@@ -2864,7 +2866,7 @@
 			isa = PBXGroup;
 			children = (
 				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
-				B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */,
+				B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */,
 			);
 			name = XibBackedClasses;
 			sourceTree = "<group>";
@@ -2955,6 +2957,7 @@
 				B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */,
 				B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */,
 				B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */,
+				B2778F981CAC11E400BBDD5F /* EmailParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3070,7 +3073,7 @@
 			children = (
 				B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */,
 				B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */,
-				B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */,
+				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -3922,7 +3925,7 @@
 				AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */,
 				60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */,
 				B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
-				B20EDBC91CAABCE500AD9F2A /* ErrorAlertBarView.xib in Resources */,
+				B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */,
 				6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */,
@@ -4327,6 +4330,7 @@
 				B2C729D11C62224A006F7D29 /* HelpDisplayable.swift in Sources */,
 				B211AAD11C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift in Sources */,
 				AC47A7381C0307D3006AF406 /* SHYouTubeVideoCollectionViewCell.swift in Sources */,
+				B2778F991CAC11E400BBDD5F /* EmailParams.swift in Sources */,
 				B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */,
 				B2C729D01C62224A006F7D29 /* FeedbackDisplayable.swift in Sources */,
 				AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */,
@@ -4380,7 +4384,7 @@
 				B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */,
 				B2E53E961CA1AA6F00F43481 /* PagedViewModelState.swift in Sources */,
 				B2B5D0231C7F5C6B0068A6AF /* CartDisplayable.swift in Sources */,
-				B20EDBCC1CAABD2300AD9F2A /* ErrorAlertBarView.swift in Sources */,
+				B20EDBCC1CAABD2300AD9F2A /* AlertBarView.swift in Sources */,
 				B2D9B0FC1C9849B600924941 /* SearchViewController.swift in Sources */,
 				240F50981C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift in Sources */,
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,

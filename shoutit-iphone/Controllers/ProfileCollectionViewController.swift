@@ -57,6 +57,10 @@ class ProfileCollectionViewController: UICollectionViewController {
         return true
     }
     
+    override func hasFakeNavigationBar() -> Bool {
+        return true
+    }
+    
     // MARK: - Setup
     
     private func registerReusables() {
@@ -288,7 +292,9 @@ extension ProfileCollectionViewController {
             infoView.verifyAccountButton
                 .rx_tap.asDriver()
                 .driveNext{ [weak self] in
-                    self?.flowDelegate?.showVerifyEmailView()
+                    self?.flowDelegate?.showVerifyEmailView(Account.sharedInstance.loggedUser!, successBlock: { (message) in
+                        self?.showSuccessMessage(message)
+                    })
                 }
                 .addDisposableTo(infoView.reuseDisposeBag)
             
