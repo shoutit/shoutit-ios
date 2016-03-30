@@ -13,8 +13,8 @@ private var constraintKey : UInt8 = 0
 extension UIViewController {
     
     public func setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(constraint: NSLayoutConstraint) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(_:)), name: UIKeyboardWillHideNotification, object: nil)
         bottomLayoutGuideConstraint = constraint
     }
     
@@ -27,7 +27,7 @@ extension UIViewController {
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(notification: NSNotification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
@@ -42,7 +42,7 @@ extension UIViewController {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(notification: NSNotification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue

@@ -13,8 +13,8 @@ private var scrollViewKey : UInt8 = 0
 extension UIViewController {
     
     public func setupKeyboardNotifcationListenerForScrollView(scrollView: UIScrollView) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKyboardWillShowByModifyingScrollViewInset(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKeyboardWillHideByModifyingScrollViewInset(_:)), name: UIKeyboardWillHideNotification, object: nil)
         internalScrollView = scrollView
     }
     
@@ -32,7 +32,7 @@ extension UIViewController {
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func handleKyboardWillShowByModifyingScrollViewInset(notification: NSNotification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
@@ -48,7 +48,7 @@ extension UIViewController {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func handleKeyboardWillHideByModifyingScrollViewInset(notification: NSNotification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue

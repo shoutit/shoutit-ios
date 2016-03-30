@@ -24,6 +24,7 @@ class VerifyEmailViewController: UIViewController {
     @IBOutlet weak var resendButton: CustomUIButton!
     @IBOutlet weak var verifyButton: CustomUIButton!
     @IBOutlet weak var bottomViewToBottomLayoutGuideConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -61,8 +62,16 @@ class VerifyEmailViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
+        cancelBarButtonItem
+            .rx_tap
+            .asDriver()
+            .driveNext {[weak self] in
+                self?.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+        
         // validation
-        emailTextField.addValidator(Validator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
+        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
     }
     
     private func setupTextField() {
