@@ -17,7 +17,7 @@ final class EditProfileTableViewModel {
         case Progress(show: Bool)
     }
     
-    let user: LoggedUser
+    let user: DetailedProfile
     var cells: [EditProfileCellViewModel]
     
     var avatarUploadTask: MediaUploadingTask?
@@ -30,10 +30,10 @@ final class EditProfileTableViewModel {
     init() {
         precondition(Account.sharedInstance.loggedUser != nil)
         user = Account.sharedInstance.loggedUser!
-        cells = [EditProfileCellViewModel(firstname: user.firstName),
-                 EditProfileCellViewModel(lastname: user.lastName),
+        cells = [EditProfileCellViewModel(firstname: user.firstName ?? ""),
+                 EditProfileCellViewModel(lastname: user.lastName ?? ""),
                  EditProfileCellViewModel(username: user.username),
-                 EditProfileCellViewModel(bio: user.bio),
+                 EditProfileCellViewModel(bio: user.bio ?? ""),
                  EditProfileCellViewModel(location: user.location),
                  EditProfileCellViewModel(website: user.website ?? "")]
     }

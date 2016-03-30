@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-Zd-vAr" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="10" width="257.5" height="44"/>
+                                        <rect key="frame" x="20" y="10" width="258" height="44"/>
                                         <color key="backgroundColor" red="0.25098039220000001" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AWQ-bq-70s"/>
@@ -38,7 +38,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9i5-7q-LZP" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="322.5" y="10" width="257.5" height="44"/>
+                                        <rect key="frame" x="323" y="10" width="257" height="44"/>
                                         <color key="backgroundColor" red="0.29803921570000003" green="0.72549019609999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="IQw-RX-cp5"/>
@@ -53,14 +53,24 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Xb-nlu">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <color key="backgroundColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="nf3-Tt-DGN"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="PyS-Zd-vAr" firstAttribute="width" secondItem="9i5-7q-LZP" secondAttribute="width" id="0Fq-Pm-8jJ"/>
+                                    <constraint firstItem="61e-Xb-nlu" firstAttribute="top" secondItem="wuP-la-UR1" secondAttribute="top" id="1rN-oK-hvc"/>
                                     <constraint firstItem="PyS-Zd-vAr" firstAttribute="leading" secondItem="wuP-la-UR1" secondAttribute="leading" constant="20" id="TCC-H8-nRD"/>
                                     <constraint firstItem="9i5-7q-LZP" firstAttribute="leading" secondItem="PyS-Zd-vAr" secondAttribute="trailing" constant="45" id="UAC-7S-LTU"/>
+                                    <constraint firstAttribute="trailing" secondItem="61e-Xb-nlu" secondAttribute="trailing" id="V0e-uR-YM3"/>
                                     <constraint firstItem="9i5-7q-LZP" firstAttribute="centerY" secondItem="wuP-la-UR1" secondAttribute="centerY" id="XiA-fs-sjd"/>
                                     <constraint firstAttribute="trailing" secondItem="9i5-7q-LZP" secondAttribute="trailing" constant="20" id="lbj-hT-Fh5"/>
+                                    <constraint firstItem="61e-Xb-nlu" firstAttribute="leading" secondItem="wuP-la-UR1" secondAttribute="leading" id="nPb-cE-art"/>
                                     <constraint firstAttribute="height" constant="64" id="qdl-fu-p89"/>
                                     <constraint firstItem="PyS-Zd-vAr" firstAttribute="centerY" secondItem="wuP-la-UR1" secondAttribute="centerY" id="z1B-Gb-waM"/>
                                 </constraints>

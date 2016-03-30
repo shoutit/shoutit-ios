@@ -498,7 +498,6 @@
 		B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF01C68BE0C000FA302 /* Tag.swift */; };
 		B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF21C68D585000FA302 /* APIMiscService.swift */; };
 		B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */; };
-		B2AE6B781C7CC50900370276 /* LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B771C7CC50900370276 /* LoggedUser.swift */; };
 		B2AE6B7A1C7CC52300370276 /* GuestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B791C7CC52300370276 /* GuestUser.swift */; };
 		B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */; };
 		B2B345461CA5584D0066DF15 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
@@ -1210,7 +1209,6 @@
 		B2ACBDF01C68BE0C000FA302 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Model/Tag.swift; sourceTree = "<group>"; };
 		B2ACBDF21C68D585000FA302 /* APIMiscService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIMiscService.swift; path = Networking/APIMiscService.swift; sourceTree = "<group>"; };
 		B2ACBDF41C68D81C000FA302 /* PostSignupInterestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupInterestCellViewModel.swift; path = ViewModel/PostSignupInterestCellViewModel.swift; sourceTree = "<group>"; };
-		B2AE6B771C7CC50900370276 /* LoggedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoggedUser.swift; path = Model/LoggedUser.swift; sourceTree = "<group>"; };
 		B2AE6B791C7CC52300370276 /* GuestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuestUser.swift; path = Model/GuestUser.swift; sourceTree = "<group>"; };
 		B2AE6B7C1C7CE79100370276 /* ShoutDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailTableViewController.swift; path = Controllers/ShoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		B2B345451CA5584D0066DF15 /* LightError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LightError.swift; path = Other/LightError.swift; sourceTree = "<group>"; };
@@ -3276,7 +3274,6 @@
 			isa = PBXGroup;
 			children = (
 				B2C729C21C6221B0006F7D29 /* User.swift */,
-				B2AE6B771C7CC50900370276 /* LoggedUser.swift */,
 				B2AE6B791C7CC52300370276 /* GuestUser.swift */,
 				B288D3EB1C68B58400895302 /* Profile.swift */,
 				B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */,
@@ -4341,7 +4338,6 @@
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2D9B1011C98539500924941 /* ModalNavigationController.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* Validator.swift in Sources */,
-				B2AE6B781C7CC50900370276 /* LoggedUser.swift in Sources */,
 				AC6F2B3C1BEF916800D9F5A3 /* SHDiscoverItem.swift in Sources */,
 				B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */,
 				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,

@@ -23,7 +23,7 @@ class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
     
     init(profile: Profile) {
         self.model = .ProfileModel(profile: profile)
-        self.isListening = profile.listening ?? false
+        self.isListening = profile.isListening ?? false
     }
     
     init(tag: Tag) {

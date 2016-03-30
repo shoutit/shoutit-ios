@@ -35,7 +35,7 @@ final class Account {
             self.loginSubject.onNext()
         }
     }
-    var loggedUser: LoggedUser? {
+    var loggedUser: DetailedProfile? {
         didSet {
             if let userObject = loggedUser {
                 self.userSubject.onNext(userObject)
@@ -103,7 +103,7 @@ final class Account {
         
         // set instance vars
         self.authData = authData
-        if let user = user as? LoggedUser {
+        if let user = user as? DetailedProfile {
             loggedUser = user
         } else if let user = user as? GuestUser {
             guestUser = user

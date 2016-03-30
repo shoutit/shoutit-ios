@@ -54,7 +54,7 @@ final class LoginMethodChoiceViewModel {
     
     private func authenticateWithParameters(params: AuthParams) {
         
-        let observable: Observable<(AuthData, LoggedUser)> = APIAuthService.getOAuthToken(params)
+        let observable: Observable<(AuthData, DetailedProfile)> = APIAuthService.getOAuthToken(params)
         observable
             .subscribe {[weak self] (event) in
                 self?.progressHUDSubject.onNext(false)

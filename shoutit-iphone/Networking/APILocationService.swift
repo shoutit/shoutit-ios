@@ -28,7 +28,7 @@ class APILocationService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    let loggedUser: LoggedUser? = try? APIGenericService.parseJson(json, failureExpected: true)
+                    let loggedUser: DetailedProfile? = try? APIGenericService.parseJson(json, failureExpected: true)
                     let guestUser: GuestUser? = try? APIGenericService.parseJson(json, failureExpected: true)
                     
                     guard (guestUser != nil || loggedUser != nil) && (guestUser == nil || loggedUser == nil) else {

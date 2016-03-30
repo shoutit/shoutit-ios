@@ -16,7 +16,7 @@ class SearchUserProfileCellViewModel {
     
     init(profile: Profile) {
         self.profile = profile
-        self.isListening = profile.listening ?? false
+        self.isListening = profile.isListening ?? false
     }
     
     func listeningCountString() -> String {

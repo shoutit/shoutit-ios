@@ -16,8 +16,8 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private var detailedUser: DetailedProfile?
     
-    var user: LoggedUser? {
-        return Account.sharedInstance.user as? LoggedUser
+    var user: DetailedProfile? {
+        return Account.sharedInstance.user as? DetailedProfile
     }
     
     var model: ProfileCollectionViewModelMainModel? {
@@ -30,7 +30,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         gridSection = gridSectionWithModels([], isLoading: true)
-        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
+        let pages = (Account.sharedInstance.user as? DetailedProfile)?.pages ?? []
         listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
             .observeOn(MainScheduler.instance)
