@@ -19,8 +19,9 @@ class CallingOutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        Twilio.sharedInstance.sendInvitationTo(callingToProfile) { [weak self] (conversation, error) in
+        let localMedia = TWCLocalMedia()
+        
+        Twilio.sharedInstance.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
             if let error = error {
                 self?.showError(error)
                 return
@@ -30,11 +31,12 @@ class CallingOutViewController: UIViewController {
                 let controller = Wireframe.videoCallController()
                 
                 controller.conversation = conversation
-                controller.localMedia = TWCLocalMedia()
+                
+                
+                controller.localMedia = localMedia
                 
                 self?.presentViewController(controller, animated: true, completion: nil)
             }
-
         }
     }
 

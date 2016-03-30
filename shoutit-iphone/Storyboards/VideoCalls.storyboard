@@ -20,7 +20,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAE-6B-zom">
                                 <rect key="frame" x="274" y="289" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ax-sw-xDW">
@@ -59,12 +59,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHn-L1-0lT">
                                 <rect key="frame" x="256" y="289" width="88.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7F-Z8-VAp">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.060309332770270271" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-2N-CDM">
                                 <rect key="frame" x="20" y="480" width="100" height="100"/>
@@ -74,6 +74,13 @@
                                     <constraint firstAttribute="height" constant="100" id="htp-KM-jAo"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgc-Fp-vmy">
+                                <rect key="frame" x="261" y="520" width="78" height="30"/>
+                                <state key="normal" title="Disconnect"/>
+                                <connections>
+                                    <action selector="endCall" destination="bLn-pE-5Af" eventType="touchUpInside" id="PsB-ny-n4p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -82,7 +89,9 @@
                             <constraint firstAttribute="trailing" secondItem="X7F-Z8-VAp" secondAttribute="trailing" id="H2c-By-t7E"/>
                             <constraint firstItem="IHn-L1-0lT" firstAttribute="centerY" secondItem="LdK-fk-gNV" secondAttribute="centerY" id="Lpk-Xo-Orc"/>
                             <constraint firstItem="IHn-L1-0lT" firstAttribute="centerX" secondItem="LdK-fk-gNV" secondAttribute="centerX" id="Lwc-9w-acg"/>
+                            <constraint firstItem="Rgc-Fp-vmy" firstAttribute="centerX" secondItem="X7F-Z8-VAp" secondAttribute="centerX" id="Xau-ZO-18f"/>
                             <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="jUR-2N-CDM" secondAttribute="bottom" constant="20" id="gbS-Mj-dRt"/>
+                            <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="Rgc-Fp-vmy" secondAttribute="bottom" constant="50" id="ld9-Xx-gJu"/>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="rDC-Ic-pV1"/>
                             <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="X7F-Z8-VAp" secondAttribute="bottom" id="z55-8F-3kz"/>
                         </constraints>

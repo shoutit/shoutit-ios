@@ -113,7 +113,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         
         let controller = UIAlertController(title: NSLocalizedString("Incoming call", comment: ""), message: nil, preferredStyle: .Alert)
         
-        controller.addAction(UIAlertAction(title: NSLocalizedString("Answear", comment: ""), style: .Default, handler: { (action) in
+        controller.addAction(UIAlertAction(title: NSLocalizedString("Answer", comment: ""), style: .Default, handler: { (action) in
             
             let media = TWCLocalMedia()
             
@@ -124,7 +124,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
                 }
                 
                 if let conversation = conversation {
-                    self.showVideoConversation(conversation)
+                    self.showVideoConversation(conversation, media: media)
                 }
             })
         }))

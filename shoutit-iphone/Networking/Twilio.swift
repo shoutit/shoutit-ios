@@ -49,8 +49,8 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         self.client?.listen();
     }
     
-    func sendInvitationTo(profile: Profile, handler: (TWCConversation?, NSError?) -> Void) {
-        self.client?.inviteToConversation(profile.username, handler: { (conversation, error) in
+    func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
+        self.client?.inviteToConversation(profile.username, localMedia: media, handler: { (conversation, error) in
             handler(conversation, error)
         })
     }
@@ -79,7 +79,7 @@ extension Twilio {
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
         fatalError(error.localizedDescription)
-    }
+    } 
 }
 
 // Access Manager
