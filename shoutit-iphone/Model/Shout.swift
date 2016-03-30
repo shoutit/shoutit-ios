@@ -39,6 +39,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let relatedRequests: [Shout]?
     let relatedOffers: [Shout]?
     let conversations: [Conversation]?
+    let isMobileSet: Bool?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -70,7 +71,7 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <||? "related_requests"
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
-        
+            <*> j <|? "is_mobile_set"
         return f
     }
     

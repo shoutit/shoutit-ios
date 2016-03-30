@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 enum ShoutDetailTabbarButton {
     case Call
@@ -67,26 +68,21 @@ class ShowDetailContainerViewController: UIViewController {
     weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
     
     // RX
-    let disposeBag = DisposeBag()
+    private var buttonsDisposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet var tabBatButtons: [TabbarButton]! // tagged from 0 to 3
+    @IBOutlet var tabBarButtonsWidthConstraints: [NSLayoutConstraint]!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        precondition(viewModel != nil)
         
-        // setup navigation bar
         self.navigationItem.titleView = UIImageView(image: UIImage.navBarLogoWhite())
-        
-        // setup tabbar buttons
-        let buttonModels = viewModel.tabbarButtons()
-        for button in tabBatButtons {
-            let model = buttonModels[button.tag]
-            button.setImage(model.image, forState: .Normal)
-            button.setTitle(model.title, forState: .Normal)
-            addActionToButton(button, withModel: model)
-        }
+        setupRx()
+        layoutButtons(reload: false)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -100,6 +96,18 @@ class ShowDetailContainerViewController: UIViewController {
     
     override func prefersTabbarHidden() -> Bool {
         return true
+    }
+    
+    // MARK: - Setup
+    
+    private func setupRx() {
+        
+        viewModel.reloadObservable
+            .observeOn(MainScheduler.instance)
+            .subscribeNext { [weak self] in
+                self?.layoutButtons(reload: true)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - Actions
@@ -125,11 +133,56 @@ class ShowDetailContainerViewController: UIViewController {
         }
     }
     
+    private func makeCall() {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        viewModel.makeCall()
+            .subscribe {[weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                switch event {
+                case .Next(let mobile):
+                    guard let url = NSURL(string: "tel://\(mobile.phone)") else {
+                        assertionFailure()
+                        return
+                    }
+                    UIApplication.sharedApplication().openURL(url)
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
     @IBAction func searchAction() {
         flowDelegate?.showSearchInContext(.General)
     }
     
     // MARK: - Helpers
+    
+    private func layoutButtons(reload reload: Bool) {
+        
+        buttonsDisposeBag = DisposeBag()
+        let buttonModels = viewModel.tabbarButtons()
+        let singleButtonWidth = floor(view.frame.width / CGFloat(buttonModels.count))
+        
+        for button in tabBatButtons {
+            let constraint = tabBarButtonsWidthConstraints[button.tag]
+            guard buttonModels.count > button.tag else {
+                constraint.constant = 0
+                continue
+            }
+            constraint.constant = singleButtonWidth
+            let model = buttonModels[button.tag]
+            button.setImage(model.image, forState: .Normal)
+            button.setTitle(model.title, forState: .Normal)
+            addActionToButton(button, withModel: model)
+        }
+        
+        if reload {
+            view.layoutIfNeeded()
+        }
+    }
     
     private func addActionToButton(button: UIButton, withModel model: ShoutDetailTabbarButton) {
         
@@ -139,7 +192,7 @@ class ShowDetailContainerViewController: UIViewController {
             .subscribeNext {
                 switch model {
                 case .Call:
-                    self.notImplemented()
+                    self.makeCall()
                 case .VideoCall:
                     self.notImplemented()
                 case .Chat:
@@ -154,7 +207,7 @@ class ShowDetailContainerViewController: UIViewController {
                     self.notImplemented()
                 }
             }
-            .addDisposableTo(disposeBag)
+            .addDisposableTo(buttonsDisposeBag)
     }
     
     private func showEditController() {

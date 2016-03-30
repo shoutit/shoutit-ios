@@ -27,39 +27,48 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3MQ-S9-rTI">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlw-u9-I8B" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlw-u9-I8B" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="5ga-9t-Qhn"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Call" image="shoutdetail_tab_call"/>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-M3-3o4" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-M3-3o4" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="300" y="0.0" width="150" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Qh1-rt-ext"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Chat" image="shoutdetail_tab_chat"/>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS6-vn-fHD" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS6-vn-fHD" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="450" y="0.0" width="150" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="STP-AF-9l9"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="More" image="shoutdetail_tab_tabmore"/>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-c1-KFK" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-c1-KFK" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="150" y="0.0" width="150" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="VdD-zf-32N"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Video call" image="shoutdetail_tab_videocall"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="cS6-vn-fHD" secondAttribute="width" id="0ht-y0-Sts"/>
                                     <constraint firstItem="cS6-vn-fHD" firstAttribute="leading" secondItem="kqz-M3-3o4" secondAttribute="trailing" id="0wN-Cl-O1x"/>
                                     <constraint firstItem="cS6-vn-fHD" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="1Lv-C6-51b"/>
                                     <constraint firstAttribute="bottom" secondItem="dlw-u9-I8B" secondAttribute="bottom" id="5D7-jf-bp1"/>
                                     <constraint firstItem="kqz-M3-3o4" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="Ks8-oH-BIN"/>
-                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="p0q-c1-KFK" secondAttribute="width" id="Q1q-Y0-dIa"/>
                                     <constraint firstAttribute="bottom" secondItem="kqz-M3-3o4" secondAttribute="bottom" id="Xqy-zq-hGh"/>
                                     <constraint firstItem="kqz-M3-3o4" firstAttribute="leading" secondItem="p0q-c1-KFK" secondAttribute="trailing" id="bNd-Gp-Nkq"/>
                                     <constraint firstItem="dlw-u9-I8B" firstAttribute="leading" secondItem="3MQ-S9-rTI" secondAttribute="leading" id="cGs-Sj-kan"/>
-                                    <constraint firstItem="dlw-u9-I8B" firstAttribute="width" secondItem="kqz-M3-3o4" secondAttribute="width" id="f6L-AV-D89"/>
                                     <constraint firstItem="p0q-c1-KFK" firstAttribute="leading" secondItem="dlw-u9-I8B" secondAttribute="trailing" id="h9M-rO-LTq"/>
                                     <constraint firstAttribute="trailing" secondItem="cS6-vn-fHD" secondAttribute="trailing" id="igc-Po-BbP"/>
                                     <constraint firstItem="p0q-c1-KFK" firstAttribute="top" secondItem="3MQ-S9-rTI" secondAttribute="top" id="n2c-Of-Owc"/>
@@ -105,11 +114,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outletCollection property="tabBatButtons" destination="dlw-u9-I8B" collectionClass="NSMutableArray" id="sYS-fQ-pN8"/>
                         <outletCollection property="tabBatButtons" destination="p0q-c1-KFK" collectionClass="NSMutableArray" id="6Qo-gc-rYw"/>
                         <outletCollection property="tabBatButtons" destination="kqz-M3-3o4" collectionClass="NSMutableArray" id="mUN-HS-FRR"/>
                         <outletCollection property="tabBatButtons" destination="cS6-vn-fHD" collectionClass="NSMutableArray" id="p7r-pQ-sMH"/>
+                        <outletCollection property="tabBarButtonsWidthConstraints" destination="5ga-9t-Qhn" collectionClass="NSMutableArray" id="3Hz-s8-200"/>
+                        <outletCollection property="tabBarButtonsWidthConstraints" destination="VdD-zf-32N" collectionClass="NSMutableArray" id="Qg9-Ll-6P7"/>
+                        <outletCollection property="tabBarButtonsWidthConstraints" destination="Qh1-rt-ext" collectionClass="NSMutableArray" id="CgL-gW-Vy2"/>
+                        <outletCollection property="tabBarButtonsWidthConstraints" destination="STP-AF-9l9" collectionClass="NSMutableArray" id="uGJ-QQ-taE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3e-gc-J11" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,8 +218,8 @@
                                             <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFV-cQ-2AI">
-                                            <rect key="frame" x="10" y="356" width="33" height="63"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFV-cQ-2AI">
+                                            <rect key="frame" x="10" y="402" width="33" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

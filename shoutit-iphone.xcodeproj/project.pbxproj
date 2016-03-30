@@ -438,6 +438,7 @@
 		B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */; };
 		B2778F971CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */; };
 		B2778F991CAC11E400BBDD5F /* EmailParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F981CAC11E400BBDD5F /* EmailParams.swift */; };
+		B2778F9B1CAC415400BBDD5F /* Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F9A1CAC415400BBDD5F /* Mobile.swift */; };
 		B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */; };
 		B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */; };
 		B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9481C7B8D1000527306 /* IntroViewModel.swift */; };
@@ -1150,6 +1151,7 @@
 		B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailDisplayable.swift; path = FlowControl/VerifyEmailDisplayable.swift; sourceTree = "<group>"; };
 		B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+BottomConstraintResize.swift"; path = "UIKitExtensions/UIViewController+BottomConstraintResize.swift"; sourceTree = "<group>"; };
 		B2778F981CAC11E400BBDD5F /* EmailParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailParams.swift; path = Networking/EmailParams.swift; sourceTree = "<group>"; };
+		B2778F9A1CAC415400BBDD5F /* Mobile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mobile.swift; path = Model/Mobile.swift; sourceTree = "<group>"; };
 		B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ScrollViewResize.swift"; path = "UIKitExtensions/UIViewController+ScrollViewResize.swift"; sourceTree = "<group>"; };
 		B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedMaterialTextField.swift; path = View/BorderedMaterialTextField.swift; sourceTree = "<group>"; };
 		B27AF9481C7B8D1000527306 /* IntroViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewModel.swift; path = ViewModel/IntroViewModel.swift; sourceTree = "<group>"; };
@@ -1849,6 +1851,7 @@
 				B2B540C81C6A38AE0075EDA6 /* Shout.swift */,
 				B2B5D0391C806EBC0068A6AF /* Video.swift */,
 				241CEC361C732CDE00694575 /* DiscoverItem.swift */,
+				B2778F9A1CAC415400BBDD5F /* Mobile.swift */,
 				B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */,
 				B2FE53961CA08A6D007E23F5 /* SearchShoutsResults.swift */,
 				AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */,
@@ -4553,6 +4556,7 @@
 				AE8351711C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */,
 				249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */,
+				B2778F9B1CAC415400BBDD5F /* Mobile.swift in Sources */,
 				AE180F881C7F8F910069BB1A /* APIAuthService.swift in Sources */,
 				AC7030BD1C159249008F4C00 /* SHLocationAttachment.swift in Sources */,
 				B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */,

@@ -12,7 +12,9 @@ import RxSwift
 final class ShoutDetailViewModel {
     
     let disposeBag = DisposeBag()
-    let reloadSubject: PublishSubject<Void> = PublishSubject()
+    
+    let reloadObservable: Observable<Void>
+    private let reloadSubject: PublishSubject<Void>
     let reloadOtherShoutsSubject: PublishSubject<Void> = PublishSubject()
     let reloadRelatedShoutsSubject: PublishSubject<Void> = PublishSubject()
     
@@ -35,6 +37,8 @@ final class ShoutDetailViewModel {
     init(shout: Shout) {
         self.shout = shout
         self.cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
+        self.reloadSubject = PublishSubject()
+        self.reloadObservable = reloadSubject.share()
     }
     
     // MARK: - Actions
@@ -109,6 +113,10 @@ final class ShoutDetailViewModel {
             .addDisposableTo(disposeBag)
     }
     
+    func makeCall() -> Observable<Mobile> {
+        return APIShoutsService.retrievePhoneNumberForShoutWithId(shout.id)
+    }
+    
     // MARK: - To display
     
     func locationString() -> String? {
@@ -130,7 +138,13 @@ final class ShoutDetailViewModel {
         if shout.user.id == Account.sharedInstance.user?.id {
             return [.Edit, .Delete, .Chats, .More]
         }
-        return [.Call, .VideoCall, .Chat, .More]
+        
+        var buttons: [ShoutDetailTabbarButton] = [.VideoCall, .Chat, .More]
+        if let isMobileSet = shout.isMobileSet where isMobileSet {
+            buttons.insert(.Call, atIndex: 0)
+        }
+        
+        return buttons
     }
     
     // MARK: - Helpers
@@ -155,7 +169,7 @@ final class ShoutDetailViewModel {
                 }
             }
             
-            assert(false)
+            assertionFailure()
             return []
         }
         
@@ -218,45 +232,46 @@ extension ShoutDetailViewModel {
         var index = 0
         models += detailsTuples.reduce([ShoutDetailTableViewCellViewModel]()) { (array, tuple) -> [ShoutDetailTableViewCellViewModel] in
             defer { index += 1 }
-            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1, imageName: tuple.2, filter: tuple.3)]
+            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1, imageName: tuple.2, filter: tuple.3, tag: tuple.4)]
         }
         
         // other
+        let firstname = shout.user.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
         //models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
-        models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(shout.user.firstName)", comment: "Shout detail")))
+        models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(firstname)", comment: "Shout detail")))
         models.append(.OtherShouts)
-        models.append(.Button(title: NSLocalizedString("Visit \(shout.user.firstName)'s profile", comment: "Shout Detail"), type: .VisitProfile))
+        models.append(.Button(title: NSLocalizedString("Visit \(firstname)'s profile", comment: "Shout Detail"), type: .VisitProfile))
         models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
         models.append(.RelatedShouts)
         
         return models
     }
     
-    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?)] {
+    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Tag?)] {
         
-        var details: [(String, String, String?, Filter?)] = []
+        var details: [(String, String, String?, Filter?, Tag?)] = []
         
         // date
         if let epoch = shout.publishedAtEpoch {
             let key = NSLocalizedString("Date", comment: "Shout details")
             let value = DateFormatters.sharedInstance.stringFromDateEpoch(epoch)
-            details.append((key, value, nil, nil))
+            details.append((key, value, nil, nil, nil))
         }
         
         // category
-        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil))
+        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil, shout.category.mainTag))
         
         // add filters
         shout.filters?.forEach{ (filter) in
             if let key = filter.name, value = filter.value?.name {
-                details.append((key, value, nil, filter))
+                details.append((key, value, nil, filter, nil))
             }
         }
         
         // location
         if let city = shout.location?.city {
             let key = NSLocalizedString("Location", comment: "Shout detail")
-            details.append((key, city, shout.location?.country, nil))
+            details.append((key, city, shout.location?.country, nil, nil))
         }
         
         return details

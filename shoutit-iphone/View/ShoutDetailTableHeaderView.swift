@@ -34,6 +34,6 @@ class ShoutDetailTableHeaderView: UIView {
     }
     
     func setConstraintForPriceLabelVisible(visible: Bool) {
-        titleLabelToBottomConstraints.constant = visible ? 30 : 0
+        titleLabelToBottomConstraints.constant = visible ? 30 : 8
     }
 }

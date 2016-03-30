@@ -29,7 +29,6 @@ extension Video: Decodable {
             <*> j <| "id_on_provider"
             <*> j <| "duration"
     }
-    
 }
 
 extension Video: Encodable {
