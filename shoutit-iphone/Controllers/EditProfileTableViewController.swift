@@ -96,9 +96,7 @@ class EditProfileTableViewController: UITableViewController {
             .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
                 switch status {
                 case .Error(let error):
-                    let alertController = UIAlertController(title: nil, message: error.sh_message, preferredStyle: .Alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
-                    self?.presentViewController(alertController, animated: true, completion: nil)
+                    self?.showError(error)
                 case .Progress(let show):
                     if show {
                         MBProgressHUD.showHUDAddedTo(self?.view, animated: true)

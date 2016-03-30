@@ -47,7 +47,7 @@ class ResetPasswordViewController: UITableViewController {
         resetPasswordButton.rx_tap.filter {
             if case .Invalid(let errors) = Validator.validateEmail(self.emailTextField.text) {
                 if let error = errors.first {
-                    self.delegate?.showErrorMessage(error.message)
+                    self.delegate?.showLoginErrorMessage(error.message)
                 }
                 return false
             }

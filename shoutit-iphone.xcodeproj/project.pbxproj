@@ -369,6 +369,9 @@
 		B209AC0C1C6BA76B00EF2B8E /* ListenParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */; };
 		B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */; };
 		B209AC121C6CCCEA00EF2B8E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */; };
+		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
+		B20EDBC91CAABCE500AD9F2A /* ErrorAlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */; };
+		B20EDBCC1CAABD2300AD9F2A /* ErrorAlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */; };
 		B211AAD11C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD01C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift */; };
 		B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */; };
 		B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */; };
@@ -1074,6 +1077,9 @@
 		B209AC0B1C6BA76B00EF2B8E /* ListenParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenParams.swift; path = Networking/ListenParams.swift; sourceTree = "<group>"; };
 		B209AC0E1C6CB3A900EF2B8E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Controllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = View/SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Error.swift"; path = "UIKitExtensions/UIViewController+Error.swift"; sourceTree = "<group>"; };
+		B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ErrorAlertBarView.xib; path = Storyboards/ErrorAlertBarView.xib; sourceTree = "<group>"; };
+		B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertBarView.swift; path = View/ErrorAlertBarView.swift; sourceTree = "<group>"; };
 		B211AAD01C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProfileCollectionViewModel.swift; path = ViewModel/MyProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileCollectionViewModel.swift; path = ViewModel/UserProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageProfileCollectionViewModel.swift; path = ViewModel/PageProfileCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -2844,6 +2850,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B20EDBCA1CAABD0000AD9F2A /* XibBackedClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
+				B20EDBCB1CAABD2300AD9F2A /* ErrorAlertBarView.swift */,
+			);
+			name = XibBackedClasses;
+			sourceTree = "<group>";
+		};
 		B211AAD81C8A07CE00C9E8DB /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2983,6 +2998,7 @@
 		B227BFF71C57D9C8003A2D76 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B20EDBCA1CAABD0000AD9F2A /* XibBackedClasses */,
 				B2F5246C1C9AF75E00EA622F /* CommonTableViewCells */,
 				B2B5D02B1C7F82480068A6AF /* CommonCollectionViewCells */,
 				6068E65C1C2538F30061F56C /* CustomUITextField.swift */,
@@ -2991,7 +3007,6 @@
 				B2B540D71C6A665E0075EDA6 /* CustomUIImageView.swift */,
 				B22D196E1C74F45600A620F3 /* CustomUILabel.swift */,
 				AE8351661C5F521B0055C71F /* TabbarButton.swift */,
-				B27BD3661C6A146B00546440 /* TableViewPlaceholderView.swift */,
 				B28379A01C737950009AFF01 /* GradientView.swift */,
 				B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */,
 				249FD6D91C7DBE2700859851 /* ShadowView.swift */,
@@ -3045,6 +3060,7 @@
 			children = (
 				B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */,
 				B24D17B71C886D7F00FB9614 /* TableViewPlaceholderView.xib */,
+				B20EDBC81CAABCE500AD9F2A /* ErrorAlertBarView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -3552,6 +3568,7 @@
 				B23ABC891C751B5900CC69E6 /* StringExtensions.swift */,
 				B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */,
 				B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */,
+				B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3877,6 +3894,7 @@
 				AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */,
 				60DD76DD1C020970007C5334 /* SHLoadMoreView.xib in Resources */,
 				B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
+				B20EDBC91CAABCE500AD9F2A /* ErrorAlertBarView.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */,
 				6043CF061C02A4A100A9AA49 /* SHShoutCalloutView.xib in Resources */,
@@ -4332,6 +4350,7 @@
 				B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */,
 				B2E53E961CA1AA6F00F43481 /* PagedViewModelState.swift in Sources */,
 				B2B5D0231C7F5C6B0068A6AF /* CartDisplayable.swift in Sources */,
+				B20EDBCC1CAABD2300AD9F2A /* ErrorAlertBarView.swift in Sources */,
 				B2D9B0FC1C9849B600924941 /* SearchViewController.swift in Sources */,
 				240F50981C71BE3000AE4A76 /* DiscoverPreviewViewModel.swift in Sources */,
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,
@@ -4455,6 +4474,7 @@
 				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
 				B2E1071B1C9711BC00F7F4EF /* RelatedTagsParams.swift in Sources */,
+				B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */,
 				604A0DE31BEEA047002A80E7 /* UIStoryboard+Extensions.swift in Sources */,
 				AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
 				B23CA2421C8DE89B008E85F9 /* LabeledSelectButton.swift in Sources */,

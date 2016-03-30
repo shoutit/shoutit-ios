@@ -17,19 +17,16 @@ protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
     func presentSignup()
     func presentResetPassword()
-    func showErrorMessage(message: String)
+    func showLoginErrorMessage(message: String)
 }
 
 final class LoginWithEmailViewController: UIViewController, ContainerController {
     
     // animation
-    let animationDuration: Double = 0.25
-    let signupViewHeight: CGFloat = 416
-    let loginViewHeight: CGFloat = 326
-    let resetPasswordViewHeight: CGFloat = 188
-    
-    //
-    private var timer: NSTimer?
+    internal let animationDuration: Double = 0.25
+    private let signupViewHeight: CGFloat = 416
+    private let loginViewHeight: CGFloat = 326
+    private let resetPasswordViewHeight: CGFloat = 188
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!
@@ -119,9 +116,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         // view model subjects
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.sh_message, preferredStyle: .Alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-                self?.presentViewController(alertController, animated: true, completion: nil)
+                self?.showError(error)
             }
             .addDisposableTo(disposeBag)
         
@@ -137,21 +132,9 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         viewModel.successSubject.subscribeNext{[weak self] (message) in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                let alertController = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: message, preferredStyle: .Alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
-                self?.presentViewController(alertController, animated: true, completion: nil)
+                self?.showErrorMessage(message)
             }
             .addDisposableTo(disposeBag)
-    }
-    
-    func hideMessageLabel() {
-        timer?.invalidate()
-        timer = nil
-        errorMessageLabel.layer.removeAllAnimations()
-        UIView.animateWithDuration(0.5) { [weak self] in
-            self?.errorMessageLabel.alpha = 0.0
-        }
-        errorMessageLabel.hidden = true
     }
 }
 
@@ -160,7 +143,7 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
     func presentLogin() {
         title = loginViewController.title
         containerHeightConstraint.constant = loginViewHeight
-        let currentChild: UIViewController = self.childViewControllers.contains(signupViewController) ? signupViewController : resetPasswordViewController
+        let currentChild: UIViewController = childViewControllers.contains(signupViewController) ? signupViewController : resetPasswordViewController
         cycleFromViewController(currentChild, toViewController: loginViewController, animated: true)
     }
     
@@ -176,13 +159,7 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
         cycleFromViewController(loginViewController, toViewController: resetPasswordViewController, animated: true)
     }
     
-    func showErrorMessage(message: String) {
-        errorMessageLabel.text = message
-        errorMessageLabel.hidden = false
-        errorMessageLabel.layer.removeAllAnimations()
-        UIView.animateWithDuration(0.5) {[weak self] in
-            self?.errorMessageLabel.alpha = 1.0
-        }
-        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(LoginWithEmailViewController.hideMessageLabel), userInfo: nil, repeats: false)
+    func showLoginErrorMessage(message: String) {
+        showErrorMessage(message)
     }
 }
