@@ -57,6 +57,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         precondition(viewModel != nil)
         
+        setupKeyboardNotifcationListenerForScrollView(tableView)
         setupAppearance()
         setupRX()
         registerReusables()
@@ -69,6 +70,10 @@ class SearchViewController: UIViewController {
     
     override func prefersNavigationBarHidden() -> Bool {
         return true
+    }
+    
+    deinit {
+        removeKeyboardNotificationListeners()
     }
     
     // MARK: - Setup
@@ -248,12 +253,28 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch viewModel.sectionViewModel.value {
         case .LoadingPlaceholder, .MessagePlaceholder:
-            let view = UIView(frame: CGRect.zero)
-            return view
+            return nil
         case .Categories(_, let header):
             return sectionPlaceholderWithType(header)
         case .Suggestions(_, let header):
             return sectionPlaceholderWithType(header)
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch viewModel.sectionViewModel.value {
+        case .LoadingPlaceholder, .MessagePlaceholder:
+            return 0
+        case .Categories(_, let header):
+            guard let headerView = sectionPlaceholderWithType(header) else {
+                return 0
+            }
+            return headerView.frame.height
+        case .Suggestions(_, let header):
+            guard let headerView = sectionPlaceholderWithType(header) else {
+                return 0
+            }
+            return headerView.frame.height
         }
     }
     
