@@ -44,6 +44,8 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             fatalError("Twilio canno be initialized before requesting an access token from Shoutit API")
         }
         
+        print(authData.token)
+        
         self.accessManager = TwilioAccessManager(token:authData.token, delegate:self);
         self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self);
         self.client?.listen();
@@ -65,7 +67,6 @@ extension Twilio {
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
         debugPrint("did cancel invite")
-        
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
@@ -74,12 +75,17 @@ extension Twilio {
     }
     
     func conversationsClientDidStopListeningForInvites(conversationsClient: TwilioConversationsClient, error: NSError?) {
-        fatalError(error?.localizedDescription ?? "stopped listning")
+        reconnect()
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
-        fatalError(error.localizedDescription)
-    } 
+        reconnect()
+    }
+    
+    func reconnect() {
+        self.client?.unlisten()
+        self.client?.listen()
+    }
 }
 
 // Access Manager

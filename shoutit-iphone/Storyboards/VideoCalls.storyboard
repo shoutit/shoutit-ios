@@ -56,48 +56,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHn-L1-0lT">
-                                <rect key="frame" x="256" y="289" width="88.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7F-Z8-VAp">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.060309332770270271" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-2N-CDM">
                                 <rect key="frame" x="20" y="480" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.060309332770000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2a6-jV-eSI"/>
                                     <constraint firstAttribute="height" constant="100" id="htp-KM-jAo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgc-Fp-vmy">
-                                <rect key="frame" x="261" y="520" width="78" height="30"/>
-                                <state key="normal" title="Disconnect"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHn-L1-0lT">
+                                <rect key="frame" x="256" y="120" width="88.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgc-Fp-vmy">
+                                <rect key="frame" x="275" y="530" width="50" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="mo7-tg-9WT"/>
+                                    <constraint firstAttribute="height" constant="50" id="uaw-BA-k6J"/>
+                                </constraints>
+                                <state key="normal" image="phone_disconnected"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="endCall" destination="bLn-pE-5Af" eventType="touchUpInside" id="PsB-ny-n4p"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" id="0hg-wf-A8f"/>
-                            <constraint firstItem="jUR-2N-CDM" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" constant="20" id="9hk-AP-ZF2"/>
+                            <constraint firstItem="IHn-L1-0lT" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" constant="100" id="AdR-OV-iWa"/>
                             <constraint firstAttribute="trailing" secondItem="X7F-Z8-VAp" secondAttribute="trailing" id="H2c-By-t7E"/>
-                            <constraint firstItem="IHn-L1-0lT" firstAttribute="centerY" secondItem="LdK-fk-gNV" secondAttribute="centerY" id="Lpk-Xo-Orc"/>
+                            <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="jUR-2N-CDM" secondAttribute="bottom" constant="20" id="Hye-C5-bS7"/>
+                            <constraint firstItem="jUR-2N-CDM" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" constant="20" id="Jnv-cT-7Kd"/>
                             <constraint firstItem="IHn-L1-0lT" firstAttribute="centerX" secondItem="LdK-fk-gNV" secondAttribute="centerX" id="Lwc-9w-acg"/>
                             <constraint firstItem="Rgc-Fp-vmy" firstAttribute="centerX" secondItem="X7F-Z8-VAp" secondAttribute="centerX" id="Xau-ZO-18f"/>
-                            <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="jUR-2N-CDM" secondAttribute="bottom" constant="20" id="gbS-Mj-dRt"/>
-                            <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="Rgc-Fp-vmy" secondAttribute="bottom" constant="50" id="ld9-Xx-gJu"/>
+                            <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="Rgc-Fp-vmy" secondAttribute="bottom" constant="20" id="ld9-Xx-gJu"/>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="rDC-Ic-pV1"/>
                             <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="X7F-Z8-VAp" secondAttribute="bottom" id="z55-8F-3kz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="IHn-L1-0lT" id="a5a-9h-7HK"/>
                         <outlet property="myVideoPreView" destination="jUR-2N-CDM" id="rTM-vO-iDf"/>
+                        <outlet property="previewBottomConstraint" destination="Hye-C5-bS7" id="uK9-Zj-vs2"/>
+                        <outlet property="previewHeightConstraint" destination="htp-KM-jAo" id="ASh-Kn-iHQ"/>
+                        <outlet property="previewLeadingConstraint" destination="Jnv-cT-7Kd" id="y9i-ar-OmO"/>
+                        <outlet property="previewWidthConstraint" destination="2a6-jV-eSI" id="JGw-9G-1rx"/>
                         <outlet property="videoPreView" destination="X7F-Z8-VAp" id="jBm-DB-63V"/>
                     </connections>
                 </viewController>
@@ -106,4 +121,7 @@
             <point key="canvasLocation" x="1231" y="53"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="phone_disconnected" width="26" height="26"/>
+    </resources>
 </document>
