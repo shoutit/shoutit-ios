@@ -153,6 +153,14 @@ class ShowDetailContainerViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
     }
+
+    private func videoCall() {
+        guard userIsLoggedIn() else {
+          return
+        }
+        
+        self.flowDelegate?.startVideoCallWithProfile(viewModel.shout.user)
+    }
     
     @IBAction func searchAction() {
         flowDelegate?.showSearchInContext(.General)
@@ -194,7 +202,7 @@ class ShowDetailContainerViewController: UIViewController {
                 case .Call:
                     self.makeCall()
                 case .VideoCall:
-                    self.notImplemented()
+                    self.videoCall()
                 case .Chat:
                     self.startChat()
                 case .More:

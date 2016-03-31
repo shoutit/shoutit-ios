@@ -59,6 +59,9 @@ final class APIManager {
         }
         
         PusherClient.sharedInstance.setAuthorizationToken(token)
+        
+        // Authorize Twilio
+        _ = Twilio.sharedInstance
     }
     
     // MARK: - Reachability

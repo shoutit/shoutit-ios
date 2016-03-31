@@ -144,6 +144,7 @@ struct Constants {
         static let kMessagePushNotification = "kMessagePushNotification"
         static let ToggleMenuNotification = "ToggleMenuNotification"
         static let UserDidLogoutNotification = "UserDidLogoutNotification"
+        static let IncomingCallNotification = "IncomingCallNotification"
     }
     
     struct Filter {
@@ -180,4 +181,14 @@ struct Constants {
         static let kStatusPending = NSLocalizedString("Pending", comment: "Pending")
         static let kStatusFailed = NSLocalizedString("Failed", comment: "Failed")
     }
+}
+
+struct Platform {
+    static let isSimulator: Bool = {
+        var isSim = false
+        #if arch(i386) || arch(x86_64)
+            isSim = true
+        #endif
+        return isSim
+    }()
 }

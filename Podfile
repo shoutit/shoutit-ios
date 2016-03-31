@@ -1,6 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+source 'https://github.com/twilio/cocoapod-specs'
+
+platform :ios, '8.1'
 use_frameworks!
+
+# Twilio
+pod 'TwilioConversationsClient', '~>0.22.0'
 
 # RX
 pod 'RxSwift', '~> 2.1'
