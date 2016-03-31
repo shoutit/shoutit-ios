@@ -10,8 +10,18 @@ import UIKit
 import Material
 
 class SelectButton: UIButton {
-
+    
+    enum DisclosureType: Int {
+        case None = 0
+        case DownArrow = 1
+        case RightArrow = 2
+    }
+    
     @IBInspectable var promptText : String?
+    @IBInspectable var ib_disclosureType: Int = 1
+    var disclosureType: DisclosureType {
+        return DisclosureType(rawValue: ib_disclosureType) ?? .DownArrow
+    }
 
     private var promptLabel : UILabel!
     private var selectImageView : UIImageView!
@@ -75,8 +85,6 @@ class SelectButton: UIButton {
                              NSLayoutConstraint(item: activityIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)])
         
         self.activityIndicatorView = activityIndicator
-        
-        
     }
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
@@ -109,7 +117,14 @@ class SelectButton: UIButton {
         self.activityIndicatorView?.startAnimating()
     }
     
-    func selectImage() -> UIImage? {
-        return UIImage(named: "down_thin")
+    private func selectImage() -> UIImage? {
+        switch disclosureType {
+        case .None:
+            return nil
+        case .DownArrow:
+            return UIImage.downArrowDisclosureIndicator()
+        case .RightArrow:
+            return UIImage.rightBlueArrowDisclosureIndicator()
+        }
     }
 }

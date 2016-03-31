@@ -34,6 +34,14 @@ extension UIImage {
         return UIImage(named: "listen_icon_green")!
     }
     
+    static func downArrowDisclosureIndicator() -> UIImage {
+        return UIImage(named: "down_thin")!
+    }
+    
+    static func rightBlueArrowDisclosureIndicator() -> UIImage {
+        return UIImage(named: "forward_thin")!
+    }
+    
     // MARK - Search
     
     static func searchFillArrow() -> UIImage {

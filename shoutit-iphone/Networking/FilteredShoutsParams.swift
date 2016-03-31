@@ -55,7 +55,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         
-        //p["search"] = searchPhrase
+        p["search"] = searchPhrase
         p["discover"] = discoverId
         p["profile"] = username
         p["tags"] = tag

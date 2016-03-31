@@ -302,6 +302,16 @@
                                 <outlet property="titleTextField" destination="WZp-Em-qUh" id="zIA-o9-TEa"/>
                             </connections>
                         </view>
+                        <textField key="tableFooterView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" id="ZCj-gD-P8F" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="654" width="600" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="qEB-U0-iJF"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ui1-T0-AW0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="89" id="3NB-Gg-FJh" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="298" width="600" height="89"/>
@@ -310,7 +320,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAQ-ZA-HOP" customClass="RightArrowSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAQ-ZA-HOP" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="17" width="544" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Jc8-fC-1Ap"/>
@@ -319,6 +329,11 @@
                                             <state key="normal" title="Category" image="category">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -339,7 +354,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygX-W4-fss" customClass="RightArrowSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygX-W4-fss" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="18" width="544" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="bOc-4I-GI3"/>
@@ -348,6 +363,11 @@
                                             <state key="normal" title="Location">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -367,22 +387,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFJ-Ts-iX9" id="Vc0-S2-Qkf">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCj-gD-P8F" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="43" width="542" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="qEB-U0-iJF"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ui1-T0-AW0"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="centerY" secondItem="Vc0-S2-Qkf" secondAttribute="centerY" id="0Hn-8P-2b4"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZCj-gD-P8F" secondAttribute="trailing" constant="29" id="PzG-GZ-Zgt"/>
-                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="leading" secondItem="Vc0-S2-Qkf" secondAttribute="leading" constant="29" id="ZVs-Hx-xMX"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="textField" destination="ZCj-gD-P8F" id="z67-df-wNG"/>
@@ -1601,7 +1605,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPi-sh-l28" customClass="RightArrowSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPi-sh-l28" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="17" width="544" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="CKy-ff-U1i"/>
@@ -1610,6 +1614,11 @@
                                             <state key="normal" title="Category" image="category">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -1630,7 +1639,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijV-G2-BmC" customClass="RightArrowSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijV-G2-BmC" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="18" width="544" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="PvM-Ib-1E4"/>
@@ -1639,6 +1648,11 @@
                                             <state key="normal" title="Location">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
