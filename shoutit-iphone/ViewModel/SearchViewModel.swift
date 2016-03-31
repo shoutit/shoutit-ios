@@ -30,7 +30,7 @@ final class SearchViewModel {
     // consts
     let minimumNumberOfCharactersForAutocompletion = 2
     lazy private var archivePath: String = {
-        let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let directory = Account.sharedInstance.userDirectory
         let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("recent_searches.data")
         return directoryURL.path!
     }()
