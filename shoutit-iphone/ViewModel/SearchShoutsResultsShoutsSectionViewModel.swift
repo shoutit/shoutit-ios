@@ -122,11 +122,13 @@ extension SearchShoutsResultsViewModel {
         
         private func updateViewModelWithResult(result: SearchShoutsResults, forPage page: Int) {
             
-            numberOfResults = result.count
+            if numberOfResults == 0 {
+                numberOfResults = result.count
+            }
             
             if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
                 cells += result.results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
-                if cells.count < pageSize {
+                if cells.count < pageSize || result.nextPath == nil {
                     state.value = .LoadedAllContent(cells: cells, page: page)
                 } else {
                     state.value = .Loaded(cells: cells, page: page)

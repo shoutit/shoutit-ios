@@ -61,10 +61,6 @@ class SearchViewController: UIViewController {
         setupAppearance()
         setupRX()
         registerReusables()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.reloadContent()
     }
     

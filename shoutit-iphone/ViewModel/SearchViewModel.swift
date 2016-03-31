@@ -152,8 +152,9 @@ final class SearchViewModel {
                 case .Active, .Typing:
                     if case (.General, .Hidden(let option)) = (self.context, self.segmentedControlState.value) {
                         self.segmentedControlState.value = .Shown(option: option)
+                    } else {
+                        self.reloadContent()
                     }
-                    self.reloadContent()
                 case .Inactive:
                     if case (.General, .Shown(let option)) = (self.context, self.segmentedControlState.value) {
                         self.segmentedControlState.value = .Hidden(option: option)
