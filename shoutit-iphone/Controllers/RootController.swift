@@ -111,12 +111,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     func incomingCall(notification: NSNotification) {
         let invitation = notification.object as! TWCIncomingInvite
         
-        let controller = UIAlertController(title: NSLocalizedString("Incoming call", comment: ""), message: nil, preferredStyle: .Alert)
+        let controller = Wireframe.incomingCallController()
         
-        controller.addAction(UIAlertAction(title: NSLocalizedString("Answer", comment: ""), style: .Default, handler: { (action) in
-            
-            let media = TWCLocalMedia()
-            
+        controller.invitation = invitation
+        
+        let media = TWCLocalMedia()
+        
+        controller.answerHandler = { (invitation) in
             invitation.acceptWithLocalMedia(media, completion: { (conversation, error) in
                 if let error = error {
                     debugPrint(error)
@@ -127,13 +128,17 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
                     self.showVideoConversation(conversation, media: media)
                 }
             })
-        }))
+        }
         
-        controller.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+        controller.discardHandler = { (invitation) in
             invitation.reject()
-        }))
+        }
         
-        self.showViewController(controller, sender: nil)
+        controller.modalPresentationStyle = .Custom
+        controller.transitioningDelegate = self
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+        
     }
     
     // MARK: Content Managing

@@ -32,9 +32,6 @@ class CallingOutViewController: UIViewController {
                 
                 controller.conversation = conversation
                 
-                
-                controller.localMedia = localMedia
-                
                 self?.presentViewController(controller, animated: true, completion: nil)
             }
         }

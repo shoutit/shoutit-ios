@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Calling Out View Controller-->
@@ -42,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9G-9g-Jgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="557" y="53"/>
+            <point key="canvasLocation" x="287" y="53"/>
         </scene>
         <!--Video Call View Controller-->
         <scene sceneID="ckv-DG-iYN">
@@ -81,6 +82,7 @@
                                     <constraint firstAttribute="width" constant="50" id="mo7-tg-9WT"/>
                                     <constraint firstAttribute="height" constant="50" id="uaw-BA-k6J"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="phone_disconnected"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -91,11 +93,35 @@
                                     <action selector="endCall" destination="bLn-pE-5Af" eventType="touchUpInside" id="PsB-ny-n4p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fl-rk-iIB">
+                                <rect key="frame" x="232" y="460" width="135" height="50"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="Qhv-cG-bO3"/>
+                                    <constraint firstAttribute="height" constant="50" id="izb-Kz-BfT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Call" image="phone">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startCalling" destination="bLn-pE-5Af" eventType="touchUpInside" id="J8n-Fj-h8r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" id="0hg-wf-A8f"/>
+                            <constraint firstItem="Rgc-Fp-vmy" firstAttribute="top" secondItem="6Fl-rk-iIB" secondAttribute="bottom" constant="20" id="5rS-j3-b2d"/>
                             <constraint firstItem="IHn-L1-0lT" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" constant="100" id="AdR-OV-iWa"/>
+                            <constraint firstItem="6Fl-rk-iIB" firstAttribute="centerX" secondItem="LdK-fk-gNV" secondAttribute="centerX" id="GvM-mW-k6c"/>
                             <constraint firstAttribute="trailing" secondItem="X7F-Z8-VAp" secondAttribute="trailing" id="H2c-By-t7E"/>
                             <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="jUR-2N-CDM" secondAttribute="bottom" constant="20" id="Hye-C5-bS7"/>
                             <constraint firstItem="jUR-2N-CDM" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" constant="20" id="Jnv-cT-7Kd"/>
@@ -107,6 +133,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="callButton" destination="6Fl-rk-iIB" id="lwt-eN-Tb7"/>
                         <outlet property="messageLabel" destination="IHn-L1-0lT" id="a5a-9h-7HK"/>
                         <outlet property="myVideoPreView" destination="jUR-2N-CDM" id="rTM-vO-iDf"/>
                         <outlet property="previewBottomConstraint" destination="Hye-C5-bS7" id="uK9-Zj-vs2"/>
@@ -118,10 +145,124 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wr5-4p-2vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1231" y="53"/>
+            <point key="canvasLocation" x="788" y="53"/>
+        </scene>
+        <!--Incoming Call Controller-->
+        <scene sceneID="xnk-ez-JAn">
+            <objects>
+                <viewController storyboardIdentifier="IncomingCallController" id="W0x-Dq-RHi" customClass="IncomingCallController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hib-E8-7kl"/>
+                        <viewControllerLayoutGuide type="bottom" id="r6M-pL-ShQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XKa-6S-OqT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouz-Ln-zaP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9d-5T-XwT">
+                                <rect key="frame" x="20" y="168" width="560" height="164"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Incoming call from XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otg-mn-IP0">
+                                        <rect key="frame" x="192" y="23" width="176" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-PZ-MHd" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="57" width="536" height="44"/>
+                                        <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="51m-sd-2jZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Answer" image="phone">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="answerAction:" destination="W0x-Dq-RHi" eventType="touchUpInside" id="8vZ-eE-BIo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imm-ov-Sdy" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="109" width="536" height="44"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="aOO-pF-EHk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Discard" image="phone_disconnected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="discardAction:" destination="W0x-Dq-RHi" eventType="touchUpInside" id="a9J-fg-pLA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="y6h-PZ-MHd" secondAttribute="trailing" constant="12" id="9fM-Bj-uzb"/>
+                                    <constraint firstItem="Otg-mn-IP0" firstAttribute="centerX" secondItem="o9d-5T-XwT" secondAttribute="centerX" id="HT5-LD-Sja"/>
+                                    <constraint firstItem="Imm-ov-Sdy" firstAttribute="top" secondItem="y6h-PZ-MHd" secondAttribute="bottom" constant="8" id="Lki-c4-HFG"/>
+                                    <constraint firstItem="Imm-ov-Sdy" firstAttribute="centerX" secondItem="y6h-PZ-MHd" secondAttribute="centerX" id="MQb-8I-u7y"/>
+                                    <constraint firstItem="Imm-ov-Sdy" firstAttribute="width" secondItem="y6h-PZ-MHd" secondAttribute="width" id="UND-8v-dRt"/>
+                                    <constraint firstItem="Otg-mn-IP0" firstAttribute="top" secondItem="o9d-5T-XwT" secondAttribute="top" constant="23" id="Uxx-Sg-lBW"/>
+                                    <constraint firstItem="y6h-PZ-MHd" firstAttribute="top" secondItem="Otg-mn-IP0" secondAttribute="bottom" constant="13" id="arz-nA-ZAc"/>
+                                    <constraint firstAttribute="height" constant="164" id="d7d-BU-jS1"/>
+                                    <constraint firstItem="y6h-PZ-MHd" firstAttribute="leading" secondItem="o9d-5T-XwT" secondAttribute="leading" constant="12" id="yFk-Yj-TS9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ouz-Ln-zaP" firstAttribute="top" secondItem="XKa-6S-OqT" secondAttribute="topMargin" id="5h4-hS-1aU"/>
+                            <constraint firstAttribute="trailing" secondItem="o9d-5T-XwT" secondAttribute="trailing" constant="20" id="6d7-At-4UQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Ouz-Ln-zaP" secondAttribute="trailing" id="9AI-CV-ekN"/>
+                            <constraint firstItem="o9d-5T-XwT" firstAttribute="centerY" secondItem="Ouz-Ln-zaP" secondAttribute="centerY" constant="-50" id="CFV-I1-81t"/>
+                            <constraint firstItem="Ouz-Ln-zaP" firstAttribute="top" secondItem="o9d-5T-XwT" secondAttribute="bottom" id="CPj-iT-ftF"/>
+                            <constraint firstItem="r6M-pL-ShQ" firstAttribute="top" secondItem="Ouz-Ln-zaP" secondAttribute="bottom" id="NN7-1g-nym"/>
+                            <constraint firstItem="Ouz-Ln-zaP" firstAttribute="leading" secondItem="XKa-6S-OqT" secondAttribute="leading" id="dGg-Oe-k9r"/>
+                            <constraint firstItem="o9d-5T-XwT" firstAttribute="leading" secondItem="XKa-6S-OqT" secondAttribute="leading" constant="20" id="dXS-e3-Mtu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CPj-iT-ftF"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="incomingCallLabel" destination="Otg-mn-IP0" id="YRL-jL-pur"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AJd-xe-kGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370" y="53"/>
         </scene>
     </scenes>
     <resources>
+        <image name="phone" width="26" height="26"/>
         <image name="phone_disconnected" width="26" height="26"/>
     </resources>
 </document>

@@ -68,6 +68,7 @@
 		248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329041C847D7E0042B0DB /* CreateShoutSelectCell.swift */; };
 		248329091C8487900042B0DB /* FilterValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329081C8487900042B0DB /* FilterValue.swift */; };
 		24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24847E601C85E09E00C322A3 /* SelectShoutLocationViewController.swift */; };
+		2489CCF91CAD604100778630 /* IncomingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489CCF81CAD604100778630 /* IncomingCallController.swift */; };
 		249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493247F1C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift */; };
 		249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */; };
 		249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */; };
@@ -743,6 +744,7 @@
 		248329041C847D7E0042B0DB /* CreateShoutSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSelectCell.swift; path = View/CreateShoutSelectCell.swift; sourceTree = "<group>"; };
 		248329081C8487900042B0DB /* FilterValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterValue.swift; path = Model/FilterValue.swift; sourceTree = "<group>"; };
 		24847E601C85E09E00C322A3 /* SelectShoutLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectShoutLocationViewController.swift; path = Controllers/SelectShoutLocationViewController.swift; sourceTree = "<group>"; };
+		2489CCF81CAD604100778630 /* IncomingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingCallController.swift; path = Controllers/IncomingCallController.swift; sourceTree = "<group>"; };
 		2493247F1C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsCollectionViewController.swift; path = Controllers/DiscoverShoutsCollectionViewController.swift; sourceTree = "<group>"; };
 		249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsViewModel.swift; path = Controllers/DiscoverShoutsViewModel.swift; sourceTree = "<group>"; };
 		249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsParentViewController.swift; path = Controllers/DiscoverShoutsParentViewController.swift; sourceTree = "<group>"; };
@@ -2738,6 +2740,7 @@
 			children = (
 				AE6432FD1CAAD45E00729AA6 /* CallingOutViewController.swift */,
 				AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */,
+				2489CCF81CAD604100778630 /* IncomingCallController.swift */,
 			);
 			name = VideoCalls;
 			sourceTree = "<group>";
@@ -4332,6 +4335,7 @@
 				B21217CC1CA5BD78001BAEFC /* CoordinateParams.swift in Sources */,
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */,
+				2489CCF91CAD604100778630 /* IncomingCallController.swift in Sources */,
 				B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */,
 				604A0DD71BEE9B5C002A80E7 /* BaseCollectionViewController.swift in Sources */,
 				AE18BACD1CA2D3AD001C73EC /* MessageAttachment.swift in Sources */,

@@ -219,4 +219,8 @@ struct Wireframe {
         return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("VideoCallViewController") as! VideoCallViewController
     }
     
+    static func incomingCallController() -> IncomingCallController {
+        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("IncomingCallController") as! IncomingCallController
+    }
+    
 }

@@ -61,7 +61,7 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
     }
     
     func startVideoCallWithProfile(profile: Profile) -> Void {
-        let controller = Wireframe.callingoutController()
+        let controller = Wireframe.videoCallController()
         
         controller.callingToProfile = profile
         
