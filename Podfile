@@ -8,8 +8,8 @@ use_frameworks!
 pod 'TwilioConversationsClient', '~>0.22.0'
 
 # RX
-pod 'RxSwift', '~> 2.1'
-pod 'RxCocoa', '~> 2.1'
+pod 'RxSwift', '~> 2.3.1'
+pod 'RxCocoa', '~> 2.3.1'
 
 # logging
 pod 'Fabric', '~> 1.6'
@@ -34,7 +34,7 @@ pod 'AWSCognito', '~> 2.3'
 pod 'AmazonS3RequestManager'
 
 # networking
-pod 'Alamofire', '~> 3.1.0'
+pod 'Alamofire', '~> 3.3.0'
 pod 'ReachabilitySwift', '~> 2.3'
 pod 'Timberjack'
 
@@ -45,7 +45,7 @@ pod 'KeychainAccess', '~> 2.3'
 pod 'Validator', '~> 1.1'
 
 #images
-pod 'Kingfisher', '~> 1.8'
+pod 'Kingfisher', '~> 2.2'
 pod 'SDWebImage', '~> 3.7'
 pod 'MWPhotoBrowser', '~> 2.1'
 pod 'Nemo'

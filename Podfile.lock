@@ -19,7 +19,7 @@ PODS:
   - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Alamofire (3.1.5)
+  - Alamofire (3.3.0)
   - AmazonS3RequestManager (0.10.1):
     - Alamofire (~> 3.0)
     - SWXMLHash (~> 2.0)
@@ -60,7 +60,7 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - KeychainAccess (2.3.3)
-  - Kingfisher (1.9.3)
+  - Kingfisher (2.2.0)
   - libPusher (1.6.1):
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
@@ -87,9 +87,9 @@ PODS:
   - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.10)
-  - RxCocoa (2.1.0):
-    - RxSwift (~> 2.0)
-  - RxSwift (2.1.0)
+  - RxCocoa (2.3.1):
+    - RxSwift (~> 2.3.1)
+  - RxSwift (2.3.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -110,7 +110,7 @@ PODS:
 
 DEPENDENCIES:
   - ACPDownload (~> 1.1.0)
-  - Alamofire (~> 3.1.0)
+  - Alamofire (~> 3.3.0)
   - AmazonS3RequestManager
   - Argo
   - AWSCognito (~> 2.3)
@@ -130,7 +130,7 @@ DEPENDENCIES:
   - GooglePlaces (from `https://github.com/piotrbernad/Swift-Google-Maps-API`)
   - JSQMessagesViewController (~> 7.2)
   - KeychainAccess (~> 2.3)
-  - Kingfisher (~> 1.8)
+  - Kingfisher (~> 2.2)
   - libPusher (~> 1.6)
   - Material (~> 1.29)
   - MBMapSnapshotter
@@ -144,8 +144,8 @@ DEPENDENCIES:
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
-  - RxCocoa (~> 2.1)
-  - RxSwift (~> 2.1)
+  - RxCocoa (~> 2.3.1)
+  - RxSwift (~> 2.3.1)
   - SDWebImage (~> 3.7)
   - SlackTextViewController
   - SMCalloutView (~> 2.1)
@@ -177,7 +177,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
-  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
   AmazonS3RequestManager: 49d58c31cbe9a2972972b7ec632343a09d78fab1
   Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
@@ -201,7 +201,7 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
-  Kingfisher: 9e37d2a78a082dc123bfe8a16de65de85518daae
+  Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
   Material: 482520d78d73fa935fd57d2a62a095655e0bb7f0
   MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
@@ -217,8 +217,8 @@ SPEC CHECKSUMS:
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
-  RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
-  RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
+  RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
+  RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
