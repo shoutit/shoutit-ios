@@ -20,9 +20,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Alamofire (3.1.5)
-  - AlamofireObjectMapper (2.1.0):
-    - Alamofire (~> 3.1.0)
-    - ObjectMapper (~> 1.0)
   - AmazonS3RequestManager (0.10.1):
     - Alamofire (~> 3.0)
     - SWXMLHash (~> 2.0)
@@ -84,7 +81,7 @@ PODS:
     - MZAppearance
   - Nemo (1.0)
   - Nimble (3.0.0)
-  - ObjectMapper (1.1.2)
+  - ObjectMapper (1.2.0)
   - Ogra (2.1.0):
     - Argo
   - Quick (0.8.0)
@@ -109,12 +106,11 @@ PODS:
   - UIViewAppearanceSwift (0.0.1)
   - URBMediaFocusViewController (0.5.8)
   - Validator (1.1)
-  - XCGLogger (3.2)
+  - XCGLogger (3.3)
 
 DEPENDENCIES:
   - ACPDownload (~> 1.1.0)
   - Alamofire (~> 3.1.0)
-  - AlamofireObjectMapper (~> 2.1)
   - AmazonS3RequestManager
   - Argo
   - AWSCognito (~> 2.3)
@@ -144,7 +140,6 @@ DEPENDENCIES:
   - MZFormSheetPresentationController (~> 2.2)
   - Nemo
   - Nimble (= 3.0.0)
-  - ObjectMapper (~> 1.1)
   - Ogra (~> 2.1)
   - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
@@ -162,7 +157,7 @@ DEPENDENCIES:
     commit `2ba05f14a8c1a7eb16b1525ac325962516d6992a`)
   - URBMediaFocusViewController (~> 0.5)
   - Validator (~> 1.1)
-  - XCGLogger (~> 3.0)
+  - XCGLogger (~> 3.3)
 
 EXTERNAL SOURCES:
   GooglePlaces:
@@ -183,7 +178,6 @@ SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
   AmazonS3RequestManager: 49d58c31cbe9a2972972b7ec632343a09d78fab1
   Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
@@ -218,7 +212,7 @@ SPEC CHECKSUMS:
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
-  ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
@@ -238,6 +232,6 @@ SPEC CHECKSUMS:
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
   URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1
   Validator: 30b7e50f1f82b0e5b2dd14f54fc2f2533e70e5d6
-  XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
+  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
 COCOAPODS: 0.39.0

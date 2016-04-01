@@ -15,7 +15,7 @@ pod 'RxCocoa', '~> 2.1'
 pod 'Fabric', '~> 1.6'
 pod 'Crashlytics', '~> 3.6'
 pod 'Mixpanel', '~> 2.9'
-pod 'XCGLogger', '~> 3.0'
+pod 'XCGLogger', '~> 3.3'
 
 # google
 pod 'GoogleMaps', '~> 1.10'
@@ -35,7 +35,6 @@ pod 'AmazonS3RequestManager'
 
 # networking
 pod 'Alamofire', '~> 3.1.0'
-pod 'AlamofireObjectMapper', '~> 2.1'
 pod 'ReachabilitySwift', '~> 2.3'
 pod 'Timberjack'
 
@@ -53,7 +52,6 @@ pod 'Nemo'
 pod 'MBMapSnapshotter'
 
 # serialization
-pod 'ObjectMapper', '~> 1.1'
 pod 'Argo'
 pod 'Curry'
 pod 'Ogra', '~> 2.1'

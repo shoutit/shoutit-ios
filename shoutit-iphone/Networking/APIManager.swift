@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import Alamofire
 import CryptoSwift
 import ReachabilitySwift
