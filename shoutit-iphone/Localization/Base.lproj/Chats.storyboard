@@ -226,6 +226,9 @@
                             </barButtonItem>
                             <barButtonItem image="conversationVideoCall" id="60Z-y3-M4s">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="videoCall" destination="mhG-kG-xgO" id="8ax-9J-xn7"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>

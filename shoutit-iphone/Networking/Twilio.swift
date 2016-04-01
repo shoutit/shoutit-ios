@@ -28,7 +28,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     }
     
     func retriveToken() {
-        APIChatsService.twilioVideoAuth().subscribe { [weak self] (event) in
+        APIChatsService.twilioVideoAuth().subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
             switch event {
             case .Next(let authData):
                 self?.authData = authData
@@ -46,16 +46,34 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         
         print(authData.token)
         
-        self.accessManager = TwilioAccessManager(token:authData.token, delegate:self);
-        self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self);
-        self.client?.listen();
+        self.accessManager = TwilioAccessManager(token:authData.token, delegate:self)
+        self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self)
+        self.client?.listen()
     }
     
     func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
-        self.client?.inviteToConversation(profile.username, localMedia: media, handler: { (conversation, error) in
+        
+        APIChatsService.twilioVideoIdentity(profile.username)
+        .subscribe(onNext: { [weak self] (identity) in
+            self?.sendInvitationToIdentity(identity, media: media, handler: handler)
+        }, onError: { [weak self] (error) in
+            self?.sendInvitationToIdentity(nil, media: media, handler: handler)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
+    func sendInvitationToIdentity(identity: TwilioIdentity?,media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
+        guard let identity = identity else {
+            let error = NSError(domain: "com.shoutit.internal", code: 403, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("You are not able to call this user", comment: "")])
+            handler(nil, error)
+            return
+        }
+        
+        self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
             handler(conversation, error)
         })
     }
+    
+    
 }
 
 

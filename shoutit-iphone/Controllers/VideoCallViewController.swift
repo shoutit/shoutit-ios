@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+
 
 enum VideoCallViewControllerState {
     case ReadyForCall
@@ -26,6 +28,7 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
     @IBOutlet weak var previewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var callButton: UIButton!
+    private let disposeBag = DisposeBag()
     
     var remoteVideoRenderer: TWCVideoViewRenderer?
     
@@ -53,8 +56,6 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
         didSet {
             localMedia.delegate = self
             
-            // mute for debug to keep silence in office
-            localMedia.microphoneMuted = true
         }
     }
     
@@ -92,8 +93,11 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
             return
         }
 
+        
+        
         Twilio.sharedInstance.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
             if let error = error {
+                self?.state = .CallFailed
                 self?.showError(error)
                 return
             }
@@ -207,9 +211,6 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
         videoTrack.detach(self.myVideoPreView)
     }
     
-    func localMedia(media: TWCLocalMedia, didFailToAddVideoTrack videoTrack: TWCVideoTrack, error: NSError) {
-    }
-    
     //MARK - TWCParticipantDelegate
     
     func participant(participant: TWCParticipant, addedVideoTrack videoTrack: TWCVideoTrack) {
@@ -245,7 +246,7 @@ class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConv
     }
     
     func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
-        adjustPreviewSize(TWCVideoConstraintsSize640x480)
+        adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
     }
     
     func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
