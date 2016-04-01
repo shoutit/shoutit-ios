@@ -10,4 +10,5 @@ import UIKit
 
 class BigLabelButtonFilterTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var button: BigLabelSelectButton!
 }

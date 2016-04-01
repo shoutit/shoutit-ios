@@ -10,4 +10,6 @@ import Foundation
 
 class LimitingTextFieldsFilterTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var minimumValueTextField: UITextField!
+    @IBOutlet weak var maximumValueTextField: UITextField!
 }

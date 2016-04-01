@@ -10,4 +10,5 @@ import UIKit
 
 class LabeledSelectButtonFilterTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var button: LabeledSelectButton!
 }

@@ -10,4 +10,6 @@ import UIKit
 
 class SliderFilterTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var currentValueLabel: UILabel!
 }

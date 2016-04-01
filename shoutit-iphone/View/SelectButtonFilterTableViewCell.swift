@@ -10,4 +10,5 @@ import Foundation
 
 class SelectButtonFilterTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var button: SelectButton!
 }
