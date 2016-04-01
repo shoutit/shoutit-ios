@@ -56,7 +56,7 @@ struct Shout: Decodable, Hashable, Equatable {
         let c = b
             <*> j <|? "thumbnail"
             <*> j <|? "video_url"
-            <*> j <| "user"
+            <*> j <| "profile"
             <*> j <|? "date_published"
         let d = c
             <*> j <| "category"
@@ -95,7 +95,7 @@ extension Shout: Encodable {
             "type":self.typeString.encode(),
             "title":self.title.encode(),
             "text":self.text.encode(),
-            "user":self.user.encode(),
+            "profile":self.user.encode(),
             "price": self.price.encode()
             ])
     }

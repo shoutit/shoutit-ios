@@ -35,7 +35,7 @@ struct Message: Decodable, Hashable, Equatable {
             <*> j <| "created_at"
             <*> j <|? "read_url"
         let b = a
-            <*> j <|? "user"
+            <*> j <|? "profile"
             <*> j <|? "text"
             <*> j <||? "attachments"
         

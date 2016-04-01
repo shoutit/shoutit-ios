@@ -13,7 +13,7 @@ import RxSwift
 
 class APIMiscService {
     
-    private static let categoriesURL = APIManager.baseURL + "/misc/categories"
+    private static let categoriesURL = APIManager.baseURL + "/shouts/categories"
     private static let suggestionURL = APIManager.baseURL + "/misc/suggestions"
     private static let currenciesURL = APIManager.baseURL + "/misc/currencies"
     

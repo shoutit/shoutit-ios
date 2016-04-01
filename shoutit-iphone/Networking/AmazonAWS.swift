@@ -13,11 +13,10 @@ import AVFoundation
 class AmazonAWS: NSObject {
     
     private(set) var images: [String] = []
-    private(set) var videos: [SHMedia] = []
     
     func reset() {
         images.removeAll()
-        videos.removeAll()
+        //videos.removeAll()
     }
     
     static func configureS3() {
@@ -51,46 +50,46 @@ class AmazonAWS: NSObject {
         // return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET)
     }
     
-    func getVideoUploadTasks(videoUrl: NSURL, image: UIImage) -> [AWSTask] {
-        var tasks: [AWSTask] = []
-        let key = generateKey()
-        let thumbnailFilePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "%@_thumbnail.jpg", key))
-        let video = SHMedia()
-        var isVideoDone = false
-        var isImageDone = false
-        let videoFileName = key.stringByAppendingString(".mp4")
-        if let task = getImageTask(image, filePath: thumbnailFilePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET) {
-            task.continueWithSuccessBlock({ (task) -> AnyObject! in
-                isImageDone = true
-                video.thumbnailUrl = String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (thumbnailFilePath as NSString).lastPathComponent)
-                if isVideoDone && isImageDone {
-                    self.videos.append(video)
-                }
-                return nil
-            })
-            tasks.append(task)
-        }
-        if let videoData = NSData(contentsOfURL: videoUrl) {
-            let asset = AVURLAsset(URL: videoUrl, options: nil)
-            video.duration = Int(CMTimeGetSeconds(asset.duration))
-            video.idOnProvider = videoFileName
-            video.provider = "shoutit_s3"
-            video.localThumbImage = image
-            video.localUrl = videoUrl
-            if let task = getObjectTask(videoUrl, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, key: videoFileName, contentType: "video/mp4", contentLength: videoData.length) {
-                task.continueWithSuccessBlock({ (task) -> AnyObject! in
-                    video.url = String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, videoFileName)
-                    isVideoDone = true
-                    if isVideoDone && isImageDone {
-                        self.videos.append(video)
-                    }
-                    return nil
-                })
-                tasks.append(task)
-            }
-        }
-        return tasks
-    }
+//    func getVideoUploadTasks(videoUrl: NSURL, image: UIImage) -> [AWSTask] {
+//        var tasks: [AWSTask] = []
+//        let key = generateKey()
+//        let thumbnailFilePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(String(format: "%@_thumbnail.jpg", key))
+//        //let video = SHMedia()
+//        var isVideoDone = false
+//        var isImageDone = false
+//        let videoFileName = key.stringByAppendingString(".mp4")
+//        if let task = getImageTask(image, filePath: thumbnailFilePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET) {
+//            task.continueWithSuccessBlock({ (task) -> AnyObject! in
+//                isImageDone = true
+//                video.thumbnailUrl = String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (thumbnailFilePath as NSString).lastPathComponent)
+//                if isVideoDone && isImageDone {
+//                    self.videos.append(video)
+//                }
+//                return nil
+//            })
+//            tasks.append(task)
+//        }
+//        if let videoData = NSData(contentsOfURL: videoUrl) {
+//            let asset = AVURLAsset(URL: videoUrl, options: nil)
+//            video.duration = Int(CMTimeGetSeconds(asset.duration))
+//            video.idOnProvider = videoFileName
+//            video.provider = "shoutit_s3"
+//            video.localThumbImage = image
+//            video.localUrl = videoUrl
+//            if let task = getObjectTask(videoUrl, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, key: videoFileName, contentType: "video/mp4", contentLength: videoData.length) {
+//                task.continueWithSuccessBlock({ (task) -> AnyObject! in
+//                    video.url = String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, videoFileName)
+//                    isVideoDone = true
+//                    if isVideoDone && isImageDone {
+//                        self.videos.append(video)
+//                    }
+//                    return nil
+//                })
+//                tasks.append(task)
+//            }
+//        }
+//        return tasks
+//    }
     
     // MARK - Private
     private func getImageTask(image: UIImage, filePath: String, bucket: String, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {

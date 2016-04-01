@@ -46,7 +46,7 @@ struct Conversation: Decodable, Hashable, Equatable {
             <*> j <| "type"
         
         let c = b
-            <*> j <||? "users"
+            <*> j <||? "profiles"
             <*> j <|? "last_message"
             <*> j <|? "about"
             

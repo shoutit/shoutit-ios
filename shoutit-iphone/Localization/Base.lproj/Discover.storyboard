@@ -90,7 +90,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shShoutItemGridCell" reuseIdentifier="DiscoverCollectionCellReuseIdentifier" id="VcM-mS-LzG" customClass="SHShoutItemCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="210" y="2" width="200" height="239"/>
+                                <rect key="frame" x="210" y="1.5" width="200" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
@@ -181,106 +181,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bQ-Hn-HS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-388" y="510"/>
-        </scene>
-        <!--Discover Detail View Controller-->
-        <scene sceneID="DAC-hZ-hpM">
-            <objects>
-                <tableViewController storyboardIdentifier="SHDiscoverDetailViewController" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="10g-xp-axA" customClass="SHDiscoverDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="MT3-9o-xsw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="aL5-oS-14u">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="3xB-xn-NAy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="KXb-4K-Hwz"/>
-                                    </constraints>
-                                </imageView>
-                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lJ-gS-epQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eqs-Kn-jUo">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNo-yx-VDg">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   tag   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sq-B6-T9D">
-                                                        <rect key="frame" x="8" y="12" width="54" height="28"/>
-                                                        <color key="backgroundColor" red="0.59607843140000005" green="0.86274509799999999" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="584" id="VEJ-99-PVu"/>
-                                                            <constraint firstAttribute="height" constant="28" id="fXk-wA-Y6C"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-1v-gid">
-                                                        <rect key="frame" x="490" y="10" width="102" height="32"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="32" id="BrQ-8l-lLJ"/>
-                                                            <constraint firstAttribute="width" constant="102" id="clK-xq-iwr"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Listening">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="listenAction:" destination="10g-xp-axA" eventType="touchUpInside" id="ziD-Qx-udN"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="cYQ-1v-gid" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Sq-B6-T9D" secondAttribute="trailing" constant="428" id="798-x2-Ob2"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cYQ-1v-gid" secondAttribute="trailing" constant="8" id="Be7-yc-TcL"/>
-                                                    <constraint firstItem="2Sq-B6-T9D" firstAttribute="top" secondItem="pNo-yx-VDg" secondAttribute="top" constant="12" id="K0C-Oc-pEB"/>
-                                                    <constraint firstItem="2Sq-B6-T9D" firstAttribute="leading" secondItem="pNo-yx-VDg" secondAttribute="leading" constant="8" id="jXH-eY-4Aw"/>
-                                                    <constraint firstAttribute="height" constant="50" id="mzD-Vj-D9t"/>
-                                                    <constraint firstAttribute="bottom" secondItem="cYQ-1v-gid" secondAttribute="bottom" constant="8" id="suD-6Y-o62"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="pNo-yx-VDg" firstAttribute="top" secondItem="eqs-Kn-jUo" secondAttribute="top" id="EX1-G8-bTt"/>
-                                            <constraint firstItem="pNo-yx-VDg" firstAttribute="leading" secondItem="eqs-Kn-jUo" secondAttribute="leading" id="SjH-u0-CfQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="pNo-yx-VDg" secondAttribute="trailing" id="kjG-hL-Htc"/>
-                                            <constraint firstAttribute="bottom" secondItem="pNo-yx-VDg" secondAttribute="bottom" id="pV1-jB-pDm"/>
-                                        </constraints>
-                                    </view>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <blurEffect style="extraLight"/>
-                                </visualEffectView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="0lJ-gS-epQ" secondAttribute="bottom" id="6gO-AB-oX9"/>
-                                <constraint firstAttribute="trailing" secondItem="0lJ-gS-epQ" secondAttribute="trailing" id="BSb-9H-pde"/>
-                                <constraint firstItem="0lJ-gS-epQ" firstAttribute="leading" secondItem="aL5-oS-14u" secondAttribute="leading" id="LtT-dB-FWe"/>
-                                <constraint firstAttribute="trailing" secondItem="3xB-xn-NAy" secondAttribute="trailing" id="N7p-wL-Q0J"/>
-                                <constraint firstAttribute="bottom" secondItem="3xB-xn-NAy" secondAttribute="bottom" id="VIF-EQ-Yq2"/>
-                                <constraint firstItem="3xB-xn-NAy" firstAttribute="leading" secondItem="aL5-oS-14u" secondAttribute="leading" id="gie-4e-aaG"/>
-                            </constraints>
-                        </view>
-                        <connections>
-                            <outlet property="dataSource" destination="10g-xp-axA" id="HRS-Es-cNx"/>
-                            <outlet property="delegate" destination="10g-xp-axA" id="Wf0-qL-Vt8"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="listenButton" destination="cYQ-1v-gid" id="3CI-F2-PQf"/>
-                        <outlet property="tagLabel" destination="2Sq-B6-T9D" id="wB5-4x-3vE"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lf2-pz-uvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="976" y="412"/>
         </scene>
         <!--Discover Shouts Collection View Controller-->
         <scene sceneID="ZVh-Ab-Zjk">
@@ -624,7 +524,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
         <image name="cart" width="25" height="25"/>
         <image name="filterIcon" width="20" height="20"/>
-        <image name="image_placeholder" width="170" height="170"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>
