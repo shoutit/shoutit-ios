@@ -190,7 +190,9 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
     
     // MARK: - Helpers
     
-    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, var height: CGFloat, inout yOffset: CGFloat) {
+    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, height: CGFloat, inout yOffset: CGFloat) {
+        
+        var height = height
         
         guard let collectionWidth = collectionView?.bounds.width else {
             return

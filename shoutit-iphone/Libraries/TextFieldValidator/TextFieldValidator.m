@@ -47,7 +47,7 @@
     
     UIFont *font=[UIFont fontWithName:FontName size:FontSize];
     CGSize size=[self.strMsg boundingRectWithSize:CGSizeMake(fieldFrame.size.width-(PaddingInErrorPopUp*2), 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
-    size= CGSizeMake(ceilf(size.width), ceilf(size.height));
+    size= CGSizeMake(ceilf((float)(size.width)), ceilf((float)(size.height)));
     
     UIView *view=[[UIView alloc] initWithFrame:CGRectZero];
     [self insertSubview:view belowSubview:img];
@@ -228,7 +228,7 @@
             return NO;
         }
     }
-    for (int i=0; i<[arrRegx count]; i++) {
+    for (NSUInteger i = 0; i<[arrRegx count]; i++) {
         NSDictionary *dic=[arrRegx objectAtIndex:i];
         if([dic objectForKey:@"confirm"]){
             TextFieldValidator *txtConfirm=[dic objectForKey:@"confirm"];

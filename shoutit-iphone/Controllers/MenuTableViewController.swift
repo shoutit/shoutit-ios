@@ -32,7 +32,7 @@ class MenuTableViewController: UITableViewController, Navigation {
                 return
             }
             
-            let tapGesture = UITapGestureRecognizer(target: self, action:  "dismiss")
+            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(MenuTableViewController.dismiss))
             overlay.addGestureRecognizer(tapGesture)
         }
     }

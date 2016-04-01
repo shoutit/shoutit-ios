@@ -35,7 +35,7 @@ class ConversationImageCell: ConversationCell {
             return
         }
         
-        pictureImageView.setImageWithURL(url, placeholderImage: UIImage(named:"auth_screen_bg_pattern")) { (image, error, cacheType) in
+        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
         }

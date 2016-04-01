@@ -689,9 +689,9 @@ public class BorderedMaterialTextView: UITextView {
     
     /// Prepares the Notification handlers.
     private func prepareNotificationHandlers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidBegin", name: UITextViewTextDidBeginEditingNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidChange", name: UITextViewTextDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidEnd", name: UITextViewTextDidEndEditingNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidBegin), name: UITextViewTextDidBeginEditingNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidChange), name: UITextViewTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidEnd), name: UITextViewTextDidEndEditingNotification, object: nil)
     }
     
     /// Removes the Notification handlers.

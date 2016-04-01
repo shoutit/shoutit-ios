@@ -1,16 +1,16 @@
 //
-//  SHAmazonAWS.swift
+//  AmazonAWS.swift
 //  shoutit-iphone
 //
-//  Created by Hitesh Sondhi on 23/11/15.
-//  Copyright © 2015 Shoutit. All rights reserved.
+//  Created by Łukasz Kasperek on 01.04.2016.
+//  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import AWSS3
 import AVFoundation
 
-class SHAmazonAWS: NSObject {
+class AmazonAWS: NSObject {
     
     private(set) var images: [String] = []
     private(set) var videos: [SHMedia] = []
@@ -37,7 +37,7 @@ class SHAmazonAWS: NSObject {
     func getShoutImageTask(image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
         let filePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(generateKeyWithExtenstion("jpg"))
         return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, progress: progress)?.continueWithSuccessBlock({ (task) -> AnyObject! in
-                self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (filePath as NSString).lastPathComponent))
+            self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
     }
@@ -48,7 +48,7 @@ class SHAmazonAWS: NSObject {
             self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_USER_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
-       // return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET)
+        // return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET)
     }
     
     func getVideoUploadTasks(videoUrl: NSURL, image: UIImage) -> [AWSTask] {

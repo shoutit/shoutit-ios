@@ -37,7 +37,7 @@ extension AuthParams {
         }
         commonParams["user"] = locationUserParams
         
-        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
+        if let mixPanelDistinctId = MixpanelHelper.getDistinctID() {
             commonParams["mixpanel_distinct_id"] = mixPanelDistinctId
         }
         

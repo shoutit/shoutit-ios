@@ -52,8 +52,8 @@ static char TAG_ACTIVITY_INDICATOR;
 -(void)updateActivityIndicatorFrame {
     if (self.activityIndicator) {
         CGRect activityIndicatorBounds = self.activityIndicator.bounds;
-        float x = (self.frame.size.width - activityIndicatorBounds.size.width) / 2.0;
-        float y = (self.frame.size.height - activityIndicatorBounds.size.height) / 2.0;
+        float x = (float)((self.frame.size.width - activityIndicatorBounds.size.width) / 2.0);
+        float y = (float)((self.frame.size.height - activityIndicatorBounds.size.height) / 2.0);
         self.activityIndicator.frame = CGRectMake(x, y, activityIndicatorBounds.size.width, activityIndicatorBounds.size.height);
     }
 }

@@ -87,9 +87,9 @@
     
     //NSMutableArray *tempTitles = [[NSMutableArray alloc] initWithCapacity:_numOfMenu];
    //NSMutableArray *tempIndicators = [[NSMutableArray alloc] initWithCapacity:_numOfMenu];
-    NSMutableArray *tempBgLayers = [[NSMutableArray alloc] initWithCapacity:_numOfMenu];
+    NSMutableArray *tempBgLayers = [[NSMutableArray alloc] initWithCapacity:(NSUInteger)_numOfMenu];
     
-    for (int i = 0; i < _numOfMenu; i++) {
+    for (NSInteger i = 0; i < _numOfMenu; i++) {
         //bgLayer
         CGPoint bgLayerPosition = CGPointMake((i+0.5)*bgLayerInterval, self.frame.size.height/2);
         CALayer *bgLayer = [self createBgLayerWithColor:[UIColor whiteColor] andPosition:bgLayerPosition];
@@ -299,7 +299,7 @@
 - (void)animateIndicator:(CAShapeLayer *)indicator Forward:(BOOL)forward complete:(void(^)())complete {
     [CATransaction begin];
     [CATransaction setAnimationDuration:0.25];
-    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.4 :0.0 :0.2 :1.0]];
+    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithControlPoints:0.4f :0.0f :0.2f :1.0f]];
     
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
     anim.values = forward ? @[ @0, @(M_PI) ] : @[ @(M_PI), @0 ];
@@ -342,11 +342,11 @@
         CGFloat tableViewHeight = ([tableView numberOfRowsInSection:0] > 5) ? (5 * tableView.rowHeight) : ([tableView numberOfRowsInSection:0] * tableView.rowHeight);
         
         [UIView animateWithDuration:0.2 animations:^{
-            _tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, tableViewHeight);
+            self->_tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, tableViewHeight);
         }];
     } else {
         [UIView animateWithDuration:0.2 animations:^{
-            _tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0);
+            self->_tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0);
         } completion:^(BOOL finished) {
             [tableView removeFromSuperview];
         }];

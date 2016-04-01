@@ -99,7 +99,7 @@ extension AppDelegate {
         #endif
         
 //        Fabric.with([Crashlytics.self])
-        SHAmazonAWS.configureS3()
+        AmazonAWS.configureS3()
 //        SHMixpanelHelper.openApp()
         
         //UserVoice
