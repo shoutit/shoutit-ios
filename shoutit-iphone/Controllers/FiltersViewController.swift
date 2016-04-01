@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FiltersViewController: UIViewController {
     
@@ -22,9 +24,30 @@ class FiltersViewController: UIViewController {
         }
     }
     
+    // RX
+    
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
+        
+        setupRx()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupRx() {
+        
+        doneButton
+            .rx_tap
+            .asDriver()
+            .driveNext{[unowned self] in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
     }
 }
 

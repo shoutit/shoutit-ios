@@ -11,6 +11,9 @@ import UIKit
 final class DiscoverFlowController: FlowController {
     
     let navigationController: UINavigationController
+    lazy var filterTransition: FilterTransition = {
+        return FilterTransition()
+    }()
     
     init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
         

@@ -9,5 +9,17 @@
 import Foundation
 
 protocol FilterDisplayable {
+    var filterTransition: FilterTransition {get}
     func showFilters() -> Void
+}
+
+extension FilterDisplayable where Self: FlowController {
+    
+    func showFilters() {
+        let viewController = Wireframe.filtersViewController()
+        viewController.viewModel = FiltersViewModel()
+        viewController.transitioningDelegate = filterTransition
+        viewController.modalPresentationStyle = .Custom
+        navigationController.presentViewController(viewController, animated: true, completion: nil)
+    }
 }

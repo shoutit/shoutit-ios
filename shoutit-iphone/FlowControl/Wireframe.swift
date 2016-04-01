@@ -30,6 +30,7 @@ struct Wireframe {
         case Search = "Search"
         case VerifyEmail = "VerifyEmail"
         case VideoCalls = "VideoCalls"
+        case Filter = "Filter"
     }
     
     // General
@@ -94,6 +95,12 @@ struct Wireframe {
     
     static func searchShoutsResultsCollectionViewController() -> SearchShoutsResultsCollectionViewController {
         return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchShoutsResultsCollectionViewController") as! SearchShoutsResultsCollectionViewController
+    }
+    
+    // MARK: - Filters storyboard view controllers
+    
+    static func filtersViewController() -> FiltersViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("FiltersViewController") as! FiltersViewController
     }
     
     // MARK: - HTML storyboard view controllers

@@ -48,7 +48,6 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
             blurOverlay = UIVisualEffectView(frame: sourceRect)
             let transitionContainer = transitionContext.containerView()!
             
-            transitionContainer.addSubview(fromVC.view)
             transitionContainer.addSubview(blurOverlay)
             transitionContainer.addSubview(toVC.view)
             
@@ -69,11 +68,10 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
             
             let transitionContainer = transitionContext.containerView()!
             
-            transitionContainer.addSubview(toVC.view)
             transitionContainer.addSubview(blurOverlay)
             transitionContainer.addSubview(fromVC.view)
             
-            let endFrame = CGRect(x: 0, y: fromVC.view.frame.height , width: fromVC.view.frame.width, height: fromVC.view.frame.height - topSpace)
+            let endFrame = CGRect(x: 0, y: toVC.view.frame.height , width: toVC.view.frame.width, height: toVC.view.frame.height - topSpace)
             
             UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut], animations: {
                 fromVC.view.frame = endFrame

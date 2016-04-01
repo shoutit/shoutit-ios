@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
+protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, FilterDisplayable {}
 
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
@@ -172,8 +172,8 @@ extension SearchShoutsResultsCollectionViewController {
         view.filterButton
             .rx_tap
             .asDriver()
-            .driveNext{
-                
+            .driveNext{[unowned self] in
+                self.flowDelegate?.showFilters()
             }
             .addDisposableTo(view.reuseDisposeBag)
         
