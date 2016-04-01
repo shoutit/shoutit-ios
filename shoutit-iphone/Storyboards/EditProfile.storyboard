@@ -9,7 +9,7 @@
         <!--Edit Profile-->
         <scene sceneID="QQX-fz-ddJ">
             <objects>
-                <tableViewController storyboardIdentifier="EditProfileTableViewController" title="Edit Profile" id="cSZ-PW-VNj" customClass="EditProfileTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileTableViewController" title="Edit Profile" automaticallyAdjustsScrollViewInsets="NO" id="cSZ-PW-VNj" customClass="EditProfileTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZLB-ob-MjE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,6 +220,7 @@
                             <outlet property="delegate" destination="cSZ-PW-VNj" id="7gQ-SK-f5b"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Edit Profile" id="7oi-GT-QO2">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="pYY-Ux-Kk4"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="8j2-SF-1qK"/>

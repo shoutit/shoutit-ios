@@ -36,14 +36,8 @@ extension UIViewController {
                 return barView
             }
             let barView = NSBundle.mainBundle().loadNibNamed("AlertBarView", owner: nil, options: nil)[0] as! AlertBarView
-            
-            // position views
-            barView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(barView)
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[bar]|", options: [], metrics: nil, views: ["bar" : barView]))
-            
-            view.addConstraint(NSLayoutConstraint(item: barView, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: hasFakeNavigationBar() ? 44 : 0))
-            barView.addConstraint(NSLayoutConstraint(item: barView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 40))
+            barView.translatesAutoresizingMaskIntoConstraints = true
+            barView.autoresizingMask = [.FlexibleHeight]
             
             // hide
             barView.alpha = 0.0
@@ -83,13 +77,26 @@ extension UIViewController {
             },
                                    completion: {[weak self] (finished) in
                                     self?.barView.hidden = true
+                                    self?.barView.removeFromSuperview()
             })
     }
     
     private func showBarWithMessage(message: String) {
+        barTimer?.invalidate()
+        barTimer = nil
+        
         barView.errorMessageLabel.text = message
         barView.hidden = false
         barView.layer.removeAllAnimations()
+        
+        
+        let shouldAddNavBarThreshold = (navigationController != nil && navigationController?.navigationBarHidden == false) || hasFakeNavigationBar()
+        let y: CGFloat = shouldAddNavBarThreshold ? 64 : 20
+        barView.frame = CGRect(x: 0, y: y, width: view.frame.width, height: 40)
+        if barView.superview == nil {
+            UIApplication.sharedApplication().keyWindow?.addSubview(barView)
+        }
+        
         UIView.animateWithDuration(barAnimationDuration) {[weak self] in
             self?.barView.alpha = 1.0
         }
