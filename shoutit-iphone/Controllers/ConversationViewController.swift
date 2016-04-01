@@ -354,6 +354,17 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         }
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func videoCall() {
+        if let profile = self.conversation.coParticipant() {
+          self.flowDelegate?.startVideoCallWithProfile(profile)
+            return
+        }
+        
+        if let shout = self.conversation.shout {
+            self.flowDelegate?.startVideoCallWithProfile(shout.user)
+        }
+    }
 }
 
 extension ConversationViewController {

@@ -17,6 +17,7 @@ extension ErrorType {
         if let e = self as? ShoutitError {
             return e.userMessage
         }
-        return (self as NSError).localizedDescription
+        
+        return ((self as Any) as! NSError).localizedDescription
     }
 }

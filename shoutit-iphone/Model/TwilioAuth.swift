@@ -30,3 +30,20 @@ extension TwilioAuth: Encodable {
             "identity" : self.identity.encode()])
     }
 }
+
+struct TwilioIdentity {
+    let identity: String
+}
+
+extension TwilioIdentity: Decodable {
+    static func decode(j: JSON) -> Decoded<TwilioIdentity> {
+        return curry(TwilioIdentity.init)
+            <^> j <| "identity"
+    }
+}
+
+extension TwilioIdentity: Encodable {
+    func encode() -> JSON {
+        return JSON.Object(["identity" : self.identity.encode()])
+    }
+}

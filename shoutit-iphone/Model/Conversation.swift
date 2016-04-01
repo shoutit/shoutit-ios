@@ -104,6 +104,17 @@ extension Conversation {
         return names.joinWithSeparator(", ")
     }
     
+    func coParticipant() -> Profile? {
+        var prof : Profile?
+        self.users?.each({ (profile) -> () in
+            if profile.value.id != Account.sharedInstance.user?.id {
+                prof = profile.value
+            }
+        })
+        
+        return prof
+    }
+    
     func secondLineText() -> NSAttributedString? {
         if self.type() == .Chat {
             return NSAttributedString(string: lastMessageText())
