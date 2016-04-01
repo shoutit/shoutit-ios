@@ -49,6 +49,25 @@ class FiltersViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
     }
+    
+    // MARK: - Helpers
+    
+    private func reuseIdentifierForCellViewModel(cellViewModel: FiltersCellViewModel) -> String {
+        switch cellViewModel {
+        case .ShoutTypeChoice:
+            return "ShoutTypeChoiceCell"
+        case .CategoryChoice:
+            return "CategoryChoiceCell"
+        case .PriceRestriction:
+            return "PriceRestrictionCell"
+        case .LocationChoice:
+            return "LocationChoiceCell"
+        case .DistanceRestriction:
+            return "DistanceRestrictionCell"
+        case .FilterValueChoice:
+            return "FilterCell"
+        }
+    }
 }
 
 extension FiltersViewController: UITableViewDataSource {
