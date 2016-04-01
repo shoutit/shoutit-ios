@@ -192,7 +192,7 @@
                                         <rect key="frame" x="15" y="5" width="25" height="24"/>
                                         <state key="normal" title="search" image="search"/>
                                         <connections>
-                                            <segue destination="d4B-fT-vNC" kind="unwind" unwindAction="unwindToSearch:" id="jz1-af-Pz5"/>
+                                            <action selector="searchAction" destination="KZH-Ve-wP5" eventType="touchUpInside" id="vTZ-In-4YU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjI-1Q-STd">
@@ -207,7 +207,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdN-Mo-PwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="d4B-fT-vNC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1797" y="408"/>
         </scene>

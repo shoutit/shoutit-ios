@@ -19,7 +19,7 @@ enum SearchContext {
 protocol SearchDisplayable {
     func showSearchInContext(context: SearchContext) -> Void
     func showUserSearchResultsWithPhrase(phrase: String) -> Void
-    func showShoutsSearchResultsWithPhrase(phrase: String, context: SearchContext) -> Void
+    func showShoutsSearchResultsWithPhrase(phrase: String?, context: SearchContext) -> Void
 }
 
 extension SearchDisplayable where Self: FlowController, Self: SearchViewControllerFlowDelegate {
@@ -41,7 +41,7 @@ extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsT
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func showShoutsSearchResultsWithPhrase(phrase: String, context: SearchContext) {
+    func showShoutsSearchResultsWithPhrase(phrase: String?, context: SearchContext) {
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
         controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: phrase, inContext: context)
         controller.flowDelegate = self

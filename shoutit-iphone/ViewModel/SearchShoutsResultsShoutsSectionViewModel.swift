@@ -46,7 +46,14 @@ extension SearchShoutsResultsViewModel {
         // MARK: - To display
         
         func sectionTitle() -> String {
-            return NSLocalizedString("Results for '\(parent.searchPhrase)'", comment: "Search results section header")
+            if let searchPhrase = parent.searchPhrase {
+                return NSLocalizedString("Results for '\(searchPhrase)'", comment: "Search results for search phrase section header")
+            } else if case .CategoryShouts(let category) = parent.context {
+                return NSLocalizedString("Results for \(category.name)", comment: "Search results for category section header")
+            } else {
+                assertionFailure()
+                return NSLocalizedString("Results", comment: "Search results section header")
+            }
         }
         
         func resultsCountString() -> String {

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable {}
+protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
 
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
@@ -75,6 +75,16 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
                 self?.collectionView?.reloadData()
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func searchAction() {
+        if case .CategoryShouts(let category) = viewModel.context {
+            flowDelegate?.showSearchInContext(.CategoryShouts(category: category))
+        } else {
+            pop()
+        }
     }
     
     // MARK: - Helpers

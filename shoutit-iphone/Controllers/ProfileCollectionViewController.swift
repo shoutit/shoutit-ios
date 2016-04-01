@@ -382,21 +382,32 @@ extension ProfileCollectionViewController {
         
         switch buttonModel {
         case .Listen(let isListening):
-            if let observable = viewModel.listen() {
-                button.rx_tap.flatMapFirst({[weak button] () -> Observable<Void> in
-                    if let button = button as? ProfileInfoHeaderButton {
-                        let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
-                        button.setImage(switchedModel.image, countText: nil)
-                        button.setTitleText(switchedModel.title)
+            
+            guard let listenObservable = viewModel.listen() else { return }
+            
+            button.rx_tap
+                .filter{[unowned self] () -> Bool in
+                    let isGuest = Account.sharedInstance.user?.isGuest ?? true
+                    if isGuest {
+                        self.displayUserMustBeLoggedInAlert()
                     }
-                    return observable
+                    return !isGuest
+                }
+                .flatMapFirst({[weak button] () -> Observable<Void> in
+                if let button = button as? ProfileInfoHeaderButton {
+                    let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
+                    button.setImage(switchedModel.image, countText: nil)
+                    button.setTitleText(switchedModel.title)
+                }
+                return listenObservable
                 }).subscribeError({[weak button] (_) in
                     if let button = button as? ProfileInfoHeaderButton {
                         button.setImage(buttonModel.image, countText: nil)
                         button.setTitleText(buttonModel.title)
                     }
-                }).addDisposableTo(disposeBag)
-            }
+                })
+                .addDisposableTo(disposeBag)
+            
         case .EditProfile:
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
