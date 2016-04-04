@@ -92,8 +92,9 @@ class SearchUserResultsViewModel {
     private func appendProfiles(results: PagedResults<Profile>, forPage page: Int) {
         
         if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
-            cells += results.results.map{SearchUserProfileCellViewModel(profile: $0)}
-            if cells.count < pageSize || results.nextPath == nil {
+            let fetchedProfiles = results.results
+            cells += fetchedProfiles.map{SearchUserProfileCellViewModel(profile: $0)}
+            if fetchedProfiles.count < pageSize || results.nextPath == nil {
                 state.value = .LoadedAllContent(cells: cells, page: page)
             } else {
                 state.value = .Loaded(cells: cells, page: page)
@@ -110,6 +111,7 @@ class SearchUserResultsViewModel {
             return
         }
         
+        if profiles
         state.value = .Loaded(cells: profiles.map{SearchUserProfileCellViewModel(profile: $0)}, page: page)
     }
     
