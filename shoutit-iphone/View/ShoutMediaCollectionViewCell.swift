@@ -25,6 +25,7 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
             self.imageView.sh_setImageWithURL(attachment?.thumbRemoteURL, placeholderImage: nil)
         } else {
             self.imageView.image = nil
+            
         }
     }
     

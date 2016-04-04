@@ -32,6 +32,13 @@ final class PusherClient : NSObject {
         pusherInstance.authorizationURL = NSURL(string: pusherURL)
     }
     
+    func reconnect() {
+        pusherInstance.disconnect()
+        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
+        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        connect()
+    }
+    
     func connect() {
         pusherInstance.connect()
     }
@@ -110,6 +117,7 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
         debugPrint("PUSHER DID DISCONNECT WITH ERROR")
         print(error ?? "nilError")
+        reconnect()
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {

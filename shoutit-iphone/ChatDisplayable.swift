@@ -27,6 +27,16 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         controller.flowDelegate = self
         controller.conversation = conversation
         
+        // if there was conversation pop instead of adding another controller to stack
+        let previousControllersCount = (self.navigationController.viewControllers.count - 2)
+        
+        if previousControllersCount >= 0 {
+            if let conversation = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController {
+                self.navigationController.popToViewController(conversation, animated: true)
+                return
+            }
+        }
+        
         self.navigationController.showViewController(controller, sender: nil)
     }
     
