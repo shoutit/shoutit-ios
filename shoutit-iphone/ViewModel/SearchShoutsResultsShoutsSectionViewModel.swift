@@ -145,12 +145,17 @@ extension SearchShoutsResultsViewModel {
             
             assert(page == 1)
             
-            let results = result.results
-            if results.count == 0 {
+            let shouts = result.results
+            if shouts.count == 0 {
                 state.value = .NoContent
             }
             
-            state.value = PagedViewModelState.Loaded(cells: results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}, page: page)
+            let cellViewModels = shouts.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
+            if shouts.count < pageSize || result.nextPath == nil {
+                state.value = .LoadedAllContent(cells: cellViewModels, page: page)
+            } else {
+                state.value = .Loaded(cells: cellViewModels, page: page)
+            }
         }
     }
 }
