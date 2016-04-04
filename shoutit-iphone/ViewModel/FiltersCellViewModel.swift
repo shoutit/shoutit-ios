@@ -24,12 +24,27 @@ enum FiltersCellViewModel {
     case CategoryChoice(category: Category?)
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
-    case DistanceRestriction(kilometers: DistanceRestrictionFilterOption)
+    case DistanceRestriction(distanceOption: DistanceRestrictionFilterOption)
     case FilterValueChoice(filter: Filter)
     
     static func distanceRestrictionOptions() -> [DistanceRestrictionFilterOption] {
         return [
-            .Distance(kilometers: 1)
+            .Distance(kilometers: 1),
+            .Distance(kilometers: 2),
+            .Distance(kilometers: 3),
+            .Distance(kilometers: 5),
+            .Distance(kilometers: 7),
+            .Distance(kilometers: 10),
+            .Distance(kilometers: 15),
+            .Distance(kilometers: 20),
+            .Distance(kilometers: 30),
+            .Distance(kilometers: 60),
+            .Distance(kilometers: 100),
+            .Distance(kilometers: 200),
+            .Distance(kilometers: 300),
+            .Distance(kilometers: 400),
+            .Distance(kilometers: 500),
+            .EntireCountry
         ]
     }
 }
