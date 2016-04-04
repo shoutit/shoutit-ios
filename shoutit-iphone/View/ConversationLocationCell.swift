@@ -8,20 +8,36 @@
 
 import UIKit
 
-class ConversationLocationCell: ConversationCell {
+class ConversationLocationCell: UITableViewCell, ConversationCell {
     
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var locationSnapshot: UIImageView!
     @IBOutlet weak var showLabel: UILabel?
     
-    override func bindWithMessage(message: Message, previousMessage: Message?) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .None
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.activityIndicator?.hidden = false
+        self.showLabel?.hidden = true
+        unHideImageView()
+    }
+    
+    func bindWithMessage(message: Message, previousMessage: Message?) {
         if let imgview = avatarImageView {
-            super.setImageWith(imgview, message: message)
+            setImageWith(imgview, message: message)
         }
         
         timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
         
         if message.isSameSenderAs(previousMessage) {
-            super.hideImageView()
+            hideImageView()
         }
         
     
@@ -35,15 +51,6 @@ class ConversationLocationCell: ConversationCell {
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         
         setMapSnapshotWithCoordinate(coordinates)
-    }
-    
-    
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.activityIndicator?.hidden = false
-        self.showLabel?.hidden = true
-        super.unHideImageView()
     }
     
     func setMapSnapshotWithCoordinate(coordinates: CLLocationCoordinate2D) {

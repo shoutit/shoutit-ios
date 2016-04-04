@@ -196,16 +196,18 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierAtIndexPath(indexPath)) as! ConversationCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierAtIndexPath(indexPath))
         
         let msg = viewModel.messageAtIndexPath(indexPath)
         let previousMsg = viewModel.previousMessageFor(msg)
         
-        cell.bindWithMessage(msg, previousMessage: previousMsg)
+        if let conversationCell = cell as? ConversationCell {
+            conversationCell.bindWithMessage(msg, previousMessage: previousMsg)
+        }
         
-        cell.transform = tableView.transform
+        cell!.transform = tableView.transform
         
-        return cell
+        return cell!
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

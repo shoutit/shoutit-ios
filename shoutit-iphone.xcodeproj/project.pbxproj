@@ -1476,11 +1476,15 @@
 		249F78231C9963B600FCB9A6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				248320EE1C996DD300C12D90 /* ConversationCell.swift */,
+				246DEA741CA423DE009DF436 /* ConversationImageCell.swift */,
+				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
+				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
+				AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */,
+				248320F01C996E7000C12D90 /* ConversationTextCell.swift */,
 				248320EC1C996D1C00C12D90 /* IncomingCell.xib */,
 				249F78241C9963CF00FCB9A6 /* ConversationDayHeader.xib */,
 				249F78261C99641D00FCB9A6 /* ConversationDayHeader.swift */,
-				248320EE1C996DD300C12D90 /* ConversationCell.swift */,
-				248320F01C996E7000C12D90 /* ConversationTextCell.swift */,
 				248320F21C99715D00C12D90 /* OutgoingCell.xib */,
 				248320F41C99975D00C12D90 /* BubbleView.swift */,
 				240DE9301C9FEF75006E49D4 /* ConversationLoadMoreFooter.xib */,
@@ -1489,18 +1493,14 @@
 				24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */,
 				AE18BAD01CA2F80B001C73EC /* IncomingLocationCell.xib */,
 				AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */,
-				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
-				246DEA741CA423DE009DF436 /* ConversationImageCell.swift */,
 				AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */,
 				AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */,
 				AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */,
 				AEADF3371CA545850051DABA /* ConversationTitleView.swift */,
 				AEADF3391CA5517A0051DABA /* IncomingVideoCell.xib */,
 				AEADF33B1CA5518A0051DABA /* OutgoingVideoCell.xib */,
-				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
 				AEADF3441CA58A910051DABA /* IncomingShoutCell.xib */,
 				AEADF3461CA58A9F0051DABA /* OutgoingShoutCell.xib */,
-				AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

@@ -8,25 +8,39 @@
 
 import UIKit
 
-class ConversationImageCell: ConversationCell {
+class ConversationImageCell: UITableViewCell, ConversationCell {
+    
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var pictureImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .None
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        unHideImageView()
+    }
  
-    override func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = super.avatarImageView {
-            super.setImageWith(imgview, message: message)
+    func bindWithMessage(message: Message, previousMessage: Message?) {
+        if let imgview = avatarImageView {
+            setImageWith(imgview, message: message)
         }
         
-        super.timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
+        timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
         
         if message.isSameSenderAs(previousMessage) {
-            super.hideImageView()
+            hideImageView()
         }
         
-        super.activityIndicator?.startAnimating()
-        super.activityIndicator?.hidden = false
+        activityIndicator?.startAnimating()
+        activityIndicator?.hidden = false
         
-        
-        self.setThumbMessage(message)
+        setThumbMessage(message)
     }
     
     func setThumbMessage(message: Message) {
@@ -35,8 +49,8 @@ class ConversationImageCell: ConversationCell {
         }
         
         self.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
-            super.activityIndicator?.stopAnimating()
-            super.activityIndicator?.hidden = true
+            self.activityIndicator?.stopAnimating()
+            self.activityIndicator?.hidden = true
         }
     }
 }
