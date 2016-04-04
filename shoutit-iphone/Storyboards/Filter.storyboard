@@ -129,6 +129,9 @@
                                                 <constraint firstItem="41h-vW-IAU" firstAttribute="top" secondItem="xyd-EA-Io0" secondAttribute="top" constant="10" id="vLd-52-4Xm"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="41h-vW-IAU" id="ilF-4V-1lW"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryChoiceCell" rowHeight="60" id="zBi-3t-EKF" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="88" width="375" height="60"/>
@@ -158,6 +161,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="ofT-NM-U31" secondAttribute="trailing" constant="20" id="hDh-Ch-EJ1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="ofT-NM-U31" id="Tb7-0W-Ofc"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PriceRestrictionCell" rowHeight="96" id="0k4-u3-8nE" customClass="LimitingTextFieldsFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="375" height="96"/>
@@ -201,6 +207,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="S1R-lh-cIJ" secondAttribute="trailing" constant="20" id="xJz-LL-KbZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="maximumValueTextField" destination="S1R-lh-cIJ" id="nX4-7Q-hu6"/>
+                                            <outlet property="minimumValueTextField" destination="hei-G2-sux" id="t8A-6V-cov"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationChoiceCell" rowHeight="96" id="tLf-7d-QBp" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="244" width="375" height="96"/>
@@ -239,6 +249,9 @@
                                                 <constraint firstItem="dre-GC-uE6" firstAttribute="leading" secondItem="OCB-fA-ZCw" secondAttribute="leading" id="tvq-NO-LGE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="OCB-fA-ZCw" id="ALF-MQ-Trg"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DistanceRestrictionCell" rowHeight="91" id="a0z-zp-iNy" customClass="SliderFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="340" width="375" height="91"/>
@@ -292,6 +305,10 @@
                                                 <constraint firstItem="qSo-0H-wno" firstAttribute="baseline" secondItem="9RO-3f-vYA" secondAttribute="baseline" id="s7c-Lp-ZS3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currentValueLabel" destination="qSo-0H-wno" id="UGi-bV-LKk"/>
+                                            <outlet property="slider" destination="P5a-wk-8sF" id="z32-LA-PPk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterCell" rowHeight="60" id="VeM-Id-3lB" customClass="BigLabelButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="431" width="375" height="60"/>
@@ -321,6 +338,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="Xhp-Cv-lTv" secondAttribute="trailing" constant="20" id="h0C-uk-hxR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="Xhp-Cv-lTv" id="9fe-s6-5CK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

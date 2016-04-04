@@ -11,6 +11,10 @@ import Foundation
 class FiltersViewModel {
     
     private func basicCellViewModels() -> [FiltersCellViewModel] {
+        let shoutTypeCellViewModel = FiltersCellViewModel.ShoutTypeChoice(shoutType: .All)
+        let categoryCellViewModel = FiltersCellViewModel.CategoryChoice(category: nil)
+        let priceConstraintCellViewModel = FiltersCellViewModel.PriceRestriction(from: nil, to: nil)
+        let locationViewModel = FiltersCellViewModel.LocationChoice(location: Account.sharedInstance.user?.location)
         
     }
 }

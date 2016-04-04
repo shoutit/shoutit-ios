@@ -10,15 +10,26 @@ import Foundation
 
 enum FiltersCellViewModel {
     
-    enum ShoutTypeFilter {
+    enum ShoutTypeFilterOption {
         case All
         case Specific(shoutType: ShoutType)
     }
     
-    case ShoutTypeChoice(shoutType: ShoutTypeFilter)
-    case CategoryChoice(category: Category)
-    case PriceRestriction(from: Int, to: Int)
-    case LocationChoice(location: Address)
-    case DistanceRestriction(kilometers: Int)
+    enum DistanceRestrictionFilterOption {
+        case Distance(kilometers: Int)
+        case EntireCountry
+    }
+    
+    case ShoutTypeChoice(shoutType: ShoutTypeFilterOption)
+    case CategoryChoice(category: Category?)
+    case PriceRestriction(from: Int?, to: Int?)
+    case LocationChoice(location: Address?)
+    case DistanceRestriction(kilometers: DistanceRestrictionFilterOption)
     case FilterValueChoice(filter: Filter)
+    
+    static func distanceRestrictionOptions() -> [DistanceRestrictionFilterOption] {
+        return [
+            .Distance(kilometers: 1)
+        ]
+    }
 }
