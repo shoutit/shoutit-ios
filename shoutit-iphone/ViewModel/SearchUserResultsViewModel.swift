@@ -54,8 +54,8 @@ class SearchUserResultsViewModel {
         fetchProfilesForPage(page)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let profiles):
-                    self?.appendProfiles(profiles, forPage: page)
+                case .Next(let results):
+                    self?.appendProfiles(results, forPage: page)
                 case .Error(let error):
                     assert(false, error.sh_message)
                     self?.state.value = .Error(error)
@@ -70,8 +70,8 @@ class SearchUserResultsViewModel {
         fetchProfilesForPage(page)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let profiles):
-                    self?.reloadProfiles(profiles, atPage: page)
+                case .Next(let results):
+                    self?.reloadProfiles(results, atPage: page)
                 case .Error(let error):
                     assert(false, error.sh_message)
                     self?.state.value = .Error(error)
@@ -82,18 +82,18 @@ class SearchUserResultsViewModel {
             .addDisposableTo(requestDisposeBag)
     }
     
-    private func fetchProfilesForPage(page: Int) -> Observable<[Profile]> {
+    private func fetchProfilesForPage(page: Int) -> Observable<PagedResults<Profile>> {
         let params = SearchParams(phrase: searchPhrase, page: page, pageSize: pageSize)
         return APIProfileService.searchProfileWithParams(params)
     }
     
     // MARK: - Helpers
     
-    private func appendProfiles(profiles: [Profile], forPage page: Int) {
+    private func appendProfiles(results: PagedResults<Profile>, forPage page: Int) {
         
         if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
-            cells += profiles.map{SearchUserProfileCellViewModel(profile: $0)}
-            if cells.count < pageSize {
+            cells += results.results.map{SearchUserProfileCellViewModel(profile: $0)}
+            if cells.count < pageSize || results.nextPath == nil {
                 state.value = .LoadedAllContent(cells: cells, page: page)
             } else {
                 state.value = .Loaded(cells: cells, page: page)
@@ -103,6 +103,8 @@ class SearchUserResultsViewModel {
         
         assert(page == 1)
         
+        let profiles = results.results
+        
         if profiles.count == 0 {
             state.value = .NoContent
             return
@@ -111,12 +113,13 @@ class SearchUserResultsViewModel {
         state.value = .Loaded(cells: profiles.map{SearchUserProfileCellViewModel(profile: $0)}, page: page)
     }
     
-    private func reloadProfiles(profiles: [Profile], atPage page: Int) {
+    private func reloadProfiles(results: PagedResults<Profile>, atPage page: Int) {
         
         guard case .Loaded(var models, let numberOfPages) = state.value where numberOfPages >= page else {
             return
         }
         
+        let profiles = results.results
         let pageStartIndex = (page - 1) * pageSize
         let pageEndIndex = pageStartIndex + profiles.count
         let range: Range<Int> = pageStartIndex..<pageEndIndex

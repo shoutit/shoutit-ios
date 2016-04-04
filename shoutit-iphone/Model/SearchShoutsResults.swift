@@ -10,18 +10,18 @@ import Foundation
 import Argo
 import Curry
 
-struct SearchShoutsResults {
-    let count: Int
+struct PagedResults<T: Decodable where T.DecodedType == T> {
+    let count: Int?
     let previousPath: String?
     let nextPath: String?
-    let results: [Shout]
+    let results: [T]
 }
 
-extension SearchShoutsResults: Decodable {
+extension PagedResults: Decodable {
     
-    static func decode(j: JSON) -> Decoded<SearchShoutsResults> {
-        let a = curry(SearchShoutsResults.init)
-            <^> j <| "count"
+    static func decode(j: JSON) -> Decoded<PagedResults<T>> {
+        let a = curry(PagedResults<T>.init)
+            <^> j <|? "count"
             <*> j <|? "previous"
         let b = a
             <*> j <|? "next"

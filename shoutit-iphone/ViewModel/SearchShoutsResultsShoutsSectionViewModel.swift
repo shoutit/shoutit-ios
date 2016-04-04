@@ -81,7 +81,7 @@ extension SearchShoutsResultsViewModel {
                 .addDisposableTo(requestDisposeBag)
         }
         
-        private func fetchShoutsAtPage(page: Int) -> Observable<SearchShoutsResults> {
+        private func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
             let phrase = parent.searchPhrase
             let context = parent.context
             let params: FilteredShoutsParams
@@ -127,10 +127,10 @@ extension SearchShoutsResultsViewModel {
         
         // MARK: - Helpers
         
-        private func updateViewModelWithResult(result: SearchShoutsResults, forPage page: Int) {
+        private func updateViewModelWithResult(result: PagedResults<Shout>, forPage page: Int) {
             
             if numberOfResults == 0 {
-                numberOfResults = result.count
+                numberOfResults = result.count ?? 0
             }
             
             if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {

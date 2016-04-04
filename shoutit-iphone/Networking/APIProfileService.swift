@@ -13,9 +13,9 @@ import RxSwift
 
 class APIProfileService {
     
-    static func searchProfileWithParams(params: SearchParams) -> Observable<[Profile]> {
+    static func searchProfileWithParams(params: SearchParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
     static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<Void> {
