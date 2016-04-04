@@ -27,6 +27,16 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         controller.flowDelegate = self
         controller.conversation = conversation
         
+        // if there was conversation pop instead of adding another controller to stack
+        let previousControllersCount = (self.navigationController.viewControllers.count - 2)
+        
+        if previousControllersCount >= 0 {
+            if let conversation = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController {
+                self.navigationController.popToViewController(conversation, animated: true)
+                return
+            }
+        }
+        
         self.navigationController.showViewController(controller, sender: nil)
     }
     
@@ -49,13 +59,13 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
     }
     
     func showImagePreview(imageURL: NSURL) -> Void {
-        let controller = MWPhotoBrowser(photos: [MWPhoto(URL: imageURL)])
+        let controller = PhotoBrowser(photos: [MWPhoto(URL: imageURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }
     
     func showVideoPreview(videoURL: NSURL) -> Void {
-        let controller = MWPhotoBrowser(photos: [MWPhoto(videoURL: videoURL)])
+        let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }

@@ -180,6 +180,7 @@
 		AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4DB3641C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4DB3651C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
+		AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */; };
 		AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */; };
 		AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */; };
 		AE6432FB1CAAD40000729AA6 /* VideoCalls.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */; };
@@ -823,6 +824,8 @@
 		AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsFlowController.swift; path = FlowControl/InviteFriendsFlowController.swift; sourceTree = "<group>"; };
 		AE4DB35E1C6485FA001EB84B /* MenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuHeaderView.swift; path = View/MenuHeaderView.swift; sourceTree = "<group>"; };
 		AE4DB3621C648B66001EB84B /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = ViewModel/MenuViewModel.swift; sourceTree = "<group>"; };
+		AE4E2EDF1CB272A4001153E0 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoBrowser.h; path = Controllers/PhotoBrowser.h; sourceTree = "<group>"; };
+		AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoBrowser.m; path = Controllers/PhotoBrowser.m; sourceTree = "<group>"; };
 		AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerControllerProtocol.swift; path = Controllers/MediaPickerControllerProtocol.swift; sourceTree = "<group>"; };
 		AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallViewController.swift; path = Controllers/VideoCallViewController.swift; sourceTree = "<group>"; };
 		AE6432FA1CAAD40000729AA6 /* VideoCalls.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = VideoCalls.storyboard; path = Storyboards/VideoCalls.storyboard; sourceTree = "<group>"; };
@@ -1694,6 +1697,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE4E2EDE1CB2728A001153E0 /* PhotoBrowser */,
 				AE6432FC1CAAD43100729AA6 /* VideoCalls */,
 				AEADF33F1CA565730051DABA /* ConversationSelectShout */,
 				246DEA711CA40619009DF436 /* ConversationLocation */,
@@ -1909,6 +1913,15 @@
 				2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */,
 			);
 			name = Segue;
+			sourceTree = "<group>";
+		};
+		AE4E2EDE1CB2728A001153E0 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				AE4E2EDF1CB272A4001153E0 /* PhotoBrowser.h */,
+				AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */,
+			);
+			name = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		AE5140031C8B16FC00663A0C /* MediaPicker */ = {
@@ -3609,6 +3622,7 @@
 				AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */,
 				B2778F971CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift in Sources */,
 				244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */,
+				AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */,
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
 				B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */,
 				24D3B0C41C9C3BFF00DE1600 /* TwilioAuth.swift in Sources */,

@@ -25,6 +25,9 @@ class SelectButton: UIButton {
 
     private var promptLabel : UILabel!
     private var selectImageView : UIImageView!
+    
+    var iconImageView : UIImageView!
+    var hideIcon : Bool = false
     private var activityIndicatorView : UIActivityIndicatorView?
     
     var optionsLoaded = true {
@@ -64,6 +67,16 @@ class SelectButton: UIButton {
             self.contentVerticalAlignment = .Center
         }
         
+        self.iconImageView = UIImageView()
+        self.iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.iconImageView.contentMode = .ScaleAspectFit
+        self.addSubview(self.iconImageView)
+        
+        self.iconImageView.addConstraints([NSLayoutConstraint(item: iconImageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36.0),
+            NSLayoutConstraint(item: iconImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36.0)])
+        self.addConstraints([NSLayoutConstraint(item: iconImageView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 10),
+            NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)])
+        
         self.selectImageView = UIImageView(image: selectImage())
         self.selectImageView.translatesAutoresizingMaskIntoConstraints = false
         self.selectImageView.contentMode = .ScaleAspectFit
@@ -88,11 +101,16 @@ class SelectButton: UIButton {
     }
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
+        let xOffset : CGFloat = self.hideIcon == true ? 10.0 : 56.0
         if self.promptAvailable() {
-            return CGRectMake(bounds.origin.x + 10, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
+            return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
         }
 
-        return CGRectMake(bounds.origin.x + 10, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
+        return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
+    }
+    
+    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+        return CGRectMake(10, CGRectGetMidY(contentRect) - 18.0, 36.0, 36.0)
     }
     
     func promptAvailable() -> Bool {

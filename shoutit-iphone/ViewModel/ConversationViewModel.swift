@@ -354,17 +354,23 @@ class ConversationViewModel {
         return alert
     }
     
-    func moreActionAlert(cancelAction: (() -> Void)?) -> UIAlertController {
+    func moreActionAlert(cancelAction: ((action: UIAlertAction) -> Void)?) -> UIAlertController {
         let alert = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Show Profile", comment: ""), style: .Default, handler: { (alertAction) in
+            if let completion = cancelAction {
+                completion(action: alertAction)
+            }
+        }))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
             self.deleteConversation().subscribe(onNext: nil, onError: { (error) in
                 debugPrint(error)
             }, onCompleted: {
                 if let completion = cancelAction {
-                    completion()
+                    completion(action: alertAction)
                 }
             }, onDisposed: nil).addDisposableTo(self.disposeBag)
         }))

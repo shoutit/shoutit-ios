@@ -207,24 +207,37 @@ extension CreateShoutViewModel {
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
         cell?.selectButton.optionsLoaded = self.categories.value.count > 0
         
+        cell?.selectButton.setImage(nil, forState: .Normal)
+        
         if let category = shoutParams.category.value {
             cell?.selectButton.setTitle(category.name, forState: .Normal)
+            if let imagePath = category.image, imageURL = NSURL(string: imagePath) {
+                cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
+            }
+            cell?.selectButton.promptText = NSLocalizedString("Category", comment: "")
         } else {
+            cell?.selectButton.iconImageView.image = UIImage(named: "category")
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
+            cell?.selectButton.promptText = nil
         }
     }
     
     func fillFilterCell(cell: CreateShoutSelectCell?, withFilter: Filter?) {
         if let filter = withFilter {
-            cell?.fillWithFilter(filter, currentValue: shoutParams.filters.value[filter])
+            cell?.fillWithFilter(filter, currentValue: shoutParams.filters.value[filter])   
         }
     }
     
     func fillLocationCell(cell: CreateShoutSelectCell?) {
+        
+        cell?.selectButton.hideIcon = true
+        
         if let location = shoutParams.location.value {
             cell?.selectButton.setTitle(location.address, forState: .Normal)
+            cell?.selectButton.promptText = NSLocalizedString("Location", comment: "")
         } else {
             cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
+            cell?.selectButton.promptText = nil
         }
     }
 }
@@ -334,6 +347,15 @@ extension CreateShoutViewModel {
         }
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (alertAction) in
+            
+            self.shoutParams.filters.value[filter] = nil
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+        }))
         
         return actionSheetController
     }

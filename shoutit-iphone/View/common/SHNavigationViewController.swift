@@ -41,7 +41,7 @@ class SHNavigationViewController: UINavigationController, UINavigationController
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
         
-        if ignoreToggleMenu {
+        if ignoreToggleMenu || viewController.ignoresToggleMenu() {
             return
         }
         
