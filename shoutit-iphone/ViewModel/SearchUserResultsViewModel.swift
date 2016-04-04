@@ -111,25 +111,39 @@ class SearchUserResultsViewModel {
             return
         }
         
-        if profiles
-        state.value = .Loaded(cells: profiles.map{SearchUserProfileCellViewModel(profile: $0)}, page: page)
+        let cellViewModels = profiles.map{SearchUserProfileCellViewModel(profile: $0)}
+        if profiles.count < pageSize || results.nextPath == nil {
+            state.value = .LoadedAllContent(cells: cellViewModels, page: page)
+        } else {
+            state.value = .Loaded(cells: cellViewModels, page: page)
+        }
     }
     
     private func reloadProfiles(results: PagedResults<Profile>, atPage page: Int) {
         
-        guard case .Loaded(var models, let numberOfPages) = state.value where numberOfPages >= page else {
-            return
+        switch state.value {
+        case .Loaded(let models, let numberOfPages):
+            guard numberOfPages >= page else { return }
+            let swappedModels = swapCellViewModels(models, withProfiles: results.results, atPage: page)
+            state.value = .Loaded(cells: swappedModels, page: numberOfPages)
+        case .LoadedAllContent(let models, let numberOfPages):
+            guard numberOfPages >= page else { return }
+            let swappedModels = swapCellViewModels(models, withProfiles: results.results, atPage: page)
+            state.value = .LoadedAllContent(cells: swappedModels, page: numberOfPages)
+        default:
+            break
         }
+    }
+    
+    private func swapCellViewModels(currentCellViewModels: [SearchUserProfileCellViewModel], withProfiles profiles: [Profile], atPage page: Int) -> [SearchUserProfileCellViewModel] {
         
-        let profiles = results.results
         let pageStartIndex = (page - 1) * pageSize
         let pageEndIndex = pageStartIndex + profiles.count
         let range: Range<Int> = pageStartIndex..<pageEndIndex
         let newModels = profiles.map{SearchUserProfileCellViewModel(profile: $0)}
-        print(models)
-        models.replaceRange(range, with: newModels)
-        print(models)
         
-        state.value = .Loaded(cells: models, page: numberOfPages)
+        var models = currentCellViewModels
+        models.replaceRange(range, with: newModels)
+        return models
     }
 }
