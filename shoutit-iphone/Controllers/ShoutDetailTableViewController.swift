@@ -22,7 +22,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     var viewModel: ShoutDetailViewModel! {
         didSet {
             viewModel
-                .reloadSubject
+                .reloadObservable
                 .observeOn(MainScheduler.instance)
                 .subscribeNext {[weak self] in
                     self?.tableView.reloadData()
@@ -148,8 +148,13 @@ extension ShoutDetailTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellModel = viewModel.cellModels[indexPath.row]
-        if case .KeyValue(_, _, _, _, _, let filter?) = cellModel {
+        switch cellModel {
+        case .KeyValue(_, _, _, _, _, let filter?, _):
             self.flowDelegate?.showTag(filter)
+        case .KeyValue(_, _, _, _, _, _, let tag?):
+            self.flowDelegate?.showTag(tag)
+        default:
+            break
         }
     }
     
@@ -186,7 +191,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         guard let index = (collectionView as? IndexedCollectionView)?.index else {
-            assert(false)
+            assertionFailure()
             return
         }
         

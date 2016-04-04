@@ -30,7 +30,7 @@ final class SearchViewModel {
     // consts
     let minimumNumberOfCharactersForAutocompletion = 2
     lazy private var archivePath: String = {
-        let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let directory = Account.sharedInstance.userDirectory
         let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("recent_searches.data")
         return directoryURL.path!
     }()
@@ -152,8 +152,9 @@ final class SearchViewModel {
                 case .Active, .Typing:
                     if case (.General, .Hidden(let option)) = (self.context, self.segmentedControlState.value) {
                         self.segmentedControlState.value = .Shown(option: option)
+                    } else {
+                        self.reloadContent()
                     }
-                    self.reloadContent()
                 case .Inactive:
                     if case (.General, .Shown(let option)) = (self.context, self.segmentedControlState.value) {
                         self.segmentedControlState.value = .Hidden(option: option)

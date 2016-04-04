@@ -18,15 +18,15 @@ struct Profile {
     let webPath: String
     let username: String
     let name: String
-    let firstName: String
+    let firstName: String?
     let lastName: String?
-    let activated: Bool
+    let isActivated: Bool
     let imagePath: String?
     let coverPath: String?
-    let listening: Bool?
+    let isListening: Bool?
     let listenersCount: Int
     
-    static func profileWithUser(user: LoggedUser) -> Profile {
+    static func profileWithUser(user: DetailedProfile) -> Profile {
         return Profile(id: user.id,
                        type: user.type,
                        apiPath: user.apiPath,
@@ -35,10 +35,10 @@ struct Profile {
                        name: user.name,
                        firstName: user.firstName,
                        lastName: user.lastName,
-                       activated: user.activated,
+                       isActivated: user.isActivated,
                        imagePath: user.imagePath,
                        coverPath: user.coverPath,
-                       listening: nil,
+                       isListening: nil,
                        listenersCount: user.listenersCount)
     }
 }
@@ -54,7 +54,7 @@ extension Profile: Decodable {
             <*> j <| "web_url"
             <*> j <| "username"
             <*> j <| "name"
-            <*> j <| "first_name"
+            <*> j <|? "first_name"
             <*> j <|? "last_name"
         let c = b
             <*> j <| "is_activated"
@@ -78,10 +78,10 @@ extension Profile: Encodable {
             "name" : self.name.encode(),
             "first_name" : self.firstName.encode(),
             "last_name" : self.lastName.encode(),
-            "is_activated" : self.activated.encode(),
+            "is_activated" : self.isActivated.encode(),
             "image" : self.imagePath.encode(),
             "cover" : self.coverPath.encode(),
-            "is_listening" : self.listening.encode(),
+            "is_listening" : self.isListening.encode(),
             "listeners_count" : self.listenersCount.encode(),
             ])
     }

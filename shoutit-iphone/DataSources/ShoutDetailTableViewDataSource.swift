@@ -64,7 +64,7 @@ class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             descriptionCell.descriptionLabel.text = description
             descriptionCell.setBorders(cellIsFirst: true, cellIsLast: true)
             
-        case .KeyValue(let row, let sectionRowsCount, let key, let value, let imageName, _):
+        case .KeyValue(let row, let sectionRowsCount, let key, let value, let imageName, _, _):
             let keyValueCell = cell as! ShoutDetailKeyValueTableViewCell
             keyValueCell.setBackgroundForRow(row)
             keyValueCell.keyLabel.text = key

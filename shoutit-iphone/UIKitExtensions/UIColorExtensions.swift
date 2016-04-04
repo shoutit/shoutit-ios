@@ -29,6 +29,8 @@ enum ShoutitColor: Int {
     case PlaceholderGray = 0x8c8c8c
     case SearchBarGray = 0xf7f7f7
     case SearchBarTextFieldGray = 0xE2E3E6
+    case FailureRed = 0xFF5252
+    case SuccessGreen = 0x4BA63F
     
     var alpha: Float {
         switch self {

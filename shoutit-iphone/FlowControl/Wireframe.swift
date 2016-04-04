@@ -28,6 +28,7 @@ struct Wireframe {
         case EditProfile = "EditProfile"
         case Notifications = "Notifications"
         case Search = "Search"
+        case VerifyEmail = "VerifyEmail"
     }
     
     // General
@@ -118,6 +119,12 @@ struct Wireframe {
     
     static func editProfileTableViewController() -> EditProfileTableViewController {
         return storyboard(.EditProfile).instantiateViewControllerWithIdentifier("EditProfileTableViewController") as! EditProfileTableViewController
+    }
+    
+    // MARK: - Verify email storyboard controllers
+    
+    static func verifyEmailViewController() -> VerifyEmailViewController {
+        return storyboard(.VerifyEmail).instantiateViewControllerWithIdentifier("VerifyEmailViewController") as! VerifyEmailViewController
     }
     
     // MARK: - Home storyboard view controllers

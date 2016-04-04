@@ -20,7 +20,7 @@ protocol User: Encodable {
     var isGuest: Bool {get}
     var dateJoinedEpoch: Int {get}
     var location: Address {get}
-    var pushTokens: PushTokens {get}
+    var pushTokens: PushTokens? {get}
     
 }
 

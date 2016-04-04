@@ -16,8 +16,8 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private var detailedUser: DetailedProfile?
     
-    var user: LoggedUser? {
-        return Account.sharedInstance.user as? LoggedUser
+    var user: DetailedProfile? {
+        return Account.sharedInstance.user as? DetailedProfile
     }
     
     var model: ProfileCollectionViewModelMainModel? {
@@ -30,7 +30,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         gridSection = gridSectionWithModels([], isLoading: true)
-        let pages = (Account.sharedInstance.user as? LoggedUser)?.pages ?? []
+        let pages = (Account.sharedInstance.user as? DetailedProfile)?.pages ?? []
         listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
             .observeOn(MainScheduler.instance)
@@ -103,6 +103,10 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var conversation: Conversation? { return nil }
     
+    var hidesVerifyAccountButton: Bool {
+        return user?.isActivated ?? true
+    }
+    
     var infoButtons: [ProfileCollectionInfoButton] {
         
         guard let user = user else {
@@ -160,7 +164,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     func fetchUser() -> Observable<DetailedProfile>? {
         guard let user = user else {return nil}
-        return APIUsersService.retrieveUserWithUsername(user.username)
+        return APIProfileService.retrieveProfileWithUsername(user.username)
     }
     
     func listen() -> Observable<Void>? {

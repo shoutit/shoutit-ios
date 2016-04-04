@@ -20,7 +20,7 @@ struct GuestUser: User {
     let username: String
     let dateJoinedEpoch: Int
     let location: Address
-    let pushTokens: PushTokens
+    let pushTokens: PushTokens?
 }
 
 extension GuestUser: Decodable {
@@ -35,8 +35,7 @@ extension GuestUser: Decodable {
         let b = a
             <*> j <| "date_joined"
             <*> j <| "location"
-            <*> j <| "push_tokens"
-        
+            <*> j <|? "push_tokens"
         return b
     }
 }

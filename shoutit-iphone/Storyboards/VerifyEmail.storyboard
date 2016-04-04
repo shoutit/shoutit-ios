@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Email Verification-->
+        <scene sceneID="LUU-yW-Gsb">
+            <objects>
+                <viewController storyboardIdentifier="VerifyEmailViewController" automaticallyAdjustsScrollViewInsets="NO" id="BtW-wc-NVb" customClass="VerifyEmailViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7JW-TV-0RJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="m3o-D8-LZx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="adE-tf-aEv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuP-la-UR1">
+                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-Zd-vAr" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="10" width="258" height="44"/>
+                                        <color key="backgroundColor" red="0.25098039220000001" green="0.76862745099999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="AWQ-bq-70s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Resend">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9i5-7q-LZP" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="323" y="10" width="257" height="44"/>
+                                        <color key="backgroundColor" red="0.29803921570000003" green="0.72549019609999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="IQw-RX-cp5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Verify">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61e-Xb-nlu">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <color key="backgroundColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="nf3-Tt-DGN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PyS-Zd-vAr" firstAttribute="width" secondItem="9i5-7q-LZP" secondAttribute="width" id="0Fq-Pm-8jJ"/>
+                                    <constraint firstItem="61e-Xb-nlu" firstAttribute="top" secondItem="wuP-la-UR1" secondAttribute="top" id="1rN-oK-hvc"/>
+                                    <constraint firstItem="PyS-Zd-vAr" firstAttribute="leading" secondItem="wuP-la-UR1" secondAttribute="leading" constant="20" id="TCC-H8-nRD"/>
+                                    <constraint firstItem="9i5-7q-LZP" firstAttribute="leading" secondItem="PyS-Zd-vAr" secondAttribute="trailing" constant="45" id="UAC-7S-LTU"/>
+                                    <constraint firstAttribute="trailing" secondItem="61e-Xb-nlu" secondAttribute="trailing" id="V0e-uR-YM3"/>
+                                    <constraint firstItem="9i5-7q-LZP" firstAttribute="centerY" secondItem="wuP-la-UR1" secondAttribute="centerY" id="XiA-fs-sjd"/>
+                                    <constraint firstAttribute="trailing" secondItem="9i5-7q-LZP" secondAttribute="trailing" constant="20" id="lbj-hT-Fh5"/>
+                                    <constraint firstItem="61e-Xb-nlu" firstAttribute="leading" secondItem="wuP-la-UR1" secondAttribute="leading" id="nPb-cE-art"/>
+                                    <constraint firstAttribute="height" constant="64" id="qdl-fu-p89"/>
+                                    <constraint firstItem="PyS-Zd-vAr" firstAttribute="centerY" secondItem="wuP-la-UR1" secondAttribute="centerY" id="z1B-Gb-waM"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEr-yM-prp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have already clicked on the link that was sent to you, you may click “Verify” now." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-kw-tkU">
+                                        <rect key="frame" x="20" y="168" width="560" height="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wQK-uY-5kn" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="109" width="560" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="GHj-gr-pV0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-mg-M4d">
+                                        <rect key="frame" x="20" y="11" width="560" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="406" id="P3x-zv-lbN"/>
+                                        </constraints>
+                                        <string key="text">We have sent you a verification link on this email. Please check your inbox and click on it to verify your account.
+
+You can also change the email and click “Resend” for us to send you the verification link again.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="P3x-zv-lbN"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wQK-uY-5kn" secondAttribute="trailing" constant="20" id="BOD-Zb-GKS"/>
+                                    <constraint firstItem="QyQ-mg-M4d" firstAttribute="leading" secondItem="WEr-yM-prp" secondAttribute="leading" constant="20" id="IxH-1d-ZF0"/>
+                                    <constraint firstItem="QyQ-mg-M4d" firstAttribute="top" secondItem="WEr-yM-prp" secondAttribute="top" constant="11" id="JBK-i9-zJ9"/>
+                                    <constraint firstItem="wQK-uY-5kn" firstAttribute="top" secondItem="QyQ-mg-M4d" secondAttribute="bottom" constant="40" id="Oyw-US-Ihg"/>
+                                    <constraint firstAttribute="trailing" secondItem="QyQ-mg-M4d" secondAttribute="trailing" constant="20" id="PKl-3T-1lG"/>
+                                    <constraint firstAttribute="bottom" secondItem="3n1-kw-tkU" secondAttribute="bottom" constant="20" id="b8k-Rd-fma"/>
+                                    <constraint firstItem="3n1-kw-tkU" firstAttribute="top" secondItem="wQK-uY-5kn" secondAttribute="bottom" constant="25" id="cIm-tL-EEu"/>
+                                    <constraint firstAttribute="trailing" secondItem="3n1-kw-tkU" secondAttribute="trailing" constant="20" id="jTm-5Y-uk2"/>
+                                    <constraint firstItem="wQK-uY-5kn" firstAttribute="leading" secondItem="WEr-yM-prp" secondAttribute="leading" constant="20" id="nPc-hj-f2C"/>
+                                    <constraint firstItem="3n1-kw-tkU" firstAttribute="leading" secondItem="WEr-yM-prp" secondAttribute="leading" constant="20" id="rTe-Ob-Vin"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WEr-yM-prp" secondAttribute="trailing" id="5Hq-6N-EMU"/>
+                            <constraint firstItem="wuP-la-UR1" firstAttribute="leading" secondItem="WEr-yM-prp" secondAttribute="trailing" constant="-420" id="FRJ-7T-qzV"/>
+                            <constraint firstAttribute="trailing" secondItem="wuP-la-UR1" secondAttribute="trailing" id="G6f-O7-IqW"/>
+                            <constraint firstAttribute="topMargin" secondItem="WEr-yM-prp" secondAttribute="top" id="Lhe-hD-FW8"/>
+                            <constraint firstItem="wuP-la-UR1" firstAttribute="top" secondItem="WEr-yM-prp" secondAttribute="bottom" id="QRl-Lb-Fj7"/>
+                            <constraint firstItem="m3o-D8-LZx" firstAttribute="top" secondItem="wuP-la-UR1" secondAttribute="bottom" id="VEw-5K-AJ3"/>
+                            <constraint firstItem="QyQ-mg-M4d" firstAttribute="width" secondItem="adE-tf-aEv" secondAttribute="width" constant="-40" id="Xd7-62-FOp"/>
+                            <constraint firstItem="wuP-la-UR1" firstAttribute="leading" secondItem="adE-tf-aEv" secondAttribute="leading" id="mlq-qw-Loz"/>
+                            <constraint firstItem="WEr-yM-prp" firstAttribute="leading" secondItem="adE-tf-aEv" secondAttribute="leading" id="xdI-hl-wQF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FRJ-7T-qzV"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Email Verification" id="LOQ-XF-eq2">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="COw-Qu-b4n"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomViewToBottomLayoutGuideConstraint" destination="VEw-5K-AJ3" id="ysT-RW-bJ8"/>
+                        <outlet property="cancelBarButtonItem" destination="COw-Qu-b4n" id="ZRX-qQ-fEE"/>
+                        <outlet property="emailTextField" destination="wQK-uY-5kn" id="hrY-UF-iav"/>
+                        <outlet property="resendButton" destination="PyS-Zd-vAr" id="np2-3C-ppM"/>
+                        <outlet property="verifyButton" destination="9i5-7q-LZP" id="j8F-98-Oh9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x0Z-hz-ljc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="389" y="364"/>
+        </scene>
+    </scenes>
+</document>

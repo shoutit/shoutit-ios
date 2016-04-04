@@ -16,11 +16,11 @@ extension UIViewController {
     
     // MARK: - Private vars
     
-    private var errorBarAnimationDuration: NSTimeInterval {
+    private var barAnimationDuration: NSTimeInterval {
         return 0.5
     }
     
-    private var errorTimer: NSTimer? {
+    private var barTimer: NSTimer? {
         get {
             return objc_getAssociatedObject(self, vc_associatedTimerObjectHandle) as? NSTimer
         }
@@ -30,18 +30,19 @@ extension UIViewController {
         }
     }
     
-    private var errorBarView: ErrorAlertBarView {
+    private var barView: AlertBarView {
         get {
-            if let barView = objc_getAssociatedObject(self, vc_associatedErrorBarViewObjectHandle) as? ErrorAlertBarView {
+            if let barView = objc_getAssociatedObject(self, vc_associatedErrorBarViewObjectHandle) as? AlertBarView {
                 return barView
             }
-            let barView = NSBundle.mainBundle().loadNibNamed("ErrorAlertBarView", owner: nil, options: nil)[0] as! ErrorAlertBarView
+            let barView = NSBundle.mainBundle().loadNibNamed("AlertBarView", owner: nil, options: nil)[0] as! AlertBarView
             
             // position views
             barView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(barView)
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[bar]|", options: [], metrics: nil, views: ["bar" : barView]))
-            view.addConstraint(NSLayoutConstraint(item: barView, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0))
+            
+            view.addConstraint(NSLayoutConstraint(item: barView, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: hasFakeNavigationBar() ? 44 : 0))
             barView.addConstraint(NSLayoutConstraint(item: barView, attribute: .Height, relatedBy: .GreaterThanOrEqual, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 40))
             
             // hide
@@ -59,29 +60,40 @@ extension UIViewController {
     
     // MARK: - Public API
     
+    func showSuccessMessage(message: String) {
+        barView.setAppearanceForAlertType(.Success)
+        showBarWithMessage(message)
+    }
+    
     func showError(error: ErrorType) {
         showErrorMessage(error.sh_message)
     }
     
     func showErrorMessage(message: String) {
-        errorBarView.errorMessageLabel.text = message
-        errorBarView.hidden = false
-        errorBarView.layer.removeAllAnimations()
-        UIView.animateWithDuration(errorBarAnimationDuration) {[weak self] in
-            self?.errorBarView.alpha = 1.0
-        }
-        errorTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(UIViewController.hideErrorMessage), userInfo: nil, repeats: false)
+        barView.setAppearanceForAlertType(.Error)
+        showBarWithMessage(message)
     }
     
     func hideErrorMessage() {
-        errorTimer?.invalidate()
-        errorTimer = nil
-        errorBarView.layer.removeAllAnimations()
-        UIView.animateWithDuration(errorBarAnimationDuration, animations: {[weak self] in
-                                    self?.errorBarView.alpha = 0.0
+        barTimer?.invalidate()
+        barTimer = nil
+        barView.layer.removeAllAnimations()
+        UIView.animateWithDuration(barAnimationDuration, animations: {[weak self] in
+                                    self?.barView.alpha = 0.0
             },
                                    completion: {[weak self] (finished) in
-                                    self?.errorBarView.hidden = true
+                                    self?.barView.hidden = true
             })
+    }
+    
+    private func showBarWithMessage(message: String) {
+        barView.errorMessageLabel.text = message
+        barView.hidden = false
+        barView.layer.removeAllAnimations()
+        UIView.animateWithDuration(barAnimationDuration) {[weak self] in
+            self?.barView.alpha = 1.0
+        }
+        barTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(UIViewController.hideErrorMessage), userInfo: nil, repeats: false)
+
     }
 }

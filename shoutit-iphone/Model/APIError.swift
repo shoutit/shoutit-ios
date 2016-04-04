@@ -33,10 +33,16 @@ extension APIError: Decodable {
 
 extension APIError: ShoutitError {
     var userMessage: String {
-        if let detailedMessage = errors.first?.message {
-            return detailedMessage
+        
+        guard let detailedError = errors.first else {
+            return message
         }
-        return message
+        
+        guard let location = detailedError.location?.componentsSeparatedByString(".").last else {
+            return detailedError.message
+        }
+        
+        return ("\(location.capitalizedString): \(detailedError.message)")
     }
 }
 

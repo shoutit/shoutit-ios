@@ -132,7 +132,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         viewModel.successSubject.subscribeNext{[weak self] (message) in
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                self?.showErrorMessage(message)
+                self?.showSuccessMessage(message)
             }
             .addDisposableTo(disposeBag)
     }

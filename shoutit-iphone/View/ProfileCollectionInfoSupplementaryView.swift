@@ -11,7 +11,7 @@ import RxSwift
 
 class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
-    var reuseDisposeBag: DisposeBag?
+    var reuseDisposeBag: DisposeBag = DisposeBag()
     
     override var frame: CGRect {
         didSet {
@@ -47,6 +47,7 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var buttonSectionLeftButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionCenterButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionRightButton: ProfileInfoHeaderButton!
+    @IBOutlet weak var verifyAccountButton: UIButton!
     @IBOutlet weak var buttonSectionLeftButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet var buttonSectionCenterButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet var buttonSectionRightButtonWidthConstraint: NSLayoutConstraint!
@@ -62,6 +63,7 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     // constraints
     @IBOutlet weak var avatarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var verifyAccountButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bioSectionHeightConstrait: NSLayoutConstraint!
     @IBOutlet weak var websiteSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateJoinedSectionHeightConstraint: NSLayoutConstraint!
@@ -104,5 +106,10 @@ class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
         for (button, constraint) in zip(buttons, constraints) {
             constraint.constant = button.hidden ? 0 : buttonWidth
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
     }
 }
