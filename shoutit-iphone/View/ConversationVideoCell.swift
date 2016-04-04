@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationVideoCell: UITableViewCell, ConversationCell {
+final class ConversationVideoCell: UITableViewCell, ConversationCell {
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?

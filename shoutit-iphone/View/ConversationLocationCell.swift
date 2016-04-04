@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationLocationCell: UITableViewCell, ConversationCell {
+final class ConversationLocationCell: UITableViewCell, ConversationCell {
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
