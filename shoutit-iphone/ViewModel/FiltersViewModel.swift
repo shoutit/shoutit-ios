@@ -10,5 +10,7 @@ import Foundation
 
 class FiltersViewModel {
     
-    
+    private func basicCellViewModels() -> [FiltersCellViewModel] {
+        
+    }
 }

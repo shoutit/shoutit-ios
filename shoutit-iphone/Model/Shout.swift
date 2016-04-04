@@ -118,13 +118,11 @@ func ==(lhs: Shout, rhs: Shout) -> Bool {
 enum ShoutType : String {
     case Offer = "offer"
     case Request = "request"
-    case VideoCV = "cv-video"
     
     func title() -> String {
         switch self {
         case .Offer: return NSLocalizedString("Offer", comment: "")
         case .Request: return NSLocalizedString("Request", comment: "")
-        default: return ""
         }
     }
 }

@@ -9,7 +9,13 @@
 import Foundation
 
 enum FiltersCellViewModel {
-    case ShoutTypeChoice(shoutType: ShoutType)
+    
+    enum ShoutTypeFilter {
+        case All
+        case Specific(shoutType: ShoutType)
+    }
+    
+    case ShoutTypeChoice(shoutType: ShoutTypeFilter)
     case CategoryChoice(category: Category)
     case PriceRestriction(from: Int, to: Int)
     case LocationChoice(location: Address)
