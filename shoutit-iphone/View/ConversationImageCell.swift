@@ -12,7 +12,7 @@ class ConversationImageCell: ConversationCell {
     @IBOutlet weak var pictureImageView: UIImageView!
  
     override func bindWithMessage(message: Message, previousMessage: Message?) {
-        super.bindWithMessage(message, previousMessage: previousMessage)
+        
         if let imgview = avatarImageView {
             setImageWith(imgview, message: message)
         }
