@@ -24,7 +24,8 @@ class ConversationCell: UITableViewCell, MessagePresenting {
     }
     
     func bindWithMessage(message: Message, previousMessage: Message?) {
-        fatalError("Please Implement this method in subclass")
+        // due to xcode building issues subclasses must call super, so fatal error can't be here
+        //fatalError("Please Implement this method in subclass")
     }
     
     func setImageWith(imgview: UIImageView, message: Message) {

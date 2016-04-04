@@ -98,7 +98,7 @@ extension AppDelegate {
             log.setup(.None, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #endif
         
-//        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self])
         AmazonAWS.configureS3()
 //        SHMixpanelHelper.openApp()
         
