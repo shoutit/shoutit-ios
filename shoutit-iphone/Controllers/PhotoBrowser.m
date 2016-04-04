@@ -13,7 +13,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"") style:UIBarButtonSystemItemCancel target:self action:@selector(pop)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"")
+                                                                             style:UIBarButtonSystemItemCancel
+                                                                            target:self
+                                                                            action:@selector(pop)];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.28 green:0.69 blue:0.29 alpha:1];
 }
 

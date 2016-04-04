@@ -207,9 +207,15 @@ extension CreateShoutViewModel {
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
         cell?.selectButton.optionsLoaded = self.categories.value.count > 0
         
+        cell?.selectButton.setImage(nil, forState: .Normal)
+        
         if let category = shoutParams.category.value {
             cell?.selectButton.setTitle(category.name, forState: .Normal)
+            if let imagePath = category.image, imageURL = NSURL(string: imagePath) {
+                cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
+            }
         } else {
+            cell?.selectButton.iconImageView.image = UIImage(named: "category")
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
         }
     }
