@@ -13,13 +13,13 @@ class ConversationImageCell: ConversationCell {
  
     override func bindWithMessage(message: Message, previousMessage: Message?) {
         if let imgview = avatarImageView {
-            setImageWith(imgview, message: message)
+            super.setImageWith(imgview, message: message)
         }
         
         timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
         
         if message.isSameSenderAs(previousMessage) {
-            hideImageView()
+            super.hideImageView()
         }
         
         self.activityIndicator?.startAnimating()
