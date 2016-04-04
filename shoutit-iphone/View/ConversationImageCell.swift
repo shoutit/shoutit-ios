@@ -16,18 +16,17 @@ class ConversationImageCell: ConversationCell {
             super.setImageWith(imgview, message: message)
         }
         
-        timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
+        super.timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
         
         if message.isSameSenderAs(previousMessage) {
             super.hideImageView()
         }
         
-        self.activityIndicator?.startAnimating()
-        self.activityIndicator?.hidden = false
+        super.activityIndicator?.startAnimating()
+        super.activityIndicator?.hidden = false
         
         
-        setThumbMessage(message)
-        
+        self.setThumbMessage(message)
     }
     
     func setThumbMessage(message: Message) {
@@ -36,8 +35,8 @@ class ConversationImageCell: ConversationCell {
         }
         
         pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
-            self.activityIndicator?.stopAnimating()
-            self.activityIndicator?.hidden = true
+            super.activityIndicator?.stopAnimating()
+            super.activityIndicator?.hidden = true
         }
     }
 }
