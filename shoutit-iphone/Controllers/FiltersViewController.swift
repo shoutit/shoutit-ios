@@ -21,6 +21,7 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
+            tableView.delegate = self
         }
     }
     
@@ -49,13 +50,72 @@ class FiltersViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
     }
+}
+
+extension FiltersViewController: UITableViewDataSource {
     
-    // MARK: - Helpers
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.cellViewModels.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierForCellViewModel(cellViewModel), forIndexPath: indexPath)
+        switch cellViewModel {
+        case .ShoutTypeChoice(let shoutType):
+            let shoutTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
+            shoutTypeCell.button.smallTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
+            shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+        case .SortTypeChoice(let sortType):
+            let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
+            sortTypeCell.button.smallTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
+            sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+        case .CategoryChoice(let category):
+            let categoryCell = cell as! SelectButtonFilterTableViewCell
+            categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+        case .PriceRestriction(let from, let to):
+            let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
+        case .LocationChoice(let location):
+            let locationCell = cell as! SelectButtonFilterTableViewCell
+        case .DistanceRestriction(let distanceOption):
+            let distanceCell = cell as! SliderFilterTableViewCell
+        case .FilterValueChoice(let filter):
+            let filterCell = cell as! BigLabelButtonFilterTableViewCell
+        }
+        
+        return cell
+    }
+}
+
+extension FiltersViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        switch cellViewModel {
+        case .ShoutTypeChoice, .SortTypeChoice, .CategoryChoice, .FilterValueChoice:
+            return 60
+        case .PriceRestriction, .LocationChoice:
+            return 96
+        case .DistanceRestriction:
+            return 91
+        }
+    }
+}
+
+// MARK - Helpers
+
+private extension FiltersViewController {
     
     private func reuseIdentifierForCellViewModel(cellViewModel: FiltersCellViewModel) -> String {
         switch cellViewModel {
         case .ShoutTypeChoice:
             return "ShoutTypeChoiceCell"
+        case .SortTypeChoice:
+            return "SortByChoiceCell"
         case .CategoryChoice:
             return "CategoryChoiceCell"
         case .PriceRestriction:
@@ -67,20 +127,5 @@ class FiltersViewController: UIViewController {
         case .FilterValueChoice:
             return "FilterCell"
         }
-    }
-}
-
-extension FiltersViewController: UITableViewDataSource {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        fatalError()
     }
 }

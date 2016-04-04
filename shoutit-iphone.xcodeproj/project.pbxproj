@@ -344,6 +344,7 @@
 		B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */; };
 		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
+		B2515AC71CB2C36100625791 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2515AC61CB2C36100625791 /* SortType.swift */; };
 		B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */; };
 		B253A33A1C68F94600C8B8F9 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3391C68F94600C8B8F9 /* State.swift */; };
 		B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */; };
@@ -942,6 +943,7 @@
 		B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetPasswordViewController.swift; path = Controllers/ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
+		B2515AC61CB2C36100625791 /* SortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortType.swift; path = Model/SortType.swift; sourceTree = "<group>"; };
 		B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupCategoryTableViewCell.swift; path = View/PostSignupCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B253A3391C68F94600C8B8F9 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Util/State.swift; sourceTree = "<group>"; };
 		B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupDisplayable.swift; path = FlowControl/PostSignupDisplayable.swift; sourceTree = "<group>"; };
@@ -1667,6 +1669,7 @@
 				B25EB87C1CA468F00013241A /* APIError.swift */,
 				B2B540C81C6A38AE0075EDA6 /* Shout.swift */,
 				B2B5D0391C806EBC0068A6AF /* Video.swift */,
+				B2515AC61CB2C36100625791 /* SortType.swift */,
 				241CEC361C732CDE00694575 /* DiscoverItem.swift */,
 				B2778F9A1CAC415400BBDD5F /* Mobile.swift */,
 				B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */,
@@ -3622,6 +3625,7 @@
 				AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */,
 				B2778F971CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift in Sources */,
 				244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */,
+				B2515AC71CB2C36100625791 /* SortType.swift in Sources */,
 				AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */,
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
 				B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */,
