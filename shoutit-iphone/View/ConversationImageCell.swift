@@ -12,7 +12,7 @@ class ConversationImageCell: ConversationCell {
     @IBOutlet weak var pictureImageView: UIImageView!
  
     override func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = avatarImageView {
+        if let imgview = super.avatarImageView {
             super.setImageWith(imgview, message: message)
         }
         
@@ -34,7 +34,7 @@ class ConversationImageCell: ConversationCell {
             return
         }
         
-        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
+        self.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
             super.activityIndicator?.stopAnimating()
             super.activityIndicator?.hidden = true
         }
