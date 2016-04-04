@@ -97,6 +97,7 @@ extension Twilio {
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
+        fatalError(error.localizedDescription)
         reconnect()
     }
     

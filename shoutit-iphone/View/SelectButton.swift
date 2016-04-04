@@ -25,7 +25,9 @@ class SelectButton: UIButton {
 
     private var promptLabel : UILabel!
     private var selectImageView : UIImageView!
+    
     var iconImageView : UIImageView!
+    var hideIcon : Bool = false
     private var activityIndicatorView : UIActivityIndicatorView?
     
     var optionsLoaded = true {
@@ -99,11 +101,12 @@ class SelectButton: UIButton {
     }
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
+        let xOffset : CGFloat = self.hideIcon == true ? 10.0 : 56.0
         if self.promptAvailable() {
-            return CGRectMake(bounds.origin.x + 56.0, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
+            return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
         }
 
-        return CGRectMake(bounds.origin.x + 56.0, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
+        return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
     }
     
     override func imageRectForContentRect(contentRect: CGRect) -> CGRect {

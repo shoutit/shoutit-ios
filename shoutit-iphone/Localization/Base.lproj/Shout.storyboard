@@ -274,6 +274,9 @@
                                     <state key="normal" title="Currency">
                                         <color key="titleColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hideIcon" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="selectCurrency:" destination="vi7-2B-9jh" eventType="touchUpInside" id="f4V-CU-J2f"/>
                                     </connections>
@@ -729,7 +732,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agq-ZF-3ft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="-948"/>
+            <point key="canvasLocation" x="267" y="-941"/>
         </scene>
         <!--Location Selection View Controller-->
         <scene sceneID="9oL-uQ-clQ">
@@ -936,6 +939,9 @@
                                     <state key="normal" title="Currency">
                                         <color key="titleColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hideIcon" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="selectCurrency:" destination="Cc8-TZ-xhW" eventType="touchUpInside" id="S8J-dQ-jzP"/>
                                     </connections>
@@ -1179,6 +1185,7 @@
                                     <constraint firstItem="a6F-PK-eH1" firstAttribute="centerY" secondItem="rqM-Ls-6Si" secondAttribute="centerY" id="wYs-gf-txd"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="editIconImageView" destination="5bN-a5-bPz" id="u5O-dG-Sts"/>
                                     <outlet property="imageView" destination="tpM-dZ-2hC" id="4QE-Gf-H9W"/>
                                     <outlet property="progressView" destination="FoO-Ff-Xzj" id="bWb-f1-iLL"/>
                                 </connections>

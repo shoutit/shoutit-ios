@@ -14,7 +14,7 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var imageView : UIImageView!
     @IBOutlet var progressView : ACPDownloadView!
-    @IBOutlet var editIconImageView : UIImageView!
+    @IBOutlet var editIconImageView : UIImageView?
     
     private var disposeBag = DisposeBag()
     
@@ -22,13 +22,13 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
         
         if attachment?.image != nil {
             self.imageView.image = attachment?.image
-            editIconImageView.hidden = false
+            editIconImageView?.hidden = false
         } else if attachment?.thumbRemoteURL != nil {
             self.imageView.sh_setImageWithURL(attachment?.thumbRemoteURL, placeholderImage: nil)
-            editIconImageView.hidden = false
+            editIconImageView?.hidden = false
         } else {
             self.imageView.image = nil
-            editIconImageView.hidden = true
+            editIconImageView?.hidden = true
         }
     }
     
@@ -55,18 +55,18 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
         case .Uploading:
             self.progressView.hidden = false
             self.progressView.setIndicatorStatus(.Running)
-            self.editIconImageView.hidden = true
+            self.editIconImageView?.hidden = true
             break
             
         case .Error:
             self.progressView.hidden = true
             self.progressView.setIndicatorStatus(.None)
-            self.editIconImageView.hidden = false
+            self.editIconImageView?.hidden = false
             break
             
         case .Uploaded:
             self.progressView.hidden = true
-            self.editIconImageView.hidden = false
+            self.editIconImageView?.hidden = false
             break
         }
     }

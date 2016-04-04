@@ -16,7 +16,7 @@ final class PusherClient : NSObject {
     
     static let sharedInstance = PusherClient()
     
-    private let pusherAppKey = "86d676926d4afda44089"
+    private let pusherAppKey = "7bee1e468fabb6287fc5"
     private let pusherURL = APIManager.baseURL + "/pusher/auth"
     
     var pusherInstance: PTPusher!
