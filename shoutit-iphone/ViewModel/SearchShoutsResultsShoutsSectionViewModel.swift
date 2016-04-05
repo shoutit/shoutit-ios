@@ -84,7 +84,7 @@ extension SearchShoutsResultsViewModel {
         private func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
             let phrase = parent.searchPhrase
             let context = parent.context
-            let params: FilteredShoutsParams
+            var params: FilteredShoutsParams
             switch context {
             case .General:
                 params = FilteredShoutsParams(searchPhrase: phrase,
@@ -120,6 +120,10 @@ extension SearchShoutsResultsViewModel {
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               includeCurrentUserLocation: true)
+            }
+            
+            if let filterParams = parent.filterParams {
+                params = params.paramsByMergingWith(filterParams)
             }
             
             return APIShoutsService.searchShoutsWithParams(params)

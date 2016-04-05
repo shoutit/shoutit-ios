@@ -10,14 +10,15 @@ import Foundation
 
 protocol FilterDisplayable {
     var filterTransition: FilterTransition {get}
-    func showFilters() -> Void
+    func showFilters(completionBlock: (FilteredShoutsParams -> Void)?) -> Void
 }
 
 extension FilterDisplayable where Self: FlowController {
     
-    func showFilters() {
+    func showFilters(completionBlock: (FilteredShoutsParams -> Void)?) {
         let viewController = Wireframe.filtersViewController()
         viewController.viewModel = FiltersViewModel()
+        viewController.completionBlock = completionBlock
         let nav = UINavigationController(rootViewController: viewController)
         nav.navigationBarHidden = true
         nav.transitioningDelegate = filterTransition

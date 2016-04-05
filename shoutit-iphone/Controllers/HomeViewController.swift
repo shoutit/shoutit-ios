@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
+protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, FilterDisplayable {
     
 }
 
@@ -128,7 +128,9 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func filterAction(sender: AnyObject) {
-        notImplemented()
+        flowDelegate?.showFilters{ (params) in
+            
+        }
     }
     
     @IBAction func searchAction(sender: AnyObject) {

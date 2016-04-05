@@ -77,6 +77,42 @@ final class FiltersViewModel {
     
     // MARK: - Public helpers
     
+    func composeParamsWithChosenFilters() -> FilteredShoutsParams {
+        
+        var shoutType: ShoutType?
+        var sort: SortType?
+        var categorySlug: String?
+        var minimumPrice: Int?
+        var maximumPrice: Int?
+        var location: Address?
+        var distance: Int?
+        var filters: [Filter : [FilterValue]] = [:]
+        
+        for cellViewModel in cellViewModels {
+            switch cellViewModel {
+            case .ShoutTypeChoice(let shoutTypeOption):
+                if case .Specific(let type) = shoutTypeOption {
+                    shoutType = type
+                }
+            case .SortTypeChoice(let sortType):
+                sort = sortType
+            case .CategoryChoice(let category):
+                categorySlug = category?.slug
+            case .PriceRestriction(let from, let to):
+                minimumPrice = from
+                maximumPrice = to
+            case .LocationChoice(let address):
+                location = address
+            case .DistanceRestriction(let distanceOption):
+                break
+            case .FilterValueChoice(let filter, let selectedValues):
+                filters[filter] = selectedValues
+            }
+        }
+        
+        return FilteredShoutsParams(country: location?.country, state: location?.state, city: location?.city, shoutType: shoutType, category: categorySlug, minimumPrice: minimumPrice, maximumPrice: maximumPrice, sort: sort, filters: filters)
+    }
+    
     func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {
         let steps = sliderValueStepsForDistanceRestrictionOptions()
         for (index, rangeEndValue) in steps.enumerate() {

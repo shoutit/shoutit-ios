@@ -14,6 +14,7 @@ final class FiltersViewController: UIViewController {
     
     // view model
     var viewModel: FiltersViewModel!
+    var completionBlock: (FilteredShoutsParams -> Void)?
     
     // UI
     @IBOutlet weak var resetButton: UIButton!
@@ -54,6 +55,7 @@ final class FiltersViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
+                self.completionBlock?(self.viewModel.composeParamsWithChosenFilters())
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)

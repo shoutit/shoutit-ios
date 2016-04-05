@@ -322,20 +322,30 @@
                                                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAU-rB-1sk">
+                                                    <rect key="frame" x="0.0" y="90" width="375" height="1"/>
+                                                    <color key="backgroundColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="TWT-FN-Xaa"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="e2e-va-1b4" secondAttribute="bottom" constant="10" id="0ji-Vq-LzG"/>
                                                 <constraint firstAttribute="trailing" secondItem="zKc-tY-gii" secondAttribute="trailing" constant="20" id="7H6-x2-PpY"/>
+                                                <constraint firstItem="PAU-rB-1sk" firstAttribute="leading" secondItem="4PA-Sn-kch" secondAttribute="leading" id="8DG-XH-vXD"/>
                                                 <constraint firstItem="qSo-0H-wno" firstAttribute="leading" secondItem="9RO-3f-vYA" secondAttribute="trailing" id="Cw0-je-OwW"/>
                                                 <constraint firstItem="9RO-3f-vYA" firstAttribute="top" secondItem="4PA-Sn-kch" secondAttribute="top" constant="10" id="DdS-Ac-w2l"/>
                                                 <constraint firstItem="zKc-tY-gii" firstAttribute="leading" secondItem="P5a-wk-8sF" secondAttribute="trailing" constant="8" id="M3B-DW-Ct4"/>
                                                 <constraint firstAttribute="bottom" secondItem="zKc-tY-gii" secondAttribute="bottom" constant="10" id="Pe0-vk-1Zz"/>
                                                 <constraint firstItem="P5a-wk-8sF" firstAttribute="centerY" secondItem="zKc-tY-gii" secondAttribute="centerY" id="THA-rA-zwj"/>
+                                                <constraint firstAttribute="bottom" secondItem="PAU-rB-1sk" secondAttribute="bottom" id="Zwm-zW-xjy"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qSo-0H-wno" secondAttribute="trailing" constant="16" id="h4K-RV-qi5"/>
                                                 <constraint firstItem="9RO-3f-vYA" firstAttribute="leading" secondItem="4PA-Sn-kch" secondAttribute="leading" constant="20" id="hg3-mz-3ph"/>
                                                 <constraint firstItem="P5a-wk-8sF" firstAttribute="leading" secondItem="e2e-va-1b4" secondAttribute="trailing" constant="8" id="hyl-2b-Sbe"/>
                                                 <constraint firstItem="e2e-va-1b4" firstAttribute="leading" secondItem="4PA-Sn-kch" secondAttribute="leading" constant="20" id="omv-mC-0Jo"/>
                                                 <constraint firstItem="qSo-0H-wno" firstAttribute="baseline" secondItem="9RO-3f-vYA" secondAttribute="baseline" id="s7c-Lp-ZS3"/>
+                                                <constraint firstAttribute="trailing" secondItem="PAU-rB-1sk" secondAttribute="trailing" id="wDp-BP-pFv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
