@@ -359,7 +359,7 @@ class ConversationViewModel {
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Show Profile", comment: ""), style: .Default, handler: { (alertAction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("View Profile", comment: ""), style: .Default, handler: { (alertAction) in
             if let completion = cancelAction {
                 completion(action: alertAction)
             }

@@ -46,10 +46,24 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         let task = self.mediaUploader.taskForAttachment(attachment)
         cell.fillWith(task)
         
+        cell.setActive(indexActive(indexPath))
+        
         return cell
     }
     
+    func selectedAttachments() -> [MediaAttachment] {
+        return Array(self.attachments.values) 
+    }
+    
+    func indexActive(indexPath: NSIndexPath) -> Bool {
+        return indexPath.item <= selectedAttachments().count
+    }
+    
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if !indexActive(indexPath) {
+            return
+        }
         
         if attachments[indexPath.item] != nil {
             selectedIdx = indexPath.item
@@ -147,6 +161,7 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
                 if let attachment = self.attachments[selectedIdx] {
                     self.mediaUploader.removeAttachment(attachment)
                     self.attachments[selectedIdx] = nil
+                    self.rearangeAttachments()
                 }
             }
             
@@ -154,6 +169,20 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func rearangeAttachments() {
+        var atts : [Int : MediaAttachment] = [:]
+        
+        var idx = 0
+        
+        for att in selectedAttachments() {
+            atts[idx] = att
+            idx += 1
+        }
+        
+        attachments = atts
+        
     }
     
     func firstEmptyIndex() -> Int? {

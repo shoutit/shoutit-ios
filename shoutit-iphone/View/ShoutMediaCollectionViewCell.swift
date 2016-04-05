@@ -18,6 +18,11 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
     
     private var disposeBag = DisposeBag()
     
+    override func awakeFromNib() {
+        self.layer.cornerRadius = 5.0
+        self.layer.masksToBounds = true
+    }
+    
     func fillWith(attachment: MediaAttachment?) {
         
         if attachment?.image != nil {
@@ -40,13 +45,23 @@ class ShoutMediaCollectionViewCell: UICollectionViewCell {
         
         fillWithTaskStatus(task.status.value)
         
-        task.progress.asDriver().driveNext({ [weak self] (progress) -> Void in
+        task.progress.asDriver().driveNext({ [weak self] (progress) in
             self?.progressView.setProgress(progress, animated: true)
         }).addDisposableTo(disposeBag)
         
-        task.status.asDriver().driveNext { [weak self] (status) -> Void in
+        task.status.asDriver().driveNext { [weak self] (status) in
             self?.fillWithTaskStatus(status)
         }.addDisposableTo(disposeBag)
+    }
+    
+    func setActive(active: Bool) {
+        self.imageView.hidden = !active
+        
+        if active {
+            self.contentView.backgroundColor = UIColor(shoutitColor: .LightGreen)
+        } else {
+            self.contentView.backgroundColor = UIColor(shoutitColor: .SeparatorGray)
+        }
     }
     
     func fillWithTaskStatus(status: MediaUploadingTaskStatus) {
