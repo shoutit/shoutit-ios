@@ -43,7 +43,7 @@ extension ShoutParams: Encodable {
         values["text"] = self.text.value.encode()
         
         if self.price.value > 0 {
-            values["price"] = self.price.value.encode()
+            values["price"] = (self.price.value! * 100).encode()
             if let currency = self.currency.value?.code {
                 values["currency"] = currency.encode()
             }
