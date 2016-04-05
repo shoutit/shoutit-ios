@@ -18,8 +18,10 @@ extension FilterDisplayable where Self: FlowController {
     func showFilters() {
         let viewController = Wireframe.filtersViewController()
         viewController.viewModel = FiltersViewModel()
-        viewController.transitioningDelegate = filterTransition
-        viewController.modalPresentationStyle = .Custom
-        navigationController.presentViewController(viewController, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: viewController)
+        nav.navigationBarHidden = true
+        nav.transitioningDelegate = filterTransition
+        nav.modalPresentationStyle = .Custom
+        navigationController.presentViewController(nav, animated: true, completion: nil)
     }
 }

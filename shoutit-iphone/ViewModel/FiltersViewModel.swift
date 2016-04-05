@@ -20,13 +20,36 @@ final class FiltersViewModel {
     // RX
     let disposeBag = DisposeBag()
     
-    var cellViewModels: [FiltersCellViewModel] {
-        didSet {
-            
-        }
-    }
+    var cellViewModels: [FiltersCellViewModel]
+    let reloadSubject: PublishSubject<Void> = PublishSubject()
     let categories: Variable<FilterOptionDownloadState<Category>> = Variable(.Loading)
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
+    
+    // consts
+    lazy var distanceRestrictionOptions: [FiltersCellViewModel.DistanceRestrictionFilterOption] = {
+        return [
+            .Distance(kilometers: 1),
+            .Distance(kilometers: 2),
+            .Distance(kilometers: 3),
+            .Distance(kilometers: 5),
+            .Distance(kilometers: 7),
+            .Distance(kilometers: 10),
+            .Distance(kilometers: 15),
+            .Distance(kilometers: 20),
+            .Distance(kilometers: 30),
+            .Distance(kilometers: 60),
+            .Distance(kilometers: 100),
+            .Distance(kilometers: 200),
+            .Distance(kilometers: 300),
+            .Distance(kilometers: 400),
+            .Distance(kilometers: 500),
+            .EntireCountry
+        ]
+    }()
+    
+    lazy var shoutTypeOptions: [FiltersCellViewModel.ShoutTypeFilterOption] = {
+        return [.All, .Specific(shoutType: .Offer), .Specific(shoutType: .Request)]
+    }()
     
     init() {
         cellViewModels = FiltersViewModel.basicCellViewModels()
@@ -37,12 +60,29 @@ final class FiltersViewModel {
     // MARK: - Action
     
     func resetFilters() {
-        
+        reloadSubject.onNext()
     }
     
-    // MARK: - Observables
+    // MARK: - Public helpers
     
+    func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {
+        let steps = sliderValueStepsForDistanceRestrictionOptions()
+        for (index, rangeEndValue) in steps.enumerate() {
+            if value < rangeEndValue {
+                return distanceRestrictionOptions[index]
+            }
+        }
+        return .EntireCountry
+    }
     
+    func sliderValueForDistanceRestrictionOption(option: FiltersCellViewModel.DistanceRestrictionFilterOption) -> Float {
+        for (index, distanceRestrictionOption) in distanceRestrictionOptions.enumerate() {
+            if distanceRestrictionOption == option {
+                return sliderValueStepsForDistanceRestrictionOptions()[index]
+            }
+        }
+        return 1
+    }
     
     // MARK: - Helpers
     
@@ -91,5 +131,15 @@ final class FiltersViewModel {
                 priceConstraintCellViewModel,
                 locationViewModel,
                 distanceConstraintViewModel]
+    }
+}
+
+private extension FiltersViewModel {
+    
+    func sliderValueStepsForDistanceRestrictionOptions() -> [Float] {
+        let singleStep = 1.0 / Float(distanceRestrictionOptions.count)
+        return Array(count: distanceRestrictionOptions.count, repeatedValue: singleStep).reduce([]) { (currentArray, singleStepValue) -> Array<Float> in
+            return currentArray + [(currentArray.last ?? 0) + singleStepValue]
+        }
     }
 }

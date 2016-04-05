@@ -64,6 +64,14 @@ final class FiltersViewController: UIViewController {
                 self.viewModel.resetFilters()
             }
             .addDisposableTo(disposeBag)
+        
+        // view model observing
+        viewModel.reloadSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] () in
+                self?.tableView.reloadData()
+            }
+            .addDisposableTo(disposeBag)
     }
 }
 
@@ -89,7 +97,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .rx_tap
                 .asDriver()
                 .driveNext{[unowned self] in
-                    let options = FiltersCellViewModel.shoutTypeOptions()
+                    let options = self.viewModel.shoutTypeOptions
                     let titles = options.map{$0.title}
                     self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: titles, completion: { (index) in
                         self.viewModel.cellViewModels[indexPath.row] = .ShoutTypeChoice(shoutType: options[index])
@@ -97,7 +105,7 @@ extension FiltersViewController: UITableViewDataSource {
                     })
                 }
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
-        case .SortTypeChoice:
+        case .SortTypeChoice(let sortType):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
             sortTypeCell.button.smallTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
             sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
@@ -110,9 +118,12 @@ extension FiltersViewController: UITableViewDataSource {
                     case .CantLoadContent:
                         sortTypeCell.button.optionsLoaded = true
                         sortTypeCell.button.setTitle(NSLocalizedString("Filter unavailable", comment: ""), forState: .Normal)
-                    case .Loaded:
+                    case .Loaded(let values):
                         sortTypeCell.button.optionsLoaded = true
-                        sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+                        if sortType == nil && values.first != nil {
+                            self.viewModel.cellViewModels[indexPath.row] = .SortTypeChoice(sortType: values.first)
+                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        }
                     }
                 }
                 .addDisposableTo(sortTypeCell.reuseDisposeBag)
@@ -185,8 +196,35 @@ extension FiltersViewController: UITableViewDataSource {
             let locationCell = cell as! SelectButtonFilterTableViewCell
             locationCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             locationCell.button.hideIcon = true
+            locationCell.button
+                .rx_tap
+                .asDriver()
+                .driveNext{[unowned self] () in
+                    
+                    let controller = Wireframe.filtersChangeLocationViewController()
+                    
+                    controller.finishedBlock = {(success, place) -> Void in
+                        if let place = place {
+                            self.viewModel.cellViewModels[indexPath.row] = .LocationChoice(location: place)
+                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        }
+                    }
+                    
+                    self.navigationController?.showViewController(controller, sender: nil)
+                }
+                .addDisposableTo(locationCell.reuseDisposeBag)
         case .DistanceRestriction(let distanceOption):
             let distanceCell = cell as! SliderFilterTableViewCell
+            distanceCell.slider.value = viewModel.sliderValueForDistanceRestrictionOption(distanceOption)
+            distanceCell.slider
+                .rx_value
+                .asDriver()
+                .driveNext{[unowned self] (value) in
+                    let option = self.viewModel.distanceRestrictionOptionForSliderValue(value)
+                    self.viewModel.cellViewModels[indexPath.row] = .DistanceRestriction(distanceOption: option)
+                    distanceCell.currentValueLabel.text = option.title
+                }
+                .addDisposableTo(distanceCell.reuseDisposeBag)
         case .FilterValueChoice(let filter):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
             

@@ -278,6 +278,8 @@
 		AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */; };
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
+		B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */; };
+		B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */; };
 		B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D721C62638C007EB2FB /* HTMLViewController.swift */; };
 		B2082D751C6263DD007EB2FB /* HTML.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2082D741C6263DD007EB2FB /* HTML.storyboard */; };
 		B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */; };
@@ -877,6 +879,8 @@
 		AEECB9551C648E4300276E4A /* Location.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Location.storyboard; path = Storyboards/Location.storyboard; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
 		AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentViewController.swift; path = Controllers/ConversationAttachmentViewController.swift; sourceTree = "<group>"; };
+		B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersViewController.swift; path = Controllers/CategoryFiltersViewController.swift; sourceTree = "<group>"; };
+		B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterLocationChoiceWrapperViewController.swift; path = Controllers/FilterLocationChoiceWrapperViewController.swift; sourceTree = "<group>"; };
 		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
 		B2082D741C6263DD007EB2FB /* HTML.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HTML.storyboard; path = Storyboards/HTML.storyboard; sourceTree = "<group>"; };
 		B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MaterialTextField+Validation.swift"; path = "UIKitExtensions/MaterialTextField+Validation.swift"; sourceTree = "<group>"; };
@@ -1709,6 +1713,8 @@
 				B2F524651C9AF5E300EA622F /* SearchUserResults */,
 				B2D9B0FA1C98488B00924941 /* Search */,
 				B2778F9C1CAD429F00BBDD5F /* Filters */,
+				B201A1E61CB40690009DA966 /* CategoryFilters */,
+				B201A1E71CB406A3009DA966 /* FilterLocationWrapper */,
 				2463B6921C9828FB00BFE6BA /* Conversation */,
 				24826B4C1C96DEB900032FC9 /* ConversationList */,
 				24826B3E1C969A0200032FC9 /* Notifications */,
@@ -2077,6 +2083,22 @@
 				AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */,
 			);
 			name = ConversationAttachment;
+			sourceTree = "<group>";
+		};
+		B201A1E61CB40690009DA966 /* CategoryFilters */ = {
+			isa = PBXGroup;
+			children = (
+				B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */,
+			);
+			name = CategoryFilters;
+			sourceTree = "<group>";
+		};
+		B201A1E71CB406A3009DA966 /* FilterLocationWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */,
+			);
+			name = FilterLocationWrapper;
 			sourceTree = "<group>";
 		};
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
@@ -3583,6 +3605,7 @@
 				2489CCF91CAD604100778630 /* IncomingCallController.swift in Sources */,
 				B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */,
 				AE18BACD1CA2D3AD001C73EC /* MessageAttachment.swift in Sources */,
+				B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */,
 				B2B5D0421C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift in Sources */,
 				AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
 				B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */,
@@ -3741,6 +3764,7 @@
 				B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */,
 				244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */,
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
+				B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */,
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,

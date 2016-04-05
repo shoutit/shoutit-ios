@@ -103,6 +103,10 @@ struct Wireframe {
         return storyboard(.Filter).instantiateViewControllerWithIdentifier("FiltersViewController") as! FiltersViewController
     }
     
+    static func filtersChangeLocationViewController() -> FilterLocationChoiceWrapperViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("FilterLocationChoiceWrapperViewController") as! FilterLocationChoiceWrapperViewController
+    }
+    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {

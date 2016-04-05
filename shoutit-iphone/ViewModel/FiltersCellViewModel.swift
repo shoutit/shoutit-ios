@@ -27,6 +27,15 @@ enum FiltersCellViewModel {
     enum DistanceRestrictionFilterOption {
         case Distance(kilometers: Int)
         case EntireCountry
+        
+        var title: String {
+            switch self {
+            case .Distance(let kilometers):
+                return "\(kilometers) km"
+            case .EntireCountry:
+                return NSLocalizedString("Entire country", comment: "")
+            }
+        }
     }
     
     case ShoutTypeChoice(shoutType: ShoutTypeFilterOption)
@@ -55,35 +64,23 @@ enum FiltersCellViewModel {
                 return location.address
             }
             return NSLocalizedString("Choose location", comment: "Displayed on filter button when no location is chosen")
-        case .DistanceRestriction:
-            return nil
+        case .DistanceRestriction(let distanceOption):
+            return distanceOption.title
         case .FilterValueChoice(let filter):
             return nil
         }
     }
-    
-    static func distanceRestrictionOptions() -> [DistanceRestrictionFilterOption] {
-        return [
-            .Distance(kilometers: 1),
-            .Distance(kilometers: 2),
-            .Distance(kilometers: 3),
-            .Distance(kilometers: 5),
-            .Distance(kilometers: 7),
-            .Distance(kilometers: 10),
-            .Distance(kilometers: 15),
-            .Distance(kilometers: 20),
-            .Distance(kilometers: 30),
-            .Distance(kilometers: 60),
-            .Distance(kilometers: 100),
-            .Distance(kilometers: 200),
-            .Distance(kilometers: 300),
-            .Distance(kilometers: 400),
-            .Distance(kilometers: 500),
-            .EntireCountry
-        ]
-    }
-    
-    static func shoutTypeOptions() -> [ShoutTypeFilterOption] {
-        return [.All, .Specific(shoutType: .Offer), .Specific(shoutType: .Request)]
+}
+
+extension FiltersCellViewModel.DistanceRestrictionFilterOption: Equatable {}
+
+func ==(lhs: FiltersCellViewModel.DistanceRestrictionFilterOption, rhs: FiltersCellViewModel.DistanceRestrictionFilterOption) -> Bool {
+    switch (lhs, rhs) {
+    case (.EntireCountry, .EntireCountry):
+        return true
+    case (.Distance(let lhsDistance), .Distance(let rhsDistance)):
+        return lhsDistance == rhsDistance
+    default:
+        return false
     }
 }
