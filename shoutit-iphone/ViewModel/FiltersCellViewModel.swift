@@ -13,11 +13,15 @@ enum FiltersCellViewModel {
     enum ShoutTypeFilterOption {
         case All
         case Specific(shoutType: ShoutType)
-    }
-    
-    enum SortTypeFilterOption {
-        case Default
-        case Specific(sortType: SortType)
+        
+        var title: String {
+            switch self {
+            case .All:
+                return NSLocalizedString("All", comment: "All shout types - filter button title")
+            case .Specific(let shoutType):
+                return shoutType.title()
+            }
+        }
     }
     
     enum DistanceRestrictionFilterOption {
@@ -26,7 +30,7 @@ enum FiltersCellViewModel {
     }
     
     case ShoutTypeChoice(shoutType: ShoutTypeFilterOption)
-    case SortTypeChoice(sortType: SortTypeFilterOption)
+    case SortTypeChoice(sortType: SortType?)
     case CategoryChoice(category: Category?)
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
@@ -36,19 +40,9 @@ enum FiltersCellViewModel {
     func buttonTitle() -> String? {
         switch self {
         case .ShoutTypeChoice(let shoutType):
-            switch shoutType {
-            case .All:
-                return NSLocalizedString("All", comment: "All shout types - filter button title")
-            case .Specific(let shoutType):
-                return shoutType.title()
-            }
+            return shoutType.title
         case .SortTypeChoice(let sortType):
-            switch sortType {
-            case .Default:
-                return NSLocalizedString("Default", comment: "Default sort type - filter button title")
-            case .Specific(let sortType):
-                return sortType.name
-            }
+            return sortType?.name
         case .CategoryChoice(let category):
             if let category = category {
                 return category.name
@@ -61,7 +55,7 @@ enum FiltersCellViewModel {
                 return location.address
             }
             return NSLocalizedString("Choose location", comment: "Displayed on filter button when no location is chosen")
-        case .DistanceRestriction(let distanceOption):
+        case .DistanceRestriction:
             return nil
         case .FilterValueChoice(let filter):
             return nil
@@ -87,5 +81,9 @@ enum FiltersCellViewModel {
             .Distance(kilometers: 500),
             .EntireCountry
         ]
+    }
+    
+    static func shoutTypeOptions() -> [ShoutTypeFilterOption] {
+        return [.All, .Specific(shoutType: .Offer), .Specific(shoutType: .Request)]
     }
 }

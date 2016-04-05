@@ -7,9 +7,17 @@
 //
 
 import Foundation
+import RxSwift
 
 class LimitingTextFieldsFilterTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var minimumValueTextField: UITextField!
     @IBOutlet weak var maximumValueTextField: UITextField!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }

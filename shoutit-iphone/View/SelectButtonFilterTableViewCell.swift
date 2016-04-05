@@ -7,8 +7,16 @@
 //
 
 import Foundation
+import RxSwift
 
 class SelectButtonFilterTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var button: SelectButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }

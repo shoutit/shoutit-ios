@@ -20,7 +20,11 @@ final class FiltersViewModel {
     // RX
     let disposeBag = DisposeBag()
     
-    let cellViewModels: [FiltersCellViewModel]
+    var cellViewModels: [FiltersCellViewModel] {
+        didSet {
+            
+        }
+    }
     let categories: Variable<FilterOptionDownloadState<Category>> = Variable(.Loading)
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
     
@@ -29,6 +33,16 @@ final class FiltersViewModel {
         fetchCategories()
         fetchSortTypes()
     }
+    
+    // MARK: - Action
+    
+    func resetFilters() {
+        
+    }
+    
+    // MARK: - Observables
+    
+    
     
     // MARK: - Helpers
     
@@ -66,7 +80,7 @@ final class FiltersViewModel {
     
     private static func basicCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel = FiltersCellViewModel.ShoutTypeChoice(shoutType: .All)
-        let sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: .Default)
+        let sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: nil)
         let categoryCellViewModel = FiltersCellViewModel.CategoryChoice(category: nil)
         let priceConstraintCellViewModel = FiltersCellViewModel.PriceRestriction(from: nil, to: nil)
         let locationViewModel = FiltersCellViewModel.LocationChoice(location: Account.sharedInstance.user?.location)

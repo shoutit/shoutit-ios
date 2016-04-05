@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class BigLabelButtonFilterTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var button: BigLabelSelectButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }
