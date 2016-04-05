@@ -44,17 +44,26 @@ extension ShoutParams: Encodable {
         
         if self.price.value > 0 {
             values["price"] = self.price.value.encode()
+            if let currency = self.currency.value?.code {
+                values["currency"] = currency.encode()
+            }
+        } else if self.price.value == 0 {
+            values["price"] = JSON.Number(0)
+            if let currency = self.currency.value?.code {
+                values["currency"] = currency.encode()
+            }
+        } else {
+            values["price"] = JSON.Null
+            values["currency"] = JSON.Null
         }
-        
-        if let currency = self.currency.value?.code {
-            values["currency"] = currency.encode()
-        }
-        
+                
         values["images"] = self.images.value.encode()
         values["videos"] = self.videos.value.encode()
         
         if let category = self.category.value {
             values["category"] = category.encode()
+        } else {
+           values["category"] = JSON.Null
         }
         
         values["location"] = self.location.value.encode()

@@ -274,8 +274,18 @@ extension CreateShoutViewModel {
                     completion(alertAction)
                 }
                 
-                }))
+            }))
         }
+        
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
+            
+            self?.shoutParams.currency.value = nil
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+            }))
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
@@ -296,16 +306,26 @@ extension CreateShoutViewModel {
                 }))
         }
         
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Category", comment: ""), style: .Default, handler: { [weak self] (alertAction) in
+            
+            self?.setCategory(nil)
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+        }))
+        
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
     }
     
-    func setCategory(category: Category) {
+    func setCategory(category: Category?) {
         
         self.shoutParams.filters.value = [:]
         self.shoutParams.category.value = category
         
-        if let filters = category.filters {
+        if let filters = category?.filters {
             if let shout = self.shoutParams.shout, shoutFilters = shout.filters {
                 for filter in filters {
                     for fl in shoutFilters {
@@ -317,6 +337,8 @@ extension CreateShoutViewModel {
             }
             
             self.filters.value = filters
+        } else {
+            self.filters.value = []
         }
     }
     

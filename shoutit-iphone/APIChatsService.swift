@@ -13,7 +13,7 @@ import Alamofire
 
 class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
-    private static let conversationWithUserURL = APIManager.baseURL + "/users/*/chat"
+    private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
