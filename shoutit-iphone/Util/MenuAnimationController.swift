@@ -39,10 +39,20 @@ class MenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
         transitionContext.containerView()?.addSubview(toView)
         
         toView.alpha = 1
-        toView.frame = CGRectMake(-CGRectGetWidth(transitionContext.containerView()!.frame) + rightMargin, 0, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin, CGRectGetHeight(transitionContext.containerView()!.frame))
+        
+        let width = CGRectGetWidth(transitionContext.containerView()!.frame)
+        let destinationRect : CGRect!
+        
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            toView.frame = CGRectMake(width, 0, width - rightMargin, CGRectGetHeight(transitionContext.containerView()!.frame))
+            destinationRect = CGRectMake(rightMargin + menuInsets.left + menuInsets.right, menuInsets.top, width - rightMargin + menuInsets.right, CGRectGetHeight(transitionContext.containerView()!.frame) + menuInsets.bottom)
+        } else {
+            toView.frame = CGRectMake(-width + rightMargin, 0, width - rightMargin, CGRectGetHeight(transitionContext.containerView()!.frame))
+            destinationRect = CGRectMake(menuInsets.left, menuInsets.top, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin + menuInsets.right, CGRectGetHeight(transitionContext.containerView()!.frame) + menuInsets.bottom)
+        }
         
         UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
-            let destinationRect = CGRectMake(menuInsets.left, menuInsets.top, CGRectGetWidth(transitionContext.containerView()!.frame) - rightMargin + menuInsets.right, CGRectGetHeight(transitionContext.containerView()!.frame) + menuInsets.bottom)
+            
             toView.frame = destinationRect
             overlay.alpha = 0.3
             }) { (finished) -> Void in

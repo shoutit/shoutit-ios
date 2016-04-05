@@ -100,7 +100,6 @@ extension AppDelegate {
         
         Fabric.with([Crashlytics.self])
         AmazonAWS.configureS3()
-//        SHMixpanelHelper.openApp()
         
         //UserVoice
         let config = UVConfig(site: "shoutit.uservoice.com")
@@ -109,11 +108,6 @@ extension AppDelegate {
         config.forumId = 290071
         UserVoice.initialize(config)
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
-        
-//        SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
-//            let userInfo = ["object": event]
-//            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.kMessagePushNotification, object: nil, userInfo: userInfo)
-//        }
     }
     
     func applyAppearance() {
@@ -129,6 +123,8 @@ extension AppDelegate {
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
+        
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
     }
 }

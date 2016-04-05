@@ -13,7 +13,7 @@ import Alamofire
 
 class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
-    private static let conversationWithUserURL = APIManager.baseURL + "/users/*/chat"
+    private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
@@ -63,5 +63,11 @@ class APIChatsService {
         let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
 
+    }
+    
+    static func conversationWithId(conversationId: String) -> Observable<Conversation> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
+        
     }
 }

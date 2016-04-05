@@ -16,7 +16,7 @@ class NotificationsTableViewCell: UITableViewCell {
     
     func bindWithNotificationMessage(message: Notification) {
         self.titleLabel.attributedText = message.attributedText()
-        self.notificationImage.sh_setImageWithURL(message.imageURL(), placeholderImage: UIImage(named:""))
+        self.notificationImage.sh_setImageWithURL(message.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         if message.read == true {
             self.contentView.backgroundColor = UIColor.whiteColor()

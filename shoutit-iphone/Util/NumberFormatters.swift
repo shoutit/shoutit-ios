@@ -39,6 +39,10 @@ class NumberFormatters {
             return nil
         }
         
+        if price == 0 {
+            return NSLocalizedString("FREE", comment: "")
+        }
+        
         let major = price / 100
         let minor = price % 100
         if minor > 0 {
