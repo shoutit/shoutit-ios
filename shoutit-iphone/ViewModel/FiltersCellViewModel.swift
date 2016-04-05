@@ -44,7 +44,7 @@ enum FiltersCellViewModel {
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
     case DistanceRestriction(distanceOption: DistanceRestrictionFilterOption)
-    case FilterValueChoice(filter: Filter)
+    case FilterValueChoice(filter: Filter, selectedValues: [FilterValue])
     
     func buttonTitle() -> String? {
         switch self {
@@ -66,8 +66,8 @@ enum FiltersCellViewModel {
             return NSLocalizedString("Choose location", comment: "Displayed on filter button when no location is chosen")
         case .DistanceRestriction(let distanceOption):
             return distanceOption.title
-        case .FilterValueChoice(let filter):
-            return nil
+        case .FilterValueChoice(_, let values):
+            return values.map{$0.name}.joinWithSeparator(", ")
         }
     }
 }

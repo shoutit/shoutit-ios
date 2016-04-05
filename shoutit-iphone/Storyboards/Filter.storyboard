@@ -97,11 +97,11 @@
                                     <constraint firstAttribute="trailing" secondItem="yO1-aD-Er1" secondAttribute="trailing" id="rtn-RX-HN9"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-Aw-XeE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lcw-Aw-XeE">
                                 <rect key="frame" x="0.0" y="70" width="375" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoutTypeChoiceCell" rowHeight="60" id="XtA-Nz-B45" customClass="LabeledSelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoutTypeChoiceCell" rowHeight="60" id="XtA-Nz-B45" customClass="LabeledSelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XtA-Nz-B45" id="xyd-EA-Io0">
@@ -133,7 +133,7 @@
                                             <outlet property="button" destination="41h-vW-IAU" id="ilF-4V-1lW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SortByChoiceCell" rowHeight="60" id="BWy-mO-ZgY" customClass="LabeledSelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SortByChoiceCell" rowHeight="60" id="BWy-mO-ZgY" customClass="LabeledSelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="88" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BWy-mO-ZgY" id="mri-Wr-I5e">
@@ -165,7 +165,7 @@
                                             <outlet property="button" destination="Pz0-Qb-xZc" id="gsI-Bw-lOU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryChoiceCell" rowHeight="60" id="zBi-3t-EKF" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryChoiceCell" rowHeight="60" id="zBi-3t-EKF" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zBi-3t-EKF" id="H5f-Hi-b9H">
@@ -197,7 +197,7 @@
                                             <outlet property="button" destination="ofT-NM-U31" id="Tb7-0W-Ofc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PriceRestrictionCell" rowHeight="96" id="0k4-u3-8nE" customClass="LimitingTextFieldsFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PriceRestrictionCell" rowHeight="96" id="0k4-u3-8nE" customClass="LimitingTextFieldsFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0k4-u3-8nE" id="u3J-ln-OwC">
@@ -244,7 +244,7 @@
                                             <outlet property="minimumValueTextField" destination="hei-G2-sux" id="t8A-6V-cov"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationChoiceCell" rowHeight="96" id="tLf-7d-QBp" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationChoiceCell" rowHeight="96" id="tLf-7d-QBp" customClass="SelectButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="304" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLf-7d-QBp" id="cqF-Ya-uXC">
@@ -285,7 +285,7 @@
                                             <outlet property="button" destination="OCB-fA-ZCw" id="ALF-MQ-Trg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DistanceRestrictionCell" rowHeight="91" id="a0z-zp-iNy" customClass="SliderFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DistanceRestrictionCell" rowHeight="91" id="a0z-zp-iNy" customClass="SliderFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="400" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0z-zp-iNy" id="4PA-Sn-kch">
@@ -343,7 +343,7 @@
                                             <outlet property="slider" destination="P5a-wk-8sF" id="z32-LA-PPk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterCell" rowHeight="60" id="VeM-Id-3lB" customClass="BigLabelButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterCell" rowHeight="60" id="VeM-Id-3lB" customClass="BigLabelButtonFilterTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="491" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VeM-Id-3lB" id="mDN-CW-OFP">
@@ -355,8 +355,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="dtD-pO-svW"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="Filter">
-                                                        <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
@@ -497,7 +498,7 @@
         <!--Category Filters View Controller-->
         <scene sceneID="gEV-aM-YDR">
             <objects>
-                <viewController id="qGa-cq-53Z" customClass="CategoryFiltersViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryFiltersViewController" id="qGa-cq-53Z" customClass="CategoryFiltersViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jji-YU-isl"/>
                         <viewControllerLayoutGuide type="bottom" id="agI-fL-cr6"/>
@@ -560,9 +561,57 @@
                                     <constraint firstItem="T98-Va-dQC" firstAttribute="centerX" secondItem="N9M-yN-0f3" secondAttribute="centerX" id="zlj-pG-lLf"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CN5-k7-bih">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CN5-k7-bih">
                                 <rect key="frame" x="0.0" y="70" width="375" height="530"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryFiltersTableViewCell" id="ZTE-DR-UgN" customClass="CategoryFiltersTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZTE-DR-UgN" id="Q5j-Ad-Qdy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqN-YC-Za6">
+                                                    <rect key="frame" x="20" y="11" width="44" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter_checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-Qk-xq1">
+                                                    <rect key="frame" x="331" y="10" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="JT7-ft-FA1"/>
+                                                        <constraint firstAttribute="height" constant="24" id="WCH-rm-3Wb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0d-TX-pVB">
+                                                    <rect key="frame" x="20" y="43" width="355" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.12" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Hwa-Ve-LMl"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pzW-Qk-xq1" firstAttribute="centerY" secondItem="Q5j-Ad-Qdy" secondAttribute="centerY" id="015-fJ-OSo"/>
+                                                <constraint firstAttribute="trailing" secondItem="x0d-TX-pVB" secondAttribute="trailing" id="3aC-bL-yMd"/>
+                                                <constraint firstAttribute="bottom" secondItem="x0d-TX-pVB" secondAttribute="bottom" id="BND-tR-7tH"/>
+                                                <constraint firstItem="x0d-TX-pVB" firstAttribute="leading" secondItem="Q5j-Ad-Qdy" secondAttribute="leading" constant="20" id="ITx-1D-JfR"/>
+                                                <constraint firstAttribute="trailing" secondItem="pzW-Qk-xq1" secondAttribute="trailing" constant="20" id="NAb-E0-KiJ"/>
+                                                <constraint firstItem="MqN-YC-Za6" firstAttribute="centerY" secondItem="Q5j-Ad-Qdy" secondAttribute="centerY" id="gCx-dB-Vjb"/>
+                                                <constraint firstItem="MqN-YC-Za6" firstAttribute="leading" secondItem="Q5j-Ad-Qdy" secondAttribute="leading" constant="20" id="jLM-A3-OZN"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MqN-YC-Za6" secondAttribute="trailing" constant="40" id="okO-Ns-hf8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" red="0.33725490196078434" green="0.67843137254901964" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="checkboxImageView" destination="pzW-Qk-xq1" id="nsi-Ql-q6y"/>
+                                            <outlet property="nameLabel" destination="MqN-YC-Za6" id="x7J-8m-a73"/>
+                                            <outlet property="separatorHeightConstraint" destination="Hwa-Ve-LMl" id="OXZ-de-bgR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -580,6 +629,7 @@
                     <size key="freeformSize" width="375" height="600"/>
                     <connections>
                         <outlet property="backButton" destination="gC7-LZ-yA3" id="ZnL-xq-VvJ"/>
+                        <outlet property="controllerTitleLabel" destination="T98-Va-dQC" id="qdP-gW-kMx"/>
                         <outlet property="resetButton" destination="E74-KZ-76Y" id="gXO-rK-Mdd"/>
                         <outlet property="tableView" destination="CN5-k7-bih" id="5DJ-gh-B2L"/>
                     </connections>
@@ -591,6 +641,7 @@
     </scenes>
     <resources>
         <image name="back_thin_blue" width="18" height="18"/>
+        <image name="filter_checkbox" width="24" height="24"/>
         <image name="filter_icon_distance_highest" width="26" height="26"/>
         <image name="filter_icon_distance_lowest" width="18" height="18"/>
     </resources>

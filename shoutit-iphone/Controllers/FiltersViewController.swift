@@ -22,6 +22,7 @@ final class FiltersViewController: UIViewController {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
     }
     @IBOutlet weak var resetButtonToBottomConstraint: NSLayoutConstraint!
@@ -169,13 +170,17 @@ extension FiltersViewController: UITableViewDataSource {
                     guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
                     let categoryNames = categories.map{$0.name}
                     self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: categoryNames) { (index) in
-                        self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: categories[index])
+                        let category = categories[index]
+                        self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category)
+                        self.viewModel.extendViewModelsWithFilters(category.filters ?? [])
                         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }
                 }
                 .addDisposableTo(categoryCell.reuseDisposeBag)
         case .PriceRestriction(let from, let to):
             let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
+            priceCell.minimumValueTextField.text = from != nil ? String(from) : nil
+            priceCell.maximumValueTextField.text = to != nil ? String(to) : nil
             priceCell.minimumValueTextField
                 .rx_text
                 .skip(1)
@@ -225,9 +230,23 @@ extension FiltersViewController: UITableViewDataSource {
                     distanceCell.currentValueLabel.text = option.title
                 }
                 .addDisposableTo(distanceCell.reuseDisposeBag)
-        case .FilterValueChoice(let filter):
+        case .FilterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
-            
+            filterCell.button.bigTitleLabel.text = filter.name
+            filterCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            filterCell.button
+                .rx_tap
+                .asDriver()
+                .driveNext{[unowned self] in
+                    let controller = Wireframe.categoryFiltersChoiceViewController()
+                    controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
+                    controller.completionBlock = {(selectedFilterValues) in
+                        self.viewModel.cellViewModels[indexPath.row] = .FilterValueChoice(filter: filter, selectedValues: selectedFilterValues)
+                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    }
+                    self.navigationController?.showViewController(controller, sender: nil)
+                }
+                .addDisposableTo(filterCell.reuseDisposeBag)
         }
         
         return cell

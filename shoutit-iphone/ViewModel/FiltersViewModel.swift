@@ -20,7 +20,11 @@ final class FiltersViewModel {
     // RX
     let disposeBag = DisposeBag()
     
-    var cellViewModels: [FiltersCellViewModel]
+    var cellViewModels: [FiltersCellViewModel] = [] {
+        didSet {
+            
+        }
+    }
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let categories: Variable<FilterOptionDownloadState<Category>> = Variable(.Loading)
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
@@ -52,7 +56,7 @@ final class FiltersViewModel {
     }()
     
     init() {
-        cellViewModels = FiltersViewModel.basicCellViewModels()
+        cellViewModels = basicCellViewModels()
         fetchCategories()
         fetchSortTypes()
     }
@@ -60,6 +64,14 @@ final class FiltersViewModel {
     // MARK: - Action
     
     func resetFilters() {
+        cellViewModels = basicCellViewModels()
+        reloadSubject.onNext()
+    }
+    
+    func extendViewModelsWithFilters(filters: [Filter]) {
+        let basicViewModels = self.cellViewModels[0..<basicCellViewModels().count]
+        let filterCellViewModels = filters.map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
+        self.cellViewModels = basicViewModels + filterCellViewModels
         reloadSubject.onNext()
     }
     
@@ -68,7 +80,7 @@ final class FiltersViewModel {
     func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {
         let steps = sliderValueStepsForDistanceRestrictionOptions()
         for (index, rangeEndValue) in steps.enumerate() {
-            if value < rangeEndValue {
+            if value <= rangeEndValue {
                 return distanceRestrictionOptions[index]
             }
         }
@@ -83,8 +95,9 @@ final class FiltersViewModel {
         }
         return 1
     }
-    
-    // MARK: - Helpers
+}
+
+private extension FiltersViewModel {
     
     private func fetchCategories() {
         APIShoutsService.listCategories()
@@ -117,10 +130,18 @@ final class FiltersViewModel {
             }
             .addDisposableTo(disposeBag)
     }
+}
+
+private extension FiltersViewModel {
     
-    private static func basicCellViewModels() -> [FiltersCellViewModel] {
+    private func basicCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel = FiltersCellViewModel.ShoutTypeChoice(shoutType: .All)
-        let sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: nil)
+        let sortTypeCellViewModel: FiltersCellViewModel
+        if case .Loaded(let sortTypes) = sortTypes.value {
+            sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: sortTypes.first)
+        } else {
+            sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: nil)
+        }
         let categoryCellViewModel = FiltersCellViewModel.CategoryChoice(category: nil)
         let priceConstraintCellViewModel = FiltersCellViewModel.PriceRestriction(from: nil, to: nil)
         let locationViewModel = FiltersCellViewModel.LocationChoice(location: Account.sharedInstance.user?.location)
@@ -136,7 +157,7 @@ final class FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    func sliderValueStepsForDistanceRestrictionOptions() -> [Float] {
+    private func sliderValueStepsForDistanceRestrictionOptions() -> [Float] {
         let singleStep = 1.0 / Float(distanceRestrictionOptions.count)
         return Array(count: distanceRestrictionOptions.count, repeatedValue: singleStep).reduce([]) { (currentArray, singleStepValue) -> Array<Float> in
             return currentArray + [(currentArray.last ?? 0) + singleStepValue]

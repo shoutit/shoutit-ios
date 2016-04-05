@@ -15,6 +15,8 @@ class BigLabelSelectButton: SelectButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        
         bigTitleLabel = UILabel()
         bigTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         bigTitleLabel.font = UIFont.sh_systemFontOfSize(18, weight: .Regular)
@@ -26,6 +28,6 @@ class BigLabelSelectButton: SelectButton {
     }
     
     override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
-        return CGRect(x: 10, y: 31, width: contentRect.width - 10, height: contentRect.height - 31)
+        return CGRect(x: 10, y: 29, width: contentRect.width - 10, height: contentRect.height - 29)
     }
 }
