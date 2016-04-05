@@ -23,7 +23,13 @@ class MenuDismissAnimationController: MenuAnimationController {
                 fatalError()
             }
             
-            fromView.frame = CGRectMake(-CGRectGetWidth(transitionContainer.frame) + rightMargin, 0, CGRectGetWidth(transitionContainer.frame) - rightMargin, CGRectGetHeight(transitionContainer.frame))
+            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+                fromView.frame = CGRectMake(CGRectGetWidth(transitionContainer.frame), 0, CGRectGetWidth(transitionContainer.frame) - rightMargin, CGRectGetHeight(transitionContainer.frame))
+                
+            } else {
+                fromView.frame = CGRectMake(-CGRectGetWidth(transitionContainer.frame) + rightMargin, 0, CGRectGetWidth(transitionContainer.frame) - rightMargin, CGRectGetHeight(transitionContainer.frame))
+                
+            }
             
             if let overlay = fromViewController?.overlayView {
                 overlay.alpha = 0
