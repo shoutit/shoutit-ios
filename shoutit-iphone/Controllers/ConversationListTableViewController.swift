@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import DZNEmptyDataSet
 import MBProgressHUD
+import Pusher
 
 protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable {}
 
@@ -32,11 +33,43 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
         
         reloadConversationList()
         
+        PusherClient.sharedInstance.mainChannelObservable().subscribeNext { [weak self] (event) in
+            
+            if event.eventType() == .NewMessage {
+                guard let message : Message = event.object() else {
+                    return
+                }
+                
+                if let conversation = self?.conversationWithId(message.conversationId), idx = self?.conversations.indexOf(conversation) {
+                    let updatedConversation = conversation.copyWithLastMessage(message)
+                    self?.conversations.removeAtIndex(idx)
+                    self?.conversations.insert(updatedConversation, atIndex: idx)
+                    self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
+                } else {
+                    APIChatsService.conversationWithId(message.conversationId!).subscribeNext({ (conver) in
+                        self?.insertNewConversation(conver)
+                    }).addDisposableTo((self?.disposeBag)!)
+                }
+                
+            }
+            
+        }.addDisposableTo(disposeBag)
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.reloadConversationList), forControlEvents: .ValueChanged)
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
+    }
+    
+    func insertNewConversation(conversation: Conversation) {
+        var newConversations = conversations
+        
+        newConversations.append(conversation)
+        newConversations = newConversations.unique()
+        
+        self.conversations = newConversations
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,5 +148,20 @@ class ConversationListTableViewController: UITableViewController, DZNEmptyDataSe
             }).addDisposableTo(disposeBag)
         }
         
+    }
+    
+    func conversationWithId(conversationId: String?) -> Conversation? {
+        guard let conversationId = conversationId else {
+            return nil
+        }
+        
+        let candidates = self.conversations.filter { (conversation) -> Bool in
+            if conversation.id == conversationId {
+                return true
+            }
+            return false
+        }
+        
+        return candidates.first
     }
 }

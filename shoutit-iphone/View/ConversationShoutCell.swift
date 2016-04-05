@@ -18,6 +18,7 @@ class ConversationShoutCell: ConversationImageCell {
         super.bindWithMessage(message, previousMessage: previousMessage)
         
         guard let shout = message.attachment()?.shout else {
+            self.pictureImageView.image = nil
             return
         }
         

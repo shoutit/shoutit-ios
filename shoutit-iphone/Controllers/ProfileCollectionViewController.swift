@@ -458,8 +458,16 @@ extension ProfileCollectionViewController {
             return
         }
         
-        guard let model = viewModel.model, case .ProfileModel(let profile) = model where profile.id != Account.sharedInstance.user?.id else {
+        
+        
+        guard let model = viewModel.model, case .ProfileModel(let profile) = model else {
             debugPrint("Could not create conversation without profile")
+            return
+        }
+        
+        if profile.id == Account.sharedInstance.user?.id {
+            let error = LightError(userMessage: NSLocalizedString("You can't chat with yourself", comment: ""))
+            showError(error)
             return
         }
         

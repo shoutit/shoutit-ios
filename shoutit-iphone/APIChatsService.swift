@@ -64,4 +64,10 @@ class APIChatsService {
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
 
     }
+    
+    static func conversationWithId(conversationId: String) -> Observable<Conversation> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
+        
+    }
 }
