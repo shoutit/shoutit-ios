@@ -133,8 +133,38 @@ class ShowDetailContainerViewController: UIViewController {
         }
     }
     
+    private func reportAction() {
+        let alert = self.viewModel.reportAlert { (alertController) in
+            if let textField = alertController.textFields?.first, text = textField.text {
+                
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                
+                let report = Report(text: text, shout: self.viewModel.shout, profile: nil)
+                
+                APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                    
+                    switch event {
+                    case .Next:
+                        self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
+                    case .Error(let error):
+                        self?.showError(error)
+                    default:
+                        break
+                    }
+                    
+                    }).addDisposableTo(self.disposeBag)
+            }
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     private func moreAction() {
+        let alert = viewModel.moreAlert { (alertController) in
+            self.reportAction()
+        }
         
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     private func makeCall() {
@@ -210,7 +240,7 @@ class ShowDetailContainerViewController: UIViewController {
                 case .Chat:
                     self.startChat()
                 case .More:
-                    self.notImplemented()
+                    self.moreAction()
                 case .Chats:
                     self.notImplemented()
                 case .Edit:
