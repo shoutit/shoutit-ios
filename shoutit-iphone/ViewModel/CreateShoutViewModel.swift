@@ -24,16 +24,18 @@ class CreateShoutViewModel: NSObject {
     let createShoutCellDescription = "CreateShoutCellDescription"
     let createShoutCellOption = "CreateShoutCellOption"
     let createShoutCellLocation = "CreateShoutCellLocation"
+    let createShoutCellMobile = "createShoutCellMobile"
     
     var showFilters = false
     var showType = true
+    var showMobile = false
     
     init(type: ShoutType = ShoutType.Request) {
         shoutParams = ShoutParams(type: Variable(type), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
                                 images: Variable([]), videos:  Variable([]), category: Variable(nil),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil)
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil, mobile: Variable(nil))
     }
     
     init(shout: Shout) {
@@ -43,7 +45,7 @@ class CreateShoutViewModel: NSObject {
             currency: Variable(nil), images: Variable(shout.imagePaths),
                                 videos:  Variable([]), category: Variable(shout.category),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout)
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout, mobile: Variable(shout.mobile))
     }
     
     func changeToRequest() {
@@ -70,7 +72,7 @@ class CreateShoutViewModel: NSObject {
     
     func numberOfRowsInSection(section: Int) -> Int {
         if section == 1 {
-            return 1
+            return 1 + Int(self.showMobile)
         }
         
         if self.showFilters == false {
@@ -91,6 +93,10 @@ class CreateShoutViewModel: NSObject {
     func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == 0 && indexPath.row == 1 {
+            return 80.0
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
             return 80.0
         }
         
@@ -115,7 +121,7 @@ class CreateShoutViewModel: NSObject {
         }
         
         if indexPath.section == 1 {
-            return createShoutCellLocation
+            return indexPath.row == 0 ? createShoutCellLocation : createShoutCellMobile
         }
         
         return createShoutCellOption

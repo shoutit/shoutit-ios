@@ -17,6 +17,7 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         viewModel = CreateShoutViewModel(shout: shout)
         viewModel.showFilters = true
         viewModel.showType = false
+        viewModel.showMobile = true
         
         self.tableView.reloadData()
         
