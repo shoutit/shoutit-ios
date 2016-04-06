@@ -319,6 +319,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func didPressLeftButton(sender: AnyObject!) {
+        textView.resignFirstResponder()
+        
         self.flowDelegate?.showAttachmentController({ [weak self] (type) in
             self?.attachmentManager.requestAttachmentWithType(type)
         }, transitionDelegate: self)
