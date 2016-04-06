@@ -79,6 +79,12 @@ class MediaPickerController: NSObject, MediaPicker  {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func photosMenuController(controller: PhotosMenuController, didPickImagePicker imagePicker: UIImagePickerController) {
+        imagePicker.navigationBar.translucent = false
+        imagePicker.navigationBar.barStyle = .Default
+        imagePicker.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)

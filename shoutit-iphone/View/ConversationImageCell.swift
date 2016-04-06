@@ -34,6 +34,7 @@ class ConversationImageCell: ConversationCell {
         guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
+            self.pictureImageView.image = UIImage.shoutsPlaceholderImage()
             return
         }
         
