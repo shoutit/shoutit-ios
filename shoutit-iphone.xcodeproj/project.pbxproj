@@ -141,6 +141,7 @@
 		AE18BAD31CA2F824001C73EC /* OutgoingLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */; };
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
+		AE194DDC1CB53610004A44CA /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DDB1CB53610004A44CA /* Report.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -817,6 +818,7 @@
 		AE18BAD21CA2F824001C73EC /* OutgoingLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingLocationCell.xib; path = View/OutgoingLocationCell.xib; sourceTree = "<group>"; };
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
+		AE194DDB1CB53610004A44CA /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Report.swift; path = Model/Report.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE3A54871C92CA9700803571 /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Browse.storyboard; path = Storyboards/Browse.storyboard; sourceTree = "<group>"; };
@@ -1706,6 +1708,7 @@
 				B2A144121C64B3D5002CD70A /* User */,
 				24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */,
 				2404DBC21CA182EB00C19DCF /* Box.swift */,
+				AE194DDB1CB53610004A44CA /* Report.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3519,6 +3522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				246DEA751CA423DE009DF436 /* ConversationImageCell.swift in Sources */,
+				AE194DDC1CB53610004A44CA /* Report.swift in Sources */,
 				B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */,
 				248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */,
 				B2778FAE1CAD70BE00BBDD5F /* BigLabelSelectButton.swift in Sources */,

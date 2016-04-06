@@ -86,7 +86,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         }).bindTo(viewModel.shoutParams.title).addDisposableTo(disposeBag)
         
         headerView.priceTextField.rx_text.flatMap({ (stringValue) -> Observable<Double?> in
-            return Observable.just(Double(stringValue))
+            return Observable.just(stringValue.doubleValue)
         }).bindTo(viewModel.shoutParams.price).addDisposableTo(disposeBag)
         
     }
