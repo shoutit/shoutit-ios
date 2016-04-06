@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import MBProgressHUD
 
 protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
 
@@ -225,13 +226,14 @@ extension ProfileCollectionViewController {
                     }
                     .addDisposableTo(coverView.reuseDisposeBag)
             }
-            
+            /*
             coverView.cartButton
                 .rx_tap
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
                 .addDisposableTo(coverView.reuseDisposeBag)
+             */
             
             coverView
                 .searchButton
@@ -314,6 +316,7 @@ extension ProfileCollectionViewController {
                 }
             }
             infoView.verifyAccountButtonHeightConstraint.constant = viewModel.hidesVerifyAccountButton ? 0 : layout.defaultVerifyButtonHeight
+            
             
         case .ListSectionHeader:
             let listSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
@@ -407,7 +410,10 @@ extension ProfileCollectionViewController {
                     }
                 })
                 .addDisposableTo(disposeBag)
-            
+        case .More:
+            button.rx_tap.asDriver().driveNext({ [weak self] in
+                self?.moreAction()
+            }).addDisposableTo(disposeBag)
         case .EditProfile:
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
@@ -439,6 +445,48 @@ extension ProfileCollectionViewController {
         } else {
             button.setImage(buttonModel.image, forState: .Normal)
         }
+    }
+    
+    func reportAction() {
+        guard let vm = viewModel as? UserProfileCollectionViewModel else {
+            return
+        }
+        
+        let alert = vm.reportAlert { (alertController) in
+            if let textField = alertController.textFields?.first, text = textField.text {
+                
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                
+                let report = Report(text: text, shout: nil, profile: vm.profile)
+                
+                APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                    
+                    switch event {
+                    case .Next:
+                        self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: ""))
+                    case .Error(let error):
+                        self?.showError(error)
+                    default:
+                        break
+                    }
+                    
+                    }).addDisposableTo(self.disposeBag)
+            }
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func moreAction() {
+        guard let vm = viewModel as? UserProfileCollectionViewModel else {
+            return
+        }
+        
+        let alert = vm.moreAlert { (alertController) in
+            self.reportAction()
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func startChat() {

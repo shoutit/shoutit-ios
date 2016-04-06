@@ -129,7 +129,7 @@
                     <navigationItem key="navigationItem" title="Results" id="XzG-ri-d5v">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="DmO-jH-ghg">
                             <view key="customView" contentMode="scaleToFill" id="vxk-OS-LlQ">
-                                <rect key="frame" x="20" y="6" width="80" height="33"/>
+                                <rect key="frame" x="20" y="6" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioE-zg-gfo">
@@ -138,10 +138,6 @@
                                         <connections>
                                             <segue destination="atJ-xs-7Ln" kind="unwind" unwindAction="unwindToSearch:" id="0Q4-dO-FCg"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35k-OA-xTT">
-                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <state key="normal" title="cart" image="cart"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -185,7 +181,7 @@
                     <navigationItem key="navigationItem" title="Search results" id="U0e-yr-YM8">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="rCf-aK-4Yd">
                             <view key="customView" contentMode="scaleToFill" id="Z8G-dM-fGC">
-                                <rect key="frame" x="20" y="6" width="80" height="33"/>
+                                <rect key="frame" x="20" y="6" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hX3-Eu-W27">
@@ -194,10 +190,6 @@
                                         <connections>
                                             <action selector="searchAction" destination="KZH-Ve-wP5" eventType="touchUpInside" id="vTZ-In-4YU"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjI-1Q-STd">
-                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <state key="normal" title="cart" image="cart"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -212,7 +204,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" width="25" height="25"/>
         <image name="search" width="25" height="24"/>
     </resources>
 </document>

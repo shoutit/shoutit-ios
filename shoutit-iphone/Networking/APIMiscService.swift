@@ -35,7 +35,7 @@ class APIMiscService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
 
-    static func makeReport(report: Report) -> Observable<[Currency]> {
-        return APIGenericService.requestWithMethod(.POST, url: currenciesURL, params: report.encode(), encoding: .JSON)
+    static func makeReport(report: Report) -> Observable<Void> {
+        return APIGenericService.basicRequestWithMethod(.POST, url: reportURL, params: report.encode(), encoding: .JSON)
     }
 }

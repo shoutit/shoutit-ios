@@ -117,6 +117,38 @@ final class ShoutDetailViewModel {
         return APIShoutsService.retrievePhoneNumberForShoutWithId(shout.id)
     }
     
+    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
+            completion(alertController: alertController)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
+    }
+    
+    func reportAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("Report Shout", comment: ""), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = NSLocalizedString("Please enter report message", comment: "")
+        }
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .Default, handler: { (action) in
+            completion(alertController: alertController)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
+    }
+    
     // MARK: - To display
     
     func locationString() -> String? {
