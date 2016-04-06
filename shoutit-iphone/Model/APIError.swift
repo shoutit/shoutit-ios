@@ -49,7 +49,7 @@ extension APIError: ShoutitError {
 }
 
 struct APIDetailedError {
-    let reason: String
+    let reason: String?
     let message: String
     let location: String?
     let locationType: String?
@@ -59,7 +59,7 @@ extension APIDetailedError: Decodable {
     
     static func decode(j: JSON) -> Decoded<APIDetailedError> {
         return curry(APIDetailedError.init)
-            <^> j <| "reason"
+            <^> j <|? "reason"
             <*> j <| "message"
             <*> j <|? "location"
             <*> j <|? "location_type"

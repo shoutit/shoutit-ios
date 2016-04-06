@@ -163,12 +163,6 @@
 		AE4DB34B1C636FF8001EB84B /* SettingsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */; };
 		AE4DB34C1C636FF8001EB84B /* SettingsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */; };
 		AE4DB34D1C636FF8001EB84B /* SettingsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */; };
-		AE4DB34F1C63717A001EB84B /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB34E1C63717A001EB84B /* Help.storyboard */; };
-		AE4DB3501C63717A001EB84B /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB34E1C63717A001EB84B /* Help.storyboard */; };
-		AE4DB3511C63717A001EB84B /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB34E1C63717A001EB84B /* Help.storyboard */; };
-		AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
-		AE4DB3541C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
-		AE4DB3551C63724D001EB84B /* HelpFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3521C63724D001EB84B /* HelpFlowController.swift */; };
 		AE4DB3571C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
 		AE4DB3581C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
 		AE4DB3591C638E46001EB84B /* InviteFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */; };
@@ -829,8 +823,6 @@
 		AE4DB3421C635026001EB84B /* MenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuAnimationController.swift; path = Util/MenuAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDismissAnimationController.swift; path = Util/MenuDismissAnimationController.swift; sourceTree = "<group>"; };
 		AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFlowController.swift; path = FlowControl/SettingsFlowController.swift; sourceTree = "<group>"; };
-		AE4DB34E1C63717A001EB84B /* Help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Help.storyboard; path = Storyboards/Help.storyboard; sourceTree = "<group>"; };
-		AE4DB3521C63724D001EB84B /* HelpFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpFlowController.swift; path = FlowControl/HelpFlowController.swift; sourceTree = "<group>"; };
 		AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InviteFriends.storyboard; path = Storyboards/InviteFriends.storyboard; sourceTree = "<group>"; };
 		AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsFlowController.swift; path = FlowControl/InviteFriendsFlowController.swift; sourceTree = "<group>"; };
 		AE4DB35E1C6485FA001EB84B /* MenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuHeaderView.swift; path = View/MenuHeaderView.swift; sourceTree = "<group>"; };
@@ -1815,7 +1807,6 @@
 				B2E7E3031C592BD20078C743 /* Settings.storyboard */,
 				AE8351621C5F4DDD0055C71F /* Root.storyboard */,
 				AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */,
-				AE4DB34E1C63717A001EB84B /* Help.storyboard */,
 				AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */,
 				B2082D741C6263DD007EB2FB /* HTML.storyboard */,
 				AEECB9551C648E4300276E4A /* Location.storyboard */,
@@ -2586,7 +2577,6 @@
 				AE8351921C5F7DFA0055C71F /* ProfileFlowController.swift */,
 				AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */,
 				AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */,
-				AE4DB3521C63724D001EB84B /* HelpFlowController.swift */,
 				AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */,
 				AEECB95D1C6490D800276E4A /* LocationFlowController.swift */,
 				249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */,
@@ -3297,7 +3287,6 @@
 				AC7028031C1AA66200262622 /* uv_heart@2x.png in Resources */,
 				AC7028001C1AA66200262622 /* uv_article.png in Resources */,
 				249FD6D41C7DB1B600859851 /* DiscoverHeaderView.xib in Resources */,
-				AE4DB34F1C63717A001EB84B /* Help.storyboard in Resources */,
 				AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */,
 				B26CEE3A1C71EAD20091470D /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
 				B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */,
@@ -3346,7 +3335,6 @@
 				AEECB9571C648E4300276E4A /* Location.storyboard in Resources */,
 				AE4DB3401C634C2A001EB84B /* Root.storyboard in Resources */,
 				AE4DB3581C638E46001EB84B /* InviteFriends.storyboard in Resources */,
-				AE4DB3501C63717A001EB84B /* Help.storyboard in Resources */,
 				AE7AC1641CB3FBB400C9DEB6 /* Menu.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3358,7 +3346,6 @@
 				AEECB9581C648E4300276E4A /* Location.storyboard in Resources */,
 				AE4DB3411C634C2B001EB84B /* Root.storyboard in Resources */,
 				AE4DB3591C638E46001EB84B /* InviteFriends.storyboard in Resources */,
-				AE4DB3511C63717A001EB84B /* Help.storyboard in Resources */,
 				AE7AC1651CB3FBB400C9DEB6 /* Menu.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3706,7 +3693,6 @@
 				240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */,
 				AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
-				AE4DB3531C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */,
 				AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */,
 				B2B540C91C6A38AE0075EDA6 /* Shout.swift in Sources */,
@@ -3929,7 +3915,6 @@
 				AEBB698A1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */,
 				AE4DB3481C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
-				AE4DB3541C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				AE4DB3601C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
 				AE8351941C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 			);
@@ -3968,7 +3953,6 @@
 				AEBB698B1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */,
 				AE4DB3491C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
-				AE4DB3551C63724D001EB84B /* HelpFlowController.swift in Sources */,
 				AE4DB3611C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
 				AE8351951C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 			);
