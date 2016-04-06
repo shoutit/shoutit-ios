@@ -14,3 +14,22 @@ extension String {
         return NSURL(string: self)
     }
 }
+
+
+extension String {
+    var doubleValue: Double {
+        let nf = NSNumberFormatter()
+        nf.decimalSeparator = "."
+        nf.secondaryGroupingSize = 2
+        
+        if let result = nf.numberFromString(self) {
+            return result.doubleValue
+        } else {
+            nf.decimalSeparator = ","
+            if let result = nf.numberFromString(self) {
+                return result.doubleValue
+            }
+        }
+        return 0
+    }
+}
