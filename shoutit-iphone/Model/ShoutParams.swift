@@ -16,7 +16,7 @@ struct ShoutParams {
     let type: Variable<ShoutType>
     var title: Variable<String?>
     var text:  Variable<String?>
-    var price:  Variable<Int?>
+    var price:  Variable<Double?>
 
     var currency:  Variable<Currency?>
     
