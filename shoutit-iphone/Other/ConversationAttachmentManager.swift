@@ -94,7 +94,7 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         
         let attachment = task.attachment.asMessageAttachment()
         
-        self.attachmentSelected.onNext(attachment)
+        showConfirmationControllerForAttachment(attachment)
     }
     
     private func requestVideoAttachment() {
@@ -120,7 +120,7 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         
         controller.shoutPublishSubject.subscribeNext { [weak self] (shout) in
             let attachment = MessageAttachment(shout: shout, location: nil, videos: nil, images: nil)
-            self?.attachmentSelected.onNext(attachment)
+            self?.showConfirmationControllerForAttachment(attachment)
         }.addDisposableTo(disposeBag)
         
         self.presentingSubject.onNext(controller)
