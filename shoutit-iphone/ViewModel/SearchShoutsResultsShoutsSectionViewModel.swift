@@ -123,7 +123,7 @@ extension SearchShoutsResultsViewModel {
             }
             
             if let filterParams = parent.filterParams {
-                params = params.paramsByMergingWith(filterParams)
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             
             return APIShoutsService.searchShoutsWithParams(params)
@@ -133,9 +133,7 @@ extension SearchShoutsResultsViewModel {
         
         private func updateViewModelWithResult(result: PagedResults<Shout>, forPage page: Int) {
             
-            if numberOfResults == 0 {
-                numberOfResults = result.count ?? 0
-            }
+            numberOfResults = result.count ?? numberOfResults
             
             if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
                 cells += result.results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}

@@ -23,6 +23,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     let category: String?
     let minimumPrice: Int?
     let maximumPrice: Int?
+    let withinDistance: Int?
     let sort: SortType?
     let filters: [Filter : [FilterValue]]?
     
@@ -39,6 +40,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          category: String? = nil,
          minimumPrice: Int? = nil,
          maximumPrice: Int? = nil,
+         withinDistance: Int? = nil,
          sort: SortType? = nil,
          filters: [Filter : [FilterValue]]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
@@ -54,6 +56,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.category = category
         self.minimumPrice = minimumPrice
         self.maximumPrice = maximumPrice
+        self.withinDistance = withinDistance
         self.sort = sort
         self.filters = filters
         
@@ -68,7 +71,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.city = city ?? location?.city
     }
     
-    func paramsByMergingWith(other: FilteredShoutsParams) -> FilteredShoutsParams {
+    func paramsByReplacingEmptyFieldsWithFieldsFrom(other: FilteredShoutsParams) -> FilteredShoutsParams {
         return FilteredShoutsParams(searchPhrase: searchPhrase ?? other.searchPhrase,
                                     discoverId: discoverId ?? other.discoverId,
                                     username: username ?? other.username,
@@ -82,6 +85,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
                                     category: category ?? other.category,
                                     minimumPrice: minimumPrice ?? other.minimumPrice,
                                     maximumPrice: maximumPrice ?? other.maximumPrice,
+                                    withinDistance: withinDistance ?? other.withinDistance,
                                     sort: sort ?? other.sort,
                                     filters: filters ?? other.filters)
     }
@@ -109,8 +113,13 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
             p[key] = value
         }
         
-        for (key, value) in localizedParams {
-            p[key] = value
+        if let within = withinDistance {
+            p["country"] = self.country
+            p["within"] = within
+        } else {
+            for (key, value) in localizedParams {
+                p[key] = value
+            }
         }
         
         return p

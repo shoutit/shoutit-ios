@@ -104,13 +104,15 @@ final class FiltersViewModel {
             case .LocationChoice(let address):
                 location = address
             case .DistanceRestriction(let distanceOption):
-                break
+                if case .Distance(let kilometers) = distanceOption {
+                    distance = kilometers
+                }
             case .FilterValueChoice(let filter, let selectedValues):
                 filters[filter] = selectedValues
             }
         }
         
-        return FilteredShoutsParams(country: location?.country, state: location?.state, city: location?.city, shoutType: shoutType, category: categorySlug, minimumPrice: minimumPrice, maximumPrice: maximumPrice, sort: sort, filters: filters)
+        return FilteredShoutsParams(country: location?.country, state: location?.state, city: location?.city, shoutType: shoutType, category: categorySlug, minimumPrice: minimumPrice, maximumPrice: maximumPrice, withinDistance: distance, sort: sort, filters: filters)
     }
     
     func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {

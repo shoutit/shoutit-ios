@@ -443,6 +443,7 @@
 		B2B4AACF1CB436FB00926474 /* CategoryFiltersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4AACE1CB436FB00926474 /* CategoryFiltersTableViewCell.swift */; };
 		B2B4AAD21CB43CB400926474 /* CategoryFiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4AAD11CB43CB400926474 /* CategoryFiltersViewModel.swift */; };
 		B2B4AAD41CB43CCD00926474 /* CategoryFiltersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4AAD31CB43CCD00926474 /* CategoryFiltersCellViewModel.swift */; };
+		B2B4AAD71CB51D4500926474 /* GeocodeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */; };
 		B2B540C31C6A28360075EDA6 /* SuggesttionsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */; };
 		B2B540C51C6A338B0075EDA6 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C41C6A338B0075EDA6 /* Suggestions.swift */; };
 		B2B540C71C6A358E0075EDA6 /* DetailedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */; };
@@ -1056,6 +1057,7 @@
 		B2B4AACE1CB436FB00926474 /* CategoryFiltersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersTableViewCell.swift; path = View/CategoryFiltersTableViewCell.swift; sourceTree = "<group>"; };
 		B2B4AAD11CB43CB400926474 /* CategoryFiltersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersViewModel.swift; path = ViewModel/CategoryFiltersViewModel.swift; sourceTree = "<group>"; };
 		B2B4AAD31CB43CCD00926474 /* CategoryFiltersCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersCellViewModel.swift; path = ViewModel/CategoryFiltersCellViewModel.swift; sourceTree = "<group>"; };
+		B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeocodeParams.swift; path = Networking/GeocodeParams.swift; sourceTree = "<group>"; };
 		B2B540C21C6A28360075EDA6 /* SuggesttionsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggesttionsParams.swift; path = Networking/SuggesttionsParams.swift; sourceTree = "<group>"; };
 		B2B540C41C6A338B0075EDA6 /* Suggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Suggestions.swift; path = Model/Suggestions.swift; sourceTree = "<group>"; };
 		B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedProfile.swift; path = Model/DetailedProfile.swift; sourceTree = "<group>"; };
@@ -2276,6 +2278,7 @@
 				B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */,
 				B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */,
 				B2778F981CAC11E400BBDD5F /* EmailParams.swift */,
+				B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3759,6 +3762,7 @@
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
 				B2F524721C9AFBA200EA622F /* SearchUserResultsViewModel.swift in Sources */,
 				AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */,
+				B2B4AAD71CB51D4500926474 /* GeocodeParams.swift in Sources */,
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
 				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
 				2463B6911C981D5000BFE6BA /* ReadBy.swift in Sources */,

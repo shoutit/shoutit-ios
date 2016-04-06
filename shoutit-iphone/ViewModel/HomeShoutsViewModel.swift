@@ -118,13 +118,13 @@ class HomeShoutsViewModel: AnyObject {
         if let user = user where user.isGuest == false {
             var params = FilteredShoutsParams(page: page, pageSize: 20)
             if let filterParams = filterParams {
-                params = params.paramsByMergingWith(filterParams)
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             return APIProfileService.homeShoutsWithParams(params)
         } else {
             var params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
             if let filterParams = filterParams {
-                params = params.paramsByMergingWith(filterParams)
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             return APIShoutsService.listShoutsWithParams(params)
         }
