@@ -9,9 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
-    
-}
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable {}
 
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -63,7 +61,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
-                _ = DiscoverFlowController(navigationController: self.navigationController!, discoverItem: element)
+                flowDelegate?.showDiscoverItem(element)
             }
             return
         }

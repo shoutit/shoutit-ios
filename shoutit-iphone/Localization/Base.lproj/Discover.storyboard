@@ -435,7 +435,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcP-fa-Wsl">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7h-DQ-Hut">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7h-DQ-Hut">
                                         <rect key="frame" x="518" y="15" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="9Hx-DK-V4Z"/>
@@ -511,6 +511,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                     </navigationItem>
                     <connections>
                         <outlet property="changeLayoutButton" destination="Ar5-rc-pe0" id="PH6-AD-cBw"/>
+                        <outlet property="searchButton" destination="thU-NZ-d6K" id="hbq-Op-SF4"/>
                         <outlet property="titleLabel" destination="x6d-mC-5Uf" id="rGN-nr-Eiu"/>
                     </connections>
                 </viewController>
