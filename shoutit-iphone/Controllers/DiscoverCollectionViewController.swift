@@ -61,7 +61,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
-                flowDelegate?.showDiscoverItem(element)
+                flowDelegate?.showDiscoverForDiscoverItem(element)
             }
             return
         }
@@ -122,10 +122,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         
         if let discoverHeader = header as? DiscoverHeaderView {
             discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
-            
-            print("===============================")
-            print(self.viewModel.mainItem())
-            
+                        
             if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
             } else {
