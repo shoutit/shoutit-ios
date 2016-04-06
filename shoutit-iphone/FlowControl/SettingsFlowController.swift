@@ -45,11 +45,15 @@ class SettingsFlowController: FlowController {
     }
     
     private func showEmailSettings() {
-        navigationController.notImplemented()
+        let controller = Wireframe.settingsFromViewController()
+        controller.viewModel = ChangeEmailSettingsFormViewModel()
+        navigationController.showViewController(controller, sender: nil)
     }
     
     private func showPasswordSettings() {
-        navigationController.notImplemented()
+        let controller = Wireframe.settingsFromViewController()
+        controller.viewModel = ChangePasswordSettingsFormViewModel()
+        navigationController.showViewController(controller, sender: nil)
     }
     
     private func settingsOptions() -> Variable<[SettingsOption]> {

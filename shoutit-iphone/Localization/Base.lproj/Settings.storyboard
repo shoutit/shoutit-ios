@@ -79,6 +79,87 @@
             </objects>
             <point key="canvasLocation" x="256.5" y="274.5"/>
         </scene>
+        <!--Settings Form View Controller-->
+        <scene sceneID="9gg-e3-gEs">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingsFormViewController" id="hUk-1v-kwm" customClass="SettingsFormViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="h3p-zB-VSI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextFieldCell" rowHeight="100" id="gnA-kO-rLc" customClass="SettingsFormTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gnA-kO-rLc" id="Krc-jJ-k8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f48-fJ-cyN" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="38" width="335" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="9Xq-86-t2k"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="f48-fJ-cyN" secondAttribute="trailing" constant="20" id="156-6u-zx9"/>
+                                        <constraint firstItem="f48-fJ-cyN" firstAttribute="top" secondItem="Krc-jJ-k8A" secondAttribute="top" constant="38" id="Oxk-OJ-Qot"/>
+                                        <constraint firstItem="f48-fJ-cyN" firstAttribute="leading" secondItem="Krc-jJ-k8A" secondAttribute="leading" constant="20" id="rMe-EP-lVh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="f48-fJ-cyN" id="u3m-uW-oRI"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonCell" id="qqz-c1-eJd" customClass="SettingsFormButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qqz-c1-eJd" id="VLY-OM-NpO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwp-Rd-nto" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="335" height="44"/>
+                                            <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="KJ2-dl-wYR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <state key="normal" title="Reset password">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jwp-Rd-nto" firstAttribute="top" secondItem="VLY-OM-NpO" secondAttribute="top" id="PIN-ji-4zt"/>
+                                        <constraint firstAttribute="trailing" secondItem="jwp-Rd-nto" secondAttribute="trailing" constant="20" id="Qu9-jt-n0l"/>
+                                        <constraint firstItem="jwp-Rd-nto" firstAttribute="leading" secondItem="VLY-OM-NpO" secondAttribute="leading" constant="20" id="zzd-gH-KbY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="jwp-Rd-nto" id="oEy-65-xQI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hUk-1v-kwm" id="NR3-na-nGN"/>
+                            <outlet property="delegate" destination="hUk-1v-kwm" id="2Oe-3e-yqV"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m90-XH-zTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="666.5" y="274.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="disclosure_indicator" width="10" height="18"/>

@@ -172,6 +172,10 @@ struct Wireframe {
         return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsTableViewController") as! SettingsTableViewController
     }
     
+    static func settingsFromViewController() -> SettingsFormViewController {
+        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsFormViewController") as! SettingsFormViewController
+    }
+    
     static func inviteFriendsViewController() -> UIViewController {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController")
     }

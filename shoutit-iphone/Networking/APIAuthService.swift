@@ -56,4 +56,8 @@ class APIAuthService {
         let url = APIManager.baseURL + "/auth/verify_email"
         return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
     }
+    
+//    static func changePasswordWithParams(params: ChangePasswordParams) -> Observable<Void> {
+//        
+//    }
 }
