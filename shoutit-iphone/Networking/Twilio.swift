@@ -17,6 +17,8 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             createTwilioClient()
         }
     }
+    
+    private var connecting : Bool = false
     private let disposeBag = DisposeBag()
     
     var client: TwilioConversationsClient?
@@ -28,12 +30,20 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     }
     
     func retriveToken() {
+        if connecting {
+            return
+        }
+        
+        connecting = true
+        
         APIChatsService.twilioVideoAuth().subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
             switch event {
             case .Next(let authData):
                 self?.authData = authData
+                self?.connecting = false
             case .Error(let error):
                 print(error)
+                self?.connecting = false
             default: break
             }
         }.addDisposableTo(disposeBag)

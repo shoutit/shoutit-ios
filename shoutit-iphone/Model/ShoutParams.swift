@@ -16,7 +16,7 @@ struct ShoutParams {
     let type: Variable<ShoutType>
     var title: Variable<String?>
     var text:  Variable<String?>
-    var price:  Variable<Int?>
+    var price:  Variable<Double?>
 
     var currency:  Variable<Currency?>
     
@@ -30,6 +30,7 @@ struct ShoutParams {
     var filters:  Variable<[Filter: FilterValue]>
     
     var shout: Shout?
+    var mobile:  Variable<String?>
     
 }
 
@@ -41,6 +42,7 @@ extension ShoutParams: Encodable {
         values["type"] = self.type.value.rawValue.encode()
         values["title"] = self.title.value.encode()
         values["text"] = self.text.value.encode()
+        values["mobile"] = self.mobile.value.encode()
         
         if self.price.value > 0 {
             values["price"] = (self.price.value! * 100).encode()
