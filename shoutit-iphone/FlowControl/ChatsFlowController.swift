@@ -11,6 +11,9 @@ import UIKit
 final class ChatsFlowController: FlowController {
     
     let navigationController: UINavigationController
+    lazy var filterTransition: FilterTransition = {
+        return FilterTransition()
+    }()
     
     init(navigationController: UINavigationController) {
         
@@ -39,3 +42,4 @@ extension ChatsFlowController: ProfileCollectionViewControllerFlowDelegate {}
 extension ChatsFlowController: NotificationsTableViewControllerFlowDelegate {}
 extension ChatsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension ChatsFlowController: DiscoverCollectionViewControllerFlowDelegate {}
+extension ChatsFlowController: CallingOutViewControllerFlowDelegate {}

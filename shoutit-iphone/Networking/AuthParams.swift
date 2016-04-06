@@ -30,14 +30,14 @@ extension AuthParams {
         
         let coordinate = LocationManager.sharedInstance.currentLocation.coordinate
         var locationUserParams: [String : AnyObject] = ["location" : ["latitude": coordinate.latitude, "longitude": coordinate.longitude]]
-        if let currentUserParams = commonParams["user"] as? [String : AnyObject] {
+        if let currentUserParams = commonParams["profile"] as? [String : AnyObject] {
             for (key, value) in currentUserParams {
                 locationUserParams[key] = value
             }
         }
-        commonParams["user"] = locationUserParams
+        commonParams["profile"] = locationUserParams
         
-        if let mixPanelDistinctId = SHMixpanelHelper.getDistinctID() {
+        if let mixPanelDistinctId = MixpanelHelper.getDistinctID() {
             commonParams["mixpanel_distinct_id"] = mixPanelDistinctId
         }
         
@@ -87,7 +87,7 @@ struct LoginGuestParams: AuthParams {
     
     var authParams: [String : AnyObject] {
         return [
-            "user":
+            "profile":
                 ["push_tokens" : ["apns" : apns, "gcm" : NSNull()]]
         ]
     }

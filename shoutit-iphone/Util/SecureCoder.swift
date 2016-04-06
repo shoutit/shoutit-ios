@@ -17,7 +17,8 @@ class SecureCoder {
     static func writeObject<T: Encodable>(object: T, toFileAtPath path: String) {
         let json = object.encode()
         let dictionary = json.JSONObject()
-        NSKeyedArchiver.archiveRootObject(dictionary, toFile: path)
+        let success = NSKeyedArchiver.archiveRootObject(dictionary, toFile: path)
+        assert(success)
     }
     
     // MARK: - READ

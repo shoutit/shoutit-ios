@@ -9,14 +9,14 @@ production:
   type: build
   script: "bundle exec fastlane staging"
   tags:
-    - artifacts
+    - s4
   only:
     - develop
 alpha:
   type: build
   script: "bundle exec fastlane staging"
   tags:
-    - artifacts
+    - s4
   only:
     - /^staging-.*$/
 testflight:

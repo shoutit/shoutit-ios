@@ -58,8 +58,8 @@ class ConversationSelectShoutController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.shoutPublishSubject.onNext(self.shouts[indexPath.row])
         self.navigationController?.popViewControllerAnimated(true)
+        self.shoutPublishSubject.onNext(self.shouts[indexPath.row])
     }
     
     override func prefersTabbarHidden() -> Bool {

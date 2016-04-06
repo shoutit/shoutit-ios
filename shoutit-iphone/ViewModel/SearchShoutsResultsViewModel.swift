@@ -12,12 +12,13 @@ import RxSwift
 final class SearchShoutsResultsViewModel {
     
     let context: SearchContext
-    let searchPhrase: String
+    let searchPhrase: String?
     
     private(set) var shoutsSection: ShoutsSection!
     private(set) var categoriesSection: CategoriesSection!
+    private(set) var filterParams: FilteredShoutsParams?
     
-    init(searchPhrase: String, inContext context: SearchContext) {
+    init(searchPhrase: String?, inContext context: SearchContext) {
         self.searchPhrase = searchPhrase
         self.context = context
         self.shoutsSection = ShoutsSection(parent: self)
@@ -27,5 +28,10 @@ final class SearchShoutsResultsViewModel {
     func reloadContent() {
         shoutsSection.reloadContent()
         categoriesSection.reloadContent()
+    }
+    
+    func applyFilters(filterParams: FilteredShoutsParams) {
+        self.filterParams = filterParams
+        reloadContent()
     }
 }

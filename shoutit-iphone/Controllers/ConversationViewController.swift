@@ -201,7 +201,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         let msg = viewModel.messageAtIndexPath(indexPath)
         let previousMsg = viewModel.previousMessageFor(msg)
         
-        cell.bindWithMessage(msg, previousMessage: previousMsg)
+        if let imageCell = cell as? ConversationImageCell {
+            imageCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let locationCell = cell as? ConversationLocationCell {
+            locationCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let shoutCell = cell as? ConversationShoutCell {
+            shoutCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let textCell = cell as? ConversationTextCell {
+            textCell.bindWithMessage(msg, previousMessage: previousMsg)
+        }
         
         cell.transform = tableView.transform
         
@@ -349,10 +357,34 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     @IBAction func moreAction() {
-        let alert = viewModel.moreActionAlert { [weak self] in
+        let alert = viewModel.moreActionAlert { [weak self] (action) in
+            if action.title == NSLocalizedString("View Profile", comment: "") {
+                if let user = self?.conversation.shout?.user {
+                    self?.flowDelegate?.showPage(user)
+                    return
+                }
+                
+                if let user = self?.conversation.coParticipant() {
+                    self?.flowDelegate?.showProfile(user)
+                }
+                
+                return
+            }
+            
             self?.navigationController?.popViewControllerAnimated(true)
         }
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func videoCall() {
+        if let profile = self.conversation.coParticipant() {
+          self.flowDelegate?.startVideoCallWithProfile(profile)
+            return
+        }
+        
+        if let shout = self.conversation.shout {
+            self.flowDelegate?.startVideoCallWithProfile(shout.user)
+        }
     }
 }
 

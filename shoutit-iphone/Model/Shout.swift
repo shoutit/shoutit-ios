@@ -40,6 +40,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let relatedOffers: [Shout]?
     let conversations: [Conversation]?
     let isMobileSet: Bool?
+    let mobile: String?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -56,7 +57,7 @@ struct Shout: Decodable, Hashable, Equatable {
         let c = b
             <*> j <|? "thumbnail"
             <*> j <|? "video_url"
-            <*> j <| "user"
+            <*> j <| "profile"
             <*> j <|? "date_published"
         let d = c
             <*> j <| "category"
@@ -72,6 +73,7 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
+            <*> j <|? "mobile_hint"
         return f
     }
     
@@ -95,7 +97,7 @@ extension Shout: Encodable {
             "type":self.typeString.encode(),
             "title":self.title.encode(),
             "text":self.text.encode(),
-            "user":self.user.encode(),
+            "profile":self.user.encode(),
             "price": self.price.encode()
             ])
     }
@@ -104,7 +106,7 @@ extension Shout: Encodable {
 extension Shout {
     func priceText() -> String? {
         if let price = self.price {
-            return "\(price)"
+            return NumberFormatters.priceStringWithPrice(price)
         }
         
         return nil
@@ -118,13 +120,11 @@ func ==(lhs: Shout, rhs: Shout) -> Bool {
 enum ShoutType : String {
     case Offer = "offer"
     case Request = "request"
-    case VideoCV = "cv-video"
     
     func title() -> String {
         switch self {
         case .Offer: return NSLocalizedString("Offer", comment: "")
         case .Request: return NSLocalizedString("Request", comment: "")
-        default: return ""
         }
     }
 }

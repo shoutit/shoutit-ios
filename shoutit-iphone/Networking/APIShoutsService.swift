@@ -20,7 +20,7 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
-    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<SearchShoutsResults> {
+    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL)
     }
     
@@ -50,7 +50,6 @@ class APIShoutsService {
                                                    headers: ["Accept": "application/json"])
     }
 
-
     static func createShoutWithParams(params: Argo.JSON) -> Observable<Shout> {
         return APIGenericService.requestWithMethod(.POST, url: shoutsURL, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
@@ -62,6 +61,11 @@ class APIShoutsService {
     
     static func retrievePhoneNumberForShoutWithId(id: String) -> Observable<Mobile> {
         let url = shoutsURL + "/\(id)/call"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getSortTypes() -> Observable<[SortType]> {
+        let url = shoutsURL + "/sort_types"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
     }
 }

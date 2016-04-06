@@ -13,7 +13,7 @@ import Alamofire
 import RxSwift
 
 class APILocationService {
-    private static let usersURL = APIManager.baseURL + "/users/*"
+    private static let usersURL = APIManager.baseURL + "/profiles/*"
     
     static func updateLocationForUser(username: String, withParams params: CoordinateParams) -> Observable<User> {
         let url = usersURL.stringByReplacingOccurrencesOfString("*", withString: username)

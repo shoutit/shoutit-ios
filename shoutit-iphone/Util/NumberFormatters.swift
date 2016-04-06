@@ -39,6 +39,10 @@ class NumberFormatters {
             return nil
         }
         
+        if price == 0 {
+            return NSLocalizedString("FREE", comment: "")
+        }
+        
         let major = price / 100
         let minor = price % 100
         if minor > 0 {
@@ -46,5 +50,24 @@ class NumberFormatters {
             return "\(major).\(minorString) \(currency)"
         }
         return "\(major) \(currency)"
+    }
+    
+    static func priceStringWithPrice(price: Int?) -> String? {
+        
+        guard let price = price else {
+            return nil
+        }
+        
+        if price == 0 {
+            return NSLocalizedString("FREE", comment: "")
+        }
+        
+        let major = price / 100
+        let minor = price % 100
+        if minor > 0 {
+            let minorString = String(format: "%\(02)d", minor)
+            return "\(major).\(minorString)"
+        }
+        return "\(major)"
     }
 }

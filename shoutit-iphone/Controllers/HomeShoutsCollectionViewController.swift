@@ -32,12 +32,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDataSource()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     func reloadData() {
-        retry.value = false
+        retry.value = true
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

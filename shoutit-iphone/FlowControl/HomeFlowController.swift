@@ -11,6 +11,9 @@ import UIKit
 final class HomeFlowController: FlowController {
     
     let navigationController: UINavigationController
+    lazy var filterTransition: FilterTransition = {
+        return FilterTransition()
+    }()
     
     init(navigationController: UINavigationController) {
         
@@ -35,3 +38,4 @@ extension HomeFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension HomeFlowController: NotificationsTableViewControllerFlowDelegate {}
 extension HomeFlowController: ConversationListTableViewControllerFlowDelegate {}
 extension HomeFlowController: ConversationViewControllerFlowDelegate {}
+extension HomeFlowController: CallingOutViewControllerFlowDelegate {}

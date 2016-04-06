@@ -64,6 +64,11 @@ class SearchViewController: UIViewController {
         viewModel.reloadContent()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        unlockCancelButton()
+    }
+    
     override func prefersNavigationBarHidden() -> Bool {
         return true
     }
@@ -127,11 +132,14 @@ class SearchViewController: UIViewController {
         let textField: UITextField? = searchBar.searchForView()
         textField?.backgroundColor = UIColor(shoutitColor: .SearchBarTextFieldGray)
         searchBar.placeholder = viewModel.searchBarPlaceholder()
-        let button: UIButton? = searchBar.searchForView()
-        button?.enabled = true
         
         // table view
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+    }
+    
+    private func unlockCancelButton() {
+        let button: UIButton? = searchBar.searchForView()
+        button?.enabled = true
     }
     
     private func registerReusables() {
@@ -279,7 +287,7 @@ extension SearchViewController: UITableViewDelegate {
         switch viewModel.sectionViewModel.value {
         case .Categories(let cells, _):
             let model = cells[indexPath.row]
-            flowDelegate?.showSearchInContext(.CategoryShouts(category: model.category))
+            flowDelegate?.showShoutsSearchResultsWithPhrase(nil, context: .CategoryShouts(category: model.category))
         case .Suggestions(let cells, _):
             let model = cells[indexPath.row]
             switch model {
@@ -292,6 +300,7 @@ extension SearchViewController: UITableViewDelegate {
         default:
             break
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 

@@ -35,7 +35,7 @@ struct Message: Decodable, Hashable, Equatable {
             <*> j <| "created_at"
             <*> j <|? "read_url"
         let b = a
-            <*> j <|? "user"
+            <*> j <|? "profile"
             <*> j <|? "text"
             <*> j <||? "attachments"
         
@@ -67,11 +67,14 @@ extension Message {
     }
     
     func isOutgoingCell() -> Bool {
+//        assert(user != nil)
+//        assert(Account.sharedInstance.user != nil)
+        
         if let user = user, currentUser = Account.sharedInstance.user {
             return user.id == currentUser.id
         }
         
-        return true
+        return false
     }
     
     func isSameSenderAs(message: Message?) -> Bool {

@@ -11,6 +11,7 @@ import Foundation
 protocol TagDisplayable {
     func showTag(tag: Tag) -> Void
     func showTag(filter: Filter) -> Void
+    func showTag(category: Category) -> Void
 }
 
 extension EditProfileDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
@@ -26,6 +27,13 @@ extension EditProfileDisplayable where Self: FlowController, Self: ProfileCollec
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
         controller.viewModel = TagProfileCollectionViewModel(filter: filter)
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showTag(category: Category) {
+        let controller = Wireframe.profileViewController()
+        controller.flowDelegate = self
+        controller.viewModel = TagProfileCollectionViewModel(category: category)
         navigationController.showViewController(controller, sender: nil)
     }
 }

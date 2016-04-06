@@ -16,7 +16,6 @@ struct Category: Hashable, Equatable {
     let icon: String?
     let image: String?
     let slug: String
-    let mainTag: Tag
     let filters: [Filter]?
     
     var hashValue: Int {
@@ -34,7 +33,6 @@ extension Category: Decodable {
             <*> j <|? "icon"
             <*> j <|? "image"
             <*> j <| "slug"
-            <*> j <| "main_tag"
             <*> j <||? "filters"
         
     }

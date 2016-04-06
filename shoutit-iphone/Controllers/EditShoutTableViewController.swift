@@ -17,6 +17,7 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         viewModel = CreateShoutViewModel(shout: shout)
         viewModel.showFilters = true
         viewModel.showType = false
+        viewModel.showMobile = true
         
         self.tableView.reloadData()
         
@@ -33,7 +34,7 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         self.viewModel.shoutParams.title.value = self.shout.title
  
         self.headerView.priceTextField.text = self.shout.priceText()
-        self.viewModel.shoutParams.price.value = self.shout.price
+        self.viewModel.shoutParams.price.value = self.shout.price != nil ? Double(self.shout.price! / 100) : 0.0
         
         var attachments : [Int : MediaAttachment] = [:]
         var idx = 0
@@ -51,4 +52,5 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         self.imagesController?.attachments = attachments;
         self.imagesController?.collectionView?.reloadData()
     }
+    
 }

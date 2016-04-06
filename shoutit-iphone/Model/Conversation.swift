@@ -46,7 +46,7 @@ struct Conversation: Decodable, Hashable, Equatable {
             <*> j <| "type"
         
         let c = b
-            <*> j <||? "users"
+            <*> j <||? "profiles"
             <*> j <|? "last_message"
             <*> j <|? "about"
             
@@ -102,6 +102,17 @@ extension Conversation {
         }
         
         return names.joinWithSeparator(", ")
+    }
+    
+    func coParticipant() -> Profile? {
+        var prof : Profile?
+        self.users?.each({ (profile) -> () in
+            if profile.value.id != Account.sharedInstance.user?.id {
+                prof = profile.value
+            }
+        })
+        
+        return prof
     }
     
     func secondLineText() -> NSAttributedString? {

@@ -24,26 +24,28 @@ class CreateShoutViewModel: NSObject {
     let createShoutCellDescription = "CreateShoutCellDescription"
     let createShoutCellOption = "CreateShoutCellOption"
     let createShoutCellLocation = "CreateShoutCellLocation"
+    let createShoutCellMobile = "createShoutCellMobile"
     
     var showFilters = false
     var showType = true
+    var showMobile = false
     
     init(type: ShoutType = ShoutType.Request) {
         shoutParams = ShoutParams(type: Variable(type), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
                                 images: Variable([]), videos:  Variable([]), category: Variable(nil),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil)
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil, mobile: Variable(nil))
     }
     
     init(shout: Shout) {
         
         shoutParams = ShoutParams(type: Variable(shout.type()!), title: Variable(shout.title),
-                                text: Variable(shout.text), price: Variable(shout.price),
+                                  text: Variable(shout.text), price: Variable(shout.price != nil ? Double(shout.price!/100) : 0.0),
             currency: Variable(nil), images: Variable(shout.imagePaths),
                                 videos:  Variable([]), category: Variable(shout.category),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout)
+                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout, mobile: Variable(shout.mobile))
     }
     
     func changeToRequest() {
@@ -70,7 +72,7 @@ class CreateShoutViewModel: NSObject {
     
     func numberOfRowsInSection(section: Int) -> Int {
         if section == 1 {
-            return 1
+            return 1 + Int(self.showMobile)
         }
         
         if self.showFilters == false {
@@ -91,6 +93,10 @@ class CreateShoutViewModel: NSObject {
     func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == 0 && indexPath.row == 1 {
+            return 80.0
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
             return 80.0
         }
         
@@ -115,7 +121,7 @@ class CreateShoutViewModel: NSObject {
         }
         
         if indexPath.section == 1 {
-            return createShoutCellLocation
+            return indexPath.row == 0 ? createShoutCellLocation : createShoutCellMobile
         }
         
         return createShoutCellOption
@@ -207,24 +213,37 @@ extension CreateShoutViewModel {
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
         cell?.selectButton.optionsLoaded = self.categories.value.count > 0
         
+        cell?.selectButton.setImage(nil, forState: .Normal)
+        
         if let category = shoutParams.category.value {
             cell?.selectButton.setTitle(category.name, forState: .Normal)
+            if let imagePath = category.image, imageURL = NSURL(string: imagePath) {
+                cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
+            }
+            cell?.selectButton.promptText = NSLocalizedString("Category", comment: "")
         } else {
+            cell?.selectButton.iconImageView.image = UIImage(named: "category")
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
+            cell?.selectButton.promptText = nil
         }
     }
     
     func fillFilterCell(cell: CreateShoutSelectCell?, withFilter: Filter?) {
         if let filter = withFilter {
-            cell?.fillWithFilter(filter, currentValue: shoutParams.filters.value[filter])
+            cell?.fillWithFilter(filter, currentValue: shoutParams.filters.value[filter])   
         }
     }
     
     func fillLocationCell(cell: CreateShoutSelectCell?) {
+        
+        cell?.selectButton.hideIcon = true
+        
         if let location = shoutParams.location.value {
             cell?.selectButton.setTitle(location.address, forState: .Normal)
+            cell?.selectButton.promptText = NSLocalizedString("Location", comment: "")
         } else {
             cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
+            cell?.selectButton.promptText = nil
         }
     }
 }
@@ -261,8 +280,18 @@ extension CreateShoutViewModel {
                     completion(alertAction)
                 }
                 
-                }))
+            }))
         }
+        
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
+            
+            self?.shoutParams.currency.value = nil
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+            }))
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
@@ -283,16 +312,26 @@ extension CreateShoutViewModel {
                 }))
         }
         
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Category", comment: ""), style: .Default, handler: { [weak self] (alertAction) in
+            
+            self?.setCategory(nil)
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+        }))
+        
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
     }
     
-    func setCategory(category: Category) {
+    func setCategory(category: Category?) {
         
         self.shoutParams.filters.value = [:]
         self.shoutParams.category.value = category
         
-        if let filters = category.filters {
+        if let filters = category?.filters {
             if let shout = self.shoutParams.shout, shoutFilters = shout.filters {
                 for filter in filters {
                     for fl in shoutFilters {
@@ -304,6 +343,8 @@ extension CreateShoutViewModel {
             }
             
             self.filters.value = filters
+        } else {
+            self.filters.value = []
         }
     }
     
@@ -334,6 +375,15 @@ extension CreateShoutViewModel {
         }
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (alertAction) in
+            
+            self.shoutParams.filters.value[filter] = nil
+            
+            if let completion = handler {
+                completion(alertAction)
+            }
+            
+        }))
         
         return actionSheetController
     }

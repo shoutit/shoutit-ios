@@ -34,6 +34,14 @@ extension UIImage {
         return UIImage(named: "listen_icon_green")!
     }
     
+    static func downArrowDisclosureIndicator() -> UIImage {
+        return UIImage(named: "down_thin")!
+    }
+    
+    static func rightBlueArrowDisclosureIndicator() -> UIImage {
+        return UIImage(named: "forward_thin")!
+    }
+    
     // MARK - Search
     
     static func searchFillArrow() -> UIImage {
@@ -58,6 +66,16 @@ extension UIImage {
     
     static func shoutsLayoutGridIcon() -> UIImage {
         return UIImage(named: "shoutsAsGrid")!
+    }
+    
+    // MARK: - Filters
+    
+    static func filtersCheckbox() -> UIImage {
+        return UIImage(named: "filter_checkbox")!
+    }
+    
+    static func filtersCheckboxSelected() -> UIImage {
+        return UIImage(named: "filter_checkbox_selected")!
     }
     
     // MARK: - Shout detail

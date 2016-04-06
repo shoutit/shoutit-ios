@@ -29,6 +29,8 @@ struct Wireframe {
         case Notifications = "Notifications"
         case Search = "Search"
         case VerifyEmail = "VerifyEmail"
+        case VideoCalls = "VideoCalls"
+        case Filter = "Filter"
     }
     
     // General
@@ -93,6 +95,20 @@ struct Wireframe {
     
     static func searchShoutsResultsCollectionViewController() -> SearchShoutsResultsCollectionViewController {
         return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchShoutsResultsCollectionViewController") as! SearchShoutsResultsCollectionViewController
+    }
+    
+    // MARK: - Filters storyboard view controllers
+    
+    static func filtersViewController() -> FiltersViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("FiltersViewController") as! FiltersViewController
+    }
+    
+    static func filtersChangeLocationViewController() -> FilterLocationChoiceWrapperViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("FilterLocationChoiceWrapperViewController") as! FilterLocationChoiceWrapperViewController
+    }
+    
+    static func categoryFiltersChoiceViewController() -> CategoryFiltersViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("CategoryFiltersViewController") as! CategoryFiltersViewController
     }
     
     // MARK: - HTML storyboard view controllers
@@ -216,4 +232,17 @@ struct Wireframe {
     static func conversationLocationController() -> ConversationLocationController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationLocationController") as! ConversationLocationController
     }
+    
+    static func callingoutController() -> CallingOutViewController {
+        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("CallingOutViewController") as! CallingOutViewController
+    }
+    
+    static func videoCallController() -> VideoCallViewController {
+        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("VideoCallViewController") as! VideoCallViewController
+    }
+    
+    static func incomingCallController() -> IncomingCallController {
+        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("IncomingCallController") as! IncomingCallController
+    }
+    
 }

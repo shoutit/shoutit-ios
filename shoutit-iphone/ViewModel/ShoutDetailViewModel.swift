@@ -247,9 +247,9 @@ extension ShoutDetailViewModel {
         return models
     }
     
-    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Tag?)] {
+    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
         
-        var details: [(String, String, String?, Filter?, Tag?)] = []
+        var details: [(String, String, String?, Filter?, Category?)] = []
         
         // date
         if let epoch = shout.publishedAtEpoch {
@@ -259,7 +259,7 @@ extension ShoutDetailViewModel {
         }
         
         // category
-        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil, shout.category.mainTag))
+        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil, shout.category))
         
         // add filters
         shout.filters?.forEach{ (filter) in

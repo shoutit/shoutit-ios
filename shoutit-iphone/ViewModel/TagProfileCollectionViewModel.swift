@@ -15,6 +15,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     
     let filter: Filter?
+    let category: Category?
     private(set) var tag: Tag?
     var model: ProfileCollectionViewModelMainModel? {
         guard let tag = tag else { return nil }
@@ -23,13 +24,23 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init(filter: Filter) {
         self.filter = filter
+        self.category = nil
         gridSection = gridSectionWithModels([], isLoading: true)
         listSection = listSectionWithModels([], isLoading: true)
     }
     
     init(tag: Tag) {
         self.filter = nil
+        self.category = nil
         self.tag = tag
+        gridSection = gridSectionWithModels([], isLoading: true)
+        listSection = listSectionWithModels([], isLoading: true)
+    }
+    
+    init(category: Category) {
+        self.filter = nil
+        self.tag = nil
+        self.category = category
         gridSection = gridSectionWithModels([], isLoading: true)
         listSection = listSectionWithModels([], isLoading: true)
     }
@@ -38,12 +49,12 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     var nameParameter: String? {
-        return tag?.name ?? filter?.value?.slug
+        return tag?.name ?? filter?.value?.slug ?? category?.slug
     }
     
     // user data
     var name: String? {
-        return tag?.name ?? filter?.value?.name
+        return tag?.name ?? filter?.value?.name ?? category?.name
     }
     
     var username: String? { return nil }

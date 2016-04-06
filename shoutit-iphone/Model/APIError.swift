@@ -38,9 +38,11 @@ extension APIError: ShoutitError {
             return message
         }
         
-        guard let location = detailedError.location?.componentsSeparatedByString(".").last else {
+        guard var location = detailedError.location?.componentsSeparatedByString(".").last else {
             return detailedError.message
         }
+        
+        location = String(location.characters.map{$0 == "_" ? " " : $0})
         
         return ("\(location.capitalizedString): \(detailedError.message)")
     }

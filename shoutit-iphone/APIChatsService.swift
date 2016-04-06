@@ -13,12 +13,13 @@ import Alamofire
 
 class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
-    private static let conversationWithUserURL = APIManager.baseURL + "/users/*/chat"
+    private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
+    private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
+    private static let twilioIdentityURL = APIManager.baseURL + "/twilio/video_identity"
     private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
     private static let conversationURL = APIManager.baseURL + "/conversations/*"
-
     // MARK: - Traditional
 
     static func requestConversations() -> Observable<[Conversation]> {
@@ -40,6 +41,14 @@ class APIChatsService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
+    static func twilioVideoAuth() -> Observable<TwilioAuth> {
+        return APIGenericService.requestWithMethod(.POST, url: twilioURL, params: NopParams())
+    }
+    
+    static func twilioVideoIdentity(username: String) -> Observable<TwilioIdentity> {
+        return APIGenericService.requestWithMethod(.GET, url: twilioIdentityURL + "?profile=\(username)", params: NopParams())
+    }
+        
     static func startConversationWithUsername(username: String, message: Message) -> Observable<Message> {
         let url = conversationWithUserURL.stringByReplacingOccurrencesOfString("*", withString: username)
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
@@ -53,5 +62,12 @@ class APIChatsService {
     static func deleteConversation(conversation: Conversation) -> Observable<Void> {
         let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
+
+    }
+    
+    static func conversationWithId(conversationId: String) -> Observable<Conversation> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
+        
     }
 }

@@ -174,6 +174,7 @@ class APIGenericService {
         case .Success(let object):
             return object
         case .Failure(let decodeError):
+            print(json)
             assertionFailure("\(decodeError.description) in model of type \(T.self)")
             throw decodeError
         }

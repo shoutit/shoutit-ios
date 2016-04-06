@@ -12,6 +12,7 @@ class ConversationImageCell: ConversationCell {
     @IBOutlet weak var pictureImageView: UIImageView!
  
     override func bindWithMessage(message: Message, previousMessage: Message?) {
+        
         if let imgview = avatarImageView {
             setImageWith(imgview, message: message)
         }
@@ -25,19 +26,24 @@ class ConversationImageCell: ConversationCell {
         self.activityIndicator?.startAnimating()
         self.activityIndicator?.hidden = false
         
-        
         setThumbMessage(message)
-        
     }
     
     func setThumbMessage(message: Message) {
         guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
+            self.activityIndicator?.stopAnimating()
+            self.activityIndicator?.hidden = true
             return
         }
         
-        pictureImageView.setImageWithURL(url, placeholderImage: UIImage(named:"auth_screen_bg_pattern")) { (image, error, cacheType) in
+        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.pictureImageView.image = nil
     }
 }
