@@ -29,9 +29,9 @@ class ConversationCell: UITableViewCell, MessagePresenting {
     
     func setImageWith(imgview: UIImageView, message: Message) {
         if let imagePath = message.user?.imagePath, imgUrl = NSURL(string: imagePath) {
-            imgview.sh_setImageWithURL(imgUrl, placeholderImage: nil)
+            imgview.sh_setImageWithURL(imgUrl, placeholderImage: UIImage.squareAvatarPlaceholder())
         } else {
-            hideImageView()
+            imgview.image = UIImage.squareAvatarPlaceholder()
         }
     }
     
