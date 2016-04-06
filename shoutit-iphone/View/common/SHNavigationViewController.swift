@@ -12,6 +12,7 @@ class SHNavigationViewController: UINavigationController, UINavigationController
     
     var willShowViewControllerPreferringTabBarHidden: (Bool -> Void)?
     var ignoreToggleMenu : Bool = false
+    var ignoreTabbarAppearance : Bool = false
 
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
