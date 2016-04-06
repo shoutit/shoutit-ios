@@ -133,6 +133,10 @@ class ShowDetailContainerViewController: UIViewController {
         }
     }
     
+    private func moreAction() {
+        
+    }
+    
     private func makeCall() {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         viewModel.makeCall()

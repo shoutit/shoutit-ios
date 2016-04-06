@@ -154,7 +154,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="lp1-L0-GsO">
                             <view key="customView" contentMode="scaleToFill" id="UWy-he-5Tm">
-                                <rect key="frame" x="20" y="5.5" width="80" height="33"/>
+                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-Ez-fiq">
@@ -163,10 +163,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <connections>
                                             <action selector="searchAction:" destination="g7K-MK-j0D" eventType="touchUpInside" id="VYE-Qb-3pe"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUR-Ki-PuM">
-                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <state key="normal" title="cart" image="cart"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -493,7 +489,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Vou-6A-J5C">
                             <view key="customView" contentMode="scaleToFill" id="qtQ-uj-C6T">
-                                <rect key="frame" x="20" y="5.5" width="80" height="33"/>
+                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thU-NZ-d6K">

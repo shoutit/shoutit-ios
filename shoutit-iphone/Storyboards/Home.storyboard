@@ -106,7 +106,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Z7m-3s-GrW">
                             <view key="customView" contentMode="scaleToFill" id="wJN-eu-PdR">
-                                <rect key="frame" x="20" y="5.5" width="80" height="33"/>
+                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxF-O8-Jze">
@@ -114,13 +114,6 @@
                                         <state key="normal" title="search" image="search"/>
                                         <connections>
                                             <action selector="searchAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="xJT-Jk-Cw2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGh-MK-qo6">
-                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <state key="normal" title="cart" image="cart"/>
-                                        <connections>
-                                            <action selector="cartAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="8X2-mz-oWA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -652,13 +645,9 @@ Hat, Chunky Textured Knit Hat and more text</string>
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="3F3-LI-ZIv">
                             <view key="customView" contentMode="scaleToFill" id="wRW-4y-Pcn">
-                                <rect key="frame" x="500" y="5" width="80" height="33"/>
+                                <rect key="frame" x="500" y="5" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFV-dp-sfm" userLabel="cart">
-                                        <rect key="frame" x="55" y="4" width="25" height="25"/>
-                                        <state key="normal" image="cart"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byu-Ae-B0l" userLabel="search">
                                         <rect key="frame" x="15" y="5" width="25" height="24"/>
                                         <state key="normal" image="search"/>
@@ -680,7 +669,6 @@ Hat, Chunky Textured Knit Hat and more text</string>
         </scene>
     </scenes>
     <resources>
-        <image name="cart" width="25" height="25"/>
         <image name="filterIcon" width="20" height="20"/>
         <image name="filterShoutList" width="19" height="21"/>
         <image name="headbarLogoWhite" width="77" height="20"/>

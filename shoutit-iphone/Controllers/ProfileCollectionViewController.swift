@@ -225,13 +225,14 @@ extension ProfileCollectionViewController {
                     }
                     .addDisposableTo(coverView.reuseDisposeBag)
             }
-            
+            /*
             coverView.cartButton
                 .rx_tap
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
                 .addDisposableTo(coverView.reuseDisposeBag)
+             */
             
             coverView
                 .searchButton
