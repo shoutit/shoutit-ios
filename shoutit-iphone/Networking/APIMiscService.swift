@@ -30,6 +30,11 @@ class APIMiscService {
         return APIGenericService.requestWithMethod(.GET, url: currenciesURL, params: NopParams(), encoding: .JSON)
     }
     
+    static func geocode(params: GeocodeParams) -> Observable<Address> {
+        let url = APIManager.baseURL + "/misc/geocode"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
+    }
+
     static func makeReport(report: Report) -> Observable<[Currency]> {
         return APIGenericService.requestWithMethod(.POST, url: currenciesURL, params: report.encode(), encoding: .JSON)
     }

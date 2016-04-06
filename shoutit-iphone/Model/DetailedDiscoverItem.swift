@@ -22,7 +22,7 @@ struct DetailedDiscoverItem {
     let showChildren: Bool
     let children: [DiscoverItem]
     let showShouts: Bool
-    let shoutsPath: String
+    let shoutsPath: String?
     
     func simpleForm() -> DiscoverItem {
         return DiscoverItem(id: id, apiUrl: apiUrl, title: title, subtitle: subtitle, position: position, image: image, cover: cover, icon: icon)
@@ -47,7 +47,7 @@ extension DetailedDiscoverItem: Decodable {
             <*> j <|| "children"
         return h
             <*> j <| "show_shouts"
-            <*> j <| "shouts_url"
+            <*> j <|? "shouts_url"
     }
 }
 

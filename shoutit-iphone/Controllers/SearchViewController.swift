@@ -66,6 +66,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.contentOffset = CGPoint.zero
         unlockCancelButton()
     }
     

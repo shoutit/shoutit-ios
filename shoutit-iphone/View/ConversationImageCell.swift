@@ -12,6 +12,7 @@ class ConversationImageCell: ConversationCell {
     @IBOutlet weak var pictureImageView: UIImageView!
  
     override func bindWithMessage(message: Message, previousMessage: Message?) {
+        
         if let imgview = avatarImageView {
             setImageWith(imgview, message: message)
         }
@@ -25,9 +26,7 @@ class ConversationImageCell: ConversationCell {
         self.activityIndicator?.startAnimating()
         self.activityIndicator?.hidden = false
         
-        
         setThumbMessage(message)
-        
     }
     
     func setThumbMessage(message: Message) {

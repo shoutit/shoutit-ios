@@ -17,7 +17,11 @@ class FilterTransition: NSObject {
     
     // consts
     private let animationDuration: NSTimeInterval = 0.33
-    private let topSpace: CGFloat = 164
+    private let topSpace: CGFloat = {
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        let filterViewHeight: CGFloat = min(503, screenHeight)
+        return screenHeight - filterViewHeight
+    }()
     
     // state
     private var transitionDirection: TransitionDirection = .Presenting

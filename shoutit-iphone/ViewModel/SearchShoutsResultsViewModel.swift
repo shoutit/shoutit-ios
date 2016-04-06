@@ -16,6 +16,7 @@ final class SearchShoutsResultsViewModel {
     
     private(set) var shoutsSection: ShoutsSection!
     private(set) var categoriesSection: CategoriesSection!
+    private(set) var filterParams: FilteredShoutsParams?
     
     init(searchPhrase: String?, inContext context: SearchContext) {
         self.searchPhrase = searchPhrase
@@ -27,5 +28,10 @@ final class SearchShoutsResultsViewModel {
     func reloadContent() {
         shoutsSection.reloadContent()
         categoriesSection.reloadContent()
+    }
+    
+    func applyFilters(filterParams: FilteredShoutsParams) {
+        self.filterParams = filterParams
+        reloadContent()
     }
 }

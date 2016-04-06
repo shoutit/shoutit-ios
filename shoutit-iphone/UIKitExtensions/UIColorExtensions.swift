@@ -10,6 +10,7 @@ import UIKit
 
 enum ShoutitColor: Int {
     case PrimaryGreen = 0x4caf50
+    case ShoutitBlack = 0x1d1d1d
     case ShoutitButtonGreen = 0x4CB950
     case BackgroundWhite = 0xfafafa
     case BackgroundLightGray = 0xF4F4F4

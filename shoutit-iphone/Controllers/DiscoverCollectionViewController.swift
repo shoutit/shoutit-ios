@@ -9,9 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
-    
-}
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable {}
 
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -124,10 +122,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         
         if let discoverHeader = header as? DiscoverHeaderView {
             discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
-            
-            print("===============================")
-            print(self.viewModel.mainItem())
-            
+                        
             if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
             } else {

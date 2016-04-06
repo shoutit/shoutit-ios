@@ -173,7 +173,9 @@ extension SearchShoutsResultsCollectionViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.flowDelegate?.showFilters()
+                self.flowDelegate?.showFilters{(params) in
+                    self.viewModel.applyFilters(params)
+                }
             }
             .addDisposableTo(view.reuseDisposeBag)
         

@@ -15,7 +15,21 @@ class ConversationShoutCell: ConversationImageCell {
     @IBOutlet var priceLabel: UILabel!
     
     override func bindWithMessage(message: Message, previousMessage: Message?) {
-        super.bindWithMessage(message, previousMessage: previousMessage)
+        
+        if let imgview = avatarImageView {
+            setImageWith(imgview, message: message)
+        }
+        
+        timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
+        
+        if message.isSameSenderAs(previousMessage) {
+            hideImageView()
+        }
+        
+        self.activityIndicator?.startAnimating()
+        self.activityIndicator?.hidden = false
+        
+        setThumbMessage(message)
         
         guard let shout = message.attachment()?.shout else {
             self.pictureImageView.image = nil

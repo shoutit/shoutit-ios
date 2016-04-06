@@ -133,7 +133,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         switch type {
         case .Offer: self.viewModel.changeToShout()
         case .Request: self.viewModel.changeToRequest()
-        default: break
         }
     }
 

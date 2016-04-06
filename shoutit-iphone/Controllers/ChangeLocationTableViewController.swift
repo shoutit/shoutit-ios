@@ -43,7 +43,6 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupObservers()
     }
     
@@ -74,20 +73,20 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             .driveNext { selectedLocation in
          
                 self.loading = true
-
-                if let place = selectedLocation.place {
-                    switch (place) {
-                    case .PlaceID(let plId):
-                        self.viewModel.geocoder.rx_details(plId).subscribeNext({ [weak self] (place) -> Void in
-                            if let address = place?.toAddressObject() {
-                                self?.finishWithAddress(address)
-                            }
-                        }).addDisposableTo(self.disposeBag)
-                    default: return
+                
+                guard let place = selectedLocation.place else { return }
+                guard case .PlaceID(let plId) = place else { return }
+                self.viewModel.geocoder
+                    .rx_details(plId)
+                    .filter{$0?.geometryLocation != nil}
+                    .flatMap {(place) -> Observable<Address> in
+                        let params = GeocodeParams(latitude: place!.geometryLocation!.latitude, longitude: place!.geometryLocation!.longitude)
+                        return APIMiscService.geocode(params)
                     }
-                    
-                }
-
+                    .subscribeNext{ [weak self] (address) -> Void in
+                        self?.finishWithAddress(address)
+                    }
+                    .addDisposableTo(self.disposeBag)
             }
             .addDisposableTo(disposeBag)
 

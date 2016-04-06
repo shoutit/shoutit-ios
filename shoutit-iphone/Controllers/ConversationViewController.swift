@@ -201,7 +201,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         let msg = viewModel.messageAtIndexPath(indexPath)
         let previousMsg = viewModel.previousMessageFor(msg)
         
-        cell.bindWithMessage(msg, previousMessage: previousMsg)
+        if let imageCell = cell as? ConversationImageCell {
+            imageCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let locationCell = cell as? ConversationLocationCell {
+            locationCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let shoutCell = cell as? ConversationShoutCell {
+            shoutCell.bindWithMessage(msg, previousMessage: previousMsg)
+        } else if let textCell = cell as? ConversationTextCell {
+            textCell.bindWithMessage(msg, previousMessage: previousMsg)
+        }
         
         cell.transform = tableView.transform
         
