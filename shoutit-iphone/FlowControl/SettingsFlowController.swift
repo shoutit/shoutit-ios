@@ -39,7 +39,9 @@ class SettingsFlowController: FlowController {
     }
     
     private func showNotificationsSettings() {
-        navigationController.notImplemented()
+        if let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.sharedApplication().openURL(settingsURL)
+        }
     }
     
     private func showEmailSettings() {
