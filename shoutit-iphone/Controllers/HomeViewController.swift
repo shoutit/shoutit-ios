@@ -128,8 +128,9 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func filterAction(sender: AnyObject) {
-        flowDelegate?.showFilters{ (params) in
-            
+        flowDelegate?.showFilters{[unowned self] (params) in
+            self.homeShoutsController?.viewModel.filterParams = params
+            self.homeShoutsController?.reloadData()
         }
     }
     

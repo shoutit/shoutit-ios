@@ -328,7 +328,6 @@
 		B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */; };
 		B22D19731C75098E00A620F3 /* PlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22D19721C75098E00A620F3 /* PlaceholderCollectionViewCell.xib */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
-		B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
 		B23CA2421C8DE89B008E85F9 /* LabeledSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2411C8DE89B008E85F9 /* LabeledSelectButton.swift */; };
@@ -942,7 +941,6 @@
 		B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlcaholderCollectionViewCell.swift; path = View/PlcaholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		B22D19721C75098E00A620F3 /* PlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlaceholderCollectionViewCell.xib; path = Storyboards/PlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
-		B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIUsersService.swift; path = Networking/APIUsersService.swift; sourceTree = "<group>"; };
 		B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewHeaderView.swift; path = View/EditProfileTableViewHeaderView.swift; sourceTree = "<group>"; };
 		B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileDisplayable.swift; path = FlowControl/EditProfileDisplayable.swift; sourceTree = "<group>"; };
 		B23CA2411C8DE89B008E85F9 /* LabeledSelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledSelectButton.swift; path = View/LabeledSelectButton.swift; sourceTree = "<group>"; };
@@ -2868,7 +2866,6 @@
 				AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */,
 				241CEC341C73282B00694575 /* APIDiscoverService.swift */,
 				2405803F1C7368CB009ED106 /* APIShoutsService.swift */,
-				B23ABC8F1C7604E200CC69E6 /* APIUsersService.swift */,
 				B211AAD61C89F65400C9E8DB /* APIProfileService.swift */,
 				24826B461C96A34900032FC9 /* APINotificationsService.swift */,
 				24826B561C96E3FC00032FC9 /* APIChatsService.swift */,
@@ -3558,7 +3555,6 @@
 				24826B571C96E3FC00032FC9 /* APIChatsService.swift in Sources */,
 				AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */,
 				B249D5691CA3F8EE004F57A6 /* AutocompletionParams.swift in Sources */,
-				B23ABC901C7604E200CC69E6 /* APIUsersService.swift in Sources */,
 				249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */,
 				B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */,
 				B25EB87D1CA468F00013241A /* APIError.swift in Sources */,

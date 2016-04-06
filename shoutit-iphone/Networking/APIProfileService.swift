@@ -33,4 +33,14 @@ class APIProfileService {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }
+    
+    static func homeShoutsWithParams(params: FilteredShoutsParams) -> Observable<[Shout]> {
+        let url = APIManager.baseURL + "/profiles/me/home"
+        return APIGenericService.requestWithMethod(.GET,
+                                                   url: url,
+                                                   params: params,
+                                                   encoding: .URL,
+                                                   responseJsonPath: ["results"],
+                                                   headers: ["Accept": "application/json"])
+    }
 }
