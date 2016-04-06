@@ -104,7 +104,7 @@ extension Shout: Encodable {
 extension Shout {
     func priceText() -> String? {
         if let price = self.price {
-            return "\(price)"
+            return NumberFormatters.priceStringWithPrice(price)
         }
         
         return nil

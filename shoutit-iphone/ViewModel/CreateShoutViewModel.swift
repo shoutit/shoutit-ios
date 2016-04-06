@@ -39,7 +39,7 @@ class CreateShoutViewModel: NSObject {
     init(shout: Shout) {
         
         shoutParams = ShoutParams(type: Variable(shout.type()!), title: Variable(shout.title),
-                                text: Variable(shout.text), price: Variable(shout.price),
+                                  text: Variable(shout.text), price: Variable(shout.price != nil ? Double(shout.price!/100) : 0.0),
             currency: Variable(nil), images: Variable(shout.imagePaths),
                                 videos:  Variable([]), category: Variable(shout.category),
                                 location:  Variable(Account.sharedInstance.loggedUser?.location),
