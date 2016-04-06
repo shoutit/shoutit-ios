@@ -63,7 +63,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
-                _ = DiscoverFlowController(navigationController: self.navigationController!, discoverItem: element)
+                flowDelegate?.showDiscoverForDiscoverItem(element)
             }
             return
         }
