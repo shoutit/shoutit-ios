@@ -23,6 +23,8 @@
     UIBarButtonItem *barbutton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.leftBarButtonItem = barbutton;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import MWPhotoBrowser
 
 protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable {
     
@@ -100,6 +101,10 @@ final class ShoutDetailTableViewController: UITableViewController {
         relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
         imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
         
+        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .Loading).driveNext { [weak self] (viewModel) in
+            self?.showMediaPreviewWithSelectedMedia(viewModel)
+        }.addDisposableTo(disposeBag)
+        
         // display data
         hydrateHeader()
     }
@@ -139,6 +144,32 @@ final class ShoutDetailTableViewController: UITableViewController {
         if let pageViewController = segue.destinationViewController as? PhotoBrowserPageViewController {
             photosPageViewController = pageViewController
         }
+    }
+}
+
+extension ShoutDetailTableViewController {
+    private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
+        guard selectedMedia.canShowPreview() else {
+            return
+        }
+        
+        let medias : [MWPhoto] = Array.filterNils(self.imagesDataSource.viewModel.imagesViewModels.map { (model) -> MWPhoto? in
+            return model.mwPhoto()
+        })
+        
+        let photoBrowser = PhotoBrowser(photos: medias)
+
+        let idx : UInt
+        
+        if self.photosPageViewController.pageControl.currentPage > 0 {
+            idx = UInt(self.photosPageViewController.pageControl.currentPage as Int)
+        } else {
+            idx = 0
+        }
+        
+        photoBrowser.setCurrentPhotoIndex(idx)
+        
+        self.navigationController?.showViewController(photoBrowser, sender: nil)
     }
 }
 

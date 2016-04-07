@@ -51,20 +51,9 @@ final class ShoutDetailViewModel {
                 defer { self?.reloadSubject.onNext() }
                 switch event {
                 case .Next(let shout):
-                    print(shout.location)
+                    guard let strongSelf = self else { return }
                     self?.shout = shout
-                    guard let strongSelf = self, let imagePaths = shout.imagePaths else { return }
-                    if imagePaths.count == 0 {
-                        strongSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: strongSelf.noImagesMessage)]
-                    } else {
-                        strongSelf.imagesViewModels = imagePaths.flatMap{path in
-                            if let url = path.toURL() {
-                                return ShoutDetailShoutImageViewModel.Image(url: url)
-                            } else {
-                                return nil
-                            }
-                        }
-                    }
+                    self?.reloadImages()
                 case .Error(let error):
                     if let sSelf = self {
                         sSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
@@ -111,6 +100,31 @@ final class ShoutDetailViewModel {
                 }
             }
             .addDisposableTo(disposeBag)
+    }
+    
+    func reloadImages() {
+        guard shout.imagePaths?.count > 0 || shout.videos?.count > 0 else {
+            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: self.noImagesMessage)]
+            return
+        }
+        
+        var models : [ShoutDetailShoutImageViewModel] = []
+        
+        if let imagePaths = shout.imagePaths {
+            for path in imagePaths {
+                if let url = NSURL(string: path) {
+                    models.append(ShoutDetailShoutImageViewModel.Image(url: url))
+                }
+            }
+        }
+        
+        if let videos = shout.videos {
+            for video in videos {
+                models.append(ShoutDetailShoutImageViewModel.Movie(video: video))
+            }
+        }
+        
+        self.imagesViewModels = models
     }
     
     func makeCall() -> Observable<Mobile> {

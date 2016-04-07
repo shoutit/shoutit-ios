@@ -64,12 +64,6 @@ class SettingsFlowController: FlowController {
             SettingsOption(name: NSLocalizedString("Notification", comment: "Settings cell title")) {[unowned self] in
                 self.showNotificationsSettings()
             },
-            SettingsOption(name: NSLocalizedString("Privacy", comment: "Settings cell title")) {[unowned self] in
-                self.showPrivacyPolicy()
-            },
-            SettingsOption(name: NSLocalizedString("Terms", comment: "Settings cell title")) {[unowned self] in
-                self.showTermsAndConditions()
-            },
             SettingsOption(name: NSLocalizedString("About", comment: "Settings cell title")) {[unowned self] in
                 self.showAboutInterface()
             }

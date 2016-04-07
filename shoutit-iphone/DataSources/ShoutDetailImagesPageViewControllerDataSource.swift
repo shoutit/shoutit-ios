@@ -8,10 +8,14 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
 
 class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     unowned let controller: ShoutDetailTableViewController
+    
+    let showDetailOfMedia = PublishSubject<ShoutDetailShoutImageViewModel>()
+    
     var viewModel: ShoutDetailViewModel {
         return controller.viewModel
     }
@@ -90,6 +94,9 @@ class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControl
         
         let viewController = Wireframe.photoBrowserPhotoViewController()
         viewController.viewModel = viewModel
+        viewController.tapHandler = { (viewModel) in
+            self.showDetailOfMedia.onNext(viewModel)
+        }
         
         return viewController
     }

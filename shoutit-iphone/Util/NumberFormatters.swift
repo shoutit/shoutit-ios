@@ -33,26 +33,7 @@ class NumberFormatters {
         return "\(sign)\(Int(roundedNum))\(units[exp-1])";
     }
     
-    static func priceStringWithPrice(price: Int?, currency: String?) -> String? {
-        
-        guard let price = price, let currency = currency else {
-            return nil
-        }
-        
-        if price == 0 {
-            return NSLocalizedString("FREE", comment: "")
-        }
-        
-        let major = price / 100
-        let minor = price % 100
-        if minor > 0 {
-            let minorString = String(format: "%\(02)d", minor)
-            return "\(major).\(minorString) \(currency)"
-        }
-        return "\(major) \(currency)"
-    }
-    
-    static func priceStringWithPrice(price: Int?) -> String? {
+    static func priceStringWithPrice(price: Int?, currency: String? = nil) -> String? {
         
         guard let price = price else {
             return nil
@@ -62,12 +43,17 @@ class NumberFormatters {
             return NSLocalizedString("FREE", comment: "")
         }
         
-        let major = price / 100
-        let minor = price % 100
-        if minor > 0 {
-            let minorString = String(format: "%\(02)d", minor)
-            return "\(major).\(minorString)"
+        let formatter = NSNumberFormatter()
+        
+        formatter.formatterBehavior = .Behavior10_4
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        
+        if let currency = currency {
+            formatter.currencyCode = currency.lowercaseString
+            formatter.numberStyle = .CurrencyStyle
         }
-        return "\(major)"
+        
+        return formatter.stringFromNumber(Double(price)/100.0)
     }
 }
