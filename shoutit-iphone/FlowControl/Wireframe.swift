@@ -15,7 +15,6 @@ struct Wireframe {
         case Login = "LoginStoryboard"
         case HTML = "HTML"
         case Home = "Home"
-        case Browse = "Browse"
         case Discover = "Discover"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -146,10 +145,6 @@ struct Wireframe {
 
     static func homeViewController() -> HomeViewController {
         return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
-    }
-    
-    static func browseViewController() -> UIViewController {
-        return storyboard(.Browse).instantiateInitialViewController()!
     }
     
     static func ordersViewController() -> UIViewController {
