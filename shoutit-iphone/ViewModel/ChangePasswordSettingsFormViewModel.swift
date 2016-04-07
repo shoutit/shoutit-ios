@@ -39,17 +39,12 @@ class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         var newPassword: String?
         var newPassword2: String?
         
-        for cellViewModel in cellViewModels {
-            switch cellViewModel {
-            case let .TextField(value, type):
-                switch type {
-                case .NewPassword: newPassword = value
-                case .VerifyPassword: newPassword2 = value
-                case .OldPassword: oldPassword = value
-                default: break
-                }
-            default:
-                break
+        for case let .TextField(value, type) in cellViewModels {
+            switch type {
+            case .NewPassword: newPassword = value
+            case .VerifyPassword: newPassword2 = value
+            case .OldPassword: oldPassword = value
+            default: break
             }
         }
         

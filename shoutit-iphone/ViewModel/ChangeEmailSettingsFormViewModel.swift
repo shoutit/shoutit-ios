@@ -11,6 +11,7 @@ import RxSwift
 
 class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     
+    private let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let successSubject: PublishSubject<Void> = PublishSubject()
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
@@ -26,5 +27,32 @@ class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     
     private func changeEmail() {
         
+        guard let username = Account.sharedInstance.loggedUser?.username else {
+            preconditionFailure()
+        }
+        var newEmail: String?
+        for case .TextField(let value, .NewEmail) in cellViewModels {
+            newEmail = value
+        }
+        
+        if case .Invalid(let errors) = Validator.validateEmail(newEmail) {
+            errorSubject.onNext(errors[0])
+            return
+        }
+        
+        let params = EmailParams(email: newEmail)
+        APIProfileService.editEmailForUserWithUsername(username, withEmailParams: params)
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let user):
+                    Account.sharedInstance.loggedUser = user
+                    self?.successSubject.onNext()
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
 }
