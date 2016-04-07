@@ -29,6 +29,7 @@ struct Wireframe {
         case VerifyEmail = "VerifyEmail"
         case VideoCalls = "VideoCalls"
         case Filter = "Filter"
+        case SeeAllShouts = "SeeAllShouts"
     }
     
     // General
@@ -127,6 +128,12 @@ struct Wireframe {
     
     static func photoBrowserPhotoViewController() -> PhotoBrowserPhotoViewController {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
+    }
+    
+    // MARK: - Seel all shous storyboard view controllers
+    
+    static func allShoutsCollectionViewController() -> ShoutsCollectionViewController {
+        return storyboard(.SeeAllShouts).instantiateViewControllerWithIdentifier("ShoutsCollectionViewController") as! ShoutsCollectionViewController
     }
     
     // MARK: - Edit profile storyboard controllers

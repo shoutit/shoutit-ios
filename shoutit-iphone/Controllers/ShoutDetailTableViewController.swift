@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import MWPhotoBrowser
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable, AllShoutsDisplayable {
     
 }
 
@@ -228,11 +228,14 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
         
         let cellViewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
         
-        guard case .Content(let shout) = cellViewModels[indexPath.row] else {
-            return
+        switch cellViewModels[indexPath.row] {
+        case .Content(let shout):
+            flowDelegate?.showShout(shout)
+        case .SeeAll:
+            flowDelegate?.showRelatedShoutsForShout(viewModel.shout)
+        default:
+            break
         }
-        
-        flowDelegate?.showShout(shout)
     }
 }
 

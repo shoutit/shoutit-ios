@@ -260,7 +260,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         let size = CGSize(width: collectionWidth - horizontalMargins, height: CGFloat.max)
         let textSize = (text as NSString).boundingRectWithSize(size , options: [NSStringDrawingOptions.UsesLineFragmentOrigin], attributes: [NSFontAttributeName : UIFont.systemFontOfSize(12)], context: nil).size
         let verticalMargins: CGFloat = 11 + 11
-        let calculatedSize = floor(verticalMargins + textSize.height)
+        let calculatedSize = ceil(verticalMargins + textSize.height)
         return max(calculatedSize, defaultInfoSupplementaryViewSectionHeight)
     }
 }
