@@ -135,7 +135,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 .HiddenButton(position: .BigCenter),
                 .Listen(isListening: tag?.isListening ?? false),
                 .HiddenButton(position: .SmallLeft),
-                .More]
+                .HiddenButton(position: .SmallRight)]
     }
     
     var descriptionText: String? {return nil}

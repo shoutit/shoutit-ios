@@ -47,7 +47,7 @@ pod 'Validator', '~> 1.1'
 #images
 pod 'Kingfisher', '~> 2.2'
 pod 'SDWebImage', '~> 3.7'
-pod 'MWPhotoBrowser', '~> 2.1'
+pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
 pod 'Nemo'
 pod 'MBMapSnapshotter'
 

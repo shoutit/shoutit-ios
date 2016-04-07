@@ -136,7 +136,7 @@ DEPENDENCIES:
   - MBMapSnapshotter
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
-  - MWPhotoBrowser (~> 2.1)
+  - MWPhotoBrowser (from `MWPhotoBrowser/`)
   - MZFormSheetPresentationController (~> 2.2)
   - Nemo
   - Nimble (= 3.0.0)
@@ -162,6 +162,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   GooglePlaces:
     :git: https://github.com/piotrbernad/Swift-Google-Maps-API
+  MWPhotoBrowser:
+    :path: MWPhotoBrowser/
   UIViewAppearanceSwift:
     :commit: 2ba05f14a8c1a7eb16b1525ac325962516d6992a
     :git: https://github.com/levantAJ/UIViewAppearanceSwift.git
@@ -207,7 +209,7 @@ SPEC CHECKSUMS:
   MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
-  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf
