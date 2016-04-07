@@ -216,13 +216,16 @@ extension CreateShoutViewModel {
         cell?.selectButton.setImage(nil, forState: .Normal)
         
         if let category = shoutParams.category.value {
+            
             cell?.selectButton.setTitle(category.name, forState: .Normal)
-            if let imagePath = category.image, imageURL = NSURL(string: imagePath) {
+            if let imagePath = category.icon, imageURL = NSURL(string: imagePath) {
+                cell?.selectButton.hideIcon = false
                 cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
             }
             cell?.selectButton.promptText = NSLocalizedString("Category", comment: "")
         } else {
-            cell?.selectButton.iconImageView.image = UIImage(named: "category")
+            cell?.selectButton.hideIcon = true
+            cell?.selectButton.iconImageView.image = nil
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
             cell?.selectButton.promptText = nil
         }
@@ -311,16 +314,6 @@ extension CreateShoutViewModel {
                 
                 }))
         }
-        
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Category", comment: ""), style: .Default, handler: { [weak self] (alertAction) in
-            
-            self?.setCategory(nil)
-            
-            if let completion = handler {
-                completion(alertAction)
-            }
-            
-        }))
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
