@@ -172,6 +172,9 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         if navigationItem == .Shout {
             showCreateShout()
             return
+        } else if navigationItem == .Help {
+            showHelp()
+            return
         }
         
         self.currentNavigationItem = navigationItem
@@ -209,6 +212,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         }
         
         presentWith(flowControllerToShow)
+    }
+    
+    func showHelp() {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
     }
     
     func showCreateShout() {
@@ -281,7 +291,6 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         case .Chats: flowController         = ChatsFlowController(navigationController: navController)
         case .Profile: flowController       = ProfileFlowController(navigationController: navController)
         case .Settings: flowController      = SettingsFlowController(navigationController: navController)
-        case .Help: flowController          = HelpFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
         case .Location: flowController      = LocationFlowController(navigationController: navController)
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)
