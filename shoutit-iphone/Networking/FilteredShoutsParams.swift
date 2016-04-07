@@ -24,6 +24,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     let minimumPrice: Int?
     let maximumPrice: Int?
     let withinDistance: Int?
+    let entireCountry: Bool
     let sort: SortType?
     let filters: [Filter : [FilterValue]]?
     
@@ -41,6 +42,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          minimumPrice: Int? = nil,
          maximumPrice: Int? = nil,
          withinDistance: Int? = nil,
+         entireCountry: Bool = false,
          sort: SortType? = nil,
          filters: [Filter : [FilterValue]]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
@@ -57,6 +59,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.minimumPrice = minimumPrice
         self.maximumPrice = maximumPrice
         self.withinDistance = withinDistance
+        self.entireCountry = entireCountry
         self.sort = sort
         self.filters = filters
         
@@ -102,6 +105,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         p["min_price"] = minimumPrice
         p["max_price"] = maximumPrice
         p["sort"] = sort?.type
+        p["within"] = withinDistance
         filters?.forEach({ (filter, values) in
             let valuesString = values.map{$0.slug}.joinWithSeparator(",")
             if valuesString.utf16.count > 0 {
@@ -113,9 +117,8 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
             p[key] = value
         }
         
-        if let within = withinDistance {
+        if entireCountry {
             p["country"] = self.country
-            p["within"] = within
         } else {
             for (key, value) in localizedParams {
                 p[key] = value
