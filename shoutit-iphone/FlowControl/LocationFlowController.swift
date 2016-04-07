@@ -24,6 +24,10 @@ class LocationFlowController: FlowController {
         
         self.navigationController = navigationController
         
+        if let navigationController = navigationController as? SHNavigationViewController {
+            navigationController.ignoreTabbarAppearance = true
+        }
+        
         // create initial view controller
         let controller = Wireframe.locationViewController()
         

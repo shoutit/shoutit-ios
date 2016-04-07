@@ -93,6 +93,10 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return false
     }
     
+    var reportable: Reportable? {
+        return nil
+    }
+    
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
         return .Remote(url: user?.imagePath?.toURL())
     }

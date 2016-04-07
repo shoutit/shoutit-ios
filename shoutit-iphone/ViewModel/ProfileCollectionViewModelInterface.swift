@@ -23,6 +23,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var isListeningToYou: Bool? {get}
     var coverURL: NSURL? {get}
     var conversation: Conversation? {get}
+    var reportable: Reportable? {get}
     
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
@@ -32,6 +33,9 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     func reloadContent()
     var reloadSubject: PublishSubject<Void> {get}
     func listen() -> Observable<Void>?
+    
+    // more handling
+    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController?
 }
 
 // MARK: - Default implementations
@@ -74,5 +78,21 @@ extension ProfileCollectionViewModelInterface {
         default:
             return false
         }
+    }
+    
+    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController? {
+        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        if let reportable = self.reportable {
+            alertController.addAction(UIAlertAction(title: reportable.reportTitle(), style: .Default, handler: { (action) in
+                completion(alertController: alertController)
+            }))
+        }
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
     }
 }

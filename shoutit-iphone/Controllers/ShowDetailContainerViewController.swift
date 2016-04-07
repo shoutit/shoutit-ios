@@ -134,34 +134,62 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func reportAction() {
-        let alert = self.viewModel.reportAlert { (alertController) in
-            if let textField = alertController.textFields?.first, text = textField.text {
+        
+        let alert = self.viewModel.shout.reportAlert { (report) in
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
                 
-                let report = Report(text: text, shout: self.viewModel.shout, profile: nil)
-                
-                APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                    
-                    switch event {
-                    case .Next:
-                        self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
-                    case .Error(let error):
-                        self?.showError(error)
-                    default:
-                        break
-                    }
-                    
-                    }).addDisposableTo(self.disposeBag)
-            }
+                }).addDisposableTo(self.disposeBag)
         }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     private func moreAction() {
         let alert = viewModel.moreAlert { (alertController) in
             self.reportAction()
+        }
+        
+        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Shout", comment: ""), style: .Destructive, handler: { (deleteAction) in
+                self.deleteAction()
+            }))
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func deleteAction() {
+        let alert = viewModel.deleteAlert {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIShoutsService.deleteShoutWithId(self.viewModel.shout.id).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout deleted Successfully", comment: ""))
+                    self?.navigationController?.popViewControllerAnimated(true)
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+
+            }).addDisposableTo(self.disposeBag)
+         
+           
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)

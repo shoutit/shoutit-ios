@@ -113,6 +113,16 @@ extension Shout {
     }
 }
 
+extension Shout: Reportable {
+    func attachedObjectJSON() -> JSON {
+        return ["shout" : ["id" : self.id.encode()].encode()].encode()
+    }
+    
+    func reportTitle() -> String {
+        return NSLocalizedString("Report Shout", comment: "")
+    }
+}
+
 func ==(lhs: Shout, rhs: Shout) -> Bool {
     return lhs.id == rhs.id
 }

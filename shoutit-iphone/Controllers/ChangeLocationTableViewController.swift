@@ -110,5 +110,4 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             }
         }.addDisposableTo(disposeBag)
     }
-    
 }

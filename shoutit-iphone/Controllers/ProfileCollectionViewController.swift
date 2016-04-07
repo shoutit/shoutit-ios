@@ -448,42 +448,39 @@ extension ProfileCollectionViewController {
     }
     
     func reportAction() {
-        guard let vm = viewModel as? UserProfileCollectionViewModel else {
+        
+        guard let reportable = viewModel.reportable else {
             return
         }
         
-        let alert = vm.reportAlert { (alertController) in
-            if let textField = alertController.textFields?.first, text = textField.text {
+        let alert = reportable.reportAlert { (report) in
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
                 
-                let report = Report(text: text, shout: nil, profile: vm.profile)
-                
-                APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                    
-                    switch event {
-                    case .Next:
-                        self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: ""))
-                    case .Error(let error):
-                        self?.showError(error)
-                    default:
-                        break
-                    }
-                    
-                    }).addDisposableTo(self.disposeBag)
-            }
+            }).addDisposableTo(self.disposeBag)
         }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func moreAction() {
-        guard let vm = viewModel as? UserProfileCollectionViewModel else {
-            return
+        let alt = viewModel.moreAlert { (alertController) in
+            self.reportAction()
         }
         
-        let alert = vm.moreAlert { (alertController) in
-            self.reportAction()
+        guard let alert = alt else {
+            return
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)

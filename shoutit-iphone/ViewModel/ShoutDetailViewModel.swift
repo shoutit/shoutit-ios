@@ -120,9 +120,11 @@ final class ShoutDetailViewModel {
     func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
-        }))
+        if self.shout.user.id != Account.sharedInstance.user?.id {
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
+                completion(alertController: alertController)
+            }))
+        }
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
             
@@ -131,15 +133,11 @@ final class ShoutDetailViewModel {
         return alertController
     }
     
-    func reportAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: NSLocalizedString("Report Shout", comment: ""), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .Alert)
+    func deleteAlert(completion: () -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this shout?", comment: ""), preferredStyle: .ActionSheet)
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
-            textField.placeholder = NSLocalizedString("Please enter report message", comment: "")
-        }
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Yes, Delete Shout", comment: ""), style: .Destructive, handler: { (action) in
+            completion()
         }))
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
