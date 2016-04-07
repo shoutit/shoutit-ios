@@ -362,7 +362,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         let alert = viewModel.moreActionAlert { [weak self] (action) in
             if action.title == NSLocalizedString("View Profile", comment: "") {
                 if let user = self?.conversation.shout?.user {
-                    self?.flowDelegate?.showPage(user)
+                    self?.flowDelegate?.showProfile(user)
                     return
                 }
                 

@@ -134,28 +134,25 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func reportAction() {
-        let alert = self.viewModel.reportAlert { (alertController) in
-            if let textField = alertController.textFields?.first, text = textField.text {
+        
+        let alert = self.viewModel.shout.reportAlert { (report) in
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
                 
-                let report = Report(text: text, shout: self.viewModel.shout, profile: nil)
-                
-                APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
-                    
-                    switch event {
-                    case .Next:
-                        self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
-                    case .Error(let error):
-                        self?.showError(error)
-                    default:
-                        break
-                    }
-                    
-                    }).addDisposableTo(self.disposeBag)
-            }
+                }).addDisposableTo(self.disposeBag)
         }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     

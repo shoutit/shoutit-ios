@@ -86,3 +86,13 @@ extension Profile: Encodable {
             ])
     }
 }
+
+extension Profile: Reportable {
+    func attachedObjectJSON() -> JSON {
+        return ["profile" : ["id" : self.id.encode()].encode()].encode()
+    }
+    
+    func reportTitle() -> String {
+        return NSLocalizedString("Report Profile", comment: "")
+    }
+}

@@ -78,6 +78,10 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
+    var reportable: Reportable? {
+        return profile
+    }
+    
     var conversation: Conversation? {
         return detailedUser?.conversation
     }
@@ -153,38 +157,6 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     // MARK: - Helpers
-    
-    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Profile", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
-        }))
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            
-        }))
-        
-        return alertController
-    }
-    
-    func reportAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: NSLocalizedString("Report Profile", comment: ""), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .Alert)
-        
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
-            textField.placeholder = NSLocalizedString("Please enter report message", comment: "")
-        }
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
-        }))
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            
-        }))
-        
-        return alertController
-    }
     
     private func reloadPages(currentlyLoading loading: Bool = false) {
         let pages = detailedUser?.pages ?? []

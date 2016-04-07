@@ -13,18 +13,7 @@ import Ogra
 
 struct Report {
     let text: String
-    let shout: Shout?
-    let profile: Profile?
-}
-
-extension Report: Decodable {
-    
-    static func decode(j: JSON) -> Decoded<Report> {
-        return curry(Report.init)
-            <^> j <| "text"
-            <*> j <|? "shout"
-            <*> j <|? "profile"
-    }
+    let object: Reportable
 }
 
 extension Report: Encodable {
@@ -34,16 +23,9 @@ extension Report: Encodable {
         
         json["text"] = self.text.encode()
         
-        if let profile = profile {
-            let profileId = ["id": profile.id.encode()]
-            json["attached_object"] = ["profile": profileId.encode()].encode()
-        }
-        
-        if let shout = shout {
-            let shoutId = ["id": shout.id.encode()]
-            json["attached_object"] = ["shout": shoutId.encode()].encode()
-        }
+        json["attached_object"] = self.object.attachedObjectJSON()
         
         return JSON.Object(json)
     }
 }
+
