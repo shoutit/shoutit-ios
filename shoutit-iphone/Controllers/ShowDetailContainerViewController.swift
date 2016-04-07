@@ -202,7 +202,7 @@ class ShowDetailContainerViewController: UIViewController {
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 switch event {
                 case .Next(let mobile):
-                    guard let url = NSURL(string: "tel://\(mobile.phone)") else {
+                    guard let url = NSURL(string: "telprompt://\(mobile.phone)") else {
                         assertionFailure()
                         return
                     }
