@@ -57,7 +57,8 @@ class APIAuthService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
     }
     
-//    static func changePasswordWithParams(params: ChangePasswordParams) -> Observable<Void> {
-//        
-//    }
+    static func changePasswordWithParams(params: ChangePasswordParams) -> Observable<Void> {
+        let url = APIManager.baseURL + "/auth/change_password"
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+    }
 }

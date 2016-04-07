@@ -10,10 +10,14 @@ import UIKit
 import RxSwift
 import Material
 import Validator
+import MBProgressHUD
 
 class SettingsFormViewController: UITableViewController {
     
     var viewModel: SettingsFormViewModel!
+    
+    // RX
+    private let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -21,6 +25,39 @@ class SettingsFormViewController: UITableViewController {
         super.viewDidLoad()
         precondition(viewModel != nil)
         title = viewModel.title
+        setupRX()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupRX() {
+        
+        viewModel
+            .progressSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (show) in
+                guard let `self` = self else { return }
+                if show {
+                    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                } else {
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .errorSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self](error) in
+                self?.showError(error)
+            }.addDisposableTo(disposeBag)
+        
+        viewModel
+            .successSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] in
+                self?.pop()
+            }.addDisposableTo(disposeBag)
     }
 }
 
@@ -48,20 +85,20 @@ extension SettingsFormViewController {
                     action()
                 }
                 .addDisposableTo(buttonCell.reuseDisposeBag)
-        case .TextField(let value, let placeholder, let secureTextEntry, let validator):
+        case .TextField(let value, let type):
             let textFieldCell = cell as! SettingsFormTextFieldTableViewCell
             textFieldCell.textField.text = value
-            textFieldCell.textField.placeholder = placeholder
-            textFieldCell.textField.secureTextEntry = secureTextEntry
+            textFieldCell.textField.placeholder = type.placeholder
+            textFieldCell.textField.secureTextEntry = type.secureTextEntry
             textFieldCell.textField
                 .rx_text
                 .asDriver()
                 .driveNext{[unowned self](text) in
-                    self.viewModel.cellViewModels[indexPath.row] = .TextField(value: text, placeholder: placeholder, secureTextEntry: secureTextEntry, validator: validator)
+                    self.viewModel.cellViewModels[indexPath.row] = .TextField(value: text, type: type)
                 }
                 .addDisposableTo(textFieldCell.reuseDisposeBag)
             
-            setupTextField(textFieldCell.textField, validator: validator, disposeBag: textFieldCell.reuseDisposeBag)
+            setupTextField(textFieldCell.textField, validator: type.validator, disposeBag: textFieldCell.reuseDisposeBag)
         }
         return cell
     }

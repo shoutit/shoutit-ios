@@ -10,6 +10,38 @@ import Foundation
 import Validator
 
 enum SettingsFormCellViewModel {
-    case TextField(value: String?, placeholder: String, secureTextEntry: Bool, validator: (String -> ValidationResult)?)
+    
+    enum TextFieldType {
+        case NewPassword
+        case VerifyPassword
+        case OldPassword
+        case NewEmail
+        
+        var placeholder: String {
+            switch self {
+            case .NewEmail: return NSLocalizedString("New email", comment: "")
+            case .NewPassword: return NSLocalizedString("New Password", comment: "")
+            case .VerifyPassword: return NSLocalizedString("Verify New Password", comment: "")
+            case .OldPassword: return NSLocalizedString("Current Password", comment: "")
+            }
+        }
+        
+        var secureTextEntry: Bool {
+            switch self {
+            case .NewPassword, .VerifyPassword, .OldPassword: return true
+            default: return false
+            }
+        }
+        
+        var validator: (String -> ValidationResult)? {
+            switch self {
+            case .NewPassword: return Validator.validatePassword
+            case .NewEmail: return Validator.validateEmail
+            default: return nil
+            }
+        }
+    }
+    
+    case TextField(value: String?, type: TextFieldType)
     case Button(title: String, action: (Void -> Void))
 }

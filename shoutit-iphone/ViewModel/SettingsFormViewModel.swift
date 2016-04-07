@@ -12,6 +12,7 @@ import RxSwift
 protocol SettingsFormViewModel {
     
     var progressSubject: PublishSubject<Bool> {get}
+    var successSubject: PublishSubject<Void> {get}
     var errorSubject: PublishSubject<ErrorType> {get}
     
     var title: String {get}
