@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
 class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
+    
+    let progressSubject: PublishSubject<Bool> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
     let title = NSLocalizedString("Change email", comment: "")
     var cellViewModels: [SettingsFormCellViewModel] = []

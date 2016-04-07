@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
 class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
+    
+    let progressSubject: PublishSubject<Bool> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
     let title = NSLocalizedString("Change password", comment: "")
     var cellViewModels: [SettingsFormCellViewModel] = []

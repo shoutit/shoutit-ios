@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SettingsFormViewModel {
+    
+    var progressSubject: PublishSubject<Bool> {get}
+    var errorSubject: PublishSubject<ErrorType> {get}
+    
     var title: String {get}
     var cellViewModels: [SettingsFormCellViewModel] {get set}
 }
