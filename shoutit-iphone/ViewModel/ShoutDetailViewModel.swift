@@ -120,8 +120,24 @@ final class ShoutDetailViewModel {
     func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
+        if self.shout.user.id != Account.sharedInstance.user?.id {
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
+                completion(alertController: alertController)
+            }))
+        }
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
+    }
+    
+    func deleteAlert(completion: () -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this shout?", comment: ""), preferredStyle: .ActionSheet)
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Yes, Delete Shout", comment: ""), style: .Destructive, handler: { (action) in
+            completion()
         }))
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in

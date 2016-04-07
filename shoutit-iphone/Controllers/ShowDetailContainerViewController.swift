@@ -161,6 +161,37 @@ class ShowDetailContainerViewController: UIViewController {
             self.reportAction()
         }
         
+        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Shout", comment: ""), style: .Destructive, handler: { (deleteAction) in
+                self.deleteAction()
+            }))
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func deleteAction() {
+        let alert = viewModel.deleteAlert {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIShoutsService.deleteShoutWithId(self.viewModel.shout.id).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout deleted Successfully", comment: ""))
+                    self?.navigationController?.popViewControllerAnimated(true)
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+
+            }).addDisposableTo(self.disposeBag)
+         
+           
+        }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
