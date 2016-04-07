@@ -49,8 +49,6 @@ class EditProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 70
-        
         // setup photos
         headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
@@ -151,18 +149,6 @@ extension EditProfileTableViewController {
                     textView?.detailLabel?.text = "\(text.utf16.count)/50"
                 }
                 .addDisposableTo(cell.disposeBag)
-            
-            cell.textView.contentSizeDidChange = {[weak tableView, weak cell] (size) in
-                guard let cell = cell else { return }
-                guard let tableView = tableView else { return }
-                guard let heightConstraint = cell.heightConstraint else { return }
-                guard heightConstraint.constant != size.height else { return }
-                tableView.beginUpdates()
-                heightConstraint.constant = max(75, size.height)
-                tableView.endUpdates()
-                cell.textView.setNeedsLayout()
-                cell.textView.layoutIfNeeded()
-            }
         case .Location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
             cell.selectButton.smallTitleLabel.text = placeholder
@@ -191,6 +177,19 @@ extension EditProfileTableViewController {
         
         
         return cell
+    }
+}
+
+extension EditProfileTableViewController {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let cellViewModel = viewModel.cells[indexPath.row]
+        switch cellViewModel {
+        case .BasicText: return 70
+        case .RichText: return 130
+        case .Location: return 70
+        }
     }
 }
 
