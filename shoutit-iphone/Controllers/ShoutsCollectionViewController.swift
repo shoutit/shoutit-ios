@@ -162,6 +162,7 @@ extension ShoutsCollectionViewController {
         let sectionType = SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! ShoutsSectionHeader
         view.titleLabel.text = viewModel.sectionTitle()
+        view.subtitleLabel.text = viewModel.resultsCountString()
         view.filterButton
             .rx_tap
             .asDriver()
