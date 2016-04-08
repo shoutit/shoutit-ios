@@ -113,6 +113,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="tabBarButtonsBar" destination="3MQ-S9-rTI" id="k9u-5b-j8B"/>
                         <outletCollection property="tabBatButtons" destination="dlw-u9-I8B" collectionClass="NSMutableArray" id="sYS-fQ-pN8"/>
                         <outletCollection property="tabBatButtons" destination="p0q-c1-KFK" collectionClass="NSMutableArray" id="6Qo-gc-rYw"/>
                         <outletCollection property="tabBatButtons" destination="kqz-M3-3o4" collectionClass="NSMutableArray" id="mUN-HS-FRR"/>
@@ -163,7 +164,7 @@
                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibG-bb-S7x">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibG-bb-S7x">
                                             <rect key="frame" x="55" y="31" width="31" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -208,7 +209,7 @@
                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2c-Q6-8hK">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2c-Q6-8hK">
                                             <rect key="frame" x="539" y="405" width="31" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
@@ -473,7 +474,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJp-qU-nfC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJp-qU-nfC">
                                             <rect key="frame" x="272" y="22" width="56" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -482,6 +483,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="TJp-qU-nfC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V35-bO-mG3" secondAttribute="leading" constant="16" id="2Nr-C6-iZx"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TJp-qU-nfC" secondAttribute="trailing" constant="16" id="GWA-V8-p2m"/>
                                         <constraint firstItem="TJp-qU-nfC" firstAttribute="top" secondItem="V35-bO-mG3" secondAttribute="top" constant="22" id="Jfk-vO-4qi"/>
                                         <constraint firstItem="TJp-qU-nfC" firstAttribute="centerX" secondItem="V35-bO-mG3" secondAttribute="centerX" id="xrZ-yp-JGo"/>
                                     </constraints>

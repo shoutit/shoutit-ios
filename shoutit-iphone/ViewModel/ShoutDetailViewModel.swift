@@ -20,7 +20,8 @@ final class ShoutDetailViewModel {
     
     private(set) var shout: Shout {
         didSet {
-            cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
+            cellModels = cellViewModelsWithShout(shout)
+            reloadSubject.onNext()
         }
     }
     
@@ -29,16 +30,21 @@ final class ShoutDetailViewModel {
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models
-    private(set) var cellModels: [ShoutDetailTableViewCellViewModel]
+    private(set) var cellModels: [ShoutDetailTableViewCellViewModel] = []
     private(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
-    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
+    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading] {
+        didSet {
+            cellModels = cellViewModelsWithShout(shout)
+            reloadSubject.onNext()
+        }
+    }
     private(set) var imagesViewModels: [ShoutDetailShoutImageViewModel] = [ShoutDetailShoutImageViewModel.Loading]
     
     init(shout: Shout) {
         self.shout = shout
-        self.cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
         self.reloadSubject = PublishSubject()
         self.reloadObservable = reloadSubject.share()
+        self.cellModels = cellViewModelsWithShout(shout)
     }
     
     // MARK: - Actions
@@ -190,8 +196,11 @@ final class ShoutDetailViewModel {
         
         return buttons
     }
-    
-    // MARK: - Helpers
+}
+
+// MARK: - Helpers
+
+private extension ShoutDetailViewModel {
     
     private func prepareCellViewModelsForLoading() {
         
@@ -241,6 +250,17 @@ final class ShoutDetailViewModel {
         return viewModels
     }
     
+    private func hasRelatedShouts() -> Bool {
+        guard let first = relatedShoutsCellModels.first else { return false }
+        guard case .Content = first else { return false }
+        return true
+    }
+}
+
+// MARK: - Observables
+
+private extension ShoutDetailViewModel {
+    
     private func fetchShoutDetails() -> Observable<Shout> {
         return APIShoutsService.retrieveShoutWithId(self.shout.id)
     }
@@ -258,9 +278,9 @@ final class ShoutDetailViewModel {
 
 // MARK: - Setup
 
-extension ShoutDetailViewModel {
+private extension ShoutDetailViewModel {
     
-    static func cellViewModelsWithShout(shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
+    func cellViewModelsWithShout(shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
         
         var models: [ShoutDetailTableViewCellViewModel] = []
         
@@ -281,17 +301,18 @@ extension ShoutDetailViewModel {
         
         // other
         let firstname = shout.user.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
-        //models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
         models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(firstname)", comment: "Shout detail")))
         models.append(.OtherShouts)
         models.append(.Button(title: NSLocalizedString("Visit \(firstname)'s profile", comment: "Shout Detail"), type: .VisitProfile))
-        models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
-        models.append(.RelatedShouts)
+        if (hasRelatedShouts()) {
+            models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
+            models.append(.RelatedShouts)
+        }
         
         return models
     }
     
-    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
+    func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
         
         var details: [(String, String, String?, Filter?, Category?)] = []
         

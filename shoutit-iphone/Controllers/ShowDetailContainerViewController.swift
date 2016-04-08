@@ -72,6 +72,7 @@ class ShowDetailContainerViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // UI
+    @IBOutlet weak var tabBarButtonsBar: UIView!
     @IBOutlet var tabBatButtons: [TabbarButton]! // tagged from 0 to 3
     @IBOutlet var tabBarButtonsWidthConstraints: [NSLayoutConstraint]!
     
@@ -250,7 +251,7 @@ class ShowDetailContainerViewController: UIViewController {
         }
         
         if reload {
-            view.layoutIfNeeded()
+            tabBarButtonsBar.layoutIfNeeded()
         }
     }
     

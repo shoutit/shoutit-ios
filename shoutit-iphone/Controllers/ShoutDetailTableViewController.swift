@@ -94,6 +94,8 @@ final class ShoutDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        precondition(viewModel != nil)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
         // setup data sources
         dataSource = ShoutDetailTableViewDataSource(controller: self)
