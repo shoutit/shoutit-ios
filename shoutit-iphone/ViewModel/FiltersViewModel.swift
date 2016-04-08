@@ -29,6 +29,39 @@ struct FiltersState {
     let location: (Address?, FieldState)
     let withinDistance: (Int?, FieldState)
     let filters: [Filter : [FilterValue]]?
+    
+    init(shoutType: (ShoutType?, FieldState) = (nil, .Enabled),
+         sortType: (SortType?, FieldState) = (nil, .Enabled),
+         category: (Category?, FieldState) = (nil, .Enabled),
+         minimumPrice: (Int?, FieldState) = (nil, .Enabled),
+         maximumPrice: (Int?, FieldState) = (nil, .Enabled),
+         location: (Address?, FieldState) = (nil, .Enabled),
+         withinDistance: (Int?, FieldState) = (nil, .Enabled),
+         filters: [Filter : [FilterValue]]? = nil)
+    {
+        self.shoutType = shoutType
+        self.sortType = sortType
+        self.category = category
+        self.minimumPrice = minimumPrice
+        self.maximumPrice = maximumPrice
+        self.location = location
+        self.withinDistance = withinDistance
+        self.filters = filters
+    }
+    
+    func composeParams() -> FilteredShoutsParams {
+        return FilteredShoutsParams(country: location.0?.country,
+                                    state: location.0?.state,
+                                    city: location.0?.city,
+                                    shoutType: shoutType.0,
+                                    category: category.0?.slug,
+                                    minimumPrice: minimumPrice.0 == nil ? nil : minimumPrice.0! * 100,
+                                    maximumPrice: maximumPrice.0 == nil ? nil : maximumPrice.0! * 100,
+                                    withinDistance: withinDistance.0,
+                                    entireCountry: withinDistance.0 == nil,
+                                    sort: sortType.0,
+                                    filters: filters)
+    }
 }
 
 final class FiltersViewModel {
@@ -36,11 +69,8 @@ final class FiltersViewModel {
     // RX
     let disposeBag = DisposeBag()
     
-    var cellViewModels: [FiltersCellViewModel] = [] {
-        didSet {
-            
-        }
-    }
+    var cellViewModels: [FiltersCellViewModel] = []
+    let filtersState: FiltersState
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let categories: Variable<FilterOptionDownloadState<Category>> = Variable(.Loading)
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
@@ -71,7 +101,8 @@ final class FiltersViewModel {
         return [.All, .Specific(shoutType: .Offer), .Specific(shoutType: .Request)]
     }()
     
-    init() {
+    init(filtersState: FiltersState) {
+        self.filtersState = filtersState
         cellViewModels = basicCellViewModels()
         fetchCategories()
         fetchSortTypes()
@@ -93,17 +124,15 @@ final class FiltersViewModel {
     
     // MARK: - Public helpers
     
-    func composeParamsWithChosenFilters() -> FilteredShoutsParams {
-        
+    func composeFiltersState() -> FiltersState {
         var shoutType: ShoutType?
         var sort: SortType?
-        var categorySlug: String?
+        var category: Category?
         var minimumPrice: Int?
         var maximumPrice: Int?
         var location: Address?
         var distance: Int?
         var filters: [Filter : [FilterValue]] = [:]
-        var entireCountry: Bool = false
         
         for cellViewModel in cellViewModels {
             switch cellViewModel {
@@ -114,10 +143,10 @@ final class FiltersViewModel {
             case .SortTypeChoice(let sortType):
                 sort = sortType
             case .CategoryChoice(let category):
-                categorySlug = category?.slug
+                category = category
             case .PriceRestriction(let from, let to):
-                minimumPrice = from != nil ? from! * 100 : nil
-                maximumPrice = to != nil ? to! * 100 : nil
+                minimumPrice = from
+                maximumPrice = to
             case .LocationChoice(let address):
                 location = address
             case .DistanceRestriction(let distanceOption):
@@ -125,14 +154,21 @@ final class FiltersViewModel {
                 case .Distance(let kilometers):
                     distance = kilometers
                 case .EntireCountry:
-                    entireCountry = true
+                    distance = nil
                 }
             case .FilterValueChoice(let filter, let selectedValues):
                 filters[filter] = selectedValues
             }
         }
         
-        return FilteredShoutsParams(country: location?.country, state: location?.state, city: location?.city, shoutType: shoutType, category: categorySlug, minimumPrice: minimumPrice, maximumPrice: maximumPrice, withinDistance: distance, entireCountry: entireCountry, sort: sort, filters: filters)
+        return FiltersState(shoutType: (shoutType, filtersState.shoutType.1),
+                            sortType: (sortType, filtersState.sortType.1),
+                            category: (category, filtersState.category.1),
+                            minimumPrice: (minimumPrice, filtersState.minimumPrice.1),
+                            maximumPrice: (maximumPrice, filtersState.maximumPrice.1),
+                            location: (location, filtersState.location.1),
+                            withinDistance: (distance, filtersState.withinDistance.1),
+                            filters: filters)
     }
     
     func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {
@@ -192,8 +228,20 @@ private extension FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    private func basicCellViewModelsWithParams(params: FilteredShoutsParams) -> [FiltersCellViewModel] {
-        let shoutTypeCellViewModel = FiltersCellViewModel.ShoutTypeChoice(shoutType: .All)
+    private func basicCellViewModels() -> [FiltersCellViewModel] {
+        let shoutTypeCellViewModel: FiltersCellViewModel
+        let sortTypeCellViewModel: FiltersCellViewModel
+        let categoryCellViewModel: FiltersCellViewModel
+        let priceConstraintCellViewModel: FiltersCellViewModel
+        let locationViewModel: FiltersCellViewModel
+        let distanceConstraintViewModel: FiltersCellViewModel
+        
+        if case (shoutType?, _) = filtersState.shoutType {
+            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: .Specific(shoutType: shoutType))
+        } else {
+            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: .All)
+        }
+        
         let sortTypeCellViewModel: FiltersCellViewModel
         if case .Loaded(let sortTypes) = sortTypes.value {
             sortTypeCellViewModel = FiltersCellViewModel.SortTypeChoice(sortType: sortTypes.first)
@@ -204,6 +252,7 @@ private extension FiltersViewModel {
         let priceConstraintCellViewModel = FiltersCellViewModel.PriceRestriction(from: nil, to: nil)
         let locationViewModel = FiltersCellViewModel.LocationChoice(location: Account.sharedInstance.user?.location)
         let distanceConstraintViewModel = FiltersCellViewModel.DistanceRestriction(distanceOption: .EntireCountry)
+        
         return [shoutTypeCellViewModel,
                 sortTypeCellViewModel,
                 categoryCellViewModel,
