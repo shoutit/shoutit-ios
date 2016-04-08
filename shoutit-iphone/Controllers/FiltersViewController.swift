@@ -172,10 +172,11 @@ extension FiltersViewController: UITableViewDataSource {
                 .subscribeNext{[unowned self] () in
                     guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
                     let categoryNames = categories.map{$0.name}
-                    self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: categoryNames) { (index) in
-                        let category = categories[index]
+                    let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
+                    self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) { (index) in
+                        let category: Category? = index == 0 ? nil : categories[index - 1]
                         self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category)
-                        self.viewModel.extendViewModelsWithFilters(category.filters ?? [])
+                        self.viewModel.extendViewModelsWithFilters(category?.filters ?? [])
                         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }
                 }
