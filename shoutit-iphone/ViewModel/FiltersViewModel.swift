@@ -15,6 +15,22 @@ enum FilterOptionDownloadState<T> {
     case CantLoadContent
 }
 
+struct FiltersState {
+    
+    enum FieldState {
+        case Enabled
+        case Disabled
+    }
+    let shoutType: (ShoutType?, FieldState)
+    let sortType: (SortType?, FieldState)
+    let category: (Category?, FieldState)
+    let minimumPrice: (Int?, FieldState)
+    let maximumPrice: (Int?, FieldState)
+    let location: (Address?, FieldState)
+    let withinDistance: (Int?, FieldState)
+    let filters: [Filter : [FilterValue]]?
+}
+
 final class FiltersViewModel {
     
     // RX
@@ -176,7 +192,7 @@ private extension FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    private func basicCellViewModels() -> [FiltersCellViewModel] {
+    private func basicCellViewModelsWithParams(params: FilteredShoutsParams) -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel = FiltersCellViewModel.ShoutTypeChoice(shoutType: .All)
         let sortTypeCellViewModel: FiltersCellViewModel
         if case .Loaded(let sortTypes) = sortTypes.value {
