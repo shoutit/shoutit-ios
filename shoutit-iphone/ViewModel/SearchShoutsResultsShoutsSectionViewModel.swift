@@ -50,8 +50,9 @@ extension SearchShoutsResultsViewModel {
                 return NSLocalizedString("Results for '\(searchPhrase)'", comment: "Search results for search phrase section header")
             } else if case .CategoryShouts(let category) = parent.context {
                 return NSLocalizedString("Results for \(category.name)", comment: "Search results for category section header")
+            } else if let city = parent.filterParams?.city ?? Account.sharedInstance.user?.location.city {
+                return NSLocalizedString("Shouts in \(city)", comment: "Browse section header")
             } else {
-                assertionFailure()
                 return NSLocalizedString("Results", comment: "Search results section header")
             }
         }

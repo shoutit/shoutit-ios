@@ -9,12 +9,29 @@
 import Foundation
 
 protocol AllShoutsDisplayable {
-    func showShoutsForUsername(username: String) -> Void
+    func showShoutsForProfile(profile: Profile) -> Void
+    func showRelatedShoutsForShout(shout: Shout) -> Void
+    func showShoutsForTag(tag: Tag) -> Void
 }
 
-extension AllShoutsDisplayable where Self: FlowController {
+extension AllShoutsDisplayable where Self: FlowController, Self: ShoutsCollectionViewControllerFlowDelegate {
     
-    func showShoutsForUsername(username: String) {
-        navigationController.notImplemented()
+    func showShoutsForProfile(profile: Profile) {
+        showShoutsWithViewModel(ShoutsCollectionViewModel(context: .ProfileShouts(user: profile)))
+    }
+    
+    func showRelatedShoutsForShout(shout: Shout) {
+        showShoutsWithViewModel(ShoutsCollectionViewModel(context: .RelatedShouts(shout: shout)))
+    }
+    
+    func showShoutsForTag(tag: Tag) -> Void {
+        showShoutsWithViewModel(ShoutsCollectionViewModel(context: .TagShouts(tag: tag)))
+    }
+    
+    private func showShoutsWithViewModel(viewModel: ShoutsCollectionViewModel) {
+        let controller = Wireframe.allShoutsCollectionViewController()
+        controller.viewModel = viewModel
+        controller.flowDelegate = self
+        navigationController.showViewController(controller, sender: nil)
     }
 }

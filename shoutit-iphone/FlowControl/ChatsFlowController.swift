@@ -43,3 +43,4 @@ extension ChatsFlowController: NotificationsTableViewControllerFlowDelegate {}
 extension ChatsFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension ChatsFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension ChatsFlowController: CallingOutViewControllerFlowDelegate {}
+extension ChatsFlowController: ShoutsCollectionViewControllerFlowDelegate {}

@@ -252,7 +252,7 @@ final class ShoutDetailViewModel {
     
     private func fetchRelatedShouts() -> Observable<[Shout]> {
         let params = RelatedShoutsParams(shout: shout, page: 1, pageSize: 6, type: nil)
-        return APIShoutsService.relatedShoutsWithParams(params)
+        return APIShoutsService.relatedShoutsWithParams(params).map{$0.results}
     }
 }
 

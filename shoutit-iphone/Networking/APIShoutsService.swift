@@ -44,12 +44,11 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
+    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<PagedResults<Shout>> {
         let url = shoutsURL + "/\(params.shout.id)/related"
         return APIGenericService.requestWithMethod(.GET, url: url,
                                                    params: params,
                                                    encoding: .URL,
-                                                   responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
     }
 

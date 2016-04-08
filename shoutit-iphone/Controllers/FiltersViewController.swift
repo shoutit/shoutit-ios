@@ -55,7 +55,8 @@ final class FiltersViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.completionBlock?(self.viewModel.composeParamsWithChosenFilters())
+                let params = self.viewModel.composeParamsWithChosenFilters()
+                self.completionBlock?(params)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
@@ -181,13 +182,14 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(categoryCell.reuseDisposeBag)
         case .PriceRestriction(let from, let to):
             let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
-            priceCell.minimumValueTextField.text = from != nil ? String(from) : nil
-            priceCell.maximumValueTextField.text = to != nil ? String(to) : nil
+            priceCell.minimumValueTextField.text = from != nil ? String(from!) : nil
+            priceCell.maximumValueTextField.text = to != nil ? String(to!) : nil
             priceCell.minimumValueTextField
                 .rx_text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[unowned self] (value) in
+                    guard case .PriceRestriction(_, let to) = self.viewModel.cellViewModels[indexPath.row] else { return }
                     self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: Int(value), to: to)
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
@@ -196,6 +198,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[unowned self] (value) in
+                    guard case .PriceRestriction(let from, _) = self.viewModel.cellViewModels[indexPath.row] else { return }
                     self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: from, to: Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)

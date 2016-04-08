@@ -343,8 +343,14 @@ extension ProfileCollectionViewController {
             seeAllShoutsFooter.button
                 .rx_tap
                 .subscribeNext{[unowned self] in
-                    guard let username = self.viewModel.username else {return}
-                    self.flowDelegate?.showShoutsForUsername(username)
+                    guard let model = self.viewModel.model else { return }
+                    switch model {
+                    case .ProfileModel(let profile):
+                        self.flowDelegate?.showShoutsForProfile(profile)
+                    case .TagModel(let tag):
+                        self.flowDelegate?.showShoutsForTag(tag)
+                        
+                    }
                 }
                 .addDisposableTo(seeAllShoutsFooter.reuseDisposeBag!)
         }

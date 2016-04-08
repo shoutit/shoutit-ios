@@ -15,7 +15,6 @@ struct Wireframe {
         case Login = "LoginStoryboard"
         case HTML = "HTML"
         case Home = "Home"
-        case Browse = "Browse"
         case Discover = "Discover"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -30,6 +29,7 @@ struct Wireframe {
         case VerifyEmail = "VerifyEmail"
         case VideoCalls = "VideoCalls"
         case Filter = "Filter"
+        case SeeAllShouts = "SeeAllShouts"
     }
     
     // General
@@ -130,6 +130,12 @@ struct Wireframe {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
     }
     
+    // MARK: - Seel all shous storyboard view controllers
+    
+    static func allShoutsCollectionViewController() -> ShoutsCollectionViewController {
+        return storyboard(.SeeAllShouts).instantiateViewControllerWithIdentifier("ShoutsCollectionViewController") as! ShoutsCollectionViewController
+    }
+    
     // MARK: - Edit profile storyboard controllers
     
     static func editProfileTableViewController() -> EditProfileTableViewController {
@@ -146,10 +152,6 @@ struct Wireframe {
 
     static func homeViewController() -> HomeViewController {
         return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
-    }
-    
-    static func browseViewController() -> UIViewController {
-        return storyboard(.Browse).instantiateInitialViewController()!
     }
     
     static func ordersViewController() -> UIViewController {
@@ -170,6 +172,10 @@ struct Wireframe {
     
     static func settingsViewController() -> SettingsTableViewController {
         return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsTableViewController") as! SettingsTableViewController
+    }
+    
+    static func settingsFromViewController() -> SettingsFormViewController {
+        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsFormViewController") as! SettingsFormViewController
     }
     
     static func inviteFriendsViewController() -> UIViewController {
