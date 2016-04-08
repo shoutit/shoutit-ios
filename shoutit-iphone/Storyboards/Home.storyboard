@@ -104,21 +104,10 @@
                                 <action selector="toggleMenu" destination="Upf-uN-bxG" id="WoN-fF-5Qj"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Z7m-3s-GrW">
-                            <view key="customView" contentMode="scaleToFill" id="wJN-eu-PdR">
-                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxF-O8-Jze">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" title="search" image="search"/>
-                                        <connections>
-                                            <action selector="searchAction:" destination="Upf-uN-bxG" eventType="touchUpInside" id="xJT-Jk-Cw2"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="ZDq-vP-03J">
+                            <connections>
+                                <action selector="searchAction:" destination="Upf-uN-bxG" id="62X-Cu-JdJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -643,19 +632,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="3F3-LI-ZIv">
-                            <view key="customView" contentMode="scaleToFill" id="wRW-4y-Pcn">
-                                <rect key="frame" x="500" y="5" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byu-Ae-B0l" userLabel="search">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" image="search"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="tKU-9R-xDD"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>

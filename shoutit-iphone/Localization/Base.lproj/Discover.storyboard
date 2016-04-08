@@ -152,21 +152,10 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <action selector="toggleMenu" destination="g7K-MK-j0D" id="3Q1-X3-Rr7"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="lp1-L0-GsO">
-                            <view key="customView" contentMode="scaleToFill" id="UWy-he-5Tm">
-                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-Ez-fiq">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" title="search" image="search"/>
-                                        <connections>
-                                            <action selector="searchAction:" destination="g7K-MK-j0D" eventType="touchUpInside" id="VYE-Qb-3pe"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="SKE-tE-C0E">
+                            <connections>
+                                <action selector="searchAction:" destination="g7K-MK-j0D" id="mtT-cT-w2h"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -487,23 +476,10 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <action selector="toggleMenu" destination="PMN-NQ-FPZ" id="Sdz-fB-2rU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Vou-6A-J5C">
-                            <view key="customView" contentMode="scaleToFill" id="qtQ-uj-C6T">
-                                <rect key="frame" x="20" y="5.5" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thU-NZ-d6K">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" title="search" image="search"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="ppC-UO-BvO"/>
                     </navigationItem>
                     <connections>
                         <outlet property="changeLayoutButton" destination="Ar5-rc-pe0" id="PH6-AD-cBw"/>
-                        <outlet property="searchButton" destination="thU-NZ-d6K" id="hbq-Op-SF4"/>
                         <outlet property="titleLabel" destination="x6d-mC-5Uf" id="rGN-nr-Eiu"/>
                     </connections>
                 </viewController>
