@@ -35,6 +35,7 @@ class SettingsFlowController: FlowController {
         let controller = Wireframe.settingsViewController()
         controller.models = self.accountSettingsOptions()
         controller.title = NSLocalizedString("Account", comment: "")
+        controller.ignoreMenuButton = true
         navigationController.showViewController(controller, sender: nil)
     }
     
