@@ -45,9 +45,10 @@ class NumberFormatters {
         
         let formatter = NSNumberFormatter()
         
-        formatter.formatterBehavior = .Behavior10_4
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
+        formatter.currencyGroupingSeparator = " "
+        formatter.locale = NSLocale.systemLocale()
         
         if let currency = currency {
             formatter.currencyCode = currency.lowercaseString
