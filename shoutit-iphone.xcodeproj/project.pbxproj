@@ -316,7 +316,6 @@
 		B249D5671CA333FF004F57A6 /* AutocompletionTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */; };
 		B249D5691CA3F8EE004F57A6 /* AutocompletionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */; };
 		B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */; };
-		B250E1C61C5935700010AB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B250E1C41C5935700010AB2D /* Localizable.strings */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
 		B2515AC71CB2C36100625791 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2515AC61CB2C36100625791 /* SortType.swift */; };
 		B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */; };
@@ -913,7 +912,6 @@
 		B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutocompletionTerm.swift; path = Model/AutocompletionTerm.swift; sourceTree = "<group>"; };
 		B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutocompletionParams.swift; path = Networking/AutocompletionParams.swift; sourceTree = "<group>"; };
 		B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetPasswordViewController.swift; path = Controllers/ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		B250E1C51C5935700010AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "shoutit-iphone/Localization/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B2515AC61CB2C36100625791 /* SortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortType.swift; path = Model/SortType.swift; sourceTree = "<group>"; };
 		B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupCategoryTableViewCell.swift; path = View/PostSignupCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -1985,7 +1983,6 @@
 		AC1C94081BEBBA10009400BE /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				B250E1C41C5935700010AB2D /* Localizable.strings */,
 			);
 			name = Localization;
 			path = Resources/Localization;
@@ -3376,7 +3373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B250E1C61C5935700010AB2D /* Localizable.strings in Resources */,
 				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
 				B2E715681C6E37B8007F95CF /* ShoutsCollectionViewCell.xib in Resources */,
 				B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */,
@@ -4149,15 +4145,6 @@
 			);
 			name = Menu.storyboard;
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		B250E1C41C5935700010AB2D /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B250E1C51C5935700010AB2D /* Base */,
-			);
-			name = Localizable.strings;
-			path = ../../..;
 			sourceTree = "<group>";
 		};
 		B2D440DD1CB81466009782AF /* Filter.storyboard */ = {
