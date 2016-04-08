@@ -19,6 +19,9 @@ class SettingsFormViewController: UITableViewController {
     // RX
     private let disposeBag = DisposeBag()
     
+    // toggle menu
+    var ignoreMenuButton : Bool = false
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -26,6 +29,7 @@ class SettingsFormViewController: UITableViewController {
         precondition(viewModel != nil)
         title = viewModel.title
         setupRX()
+        applyBackButton()
     }
     
     // MARK: - Setup
@@ -58,6 +62,10 @@ class SettingsFormViewController: UITableViewController {
             .subscribeNext {[weak self] in
                 self?.pop()
             }.addDisposableTo(disposeBag)
+    }
+    
+    override func ignoresToggleMenu() -> Bool {
+        return ignoreMenuButton
     }
 }
 
@@ -102,6 +110,7 @@ extension SettingsFormViewController {
         }
         return cell
     }
+    
 }
 
 extension SettingsFormViewController {

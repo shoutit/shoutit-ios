@@ -48,12 +48,14 @@ class SettingsFlowController: FlowController {
     private func showEmailSettings() {
         let controller = Wireframe.settingsFromViewController()
         controller.viewModel = ChangeEmailSettingsFormViewModel()
+        controller.ignoreMenuButton = true
         navigationController.showViewController(controller, sender: nil)
     }
     
     private func showPasswordSettings() {
         let controller = Wireframe.settingsFromViewController()
         controller.viewModel = ChangePasswordSettingsFormViewModel()
+        controller.ignoreMenuButton = true
         navigationController.showViewController(controller, sender: nil)
     }
     
