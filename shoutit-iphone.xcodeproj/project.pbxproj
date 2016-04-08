@@ -261,6 +261,7 @@
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE15981C6E0BBF002D2AF7 /* DiscoverPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE15971C6E0BBF002D2AF7 /* DiscoverPreview.storyboard */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
+		AEE1044B1CB7907A002E7921 /* APNParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE1044A1CB7907A002E7921 /* APNParams.swift */; };
 		AEE924B61C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
 		AEE924B71C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
 		AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */; };
@@ -899,6 +900,7 @@
 		AEDE15971C6E0BBF002D2AF7 /* DiscoverPreview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DiscoverPreview.storyboard; path = Storyboards/DiscoverPreview.storyboard; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
 		AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HomeShouts.storyboard; path = Storyboards/HomeShouts.storyboard; sourceTree = "<group>"; };
+		AEE1044A1CB7907A002E7921 /* APNParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNParams.swift; sourceTree = "<group>"; };
 		AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginNavigationViewController.swift; path = Controllers/LoginNavigationViewController.swift; sourceTree = "<group>"; };
 		AEECB9551C648E4300276E4A /* Location.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Location.storyboard; path = Storyboards/Location.storyboard; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
@@ -2310,6 +2312,7 @@
 				B2778F981CAC11E400BBDD5F /* EmailParams.swift */,
 				B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */,
 				B2AB73E11CB55BFB00C2C0C0 /* ChangePasswordParams.swift */,
+				AEE1044A1CB7907A002E7921 /* APNParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3259,6 +3262,11 @@
 					6027CF301BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = E6WRHQXQE9;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6027CF441BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
@@ -3663,6 +3671,7 @@
 				246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */,
 				B26081A01CB6CBDF0025DA26 /* ShoutCellViewModel.swift in Sources */,
 				AE180F861C7F8F150069BB1A /* AuthParams.swift in Sources */,
+				AEE1044B1CB7907A002E7921 /* APNParams.swift in Sources */,
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
