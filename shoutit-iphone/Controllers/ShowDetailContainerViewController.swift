@@ -281,8 +281,6 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func showEditController() {
-        let editController = Wireframe.editShoutController()
-        editController.shout = viewModel.shout
-        self.navigationController?.pushViewController(editController, animated: true)
+        self.flowDelegate?.showEditShout(viewModel.shout)
     }
 }

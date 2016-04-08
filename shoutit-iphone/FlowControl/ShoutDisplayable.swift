@@ -10,6 +10,7 @@ import Foundation
 
 protocol ShoutDisplayable {
     func showShout(shout: Shout) -> Void
+    func showEditShout(shout: Shout) -> Void
     func showShoutsForDiscoverItem(discoverItem: DiscoverItem?) -> Void
     func showDiscover() -> Void
     func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void
@@ -24,6 +25,17 @@ extension ShoutDisplayable where Self: FlowController, Self: ShoutDetailTableVie
         controller.flowDelegate = self
         
         navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showEditShout(shout: Shout) -> Void {
+        
+        let editController = Wireframe.editShoutController()
+        
+        editController.shout = shout
+        editController.dismissAfter = true
+        let navigation = SHNavigationViewController(rootViewController: editController)
+        
+        navigationController.presentViewController(navigation, animated: true, completion: nil)
     }
     
 }
