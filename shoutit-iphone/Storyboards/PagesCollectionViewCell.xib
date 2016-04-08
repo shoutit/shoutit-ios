@@ -71,6 +71,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="suggestions_accessory_view" width="23" height="17"/>
+        <image name="suggestions_accessory_view" width="333" height="552"/>
     </resources>
 </document>

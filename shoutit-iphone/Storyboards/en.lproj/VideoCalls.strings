@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "Call"; ObjectID = "6Fl-rk-iIB"; */
+"6Fl-rk-iIB.normalTitle" = "Call";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6ax-sw-xDW"; */
+"6ax-sw-xDW.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT"; */
+"IHn-L1-0lT.text" = "Connecting";
+
+/* Class = "UIButton"; normalTitle = "Discard"; ObjectID = "Imm-ov-Sdy"; */
+"Imm-ov-Sdy.normalTitle" = "Discard";
+
+/* Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0"; */
+"Otg-mn-IP0.text" = "Incoming call from XX";
+
+/* Class = "UILabel"; text = "Calling"; ObjectID = "wAE-6B-zom"; */
+"wAE-6B-zom.text" = "Calling";
+
+/* Class = "UIButton"; normalTitle = "Answer"; ObjectID = "y6h-PZ-MHd"; */
+"y6h-PZ-MHd.normalTitle" = "Answer";
