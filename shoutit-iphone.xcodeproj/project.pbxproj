@@ -1837,6 +1837,7 @@
 				B2E7E3001C592BCE0078C743 /* Profile.storyboard */,
 				B2E7E3031C592BD20078C743 /* Settings.storyboard */,
 				AE8351621C5F4DDD0055C71F /* Root.storyboard */,
+				AEDE15921C6DE5CD002D2AF7 /* Home.storyboard */,
 				AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */,
 				AE4DB3561C638E46001EB84B /* InviteFriends.storyboard */,
 				B2082D741C6263DD007EB2FB /* HTML.storyboard */,
@@ -2082,7 +2083,6 @@
 		AEDE15941C6DF071002D2AF7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AEDE15921C6DE5CD002D2AF7 /* Home.storyboard */,
 				AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */,
 			);
 			name = Home;

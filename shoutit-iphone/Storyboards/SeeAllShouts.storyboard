@@ -33,21 +33,10 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Search results" id="9cE-V8-2fa">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="VNY-vM-QPs">
-                            <view key="customView" contentMode="scaleToFill" id="wg7-rT-qLB">
-                                <rect key="frame" x="20" y="6" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBd-ev-zAI">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" title="search" image="search"/>
-                                        <connections>
-                                            <action selector="searchAction" destination="TwG-ld-UDU" eventType="touchUpInside" id="Ecb-iG-IkL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="6RX-GE-aAo">
+                            <connections>
+                                <action selector="searchAction" destination="TwG-ld-UDU" id="CXG-e9-yMG"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

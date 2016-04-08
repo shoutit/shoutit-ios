@@ -50,6 +50,13 @@ class SelectButton: UIButton {
         promptLabel.backgroundColor = UIColor.clearColor()
         promptLabel.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
         promptLabel.textColor = MaterialColor.grey.lighten1
+        
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            promptLabel.textAlignment = .Right
+        } else {
+            promptLabel.textAlignment = .Left
+        }
+        
         self.addSubview(promptLabel)
         
         self.addConstraints([NSLayoutConstraint(item: promptLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 9),
@@ -110,7 +117,11 @@ class SelectButton: UIButton {
     }
     
     override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
-        return CGRectMake(10, CGRectGetMidY(contentRect) - 18.0, 36.0, 36.0)
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return CGRectMake(CGRectGetMaxX(contentRect) - 10 - 36.0, CGRectGetMidY(contentRect) - 18.0, 36.0, 36.0)
+        } else {
+            return CGRectMake(10, CGRectGetMidY(contentRect) - 18.0, 36.0, 36.0)
+        }
     }
     
     func promptAvailable() -> Bool {

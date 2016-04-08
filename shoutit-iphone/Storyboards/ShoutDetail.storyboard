@@ -92,21 +92,10 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Arc-jR-c3o">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="1er-lj-bZk">
-                            <view key="customView" contentMode="scaleToFill" id="66g-kL-iNo">
-                                <rect key="frame" x="20" y="6" width="40" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV8-L0-XaT">
-                                        <rect key="frame" x="15" y="5" width="25" height="24"/>
-                                        <state key="normal" title="search" image="search"/>
-                                        <connections>
-                                            <action selector="searchAction" destination="PrV-RL-Ryp" eventType="touchUpInside" id="1hi-wU-eFn"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="ZYL-jX-FtV">
+                            <connections>
+                                <action selector="searchAction" destination="PrV-RL-Ryp" id="FIb-Zf-XFV"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
