@@ -15,6 +15,7 @@ class ShoutsCollectionViewModel {
         case ProfileShouts(user: Profile)
         case RelatedShouts(shout: Shout)
         case TagShouts(tag: Tag)
+        case DiscoverItemShouts(discoverItem: DiscoverItem)
     }
     
     // consts
@@ -25,6 +26,9 @@ class ShoutsCollectionViewModel {
     private(set) var filterParams: FilteredShoutsParams?
     private var requestDisposeBag = DisposeBag()
     private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
+    
+    // data
+    private(set) var numberOfResults: Int = 0
     
     init(context: Context) {
         self.context = context
@@ -60,7 +64,13 @@ class ShoutsCollectionViewModel {
             return NSLocalizedString("Related Shouts", comment: "")
         case .TagShouts(let tag):
             return NSLocalizedString("\(tag.name) Shouts", comment: "")
+        case .DiscoverItemShouts(let discoverItem):
+            return discoverItem.title
         }
+    }
+    
+    func resultsCountString() -> String {
+        return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
     }
     
     // MARK: Fetch
@@ -95,12 +105,17 @@ class ShoutsCollectionViewModel {
         case .TagShouts(let tag):
             let params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize)
             return APIShoutsService.searchShoutsWithParams(params)
+        case .DiscoverItemShouts(let discoverItem):
+            let params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize)
+            return APIShoutsService.searchShoutsWithParams(params)
         }
     }
     
     // MARK: - Helpers
     
     private func updateViewModelWithResult(result: PagedResults<Shout>, forPage page: Int) {
+        
+        numberOfResults = result.count ?? numberOfResults
         
         if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
             cells += result.results.map{ShoutCellViewModel(shout: $0)}

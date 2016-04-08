@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable {}
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable, AllShoutsDisplayable {}
 
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -162,6 +162,10 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
 
     // MARK: Actions
     func showDiscoverShouts() {
-        self.flowDelegate?.showShoutsForDiscoverItem(self.viewModel.mainItem())
+        guard let discoverItem = viewModel.mainItem() else {
+            assertionFailure()
+            return
+        }
+        self.flowDelegate?.showShoutsForDiscoverItem(discoverItem)
     }
 }

@@ -23,7 +23,7 @@ class MenuCell: UITableViewCell {
         self.backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.whiteColor()
         self.layoutIfNeeded()
         
-        setSeparatorVisible(item == .Orders || current)
+        setSeparatorVisible(item == .Chats || current)
         
     }
     

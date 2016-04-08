@@ -162,10 +162,6 @@ struct Wireframe {
         return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController") as! DiscoverCollectionViewController
     }
     
-    static func discoverShoutsViewController() -> DiscoverShoutsParentViewController {
-        return storyboard(.Discover).instantiateViewControllerWithIdentifier("discoverShoutsParent") as! DiscoverShoutsParentViewController
-    }
-    
     static func shoutViewController() -> CreateShoutPopupViewController {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController") as! CreateShoutPopupViewController
     }

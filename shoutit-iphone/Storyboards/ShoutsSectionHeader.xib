@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN4-zw-aAJ">
-                    <rect key="frame" x="10" y="15" width="42" height="21"/>
+                    <rect key="frame" x="10" y="10" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -28,6 +28,12 @@
                     <rect key="frame" x="230" y="0.0" width="44" height="50"/>
                     <state key="normal" image="filterIcon"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bN-b7-ADe">
+                    <rect key="frame" x="10" y="32" width="31" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -35,16 +41,26 @@
                 <constraint firstItem="1xo-uP-MXi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CN4-zw-aAJ" secondAttribute="trailing" constant="8" id="3SI-pq-Td0"/>
                 <constraint firstItem="eLX-Qz-aDr" firstAttribute="width" secondItem="1xo-uP-MXi" secondAttribute="width" id="4fw-tc-KTi"/>
                 <constraint firstAttribute="bottom" secondItem="eLX-Qz-aDr" secondAttribute="bottom" id="Eio-1E-pO7"/>
+                <constraint firstItem="CN4-zw-aAJ" firstAttribute="top" secondItem="qND-2k-A4n" secondAttribute="top" constant="10" id="JET-XT-ior"/>
                 <constraint firstItem="CN4-zw-aAJ" firstAttribute="centerY" secondItem="qND-2k-A4n" secondAttribute="centerY" id="Mvz-66-IEy"/>
                 <constraint firstAttribute="bottom" secondItem="1xo-uP-MXi" secondAttribute="bottom" id="PG1-GE-XRz"/>
                 <constraint firstItem="eLX-Qz-aDr" firstAttribute="top" secondItem="qND-2k-A4n" secondAttribute="top" id="Sg1-Nk-ZBT"/>
+                <constraint firstItem="0bN-b7-ADe" firstAttribute="leading" secondItem="qND-2k-A4n" secondAttribute="leading" constant="10" id="Uub-CT-rKk"/>
                 <constraint firstItem="1xo-uP-MXi" firstAttribute="top" secondItem="qND-2k-A4n" secondAttribute="top" id="ZZb-Zm-j7f"/>
                 <constraint firstItem="CN4-zw-aAJ" firstAttribute="leading" secondItem="qND-2k-A4n" secondAttribute="leading" constant="10" id="ely-gX-tUL"/>
+                <constraint firstItem="1xo-uP-MXi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0bN-b7-ADe" secondAttribute="trailing" constant="8" id="fMs-J7-47M"/>
                 <constraint firstAttribute="trailing" secondItem="eLX-Qz-aDr" secondAttribute="trailing" id="jsZ-Af-I8D"/>
+                <constraint firstItem="0bN-b7-ADe" firstAttribute="top" secondItem="CN4-zw-aAJ" secondAttribute="bottom" constant="1" id="rOT-hA-cV2"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Mvz-66-IEy"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="filterButton" destination="1xo-uP-MXi" id="Bit-L5-4LA"/>
                 <outlet property="layoutButton" destination="eLX-Qz-aDr" id="xta-iG-jFq"/>
+                <outlet property="subtitleLabel" destination="0bN-b7-ADe" id="K6f-dW-3Dh"/>
                 <outlet property="titleLabel" destination="CN4-zw-aAJ" id="owL-j8-pc8"/>
             </connections>
             <point key="canvasLocation" x="362" y="279"/>
