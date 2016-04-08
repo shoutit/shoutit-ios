@@ -157,14 +157,12 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func moreAction() {
-        let alert = viewModel.moreAlert { (alertController) in
-            self.reportAction()
+        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
+            return
         }
         
-        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Shout", comment: ""), style: .Destructive, handler: { (deleteAction) in
-                self.deleteAction()
-            }))
+        let alert = viewModel.moreAlert { (alertController) in
+            self.reportAction()
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
