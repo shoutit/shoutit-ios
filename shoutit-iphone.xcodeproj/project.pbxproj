@@ -71,7 +71,6 @@
 		249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493247F1C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift */; };
 		249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */; };
 		249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */; };
-		249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */; };
 		249671571C86E7B30011B078 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		249671591C870ECD0011B078 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
 		2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */; };
@@ -685,7 +684,6 @@
 		2493247F1C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsCollectionViewController.swift; path = Controllers/DiscoverShoutsCollectionViewController.swift; sourceTree = "<group>"; };
 		249324811C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsViewModel.swift; path = Controllers/DiscoverShoutsViewModel.swift; sourceTree = "<group>"; };
 		249324831C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsParentViewController.swift; path = Controllers/DiscoverShoutsParentViewController.swift; sourceTree = "<group>"; };
-		249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsFlowController.swift; path = FlowControl/DiscoverShoutsFlowController.swift; sourceTree = "<group>"; };
 		249671561C86E7B30011B078 /* ShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutParams.swift; path = Model/ShoutParams.swift; sourceTree = "<group>"; };
 		249671581C870ECD0011B078 /* FilterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterResult.swift; path = Model/FilterResult.swift; sourceTree = "<group>"; };
 		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
@@ -2642,7 +2640,6 @@
 				AE4DB34A1C636FF8001EB84B /* SettingsFlowController.swift */,
 				AE4DB35A1C638E93001EB84B /* InviteFriendsFlowController.swift */,
 				AEECB95D1C6490D800276E4A /* LocationFlowController.swift */,
-				249324851C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -3919,7 +3916,6 @@
 				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
 				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
 				24826B491C96A8F300032FC9 /* Notification.swift in Sources */,
-				249324861C7F286A00A1AB6A /* DiscoverShoutsFlowController.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
 				246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */,
