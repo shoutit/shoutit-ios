@@ -1,0 +1,51 @@
+
+/* Class = "UINavigationItem"; title = "Location"; ObjectID = "1Cm-xk-7AD"; */
+"1Cm-xk-7AD.title" = "Location";
+
+/* Class = "UILabel"; text = "Participants"; ObjectID = "7lD-XO-jLv"; */
+"7lD-XO-jLv.text" = "Participants";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "Ejl-rm-dWM"; */
+"Ejl-rm-dWM.text" = "Message Preview";
+
+/* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
+"GZ0-mH-W33.title" = "Chats";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "OoV-dq-QkE"; */
+"OoV-dq-QkE.title" = "Title";
+
+/* Class = "UILabel"; text = "John Smith"; ObjectID = "QDG-Al-JRl"; */
+"QDG-Al-JRl.text" = "John Smith";
+
+/* Class = "UILabel"; text = "$44 USD"; ObjectID = "Uyo-AD-bj5"; */
+"Uyo-AD-bj5.text" = "$44 USD";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "VO8-bv-QaH"; */
+"VO8-bv-QaH.text" = "Message Preview";
+
+/* Class = "UITabBarItem"; title = "Messages"; ObjectID = "YLA-6J-Q2l"; */
+"YLA-6J-Q2l.title" = "Messages";
+
+/* Class = "UILabel"; text = "Offer"; ObjectID = "c6b-2a-MEJ"; */
+"c6b-2a-MEJ.text" = "Offer";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "cTb-jK-D0D"; */
+"cTb-jK-D0D.text" = "Date";
+
+/* Class = "UILabel"; text = "Participants"; ObjectID = "fMa-98-BMN"; */
+"fMa-98-BMN.text" = "Participants";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "hWB-iW-Kpv"; */
+"hWB-iW-Kpv.title" = "Title";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "nrX-oU-PHB"; */
+"nrX-oU-PHB.text" = "Message Preview";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO"; */
+"oR2-Wf-ZJO.text" = "Date";
+
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b"; */
+"pcT-Tt-k2b.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
+
+/* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
+"rdm-hj-mhG.title" = "Conversations";
