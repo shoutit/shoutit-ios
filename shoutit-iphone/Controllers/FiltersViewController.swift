@@ -125,7 +125,7 @@ extension FiltersViewController: UITableViewDataSource {
                     case .Loaded(let values):
                         sortTypeCell.button.optionsLoaded = true
                         if sortType == nil && values.first != nil {
-                            self.viewModel.cellViewModels[indexPath.row] = .SortTypeChoice(sortType: values.first)
+                            self.viewModel.handleSortDidLoad()
                             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                         }
                     }
