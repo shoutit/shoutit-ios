@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class HomeShoutsViewModel: AnyObject {
-    var filterParams: FilteredShoutsParams?
+    private var filtersState: FiltersState?
     var displayable = ShoutsDisplayable(layout: .VerticalGrid)
     let listReuseIdentifier = "shShoutItemListCell"
     let gridReuseIdentifier = "shShoutItemGridCell"
@@ -60,6 +60,14 @@ class HomeShoutsViewModel: AnyObject {
     
     func loadMorePage(page: Int) -> Observable<[Shout]> {
         return loadPageObservable(page)
+    }
+    
+    func getFiltersState() -> FiltersState {
+        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
+    }
+    
+    func applyFiltersState(state: FiltersState) {
+        self.filtersState = state
     }
     
     private func tryToLoadNextPage() {
@@ -117,13 +125,15 @@ class HomeShoutsViewModel: AnyObject {
         let user = Account.sharedInstance.user
         if let user = user where user.isGuest == false {
             var params = FilteredShoutsParams(page: page, pageSize: 20)
-            if let filterParams = filterParams {
+            if let filtersState = filtersState {
+                let filterParams = filtersState.composeParams()
                 params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             return APIProfileService.homeShoutsWithParams(params)
         } else {
             var params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
-            if let filterParams = filterParams {
+            if let filtersState = filtersState {
+                let filterParams = filtersState.composeParams()
                 params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             return APIShoutsService.listShoutsWithParams(params)

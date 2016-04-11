@@ -31,13 +31,15 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
             viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).driveNext({ [weak self] (indexPath) -> Void in
                 
                 if let indexPath = indexPath {
-                    if indexPath.item == self?.items.count {
+                    if indexPath.item == self?.indexForSeeAll() {
                         self?.seeAllSubject.onNext(self)
                         return
                     }
                     
-                    let element = self?.items[indexPath.item]
-                    self?.selectedModel.value = element
+                    if let modifiedIndexPath = self?.indexPathForIndexPath(indexPath) {
+                        let element = self?.items[modifiedIndexPath.item]
+                        self?.selectedModel.value = element
+                    }
                 }
                 
             }).addDisposableTo(disposeBag)
@@ -46,6 +48,10 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
                 self?.items = items
                 self?.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
+            
+            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+                collection.transform = CGAffineTransformMakeScale(-1, 1)
+            }
         }
 
     }
@@ -54,17 +60,41 @@ class DiscoverPreviewCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        if indexPath.item == self.items.count {
-            return collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
+        if indexPath.item == indexForSeeAll() {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
+            
+            cell.transform = collectionView.transform
+            
+            return cell
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
     
-        let element = items[indexPath.item]
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        let element = items[modifiedIndexPath.item]
+        
         cell.bindWith(DiscoverItem: element)
-        // Configure the cell
+        
+        cell.transform = collectionView.transform
     
         return cell
+    }
+    
+    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return NSIndexPath(forItem: self.items.count - indexPath.item, inSection: indexPath.section)
+        } else {
+            return indexPath
+        }
+    }
+    
+    func indexForSeeAll() -> NSInteger {
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return 0
+        } else {
+            return self.items.count
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

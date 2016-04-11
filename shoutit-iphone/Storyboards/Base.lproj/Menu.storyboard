@@ -53,7 +53,7 @@
                                         <outletCollection property="gestureRecognizers" destination="jR9-sb-pKt" appends="YES" id="eNE-Hd-EVW"/>
                                     </connections>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm0-dm-zPw">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm0-dm-zPw" customClass="CreateShoutButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="90" y="148" width="420" height="44"/>
                                     <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -61,8 +61,7 @@
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="985" constant="180" id="K9h-IT-cmy"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
-                                    <state key="normal" title="Create Shout" image="tabShout">
+                                    <state key="normal" title="  Create Shout" image="tabShout">
                                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -308,7 +307,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="626" y="535"/>
+            <point key="canvasLocation" x="619" y="454"/>
         </scene>
     </scenes>
     <resources>

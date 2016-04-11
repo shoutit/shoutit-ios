@@ -23,7 +23,7 @@ class ShoutsCollectionViewModel {
     let context: Context
     
     // state
-    private(set) var filterParams: FilteredShoutsParams?
+    private var filtersState: FiltersState?
     private var requestDisposeBag = DisposeBag()
     private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
     
@@ -39,8 +39,8 @@ class ShoutsCollectionViewModel {
         fetchPage(1)
     }
     
-    func applyFilters(filterParams: FilteredShoutsParams) {
-        self.filterParams = filterParams
+    func applyFilters(filtersState: FiltersState) {
+        self.filtersState = filtersState
         reloadContent()
     }
     
@@ -73,6 +73,10 @@ class ShoutsCollectionViewModel {
         return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
     }
     
+    func getFiltersState() -> FiltersState {
+        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
+    }
+    
     // MARK: Fetch
     
     private func fetchPage(page: Int) {
@@ -100,14 +104,24 @@ class ShoutsCollectionViewModel {
             let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize, type: nil)
             return APIShoutsService.relatedShoutsWithParams(params)
         case .ProfileShouts(let profile):
-            let params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize)
+            applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .TagShouts(let tag):
-            let params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize)
+            applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .DiscoverItemShouts(let discoverItem):
-            let params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize)
+            applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
+        }
+    }
+    
+    private func applyParamsToFilterParamsIfAny(inout params: FilteredShoutsParams) {
+        if let filtersState = filtersState {
+            let filterParams = filtersState.composeParams()
+            params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
         }
     }
     

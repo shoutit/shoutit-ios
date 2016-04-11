@@ -111,6 +111,18 @@ extension Shout {
         
         return nil
     }
+    
+    func priceTextWithoutFree() -> String? {
+        if let price = self.price {
+            if price == 0 {
+                return "0"
+            }
+            
+            return NumberFormatters.priceStringWithPrice(price)
+        }
+        
+        return nil
+    }
 }
 
 extension Shout: Reportable {

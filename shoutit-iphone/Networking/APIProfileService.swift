@@ -39,7 +39,7 @@ class APIProfileService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }
     
-    static func updateAPNsWithUsername(username: String, withParams params: APNParams) -> Observable<DetailedProfile> {
+    static func updateAPNsWithUsername<T: Decodable where T == T.DecodedType, T: User>(username: String, withParams params: APNParams) -> Observable<T> {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }

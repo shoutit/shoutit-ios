@@ -53,8 +53,10 @@ class SelectButton: UIButton {
         
         if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
             promptLabel.textAlignment = .Right
+            titleLabel?.textAlignment = .Right
         } else {
             promptLabel.textAlignment = .Left
+            titleLabel?.textAlignment = .Left
         }
         
         self.addSubview(promptLabel)
@@ -109,11 +111,22 @@ class SelectButton: UIButton {
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
         let xOffset : CGFloat = self.hideIcon == true ? 10.0 : 56.0
+        
         if self.promptAvailable() {
-            return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
+            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+                return CGRectMake(bounds.origin.x + 40.0, bounds.origin.y + 5, bounds.size.width - xOffset - 40.0, bounds.size.height - 10)
+            } else {
+                return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 5, bounds.size.width - 40.0, bounds.size.height - 10)
+            }
+            
         }
 
-        return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return CGRectMake(bounds.origin.x + 40.0, bounds.origin.y + 0, bounds.size.width - xOffset - 40.0, bounds.size.height)
+        } else {
+            return CGRectMake(bounds.origin.x + xOffset, bounds.origin.y + 0, bounds.size.width - 40.0, bounds.size.height)
+        }
+        
     }
     
     override func imageRectForContentRect(contentRect: CGRect) -> CGRect {

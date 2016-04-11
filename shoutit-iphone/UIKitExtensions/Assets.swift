@@ -19,7 +19,11 @@ extension UIImage {
     }
     
     static func backButton() -> UIImage {
-        return UIImage(named: "backThin")!
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return UIImage(named: "rtl_backThin")!
+        } else {
+            return UIImage(named: "backThin")!
+        }
     }
     
     static func menuHamburger() -> UIImage {

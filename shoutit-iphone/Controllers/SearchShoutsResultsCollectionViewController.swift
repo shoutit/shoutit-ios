@@ -50,10 +50,6 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         
         prepareReusables()
         setupRX()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.reloadContent()
     }
     
@@ -175,9 +171,9 @@ extension SearchShoutsResultsCollectionViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.flowDelegate?.showFilters{(params) in
-                    self.viewModel.applyFilters(params)
-                }
+                self.flowDelegate?.showFiltersWithState(self.viewModel.getFiltersState(), completionBlock: { (filtersState) in
+                    self.viewModel.applyFilters(filtersState)
+                })
             }
             .addDisposableTo(view.reuseDisposeBag)
         
