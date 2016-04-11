@@ -48,7 +48,11 @@ final class LoginMethodChoiceViewController: UIViewController {
     }
     
     func dismiss() {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        if let navigationController = self.navigationController where navigationController.viewControllers[0] !== self {
+            pop()
+        } else {
+            navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     // MARK: - Setup
