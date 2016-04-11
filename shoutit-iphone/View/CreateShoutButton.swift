@@ -15,9 +15,7 @@ class CreateShoutButton: UIButton {
         if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
             self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30.0, bottom: 0, right: 0.0)
         } else {
-            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30.0)
+            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10.0)
         }
-        
-        
     }
 }
