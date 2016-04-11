@@ -50,10 +50,6 @@ final class ShoutsCollectionViewController: UICollectionViewController {
         
         prepareReusables()
         setupRX()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.reloadContent()
     }
     
