@@ -134,6 +134,7 @@ final class Account {
         guestUser = nil
         authData = nil
         APIManager.eraseAuthToken()
+        GIDSignIn.sharedInstance().signOut()
     }
     
     // MARK: - Helpers
