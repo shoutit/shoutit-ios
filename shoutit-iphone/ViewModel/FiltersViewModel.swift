@@ -30,13 +30,13 @@ struct FiltersState {
     let withinDistance: (Int?, Editing)
     let filters: [Filter : [FilterValue]]?
     
-    init(shoutType: (ShoutType?, FieldState) = (nil, .Enabled),
-         sortType: (SortType?, FieldState) = (nil, .Enabled),
-         category: (Category?, FieldState) = (nil, .Enabled),
-         minimumPrice: (Int?, FieldState) = (nil, .Enabled),
-         maximumPrice: (Int?, FieldState) = (nil, .Enabled),
-         location: (Address?, FieldState) = (nil, .Enabled),
-         withinDistance: (Int?, FieldState) = (nil, .Enabled),
+    init(shoutType: (ShoutType?, Editing) = (nil, .Enabled),
+         sortType: (SortType?, Editing) = (nil, .Enabled),
+         category: (Category?, Editing) = (nil, .Enabled),
+         minimumPrice: (Int?, Editing) = (nil, .Enabled),
+         maximumPrice: (Int?, Editing) = (nil, .Enabled),
+         location: (Address?, Editing) = (nil, .Enabled),
+         withinDistance: (Int?, Editing) = (nil, .Enabled),
          filters: [Filter : [FilterValue]]? = nil)
     {
         self.shoutType = shoutType
@@ -142,8 +142,8 @@ final class FiltersViewModel {
                 }
             case .SortTypeChoice(let sortType):
                 sort = sortType
-            case .CategoryChoice(let category):
-                category = category
+            case .CategoryChoice(let cat, _):
+                category = cat
             case .PriceRestriction(let from, let to):
                 minimumPrice = from
                 maximumPrice = to
@@ -162,7 +162,7 @@ final class FiltersViewModel {
         }
         
         return FiltersState(shoutType: (shoutType, filtersState.shoutType.1),
-                            sortType: (sortType, filtersState.sortType.1),
+                            sortType: (sort, filtersState.sortType.1),
                             category: (category, filtersState.category.1),
                             minimumPrice: (minimumPrice, filtersState.minimumPrice.1),
                             maximumPrice: (maximumPrice, filtersState.maximumPrice.1),
@@ -173,7 +173,8 @@ final class FiltersViewModel {
     
     func handleSortDidLoad() {
         for case (let index, .SortTypeChoice(nil)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .SortTypeChoice(sortType: sortTypes.value.first)
+            guard case .Loaded(let values) = sortTypes.value else { assertionFailure(); return; }
+            cellViewModels[index] = .SortTypeChoice(sortType: values.first)
         }
     }
     
@@ -237,7 +238,7 @@ private extension FiltersViewModel {
     private func basicCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel: FiltersCellViewModel
         let sortTypeCellViewModel: FiltersCellViewModel
-        let categoryCellViewModel: FiltersCellViewModel = .CategoryChoice(category: filtersState.category.0)
+        let categoryCellViewModel: FiltersCellViewModel = .CategoryChoice(category: filtersState.category.0, enabled: filtersState.category.1 == .Enabled)
         let priceConstraintCellViewModel: FiltersCellViewModel = .PriceRestriction(from: filtersState.minimumPrice.0, to: filtersState.maximumPrice.0)
         let locationViewModel: FiltersCellViewModel = .LocationChoice(location: filtersState.location.0)
         let distanceConstraintViewModel: FiltersCellViewModel
@@ -293,9 +294,9 @@ private extension FiltersViewModel {
         }
         
         if case (let category?, .Disabled) = filtersState.category {
-            categoryCellViewModel = .CategoryChoice(category: category)
+            categoryCellViewModel = .CategoryChoice(category: category, enabled: false)
         } else {
-            categoryCellViewModel = .CategoryChoice(category: nil)
+            categoryCellViewModel = .CategoryChoice(category: nil, enabled: true)
         }
         
         if case ((let min, .Disabled), (let max, .Disabled)) = (filtersState.minimumPrice, filtersState.maximumPrice) {

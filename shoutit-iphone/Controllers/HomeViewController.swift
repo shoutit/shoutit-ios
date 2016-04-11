@@ -128,10 +128,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func filterAction(sender: AnyObject) {
-        flowDelegate?.showFilters{[unowned self] (params) in
-            self.homeShoutsController?.viewModel.filterParams = params
+        guard let homeShoutsController = self.homeShoutsController else { return }
+        flowDelegate?.showFiltersWithState(homeShoutsController.viewModel.getFiltersState(), completionBlock: {[unowned self] (state) in
+            self.homeShoutsController?.viewModel.applyFiltersState(state)
             self.homeShoutsController?.reloadData()
-        }
+        })
     }
     
     @IBAction func searchAction(sender: AnyObject) {

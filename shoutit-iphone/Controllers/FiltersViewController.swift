@@ -14,7 +14,7 @@ final class FiltersViewController: UIViewController {
     
     // view model
     var viewModel: FiltersViewModel!
-    var completionBlock: (FilteredShoutsParams -> Void)?
+    var completionBlock: (FiltersState -> Void)?
     
     // UI
     @IBOutlet weak var resetButton: UIButton!
@@ -55,8 +55,8 @@ final class FiltersViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                let params = self.viewModel.composeParamsWithChosenFilters()
-                self.completionBlock?(params)
+                let state = self.viewModel.composeFiltersState()
+                self.completionBlock?(state)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
@@ -145,11 +145,13 @@ extension FiltersViewController: UITableViewDataSource {
                 }
                 .addDisposableTo(sortTypeCell.reuseDisposeBag)
             
-        case .CategoryChoice(let category):
+        case .CategoryChoice(let category, let enabled):
             let categoryCell = cell as! SelectButtonFilterTableViewCell
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             categoryCell.button.hideIcon = category?.icon == nil
             categoryCell.button.iconImageView.sh_setImageWithURL(category?.icon?.toURL(), placeholderImage: nil)
+            categoryCell.button.enabled = enabled
+            categoryCell.button.alpha = enabled ? 1.0 : 0.5
             viewModel.categories
                 .asDriver()
                 .driveNext{ (categoriesDownloadState) in
@@ -175,7 +177,7 @@ extension FiltersViewController: UITableViewDataSource {
                     let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
                     self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) { (index) in
                         let category: Category? = index == 0 ? nil : categories[index - 1]
-                        self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category)
+                        self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category, enabled: true)
                         self.viewModel.extendViewModelsWithFilters(category?.filters ?? [])
                         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }

@@ -167,9 +167,9 @@ extension ShoutsCollectionViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.flowDelegate?.showFilters{(params) in
-                    self.viewModel.applyFilters(params)
-                }
+                self.flowDelegate?.showFiltersWithState(self.viewModel.getFiltersState(), completionBlock: { (state) in
+                    self.viewModel.applyFilters(state)
+                })
             }
             .addDisposableTo(view.reuseDisposeBag)
         

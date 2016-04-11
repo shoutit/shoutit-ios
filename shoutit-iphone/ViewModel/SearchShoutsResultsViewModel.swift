@@ -16,7 +16,7 @@ final class SearchShoutsResultsViewModel {
     
     private(set) var shoutsSection: ShoutsSection!
     private(set) var categoriesSection: CategoriesSection!
-    private(set) var filterParams: FilteredShoutsParams?
+    private(set) var filtersState: FiltersState?
     
     init(searchPhrase: String?, inContext context: SearchContext) {
         self.searchPhrase = searchPhrase
@@ -30,8 +30,20 @@ final class SearchShoutsResultsViewModel {
         categoriesSection.reloadContent()
     }
     
-    func applyFilters(filterParams: FilteredShoutsParams) {
-        self.filterParams = filterParams
+    func applyFilters(filtersState: FiltersState) {
+        self.filtersState = filtersState
         reloadContent()
+    }
+    
+    func getFiltersState() -> FiltersState {
+        if let filtersState = filtersState {
+            return filtersState
+        }
+        
+        if case .CategoryShouts(let category) = context {
+            return FiltersState(category: (category, .Disabled), location: (Account.sharedInstance.user?.location, .Enabled))
+        }
+        
+        return FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
     }
 }

@@ -40,7 +40,7 @@ enum FiltersCellViewModel {
     
     case ShoutTypeChoice(shoutType: ShoutTypeFilterOption)
     case SortTypeChoice(sortType: SortType?)
-    case CategoryChoice(category: Category?)
+    case CategoryChoice(category: Category?, enabled: Bool)
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
     case DistanceRestriction(distanceOption: DistanceRestrictionFilterOption)
@@ -52,7 +52,7 @@ enum FiltersCellViewModel {
             return shoutType.title
         case .SortTypeChoice(let sortType):
             return sortType?.name
-        case .CategoryChoice(let category):
+        case .CategoryChoice(let category, _):
             if let category = category {
                 return category.name
             }
