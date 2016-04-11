@@ -1,0 +1,27 @@
+
+/* Class = "UIViewController"; title = "VideoPreview"; ObjectID = "07x-bq-AvW"; */
+"07x-bq-AvW.title" = "VideoPreview";
+
+/* Class = "UIButton"; normalTitle = "done"; ObjectID = "5kN-QW-7VN"; */
+"5kN-QW-7VN.normalTitle" = "done";
+
+/* Class = "UIButton"; normalTitle = "Record"; ObjectID = "HXZ-4s-AyI"; */
+"HXZ-4s-AyI.normalTitle" = "Record";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "T1H-Pn-i9k"; */
+"T1H-Pn-i9k.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Camera flip"; ObjectID = "ZaW-tw-s3x"; */
+"ZaW-tw-s3x.normalTitle" = "Camera flip";
+
+/* Class = "UIButton"; normalTitle = "flash off"; ObjectID = "ah9-Bk-7o7"; */
+"ah9-Bk-7o7.normalTitle" = "flash off";
+
+/* Class = "UINavigationController"; title = "CameraNivigationController"; ObjectID = "hZQ-9o-tYc"; */
+"hZQ-9o-tYc.title" = "CameraNivigationController";
+
+/* Class = "UITabBarItem"; title = "ShoutIT"; ObjectID = "kZw-8m-9Tx"; */
+"kZw-8m-9Tx.title" = "ShoutIT";
+
+/* Class = "UIViewController"; title = "PhotoPreview"; ObjectID = "wW7-p1-emq"; */
+"wW7-p1-emq.title" = "PhotoPreview";

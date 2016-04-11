@@ -32,6 +32,12 @@ enum ValidationError: ValidationErrorType {
     }
 }
 
+extension ValidationError: ShoutitError {
+    var userMessage: String {
+        return message
+    }
+}
+
 struct Validator {
     
     static func validateUniversalEmailOrUsernameField(string: String?) -> ValidationResult {

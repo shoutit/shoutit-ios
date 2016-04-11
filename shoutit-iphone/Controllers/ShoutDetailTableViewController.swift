@@ -8,8 +8,9 @@
 
 import UIKit
 import RxSwift
+import MWPhotoBrowser
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable {
+protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable, AllShoutsDisplayable {
     
 }
 
@@ -93,12 +94,18 @@ final class ShoutDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        precondition(viewModel != nil)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
         // setup data sources
         dataSource = ShoutDetailTableViewDataSource(controller: self)
         otherShoutsDataSource = ShoutDetailOtherShoutsCollectionViewDataSource(controller: self)
         relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
         imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
+        
+        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .Loading).driveNext { [weak self] (viewModel) in
+            self?.showMediaPreviewWithSelectedMedia(viewModel)
+        }.addDisposableTo(disposeBag)
         
         // display data
         hydrateHeader()
@@ -139,6 +146,32 @@ final class ShoutDetailTableViewController: UITableViewController {
         if let pageViewController = segue.destinationViewController as? PhotoBrowserPageViewController {
             photosPageViewController = pageViewController
         }
+    }
+}
+
+extension ShoutDetailTableViewController {
+    private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
+        guard selectedMedia.canShowPreview() else {
+            return
+        }
+        
+        let medias : [MWPhoto] = Array.filterNils(self.imagesDataSource.viewModel.imagesViewModels.map { (model) -> MWPhoto? in
+            return model.mwPhoto()
+        })
+        
+        let photoBrowser = PhotoBrowser(photos: medias)
+
+        let idx : UInt
+        
+        if self.photosPageViewController.pageControl.currentPage > 0 {
+            idx = UInt(self.photosPageViewController.pageControl.currentPage as Int)
+        } else {
+            idx = 0
+        }
+        
+        photoBrowser.setCurrentPhotoIndex(idx)
+        
+        self.navigationController?.showViewController(photoBrowser, sender: nil)
     }
 }
 
@@ -197,11 +230,14 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
         
         let cellViewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
         
-        guard case .Content(let shout) = cellViewModels[indexPath.row] else {
-            return
+        switch cellViewModels[indexPath.row] {
+        case .Content(let shout):
+            flowDelegate?.showShout(shout)
+        case .SeeAll:
+            flowDelegate?.showRelatedShoutsForShout(viewModel.shout)
+        default:
+            break
         }
-        
-        flowDelegate?.showShout(shout)
     }
 }
 

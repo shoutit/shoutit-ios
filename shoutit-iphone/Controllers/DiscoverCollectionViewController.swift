@@ -9,9 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {
-    
-}
+protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable, AllShoutsDisplayable {}
 
 class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -63,7 +61,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
-                _ = DiscoverFlowController(navigationController: self.navigationController!, discoverItem: element)
+                flowDelegate?.showDiscoverForDiscoverItem(element)
             }
             return
         }
@@ -124,10 +122,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         
         if let discoverHeader = header as? DiscoverHeaderView {
             discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
-            
-            print("===============================")
-            print(self.viewModel.mainItem())
-            
+                        
             if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
             } else {
@@ -167,6 +162,10 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
 
     // MARK: Actions
     func showDiscoverShouts() {
-        self.flowDelegate?.showShoutsForDiscoverItem(self.viewModel.mainItem())
+        guard let discoverItem = viewModel.mainItem() else {
+            assertionFailure()
+            return
+        }
+        self.flowDelegate?.showShoutsForDiscoverItem(discoverItem)
     }
 }

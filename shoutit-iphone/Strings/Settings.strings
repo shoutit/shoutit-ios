@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Setting"; ObjectID = "aTs-Bq-b02"; */
+"aTs-Bq-b02.text" = "Setting";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "f48-fJ-cyN"; */
+"f48-fJ-cyN.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "jwp-Rd-nto"; */
+"jwp-Rd-nto.normalTitle" = "Reset password";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "od8-aL-3Ox"; */
+"od8-aL-3Ox.title" = "Settings";

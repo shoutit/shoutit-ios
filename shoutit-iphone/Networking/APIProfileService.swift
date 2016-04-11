@@ -29,7 +29,22 @@ class APIProfileService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
     }
     
+    static func retrieveProfileWithTwilioUsername(twilio: String) -> Observable<Profile> {
+        let url = APIManager.baseURL + "/twilio/profile?identity=\(twilio)"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
+    }
+    
     static func editUserWithUsername(username: String, withParams params: EditProfileParams) -> Observable<DetailedProfile> {
+        let url = APIManager.baseURL + "/profiles/\(username)"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+    }
+    
+    static func updateAPNsWithUsername(username: String, withParams params: APNParams) -> Observable<DetailedProfile> {
+        let url = APIManager.baseURL + "/profiles/\(username)"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+    }
+    
+    static func editEmailForUserWithUsername(username: String, withEmailParams params: EmailParams) -> Observable<DetailedProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }

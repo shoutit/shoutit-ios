@@ -319,6 +319,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func didPressLeftButton(sender: AnyObject!) {
+        textView.resignFirstResponder()
+        
         self.flowDelegate?.showAttachmentController({ [weak self] (type) in
             self?.attachmentManager.requestAttachmentWithType(type)
         }, transitionDelegate: self)
@@ -358,9 +360,11 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     @IBAction func moreAction() {
         let alert = viewModel.moreActionAlert { [weak self] (action) in
+            let action = action
+            
             if action.title == NSLocalizedString("View Profile", comment: "") {
                 if let user = self?.conversation.shout?.user {
-                    self?.flowDelegate?.showPage(user)
+                    self?.flowDelegate?.showProfile(user)
                     return
                 }
                 
@@ -371,8 +375,18 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
                 return
             }
             
+            
+            self?.deleteAction()
+            
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func deleteAction() {
+        let alert = viewModel.deleteActionAlert { [weak self] in
             self?.navigationController?.popViewControllerAnimated(true)
         }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     

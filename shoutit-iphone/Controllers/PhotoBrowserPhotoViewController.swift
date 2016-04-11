@@ -15,6 +15,9 @@ class PhotoBrowserPhotoViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView?
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var playButton: UIButton?
+    
+    var tapHandler : ((viewModel: ShoutDetailShoutImageViewModel) -> Void)!
     
     var viewModel: ShoutDetailShoutImageViewModel? {
         didSet {
@@ -37,11 +40,7 @@ class PhotoBrowserPhotoViewController: UIViewController {
         switch viewModel {
         case .Image(let url):
             showLoading()
-            imageView?.sh_setImageWithURL(url,
-                                                        placeholderImage: nil,
-                                                        optionsInfo: nil)
-            {[weak self] (image, error, _, _) in
-                
+            imageView?.sh_setImageWithURL(url, placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
                 if let _ = image {
                     self?.showImage()
                 } else if let error = error {
@@ -51,7 +50,6 @@ class PhotoBrowserPhotoViewController: UIViewController {
                     self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
                     #endif
                 }
-                
             }
         case .Loading:
             showLoading()
@@ -59,7 +57,22 @@ class PhotoBrowserPhotoViewController: UIViewController {
             showMessage(error.sh_message)
         case .NoContent(let message):
             showMessage(message)
+        case .Movie(let video):
+            showLoading()
+            imageView?.sh_setImageWithURL(NSURL(string: video.thumbnailPath), placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
+                if let _ = image {
+                    self?.showVideo()
+                } else if let error = error {
+                    #if DEBUG
+                        self?.showMessage(error.localizedDescription)
+                    #else
+                        self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
+                    #endif
+                }
+                
+            }
         }
+        
     }
     
     func showMessage(message: String) {
@@ -68,6 +81,7 @@ class PhotoBrowserPhotoViewController: UIViewController {
         imageView?.hidden = true
         label?.hidden = false
         label?.text = message
+        playButton?.hidden = true
     }
     
     func showLoading() {
@@ -75,6 +89,7 @@ class PhotoBrowserPhotoViewController: UIViewController {
         label?.hidden = true
         activityIndicator?.hidden = false
         activityIndicator?.startAnimating()
+        playButton?.hidden = true
     }
     
     func showImage() {
@@ -82,5 +97,20 @@ class PhotoBrowserPhotoViewController: UIViewController {
         activityIndicator?.hidden = true
         label?.hidden = true
         imageView?.hidden = false
+        playButton?.hidden = true
+    }
+    
+    func showVideo() {
+        showImage()
+        playButton?.hidden = false
+    }
+    
+    @IBAction func playAction() {
+        
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+        tapHandler(viewModel: viewModel)
     }
 }

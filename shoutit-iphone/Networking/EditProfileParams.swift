@@ -34,6 +34,7 @@ struct EditProfileParams: Params {
         p["image"] = imagePath
         p["cover"] = coverPath
         
+        
         return p
     }
 }

@@ -34,3 +34,9 @@ extension PushTokens: Encodable {
             ])
     }
 }
+
+extension PushTokens: Params {
+    var params: [String : AnyObject] {
+        return self.encode().JSONObject() as! [String: AnyObject]
+    }
+}

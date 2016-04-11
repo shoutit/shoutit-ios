@@ -14,7 +14,6 @@ class EditProfileTextViewTableViewCell: UITableViewCell {
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var textView: BorderedMaterialTextView!
-    @IBOutlet var heightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

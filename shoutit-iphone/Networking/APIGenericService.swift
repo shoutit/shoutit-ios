@@ -29,14 +29,28 @@ class APIGenericService {
                 request.cancel()
             }
             
-            request.responseJSON{ (response) in
-                do {
-                    _ = try validateResponseAndExtractJson(response)
+            
+            request.responseData{ (response) in
+                guard let responseData = response.data where responseData.length > 0 else {
                     observer.onNext()
                     observer.onCompleted()
+                    return
+                }
+                do {
+                    let dataObject = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers)
+                    
+                    let result : Result<AnyObject, NSError> = Result.Success(dataObject)
+                    let resp : Response<AnyObject, NSError> = Response(request: response.request, response: response.response, data: responseData, result: result)
+                    
+                    _ = try validateResponseAndExtractJson(resp)
+                    observer.onNext()
+                    observer.onCompleted()
+                    
                 } catch let error {
                     observer.onError(error)
                 }
+                
+                
             }
             
             return cancel

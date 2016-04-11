@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import MBProgressHUD
 
 protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
 
@@ -225,13 +226,14 @@ extension ProfileCollectionViewController {
                     }
                     .addDisposableTo(coverView.reuseDisposeBag)
             }
-            
+            /*
             coverView.cartButton
                 .rx_tap
                 .subscribeNext{[unowned self] in
                     self.flowDelegate?.showCart()
                 }
                 .addDisposableTo(coverView.reuseDisposeBag)
+             */
             
             coverView
                 .searchButton
@@ -315,6 +317,7 @@ extension ProfileCollectionViewController {
             }
             infoView.verifyAccountButtonHeightConstraint.constant = viewModel.hidesVerifyAccountButton ? 0 : layout.defaultVerifyButtonHeight
             
+            
         case .ListSectionHeader:
             let listSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
             listSectionHeader.titleLabel.text = viewModel.listSection.title
@@ -340,8 +343,14 @@ extension ProfileCollectionViewController {
             seeAllShoutsFooter.button
                 .rx_tap
                 .subscribeNext{[unowned self] in
-                    guard let username = self.viewModel.username else {return}
-                    self.flowDelegate?.showShoutsForUsername(username)
+                    guard let model = self.viewModel.model else { return }
+                    switch model {
+                    case .ProfileModel(let profile):
+                        self.flowDelegate?.showShoutsForProfile(profile)
+                    case .TagModel(let tag):
+                        self.flowDelegate?.showShoutsForTag(tag)
+                        
+                    }
                 }
                 .addDisposableTo(seeAllShoutsFooter.reuseDisposeBag!)
         }
@@ -407,7 +416,10 @@ extension ProfileCollectionViewController {
                     }
                 })
                 .addDisposableTo(disposeBag)
-            
+        case .More:
+            button.rx_tap.asDriver().driveNext({ [weak self] in
+                self?.moreAction()
+            }).addDisposableTo(disposeBag)
         case .EditProfile:
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
@@ -439,6 +451,45 @@ extension ProfileCollectionViewController {
         } else {
             button.setImage(buttonModel.image, forState: .Normal)
         }
+    }
+    
+    func reportAction() {
+        
+        guard let reportable = viewModel.reportable else {
+            return
+        }
+        
+        let alert = reportable.reportAlert { (report) in
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+                
+            }).addDisposableTo(self.disposeBag)
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func moreAction() {
+        let alt = viewModel.moreAlert { (alertController) in
+            self.reportAction()
+        }
+        
+        guard let alert = alt else {
+            return
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func startChat() {

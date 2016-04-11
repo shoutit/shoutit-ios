@@ -14,6 +14,9 @@ final class Account {
     
     // singleton
     static let sharedInstance = Account()
+    
+    private let disposeBag = DisposeBag()
+    
     // public consts
     lazy var userDirectory: String = {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
@@ -35,7 +38,11 @@ final class Account {
     }()
     
     // data
-    var apnsToken: String?
+    var apnsToken: String? {
+        didSet {
+            self.updateAPNSIfNeeded()
+        }
+    }
     private(set) var authData: AuthData? {
         didSet {
             self.loginSubject.onNext()
@@ -137,6 +144,27 @@ final class Account {
         for p in paths {
             let fullPath = NSURL(fileURLWithPath: userDirectory).URLByAppendingPathComponent(p).path!
             try NSFileManager.defaultManager().removeItemAtPath(fullPath)
+        }
+    }
+    
+    func updateAPNSIfNeeded() {
+        guard let user = self.user else {
+            return
+        }
+        
+        if let apnsToken = self.apnsToken {
+            let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
+            
+            APIProfileService.updateAPNsWithUsername(user.username, withParams: params).subscribe({ (event) in
+                switch event {
+                case .Next(let profile):
+                    print(profile)
+                    break;
+                case .Error(let error):
+                    debugPrint(error)
+                default: break
+                }
+            }).addDisposableTo(disposeBag)
         }
     }
 }

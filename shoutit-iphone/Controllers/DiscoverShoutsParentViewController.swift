@@ -9,11 +9,12 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable {}
+protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
 
 class DiscoverShoutsParentViewController: UIViewController {
     
     // UI
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var changeLayoutButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -55,5 +56,12 @@ class DiscoverShoutsParentViewController: UIViewController {
                 flowDelegate.showShout(shout)
             }
         }.addDisposableTo(disposeBag)
+        
+        searchButton.rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.flowDelegate?.showSearchInContext(.DiscoverShouts(item: self.viewModel.discoverItem))
+            }
+            .addDisposableTo(disposeBag)
     }
 }

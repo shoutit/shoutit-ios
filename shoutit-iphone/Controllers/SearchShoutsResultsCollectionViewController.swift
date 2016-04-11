@@ -82,6 +82,8 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     @IBAction func searchAction() {
         if case .CategoryShouts(let category) = viewModel.context {
             flowDelegate?.showSearchInContext(.CategoryShouts(category: category))
+        } else if self.navigationController?.viewControllers.first === self {
+            flowDelegate?.showSearchInContext(.General)
         } else {
             pop()
         }

@@ -23,4 +23,8 @@ extension UIViewController {
             self.navigationItem.leftBarButtonItem = leftBarButtonItem
         }
     }
+    
+    func applyBackButton() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: #selector(UIViewController.pop))
+    }
 }

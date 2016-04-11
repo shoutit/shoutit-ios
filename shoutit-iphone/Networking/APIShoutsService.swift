@@ -31,9 +31,12 @@ class APIShoutsService {
     
     static func retrieveShoutWithId(id: String) -> Observable<Shout> {
         let url = shoutsURL + "/\(id)"
-        return APIGenericService.requestWithMethod(.GET,
-                                                   url: url,
-                                                   params: NopParams())
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams())
+    }
+    
+    static func deleteShoutWithId(id: String) -> Observable<Void> {
+        let url = shoutsURL + "/\(id)"
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams())
     }
     
     static func getAutocompletionWithParams(params: AutocompletionParams) -> Observable<[AutocompletionTerm]> {
@@ -41,12 +44,11 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
+    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<PagedResults<Shout>> {
         let url = shoutsURL + "/\(params.shout.id)/related"
         return APIGenericService.requestWithMethod(.GET, url: url,
                                                    params: params,
                                                    encoding: .URL,
-                                                   responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
     }
 

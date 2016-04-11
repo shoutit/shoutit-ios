@@ -35,19 +35,28 @@ class SettingsFlowController: FlowController {
         let controller = Wireframe.settingsViewController()
         controller.models = self.accountSettingsOptions()
         controller.title = NSLocalizedString("Account", comment: "")
+        controller.ignoreMenuButton = true
         navigationController.showViewController(controller, sender: nil)
     }
     
     private func showNotificationsSettings() {
-        navigationController.notImplemented()
+        if let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.sharedApplication().openURL(settingsURL)
+        }
     }
     
     private func showEmailSettings() {
-        navigationController.notImplemented()
+        let controller = Wireframe.settingsFromViewController()
+        controller.viewModel = ChangeEmailSettingsFormViewModel()
+        controller.ignoreMenuButton = true
+        navigationController.showViewController(controller, sender: nil)
     }
     
     private func showPasswordSettings() {
-        navigationController.notImplemented()
+        let controller = Wireframe.settingsFromViewController()
+        controller.viewModel = ChangePasswordSettingsFormViewModel()
+        controller.ignoreMenuButton = true
+        navigationController.showViewController(controller, sender: nil)
     }
     
     private func settingsOptions() -> Variable<[SettingsOption]> {
@@ -57,12 +66,6 @@ class SettingsFlowController: FlowController {
             },
             SettingsOption(name: NSLocalizedString("Notification", comment: "Settings cell title")) {[unowned self] in
                 self.showNotificationsSettings()
-            },
-            SettingsOption(name: NSLocalizedString("Privacy", comment: "Settings cell title")) {[unowned self] in
-                self.showPrivacyPolicy()
-            },
-            SettingsOption(name: NSLocalizedString("Terms", comment: "Settings cell title")) {[unowned self] in
-                self.showTermsAndConditions()
             },
             SettingsOption(name: NSLocalizedString("About", comment: "Settings cell title")) {[unowned self] in
                 self.showAboutInterface()

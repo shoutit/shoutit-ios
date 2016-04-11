@@ -25,15 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Timberjack.register()
-        
         Timberjack.logStyle = .Verbose
         
         applyAppearance()
-        
+        configureGoogleLogin()
         configureLoggingServices()
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         PlacesGeocoder.setup()
         LocationManager.sharedInstance.startUpdatingLocation()
         
@@ -88,7 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - Appearance
 
-extension AppDelegate {
+private extension AppDelegate {
+    
+    func configureGoogleLogin() {
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+    }
     
     func configureLoggingServices() {
         

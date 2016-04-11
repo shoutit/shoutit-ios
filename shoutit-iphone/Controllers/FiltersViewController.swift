@@ -55,7 +55,8 @@ final class FiltersViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.completionBlock?(self.viewModel.composeParamsWithChosenFilters())
+                let params = self.viewModel.composeParamsWithChosenFilters()
+                self.completionBlock?(params)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
@@ -171,23 +172,25 @@ extension FiltersViewController: UITableViewDataSource {
                 .subscribeNext{[unowned self] () in
                     guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
                     let categoryNames = categories.map{$0.name}
-                    self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: categoryNames) { (index) in
-                        let category = categories[index]
+                    let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
+                    self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) { (index) in
+                        let category: Category? = index == 0 ? nil : categories[index - 1]
                         self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category)
-                        self.viewModel.extendViewModelsWithFilters(category.filters ?? [])
+                        self.viewModel.extendViewModelsWithFilters(category?.filters ?? [])
                         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }
                 }
                 .addDisposableTo(categoryCell.reuseDisposeBag)
         case .PriceRestriction(let from, let to):
             let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
-            priceCell.minimumValueTextField.text = from != nil ? String(from) : nil
-            priceCell.maximumValueTextField.text = to != nil ? String(to) : nil
+            priceCell.minimumValueTextField.text = from != nil ? String(from!) : nil
+            priceCell.maximumValueTextField.text = to != nil ? String(to!) : nil
             priceCell.minimumValueTextField
                 .rx_text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[unowned self] (value) in
+                    guard case .PriceRestriction(_, let to) = self.viewModel.cellViewModels[indexPath.row] else { return }
                     self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: Int(value), to: to)
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
@@ -196,6 +199,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribeNext{[unowned self] (value) in
+                    guard case .PriceRestriction(let from, _) = self.viewModel.cellViewModels[indexPath.row] else { return }
                     self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: from, to: Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)

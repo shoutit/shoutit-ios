@@ -24,7 +24,7 @@ class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var cartButton: UIButton!
+//    @IBOutlet weak var cartButton: UIButton!
     
     @IBOutlet weak var menuButtonLeadingContainerConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!

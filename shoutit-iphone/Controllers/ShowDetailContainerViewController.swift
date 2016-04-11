@@ -72,6 +72,7 @@ class ShowDetailContainerViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // UI
+    @IBOutlet weak var tabBarButtonsBar: UIView!
     @IBOutlet var tabBatButtons: [TabbarButton]! // tagged from 0 to 3
     @IBOutlet var tabBarButtonsWidthConstraints: [NSLayoutConstraint]!
     
@@ -133,6 +134,66 @@ class ShowDetailContainerViewController: UIViewController {
         }
     }
     
+    private func reportAction() {
+        
+        let alert = self.viewModel.shout.reportAlert { (report) in
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+                
+                }).addDisposableTo(self.disposeBag)
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func moreAction() {
+        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
+            return
+        }
+        
+        let alert = viewModel.moreAlert { (alertController) in
+            self.reportAction()
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func deleteAction() {
+        let alert = viewModel.deleteAlert {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            APIShoutsService.deleteShoutWithId(self.viewModel.shout.id).subscribe({ [weak self] (event) in
+                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                
+                switch event {
+                case .Next:
+                    self?.showSuccessMessage(NSLocalizedString("Shout deleted Successfully", comment: ""))
+                    self?.navigationController?.popViewControllerAnimated(true)
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+
+            }).addDisposableTo(self.disposeBag)
+         
+           
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     private func makeCall() {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         viewModel.makeCall()
@@ -140,7 +201,7 @@ class ShowDetailContainerViewController: UIViewController {
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 switch event {
                 case .Next(let mobile):
-                    guard let url = NSURL(string: "tel://\(mobile.phone)") else {
+                    guard let url = NSURL(string: "telprompt://\(mobile.phone)") else {
                         assertionFailure()
                         return
                     }
@@ -188,7 +249,7 @@ class ShowDetailContainerViewController: UIViewController {
         }
         
         if reload {
-            view.layoutIfNeeded()
+            tabBarButtonsBar.layoutIfNeeded()
         }
     }
     
@@ -206,7 +267,7 @@ class ShowDetailContainerViewController: UIViewController {
                 case .Chat:
                     self.startChat()
                 case .More:
-                    self.notImplemented()
+                    self.moreAction()
                 case .Chats:
                     self.notImplemented()
                 case .Edit:
@@ -219,8 +280,6 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func showEditController() {
-        let editController = Wireframe.editShoutController()
-        editController.shout = viewModel.shout
-        self.navigationController?.pushViewController(editController, animated: true)
+        self.flowDelegate?.showEditShout(viewModel.shout)
     }
 }

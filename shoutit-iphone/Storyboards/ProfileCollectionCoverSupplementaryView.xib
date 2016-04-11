@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10112" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -62,15 +62,6 @@
                     </constraints>
                     <state key="normal" image="navMenu"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0o-eo-p4h">
-                    <rect key="frame" x="329" y="20" width="46" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="46" id="XsJ-Hy-kxM"/>
-                        <constraint firstAttribute="height" constant="44" id="zuC-8K-xKk"/>
-                    </constraints>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" image="cart"/>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_navbar_white" translatesAutoresizingMaskIntoConstraints="NO" id="SKf-A3-52W">
                     <rect key="frame" x="117" y="20" width="141" height="30"/>
                     <constraints>
@@ -79,7 +70,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brf-3r-eFC">
-                    <rect key="frame" x="283" y="20" width="46" height="44"/>
+                    <rect key="frame" x="329" y="20" width="46" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="8tv-Dp-PjK"/>
                         <constraint firstAttribute="height" constant="44" id="XdA-iY-k5H"/>
@@ -101,11 +92,9 @@
                 <constraint firstItem="z2Y-Zx-3M1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Diz-yQ-Npb"/>
                 <constraint firstAttribute="bottom" secondItem="tZK-Bv-SiE" secondAttribute="bottom" constant="-21" id="E8w-ge-hcd"/>
                 <constraint firstAttribute="bottom" secondItem="BtV-hz-FSL" secondAttribute="bottom" id="FR1-2K-ix7"/>
-                <constraint firstItem="u0o-eo-p4h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="GYV-f3-oNy"/>
                 <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="IRj-vo-xFx"/>
                 <constraint firstItem="n2A-Ck-DCK" firstAttribute="top" secondItem="tZK-Bv-SiE" secondAttribute="bottom" id="J7t-tk-Mdu"/>
                 <constraint firstItem="pOi-MT-3B6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="JDY-RV-45T"/>
-                <constraint firstItem="u0o-eo-p4h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n2A-Ck-DCK" secondAttribute="trailing" constant="4" id="LPS-RS-f0e"/>
                 <constraint firstItem="DDK-KL-ORc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ldw-rm-kzn"/>
                 <constraint firstItem="qI4-mf-7tC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="990" id="MaW-tT-fqk"/>
                 <constraint firstItem="SKf-A3-52W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Oto-Yy-LLG"/>
@@ -119,16 +108,13 @@
                 <constraint firstAttribute="bottom" secondItem="qI4-mf-7tC" secondAttribute="bottom" priority="990" id="fOd-ba-dwT"/>
                 <constraint firstAttribute="trailing" secondItem="BtV-hz-FSL" secondAttribute="trailing" id="hHT-tZ-tpP"/>
                 <constraint firstItem="tZK-Bv-SiE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hSx-z1-8rh"/>
-                <constraint firstAttribute="trailing" secondItem="u0o-eo-p4h" secondAttribute="trailing" id="hzH-eG-QR2"/>
                 <constraint firstAttribute="bottom" secondItem="z2Y-Zx-3M1" secondAttribute="bottom" id="ihe-qb-oQa"/>
                 <constraint firstItem="tZK-Bv-SiE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pOi-MT-3B6" secondAttribute="trailing" constant="4" id="ipJ-T7-yc9"/>
-                <constraint firstItem="u0o-eo-p4h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tZK-Bv-SiE" secondAttribute="trailing" constant="4" id="oJB-OM-d7M"/>
+                <constraint firstAttribute="trailing" secondItem="Brf-3r-eFC" secondAttribute="trailing" id="my2-sF-x1j"/>
                 <constraint firstItem="9DT-va-2dw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qU1-ZH-t2r"/>
                 <constraint firstItem="tZK-Bv-SiE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SKf-A3-52W" secondAttribute="bottom" constant="50" id="rIB-rX-6h6"/>
-                <constraint firstItem="Brf-3r-eFC" firstAttribute="leading" secondItem="u0o-eo-p4h" secondAttribute="trailing" id="sV9-di-xOC"/>
                 <constraint firstItem="Brf-3r-eFC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="uvQ-KN-dEX"/>
                 <constraint firstItem="SKf-A3-52W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="900" constant="20" id="vLg-VG-gxW"/>
-                <constraint firstItem="u0o-eo-p4h" firstAttribute="leading" secondItem="Brf-3r-eFC" secondAttribute="trailing" id="wbA-ai-JQg"/>
                 <constraint firstItem="n2A-Ck-DCK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pOi-MT-3B6" secondAttribute="trailing" constant="4" id="wfv-qW-x9Y"/>
                 <constraint firstItem="qI4-mf-7tC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="990" id="yZ1-JX-Q8K"/>
             </constraints>
@@ -137,14 +123,12 @@
                 <mask key="constraints">
                     <exclude reference="6dR-f4-cZu"/>
                     <exclude reference="eMf-0H-5gc"/>
-                    <exclude reference="sV9-di-xOC"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="backButton" destination="9DT-va-2dw" id="sel-gK-VPh"/>
                 <outlet property="blurView" destination="DDK-KL-ORc" id="UhI-TF-9Mc"/>
                 <outlet property="blurredImageView" destination="z2Y-Zx-3M1" id="I3t-MJ-kJc"/>
-                <outlet property="cartButton" destination="u0o-eo-p4h" id="IaY-7d-luQ"/>
                 <outlet property="gradientView" destination="BtV-hz-FSL" id="VmC-Mo-EnK"/>
                 <outlet property="imageView" destination="qI4-mf-7tC" id="WHO-Wk-b2N"/>
                 <outlet property="menuButton" destination="pOi-MT-3B6" id="FqG-2j-1Z1"/>
@@ -159,7 +143,6 @@
     </objects>
     <resources>
         <image name="backThin" width="24" height="24"/>
-        <image name="cart" width="25" height="25"/>
         <image name="logo_navbar_white" width="93" height="24"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="profile_cover_placeholder" width="375" height="211"/>
