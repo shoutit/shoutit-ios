@@ -19,13 +19,15 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     }
     
     private var connecting : Bool = false
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    private var userChangeBag = DisposeBag()
     
     var client: TwilioConversationsClient?
     var accessManager: TwilioAccessManager?
     
     override init() {
         super.init()
+        
         retriveToken()
     }
     
@@ -41,17 +43,37 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             case .Next(let authData):
                 self?.authData = authData
                 self?.connecting = false
+                self?.subsribeForUserChange()
             case .Error(let error):
                 print(error)
                 self?.connecting = false
+                self?.subsribeForUserChange()
             default: break
             }
         }.addDisposableTo(disposeBag)
     }
     
+    func subsribeForUserChange() {
+        // release previous subscripitons
+        userChangeBag = DisposeBag()
+        
+        Account.sharedInstance.loginSubject.subscribeNext { [weak self] (loginchanged) in
+            self?.client?.unlisten()
+            self?.client = nil
+            self?.accessManager = nil
+            self?.connecting = false
+            
+            if Account.sharedInstance.loggedUser != nil {
+                // fetch token with small delay to avoid disposing client
+                self?.performSelector("retriveToken", withObject: nil, afterDelay: 2.0)
+            }
+            
+        }.addDisposableTo(userChangeBag)
+    }
+    
     func createTwilioClient() {
         guard let authData = authData else {
-            fatalError("Twilio canno be initialized before requesting an access token from Shoutit API")
+            fatalError("Twilio cannot be initialized before requesting an access token from Shoutit API")
         }
         
         print(authData.token)
@@ -59,6 +81,8 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         self.accessManager = TwilioAccessManager(token:authData.token, delegate:self)
         self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self)
         self.client?.listen()
+        
+        
     }
     
     func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
