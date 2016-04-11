@@ -16,6 +16,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let scrollOffset = Variable(CGPointZero)
     let disposeBag = DisposeBag()
     let selectionDisposeBag = DisposeBag()
+    let refreshControl = UIRefreshControl()
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
@@ -30,6 +31,14 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
 
         setupDisplayable()
         setupDataSource()
+
+        refreshControl.addTarget(self, action: "reloadData", forControlEvents: .ValueChanged)
+        self.collectionView?.addSubview(refreshControl)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
     }
     
     func reloadData() {
@@ -107,6 +116,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
                 .subscribeNext({ [weak self] (shouts) -> Void in
                     self?.items = shouts
                     self?.collectionView?.reloadData()
+                    self?.refreshControl.endRefreshing()
                 })
                 .addDisposableTo(disposeBag)
             

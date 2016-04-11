@@ -140,11 +140,15 @@ final class ShoutDetailViewModel {
     func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
-        if self.shout.user.id != Account.sharedInstance.user?.id {
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
-                completion(alertController: alertController)
-            }))
+        let reportAction = UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
+            completion(alertController: alertController)
+        })
+        
+        if self.shout.user.id == Account.sharedInstance.user?.id {
+            reportAction.enabled = false
         }
+        
+        alertController.addAction(reportAction)
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
             

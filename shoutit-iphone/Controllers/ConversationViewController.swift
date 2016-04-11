@@ -50,7 +50,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if let _ = conversation.shout {
+        if let _ = conversation.shout?.id {
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         }
         

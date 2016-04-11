@@ -28,6 +28,14 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         
         attachments = [:]
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        }
+    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -40,15 +48,25 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
         
-        let attachment = attachments[indexPath.item]
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        let attachment = attachments[modifiedIndexPath.item]
         cell.fillWith(attachment)
         
         let task = self.mediaUploader.taskForAttachment(attachment)
         cell.fillWith(task)
         
-        cell.setActive(indexActive(indexPath))
+        cell.setActive(indexActive(modifiedIndexPath))
         
         return cell
+    }
+    
+    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return NSIndexPath(forItem: 5 - indexPath.item, inSection: indexPath.section)
+        } else {
+            return indexPath
+        }
     }
     
     func selectedAttachments() -> [MediaAttachment] {
@@ -56,17 +74,21 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
     }
     
     func indexActive(indexPath: NSIndexPath) -> Bool {
-        return indexPath.item <= selectedAttachments().count
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        return modifiedIndexPath.item <= selectedAttachments().count
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if !indexActive(indexPath) {
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        if !indexActive(modifiedIndexPath) {
             return
         }
         
-        if attachments[indexPath.item] != nil {
-            selectedIdx = indexPath.item
+        if attachments[modifiedIndexPath.item] != nil {
+            selectedIdx = modifiedIndexPath.item
             showEditAlert()
             return
         }

@@ -27,7 +27,7 @@
                                         <constraint firstAttribute="height" constant="75" id="BaA-ve-YJ0"/>
                                     </constraints>
                                 </view>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guest avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="guest avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
                                     <rect key="frame" x="268" y="35" width="64" height="64"/>
                                     <gestureRecognizers/>
                                     <constraints>
@@ -43,7 +43,7 @@
                                         <outletCollection property="gestureRecognizers" destination="L58-yU-8sx" appends="YES" id="3HW-JB-F8J"/>
                                     </connections>
                                 </imageView>
-                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDW-SH-tlA">
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Guest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDW-SH-tlA">
                                     <rect key="frame" x="279" y="108" width="43" height="19"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -53,7 +53,7 @@
                                         <outletCollection property="gestureRecognizers" destination="jR9-sb-pKt" appends="YES" id="eNE-Hd-EVW"/>
                                     </connections>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm0-dm-zPw">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm0-dm-zPw" customClass="CreateShoutButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="90" y="148" width="420" height="44"/>
                                     <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -61,8 +61,7 @@
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="985" constant="180" id="K9h-IT-cmy"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
-                                    <state key="normal" title="Create Shout" image="tabShout">
+                                    <state key="normal" title="  Create Shout" image="tabShout">
                                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -74,7 +73,7 @@
                                         <action selector="createShout:" destination="S5g-qW-Noj" eventType="touchUpInside" id="Pz1-dj-FtV"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poznań" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys9-SK-6FT">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Poznań" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys9-SK-6FT">
                                     <rect key="frame" x="71" y="207" width="54" height="19"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -308,7 +307,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="626" y="535"/>
+            <point key="canvasLocation" x="619" y="454"/>
         </scene>
     </scenes>
     <resources>
