@@ -33,7 +33,7 @@ class EditShoutTableViewController: CreateShoutTableViewController {
         self.headerView.titleTextField.text = self.shout.title
         self.viewModel.shoutParams.title.value = self.shout.title
  
-        self.headerView.priceTextField.text = self.shout.priceText()
+        self.headerView.priceTextField.text = self.shout.priceTextWithoutFree()
         self.viewModel.shoutParams.price.value = self.shout.price != nil ? Double(self.shout.price! / 100) : 0.0
         
         var attachments : [Int : MediaAttachment] = [:]
