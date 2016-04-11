@@ -103,7 +103,7 @@ final class FiltersViewModel {
     
     init(filtersState: FiltersState) {
         self.filtersState = filtersState
-        cellViewModels = basicCellViewModels()
+        cellViewModels = initialCellViewModels()
         fetchCategories()
         fetchSortTypes()
     }
@@ -235,6 +235,16 @@ private extension FiltersViewModel {
 
 private extension FiltersViewModel {
     
+    private func initialCellViewModels() -> [FiltersCellViewModel] {
+        
+        if let filters = filtersState.filters {
+            return basicCellViewModels() + filters.map{FiltersCellViewModel.FilterValueChoice(filter: $0.0, selectedValues: $0.1)}
+        } else if case (let category?, _) = filtersState.category {
+            return basicCellViewModels() + (category.filters ?? []).map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
+        }
+        return basicCellViewModels()
+    }
+    
     private func basicCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel: FiltersCellViewModel
         let sortTypeCellViewModel: FiltersCellViewModel
@@ -278,6 +288,7 @@ private extension FiltersViewModel {
         let priceConstraintCellViewModel: FiltersCellViewModel
         let locationViewModel: FiltersCellViewModel
         let distanceConstraintViewModel: FiltersCellViewModel
+        var filterViewModels: [FiltersCellViewModel] = []
         
         if case (let shoutType?, .Disabled) = filtersState.shoutType {
             shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: .Specific(shoutType: shoutType))
@@ -295,6 +306,7 @@ private extension FiltersViewModel {
         
         if case (let category?, .Disabled) = filtersState.category {
             categoryCellViewModel = .CategoryChoice(category: category, enabled: false)
+            filterViewModels = (category.filters ?? []).map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
         } else {
             categoryCellViewModel = .CategoryChoice(category: nil, enabled: true)
         }
@@ -308,7 +320,7 @@ private extension FiltersViewModel {
         if case (let location?, .Disabled) = filtersState.location {
             locationViewModel = .LocationChoice(location: location)
         } else {
-            locationViewModel = .LocationChoice(location: nil)
+            locationViewModel = .LocationChoice(location: Account.sharedInstance.user?.location)
         }
         
         if case (let distance?, .Disabled) = filtersState.withinDistance {
@@ -322,7 +334,7 @@ private extension FiltersViewModel {
                 categoryCellViewModel,
                 priceConstraintCellViewModel,
                 locationViewModel,
-                distanceConstraintViewModel]
+                distanceConstraintViewModel] + filterViewModels
     }
 }
 
