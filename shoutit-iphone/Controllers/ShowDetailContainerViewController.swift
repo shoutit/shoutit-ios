@@ -158,10 +158,6 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func moreAction() {
-        if self.viewModel.shout.user.id == Account.sharedInstance.user?.id {
-            return
-        }
-        
         let alert = viewModel.moreAlert { (alertController) in
             self.reportAction()
         }
@@ -273,7 +269,7 @@ class ShowDetailContainerViewController: UIViewController {
                 case .Edit:
                     self.showEditController()
                 case .Delete:
-                    self.notImplemented()
+                    self.deleteAction()
                 }
             }
             .addDisposableTo(buttonsDisposeBag)
