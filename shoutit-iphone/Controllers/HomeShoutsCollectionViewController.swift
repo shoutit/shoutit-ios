@@ -32,6 +32,11 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDataSource()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
+    }
+    
     func reloadData() {
         retry.value = true
     }

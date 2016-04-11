@@ -145,6 +145,7 @@ struct Constants {
         static let ToggleMenuNotification = "ToggleMenuNotification"
         static let UserDidLogoutNotification = "UserDidLogoutNotification"
         static let IncomingCallNotification = "IncomingCallNotification"
+        static let ShoutDeletedNotification = "ShoutDeletedNotification"
     }
     
     struct Filter {
