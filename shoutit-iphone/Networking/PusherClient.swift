@@ -11,6 +11,7 @@ import Pusher
 import RxSwift
 import Argo
 import Ogra
+import ReachabilitySwift
 
 final class PusherClient : NSObject {
     
@@ -25,11 +26,40 @@ final class PusherClient : NSObject {
     
     private var authToken : String?
     
+    private var reachability: Reachability!
+    
     override init() {
         super.init()
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        
+        
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            debugPrint("Unable to create Reachability")
+            return
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            debugPrint("Unable to start notifier")
+        }
+        
+        
+        NSNotificationCenter.defaultCenter().rx_notification(ReachabilityChangedNotification).asObservable().subscribeNext { (notification) in
+            if APIManager.isNetworkReachable() == false {
+                return
+            }
+            
+            if self.pusherInstance.connection.connected == false {
+                self.connect()
+            }
+
+        }.addDisposableTo(disposeBag)
+        
     }
     
     func reconnect() {

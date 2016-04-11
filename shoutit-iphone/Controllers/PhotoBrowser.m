@@ -17,14 +17,19 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     
     [button setImage:[UIImage imageNamed:@"backThin"] forState:UIControlStateNormal];
+    
+    if ([UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
+        [button setImage:[UIImage imageNamed:@"rtl_backThin"] forState:UIControlStateNormal];
+    } else {
+        [button setImage:[UIImage imageNamed:@"backThin"] forState:UIControlStateNormal];
+    }
+    
     [button addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [button setTintColor:[UIColor whiteColor]];
     
     UIBarButtonItem *barbutton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.leftBarButtonItem = barbutton;
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
