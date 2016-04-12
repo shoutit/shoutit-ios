@@ -164,15 +164,19 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             existingDisposable?.dispose()
         }
         
-        if let textCell = cell as? CreateShoutTextCell {
+        if let textCell = cell as? CreateShoutTextViewCell {
             
-            let disposable = textCell.textField.rx_text.flatMap({ (text) -> Observable<String?> in
-                return Observable.just(text)
-            }).bindTo(viewModel.shoutParams.text)
+            let disposable = textCell.textView
+                .rx_text
+                .flatMap{ (text) -> Observable<String?> in
+                    return Observable.just(text)
+                }
+                .bindTo(viewModel.shoutParams.text)
+            textCell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
             
             if let shout = self.viewModel.shoutParams.shout {
-                if textCell.textField.text == "" {
-                    textCell.textField.text = shout.text
+                if textCell.textView.text == "" {
+                    textCell.textView.text = shout.text
                 }
             }
             

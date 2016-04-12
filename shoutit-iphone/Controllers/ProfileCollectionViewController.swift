@@ -40,7 +40,7 @@ class ProfileCollectionViewController: UICollectionViewController {
         }
         
         viewModel.reloadSubject
-            .throttle(0.5, scheduler: MainScheduler.instance)
+            .debounce(0.5, scheduler: MainScheduler.instance)
             .subscribeNext {[weak self] in
                 self?.collectionView?.reloadData()
             }

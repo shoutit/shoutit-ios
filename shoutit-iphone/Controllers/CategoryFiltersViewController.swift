@@ -82,7 +82,11 @@ extension CategoryFiltersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CategoryFiltersTableViewCell
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
         cell.nameLabel.text = cellViewModel.filterValue.name
-        cell.selected = cellViewModel.selected
+        if cellViewModel.selected {
+            tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+        } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
         return cell
     }
 }

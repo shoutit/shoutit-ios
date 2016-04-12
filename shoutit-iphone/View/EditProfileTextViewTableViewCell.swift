@@ -13,25 +13,7 @@ class EditProfileTextViewTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var textView: BorderedMaterialTextView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        textView.placeholderLabel = UILabel()
-        textView.placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .Regular)
-        textView.placeholderLabel!.textColor = UIColor(shoutitColor: .DiscoverBorder)
-        
-        textView.titleLabel = UILabel()
-        textView.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        textView.titleLabelColor = UIColor(shoutitColor: .DiscoverBorder)
-        textView.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        
-        textView.detailLabel = UILabel()
-        textView.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        textView.detailLabelActiveColor = UIColor(shoutitColor: .DiscoverBorder)
-        textView.detailLabelHidden = false
-    }
+    @IBOutlet weak var textView: FormTextView!
     
     override func prepareForReuse() {
         super.prepareForReuse()

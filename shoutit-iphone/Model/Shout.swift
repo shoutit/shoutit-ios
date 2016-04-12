@@ -73,7 +73,7 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
-            <*> j <|? "mobile_hint"
+            <*> j <|? "mobile"
         return f
     }
     

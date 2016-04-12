@@ -106,7 +106,9 @@ extension SettingsFormViewController {
                 }
                 .addDisposableTo(textFieldCell.reuseDisposeBag)
             
-            setupTextField(textFieldCell.textField, validator: type.validator, disposeBag: textFieldCell.reuseDisposeBag)
+            if let validator = type.validator {
+                textFieldCell.textField.addValidator(validator, withDisposeBag: textFieldCell.reuseDisposeBag)
+            }
         }
         return cell
     }
@@ -134,25 +136,6 @@ private extension SettingsFormViewController {
             return "ButtonCell"
         case .TextField:
             return "TextFieldCell"
-        }
-    }
-    
-    private func setupTextField(textField: BorderedMaterialTextField, validator: (String -> ValidationResult)?, disposeBag: DisposeBag) {
-        textField.font = UIFont.systemFontOfSize(18.0)
-        textField.textColor = MaterialColor.black
-        
-        textField.titleLabel = UILabel()
-        textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        textField.titleLabelColor = MaterialColor.grey.lighten1
-        textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        textField.clearButtonMode = .WhileEditing
-        
-        textField.detailLabel = UILabel()
-        textField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        textField.detailLabelActiveColor = MaterialColor.red.accent3
-        
-        if let validator = validator {
-            textField.addValidator(validator, withDisposeBag: disposeBag)
         }
     }
 }

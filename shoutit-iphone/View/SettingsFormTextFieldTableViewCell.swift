@@ -13,7 +13,7 @@ class SettingsFormTextFieldTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     
-    @IBOutlet weak var textField: BorderedMaterialTextField!
+    @IBOutlet weak var textField: FormTextField!
     
     override func prepareForReuse() {
         super.prepareForReuse()

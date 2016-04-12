@@ -50,10 +50,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        layoutInsets()
+    }
+    
+    func layoutInsets() {
         if let _ = conversation.shout?.id {
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+        } else {
+            tableView.contentInset = UIEdgeInsetsZero
         }
-        
     }
     
     func setTopicShout(shout: Shout) {
@@ -78,7 +83,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         shoutView.layoutIfNeeded()
         
-        tableView.contentInset = UIEdgeInsetsMake(20.0, 0, 130.0, 0)
+        layoutInsets()
     }
     
     func showShout() {
