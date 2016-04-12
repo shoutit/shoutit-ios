@@ -52,6 +52,7 @@ final class ShoutDetailViewModel {
     func reloadShoutDetails() {
         
         prepareCellViewModelsForLoading()
+        
         fetchShoutDetails()
             .subscribe {[weak self] (event) in
                 defer { self?.reloadSubject.onNext() }
