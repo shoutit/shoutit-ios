@@ -50,7 +50,7 @@ class IncomingCallController: UIViewController {
     
     func fetchCallingProfile() {
         APIProfileService.retrieveProfileWithTwilioUsername(invitation.from).subscribeNext { [weak self] (profile) in
-            self?.incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.username)"
+            self?.incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.fullName())"
         }.addDisposableTo(disposeBag)
     }
 }
