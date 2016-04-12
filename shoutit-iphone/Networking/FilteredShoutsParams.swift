@@ -26,7 +26,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     let withinDistance: Int?
     let entireCountry: Bool
     let sort: SortType?
-    let filters: [Filter : [FilterValue]]?
+    let filters: [(Filter, [FilterValue])]?
     
     init(searchPhrase: String? = nil,
          discoverId: String? = nil,
@@ -44,7 +44,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          withinDistance: Int? = nil,
          entireCountry: Bool = false,
          sort: SortType? = nil,
-         filters: [Filter : [FilterValue]]? = nil,
+         filters: [(Filter, [FilterValue])]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
          includeCurrentUserLocation: Bool = false) {
         

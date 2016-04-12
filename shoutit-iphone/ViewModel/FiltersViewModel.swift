@@ -28,7 +28,7 @@ struct FiltersState {
     let maximumPrice: (Int?, Editing)
     let location: (Address?, Editing)
     let withinDistance: (Int?, Editing)
-    let filters: [Filter : [FilterValue]]?
+    let filters: [(Filter, [FilterValue])]?
     
     init(shoutType: (ShoutType?, Editing) = (nil, .Enabled),
          sortType: (SortType?, Editing) = (nil, .Enabled),
@@ -37,7 +37,7 @@ struct FiltersState {
          maximumPrice: (Int?, Editing) = (nil, .Enabled),
          location: (Address?, Editing) = (nil, .Enabled),
          withinDistance: (Int?, Editing) = (nil, .Enabled),
-         filters: [Filter : [FilterValue]]? = nil)
+         filters: [(Filter, [FilterValue])]? = nil)
     {
         self.shoutType = shoutType
         self.sortType = sortType
@@ -132,7 +132,7 @@ final class FiltersViewModel {
         var maximumPrice: Int?
         var location: Address?
         var distance: Int?
-        var filters: [Filter : [FilterValue]] = [:]
+        var filters: [(Filter, [FilterValue])] = []
         
         for cellViewModel in cellViewModels {
             switch cellViewModel {
@@ -157,7 +157,7 @@ final class FiltersViewModel {
                     distance = nil
                 }
             case .FilterValueChoice(let filter, let selectedValues):
-                filters[filter] = selectedValues
+                filters.append((filter, selectedValues))
             }
         }
         
