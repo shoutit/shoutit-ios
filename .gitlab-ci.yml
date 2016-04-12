@@ -18,7 +18,7 @@ alpha:
   tags:
     - s4
   only:
-    - /^staging-.*$/
+    - s4
 testflight:
   type: build
   script: "bundle exec fastlane testflight"
