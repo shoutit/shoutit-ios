@@ -67,12 +67,13 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
+                    self?.reloadSubject.onNext(())
                 case .Error(let error as NSError):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.reloadSubject.onNext(())
                 default:
                     break
                 }
-                self?.reloadSubject.onNext(())
             }
             .addDisposableTo(disposeBag)
     }
@@ -91,6 +92,10 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var isListeningToYou: Bool? {
         return false
+    }
+    
+    var reportable: Reportable? {
+        return nil
     }
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {

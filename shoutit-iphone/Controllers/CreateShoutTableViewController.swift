@@ -85,8 +85,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             return Observable.just(text)
         }).bindTo(viewModel.shoutParams.title).addDisposableTo(disposeBag)
         
-        headerView.priceTextField.rx_text.flatMap({ (stringValue) -> Observable<Int?> in
-            return Observable.just(Int(stringValue))
+        headerView.priceTextField.rx_text.flatMap({ (stringValue) -> Observable<Double?> in
+            return Observable.just(stringValue.doubleValue)
         }).bindTo(viewModel.shoutParams.price).addDisposableTo(disposeBag)
         
     }
@@ -133,7 +133,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         switch type {
         case .Offer: self.viewModel.changeToShout()
         case .Request: self.viewModel.changeToRequest()
-        default: break
         }
     }
 
@@ -156,7 +155,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.viewModel.cellIdentifierAt(indexPath)) as UITableViewCell!
+        let identifier = self.viewModel.cellIdentifierAt(indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell!
         
         self.viewModel.fillCell(cell, forIndexPath: indexPath)
         
@@ -164,20 +164,38 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             existingDisposable?.dispose()
         }
         
-        if let textCell = cell as? CreateShoutTextCell {
+        if let textCell = cell as? CreateShoutTextViewCell {
             
-            let disposable = textCell.textField.rx_text.flatMap({ (text) -> Observable<String?> in
-                return Observable.just(text)
-            }).bindTo(viewModel.shoutParams.text)
+            let disposable = textCell.textView
+                .rx_text
+                .flatMap{ (text) -> Observable<String?> in
+                    return Observable.just(text)
+                }
+                .bindTo(viewModel.shoutParams.text)
+            textCell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
             
             if let shout = self.viewModel.shoutParams.shout {
-                if textCell.textField.text == "" {
-                    textCell.textField.text = shout.text
+                if textCell.textView.text == "" {
+                    textCell.textView.text = shout.text
                 }
             }
             
             disposables[indexPath] = disposable
             
+        }
+        
+        if let mobileCell = cell as? CreateShoutMobileCell {
+            let disposable = mobileCell.mobileTextField.rx_text.flatMap({ (text) -> Observable<String?> in
+                return Observable.just(text)
+            }).bindTo(viewModel.shoutParams.mobile)
+        
+            if let shout = self.viewModel.shoutParams.shout {
+                if mobileCell.mobileTextField.text == "" {
+                    mobileCell.mobileTextField.text = shout.mobile
+                }
+            }
+            
+            disposables[indexPath] = disposable
         }
         
         guard let selectCell = cell as? CreateShoutSelectCell else {

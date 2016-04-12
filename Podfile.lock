@@ -65,7 +65,7 @@ PODS:
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
-  - Material (1.31.1)
+  - Material (1.39.6)
   - MBMapSnapshotter (1.0):
     - AFNetworking (~> 2.0)
   - MBProgressHUD (0.9.2)
@@ -132,11 +132,11 @@ DEPENDENCIES:
   - KeychainAccess (~> 2.3)
   - Kingfisher (~> 2.2)
   - libPusher (~> 1.6)
-  - Material (~> 1.29)
+  - Material (~> 1.39)
   - MBMapSnapshotter
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
-  - MWPhotoBrowser (~> 2.1)
+  - MWPhotoBrowser (from `MWPhotoBrowser/`)
   - MZFormSheetPresentationController (~> 2.2)
   - Nemo
   - Nimble (= 3.0.0)
@@ -162,6 +162,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   GooglePlaces:
     :git: https://github.com/piotrbernad/Swift-Google-Maps-API
+  MWPhotoBrowser:
+    :path: MWPhotoBrowser/
   UIViewAppearanceSwift:
     :commit: 2ba05f14a8c1a7eb16b1525ac325962516d6992a
     :git: https://github.com/levantAJ/UIViewAppearanceSwift.git
@@ -203,11 +205,11 @@ SPEC CHECKSUMS:
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
   Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
-  Material: 482520d78d73fa935fd57d2a62a095655e0bb7f0
+  Material: 009eaa29b014a938478bbd80057e565a91ef49c2
   MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
-  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf

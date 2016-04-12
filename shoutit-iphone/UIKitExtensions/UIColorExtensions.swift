@@ -10,6 +10,7 @@ import UIKit
 
 enum ShoutitColor: Int {
     case PrimaryGreen = 0x4caf50
+    case ShoutitBlack = 0x1d1d1d
     case ShoutitButtonGreen = 0x4CB950
     case BackgroundWhite = 0xfafafa
     case BackgroundLightGray = 0xF4F4F4
@@ -31,6 +32,7 @@ enum ShoutitColor: Int {
     case SearchBarTextFieldGray = 0xE2E3E6
     case FailureRed = 0xFF5252
     case SuccessGreen = 0x4BA63F
+    case LightGreen = 0xC8E6C9
     
     var alpha: Float {
         switch self {

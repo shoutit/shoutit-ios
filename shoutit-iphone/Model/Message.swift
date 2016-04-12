@@ -67,11 +67,14 @@ extension Message {
     }
     
     func isOutgoingCell() -> Bool {
+//        assert(user != nil)
+//        assert(Account.sharedInstance.user != nil)
+        
         if let user = user, currentUser = Account.sharedInstance.user {
             return user.id == currentUser.id
         }
         
-        return true
+        return false
     }
     
     func isSameSenderAs(message: Message?) -> Bool {

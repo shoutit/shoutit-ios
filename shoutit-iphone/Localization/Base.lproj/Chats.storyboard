@@ -258,7 +258,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Do-5b-qBM">
-                                <rect key="frame" x="0.0" y="315" width="320" height="208"/>
+                                <rect key="frame" x="0.0" y="316" width="320" height="208"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJX-ge-up6">
                                         <rect key="frame" x="70" y="16" width="56" height="76"/>
@@ -361,7 +361,7 @@
                             <constraint firstItem="mPe-nD-7CB" firstAttribute="leading" secondItem="OKY-Lf-grI" secondAttribute="leading" id="S5g-Je-3A1"/>
                             <constraint firstItem="mPe-nD-7CB" firstAttribute="top" secondItem="OKY-Lf-grI" secondAttribute="top" id="YGD-0h-7ac"/>
                             <constraint firstItem="ix1-jv-6K5" firstAttribute="top" secondItem="mPe-nD-7CB" secondAttribute="bottom" constant="45" id="aVK-Tm-ELr"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="9Do-5b-qBM" secondAttribute="bottom" constant="45" id="vVw-sc-Hx4"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="9Do-5b-qBM" secondAttribute="bottom" constant="44" id="vVw-sc-Hx4"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="3Qa-lr-8mI" appends="YES" id="L7c-JD-zKT"/>

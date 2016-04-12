@@ -47,6 +47,7 @@ final class ConversationShoutCell: UITableViewCell, ConversationCell {
         setThumbMessage(message)
         
         guard let shout = message.attachment()?.shout else {
+            self.pictureImageView.image = nil
             return
         }
         

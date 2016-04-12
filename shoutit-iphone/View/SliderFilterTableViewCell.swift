@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class SliderFilterTableViewCell: UITableViewCell {
     
+    var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var currentValueLabel: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }

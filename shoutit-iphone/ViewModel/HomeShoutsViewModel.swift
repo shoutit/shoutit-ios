@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 class HomeShoutsViewModel: AnyObject {
+    private var filtersState: FiltersState?
     var displayable = ShoutsDisplayable(layout: .VerticalGrid)
     let listReuseIdentifier = "shShoutItemListCell"
     let gridReuseIdentifier = "shShoutItemGridCell"
@@ -54,25 +55,19 @@ class HomeShoutsViewModel: AnyObject {
     }
     
     func retriveShouts() -> Observable<[Shout]> {
-        let user = Account.sharedInstance.user
-        if let user = user where user.isGuest == false {
-            return APIUsersService.homeShouts()
-        } else {
-            let params = FilteredShoutsParams(page: 1, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
-            return APIShoutsService.listShoutsWithParams(params)
-        }
+        return loadPageObservable(1)
     }
     
     func loadMorePage(page: Int) -> Observable<[Shout]> {
-        let user = Account.sharedInstance.user
-        
-        if let user = user where user.isGuest == false {
-            return APIUsersService.homeShouts(20, page: page)
-        } else {
-            let params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
-            return APIShoutsService.listShoutsWithParams(params)
-        }
-        
+        return loadPageObservable(page)
+    }
+    
+    func getFiltersState() -> FiltersState {
+        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
+    }
+    
+    func applyFiltersState(state: FiltersState) {
+        self.filtersState = state
     }
     
     private func tryToLoadNextPage() {
@@ -126,4 +121,22 @@ class HomeShoutsViewModel: AnyObject {
             }).addDisposableTo(disposeBag)
     }
     
+    private func loadPageObservable(page: Int) -> Observable<[Shout]> {
+        let user = Account.sharedInstance.user
+        if let user = user where user.isGuest == false {
+            var params = FilteredShoutsParams(page: page, pageSize: 20)
+            if let filtersState = filtersState {
+                let filterParams = filtersState.composeParams()
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
+            }
+            return APIProfileService.homeShoutsWithParams(params)
+        } else {
+            var params = FilteredShoutsParams(page: page, pageSize: 20, country: user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
+            if let filtersState = filtersState {
+                let filterParams = filtersState.composeParams()
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
+            }
+            return APIShoutsService.listShoutsWithParams(params)
+        }
+    }
 }

@@ -1,0 +1,132 @@
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "0w1-iB-LJP"; */
+"0w1-iB-LJP.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
+"2hM-uG-45m.normalTitle" = "Forgot your password?";
+
+/* Class = "UIButton"; normalTitle = "About"; ObjectID = "7eJ-mp-XEv"; */
+"7eJ-mp-XEv.normalTitle" = "About";
+
+/* Class = "UILabel"; text = "Join Now!"; ObjectID = "A0X-MT-0sG"; */
+"A0X-MT-0sG.text" = "Join Now!";
+
+/* Class = "UITextField"; placeholder = "Email or Username"; ObjectID = "A5j-dd-Kjd"; */
+"A5j-dd-Kjd.placeholder" = "Email or Username";
+
+/* Class = "UITableViewController"; title = "Sign up"; ObjectID = "DkI-1W-qTm"; */
+"DkI-1W-qTm.title" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "FeT-P1-QuZ"; */
+"FeT-P1-QuZ.normalTitle" = "Log in";
+
+/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "Fqu-0M-TP9"; */
+"Fqu-0M-TP9.text" = "Buy and Sell while Chatting";
+
+/* Class = "UILabel"; text = "What interests you the most?"; ObjectID = "GcV-kC-fXX"; */
+"GcV-kC-fXX.text" = "What interests you the most?";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "Gcm-Gs-6OL"; */
+"Gcm-Gs-6OL.normalTitle" = "Next";
+
+/* Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR"; */
+"HYX-k8-0GR.title" = "Reset password";
+
+/* Class = "UIButton"; normalTitle = "Log in with Facebook"; ObjectID = "L2w-j2-mMw"; */
+"L2w-j2-mMw.normalTitle" = "Log in with Facebook";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "N11-JB-SIw"; */
+"N11-JB-SIw.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OfY-0g-YBp"; */
+"OfY-0g-YBp.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Sign up / Log in with Email"; ObjectID = "P55-Vf-kY2"; */
+"P55-Vf-kY2.normalTitle" = "Sign up / Log in with Email";
+
+/* Class = "UIButton"; normalTitle = "Help"; ObjectID = "PgP-fT-oWw"; */
+"PgP-fT-oWw.normalTitle" = "Help";
+
+/* Class = "UIButton"; normalTitle = "Back to log in"; ObjectID = "QAm-Q7-PXd"; */
+"QAm-Q7-PXd.normalTitle" = "Back to log in";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "QGu-kD-nqv"; */
+"QGu-kD-nqv.normalTitle" = "Skip";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "RaH-ti-Eac"; */
+"RaH-ti-Eac.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "RiB-S8-6Dt"; */
+"RiB-S8-6Dt.normalTitle" = "Reset password";
+
+/* Class = "UITableViewController"; title = "Log in"; ObjectID = "Wji-o7-jPI"; */
+"Wji-o7-jPI.title" = "Log in";
+
+/* Class = "UIButton"; normalTitle = "Help"; ObjectID = "Wk4-LN-gj4"; */
+"Wk4-LN-gj4.normalTitle" = "Help";
+
+/* Class = "UILabel"; text = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy."; ObjectID = "WpN-aG-jKl"; */
+"WpN-aG-jKl.text" = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "X4Y-Df-Xe1"; */
+"X4Y-Df-Xe1.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "X9g-nR-IJq"; */
+"X9g-nR-IJq.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "About"; ObjectID = "XFT-nv-LfW"; */
+"XFT-nv-LfW.normalTitle" = "About";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "YRB-cn-kU9"; */
+"YRB-cn-kU9.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Zhq-6O-ODa"; */
+"Zhq-6O-ODa.text" = "Welcome to Shoutit";
+
+/* Class = "UIButton"; normalTitle = "Have an account? Log in"; ObjectID = "esA-10-tDe"; */
+"esA-10-tDe.normalTitle" = "Have an account? Log in";
+
+/* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
+"fg0-TH-CXc.text" = "Login and discover what others are selling in your neighborhood or start selling in seconds ";
+
+/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "hXd-vs-HMY"; */
+"hXd-vs-HMY.text" = "Welcome to Shoutit";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
+"iKX-Fx-ZOg.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Help"; ObjectID = "kPZ-aZ-cg3"; */
+"kPZ-aZ-cg3.normalTitle" = "Help";
+
+/* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "mgc-hU-1eG"; */
+"mgc-hU-1eG.normalTitle" = "Feedback";
+
+/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "otB-pC-3lO"; */
+"otB-pC-3lO.text" = "Buy and Sell while Chatting";
+
+/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "pNC-Ay-C46"; */
+"pNC-Ay-C46.text" = "Welcome to Shoutit";
+
+/* Class = "UIButton"; normalTitle = "Log in with Google"; ObjectID = "pZ6-XI-dIh"; */
+"pZ6-XI-dIh.normalTitle" = "Log in with Google";
+
+/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "qd5-UA-hrc"; */
+"qd5-UA-hrc.text" = "Buy and Sell while Chatting";
+
+/* Class = "UIButton"; normalTitle = "New to Shoutit? Sign up"; ObjectID = "qkS-QO-udz"; */
+"qkS-QO-udz.normalTitle" = "New to Shoutit? Sign up";
+
+/* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "sS7-ve-BOz"; */
+"sS7-ve-BOz.normalTitle" = "Feedback";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "stm-aj-Lud"; */
+"stm-aj-Lud.normalTitle" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "tVc-LS-ZZw"; */
+"tVc-LS-ZZw.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vhV-ST-5zt"; */
+"vhV-ST-5zt.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "x1k-1E-QQr"; */
+"x1k-1E-QQr.normalTitle" = "Log in";

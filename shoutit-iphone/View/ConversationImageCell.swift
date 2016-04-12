@@ -45,6 +45,9 @@ final class ConversationImageCell: UITableViewCell, ConversationCell {
     
     func setThumbMessage(message: Message) {
         guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
+            self.activityIndicator?.stopAnimating()
+            self.activityIndicator?.hidden = true
+            self.pictureImageView.image = UIImage.shoutsPlaceholderImage()
             return
         }
         
@@ -52,5 +55,10 @@ final class ConversationImageCell: UITableViewCell, ConversationCell {
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.pictureImageView.image = nil
     }
 }

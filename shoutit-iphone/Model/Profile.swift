@@ -43,6 +43,16 @@ struct Profile {
     }
 }
 
+extension Profile {
+    func fullName() -> String {
+        if self.type == .User {
+            return "\(firstName ?? "") \(lastName ?? "")"
+        }
+        
+        return self.username
+    }
+}
+
 extension Profile: Decodable {
     
     static func decode(j: JSON) -> Decoded<Profile> {
@@ -84,5 +94,15 @@ extension Profile: Encodable {
             "is_listening" : self.isListening.encode(),
             "listeners_count" : self.listenersCount.encode(),
             ])
+    }
+}
+
+extension Profile: Reportable {
+    func attachedObjectJSON() -> JSON {
+        return ["profile" : ["id" : self.id.encode()].encode()].encode()
+    }
+    
+    func reportTitle() -> String {
+        return NSLocalizedString("Report Profile", comment: "")
     }
 }

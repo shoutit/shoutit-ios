@@ -73,9 +73,15 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             .addDisposableTo(disposeBag)
         
         Account.sharedInstance.loginSubject.subscribeNext {
-            self.invalidateControllersCache()
+            self.sh_invalidateControllersCache()
             self.openItem(.Home)
         }.addDisposableTo(disposeBag)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        adjustTabbarHeight()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -100,6 +106,18 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             segue.destinationViewController.modalPresentationStyle = .Custom
             segue.destinationViewController.transitioningDelegate = self
         }
+    }
+
+    func adjustTabbarHeight() {
+        guard let navigationItem = self.currentNavigationItem, flowController = flowControllers[navigationItem] else {
+            return
+        }
+        
+        let hidden = flowController.navigationController.visibleViewController?.prefersTabbarHidden() ?? false
+        
+        self.tabbarHeightConstraint.constant = hidden ? 0 : self.defaultTabBarHeight
+        self.view.layoutIfNeeded()
+        self.view.setNeedsDisplay()
     }
     
     // MARK: Side Menu
@@ -143,7 +161,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     // MARK: Content Managing
     
-    func invalidateControllersCache() {
+    private func sh_invalidateControllersCache() {
         flowControllers.removeAll()
     }
     
@@ -153,6 +171,9 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         // Create Shout Controller should be presented above root Controller, so skip flow controller logic
         if navigationItem == .Shout {
             showCreateShout()
+            return
+        } else if navigationItem == .Help {
+            showHelp()
             return
         }
         
@@ -191,6 +212,13 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         }
         
         presentWith(flowControllerToShow)
+    }
+    
+    func showHelp() {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
     }
     
     func showCreateShout() {
@@ -233,7 +261,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         let navigationController = LoginNavigationViewController()
         loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
         loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
-            self?.invalidateControllersCache()
+            self?.sh_invalidateControllersCache()
             self?.loginFlowController?.navigationController.dismissViewControllerAnimated(true, completion: nil)
             self?.openItem(destinationNavigationItem)
         }
@@ -245,6 +273,10 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
         let navController = SHNavigationViewController()
         navController.willShowViewControllerPreferringTabBarHidden = {[unowned self] (hidden) in
+            if navController.ignoreTabbarAppearance {
+                return
+            }
+            
             self.tabbarHeightConstraint.constant = hidden ? 0 : self.defaultTabBarHeight
             self.view.layoutIfNeeded()
             self.view.setNeedsDisplay()
@@ -259,7 +291,6 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         case .Chats: flowController         = ChatsFlowController(navigationController: navController)
         case .Profile: flowController       = ProfileFlowController(navigationController: navController)
         case .Settings: flowController      = SettingsFlowController(navigationController: navController)
-        case .Help: flowController          = HelpFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
         case .Location: flowController      = LocationFlowController(navigationController: navController)
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)

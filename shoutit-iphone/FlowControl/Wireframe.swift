@@ -15,7 +15,6 @@ struct Wireframe {
         case Login = "LoginStoryboard"
         case HTML = "HTML"
         case Home = "Home"
-        case Browse = "Browse"
         case Discover = "Discover"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -23,7 +22,6 @@ struct Wireframe {
         case Profile = "Profile"
         case Settings = "Settings"
         case Location = "Location"
-        case Help = "Help"
         case InviteFriends = "InviteFriends"
         case EditProfile = "EditProfile"
         case Notifications = "Notifications"
@@ -31,6 +29,7 @@ struct Wireframe {
         case VerifyEmail = "VerifyEmail"
         case VideoCalls = "VideoCalls"
         case Filter = "Filter"
+        case SeeAllShouts = "SeeAllShouts"
     }
     
     // General
@@ -103,6 +102,14 @@ struct Wireframe {
         return storyboard(.Filter).instantiateViewControllerWithIdentifier("FiltersViewController") as! FiltersViewController
     }
     
+    static func filtersChangeLocationViewController() -> FilterLocationChoiceWrapperViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("FilterLocationChoiceWrapperViewController") as! FilterLocationChoiceWrapperViewController
+    }
+    
+    static func categoryFiltersChoiceViewController() -> CategoryFiltersViewController {
+        return storyboard(.Filter).instantiateViewControllerWithIdentifier("CategoryFiltersViewController") as! CategoryFiltersViewController
+    }
+    
     // MARK: - HTML storyboard view controllers
     
     static func htmlViewController() -> HTMLViewController {
@@ -123,6 +130,12 @@ struct Wireframe {
         return storyboard(.ShoutDetail).instantiateViewControllerWithIdentifier("PhotoBrowserPhotoViewController") as! PhotoBrowserPhotoViewController
     }
     
+    // MARK: - Seel all shous storyboard view controllers
+    
+    static func allShoutsCollectionViewController() -> ShoutsCollectionViewController {
+        return storyboard(.SeeAllShouts).instantiateViewControllerWithIdentifier("ShoutsCollectionViewController") as! ShoutsCollectionViewController
+    }
+    
     // MARK: - Edit profile storyboard controllers
     
     static func editProfileTableViewController() -> EditProfileTableViewController {
@@ -141,20 +154,12 @@ struct Wireframe {
         return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
     }
     
-    static func browseViewController() -> UIViewController {
-        return storyboard(.Browse).instantiateInitialViewController()!
-    }
-    
     static func ordersViewController() -> UIViewController {
         return UIViewController()
     }
     
     static func discoverViewController() -> DiscoverCollectionViewController {
         return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController") as! DiscoverCollectionViewController
-    }
-    
-    static func discoverShoutsViewController() -> DiscoverShoutsParentViewController {
-        return storyboard(.Discover).instantiateViewControllerWithIdentifier("discoverShoutsParent") as! DiscoverShoutsParentViewController
     }
     
     static func shoutViewController() -> CreateShoutPopupViewController {
@@ -165,8 +170,8 @@ struct Wireframe {
         return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsTableViewController") as! SettingsTableViewController
     }
     
-    static func helpViewController() -> UIViewController {
-        return storyboard(.Help).instantiateViewControllerWithIdentifier("HelpRootController")
+    static func settingsFromViewController() -> SettingsFormViewController {
+        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsFormViewController") as! SettingsFormViewController
     }
     
     static func inviteFriendsViewController() -> UIViewController {

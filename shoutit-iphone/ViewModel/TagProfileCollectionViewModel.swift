@@ -22,6 +22,10 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return .TagModel(tag: tag)
     }
     
+    var reportable: Reportable? {
+        return nil
+    }
+    
     init(filter: Filter) {
         self.filter = filter
         self.category = nil
@@ -131,7 +135,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 .HiddenButton(position: .BigCenter),
                 .Listen(isListening: tag?.isListening ?? false),
                 .HiddenButton(position: .SmallLeft),
-                .More]
+                .HiddenButton(position: .SmallRight)]
     }
     
     var descriptionText: String? {return nil}

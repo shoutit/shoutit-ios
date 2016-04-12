@@ -22,4 +22,8 @@ extension UIViewController: NavigationBarContext {
     func hasFakeNavigationBar() -> Bool {
         return false
     }
+    
+    func ignoresToggleMenu() -> Bool {
+        return false
+    }
 }

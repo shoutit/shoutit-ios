@@ -25,15 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Timberjack.register()
-        
         Timberjack.logStyle = .Verbose
         
         applyAppearance()
-        
+        configureGoogleLogin()
         configureLoggingServices()
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         PlacesGeocoder.setup()
         LocationManager.sharedInstance.startUpdatingLocation()
         
@@ -88,7 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - Appearance
 
-extension AppDelegate {
+private extension AppDelegate {
+    
+    func configureGoogleLogin() {
+        GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
+        GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
+        GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
+        GIDSignIn.sharedInstance().allowsSignInWithBrowser = false
+        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+        GIDSignIn.sharedInstance().allowsSignInWithWebView = true
+    }
     
     func configureLoggingServices() {
         
@@ -98,9 +104,8 @@ extension AppDelegate {
             log.setup(.None, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
         #endif
         
-//        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self])
         AmazonAWS.configureS3()
-//        SHMixpanelHelper.openApp()
         
         //UserVoice
         let config = UVConfig(site: "shoutit.uservoice.com")
@@ -109,11 +114,6 @@ extension AppDelegate {
         config.forumId = 290071
         UserVoice.initialize(config)
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
-        
-//        SHPusherManager.sharedInstance.handleNewMessage { (event) -> () in
-//            let userInfo = ["object": event]
-//            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.kMessagePushNotification, object: nil, userInfo: userInfo)
-//        }
     }
     
     func applyAppearance() {
@@ -129,6 +129,8 @@ extension AppDelegate {
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
+        
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
     }
 }

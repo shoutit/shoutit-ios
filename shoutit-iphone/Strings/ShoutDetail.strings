@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "Policies"; ObjectID = "Eem-sc-Nfz"; */
+"Eem-sc-Nfz.normalTitle" = "Policies";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "OF4-56-wbL"; */
+"OF4-56-wbL.text" = "Name";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "RFV-cQ-2AI"; */
+"RFV-cQ-2AI.text" = "Price";
+
+/* Class = "UILabel"; text = "Header"; ObjectID = "TJp-qU-nfC"; */
+"TJp-qU-nfC.text" = "Header";
+
+/* Class = "UIButton"; normalTitle = "Add to Cart"; ObjectID = "bMb-en-aRa"; */
+"bMb-en-aRa.normalTitle" = "Add to Cart";
+
+/* Class = "UIButton"; normalTitle = "More"; ObjectID = "cS6-vn-fHD"; */
+"cS6-vn-fHD.normalTitle" = "More";
+
+/* Class = "UIButton"; normalTitle = "Call"; ObjectID = "dlw-u9-I8B"; */
+"dlw-u9-I8B.normalTitle" = "Call";
+
+/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "kqz-M3-3o4"; */
+"kqz-M3-3o4.normalTitle" = "Chat";
+
+/* Class = "UIButton"; normalTitle = "Video call"; ObjectID = "p0q-c1-KFK"; */
+"p0q-c1-KFK.normalTitle" = "Video call";

@@ -16,6 +16,12 @@ extension Array {
     }
 }
 
+extension Array {
+    static func filterNils(array: [Element?]) -> [Element] {
+        return array.filter { $0 != nil }.map { $0! }
+    }
+}
+
 extension Array where Element:Equatable {
     func unique() -> [Element] {
         var result = [Element]()

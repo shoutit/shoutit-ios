@@ -18,6 +18,9 @@ class SettingsTableViewController: UITableViewController {
     // model
     var models: Variable<[SettingsOption]>!
     
+    // toggle menu
+    var ignoreMenuButton = false
+    
     // RX
     private let disposeBag = DisposeBag()
     
@@ -55,5 +58,9 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
+    }
+    
+    override func ignoresToggleMenu() -> Bool {
+        return ignoreMenuButton
     }
 }

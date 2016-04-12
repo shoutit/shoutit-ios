@@ -47,7 +47,7 @@ pod 'Validator', '~> 1.1'
 #images
 pod 'Kingfisher', '~> 2.2'
 pod 'SDWebImage', '~> 3.7'
-pod 'MWPhotoBrowser', '~> 2.1'
+pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
 pod 'Nemo'
 pod 'MBMapSnapshotter'
 
@@ -57,7 +57,7 @@ pod 'Curry'
 pod 'Ogra', '~> 2.1'
 
 # ui controls
-pod 'Material', '~> 1.29'
+pod 'Material', '~> 1.39'
 pod 'ResponsiveLabel', '~> 1.0'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'SVProgressHUD'

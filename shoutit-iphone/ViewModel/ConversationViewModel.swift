@@ -354,19 +354,33 @@ class ConversationViewModel {
         return alert
     }
     
-    func moreActionAlert(cancelAction: (() -> Void)?) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+    func deleteActionAlert(completion: () -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .ActionSheet)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
             self.deleteConversation().subscribe(onNext: nil, onError: { (error) in
                 debugPrint(error)
-            }, onCompleted: {
-                if let completion = cancelAction {
+                }, onCompleted: {
                     completion()
-                }
-            }, onDisposed: nil).addDisposableTo(self.disposeBag)
+                }, onDisposed: nil).addDisposableTo(self.disposeBag)
+        }))
+        
+        return alert
+    }
+    
+    func moreActionAlert(completion: ((action: UIAlertAction) -> Void)) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("View Profile", comment: ""), style: .Default, handler: { (alertAction) in
+            completion(action: alertAction)
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
+            completion(action: alertAction)
         }))
         
         return alert

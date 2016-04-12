@@ -50,8 +50,9 @@ extension SearchShoutsResultsViewModel {
                 return NSLocalizedString("Results for '\(searchPhrase)'", comment: "Search results for search phrase section header")
             } else if case .CategoryShouts(let category) = parent.context {
                 return NSLocalizedString("Results for \(category.name)", comment: "Search results for category section header")
+            } else if case (let location?, _) = parent.getFiltersState().location {
+                return NSLocalizedString("Shouts in \(location.city)", comment: "Browse section header")
             } else {
-                assertionFailure()
                 return NSLocalizedString("Results", comment: "Search results section header")
             }
         }
@@ -81,10 +82,10 @@ extension SearchShoutsResultsViewModel {
                 .addDisposableTo(requestDisposeBag)
         }
         
-        private func fetchShoutsAtPage(page: Int) -> Observable<SearchShoutsResults> {
+        private func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
             let phrase = parent.searchPhrase
             let context = parent.context
-            let params: FilteredShoutsParams
+            var params: FilteredShoutsParams
             switch context {
             case .General:
                 params = FilteredShoutsParams(searchPhrase: phrase,
@@ -122,16 +123,19 @@ extension SearchShoutsResultsViewModel {
                                               includeCurrentUserLocation: true)
             }
             
+            if let filtersState = parent.filtersState {
+                let filterParams = filtersState.composeParams()
+                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
+            }
+            
             return APIShoutsService.searchShoutsWithParams(params)
         }
         
         // MARK: - Helpers
         
-        private func updateViewModelWithResult(result: SearchShoutsResults, forPage page: Int) {
+        private func updateViewModelWithResult(result: PagedResults<Shout>, forPage page: Int) {
             
-            if numberOfResults == 0 {
-                numberOfResults = result.count
-            }
+            numberOfResults = result.count ?? numberOfResults
             
             if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
                 cells += result.results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
@@ -145,12 +149,17 @@ extension SearchShoutsResultsViewModel {
             
             assert(page == 1)
             
-            let results = result.results
-            if results.count == 0 {
+            let shouts = result.results
+            if shouts.count == 0 {
                 state.value = .NoContent
             }
             
-            state.value = PagedViewModelState.Loaded(cells: results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}, page: page)
+            let cellViewModels = shouts.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
+            if shouts.count < pageSize || result.nextPath == nil {
+                state.value = .LoadedAllContent(cells: cellViewModels, page: page)
+            } else {
+                state.value = .Loaded(cells: cellViewModels, page: page)
+            }
         }
     }
 }

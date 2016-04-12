@@ -78,6 +78,10 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
+    var reportable: Reportable? {
+        return profile
+    }
+    
     var conversation: Conversation? {
         return detailedUser?.conversation
     }
@@ -161,7 +165,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
-        let title = NSLocalizedString("\(profile.firstName) Pages", comment: "")
+        let title = NSLocalizedString("\(profile.firstName ?? profile.name) Pages", comment: "")
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
@@ -172,7 +176,7 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
-        let title = NSLocalizedString("\(profile.firstName) Shouts", comment: "")
+        let title = NSLocalizedString("\(profile.firstName ?? profile.name) Shouts", comment: "")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
         let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,

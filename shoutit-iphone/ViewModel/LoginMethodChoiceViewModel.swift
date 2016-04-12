@@ -87,7 +87,7 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
             return
         }
         
-        if let serverAuthCode = user?.authentication.idToken {
+        if let serverAuthCode = user?.serverAuthCode {
             let params = GoogleLoginParams(gplusCode: serverAuthCode)
             authenticateWithParameters(params)
         }

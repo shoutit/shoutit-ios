@@ -20,7 +20,8 @@ final class ShoutDetailViewModel {
     
     private(set) var shout: Shout {
         didSet {
-            cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
+            cellModels = cellViewModelsWithShout(shout)
+            reloadSubject.onNext()
         }
     }
     
@@ -29,16 +30,21 @@ final class ShoutDetailViewModel {
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models
-    private(set) var cellModels: [ShoutDetailTableViewCellViewModel]
+    private(set) var cellModels: [ShoutDetailTableViewCellViewModel] = []
     private(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
-    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
+    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading] {
+        didSet {
+            cellModels = cellViewModelsWithShout(shout)
+            reloadSubject.onNext()
+        }
+    }
     private(set) var imagesViewModels: [ShoutDetailShoutImageViewModel] = [ShoutDetailShoutImageViewModel.Loading]
     
     init(shout: Shout) {
         self.shout = shout
-        self.cellModels = ShoutDetailViewModel.cellViewModelsWithShout(shout)
         self.reloadSubject = PublishSubject()
         self.reloadObservable = reloadSubject.share()
+        self.cellModels = cellViewModelsWithShout(shout)
     }
     
     // MARK: - Actions
@@ -46,25 +52,15 @@ final class ShoutDetailViewModel {
     func reloadShoutDetails() {
         
         prepareCellViewModelsForLoading()
+        
         fetchShoutDetails()
             .subscribe {[weak self] (event) in
                 defer { self?.reloadSubject.onNext() }
                 switch event {
                 case .Next(let shout):
-                    print(shout.location)
+                    guard let strongSelf = self else { return }
                     self?.shout = shout
-                    guard let strongSelf = self, let imagePaths = shout.imagePaths else { return }
-                    if imagePaths.count == 0 {
-                        strongSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: strongSelf.noImagesMessage)]
-                    } else {
-                        strongSelf.imagesViewModels = imagePaths.flatMap{path in
-                            if let url = path.toURL() {
-                                return ShoutDetailShoutImageViewModel.Image(url: url)
-                            } else {
-                                return nil
-                            }
-                        }
-                    }
+                    self?.reloadImages()
                 case .Error(let error):
                     if let sSelf = self {
                         sSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
@@ -113,8 +109,67 @@ final class ShoutDetailViewModel {
             .addDisposableTo(disposeBag)
     }
     
+    func reloadImages() {
+        guard shout.imagePaths?.count > 0 || shout.videos?.count > 0 else {
+            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: self.noImagesMessage)]
+            return
+        }
+        
+        var models : [ShoutDetailShoutImageViewModel] = []
+        
+        if let imagePaths = shout.imagePaths {
+            for path in imagePaths {
+                if let url = NSURL(string: path) {
+                    models.append(ShoutDetailShoutImageViewModel.Image(url: url))
+                }
+            }
+        }
+        
+        if let videos = shout.videos {
+            for video in videos {
+                models.append(ShoutDetailShoutImageViewModel.Movie(video: video))
+            }
+        }
+        
+        self.imagesViewModels = models
+    }
+    
     func makeCall() -> Observable<Mobile> {
         return APIShoutsService.retrievePhoneNumberForShoutWithId(shout.id)
+    }
+    
+    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        let reportAction = UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
+            completion(alertController: alertController)
+        })
+        
+        if self.shout.user.id == Account.sharedInstance.user?.id {
+            reportAction.enabled = false
+        }
+        
+        alertController.addAction(reportAction)
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
+    }
+    
+    func deleteAlert(completion: () -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this shout?", comment: ""), preferredStyle: .ActionSheet)
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Yes, Delete Shout", comment: ""), style: .Destructive, handler: { (action) in
+            completion()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+            
+        }))
+        
+        return alertController
     }
     
     // MARK: - To display
@@ -146,8 +201,11 @@ final class ShoutDetailViewModel {
         
         return buttons
     }
-    
-    // MARK: - Helpers
+}
+
+// MARK: - Helpers
+
+private extension ShoutDetailViewModel {
     
     private func prepareCellViewModelsForLoading() {
         
@@ -197,6 +255,17 @@ final class ShoutDetailViewModel {
         return viewModels
     }
     
+    private func hasRelatedShouts() -> Bool {
+        guard let first = relatedShoutsCellModels.first else { return false }
+        guard case .Content = first else { return false }
+        return true
+    }
+}
+
+// MARK: - Observables
+
+private extension ShoutDetailViewModel {
+    
     private func fetchShoutDetails() -> Observable<Shout> {
         return APIShoutsService.retrieveShoutWithId(self.shout.id)
     }
@@ -208,15 +277,15 @@ final class ShoutDetailViewModel {
     
     private func fetchRelatedShouts() -> Observable<[Shout]> {
         let params = RelatedShoutsParams(shout: shout, page: 1, pageSize: 6, type: nil)
-        return APIShoutsService.relatedShoutsWithParams(params)
+        return APIShoutsService.relatedShoutsWithParams(params).map{$0.results}
     }
 }
 
 // MARK: - Setup
 
-extension ShoutDetailViewModel {
+private extension ShoutDetailViewModel {
     
-    static func cellViewModelsWithShout(shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
+    func cellViewModelsWithShout(shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
         
         var models: [ShoutDetailTableViewCellViewModel] = []
         
@@ -237,17 +306,18 @@ extension ShoutDetailViewModel {
         
         // other
         let firstname = shout.user.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
-        //models.append(.Button(title: NSLocalizedString("Policies", comment: "Shout Detail"), type: .Policies))
         models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(firstname)", comment: "Shout detail")))
         models.append(.OtherShouts)
         models.append(.Button(title: NSLocalizedString("Visit \(firstname)'s profile", comment: "Shout Detail"), type: .VisitProfile))
-        models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
-        models.append(.RelatedShouts)
+        if (hasRelatedShouts()) {
+            models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
+            models.append(.RelatedShouts)
+        }
         
         return models
     }
     
-    static func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
+    func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
         
         var details: [(String, String, String?, Filter?, Category?)] = []
         

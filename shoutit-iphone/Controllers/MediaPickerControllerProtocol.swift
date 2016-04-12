@@ -106,15 +106,17 @@ extension UIImage {
             return image
         }
         
-        let scale = newWidth / image.size.height
+        let scale = newWidth / image.size.width
         
-        let newHeight = image.size.width * scale
+        let newHeight = image.size.height * scale
         
         UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
         
         image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        print(newImage.size)
         
         UIGraphicsEndImageContext()
         

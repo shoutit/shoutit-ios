@@ -14,6 +14,9 @@ final class Account {
     
     // singleton
     static let sharedInstance = Account()
+    
+    private let disposeBag = DisposeBag()
+    
     // public consts
     lazy var userDirectory: String = {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
@@ -35,7 +38,11 @@ final class Account {
     }()
     
     // data
-    var apnsToken: String?
+    var apnsToken: String? {
+        didSet {
+            self.updateAPNSIfNeeded()
+        }
+    }
     private(set) var authData: AuthData? {
         didSet {
             self.loginSubject.onNext()
@@ -127,6 +134,7 @@ final class Account {
         guestUser = nil
         authData = nil
         APIManager.eraseAuthToken()
+        GIDSignIn.sharedInstance().signOut()
     }
     
     // MARK: - Helpers
@@ -137,6 +145,38 @@ final class Account {
         for p in paths {
             let fullPath = NSURL(fileURLWithPath: userDirectory).URLByAppendingPathComponent(p).path!
             try NSFileManager.defaultManager().removeItemAtPath(fullPath)
+        }
+    }
+    
+    func updateAPNSIfNeeded() {
+        
+        guard let _ = self.user else {
+            return
+        }
+        
+        if let apnsToken = self.apnsToken {
+            let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
+            
+            if let guest = self.guestUser {
+                let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
+                observable.subscribe{ (event) in
+                    switch event {
+                    case .Next(let profile): print(profile)
+                    case .Error(let error): debugPrint(error)
+                    default: break
+                    }
+                }.addDisposableTo(disposeBag)
+                
+            } else if let user = self.loggedUser {
+                let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+                observable.subscribe{ (event) in
+                    switch event {
+                    case .Next(let profile): print(profile)
+                    case .Error(let error): debugPrint(error)
+                    default: break
+                    }
+                    }.addDisposableTo(disposeBag)
+            }
         }
     }
 }

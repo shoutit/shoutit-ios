@@ -28,6 +28,14 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         
         attachments = [:]
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        }
+    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -40,19 +48,47 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
         
-        let attachment = attachments[indexPath.item]
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        let attachment = attachments[modifiedIndexPath.item]
         cell.fillWith(attachment)
         
         let task = self.mediaUploader.taskForAttachment(attachment)
         cell.fillWith(task)
         
+        cell.setActive(indexActive(modifiedIndexPath))
+        
         return cell
+    }
+    
+    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            return NSIndexPath(forItem: 5 - indexPath.item, inSection: indexPath.section)
+        } else {
+            return indexPath
+        }
+    }
+    
+    func selectedAttachments() -> [MediaAttachment] {
+        return Array(self.attachments.values) 
+    }
+    
+    func indexActive(indexPath: NSIndexPath) -> Bool {
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        return modifiedIndexPath.item <= selectedAttachments().count
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if attachments[indexPath.item] != nil {
-            selectedIdx = indexPath.item
+        let modifiedIndexPath = indexPathForIndexPath(indexPath)
+        
+        if !indexActive(modifiedIndexPath) {
+            return
+        }
+        
+        if attachments[modifiedIndexPath.item] != nil {
+            selectedIdx = modifiedIndexPath.item
             showEditAlert()
             return
         }
@@ -147,6 +183,7 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
                 if let attachment = self.attachments[selectedIdx] {
                     self.mediaUploader.removeAttachment(attachment)
                     self.attachments[selectedIdx] = nil
+                    self.rearangeAttachments()
                 }
             }
             
@@ -154,6 +191,20 @@ class SelectShoutImagesController: UICollectionViewController, MediaPickerContro
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func rearangeAttachments() {
+        var atts : [Int : MediaAttachment] = [:]
+        
+        var idx = 0
+        
+        for att in selectedAttachments() {
+            atts[idx] = att
+            idx += 1
+        }
+        
+        attachments = atts
+        
     }
     
     func firstEmptyIndex() -> Int? {

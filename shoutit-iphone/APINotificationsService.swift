@@ -29,6 +29,6 @@ class APINotificationsService {
     }
     
     static func markAllAsRead() -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.POST, url: resetNotificationsURL, params: NopParams())
+        return APIGenericService.basicRequestWithMethod(.POST, url: resetNotificationsURL, params: NopParams(), encoding: .URL, headers: nil)
     }
 }

@@ -50,10 +50,15 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if let _ = conversation.shout {
+        layoutInsets()
+    }
+    
+    func layoutInsets() {
+        if let _ = conversation.shout?.id {
             tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+        } else {
+            tableView.contentInset = UIEdgeInsetsZero
         }
-        
     }
     
     func setTopicShout(shout: Shout) {
@@ -78,7 +83,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         shoutView.layoutIfNeeded()
         
-        tableView.contentInset = UIEdgeInsetsMake(20.0, 0, 130.0, 0)
+        layoutInsets()
     }
     
     func showShout() {
@@ -313,6 +318,8 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     override func didPressLeftButton(sender: AnyObject!) {
+        textView.resignFirstResponder()
+        
         self.flowDelegate?.showAttachmentController({ [weak self] (type) in
             self?.attachmentManager.requestAttachmentWithType(type)
         }, transitionDelegate: self)
@@ -351,9 +358,34 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     @IBAction func moreAction() {
-        let alert = viewModel.moreActionAlert { [weak self] in
+        let alert = viewModel.moreActionAlert { [weak self] (action) in
+            let action = action
+            
+            if action.title == NSLocalizedString("View Profile", comment: "") {
+                if let user = self?.conversation.shout?.user {
+                    self?.flowDelegate?.showProfile(user)
+                    return
+                }
+                
+                if let user = self?.conversation.coParticipant() {
+                    self?.flowDelegate?.showProfile(user)
+                }
+                
+                return
+            }
+            
+            
+            self?.deleteAction()
+            
+        }
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func deleteAction() {
+        let alert = viewModel.deleteActionAlert { [weak self] in
             self?.navigationController?.popViewControllerAnimated(true)
         }
+        
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     

@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class IncomingCallController: UIViewController {
 
-    var invitation : TWCIncomingInvite!
+    var invitation : TWCIncomingInvite! {
+        didSet {
+            fetchCallingProfile()
+        }
+    }
+    
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var incomingCallLabel: UILabel!
     
@@ -38,6 +45,12 @@ class IncomingCallController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(invitation.from)"
+        self.incomingCallLabel.text = NSLocalizedString("Incoming Call", comment: "")
+    }
+    
+    func fetchCallingProfile() {
+        APIProfileService.retrieveProfileWithTwilioUsername(invitation.from).subscribeNext { [weak self] (profile) in
+            self?.incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.fullName())"
+        }.addDisposableTo(disposeBag)
     }
 }

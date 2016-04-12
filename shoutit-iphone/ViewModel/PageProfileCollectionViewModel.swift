@@ -76,6 +76,10 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return profile.username
     }
     
+    var reportable: Reportable? {
+        return nil
+    }
+    
     var conversation: Conversation? {
         return nil // profile.conversation
     }

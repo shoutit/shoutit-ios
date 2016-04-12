@@ -16,6 +16,8 @@ extension UIImageView {
             kf_setImageWithURL(url, placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
+        } else {
+            self.image = nil
         }
     }
     
@@ -24,6 +26,8 @@ extension UIImageView {
             kf_setImageWithURL(url, placeholderImage: placeholderImage)
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
+        } else {
+            self.image = nil
         }
     }
 }

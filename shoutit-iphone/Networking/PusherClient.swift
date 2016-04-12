@@ -11,12 +11,13 @@ import Pusher
 import RxSwift
 import Argo
 import Ogra
+import ReachabilitySwift
 
 final class PusherClient : NSObject {
     
     static let sharedInstance = PusherClient()
     
-    private let pusherAppKey = "86d676926d4afda44089"
+    private let pusherAppKey = "7bee1e468fabb6287fc5"
     private let pusherURL = APIManager.baseURL + "/pusher/auth"
     
     var pusherInstance: PTPusher!
@@ -25,11 +26,47 @@ final class PusherClient : NSObject {
     
     private var authToken : String?
     
+    private var reachability: Reachability!
+    
     override init() {
         super.init()
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        
+        
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            debugPrint("Unable to create Reachability")
+            return
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            debugPrint("Unable to start notifier")
+        }
+        
+        
+        NSNotificationCenter.defaultCenter().rx_notification(ReachabilityChangedNotification).asObservable().subscribeNext { (notification) in
+            if APIManager.isNetworkReachable() == false {
+                return
+            }
+            
+            if self.pusherInstance.connection.connected == false {
+                self.connect()
+            }
+
+        }.addDisposableTo(disposeBag)
+        
+    }
+    
+    func reconnect() {
+        pusherInstance.disconnect()
+        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
+        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        connect()
     }
     
     func connect() {
@@ -110,6 +147,7 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
         debugPrint("PUSHER DID DISCONNECT WITH ERROR")
         print(error ?? "nilError")
+        reconnect()
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {

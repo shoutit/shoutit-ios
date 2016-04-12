@@ -157,7 +157,9 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     }
     
     func openNotificationSettings() {
-        notImplemented()
+        if let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.sharedApplication().openURL(settingsURL)
+        }
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

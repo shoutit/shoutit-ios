@@ -20,7 +20,7 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
-    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<SearchShoutsResults> {
+    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL)
     }
     
@@ -31,9 +31,12 @@ class APIShoutsService {
     
     static func retrieveShoutWithId(id: String) -> Observable<Shout> {
         let url = shoutsURL + "/\(id)"
-        return APIGenericService.requestWithMethod(.GET,
-                                                   url: url,
-                                                   params: NopParams())
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams())
+    }
+    
+    static func deleteShoutWithId(id: String) -> Observable<Void> {
+        let url = shoutsURL + "/\(id)"
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams())
     }
     
     static func getAutocompletionWithParams(params: AutocompletionParams) -> Observable<[AutocompletionTerm]> {
@@ -41,15 +44,13 @@ class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<[Shout]> {
+    static func relatedShoutsWithParams(params: RelatedShoutsParams) -> Observable<PagedResults<Shout>> {
         let url = shoutsURL + "/\(params.shout.id)/related"
         return APIGenericService.requestWithMethod(.GET, url: url,
                                                    params: params,
                                                    encoding: .URL,
-                                                   responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
     }
-
 
     static func createShoutWithParams(params: Argo.JSON) -> Observable<Shout> {
         return APIGenericService.requestWithMethod(.POST, url: shoutsURL, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
@@ -62,6 +63,11 @@ class APIShoutsService {
     
     static func retrievePhoneNumberForShoutWithId(id: String) -> Observable<Mobile> {
         let url = shoutsURL + "/\(id)/call"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getSortTypes() -> Observable<[SortType]> {
+        let url = shoutsURL + "/sort_types"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
     }
 }

@@ -16,6 +16,7 @@ class APIMiscService {
     private static let categoriesURL = APIManager.baseURL + "/shouts/categories"
     private static let suggestionURL = APIManager.baseURL + "/misc/suggestions"
     private static let currenciesURL = APIManager.baseURL + "/misc/currencies"
+    private static let reportURL = APIManager.baseURL + "/misc/reports"
     
     static func requestCategories() -> Observable<[Category]> {
         return APIGenericService.requestWithMethod(.GET, url: categoriesURL, params: NopParams(), encoding: .JSON)
@@ -27,5 +28,14 @@ class APIMiscService {
     
     static func requestCurrencies() -> Observable<[Currency]> {
         return APIGenericService.requestWithMethod(.GET, url: currenciesURL, params: NopParams(), encoding: .JSON)
+    }
+    
+    static func geocode(params: GeocodeParams) -> Observable<Address> {
+        let url = APIManager.baseURL + "/misc/geocode"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
+    }
+
+    static func makeReport(report: Report) -> Observable<Void> {
+        return APIGenericService.basicRequestWithMethod(.POST, url: reportURL, params: report.encode(), encoding: .JSON)
     }
 }
