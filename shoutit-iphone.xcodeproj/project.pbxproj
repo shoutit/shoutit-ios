@@ -40,7 +40,6 @@
 		246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */; };
 		246C182E1C8EECE300DD6DE0 /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */; };
 		246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA721CA40637009DF436 /* ConversationLocationController.swift */; };
-		246DEA751CA423DE009DF436 /* ConversationImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA741CA423DE009DF436 /* ConversationImageCell.swift */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
 		24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */; };
 		24826B451C969BA400032FC9 /* NotificationsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */; };
@@ -302,6 +301,7 @@
 		B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBB1C579597003A2D76 /* shoutit.xcconfig */; };
 		B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6461C2445690061F56C /* CustomUIButton.swift */; };
 		B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64C1C2472260061F56C /* CustomUIView.swift */; };
+		B22CACD91CBD506600316E4B /* ConversationPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22CACD81CBD506600316E4B /* ConversationPictureCell.swift */; };
 		B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D196E1C74F45600A620F3 /* CustomUILabel.swift */; };
 		B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
@@ -657,7 +657,6 @@
 		246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = Controllers/CaptureViewController.swift; sourceTree = "<group>"; };
 		246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoProcessor.swift; path = Controllers/VideoProcessor.swift; sourceTree = "<group>"; };
 		246DEA721CA40637009DF436 /* ConversationLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationController.swift; path = Controllers/ConversationLocationController.swift; sourceTree = "<group>"; };
-		246DEA741CA423DE009DF436 /* ConversationImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationImageCell.swift; path = View/ConversationImageCell.swift; sourceTree = "<group>"; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewCell.swift; path = View/NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDisplayable.swift; sourceTree = "<group>"; };
@@ -901,6 +900,7 @@
 		B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Staging-Test.xcconfig"; path = "OtherSources/shoutit-Staging-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Test.xcconfig"; path = "OtherSources/shoutit-Test.xcconfig"; sourceTree = "<group>"; };
 		B227BFBB1C579597003A2D76 /* shoutit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = shoutit.xcconfig; path = OtherSources/shoutit.xcconfig; sourceTree = "<group>"; };
+		B22CACD81CBD506600316E4B /* ConversationPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationPictureCell.swift; path = View/ConversationPictureCell.swift; sourceTree = "<group>"; };
 		B22D196E1C74F45600A620F3 /* CustomUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUILabel.swift; path = View/CustomUILabel.swift; sourceTree = "<group>"; };
 		B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlcaholderCollectionViewCell.swift; path = View/PlcaholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
@@ -1608,8 +1608,6 @@
 			isa = PBXGroup;
 			children = (
 				248320EE1C996DD300C12D90 /* ConversationCell.swift */,
-				246DEA741CA423DE009DF436 /* ConversationImageCell.swift */,
-				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
 				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
 				AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */,
 				248320F01C996E7000C12D90 /* ConversationTextCell.swift */,
@@ -1624,8 +1622,8 @@
 				24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */,
 				B2D441BA1CB81A17009782AF /* IncomingLocationCell.xib */,
 				B2D441C31CB81A24009782AF /* OutgoingLocationCell.xib */,
+				B22CACD81CBD506600316E4B /* ConversationPictureCell.swift */,
 				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
-				246DEA741CA423DE009DF436 /* ConversationImageCell.swift */,
 				AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */,
 				AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */,
 				AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */,
@@ -3665,7 +3663,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				246DEA751CA423DE009DF436 /* ConversationImageCell.swift in Sources */,
 				AE194DDC1CB53610004A44CA /* Report.swift in Sources */,
 				B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */,
 				248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */,
@@ -3732,6 +3729,7 @@
 				B24E29FD1CBD24A100328503 /* FormTextView.swift in Sources */,
 				AE180F861C7F8F150069BB1A /* AuthParams.swift in Sources */,
 				AEE1044B1CB7907A002E7921 /* APNParams.swift in Sources */,
+				B22CACD91CBD506600316E4B /* ConversationPictureCell.swift in Sources */,
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
