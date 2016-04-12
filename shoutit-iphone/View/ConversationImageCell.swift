@@ -24,6 +24,7 @@ final class ConversationImageCell: UITableViewCell, ConversationCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         unHideImageView()
+        pictureImageView.image = nil
     }
  
     func bindWithMessage(message: Message, previousMessage: Message?) {
@@ -55,10 +56,5 @@ final class ConversationImageCell: UITableViewCell, ConversationCell {
             self.activityIndicator?.stopAnimating()
             self.activityIndicator?.hidden = true
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.pictureImageView.image = nil
     }
 }
