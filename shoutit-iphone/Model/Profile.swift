@@ -43,6 +43,16 @@ struct Profile {
     }
 }
 
+extension Profile {
+    func fullName() -> String {
+        if self.type == .User {
+            return "\(firstName ?? "") \(lastName ?? "")"
+        }
+        
+        return self.username
+    }
+}
+
 extension Profile: Decodable {
     
     static func decode(j: JSON) -> Decoded<Profile> {
