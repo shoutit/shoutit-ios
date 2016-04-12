@@ -374,37 +374,29 @@
                                     <outlet property="selectButton" destination="ygX-W4-fss" id="i6c-dy-KJ6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="HFJ-Ts-iX9" customClass="CreateShoutTextCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="HFJ-Ts-iX9" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="446" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFJ-Ts-iX9" id="Vc0-S2-Qkf">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCj-gD-P8F" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="43" width="542" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="qEB-U0-iJF"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ui1-T0-AW0"/>
-                                            </constraints>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5UR-jV-d6H" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="29" y="30" width="542" height="59"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="centerY" secondItem="Vc0-S2-Qkf" secondAttribute="centerY" id="9db-e8-2bg"/>
-                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="top" secondItem="Vc0-S2-Qkf" secondAttribute="top" constant="20" id="By4-DI-oq2"/>
-                                        <constraint firstItem="ZCj-gD-P8F" firstAttribute="leading" secondItem="Vc0-S2-Qkf" secondAttribute="leading" constant="29" id="HU2-KQ-gWM"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZCj-gD-P8F" secondAttribute="trailing" constant="29" id="bSh-Hy-YQt"/>
+                                        <constraint firstAttribute="trailing" secondItem="5UR-jV-d6H" secondAttribute="trailing" constant="29" id="V5c-BJ-pwb"/>
+                                        <constraint firstItem="5UR-jV-d6H" firstAttribute="leading" secondItem="Vc0-S2-Qkf" secondAttribute="leading" constant="29" id="XtF-Mj-BCI"/>
+                                        <constraint firstAttribute="bottom" secondItem="5UR-jV-d6H" secondAttribute="bottom" constant="30" id="ZR4-cV-8QR"/>
+                                        <constraint firstItem="5UR-jV-d6H" firstAttribute="top" secondItem="Vc0-S2-Qkf" secondAttribute="top" constant="30" id="uGS-bq-dyP"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="By4-DI-oq2"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="ZCj-gD-P8F" id="z67-df-wNG"/>
+                                    <outlet property="textView" destination="5UR-jV-d6H" id="cT2-Sx-t3H"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
@@ -1091,31 +1083,29 @@
                                     <outlet property="mobileTextField" destination="5lF-qh-668" id="TWY-xd-ezV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="uOW-Yj-HhU" customClass="CreateShoutTextCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="uOW-Yj-HhU" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="505" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uOW-Yj-HhU" id="xdf-CR-z5e">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zu9-Yn-93s" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="43" width="542" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="4V6-51-yij"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="Vpk-Zr-Mdh"/>
-                                            </constraints>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JLu-12-n8J" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="29" y="30" width="542" height="59"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="zu9-Yn-93s" firstAttribute="leading" secondItem="xdf-CR-z5e" secondAttribute="leading" constant="29" id="UB4-9A-k6P"/>
-                                        <constraint firstAttribute="trailing" secondItem="zu9-Yn-93s" secondAttribute="trailing" constant="29" id="e25-Sg-6aV"/>
-                                        <constraint firstItem="zu9-Yn-93s" firstAttribute="centerY" secondItem="xdf-CR-z5e" secondAttribute="centerY" id="hGc-l7-IDj"/>
+                                        <constraint firstAttribute="bottom" secondItem="JLu-12-n8J" secondAttribute="bottom" constant="30" id="0ct-8B-qXP"/>
+                                        <constraint firstAttribute="trailing" secondItem="JLu-12-n8J" secondAttribute="trailing" constant="29" id="1tp-ab-mG0"/>
+                                        <constraint firstItem="JLu-12-n8J" firstAttribute="top" secondItem="xdf-CR-z5e" secondAttribute="top" constant="30" id="KzD-NP-Jl0"/>
+                                        <constraint firstItem="JLu-12-n8J" firstAttribute="leading" secondItem="xdf-CR-z5e" secondAttribute="leading" constant="29" id="wUX-Jo-41B"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="zu9-Yn-93s" id="H0Z-qO-s5H"/>
+                                    <outlet property="textView" destination="JLu-12-n8J" id="Sun-jD-f6J"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="4XR-xv-08w" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">

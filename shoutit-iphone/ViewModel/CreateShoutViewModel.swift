@@ -93,7 +93,7 @@ class CreateShoutViewModel: NSObject {
     func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.section == 0 && indexPath.row == 1 {
-            return 80.0
+            return 160.0 // description
         }
         
         if indexPath.section == 1 && indexPath.row == 1 {

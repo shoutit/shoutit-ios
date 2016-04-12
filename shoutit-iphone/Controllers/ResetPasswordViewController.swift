@@ -15,7 +15,7 @@ import Material
 class ResetPasswordViewController: UITableViewController {
     
     // UI
-    @IBOutlet weak var emailTextField: BorderedMaterialTextField!
+    @IBOutlet weak var emailTextField: FormTextField!
     @IBOutlet weak var resetPasswordButton: CustomUIButton!
     @IBOutlet weak var backToLoginButton: UIButton!
     
@@ -32,7 +32,6 @@ class ResetPasswordViewController: UITableViewController {
         super.viewDidLoad()
         
         setupRX()
-        setupTextFields()
     }
     
     private func setupRX() {
@@ -62,23 +61,5 @@ class ResetPasswordViewController: UITableViewController {
         
         // add validators
         emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
-    }
-    
-    private func setupTextFields() {
-        
-        [emailTextField].forEach {textField in
-            textField.font = UIFont.systemFontOfSize(18.0)
-            textField.textColor = MaterialColor.black
-            
-            textField.titleLabel = UILabel()
-            textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.titleLabelColor = MaterialColor.grey.lighten1
-            textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-            textField.clearButtonMode = .WhileEditing
-            
-            textField.detailLabel = UILabel()
-            textField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.detailLabelActiveColor = MaterialColor.red.accent3
-        }
     }
 }

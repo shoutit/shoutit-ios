@@ -17,8 +17,8 @@ import MBProgressHUD
 class LoginViewController: UITableViewController {
     
     // UI
-    @IBOutlet weak var emailTextField: BorderedMaterialTextField!
-    @IBOutlet weak var passwordTextField: BorderedMaterialTextField!
+    @IBOutlet weak var emailTextField: FormTextField!
+    @IBOutlet weak var passwordTextField: FormTextField!
     @IBOutlet weak var loginButton: CustomUIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var switchToSignupButton: UIButton!
@@ -40,7 +40,6 @@ class LoginViewController: UITableViewController {
         
         setupRX()
         setupSwitchToSignupLabel()
-        setupTextFields()
     }
     
     // MARK: - Setup
@@ -108,23 +107,5 @@ class LoginViewController: UITableViewController {
         
         // assign
         switchToSignupButton.setAttributedTitle(attributedString, forState: .Normal)
-    }
-    
-    private func setupTextFields() {
-        
-        [emailTextField, passwordTextField].forEach {textField in
-            textField.font = UIFont.systemFontOfSize(18.0)
-            textField.textColor = MaterialColor.black
-            
-            textField.titleLabel = UILabel()
-            textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.titleLabelColor = MaterialColor.grey.lighten1
-            textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-            textField.clearButtonMode = .WhileEditing
-            
-            textField.detailLabel = UILabel()
-            textField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.detailLabelActiveColor = MaterialColor.red.accent3
-        }
     }
 }

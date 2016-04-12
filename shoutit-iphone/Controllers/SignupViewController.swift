@@ -18,9 +18,9 @@ final class SignupViewController: UITableViewController {
     typealias _PatternTapResponder = @convention(block) (String!) -> Void
     
     // UI
-    @IBOutlet weak var nameTextField: BorderedMaterialTextField!
-    @IBOutlet weak var emailTextField: BorderedMaterialTextField!
-    @IBOutlet weak var passwordTextField: BorderedMaterialTextField!
+    @IBOutlet weak var nameTextField: FormTextField!
+    @IBOutlet weak var emailTextField: FormTextField!
+    @IBOutlet weak var passwordTextField: FormTextField!
     @IBOutlet weak var signupButton: CustomUIButton!
     @IBOutlet weak var termsAndPolicyLabel: ResponsiveLabel!
     @IBOutlet weak var switchToLoginButton: UIButton!
@@ -45,7 +45,6 @@ final class SignupViewController: UITableViewController {
         setupRX()
         setupTermsAndPolicyLabel()
         setupSwitchToLoginLabel()
-        setupTextFields()
     }
     
     // MARK: - Setup
@@ -153,23 +152,5 @@ final class SignupViewController: UITableViewController {
         
         // assign
         switchToLoginButton.setAttributedTitle(attributedString, forState: .Normal)
-    }
-    
-    private func setupTextFields() {
-        
-        [nameTextField, emailTextField, passwordTextField].forEach {textField in
-            textField.font = UIFont.systemFontOfSize(18.0)
-            textField.textColor = MaterialColor.black
-            
-            textField.titleLabel = UILabel()
-            textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.titleLabelColor = MaterialColor.grey.lighten1
-            textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-            textField.clearButtonMode = .WhileEditing
-            
-            textField.detailLabel = UILabel()
-            textField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-            textField.detailLabelActiveColor = MaterialColor.red.accent3
-        }
     }
 }

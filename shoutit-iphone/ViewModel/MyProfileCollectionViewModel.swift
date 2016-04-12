@@ -67,7 +67,6 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
-                    print(self?.gridSection.cells.count)
                     self?.reloadSubject.onNext(())
                 case .Error(let error as NSError):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
