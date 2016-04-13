@@ -37,11 +37,9 @@ PODS:
   - Bolts/Tasks (1.6.0)
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
-  - CryptoSwift (0.2.3)
   - Curry (1.4.0)
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
-  - DWTagList (0.0.7)
   - DZNEmptyDataSet (1.7.3)
   - Fabric (1.6.5)
   - FBSDKCoreKit (4.10.0):
@@ -56,9 +54,6 @@ PODS:
   - GooglePlaces (1.0.4):
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
-  - JSQMessagesViewController (7.2.0):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
   - KeychainAccess (2.3.3)
   - Kingfisher (2.2.0)
   - libPusher (1.6.1):
@@ -76,15 +71,10 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - MZAppearance (1.1.6)
-  - MZFormSheetPresentationController (2.2.1):
-    - MZAppearance
   - Nemo (1.0)
-  - Nimble (3.0.0)
   - ObjectMapper (1.2.0)
   - Ogra (2.1.0):
     - Argo
-  - Quick (0.8.0)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.10)
   - RxCocoa (2.3.1):
@@ -94,7 +84,6 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SlackTextViewController (1.9.1)
-  - SMCalloutView (2.1.5)
   - SocketRocket (0.4.1)
   - SVProgressHUD (1.1.3)
   - SVPullToRefresh (0.4.1)
@@ -104,9 +93,7 @@ PODS:
   - TwilioConversationsClient (0.22.0):
     - TwilioCommon (~> 0.2.0)
   - UIViewAppearanceSwift (0.0.1)
-  - URBMediaFocusViewController (0.5.8)
   - Validator (1.1)
-  - XCGLogger (3.3)
 
 DEPENDENCIES:
   - ACPDownload (~> 1.1.0)
@@ -116,10 +103,8 @@ DEPENDENCIES:
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
-  - CryptoSwift
   - Curry
   - DAProgressOverlayView (~> 1.0)
-  - DWTagList (~> 0.0)
   - DZNEmptyDataSet
   - Fabric (~> 1.6)
   - FBSDKCoreKit (~> 4.7)
@@ -128,7 +113,6 @@ DEPENDENCIES:
   - FTGooglePlacesAPI
   - GoogleMaps (~> 1.10)
   - GooglePlaces (from `https://github.com/piotrbernad/Swift-Google-Maps-API`)
-  - JSQMessagesViewController (~> 7.2)
   - KeychainAccess (~> 2.3)
   - Kingfisher (~> 2.2)
   - libPusher (~> 1.6)
@@ -137,27 +121,21 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (from `MWPhotoBrowser/`)
-  - MZFormSheetPresentationController (~> 2.2)
   - Nemo
-  - Nimble (= 3.0.0)
   - Ogra (~> 2.1)
-  - Quick (~> 0.8.0)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
   - RxCocoa (~> 2.3.1)
   - RxSwift (~> 2.3.1)
   - SDWebImage (~> 3.7)
   - SlackTextViewController
-  - SMCalloutView (~> 2.1)
   - SVProgressHUD
   - SVPullToRefresh (~> 0.4)
   - Timberjack
   - TwilioConversationsClient (~> 0.22.0)
   - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`,
     commit `2ba05f14a8c1a7eb16b1525ac325962516d6992a`)
-  - URBMediaFocusViewController (~> 0.5)
   - Validator (~> 1.1)
-  - XCGLogger (~> 3.3)
 
 EXTERNAL SOURCES:
   GooglePlaces:
@@ -187,11 +165,9 @@ SPEC CHECKSUMS:
   AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
-  CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
-  DWTagList: cdf3607a7c37850a0c437d63c981f643dc5904bb
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
@@ -200,8 +176,6 @@ SPEC CHECKSUMS:
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   GooglePlaces: 847b5a8db11f13615fd2b166873dcd423b99a273
-  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
   Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
@@ -210,20 +184,15 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
   MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
-  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
-  MZFormSheetPresentationController: 97b4ea7a52a8bd451ac93c1a1c6b5095e2326d1c
   Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
-  SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
@@ -232,8 +201,6 @@ SPEC CHECKSUMS:
   TwilioCommon: c40c4bdc99865473852395f917adf25e222ec16e
   TwilioConversationsClient: afc786707d587d121b36e5b97e1f0bf284b0c76f
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
-  URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1
   Validator: 30b7e50f1f82b0e5b2dd14f54fc2f2533e70e5d6
-  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
 COCOAPODS: 0.39.0

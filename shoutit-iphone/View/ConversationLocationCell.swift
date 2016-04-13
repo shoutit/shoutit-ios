@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 final class ConversationLocationCell: UITableViewCell, ConversationCell {
     

@@ -15,7 +15,7 @@ enum PusherEventType : String {
     case NewMessage = "new_message"
     case NewListen = "new_listen"
     case ProfileChange = "profile_change"
-    case UserTyping = "client-user_is_typing"
+    case UserTyping = "client-is_typing"
     case JoinedChat = "client-joined_chat"
     case LeftChat = "client-left_chat"
 }
