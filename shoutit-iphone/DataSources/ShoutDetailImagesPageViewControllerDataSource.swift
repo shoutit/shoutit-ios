@@ -25,12 +25,12 @@ class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControl
         super.init()
     }
     
-    func viewControllers() -> [PhotoBrowserPhotoViewController] {
-        if let first = viewModel.imagesViewModels.first {
-            let controller = viewControllerWithViewModel(first)
-            return [controller]
+    func firstViewController() -> PhotoBrowserPhotoViewController? {
+        guard let first = viewModel.imagesViewModels.first else {
+            return nil
         }
-        return []
+        let controller = viewControllerWithViewModel(first)
+        return controller
     }
     
     // MARK: - UIPageViewControllerDataSource
