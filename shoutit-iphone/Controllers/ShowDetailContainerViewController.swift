@@ -118,20 +118,18 @@ class ShowDetailContainerViewController: UIViewController {
             return
         }
         
-        if self.viewModel.shout.conversations?.count == 0 {
+        guard let conversations = self.viewModel.shout.conversations where conversations.count > 0 else {
             let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, shout: viewModel.shout, readby: nil)
-            
             self.flowDelegate?.showConversation(conversation)
-            
             return
         }
         
-        
-        if self.viewModel.shout.conversations?.count  > 1 {
+        guard conversations.count == 1 else {
             print("multiple conversations")
-        } else {
-            self.flowDelegate?.showConversation((self.viewModel.shout.conversations?.first!)!)
+            return
         }
+        
+        self.flowDelegate?.showConversation(conversations.first!)
     }
     
     private func reportAction() {
