@@ -111,8 +111,6 @@ class ShowDetailContainerViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    // MARK: - Actions
-    
     func startChat() {
         guard userIsLoggedIn() else {
             return
