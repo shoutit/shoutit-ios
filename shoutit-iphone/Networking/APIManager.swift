@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import CryptoSwift
 import ReachabilitySwift
 import Kingfisher
 import Timberjack

@@ -15,11 +15,9 @@ pod 'RxCocoa', '~> 2.3.1'
 pod 'Fabric', '~> 1.6'
 pod 'Crashlytics', '~> 3.6'
 pod 'Mixpanel', '~> 2.9'
-pod 'XCGLogger', '~> 3.3'
 
 # google
 pod 'GoogleMaps', '~> 1.10'
-#pod 'GoogleSignIn', '~> 2.4'
 pod 'FTGooglePlacesAPI'
 pod 'GooglePlaces', :git => 'https://github.com/piotrbernad/Swift-Google-Maps-API'
 
@@ -63,33 +61,13 @@ pod 'MBProgressHUD', '~> 0.9.1'
 pod 'SVProgressHUD'
 pod 'SVPullToRefresh', '~> 0.4'
 pod 'DAProgressOverlayView', '~> 1.0'
-pod 'DWTagList', '~> 0.0'
-pod 'SMCalloutView', '~> 2.1'
-pod 'JSQMessagesViewController', '~> 7.2'
-pod 'URBMediaFocusViewController', '~> 0.5'
-pod 'MZFormSheetPresentationController', '~> 2.2'
 pod 'DZNEmptyDataSet'
 pod 'ACPDownload', '~> 1.1.0'
 pod 'SlackTextViewController'
 
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
 
-
-def testing_pods
-    pod 'Quick', '~> 0.8.0'
-    pod 'Nimble', '3.0.0'
-end
-
-target "shoutit-iphoneTests" do
-    testing_pods
-end
-
-target "shoutit-iphoneUITests" do
-    testing_pods
-end
-
 # other
-pod 'CryptoSwift'
 pod 'libPusher', '~> 1.6'
 
 # After every installation, copy the license and settings plists over to our project
