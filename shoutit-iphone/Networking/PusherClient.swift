@@ -223,7 +223,7 @@ extension PusherClient {
     
     func mainChannelIdentifier() -> String? {
         if let user = Account.sharedInstance.user {
-            return "presence-u-\(user.id)"
+            return "presence-v3-p-\(user.id)"
         }
         
         return nil

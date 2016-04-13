@@ -181,6 +181,6 @@ extension Conversation {
 // Pusher Extensions
 extension Conversation {
     func channelName() -> String {
-        return "presence-c-\(self.id)"
+        return "presence-v3-c-\(self.id)"
     }
 }
