@@ -122,6 +122,24 @@ final class FiltersViewModel {
         reloadSubject.onNext()
     }
     
+    // MARK: - Settings filters
+    
+    func changeLocationToLocation(location: Address) {
+        for case (let index, .LocationChoice) in cellViewModels.enumerate() {
+            cellViewModels[index] = .LocationChoice(location: location)
+            reloadSubject.onNext()
+            return
+        }
+    }
+    
+    func changeValuesForFilter(filter: Filter, toValues values: [FilterValue]) {
+        for case (let index, .FilterValueChoice(filter, _)) in cellViewModels.enumerate() {
+            cellViewModels[index] = .FilterValueChoice(filter: filter, selectedValues: values)
+            reloadSubject.onNext()
+            return
+        }
+    }
+    
     // MARK: - Public helpers
     
     func composeFiltersState() -> FiltersState {

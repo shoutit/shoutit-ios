@@ -213,18 +213,8 @@ extension FiltersViewController: UITableViewDataSource {
             locationCell.button
                 .rx_tap
                 .asDriver()
-                .driveNext{[unowned self] () in
-                    
-                    let controller = Wireframe.filtersChangeLocationViewController()
-                    
-                    controller.finishedBlock = {(success, place) -> Void in
-                        if let place = place {
-                            self.viewModel.cellViewModels[indexPath.row] = .LocationChoice(location: place)
-                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        }
-                    }
-                    
-                    self.navigationController?.showViewController(controller, sender: nil)
+                .driveNext{[weak self] () in
+                    self?.presentLocationChoiceController()
                 }
                 .addDisposableTo(locationCell.reuseDisposeBag)
         case .DistanceRestriction(let distanceOption):
@@ -247,13 +237,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .rx_tap
                 .asDriver()
                 .driveNext{[unowned self] in
-                    let controller = Wireframe.categoryFiltersChoiceViewController()
-                    controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
-                    controller.completionBlock = {(selectedFilterValues) in
-                        self.viewModel.cellViewModels[indexPath.row] = .FilterValueChoice(filter: filter, selectedValues: selectedFilterValues)
-                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    }
-                    self.navigationController?.showViewController(controller, sender: nil)
+                    self.presentFilterChoiceScreenWithFilter(filter, selectedValues: selectedValues)
                 }
                 .addDisposableTo(filterCell.reuseDisposeBag)
         }
@@ -277,7 +261,33 @@ extension FiltersViewController: UITableViewDelegate {
     }
 }
 
-// MARK - Helpers
+// MARK: - Filters LocationChoice
+
+private extension FiltersViewController {
+    
+    func presentLocationChoiceController() {
+        
+        let controller = Wireframe.filtersChangeLocationViewController()
+        controller.finishedBlock = {[weak self](success, place) -> Void in
+            if let place = place {
+                self?.viewModel.changeLocationToLocation(place)
+            }
+        }
+        navigationController?.showViewController(controller, sender: nil)
+    }
+    
+    func presentFilterChoiceScreenWithFilter(filter: Filter, selectedValues: [FilterValue]) {
+        
+        let controller = Wireframe.categoryFiltersChoiceViewController()
+        controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
+        controller.completionBlock = {[weak self](newSelectedValues) in
+            self?.viewModel.changeValuesForFilter(filter, toValues: newSelectedValues)
+        }
+        self.navigationController?.showViewController(controller, sender: nil)
+    }
+}
+
+// MARK: - Helpers
 
 private extension FiltersViewController {
     
