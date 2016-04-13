@@ -54,7 +54,8 @@ final class FiltersViewController: UIViewController {
         doneButton
             .rx_tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .driveNext{[weak self] in
+                guard let `self` = self else { return }
                 let state = self.viewModel.composeFiltersState()
                 self.completionBlock?(state)
                 self.dismissViewControllerAnimated(true, completion: nil)

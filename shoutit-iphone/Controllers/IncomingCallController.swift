@@ -30,7 +30,6 @@ class IncomingCallController: UIViewController {
                 discardHandler(invitation: self.invitation)
             }
         }
-        
     }
     
     @IBAction func answerAction(sender: AnyObject) {

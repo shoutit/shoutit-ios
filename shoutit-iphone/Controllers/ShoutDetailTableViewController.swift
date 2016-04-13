@@ -129,8 +129,10 @@ final class ShoutDetailTableViewController: UITableViewController {
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
         headerView.setConstraintForPriceLabelVisible(visible)
         
-        photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
+        if let firstImageController = self.imagesDataSource.firstViewController() {
+            photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
+        }
         
         // size
         let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)

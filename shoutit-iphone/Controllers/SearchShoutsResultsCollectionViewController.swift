@@ -170,7 +170,8 @@ extension SearchShoutsResultsCollectionViewController {
         view.filterButton
             .rx_tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .driveNext{[weak self] in
+                guard let `self` = self else { return }
                 self.flowDelegate?.showFiltersWithState(self.viewModel.getFiltersState(), completionBlock: { (filtersState) in
                     self.viewModel.applyFilters(filtersState)
                 })
