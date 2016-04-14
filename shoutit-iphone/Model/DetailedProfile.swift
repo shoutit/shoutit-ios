@@ -52,6 +52,7 @@ struct DetailedProfile: User {
     let pages: [Profile]?
     let admins: [Profile]?
     let conversation: Conversation?
+    let stats: ProfileStats?
 }
 
 extension DetailedProfile: Decodable {
@@ -99,6 +100,7 @@ extension DetailedProfile: Decodable {
             <*> j <||? "admins"
         let g = f
             <*> j <|? "conversation"
+            <*> j <|? "stats"
         return g
     }
 }
@@ -140,7 +142,8 @@ extension DetailedProfile: Encodable {
             "is_owner" : self.isOwner.encode(),
             "chat_url" : self.chatPath.encode(),
             "pages" : self.pages.encode(),
-            "admins" : self.admins.encode()
+            "admins" : self.admins.encode(),
+            "stats" : self.stats.encode()
             ])
     }
 }
