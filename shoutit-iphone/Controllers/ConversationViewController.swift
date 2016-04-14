@@ -55,7 +55,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func layoutInsets() {
         if let _ = conversation.shout?.id {
-            tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, 64.0, 0)
         } else {
             tableView.contentInset = UIEdgeInsetsZero
         }
