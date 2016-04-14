@@ -62,44 +62,45 @@ extension DetailedProfile: Decodable {
             <*> j <| "type"
             <*> j <| "api_url"
             <*> j <| "web_url"
-            <*> j <| "username"
         let b = a
+            <*> j <| "username"
             <*> j <| "name"
             <*> j <|? "first_name"
             <*> j <|? "last_name"
-            <*> j <| "is_activated"
         let c = b
+            <*> j <| "is_activated"
             <*> j <|? "image"
             <*> j <|? "cover"
             <*> j <|? "is_listening"
+        let d = c
             <*> j <| "listeners_count"
             <*> j <|? "gender"
             <*> j <|? "video"
-        let d = c
             <*> j <| "date_joined"
             <*> j <|? "bio"
+        let e = d
             <*> j <|? "about"
             <*> j <| "location"
             <*> j <|? "email"
             <*> j <|? "mobile"
-        let e = d
             <*> j <|? "website"
+        let f = e
             <*> j <|? "linked_accounts"
             <*> j <|? "push_tokens"
             <*> j <|? "is_password_set"
             <*> j <|? "is_listener"
+        let g = f
             <*> j <|? "shouts_url"
             <*> j <| "listeners_url"
-        let f = e
             <*> j <|? "listening_count"
             <*> j <|? "listening_url"
             <*> j <| "is_owner"
+        let h = g
             <*> j <|? "chat_url"
             <*> j <||? "pages"
             <*> j <||? "admins"
-        let g = f
-            <*> j <|? "conversation"
-        return g
+            <*> j <|? "conversation" 
+        return h
     }
 }
 

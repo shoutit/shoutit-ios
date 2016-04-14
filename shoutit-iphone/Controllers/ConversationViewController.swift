@@ -55,9 +55,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func layoutInsets() {
         if let _ = conversation.shout?.id {
-            tableView.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+            tableView?.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
         } else {
-            tableView.contentInset = UIEdgeInsetsZero
+            tableView?.contentInset = UIEdgeInsetsZero
         }
     }
     
@@ -97,7 +97,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         viewModel.fetchMessages()
         
         viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
-            self?.tableView.reloadData()
+            self?.tableView?.reloadData()
         }.addDisposableTo(disposeBag)
         
         viewModel.typingUsers.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (profile) -> Void in
@@ -105,7 +105,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
                 return
             }
             
-            self?.typingIndicatorView.insertUsername(profile.firstName)
+            self?.typingIndicatorView?.insertUsername(profile.firstName)
         }.addDisposableTo(disposeBag)
         
         viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
@@ -146,6 +146,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     func registerSupplementaryViews() {
+        guard let tableView = tableView else {
+            assertionFailure()
+            return
+        }
         tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
         
         tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
@@ -170,6 +174,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     func customizeTable() {
+        guard let tableView = tableView else {
+            assertionFailure()
+            return
+        }
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50.0
         tableView.separatorStyle = .None
@@ -188,7 +196,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         leftButton.setTitle("", forState: .Normal)
         leftButton.tintColor = UIColor(shoutitColor: ShoutitColor.FontGrayColor)
         
-        typingIndicatorView.interval = 3.0
+        typingIndicatorView?.interval = 3.0
         textView.placeholder = NSLocalizedString("Type a message", comment: "")
     }
     
@@ -235,6 +243,11 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     func setLoadMoreFooter() {
+        
+        guard let tableView = tableView else {
+            assertionFailure()
+            return
+        }
         let footerHeight : CGFloat = 60.0
         
         loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
@@ -250,10 +263,10 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         
         viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
             self?.loadMoreView?.setState(state)
-            self?.tableView.reloadData()
+            self?.tableView?.reloadData()
         }).addDisposableTo(loadMoreBag)
         
-        self.tableView.tableFooterView = loadMoreView
+        tableView.tableFooterView = loadMoreView
     }
     
     func setTitleView() {
@@ -344,6 +357,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     }
     
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
+        
         let attributedText : NSAttributedString
         if self.conversation.id == "" {
             attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
@@ -353,9 +367,9 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
             attributedText = NSAttributedString(string: NSLocalizedString("Loading Messages...", comment: ""))
         }
         
-        let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height))
+        let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: tableView?.frame.width ?? 0, height: tableView?.frame.height ?? 0))
         lbl.attributedText = attributedText
-        lbl.transform = tableView.transform
+        lbl.transform = tableView!.transform
         lbl.textAlignment = .Center
         lbl.font = UIFont.boldSystemFontOfSize(18.0)
         lbl.textColor = UIColor.lightGrayColor()
