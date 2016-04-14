@@ -204,7 +204,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         return true
     }
     
-    override class func tableViewStyleForCoder(decoder: NSCoder!) -> UITableViewStyle {
+    override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
     }
     
