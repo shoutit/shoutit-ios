@@ -23,7 +23,11 @@ class BigLabelSelectButton: SelectButton {
         bigTitleLabel.textColor = UIColor(shoutitColor: .ShoutitBlack)
         addSubview(bigTitleLabel)
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[l]", options: [], metrics: nil, views: ["l" : bigTitleLabel]))
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[l]-10-|", options: [], metrics: nil, views: ["l" : bigTitleLabel]))
+        } else {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[l]", options: [], metrics: nil, views: ["l" : bigTitleLabel]))
+        }
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-7-[l]", options: [], metrics: nil, views: ["l" : bigTitleLabel]))
     }
     

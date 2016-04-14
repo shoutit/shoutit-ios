@@ -222,12 +222,10 @@ extension CreateShoutViewModel {
                 cell?.selectButton.hideIcon = false
                 cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
             }
-            cell?.selectButton.promptText = NSLocalizedString("Category", comment: "")
         } else {
             cell?.selectButton.hideIcon = true
             cell?.selectButton.iconImageView.image = nil
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
-            cell?.selectButton.promptText = nil
         }
     }
     
@@ -243,10 +241,8 @@ extension CreateShoutViewModel {
         
         if let location = shoutParams.location.value {
             cell?.selectButton.setTitle(location.address, forState: .Normal)
-            cell?.selectButton.promptText = NSLocalizedString("Location", comment: "")
         } else {
             cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
-            cell?.selectButton.promptText = nil
         }
     }
 }

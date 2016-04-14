@@ -21,11 +21,16 @@ class LabeledSelectButton: SelectButton {
         smallTitleLabel.textColor = UIColor(shoutitColor: .DiscoverBorder)
         addSubview(smallTitleLabel)
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[l]", options: [], metrics: nil, views: ["l" : smallTitleLabel]))
+        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[l]-10-|", options: [], metrics: nil, views: ["l" : smallTitleLabel]))
+        } else {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[l]", options: [], metrics: nil, views: ["l" : smallTitleLabel]))
+        }
+        
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[l]", options: [], metrics: nil, views: ["l" : smallTitleLabel]))
     }
     
     override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
-        return CGRect(x: 10, y: 15, width: contentRect.width - 10, height: contentRect.height - 15)
+        return CGRect(x: contentRect.minX + 10, y: 15, width: contentRect.width - 10, height: contentRect.height - 15)
     }
 }
