@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureLoggingServices()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         PlacesGeocoder.setup()
+        MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
         
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound], categories: nil)
@@ -64,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-//        SHMixpanelHelper.closeApp()
+        MixpanelHelper.handleAppDidTerminate()
     }
     
     // MARK: - Push notifications

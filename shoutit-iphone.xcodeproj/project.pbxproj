@@ -120,8 +120,6 @@
 		AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC7027FA1C1AA66200262622 /* uv_idea@2x.png */; };
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
-		ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */; };
-		ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */; };
 		ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */; };
 		ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CCA1BF930D50097444E /* YTPlayerView.m */; };
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
@@ -779,10 +777,6 @@
 		AC7030C01C15A036008F4C00 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Util/extensions/UIView+Gradient.h"; sourceTree = "<group>"; };
 		AC7030C11C15A036008F4C00 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Util/extensions/UIView+Gradient.m"; sourceTree = "<group>"; };
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
-		ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewController.swift; path = View/tabs/stream/SHLocationGetterViewController.swift; sourceTree = "<group>"; };
-		ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterViewModel.swift; sourceTree = "<group>"; };
-		ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterCellViewModel.swift; path = ViewModel/tabs/stream/SHLocationGetterCellViewModel.swift; sourceTree = "<group>"; };
-		ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHLocationGetterViewCell.swift; path = View/tabs/stream/SHLocationGetterViewCell.swift; sourceTree = "<group>"; };
 		ACDB3CA91BF904660097444E /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPDropDownMenu.h; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.h; sourceTree = "<group>"; };
 		ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPDropDownMenu.m; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.m; sourceTree = "<group>"; };
 		ACDB3CC91BF930D50097444E /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Libraries/YoutubeHelper/YTPlayerView.h; sourceTree = "<group>"; };
@@ -2192,10 +2186,6 @@
 		AEE924BC1C68C1C900EFBF43 /* ChangeLocation */ = {
 			isa = PBXGroup;
 			children = (
-				ACA77ED01BF1285500D504AA /* SHLocationGetterViewModel.swift */,
-				ACA77ED51BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift */,
-				ACA77EC81BF0CB6A00D504AA /* SHLocationGetterViewController.swift */,
-				ACA77ED71BF12D9200D504AA /* SHLocationGetterViewCell.swift */,
 				AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */,
 				AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */,
 				24847E601C85E09E00C322A3 /* SelectShoutLocationViewController.swift */,
@@ -3775,7 +3765,6 @@
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
 				B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */,
 				B2F524741C9AFC2800EA622F /* SearchParams.swift in Sources */,
-				ACA77ED81BF12D9200D504AA /* SHLocationGetterViewCell.swift in Sources */,
 				B2E715551C6E068D007F95CF /* ProfileCollectionInfoSupplementaryView.swift in Sources */,
 				B2C729DA1C6223FA006F7D29 /* LoginViewController.swift in Sources */,
 				B2AE6B7A1C7CC52300370276 /* GuestUser.swift in Sources */,
@@ -3939,7 +3928,6 @@
 				2463B6911C981D5000BFE6BA /* ReadBy.swift in Sources */,
 				AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */,
-				ACA77ED61BF12A5D00D504AA /* SHLocationGetterCellViewModel.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
 				2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */,
