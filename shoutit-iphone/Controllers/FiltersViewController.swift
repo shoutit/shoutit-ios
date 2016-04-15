@@ -96,7 +96,7 @@ extension FiltersViewController: UITableViewDataSource {
         switch cellViewModel {
         case .ShoutTypeChoice:
             let shoutTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            shoutTypeCell.button.smallTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
+            shoutTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
             shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             shoutTypeCell.button
                 .rx_tap
@@ -107,9 +107,9 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
         case .SortTypeChoice(_, let loaded):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            sortTypeCell.button.smallTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
+            sortTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
             sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            sortTypeCell.button.optionsLoaded = loaded()
+            sortTypeCell.button.showActivity(!loaded())
             
             sortTypeCell.button
                 .rx_tap
@@ -185,7 +185,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(distanceCell.reuseDisposeBag)
         case .FilterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
-            filterCell.button.bigTitleLabel.text = filter.name
+            filterCell.button.fieldTitleLabel.text = filter.name
             filterCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             filterCell.button
                 .rx_tap

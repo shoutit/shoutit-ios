@@ -13,7 +13,7 @@ class BigLabelButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     
-    @IBOutlet weak var button: BigLabelSelectButton!
+    @IBOutlet weak var button: SelectionButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()

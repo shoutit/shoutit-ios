@@ -18,11 +18,16 @@ class SelectionButton: UIButton {
     private var fieldTitleLabelMode: FieldTitleLabelMode {
         return FieldTitleLabelMode(rawValue: ib_fieldTitleLabelType) ?? .None
     }
+    private var iconImageType: IconImageType {
+        return IconImageType(rawValue: ib_iconImageType) ?? .Small
+    }
     @IBInspectable var isImageVisible: Bool = false
     
     // state helpers
     @IBInspectable var ib_disclosureType: Int = 1
     @IBInspectable var ib_fieldTitleLabelType: Int = 0
+    @IBInspectable var ib_iconImageType: Int = 0
+    @IBInspectable var fieldTitleLabelFontColor: UIColor = UIColor(shoutitColor: .DiscoverBorder)
     
     // constraints
     private var _constraints: [NSLayoutConstraint] = []
@@ -81,11 +86,15 @@ class SelectionButton: UIButton {
         
         switch fieldTitleLabelMode {
         case .None: topInset = 19
-        case .Big: topInset = 7
+        case .Big: topInset = 31
         case .Small: topInset = 23
         }
         
-        leadingInset = isImageVisible ? 42 : 10
+        switch (isImageVisible, iconImageType) {
+        case (true, .Small): leadingInset = 42
+        case (true, .Big): leadingInset = 56
+        default: leadingInset = 10
+        }
         
         let x: CGFloat
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
@@ -116,14 +125,21 @@ private extension SelectionButton {
     
     func generateConstraintsForIconImageView() -> [NSLayoutConstraint] {
         let views: [String : AnyObject] = ["icon" : iconImageView]
-        switch (disclosureType, fieldTitleLabelMode, isImageVisible) {
-        case (_, .None, true):
+        switch (disclosureType, fieldTitleLabelMode, isImageVisible, iconImageType) {
+        case (_, .None, true, .Small):
             return NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[icon(18)]", options: [], metrics: nil, views: views) +
             [NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0),
              NSLayoutConstraint(item: iconImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 18.0)]
-        case (_, .Small, true):
+        case (_, .Small, true, .Small):
             return NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[icon(18)]", options: [], metrics: nil, views: views) +
                 NSLayoutConstraint.constraintsWithVisualFormat("V:|-23-[icon(18)]", options: [], metrics: nil, views: views)
+        case (_, .None, true, .Big):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[icon(36)]", options: [], metrics: nil, views: views) +
+                [NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: iconImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36.0)]
+        case (_, .Small, true, .Big):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[icon(36)]", options: [], metrics: nil, views: views) +
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|-23-[icon(36)]", options: [], metrics: nil, views: views)
         default:
             return NSLayoutConstraint.constraintsWithVisualFormat("H:|[icon(0)]", options: [], metrics: nil, views: views) +
                 NSLayoutConstraint.constraintsWithVisualFormat("V:|[icon(0)]", options: [], metrics: nil, views: views)
@@ -167,7 +183,7 @@ private extension SelectionButton {
 private extension SelectionButton {
     
     private func setupAppearance() {
-        titleLabel?.font = UIFont.systemFontOfSize(18.0)
+        titleLabel?.font = UIFont.systemFontOfSize(titleFontSize())
         titleLabel?.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
         
         layer.cornerRadius = 4.0
@@ -186,7 +202,7 @@ private extension SelectionButton {
         fieldTitleLabel = UILabel()
         fieldTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         fieldTitleLabel.font = UIFont.sh_systemFontOfSize(fieldTitleLabelMode.fontSize, weight: .Regular)
-        fieldTitleLabel.textColor = UIColor(shoutitColor: .DiscoverBorder)
+        fieldTitleLabel.textColor = fieldTitleLabelFontColor
         fieldTitleLabel.clipsToBounds = true
         addSubview(fieldTitleLabel)
     }
@@ -216,6 +232,11 @@ private extension SelectionButton {
 }
 
 private extension SelectionButton {
+    
+    enum IconImageType: Int {
+        case Small = 0
+        case Big = 1
+    }
     
     enum FieldTitleLabelMode: Int {
         case None = 0

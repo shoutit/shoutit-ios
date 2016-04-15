@@ -51,7 +51,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         viewModel.currencies
             .asDriver()
             .driveNext { [weak self] (currencies) -> Void in
-                self?.headerView.currencyButton.optionsLoaded = currencies.count > 0
+                self?.headerView.currencyButton.showActivity(currencies.count == 0)
             }
             .addDisposableTo(disposeBag)
         

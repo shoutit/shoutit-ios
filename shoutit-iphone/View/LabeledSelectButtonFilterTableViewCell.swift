@@ -13,7 +13,7 @@ class LabeledSelectButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     
-    @IBOutlet weak var button: LabeledSelectButton!
+    @IBOutlet weak var button: SelectionButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()
