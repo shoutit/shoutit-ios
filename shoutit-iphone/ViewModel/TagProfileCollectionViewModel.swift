@@ -13,6 +13,7 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
+    let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     let filter: Filter?
     let category: Category?
@@ -118,6 +119,8 @@ class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let reloadTag = fetchTag()!.map {[weak self] (tag) -> Void in
             self?.tag = tag
             self?.reloadSubject.onNext()
+            let message = listen ? UserMessages.startedListeningMessageWithName(tag.name) : UserMessages.stoppedListeningMessageWithName(tag.name)
+            self?.successMessageSubject.onNext(message)
         }
         return APITagsService.listen(listen, toTagWithName: name).flatMap{ () -> Observable<Void> in
             return reloadTag

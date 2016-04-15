@@ -13,6 +13,7 @@ class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
+    let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     private var detailedUser: DetailedProfile?
     

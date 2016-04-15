@@ -13,6 +13,7 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
+    let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     private let profile: Profile
     private var detailedProfile: DetailedProfile?
@@ -147,6 +148,8 @@ class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedProfile = profile
             self?.reloadSubject.onNext()
+            let message = listen ? UserMessages.startedListeningMessageWithName(profile.name) : UserMessages.stoppedListeningMessageWithName(profile.name)
+            self?.successMessageSubject.onNext(message)
         }
         return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{() -> Observable<Void> in
             return retrieveUser

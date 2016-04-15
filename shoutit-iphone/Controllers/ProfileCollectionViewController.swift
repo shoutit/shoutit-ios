@@ -46,6 +46,13 @@ class ProfileCollectionViewController: UICollectionViewController {
             }
             .addDisposableTo(disposeBag)
         
+        viewModel.successMessageSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext{[weak self] (message) in
+                self?.showSuccessMessage(message)
+            }
+            .addDisposableTo(disposeBag)
+        
         registerReusables()
     }
     
@@ -169,9 +176,14 @@ extension ProfileCollectionViewController {
                 guard self != nil && self!.userIsLoggedIn() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
-                    case .Next(let listening):
+                    case .Next(let (listening, successMessage, error)):
                         let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                         cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                        if let message = successMessage {
+                            self?.showSuccessMessage(message)
+                        } else if let error =  error {
+                            self?.showError(error)
+                        }
                     case .Completed:
                         self?.viewModel.reloadContent()
                     default:
@@ -402,19 +414,20 @@ extension ProfileCollectionViewController {
                     }
                     return !isGuest
                 }
-                .flatMapFirst({[weak button] () -> Observable<Void> in
+                .flatMapFirst{[weak button] () -> Observable<Void> in
                 if let button = button as? ProfileInfoHeaderButton {
                     let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
                     button.setImage(switchedModel.image, countText: nil)
                     button.setTitleText(switchedModel.title)
                 }
                 return listenObservable
-                }).subscribeError({[weak button] (_) in
+                }
+                .subscribeError{[weak button] (_) in
                     if let button = button as? ProfileInfoHeaderButton {
                         button.setImage(buttonModel.image, countText: nil)
                         button.setTitleText(buttonModel.title)
                     }
-                })
+                }
                 .addDisposableTo(disposeBag)
         case .More:
             button.rx_tap.asDriver().driveNext({ [weak self] in
