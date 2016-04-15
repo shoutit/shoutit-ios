@@ -17,6 +17,8 @@ final class EditProfileTableViewModel {
         case Progress(show: Bool)
     }
     
+    let charactersLimit = 150
+    
     let user: DetailedProfile
     var cells: [EditProfileCellViewModel]
     
@@ -118,7 +120,7 @@ final class EditProfileTableViewModel {
         
         for cell in cells {
             if case .RichText(let bio, _, .Bio) = cell {
-                if bio.characters.count > 50 {
+                if bio.characters.count > charactersLimit {
                     throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
                 }
             }

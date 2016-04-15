@@ -141,12 +141,13 @@ extension EditProfileTableViewController {
             let cell = cell as! EditProfileTextViewTableViewCell
             cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
+            cell.textView.delegate = self
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
-                    textView?.detailLabel?.text = "\(text.utf16.count)/50"
+                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Location(let value, let placeholder, _):
@@ -187,7 +188,7 @@ extension EditProfileTableViewController {
         let cellViewModel = viewModel.cells[indexPath.row]
         switch cellViewModel {
         case .BasicText: return 70
-        case .RichText: return 130
+        case .RichText: return 150
         case .Location: return 70
         }
     }
@@ -220,5 +221,12 @@ extension EditProfileTableViewController: MediaPickerControllerDelegate {
             .addDisposableTo(disposeBag)
         
         self.uploadType = nil
+    }
+}
+
+extension EditProfileTableViewController: UITextViewDelegate {
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.utf16.count < viewModel.charactersLimit || text.utf16.count == 0
     }
 }
