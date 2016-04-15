@@ -61,6 +61,15 @@ extension SearchShoutsResultsViewModel {
             return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
         }
         
+        func allowsFiltering() -> Bool {
+            switch parent.context {
+            case .ProfileShouts, .TagShouts:
+                return false
+            default:
+                return true
+            }
+        }
+        
         // MARK: Fetch
         
         private func fetchPage(page: Int) {
