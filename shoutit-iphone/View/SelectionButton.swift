@@ -39,36 +39,71 @@ class SelectionButton: UIButton {
         addIconImageView()
         addDisclosureImageView()
         addActivityIndicatorView()
+        setupConstraints()
+    }
+    
+    // MARK: - Actions
+    
+    func showActivity(show: Bool) {
+        userInteractionEnabled = !show
+        titleLabel?.alpha = show ? 1.0 : 0.0
+        fieldTitleLabel.hidden = show
+        disclosureIndicatorImageView.hidden = show
+        iconImageView.hidden = show
+        activityIndicatorView.hidden = !show
+        if show {
+            activityIndicatorView.startAnimating()
+        } else {
+            activityIndicatorView.stopAnimating()
+        }
     }
     
     // MARK: - Layout
     
     override func contentRectForBounds(bounds: CGRect) -> CGRect {
+        var leadingInset: CGFloat = 0
+        var trailingInset: CGFloat = 0
+        var topInset: CGFloat = 0
         
+        switch disclosureType {
+        case .None: break
+        default: trailingInset = 30
+        }
+        
+        switch fieldTitleLabelMode {
+        case .None: topInset = 15
+        case .Big: topInset = 7
+        case .Small: topInset = 23
+        }
+        
+        if isImageVisible {
+            leadingInset = 44
+        } else {
+            leadingInset = 0
+        }
+        
+        let x: CGFloat
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            x = trailingInset
+        } else {
+            x = leadingInset
+        }
+        return CGRect(x: x,
+                      y: topInset,
+                      width: bounds.width - leadingInset - trailingInset,
+                      height: titleFontSize())
     }
     
-    // layout
+    // MARK: - Layout
     
     private func setupConstraints() {
         NSLayoutConstraint.deactivateConstraints(_constraints)
         _constraints = []
-        
-        self.iconImageView.addConstraints([NSLayoutConstraint(item: iconImageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36.0),
-            NSLayoutConstraint(item: iconImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36.0)])
-        self.addConstraints([NSLayoutConstraint(item: iconImageView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 10),
-            NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)])
-        
-        self.selectImageView.addConstraints([NSLayoutConstraint(item: selectImageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 18.0),
-            NSLayoutConstraint(item: selectImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 18.0)])
-        self.addConstraints([NSLayoutConstraint(item: selectImageView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: -10),
-            NSLayoutConstraint(item: selectImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)])
-        
-        activityIndicator.addConstraints([NSLayoutConstraint(item: activityIndicator, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0),
-            NSLayoutConstraint(item: activityIndicator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40.0)])
-        self.addConstraints([NSLayoutConstraint(item: activityIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: -9),
-            NSLayoutConstraint(item: activityIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)])
-        
-        self.activityIndicatorView = activityIndicator
+        _constraints += generateConstraintsForIconImageView()
+        _constraints += generateConstraintsForFieldTitleLabel()
+        _constraints += generateConstraintsForDisclosureIndicatorImageView()
+        _constraints += generateConstraintsForActivityIndicatorView()
+        NSLayoutConstraint.activateConstraints(_constraints)
     }
 }
 
@@ -82,9 +117,45 @@ private extension SelectionButton {
             [NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0),
              NSLayoutConstraint(item: iconImageView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 10.0)]
         case (_, .Small, true):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[icon(18)]", options: [], metrics: nil, views: views) +
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|-23-[icon(18)]", options: [], metrics: nil, views: views)
         default:
-            
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|[icon(0)]", options: [], metrics: nil, views: views) +
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|[icon(0)]", options: [], metrics: nil, views: views)
         }
+    }
+    
+    func generateConstraintsForFieldTitleLabel() -> [NSLayoutConstraint] {
+        let views: [String : AnyObject] = ["text" : fieldTitleLabel,
+                                           "disclosure" : disclosureIndicatorImageView]
+        switch (disclosureType, fieldTitleLabelMode, isImageVisible) {
+        case (_, .Small, _):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[text]-(>=8)-[disclosure]", options: [], metrics: nil, views: views) +
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[text]", options: [], metrics: nil, views: views)
+        case (_, .Big, _):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[text]-(>=8)-[disclosure]", options: [], metrics: nil, views: views) +
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-7-[text]", options: [], metrics: nil, views: views)
+        default:
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[text(0)]", options: [], metrics: nil, views: views) +
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[text(0)]", options: [], metrics: nil, views: views)
+        }
+    }
+    
+    func generateConstraintsForDisclosureIndicatorImageView() -> [NSLayoutConstraint] {
+        let views: [String : AnyObject] = ["disclosure" : disclosureIndicatorImageView]
+        let centerConstraint = NSLayoutConstraint(item: disclosureIndicatorImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: disclosureIndicatorImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 18.0)
+        switch (disclosureType, fieldTitleLabelMode, isImageVisible) {
+        case (.None, _, _):
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:[disclosure(0)]-0-|", options: [], metrics: nil, views: views) + [centerConstraint, heightConstraint]
+        default:
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:[disclosure(18)]-10-|", options: [], metrics: nil, views: views) + [centerConstraint, heightConstraint]
+        }
+    }
+    
+    func generateConstraintsForActivityIndicatorView() -> [NSLayoutConstraint] {
+        return [NSLayoutConstraint(item: activityIndicatorView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: activityIndicatorView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)]
     }
 }
 
@@ -93,8 +164,9 @@ private extension SelectionButton {
     private func addFieldTitleLabel() {
         fieldTitleLabel = UILabel()
         fieldTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        fieldTitleLabel.font = UIFont.sh_systemFontOfSize(12, weight: .Regular)
+        fieldTitleLabel.font = UIFont.sh_systemFontOfSize(fieldTitleLabelMode.fontSize, weight: .Regular)
         fieldTitleLabel.textColor = UIColor(shoutitColor: .DiscoverBorder)
+        fieldTitleLabel.clipsToBounds = true
         addSubview(fieldTitleLabel)
     }
     
@@ -102,6 +174,7 @@ private extension SelectionButton {
         iconImageView = UIImageView()
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.contentMode = .ScaleAspectFit
+        iconImageView.clipsToBounds = true
         addSubview(iconImageView)
     }
     
@@ -109,6 +182,7 @@ private extension SelectionButton {
         disclosureIndicatorImageView = UIImageView()
         disclosureIndicatorImageView.translatesAutoresizingMaskIntoConstraints = false
         disclosureIndicatorImageView.contentMode = .ScaleAspectFit
+        disclosureIndicatorImageView.clipsToBounds = true
         addSubview(disclosureIndicatorImageView)
     }
     
@@ -146,6 +220,14 @@ private extension SelectionButton {
             case .DownArrow: return UIImage.downArrowDisclosureIndicator()
             case .RightArrow: return UIImage.rightBlueArrowDisclosureIndicator()
             }
+        }
+    }
+    
+    func titleFontSize() -> CGFloat {
+        switch fieldTitleLabelMode {
+        case .Big: return 12
+        case .Small: return 18
+        case .None: return 18
         }
     }
 }
