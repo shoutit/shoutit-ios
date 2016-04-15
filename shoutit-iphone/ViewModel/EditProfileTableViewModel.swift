@@ -37,7 +37,9 @@ final class EditProfileTableViewModel {
                  EditProfileCellViewModel(username: user.username),
                  EditProfileCellViewModel(bio: user.bio ?? ""),
                  EditProfileCellViewModel(location: user.location),
-                 EditProfileCellViewModel(website: user.website ?? "")]
+                 EditProfileCellViewModel(website: user.website ?? ""),
+                 EditProfileCellViewModel(mobile: user.mobile ?? "")
+        ]
     }
     
     // MARK: - Mutation
@@ -57,6 +59,8 @@ final class EditProfileTableViewModel {
             cells[index] = EditProfileCellViewModel(bio: string)
         case .Website:
             cells[index] = EditProfileCellViewModel(website: string)
+        case .Mobile:
+            cells[index] = EditProfileCellViewModel(mobile: string)
         case .Location:
             break
         }
@@ -135,6 +139,7 @@ final class EditProfileTableViewModel {
         var username: String?
         var bio: String?
         var website: String?
+        var mobile: String?
         var location: Address?
         
         for cell in cells {
@@ -153,6 +158,8 @@ final class EditProfileTableViewModel {
                 location = value
             case .BasicText(let value, _, .Website):
                 website = value
+            case .BasicText(let value, _, .Mobile):
+                mobile = value
             default:
                 break
             }
@@ -166,6 +173,7 @@ final class EditProfileTableViewModel {
                                  website: website,
                                  location: location,
                                  imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString,
-                                 coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString)
+                                 coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString,
+                                 mobile: mobile)
     }
 }

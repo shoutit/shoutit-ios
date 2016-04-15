@@ -126,10 +126,13 @@ extension EditProfileTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
         
         switch cellViewModel {
-        case .BasicText(let value, let placeholder, _):
+        case .BasicText(let value, let placeholder, let identity):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             cell.textField.text = value
+            if case .Mobile = identity {
+                cell.textField.keyboardType = .PhonePad
+            }
             cell.textField
                 .rx_text
                 .asDriver()
