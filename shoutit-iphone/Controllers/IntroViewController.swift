@@ -46,6 +46,10 @@ final class IntroViewController: UIViewController {
         scrollView.delegate = self
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {

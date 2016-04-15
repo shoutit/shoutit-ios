@@ -38,6 +38,17 @@ class SHNavigationViewController: UINavigationController, UINavigationController
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        if topViewController is SearchViewController {
+            return .Default
+        }
+        return .LightContent
+    }
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return nil
+    }
+    
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)

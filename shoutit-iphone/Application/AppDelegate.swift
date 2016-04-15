@@ -119,8 +119,5 @@ private extension AppDelegate {
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
-        
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-        
     }
 }

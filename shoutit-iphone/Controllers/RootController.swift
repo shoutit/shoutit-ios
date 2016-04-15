@@ -44,6 +44,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
     }
+    var currentChildViewController: UIViewController?
     var tabbarController : TabbarController?
     
     // MARK: Life Cycle
@@ -338,6 +339,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         currentControllerConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
         contentContainer?.addConstraints(currentControllerConstraints)
         
+        currentChildViewController = controller
         self.addChildViewController(controller)
         
         controller.didMoveToParentViewController(self)
@@ -362,6 +364,15 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBAction func unwindToRootController(segue: UIStoryboardSegue) {
     }
     
+    // MARK: - Status bar
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return currentChildViewController
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
 extension RootController: ApplicationMainViewControllerRootObject {}

@@ -70,6 +70,10 @@ class MenuTableViewController: UITableViewController, Navigation {
         
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     // MARK: Table View Handling
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

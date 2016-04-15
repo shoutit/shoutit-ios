@@ -16,6 +16,10 @@ class ModalNavigationController: UINavigationController {
         self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
 extension ModalNavigationController: UINavigationControllerDelegate {

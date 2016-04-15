@@ -14,6 +14,14 @@ class LoginNavigationViewController: UINavigationController {
         super.viewDidLoad()
         self.delegate = self
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return topViewController
+    }
 }
 
 extension LoginNavigationViewController: UINavigationControllerDelegate {
