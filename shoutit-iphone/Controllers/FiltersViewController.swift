@@ -253,7 +253,9 @@ private extension FiltersViewController {
     
     func presentShoutChoiceActionSheet() {
         let shoutTypes: [ShoutType] = [.Offer, .Request]
-        let options = shoutTypes.map{$0.title()} + [NSLocalizedString("All", comment: "All shout types - filter button title")]
+        let options = [NSLocalizedString("Offers and Requests", comment: "Filter shout type"),
+                       NSLocalizedString("Only Offers", comment: "Filter shout type"),
+                       NSLocalizedString("Only Requests", comment: "Filter shout type")]
         self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: options, completion: {[weak self] (index) in
             let shoutType: ShoutType? = index == 0 ? nil : shoutTypes[index - 1]
             self?.viewModel.changeShoutTypeToType(shoutType)
