@@ -74,7 +74,6 @@
 		2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */; };
 		2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */; };
 		249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671601C8758650011B078 /* EditShoutTableViewController.swift */; };
-		2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA671C8079B50086DEA9 /* SelectButton.swift */; };
 		2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */; };
 		2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */; };
 		249F78251C9963CF00FCB9A6 /* ConversationDayHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F78241C9963CF00FCB9A6 /* ConversationDayHeader.xib */; };
@@ -306,7 +305,6 @@
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
-		B23CA2421C8DE89B008E85F9 /* LabeledSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2411C8DE89B008E85F9 /* LabeledSelectButton.swift */; };
 		B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2431C8DE8EA008E85F9 /* BorderedMaterialTextView.swift */; };
 		B23CA2461C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2451C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift */; };
 		B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2471C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift */; };
@@ -345,7 +343,6 @@
 		B2778FA01CAD4BD100BBDD5F /* FilterTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F9F1CAD4BD100BBDD5F /* FilterTransition.swift */; };
 		B2778FA21CAD5AAE00BBDD5F /* FilterDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778FA11CAD5AAE00BBDD5F /* FilterDisplayable.swift */; };
 		B2778FA81CAD5D7A00BBDD5F /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778FA71CAD5D7A00BBDD5F /* FiltersViewController.swift */; };
-		B2778FAE1CAD70BE00BBDD5F /* BigLabelSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778FAD1CAD70BE00BBDD5F /* BigLabelSelectButton.swift */; };
 		B2778FB31CAD8D7300BBDD5F /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778FB21CAD8D7300BBDD5F /* FiltersViewModel.swift */; };
 		B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778FB41CAD8DD500BBDD5F /* FiltersCellViewModel.swift */; };
 		B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */; };
@@ -691,7 +688,6 @@
 		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
 		2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutConfirmationViewController.swift; path = Controllers/ShoutConfirmationViewController.swift; sourceTree = "<group>"; };
 		249671601C8758650011B078 /* EditShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutTableViewController.swift; path = Controllers/EditShoutTableViewController.swift; sourceTree = "<group>"; };
-		2499EA671C8079B50086DEA9 /* SelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectButton.swift; path = View/SelectButton.swift; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
 		249F78241C9963CF00FCB9A6 /* ConversationDayHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationDayHeader.xib; path = View/ConversationDayHeader.xib; sourceTree = "<group>"; };
@@ -903,7 +899,6 @@
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
 		B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewHeaderView.swift; path = View/EditProfileTableViewHeaderView.swift; sourceTree = "<group>"; };
 		B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileDisplayable.swift; path = FlowControl/EditProfileDisplayable.swift; sourceTree = "<group>"; };
-		B23CA2411C8DE89B008E85F9 /* LabeledSelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledSelectButton.swift; path = View/LabeledSelectButton.swift; sourceTree = "<group>"; };
 		B23CA2431C8DE8EA008E85F9 /* BorderedMaterialTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedMaterialTextView.swift; path = View/BorderedMaterialTextView.swift; sourceTree = "<group>"; };
 		B23CA2451C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTextFieldTableViewCell.swift; path = View/EditProfileTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		B23CA2471C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTextViewTableViewCell.swift; path = View/EditProfileTextViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -942,7 +937,6 @@
 		B2778F9F1CAD4BD100BBDD5F /* FilterTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterTransition.swift; path = FlowControl/FilterTransition.swift; sourceTree = "<group>"; };
 		B2778FA11CAD5AAE00BBDD5F /* FilterDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterDisplayable.swift; path = FlowControl/FilterDisplayable.swift; sourceTree = "<group>"; };
 		B2778FA71CAD5D7A00BBDD5F /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersViewController.swift; path = Controllers/FiltersViewController.swift; sourceTree = "<group>"; };
-		B2778FAD1CAD70BE00BBDD5F /* BigLabelSelectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BigLabelSelectButton.swift; path = View/BigLabelSelectButton.swift; sourceTree = "<group>"; };
 		B2778FB21CAD8D7300BBDD5F /* FiltersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersViewModel.swift; path = ViewModel/FiltersViewModel.swift; sourceTree = "<group>"; };
 		B2778FB41CAD8DD500BBDD5F /* FiltersCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersCellViewModel.swift; path = ViewModel/FiltersCellViewModel.swift; sourceTree = "<group>"; };
 		B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ScrollViewResize.swift"; path = "UIKitExtensions/UIViewController+ScrollViewResize.swift"; sourceTree = "<group>"; };
@@ -2665,9 +2659,6 @@
 			isa = PBXGroup;
 			children = (
 				B275469A1CBFF7A800172FE3 /* SelectionButton.swift */,
-				2499EA671C8079B50086DEA9 /* SelectButton.swift */,
-				B23CA2411C8DE89B008E85F9 /* LabeledSelectButton.swift */,
-				B2778FAD1CAD70BE00BBDD5F /* BigLabelSelectButton.swift */,
 			);
 			name = SelectButtons;
 			sourceTree = "<group>";
@@ -3662,7 +3653,6 @@
 				246DEA751CA423DE009DF436 /* ConversationImageCell.swift in Sources */,
 				B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */,
 				248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */,
-				B2778FAE1CAD70BE00BBDD5F /* BigLabelSelectButton.swift in Sources */,
 				B2A849351C846B2A00176EB0 /* SeeAllCollectionViewCell.swift in Sources */,
 				B2B5D00F1C7F286E0068A6AF /* ShoutDetailBackgroundSwappableTableViewCell.swift in Sources */,
 				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
@@ -3672,7 +3662,6 @@
 				B2778FA81CAD5D7A00BBDD5F /* FiltersViewController.swift in Sources */,
 				AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
-				2499EA681C8079B50086DEA9 /* SelectButton.swift in Sources */,
 				B29DEAC01C777993008864B8 /* ShoutItErrors.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				B2A849391C847EE800176EB0 /* RelatedShoutsParams.swift in Sources */,
@@ -3993,7 +3982,6 @@
 				B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */,
 				B2B4AAD21CB43CB400926474 /* CategoryFiltersViewModel.swift in Sources */,
 				AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
-				B23CA2421C8DE89B008E85F9 /* LabeledSelectButton.swift in Sources */,
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */,
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
