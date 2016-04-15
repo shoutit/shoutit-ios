@@ -122,11 +122,11 @@ extension FiltersViewController: UITableViewDataSource {
         case .CategoryChoice(let category, let enabled, let loaded):
             let categoryCell = cell as! SelectButtonFilterTableViewCell
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            categoryCell.button.hideIcon = category?.icon == nil
+            categoryCell.button.showIcon(category?.icon != nil)
             categoryCell.button.iconImageView.sh_setImageWithURL(category?.icon?.toURL(), placeholderImage: nil)
             categoryCell.button.enabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
-            categoryCell.button.optionsLoaded = loaded()
+            categoryCell.button.showActivity(!loaded())
             
             categoryCell.button
                 .rx_tap
@@ -155,10 +155,15 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.viewModel.changeMaximumPriceTo(Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
-        case .LocationChoice:
+        case .LocationChoice(let address):
             let locationCell = cell as! SelectButtonFilterTableViewCell
             locationCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            locationCell.button.hideIcon = true
+            if let location = address {
+                locationCell.button.iconImageView.image = UIImage(named: location.country)
+                locationCell.button.showIcon(true)
+            } else {
+                locationCell.button.showIcon(false)
+            }
             locationCell.button
                 .rx_tap
                 .asDriver()

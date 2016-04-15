@@ -9,11 +9,9 @@
 import UIKit
 
 class CreateShoutSelectCell: UITableViewCell {
-    @IBOutlet var selectButton : SelectButton!
+    @IBOutlet var selectButton : SelectionButton!
  
     func fillWithFilter(filter: Filter, currentValue: FilterValue?) {
-        self.selectButton.hideIcon = true
-        
         if let value = currentValue {
             self.selectButton.setTitle(value.name, forState: .Normal)
         } else {

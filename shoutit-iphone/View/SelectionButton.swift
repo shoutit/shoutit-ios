@@ -6,7 +6,8 @@
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import Material
 
 class SelectionButton: UIButton {
     
@@ -14,27 +15,30 @@ class SelectionButton: UIButton {
     private var disclosureType: DisclosureType {
         return DisclosureType(rawValue: ib_disclosureType) ?? .DownArrow
     }
-    private var fieldTitleLabelMode: FieldTitleLabelMode = .None
-    @IBInspectable private var isImageVisible: Bool = false
-    private var isLoadingContent: Bool = false
+    private var fieldTitleLabelMode: FieldTitleLabelMode {
+        return FieldTitleLabelMode(rawValue: ib_fieldTitleLabelType) ?? .None
+    }
+    @IBInspectable var isImageVisible: Bool = false
     
     // state helpers
     @IBInspectable var ib_disclosureType: Int = 1
+    @IBInspectable var ib_fieldTitleLabelType: Int = 0
     
     // constraints
     private var _constraints: [NSLayoutConstraint] = []
     
     // views
-    private var fieldTitleLabel: UILabel!
+    private(set) var fieldTitleLabel: UILabel!
+    private(set) var iconImageView : UIImageView!
     private var disclosureIndicatorImageView : UIImageView!
     private var activityIndicatorView : UIActivityIndicatorView!
-    private var iconImageView : UIImageView!
     
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setupAppearance()
         addFieldTitleLabel()
         addIconImageView()
         addDisclosureImageView()
@@ -46,7 +50,7 @@ class SelectionButton: UIButton {
     
     func showActivity(show: Bool) {
         userInteractionEnabled = !show
-        titleLabel?.alpha = show ? 1.0 : 0.0
+        titleLabel?.alpha = show ? 0.0 : 1.0
         fieldTitleLabel.hidden = show
         disclosureIndicatorImageView.hidden = show
         iconImageView.hidden = show
@@ -56,6 +60,11 @@ class SelectionButton: UIButton {
         } else {
             activityIndicatorView.stopAnimating()
         }
+    }
+    
+    func showIcon(show: Bool) {
+        isImageVisible = show
+        setupConstraints()
     }
     
     // MARK: - Layout
@@ -71,16 +80,12 @@ class SelectionButton: UIButton {
         }
         
         switch fieldTitleLabelMode {
-        case .None: topInset = 15
+        case .None: topInset = 19
         case .Big: topInset = 7
         case .Small: topInset = 23
         }
         
-        if isImageVisible {
-            leadingInset = 44
-        } else {
-            leadingInset = 0
-        }
+        leadingInset = isImageVisible ? 42 : 10
         
         let x: CGFloat
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
@@ -113,9 +118,9 @@ private extension SelectionButton {
         let views: [String : AnyObject] = ["icon" : iconImageView]
         switch (disclosureType, fieldTitleLabelMode, isImageVisible) {
         case (_, .None, true):
-            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[icon(36)]", options: [], metrics: nil, views: views) +
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[icon(18)]", options: [], metrics: nil, views: views) +
             [NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0),
-             NSLayoutConstraint(item: iconImageView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 10.0)]
+             NSLayoutConstraint(item: iconImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 18.0)]
         case (_, .Small, true):
             return NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[icon(18)]", options: [], metrics: nil, views: views) +
                 NSLayoutConstraint.constraintsWithVisualFormat("V:|-23-[icon(18)]", options: [], metrics: nil, views: views)
@@ -161,6 +166,22 @@ private extension SelectionButton {
 
 private extension SelectionButton {
     
+    private func setupAppearance() {
+        titleLabel?.font = UIFont.systemFontOfSize(18.0)
+        titleLabel?.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
+        
+        layer.cornerRadius = 4.0
+        layer.borderWidth = 1.0
+        layer.borderColor = MaterialColor.grey.lighten1.CGColor
+        
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            contentHorizontalAlignment = .Right
+        } else {
+            contentHorizontalAlignment = .Left
+        }
+        contentVerticalAlignment = .Center
+    }
+    
     private func addFieldTitleLabel() {
         fieldTitleLabel = UILabel()
         fieldTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -183,6 +204,7 @@ private extension SelectionButton {
         disclosureIndicatorImageView.translatesAutoresizingMaskIntoConstraints = false
         disclosureIndicatorImageView.contentMode = .ScaleAspectFit
         disclosureIndicatorImageView.clipsToBounds = true
+        disclosureIndicatorImageView.image = disclosureType.image
         addSubview(disclosureIndicatorImageView)
     }
     
@@ -195,10 +217,10 @@ private extension SelectionButton {
 
 private extension SelectionButton {
     
-    enum FieldTitleLabelMode {
-        case None
-        case Small
-        case Big
+    enum FieldTitleLabelMode: Int {
+        case None = 0
+        case Small = 1
+        case Big = 2
         
         var fontSize: CGFloat {
             switch self {

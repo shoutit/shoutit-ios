@@ -13,7 +13,7 @@ class EditProfileSelectButtonTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var selectButton: LabeledSelectButton!
+    @IBOutlet weak var selectButton: SelectionButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()

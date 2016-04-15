@@ -172,7 +172,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofT-NM-U31" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofT-NM-U31" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="335" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="e4a-Q3-Zkq"/>
@@ -183,6 +183,10 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
                                                             <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
+                                                            <integer key="value" value="0"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
@@ -251,7 +255,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCB-fA-ZCw" customClass="SelectButton" customModule="Shoutit" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCB-fA-ZCw" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="46" width="335" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="6tj-ED-Rfa"/>
@@ -263,6 +267,10 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
                                                             <integer key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
+                                                            <integer key="value" value="0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dre-GC-uE6">

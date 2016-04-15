@@ -151,8 +151,7 @@ extension EditProfileTableViewController {
                 .addDisposableTo(cell.disposeBag)
         case .Location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
-            cell.selectButton.smallTitleLabel.text = placeholder
-            cell.selectButton.hideIcon = false
+            cell.selectButton.fieldTitleLabel.text = placeholder
             cell.selectButton.iconImageView.image = UIImage(named: value.country)
             cell.selectButton.setTitle(value.address, forState: .Normal)
             cell.selectButton
