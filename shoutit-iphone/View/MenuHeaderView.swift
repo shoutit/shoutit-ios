@@ -27,6 +27,10 @@ class MenuHeaderView: UIView {
         self.profileNameLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.profileNameLabel?.layer.shadowRadius = 1
         self.profileNameLabel?.layer.shadowOpacity = 0.5;
+        
+        self.profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        self.profileImageView?.layer.borderWidth = 1.0
+        self.profileImageView?.layer.masksToBounds = true
     }
     
     func fillWith(user: User?){
@@ -48,13 +52,13 @@ class MenuHeaderView: UIView {
         fillLocation()
     }
     
-    func fillAsGuest() {
+    private func fillAsGuest() {
         profileImageView?.image = UIImage(named: "guest avatar")
         profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
         coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
     }
     
-    func fillLocation() {
+    private func fillLocation() {
         
         countryNameLabel?.text = Account.sharedInstance.locationString()
         
