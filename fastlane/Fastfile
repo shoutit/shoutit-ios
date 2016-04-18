@@ -99,7 +99,7 @@ platform :ios do
     build_no = build_no.to_s.delete!("\n")
         
     #build app
-    gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, configuration: "Distribution_Staging", use_legacy_build_api: true
+    gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, use_legacy_build_api: true
   
     #upload to crashlytics
     crashlytics({groups: 'internal-tests, internal-testers'})
