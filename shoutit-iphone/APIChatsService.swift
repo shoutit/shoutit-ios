@@ -20,6 +20,7 @@ final class APIChatsService {
     private static let twilioIdentityURL = APIManager.baseURL + "/twilio/video_identity"
     private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
     private static let conversationURL = APIManager.baseURL + "/conversations/*"
+    private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
     // MARK: - Traditional
 
     static func requestConversations() -> Observable<[Conversation]> {
@@ -34,6 +35,11 @@ final class APIChatsService {
     static func moreMessagesForConversation(conversation: Conversation, lastMessageEpoch: Int) -> Observable<[Message]> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + "?before=\(lastMessageEpoch)"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    }
+    
+    static func markConversationAsRead(conversation: Conversation) -> Observable<Void> {
+        let url = conversationReadURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
     }
     
     static func replyWithMessage(message: Message, onConversation conversation: Conversation) -> Observable<Message> {

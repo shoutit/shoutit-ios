@@ -111,6 +111,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
             
             self?.messages = readedNotifications
             
+            self?.triggerTabbarRefresh()
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
@@ -134,6 +135,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
                 self?.messages.insert(noti, atIndex: idx)
             }
             
+            self?.triggerTabbarRefresh()
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
@@ -141,6 +143,10 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         }, onCompleted: { () -> Void in
                 
         }, onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
+    func triggerTabbarRefresh() {
+        Account.sharedInstance.fetchUserProfile()
     }
     
     func openMessageObject(notification: Notification) {

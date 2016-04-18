@@ -48,6 +48,10 @@ final class LocationManager: NSObject {
         locationManager.stopUpdatingLocation()
     }
     
+    func triggerLocationUpdate() {
+        self.locationManager.startUpdatingLocation()
+    }
+    
     func startMonitoringSignificantLocationChanges() {
         locationManager.startMonitoringSignificantLocationChanges()
     }
@@ -60,8 +64,10 @@ final class LocationManager: NSObject {
         guard let username = Account.sharedInstance.user?.username else {
             return
         }
+        
         let coordinateParams = CoordinateParams(coordinates: coordinates)
-        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext { (_) in
+        
+        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext { (user) in
             print("location updated")
         }.addDisposableTo(disposeBag)
     }

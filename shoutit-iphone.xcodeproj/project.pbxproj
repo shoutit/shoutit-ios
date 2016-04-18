@@ -89,6 +89,8 @@
 		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		24D3B0C41C9C3BFF00DE1600 /* TwilioAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */; };
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
+		24DC20B11CBF9B7C00ED6DA7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */; };
+		24DC20B31CBFA51800ED6DA7 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF341BE74EAE00124C28 /* AppDelegate.swift */; };
 		6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF3B1BE74EAE00124C28 /* Assets.xcassets */; };
@@ -705,6 +707,8 @@
 		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwilioAuth.swift; path = Model/TwilioAuth.swift; sourceTree = "<group>"; };
 		24D3B0C61C9C472D00DE1600 /* Twilio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Twilio.swift; path = Networking/Twilio.swift; sourceTree = "<group>"; };
+		24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = Other/NotificationManager.swift; sourceTree = "<group>"; };
+		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
 		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
@@ -1492,6 +1496,7 @@
 			children = (
 				24826B411C969A4400032FC9 /* View */,
 				24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */,
+				24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -2778,6 +2783,7 @@
 				B2AE6B791C7CC52300370276 /* GuestUser.swift */,
 				B288D3EB1C68B58400895302 /* Profile.swift */,
 				B2B540C61C6A358E0075EDA6 /* DetailedProfile.swift */,
+				24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -3730,6 +3736,7 @@
 				B2E53E941CA1A82500F43481 /* SearchShoutsResultsShoutCellViewModel.swift in Sources */,
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
 				B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */,
+				24DC20B11CBF9B7C00ED6DA7 /* NotificationManager.swift in Sources */,
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
 				B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */,
@@ -3835,6 +3842,7 @@
 				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				B21EA3BA1C63E8900013E99F /* Params.swift in Sources */,
+				24DC20B31CBFA51800ED6DA7 /* ProfileStats.swift in Sources */,
 				B2E715621C6E1B65007F95CF /* ProfileInfoHeaderButton.swift in Sources */,
 				B2ACBDEF1C68BDE2000FA302 /* Category.swift in Sources */,
 				AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */,
