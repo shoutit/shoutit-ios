@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import DZNEmptyDataSet
 
-final class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var viewModel = HomeShoutsViewModel()
     let scrollOffset = Variable(CGPointZero)
