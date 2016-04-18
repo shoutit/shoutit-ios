@@ -45,6 +45,20 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
+        
+        markConversationAsRead()
+    }
+    
+    func markConversationAsRead() {
+        if self.conversation.id != "" {
+            APIChatsService.markConversationAsRead(self.conversation).subscribe({ (event) in
+                switch event {
+                case .Next: debugPrint("conversation marked as read")
+                case .Error(let error): debugPrint(error)
+                default: break
+                }
+            }).addDisposableTo(disposeBag)
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -55,7 +69,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func layoutInsets() {
         if let _ = conversation.shout?.id {
-            tableView?.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+            tableView?.contentInset = UIEdgeInsetsMake(0, 0, 64.0, 0)
         } else {
             tableView?.contentInset = UIEdgeInsetsZero
         }

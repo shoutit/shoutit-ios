@@ -99,6 +99,10 @@ final class PusherClient : NSObject {
         mainChannelObservable().retry(10).subscribeNext { (event) -> Void in
             print("RECEIVED: \(event.name)")
             print(event.data)
+            
+            if event.eventType() == .NewListen || event.eventType() == .NewMessage {
+                Account.sharedInstance.fetchUserProfile()
+            }
         }.addDisposableTo(disposeBag)
     }
     

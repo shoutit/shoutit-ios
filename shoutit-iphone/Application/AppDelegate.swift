@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
         
+        Account.sharedInstance.fetchUserProfile()
+        
         return true
     }
     
@@ -61,7 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
+        LocationManager.sharedInstance.triggerLocationUpdate()
         PusherClient.sharedInstance.tryToConnect()
+        Account.sharedInstance.fetchUserProfile()
     }
 
     func applicationWillTerminate(application: UIApplication) {

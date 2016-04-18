@@ -179,4 +179,30 @@ final class Account {
             }
         }
     }
+    
+    func fetchUserProfile() {
+        if !self.isUserLoggedIn {
+            return
+        }
+        
+        guard let user = self.loggedUser else {
+            return
+        }
+        
+        
+        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
+        observable.subscribe{ (event) in
+            switch event {
+            case .Next(let profile):
+                print("============")
+                print(profile.stats)
+                print("============")
+                self.loggedUser = profile
+            case .Error(let error): debugPrint(error)
+            default: break
+        }
+        }.addDisposableTo(disposeBag)
+
+
+    }
 }

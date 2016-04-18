@@ -77,6 +77,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             self.sh_invalidateControllersCache()
             self.openItem(.Home)
         }.addDisposableTo(disposeBag)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
