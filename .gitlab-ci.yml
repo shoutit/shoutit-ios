@@ -11,14 +11,14 @@ production:
   tags:
     - s4
   only:
-    - develop
+    - workarounds
 alpha:
   type: build
   script: "bundle exec fastlane staging"
   tags:
     - s4
   only:
-    - workarounds
+    - /^staging-.*$/
 testflight:
   type: build
   script: "bundle exec fastlane testflight"
