@@ -133,7 +133,7 @@ extension SearchShoutsResultsCollectionViewController {
             return cell
         }
         
-        let shoutCellWithModel: (SearchShoutsResultsShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
+        let shoutCellWithModel: (ShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell

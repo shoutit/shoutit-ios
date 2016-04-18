@@ -11,36 +11,21 @@ import RxSwift
 
 extension SearchShoutsResultsViewModel {
     
-    final class ShoutsSection {
-        
-        // consta
-        private let pageSize = 20
+    final class ShoutsSection: PagedShoutsViewModel {
         
         unowned var parent: SearchShoutsResultsViewModel
         
-        private var requestDisposeBag = DisposeBag()
-        private(set) var state: Variable<PagedViewModelState<SearchShoutsResultsShoutCellViewModel>> = Variable(.Idle)
+        var filtersState: FiltersState? {
+            return parent.filtersState
+        }
+        var requestDisposeBag = DisposeBag()
+        private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
         
         // data
-        private(set) var numberOfResults: Int = 0
+        var numberOfResults: Int = 0
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent
-        }
-        
-        // MARK - Actions
-        
-        func reloadContent() {
-            state.value = .Loading
-            fetchPage(1)
-        }
-        
-        func fetchNextPage() {
-            if case .LoadedAllContent = state.value { return }
-            guard case .Loaded(let cells, let page) = state.value else { return }
-            let pageToLoad = page + 1
-            self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
-            fetchPage(pageToLoad)
         }
         
         // MARK: - To display
@@ -72,26 +57,7 @@ extension SearchShoutsResultsViewModel {
         
         // MARK: Fetch
         
-        private func fetchPage(page: Int) {
-            
-            requestDisposeBag = DisposeBag()
-            
-            fetchShoutsAtPage(page)
-                .subscribe {[weak self] (event) in
-                    switch event {
-                    case .Next(let results):
-                        self?.updateViewModelWithResult(results, forPage: page)
-                    case .Error(let error):
-                        print(error)
-                        self?.state.value = .Error(error)
-                    default:
-                        break
-                    }
-                }
-                .addDisposableTo(requestDisposeBag)
-        }
-        
-        private func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
+        func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
             let phrase = parent.searchPhrase
             let context = parent.context
             var params: FilteredShoutsParams
@@ -132,43 +98,9 @@ extension SearchShoutsResultsViewModel {
                                               includeCurrentUserLocation: true)
             }
             
-            if let filtersState = parent.filtersState {
-                let filterParams = filtersState.composeParams()
-                params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
-            }
+            applyParamsToFilterParamsIfAny(&params)
             
             return APIShoutsService.searchShoutsWithParams(params)
-        }
-        
-        // MARK: - Helpers
-        
-        private func updateViewModelWithResult(result: PagedResults<Shout>, forPage page: Int) {
-            
-            numberOfResults = result.count ?? numberOfResults
-            
-            if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
-                cells += result.results.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
-                if cells.count < pageSize || result.nextPath == nil {
-                    state.value = .LoadedAllContent(cells: cells, page: page)
-                } else {
-                    state.value = .Loaded(cells: cells, page: page)
-                }
-                return
-            }
-            
-            assert(page == 1)
-            
-            let shouts = result.results
-            if shouts.count == 0 {
-                state.value = .NoContent
-            }
-            
-            let cellViewModels = shouts.map{SearchShoutsResultsShoutCellViewModel(shout: $0)}
-            if shouts.count < pageSize || result.nextPath == nil {
-                state.value = .LoadedAllContent(cells: cellViewModels, page: page)
-            } else {
-                state.value = .Loaded(cells: cellViewModels, page: page)
-            }
         }
     }
 }
