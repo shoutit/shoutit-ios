@@ -11,7 +11,7 @@ production:
   tags:
     - s4
   only:
-    - workarounds
+    - develop
 alpha:
   type: build
   script: "bundle exec fastlane staging"
