@@ -715,6 +715,7 @@
                     <connections>
                         <outlet property="createAnotherButton" destination="Yoo-Nj-lhn" id="Bam-70-8F3"/>
                         <outlet property="descriptionlabel" destination="smS-Ws-rTF" id="ejx-ES-qe0"/>
+                        <outlet property="shareButton" destination="avW-iQ-v5y" id="ESC-ve-J2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnH-lM-Jmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
