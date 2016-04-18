@@ -10,7 +10,7 @@ import UIKit
 import ACPDownload
 import RxSwift
 
-class ShoutMediaCollectionViewCell: UICollectionViewCell {
+final class ShoutMediaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var imageView : UIImageView!
     @IBOutlet var progressView : ACPDownloadView!

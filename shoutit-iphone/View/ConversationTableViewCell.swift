@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationTableViewCell: UITableViewCell {
+final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var firstLineLabel: UILabel!
     @IBOutlet weak var secondLineLabel: UILabel!
     @IBOutlet weak var thirdLineLabel: UILabel?

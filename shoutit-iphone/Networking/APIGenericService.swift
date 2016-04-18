@@ -12,7 +12,7 @@ import Argo
 import RxSwift
 import RxCocoa
 
-class APIGenericService {
+final class APIGenericService {
     
     static func basicRequestWithMethod<P: Params>(
         method: Alamofire.Method,

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SettingsFormTextFieldTableViewCell: UITableViewCell {
+final class SettingsFormTextFieldTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

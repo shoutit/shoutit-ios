@@ -11,7 +11,7 @@ import RxSwift
 
 protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
 
-class DiscoverShoutsParentViewController: UIViewController {
+final class DiscoverShoutsParentViewController: UIViewController {
     
     // UI
     @IBOutlet weak var searchButton: UIButton!

@@ -14,7 +14,7 @@ struct SettingsOption {
     let action: (Void -> Void)
 }
 
-class SettingsFlowController: FlowController {
+final class SettingsFlowController: FlowController {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {

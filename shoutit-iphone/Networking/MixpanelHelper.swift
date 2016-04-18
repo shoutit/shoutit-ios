@@ -9,53 +9,57 @@
 import Foundation
 import Mixpanel
 
-class MixpanelHelper: NSObject {
+final class MixpanelHelper {
     
-    static func openApp() {
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.SharedUserDefaults.MIXPANEL)
-        if trackApp(true) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.SharedUserDefaults.MIXPANEL)
+    #if STAGING
+    private static let mixpanelToken  = "d2de0109a8de7237dede66874c7b8951"
+    #else
+    private static let mixpanelToken  = "c9d0a1dc521ac1962840e565fa971574"
+    #endif
+    private static let didOpenAppUserDefailt = "didOpenAppUserDefailt"
+    
+    struct Actions {
+        static let appOpen = "app_open"
+        static let appClose = "app_close"
+    }
+    
+    private static var mixpanel: Mixpanel {
+        return Mixpanel.sharedInstanceWithToken(MixpanelHelper.mixpanelToken)
+    }
+    
+    private static var actionProperties: [String : AnyObject] {
+        return ["api_client" : "shoutit-ios",
+                "signed_user" : Account.sharedInstance.authData != nil]
+    }
+    
+    // MARK: - Interface
+    
+    static func handleUserDidOpenApp() {
+        identifyUserIfLoggedIn()
+        sendAppOpenEvent()
+    }
+    
+    static func handleAppDidTerminate() {
+        sendAppDidCloseEvent()
+    }
+    
+    static func getDistictId() -> String {
+        return mixpanel.distinctId
+    }
+    
+    // MARK: - Helpers
+    
+    private static func identifyUserIfLoggedIn() {
+        if let user = Account.sharedInstance.user {
+            mixpanel.identify(user.id)
         }
     }
     
-    static func closeApp() {
-        trackApp(false)
+    private static func sendAppOpenEvent() {
+        mixpanel.track(Actions.appOpen, properties: actionProperties)
     }
     
-    static func aliasUserId(userId: String) {
-        if(!NSUserDefaults.standardUserDefaults().boolForKey(Constants.SharedUserDefaults.MIXPANEL)) {
-            let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-            if (!userId.isEmpty) {
-                mixpanel.createAlias(userId, forDistinctID: mixpanel.distinctId)
-                mixpanel.identify(mixpanel.distinctId)
-            }
-        }
-    }
-    
-    static func identifyUserId(userId: String) {
-        let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-        if (!userId.isEmpty) {
-            mixpanel.identify(userId)
-        }
-    }
-    
-    static func getDistinctID() -> String? {
-        return Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN).distinctId
-    }
-    
-    // MARK - Private
-    private static func trackApp(isAppOpening: Bool) -> Bool {
-        //let eventName = isAppOpening ? "app_open" : "app_leave"
-        //let mixpanel = Mixpanel.sharedInstanceWithToken(Constants.MixPanel.MIXPANEL_TOKEN)
-        //        if let oauthToken = SHOauthToken.getFromCache(),
-        //            let accessToken = oauthToken.accessToken where accessToken.characters.count > 0,
-        //            let user = oauthToken.user {
-        //                mixpanel.identify(user.id)
-        //                mixpanel.track(eventName, properties: ["signed_user": true])
-        //                return true
-        //        } else {
-        //            mixpanel.track(eventName, properties: ["signed_user": false])
-        //        }
-        return false
+    private static func sendAppDidCloseEvent() {
+        mixpanel.track(Actions.appClose, properties: actionProperties)
     }
 }

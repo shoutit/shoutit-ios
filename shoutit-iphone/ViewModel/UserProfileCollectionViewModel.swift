@@ -9,10 +9,11 @@
 import Foundation
 import RxSwift
 
-class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
+final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
+    let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     let profile: Profile
     private var detailedUser: DetailedProfile?
@@ -150,6 +151,8 @@ class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedUser = profile
             self?.reloadSubject.onNext()
+            let message = listen ? UserMessages.startedListeningMessageWithName(profile.name) : UserMessages.stoppedListeningMessageWithName(profile.name)
+            self?.successMessageSubject.onNext(message)
         }
         return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{() -> Observable<Void> in
             return retrieveUser

@@ -123,9 +123,14 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         cell.listenButton.setImage(image, forState: .Normal)
         
         cell.reuseDisposeBag = DisposeBag()
-        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<Void> in
+        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorType?)> in
             return cellViewModel.listen()
-        }).subscribeNext({[weak self] () in
+        }).subscribeNext({[weak self] (let successMessage, let error) in
+            if let successMessage = successMessage {
+                self?.showSuccessMessage(successMessage)
+            } else if let error = error {
+                self?.showError(error)
+            }
             self?.tableView.reloadData()
             }).addDisposableTo(cell.reuseDisposeBag!)
         

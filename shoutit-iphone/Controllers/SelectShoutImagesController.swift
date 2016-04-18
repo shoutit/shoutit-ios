@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SelectShoutImagesController: UICollectionViewController, MediaPickerControllerDelegate {
+final class SelectShoutImagesController: UICollectionViewController, MediaPickerControllerDelegate {
     
     private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
     

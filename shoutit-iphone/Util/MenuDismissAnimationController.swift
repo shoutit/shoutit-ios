@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuDismissAnimationController: MenuAnimationController {
+final class MenuDismissAnimationController: MenuAnimationController {
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? MenuTableViewController
         

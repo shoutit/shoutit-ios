@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-class APITagsService {
+final class APITagsService {
     
     private static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
     

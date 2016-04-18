@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ModalNavigationController: UINavigationController {
+final class ModalNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         self.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }
 

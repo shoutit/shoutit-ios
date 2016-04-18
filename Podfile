@@ -51,8 +51,8 @@ pod 'MBMapSnapshotter'
 
 # serialization
 pod 'Argo'
-pod 'Curry'
-pod 'Ogra', '~> 2.1'
+pod 'Curry', '< 2.0'
+pod 'Ogra'
 
 # ui controls
 pod 'Material', '~> 1.39'

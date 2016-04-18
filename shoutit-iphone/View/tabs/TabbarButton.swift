@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabbarButton: UIButton {
+final class TabbarButton: UIButton {
     
     @IBInspectable var iconSize : CGSize! = CGSizeMake(26.0, 26.0)
     @IBInspectable var imageTopMargin : CGFloat = 5.0

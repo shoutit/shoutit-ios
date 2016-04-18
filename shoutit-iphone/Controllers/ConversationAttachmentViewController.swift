@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationAttachmentViewController: UIViewController {
+final class ConversationAttachmentViewController: UIViewController {
 
     var completion: ((type: MessageAttachmentType) -> Void)!
     

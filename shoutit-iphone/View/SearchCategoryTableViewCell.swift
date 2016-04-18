@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchCategoryTableViewCell: UITableViewCell {
+final class SearchCategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

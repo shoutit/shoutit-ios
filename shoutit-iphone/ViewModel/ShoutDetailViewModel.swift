@@ -191,7 +191,7 @@ final class ShoutDetailViewModel {
     
     func tabbarButtons() -> [ShoutDetailTabbarButton] {
         if shout.user.id == Account.sharedInstance.user?.id {
-            return [.Edit, .Delete, .Chats, .More]
+            return [.Edit, .Delete, .More]
         }
         
         var buttons: [ShoutDetailTabbarButton] = [.VideoCall, .Chat, .More]

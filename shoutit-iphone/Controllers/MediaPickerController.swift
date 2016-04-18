@@ -15,7 +15,7 @@ protocol MediaPickerControllerDelegate {
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
 }
 
-class MediaPickerController: NSObject, MediaPicker  {
+final class MediaPickerController: NSObject, MediaPicker  {
 
     var pickerSettings : MediaPickerSettings
     var selectedAttachments : [MediaAttachment]

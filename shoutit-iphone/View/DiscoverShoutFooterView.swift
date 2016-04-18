@@ -8,6 +8,6 @@
 
 import UIKit
 
-class DiscoverShoutFooterView: UICollectionReusableView {
+final class DiscoverShoutFooterView: UICollectionReusableView {
     @IBOutlet var showShoutsButton : UIButton!
 }

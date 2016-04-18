@@ -11,7 +11,7 @@ import RxSwift
 
 extension SearchShoutsResultsViewModel {
     
-    class ShoutsSection {
+    final class ShoutsSection {
         
         // consta
         private let pageSize = 20
@@ -59,6 +59,15 @@ extension SearchShoutsResultsViewModel {
         
         func resultsCountString() -> String {
             return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
+        }
+        
+        func allowsFiltering() -> Bool {
+            switch parent.context {
+            case .ProfileShouts, .TagShouts:
+                return false
+            default:
+                return true
+            }
         }
         
         // MARK: Fetch

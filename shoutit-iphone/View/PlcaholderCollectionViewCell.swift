@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlcaholderCollectionViewCell: UICollectionViewCell {
+final class PlcaholderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var placeholderTextLabel: UILabel!

@@ -45,10 +45,21 @@ final class ApplicationMainViewController: UIViewController {
         }
     }
     
+    // MARK: - Navigation
+    
     private func showLogin() {
         let navigationController = LoginNavigationViewController()
         loginFlowController = LoginFlowController(navigationController: navigationController)
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
+    // MARK: - Status bar
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return childViewControllers.first
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }

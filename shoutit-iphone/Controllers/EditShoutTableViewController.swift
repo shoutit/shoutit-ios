@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class EditShoutTableViewController: CreateShoutTableViewController {
+final class EditShoutTableViewController: CreateShoutTableViewController {
 
     var shout : Shout!
  

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationTitleView: UIView {
+final class ConversationTitleView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!

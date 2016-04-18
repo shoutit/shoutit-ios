@@ -9,11 +9,11 @@
 import UIKit
 import RxSwift
 
-class BigLabelButtonFilterTableViewCell: UITableViewCell {
+final class BigLabelButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     
-    @IBOutlet weak var button: BigLabelSelectButton!
+    @IBOutlet weak var button: SelectionButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()

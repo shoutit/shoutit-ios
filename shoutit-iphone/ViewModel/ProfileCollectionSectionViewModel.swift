@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel> {
+final class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel> {
     
     let title: String
     let isLoading: Bool

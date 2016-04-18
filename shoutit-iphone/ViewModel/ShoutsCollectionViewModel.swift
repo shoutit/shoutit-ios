@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ShoutsCollectionViewModel {
+final class ShoutsCollectionViewModel {
     
     enum Context {
         case ProfileShouts(user: Profile)

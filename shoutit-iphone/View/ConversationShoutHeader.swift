@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationShoutHeader: UIView {
+final class ConversationShoutHeader: UIView {
 
     @IBOutlet weak var tapGesture: UITapGestureRecognizer!
     @IBOutlet weak var imageView: UIImageView!

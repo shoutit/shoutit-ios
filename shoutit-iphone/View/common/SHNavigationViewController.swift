@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
+final class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
     
     var willShowViewControllerPreferringTabBarHidden: (Bool -> Void)?
     var ignoreToggleMenu : Bool = false
@@ -36,6 +36,17 @@ class SHNavigationViewController: UINavigationController, UINavigationController
 
         self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
         self.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        if topViewController is SearchViewController {
+            return .Default
+        }
+        return .LightContent
+    }
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return nil
     }
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {

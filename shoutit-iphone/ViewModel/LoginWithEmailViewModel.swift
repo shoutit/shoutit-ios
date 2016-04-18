@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-class LoginWithEmailViewModel {
+final class LoginWithEmailViewModel {
     
     let loginSuccessSubject = PublishSubject<Bool>()
     let successSubject = PublishSubject<String>()

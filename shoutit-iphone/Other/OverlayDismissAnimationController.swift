@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OverlayDismissAnimationController: OverlayAnimationController {
+final class OverlayDismissAnimationController: OverlayAnimationController {
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)

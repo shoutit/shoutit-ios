@@ -11,7 +11,7 @@ import RxSwift
 
 protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable, AllShoutsDisplayable {}
 
-class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
@@ -120,6 +120,7 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
         
         let header =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), forIndexPath: indexPath)
         
+        
         if let discoverHeader = header as? DiscoverHeaderView {
             discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
                         
@@ -127,6 +128,14 @@ class DiscoverCollectionViewController: UICollectionViewController, UICollection
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
             } else {
                 discoverHeader.backgroundImageView.image = UIImage(named: "auth_screen_bg_pattern")
+            }
+        }
+        
+        if let discoverShoutsHeader = header as? DiscoverShoutsHeaderView {
+            if let discoverItem = viewModel.mainItem()?.title {
+                discoverShoutsHeader.titleLabel.text = NSLocalizedString("\(discoverItem) Shouts", comment: "")
+            } else {
+                discoverShoutsHeader.titleLabel.text = NSLocalizedString("Discover Shouts", comment: "")
             }
         }
         

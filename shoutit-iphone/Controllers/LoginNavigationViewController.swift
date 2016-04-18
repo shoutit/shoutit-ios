@@ -8,11 +8,19 @@
 
 import UIKit
 
-class LoginNavigationViewController: UINavigationController {
+final class LoginNavigationViewController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return topViewController
     }
 }
 

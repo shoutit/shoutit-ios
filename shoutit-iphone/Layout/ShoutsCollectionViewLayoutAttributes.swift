@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutsCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
+final class ShoutsCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var mode: ShoutsCollectionViewCell.Mode = .Regular
     

@@ -9,7 +9,7 @@
 import UIKit
 import GooglePlaces
 
-class SelectShoutLocationViewController: ChangeLocationTableViewController {
+final class SelectShoutLocationViewController: ChangeLocationTableViewController {
 
     override func finishWithAddress(address: Address) {
         if let finish = self.finishedBlock {

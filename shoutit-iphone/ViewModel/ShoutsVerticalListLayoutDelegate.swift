@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ShoutsVerticalListLayoutDelegate: AnyObject, ShoutVerticalListLayoutDisplayable {
+final class ShoutsVerticalListLayoutDelegate: AnyObject, ShoutVerticalListLayoutDisplayable {
 
 }

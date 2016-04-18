@@ -11,7 +11,7 @@ import Argo
 import Alamofire
 import RxSwift
 
-class APIAuthService {
+final class APIAuthService {
     
     private static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
     private static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"

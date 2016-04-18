@@ -12,6 +12,13 @@ import RxSwift
 enum ProfileCollectionViewModelMainModel {
     case ProfileModel(profile: Profile)
     case TagModel(tag: Tag)
+    
+    var name: String {
+        switch self {
+        case .ProfileModel(let profile): return profile.name
+        case .TagModel(let tag): return tag.name
+        }
+    }
 }
 
 protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayoutDelegate, ProfileCollectionInfoSupplementaryViewDataSource {
@@ -32,6 +39,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     // fetchin
     func reloadContent()
     var reloadSubject: PublishSubject<Void> {get}
+    var successMessageSubject: PublishSubject<String> {get}
     func listen() -> Observable<Void>?
     
     // more handling

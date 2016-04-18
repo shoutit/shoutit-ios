@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailSectionHeaderTableViewCell: UITableViewCell {
+final class ShoutDetailSectionHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
 }

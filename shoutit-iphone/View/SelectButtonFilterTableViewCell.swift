@@ -9,11 +9,11 @@
 import Foundation
 import RxSwift
 
-class SelectButtonFilterTableViewCell: UITableViewCell {
+final class SelectButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     
-    @IBOutlet weak var button: SelectButton!
+    @IBOutlet weak var button: SelectionButton!
     
     override func prepareForReuse() {
         super.prepareForReuse()

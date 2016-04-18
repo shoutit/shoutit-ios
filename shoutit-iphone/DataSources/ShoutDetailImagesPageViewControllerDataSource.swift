@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import RxSwift
 
-class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     unowned let controller: ShoutDetailTableViewController
     

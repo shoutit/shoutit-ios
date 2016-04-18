@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostSignupSuggestionsSectionHeader: UIView {
+final class PostSignupSuggestionsSectionHeader: UIView {
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
     @IBOutlet weak var separatorViewHeightConstraint: NSLayoutConstraint!

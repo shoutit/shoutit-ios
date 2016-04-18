@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Ogra
 
-class SecureCoder {
+final class SecureCoder {
     
     // MARK: - WRITE
     

@@ -16,7 +16,7 @@ enum MediaUploadingTaskStatus : Int {
     case Error
 }
 
-class MediaUploadingTask: NSObject {
+final class MediaUploadingTask: NSObject {
     
     var attachment : MediaAttachment
     var request : Alamofire.Request? {

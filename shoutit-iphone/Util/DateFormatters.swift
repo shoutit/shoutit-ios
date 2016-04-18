@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DateFormatters {
+final class DateFormatters {
     
     static let sharedInstance = DateFormatters()
     

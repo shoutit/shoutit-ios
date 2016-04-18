@@ -8,6 +8,6 @@
 
 import UIKit
 
-class DiscoverCollectionViewFlowLayout: UICollectionViewFlowLayout {
+final class DiscoverCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
 }

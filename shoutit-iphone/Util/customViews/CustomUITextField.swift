@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUITextField: TextFieldValidator {
+final class CustomUITextField: TextFieldValidator {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {

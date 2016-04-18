@@ -8,6 +8,6 @@
 
 import UIKit
 
-class CreateShoutMobileCell: UITableViewCell {
+final class CreateShoutMobileCell: UITableViewCell {
     @IBOutlet var mobileTextField : UITextField!
 }

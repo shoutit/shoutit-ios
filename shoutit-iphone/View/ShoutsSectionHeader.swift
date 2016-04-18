@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ShoutsSectionHeader: UICollectionReusableView {
+final class ShoutsSectionHeader: UICollectionReusableView {
     
     var reuseDisposeBag = DisposeBag()
     

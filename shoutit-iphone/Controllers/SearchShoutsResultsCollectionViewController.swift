@@ -167,6 +167,7 @@ extension SearchShoutsResultsCollectionViewController {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! SearchShoutsResultsShoutsHeaderSupplementeryView
         view.titleLabel.text = viewModel.shoutsSection.sectionTitle()
         view.subtitleLabel.text = viewModel.shoutsSection.resultsCountString()
+        view.filterButton.hidden = viewModel.shoutsSection.allowsFiltering() == false
         view.filterButton
             .rx_tap
             .asDriver()

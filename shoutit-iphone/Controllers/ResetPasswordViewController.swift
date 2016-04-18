@@ -12,7 +12,7 @@ import RxCocoa
 import MBProgressHUD
 import Material
 
-class ResetPasswordViewController: UITableViewController {
+final class ResetPasswordViewController: UITableViewController {
     
     // UI
     @IBOutlet weak var emailTextField: FormTextField!

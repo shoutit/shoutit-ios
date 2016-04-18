@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateShoutButton: UIButton {
+final class CreateShoutButton: UIButton {
     
     override func awakeFromNib() {
         

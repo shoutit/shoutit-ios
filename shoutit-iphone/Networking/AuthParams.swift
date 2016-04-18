@@ -36,10 +36,7 @@ extension AuthParams {
             }
         }
         commonParams["profile"] = locationUserParams
-        
-        if let mixPanelDistinctId = MixpanelHelper.getDistinctID() {
-            commonParams["mixpanel_distinct_id"] = mixPanelDistinctId
-        }
+        commonParams["mixpanel_distinct_id"] = MixpanelHelper.getDistictId()
         
         return commonParams
     }

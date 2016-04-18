@@ -10,7 +10,7 @@ import UIKit
 
 protocol CallingOutViewControllerFlowDelegate: class, ChatDisplayable {}
 
-class CallingOutViewController: UIViewController {
+final class CallingOutViewController: UIViewController {
 
     weak var flowDelegate: CallingOutViewControllerFlowDelegate?
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     unowned let controller: ShoutDetailTableViewController
     var viewModel: ShoutDetailViewModel {

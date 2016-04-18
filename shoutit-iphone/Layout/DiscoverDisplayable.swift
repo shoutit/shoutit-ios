@@ -8,6 +8,6 @@
 
 import UIKit
 
-class DiscoverDisplayable: AnyObject, ShoutVerticalGridLayoutDisplayable {
+final class DiscoverDisplayable: AnyObject, ShoutVerticalGridLayoutDisplayable {
     
 }
