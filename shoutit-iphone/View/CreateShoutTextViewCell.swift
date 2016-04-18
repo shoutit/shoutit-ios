@@ -8,6 +8,6 @@
 
 import UIKit
 
-class CreateShoutTextViewCell: UITableViewCell {
+final class CreateShoutTextViewCell: UITableViewCell {
     @IBOutlet weak var textView: FormTextView!
 }

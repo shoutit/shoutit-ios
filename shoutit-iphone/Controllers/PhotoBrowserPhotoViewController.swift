@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoBrowserPhotoViewController: UIViewController {
+final class PhotoBrowserPhotoViewController: UIViewController {
     
     var index: Int = 0
     

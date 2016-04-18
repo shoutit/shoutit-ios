@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
+final class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
     
     var willShowViewControllerPreferringTabBarHidden: (Bool -> Void)?
     var ignoreToggleMenu : Bool = false

@@ -11,7 +11,7 @@ import RxSwift
 
 extension SearchShoutsResultsViewModel {
     
-    class ShoutsSection {
+    final class ShoutsSection {
         
         // consta
         private let pageSize = 20

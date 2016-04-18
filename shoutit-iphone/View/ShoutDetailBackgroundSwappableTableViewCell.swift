@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailBackgroundSwappableTableViewCell: UITableViewCell {
+final class ShoutDetailBackgroundSwappableTableViewCell: UITableViewCell {
     
     @IBOutlet weak var internalContentView: BorderedView!
     

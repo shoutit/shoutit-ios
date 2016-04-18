@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterTransition: NSObject {
+final class FilterTransition: NSObject {
     
     enum TransitionDirection {
         case Presenting

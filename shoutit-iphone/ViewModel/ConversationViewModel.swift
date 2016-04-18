@@ -43,7 +43,7 @@ protocol ConversationPresenter {
     func showSendingError(error: NSError) -> Void
 }
 
-class ConversationViewModel {
+final class ConversationViewModel {
     private var conversation: Variable<Conversation>!
     
     let messages : Variable<[NSDate:[Message]]> = Variable([:])

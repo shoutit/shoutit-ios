@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUILabel: UILabel {
+final class CustomUILabel: UILabel {
     
     private let textPadding: CGFloat = 2
     

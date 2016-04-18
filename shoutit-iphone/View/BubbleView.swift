@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BubbleView: UIView {
+final class BubbleView: UIView {
 
     @IBInspectable var fillColor : UIColor! = UIColor.grayColor()
     @IBInspectable var strokeColor : UIColor! = UIColor.lightGrayColor()

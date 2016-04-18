@@ -14,7 +14,7 @@ import Argo
 
 typealias DiscoverResult = (mainItem:DiscoverItem?, retrivedItems:[DiscoverItem]?)
 
-class APIDiscoverService {
+final class APIDiscoverService {
     private static let discoverURL = APIManager.baseURL + "/discover"
     
     static func discoverItemsWithParams(params: FilteredDiscoverItemsParams) -> Observable<[DiscoverItem]> {

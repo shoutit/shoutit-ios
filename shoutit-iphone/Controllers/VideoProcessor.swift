@@ -13,7 +13,7 @@ import AssetsLibrary
 import MediaPlayer
 import MobileCoreServices
 
-class VideoProcessor: AnyObject {
+final class VideoProcessor: AnyObject {
 
     func generateThumbImage(url: NSURL) -> UIImage? {
         let asset = AVAsset(URL: url)

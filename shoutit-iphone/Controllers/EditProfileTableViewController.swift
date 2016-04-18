@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-class EditProfileTableViewController: UITableViewController {
+final class EditProfileTableViewController: UITableViewController {
     
     enum UploadType {
         case Cover

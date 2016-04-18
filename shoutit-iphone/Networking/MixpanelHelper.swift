@@ -9,7 +9,7 @@
 import Foundation
 import Mixpanel
 
-class MixpanelHelper {
+final class MixpanelHelper {
     
     #if STAGING
     private static let mixpanelToken  = "d2de0109a8de7237dede66874c7b8951"

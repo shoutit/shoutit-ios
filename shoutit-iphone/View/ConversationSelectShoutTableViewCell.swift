@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationSelectShoutTableViewCell: UITableViewCell {
+final class ConversationSelectShoutTableViewCell: UITableViewCell {
 
     
     @IBOutlet var shoutImageView: UIImageView!

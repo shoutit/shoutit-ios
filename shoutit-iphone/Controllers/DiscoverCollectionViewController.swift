@@ -11,7 +11,7 @@ import RxSwift
 
 protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable, AllShoutsDisplayable {}
 
-class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()

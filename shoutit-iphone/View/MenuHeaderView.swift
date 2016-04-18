@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class MenuHeaderView: UIView {
+final class MenuHeaderView: UIView {
     
     @IBOutlet weak var profileImageView : UIImageView?
     @IBOutlet weak var coverImageView: UIImageView?

@@ -14,7 +14,7 @@ enum ProfileCollectionFooterButtonType {
     case Gray
 }
 
-class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
+final class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag?
     

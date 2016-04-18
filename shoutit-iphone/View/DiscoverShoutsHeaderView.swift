@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoverShoutsHeaderView: UICollectionReusableView {
+final class DiscoverShoutsHeaderView: UICollectionReusableView {
     
     @IBOutlet weak var titleLabel: UILabel!
 }

@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RootController: UIViewController, UIViewControllerTransitioningDelegate {
+final class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     private let defaultTabBarHeight: CGFloat = 49
     

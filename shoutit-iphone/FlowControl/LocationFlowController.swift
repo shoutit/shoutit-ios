@@ -9,7 +9,7 @@
 import UIKit
 import GooglePlaces
 
-class LocationFlowController: FlowController {
+final class LocationFlowController: FlowController {
     let navigationController: UINavigationController
     
     var finishedBlock: ((Bool, Address?) -> Void)? {

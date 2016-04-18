@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
+final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()

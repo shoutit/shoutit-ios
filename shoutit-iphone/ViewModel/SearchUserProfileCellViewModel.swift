@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class SearchUserProfileCellViewModel {
+final class SearchUserProfileCellViewModel {
     
     let profile: Profile
     var isListening: Bool

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationTextCell: ConversationCell {
+final class ConversationTextCell: ConversationCell {
     
     @IBOutlet weak var messageLabel: UILabel!
     

@@ -11,7 +11,7 @@ import Alamofire
 import Argo
 import RxSwift
 
-class APIProfileService {
+final class APIProfileService {
     
     static func searchProfileWithParams(params: SearchParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles"

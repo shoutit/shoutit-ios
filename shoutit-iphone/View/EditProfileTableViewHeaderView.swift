@@ -9,7 +9,7 @@
 import UIKit
 import ACPDownload
 
-class EditProfileTableViewHeaderView: UIView {
+final class EditProfileTableViewHeaderView: UIView {
     
     enum ProgressType {
         case Cover

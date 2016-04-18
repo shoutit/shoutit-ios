@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchRecentsHeaderView: UIView {
+final class SearchRecentsHeaderView: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var clearButton: UIButton!

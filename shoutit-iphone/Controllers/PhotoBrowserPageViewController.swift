@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoBrowserPageViewController: UIPageViewController {
+final class PhotoBrowserPageViewController: UIPageViewController {
     
     var pageControl: UIPageControl!
     

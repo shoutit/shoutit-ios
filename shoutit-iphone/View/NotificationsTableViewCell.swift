@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationsTableViewCell: UITableViewCell {
+final class NotificationsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notificationImage: UIImageView!

@@ -13,7 +13,7 @@ import MBProgressHUD
 
 protocol PostSignupInterestsViewControllerFlowDelegate: class, PostSignupDisplayable, LoginFinishable {}
 
-class PostSignupInterestsViewController: UIViewController {
+final class PostSignupInterestsViewController: UIViewController {
     
     // consts
     private let cellReuseID = "PostSignupCategoryTableViewCell"

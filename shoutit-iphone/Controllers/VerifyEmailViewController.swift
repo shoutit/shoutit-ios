@@ -12,7 +12,7 @@ import RxCocoa
 import Material
 import MBProgressHUD
 
-class VerifyEmailViewController: UIViewController {
+final class VerifyEmailViewController: UIViewController {
     
     typealias VerifyEmailSuccessBlock = (String -> Void)?
     

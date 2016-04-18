@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateShoutSelectCell: UITableViewCell {
+final class CreateShoutSelectCell: UITableViewCell {
     @IBOutlet var selectButton : SelectionButton!
  
     func fillWithFilter(filter: Filter, currentValue: FilterValue?) {

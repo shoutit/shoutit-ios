@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
+final class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag = DisposeBag()
     private let visibleLabelsConstraintConstantValue: CGFloat = 21

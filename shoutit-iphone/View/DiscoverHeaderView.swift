@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoverHeaderView: UICollectionReusableView {
+final class DiscoverHeaderView: UICollectionReusableView {
     @IBOutlet var titleLabel : UILabel!
     @IBOutlet var backgroundImageView : UIImageView!
 }

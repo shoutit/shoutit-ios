@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ShoutDetailButtonTableViewCell: UITableViewCell {
+final class ShoutDetailButtonTableViewCell: UITableViewCell {
     
     var reuseDisposeBag: DisposeBag?
     

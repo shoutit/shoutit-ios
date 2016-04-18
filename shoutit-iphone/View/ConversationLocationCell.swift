@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ConversationLocationCell: ConversationCell {
+final class ConversationLocationCell: ConversationCell {
     
     @IBOutlet weak var locationSnapshot: UIImageView!
     @IBOutlet weak var showLabel: UILabel?

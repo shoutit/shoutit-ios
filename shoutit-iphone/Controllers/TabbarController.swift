@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TabbarController: UIViewController, Navigation {
+final class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]?
     

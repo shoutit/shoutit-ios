@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class LabeledSelectButtonFilterTableViewCell: UITableViewCell {
+final class LabeledSelectButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

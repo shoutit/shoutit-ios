@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import FTGooglePlacesAPI
 
-class CreateShoutViewModel: NSObject {
+final class CreateShoutViewModel: NSObject {
     
     private let disposeBag = DisposeBag()
     

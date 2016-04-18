@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationDayHeader: UITableViewHeaderFooterView {
+final class ConversationDayHeader: UITableViewHeaderFooterView {
 
     @IBOutlet weak var dateLabel: UILabel!
 }

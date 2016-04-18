@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
+final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
     
     enum Model {
         case ProfileModel(profile: Profile)

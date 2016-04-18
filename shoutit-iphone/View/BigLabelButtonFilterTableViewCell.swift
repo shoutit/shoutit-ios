@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class BigLabelButtonFilterTableViewCell: UITableViewCell {
+final class BigLabelButtonFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

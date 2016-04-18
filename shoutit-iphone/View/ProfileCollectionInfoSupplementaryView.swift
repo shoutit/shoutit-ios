@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
+final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag = DisposeBag()
     

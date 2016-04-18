@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ConversationVideoCell: ConversationImageCell {
+final class ConversationVideoCell: ConversationImageCell {
 
 }

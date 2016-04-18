@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class MenuTableViewController: UITableViewController, Navigation {
+final class MenuTableViewController: UITableViewController, Navigation {
     
     var rootController : RootController?
     let viewModel = MenuViewModel()

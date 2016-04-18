@@ -14,7 +14,7 @@ import MBProgressHUD
 
 protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
 
-class ProfileCollectionViewController: UICollectionViewController {
+final class ProfileCollectionViewController: UICollectionViewController {
     
     // consts
     private let placeholderCellReuseIdentier = "PlaceholderCollectionViewCellReuseIdentifier"

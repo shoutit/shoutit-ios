@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class SelectionButton: UIButton {
+final class SelectionButton: UIButton {
     
     // state
     private var disclosureType: DisclosureType {

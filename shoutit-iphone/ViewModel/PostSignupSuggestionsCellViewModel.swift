@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class PostSignupSuggestionsCellViewModel {
+final class PostSignupSuggestionsCellViewModel {
     
     let item: Suggestable
     var selected: Bool = false

@@ -11,7 +11,7 @@ import Alamofire
 import Argo
 import RxSwift
 
-class APIMiscService {
+final class APIMiscService {
     
     private static let categoriesURL = APIManager.baseURL + "/shouts/categories"
     private static let suggestionURL = APIManager.baseURL + "/misc/suggestions"

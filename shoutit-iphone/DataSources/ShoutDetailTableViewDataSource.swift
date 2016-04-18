@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
+final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
     private(set) var otherShoutsHeight: CGFloat = 130
     unowned let controller: ShoutDetailTableViewController

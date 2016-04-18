@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateShoutTableHeaderView: UIView {
+final class CreateShoutTableHeaderView: UIView {
     @IBOutlet var currencyButton : SelectionButton!
     @IBOutlet var titleTextField : UITextField!
     @IBOutlet var priceTextField : UITextField!

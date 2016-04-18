@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailTableHeaderView: UIView {
+final class ShoutDetailTableHeaderView: UIView {
     
     @IBOutlet weak var internalContainerView: UIView!
     @IBOutlet weak var authorNameLabel: UILabel!

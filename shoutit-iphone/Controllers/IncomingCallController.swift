@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class IncomingCallController: UIViewController {
+final class IncomingCallController: UIViewController {
 
     var invitation : TWCIncomingInvite! {
         didSet {

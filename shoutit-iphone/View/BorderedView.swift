@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BorderedView: UIView {
+final class BorderedView: UIView {
     
     // boreders
     var borders: UIRectEdge = .All

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationShoutCell: ConversationImageCell {
+final class ConversationShoutCell: ConversationImageCell {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!

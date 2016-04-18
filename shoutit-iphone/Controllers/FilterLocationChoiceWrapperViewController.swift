@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class FilterLocationChoiceWrapperViewController: UIViewController {
+final class FilterLocationChoiceWrapperViewController: UIViewController {
     
     var finishedBlock: ((Bool, Address?) -> Void)?
     

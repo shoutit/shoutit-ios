@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileInfoHeaderButton: UIButton {
+final class ProfileInfoHeaderButton: UIButton {
     
     // UI
     var mainLabel: UILabel?

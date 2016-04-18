@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ShoutConfirmationViewController: UIViewController {
+final class ShoutConfirmationViewController: UIViewController {
 
     var shout : Shout!
     

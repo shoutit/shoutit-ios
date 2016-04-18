@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
+final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()

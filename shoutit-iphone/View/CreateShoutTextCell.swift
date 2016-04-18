@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateShoutTextCell: UITableViewCell {
+final class CreateShoutTextCell: UITableViewCell {
 
     @IBOutlet var textField : UITextField!
 }

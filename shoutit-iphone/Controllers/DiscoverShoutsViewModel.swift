@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class DiscoverShoutsViewModel: HomeShoutsViewModel {
+final class DiscoverShoutsViewModel: HomeShoutsViewModel {
     
     let discoverItem : DiscoverItem
     

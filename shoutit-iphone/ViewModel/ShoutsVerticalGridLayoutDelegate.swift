@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ShoutsVerticalGridLayoutDelegate: AnyObject, ShoutVerticalGridLayoutDisplayable {
+final class ShoutsVerticalGridLayoutDelegate: AnyObject, ShoutVerticalGridLayoutDisplayable {
 
 }
