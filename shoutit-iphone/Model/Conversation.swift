@@ -25,6 +25,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     let typeString: String
     let users: [Box<Profile>]?
     let lastMessage: Message?
+    let unreadMessagesCount: Int
     let shout: Shout?
     let readby: [ReadBy]?
  
@@ -48,6 +49,7 @@ struct Conversation: Decodable, Hashable, Equatable {
         let c = b
             <*> j <||? "profiles"
             <*> j <|? "last_message"
+            <*> j <| "unread_messages_count"
             <*> j <|? "about"
             
         let d = c
@@ -61,7 +63,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, shout: self.shout, readby: self.readby)
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount, shout: self.shout, readby: self.readby)
     }
 }
 
@@ -165,16 +167,7 @@ extension Conversation {
     }
     
     func isRead() -> Bool {
-        
-        if let readby = self.readby {
-            for read in readby {
-                if read.profileId == Account.sharedInstance.user?.id {
-                    return true
-                }
-            }
-        }
-        
-        return false
+        return self.unreadMessagesCount == 0
     }
 }
 

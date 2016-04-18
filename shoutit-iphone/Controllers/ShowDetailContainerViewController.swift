@@ -117,7 +117,7 @@ class ShowDetailContainerViewController: UIViewController {
         }
         
         if self.viewModel.shout.conversations?.count == 0 {
-            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, shout: viewModel.shout, readby: nil)
+            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, unreadMessagesCount: 0, shout: viewModel.shout, readby: nil)
             
             self.flowDelegate?.showConversation(conversation)
             
