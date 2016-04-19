@@ -23,11 +23,19 @@ extension UIImageView {
             case .Large: return "_large"
             }
         }
+        
+        var size: CGSize {
+            switch self {
+            case .Small: return CGSize(width: 240, height: 240)
+            case .Medium: return CGSize(width: 480, height: 480)
+            case .Large: return CGSize(width: 720, height: 720)
+            }
+        }
     }
     
-    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, variation: ImageVariation?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
+    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
         if let url = url {
-            if let variation = variation {
+            if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(imageUrlByAppendingVaraitionComponent(variation, toURL: url), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             } else {
                 kf_setImageWithURL(url, placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
@@ -39,9 +47,9 @@ extension UIImageView {
         }
     }
     
-    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, variation: ImageVariation?) {
+    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?) {
         if let url = url {
-            if let variation = variation {
+            if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(imageUrlByAppendingVaraitionComponent(variation, toURL: url), placeholderImage: placeholderImage)
             } else {
                 kf_setImageWithURL(url, placeholderImage: placeholderImage)
@@ -51,6 +59,20 @@ extension UIImageView {
         } else {
             self.image = nil
         }
+    }
+    
+    private func estimateAppropriateVariation() -> ImageVariation? {
+        let scale = UIScreen.mainScreen().scale
+        let scaledWidth = floor(bounds.size.width * scale)
+        let scaledHeight = floor(bounds.size.height * scale)
+        
+        for variation: ImageVariation in [.Small, .Medium, .Large] {
+            if scaledWidth <= variation.size.width && scaledHeight <= variation.size.height {
+                return variation
+            }
+        }
+        
+        return nil
     }
     
     private func imageUrlByAppendingVaraitionComponent(varation: ImageVariation, toURL url: NSURL) -> NSURL {
