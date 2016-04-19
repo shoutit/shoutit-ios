@@ -52,6 +52,7 @@ final class Account {
         didSet {
             if let userObject = loggedUser {
                 self.userSubject.onNext(userObject)
+                self.statsSubject.onNext(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
             }
         }
@@ -72,6 +73,7 @@ final class Account {
     
     var userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     var loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
+    var statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
@@ -178,6 +180,16 @@ final class Account {
                     }.addDisposableTo(disposeBag)
             }
         }
+    }
+    
+    func updateStats(stats: ProfileStats) {
+        guard let user = self.loggedUser else {
+            return
+        }
+        
+        self.loggedUser = user.updatedProfileWithStats(stats)
+        
+        self.statsSubject.onNext(stats)
     }
     
     func fetchUserProfile() {

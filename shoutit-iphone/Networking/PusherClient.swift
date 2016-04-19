@@ -101,8 +101,22 @@ final class PusherClient : NSObject {
             print(event.data)
             
             if event.eventType() == .NewListen || event.eventType() == .NewMessage {
-                Account.sharedInstance.fetchUserProfile()
+                
             }
+            
+            if event.eventType() == .StatsUpdate {
+                if let stats : ProfileStats = event.object() {
+                    Account.sharedInstance.updateStats(stats)
+                }
+            }
+            
+            if event.eventType() == .ProfileChange {
+                if let profile : DetailedProfile = event.object() {
+                    Account.sharedInstance.loggedUser = profile
+                }
+            }
+
+            
         }.addDisposableTo(disposeBag)
     }
     

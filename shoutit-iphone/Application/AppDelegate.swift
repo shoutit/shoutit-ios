@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
         
+        // fetch user account to update all stats etc.
         Account.sharedInstance.fetchUserProfile()
         
         return true
@@ -64,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         PusherClient.sharedInstance.tryToConnect()
+        
         Account.sharedInstance.fetchUserProfile()
     }
 

@@ -42,7 +42,7 @@ class TabbarController: UIViewController, Navigation {
             }.addDisposableTo(self.disposeBag)
         }
         
-        Account.sharedInstance.userSubject.subscribeNext { [weak self] (user) in
+        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
             self?.fillBadges()
         }.addDisposableTo(disposeBag)
         
