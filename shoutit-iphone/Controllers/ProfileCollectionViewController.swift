@@ -429,6 +429,12 @@ extension ProfileCollectionViewController {
                 self?.startChat()
             }).addDisposableTo(disposeBag)
         case .Notification:
+            Account.sharedInstance.statsSubject.subscribeNext{ (stats) in
+                if let btn = button as? BadgeButton {
+                    btn.setBadgeNumber(stats?.unreadNotificationsCount ?? 0)
+                }
+            }.addDisposableTo(disposeBag)
+                
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showNotifications()
                 }.addDisposableTo(disposeBag)
