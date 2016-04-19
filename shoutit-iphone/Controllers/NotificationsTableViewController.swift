@@ -15,9 +15,22 @@ protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplay
 
 class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"
     private let disposeBag = DisposeBag()
     private var messages : [Notification] = []
+    
+    var loading : Bool = false {
+        didSet {
+            if loading {
+                self.activityIndicator.startAnimating()
+                self.activityIndicator.hidden = false
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+            }
+        }
+    }
     
     weak var flowDelegate: NotificationsTableViewControllerFlowDelegate?
     
@@ -40,11 +53,43 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     }
     
     @IBAction func reloadNotifications() {
-        APINotificationsService.requestNotifications().subscribeNext { [weak self] (messages) -> Void in
+        loading = true
+        
+        APINotificationsService.requestNotificationsAfter(nil).subscribeNext { [weak self] (messages) -> Void in
+            self?.loading = false
             self?.refreshControl?.endRefreshing()
-            self?.messages = messages
-            self?.tableView.reloadData()
+            self?.appendMessages(messages)
         }.addDisposableTo(disposeBag)
+    }
+    
+    func loadNextPage() {
+        if loading {
+            return
+        }
+        
+        guard let lastNotification = messages.last else {
+            return
+        }
+        
+        loading = true
+        
+        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { (event) in
+            switch event {
+            case .Next(let messages):
+                self.loading = false
+                self.appendMessages(messages)
+            case .Error:
+                self.loading = false
+            default:
+                break;
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    private func appendMessages(messages: [Notification]) {
+        self.messages.appendContentsOf(messages)
+        self.messages = self.messages.unique()
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -164,4 +209,11 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65.0
     }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            loadNextPage()
+        }
+    }
+    
 }

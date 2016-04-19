@@ -18,8 +18,8 @@ class APINotificationsService {
     
     // MARK: - Traditional
     
-    static func requestNotifications() -> Observable<[Notification]> {
-        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    static func requestNotificationsAfter(after: Int?) -> Observable<[Notification]> {
+        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: AfterParams(afterTimeStamp: after), encoding: .URL, responseJsonPath: ["results"])
     }
     
     static func markNotificationAsRead(notification: Notification) -> Observable<Notification> {

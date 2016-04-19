@@ -96,7 +96,7 @@ final class PusherClient : NSObject {
     }
     
     func subscribeToMainChannel() {
-        mainChannelObservable().retry(10).subscribeNext { (event) -> Void in
+        mainChannelObservable().subscribeNext { (event) -> Void in
             print("RECEIVED: \(event.name)")
             print(event.data)
             
@@ -189,6 +189,14 @@ extension PusherClient {
             let channel = self.pusherInstance.subscribeToChannelNamed(channelName)
             
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
+            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
+            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             
