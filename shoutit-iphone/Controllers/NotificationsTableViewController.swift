@@ -15,9 +15,22 @@ protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplay
 
 final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"
     private let disposeBag = DisposeBag()
     private var messages : [Notification] = []
+    
+    var loading : Bool = false {
+        didSet {
+            if loading {
+                self.activityIndicator.startAnimating()
+                self.activityIndicator.hidden = false
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+            }
+        }
+    }
     
     weak var flowDelegate: NotificationsTableViewControllerFlowDelegate?
     
@@ -40,11 +53,43 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     }
     
     @IBAction func reloadNotifications() {
-        APINotificationsService.requestNotifications().subscribeNext { [weak self] (messages) -> Void in
+        loading = true
+        
+        APINotificationsService.requestNotificationsAfter(nil).subscribeNext { [weak self] (messages) -> Void in
+            self?.loading = false
             self?.refreshControl?.endRefreshing()
-            self?.messages = messages
-            self?.tableView.reloadData()
+            self?.appendMessages(messages)
         }.addDisposableTo(disposeBag)
+    }
+    
+    func loadNextPage() {
+        if loading {
+            return
+        }
+        
+        guard let lastNotification = messages.last else {
+            return
+        }
+        
+        loading = true
+        
+        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { (event) in
+            switch event {
+            case .Next(let messages):
+                self.loading = false
+                self.appendMessages(messages)
+            case .Error:
+                self.loading = false
+            default:
+                break;
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    private func appendMessages(messages: [Notification]) {
+        self.messages.appendContentsOf(messages)
+        self.messages = self.messages.unique()
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -110,8 +155,6 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
             
             self?.messages = readedNotifications
-            
-            self?.triggerTabbarRefresh()
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
@@ -135,7 +178,6 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
                 self?.messages.insert(noti, atIndex: idx)
             }
             
-            self?.triggerTabbarRefresh()
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
@@ -143,10 +185,6 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         }, onCompleted: { () -> Void in
                 
         }, onDisposed: nil).addDisposableTo(disposeBag)
-    }
-    
-    func triggerTabbarRefresh() {
-        Account.sharedInstance.fetchUserProfile()
     }
     
     func openMessageObject(notification: Notification) {
@@ -171,4 +209,11 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65.0
     }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            loadNextPage()
+        }
+    }
+    
 }

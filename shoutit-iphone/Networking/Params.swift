@@ -64,6 +64,19 @@ struct PageParams: Params {
     }
 }
 
+struct AfterParams: Params {
+    var afterTimeStamp : Int?
+    
+    var params: [String : AnyObject] {
+        if let after = self.afterTimeStamp {
+            return ["before":after, "page_size":20]
+        }
+        
+        return [:]
+    }
+}
+
+
 struct MessageParams: Params {
     let message: Message
     

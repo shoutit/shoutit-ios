@@ -14,10 +14,11 @@ enum PusherEventType : String {
     
     case NewMessage = "new_message"
     case NewListen = "new_listen"
-    case ProfileChange = "profile_change"
+    case ProfileChange = "profile_update"
     case UserTyping = "client-is_typing"
     case JoinedChat = "client-joined_chat"
     case LeftChat = "client-left_chat"
+    case StatsUpdate = "stats_update"
 }
 
 extension PTPusherEvent {

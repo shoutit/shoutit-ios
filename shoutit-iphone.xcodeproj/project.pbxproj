@@ -89,7 +89,6 @@
 		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		24D3B0C41C9C3BFF00DE1600 /* TwilioAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */; };
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
-		24DC20B11CBF9B7C00ED6DA7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */; };
 		24DC20B31CBFA51800ED6DA7 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF341BE74EAE00124C28 /* AppDelegate.swift */; };
@@ -131,6 +130,8 @@
 		AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */; };
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
+		AE194DDC1CB53610004A44CA /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DDB1CB53610004A44CA /* Report.swift */; };
+		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -707,7 +708,6 @@
 		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwilioAuth.swift; path = Model/TwilioAuth.swift; sourceTree = "<group>"; };
 		24D3B0C61C9C472D00DE1600 /* Twilio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Twilio.swift; path = Networking/Twilio.swift; sourceTree = "<group>"; };
-		24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = Other/NotificationManager.swift; sourceTree = "<group>"; };
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
@@ -789,6 +789,8 @@
 		AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentManager.swift; path = Other/ConversationAttachmentManager.swift; sourceTree = "<group>"; };
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
+		AE194DDB1CB53610004A44CA /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Report.swift; path = Model/Report.swift; sourceTree = "<group>"; };
+		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
@@ -1496,7 +1498,6 @@
 			children = (
 				24826B411C969A4400032FC9 /* View */,
 				24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */,
-				24DC20B01CBF9B7C00ED6DA7 /* NotificationManager.swift */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -2458,6 +2459,7 @@
 				B2B5D0291C7F7DB50068A6AF /* IndexedCollectionView.swift */,
 				B2A03E221C85F69400F5E257 /* BorderedView.swift */,
 				AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */,
+				AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3741,7 +3743,6 @@
 				AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */,
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
 				B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */,
-				24DC20B11CBF9B7C00ED6DA7 /* NotificationManager.swift in Sources */,
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
 				B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */,
@@ -4000,6 +4001,7 @@
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */,
 				B2D9B1061C98805600924941 /* SearchCategoryTableViewCell.swift in Sources */,
+				AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */,
 				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
 				B2E1071B1C9711BC00F7F4EF /* RelatedTagsParams.swift in Sources */,
