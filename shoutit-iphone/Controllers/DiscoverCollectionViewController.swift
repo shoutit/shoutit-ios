@@ -122,7 +122,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         
         if let discoverHeader = header as? DiscoverHeaderView {
-            discoverHeader.titleLabel.text = self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
+            discoverHeader.setText(self.viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: ""))
                         
             if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))

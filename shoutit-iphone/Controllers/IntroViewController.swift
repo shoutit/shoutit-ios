@@ -18,7 +18,7 @@ protocol IntroViewControllerFlowDelegate: class, HelpDisplayable, LoginFinishabl
 final class IntroViewController: UIViewController {
     
     // consts
-    let numberOfPagesInScrollView: CGFloat = 3
+    let numberOfPagesInScrollView: CGFloat = 5
     
     // subviews
     @IBOutlet weak var loginButton: CustomUIButton!
