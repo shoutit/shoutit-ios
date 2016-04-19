@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterTransition: NSObject {
+final class FilterTransition: NSObject {
     
     enum TransitionDirection {
         case Presenting
@@ -25,6 +25,7 @@ class FilterTransition: NSObject {
     
     // state
     private var transitionDirection: TransitionDirection = .Presenting
+    private weak var presentedViewController: UIViewController?
     
     // views
     private var blurOverlay: UIVisualEffectView!
@@ -49,7 +50,12 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
             fromVC.view.userInteractionEnabled = false
             fromVC.view.frame = sourceRect
             
+            presentedViewController = toVC
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(FilterTransition.handleTap))
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(FilterTransition.handlePan(_:)))
             blurOverlay = UIVisualEffectView(frame: sourceRect)
+            blurOverlay.addGestureRecognizer(tapGesture)
+            blurOverlay.addGestureRecognizer(panGesture)
             let transitionContainer = transitionContext.containerView()!
             
             transitionContainer.addSubview(blurOverlay)
@@ -97,5 +103,19 @@ extension FilterTransition: UIViewControllerTransitioningDelegate {
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transitionDirection = .Dismissing
         return self
+    }
+}
+
+extension FilterTransition {
+    
+    func handleTap() {
+        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
+        guard let view = gestureRecognizer.view else { return }
+        if gestureRecognizer.velocityInView(view).y > 50 {
+            presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }

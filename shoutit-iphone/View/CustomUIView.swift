@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUIView: UIView {
+final class CustomUIView: UIView {
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {

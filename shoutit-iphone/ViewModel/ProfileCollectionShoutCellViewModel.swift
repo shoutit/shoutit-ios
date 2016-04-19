@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCollectionShoutCellViewModel: ProfileCollectionCellViewModel {
+final class ProfileCollectionShoutCellViewModel: ProfileCollectionCellViewModel {
     
     let shout: Shout
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InviteFriendsFlowController: FlowController {
+final class InviteFriendsFlowController: FlowController {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {

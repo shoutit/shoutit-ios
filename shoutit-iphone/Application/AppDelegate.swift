@@ -28,11 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureLoggingServices()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         PlacesGeocoder.setup()
+        MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
         
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound], categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
+        
+        Account.sharedInstance.fetchUserProfile()
         
         return true
     }
@@ -60,11 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
+        LocationManager.sharedInstance.triggerLocationUpdate()
         PusherClient.sharedInstance.tryToConnect()
+        Account.sharedInstance.fetchUserProfile()
     }
 
     func applicationWillTerminate(application: UIApplication) {
-//        SHMixpanelHelper.closeApp()
+        MixpanelHelper.handleAppDidTerminate()
     }
     
     // MARK: - Push notifications
@@ -118,8 +123,5 @@ private extension AppDelegate {
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
-        
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-        
     }
 }

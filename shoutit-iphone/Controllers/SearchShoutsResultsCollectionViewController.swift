@@ -133,7 +133,7 @@ extension SearchShoutsResultsCollectionViewController {
             return cell
         }
         
-        let shoutCellWithModel: (SearchShoutsResultsShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
+        let shoutCellWithModel: (ShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
@@ -167,6 +167,7 @@ extension SearchShoutsResultsCollectionViewController {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! SearchShoutsResultsShoutsHeaderSupplementeryView
         view.titleLabel.text = viewModel.shoutsSection.sectionTitle()
         view.subtitleLabel.text = viewModel.shoutsSection.resultsCountString()
+        view.filterButton.hidden = viewModel.shoutsSection.allowsFiltering() == false
         view.filterButton
             .rx_tap
             .asDriver()

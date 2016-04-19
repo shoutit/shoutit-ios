@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GradientView: UIView {
+final class GradientView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,7 +12,7 @@ import RxCocoa
 
 protocol SearchViewControllerFlowDelegate: class, SearchDisplayable {}
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
     // consts
     private let animationDuration: NSTimeInterval = 0.25

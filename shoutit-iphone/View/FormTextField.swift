@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class FormTextField: BorderedMaterialTextField {
+final class FormTextField: BorderedMaterialTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         

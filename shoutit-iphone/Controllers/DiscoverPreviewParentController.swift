@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class DiscoverPreviewParentController: UIViewController {
+final class DiscoverPreviewParentController: UIViewController {
     
     var discoverController : DiscoverPreviewCollectionViewController?
     

@@ -19,6 +19,7 @@ struct EditProfileParams: Params {
     let location: Address?
     let imagePath: String?
     let coverPath : String?
+    let mobile: String?
     
     var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
@@ -28,6 +29,7 @@ struct EditProfileParams: Params {
         p["username"] = username
         p["bio"] = bio
         p["website"] = website
+        p["mobile"] = mobile
         if let latitude = location?.latitude, longitude = location?.longitude, address = location?.address {
             p["location"] = ["latitude" : latitude, "longitude" : longitude, "address" : address]
         }

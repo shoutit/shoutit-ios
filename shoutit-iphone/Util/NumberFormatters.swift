@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NumberFormatters {
+final class NumberFormatters {
     
     static let sharedInstance = NumberFormatters()
     

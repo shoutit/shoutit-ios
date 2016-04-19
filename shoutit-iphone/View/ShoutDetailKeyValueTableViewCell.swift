@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailKeyValueTableViewCell: ShoutDetailBackgroundSwappableTableViewCell {
+final class ShoutDetailKeyValueTableViewCell: ShoutDetailBackgroundSwappableTableViewCell {
     
     @IBOutlet weak var keyLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!

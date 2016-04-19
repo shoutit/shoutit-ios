@@ -14,7 +14,7 @@ import ResponsiveLabel
 import Validator
 import MBProgressHUD
 
-class LoginViewController: UITableViewController {
+final class LoginViewController: UITableViewController {
     
     // UI
     @IBOutlet weak var emailTextField: FormTextField!

@@ -55,7 +55,7 @@ pod 'Curry', '< 2.0'
 pod 'Ogra'
 
 # ui controls
-pod 'Material', '~> 1.29'
+pod 'Material', '~> 1.39'
 pod 'ResponsiveLabel', '~> 1.0'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'SVProgressHUD'

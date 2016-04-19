@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Curry
 
-class Box<T: Decodable where T.DecodedType == T>  : Decodable {
+final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
     var value: T
     init(_ value: T) {
         self.value = value

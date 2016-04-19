@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RootController: UIViewController, UIViewControllerTransitioningDelegate {
+final class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     
     private let defaultTabBarHeight: CGFloat = 49
     
@@ -44,6 +44,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
     }
+    var currentChildViewController: UIViewController?
     var tabbarController : TabbarController?
     
     // MARK: Life Cycle
@@ -76,6 +77,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
             self.sh_invalidateControllersCache()
             self.openItem(.Home)
         }.addDisposableTo(disposeBag)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -338,6 +340,7 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
         currentControllerConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
         contentContainer?.addConstraints(currentControllerConstraints)
         
+        currentChildViewController = controller
         self.addChildViewController(controller)
         
         controller.didMoveToParentViewController(self)
@@ -362,6 +365,15 @@ class RootController: UIViewController, UIViewControllerTransitioningDelegate {
     @IBAction func unwindToRootController(segue: UIStoryboardSegue) {
     }
     
+    // MARK: - Status bar
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return currentChildViewController
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
 
 extension RootController: ApplicationMainViewControllerRootObject {}

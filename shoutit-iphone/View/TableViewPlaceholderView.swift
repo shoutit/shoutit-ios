@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewPlaceholderView: UIView {
+final class TableViewPlaceholderView: UIView {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class DiscoverGeneralViewModel: DiscoverViewModel {
+final class DiscoverGeneralViewModel: DiscoverViewModel {
     let disposeBag = DisposeBag()
     
     override func retriveDiscoverItems() {

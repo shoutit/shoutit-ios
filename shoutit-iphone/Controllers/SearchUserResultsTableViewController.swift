@@ -129,9 +129,14 @@ final class SearchUserResultsTableViewController: UITableViewController {
             guard self != nil && self!.userIsLoggedIn() else { return }
             cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                 switch event {
-                case .Next(let listening):
+                case .Next(let (listening, successMessage, error)):
                     let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                     cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                    if let message = successMessage {
+                        self?.showSuccessMessage(message)
+                    } else if let error = error {
+                        self?.showError(error)
+                    }
                 case .Completed:
                     self?.viewModel.reloadItemAtIndex(indexPath.row)
                 default:

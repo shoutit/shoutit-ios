@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="conversationOutGoingPictureCell" rowHeight="220" id="O74-Pg-J1l" customClass="ConversationImageCell" customModule="Shoutit" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="conversationOutGoingPictureCell" rowHeight="220" id="O74-Pg-J1l" customClass="ConversationPictureCell" customModule="Shoutit" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="278" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O74-Pg-J1l" id="ooZ-RZ-5NI">
-                <rect key="frame" x="0.0" y="0.0" width="278" height="219.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="278" height="220"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8I9-gj-loB" customClass="BubbleView" customModule="Shoutit" customModuleProvider="target">
@@ -84,9 +84,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="activityIndicator" destination="9xy-RX-pDQ" id="3dV-w4-sqd"/>
-                <outlet property="pictureImageView" destination="ZLw-BO-lFH" id="idu-fm-anX"/>
-                <outlet property="timeLabel" destination="bW0-Cp-lh3" id="xg3-hf-Gh9"/>
+                <outlet property="activityIndicator" destination="9xy-RX-pDQ" id="FY2-LQ-vje"/>
+                <outlet property="pictureImageView" destination="ZLw-BO-lFH" id="AVd-TR-7vT"/>
+                <outlet property="timeLabel" destination="bW0-Cp-lh3" id="0Ch-Yb-Vhu"/>
             </connections>
             <point key="canvasLocation" x="423" y="647"/>
         </tableViewCell>

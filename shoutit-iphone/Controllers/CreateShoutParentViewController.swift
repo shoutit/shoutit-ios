@@ -12,6 +12,7 @@ import RxSwift
 
 class CreateShoutParentViewController: UIViewController {
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     var createShoutTableController : CreateShoutTableViewController!
     
     var type : ShoutType!
@@ -23,6 +24,7 @@ class CreateShoutParentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(bottomConstraint)
         setTitle()
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
@@ -32,6 +34,10 @@ class CreateShoutParentViewController: UIViewController {
         super.viewWillAppear(animated)
         onAppearBlock?()
         onAppearBlock = nil
+    }
+    
+    deinit {
+        removeKeyboardNotificationListeners()
     }
     
     func setTitle() {

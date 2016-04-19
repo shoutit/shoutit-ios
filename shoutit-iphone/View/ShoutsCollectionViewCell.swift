@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutsCollectionViewCell: UICollectionViewCell {
+final class ShoutsCollectionViewCell: UICollectionViewCell {
     
     enum Mode {
         case Regular

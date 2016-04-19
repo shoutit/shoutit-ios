@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class PostSignupSuggestionsCellViewModel {
+final class PostSignupSuggestionsCellViewModel {
     
     let item: Suggestable
     var selected: Bool = false
@@ -20,23 +20,25 @@ class PostSignupSuggestionsCellViewModel {
         self.item = item
     }
     
-    func listen() -> Observable<Void> {
+    func listen() -> Observable<(successMessage: String?, error: ErrorType?)> {
 
         let selected = !self.selected
         return Observable.create{[unowned self] (observer) -> Disposable in
             
             self.selected = selected
-            observer.onNext()
+            observer.onNext((successMessage: nil, error: nil))
             APIProfileService.listen(selected, toProfileWithUsername: self.item.listenId).subscribe{[weak self] (event) in
                 switch event {
                 case .Completed:
                     observer.onCompleted()
-                case .Error:
+                case .Error(let error):
                     self?.selected = !selected
-                    observer.onNext()
+                    observer.onNext((successMessage: nil, error: error))
                     observer.onCompleted()
                 case .Next:
-                    break
+                    guard let `self` = self else { return }
+                    let message = self.selected ? UserMessages.startedListeningMessageWithName(self.item.suggestionTitle) : UserMessages.stoppedListeningMessageWithName(self.item.suggestionTitle)
+                    observer.onNext((successMessage: message, error: nil))
                 }
             }.addDisposableTo(self.disposeBag)
             

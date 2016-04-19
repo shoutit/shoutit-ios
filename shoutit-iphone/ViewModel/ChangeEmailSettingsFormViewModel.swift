@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
+final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     
     private let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()

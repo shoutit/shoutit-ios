@@ -13,7 +13,7 @@ protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplaya
     
 }
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     @IBOutlet weak var changeLayoutButton: UIButton!
     @IBOutlet weak var discoverHeight: NSLayoutConstraint!

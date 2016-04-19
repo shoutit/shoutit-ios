@@ -36,9 +36,12 @@ enum FiltersCellViewModel {
         switch self {
         case .ShoutTypeChoice(let shoutType):
             if let type = shoutType {
-                return type.title()
+                switch type {
+                case .Offer: return NSLocalizedString("Only Offers", comment: "Filter shout type")
+                case .Request: return NSLocalizedString("Only Requests", comment: "Filter shout type")
+                }
             }
-            return NSLocalizedString("All", comment: "All shout types - filter button title")
+            return NSLocalizedString("Offers and Requests", comment: "Filter shout type")
         case .SortTypeChoice(let sortType, _):
             return sortType?.name
         case .CategoryChoice(let category, _, _):

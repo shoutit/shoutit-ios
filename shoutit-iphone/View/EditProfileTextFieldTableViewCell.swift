@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class EditProfileTextFieldTableViewCell: UITableViewCell {
+final class EditProfileTextFieldTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     

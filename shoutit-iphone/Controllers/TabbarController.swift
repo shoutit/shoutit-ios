@@ -8,9 +8,8 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
-class TabbarController: UIViewController, Navigation {
+final class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]?
     
@@ -28,6 +27,10 @@ class TabbarController: UIViewController, Navigation {
     
     override func viewDidLoad() {
         
+        NotificationManager.sharedManager.unreadNotificationsCountSubject.subscribeNext { [weak self] (count) in
+            self?.fillUnreadNotifications(count)
+        }.addDisposableTo(disposeBag)
+        
         tabs!.each { button in
             button.rx_tap.subscribeNext {
                 self.tabs!.each { $0.selected = false }
@@ -39,12 +42,42 @@ class TabbarController: UIViewController, Navigation {
             }.addDisposableTo(self.disposeBag)
         }
         
-//        tabs!.first?.selected = true
+        Account.sharedInstance.userSubject.subscribeNext { [weak self] (user) in
+            self?.fillBadges()
+        }.addDisposableTo(disposeBag)
+        
     }
     
     func triggerActionWithItem(navigationItem : NavigationItem) {
         if let root = self.rootController {
             root.openItem(navigationItem)
         }
+    }
+    
+    private func fillBadges() {
+        if let detailedUser = Account.sharedInstance.loggedUser, stats = detailedUser.stats {
+            fillUnreadConversations(stats.unreadConversationCount)
+            fillUnreadNotifications(stats.unreadNotificationsCount)
+        }
+    }
+    
+    func fillUnreadNotifications(unread: Int) {
+        let tab = tabButtonForNavigationItem(.Profile)
+        tab.setBadgeNumber(unread)
+    }
+    
+    func fillUnreadConversations(unread: Int) {
+        let tab = tabButtonForNavigationItem(.Chats)
+        tab.setBadgeNumber(unread)
+    }
+    
+    private func tabButtonForNavigationItem(navigationItem: NavigationItem) -> TabbarButton {
+        for button in self.tabs! {
+            if button.navigationItem == navigationItem.rawValue {
+                return button
+            }
+        }
+        
+        fatalError("Wrong Tab Selected")
     }
 }

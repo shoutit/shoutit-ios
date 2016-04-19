@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 
-class DiscoverPreviewCollectionViewController: UICollectionViewController {
+final class DiscoverPreviewCollectionViewController: UICollectionViewController {
     
     let viewModel = DiscoverPreviewViewModel()
     

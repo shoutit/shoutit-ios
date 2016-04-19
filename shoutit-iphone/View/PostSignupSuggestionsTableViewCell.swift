@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class PostSignupSuggestionsTableViewCell: UITableViewCell {
+final class PostSignupSuggestionsTableViewCell: UITableViewCell {
     
     var reuseDisposeBag: DisposeBag?
     

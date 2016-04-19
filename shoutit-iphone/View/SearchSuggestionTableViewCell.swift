@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SearchSuggestionTableViewCell: UITableViewCell {
+final class SearchSuggestionTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

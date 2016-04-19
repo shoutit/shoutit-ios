@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class SearchUserProfileCellViewModel {
+final class SearchUserProfileCellViewModel {
     
     let profile: Profile
     var isListening: Bool
@@ -27,32 +27,33 @@ class SearchUserProfileCellViewModel {
         return Account.sharedInstance.loggedUser?.id == profile.id
     }
     
-    func toggleIsListening() -> Observable<Bool> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {
         
         return Observable.create{[weak self] (observer) -> Disposable in
             
-            guard let strongSelf = self else {
+            guard let `self` = self else {
                 return NopDisposable.instance
             }
             
-            strongSelf.isListening = !strongSelf.isListening
-            observer.onNext(strongSelf.isListening)
+            self.isListening = !self.isListening
+            observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
             
             let subscribeBlock: (RxSwift.Event<Void> -> Void) = {(event) in
                 switch event {
                 case .Completed:
-                    observer.onNext(strongSelf.isListening)
+                    let message = self.isListening ? UserMessages.startedListeningMessageWithName(self.profile.name) : UserMessages.stoppedListeningMessageWithName(self.profile.name)
+                    observer.onNext((listening: self.isListening, successMessage: message, error: nil))
+                    observer.onCompleted()
                 case .Error(let error):
-                    strongSelf.isListening = !strongSelf.isListening
-                    observer.onNext(strongSelf.isListening)
+                    self.isListening = !self.isListening
+                    observer.onNext((listening: self.isListening, successMessage: nil, error: error))
                     observer.onError(error)
                 default:
                     break
                 }
-                observer.onCompleted()
             }
             
-            return APIProfileService.listen(strongSelf.isListening, toProfileWithUsername: strongSelf.profile.username).subscribe(subscribeBlock)
+            return APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username).subscribe(subscribeBlock)
         }
     }
 }

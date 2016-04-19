@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IndexedCollectionView: UICollectionView {
+final class IndexedCollectionView: UICollectionView {
     @IBInspectable var index: Int = 0
     
     var contentSizeDidChange: (CGSize -> Void)?

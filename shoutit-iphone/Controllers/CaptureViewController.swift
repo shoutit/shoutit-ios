@@ -10,7 +10,7 @@ import UIKit
 import Nemo
 import MobileCoreServices
 
-class CaptureViewController: PhotosMenuController {
+final class CaptureViewController: PhotosMenuController {
 
     var allowsVideos: Bool = true
     

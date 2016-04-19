@@ -19,7 +19,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-Oj-JTl">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-Oj-JTl">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="211" id="dYK-UO-e0U"/>
@@ -158,7 +158,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-7Y-B9a" customClass="LabeledSelectButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37H-7Y-B9a" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="10" width="560" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Arp-M5-FGS"/>
@@ -169,6 +169,10 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
                                                     <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
+                                                    <integer key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </button>

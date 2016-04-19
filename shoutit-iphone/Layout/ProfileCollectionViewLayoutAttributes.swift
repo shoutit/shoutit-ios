@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
+final class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     
     var scaleFactor: CGFloat = 1
     var collapseProgress: CGFloat = 0

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateShoutPopupViewController: UIViewController {
+final class CreateShoutPopupViewController: UIViewController {
 
     var selectedType: ShoutType?
     

@@ -10,7 +10,7 @@ import Foundation
 import AWSS3
 import AVFoundation
 
-class AmazonAWS: NSObject {
+final class AmazonAWS: NSObject {
     
     private(set) var images: [String] = []
     

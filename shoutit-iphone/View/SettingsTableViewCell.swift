@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
     
     // views
     @IBOutlet weak var titleLabel: UILabel!

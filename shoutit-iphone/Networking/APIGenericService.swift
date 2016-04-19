@@ -12,7 +12,7 @@ import Argo
 import RxSwift
 import RxCocoa
 
-class APIGenericService {
+final class APIGenericService {
     
     static func basicRequestWithMethod<P: Params>(
         method: Alamofire.Method,
@@ -176,6 +176,7 @@ class APIGenericService {
             return object
         case .Failure(let decodeError):
             if !failureExpected {
+                debugPrint(json)
                 assertionFailure("\(decodeError.description) in model of type \(T.self)")
             }
             throw decodeError

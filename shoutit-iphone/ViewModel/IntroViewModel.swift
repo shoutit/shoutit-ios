@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Alamofire
 
-class IntroViewModel {
+final class IntroViewModel {
     
     private let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Void>()

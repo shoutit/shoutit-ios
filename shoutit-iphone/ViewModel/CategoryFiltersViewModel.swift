@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CategoryFiltersViewModel {
+final class CategoryFiltersViewModel {
     
     let filter: Filter
     var cellViewModels: [CategoryFiltersCellViewModel]

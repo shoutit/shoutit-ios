@@ -210,6 +210,9 @@
                                             <color key="textColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WN2-bO-IyP">
+                                            <rect key="frame" x="5" y="5" width="565" height="40"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -219,6 +222,7 @@
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="top" secondItem="Vsg-dp-01X" secondAttribute="top" constant="5" id="Ezk-f9-29J"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="centerY" secondItem="GHt-NY-HdP" secondAttribute="centerY" id="GAK-2u-ZQk"/>
                                         <constraint firstItem="ibG-bb-S7x" firstAttribute="bottom" secondItem="GHt-NY-HdP" secondAttribute="bottom" id="KDB-yC-Q3D"/>
+                                        <constraint firstItem="WN2-bO-IyP" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="leading" id="Q2q-7f-a7d"/>
                                         <constraint firstAttribute="trailing" secondItem="Gdc-UE-KK9" secondAttribute="trailing" id="SYO-5J-7fX"/>
                                         <constraint firstItem="OF4-56-wbL" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="trailing" constant="10" id="UPZ-fY-6uS"/>
                                         <constraint firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" constant="10" id="UuH-da-egg"/>
@@ -231,6 +235,9 @@
                                         <constraint firstAttribute="trailing" secondItem="tO4-jw-2Gj" secondAttribute="trailing" constant="10" id="dL7-6D-Gg2"/>
                                         <constraint firstItem="X2c-Q6-8hK" firstAttribute="baseline" secondItem="RFV-cQ-2AI" secondAttribute="baseline" id="eZN-dv-kcR"/>
                                         <constraint firstItem="X2c-Q6-8hK" firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" id="fqL-ZJ-3ev"/>
+                                        <constraint firstItem="tO4-jw-2Gj" firstAttribute="trailing" secondItem="WN2-bO-IyP" secondAttribute="trailing" id="hdq-5j-9uV"/>
+                                        <constraint firstItem="WN2-bO-IyP" firstAttribute="top" secondItem="GHt-NY-HdP" secondAttribute="top" id="nXH-Uf-2BM"/>
+                                        <constraint firstItem="WN2-bO-IyP" firstAttribute="bottom" secondItem="GHt-NY-HdP" secondAttribute="bottom" id="nmK-fY-qta"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3UM-EM-oSg" secondAttribute="trailing" constant="10" id="oeT-YW-Ckn"/>
                                         <constraint firstItem="3UM-EM-oSg" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="10" id="ovy-e8-idk"/>
                                         <constraint firstItem="OF4-56-wbL" firstAttribute="top" secondItem="GHt-NY-HdP" secondAttribute="top" id="qLw-eV-zAj"/>
@@ -257,6 +264,7 @@
                                 <outlet property="pageViewControllerContainer" destination="Gdc-UE-KK9" id="GXg-mh-oSr"/>
                                 <outlet property="priceLabel" destination="RFV-cQ-2AI" id="5p6-i3-QTB"/>
                                 <outlet property="shoutTypeLabel" destination="tO4-jw-2Gj" id="oMo-Dr-Zy2"/>
+                                <outlet property="showProfileButton" destination="WN2-bO-IyP" id="gDZ-5q-L2A"/>
                                 <outlet property="titleLabel" destination="3UM-EM-oSg" id="TUV-xe-nuI"/>
                                 <outlet property="titleLabelToBottomConstraints" destination="BjZ-xV-yyg" id="UH3-AB-7xE"/>
                             </connections>

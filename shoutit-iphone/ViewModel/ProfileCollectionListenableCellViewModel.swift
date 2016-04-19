@@ -9,11 +9,18 @@
 import UIKit
 import RxSwift
 
-class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
+final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
     
     enum Model {
         case ProfileModel(profile: Profile)
         case TagModel(tag: Tag)
+        
+        var name: String {
+            switch self {
+            case .ProfileModel(let profile): return profile.name
+            case .TagModel(let tag): return tag.name
+            }
+        }
     }
     
     let model: Model
@@ -69,25 +76,26 @@ class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewModel {
         }
     }
     
-    func toggleIsListening() -> Observable<Bool> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {
         
         return Observable.create{ (observer) -> Disposable in
             
             self.isListening = !self.isListening
-            observer.onNext(self.isListening)
+            observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
             
             let subscribeBlock: (RxSwift.Event<Void> -> Void) = {(event) in
                 switch event {
                 case .Completed:
-                    observer.onNext(self.isListening)
+                    let message = self.isListening ? UserMessages.startedListeningMessageWithName(self.model.name) : UserMessages.stoppedListeningMessageWithName(self.model.name)
+                    observer.onNext((listening: self.isListening, successMessage: message, error: nil))
+                    observer.onCompleted()
                 case .Error(let error):
                     self.isListening = !self.isListening
-                    observer.onNext(self.isListening)
+                    observer.onNext((listening: self.isListening, successMessage: nil, error: error))
                     observer.onError(error)
                 default:
                     break
                 }
-                observer.onCompleted()
             }
             
             switch self.model {

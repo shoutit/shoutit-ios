@@ -11,7 +11,7 @@ import RxSwift
 
 extension SearchShoutsResultsViewModel {
     
-    class CategoriesSection {
+    final class CategoriesSection {
         
         unowned var parent: SearchShoutsResultsViewModel
         

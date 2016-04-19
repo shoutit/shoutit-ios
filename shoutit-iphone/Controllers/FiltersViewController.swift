@@ -96,7 +96,7 @@ extension FiltersViewController: UITableViewDataSource {
         switch cellViewModel {
         case .ShoutTypeChoice:
             let shoutTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            shoutTypeCell.button.smallTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
+            shoutTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
             shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             shoutTypeCell.button
                 .rx_tap
@@ -107,9 +107,9 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
         case .SortTypeChoice(_, let loaded):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            sortTypeCell.button.smallTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
+            sortTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
             sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            sortTypeCell.button.optionsLoaded = loaded()
+            sortTypeCell.button.showActivity(!loaded())
             
             sortTypeCell.button
                 .rx_tap
@@ -122,11 +122,11 @@ extension FiltersViewController: UITableViewDataSource {
         case .CategoryChoice(let category, let enabled, let loaded):
             let categoryCell = cell as! SelectButtonFilterTableViewCell
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            categoryCell.button.hideIcon = category?.icon == nil
+            categoryCell.button.showIcon(category?.icon != nil)
             categoryCell.button.iconImageView.sh_setImageWithURL(category?.icon?.toURL(), placeholderImage: nil)
             categoryCell.button.enabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
-            categoryCell.button.optionsLoaded = loaded()
+            categoryCell.button.showActivity(!loaded())
             
             categoryCell.button
                 .rx_tap
@@ -155,10 +155,15 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.viewModel.changeMaximumPriceTo(Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
-        case .LocationChoice:
+        case .LocationChoice(let address):
             let locationCell = cell as! SelectButtonFilterTableViewCell
             locationCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            locationCell.button.hideIcon = true
+            if let location = address {
+                locationCell.button.iconImageView.image = UIImage(named: location.country)
+                locationCell.button.showIcon(true)
+            } else {
+                locationCell.button.showIcon(false)
+            }
             locationCell.button
                 .rx_tap
                 .asDriver()
@@ -180,7 +185,7 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(distanceCell.reuseDisposeBag)
         case .FilterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
-            filterCell.button.bigTitleLabel.text = filter.name
+            filterCell.button.fieldTitleLabel.text = filter.name
             filterCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             filterCell.button
                 .rx_tap
@@ -248,7 +253,9 @@ private extension FiltersViewController {
     
     func presentShoutChoiceActionSheet() {
         let shoutTypes: [ShoutType] = [.Offer, .Request]
-        let options = shoutTypes.map{$0.title()} + [NSLocalizedString("All", comment: "All shout types - filter button title")]
+        let options = [NSLocalizedString("Offers and Requests", comment: "Filter shout type"),
+                       NSLocalizedString("Only Offers", comment: "Filter shout type"),
+                       NSLocalizedString("Only Requests", comment: "Filter shout type")]
         self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: options, completion: {[weak self] (index) in
             let shoutType: ShoutType? = index == 0 ? nil : shoutTypes[index - 1]
             self?.viewModel.changeShoutTypeToType(shoutType)

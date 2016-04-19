@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailCollectionViewContainerTableViewCell: UITableViewCell {
+final class ShoutDetailCollectionViewContainerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: IndexedCollectionView!
 }

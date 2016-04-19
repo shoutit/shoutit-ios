@@ -13,7 +13,7 @@ import DZNEmptyDataSet
 
 protocol ConversationViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable {}
 
-class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
+final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: ConversationViewControllerFlowDelegate?
     
     var conversation: Conversation!
@@ -45,6 +45,20 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
+        
+        markConversationAsRead()
+    }
+    
+    func markConversationAsRead() {
+        if self.conversation.id != "" {
+            APIChatsService.markConversationAsRead(self.conversation).subscribe({ (event) in
+                switch event {
+                case .Next: debugPrint("conversation marked as read")
+                case .Error(let error): debugPrint(error)
+                default: break
+                }
+            }).addDisposableTo(disposeBag)
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -55,7 +69,7 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
     
     func layoutInsets() {
         if let _ = conversation.shout?.id {
-            tableView?.contentInset = UIEdgeInsetsMake(0, 0, 130.0, 0)
+            tableView?.contentInset = UIEdgeInsetsMake(0, 0, 64.0, 0)
         } else {
             tableView?.contentInset = UIEdgeInsetsZero
         }
@@ -204,29 +218,23 @@ class ConversationViewController: SLKTextViewController, ConversationPresenter, 
         return true
     }
     
-    override class func tableViewStyleForCoder(decoder: NSCoder!) -> UITableViewStyle {
+    override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return UITableViewStyle.Plain
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierAtIndexPath(indexPath)) as! ConversationCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierAtIndexPath(indexPath))
         
         let msg = viewModel.messageAtIndexPath(indexPath)
         let previousMsg = viewModel.previousMessageFor(msg)
         
-        if let imageCell = cell as? ConversationImageCell {
-            imageCell.bindWithMessage(msg, previousMessage: previousMsg)
-        } else if let locationCell = cell as? ConversationLocationCell {
-            locationCell.bindWithMessage(msg, previousMessage: previousMsg)
-        } else if let shoutCell = cell as? ConversationShoutCell {
-            shoutCell.bindWithMessage(msg, previousMessage: previousMsg)
-        } else if let textCell = cell as? ConversationTextCell {
-            textCell.bindWithMessage(msg, previousMessage: previousMsg)
+        if let conversationCell = cell as? ConversationCell {
+            conversationCell.bindWithMessage(msg, previousMessage: previousMsg)
         }
         
-        cell.transform = tableView.transform
+        cell!.transform = tableView.transform
         
-        return cell
+        return cell!
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

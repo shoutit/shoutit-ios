@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class PagesCollectionViewCell: UICollectionViewCell {
+final class PagesCollectionViewCell: UICollectionViewCell {
     
     var reuseDisposeBag: DisposeBag = DisposeBag()
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoutDetailTableHeaderView: UIView {
+final class ShoutDetailTableHeaderView: UIView {
     
     @IBOutlet weak var internalContainerView: UIView!
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -20,6 +20,7 @@ class ShoutDetailTableHeaderView: UIView {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var availabilityLabel: UILabel!
     @IBOutlet weak var addToCartButton: CustomUIButton!
+    @IBOutlet weak var showProfileButton: UIButton!
     
     // constraints
     @IBOutlet weak var titleLabelToBottomConstraints: NSLayoutConstraint!
