@@ -206,9 +206,8 @@ final class Account {
         observable.subscribe{ (event) in
             switch event {
             case .Next(let profile):
-                print("============")
                 print(profile.stats)
-                print("============")
+                UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
                 self.loggedUser = profile
             case .Error(let error): debugPrint(error)
             default: break
