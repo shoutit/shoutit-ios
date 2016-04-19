@@ -13,7 +13,7 @@ import DZNEmptyDataSet
 
 protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, NotificationsDisplayable {}
 
-class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"

@@ -12,7 +12,7 @@ import Material
 import Validator
 import MBProgressHUD
 
-class SettingsFormViewController: UITableViewController {
+final class SettingsFormViewController: UITableViewController {
     
     var viewModel: SettingsFormViewModel!
     

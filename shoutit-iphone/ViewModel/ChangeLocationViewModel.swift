@@ -11,7 +11,7 @@ import RxSwift
 import CoreLocation
 import GooglePlaces
 
-class ChangeLocationViewModel: AnyObject {
+final class ChangeLocationViewModel: AnyObject {
     var searchTextObservable = PublishSubject<String>()
     let geocoder = PlacesGeocoder()
     var finalObservable : Observable<[GooglePlaces.PlaceAutocompleteResponse.Prediction]>?

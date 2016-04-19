@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-class APIChatsService {
+final class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
     private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"

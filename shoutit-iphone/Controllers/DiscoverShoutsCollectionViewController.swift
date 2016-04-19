@@ -9,5 +9,5 @@
 import UIKit
 import RxSwift
 
-class DiscoverShoutsCollectionViewController: HomeShoutsCollectionViewController {
+final class DiscoverShoutsCollectionViewController: HomeShoutsCollectionViewController {
 }

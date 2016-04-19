@@ -26,7 +26,7 @@ enum ShoutsLayout {
     }
 }
 
-class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
+final class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     let collectionLayoutDisplayable : ShoutCollectionLayoutDisplayable!
     

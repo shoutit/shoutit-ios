@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SliderFilterTableViewCell: UITableViewCell {
+final class SliderFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

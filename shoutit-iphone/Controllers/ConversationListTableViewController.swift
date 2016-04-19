@@ -14,7 +14,7 @@ import Pusher
 
 protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable {}
 
-class ConversationListTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+final class ConversationListTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     private var conversations : [Conversation] = []
     

@@ -19,81 +19,81 @@ PODS:
   - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Alamofire (3.3.0)
-  - AmazonS3RequestManager (0.10.1):
+  - Alamofire (3.3.1)
+  - AmazonS3RequestManager (0.12.0):
     - Alamofire (~> 3.0)
     - SWXMLHash (~> 2.0)
-  - Argo (2.2.0)
-  - AWSCognito (2.3.4):
-    - AWSCore (= 2.3.4)
-  - AWSCore (2.3.4)
-  - AWSS3 (2.3.4):
-    - AWSCore (= 2.3.4)
-  - Bolts (1.6.0):
-    - Bolts/AppLinks (= 1.6.0)
-    - Bolts/Tasks (= 1.6.0)
-  - Bolts/AppLinks (1.6.0):
+  - Argo (2.3.0)
+  - AWSCognito (2.3.6):
+    - AWSCore (= 2.3.6)
+  - AWSCore (2.3.6)
+  - AWSS3 (2.3.6):
+    - AWSCore (= 2.3.6)
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.6.0)
-  - Crashlytics (3.6.0):
+  - Bolts/Tasks (1.7.0)
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Curry (1.4.0)
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
   - DZNEmptyDataSet (1.7.3)
-  - Fabric (1.6.5)
-  - FBSDKCoreKit (4.10.0):
-    - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.0):
+  - Fabric (1.6.7)
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.11.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.10.0):
+  - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
   - FTGooglePlacesAPI (1.1):
     - AFNetworking (~> 2.2.0)
-  - GoogleMaps (1.11.1)
+  - GoogleMaps (1.13.0)
   - GooglePlaces (1.0.4):
     - Alamofire (~> 3.0)
     - ObjectMapper (~> 1.0)
-  - KeychainAccess (2.3.3)
-  - Kingfisher (2.2.0)
+  - KeychainAccess (2.3.5)
+  - Kingfisher (2.2.2)
   - libPusher (1.6.1):
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
-  - Material (1.31.1)
+  - Material (1.39.10)
   - MBMapSnapshotter (1.0):
     - AFNetworking (~> 2.0)
   - MBProgressHUD (0.9.2)
-  - Mixpanel (2.9.3):
-    - Mixpanel/Mixpanel (= 2.9.3)
-  - Mixpanel/Mixpanel (2.9.3)
+  - Mixpanel (2.9.6):
+    - Mixpanel/Mixpanel (= 2.9.6)
+  - Mixpanel/Mixpanel (2.9.6)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - Nemo (1.0)
   - ObjectMapper (1.2.0)
-  - Ogra (2.1.0):
-    - Argo
+  - Ogra (2.2.0):
+    - Argo (~> 2.2)
   - ReachabilitySwift (2.3.3)
-  - ResponsiveLabel (1.0.10)
+  - ResponsiveLabel (1.0.11)
   - RxCocoa (2.3.1):
     - RxSwift (~> 2.3.1)
   - RxSwift (2.3.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - SlackTextViewController (1.9.1)
+  - SlackTextViewController (1.9.2)
   - SocketRocket (0.4.1)
-  - SVProgressHUD (1.1.3)
+  - SVProgressHUD (2.0.3)
   - SVPullToRefresh (0.4.1)
-  - SWXMLHash (2.1.0)
+  - SWXMLHash (2.3.1)
   - Timberjack (0.0.2)
-  - TwilioCommon (0.2.0)
+  - TwilioCommon (0.2.1)
   - TwilioConversationsClient (0.22.0):
     - TwilioCommon (~> 0.2.0)
   - UIViewAppearanceSwift (0.0.1)
-  - Validator (1.1)
+  - Validator (1.1.1)
 
 DEPENDENCIES:
   - ACPDownload (~> 1.1.0)
@@ -103,7 +103,7 @@ DEPENDENCIES:
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
-  - Curry
+  - Curry (< 2.0)
   - DAProgressOverlayView (~> 1.0)
   - DZNEmptyDataSet
   - Fabric (~> 1.6)
@@ -122,7 +122,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (from `MWPhotoBrowser/`)
   - Nemo
-  - Ogra (~> 2.1)
+  - Ogra
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
   - RxCocoa (~> 2.3.1)
@@ -157,50 +157,50 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
-  AmazonS3RequestManager: 49d58c31cbe9a2972972b7ec632343a09d78fab1
-  Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
-  AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
-  AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
-  AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AmazonS3RequestManager: a88f4596165b46961a6bf904f357ba2aab4931b6
+  Argo: 3dbecf4204b1a3cdd1df88ebd5e23d01b652d34b
+  AWSCognito: af54fe65171c7c994c134e5d29b1ee60ee234825
+  AWSCore: 917d84b32974136194a905b98c0ae25c9f3350b8
+  AWSS3: 1caaf6b45100503fecf3d418c394519a89409a74
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
-  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
-  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
-  FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   FTGooglePlacesAPI: 72eaa924ed03039b0323d617305103b504c5cd4f
-  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
+  GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
   GooglePlaces: 847b5a8db11f13615fd2b166873dcd423b99a273
-  KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
-  Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
+  KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
+  Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
-  Material: 482520d78d73fa935fd57d2a62a095655e0bb7f0
+  Material: ad48594da116b7004751dc042e44cc7a8c52ad0a
   MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
+  Mixpanel: 048a9f2512ac1bb8bfdecf719da024873f50a9c2
   MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
   Nemo: 4324020cf961765e3f30ae3d77d7bcfe527871cf
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
-  Ogra: 273d7d3aade2d6662d03971b0314af5ba4ce273b
+  Ogra: 8b90fd2b836203361638a65322554400aed89a28
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  ResponsiveLabel: ea3686fda5fe6b99ec5c896d86a64727bd946f0f
+  ResponsiveLabel: 9e31c425ed082481faf2360689243bb0ec8f8b22
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
+  SlackTextViewController: bac3350ccc639bc446bb14cbd09da238f5e01f32
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  SWXMLHash: 7257a358b3ab2f7a209e0b4e4cf552e8b6df5f0f
+  SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
   Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42
-  TwilioCommon: c40c4bdc99865473852395f917adf25e222ec16e
+  TwilioCommon: a2dbaf7c080c9fa8f69f9a0605be965501c87334
   TwilioConversationsClient: afc786707d587d121b36e5b97e1f0bf284b0c76f
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
-  Validator: 30b7e50f1f82b0e5b2dd14f54fc2f2533e70e5d6
+  Validator: e17f25fe03c32590be0a9d7d46a779c9ec5dd3b3
 
 COCOAPODS: 0.39.0

@@ -18,7 +18,7 @@ enum VideoCallViewControllerState {
     case CallFailed
 }
 
-class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConversationDelegate, TWCCameraCapturerDelegate, TWCVideoTrackDelegate, TWCLocalMediaDelegate, TWCVideoViewRendererDelegate {
+final class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConversationDelegate, TWCCameraCapturerDelegate, TWCVideoTrackDelegate, TWCLocalMediaDelegate, TWCVideoViewRendererDelegate {
 
     @IBOutlet weak var videoPreView: UIView!
     @IBOutlet weak var myVideoPreView: UIView!

@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class EditShoutParentViewController: CreateShoutParentViewController {
+final class EditShoutParentViewController: CreateShoutParentViewController {
 
     var shout : Shout!
     var editController : EditShoutTableViewController!

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class VerifyEmailViewModel {
+final class VerifyEmailViewModel {
     
     private(set) var profile: DetailedProfile
     

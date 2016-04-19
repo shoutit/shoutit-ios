@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import FTGooglePlacesAPI
 
-class CreateShoutViewModel: NSObject {
+final class CreateShoutViewModel: NSObject {
     
     private let disposeBag = DisposeBag()
     
@@ -211,7 +211,7 @@ extension CreateShoutViewModel {
     }
     
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
-        cell?.selectButton.optionsLoaded = self.categories.value.count > 0
+        cell?.selectButton.showActivity(self.categories.value.count <= 0)
         
         cell?.selectButton.setImage(nil, forState: .Normal)
         
@@ -219,15 +219,13 @@ extension CreateShoutViewModel {
             
             cell?.selectButton.setTitle(category.name, forState: .Normal)
             if let imagePath = category.icon, imageURL = NSURL(string: imagePath) {
-                cell?.selectButton.hideIcon = false
+                cell?.selectButton.showIcon(true)
                 cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL)
             }
-            cell?.selectButton.promptText = NSLocalizedString("Category", comment: "")
         } else {
-            cell?.selectButton.hideIcon = true
+            cell?.selectButton.showIcon(false)
             cell?.selectButton.iconImageView.image = nil
             cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
-            cell?.selectButton.promptText = nil
         }
     }
     
@@ -239,14 +237,13 @@ extension CreateShoutViewModel {
     
     func fillLocationCell(cell: CreateShoutSelectCell?) {
         
-        cell?.selectButton.hideIcon = true
-        
         if let location = shoutParams.location.value {
+            cell?.selectButton.showIcon(true)
+            cell?.selectButton.iconImageView.image = UIImage(named: location.country)
             cell?.selectButton.setTitle(location.address, forState: .Normal)
-            cell?.selectButton.promptText = NSLocalizedString("Location", comment: "")
         } else {
+            cell?.selectButton.showIcon(false)
             cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
-            cell?.selectButton.promptText = nil
         }
     }
 }

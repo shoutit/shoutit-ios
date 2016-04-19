@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCollectionSectionHeaderSupplementaryView: UICollectionReusableView {
+final class ProfileCollectionSectionHeaderSupplementaryView: UICollectionReusableView {
     
     @IBOutlet weak var titleLabel: UILabel!
 }

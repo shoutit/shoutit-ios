@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuViewModel: AnyObject {
+final class MenuViewModel: AnyObject {
     enum MenuSection : Int {
         case Main = 0
         case Help = 1

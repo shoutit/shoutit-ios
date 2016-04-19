@@ -65,7 +65,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             
             if Account.sharedInstance.loggedUser != nil {
                 // fetch token with small delay to avoid disposing client
-                self?.performSelector("retriveToken", withObject: nil, afterDelay: 2.0)
+                self?.performSelector(#selector(Twilio.retriveToken), withObject: nil, afterDelay: 2.0)
             }
             
         }.addDisposableTo(userChangeBag)

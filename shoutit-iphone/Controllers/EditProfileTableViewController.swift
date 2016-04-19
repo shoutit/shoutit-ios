@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-class EditProfileTableViewController: UITableViewController {
+final class EditProfileTableViewController: UITableViewController {
     
     enum UploadType {
         case Cover
@@ -126,10 +126,13 @@ extension EditProfileTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
         
         switch cellViewModel {
-        case .BasicText(let value, let placeholder, _):
+        case .BasicText(let value, let placeholder, let identity):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             cell.textField.text = value
+            if case .Mobile = identity {
+                cell.textField.keyboardType = .PhonePad
+            }
             cell.textField
                 .rx_text
                 .asDriver()
@@ -141,17 +144,19 @@ extension EditProfileTableViewController {
             let cell = cell as! EditProfileTextViewTableViewCell
             cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
+            cell.textView.delegate = self
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
-                    textView?.detailLabel?.text = "\(text.utf16.count)/50"
+                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
-            cell.selectButton.smallTitleLabel.text = placeholder
+            cell.selectButton.fieldTitleLabel.text = placeholder
+            cell.selectButton.iconImageView.image = UIImage(named: value.country)
             cell.selectButton.setTitle(value.address, forState: .Normal)
             cell.selectButton
                 .rx_tap
@@ -175,7 +180,6 @@ extension EditProfileTableViewController {
                 .addDisposableTo(cell.disposeBag)
         }
         
-        
         return cell
     }
 }
@@ -187,7 +191,7 @@ extension EditProfileTableViewController {
         let cellViewModel = viewModel.cells[indexPath.row]
         switch cellViewModel {
         case .BasicText: return 70
-        case .RichText: return 130
+        case .RichText: return 150
         case .Location: return 70
         }
     }
@@ -220,5 +224,12 @@ extension EditProfileTableViewController: MediaPickerControllerDelegate {
             .addDisposableTo(disposeBag)
         
         self.uploadType = nil
+    }
+}
+
+extension EditProfileTableViewController: UITextViewDelegate {
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.utf16.count < viewModel.charactersLimit || text.utf16.count == 0
     }
 }

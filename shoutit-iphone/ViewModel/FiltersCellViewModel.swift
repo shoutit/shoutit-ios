@@ -10,20 +10,6 @@ import Foundation
 
 enum FiltersCellViewModel {
     
-    enum ShoutTypeFilterOption {
-        case All
-        case Specific(shoutType: ShoutType)
-        
-        var title: String {
-            switch self {
-            case .All:
-                return NSLocalizedString("All", comment: "All shout types - filter button title")
-            case .Specific(let shoutType):
-                return shoutType.title()
-            }
-        }
-    }
-    
     enum DistanceRestrictionFilterOption {
         case Distance(kilometers: Int)
         case EntireCountry
@@ -38,9 +24,9 @@ enum FiltersCellViewModel {
         }
     }
     
-    case ShoutTypeChoice(shoutType: ShoutTypeFilterOption)
-    case SortTypeChoice(sortType: SortType?)
-    case CategoryChoice(category: Category?, enabled: Bool)
+    case ShoutTypeChoice(shoutType: ShoutType?)
+    case SortTypeChoice(sortType: SortType?, loaded: (Void -> Bool))
+    case CategoryChoice(category: Category?, enabled: Bool, loaded: (Void -> Bool))
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
     case DistanceRestriction(distanceOption: DistanceRestrictionFilterOption)
@@ -49,10 +35,16 @@ enum FiltersCellViewModel {
     func buttonTitle() -> String? {
         switch self {
         case .ShoutTypeChoice(let shoutType):
-            return shoutType.title
-        case .SortTypeChoice(let sortType):
+            if let type = shoutType {
+                switch type {
+                case .Offer: return NSLocalizedString("Only Offers", comment: "Filter shout type")
+                case .Request: return NSLocalizedString("Only Requests", comment: "Filter shout type")
+                }
+            }
+            return NSLocalizedString("Offers and Requests", comment: "Filter shout type")
+        case .SortTypeChoice(let sortType, _):
             return sortType?.name
-        case .CategoryChoice(let category, _):
+        case .CategoryChoice(let category, _, _):
             if let category = category {
                 return category.name
             }

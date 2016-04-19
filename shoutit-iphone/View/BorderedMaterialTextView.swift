@@ -343,9 +343,9 @@ public class BorderedMaterialTextView: UITextView {
      Text container UIEdgeInset preset property. This updates the
      textContainerInset property with a preset value.
      */
-    public var textContainerInsetPreset: MaterialEdgeInsetPreset = .None {
+    public var textContainerInsetPreset: MaterialEdgeInset = .None {
         didSet {
-            textContainerInset = MaterialEdgeInsetPresetToValue(textContainerInsetPreset)
+            textContainerInset = MaterialEdgeInsetToValue(textContainerInsetPreset)
         }
     }
     
@@ -548,7 +548,7 @@ public class BorderedMaterialTextView: UITextView {
      when subclassing.
      */
     private func prepareView() {
-        textContainerInset = MaterialEdgeInsetPresetToValue(.None)
+        textContainerInset = MaterialEdgeInsetToValue(.None)
         backgroundColor = MaterialColor.white
         masksToBounds = false
         removeNotificationHandlers()

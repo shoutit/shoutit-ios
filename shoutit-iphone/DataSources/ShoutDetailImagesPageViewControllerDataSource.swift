@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import RxSwift
 
-class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     unowned let controller: ShoutDetailTableViewController
     
@@ -25,12 +25,12 @@ class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewControl
         super.init()
     }
     
-    func viewControllers() -> [PhotoBrowserPhotoViewController] {
-        if let first = viewModel.imagesViewModels.first {
-            let controller = viewControllerWithViewModel(first)
-            return [controller]
+    func firstViewController() -> PhotoBrowserPhotoViewController? {
+        guard let first = viewModel.imagesViewModels.first else {
+            return nil
         }
-        return []
+        let controller = viewControllerWithViewModel(first)
+        return controller
     }
     
     // MARK: - UIPageViewControllerDataSource

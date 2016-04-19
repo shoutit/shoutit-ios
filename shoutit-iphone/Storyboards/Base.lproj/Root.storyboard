@@ -266,10 +266,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tabChat" width="30" height="30"/>
-        <image name="tabDiscover" width="31" height="30"/>
-        <image name="tabHome" width="30" height="30"/>
-        <image name="tabProfile" width="30" height="30"/>
-        <image name="tabShout" width="30" height="30"/>
+        <image name="tabChat" width="29" height="28"/>
+        <image name="tabDiscover" width="28" height="28"/>
+        <image name="tabHome" width="28" height="27"/>
+        <image name="tabProfile" width="26" height="27"/>
+        <image name="tabShout" width="26" height="26"/>
     </resources>
 </document>

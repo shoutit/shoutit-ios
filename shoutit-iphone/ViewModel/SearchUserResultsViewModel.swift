@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class SearchUserResultsViewModel {
+final class SearchUserResultsViewModel {
     
     let searchPhrase: String
     

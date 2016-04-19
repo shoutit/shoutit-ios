@@ -50,6 +50,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     }
     
     // RX
+    private var headerDisposeBag = DisposeBag()
     let disposeBag = DisposeBag()
     
     // navigation
@@ -126,11 +127,23 @@ final class ShoutDetailTableViewController: UITableViewController {
         headerView.titleLabel.text = viewModel.shout.title
         headerView.priceLabel.text = viewModel.priceString()
         headerView.availabilityLabel.text = ""
+        
+        headerDisposeBag = DisposeBag()
+        headerView.showProfileButton
+            .rx_tap
+            .asDriver()
+            .driveNext{[unowned self] in
+                self.flowDelegate?.showProfile(self.viewModel.shout.user)
+            }
+            .addDisposableTo(headerDisposeBag)
+        
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
         headerView.setConstraintForPriceLabelVisible(visible)
         
-        photosPageViewController.setViewControllers(self.imagesDataSource.viewControllers(), direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
+        if let firstImageController = self.imagesDataSource.firstViewController() {
+            photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
+        }
         
         // size
         let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)

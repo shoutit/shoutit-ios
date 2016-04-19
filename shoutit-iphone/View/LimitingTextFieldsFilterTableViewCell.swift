@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class LimitingTextFieldsFilterTableViewCell: UITableViewCell {
+final class LimitingTextFieldsFilterTableViewCell: UITableViewCell {
     
     var reuseDisposeBag = DisposeBag()
     

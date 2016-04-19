@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-class APINotificationsService {
+final class APINotificationsService {
     
     private static let notificationsURL = APIManager.baseURL + "/notifications"
     private static let resetNotificationsURL = APIManager.baseURL + "/notifications/reset"

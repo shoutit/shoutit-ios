@@ -17,6 +17,7 @@ enum EditProfileCellViewModel {
         case Username
         case Bio
         case Website
+        case Mobile
         case Location
     }
     
@@ -71,5 +72,9 @@ enum EditProfileCellViewModel {
     
     init(location: Address) {
         self = .Location(value: location, placeholder: NSLocalizedString("Location", comment: "Edit profile placeholder text"), identity: .Location)
+    }
+    
+    init(mobile: String) {
+        self = .BasicText(value: mobile, placeholder: NSLocalizedString("Mobile", comment: "Edit profile placeholder text"), identity: .Mobile)
     }
 }

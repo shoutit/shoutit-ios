@@ -2,7 +2,7 @@
 //  Report.swift
 //  shoutit-iphone
 //
-//  Created by Piotr Bernad on 06/04/16.
+//  Created by Łukasz Kasperek on 13.04.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -28,4 +28,3 @@ extension Report: Encodable {
         return JSON.Object(json)
     }
 }
-

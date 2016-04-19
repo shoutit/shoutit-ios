@@ -18,7 +18,7 @@ protocol IntroViewControllerFlowDelegate: class, HelpDisplayable, LoginFinishabl
 final class IntroViewController: UIViewController {
     
     // consts
-    let numberOfPagesInScrollView: CGFloat = 3
+    let numberOfPagesInScrollView: CGFloat = 5
     
     // subviews
     @IBOutlet weak var loginButton: CustomUIButton!
@@ -44,6 +44,10 @@ final class IntroViewController: UIViewController {
         //
         setupRX()
         scrollView.delegate = self
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     // MARK: - Setup

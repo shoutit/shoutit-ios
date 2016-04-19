@@ -9,12 +9,28 @@
 import UIKit
 import MapKit
 
-class ConversationLocationCell: ConversationCell {
+final class ConversationLocationCell: UITableViewCell, ConversationCell {
     
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var locationSnapshot: UIImageView!
     @IBOutlet weak var showLabel: UILabel?
     
-    override func bindWithMessage(message: Message, previousMessage: Message?) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .None
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.activityIndicator?.hidden = false
+        self.showLabel?.hidden = true
+        unHideImageView()
+    }
+    
+    func bindWithMessage(message: Message, previousMessage: Message?) {
         if let imgview = avatarImageView {
             setImageWith(imgview, message: message)
         }
@@ -36,15 +52,6 @@ class ConversationLocationCell: ConversationCell {
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         
         setMapSnapshotWithCoordinate(coordinates)
-    }
-    
-    
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.activityIndicator?.hidden = false
-        self.showLabel?.hidden = true
-        unHideImageView()
     }
     
     func setMapSnapshotWithCoordinate(coordinates: CLLocationCoordinate2D) {

@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class Annotation: NSObject, MKAnnotation {
+final class Annotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     
     init(coordinate: CLLocationCoordinate2D) {
@@ -17,7 +17,7 @@ class Annotation: NSObject, MKAnnotation {
     }
 }
 
-class ConversationLocationController: UIViewController, MKMapViewDelegate {
+final class ConversationLocationController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
     var coordinates: CLLocationCoordinate2D!

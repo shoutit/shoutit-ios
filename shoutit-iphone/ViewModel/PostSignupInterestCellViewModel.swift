@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PostSignupInterestCellViewModel {
+final class PostSignupInterestCellViewModel {
     
     let category: Category
     var selected: Bool = false

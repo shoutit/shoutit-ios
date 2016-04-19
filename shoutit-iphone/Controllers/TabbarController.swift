@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TabbarController: UIViewController, Navigation {
+final class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]?
     

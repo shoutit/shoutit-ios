@@ -11,7 +11,7 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
-class PostSignupInterestsViewModel {
+final class PostSignupInterestsViewModel {
     
     private let disposeBag = DisposeBag()
     let state: Variable<LoadingState> = Variable(.Idle)

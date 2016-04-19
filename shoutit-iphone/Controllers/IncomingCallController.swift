@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class IncomingCallController: UIViewController {
+final class IncomingCallController: UIViewController {
 
     var invitation : TWCIncomingInvite! {
         didSet {
@@ -30,7 +30,6 @@ class IncomingCallController: UIViewController {
                 discardHandler(invitation: self.invitation)
             }
         }
-        
     }
     
     @IBAction func answerAction(sender: AnyObject) {

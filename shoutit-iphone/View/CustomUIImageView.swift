@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUIImageView: UIImageView {
+final class CustomUIImageView: UIImageView {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {

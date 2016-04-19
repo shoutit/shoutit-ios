@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShadowView: UIView {
+final class ShadowView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()

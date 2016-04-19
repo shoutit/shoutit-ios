@@ -15,7 +15,7 @@ enum LoadMoreState {
     case NoMore
 }
 
-class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
+final class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
 
     @IBOutlet weak var loadMoreButton: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!

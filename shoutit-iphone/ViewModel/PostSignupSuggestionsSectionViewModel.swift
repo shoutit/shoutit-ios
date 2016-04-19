@@ -22,7 +22,7 @@ enum PostSignupSuggestionsSection {
     }
 }
 
-class PostSignupSuggestionsSectionViewModel {
+final class PostSignupSuggestionsSectionViewModel {
     
     let section: PostSignupSuggestionsSection
     private(set) var cells: [PostSignupSuggestionsCellViewModel]

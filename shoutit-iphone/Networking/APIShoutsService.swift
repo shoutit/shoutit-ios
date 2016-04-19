@@ -12,7 +12,7 @@ import Argo
 import RxSwift
 import RxCocoa
 
-class APIShoutsService {
+final class APIShoutsService {
     
     private static let shoutsURL = APIManager.baseURL + "/shouts"
     

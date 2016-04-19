@@ -8,7 +8,17 @@
 
 import UIKit
 
-class DiscoverHeaderView: UICollectionReusableView {
+final class DiscoverHeaderView: UICollectionReusableView {
     @IBOutlet var titleLabel : UILabel!
     @IBOutlet var backgroundImageView : UIImageView!
+    
+    func setText(text: String) {
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        shadow.shadowOffset = CGSize(width: 2, height: 2)
+        shadow.shadowBlurRadius = 2
+        titleLabel.attributedText = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSShadowAttributeName : shadow
+            ])
+    }
 }

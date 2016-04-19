@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertBarView: UIView {
+final class AlertBarView: UIView {
     
     enum Type {
         case Success

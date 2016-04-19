@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class SettingsTableViewController: UITableViewController {
+final class SettingsTableViewController: UITableViewController {
     
     // consts
     private let cellReuseID = "SettingsTableViewCell"

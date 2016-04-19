@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class PostSignupSuggestionViewModel {
+final class PostSignupSuggestionViewModel {
     
     private let disposeBag = DisposeBag()
     let state: Variable<LoadingState> = Variable(.Idle)

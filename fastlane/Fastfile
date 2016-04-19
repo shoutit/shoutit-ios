@@ -16,7 +16,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.59.0"
+fastlane_version "1.80.0"
 
 default_platform :ios
 
@@ -99,7 +99,7 @@ platform :ios do
     build_no = build_no.to_s.delete!("\n")
         
     #build app
-    gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, configuration: "Distribution_Staging", use_legacy_build_api: true
+    gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, use_legacy_build_api: true
   
     #upload to crashlytics
     crashlytics({groups: 'internal-tests, internal-testers'})

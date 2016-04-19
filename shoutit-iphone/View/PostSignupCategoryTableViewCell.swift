@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostSignupCategoryTableViewCell: UITableViewCell {
+final class PostSignupCategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

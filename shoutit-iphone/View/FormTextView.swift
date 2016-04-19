@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormTextView: BorderedMaterialTextView {
+final class FormTextView: BorderedMaterialTextView {
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryFiltersTableViewCell: UITableViewCell {
+final class CategoryFiltersTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var checkboxImageView: UIImageView!
     @IBOutlet weak var separatorHeightConstraint: NSLayoutConstraint!

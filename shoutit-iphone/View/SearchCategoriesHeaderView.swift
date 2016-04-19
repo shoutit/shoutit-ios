@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchCategoriesHeaderView: UIView {
+final class SearchCategoriesHeaderView: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
 }

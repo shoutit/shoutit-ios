@@ -31,7 +31,7 @@ enum MediaUploaderBucket {
     }
 }
 
-class MediaUploader: AnyObject {
+final class MediaUploader: AnyObject {
     
     private let amazonAccessKey = "AKIAJW62O3PBJT3W3HJA"
     private let amazonSecretKey = "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"

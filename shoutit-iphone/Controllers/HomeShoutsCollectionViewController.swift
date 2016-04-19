@@ -32,7 +32,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDisplayable()
         setupDataSource()
 
-        refreshControl.addTarget(self, action: "reloadData", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeShoutsCollectionViewController.reloadData), forControlEvents: .ValueChanged)
         self.collectionView?.addSubview(refreshControl)
     }
     

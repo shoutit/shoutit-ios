@@ -54,7 +54,8 @@ final class FiltersViewController: UIViewController {
         doneButton
             .rx_tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .driveNext{[weak self] in
+                guard let `self` = self else { return }
                 let state = self.viewModel.composeFiltersState()
                 self.completionBlock?(state)
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -95,92 +96,43 @@ extension FiltersViewController: UITableViewDataSource {
         switch cellViewModel {
         case .ShoutTypeChoice:
             let shoutTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            shoutTypeCell.button.smallTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
+            shoutTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
             shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             shoutTypeCell.button
                 .rx_tap
                 .asDriver()
-                .driveNext{[unowned self] in
-                    let options = self.viewModel.shoutTypeOptions
-                    let titles = options.map{$0.title}
-                    self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: titles, completion: { (index) in
-                        self.viewModel.cellViewModels[indexPath.row] = .ShoutTypeChoice(shoutType: options[index])
-                        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    })
+                .driveNext{[weak self] in
+                    self?.presentShoutChoiceActionSheet()
                 }
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
-        case .SortTypeChoice(let sortType):
+        case .SortTypeChoice(_, let loaded):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
-            sortTypeCell.button.smallTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
+            sortTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
             sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            viewModel.sortTypes
-                .asDriver()
-                .driveNext{ (sortTypesDownloadState) in
-                    switch sortTypesDownloadState {
-                    case .Loading:
-                        sortTypeCell.button.optionsLoaded = false
-                    case .CantLoadContent:
-                        sortTypeCell.button.optionsLoaded = true
-                        sortTypeCell.button.setTitle(NSLocalizedString("Filter unavailable", comment: ""), forState: .Normal)
-                    case .Loaded(let values):
-                        sortTypeCell.button.optionsLoaded = true
-                        if sortType == nil && values.first != nil {
-                            self.viewModel.handleSortDidLoad()
-                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        }
-                    }
-                }
-                .addDisposableTo(sortTypeCell.reuseDisposeBag)
+            sortTypeCell.button.showActivity(!loaded())
             
             sortTypeCell.button
                 .rx_tap
                 .asDriver()
-                .driveNext{[unowned self] () in
-                    guard case .Loaded(let sortTypes) = self.viewModel.sortTypes.value else { return }
-                    let names = sortTypes.map{$0.name}
-                    self.presentActionSheetWithTitle(NSLocalizedString("Please select sort type", comment: ""), options: names, completion: { (index) in
-                        self.viewModel.cellViewModels[indexPath.row] = .SortTypeChoice(sortType: sortTypes[index])
-                        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    })
+                .driveNext{[weak self] () in
+                    self?.presentSortTypeChoiceActionSheet()
                 }
                 .addDisposableTo(sortTypeCell.reuseDisposeBag)
             
-        case .CategoryChoice(let category, let enabled):
+        case .CategoryChoice(let category, let enabled, let loaded):
             let categoryCell = cell as! SelectButtonFilterTableViewCell
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            categoryCell.button.hideIcon = category?.icon == nil
+            categoryCell.button.showIcon(category?.icon != nil)
             categoryCell.button.iconImageView.sh_setImageWithURL(category?.icon?.toURL(), placeholderImage: nil)
             categoryCell.button.enabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
-            viewModel.categories
-                .asDriver()
-                .driveNext{ (categoriesDownloadState) in
-                    switch categoriesDownloadState {
-                    case .Loading:
-                        categoryCell.button.optionsLoaded = false
-                    case .CantLoadContent:
-                        categoryCell.button.optionsLoaded = true
-                        categoryCell.button.setTitle(NSLocalizedString("Filter unavailable", comment: ""), forState: .Normal)
-                    case .Loaded:
-                        categoryCell.button.optionsLoaded = true
-                        categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-                    }
-                }
-                .addDisposableTo(categoryCell.reuseDisposeBag)
+            categoryCell.button.showActivity(!loaded())
             
             categoryCell.button
                 .rx_tap
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[unowned self] () in
-                    guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
-                    let categoryNames = categories.map{$0.name}
-                    let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
-                    self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) { (index) in
-                        let category: Category? = index == 0 ? nil : categories[index - 1]
-                        self.viewModel.cellViewModels[indexPath.row] = .CategoryChoice(category: category, enabled: true)
-                        self.viewModel.extendViewModelsWithFilters(category?.filters ?? [])
-                        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    }
+                .subscribeNext{[weak self] () in
+                    self?.presentCategoryChoiceActionSheet()
                 }
                 .addDisposableTo(categoryCell.reuseDisposeBag)
         case .PriceRestriction(let from, let to):
@@ -191,39 +143,32 @@ extension FiltersViewController: UITableViewDataSource {
                 .rx_text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[unowned self] (value) in
-                    guard case .PriceRestriction(_, let to) = self.viewModel.cellViewModels[indexPath.row] else { return }
-                    self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: Int(value), to: to)
+                .subscribeNext{[weak self] (value) in
+                    self?.viewModel.changeMinimumPriceTo(Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
             priceCell.maximumValueTextField
                 .rx_text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[unowned self] (value) in
-                    guard case .PriceRestriction(let from, _) = self.viewModel.cellViewModels[indexPath.row] else { return }
-                    self.viewModel.cellViewModels[indexPath.row] = .PriceRestriction(from: from, to: Int(value))
+                .subscribeNext{[weak self] (value) in
+                    self?.viewModel.changeMaximumPriceTo(Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
-        case .LocationChoice:
+        case .LocationChoice(let address):
             let locationCell = cell as! SelectButtonFilterTableViewCell
             locationCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
-            locationCell.button.hideIcon = true
+            if let location = address {
+                locationCell.button.iconImageView.image = UIImage(named: location.country)
+                locationCell.button.showIcon(true)
+            } else {
+                locationCell.button.showIcon(false)
+            }
             locationCell.button
                 .rx_tap
                 .asDriver()
-                .driveNext{[unowned self] () in
-                    
-                    let controller = Wireframe.filtersChangeLocationViewController()
-                    
-                    controller.finishedBlock = {(success, place) -> Void in
-                        if let place = place {
-                            self.viewModel.cellViewModels[indexPath.row] = .LocationChoice(location: place)
-                            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        }
-                    }
-                    
-                    self.navigationController?.showViewController(controller, sender: nil)
+                .driveNext{[weak self] () in
+                    self?.presentLocationChoiceController()
                 }
                 .addDisposableTo(locationCell.reuseDisposeBag)
         case .DistanceRestriction(let distanceOption):
@@ -240,19 +185,13 @@ extension FiltersViewController: UITableViewDataSource {
                 .addDisposableTo(distanceCell.reuseDisposeBag)
         case .FilterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
-            filterCell.button.bigTitleLabel.text = filter.name
+            filterCell.button.fieldTitleLabel.text = filter.name
             filterCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             filterCell.button
                 .rx_tap
                 .asDriver()
                 .driveNext{[unowned self] in
-                    let controller = Wireframe.categoryFiltersChoiceViewController()
-                    controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
-                    controller.completionBlock = {(selectedFilterValues) in
-                        self.viewModel.cellViewModels[indexPath.row] = .FilterValueChoice(filter: filter, selectedValues: selectedFilterValues)
-                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    }
-                    self.navigationController?.showViewController(controller, sender: nil)
+                    self.presentFilterChoiceScreenWithFilter(filter, selectedValues: selectedValues)
                 }
                 .addDisposableTo(filterCell.reuseDisposeBag)
         }
@@ -276,7 +215,63 @@ extension FiltersViewController: UITableViewDelegate {
     }
 }
 
-// MARK - Helpers
+// MARK: - Filters LocationChoice
+
+private extension FiltersViewController {
+    
+    func presentLocationChoiceController() {
+        
+        let controller = Wireframe.filtersChangeLocationViewController()
+        controller.finishedBlock = {[weak self](success, place) -> Void in
+            if let place = place {
+                self?.viewModel.changeLocationToLocation(place)
+            }
+        }
+        navigationController?.showViewController(controller, sender: nil)
+    }
+    
+    func presentFilterChoiceScreenWithFilter(filter: Filter, selectedValues: [FilterValue]) {
+        
+        let controller = Wireframe.categoryFiltersChoiceViewController()
+        controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
+        controller.completionBlock = {[weak self](newSelectedValues) in
+            self?.viewModel.changeValuesForFilter(filter, toValues: newSelectedValues)
+        }
+        self.navigationController?.showViewController(controller, sender: nil)
+    }
+    
+    func presentCategoryChoiceActionSheet() {
+        
+        guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
+        let categoryNames = categories.map{$0.name}
+        let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) {[weak self] (index) in
+            let category: Category? = index == 0 ? nil : categories[index - 1]
+            self?.viewModel.changeCategoryToCategory(category)
+        }
+    }
+    
+    func presentShoutChoiceActionSheet() {
+        let shoutTypes: [ShoutType] = [.Offer, .Request]
+        let options = [NSLocalizedString("Offers and Requests", comment: "Filter shout type"),
+                       NSLocalizedString("Only Offers", comment: "Filter shout type"),
+                       NSLocalizedString("Only Requests", comment: "Filter shout type")]
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: options, completion: {[weak self] (index) in
+            let shoutType: ShoutType? = index == 0 ? nil : shoutTypes[index - 1]
+            self?.viewModel.changeShoutTypeToType(shoutType)
+        })
+    }
+    
+    func presentSortTypeChoiceActionSheet() {
+        guard case .Loaded(let sortTypes) = viewModel.sortTypes.value else { return }
+        let names = sortTypes.map{$0.name}
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select sort type", comment: ""), options: names, completion: {[weak self] (index) in
+            self?.viewModel.changeSortTypeToType(sortTypes[index])
+        })
+    }
+}
+
+// MARK: - Helpers
 
 private extension FiltersViewController {
     

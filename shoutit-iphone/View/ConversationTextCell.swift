@@ -8,11 +8,25 @@
 
 import UIKit
 
-class ConversationTextCell: ConversationCell {
+final class ConversationTextCell: UITableViewCell, ConversationCell {
     
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var messageLabel: UILabel!
     
-    override func bindWithMessage(message: Message, previousMessage: Message?) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .None
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        unHideImageView()
+    }
+    
+    func bindWithMessage(message: Message, previousMessage: Message?) {
         if let imgview = self.avatarImageView {
             setImageWith(imgview, message: message)
         }

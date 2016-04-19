@@ -16,7 +16,7 @@ enum DiscoverPreviewState {
     case Loaded
 }
 
-class DiscoverPreviewViewModel: AnyObject {
+final class DiscoverPreviewViewModel: AnyObject {
     
     let displayable = ShoutsDisplayable(layout: .HorizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"

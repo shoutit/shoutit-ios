@@ -8,13 +8,28 @@
 
 import UIKit
 
-class ConversationShoutCell: ConversationImageCell {
+final class ConversationShoutCell: UITableViewCell, ConversationCell {
 
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var timeLabel: UILabel?
+    @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     
-    override func bindWithMessage(message: Message, previousMessage: Message?) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .None
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        unHideImageView()
+    }
+    
+    func bindWithMessage(message: Message, previousMessage: Message?) {
         
         if let imgview = avatarImageView {
             setImageWith(imgview, message: message)
@@ -26,8 +41,8 @@ class ConversationShoutCell: ConversationImageCell {
             hideImageView()
         }
         
-        self.activityIndicator?.startAnimating()
-        self.activityIndicator?.hidden = false
+        activityIndicator?.startAnimating()
+        activityIndicator?.hidden = false
         
         setThumbMessage(message)
         
@@ -37,10 +52,18 @@ class ConversationShoutCell: ConversationImageCell {
         }
         
         self.titleLabel.text = shout.title
-        
         self.subtitleLabel?.text = shout.user.name
-        
-        
         self.priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+    }
+    
+    func setThumbMessage(message: Message) {
+        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
+            return
+        }
+        
+        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
+            self.activityIndicator?.stopAnimating()
+            self.activityIndicator?.hidden = true
+        }
     }
 }

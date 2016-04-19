@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class CategoryFiltersViewController: UIViewController {
+final class CategoryFiltersViewController: UIViewController {
     
     // consts
     private let cellReuseIdentifier = "CategoryFiltersTableViewCell"

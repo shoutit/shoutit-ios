@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ConversationSelectShoutController: UITableViewController {
+final class ConversationSelectShoutController: UITableViewController {
     
     private var shouts : [Shout] = []
     private let disposeBag = DisposeBag()

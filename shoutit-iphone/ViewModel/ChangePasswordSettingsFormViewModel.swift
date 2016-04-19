@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
+final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     
     private let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()

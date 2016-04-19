@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class DiscoverGivenItemViewModel: DiscoverViewModel {
+final class DiscoverGivenItemViewModel: DiscoverViewModel {
     let disposeBag = DisposeBag()
     
     let itemToShow : DiscoverItem!
