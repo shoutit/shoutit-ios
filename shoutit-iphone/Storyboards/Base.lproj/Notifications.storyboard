@@ -24,11 +24,16 @@
                                         <constraint firstAttribute="height" constant="1" id="4k6-yb-jUp"/>
                                     </constraints>
                                 </view>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="J10-3x-h0Z">
+                                    <rect key="frame" x="290" y="12" width="20" height="20"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="yNn-IY-tF3" secondAttribute="trailing" id="02b-gm-9i9"/>
+                                <constraint firstItem="J10-3x-h0Z" firstAttribute="centerY" secondItem="06e-cJ-2Gf" secondAttribute="centerY" id="Ehf-I0-Wtd"/>
                                 <constraint firstItem="yNn-IY-tF3" firstAttribute="leading" secondItem="06e-cJ-2Gf" secondAttribute="leading" id="Stv-T1-Ocp"/>
+                                <constraint firstItem="J10-3x-h0Z" firstAttribute="centerX" secondItem="06e-cJ-2Gf" secondAttribute="centerX" id="ipJ-j5-EYj"/>
                                 <constraint firstItem="yNn-IY-tF3" firstAttribute="top" secondItem="06e-cJ-2Gf" secondAttribute="top" id="sNb-rG-TGv"/>
                             </constraints>
                         </view>
@@ -106,6 +111,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="J10-3x-h0Z" id="tIJ-j3-GS4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQK-ve-daK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

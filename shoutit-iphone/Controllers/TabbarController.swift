@@ -27,10 +27,6 @@ final class TabbarController: UIViewController, Navigation {
     
     override func viewDidLoad() {
         
-        NotificationManager.sharedManager.unreadNotificationsCountSubject.subscribeNext { [weak self] (count) in
-            self?.fillUnreadNotifications(count)
-        }.addDisposableTo(disposeBag)
-        
         tabs!.each { button in
             button.rx_tap.subscribeNext {
                 self.tabs!.each { $0.selected = false }
@@ -42,7 +38,7 @@ final class TabbarController: UIViewController, Navigation {
             }.addDisposableTo(self.disposeBag)
         }
         
-        Account.sharedInstance.userSubject.subscribeNext { [weak self] (user) in
+        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
             self?.fillBadges()
         }.addDisposableTo(disposeBag)
         

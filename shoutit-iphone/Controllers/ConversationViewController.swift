@@ -45,20 +45,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
-        
-        markConversationAsRead()
-    }
-    
-    func markConversationAsRead() {
-        if self.conversation.id != "" {
-            APIChatsService.markConversationAsRead(self.conversation).subscribe({ (event) in
-                switch event {
-                case .Next: debugPrint("conversation marked as read")
-                case .Error(let error): debugPrint(error)
-                default: break
-                }
-            }).addDisposableTo(disposeBag)
-        }
     }
     
     override func viewWillLayoutSubviews() {

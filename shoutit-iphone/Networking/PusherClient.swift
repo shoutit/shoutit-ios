@@ -26,6 +26,8 @@ final class PusherClient : NSObject {
     
     private var authToken : String?
     
+    var keepDisconnected = false
+    
     private var reachability: Reachability!
     
     override init() {
@@ -63,6 +65,10 @@ final class PusherClient : NSObject {
     }
     
     func reconnect() {
+        if keepDisconnected {
+            return
+        }
+        
         pusherInstance.disconnect()
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance.authorizationURL = NSURL(string: pusherURL)
@@ -70,11 +76,21 @@ final class PusherClient : NSObject {
     }
     
     func connect() {
+        
+        keepDisconnected = false
+        
+        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
+        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        
         pusherInstance.connect()
     }
     
     func disconnect() {
+        keepDisconnected = true
         pusherInstance.disconnect()
+        
+        pusherInstance = nil
+        
     }
     
     func setAuthorizationToken(token: String?) {
@@ -87,22 +103,31 @@ final class PusherClient : NSObject {
     }
     
     func tryToConnect() {
-        if pusherInstance.connection.connected {
-            debugPrint("Pusher Already connected")
-            return
-        }
-        
         connect()
     }
     
     func subscribeToMainChannel() {
-        mainChannelObservable().retry(10).subscribeNext { (event) -> Void in
+        mainChannelObservable().subscribeNext { (event) -> Void in
             print("RECEIVED: \(event.name)")
             print(event.data)
             
             if event.eventType() == .NewListen || event.eventType() == .NewMessage {
-                Account.sharedInstance.fetchUserProfile()
+                
             }
+            
+            if event.eventType() == .StatsUpdate {
+                if let stats : ProfileStats = event.object() {
+                    Account.sharedInstance.updateStats(stats)
+                }
+            }
+            
+            if event.eventType() == .ProfileChange {
+                if let profile : DetailedProfile = event.object() {
+                    Account.sharedInstance.loggedUser = profile
+                }
+            }
+
+            
         }.addDisposableTo(disposeBag)
     }
     
@@ -151,7 +176,9 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
         debugPrint("PUSHER DID DISCONNECT WITH ERROR")
         print(error ?? "nilError")
-        reconnect()
+        if !keepDisconnected {
+            reconnect()
+        }
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
@@ -174,7 +201,16 @@ extension PusherClient {
             
             let channel = self.pusherInstance.subscribeToChannelNamed(channelName)
             
+            
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
+            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
+            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             

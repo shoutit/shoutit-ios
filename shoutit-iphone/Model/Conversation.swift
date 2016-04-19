@@ -63,7 +63,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount, shout: self.shout, readby: self.readby)
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby)
     }
 }
 
