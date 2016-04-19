@@ -1026,15 +1026,11 @@
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhq-6O-ODa">
                                                                         <rect key="frame" x="36" y="198" width="243" height="34"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="EcH-Jp-Av2"/>
-                                                                            <constraint firstAttribute="height" constant="34" id="Hly-iQ-Q3Y"/>
-                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-2S-2fZ">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-2S-2fZ">
                                                                         <rect key="frame" x="112" y="22" width="90" height="86"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="86" id="8ff-9R-S5D"/>
@@ -1046,9 +1042,10 @@
                                                                 <constraints>
                                                                     <constraint firstItem="Zhq-6O-ODa" firstAttribute="centerX" secondItem="Uke-gD-bhk" secondAttribute="centerX" id="5jK-HD-Syj"/>
                                                                     <constraint firstItem="HCI-2S-2fZ" firstAttribute="centerX" secondItem="Uke-gD-bhk" secondAttribute="centerX" id="A5s-Yn-AEO"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="qd5-UA-hrc" secondAttribute="bottom" constant="55" id="DqP-og-caD"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="qd5-UA-hrc" secondAttribute="bottom" priority="700" constant="55" id="DqP-og-caD"/>
                                                                     <constraint firstItem="HCI-2S-2fZ" firstAttribute="top" secondItem="Uke-gD-bhk" secondAttribute="top" constant="22" id="L6s-6f-V7W"/>
                                                                     <constraint firstItem="qd5-UA-hrc" firstAttribute="top" secondItem="Zhq-6O-ODa" secondAttribute="bottom" constant="8" id="YTY-Vc-N73"/>
+                                                                    <constraint firstItem="Zhq-6O-ODa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HCI-2S-2fZ" secondAttribute="bottom" constant="10" id="iLW-tI-sKT"/>
                                                                     <constraint firstItem="qd5-UA-hrc" firstAttribute="centerX" secondItem="Uke-gD-bhk" secondAttribute="centerX" id="kza-zi-5Kw"/>
                                                                 </constraints>
                                                             </view>
@@ -1073,42 +1070,37 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1x-xk-Ejd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="316"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otB-pC-3lO">
-                                                                        <rect key="frame" x="47" y="240" width="220" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="FRw-2d-KAk"/>
-                                                                            <constraint firstAttribute="height" constant="21" id="wX1-m1-a2e"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXd-vs-HMY">
-                                                                        <rect key="frame" x="36" y="198" width="243" height="34"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="Vfl-iJ-Gbw"/>
-                                                                            <constraint firstAttribute="height" constant="34" id="rDc-RS-uSG"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Video Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXd-vs-HMY">
+                                                                        <rect key="frame" x="89" y="198" width="138" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="7Wb-rq-pfk">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_videochat" translatesAutoresizingMaskIntoConstraints="NO" id="7Wb-rq-pfk">
                                                                         <rect key="frame" x="112" y="22" width="90" height="86"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="90" id="Po3-px-v3a"/>
                                                                             <constraint firstAttribute="height" constant="86" id="Zrs-Qr-SHB"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video is worth a thousand pictures! see what you want to buy live before buying it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otB-pC-3lO">
+                                                                        <rect key="frame" x="8" y="240" width="298" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="otB-pC-3lO" firstAttribute="centerX" secondItem="N1x-xk-Ejd" secondAttribute="centerX" id="1Re-aC-Do0"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="otB-pC-3lO" secondAttribute="trailing" constant="8" id="1hf-od-H6c"/>
                                                                     <constraint firstItem="otB-pC-3lO" firstAttribute="top" secondItem="hXd-vs-HMY" secondAttribute="bottom" constant="8" id="6cP-Qp-btM"/>
+                                                                    <constraint firstItem="otB-pC-3lO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N1x-xk-Ejd" secondAttribute="leading" constant="8" id="MNb-Yd-JGa"/>
                                                                     <constraint firstItem="7Wb-rq-pfk" firstAttribute="centerX" secondItem="N1x-xk-Ejd" secondAttribute="centerX" id="TWM-dk-8je"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="otB-pC-3lO" secondAttribute="bottom" constant="55" id="UAE-E2-ehw"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="otB-pC-3lO" secondAttribute="bottom" priority="700" constant="55" id="UAE-E2-ehw"/>
                                                                     <constraint firstItem="hXd-vs-HMY" firstAttribute="centerX" secondItem="N1x-xk-Ejd" secondAttribute="centerX" id="mLg-ah-exI"/>
                                                                     <constraint firstItem="7Wb-rq-pfk" firstAttribute="top" secondItem="N1x-xk-Ejd" secondAttribute="top" constant="22" id="tJr-cA-Vkb"/>
+                                                                    <constraint firstItem="hXd-vs-HMY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7Wb-rq-pfk" secondAttribute="bottom" constant="10" id="x0p-ux-ac9"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1126,27 +1118,19 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mDf-1D-UVC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="316"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqu-0M-TP9">
-                                                                        <rect key="frame" x="47" y="240" width="220" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="EFy-ch-nkd"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="TGf-Pt-Pey"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Buyers and Sellers. Send Photos, Videos and Shouts." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqu-0M-TP9">
+                                                                        <rect key="frame" x="8" y="240" width="298" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNC-Ay-C46">
-                                                                        <rect key="frame" x="36" y="198" width="243" height="34"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="Ou1-xh-tGS"/>
-                                                                            <constraint firstAttribute="height" constant="34" id="ra8-n6-mdL"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNC-Ay-C46">
+                                                                        <rect key="frame" x="128" y="198" width="60" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="py1-Fx-AMd">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_chat" translatesAutoresizingMaskIntoConstraints="NO" id="py1-Fx-AMd">
                                                                         <rect key="frame" x="112" y="22" width="90" height="86"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="86" id="ZuW-X8-lph"/>
@@ -1157,10 +1141,13 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="py1-Fx-AMd" firstAttribute="centerX" secondItem="mDf-1D-UVC" secondAttribute="centerX" id="18u-hs-kJO"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="Fqu-0M-TP9" secondAttribute="bottom" constant="55" id="Ir7-7B-T12"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fqu-0M-TP9" secondAttribute="trailing" constant="8" id="6Eb-Vz-pdH"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Fqu-0M-TP9" secondAttribute="bottom" priority="700" constant="55" id="Ir7-7B-T12"/>
                                                                     <constraint firstItem="Fqu-0M-TP9" firstAttribute="top" secondItem="pNC-Ay-C46" secondAttribute="bottom" constant="8" id="Nzj-om-z5N"/>
+                                                                    <constraint firstItem="Fqu-0M-TP9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mDf-1D-UVC" secondAttribute="leading" constant="8" id="QTJ-ZT-8CJ"/>
                                                                     <constraint firstItem="py1-Fx-AMd" firstAttribute="top" secondItem="mDf-1D-UVC" secondAttribute="top" constant="22" id="WAI-60-hvZ"/>
                                                                     <constraint firstItem="pNC-Ay-C46" firstAttribute="centerX" secondItem="mDf-1D-UVC" secondAttribute="centerX" id="Xkz-6d-YOi"/>
+                                                                    <constraint firstItem="pNC-Ay-C46" firstAttribute="top" relation="greaterThanOrEqual" secondItem="py1-Fx-AMd" secondAttribute="bottom" constant="10" id="eD5-Eg-09j"/>
                                                                     <constraint firstItem="Fqu-0M-TP9" firstAttribute="centerX" secondItem="mDf-1D-UVC" secondAttribute="centerX" id="jCa-B6-52e"/>
                                                                 </constraints>
                                                             </view>
@@ -1179,42 +1166,38 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snd-FE-j9x">
                                                                 <rect key="frame" x="0.0" y="0.0" width="313" height="316"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEI-7W-x2d">
-                                                                        <rect key="frame" x="46" y="240" width="220" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="TxF-TW-ic9"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="kL3-Vq-LHE"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List anything for FREE. Include Photos and Videos to appeal to Buyers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEI-7W-x2d">
+                                                                        <rect key="frame" x="8" y="240" width="297" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbC-mk-YUZ">
-                                                                        <rect key="frame" x="34" y="198" width="243" height="34"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="F8u-uD-knh"/>
-                                                                            <constraint firstAttribute="height" constant="34" id="NTs-NJ-LhS"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="qOy-5S-SuD">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_shout" translatesAutoresizingMaskIntoConstraints="NO" id="qOy-5S-SuD">
                                                                         <rect key="frame" x="111" y="22" width="90" height="86"/>
+                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="90" id="F1g-Rw-jTy"/>
                                                                             <constraint firstAttribute="height" constant="86" id="fnU-0Z-Lxl"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbC-mk-YUZ">
+                                                                        <rect key="frame" x="120" y="198" width="74" height="34"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="GEI-7W-x2d" secondAttribute="bottom" constant="55" id="VGV-Yg-ngr"/>
+                                                                    <constraint firstItem="bbC-mk-YUZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qOy-5S-SuD" secondAttribute="bottom" constant="10" id="NZQ-NO-Wss"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="GEI-7W-x2d" secondAttribute="bottom" priority="700" constant="55" id="VGV-Yg-ngr"/>
                                                                     <constraint firstItem="bbC-mk-YUZ" firstAttribute="centerX" secondItem="snd-FE-j9x" secondAttribute="centerX" id="d3l-Ra-dD9"/>
                                                                     <constraint firstItem="qOy-5S-SuD" firstAttribute="centerX" secondItem="snd-FE-j9x" secondAttribute="centerX" id="dwY-Bm-c9u"/>
                                                                     <constraint firstItem="GEI-7W-x2d" firstAttribute="centerX" secondItem="snd-FE-j9x" secondAttribute="centerX" id="s9Y-TL-6A4"/>
+                                                                    <constraint firstItem="GEI-7W-x2d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="snd-FE-j9x" secondAttribute="leading" constant="8" id="tBQ-Ea-dnH"/>
                                                                     <constraint firstItem="GEI-7W-x2d" firstAttribute="top" secondItem="bbC-mk-YUZ" secondAttribute="bottom" constant="8" id="tKo-gM-4R0"/>
                                                                     <constraint firstItem="qOy-5S-SuD" firstAttribute="top" secondItem="snd-FE-j9x" secondAttribute="top" constant="22" id="tfc-fB-E51"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GEI-7W-x2d" secondAttribute="trailing" constant="8" id="zVT-X5-zAW"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1232,18 +1215,22 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSs-3h-zhi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="316"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-Xf-8hV">
-                                                                        <rect key="frame" x="47" y="240" width="220" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find what you need in your Community or anywhere in the World." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-Xf-8hV">
+                                                                        <rect key="frame" x="8" y="240" width="298" height="21"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="E91-Nt-JVj"/>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="ats-tU-ZaS"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <variation key="default">
+                                                                            <mask key="constraints">
+                                                                                <exclude reference="ats-tU-ZaS"/>
+                                                                            </mask>
+                                                                        </variation>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-O1-dvh">
-                                                                        <rect key="frame" x="36" y="198" width="243" height="34"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-O1-dvh">
+                                                                        <rect key="frame" x="114" y="198" width="86" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="a3f-s6-gA5"/>
                                                                             <constraint firstAttribute="height" constant="34" id="bIi-PU-hFk"/>
@@ -1251,8 +1238,14 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <variation key="default">
+                                                                            <mask key="constraints">
+                                                                                <exclude reference="a3f-s6-gA5"/>
+                                                                                <exclude reference="bIi-PU-hFk"/>
+                                                                            </mask>
+                                                                        </variation>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhitev1" translatesAutoresizingMaskIntoConstraints="NO" id="V15-f1-UFM">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_search" translatesAutoresizingMaskIntoConstraints="NO" id="V15-f1-UFM">
                                                                         <rect key="frame" x="112" y="22" width="90" height="86"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="90" id="Gfb-Ue-AKg"/>
@@ -1266,8 +1259,11 @@
                                                                     <constraint firstItem="V15-f1-UFM" firstAttribute="centerX" secondItem="lSs-3h-zhi" secondAttribute="centerX" id="6h0-QI-Mfj"/>
                                                                     <constraint firstItem="hDf-O1-dvh" firstAttribute="centerX" secondItem="lSs-3h-zhi" secondAttribute="centerX" id="6mq-GZ-XcQ"/>
                                                                     <constraint firstItem="fZu-Xf-8hV" firstAttribute="centerX" secondItem="lSs-3h-zhi" secondAttribute="centerX" id="8F1-z8-o5E"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fZu-Xf-8hV" secondAttribute="trailing" constant="8" id="TTc-R1-d6D"/>
+                                                                    <constraint firstItem="hDf-O1-dvh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V15-f1-UFM" secondAttribute="bottom" constant="10" id="bP3-D4-bXD"/>
                                                                     <constraint firstItem="fZu-Xf-8hV" firstAttribute="top" secondItem="hDf-O1-dvh" secondAttribute="bottom" constant="8" id="eFq-hY-h2k"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="fZu-Xf-8hV" secondAttribute="bottom" constant="55" id="xCB-xS-Ji2"/>
+                                                                    <constraint firstItem="fZu-Xf-8hV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lSs-3h-zhi" secondAttribute="leading" constant="8" id="wIj-My-NDU"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="fZu-Xf-8hV" secondAttribute="bottom" priority="700" constant="55" id="xCB-xS-Ji2"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1285,10 +1281,13 @@
                                                     <constraint firstItem="fWJ-FU-Hhe" firstAttribute="top" secondItem="Yik-a0-Hks" secondAttribute="top" id="4Ao-Vs-mhg"/>
                                                     <constraint firstAttribute="bottom" secondItem="fWJ-FU-Hhe" secondAttribute="bottom" id="CVp-2Y-9hl"/>
                                                     <constraint firstAttribute="trailing" secondItem="pCC-UM-3yH" secondAttribute="trailing" id="Flq-XK-Cj1"/>
+                                                    <constraint firstItem="pNC-Ay-C46" firstAttribute="baseline" secondItem="hXd-vs-HMY" secondAttribute="baseline" id="L2a-lR-STJ"/>
                                                     <constraint firstItem="Qf8-oi-bwd" firstAttribute="top" secondItem="Yik-a0-Hks" secondAttribute="top" id="LWG-fb-pWm"/>
+                                                    <constraint firstItem="Zhq-6O-ODa" firstAttribute="baseline" secondItem="hDf-O1-dvh" secondAttribute="baseline" id="Nts-oq-Yb7"/>
                                                     <constraint firstItem="Zc4-Gc-biP" firstAttribute="leading" secondItem="Qf8-oi-bwd" secondAttribute="trailing" id="O2g-Fg-9cy"/>
                                                     <constraint firstAttribute="bottom" secondItem="pCC-UM-3yH" secondAttribute="bottom" id="ONg-Gc-kpd"/>
                                                     <constraint firstItem="Qf8-oi-bwd" firstAttribute="leading" secondItem="Yik-a0-Hks" secondAttribute="leading" id="Zvc-Kl-Vol"/>
+                                                    <constraint firstItem="hDf-O1-dvh" firstAttribute="baseline" secondItem="bbC-mk-YUZ" secondAttribute="baseline" id="cJg-xV-cSl"/>
                                                     <constraint firstItem="pCC-UM-3yH" firstAttribute="top" secondItem="Yik-a0-Hks" secondAttribute="top" id="cLw-SN-7sf"/>
                                                     <constraint firstItem="Zc4-Gc-biP" firstAttribute="top" secondItem="Yik-a0-Hks" secondAttribute="top" id="caB-6B-3wN"/>
                                                     <constraint firstItem="2D0-3K-l4s" firstAttribute="top" secondItem="Yik-a0-Hks" secondAttribute="top" id="ebk-1M-FBw"/>
@@ -1297,6 +1296,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="Qf8-oi-bwd" secondAttribute="bottom" id="fex-wb-6c8"/>
                                                     <constraint firstItem="pCC-UM-3yH" firstAttribute="leading" secondItem="2D0-3K-l4s" secondAttribute="trailing" id="hqe-mF-hST"/>
                                                     <constraint firstItem="2D0-3K-l4s" firstAttribute="leading" secondItem="fWJ-FU-Hhe" secondAttribute="trailing" id="lEi-ve-Dit"/>
+                                                    <constraint firstItem="bbC-mk-YUZ" firstAttribute="baseline" secondItem="pNC-Ay-C46" secondAttribute="baseline" id="nh4-6A-tS7"/>
                                                     <constraint firstAttribute="bottom" secondItem="Zc4-Gc-biP" secondAttribute="bottom" id="oY5-dF-AHd"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -1581,6 +1581,10 @@
         <image name="google_plus" width="58" height="60"/>
         <image name="introBg" width="375" height="667"/>
         <image name="introBgOverlay" width="248" height="405"/>
+        <image name="intro_chat" width="92" height="87"/>
+        <image name="intro_search" width="85" height="85"/>
+        <image name="intro_shout" width="90" height="102"/>
+        <image name="intro_videochat" width="94" height="52"/>
         <image name="login_screen_overlay" width="1080" height="1920"/>
         <image name="logoColor" width="100" height="100"/>
         <image name="logoWhitev1" width="75" height="71"/>
