@@ -56,7 +56,11 @@ final class PusherClient : NSObject {
                 return
             }
             
-            if self.pusherInstance.connection.connected == false {
+            guard let pusher = self.pusherInstance else {
+                return
+            }
+            
+            if pusher.connection.connected == false {
                 self.connect()
             }
 
@@ -90,7 +94,6 @@ final class PusherClient : NSObject {
         pusherInstance.disconnect()
         
         pusherInstance = nil
-        
     }
     
     func setAuthorizationToken(token: String?) {
