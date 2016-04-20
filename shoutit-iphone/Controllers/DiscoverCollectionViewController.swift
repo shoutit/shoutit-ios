@@ -133,7 +133,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         if let discoverShoutsHeader = header as? DiscoverShoutsHeaderView {
             if let discoverItem = viewModel.mainItem()?.title {
-                discoverShoutsHeader.titleLabel.text = NSLocalizedString("\(discoverItem) Shouts", comment: "")
+                discoverShoutsHeader.titleLabel.text = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), discoverItem)
             } else {
                 discoverShoutsHeader.titleLabel.text = NSLocalizedString("Discover Shouts", comment: "")
             }

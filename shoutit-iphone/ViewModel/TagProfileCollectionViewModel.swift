@@ -182,7 +182,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title: String
         if let name = tag?.name {
-            title = NSLocalizedString("\(name) Shouts", comment: "")
+            title = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), name)
         } else {
             title = NSLocalizedString("Shouts", comment: "")
         }

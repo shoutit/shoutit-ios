@@ -64,7 +64,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
         case .TagModel(let tag):
             s = NumberFormatters.sharedInstance.numberToShortString(tag.listenersCount ?? 0)
         }
-        return NSLocalizedString("\(s) Listeners", comment: "")
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), s)
     }
     
     func hidesListeningButton() -> Bool {

@@ -43,18 +43,18 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     func sectionTitle() -> String {
         switch context {
         case .ProfileShouts(let user):
-            return NSLocalizedString("\(user.firstName ?? user.name) Shouts", comment: "")
+            return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), user.firstName ?? user.name)
         case .RelatedShouts:
             return NSLocalizedString("Related Shouts", comment: "")
         case .TagShouts(let tag):
-            return NSLocalizedString("\(tag.name) Shouts", comment: "")
+            return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), tag.name)
         case .DiscoverItemShouts(let discoverItem):
             return discoverItem.title
         }
     }
     
     func resultsCountString() -> String {
-        return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Search results count string"), numberOfResults)
     }
     
     func getFiltersState() -> FiltersState {

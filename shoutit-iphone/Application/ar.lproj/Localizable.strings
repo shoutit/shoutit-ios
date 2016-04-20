@@ -8,37 +8,37 @@
 "%%x Listened to you" = "%%x يستمع اليك";
 
 /* No comment provided by engineer. */
-"(NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)) Listeners" = "(NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)) مستمعين";
+"%@ Listeners" = "%@ مستمعين";
 
 /* No comment provided by engineer. */
-"(discoverItem) Shouts" = "إعلانات (discoverItem)";
+"%@ Shouts" = "إعلانات %@";
 
 /* No comment provided by engineer. */
-"(name) Shouts" = "إعلانات (name)";
+"%@ Shouts" = "إعلانات %@";
 
 /* Search results count string */
-"(numberOfResults) Shouts" = "(numberOfResults) إعلان";
+"%@ Shouts" = "%@ إعلان";
 
 /* No comment provided by engineer. */
-"(profile.firstName ?? profile.name) Pages" = "صفحات (profile.firstName ?? profile.name)";
+"%@ Pages" = "صفحات %@";
 
 /* No comment provided by engineer. */
-"(profile.firstName ?? profile.name) Shouts" = "إعلانات (profile.firstName ?? profile.name)";
+"%@ Shouts" = "إعلانات %@";
 
 /* No comment provided by engineer. */
-"(profile.name) Admins" = "مدراء (profile.name)";
+"%@ Admins" = "مدراء %@";
 
 /* No comment provided by engineer. */
-"(profile.name) Shouts" = "إعلانات (profile.name)";
+"%@ Shouts" = "إعلانات %@";
 
 /* No comment provided by engineer. */
-"(s) Listeners" = "(s) مستمعين";
+"%@ Listeners" = "%@ مستمعين";
 
 /* No comment provided by engineer. */
-"(tag.name) Shouts" = "إعلانات (tag.name)";
+"%@ Shouts" = "إعلانات %@";
 
 /* No comment provided by engineer. */
-"(user.firstName ?? user.name) Shouts" = "إعلانات (user.firstName ?? user.name)";
+"%@ Shouts" = "إعلانات %@";
 
 /* Settings cell title */
 "About" = "حول";
@@ -308,7 +308,7 @@
 "More" = "أكثر";
 
 /* Shout detail */
-"More shouts from (firstname)" = "إعلانات أكثر من (firstname)";
+"More shouts from %@" = "إعلانات أكثر من %@";
 
 /* No comment provided by engineer. */
 "My Pages" = "صفحاتي";
@@ -471,10 +471,10 @@
 "Results" = "النتائج";
 
 /* Search results for search phrase section header */
-"Results for '(searchPhrase)'" = "نتائج '(searchPhrase)'";
+"Results for '%@'" = "نتائج '%@'";
 
 /* Search results for category section header */
-"Results for (category.name)" = "نتائج (category.name)";
+"Results for %@" = "نتائج %@";
 
 /* Search text field placeholder */
 "Search Shoutit" = "ابحث في شاوت ات";
@@ -483,16 +483,16 @@
 "Search Users" = "البحث عن مستخدمين";
 
 /* Search text field placeholder */
-"Search in (category.name) shouts" = "ابحث في (category.name)";
+"Search in %@ shouts" = "ابحث في %@";
 
 /* Search text field placeholder */
-"Search in (item.title) shouts" = "بحث في إعلانات (item.title)";
+"Search in %@ shouts" = "بحث في إعلانات %@";
 
 /* Search text field placeholder */
-"Search in (profile.name) shouts" = "بحث في إعلانات (profile.name)";
+"Search in %@ shouts" = "بحث في إعلانات %@";
 
 /* Search text field placeholder */
-"Search in (tag.name) shouts" = "بحث في (tag.name)";
+"Search in %@ shouts" = "بحث في %@";
 
 /* No comment provided by engineer. */
 "See All Shouts" = "إظهار كافة الإعلانات";
@@ -531,7 +531,7 @@
 "Shouts" = "الإعلانات";
 
 /* Browse section header */
-"Shouts in (location.city)" = "الإعلانات في (location.city)";
+"Shouts in %@" = "الإعلانات في %@";
 
 /* Signup view. Should be the same as whole text's part */
 "Sign up" = "إنشاء حساب";
@@ -592,7 +592,7 @@
 "View Profile" = "رؤية الصفحة الشخصية";
 
 /* Shout Detail */
-"Visit (firstname)'s profile" = "زيارة صفحة (firstname)";
+"Visit %@'s profile" = "زيارة صفحة %@";
 
 /* Edit profile placeholder text */
 "Website" = "الموقع الإلكتروني";
@@ -616,10 +616,10 @@
 "You can't chat with yourself" = "لايمكن اجراء محادثة مع نفسك";
 
 /* No comment provided by engineer. */
-"You have successfully started listening to (name)" = "لقد بدأت بالإستماع إلى إعلانات (name)";
+"You have successfully started listening to %@" = "لقد بدأت بالإستماع إلى إعلانات %@";
 
 /* No comment provided by engineer. */
-"You have successfully stopped listening to (name)" = "لقد توقفت عن الإستماع إلى إعلانات (name)";
+"You have successfully stopped listening to %@" = "لقد توقفت عن الإستماع إلى إعلانات %@";
 
 /* No comment provided by engineer. */
 "You must be logged in to perform this action" = "يجب أن تكون مسجل لتنفيذ هذا الإجراء";
@@ -634,13 +634,13 @@
 "Your current location:" = "موقعك الحالي:";
 
 /* No comment provided by engineer. */
-"Your offer \"(title)\" will appear on Shoutit soon." = "سيظهر إعلانك \"(title)\" على شاوت ات بعد قليل.";
+"Your offer \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك \"@%\" على شاوت ات بعد قليل.";
 
 /* No comment provided by engineer. */
 "Your offer will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
 
 /* No comment provided by engineer. */
-"Your request \"(title)\" will appear on Shoutit soon." = "سيظهر إعلانك \"(title)\" على شاوت ات بعد قليل.";
+"Your request \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك \"@%\" على شاوت ات بعد قليل.";
 
 /* No comment provided by engineer. */
 "Your request will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";

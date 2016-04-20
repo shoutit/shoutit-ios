@@ -41,7 +41,7 @@ final class ShoutConfirmationViewController: UIViewController {
         if shout.type()! == ShoutType.Offer {
             createAnotherButton.setTitle(NSLocalizedString("Create another Offer", comment: ""), forState: .Normal)
             if let title = shout.title {
-                descriptionlabel.text = NSLocalizedString("Your offer \"\(title)\" will appear on Shoutit soon.", comment:"")
+                descriptionlabel.text = String.localizedStringWithFormat(NSLocalizedString("Your offer \"%@\" will appear on Shoutit soon.", comment: ""), title)
             } else {
                 descriptionlabel.text = NSLocalizedString("Your offer will appear on Shoutit soon.", comment:"")
             }
@@ -49,7 +49,7 @@ final class ShoutConfirmationViewController: UIViewController {
         } else {
             createAnotherButton.setTitle(NSLocalizedString("Create another Request", comment: ""), forState: .Normal)
             if let title = shout.title {
-                descriptionlabel.text = NSLocalizedString("Your request \"\(title)\" will appear on Shoutit soon.", comment:"")
+                descriptionlabel.text = String.localizedStringWithFormat(NSLocalizedString("Your request \"%@\" will appear on Shoutit soon.", comment: ""), title)
             } else {
                 descriptionlabel.text = NSLocalizedString("Your request will appear on Shoutit soon.", comment:"")
             }
