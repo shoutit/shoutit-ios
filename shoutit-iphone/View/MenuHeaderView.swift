@@ -37,11 +37,11 @@ final class MenuHeaderView: UIView {
         
         if let user = user as? DetailedProfile {
             if let path = user.imagePath, profileURL = NSURL(string: path) {
-                profileImageView?.kf_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+                profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
             }
             
             if let path = user.coverPath, coverURL = NSURL(string: path) {
-                coverImageView?.kf_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+                coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
             }
             
             profileNameLabel?.text = user.name

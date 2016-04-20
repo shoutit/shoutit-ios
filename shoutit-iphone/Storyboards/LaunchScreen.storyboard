@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fg4-Ur-6wO">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Vnv-jM-Kkc">
+            <objects>
+                <viewController id="Fg4-Ur-6wO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i6R-m7-53w"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kyn-xf-URt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xwx-sj-ULh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_background" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-OD-0EH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="3cg-iZ-cjd">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="MyZ-Mh-Pbm"/>
+                                    <constraint firstAttribute="height" constant="100" id="j9j-Vt-S80"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RCF-OD-0EH" firstAttribute="leading" secondItem="xwx-sj-ULh" secondAttribute="leading" id="51R-pe-RfU"/>
+                            <constraint firstItem="3cg-iZ-cjd" firstAttribute="centerY" secondItem="RCF-OD-0EH" secondAttribute="centerY" id="Loi-4q-ZJ8"/>
+                            <constraint firstItem="RCF-OD-0EH" firstAttribute="top" secondItem="xwx-sj-ULh" secondAttribute="topMargin" id="OBf-2u-Vff"/>
+                            <constraint firstItem="3cg-iZ-cjd" firstAttribute="centerX" secondItem="RCF-OD-0EH" secondAttribute="centerX" id="Wzs-OX-hGu"/>
+                            <constraint firstAttribute="trailing" secondItem="RCF-OD-0EH" secondAttribute="trailing" id="nkk-sM-Jw9"/>
+                            <constraint firstItem="Kyn-xf-URt" firstAttribute="top" secondItem="RCF-OD-0EH" secondAttribute="bottom" id="rgl-fh-w7f"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJZ-yN-3BF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="436" y="427"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launch_background" width="375" height="667"/>
+        <image name="shoutit_logo_white" width="100" height="100"/>
+    </resources>
+</document>
