@@ -1,54 +1,24 @@
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "3UM-EM-oSg"; */
-"3UM-EM-oSg.text" = "Label";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "5SK-UK-Q7I"; */
-"5SK-UK-Q7I.text" = "Label";
-
 /* Class = "UIButton"; normalTitle = "Policies"; ObjectID = "Eem-sc-Nfz"; */
-"Eem-sc-Nfz.normalTitle" = "Policies";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "IVW-DI-OK5"; */
-"IVW-DI-OK5.text" = "Label";
+"Eem-sc-Nfz.normalTitle" = "السياسات";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "OF4-56-wbL"; */
-"OF4-56-wbL.text" = "Name";
+"OF4-56-wbL.text" = "الإسم";
 
 /* Class = "UILabel"; text = "Price"; ObjectID = "RFV-cQ-2AI"; */
-"RFV-cQ-2AI.text" = "Price";
-
-/* Class = "UILabel"; text = "Header"; ObjectID = "TJp-qU-nfC"; */
-"TJp-qU-nfC.text" = "Header";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "Vxt-8o-2k0"; */
-"Vxt-8o-2k0.text" = "Label";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "X2c-Q6-8hK"; */
-"X2c-Q6-8hK.text" = "Label";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "ZvU-8u-sz5"; */
-"ZvU-8u-sz5.text" = "Label";
+"RFV-cQ-2AI.text" = "السعر";
 
 /* Class = "UIButton"; normalTitle = "Add to Cart"; ObjectID = "bMb-en-aRa"; */
-"bMb-en-aRa.normalTitle" = "Add to Cart";
+"bMb-en-aRa.normalTitle" = "اضافة إلى السلة";
 
 /* Class = "UIButton"; normalTitle = "More"; ObjectID = "cS6-vn-fHD"; */
-"cS6-vn-fHD.normalTitle" = "More";
+"cS6-vn-fHD.normalTitle" = "أكثر";
 
 /* Class = "UIButton"; normalTitle = "Call"; ObjectID = "dlw-u9-I8B"; */
-"dlw-u9-I8B.normalTitle" = "Call";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "ibG-bb-S7x"; */
-"ibG-bb-S7x.text" = "Label";
+"dlw-u9-I8B.normalTitle" = "مكالمة";
 
 /* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "kqz-M3-3o4"; */
-"kqz-M3-3o4.normalTitle" = "Chat";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "mYl-ac-2Q9"; */
-"mYl-ac-2Q9.text" = "Label";
+"kqz-M3-3o4.normalTitle" = "محادثة";
 
 /* Class = "UIButton"; normalTitle = "Video call"; ObjectID = "p0q-c1-KFK"; */
-"p0q-c1-KFK.normalTitle" = "Video call";
+"p0q-c1-KFK.normalTitle" = "مكالمة فيديو";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "tO4-jw-2Gj"; */
-"tO4-jw-2Gj.text" = "Label";

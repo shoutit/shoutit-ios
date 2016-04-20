@@ -11,10 +11,10 @@ import Foundation
 enum UserMessages {
     
     static func startedListeningMessageWithName(name: String) -> String {
-        return NSLocalizedString("You have successully started listening to \(name)", comment: "")
+        return String.localizedStringWithFormat(NSLocalizedString("You have successfully started listening to %@", comment: ""), name)
     }
     
     static func stoppedListeningMessageWithName(name: String) -> String {
-        return NSLocalizedString("You have successully stopped listening to \(name)", comment: "")
+        return String.localizedStringWithFormat(NSLocalizedString("You have successfully stopped listening to %@", comment: ""), name)
     }
 }

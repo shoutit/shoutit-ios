@@ -48,6 +48,7 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var buttonSectionCenterButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionRightButton: ProfileInfoHeaderButton!
     @IBOutlet weak var verifyAccountButton: UIButton!
+    @IBOutlet weak var verifyAccountDisclosureIndicatorImageView: UIImageView!
     @IBOutlet weak var buttonSectionLeftButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet var buttonSectionCenterButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet var buttonSectionRightButtonWidthConstraint: NSLayoutConstraint!
@@ -87,6 +88,10 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
         return nil
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        verifyAccountDisclosureIndicatorImageView.image = UIImage.rightRedArrowDisclosureIndicator()
+    }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)

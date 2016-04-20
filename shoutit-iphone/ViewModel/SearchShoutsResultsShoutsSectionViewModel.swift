@@ -32,18 +32,18 @@ extension SearchShoutsResultsViewModel {
         
         func sectionTitle() -> String {
             if let searchPhrase = parent.searchPhrase {
-                return NSLocalizedString("Results for '\(searchPhrase)'", comment: "Search results for search phrase section header")
+                return String.localizedStringWithFormat(NSLocalizedString("Results for '%@'", comment: "Search results for search phrase section header"), searchPhrase)
             } else if case .CategoryShouts(let category) = parent.context {
-                return NSLocalizedString("Results for \(category.name)", comment: "Search results for category section header")
+                return String.localizedStringWithFormat(NSLocalizedString("Results for '%@'", comment: ""), category.name)
             } else if case (let location?, _) = parent.getFiltersState().location {
-                return NSLocalizedString("Shouts in \(location.city)", comment: "Browse section header")
+                return String.localizedStringWithFormat(NSLocalizedString("Shouts in %@", comment: ""), location.city)
             } else {
                 return NSLocalizedString("Results", comment: "Search results section header")
             }
         }
         
         func resultsCountString() -> String {
-            return NSLocalizedString("\(numberOfResults) Shouts", comment: "Search results count string")
+            return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Search results count string"), numberOfResults)
         }
         
         func allowsFiltering() -> Bool {

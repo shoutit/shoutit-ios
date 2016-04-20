@@ -44,8 +44,5 @@
 /* Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO"; */
 "oR2-Wf-ZJO.text" = "Date";
 
-/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b"; */
-"pcT-Tt-k2b.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
-
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "Conversations";

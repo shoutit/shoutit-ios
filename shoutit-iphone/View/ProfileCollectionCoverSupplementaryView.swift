@@ -29,6 +29,11 @@ final class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var menuButtonLeadingContainerConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backButton.setImage(UIImage.backButton(), forState: .Normal)
+    }
+    
     func setCoverImage(image: UIImage) {
         blurredImageView.image = image
         imageView.image = image

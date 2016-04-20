@@ -320,6 +320,9 @@
 		B24E29FD1CBD24A100328503 /* FormTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E29FC1CBD24A100328503 /* FormTextView.swift */; };
 		B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E1C71C593ED60010AB2D /* LoginFlowController.swift */; };
 		B2515AC71CB2C36100625791 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2515AC61CB2C36100625791 /* SortType.swift */; };
+		B25371BB1CC7EA8700D63AEC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B25371BD1CC7EA8700D63AEC /* Localizable.strings */; };
+		B25371C01CC7EA8800D63AEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B25371C21CC7EA8800D63AEC /* InfoPlist.strings */; };
+		B25371C51CC7EA8900D63AEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B25371C71CC7EA8900D63AEC /* InfoPlist.strings */; };
 		B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */; };
 		B253A33A1C68F94600C8B8F9 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A3391C68F94600C8B8F9 /* State.swift */; };
 		B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */; };
@@ -575,6 +578,7 @@
 		B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2FD1C592BC80078C743 /* LoginStoryboard.storyboard */; };
 		B2E7E2FE1C592BCE0078C743 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E3001C592BCE0078C743 /* Profile.storyboard */; };
 		B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E3031C592BD20078C743 /* Settings.storyboard */; };
+		B2F4F36F1CC7D90700D9B4CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2F4F3711CC7D90700D9B4CB /* InfoPlist.strings */; };
 		B2F524681C9AF63700EA622F /* SearchUserResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524671C9AF63700EA622F /* SearchUserResultsTableViewController.swift */; };
 		B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F5246A1C9AF73D00EA622F /* ProfileTableViewCell.xib */; };
 		B2F5246F1C9AF84E00EA622F /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F5246E1C9AF84E00EA622F /* ProfileTableViewCell.swift */; };
@@ -918,6 +922,9 @@
 		B24E29FC1CBD24A100328503 /* FormTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTextView.swift; path = View/FormTextView.swift; sourceTree = "<group>"; };
 		B250E1C71C593ED60010AB2D /* LoginFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginFlowController.swift; path = FlowControl/LoginFlowController.swift; sourceTree = "<group>"; };
 		B2515AC61CB2C36100625791 /* SortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortType.swift; path = Model/SortType.swift; sourceTree = "<group>"; };
+		B25371BC1CC7EA8700D63AEC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B25371C11CC7EA8800D63AEC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B25371C61CC7EA8900D63AEC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B253A3361C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupCategoryTableViewCell.swift; path = View/PostSignupCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B253A3391C68F94600C8B8F9 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = Util/State.swift; sourceTree = "<group>"; };
 		B253A33B1C690EB200C8B8F9 /* PostSignupDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostSignupDisplayable.swift; path = FlowControl/PostSignupDisplayable.swift; sourceTree = "<group>"; };
@@ -1275,6 +1282,7 @@
 		B2E7E3161C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3181C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		B2E7E3191C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		B2F4F3701CC7D90700D9B4CB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2F524671C9AF63700EA622F /* SearchUserResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchUserResultsTableViewController.swift; path = Controllers/SearchUserResultsTableViewController.swift; sourceTree = "<group>"; };
 		B2F5246A1C9AF73D00EA622F /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileTableViewCell.xib; path = View/ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		B2F5246E1C9AF84E00EA622F /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTableViewCell.swift; path = View/ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -1754,6 +1762,7 @@
 		6027CF481BE74EAE00124C28 /* shoutit-iphoneTests */ = {
 			isa = PBXGroup;
 			children = (
+				B25371C21CC7EA8800D63AEC /* InfoPlist.strings */,
 				6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */,
 				6027CF4B1BE74EAE00124C28 /* Info.plist */,
 			);
@@ -1763,6 +1772,7 @@
 		6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B25371C71CC7EA8900D63AEC /* InfoPlist.strings */,
 				6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */,
 				6027CF561BE74EAF00124C28 /* Info.plist */,
 			);
@@ -1877,6 +1887,8 @@
 		6027CF661BE74F7800124C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B25371BD1CC7EA8700D63AEC /* Localizable.strings */,
+				B2F4F3711CC7D90700D9B4CB /* InfoPlist.strings */,
 				6027CF401BE74EAE00124C28 /* Info.plist */,
 				AC5340CB1BED44850065A578 /* GoogleService-Info.plist */,
 			);
@@ -3406,6 +3418,7 @@
 				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
+				B25371BB1CC7EA8700D63AEC /* Localizable.strings in Resources */,
 				B2D441721CB816FB009782AF /* VideoCalls.storyboard in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
@@ -3472,6 +3485,7 @@
 				B2D441301CB81690009782AF /* HTML.storyboard in Resources */,
 				B2D441991CB819AA009782AF /* SeeAllCollectionViewCell.xib in Resources */,
 				AC7028021C1AA66200262622 /* uv_heart.png in Resources */,
+				B2F4F36F1CC7D90700D9B4CB /* InfoPlist.strings in Resources */,
 				AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */,
 				B2D441691CB816EE009782AF /* VerifyEmail.storyboard in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
@@ -3490,6 +3504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D4413A1CB8169B009782AF /* Location.storyboard in Resources */,
+				B25371C01CC7EA8800D63AEC /* InfoPlist.strings in Resources */,
 				B2D441171CB81660009782AF /* Home.storyboard in Resources */,
 				B2D4410A1CB81632009782AF /* Root.storyboard in Resources */,
 				B2D441261CB8167D009782AF /* InviteFriends.storyboard in Resources */,
@@ -3502,6 +3517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D4413B1CB8169B009782AF /* Location.storyboard in Resources */,
+				B25371C51CC7EA8900D63AEC /* InfoPlist.strings in Resources */,
 				B2D441181CB81660009782AF /* Home.storyboard in Resources */,
 				B2D4410B1CB81632009782AF /* Root.storyboard in Resources */,
 				B2D441271CB8167D009782AF /* InviteFriends.storyboard in Resources */,
@@ -4172,6 +4188,31 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		B25371BD1CC7EA8700D63AEC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B25371BC1CC7EA8700D63AEC /* ar */,
+			);
+			name = Localizable.strings;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B25371C21CC7EA8800D63AEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B25371C11CC7EA8800D63AEC /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B25371C71CC7EA8900D63AEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B25371C61CC7EA8900D63AEC /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B2D440DD1CB81466009782AF /* Filter.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4592,6 +4633,15 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		B2F4F3711CC7D90700D9B4CB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2F4F3701CC7D90700D9B4CB /* ar */,
+			);
+			name = InfoPlist.strings;
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -4613,7 +4663,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -4658,7 +4707,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4801,7 +4849,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -4899,7 +4946,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -4997,7 +5043,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -5095,7 +5140,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5184,7 +5228,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5274,7 +5317,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5365,7 +5407,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5456,7 +5497,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

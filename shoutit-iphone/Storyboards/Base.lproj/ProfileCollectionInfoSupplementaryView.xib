@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -359,6 +359,7 @@
                 <outlet property="usernameLabel" destination="Flv-lN-M3r" id="Rol-Uo-Mh6"/>
                 <outlet property="verifyAccountButton" destination="5lp-g0-eW6" id="3MS-Ym-iDk"/>
                 <outlet property="verifyAccountButtonHeightConstraint" destination="nWE-LC-aFw" id="XBK-cZ-dad"/>
+                <outlet property="verifyAccountDisclosureIndicatorImageView" destination="QzZ-wG-1vh" id="Au5-zP-rcN"/>
                 <outlet property="websiteLabel" destination="KDv-JO-N1f" id="b2n-rU-z4v"/>
                 <outlet property="websiteSectionHeightConstraint" destination="Vjf-kl-8v9" id="SvC-2m-rvm"/>
             </connections>

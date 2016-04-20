@@ -20,7 +20,7 @@ final class SearchUserProfileCellViewModel {
     }
     
     func listeningCountString() -> String {
-        return NSLocalizedString("\(NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount)) Listeners", comment: "")
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount))
     }
     
     func hidesListeningButton() -> Bool {

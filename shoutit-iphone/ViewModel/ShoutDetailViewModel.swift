@@ -306,9 +306,9 @@ private extension ShoutDetailViewModel {
         
         // other
         let firstname = shout.user.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
-        models.append(.SectionHeader(title: NSLocalizedString("More shouts from \(firstname)", comment: "Shout detail")))
+        models.append(.SectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), firstname)))
         models.append(.OtherShouts)
-        models.append(.Button(title: NSLocalizedString("Visit \(firstname)'s profile", comment: "Shout Detail"), type: .VisitProfile))
+        models.append(.Button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), firstname), type: .VisitProfile))
         if (hasRelatedShouts()) {
             models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
             models.append(.RelatedShouts)

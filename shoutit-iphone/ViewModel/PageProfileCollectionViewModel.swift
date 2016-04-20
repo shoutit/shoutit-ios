@@ -165,7 +165,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
-        let title = NSLocalizedString("\(profile.name) Admins", comment: "")
+        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Admins", comment: ""), profile.name)
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
@@ -176,7 +176,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
-        let title = NSLocalizedString("\(profile.name) Shouts", comment: "")
+        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), profile.name)
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
         let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
         return ProfileCollectionSectionViewModel(title: title,

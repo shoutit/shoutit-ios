@@ -39,6 +39,13 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }
     
+    static func nullifyPushTokens() -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me"
+        let tokens = PushTokens(apns: nil, gcm: nil)
+        let params = APNParams(tokens: tokens)
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+    }
+    
     static func updateAPNsWithUsername<T: Decodable where T == T.DecodedType, T: User>(username: String, withParams params: APNParams) -> Observable<T> {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)

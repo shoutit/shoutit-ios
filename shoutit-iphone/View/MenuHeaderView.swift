@@ -27,24 +27,12 @@ final class MenuHeaderView: UIView {
         self.profileNameLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.profileNameLabel?.layer.shadowRadius = 1
         self.profileNameLabel?.layer.shadowOpacity = 0.5;
-        
-        self.profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
-        self.profileImageView?.layer.borderWidth = 1.0
-        self.profileImageView?.layer.masksToBounds = true
     }
     
     func fillWith(user: User?){
         
         if let user = user as? DetailedProfile {
-            if let path = user.imagePath, profileURL = NSURL(string: path) {
-                profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
-            }
-            
-            if let path = user.coverPath, coverURL = NSURL(string: path) {
-                coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
-            }
-            
-            profileNameLabel?.text = user.name
+            fillWithLoggedUser(user)
         } else {
             fillAsGuest()
         }
@@ -52,10 +40,31 @@ final class MenuHeaderView: UIView {
         fillLocation()
     }
     
+    private func fillWithLoggedUser(user: DetailedProfile) {
+        
+        if let path = user.imagePath, profileURL = NSURL(string: path) {
+            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+        }
+        
+        if let path = user.coverPath, coverURL = NSURL(string: path) {
+            coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        }
+        
+        profileNameLabel?.text = user.name
+        
+        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderWidth = 1.0
+        profileImageView?.layer.masksToBounds = true
+    }
+    
     private func fillAsGuest() {
         profileImageView?.image = UIImage(named: "guest avatar")
         profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
         coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
+        
+        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderWidth = 0.0
+        profileImageView?.layer.masksToBounds = true
     }
     
     private func fillLocation() {
