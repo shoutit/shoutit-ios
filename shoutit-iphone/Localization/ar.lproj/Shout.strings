@@ -1,84 +1,90 @@
-
 /* Class = "UIButton"; normalTitle = "Currency"; ObjectID = "3WJ-yE-7d1"; */
-"3WJ-yE-7d1.normalTitle" = "Currency";
+"3WJ-yE-7d1.normalTitle" = "العملة";
 
 /* Class = "UITextField"; placeholder = "Mobile"; ObjectID = "5lF-qh-668"; */
-"5lF-qh-668.placeholder" = "Mobile";
+"5lF-qh-668.placeholder" = "رقم الموبايل";
 
 /* Class = "UILabel"; text = "OR"; ObjectID = "5wL-mM-p5l"; */
-"5wL-mM-p5l.text" = "OR";
+"5wL-mM-p5l.text" = "أو";
 
 /* Class = "UILabel"; text = "Add photos and videos"; ObjectID = "7Ws-Aq-gda"; */
-"7Ws-Aq-gda.text" = "Add photos and videos";
+"7Ws-Aq-gda.text" = "اضف صور وفيديو";
 
 /* Class = "UIButton"; normalTitle = "Offer"; ObjectID = "ArL-Gz-lqw"; */
-"ArL-Gz-lqw.normalTitle" = "Offer";
+"ArL-Gz-lqw.normalTitle" = "عرض";
 
 /* Class = "UILabel"; text = "What are you posting?"; ObjectID = "C4A-6j-khU"; */
-"C4A-6j-khU.text" = "What are you posting?";
+"C4A-6j-khU.text" = "ماذا تنشر ؟";
 
 /* Class = "UIButton"; normalTitle = "Request"; ObjectID = "Ei6-pW-gaf"; */
-"Ei6-pW-gaf.normalTitle" = "Request";
+"Ei6-pW-gaf.normalTitle" = "طلب";
 
 /* Class = "UIButton"; normalTitle = "Category"; ObjectID = "JAQ-ZA-HOP"; */
-"JAQ-ZA-HOP.normalTitle" = "Category";
+"JAQ-ZA-HOP.normalTitle" = "التصنيف";
 
 /* Class = "UITextField"; placeholder = "Mobile"; ObjectID = "JgV-Ob-3ub"; */
-"JgV-Ob-3ub.placeholder" = "Mobile";
+"JgV-Ob-3ub.placeholder" = "رقم الموبايل";
 
 /* Class = "UIButton"; normalTitle = "Publish"; ObjectID = "M4f-Gm-mtF"; */
-"M4f-Gm-mtF.normalTitle" = "Publish";
+"M4f-Gm-mtF.normalTitle" = "نشر";
 
 /* Class = "UIButton"; normalTitle = "Currency"; ObjectID = "Mhb-3U-Wnp"; */
-"Mhb-3U-Wnp.normalTitle" = "Currency";
+"Mhb-3U-Wnp.normalTitle" = "العملة";
 
 /* Class = "UITextField"; placeholder = "Price"; ObjectID = "QHx-Ug-d24"; */
-"QHx-Ug-d24.placeholder" = "Price";
+"QHx-Ug-d24.placeholder" = "السعر";
 
 /* Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "Qcg-aH-k2h"; */
-"Qcg-aH-k2h.title" = "Create Shout";
+"Qcg-aH-k2h.title" = "إنشاء إعلان";
 
 /* Class = "UITextField"; placeholder = "Title"; ObjectID = "WZp-Em-qUh"; */
-"WZp-Em-qUh.placeholder" = "Title";
+"WZp-Em-qUh.placeholder" = "العنوان";
 
 /* Class = "UITextField"; placeholder = "Price"; ObjectID = "Woj-57-1w2"; */
-"Woj-57-1w2.placeholder" = "Price";
+"Woj-57-1w2.placeholder" = "السعر";
 
 /* Class = "UILabel"; text = "Congratulations!"; ObjectID = "Ws1-lB-UsQ"; */
-"Ws1-lB-UsQ.text" = "Congratulations!";
+"Ws1-lB-UsQ.text" = "تهانينا!";
 
 /* Class = "UITextField"; placeholder = "Title"; ObjectID = "XgN-88-Js2"; */
-"XgN-88-Js2.placeholder" = "Title";
+"XgN-88-Js2.placeholder" = "العنوان";
 
 /* Class = "UIButton"; normalTitle = "Currency"; ObjectID = "XyM-pO-O7x"; */
-"XyM-pO-O7x.normalTitle" = "Currency";
+"XyM-pO-O7x.normalTitle" = "العملة";
 
 /* Class = "UIButton"; normalTitle = "Create another Shout"; ObjectID = "Yoo-Nj-lhn"; */
-"Yoo-Nj-lhn.normalTitle" = "Create another Shout";
+"Yoo-Nj-lhn.normalTitle" = "إنشاء إعلان آخر";
+
+/* (No Commment) */
+"ZCj-gD-P8F.placeholder" = "التفاصيل";
 
 /* Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "dlP-sh-64t"; */
-"dlP-sh-64t.title" = "Create Shout";
+"dlP-sh-64t.title" = "إنشاء إعلان";
 
 /* Class = "UIButton"; normalTitle = "Publish"; ObjectID = "fr6-7f-ZZF"; */
-"fr6-7f-ZZF.normalTitle" = "Publish";
+"fr6-7f-ZZF.normalTitle" = "نشر";
 
 /* Class = "UIButton"; normalTitle = "Category"; ObjectID = "gPi-sh-l28"; */
-"gPi-sh-l28.normalTitle" = "Category";
+"gPi-sh-l28.normalTitle" = "التصنيف";
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "ijV-G2-BmC"; */
-"ijV-G2-BmC.normalTitle" = "Location";
+"ijV-G2-BmC.normalTitle" = "الموقع";
 
 /* Class = "UILabel"; text = "Add photos and videos"; ObjectID = "kE2-fo-MaD"; */
-"kE2-fo-MaD.text" = "Add photos and videos";
+"kE2-fo-MaD.text" = "إضافة صور وفيديو";
 
 /* Class = "UIButton"; normalTitle = "Currency"; ObjectID = "onr-sH-VzS"; */
-"onr-sH-VzS.normalTitle" = "Currency";
+"onr-sH-VzS.normalTitle" = "العملة";
 
 /* Class = "UIButton"; normalTitle = "Add more details"; ObjectID = "pqA-Zk-PKv"; */
-"pqA-Zk-PKv.normalTitle" = "Add more details";
+"pqA-Zk-PKv.normalTitle" = "إضافة معلومات أكثر";
 
 /* Class = "UILabel"; text = "Your shout will appear on Shoutit soon."; ObjectID = "smS-Ws-rTF"; */
-"smS-Ws-rTF.text" = "Your shout will appear on Shoutit soon.";
+"smS-Ws-rTF.text" = "سيتم عرض اعلانك قريباً على شاوت ات";
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "ygX-W4-fss"; */
-"ygX-W4-fss.normalTitle" = "Location";
+"ygX-W4-fss.normalTitle" = "الموقع";
+
+/* (No Commment) */
+"zu9-Yn-93s.placeholder" = "الشرح";
+

@@ -1,18 +1,18 @@
-
 /* Class = "UINavigationItem"; title = "Search results"; ObjectID = "U0e-yr-YM8"; */
-"U0e-yr-YM8.title" = "Search results";
+"U0e-yr-YM8.title" = "نتائج البحث";
 
 /* Class = "UINavigationItem"; title = "Results"; ObjectID = "XzG-ri-d5v"; */
-"XzG-ri-d5v.title" = "Results";
+"XzG-ri-d5v.title" = "النتائج";
 
 /* Class = "UISegmentedControl"; kLa-8H-n0r.segmentTitles[0] = "Shouts"; ObjectID = "kLa-8H-n0r"; */
-"kLa-8H-n0r.segmentTitles[0]" = "Shouts";
+"kLa-8H-n0r.segmentTitles[0]" = "الإعلانات";
 
 /* Class = "UISegmentedControl"; kLa-8H-n0r.segmentTitles[1] = "Users"; ObjectID = "kLa-8H-n0r"; */
-"kLa-8H-n0r.segmentTitles[1]" = "Users";
+"kLa-8H-n0r.segmentTitles[1]" = "المستخدمين";
 
 /* Class = "UISearchBar"; l8t-fV-OTb.scopeButtonTitles[0] = "Shouts"; ObjectID = "l8t-fV-OTb"; */
-"l8t-fV-OTb.scopeButtonTitles[0]" = "Shouts";
+"l8t-fV-OTb.scopeButtonTitles[0]" = "الإعلانات";
 
 /* Class = "UISearchBar"; l8t-fV-OTb.scopeButtonTitles[1] = "Users"; ObjectID = "l8t-fV-OTb"; */
-"l8t-fV-OTb.scopeButtonTitles[1]" = "Users";
+"l8t-fV-OTb.scopeButtonTitles[1]" = "المستخدمين";
+

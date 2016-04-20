@@ -14,8 +14,8 @@
 /* Class = "UIButton"; normalTitle = "Resend"; ObjectID = "PyS-Zd-vAr"; */
 "PyS-Zd-vAr.normalTitle" = "Resend";
 
-/* Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account.\n\nYou can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d"; */
-"QyQ-mg-M4d.text" = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account.\n\nYou can also change the email and click “Resend” for us to send you the verification link again.";
+/* Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d"; */
+"QyQ-mg-M4d.text" = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again.";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "wQK-uY-5kn"; */
 "wQK-uY-5kn.placeholder" = "Email";

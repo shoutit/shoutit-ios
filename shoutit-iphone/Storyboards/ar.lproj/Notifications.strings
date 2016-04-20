@@ -1,9 +1,3 @@
-
-/* Class = "UILabel"; text = "Mon at 12:30"; ObjectID = "6DB-56-Wn9"; */
-"6DB-56-Wn9.text" = "Mon at 12:30";
-
-/* Class = "UILabel"; text = "New Shout from Lenovo"; ObjectID = "jmj-I6-xkp"; */
-"jmj-I6-xkp.text" = "New Shout from Lenovo";
-
 /* Class = "UINavigationItem"; title = "Notifications"; ObjectID = "vM0-V9-Bfq"; */
-"vM0-V9-Bfq.title" = "Notifications";
+"vM0-V9-Bfq.title" = "الإشعارات";
+

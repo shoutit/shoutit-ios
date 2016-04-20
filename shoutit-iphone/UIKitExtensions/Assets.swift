@@ -46,6 +46,14 @@ extension UIImage {
         return UIImage(named: "forward_thin")!
     }
     
+    static func rightRedArrowDisclosureIndicator() -> UIImage {
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            return UIImage(named: "rtl_disclosure_indicator_red")!
+        } else {
+            return UIImage(named: "disclosure_indicator_red")!
+        }
+    }
+    
     // MARK - Search
     
     static func searchFillArrow() -> UIImage {
