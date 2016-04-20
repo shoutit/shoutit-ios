@@ -129,14 +129,28 @@ final class Account {
     }
     
     
-    func logout() throws {
-        try removeFilesFromUserDirecotry()
-        try keychain.remove(authDataKey)
-        loggedUser = nil
-        guestUser = nil
-        authData = nil
-        APIManager.eraseAuthToken()
-        GIDSignIn.sharedInstance().signOut()
+    func logout() -> Observable<Void> {
+        
+        return APIProfileService.nullifyPushTokens().flatMap {() -> Observable<Void> in
+            return Observable.create {[unowned self](observer) -> Disposable in
+                
+                do {
+                    try self.removeFilesFromUserDirecotry()
+                    try self.keychain.remove(self.authDataKey)
+                    self.loggedUser = nil
+                    self.guestUser = nil
+                    self.authData = nil
+                    APIManager.eraseAuthToken()
+                    GIDSignIn.sharedInstance().signOut()
+                    observer.onNext()
+                    observer.onCompleted()
+                } catch let error {
+                    observer.onError(error)
+                }
+                
+                return NopDisposable.instance
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -213,7 +227,5 @@ final class Account {
             default: break
         }
         }.addDisposableTo(disposeBag)
-
-
     }
 }
