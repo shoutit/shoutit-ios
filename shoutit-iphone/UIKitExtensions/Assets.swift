@@ -43,15 +43,17 @@ extension UIImage {
     }
     
     static func rightBlueArrowDisclosureIndicator() -> UIImage {
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            return UIImage(named: "rtl_forward_thin")!
+        }
         return UIImage(named: "forward_thin")!
     }
     
     static func rightRedArrowDisclosureIndicator() -> UIImage {
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             return UIImage(named: "rtl_disclosure_indicator_red")!
-        } else {
-            return UIImage(named: "disclosure_indicator_red")!
         }
+        return UIImage(named: "disclosure_indicator_red")!
     }
     
     // MARK - Search
