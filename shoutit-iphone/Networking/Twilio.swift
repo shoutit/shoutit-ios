@@ -82,7 +82,6 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self)
         self.client?.listen()
         
-        
     }
     
     func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
@@ -103,6 +102,15 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         }
         
         self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
+            if let _ = error {
+                APIChatsService.twilioMissedCallWithParams(MissedCallParams(identity: identity.identity)).subscribe({ (event) in
+                    switch event {
+                    case .Next: print("Call missed")
+                    case .Error(let error): print("Call missed \(error)")
+                    default: break
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
             handler(conversation, error)
         })
     }

@@ -99,6 +99,9 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             if let error = error {
                 self?.state = .CallFailed
                 self?.showError(error)
+                
+                
+                
                 return
             }
             
