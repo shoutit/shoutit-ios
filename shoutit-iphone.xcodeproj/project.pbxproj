@@ -130,7 +130,6 @@
 		AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */; };
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
-		AE194DDC1CB53610004A44CA /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DDB1CB53610004A44CA /* Report.swift */; };
 		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -545,6 +544,7 @@
 		B2D9B1181C9897B400924941 /* SearchSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B1171C9897B400924941 /* SearchSectionViewModel.swift */; };
 		B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B1191C98981900924941 /* SearchCategoryCellViewModel.swift */; };
 		B2D9B11C1C98984300924941 /* SearchSuggestionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9B11B1C98984300924941 /* SearchSuggestionCellViewModel.swift */; };
+		B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */; };
 		B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */; };
 		B2E107191C9700B200F7F4EF /* TagProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E107181C9700B200F7F4EF /* TagProfileCollectionViewModel.swift */; };
 		B2E1071B1C9711BC00F7F4EF /* RelatedTagsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1071A1C9711BC00F7F4EF /* RelatedTagsParams.swift */; };
@@ -572,7 +572,6 @@
 		B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2EE1C592B9E0078C743 /* Chats.storyboard */; };
 		B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2F11C592BA50078C743 /* CameraStoryboard.storyboard */; };
 		B2E7E2F21C592BAD0078C743 /* Shout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2F41C592BAD0078C743 /* Shout.storyboard */; };
-		B2E7E2F81C592BC20078C743 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */; };
 		B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E2FD1C592BC80078C743 /* LoginStoryboard.storyboard */; };
 		B2E7E2FE1C592BCE0078C743 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E3001C592BCE0078C743 /* Profile.storyboard */; };
 		B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E7E3031C592BD20078C743 /* Settings.storyboard */; };
@@ -789,7 +788,6 @@
 		AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentManager.swift; path = Other/ConversationAttachmentManager.swift; sourceTree = "<group>"; };
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
-		AE194DDB1CB53610004A44CA /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Report.swift; path = Model/Report.swift; sourceTree = "<group>"; };
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
@@ -1096,7 +1094,6 @@
 		B2C729D91C6223FA006F7D29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		B2C729DB1C6223FF006F7D29 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Controllers/SignupViewController.swift; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
-		B2D440DE1CB81494009782AF /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		B2D440DF1CB81494009782AF /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/Chats.strings"; sourceTree = "<group>"; };
 		B2D440E01CB81495009782AF /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/CameraStoryboard.strings"; sourceTree = "<group>"; };
 		B2D440E11CB81495009782AF /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/Shout.strings"; sourceTree = "<group>"; };
@@ -1179,8 +1176,6 @@
 		B2D4419D1CB819AF009782AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SeeAllCollectionViewCell.strings; sourceTree = "<group>"; };
 		B2D4419F1CB819B0009782AF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SeeAllCollectionViewCell.strings; sourceTree = "<group>"; };
 		B2D441A11CB819B1009782AF /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/SeeAllCollectionViewCell.strings"; sourceTree = "<group>"; };
-		B2D441A31CB819C6009782AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
-		B2D441A51CB819C7009782AF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		B2D441A71CB819D2009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TableViewPlaceholderView.xib; sourceTree = "<group>"; };
 		B2D441AA1CB819D5009782AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TableViewPlaceholderView.strings; sourceTree = "<group>"; };
 		B2D441AC1CB819D6009782AF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TableViewPlaceholderView.strings; sourceTree = "<group>"; };
@@ -1249,6 +1244,7 @@
 		B2DCBD861CC66AA400927174 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginStoryboard.strings; sourceTree = "<group>"; };
 		B2DCBD881CC66AB400927174 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoginStoryboard.strings; sourceTree = "<group>"; };
 		B2DCBD8A1CC66AC200927174 /* ar-AE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-AE"; path = "ar-AE.lproj/LoginStoryboard.strings"; sourceTree = "<group>"; };
+		B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+NavigationBar.swift"; path = "UIKitExtensions/UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		B2E107181C9700B200F7F4EF /* TagProfileCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagProfileCollectionViewModel.swift; path = ViewModel/TagProfileCollectionViewModel.swift; sourceTree = "<group>"; };
 		B2E1071A1C9711BC00F7F4EF /* RelatedTagsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelatedTagsParams.swift; path = Networking/RelatedTagsParams.swift; sourceTree = "<group>"; };
@@ -1276,7 +1272,6 @@
 		B2E7E3111C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3121C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Shout.storyboard; sourceTree = "<group>"; };
 		B2E7E3131C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Discover.storyboard; sourceTree = "<group>"; };
-		B2E7E3151C592C220078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Base.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 		B2E7E3161C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		B2E7E3181C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		B2E7E3191C592C230078C743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -1932,6 +1927,7 @@
 				B2D4416B1CB816EE009782AF /* VerifyEmail.storyboard */,
 				B2D441741CB816FB009782AF /* VideoCalls.storyboard */,
 				B2D4417D1CB81704009782AF /* SeeAllShouts.storyboard */,
+				B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2500,7 +2496,6 @@
 		B24D17B61C886D6500FB9614 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */,
 				B2D441A81CB819D2009782AF /* TableViewPlaceholderView.xib */,
 				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
 			);
@@ -3408,6 +3403,7 @@
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
 				AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */,
 				B2D442091CB81BB0009782AF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
+				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
 				B2D441721CB816FB009782AF /* VideoCalls.storyboard in Resources */,
@@ -3435,7 +3431,6 @@
 				6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */,
 				B26081A51CB6D7070025DA26 /* ShoutsSectionHeader.xib in Resources */,
 				AEADF3471CA58A9F0051DABA /* OutgoingShoutCell.xib in Resources */,
-				B2E7E2F81C592BC20078C743 /* Launch Screen.xib in Resources */,
 				AC7027FF1C1AA66200262622 /* UserVoice.strings in Resources */,
 				AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */,
 				AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */,
@@ -4558,18 +4553,6 @@
 				B2D440F41CB8153F009782AF /* de */,
 			);
 			name = Shout.storyboard;
-			path = Localization;
-			sourceTree = "<group>";
-		};
-		B2E7E2FA1C592BC20078C743 /* Launch Screen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2E7E3151C592C220078C743 /* Base */,
-				B2D440DE1CB81494009782AF /* ar-AE */,
-				B2D441A31CB819C6009782AF /* en */,
-				B2D441A51CB819C7009782AF /* de */,
-			);
-			name = "Launch Screen.xib";
 			path = Localization;
 			sourceTree = "<group>";
 		};

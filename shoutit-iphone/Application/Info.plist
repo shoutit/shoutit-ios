@@ -178,7 +178,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Shoutit App wants to access your location</string>
 	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Root</string>
 	<key>UIRequiredDeviceCapabilities</key>
