@@ -8,6 +8,7 @@
  
  import UIKit
  import RxSwift
+ import RxCocoa
  
  enum DiscoverPreviewState {
     case NotLoaded
@@ -18,7 +19,7 @@
  
  final class DiscoverPreviewViewModel: AnyObject {
     
-    let displayable = ShoutsDisplayable(layout: .HorizontalGrid)
+    let displayable = ShoutsDisplayable(layout: ShoutsLayout.HorizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
     
@@ -38,11 +39,15 @@
     
     required init() {
         
-        let countryObservable : Observable<String?> = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+        let countryObservable : Driver<String?> = Account.sharedInstance.userSubject.asDriver(onErrorJustReturn: nil).map { (user) -> String? in
             return user?.location.country
         }
         
-        mainItemObservable = countryObservable.flatMap { (location) in
+        
+        mainItemObservable = countryObservable
+            .distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
+            .asObservable()
+            .flatMap { (location) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
             }.map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
