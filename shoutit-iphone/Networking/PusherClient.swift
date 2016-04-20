@@ -20,7 +20,7 @@ final class PusherClient : NSObject {
     private let pusherAppKey = "7bee1e468fabb6287fc5"
     private let pusherURL = APIManager.baseURL + "/pusher/auth"
     
-    var pusherInstance: PTPusher!
+    var pusherInstance: PTPusher?
     
     private let disposeBag = DisposeBag()
     
@@ -34,7 +34,7 @@ final class PusherClient : NSObject {
         super.init()
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
         
         do {
@@ -56,7 +56,7 @@ final class PusherClient : NSObject {
                 return
             }
             
-            if self.pusherInstance.connection.connected == false {
+            if self.pusherInstance?.connection.connected == false {
                 self.connect()
             }
 
@@ -69,9 +69,8 @@ final class PusherClient : NSObject {
             return
         }
         
-        pusherInstance.disconnect()
-        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        pusherInstance?.disconnect()
+        
         connect()
     }
     
@@ -80,14 +79,14 @@ final class PusherClient : NSObject {
         keepDisconnected = false
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance.authorizationURL = NSURL(string: pusherURL)
+        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
-        pusherInstance.connect()
+        pusherInstance?.connect()
     }
     
     func disconnect() {
         keepDisconnected = true
-        pusherInstance.disconnect()
+        pusherInstance?.disconnect()
         
         pusherInstance = nil
         
@@ -122,8 +121,14 @@ final class PusherClient : NSObject {
             }
             
             if event.eventType() == .ProfileChange {
-                if let profile : DetailedProfile = event.object() {
-                    Account.sharedInstance.loggedUser = profile
+                if let _ = Account.sharedInstance.loggedUser {
+                    if let profile : DetailedProfile = event.object() {
+                        Account.sharedInstance.loggedUser = profile
+                    }
+                } else {
+                    if let guest : GuestUser = event.object() {
+                        Account.sharedInstance.guestUser = guest
+                    }
                 }
             }
 
@@ -199,7 +204,9 @@ extension PusherClient {
                 return cancel
             }
             
-            let channel = self.pusherInstance.subscribeToChannelNamed(channelName)
+            guard let channel = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                return cancel
+            }
             
             
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
@@ -238,10 +245,13 @@ extension PusherClient {
     
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
-            let channel = self.pusherInstance.subscribeToChannelNamed(conversation.channelName())
             
             let cancel = AnonymousDisposable {
-                channel.removeAllBindings()
+                
+            }
+            
+            guard let channel = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
+                return cancel
             }
             
             channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in
@@ -278,6 +288,6 @@ extension PusherClient {
         let data = user.basicEncodedProfile()
         let channelName = conversation.channelName()
         
-        pusherInstance.sendEventNamed(eventName, data: data, channel: channelName)
+        pusherInstance?.sendEventNamed(eventName, data: data, channel: channelName)
     }
 }

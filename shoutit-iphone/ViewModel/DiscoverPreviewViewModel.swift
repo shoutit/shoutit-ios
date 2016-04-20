@@ -1,22 +1,22 @@
  //
-//  DiscoverPreviewViewModel.swift
-//  shoutit-iphone
-//
-//  Created by Piotr Bernad on 15.02.2016.
-//  Copyright © 2016 Shoutit. All rights reserved.
-//
-
-import UIKit
-import RxSwift
-
-enum DiscoverPreviewState {
+ //  DiscoverPreviewViewModel.swift
+ //  shoutit-iphone
+ //
+ //  Created by Piotr Bernad on 15.02.2016.
+ //  Copyright © 2016 Shoutit. All rights reserved.
+ //
+ 
+ import UIKit
+ import RxSwift
+ 
+ enum DiscoverPreviewState {
     case NotLoaded
     case Loading
     case NoItems
     case Loaded
-}
-
-final class DiscoverPreviewViewModel: AnyObject {
+ }
+ 
+ final class DiscoverPreviewViewModel: AnyObject {
     
     let displayable = ShoutsDisplayable(layout: .HorizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"
@@ -38,16 +38,18 @@ final class DiscoverPreviewViewModel: AnyObject {
     
     required init() {
         
-        mainItemObservable = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+        let countryObservable : Observable<String?> = Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
             return user?.location.country
-        }.flatMap { (location) in
-            return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
-        }.map{ (items) -> DiscoverItem? in
-            if (items.count > 0) {
-                return items[0]
-            }
-            return nil
-        }.share()
+        }
+        
+        mainItemObservable = countryObservable.flatMap { (location) in
+                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
+            }.map{ (items) -> DiscoverItem? in
+                if (items.count > 0) {
+                    return items[0]
+                }
+                return nil
+            }.share()
         
         dataSource = mainItemObservable
             .filter{$0 != nil}
@@ -65,11 +67,11 @@ final class DiscoverPreviewViewModel: AnyObject {
             } else {
                 self.state.value = .NoItems
             }
-        }.addDisposableTo(disposeBag)
-
+            }.addDisposableTo(disposeBag)
+        
         dataSource.subscribeNext { (items) -> Void in
             self.state.value = .Loaded
-        }.addDisposableTo(disposeBag)
-
+            }.addDisposableTo(disposeBag)
+        
     }
-}
+ }
