@@ -116,7 +116,7 @@ DEPENDENCIES:
   - KeychainAccess (~> 2.3)
   - Kingfisher (~> 2.2)
   - libPusher (~> 1.6)
-  - Material (~> 1.29)
+  - Material (~> 1.39)
   - MBMapSnapshotter
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)

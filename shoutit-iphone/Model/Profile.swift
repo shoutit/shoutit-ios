@@ -15,7 +15,7 @@ struct Profile {
     let id: String
     let type: UserType
     let apiPath: String
-    let webPath: String
+    let webPath: String?
     let username: String
     let name: String
     let firstName: String?
@@ -61,7 +61,7 @@ extension Profile: Decodable {
             <*> j <| "type"
             <*> j <| "api_url"
         let b = a
-            <*> j <| "web_url"
+            <*> j <|? "web_url"
             <*> j <| "username"
             <*> j <| "name"
             <*> j <|? "first_name"
