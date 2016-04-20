@@ -88,3 +88,15 @@ struct MessageParams: Params {
         return self.message.encode().JSONObject() as! [String: AnyObject]
     }
 }
+
+struct MissedCallParams: Params {
+    let identity: String
+    
+    init(identity: String) {
+        self.identity = identity
+    }
+    
+    var params: [String : AnyObject] {
+        return ["identity": self.identity, "missed": true]
+    }
+}

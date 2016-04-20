@@ -31,7 +31,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound], categories: nil)
+        
+        
+        let textAction = UIMutableUserNotificationAction()
+        textAction.identifier = "ANSWER_ACTION"
+        textAction.title = "Answer"
+        textAction.activationMode = .Background
+        textAction.authenticationRequired = false
+        textAction.destructive = true
+        
+        if #available(iOS 9.0, *) {
+            textAction.behavior = .Default
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        let category = UIMutableUserNotificationCategory()
+        category.identifier = "VIDEO_CALL_CATEGORY"
+        category.setActions([textAction], forContext: .Default)
+        category.setActions([textAction], forContext: .Minimal)
+        
+        let categories = NSSet(object: category) as! Set<UIUserNotificationCategory>
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
         

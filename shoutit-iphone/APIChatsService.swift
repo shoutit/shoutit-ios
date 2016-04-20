@@ -18,6 +18,7 @@ final class APIChatsService {
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
     private static let twilioIdentityURL = APIManager.baseURL + "/twilio/video_identity"
+    private static let twilioMissedCallURL = APIManager.baseURL + "/twilio/video_call"
     private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
     private static let conversationURL = APIManager.baseURL + "/conversations/*"
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
@@ -49,6 +50,10 @@ final class APIChatsService {
     
     static func twilioVideoAuth() -> Observable<TwilioAuth> {
         return APIGenericService.requestWithMethod(.POST, url: twilioURL, params: NopParams())
+    }
+    
+    static func twilioMissedCallWithParams(params: MissedCallParams) -> Observable<Void> {
+        return APIGenericService.basicRequestWithMethod(.POST, url: twilioMissedCallURL, params: params, encoding: .JSON)
     }
     
     static func twilioVideoIdentity(username: String) -> Observable<TwilioIdentity> {
