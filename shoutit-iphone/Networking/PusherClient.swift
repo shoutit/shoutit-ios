@@ -86,6 +86,7 @@ final class PusherClient : NSObject {
     
     func disconnect() {
         keepDisconnected = true
+        
         pusherInstance?.disconnect()
         
         pusherInstance = nil
