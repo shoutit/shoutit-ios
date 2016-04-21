@@ -123,7 +123,9 @@ extension FiltersViewController: UITableViewDataSource {
             let categoryCell = cell as! SelectButtonFilterTableViewCell
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
             categoryCell.button.showIcon(category?.icon != nil)
-            categoryCell.button.iconImageView.sh_setImageWithURL(category?.icon?.toURL(), placeholderImage: nil)
+            if let path = category?.icon, url = path.toURL() {
+                categoryCell.button.iconImageView.kf_setImageWithURL(url, placeholderImage: nil)
+            }
             categoryCell.button.enabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
             categoryCell.button.showActivity(!loaded())

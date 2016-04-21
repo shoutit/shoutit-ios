@@ -216,7 +216,10 @@ extension SearchViewController: UITableViewDataSource {
             let cellModel = cells[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(categoryCellReuseId, forIndexPath: indexPath) as! SearchCategoryTableViewCell
             cell.titleLabel.text = cellModel.category.name
-            cell.thumbnailImageView.sh_setImageWithURL(cellModel.category.icon?.toURL(), placeholderImage: nil)
+            
+            if let path = cellModel.category.icon, url = NSURL(string: path) {
+                cell.thumbnailImageView.kf_setImageWithURL(url, placeholderImage: nil)
+            }
             let numberOfRows = self.tableView(tableView, numberOfRowsInSection: indexPath.section)
             cell.setConstraintForPosition(isLast: indexPath.row == numberOfRows - 1)
             return cell

@@ -52,8 +52,8 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
             countryImageView.image = countryImage
         }
         
-        if let categoryIcon = shout.category.icon, categoryImageView = shoutCategoryImageView {
-            categoryImageView.sh_setImageWithURL(categoryIcon.toURL(), placeholderImage: nil)
+        if let categoryIcon = shout.category.icon, categoryImageView = shoutCategoryImageView, url = categoryIcon.toURL() {
+            categoryImageView.kf_setImageWithURL(url, placeholderImage: nil)
         }
         
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {

@@ -220,7 +220,7 @@ extension CreateShoutViewModel {
             cell?.selectButton.setTitle(category.name, forState: .Normal)
             if let imagePath = category.icon, imageURL = NSURL(string: imagePath) {
                 cell?.selectButton.showIcon(true)
-                cell?.selectButton.iconImageView.sh_setImageWithURL(imageURL, placeholderImage: nil)
+                cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL, placeholderImage: nil)
             }
         } else {
             cell?.selectButton.showIcon(false)

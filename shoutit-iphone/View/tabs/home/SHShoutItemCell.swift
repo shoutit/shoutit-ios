@@ -47,9 +47,10 @@ extension SHShoutItemCell {
             countryImageView.image = countryImage
         }
         
-        if let categoryIcon = shout.category.icon, categoryImageView = self.shoutCategoryImage {
-            categoryImageView.sh_setImageWithURL(NSURL(string: categoryIcon), placeholderImage: nil)
+        if let path = shout.category.icon, url = path.toURL(), categoryImageView = self.shoutCategoryImage {
+            categoryImageView.kf_setImageWithURL(url, placeholderImage: nil)
         }
+        
         
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
             self.shoutImage.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
