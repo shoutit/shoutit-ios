@@ -5529,6 +5529,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
