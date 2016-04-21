@@ -25,7 +25,7 @@ platform :ios do
   desc "create and upload ipa to crashlytics"
   lane :production do
 
-    au_add_identity
+    au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
 
     `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
 
@@ -51,7 +51,7 @@ platform :ios do
     #upload artifact
     au_artifacts_upload
   
-    #upload to crashlytics
+    #upload to testflight
     pilot(skip_submission: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
     
     #prepare git hash
@@ -59,7 +59,7 @@ platform :ios do
 
     #send slack message
     slack(
-      message: "New Shoutit Production (#{build_no}) stored on google storage. Trigger Testflight upload using git tag", 
+      message: "New Shoutit Production (#{build_no}) processing on testflight.", 
       attachment_properties: {
         fields: [{
           title: 'git-hash',

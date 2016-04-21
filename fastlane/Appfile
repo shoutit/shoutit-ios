@@ -6,6 +6,10 @@ for_lane :testflight do
 	apple_id "shoutit@appunite.com"
 end
 
+for_lane :production do 
+	app_identifier "com.shoutit-iphone"
+	apple_id "shoutit@appunite.com"
+end
 
 # You can uncomment any of the lines below and add your own
 # team selection in case you're in multiple teams
