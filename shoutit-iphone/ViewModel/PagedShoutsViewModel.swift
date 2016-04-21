@@ -14,7 +14,7 @@ protocol PagedShoutsViewModel: class {
     var filtersState: FiltersState? {get}
     var requestDisposeBag: DisposeBag {get set}
     var state: Variable<PagedViewModelState<ShoutCellViewModel>> {get}
-    var numberOfResults: Int {get set}
+    var numberOfResults: Int? {get set}
     
     func reloadContent() -> Void
     func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>>

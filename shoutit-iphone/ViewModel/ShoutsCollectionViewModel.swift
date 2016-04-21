@@ -27,7 +27,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
     
     // data
-    var numberOfResults: Int = 0
+    var numberOfResults: Int? = 0
     
     init(context: Context) {
         self.context = context
@@ -54,7 +54,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     }
     
     func resultsCountString() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Search results count string"), numberOfResults)
+        return String.localizedStringWithFormat(NSLocalizedString("%d Shouts", comment: "Search results count string"), numberOfResults ?? 0)
     }
     
     func getFiltersState() -> FiltersState {

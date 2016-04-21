@@ -22,7 +22,7 @@ extension SearchShoutsResultsViewModel {
         private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
         
         // data
-        var numberOfResults: Int = 0
+        var numberOfResults: Int? = 0
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent
@@ -43,7 +43,7 @@ extension SearchShoutsResultsViewModel {
         }
         
         func resultsCountString() -> String {
-            return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Search results count string"), numberOfResults)
+            return String.localizedStringWithFormat(NSLocalizedString("%d Shouts", comment: "Search results count string"), numberOfResults ?? 0)
         }
         
         func allowsFiltering() -> Bool {
