@@ -52,14 +52,14 @@ platform :ios do
     au_artifacts_upload
   
     #upload to crashlytics
-    crashlytics({groups: 'internal-tests, internal-testers'})
+    # crashlytics({groups: 'internal-tests, internal-testers'})
     
     #prepare git hash
     git_hash = `git rev-parse --short HEAD`
 
     #send slack message
     slack(
-      message: "New Shoutit version available (#{build_no}).", 
+      message: "New Shoutit Production (#{build_no}) stored on google storage. Trigger Testflight upload using git tag", 
       attachment_properties: {
         fields: [{
           title: 'git-hash',
