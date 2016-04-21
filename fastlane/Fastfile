@@ -32,6 +32,8 @@ platform :ios do
     #prepare cocoapods
     cocoapods
     
+    ENV["SIGH_TEAM_ID"]="2857HUGC3W"
+    
     #download provisioning profile
     sigh
     
@@ -80,6 +82,8 @@ platform :ios do
 
     #prepare cocoapods
     cocoapods
+    
+    ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
     
     #download provisioning profile
     sigh
