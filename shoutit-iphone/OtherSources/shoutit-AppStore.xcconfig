@@ -3,3 +3,8 @@
 #include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
 #include "../../External/xcconfigs/Base/Configurations/Release.xcconfig"
 #include "shoutit-Release.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = com.shoutit-iphone
+APPLICATION_BUNDLE_IDENTIFIER = com.shoutit-iphone
+
+CODE_SIGN_IDENTITY = iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)
