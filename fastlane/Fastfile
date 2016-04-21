@@ -46,7 +46,7 @@ platform :ios do
     build_no = build_no.to_s.delete!("\n")
         
     #build app
-    gym scheme: ENV["XCODE_SCHEME"], clean: true, configuration: "Distribution", use_legacy_build_api: true
+    gym scheme: ENV["XCODE_SCHEME_PRODUCTION"], clean: true, configuration: "Distribution", use_legacy_build_api: true
 
     #upload artifact
     au_artifacts_upload
