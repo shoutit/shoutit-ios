@@ -48,19 +48,13 @@ platform :ios do
 
     #upload artifact
     au_artifacts_upload
-
-    #generate short url
-    #bitly_url = au_download_link
   
     #upload to crashlytics
     crashlytics({groups: 'internal-tests, internal-testers'})
     
     #prepare git hash
     git_hash = `git rev-parse --short HEAD`
-    
-    #send to build tracker
-    # au_build_tracker build_number: build_no, build_name: git_hash, app_name: "Shoutit", download_url: bitly_url.to_s 
-    
+
     #send slack message
     slack(
       message: "New Shoutit version available (#{build_no}).", 

@@ -31,37 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
         
-        
-        
-        let textAction = UIMutableUserNotificationAction()
-        textAction.identifier = "ANSWER_ACTION"
-        textAction.title = "Answer"
-        textAction.activationMode = .Background
-        textAction.authenticationRequired = false
-        textAction.destructive = true
-        
-        if #available(iOS 9.0, *) {
-            textAction.behavior = .Default
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        let category = UIMutableUserNotificationCategory()
-        category.identifier = "VIDEO_CALL_CATEGORY"
-        category.setActions([textAction], forContext: .Default)
-        category.setActions([textAction], forContext: .Minimal)
-        
-        let categories = NSSet(object: category) as! Set<UIUserNotificationCategory>
-        
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
-        application.registerUserNotificationSettings(notificationSettings)
-        application.registerForRemoteNotifications()
+        configureAPS(application)
         
         // fetch user account to update all stats etc.
         Account.sharedInstance.fetchUserProfile()
         
         return true
     }
+    
     
     // handle the URL that your application receives at the end of the authentication process -- Google
     func application(application: UIApplication,
@@ -147,5 +124,32 @@ private extension AppDelegate {
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         }
+    }
+    
+    func configureAPS(application: UIApplication) {
+        
+        let textAction = UIMutableUserNotificationAction()
+        textAction.identifier = "ANSWER_ACTION"
+        textAction.title = "Answer"
+        textAction.activationMode = .Background
+        textAction.authenticationRequired = false
+        textAction.destructive = true
+        
+        if #available(iOS 9.0, *) {
+            textAction.behavior = .Default
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        let category = UIMutableUserNotificationCategory()
+        category.identifier = "VIDEO_CALL_CATEGORY"
+        category.setActions([textAction], forContext: .Default)
+        category.setActions([textAction], forContext: .Minimal)
+        
+        let categories = NSSet(object: category) as! Set<UIUserNotificationCategory>
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
+        application.registerUserNotificationSettings(notificationSettings)
+        application.registerForRemoteNotifications()
     }
 }

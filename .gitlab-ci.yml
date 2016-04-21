@@ -10,8 +10,6 @@ production:
   script: "bundle exec fastlane production"
   tags:
     - s4
-  only:
-    - /^production-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 alpha:
   type: build
   script: "bundle exec fastlane staging"
