@@ -16,7 +16,7 @@ final class APIManager {
     
     // base url
     #if STAGING
-    static let baseURL = "https://dev.api.shoutit.com/v3/"
+    static let baseURL = "https://dev.api.shoutit.com/v3"
     // runscope url   "https://dev-api-shoutit-com-qm7w6bwy42b2.runscope.net/v3"
     // base dev url "http://dev.api.shoutit.com/v2"
     #else
