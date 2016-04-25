@@ -12,6 +12,18 @@ import RxSwift
 
 final class Account {
     
+    enum UserModel {
+        case Logged(user: DetailedProfile)
+        case Guest(user: GuestUser)
+        
+        var user: User {
+            switch self {
+            case .Logged(let user): return user
+            case .Guest(let user): return user
+            }
+        }
+    }
+    
     // singleton
     static let sharedInstance = Account()
     
@@ -48,32 +60,34 @@ final class Account {
             self.loginSubject.onNext()
         }
     }
-    var loggedUser: DetailedProfile? {
+    
+    private(set) var userModel: UserModel? {
         didSet {
-            if let userObject = loggedUser {
-                self.userSubject.onNext(userObject)
+            switch userModel {
+            case .Some(.Logged(let userObject)):
+                self.userSubject.onNext((oldValue: oldValue?.user, newValue: userObject))
                 self.statsSubject.onNext(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
-            }
-        }
-    }
-    
-    var guestUser: GuestUser? {
-        didSet {
-            if let userObject = guestUser {
-                self.userSubject.onNext(userObject)
+            case .Some(.Guest(let userObject)):
+                self.userSubject.onNext((oldValue: oldValue?.user, newValue: userObject))
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+            default:
+                break
             }
         }
     }
     
     var user: User? {
-        return loggedUser ?? guestUser
+        switch userModel {
+        case .Some(.Logged(let userObject)): return userObject
+        case .Some(.Guest(let userObject)): return userObject
+        default: return nil
+        }
     }
     
-    var userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
-    var loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
-    var statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    let userSubject = BehaviorSubject<(oldValue: User?, newValue: User?)>(value: (oldValue: nil, newValue: nil)) // triggered on login and user update
+    let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
+    let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
@@ -96,9 +110,11 @@ final class Account {
     
     init() {
         
-        guestUser = SecureCoder.readObjectFromFile(archivePath)
-        loggedUser = SecureCoder.readObjectFromFile(archivePath)
-        assert(guestUser == nil || loggedUser == nil)
+        if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
+            userModel = .Guest(user: guest)
+        } else if let loggedUser: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
+            userModel = .Logged(user: loggedUser)
+        }
         
         if let data = keychain[data: authDataKey] {
             authData = SecureCoder.objectWithData(data)
@@ -115,19 +131,21 @@ final class Account {
         let data = SecureCoder.dataWithJsonConvertible(authData)
         try keychain.set(data, key: authDataKey)
         
-        
         // set instance vars
         self.authData = authData
-        if let user = user as? DetailedProfile {
-            loggedUser = user
-        } else if let user = user as? GuestUser {
-            guestUser = user
-        }
+        updateUserWithModel(user)
         
         // update apimanager token
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
     }
     
+    func updateUserWithModel<T: User>(user: T) {
+        if let user = user as? DetailedProfile {
+            userModel = .Logged(user: user)
+        } else if let user = user as? GuestUser {
+            userModel = .Guest(user: user)
+        }
+    }
     
     func logout() throws {
         APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
@@ -136,14 +154,14 @@ final class Account {
     }
     
     func fetchUserProfile() {
-        guard let user = self.loggedUser where isUserLoggedIn else { return }
+        guard case .Logged(let user)? = userModel where isUserLoggedIn else { return }
         
         let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
         observable.subscribe{ (event) in
             switch event {
             case .Next(let profile):
                 self.updateApplicationBadgeNumberWithProfile(profile)
-                self.loggedUser = profile
+                self.userModel = .Logged(user: user)
             case .Error(let error): debugPrint(error)
             default: break
             }
@@ -151,11 +169,8 @@ final class Account {
     }
     
     func updateStats(stats: ProfileStats) {
-        guard let user = self.loggedUser else {
-            return
-        }
-        
-        self.loggedUser = user.updatedProfileWithStats(stats)
+        guard case .Logged(let user)? = userModel else { return }
+        self.userModel = .Logged(user: user.updatedProfileWithStats(stats))
         self.statsSubject.onNext(stats)
     }
 }
@@ -169,8 +184,7 @@ private extension Account {
     private func clearUserDara() throws {
         try self.removeFilesFromUserDirecotry()
         try self.keychain.remove(self.authDataKey)
-        self.loggedUser = nil
-        self.guestUser = nil
+        self.userModel = nil
         self.authData = nil
         APIManager.eraseAuthToken()
     }
@@ -193,7 +207,7 @@ private extension Account {
         if let apnsToken = self.apnsToken {
             let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
             
-            if let guest = self.guestUser {
+            if case .Guest(let guest)? = userModel {
                 let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
                 observable.subscribe{ (event) in
                     switch event {
@@ -203,7 +217,8 @@ private extension Account {
                     }
                     }.addDisposableTo(disposeBag)
                 
-            } else if let user = self.loggedUser {
+            }
+            else if case .Logged(let user)? = userModel {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
                 observable.subscribe{ (event) in
                     switch event {

@@ -306,7 +306,8 @@ extension ProfileCollectionViewController {
             infoView.verifyAccountButton
                 .rx_tap.asDriver()
                 .driveNext{ [weak self] in
-                    self?.flowDelegate?.showVerifyEmailView(Account.sharedInstance.loggedUser!, successBlock: { (message) in
+                    guard case .Logged(let user)? = Account.sharedInstance.userModel else { assertionFailure(); return; }
+                    self?.flowDelegate?.showVerifyEmailView(user, successBlock: { (message) in
                         self?.showSuccessMessage(message)
                     })
                 }

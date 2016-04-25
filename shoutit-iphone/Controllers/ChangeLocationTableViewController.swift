@@ -90,7 +90,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             }
             .addDisposableTo(disposeBag)
 
-        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+        Account.sharedInstance.userSubject.subscribeNext { (_, user: User?) in
             self.loadInitialState()
         }.addDisposableTo(disposeBag)
     }

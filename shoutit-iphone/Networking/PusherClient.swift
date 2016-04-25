@@ -122,14 +122,17 @@ final class PusherClient : NSObject {
             }
             
             if event.eventType() == .ProfileChange {
-                if let _ = Account.sharedInstance.loggedUser {
+                switch Account.sharedInstance.userModel {
+                case .Some(.Logged):
                     if let profile : DetailedProfile = event.object() {
-                        Account.sharedInstance.loggedUser = profile
+                        Account.sharedInstance.updateUserWithModel(profile)
                     }
-                } else {
+                case .Some(.Guest):
                     if let guest : GuestUser = event.object() {
-                        Account.sharedInstance.guestUser = guest
+                        Account.sharedInstance.updateUserWithModel(guest)
                     }
+                default: break
+                    
                 }
             }
 

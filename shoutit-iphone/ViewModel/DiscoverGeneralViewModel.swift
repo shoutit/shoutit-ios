@@ -17,7 +17,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
     }
     
     override func retriveDiscoverItems() {
-        Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
+        Account.sharedInstance.userSubject.asObservable().map { (_, let user) -> String? in
             return user?.location.country
         }.flatMap { (location) in
             return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))

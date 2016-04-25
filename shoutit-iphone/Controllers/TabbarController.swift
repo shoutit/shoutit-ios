@@ -51,7 +51,8 @@ final class TabbarController: UIViewController, Navigation {
     }
     
     private func fillBadges() {
-        if let detailedUser = Account.sharedInstance.loggedUser, stats = detailedUser.stats {
+        guard case .Logged(let user)? = Account.sharedInstance.userModel else { return }
+        if let stats = user.stats {
             fillUnreadConversations(stats.unreadConversationCount)
             fillUnreadNotifications(stats.unreadNotificationsCount)
         }
