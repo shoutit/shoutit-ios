@@ -39,27 +39,15 @@ final class VideoProcessor: AnyObject {
     }
     
     func generateMovieData(url: NSURL, handler: (data: NSData?) -> Void) {
+        
         let asset = AVAsset(URL: url)
-        if let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality) {
-            
-            let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/tempVideo\(NSDate().timeIntervalSince1970).mp4"
-            exporter.outputURL = NSURL(fileURLWithPath: documentPath)
-
-            
-            exporter.outputFileType = AVFileTypeMPEG4
-            exporter.shouldOptimizeForNetworkUse = true
-            
-            exporter.exportAsynchronouslyWithCompletionHandler {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if exporter.status == .Completed {
-                        if let outputURL = exporter.outputURL {
-                            let data = NSData(contentsOfURL: outputURL)
-                            handler(data: data)
-                        }
-                    } else {
-                        print(exporter.error)
-                    }
-                })
+        
+        let generator = WatermarkGenerator()
+        
+        generator.watermark(video: asset, imageName:"shoutit_logo_white", saveToLibrary: true, watermarkPosition: .TopRight) { (status, session, outputURL) in
+            if status == .Completed {
+                let data = NSData(contentsOfURL: outputURL)
+                handler(data: data)
             }
         }
     }
