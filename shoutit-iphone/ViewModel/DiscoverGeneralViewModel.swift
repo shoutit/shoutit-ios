@@ -12,6 +12,10 @@ import RxSwift
 final class DiscoverGeneralViewModel: DiscoverViewModel {
     let disposeBag = DisposeBag()
     
+    override var isRootDiscoverView: Bool {
+        return true
+    }
+    
     override func retriveDiscoverItems() {
         Account.sharedInstance.userSubject.asObservable().map { (user) -> String? in
             return user?.location.country
