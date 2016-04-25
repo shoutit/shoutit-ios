@@ -44,6 +44,7 @@ struct Constants {
     
     struct Defaults {
         static let apnsTokenKey = "apnsTokenKey"
+        static let locationAutoUpdates = "locationAutoUpdates"
     }
     
     struct Notification {

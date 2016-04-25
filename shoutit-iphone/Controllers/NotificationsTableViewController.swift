@@ -73,13 +73,20 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         loading = true
         
-        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { (event) in
+        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { [weak self] (event) in
             switch event {
             case .Next(let messages):
-                self.loading = false
-                self.appendMessages(messages)
+                
+                if messages.count > 0 {
+                    self?.loading = false
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.hidden = true
+                }
+                
+                self?.appendMessages(messages)
             case .Error:
-                self.loading = false
+                self?.loading = false
             default:
                 break;
             }

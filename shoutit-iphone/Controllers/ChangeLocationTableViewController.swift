@@ -22,10 +22,20 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     private let viewModel = ChangeLocationViewModel()
     private let cellIdentifier = "ChangeLocationCellIdentifier"
     
+    var shouldShowAutoUpdates : Bool = true
+    
     var currentLocationText : String! {
         didSet {
             loading = false
-            currentLocationLabel.text = "\(NSLocalizedString("Your current location:", comment: "")) \(currentLocationText)"
+            currentLocationLabel.text = "\(NSLocalizedString("Current location:", comment: "")) \(currentLocationText)"
+        }
+    }
+    
+    var autoUpdates : Bool = false {
+        didSet {
+            loadInitialState()
+            NSUserDefaults.standardUserDefaults().setObject(autoUpdates, forKey: Constants.Defaults.locationAutoUpdates)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
@@ -43,6 +53,11 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? NSNumber {
+            autoUpdates = auto.boolValue
+        }
+        
         setupObservers()
     }
     
@@ -56,7 +71,11 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func loadInitialState() {
-        currentLocationText = Account.sharedInstance.locationString()
+        if shouldShowAutoUpdates && autoUpdates {
+            currentLocationText = NSLocalizedString("Your location will be updated automatically", comment: "")
+        } else {
+            currentLocationText = Account.sharedInstance.locationString()
+        }
     }
     
     func setupObservers() {
