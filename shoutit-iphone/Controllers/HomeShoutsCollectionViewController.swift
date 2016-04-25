@@ -106,7 +106,10 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
             let retryObservable = retry.asObservable().filter{$0}
-            let userChangeObservable = Account.sharedInstance.userSubject
+            let userChangeObservable = Account.sharedInstance.userSubject.filter { (let oldValue, let newValue) -> Bool in
+                guard let old = oldValue, new = newValue else { return true }
+                return old.id != new.id || old.location.address != new.location.address
+            }
             let combined = Observable.combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
             
             combined.debounce(2, scheduler: MainScheduler.instance)

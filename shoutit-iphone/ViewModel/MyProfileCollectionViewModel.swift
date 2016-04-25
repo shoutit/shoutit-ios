@@ -34,6 +34,13 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let pages = (Account.sharedInstance.user as? DetailedProfile)?.pages ?? []
         listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
+            .filter { (let oldValue, let newValue) -> Bool in
+                guard let old = oldValue as? DetailedProfile, new = newValue as? DetailedProfile else { return true }
+                return old.id != new.id ||
+                    old.location.address != new.location.address ||
+                    old.listenersCount != new.listenersCount ||
+                    old.listeningMetadata != new.listeningMetadata
+            }
             .observeOn(MainScheduler.instance)
             .subscribeNext { (_) in
                 self.invalidateUser()

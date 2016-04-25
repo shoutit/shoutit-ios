@@ -17,20 +17,30 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
     }
     
     override func retriveDiscoverItems() {
-        Account.sharedInstance.userSubject.asObservable().map { (_, let user) -> String? in
-            return user?.location.country
-        }.flatMap { (location) in
-            return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
-        }.map{ (items) -> DiscoverItem? in
+        Account.sharedInstance.userSubject
+            .filter { (let oldValue, let newValue) -> Bool in
+                guard let old = oldValue, new = newValue else { return true }
+                return old.id != new.id || old.location.address != new.location.address
+            }
+            .asObservable()
+            .map { (_, let user) -> String? in
+                return user?.location.country
+            }
+            .flatMap { (location) in
+                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
+            }
+            .map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
                     return items[0]
                 }
                 return nil
-        }
-        .filter { $0 != nil }
-        .flatMap{ (item) in
-            return APIDiscoverService.discoverItems(forDiscoverItem: item!)
-        }.subscribeNext { [weak self] detailedItem -> Void in
+            }
+        
+            .filter { $0 != nil }
+            .flatMap{ (item) in
+                return APIDiscoverService.discoverItems(forDiscoverItem: item!)
+            }
+            .subscribeNext { [weak self] detailedItem -> Void in
             
             self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
             

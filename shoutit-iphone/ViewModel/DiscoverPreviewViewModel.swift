@@ -39,7 +39,13 @@
     
     required init() {
         
-        let countryObservable : Driver<String?> = Account.sharedInstance.userSubject.asDriver(onErrorJustReturn: (nil, nil)).map { (_, let user) -> String? in
+        let countryObservable : Driver<String?> = Account.sharedInstance
+            .userSubject
+            .filter { (let oldValue, let newValue) -> Bool in
+                guard let old = oldValue, new = newValue else { return true }
+                return old.id != new.id || old.location.address != new.location.address
+            }
+            .asDriver(onErrorJustReturn: (nil, nil)).map { (_, let user) -> String? in
             return user?.location.country
         }
         
