@@ -40,7 +40,7 @@ final class ApplicationMainViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if !Account.sharedInstance.isUserAuthenticated {
-            Account.sharedInstance.logout().subscribeNext{}.addDisposableTo(disposeBag)
+            _ = try? Account.sharedInstance.logout()
             showLogin()
         }
     }

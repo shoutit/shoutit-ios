@@ -129,31 +129,51 @@ final class Account {
     }
     
     
-    func logout() -> Observable<Void> {
-        
-        return APIProfileService.nullifyPushTokens().flatMap {() -> Observable<Void> in
-            return Observable.create {[unowned self](observer) -> Disposable in
-                
-                do {
-                    try self.removeFilesFromUserDirecotry()
-                    try self.keychain.remove(self.authDataKey)
-                    self.loggedUser = nil
-                    self.guestUser = nil
-                    self.authData = nil
-                    APIManager.eraseAuthToken()
-                    GIDSignIn.sharedInstance().signOut()
-                    observer.onNext()
-                    observer.onCompleted()
-                } catch let error {
-                    observer.onError(error)
-                }
-                
-                return NopDisposable.instance
-            }
-        }
+    func logout() throws {
+        APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
+        try clearUserDara()
+        GIDSignIn.sharedInstance().signOut()
     }
     
-    // MARK: - Helpers
+    func fetchUserProfile() {
+        guard let user = self.loggedUser where isUserLoggedIn else { return }
+        
+        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
+        observable.subscribe{ (event) in
+            switch event {
+            case .Next(let profile):
+                self.updateApplicationBadgeNumberWithProfile(profile)
+                self.loggedUser = profile
+            case .Error(let error): debugPrint(error)
+            default: break
+            }
+            }.addDisposableTo(disposeBag)
+    }
+    
+    func updateStats(stats: ProfileStats) {
+        guard let user = self.loggedUser else {
+            return
+        }
+        
+        self.loggedUser = user.updatedProfileWithStats(stats)
+        self.statsSubject.onNext(stats)
+    }
+}
+
+private extension Account {
+    
+    private func updateApplicationBadgeNumberWithProfile(profile: DetailedProfile) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
+    }
+    
+    private func clearUserDara() throws {
+        try self.removeFilesFromUserDirecotry()
+        try self.keychain.remove(self.authDataKey)
+        self.loggedUser = nil
+        self.guestUser = nil
+        self.authData = nil
+        APIManager.eraseAuthToken()
+    }
     
     private func removeFilesFromUserDirecotry() throws {
         guard NSFileManager.defaultManager().fileExistsAtPath(userDirectory) else { return }
@@ -164,7 +184,7 @@ final class Account {
         }
     }
     
-    func updateAPNSIfNeeded() {
+    private func updateAPNSIfNeeded() {
         
         guard let _ = self.user else {
             return
@@ -181,7 +201,7 @@ final class Account {
                     case .Error(let error): debugPrint(error)
                     default: break
                     }
-                }.addDisposableTo(disposeBag)
+                    }.addDisposableTo(disposeBag)
                 
             } else if let user = self.loggedUser {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
@@ -194,38 +214,5 @@ final class Account {
                     }.addDisposableTo(disposeBag)
             }
         }
-    }
-    
-    func updateStats(stats: ProfileStats) {
-        guard let user = self.loggedUser else {
-            return
-        }
-        
-        self.loggedUser = user.updatedProfileWithStats(stats)
-        
-        self.statsSubject.onNext(stats)
-    }
-    
-    func fetchUserProfile() {
-        if !self.isUserLoggedIn {
-            return
-        }
-        
-        guard let user = self.loggedUser else {
-            return
-        }
-        
-        
-        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
-        observable.subscribe{ (event) in
-            switch event {
-            case .Next(let profile):
-                print(profile.stats)
-                UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
-                self.loggedUser = profile
-            case .Error(let error): debugPrint(error)
-            default: break
-        }
-        }.addDisposableTo(disposeBag)
     }
 }
