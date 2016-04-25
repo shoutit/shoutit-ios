@@ -54,6 +54,8 @@ final class Account {
                 self.userSubject.onNext(userObject)
                 self.statsSubject.onNext(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                
+                updateAPNSIfNeeded()
             }
         }
     }
@@ -63,6 +65,8 @@ final class Account {
             if let userObject = guestUser {
                 self.userSubject.onNext(userObject)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                
+                updateAPNSIfNeeded()
             }
         }
     }
@@ -74,6 +78,7 @@ final class Account {
     var userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     var loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     var statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    var updatingAPNS = false
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
@@ -166,16 +171,25 @@ final class Account {
     
     func updateAPNSIfNeeded() {
         
-        guard let _ = self.user else {
+        guard let user = self.user else {
             return
         }
         
         if let apnsToken = self.apnsToken {
+            
+            guard apnsToken != user.pushTokens?.apns || updatingAPNS else {
+                return
+            }
+            
+            updatingAPNS = true
+            
             let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
             
             if let guest = self.guestUser {
                 let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
                 observable.subscribe{ (event) in
+                    self.updatingAPNS = false
+                    
                     switch event {
                     case .Next(let profile): print(profile)
                     case .Error(let error): debugPrint(error)
@@ -186,6 +200,8 @@ final class Account {
             } else if let user = self.loggedUser {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
                 observable.subscribe{ (event) in
+                    self.updatingAPNS = false
+                    
                     switch event {
                     case .Next(let profile): print(profile)
                     case .Error(let error): debugPrint(error)
