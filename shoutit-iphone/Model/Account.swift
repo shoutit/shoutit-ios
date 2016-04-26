@@ -68,9 +68,11 @@ final class Account {
                 self.userSubject.onNext(userObject)
                 self.statsSubject.onNext(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                updateAPNSIfNeeded()
             case .Some(.Guest(let userObject)):
                 self.userSubject.onNext(userObject)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                updateAPNSIfNeeded()
             default:
                 break
             }
@@ -88,7 +90,7 @@ final class Account {
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
-    var updatingAPNS = false
+    private var updatingAPNS = false
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
@@ -217,26 +219,28 @@ private extension Account {
             
             if case .Guest(let guest)? = userModel {
                 let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
-                observable.subscribe{ (event) in
-                    self.updatingAPNS = false
-                    
-                    switch event {
-                    case .Next(let profile): self.updateUserWithModel(profile)
-                    default: break
+                observable
+                    .subscribe{ (event) in
+                        self.updatingAPNS = false
+                        switch event {
+                        case .Next(let profile): self.updateUserWithModel(profile)
+                        default: break
+                        }
                     }
-                    }.addDisposableTo(disposeBag)
+                    .addDisposableTo(disposeBag)
                 
             }
             else if case .Logged(let user)? = userModel {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
-                observable.subscribe{ (event) in
-                    self.updatingAPNS = false
-                    
-                    switch event {
-                    case .Next(let profile): self.updateUserWithModel(profile)
-                    default: break
+                observable
+                    .subscribe{ (event) in
+                        self.updatingAPNS = false
+                        switch event {
+                        case .Next(let profile): self.updateUserWithModel(profile)
+                        default: break
+                        }
                     }
-                    }.addDisposableTo(disposeBag)
+                    .addDisposableTo(disposeBag)
             }
         }
     }
