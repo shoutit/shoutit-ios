@@ -62,7 +62,6 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Number of items: \(items.count)")
         return self.items.count
     }
     
@@ -116,6 +115,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             Observable
                 .combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
+                .filter{Account.sharedInstance.isUserAuthenticated}
                 .debounce(1, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!

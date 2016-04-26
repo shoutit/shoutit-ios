@@ -10,15 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func performLoggedUserRequiredAction(action:(Void -> Void)) {
-        if Account.sharedInstance.user == nil || Account.sharedInstance.user!.isGuest {
-            displayUserMustBeLoggedInAlert()
-            return
-        }
-        action()
-    }
-    
-    func userIsLoggedIn() -> Bool {
+    func checkIfUserIsLoggedInAndDisplayAlertIfNot() -> Bool {
         if Account.sharedInstance.user == nil || Account.sharedInstance.user!.isGuest {
             displayUserMustBeLoggedInAlert()
             return false

@@ -119,13 +119,12 @@ final class Account {
             userModel = .Logged(user: loggedUser)
         }
         
-        if let data = keychain[data: authDataKey] {
-            authData = SecureCoder.objectWithData(data)
-        }
+        guard let _ = user else { return }
+        guard let data = keychain[data: authDataKey] else { return }
+        guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
-        if let authData = self.authData {
-            APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
-        }
+        self.authData = authData
+        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -152,8 +151,16 @@ final class Account {
     
     func logout() throws {
         APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
-        try clearUserDara()
+        try clearUserData()
         GIDSignIn.sharedInstance().signOut()
+    }
+    
+    func clearUserData() throws {
+        try self.removeFilesFromUserDirecotry()
+        try self.keychain.remove(self.authDataKey)
+        self.userModel = nil
+        self.authData = nil
+        APIManager.eraseAuthToken()
     }
     
     func fetchUserProfile() {
@@ -182,14 +189,6 @@ private extension Account {
     
     private func updateApplicationBadgeNumberWithProfile(profile: DetailedProfile) {
         UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
-    }
-    
-    private func clearUserDara() throws {
-        try self.removeFilesFromUserDirecotry()
-        try self.keychain.remove(self.authDataKey)
-        self.userModel = nil
-        self.authData = nil
-        APIManager.eraseAuthToken()
     }
     
     private func removeFilesFromUserDirecotry() throws {

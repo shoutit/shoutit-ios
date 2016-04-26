@@ -53,6 +53,7 @@
         mainItemObservable = countryObservable
             .distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
             .asObservable()
+            .filter{(_) in Account.sharedInstance.isUserAuthenticated}
             .flatMap { (location) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
             }.map{ (items) -> DiscoverItem? in

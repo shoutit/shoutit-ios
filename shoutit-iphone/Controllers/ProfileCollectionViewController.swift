@@ -173,7 +173,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
             
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
-                guard self != nil && self!.userIsLoggedIn() else { return }
+                guard self != nil && self!.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let (listening, successMessage, error)):
@@ -514,7 +514,7 @@ extension ProfileCollectionViewController {
     
     func startChat() {
         
-        guard userIsLoggedIn() else {
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
             return
         }
         

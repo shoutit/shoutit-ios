@@ -69,34 +69,7 @@ final class PusherClient : NSObject {
         
     }
     
-    func reconnect() {
-        if keepDisconnected {
-            return
-        }
-        
-        pusherInstance?.disconnect()
-        
-        connect()
-    }
-    
-    func connect() {
-        
-        keepDisconnected = false
-        
-        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
-        
-        pusherInstance?.connect()
-    }
-    
-    func disconnect() {
-        keepDisconnected = true
-        
-        pusherInstance?.disconnect()
-        
-        pusherInstance = nil
-        
-    }
+    // MARK: - Actions
     
     func setAuthorizationToken(token: String?) {
         if let token = token {
@@ -111,7 +84,35 @@ final class PusherClient : NSObject {
         connect()
     }
     
-    func subscribeToMainChannel() {
+    func disconnect() {
+        keepDisconnected = true
+        pusherInstance?.disconnect()
+        pusherInstance = nil
+    }
+    
+    // MARK: - Helpers
+    
+    private func reconnect() {
+        if keepDisconnected {
+            return
+        }
+        
+        pusherInstance?.disconnect()
+        
+        connect()
+    }
+    
+    private func connect() {
+        
+        keepDisconnected = false
+        
+        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
+        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
+        
+        pusherInstance?.connect()
+    }
+    
+    private func subscribeToMainChannel() {
         mainChannelObservable().subscribeNext { (event) -> Void in
             
             if event.eventType() == .NewListen || event.eventType() == .NewMessage {
@@ -135,7 +136,6 @@ final class PusherClient : NSObject {
                         Account.sharedInstance.updateUserWithModel(guest)
                     }
                 default: break
-                    
                 }
             }
 
@@ -145,7 +145,6 @@ final class PusherClient : NSObject {
 }
 
 extension PusherClient : PTPusherDelegate {
-    
     
     // Connection Delegates
     
