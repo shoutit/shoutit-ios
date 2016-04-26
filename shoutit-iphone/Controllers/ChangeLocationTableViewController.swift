@@ -58,7 +58,37 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             autoUpdates = auto.boolValue
         }
         
+        if shouldShowAutoUpdates {
+            showAutoUpdatesButton()
+        }
+        
         setupObservers()
+    }
+    
+    func showAutoUpdatesButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: ""), style: .Plain, target: self, action: #selector(toggleAutoUpdates))
+    }
+    
+    func toggleAutoUpdates() {
+        let alert = UIAlertController(title: NSLocalizedString("Automatically Location Updates", comment: ""), message: "", preferredStyle: .ActionSheet)
+        
+        if self.autoUpdates {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .Default, handler: { (action) in
+                self.autoUpdates = false
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: ""), style: .Default, handler: { (action) in
+                self.autoUpdates = true
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func setAutoLocationUpdates(autoUpdates: Bool) {
+        self.autoUpdates = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,7 +102,8 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     func loadInitialState() {
         if shouldShowAutoUpdates && autoUpdates {
-            currentLocationText = NSLocalizedString("Your location will be updated automatically", comment: "")
+            loading = false
+            currentLocationLabel.text = NSLocalizedString("Your location will be updated automatically", comment: "")
         } else {
             currentLocationText = Account.sharedInstance.locationString()
         }
@@ -92,6 +123,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             .driveNext { selectedLocation in
          
                 self.loading = true
+                self.autoUpdates = false
                 
                 guard let place = selectedLocation.place else { return }
                 guard case .PlaceID(let plId) = place else { return }
