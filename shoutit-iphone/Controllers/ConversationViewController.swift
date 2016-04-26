@@ -105,7 +105,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
                 return
             }
             
-            self?.typingIndicatorView?.insertUsername(profile.firstName)
+            self?.typingIndicatorView?.insertUsername(profile.username)
         }.addDisposableTo(disposeBag)
         
         viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
@@ -246,9 +246,10 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
         
-        loadMoreView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: footerHeight)
+//        loadMoreView?.frame = CGRect(x: 0, y: -64.0, width: 300, height: 5*footerHeight)
         loadMoreView?.layoutIfNeeded()
         loadMoreView?.transform = tableView.transform
+        loadMoreView?.backgroundColor = UIColor.redColor()
         
         loadMoreView?.setState(.ReadyToLoad)
         loadMoreView?.loadMoreButton.addTarget(self, action: #selector(ConversationViewController.loadMore), forControlEvents: .TouchUpInside)
@@ -261,6 +262,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }).addDisposableTo(loadMoreBag)
         
         tableView.tableFooterView = loadMoreView
+        
     }
     
     func setTitleView() {

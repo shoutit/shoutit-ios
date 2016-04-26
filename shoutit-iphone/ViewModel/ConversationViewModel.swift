@@ -54,6 +54,7 @@ final class ConversationViewModel {
     let loadMoreState = Variable(LoadMoreState.NotReady)
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
     let sendingMessages : Variable<[Message]> = Variable([])
+    var nextPageParams : String?
     
     private var delegate : ConversationPresenter?
     
@@ -137,7 +138,10 @@ final class ConversationViewModel {
             return
         }
         
-        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (messages) -> Void in
+        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (response) -> Void in
+            let messages : [Message] = response.results
+            
+            self?.nextPageParams = response.beforeParamsString()
             self?.appendMessages(messages)
             if messages.count > 0 {
                 self?.loadMoreState.value = .ReadyToLoad
@@ -164,13 +168,17 @@ final class ConversationViewModel {
         loadMoreState.value = .Loading
         
         if let lastMessage = sortedMessages.last {
-            APIChatsService.moreMessagesForConversation(self.conversation.value, lastMessageEpoch:  lastMessage.createdAt)
-                .subscribe(onNext: { [weak self] (messages) -> Void in
+            APIChatsService.moreMessagesForConversation(self.conversation.value, nextPageParams:  self.nextPageParams)
+                .subscribe(onNext: { [weak self] (response) -> Void in
+                    let messages : [Message] = response.results
+                    
                     self?.appendMessages(messages)
                     if messages.count > 0 {
                         self?.loadMoreState.value = .ReadyToLoad
+                        self?.nextPageParams = response.beforeParamsString()
                     } else {
                         self?.loadMoreState.value = .NoMore
+                        self?.nextPageParams = nil
                     }
                 }, onError: { [weak self] (error) -> Void in
                     self?.loadMoreState.value = .ReadyToLoad

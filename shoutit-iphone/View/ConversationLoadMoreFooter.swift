@@ -22,8 +22,17 @@ final class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
 
     func setState(state: LoadMoreState) {
         
-        loadMoreButton.hidden = (state == .Loading || state == .NotReady)
-        activityIndicatorView.hidden = (state == .ReadyToLoad || state == .NoMore || state == .NotReady)
+        if (state == .Loading || state == .NotReady) {
+            loadMoreButton.hidden = true
+        } else {
+            loadMoreButton.hidden = false
+        }
+        
+        if (state == .ReadyToLoad || state == .NoMore || state == .NotReady) {
+            activityIndicatorView.hidden = true
+        } else {
+            activityIndicatorView.hidden = false
+        }
 
         if state == .NoMore {
             loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: ""), forState: .Normal)

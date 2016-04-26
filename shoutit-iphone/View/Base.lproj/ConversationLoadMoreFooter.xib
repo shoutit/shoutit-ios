@@ -8,38 +8,33 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConversationLoadMoreFooter" customModule="Shoutit" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-P5-Xfj">
-                    <rect key="frame" x="192" y="10" width="216" height="30"/>
+                    <rect key="frame" x="42" y="68" width="216" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Tap to load archive messages">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pIa-ta-8hP">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                    <rect key="frame" x="140" y="40" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ach-P5-Xfj" secondAttribute="bottom" constant="2" id="2qW-qs-yqX"/>
                 <constraint firstItem="pIa-ta-8hP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="URx-9G-6yT"/>
                 <constraint firstItem="pIa-ta-8hP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eGM-TN-KLQ"/>
                 <constraint firstItem="Ach-P5-Xfj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iUu-Ax-jbZ"/>
-                <constraint firstItem="Ach-P5-Xfj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="wde-no-P3F"/>
-                <constraint firstItem="Ach-P5-Xfj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xih-va-CLI"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="xih-va-CLI"/>
-                </mask>
-            </variation>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activityIndicatorView" destination="pIa-ta-8hP" id="EOg-Df-Ck1"/>
                 <outlet property="loadMoreButton" destination="Ach-P5-Xfj" id="06x-iE-gTQ"/>
             </connections>
-            <point key="canvasLocation" x="614" y="492"/>
+            <point key="canvasLocation" x="622" y="284"/>
         </view>
     </objects>
 </document>
