@@ -42,10 +42,9 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
-                case .Error(let error):
+                case .Error:
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
-                    print(error)
                 }
                 })
             .addDisposableTo(disposeBag)

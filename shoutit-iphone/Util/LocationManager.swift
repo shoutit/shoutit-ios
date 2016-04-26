@@ -67,9 +67,7 @@ final class LocationManager: NSObject {
         
         let coordinateParams = CoordinateParams(coordinates: coordinates)
         
-        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext { (user) in
-            print("location updated")
-        }.addDisposableTo(disposeBag)
+        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext{(_) in}.addDisposableTo(disposeBag)
     }
     
 }

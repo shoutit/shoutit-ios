@@ -108,8 +108,6 @@ final class PusherClient : NSObject {
     
     func subscribeToMainChannel() {
         mainChannelObservable().subscribeNext { (event) -> Void in
-            print("RECEIVED: \(event.name)")
-            print(event.data)
             
             if event.eventType() == .NewListen || event.eventType() == .NewMessage {
                 

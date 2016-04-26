@@ -35,7 +35,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (_, let newUser) in
+            .subscribeNext {[weak self] (newUser) in
                 self?.detailedUser = newUser as? DetailedProfile
                 self?.reloadSubject.onNext()
             }
@@ -54,10 +54,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
-                case .Error(let error):
+                case .Error:
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
-                    print(error)
                 }
                 })
             .addDisposableTo(disposeBag)

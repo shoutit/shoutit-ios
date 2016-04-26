@@ -18,12 +18,12 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
     
     override func retriveDiscoverItems() {
         Account.sharedInstance.userSubject
-            .filter { (let oldValue, let newValue) -> Bool in
-                guard let old = oldValue, new = newValue else { return true }
+            .distinctUntilChanged{ (lhs, rhs) -> Bool in
+                guard let old = lhs, new = rhs else { return true }
                 return old.id != new.id || old.location.address != new.location.address
             }
             .asObservable()
-            .map { (_, let user) -> String? in
+            .map { (user) -> String? in
                 return user?.location.country
             }
             .flatMap { (location) in
@@ -35,19 +35,23 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                 }
                 return nil
             }
-        
             .filter { $0 != nil }
             .flatMap{ (item) in
                 return APIDiscoverService.discoverItems(forDiscoverItem: item!)
             }
             .subscribeNext { [weak self] detailedItem -> Void in
-            
-            self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
-            
-            let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
-            APIShoutsService.listShoutsWithParams(params).subscribeNext({ [weak self] (shouts) -> Void in
-                self?.shouts.on(.Next(shouts))
-                }).addDisposableTo((self?.disposeBag)!)
-        }.addDisposableTo(disposeBag)
+                
+                guard let `self` = self else { return }
+                self.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
+                
+                APIShoutsService
+                    .listShoutsWithParams(params)
+                    .subscribeNext{[weak self] (shouts) -> Void in
+                        self?.shouts.on(.Next(shouts))
+                    }
+                    .addDisposableTo(self.disposeBag)
+            }
+            .addDisposableTo(disposeBag)
     }
 }

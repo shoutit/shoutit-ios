@@ -123,7 +123,6 @@ class ShowDetailContainerViewController: UIViewController {
         }
         
         guard conversations.count == 1 else {
-            print("multiple conversations")
             return
         }
         

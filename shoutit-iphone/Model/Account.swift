@@ -65,11 +65,11 @@ final class Account {
         didSet {
             switch userModel {
             case .Some(.Logged(let userObject)):
-                self.userSubject.onNext((oldValue: oldValue?.user, newValue: userObject))
+                self.userSubject.onNext(userObject)
                 self.statsSubject.onNext(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
             case .Some(.Guest(let userObject)):
-                self.userSubject.onNext((oldValue: oldValue?.user, newValue: userObject))
+                self.userSubject.onNext(userObject)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
             default:
                 break
@@ -85,7 +85,7 @@ final class Account {
         }
     }
     
-    let userSubject = BehaviorSubject<(oldValue: User?, newValue: User?)>(value: (oldValue: nil, newValue: nil)) // triggered on login and user update
+    let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     
@@ -211,8 +211,7 @@ private extension Account {
                 let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
                 observable.subscribe{ (event) in
                     switch event {
-                    case .Next(let profile): print(profile)
-                    case .Error(let error): debugPrint(error)
+                    case .Next(let profile): self.updateUserWithModel(profile)
                     default: break
                     }
                     }.addDisposableTo(disposeBag)
@@ -222,8 +221,7 @@ private extension Account {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
                 observable.subscribe{ (event) in
                     switch event {
-                    case .Next(let profile): print(profile)
-                    case .Error(let error): debugPrint(error)
+                    case .Next(let profile): self.updateUserWithModel(profile)
                     default: break
                     }
                     }.addDisposableTo(disposeBag)
