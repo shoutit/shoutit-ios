@@ -119,12 +119,12 @@ final class Account {
             userModel = .Logged(user: loggedUser)
         }
         
-        guard let _ = user else { return }
+        guard let user = user else { return }
         guard let data = keychain[data: authDataKey] else { return }
         guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
         self.authData = authData
-        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
+        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -138,7 +138,7 @@ final class Account {
         updateUserWithModel(user)
         
         // update apimanager token
-        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
+        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
     }
     
     func updateUserWithModel<T: User>(user: T) {

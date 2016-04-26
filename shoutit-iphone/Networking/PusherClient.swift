@@ -71,13 +71,9 @@ final class PusherClient : NSObject {
     
     // MARK: - Actions
     
-    func setAuthorizationToken(token: String?) {
-        if let token = token {
-            authToken = token
-            tryToConnect()
-        } else {
-            disconnect()
-        }
+    func setAuthorizationToken(token: String) {
+        authToken = token
+        tryToConnect()
     }
     
     func tryToConnect() {
