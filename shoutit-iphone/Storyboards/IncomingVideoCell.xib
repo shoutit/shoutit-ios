@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -62,7 +62,7 @@
                             <constraint firstItem="v0M-sl-dcG" firstAttribute="centerX" secondItem="F8N-Jl-dKf" secondAttribute="centerX" id="Ca4-Zx-Nsv"/>
                             <constraint firstItem="F8N-Jl-dKf" firstAttribute="centerX" secondItem="aLF-z9-wQD" secondAttribute="centerX" id="EwL-67-drs"/>
                             <constraint firstItem="F8N-Jl-dKf" firstAttribute="centerY" secondItem="aLF-z9-wQD" secondAttribute="centerY" id="N5h-Rl-UzU"/>
-                            <constraint firstItem="Yem-cD-FXd" firstAttribute="trailing" secondItem="F8N-Jl-dKf" secondAttribute="trailing" constant="-3" id="OzW-ad-V2L"/>
+                            <constraint firstItem="Yem-cD-FXd" firstAttribute="right" secondItem="F8N-Jl-dKf" secondAttribute="right" constant="-3" id="OzW-ad-V2L"/>
                             <constraint firstAttribute="height" constant="210" id="nD5-wu-Vdt"/>
                             <constraint firstItem="v0M-sl-dcG" firstAttribute="centerY" secondItem="F8N-Jl-dKf" secondAttribute="centerY" id="oSl-5P-I2F"/>
                             <constraint firstItem="Yem-cD-FXd" firstAttribute="top" secondItem="F8N-Jl-dKf" secondAttribute="top" constant="3" id="zVI-Zi-FqI"/>
@@ -94,11 +94,11 @@
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="aLF-z9-wQD" firstAttribute="leading" secondItem="ho1-sR-Ld1" secondAttribute="trailing" constant="10" id="GLg-X4-tHP"/>
+                    <constraint firstItem="aLF-z9-wQD" firstAttribute="left" secondItem="ho1-sR-Ld1" secondAttribute="right" constant="10" id="GLg-X4-tHP"/>
                     <constraint firstAttribute="bottom" secondItem="aLF-z9-wQD" secondAttribute="bottom" constant="5" id="GgB-ko-RKa"/>
                     <constraint firstItem="lOc-XT-OFM" firstAttribute="centerX" secondItem="F8N-Jl-dKf" secondAttribute="centerX" id="Ohg-OB-M9r"/>
                     <constraint firstItem="aLF-z9-wQD" firstAttribute="top" secondItem="Nmf-RC-nFh" secondAttribute="top" constant="5" id="Oyx-Vn-Df3"/>
-                    <constraint firstItem="ho1-sR-Ld1" firstAttribute="leading" secondItem="Nmf-RC-nFh" secondAttribute="leading" constant="10" id="ahL-fw-TlK"/>
+                    <constraint firstItem="ho1-sR-Ld1" firstAttribute="left" secondItem="Nmf-RC-nFh" secondAttribute="left" constant="10" id="ahL-fw-TlK"/>
                     <constraint firstItem="ho1-sR-Ld1" firstAttribute="top" secondItem="Nmf-RC-nFh" secondAttribute="top" constant="10" id="s7D-gr-dK5"/>
                     <constraint firstItem="aLF-z9-wQD" firstAttribute="top" secondItem="Nmf-RC-nFh" secondAttribute="top" constant="5" id="vXs-82-Icc"/>
                     <constraint firstItem="lOc-XT-OFM" firstAttribute="centerY" secondItem="F8N-Jl-dKf" secondAttribute="centerY" id="wBQ-ke-HzL"/>

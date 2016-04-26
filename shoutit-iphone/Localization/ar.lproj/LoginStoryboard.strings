@@ -34,14 +34,14 @@
 /* Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR"; */
 "HYX-k8-0GR.title" = "اعادة ضبط كلمة المرور";
 
-/* Class = "UIButton"; normalTitle = "Log in with Facebook"; ObjectID = "L2w-j2-mMw"; */
-"L2w-j2-mMw.normalTitle" = "تسجيل الدخول بإسنخدام فيس بوك";
+/* Class = "UILabel"; text = "Log in with Facebook"; ObjectID = "VwE-WR-Gmn"; */
+"VwE-WR-Gmn.text" = "تسجيل الدخول بإسنخدام فيس بوك";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "N11-JB-SIw"; */
 "N11-JB-SIw.placeholder" = "البريد الإلكتروني";
 
-/* Class = "UIButton"; normalTitle = "Sign up / Log in with Email"; ObjectID = "P55-Vf-kY2"; */
-"P55-Vf-kY2.normalTitle" = "باستخدام البريد الإلكتروني";
+/* Class = "UILabel"; text = "Sign up / Log in with Email"; ObjectID = "l8Q-QA-1Iv"; */
+"l8Q-QA-1Iv.text" = "باستخدام البريد الإلكتروني";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "PgP-fT-oWw"; */
 "PgP-fT-oWw.normalTitle" = "المساعدة";
@@ -112,8 +112,8 @@
 /* Class = "UILabel"; text = "Chat"; ObjectID = "pNC-Ay-C46"; */
 "w16-Jq-7nF.text" = "دردش";
 
-/* Class = "UIButton"; normalTitle = "Log in with Google"; ObjectID = "pZ6-XI-dIh"; */
-"pZ6-XI-dIh.normalTitle" = "تسجيل الدخول بإستخدام غوغل";
+/* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
+"ff2-Jg-zkJ.text" = "تسجيل الدخول بإستخدام غوغل";
 
 /* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "qd5-UA-hrc"; */
 "Soz-bA-Q3z.text" = "بيع و اشتري وأنت تدردش!";

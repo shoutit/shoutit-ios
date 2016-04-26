@@ -188,7 +188,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     func customizeInputView() {
-        rightButton.setImage(UIImage(named: "send"), forState: .Normal)
+        rightButton.setImage(UIImage.chatsSendButtonImage(), forState: .Normal)
         rightButton.setTitle("", forState: .Normal)
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
         
