@@ -206,45 +206,36 @@ private extension Account {
     
     private func updateAPNSIfNeeded() {
         
-        guard let user = self.user else {
-            return
-        }
+        guard let user = self.user, apnsToken = self.apnsToken where apnsToken != user.pushTokens?.apns && !updatingAPNS else { return }
         
-        if let apnsToken = self.apnsToken {
-            
-            guard apnsToken != user.pushTokens?.apns || updatingAPNS else {
-                return
-            }
-            
-            updatingAPNS = true
-            
-            let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
-            
-            if case .Guest(let guest)? = userModel {
-                let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
-                observable
-                    .subscribe{ (event) in
-                        self.updatingAPNS = false
-                        switch event {
-                        case .Next(let profile): self.updateUserWithModel(profile)
-                        default: break
-                        }
+        updatingAPNS = true
+        
+        let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
+        
+        if case .Guest(let guest)? = userModel {
+            let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
+            observable
+                .subscribe{ (event) in
+                    self.updatingAPNS = false
+                    switch event {
+                    case .Next(let profile): self.updateUserWithModel(profile)
+                    default: break
                     }
-                    .addDisposableTo(disposeBag)
-                
-            }
-            else if case .Logged(let user)? = userModel {
-                let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
-                observable
-                    .subscribe{ (event) in
-                        self.updatingAPNS = false
-                        switch event {
-                        case .Next(let profile): self.updateUserWithModel(profile)
-                        default: break
-                        }
+                }
+                .addDisposableTo(disposeBag)
+            
+        }
+        else if case .Logged(let user)? = userModel {
+            let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+            observable
+                .subscribe{ (event) in
+                    self.updatingAPNS = false
+                    switch event {
+                    case .Next(let profile): self.updateUserWithModel(profile)
+                    default: break
                     }
-                    .addDisposableTo(disposeBag)
-            }
+                }
+                .addDisposableTo(disposeBag)
         }
     }
 }
