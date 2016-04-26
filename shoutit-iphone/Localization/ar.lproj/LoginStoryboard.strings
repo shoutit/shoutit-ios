@@ -20,10 +20,10 @@
 "FeT-P1-QuZ.normalTitle" = "تسجيل الدخول";
 
 /* Class = "UILabel"; text = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts."; ObjectID = "Fqu-0M-TP9"; */
-"Fqu-0M-TP9.text" = "راسل المعلنين بسهولة. أرسل صور و فيديو وإعلانات.";
+"KGf-9Z-ybk.text" = "راسل المعلنين بسهولة. أرسل صور و فيديو وإعلانات.";
 
 /* Class = "UILabel"; text = "List anything for FREE. Include Photos and Videos to appeal to Buyers."; ObjectID = "GEI-7W-x2d"; */
-"GEI-7W-x2d.text" = "يمكنك وضع صور وفيديو في إعلاناتك.";
+"14e-Rq-a3Y.text" = "يمكنك وضع صور وفيديو في إعلاناتك.";
 
 /* Class = "UILabel"; text = "What interests you the most?"; ObjectID = "GcV-kC-fXX"; */
 "GcV-kC-fXX.text" = "ما هي إهتماماتك";
@@ -80,22 +80,22 @@
 "YRB-cn-kU9.normalTitle" = "إالغاء";
 
 /* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Zhq-6O-ODa"; */
-"Zhq-6O-ODa.text" = "أهلاً بكم في شاوت ات";
+"Gv6-Vf-08z.text" = "أهلاً بكم في شاوت ات";
 
 /* Class = "UILabel"; text = "Shout"; ObjectID = "bbC-mk-YUZ"; */
-"bbC-mk-YUZ.text" = "أعلن مجانا";
+"tJ8-OD-CZp.text" = "أعلن مجانا";
 
 /* Class = "UIButton"; normalTitle = "Have an account? Log in"; ObjectID = "esA-10-tDe"; */
 "esA-10-tDe.normalTitle" = "هل يوجد لديك حساب؟ / تسجيل الدخول";
 
 /* Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "fZu-Xf-8hV"; */
-"fZu-Xf-8hV.text" = "ابحث عن كل شي تريده في منطقتك أو في أي مكان في العالم.";
+"Rwd-Tt-HmF.text" = "ابحث عن كل شي تريده في منطقتك أو في أي مكان في العالم.";
 
 /* Class = "UILabel"; text = "Search"; ObjectID = "hDf-O1-dvh"; */
-"hDf-O1-dvh.text" = "ابحث";
+"2sy-bq-ms4.text" = "ابحث";
 
 /* Class = "UILabel"; text = "Video Chat"; ObjectID = "hXd-vs-HMY"; */
-"hXd-vs-HMY.text" = "تحدث صوت وصورة";
+"o79-CH-fAu.text" = "تحدث صوت وصورة";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
 "iKX-Fx-ZOg.placeholder" = "كلمة المرور";
@@ -107,16 +107,16 @@
 "mgc-hU-1eG.normalTitle" = "تقييم";
 
 /* Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "otB-pC-3lO"; */
-"otB-pC-3lO.text" = "الفيديو معبر اكثر!\\nاتصل مع المعلنين مباشرة من خلال خدمة الفيديو شات.";
+"V9W-3j-fHJ.text" = "الفيديو معبر اكثر!\\nاتصل مع المعلنين مباشرة من خلال خدمة الفيديو شات.";
 
 /* Class = "UILabel"; text = "Chat"; ObjectID = "pNC-Ay-C46"; */
-"pNC-Ay-C46.text" = "دردش";
+"w16-Jq-7nF.text" = "دردش";
 
 /* Class = "UIButton"; normalTitle = "Log in with Google"; ObjectID = "pZ6-XI-dIh"; */
 "pZ6-XI-dIh.normalTitle" = "تسجيل الدخول بإستخدام غوغل";
 
 /* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "qd5-UA-hrc"; */
-"qd5-UA-hrc.text" = "بيع و اشتري وأنت تدردش!";
+"Soz-bA-Q3z.text" = "بيع و اشتري وأنت تدردش!";
 
 /* Class = "UIButton"; normalTitle = "New to Shoutit? Sign up"; ObjectID = "qkS-QO-udz"; */
 "qkS-QO-udz.normalTitle" = "جديد على شاوت ات؟ إنشاء حساب";

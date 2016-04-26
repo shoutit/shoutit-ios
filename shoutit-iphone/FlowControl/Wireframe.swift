@@ -82,6 +82,10 @@ struct Wireframe {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("PostSignupSuggestionsTableViewController") as! PostSignupSuggestionsTableViewController
     }
     
+    static func introContentViewControllerForPage(page: Int) -> UIViewController {
+        return storyboard(.Login).instantiateViewControllerWithIdentifier("IntroContent\(page)")
+    }
+    
     // MARK: - Search storyboard view controllers
     
     static func searchViewController() -> SearchViewController {
