@@ -65,16 +65,20 @@ final class Account {
         didSet {
             switch userModel {
             case .Some(.Logged(let userObject)):
-                self.userSubject.onNext(userObject)
-                self.statsSubject.onNext(userObject.stats)
+                userSubject.onNext(userObject)
+                statsSubject.onNext(userObject.stats)
+                updateApplicationBadgeNumberWithStats(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
             case .Some(.Guest(let userObject)):
-                self.userSubject.onNext(userObject)
+                userSubject.onNext(userObject)
+                statsSubject.onNext(nil)
+                updateApplicationBadgeNumberWithStats(nil)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
             default:
-                break
+                statsSubject.onNext(nil)
+                updateApplicationBadgeNumberWithStats(nil)
             }
         }
     }
@@ -125,6 +129,7 @@ final class Account {
         
         self.authData = authData
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
+        updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -170,8 +175,7 @@ final class Account {
         observable.subscribe{ (event) in
             switch event {
             case .Next(let profile):
-                self.updateApplicationBadgeNumberWithProfile(profile)
-                self.userModel = .Logged(user: user)
+                self.userModel = .Logged(user: profile)
             case .Error(let error): debugPrint(error)
             default: break
             }
@@ -187,8 +191,8 @@ final class Account {
 
 private extension Account {
     
-    private func updateApplicationBadgeNumberWithProfile(profile: DetailedProfile) {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
+    private func updateApplicationBadgeNumberWithStats(stats: ProfileStats?) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = ((stats?.unreadNotificationsCount) ?? 0) + ((stats?.unreadConversationCount) ?? 0)
     }
     
     private func removeFilesFromUserDirecotry() throws {

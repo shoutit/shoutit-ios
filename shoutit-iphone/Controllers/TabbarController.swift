@@ -39,7 +39,7 @@ final class TabbarController: UIViewController, Navigation {
         }
         
         Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
-            self?.fillBadges()
+            self?.fillBadgesWithStats(stats)
         }.addDisposableTo(disposeBag)
         
     }
@@ -50,12 +50,9 @@ final class TabbarController: UIViewController, Navigation {
         }
     }
     
-    private func fillBadges() {
-        guard case .Logged(let user)? = Account.sharedInstance.userModel else { return }
-        if let stats = user.stats {
-            fillUnreadConversations(stats.unreadConversationCount)
-            fillUnreadNotifications(stats.unreadNotificationsCount)
-        }
+    private func fillBadgesWithStats(stats: ProfileStats?) {
+        fillUnreadConversations(stats?.unreadConversationCount ?? 0)
+        fillUnreadNotifications(stats?.unreadNotificationsCount ?? 0)
     }
     
     func fillUnreadNotifications(unread: Int) {
