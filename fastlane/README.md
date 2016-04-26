@@ -21,6 +21,11 @@ fastlane ios staging
 fastlane ios testflight
 ```
 Runs all the tests
+### ios localizations
+```
+fastlane ios localizations
+```
+Runs all the tests
 
 ----
 

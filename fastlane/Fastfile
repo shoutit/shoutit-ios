@@ -153,5 +153,10 @@ platform :ios do
     )
 
   end
+  
+  desc "Runs all the tests"
+  lane :localizations do
+    au_generate_translations languages: "en ar", export_dir: "translations/", project_file_path: "shoutit-iphone.xcodeproj"
+  end
 
 end
