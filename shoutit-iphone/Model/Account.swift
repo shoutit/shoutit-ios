@@ -88,6 +88,7 @@ final class Account {
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    var updatingAPNS = false
     
     func locationString() -> String {
         if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
@@ -200,16 +201,25 @@ private extension Account {
     
     private func updateAPNSIfNeeded() {
         
-        guard let _ = self.user else {
+        guard let user = self.user else {
             return
         }
         
         if let apnsToken = self.apnsToken {
+            
+            guard apnsToken != user.pushTokens?.apns || updatingAPNS else {
+                return
+            }
+            
+            updatingAPNS = true
+            
             let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
             
             if case .Guest(let guest)? = userModel {
                 let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
                 observable.subscribe{ (event) in
+                    self.updatingAPNS = false
+                    
                     switch event {
                     case .Next(let profile): self.updateUserWithModel(profile)
                     default: break
@@ -220,6 +230,8 @@ private extension Account {
             else if case .Logged(let user)? = userModel {
                 let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
                 observable.subscribe{ (event) in
+                    self.updatingAPNS = false
+                    
                     switch event {
                     case .Next(let profile): self.updateUserWithModel(profile)
                     default: break

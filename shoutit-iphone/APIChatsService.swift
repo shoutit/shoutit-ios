@@ -28,14 +28,14 @@ final class APIChatsService {
         return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
     }
     
-    static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<[Message]> {
+    static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<PagedResponse<Message>> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
-    static func moreMessagesForConversation(conversation: Conversation, lastMessageEpoch: Int) -> Observable<[Message]> {
-        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + "?before=\(lastMessageEpoch)"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResponse<Message>> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + (nextPageParams ?? "")
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
     static func markConversationAsRead(conversation: Conversation) -> Observable<Void> {

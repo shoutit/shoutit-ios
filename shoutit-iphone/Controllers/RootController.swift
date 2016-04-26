@@ -203,6 +203,8 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
                 }
             }
             
+            locationFlowController.setShouldShowAutoUpdates(true)
+            
             presentFlowControllerModally(locationFlowController)
             return
         }

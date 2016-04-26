@@ -33,4 +33,10 @@ final class LocationFlowController: FlowController {
         
         navigationController.showViewController(controller, sender: nil)
     }
+    
+    func setShouldShowAutoUpdates(value: Bool) {
+        if let locationController = self.navigationController.viewControllers[0] as? ChangeLocationTableViewController {
+            locationController.shouldShowAutoUpdates = value
+        }
+    }
 }

@@ -42,6 +42,11 @@ struct Constants {
         static let clientSecret = "209b7e713eca4774b5b2d8c20b779d91"
     }
     
+    struct Defaults {
+        static let apnsTokenKey = "apnsTokenKey"
+        static let locationAutoUpdates = "locationAutoUpdates"
+    }
+    
     struct Notification {
         static let LocationUpdated  = ".notification.LocationUpdated"
         static let ShoutStarted  = ".notification.ShoutStarted"
