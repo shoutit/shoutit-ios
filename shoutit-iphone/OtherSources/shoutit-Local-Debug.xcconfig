@@ -9,7 +9,7 @@
 #include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
 #include "../../External/xcconfigs/Base/Configurations/Debug.xcconfig"
 
-PRODUCT_NAME = Shoutit Staging
+PRODUCT_NAME = Shoutit Local
 
 PRODUCT_BUNDLE_IDENTIFIER = com.shoutit-iphone.local
 APPLICATION_BUNDLE_IDENTIFIER = com.shoutit-iphone.local
