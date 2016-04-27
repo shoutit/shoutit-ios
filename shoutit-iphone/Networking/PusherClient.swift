@@ -102,7 +102,7 @@ final class PusherClient : NSObject {
         
         pusherInstance?.disconnect()
         
-        pusherInstance = nil
+//        pusherInstance = nil
 
     }
     
