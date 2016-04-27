@@ -1,0 +1,3185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="shoutit-iphone/Application/Info.plist" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUCT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>2.0.1</source>
+        <target>2.0.1</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Application/Localizable.strings" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id=" Details">
+        <source> Details</source>
+        <target> Details</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" Location">
+        <source> Location</source>
+        <target> Location</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%%x Listened to you">
+        <source>%%x Listened to you</source>
+        <target>%%x Listened to you</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%%x: %%mm">
+        <source>%%x: %%mm</source>
+        <target>%%x: %%mm</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Admins">
+        <source>%@ Admins</source>
+        <target>%@ Admins</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Listeners">
+        <source>%@ Listeners</source>
+        <target>%@ Listeners</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Pages">
+        <source>%@ Pages</source>
+        <target>%@ Pages</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Shouts">
+        <source>%@ Shouts</source>
+        <target>%@ Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%d Shouts">
+        <source>%d Shouts</source>
+        <target>%d Shouts</target>
+        <note>Search results count string</note>
+      </trans-unit>
+      <trans-unit id="(location.city), (location.country)">
+        <source>(location.city), (location.country)</source>
+        <target>(location.city), (location.country)</target>
+        <note>Shout detail location string</note>
+      </trans-unit>
+      <trans-unit id="+99">
+        <source>+99</source>
+        <target>+99</target>
+        <note>More than 99 Notifications</note>
+      </trans-unit>
+      <trans-unit id="About">
+        <source>About</source>
+        <target>About</target>
+        <note>About screen title
+   Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Account">
+        <source>Account</source>
+        <target>Account</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="All Categories">
+        <source>All Categories</source>
+        <target>All Categories</target>
+        <note>Default category - filter button title</note>
+      </trans-unit>
+      <trans-unit id="Are you sure?">
+        <source>Are you sure?</source>
+        <target>Are you sure?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Attachment">
+        <source>Attachment</source>
+        <target>Attachment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Auto">
+        <source>Auto</source>
+        <target>Auto</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatically Location Updates">
+        <source>Automatically Location Updates</source>
+        <target>Automatically Location Updates</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bio">
+        <source>Bio</source>
+        <target>Bio</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="Bio has too many characters">
+        <source>Bio has too many characters</source>
+        <target>Bio has too many characters</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Browse">
+        <source>Browse</source>
+        <target>Browse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.">
+        <source>By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.</source>
+        <target>By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.</target>
+        <note>Signup screen terms and policy message message</note>
+      </trans-unit>
+      <trans-unit id="CLEAR">
+        <source>CLEAR</source>
+        <target>CLEAR</target>
+        <note>recent searches clear button title</note>
+      </trans-unit>
+      <trans-unit id="Call">
+        <source>Call</source>
+        <target>Call</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Categorie">
+        <source>Categorie</source>
+        <target>Categorie</target>
+        <note>Shout details</note>
+      </trans-unit>
+      <trans-unit id="Categories">
+        <source>Categories</source>
+        <target>Categories</target>
+        <note>Main search screen categories header</note>
+      </trans-unit>
+      <trans-unit id="Categories unavailable">
+        <source>Categories unavailable</source>
+        <target>Categories unavailable</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Categories unavilable">
+        <source>Categories unavilable</source>
+        <target>Categories unavilable</target>
+        <note>Post signup 1 placeholder</note>
+      </trans-unit>
+      <trans-unit id="Category">
+        <source>Category</source>
+        <target>Category</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Change email">
+        <source>Change email</source>
+        <target>Change email</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Change password">
+        <source>Change password</source>
+        <target>Change password</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Chat">
+        <source>Chat</source>
+        <target>Chat</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Chats">
+        <source>Chats</source>
+        <target>Chats</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Choose location">
+        <source>Choose location</source>
+        <target>Choose location</target>
+        <note>Displayed on filter button when no location is chosen</note>
+      </trans-unit>
+      <trans-unit id="Confirmation">
+        <source>Confirmation</source>
+        <target>Confirmation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Content unavailable">
+        <source>Content unavailable</source>
+        <target>Content unavailable</target>
+        <note>Default table view placeholder</note>
+      </trans-unit>
+      <trans-unit id="Could not establish connection right now.">
+        <source>Could not establish connection right now.</source>
+        <target>Could not establish connection right now.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not get your data">
+        <source>Could not get your data</source>
+        <target>Could not get your data</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not load photos">
+        <source>Could not load photos</source>
+        <target>Could not load photos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not send message">
+        <source>Could not send message</source>
+        <target>Could not send message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not send your location right now.">
+        <source>Could not send your location right now.</source>
+        <target>Could not send your location right now.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not subscribe to channel. Wrong Channel Name">
+        <source>Could not subscribe to channel. Wrong Channel Name</source>
+        <target>Could not subscribe to channel. Wrong Channel Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create Offer">
+        <source>Create Offer</source>
+        <target>Create Offer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create Page">
+        <source>Create Page</source>
+        <target>Create Page</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create Request">
+        <source>Create Request</source>
+        <target>Create Request</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create another Offer">
+        <source>Create another Offer</source>
+        <target>Create another Offer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create another Request">
+        <source>Create another Request</source>
+        <target>Create another Request</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Currency">
+        <source>Currency</source>
+        <target>Currency</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current Password">
+        <source>Current Password</source>
+        <target>Current Password</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current location:">
+        <source>Current location:</source>
+        <target>Current location:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Date">
+        <source>Date</source>
+        <target>Date</target>
+        <note>Shout details</note>
+      </trans-unit>
+      <trans-unit id="Delete">
+        <source>Delete</source>
+        <target>Delete</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Delete Conversation">
+        <source>Delete Conversation</source>
+        <target>Delete Conversation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delivered">
+        <source>Delivered</source>
+        <target>Delivered</target>
+        <note>Delivered</note>
+      </trans-unit>
+      <trans-unit id="Description">
+        <source>Description</source>
+        <target>Description</target>
+        <note>Description cell placeholder text
+   Shout details</note>
+      </trans-unit>
+      <trans-unit id="Details">
+        <source>Details</source>
+        <target>Details</target>
+        <note>Shout details</note>
+      </trans-unit>
+      <trans-unit id="Discover">
+        <source>Discover</source>
+        <target>Discover</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Discover Shouts">
+        <source>Discover Shouts</source>
+        <target>Discover Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to delete this conversation">
+        <source>Do you want to delete this conversation</source>
+        <target>Do you want to delete this conversation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to delete this shout?">
+        <source>Do you want to delete this shout?</source>
+        <target>Do you want to delete this shout?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to send selected picture?">
+        <source>Do you want to send selected picture?</source>
+        <target>Do you want to send selected picture?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to send selected shout?">
+        <source>Do you want to send selected shout?</source>
+        <target>Do you want to send selected shout?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to send selected video?">
+        <source>Do you want to send selected video?</source>
+        <target>Do you want to send selected video?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to send your location?">
+        <source>Do you want to send your location?</source>
+        <target>Do you want to send your location?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Don't be so shy. Say something.">
+        <source>Don't be so shy. Say something.</source>
+        <target>Don't be so shy. Say something.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Done">
+        <source>Done</source>
+        <target>Done</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit">
+        <source>Edit</source>
+        <target>Edit</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Edit Offer">
+        <source>Edit Offer</source>
+        <target>Edit Offer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit Request">
+        <source>Edit Request</source>
+        <target>Edit Request</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="EnterValidMail">
+        <source>EnterValidMail</source>
+        <target>EnterValidMail</target>
+        <note>Enter valid email.</note>
+      </trans-unit>
+      <trans-unit id="EnterValidMailOrUsername">
+        <source>EnterValidMailOrUsername</source>
+        <target>EnterValidMailOrUsername</target>
+        <note>Enter valid email / username</note>
+      </trans-unit>
+      <trans-unit id="Entire country">
+        <source>Entire country</source>
+        <target>Entire country</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="FREE">
+        <source>FREE</source>
+        <target>FREE</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed">
+        <source>Failed</source>
+        <target>Failed</target>
+        <note>Failed</note>
+      </trans-unit>
+      <trans-unit id="Fields must not be empty">
+        <source>Fields must not be empty</source>
+        <target>Fields must not be empty</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="First name">
+        <source>First name</source>
+        <target>First name</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="FirstNameValidationError">
+        <source>FirstNameValidationError</source>
+        <target>FirstNameValidationError</target>
+        <note>Enter valid first name.</note>
+      </trans-unit>
+      <trans-unit id="Guest">
+        <source>Guest</source>
+        <target>Guest</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Have an account? Log in">
+        <source>Have an account? Log in</source>
+        <target>Have an account? Log in</target>
+        <note>Signup view</note>
+      </trans-unit>
+      <trans-unit id="Help">
+        <source>Help</source>
+        <target>Help</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Home">
+        <source>Home</source>
+        <target>Home</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Image">
+        <source>Image</source>
+        <target>Image</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Incoming Call">
+        <source>Incoming Call</source>
+        <target>Incoming Call</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Incoming Call from ">
+        <source>Incoming Call from </source>
+        <target>Incoming Call from </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Interests">
+        <source>Interests</source>
+        <target>Interests</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Invite Friends">
+        <source>Invite Friends</source>
+        <target>Invite Friends</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Joined">
+        <source>Joined</source>
+        <target>Joined</target>
+        <note>User profile date foined cell
+   User profile date joined cell</note>
+      </trans-unit>
+      <trans-unit id="Last name">
+        <source>Last name</source>
+        <target>Last name</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="LastNameValidationError">
+        <source>LastNameValidationError</source>
+        <target>LastNameValidationError</target>
+        <note>Enter valid last name.</note>
+      </trans-unit>
+      <trans-unit id="Legal">
+        <source>Legal</source>
+        <target>Legal</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Listen">
+        <source>Listen</source>
+        <target>Listen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Listeners">
+        <source>Listeners</source>
+        <target>Listeners</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Listening">
+        <source>Listening</source>
+        <target>Listening</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Loading Messages...">
+        <source>Loading Messages...</source>
+        <target>Loading Messages...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Location">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Edit profile placeholder text
+   Shout detail</note>
+      </trans-unit>
+      <trans-unit id="Log in">
+        <source>Log in</source>
+        <target>Log in</target>
+        <note>Signup view. Should be the same as whole text's part</note>
+      </trans-unit>
+      <trans-unit id="Log out">
+        <source>Log out</source>
+        <target>Log out</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Mark all as read">
+        <source>Mark all as read</source>
+        <target>Mark all as read</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobile">
+        <source>Mobile</source>
+        <target>Mobile</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="More">
+        <source>More</source>
+        <target>More</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="More shouts from %@">
+        <source>More shouts from %@</source>
+        <target>More shouts from %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="My Pages">
+        <source>My Pages</source>
+        <target>My Pages</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="My Shouts">
+        <source>My Shouts</source>
+        <target>My Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="New Password">
+        <source>New Password</source>
+        <target>New Password</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New email">
+        <source>New email</source>
+        <target>New email</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New to Shoutit? Sign up">
+        <source>New to Shoutit? Sign up</source>
+        <target>New to Shoutit? Sign up</target>
+        <note>Signup view</note>
+      </trans-unit>
+      <trans-unit id="Next">
+        <source>Next</source>
+        <target>Next</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No Messages to show">
+        <source>No Messages to show</source>
+        <target>No Messages to show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No categores are available">
+        <source>No categores are available</source>
+        <target>No categores are available</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No content available yet">
+        <source>No content available yet</source>
+        <target>No content available yet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No conversations to show">
+        <source>No conversations to show</source>
+        <target>No conversations to show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No images are available">
+        <source>No images are available</source>
+        <target>No images are available</target>
+        <note>Message for shout with no images</note>
+      </trans-unit>
+      <trans-unit id="No more messages to show">
+        <source>No more messages to show</source>
+        <target>No more messages to show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No notifications to show">
+        <source>No notifications to show</source>
+        <target>No notifications to show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No pages available yet">
+        <source>No pages available yet</source>
+        <target>No pages available yet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No results were found">
+        <source>No results were found</source>
+        <target>No results were found</target>
+        <note>Empty search results placeholder</note>
+      </trans-unit>
+      <trans-unit id="No shouts are available">
+        <source>No shouts are available</source>
+        <target>No shouts are available</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No shouts available yet">
+        <source>No shouts available yet</source>
+        <target>No shouts available yet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No users were found">
+        <source>No users were found</source>
+        <target>No users were found</target>
+        <note>User search empty message</note>
+      </trans-unit>
+      <trans-unit id="Notification">
+        <source>Notification</source>
+        <target>Notification</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Notification Settings">
+        <source>Notification Settings</source>
+        <target>Notification Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Offer">
+        <source>Offer</source>
+        <target>Offer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Offers and Requests">
+        <source>Offers and Requests</source>
+        <target>Offers and Requests</target>
+        <note>Filter shout type</note>
+      </trans-unit>
+      <trans-unit id="Only Offers">
+        <source>Only Offers</source>
+        <target>Only Offers</target>
+        <note>Filter shout type</note>
+      </trans-unit>
+      <trans-unit id="Only Requests">
+        <source>Only Requests</source>
+        <target>Only Requests</target>
+        <note>Filter shout type</note>
+      </trans-unit>
+      <trans-unit id="Orders">
+        <source>Orders</source>
+        <target>Orders</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Password">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="PasswordValidationError">
+        <source>PasswordValidationError</source>
+        <target>PasswordValidationError</target>
+        <note>Password characters limit should be between 6-20</note>
+      </trans-unit>
+      <trans-unit id="Pending">
+        <source>Pending</source>
+        <target>Pending</target>
+        <note>Pending</note>
+      </trans-unit>
+      <trans-unit id="Please enter report message">
+        <source>Please enter report message</source>
+        <target>Please enter report message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please make sure that all media are uploaded before continuing">
+        <source>Please make sure that all media are uploaded before continuing</source>
+        <target>Please make sure that all media are uploaded before continuing</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please make sure that your location services are enabled for Shoutit.">
+        <source>Please make sure that your location services are enabled for Shoutit.</source>
+        <target>Please make sure that your location services are enabled for Shoutit.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please provide a report message">
+        <source>Please provide a report message</source>
+        <target>Please provide a report message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select Category">
+        <source>Please select Category</source>
+        <target>Please select Category</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select Currency">
+        <source>Please select Currency</source>
+        <target>Please select Currency</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select Type">
+        <source>Please select Type</source>
+        <target>Please select Type</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select category">
+        <source>Please select category</source>
+        <target>Please select category</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select sort type">
+        <source>Please select sort type</source>
+        <target>Please select sort type</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select type">
+        <source>Please select type</source>
+        <target>Please select type</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please wait for upload to finish">
+        <source>Please wait for upload to finish</source>
+        <target>Please wait for upload to finish</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Privacy Policy">
+        <source>Privacy Policy</source>
+        <target>Privacy Policy</target>
+        <note>Settings cell title
+   Signup screen part of terms and condition message. Must match that in whole text</note>
+      </trans-unit>
+      <trans-unit id="Profile Reported Successfully">
+        <source>Profile Reported Successfully</source>
+        <target>Profile Reported Successfully</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Recent searches">
+        <source>Recent searches</source>
+        <target>Recent searches</target>
+        <note>Recent searches header</note>
+      </trans-unit>
+      <trans-unit id="Related Interests">
+        <source>Related Interests</source>
+        <target>Related Interests</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Related Shouts">
+        <source>Related Shouts</source>
+        <target>Related Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Related shouts">
+        <source>Related shouts</source>
+        <target>Related shouts</target>
+        <note>Shout detail</note>
+      </trans-unit>
+      <trans-unit id="Remove">
+        <source>Remove</source>
+        <target>Remove</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove Currency">
+        <source>Remove Currency</source>
+        <target>Remove Currency</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Report Profile">
+        <source>Report Profile</source>
+        <target>Report Profile</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Report Shout">
+        <source>Report Shout</source>
+        <target>Report Shout</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Request">
+        <source>Request</source>
+        <target>Request</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Results">
+        <source>Results</source>
+        <target>Results</target>
+        <note>Search results section header</note>
+      </trans-unit>
+      <trans-unit id="Results for '%@'">
+        <source>Results for '%@'</source>
+        <target>Results for '%@'</target>
+        <note>Search results for search phrase section header</note>
+      </trans-unit>
+      <trans-unit id="Search Shoutit">
+        <source>Search Shoutit</source>
+        <target>Search Shoutit</target>
+        <note>Search text field placeholder</note>
+      </trans-unit>
+      <trans-unit id="Search Users">
+        <source>Search Users</source>
+        <target>Search Users</target>
+        <note>Search users placeholder</note>
+      </trans-unit>
+      <trans-unit id="Search in %@ shouts">
+        <source>Search in %@ shouts</source>
+        <target>Search in %@ shouts</target>
+        <note>Search text field placeholder</note>
+      </trans-unit>
+      <trans-unit id="See All Shouts">
+        <source>See All Shouts</source>
+        <target>See All Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select Shout">
+        <source>Select Shout</source>
+        <target>Select Shout</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Send">
+        <source>Send</source>
+        <target>Send</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Send Attachment">
+        <source>Send Attachment</source>
+        <target>Send Attachment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sending message">
+        <source>Sending message</source>
+        <target>Sending message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sends you message">
+        <source>Sends you message</source>
+        <target>Sends you message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sent">
+        <source>Sent</source>
+        <target>Sent</target>
+        <note>Sent</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <target>Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shout">
+        <source>Shout</source>
+        <target>Shout</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shout Reported Successfully">
+        <source>Shout Reported Successfully</source>
+        <target>Shout Reported Successfully</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shout deleted Successfully">
+        <source>Shout deleted Successfully</source>
+        <target>Shout deleted Successfully</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shouts">
+        <source>Shouts</source>
+        <target>Shouts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shouts in %@">
+        <source>Shouts in %@</source>
+        <target>Shouts in %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sign up">
+        <source>Sign up</source>
+        <target>Sign up</target>
+        <note>Signup view. Should be the same as whole text's part</note>
+      </trans-unit>
+      <trans-unit id="Someone">
+        <source>Someone</source>
+        <target>Someone</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sort By">
+        <source>Sort By</source>
+        <target>Sort By</target>
+        <note>Sort type button title label</note>
+      </trans-unit>
+      <trans-unit id="Stop Listening">
+        <source>Stop Listening</source>
+        <target>Stop Listening</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Suggested Pages">
+        <source>Suggested Pages</source>
+        <target>Suggested Pages</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Suggested Users">
+        <source>Suggested Users</source>
+        <target>Suggested Users</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tap to load archive messages">
+        <source>Tap to load archive messages</source>
+        <target>Tap to load archive messages</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Terms of Service">
+        <source>Terms of Service</source>
+        <target>Terms of Service</target>
+        <note>Settings cell title
+   Signup screen part of terms and condition message. Must match that in whole text</note>
+      </trans-unit>
+      <trans-unit id="The maximum length of the video is 60 seconds. Choose a shorter movie.">
+        <source>The maximum length of the video is 60 seconds. Choose a shorter movie.</source>
+        <target>The maximum length of the video is 60 seconds. Choose a shorter movie.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Turn Off">
+        <source>Turn Off</source>
+        <target>Turn Off</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Turn On">
+        <source>Turn On</source>
+        <target>Turn On</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type">
+        <source>Type</source>
+        <target>Type</target>
+        <note>Shout type button title label</note>
+      </trans-unit>
+      <trans-unit id="Type a message">
+        <source>Type a message</source>
+        <target>Type a message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unknown Location">
+        <source>Unknown Location</source>
+        <target>Unknown Location</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unsupported Title">
+        <source>Unsupported Title</source>
+        <target>Unsupported Title</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Username">
+        <source>Username</source>
+        <target>Username</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="Verify New Password">
+        <source>Verify New Password</source>
+        <target>Verify New Password</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Video">
+        <source>Video</source>
+        <target>Video</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Video call">
+        <source>Video call</source>
+        <target>Video call</target>
+        <note>Shout detail tab bar item</note>
+      </trans-unit>
+      <trans-unit id="Video is too long">
+        <source>Video is too long</source>
+        <target>Video is too long</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Profile">
+        <source>View Profile</source>
+        <target>View Profile</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Visit %@'s profile">
+        <source>Visit %@'s profile</source>
+        <target>Visit %@'s profile</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Website">
+        <source>Website</source>
+        <target>Website</target>
+        <note>Edit profile placeholder text</note>
+      </trans-unit>
+      <trans-unit id="Yes, Delete Shout">
+        <source>Yes, Delete Shout</source>
+        <target>Yes, Delete Shout</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You">
+        <source>You</source>
+        <target>You</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You are not able to call this user">
+        <source>You are not able to call this user</source>
+        <target>You are not able to call this user</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You can only start a chat with your listeners">
+        <source>You can only start a chat with your listeners</source>
+        <target>You can only start a chat with your listeners</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You can start new conversation in shout details or user profile.">
+        <source>You can start new conversation in shout details or user profile.</source>
+        <target>You can start new conversation in shout details or user profile.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You can't chat with yourself">
+        <source>You can't chat with yourself</source>
+        <target>You can't chat with yourself</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have successfully started listening to %@">
+        <source>You have successfully started listening to %@</source>
+        <target>You have successfully started listening to %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have successfully stopped listening to %@">
+        <source>You have successfully stopped listening to %@</source>
+        <target>You have successfully stopped listening to %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You must be logged in to perform this action">
+        <source>You must be logged in to perform this action</source>
+        <target>You must be logged in to perform this action</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your account has been successfully verified">
+        <source>Your account has been successfully verified</source>
+        <target>Your account has been successfully verified</target>
+        <note>Verify email user message</note>
+      </trans-unit>
+      <trans-unit id="Your account isn't verified yet">
+        <source>Your account isn't verified yet</source>
+        <target>Your account isn't verified yet</target>
+        <note>Verify email failed user message</note>
+      </trans-unit>
+      <trans-unit id="Your location will be updated automatically">
+        <source>Your location will be updated automatically</source>
+        <target>Your location will be updated automatically</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your offer &quot;%@&quot; will appear on Shoutit soon.">
+        <source>Your offer "%@" will appear on Shoutit soon.</source>
+        <target>Your offer "%@" will appear on Shoutit soon.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your offer will appear on Shoutit soon.">
+        <source>Your offer will appear on Shoutit soon.</source>
+        <target>Your offer will appear on Shoutit soon.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your request &quot;%@&quot; will appear on Shoutit soon.">
+        <source>Your request "%@" will appear on Shoutit soon.</source>
+        <target>Your request "%@" will appear on Shoutit soon.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your request will appear on Shoutit soon.">
+        <source>Your request will appear on Shoutit soon.</source>
+        <target>Your request will appear on Shoutit soon.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="shouter">
+        <source>shouter</source>
+        <target>shouter</target>
+        <note>Displayed on shout detail screen if user's firstname would be null</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/CameraStoryboard.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="5kN-QW-7VN.normalTitle">
+        <source>done</source>
+        <target>done</target>
+        <note>Class = "UIButton"; normalTitle = "done"; ObjectID = "5kN-QW-7VN";</note>
+      </trans-unit>
+      <trans-unit id="07x-bq-AvW.title">
+        <source>VideoPreview</source>
+        <target>VideoPreview</target>
+        <note>Class = "UIViewController"; title = "VideoPreview"; ObjectID = "07x-bq-AvW";</note>
+      </trans-unit>
+      <trans-unit id="HXZ-4s-AyI.normalTitle">
+        <source>Record</source>
+        <target>Record</target>
+        <note>Class = "UIButton"; normalTitle = "Record"; ObjectID = "HXZ-4s-AyI";</note>
+      </trans-unit>
+      <trans-unit id="SN9-Be-ehn.text">
+        <source>00:05</source>
+        <target>00:05</target>
+        <note>Class = "UILabel"; text = "00:05"; ObjectID = "SN9-Be-ehn";</note>
+      </trans-unit>
+      <trans-unit id="T1H-Pn-i9k.normalTitle">
+        <source>Back</source>
+        <target>Back</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "T1H-Pn-i9k";</note>
+      </trans-unit>
+      <trans-unit id="ZaW-tw-s3x.normalTitle">
+        <source>Camera flip</source>
+        <target>Camera flip</target>
+        <note>Class = "UIButton"; normalTitle = "Camera flip"; ObjectID = "ZaW-tw-s3x";</note>
+      </trans-unit>
+      <trans-unit id="ah9-Bk-7o7.normalTitle">
+        <source>flash off</source>
+        <target>flash off</target>
+        <note>Class = "UIButton"; normalTitle = "flash off"; ObjectID = "ah9-Bk-7o7";</note>
+      </trans-unit>
+      <trans-unit id="hZQ-9o-tYc.title">
+        <source>CameraNivigationController</source>
+        <target>CameraNivigationController</target>
+        <note>Class = "UINavigationController"; title = "CameraNivigationController"; ObjectID = "hZQ-9o-tYc";</note>
+      </trans-unit>
+      <trans-unit id="kZw-8m-9Tx.title">
+        <source>ShoutIT</source>
+        <target>ShoutIT</target>
+        <note>Class = "UITabBarItem"; title = "ShoutIT"; ObjectID = "kZw-8m-9Tx";</note>
+      </trans-unit>
+      <trans-unit id="wW7-p1-emq.title">
+        <source>PhotoPreview</source>
+        <target>PhotoPreview</target>
+        <note>Class = "UIViewController"; title = "PhotoPreview"; ObjectID = "wW7-p1-emq";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/Chats.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="1Cm-xk-7AD.title">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UINavigationItem"; title = "Location"; ObjectID = "1Cm-xk-7AD";</note>
+      </trans-unit>
+      <trans-unit id="7lD-XO-jLv.text">
+        <source>Participants</source>
+        <target>Participants</target>
+        <note>Class = "UILabel"; text = "Participants"; ObjectID = "7lD-XO-jLv";</note>
+      </trans-unit>
+      <trans-unit id="Ejl-rm-dWM.text">
+        <source>Message Preview</source>
+        <target>Message Preview</target>
+        <note>Class = "UILabel"; text = "Message Preview"; ObjectID = "Ejl-rm-dWM";</note>
+      </trans-unit>
+      <trans-unit id="GZ0-mH-W33.title">
+        <source>Chats</source>
+        <target>Chats</target>
+        <note>Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33";</note>
+      </trans-unit>
+      <trans-unit id="OoV-dq-QkE.title">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "OoV-dq-QkE";</note>
+      </trans-unit>
+      <trans-unit id="QDG-Al-JRl.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "QDG-Al-JRl";</note>
+      </trans-unit>
+      <trans-unit id="Uyo-AD-bj5.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "Uyo-AD-bj5";</note>
+      </trans-unit>
+      <trans-unit id="VO8-bv-QaH.text">
+        <source>Message Preview</source>
+        <target>Message Preview</target>
+        <note>Class = "UILabel"; text = "Message Preview"; ObjectID = "VO8-bv-QaH";</note>
+      </trans-unit>
+      <trans-unit id="YLA-6J-Q2l.title">
+        <source>Messages</source>
+        <target>Messages</target>
+        <note>Class = "UITabBarItem"; title = "Messages"; ObjectID = "YLA-6J-Q2l";</note>
+      </trans-unit>
+      <trans-unit id="c6b-2a-MEJ.text">
+        <source>Offer</source>
+        <target>Offer</target>
+        <note>Class = "UILabel"; text = "Offer"; ObjectID = "c6b-2a-MEJ";</note>
+      </trans-unit>
+      <trans-unit id="cTb-jK-D0D.text">
+        <source>Date</source>
+        <target>Date</target>
+        <note>Class = "UILabel"; text = "Date"; ObjectID = "cTb-jK-D0D";</note>
+      </trans-unit>
+      <trans-unit id="fMa-98-BMN.text">
+        <source>Participants</source>
+        <target>Participants</target>
+        <note>Class = "UILabel"; text = "Participants"; ObjectID = "fMa-98-BMN";</note>
+      </trans-unit>
+      <trans-unit id="hWB-iW-Kpv.title">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "hWB-iW-Kpv";</note>
+      </trans-unit>
+      <trans-unit id="nrX-oU-PHB.text">
+        <source>Message Preview</source>
+        <target>Message Preview</target>
+        <note>Class = "UILabel"; text = "Message Preview"; ObjectID = "nrX-oU-PHB";</note>
+      </trans-unit>
+      <trans-unit id="oR2-Wf-ZJO.text">
+        <source>Date</source>
+        <target>Date</target>
+        <note>Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO";</note>
+      </trans-unit>
+      <trans-unit id="pcT-Tt-k2b.text">
+        <source>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b";</note>
+      </trans-unit>
+      <trans-unit id="rdm-hj-mhG.title">
+        <source>Conversations</source>
+        <target>Conversations</target>
+        <note>Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/Discover.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="1zO-PU-axo.text">
+        <source>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "1zO-PU-axo";</note>
+      </trans-unit>
+      <trans-unit id="C39-Cu-yZU.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "C39-Cu-yZU";</note>
+      </trans-unit>
+      <trans-unit id="DFH-Ro-KZo.text">
+        <source>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "DFH-Ro-KZo";</note>
+      </trans-unit>
+      <trans-unit id="HG0-FE-ywc.text">
+        <source>Offer</source>
+        <target>Offer</target>
+        <note>Class = "UILabel"; text = "Offer"; ObjectID = "HG0-FE-ywc";</note>
+      </trans-unit>
+      <trans-unit id="UUU-eQ-eO1.title">
+        <source>Discover</source>
+        <target>Discover</target>
+        <note>Class = "UINavigationItem"; title = "Discover"; ObjectID = "UUU-eQ-eO1";</note>
+      </trans-unit>
+      <trans-unit id="UhY-5k-cKs.title">
+        <source>Home</source>
+        <target>Home</target>
+        <note>Class = "UINavigationItem"; title = "Home"; ObjectID = "UhY-5k-cKs";</note>
+      </trans-unit>
+      <trans-unit id="XR2-l8-Hdh.text">
+        <source>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "XR2-l8-Hdh";</note>
+      </trans-unit>
+      <trans-unit id="Yu8-ve-3cT.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "Yu8-ve-3cT";</note>
+      </trans-unit>
+      <trans-unit id="axF-rE-D1W.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "axF-rE-D1W";</note>
+      </trans-unit>
+      <trans-unit id="eMu-SA-8L3.text">
+        <source>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "eMu-SA-8L3";</note>
+      </trans-unit>
+      <trans-unit id="jMN-dN-Vu2.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "jMN-dN-Vu2";</note>
+      </trans-unit>
+      <trans-unit id="rVl-oZ-ib3.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "rVl-oZ-ib3";</note>
+      </trans-unit>
+      <trans-unit id="t0W-ij-BKo.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "t0W-ij-BKo";</note>
+      </trans-unit>
+      <trans-unit id="x6d-mC-5Uf.text">
+        <source>My Feed</source>
+        <target>My Feed</target>
+        <note>Class = "UILabel"; text = "My Feed"; ObjectID = "x6d-mC-5Uf";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/LoginStoryboard.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="0w1-iB-LJP.normalTitle">
+        <source>Done</source>
+        <target>Done</target>
+        <note>Class = "UIButton"; normalTitle = "Done"; ObjectID = "0w1-iB-LJP";</note>
+      </trans-unit>
+      <trans-unit id="2hM-uG-45m.normalTitle">
+        <source>Forgot your password?</source>
+        <target>Forgot your password?</target>
+        <note>Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m";</note>
+      </trans-unit>
+      <trans-unit id="2sy-bq-ms4.text">
+        <source>Search</source>
+        <target>Search</target>
+        <note>Class = "UILabel"; text = "Search"; ObjectID = "2sy-bq-ms4";</note>
+      </trans-unit>
+      <trans-unit id="7eJ-mp-XEv.normalTitle">
+        <source>About</source>
+        <target>About</target>
+        <note>Class = "UIButton"; normalTitle = "About"; ObjectID = "7eJ-mp-XEv";</note>
+      </trans-unit>
+      <trans-unit id="14e-Rq-a3Y.text">
+        <source>List anything for FREE. Include Photos and Videos to appeal to Buyers.</source>
+        <target>List anything for FREE. Include Photos and Videos to appeal to Buyers.</target>
+        <note>Class = "UILabel"; text = "List anything for FREE. Include Photos and Videos to appeal to Buyers."; ObjectID = "14e-Rq-a3Y";</note>
+      </trans-unit>
+      <trans-unit id="A0X-MT-0sG.text">
+        <source>Join Now!</source>
+        <target>Join Now!</target>
+        <note>Class = "UILabel"; text = "Join Now!"; ObjectID = "A0X-MT-0sG";</note>
+      </trans-unit>
+      <trans-unit id="A5j-dd-Kjd.placeholder">
+        <source>Email or Username</source>
+        <target>Email or Username</target>
+        <note>Class = "UITextField"; placeholder = "Email or Username"; ObjectID = "A5j-dd-Kjd";</note>
+      </trans-unit>
+      <trans-unit id="DkI-1W-qTm.title">
+        <source>Sign up</source>
+        <target>Sign up</target>
+        <note>Class = "UITableViewController"; title = "Sign up"; ObjectID = "DkI-1W-qTm";</note>
+      </trans-unit>
+      <trans-unit id="FeT-P1-QuZ.normalTitle">
+        <source>Log in</source>
+        <target>Log in</target>
+        <note>Class = "UIButton"; normalTitle = "Log in"; ObjectID = "FeT-P1-QuZ";</note>
+      </trans-unit>
+      <trans-unit id="Fqu-0M-TP9.text">
+        <source>Connect with Buyers and Sellers. Send Photos, Videos and Shouts.</source>
+        <target>Connect with Buyers and Sellers. Send Photos, Videos and Shouts.</target>
+      </trans-unit>
+      <trans-unit id="GEI-7W-x2d.text">
+        <source>List anything for FREE. Include Photos and Videos to appeal to Buyers.</source>
+        <target>List anything for FREE. Include Photos and Videos to appeal to Buyers.</target>
+      </trans-unit>
+      <trans-unit id="GcV-kC-fXX.text">
+        <source>What interests you the most?</source>
+        <target>What interests you the most?</target>
+        <note>Class = "UILabel"; text = "What interests you the most?"; ObjectID = "GcV-kC-fXX";</note>
+      </trans-unit>
+      <trans-unit id="Gcm-Gs-6OL.normalTitle">
+        <source>Next</source>
+        <target>Next</target>
+        <note>Class = "UIButton"; normalTitle = "Next"; ObjectID = "Gcm-Gs-6OL";</note>
+      </trans-unit>
+      <trans-unit id="Gv6-Vf-08z.text">
+        <source>Welcome to Shoutit</source>
+        <target>Welcome to Shoutit</target>
+        <note>Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Gv6-Vf-08z";</note>
+      </trans-unit>
+      <trans-unit id="HYX-k8-0GR.title">
+        <source>Reset password</source>
+        <target>Reset password</target>
+        <note>Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR";</note>
+      </trans-unit>
+      <trans-unit id="KGf-9Z-ybk.text">
+        <source>Connect with Buyers and Sellers. Send Photos, Videos and Shouts.</source>
+        <target>Connect with Buyers and Sellers. Send Photos, Videos and Shouts.</target>
+        <note>Class = "UILabel"; text = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts."; ObjectID = "KGf-9Z-ybk";</note>
+      </trans-unit>
+      <trans-unit id="L2w-j2-mMw.normalTitle">
+        <source>Log in with Facebook</source>
+        <target>Log in with Facebook</target>
+      </trans-unit>
+      <trans-unit id="N11-JB-SIw.placeholder">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UITextField"; placeholder = "Email"; ObjectID = "N11-JB-SIw";</note>
+      </trans-unit>
+      <trans-unit id="OfY-0g-YBp.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "OfY-0g-YBp";</note>
+      </trans-unit>
+      <trans-unit id="P55-Vf-kY2.normalTitle">
+        <source>Sign up / Log in with Email</source>
+        <target>Sign up / Log in with Email</target>
+      </trans-unit>
+      <trans-unit id="PgP-fT-oWw.normalTitle">
+        <source>Help</source>
+        <target>Help</target>
+        <note>Class = "UIButton"; normalTitle = "Help"; ObjectID = "PgP-fT-oWw";</note>
+      </trans-unit>
+      <trans-unit id="QAm-Q7-PXd.normalTitle">
+        <source>Back to log in</source>
+        <target>Back to log in</target>
+        <note>Class = "UIButton"; normalTitle = "Back to log in"; ObjectID = "QAm-Q7-PXd";</note>
+      </trans-unit>
+      <trans-unit id="QGu-kD-nqv.normalTitle">
+        <source>Skip</source>
+        <target>Skip</target>
+        <note>Class = "UIButton"; normalTitle = "Skip"; ObjectID = "QGu-kD-nqv";</note>
+      </trans-unit>
+      <trans-unit id="RaH-ti-Eac.placeholder">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UITextField"; placeholder = "Name"; ObjectID = "RaH-ti-Eac";</note>
+      </trans-unit>
+      <trans-unit id="RiB-S8-6Dt.normalTitle">
+        <source>Reset password</source>
+        <target>Reset password</target>
+        <note>Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "RiB-S8-6Dt";</note>
+      </trans-unit>
+      <trans-unit id="Rwd-Tt-HmF.text">
+        <source>Find what you need in your Community or anywhere in the World.</source>
+        <target>Find what you need in your Community or anywhere in the World.</target>
+        <note>Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "Rwd-Tt-HmF";</note>
+      </trans-unit>
+      <trans-unit id="Soz-bA-Q3z.text">
+        <source>Buy and Sell while Chatting</source>
+        <target>Buy and Sell while Chatting</target>
+        <note>Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "Soz-bA-Q3z";</note>
+      </trans-unit>
+      <trans-unit id="V9W-3j-fHJ.text">
+        <source>Video is worth a thousand pictures! see what you want to buy live before buying it.</source>
+        <target>Video is worth a thousand pictures! see what you want to buy live before buying it.</target>
+        <note>Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "V9W-3j-fHJ";</note>
+      </trans-unit>
+      <trans-unit id="VwE-WR-Gmn.text">
+        <source>Log in with Facebook</source>
+        <target>Log in with Facebook</target>
+        <note>Class = "UILabel"; text = "Log in with Facebook"; ObjectID = "VwE-WR-Gmn";</note>
+      </trans-unit>
+      <trans-unit id="Wji-o7-jPI.title">
+        <source>Log in</source>
+        <target>Log in</target>
+        <note>Class = "UITableViewController"; title = "Log in"; ObjectID = "Wji-o7-jPI";</note>
+      </trans-unit>
+      <trans-unit id="Wk4-LN-gj4.normalTitle">
+        <source>Help</source>
+        <target>Help</target>
+        <note>Class = "UIButton"; normalTitle = "Help"; ObjectID = "Wk4-LN-gj4";</note>
+      </trans-unit>
+      <trans-unit id="WpN-aG-jKl.text">
+        <source>By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.</source>
+        <target>By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.</target>
+        <note>Class = "UILabel"; text = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy."; ObjectID = "WpN-aG-jKl";</note>
+      </trans-unit>
+      <trans-unit id="X4Y-Df-Xe1.placeholder">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UITextField"; placeholder = "Email"; ObjectID = "X4Y-Df-Xe1";</note>
+      </trans-unit>
+      <trans-unit id="X9g-nR-IJq.placeholder">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Class = "UITextField"; placeholder = "Password"; ObjectID = "X9g-nR-IJq";</note>
+      </trans-unit>
+      <trans-unit id="XFT-nv-LfW.normalTitle">
+        <source>About</source>
+        <target>About</target>
+        <note>Class = "UIButton"; normalTitle = "About"; ObjectID = "XFT-nv-LfW";</note>
+      </trans-unit>
+      <trans-unit id="YRB-cn-kU9.normalTitle">
+        <source>Skip</source>
+        <target>Skip</target>
+        <note>Class = "UIButton"; normalTitle = "Skip"; ObjectID = "YRB-cn-kU9";</note>
+      </trans-unit>
+      <trans-unit id="Zhq-6O-ODa.text">
+        <source>Welcome to Shoutit</source>
+        <target>Welcome to Shoutit</target>
+      </trans-unit>
+      <trans-unit id="bbC-mk-YUZ.text">
+        <source>Shout</source>
+        <target>Shout</target>
+      </trans-unit>
+      <trans-unit id="esA-10-tDe.normalTitle">
+        <source>Have an account? Log in</source>
+        <target>Have an account? Log in</target>
+        <note>Class = "UIButton"; normalTitle = "Have an account? Log in"; ObjectID = "esA-10-tDe";</note>
+      </trans-unit>
+      <trans-unit id="fZu-Xf-8hV.text">
+        <source>Find what you need in your Community or anywhere in the World.</source>
+        <target>Find what you need in your Community or anywhere in the World.</target>
+      </trans-unit>
+      <trans-unit id="ff2-Jg-zkJ.text">
+        <source>Log in with Google</source>
+        <target>Log in with Google</target>
+        <note>Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ";</note>
+      </trans-unit>
+      <trans-unit id="fg0-TH-CXc.text">
+        <source>Login and discover what others are selling in your neighborhood or start selling in seconds </source>
+        <target>Login and discover what others are selling in your neighborhood or start selling in seconds </target>
+        <note>Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc";</note>
+      </trans-unit>
+      <trans-unit id="hDf-O1-dvh.text">
+        <source>Search</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="hXd-vs-HMY.text">
+        <source>Video Chat</source>
+        <target>Video Chat</target>
+      </trans-unit>
+      <trans-unit id="iKX-Fx-ZOg.placeholder">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg";</note>
+      </trans-unit>
+      <trans-unit id="kPZ-aZ-cg3.normalTitle">
+        <source>Help</source>
+        <target>Help</target>
+        <note>Class = "UIButton"; normalTitle = "Help"; ObjectID = "kPZ-aZ-cg3";</note>
+      </trans-unit>
+      <trans-unit id="l8Q-QA-1Iv.text">
+        <source>Sign up / Log in with Email</source>
+        <target>Sign up / Log in with Email</target>
+        <note>Class = "UILabel"; text = "Sign up / Log in with Email"; ObjectID = "l8Q-QA-1Iv";</note>
+      </trans-unit>
+      <trans-unit id="mgc-hU-1eG.normalTitle">
+        <source>Feedback</source>
+        <target>Feedback</target>
+        <note>Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "mgc-hU-1eG";</note>
+      </trans-unit>
+      <trans-unit id="o79-CH-fAu.text">
+        <source>Video Chat</source>
+        <target>Video Chat</target>
+        <note>Class = "UILabel"; text = "Video Chat"; ObjectID = "o79-CH-fAu";</note>
+      </trans-unit>
+      <trans-unit id="otB-pC-3lO.text">
+        <source>Video is worth a thousand pictures! see what you want to buy live before buying it.</source>
+        <target>Video is worth a thousand pictures! see what you want to buy live before buying it.</target>
+      </trans-unit>
+      <trans-unit id="pNC-Ay-C46.text">
+        <source>Chat</source>
+        <target>Chat</target>
+      </trans-unit>
+      <trans-unit id="pZ6-XI-dIh.normalTitle">
+        <source>Log in with Google</source>
+        <target>Log in with Google</target>
+      </trans-unit>
+      <trans-unit id="qd5-UA-hrc.text">
+        <source>Buy and Sell while Chatting</source>
+        <target>Buy and Sell while Chatting</target>
+      </trans-unit>
+      <trans-unit id="qkS-QO-udz.normalTitle">
+        <source>New to Shoutit? Sign up</source>
+        <target>New to Shoutit? Sign up</target>
+        <note>Class = "UIButton"; normalTitle = "New to Shoutit? Sign up"; ObjectID = "qkS-QO-udz";</note>
+      </trans-unit>
+      <trans-unit id="sS7-ve-BOz.normalTitle">
+        <source>Feedback</source>
+        <target>Feedback</target>
+        <note>Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "sS7-ve-BOz";</note>
+      </trans-unit>
+      <trans-unit id="stm-aj-Lud.normalTitle">
+        <source>Sign up</source>
+        <target>Sign up</target>
+        <note>Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "stm-aj-Lud";</note>
+      </trans-unit>
+      <trans-unit id="tJ8-OD-CZp.text">
+        <source>Shout</source>
+        <target>Shout</target>
+        <note>Class = "UILabel"; text = "Shout"; ObjectID = "tJ8-OD-CZp";</note>
+      </trans-unit>
+      <trans-unit id="tVc-LS-ZZw.normalTitle">
+        <source>Skip</source>
+        <target>Skip</target>
+        <note>Class = "UIButton"; normalTitle = "Skip"; ObjectID = "tVc-LS-ZZw";</note>
+      </trans-unit>
+      <trans-unit id="vhV-ST-5zt.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "vhV-ST-5zt";</note>
+      </trans-unit>
+      <trans-unit id="w16-Jq-7nF.text">
+        <source>Chat</source>
+        <target>Chat</target>
+        <note>Class = "UILabel"; text = "Chat"; ObjectID = "w16-Jq-7nF";</note>
+      </trans-unit>
+      <trans-unit id="x1k-1E-QQr.normalTitle">
+        <source>Log in</source>
+        <target>Log in</target>
+        <note>Class = "UIButton"; normalTitle = "Log in"; ObjectID = "x1k-1E-QQr";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/Profile.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body/>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/Settings.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="aTs-Bq-b02.text">
+        <source>Setting</source>
+        <target>Setting</target>
+        <note>Class = "UILabel"; text = "Setting"; ObjectID = "aTs-Bq-b02";</note>
+      </trans-unit>
+      <trans-unit id="f48-fJ-cyN.placeholder">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UITextField"; placeholder = "Email"; ObjectID = "f48-fJ-cyN";</note>
+      </trans-unit>
+      <trans-unit id="jwp-Rd-nto.normalTitle">
+        <source>Reset password</source>
+        <target>Reset password</target>
+        <note>Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "jwp-Rd-nto";</note>
+      </trans-unit>
+      <trans-unit id="od8-aL-3Ox.title">
+        <source>Settings</source>
+        <target>Settings</target>
+        <note>Class = "UITableViewController"; title = "Settings"; ObjectID = "od8-aL-3Ox";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Localization/Base.lproj/Shout.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="3WJ-yE-7d1.normalTitle">
+        <source>Currency</source>
+        <target>Currency</target>
+        <note>Class = "UIButton"; normalTitle = "Currency"; ObjectID = "3WJ-yE-7d1";</note>
+      </trans-unit>
+      <trans-unit id="5lF-qh-668.placeholder">
+        <source>Mobile</source>
+        <target>Mobile</target>
+        <note>Class = "UITextField"; placeholder = "Mobile"; ObjectID = "5lF-qh-668";</note>
+      </trans-unit>
+      <trans-unit id="5wL-mM-p5l.text">
+        <source>OR</source>
+        <target>OR</target>
+        <note>Class = "UILabel"; text = "OR"; ObjectID = "5wL-mM-p5l";</note>
+      </trans-unit>
+      <trans-unit id="7Ws-Aq-gda.text">
+        <source>Add photos and videos</source>
+        <target>Add photos and videos</target>
+        <note>Class = "UILabel"; text = "Add photos and videos"; ObjectID = "7Ws-Aq-gda";</note>
+      </trans-unit>
+      <trans-unit id="ArL-Gz-lqw.normalTitle">
+        <source>Offer</source>
+        <target>Offer</target>
+        <note>Class = "UIButton"; normalTitle = "Offer"; ObjectID = "ArL-Gz-lqw";</note>
+      </trans-unit>
+      <trans-unit id="C4A-6j-khU.text">
+        <source>What are you posting?</source>
+        <target>What are you posting?</target>
+        <note>Class = "UILabel"; text = "What are you posting?"; ObjectID = "C4A-6j-khU";</note>
+      </trans-unit>
+      <trans-unit id="Ei6-pW-gaf.normalTitle">
+        <source>Request</source>
+        <target>Request</target>
+        <note>Class = "UIButton"; normalTitle = "Request"; ObjectID = "Ei6-pW-gaf";</note>
+      </trans-unit>
+      <trans-unit id="JAQ-ZA-HOP.normalTitle">
+        <source>Category</source>
+        <target>Category</target>
+        <note>Class = "UIButton"; normalTitle = "Category"; ObjectID = "JAQ-ZA-HOP";</note>
+      </trans-unit>
+      <trans-unit id="JgV-Ob-3ub.placeholder">
+        <source>Mobile</source>
+        <target>Mobile</target>
+        <note>Class = "UITextField"; placeholder = "Mobile"; ObjectID = "JgV-Ob-3ub";</note>
+      </trans-unit>
+      <trans-unit id="M4f-Gm-mtF.normalTitle">
+        <source>Publish</source>
+        <target>Publish</target>
+        <note>Class = "UIButton"; normalTitle = "Publish"; ObjectID = "M4f-Gm-mtF";</note>
+      </trans-unit>
+      <trans-unit id="Mhb-3U-Wnp.normalTitle">
+        <source>Currency</source>
+        <target>Currency</target>
+        <note>Class = "UIButton"; normalTitle = "Currency"; ObjectID = "Mhb-3U-Wnp";</note>
+      </trans-unit>
+      <trans-unit id="QHx-Ug-d24.placeholder">
+        <source>Price</source>
+        <target>Price</target>
+        <note>Class = "UITextField"; placeholder = "Price"; ObjectID = "QHx-Ug-d24";</note>
+      </trans-unit>
+      <trans-unit id="Qcg-aH-k2h.title">
+        <source>Create Shout</source>
+        <target>Create Shout</target>
+        <note>Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "Qcg-aH-k2h";</note>
+      </trans-unit>
+      <trans-unit id="WZp-Em-qUh.placeholder">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UITextField"; placeholder = "Title"; ObjectID = "WZp-Em-qUh";</note>
+      </trans-unit>
+      <trans-unit id="Woj-57-1w2.placeholder">
+        <source>Price</source>
+        <target>Price</target>
+        <note>Class = "UITextField"; placeholder = "Price"; ObjectID = "Woj-57-1w2";</note>
+      </trans-unit>
+      <trans-unit id="Ws1-lB-UsQ.text">
+        <source>Congratulations!</source>
+        <target>Congratulations!</target>
+        <note>Class = "UILabel"; text = "Congratulations!"; ObjectID = "Ws1-lB-UsQ";</note>
+      </trans-unit>
+      <trans-unit id="XgN-88-Js2.placeholder">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UITextField"; placeholder = "Title"; ObjectID = "XgN-88-Js2";</note>
+      </trans-unit>
+      <trans-unit id="XyM-pO-O7x.normalTitle">
+        <source>Currency</source>
+        <target>Currency</target>
+        <note>Class = "UIButton"; normalTitle = "Currency"; ObjectID = "XyM-pO-O7x";</note>
+      </trans-unit>
+      <trans-unit id="Yoo-Nj-lhn.normalTitle">
+        <source>Create another Shout</source>
+        <target>Create another Shout</target>
+        <note>Class = "UIButton"; normalTitle = "Create another Shout"; ObjectID = "Yoo-Nj-lhn";</note>
+      </trans-unit>
+      <trans-unit id="ZCj-gD-P8F.placeholder">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="dlP-sh-64t.title">
+        <source>Create Shout</source>
+        <target>Create Shout</target>
+        <note>Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "dlP-sh-64t";</note>
+      </trans-unit>
+      <trans-unit id="fr6-7f-ZZF.normalTitle">
+        <source>Publish</source>
+        <target>Publish</target>
+        <note>Class = "UIButton"; normalTitle = "Publish"; ObjectID = "fr6-7f-ZZF";</note>
+      </trans-unit>
+      <trans-unit id="gPi-sh-l28.normalTitle">
+        <source>Category</source>
+        <target>Category</target>
+        <note>Class = "UIButton"; normalTitle = "Category"; ObjectID = "gPi-sh-l28";</note>
+      </trans-unit>
+      <trans-unit id="ijV-G2-BmC.normalTitle">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UIButton"; normalTitle = "Location"; ObjectID = "ijV-G2-BmC";</note>
+      </trans-unit>
+      <trans-unit id="kE2-fo-MaD.text">
+        <source>Add photos and videos</source>
+        <target>Add photos and videos</target>
+        <note>Class = "UILabel"; text = "Add photos and videos"; ObjectID = "kE2-fo-MaD";</note>
+      </trans-unit>
+      <trans-unit id="onr-sH-VzS.normalTitle">
+        <source>Currency</source>
+        <target>Currency</target>
+        <note>Class = "UIButton"; normalTitle = "Currency"; ObjectID = "onr-sH-VzS";</note>
+      </trans-unit>
+      <trans-unit id="pqA-Zk-PKv.normalTitle">
+        <source>Add more details</source>
+        <target>Add more details</target>
+        <note>Class = "UIButton"; normalTitle = "Add more details"; ObjectID = "pqA-Zk-PKv";</note>
+      </trans-unit>
+      <trans-unit id="smS-Ws-rTF.text">
+        <source>Your shout will appear on Shoutit soon.</source>
+        <target>Your shout will appear on Shoutit soon.</target>
+        <note>Class = "UILabel"; text = "Your shout will appear on Shoutit soon."; ObjectID = "smS-Ws-rTF";</note>
+      </trans-unit>
+      <trans-unit id="ygX-W4-fss.normalTitle">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UIButton"; normalTitle = "Location"; ObjectID = "ygX-W4-fss";</note>
+      </trans-unit>
+      <trans-unit id="zu9-Yn-93s.placeholder">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/EditProfile.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="7oi-GT-QO2.title">
+        <source>Edit Profile</source>
+        <target>Edit Profile</target>
+        <note>Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "7oi-GT-QO2";</note>
+      </trans-unit>
+      <trans-unit id="8j2-SF-1qK.title">
+        <source>Save</source>
+        <target>Save</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8j2-SF-1qK";</note>
+      </trans-unit>
+      <trans-unit id="37H-7Y-B9a.normalTitle">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UIButton"; normalTitle = "Location"; ObjectID = "37H-7Y-B9a";</note>
+      </trans-unit>
+      <trans-unit id="cSZ-PW-VNj.title">
+        <source>Edit Profile</source>
+        <target>Edit Profile</target>
+        <note>Class = "UITableViewController"; title = "Edit Profile"; ObjectID = "cSZ-PW-VNj";</note>
+      </trans-unit>
+      <trans-unit id="pYY-Ux-Kk4.title">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "pYY-Ux-Kk4";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Filter.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="9RO-3f-vYA.text">
+        <source>Search within: </source>
+        <target>Search within: </target>
+        <note>Class = "UILabel"; text = "Search within: "; ObjectID = "9RO-3f-vYA";</note>
+      </trans-unit>
+      <trans-unit id="41h-vW-IAU.normalTitle">
+        <source>Button</source>
+        <target>Button</target>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "41h-vW-IAU";</note>
+      </trans-unit>
+      <trans-unit id="B22-b0-hjV.text">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UILabel"; text = "Location"; ObjectID = "B22-b0-hjV";</note>
+      </trans-unit>
+      <trans-unit id="Dkj-dY-2zP.normalTitle">
+        <source>Done</source>
+        <target>Done</target>
+        <note>Class = "UIButton"; normalTitle = "Done"; ObjectID = "Dkj-dY-2zP";</note>
+      </trans-unit>
+      <trans-unit id="E74-KZ-76Y.normalTitle">
+        <source>Reset</source>
+        <target>Reset</target>
+        <note>Class = "UIButton"; normalTitle = "Reset"; ObjectID = "E74-KZ-76Y";</note>
+      </trans-unit>
+      <trans-unit id="Gfz-GJ-JKv.text">
+        <source>Price</source>
+        <target>Price</target>
+        <note>Class = "UILabel"; text = "Price"; ObjectID = "Gfz-GJ-JKv";</note>
+      </trans-unit>
+      <trans-unit id="MqN-YC-Za6.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "MqN-YC-Za6";</note>
+      </trans-unit>
+      <trans-unit id="OCB-fA-ZCw.normalTitle">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UIButton"; normalTitle = "Location"; ObjectID = "OCB-fA-ZCw";</note>
+      </trans-unit>
+      <trans-unit id="Pz0-Qb-xZc.normalTitle">
+        <source>Button</source>
+        <target>Button</target>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "Pz0-Qb-xZc";</note>
+      </trans-unit>
+      <trans-unit id="S1R-lh-cIJ.placeholder">
+        <source>To</source>
+        <target>To</target>
+        <note>Class = "UITextField"; placeholder = "To"; ObjectID = "S1R-lh-cIJ";</note>
+      </trans-unit>
+      <trans-unit id="T98-Va-dQC.text">
+        <source>Filters</source>
+        <target>Filters</target>
+        <note>Class = "UILabel"; text = "Filters"; ObjectID = "T98-Va-dQC";</note>
+      </trans-unit>
+      <trans-unit id="Xhp-Cv-lTv.normalTitle">
+        <source>Filter</source>
+        <target>Filter</target>
+        <note>Class = "UIButton"; normalTitle = "Filter"; ObjectID = "Xhp-Cv-lTv";</note>
+      </trans-unit>
+      <trans-unit id="dpu-Pz-xd5.normalTitle">
+        <source>Reset</source>
+        <target>Reset</target>
+        <note>Class = "UIButton"; normalTitle = "Reset"; ObjectID = "dpu-Pz-xd5";</note>
+      </trans-unit>
+      <trans-unit id="dre-GC-uE6.text">
+        <source>Location</source>
+        <target>Location</target>
+        <note>Class = "UILabel"; text = "Location"; ObjectID = "dre-GC-uE6";</note>
+      </trans-unit>
+      <trans-unit id="gC7-LZ-yA3.normalTitle">
+        <source>Back</source>
+        <target>Back</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "gC7-LZ-yA3";</note>
+      </trans-unit>
+      <trans-unit id="gnd-0t-PIg.text">
+        <source>Filters</source>
+        <target>Filters</target>
+        <note>Class = "UILabel"; text = "Filters"; ObjectID = "gnd-0t-PIg";</note>
+      </trans-unit>
+      <trans-unit id="hei-G2-sux.placeholder">
+        <source>From</source>
+        <target>From</target>
+        <note>Class = "UITextField"; placeholder = "From"; ObjectID = "hei-G2-sux";</note>
+      </trans-unit>
+      <trans-unit id="keH-di-e2o.normalTitle">
+        <source>Back</source>
+        <target>Back</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "keH-di-e2o";</note>
+      </trans-unit>
+      <trans-unit id="ofT-NM-U31.normalTitle">
+        <source>All Categories</source>
+        <target>All Categories</target>
+        <note>Class = "UIButton"; normalTitle = "All Categories"; ObjectID = "ofT-NM-U31";</note>
+      </trans-unit>
+      <trans-unit id="qSo-0H-wno.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "qSo-0H-wno";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/HTML.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body/>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Home.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="5LU-gw-tJA.text">
+        <source>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter 
+Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "5LU-gw-tJA";</note>
+      </trans-unit>
+      <trans-unit id="9fl-Jy-3uV.title">
+        <source>Home</source>
+        <target>Home</target>
+        <note>Class = "UINavigationItem"; title = "Home"; ObjectID = "9fl-Jy-3uV";</note>
+      </trans-unit>
+      <trans-unit id="9jz-Ro-msM.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "9jz-Ro-msM";</note>
+      </trans-unit>
+      <trans-unit id="Gpo-QI-XW9.text">
+        <source>MORE</source>
+        <target>MORE</target>
+        <note>Class = "UILabel"; text = "MORE"; ObjectID = "Gpo-QI-XW9";</note>
+      </trans-unit>
+      <trans-unit id="PFK-9S-LV6.text">
+        <source>See All</source>
+        <target>See All</target>
+        <note>Class = "UILabel"; text = "See All"; ObjectID = "PFK-9S-LV6";</note>
+      </trans-unit>
+      <trans-unit id="Pcc-xA-8Xa.text">
+        <source>My Feed</source>
+        <target>My Feed</target>
+        <note>Class = "UILabel"; text = "My Feed"; ObjectID = "Pcc-xA-8Xa";</note>
+      </trans-unit>
+      <trans-unit id="RCG-32-Miu.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "RCG-32-Miu";</note>
+      </trans-unit>
+      <trans-unit id="RN6-vH-JtN.text">
+        <source>Cars</source>
+        <target>Cars</target>
+        <note>Class = "UILabel"; text = "Cars"; ObjectID = "RN6-vH-JtN";</note>
+      </trans-unit>
+      <trans-unit id="RRw-th-eLm.text">
+        <source>John Smith</source>
+        <target>John Smith</target>
+        <note>Class = "UILabel"; text = "John Smith"; ObjectID = "RRw-th-eLm";</note>
+      </trans-unit>
+      <trans-unit id="XEq-OI-7Sa.text">
+        <source>DISCOVER</source>
+        <target>DISCOVER</target>
+        <note>Class = "UILabel"; text = "DISCOVER"; ObjectID = "XEq-OI-7Sa";</note>
+      </trans-unit>
+      <trans-unit id="YcE-Dk-RY6.text">
+        <source>2 hours ago</source>
+        <target>2 hours ago</target>
+        <note>Class = "UILabel"; text = "2 hours ago"; ObjectID = "YcE-Dk-RY6";</note>
+      </trans-unit>
+      <trans-unit id="c7k-qF-xRA.text">
+        <source>MY FEED</source>
+        <target>MY FEED</target>
+        <note>Class = "UILabel"; text = "MY FEED"; ObjectID = "c7k-qF-xRA";</note>
+      </trans-unit>
+      <trans-unit id="fIE-Gj-UPD.text">
+        <source>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</source>
+        <target>Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text</target>
+        <note>Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "fIE-Gj-UPD";</note>
+      </trans-unit>
+      <trans-unit id="g4b-PM-Eek.text">
+        <source>Offer</source>
+        <target>Offer</target>
+        <note>Class = "UILabel"; text = "Offer"; ObjectID = "g4b-PM-Eek";</note>
+      </trans-unit>
+      <trans-unit id="xzi-n2-YF9.text">
+        <source>$44 USD</source>
+        <target>$44 USD</target>
+        <note>Class = "UILabel"; text = "$44 USD"; ObjectID = "xzi-n2-YF9";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/InviteFriends.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="peX-Yc-7Ud.title">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "peX-Yc-7Ud";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Location.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="L9a-9e-ZYT.text">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "L9a-9e-ZYT";</note>
+      </trans-unit>
+      <trans-unit id="O3n-tN-tin.title">
+        <source>Change Location</source>
+        <target>Change Location</target>
+        <note>Class = "UINavigationItem"; title = "Change Location"; ObjectID = "O3n-tN-tin";</note>
+      </trans-unit>
+      <trans-unit id="Ofa-r4-aEz.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Ofa-r4-aEz";</note>
+      </trans-unit>
+      <trans-unit id="PlB-kj-Hi1.text">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "PlB-kj-Hi1";</note>
+      </trans-unit>
+      <trans-unit id="QHl-jt-Ozq.text">
+        <source>Title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="UfO-yi-Vvc.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "UfO-yi-Vvc";</note>
+      </trans-unit>
+      <trans-unit id="WmU-c2-J42.title">
+        <source>Change Location</source>
+        <target>Change Location</target>
+        <note>Class = "UINavigationItem"; title = "Change Location"; ObjectID = "WmU-c2-J42";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Menu.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="DXa-6t-8fv.normalTitle">
+        <source>CHANGE</source>
+        <target>CHANGE</target>
+        <note>Class = "UIButton"; normalTitle = "CHANGE"; ObjectID = "DXa-6t-8fv";</note>
+      </trans-unit>
+      <trans-unit id="FDW-SH-tlA.text">
+        <source>Guest</source>
+        <target>Guest</target>
+        <note>Class = "UILabel"; text = "Guest"; ObjectID = "FDW-SH-tlA";</note>
+      </trans-unit>
+      <trans-unit id="H2H-0n-97D.text">
+        <source>Shoutit 2.0.0</source>
+        <target>Shoutit 2.0.0</target>
+        <note>Class = "UILabel"; text = "Shoutit 2.0.0"; ObjectID = "H2H-0n-97D";</note>
+      </trans-unit>
+      <trans-unit id="XRT-0N-mv4.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "XRT-0N-mv4";</note>
+      </trans-unit>
+      <trans-unit id="fm0-dm-zPw.normalTitle">
+        <source>Create Shout</source>
+        <target>Create Shout</target>
+      </trans-unit>
+      <trans-unit id="pFm-S1-gZk.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "pFm-S1-gZk";</note>
+      </trans-unit>
+      <trans-unit id="uFf-Pq-9uJ.text">
+        <source>Create Shout</source>
+        <target>Create Shout</target>
+        <note>Class = "UILabel"; text = "Create Shout"; ObjectID = "uFf-Pq-9uJ";</note>
+      </trans-unit>
+      <trans-unit id="ys9-SK-6FT.text">
+        <source>Poznań</source>
+        <target>Poznań</target>
+        <note>Class = "UILabel"; text = "Poznań"; ObjectID = "ys9-SK-6FT";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Notifications.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="6DB-56-Wn9.text">
+        <source>Mon at 12:30</source>
+        <target>Mon at 12:30</target>
+        <note>Class = "UILabel"; text = "Mon at 12:30"; ObjectID = "6DB-56-Wn9";</note>
+      </trans-unit>
+      <trans-unit id="jmj-I6-xkp.text">
+        <source>New Shout from Lenovo</source>
+        <target>New Shout from Lenovo</target>
+        <note>Class = "UILabel"; text = "New Shout from Lenovo"; ObjectID = "jmj-I6-xkp";</note>
+      </trans-unit>
+      <trans-unit id="vM0-V9-Bfq.title">
+        <source>Notifications</source>
+        <target>Notifications</target>
+        <note>Class = "UINavigationItem"; title = "Notifications"; ObjectID = "vM0-V9-Bfq";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/PlaceholderCollectionViewCell.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="Koj-Er-wgn.text">
+        <source>No content available yet</source>
+        <target>No content available yet</target>
+        <note>Class = "UILabel"; text = "No content available yet"; ObjectID = "Koj-Er-wgn";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/PostSignupSuggestionsSectionHeader.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="rGJ-3P-PqP.text">
+        <source>Suggested</source>
+        <target>Suggested</target>
+        <note>Class = "UILabel"; text = "Suggested"; ObjectID = "rGJ-3P-PqP";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/PostSignupSuggestionsTableViewCell.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="KZ7-CZ-FMm.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "KZ7-CZ-FMm";</note>
+      </trans-unit>
+      <trans-unit id="Ny6-0g-pQL.text">
+        <source>0 Listeners</source>
+        <target>0 Listeners</target>
+        <note>Class = "UILabel"; text = "0 Listeners"; ObjectID = "Ny6-0g-pQL";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/ProfileCollectionFooterButtonSupplementeryView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="Bza-6e-K90.normalTitle">
+        <source>See All Shouts</source>
+        <target>See All Shouts</target>
+        <note>Class = "UIButton"; normalTitle = "See All Shouts"; ObjectID = "Bza-6e-K90";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/ProfileCollectionInfoSupplementaryView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="5lp-g0-eW6.normalTitle">
+        <source>Verify your account!</source>
+        <target>Verify your account!</target>
+        <note>Class = "UIButton"; normalTitle = "Verify your account!"; ObjectID = "5lp-g0-eW6";</note>
+      </trans-unit>
+      <trans-unit id="EQN-bl-1ww.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "EQN-bl-1ww";</note>
+      </trans-unit>
+      <trans-unit id="Flv-lN-M3r.text">
+        <source>Username</source>
+        <target>Username</target>
+        <note>Class = "UILabel"; text = "Username"; ObjectID = "Flv-lN-M3r";</note>
+      </trans-unit>
+      <trans-unit id="KDv-JO-N1f.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "KDv-JO-N1f";</note>
+      </trans-unit>
+      <trans-unit id="Mwz-aW-TRC.text">
+        <source>listening to you</source>
+        <target>listening to you</target>
+        <note>Class = "UILabel"; text = "listening to you"; ObjectID = "Mwz-aW-TRC";</note>
+      </trans-unit>
+      <trans-unit id="TWk-RE-4Gq.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "TWk-RE-4Gq";</note>
+      </trans-unit>
+      <trans-unit id="qLN-yo-Sdx.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "qLN-yo-Sdx";</note>
+      </trans-unit>
+      <trans-unit id="zC2-Xl-F8D.text">
+        <source>Firstname Lastname</source>
+        <target>Firstname Lastname</target>
+        <note>Class = "UILabel"; text = "Firstname Lastname"; ObjectID = "zC2-Xl-F8D";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Root.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="3UP-c6-K4D.normalTitle">
+        <source>Home</source>
+        <target>Home</target>
+        <note>Class = "UIButton"; normalTitle = "Home"; ObjectID = "3UP-c6-K4D";</note>
+      </trans-unit>
+      <trans-unit id="P5a-pa-YnH.normalTitle">
+        <source>Shout</source>
+        <target>Shout</target>
+        <note>Class = "UIButton"; normalTitle = "Shout"; ObjectID = "P5a-pa-YnH";</note>
+      </trans-unit>
+      <trans-unit id="ccM-e5-uAL.normalTitle">
+        <source>Discover</source>
+        <target>Discover</target>
+        <note>Class = "UIButton"; normalTitle = "Discover"; ObjectID = "ccM-e5-uAL";</note>
+      </trans-unit>
+      <trans-unit id="m7d-LT-LWQ.normalTitle">
+        <source>Profile</source>
+        <target>Profile</target>
+        <note>Class = "UIButton"; normalTitle = "Profile"; ObjectID = "m7d-LT-LWQ";</note>
+      </trans-unit>
+      <trans-unit id="s9F-65-KVv.normalTitle">
+        <source>Chats</source>
+        <target>Chats</target>
+        <note>Class = "UIButton"; normalTitle = "Chats"; ObjectID = "s9F-65-KVv";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/Search.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="U0e-yr-YM8.title">
+        <source>Search results</source>
+        <target>Search results</target>
+        <note>Class = "UINavigationItem"; title = "Search results"; ObjectID = "U0e-yr-YM8";</note>
+      </trans-unit>
+      <trans-unit id="XzG-ri-d5v.title">
+        <source>Results</source>
+        <target>Results</target>
+        <note>Class = "UINavigationItem"; title = "Results"; ObjectID = "XzG-ri-d5v";</note>
+      </trans-unit>
+      <trans-unit id="kLa-8H-n0r.segmentTitles[0]">
+        <source>Shouts</source>
+        <target>Shouts</target>
+        <note>Class = "UISegmentedControl"; kLa-8H-n0r.segmentTitles[0] = "Shouts"; ObjectID = "kLa-8H-n0r";</note>
+      </trans-unit>
+      <trans-unit id="kLa-8H-n0r.segmentTitles[1]">
+        <source>Users</source>
+        <target>Users</target>
+        <note>Class = "UISegmentedControl"; kLa-8H-n0r.segmentTitles[1] = "Users"; ObjectID = "kLa-8H-n0r";</note>
+      </trans-unit>
+      <trans-unit id="l8t-fV-OTb.scopeButtonTitles[0]">
+        <source>Shouts</source>
+        <target>Shouts</target>
+        <note>Class = "UISearchBar"; l8t-fV-OTb.scopeButtonTitles[0] = "Shouts"; ObjectID = "l8t-fV-OTb";</note>
+      </trans-unit>
+      <trans-unit id="l8t-fV-OTb.scopeButtonTitles[1]">
+        <source>Users</source>
+        <target>Users</target>
+        <note>Class = "UISearchBar"; l8t-fV-OTb.scopeButtonTitles[1] = "Users"; ObjectID = "l8t-fV-OTb";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/SearchCategoriesHeaderView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="Elx-zv-xcg.text">
+        <source>Categories</source>
+        <target>Categories</target>
+        <note>Class = "UILabel"; text = "Categories"; ObjectID = "Elx-zv-xcg";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/SearchRecentsHeaderView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="BqK-xy-XUG.normalTitle">
+        <source>CLEAR</source>
+        <target>CLEAR</target>
+        <note>Class = "UIButton"; normalTitle = "CLEAR"; ObjectID = "BqK-xy-XUG";</note>
+      </trans-unit>
+      <trans-unit id="ouP-qR-Akl.text">
+        <source>Recent searches</source>
+        <target>Recent searches</target>
+        <note>Class = "UILabel"; text = "Recent searches"; ObjectID = "ouP-qR-Akl";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/SeeAllCollectionViewCell.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="0nz-86-atn.text">
+        <source>See All</source>
+        <target>See All</target>
+        <note>Class = "UILabel"; text = "See All"; ObjectID = "0nz-86-atn";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/SeeAllShouts.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="9cE-V8-2fa.title">
+        <source>Search results</source>
+        <target>Search results</target>
+        <note>Class = "UINavigationItem"; title = "Search results"; ObjectID = "9cE-V8-2fa";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/ShoutDetail.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="3UM-EM-oSg.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "3UM-EM-oSg";</note>
+      </trans-unit>
+      <trans-unit id="5SK-UK-Q7I.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "5SK-UK-Q7I";</note>
+      </trans-unit>
+      <trans-unit id="Eem-sc-Nfz.normalTitle">
+        <source>Policies</source>
+        <target>Policies</target>
+        <note>Class = "UIButton"; normalTitle = "Policies"; ObjectID = "Eem-sc-Nfz";</note>
+      </trans-unit>
+      <trans-unit id="IVW-DI-OK5.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "IVW-DI-OK5";</note>
+      </trans-unit>
+      <trans-unit id="OF4-56-wbL.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "OF4-56-wbL";</note>
+      </trans-unit>
+      <trans-unit id="RFV-cQ-2AI.text">
+        <source>Price</source>
+        <target>Price</target>
+        <note>Class = "UILabel"; text = "Price"; ObjectID = "RFV-cQ-2AI";</note>
+      </trans-unit>
+      <trans-unit id="TJp-qU-nfC.text">
+        <source>Header</source>
+        <target>Header</target>
+        <note>Class = "UILabel"; text = "Header"; ObjectID = "TJp-qU-nfC";</note>
+      </trans-unit>
+      <trans-unit id="Vxt-8o-2k0.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Vxt-8o-2k0";</note>
+      </trans-unit>
+      <trans-unit id="X2c-Q6-8hK.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "X2c-Q6-8hK";</note>
+      </trans-unit>
+      <trans-unit id="ZvU-8u-sz5.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "ZvU-8u-sz5";</note>
+      </trans-unit>
+      <trans-unit id="bMb-en-aRa.normalTitle">
+        <source>Add to Cart</source>
+        <target>Add to Cart</target>
+        <note>Class = "UIButton"; normalTitle = "Add to Cart"; ObjectID = "bMb-en-aRa";</note>
+      </trans-unit>
+      <trans-unit id="cS6-vn-fHD.normalTitle">
+        <source>More</source>
+        <target>More</target>
+        <note>Class = "UIButton"; normalTitle = "More"; ObjectID = "cS6-vn-fHD";</note>
+      </trans-unit>
+      <trans-unit id="dlw-u9-I8B.normalTitle">
+        <source>Call</source>
+        <target>Call</target>
+        <note>Class = "UIButton"; normalTitle = "Call"; ObjectID = "dlw-u9-I8B";</note>
+      </trans-unit>
+      <trans-unit id="ibG-bb-S7x.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "ibG-bb-S7x";</note>
+      </trans-unit>
+      <trans-unit id="kqz-M3-3o4.normalTitle">
+        <source>Chat</source>
+        <target>Chat</target>
+        <note>Class = "UIButton"; normalTitle = "Chat"; ObjectID = "kqz-M3-3o4";</note>
+      </trans-unit>
+      <trans-unit id="mYl-ac-2Q9.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "mYl-ac-2Q9";</note>
+      </trans-unit>
+      <trans-unit id="p0q-c1-KFK.normalTitle">
+        <source>Video call</source>
+        <target>Video call</target>
+        <note>Class = "UIButton"; normalTitle = "Video call"; ObjectID = "p0q-c1-KFK";</note>
+      </trans-unit>
+      <trans-unit id="tO4-jw-2Gj.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "tO4-jw-2Gj";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/TableViewPlaceholderView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="fbK-dy-4cC.text">
+        <source>Content unavailable</source>
+        <target>Content unavailable</target>
+        <note>Class = "UILabel"; text = "Content unavailable"; ObjectID = "fbK-dy-4cC";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/VerifyEmail.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="3n1-kw-tkU.text">
+        <source>If you have already clicked on the link that was sent to you, you may click “Verify” now.</source>
+        <target>If you have already clicked on the link that was sent to you, you may click “Verify” now.</target>
+        <note>Class = "UILabel"; text = "If you have already clicked on the link that was sent to you, you may click “Verify” now."; ObjectID = "3n1-kw-tkU";</note>
+      </trans-unit>
+      <trans-unit id="9i5-7q-LZP.normalTitle">
+        <source>Verify</source>
+        <target>Verify</target>
+        <note>Class = "UIButton"; normalTitle = "Verify"; ObjectID = "9i5-7q-LZP";</note>
+      </trans-unit>
+      <trans-unit id="COw-Qu-b4n.title">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "COw-Qu-b4n";</note>
+      </trans-unit>
+      <trans-unit id="LOQ-XF-eq2.title">
+        <source>Email Verification</source>
+        <target>Email Verification</target>
+        <note>Class = "UINavigationItem"; title = "Email Verification"; ObjectID = "LOQ-XF-eq2";</note>
+      </trans-unit>
+      <trans-unit id="PyS-Zd-vAr.normalTitle">
+        <source>Resend</source>
+        <target>Resend</target>
+        <note>Class = "UIButton"; normalTitle = "Resend"; ObjectID = "PyS-Zd-vAr";</note>
+      </trans-unit>
+      <trans-unit id="QyQ-mg-M4d.text">
+        <source>We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again.</source>
+        <target>We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again.</target>
+        <note>Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d";</note>
+      </trans-unit>
+      <trans-unit id="wQK-uY-5kn.placeholder">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UITextField"; placeholder = "Email"; ObjectID = "wQK-uY-5kn";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/Storyboards/Base.lproj/VideoCalls.storyboard" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="6Fl-rk-iIB.normalTitle">
+        <source>Call</source>
+        <target>Call</target>
+        <note>Class = "UIButton"; normalTitle = "Call"; ObjectID = "6Fl-rk-iIB";</note>
+      </trans-unit>
+      <trans-unit id="6ax-sw-xDW.normalTitle">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6ax-sw-xDW";</note>
+      </trans-unit>
+      <trans-unit id="IHn-L1-0lT.text">
+        <source>Connecting</source>
+        <target>Connecting</target>
+        <note>Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT";</note>
+      </trans-unit>
+      <trans-unit id="Imm-ov-Sdy.normalTitle">
+        <source>Discard</source>
+        <target>Discard</target>
+        <note>Class = "UIButton"; normalTitle = "Discard"; ObjectID = "Imm-ov-Sdy";</note>
+      </trans-unit>
+      <trans-unit id="Otg-mn-IP0.text">
+        <source>Incoming call from XX</source>
+        <target>Incoming call from XX</target>
+        <note>Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0";</note>
+      </trans-unit>
+      <trans-unit id="wAE-6B-zom.text">
+        <source>Calling</source>
+        <target>Calling</target>
+        <note>Class = "UILabel"; text = "Calling"; ObjectID = "wAE-6B-zom";</note>
+      </trans-unit>
+      <trans-unit id="y6h-PZ-MHd.normalTitle">
+        <source>Answer</source>
+        <target>Answer</target>
+        <note>Class = "UIButton"; normalTitle = "Answer"; ObjectID = "y6h-PZ-MHd";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/UVResources/en.lproj/UserVoice.strings" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="%@ (required)">
+        <source>%@ (required)</source>
+        <target>%@ (required)</target>
+      </trans-unit>
+      <trans-unit id="%@ ideas">
+        <source>%@ ideas</source>
+        <target>%@ ideas</target>
+      </trans-unit>
+      <trans-unit id="%d people">
+        <source>%d people</source>
+        <target>%d people</target>
+      </trans-unit>
+      <trans-unit id="(none)">
+        <source>(none)</source>
+        <target>(none)</target>
+      </trans-unit>
+      <trans-unit id="(required)">
+        <source>(required)</source>
+        <target>(required)</target>
+      </trans-unit>
+      <trans-unit id="1 idea">
+        <source>1 idea</source>
+        <target>1 idea</target>
+      </trans-unit>
+      <trans-unit id="1 person">
+        <source>1 person</source>
+        <target>1 person</target>
+      </trans-unit>
+      <trans-unit id="A suggestion with this title already exists. Please change the title.">
+        <source>A suggestion with this title already exists. Please change the title.</source>
+        <target>A suggestion with this title already exists. Please change the title.</target>
+      </trans-unit>
+      <trans-unit id="Add a comment">
+        <source>Add a comment</source>
+        <target>Add a comment</target>
+      </trans-unit>
+      <trans-unit id="Additional Details">
+        <source>Additional Details</source>
+        <target>Additional Details</target>
+      </trans-unit>
+      <trans-unit id="All">
+        <source>All</source>
+        <target>All</target>
+      </trans-unit>
+      <trans-unit id="All Articles">
+        <source>All Articles</source>
+        <target>All Articles</target>
+      </trans-unit>
+      <trans-unit id="Are any of these helpful?">
+        <source>Are any of these helpful?</source>
+        <target>Are any of these helpful?</target>
+      </trans-unit>
+      <trans-unit id="Articles">
+        <source>Articles</source>
+        <target>Articles</target>
+      </trans-unit>
+      <trans-unit id="Back">
+        <source>Back</source>
+        <target>Back</target>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+      </trans-unit>
+      <trans-unit id="Category">
+        <source>Category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="Close">
+        <source>Close</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="Comment">
+        <source>Comment</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="Description (optional)">
+        <source>Description (optional)</source>
+        <target>Description (optional)</target>
+      </trans-unit>
+      <trans-unit id="Do you still want to contact us?">
+        <source>Do you still want to contact us?</source>
+        <target>Do you still want to contact us?</target>
+      </trans-unit>
+      <trans-unit id="Do you still want to post your own idea?">
+        <source>Do you still want to post your own idea?</source>
+        <target>Do you still want to post your own idea?</target>
+      </trans-unit>
+      <trans-unit id="Don't save">
+        <source>Don't save</source>
+        <target>Don't save</target>
+      </trans-unit>
+      <trans-unit id="Done">
+        <source>Done</source>
+        <target>Done</target>
+      </trans-unit>
+      <trans-unit id="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="Enter UserVoice password for %@">
+        <source>Enter UserVoice password for %@</source>
+        <target>Enter UserVoice password for %@</target>
+      </trans-unit>
+      <trans-unit id="Enter your email">
+        <source>Enter your email</source>
+        <target>Enter your email</target>
+      </trans-unit>
+      <trans-unit id="Error">
+        <source>Error</source>
+        <target>Error</target>
+      </trans-unit>
+      <trans-unit id="Feedback">
+        <source>Feedback</source>
+        <target>Feedback</target>
+      </trans-unit>
+      <trans-unit id="Feedback &amp; Support">
+        <source>Feedback &amp; Support</source>
+        <target>Feedback &amp; Support</target>
+      </trans-unit>
+      <trans-unit id="Feedback Forum">
+        <source>Feedback Forum</source>
+        <target>Feedback Forum</target>
+      </trans-unit>
+      <trans-unit id="Forgot password">
+        <source>Forgot password</source>
+        <target>Forgot password</target>
+      </trans-unit>
+      <trans-unit id="Give feedback or ask for help...">
+        <source>Give feedback or ask for help...</source>
+        <target>Give feedback or ask for help...</target>
+      </trans-unit>
+      <trans-unit id="Great! Glad we could help.">
+        <source>Great! Glad we could help.</source>
+        <target>Great! Glad we could help.</target>
+      </trans-unit>
+      <trans-unit id="I want this">
+        <source>I want this</source>
+        <target>I want this</target>
+      </trans-unit>
+      <trans-unit id="I want this!">
+        <source>I want this!</source>
+        <target>I want this!</target>
+      </trans-unit>
+      <trans-unit id="Ideas">
+        <source>Ideas</source>
+        <target>Ideas</target>
+      </trans-unit>
+      <trans-unit id="Knowledge Base">
+        <source>Knowledge Base</source>
+        <target>Knowledge Base</target>
+      </trans-unit>
+      <trans-unit id="Knowledge base">
+        <source>Knowledge base</source>
+        <target>Knowledge base</target>
+      </trans-unit>
+      <trans-unit id="Load more">
+        <source>Load more</source>
+        <target>Load more</target>
+      </trans-unit>
+      <trans-unit id="Loading...">
+        <source>Loading...</source>
+        <target>Loading...</target>
+      </trans-unit>
+      <trans-unit id="Message sent!">
+        <source>Message sent!</source>
+        <target>Message sent!</target>
+      </trans-unit>
+      <trans-unit id="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="Next">
+        <source>Next</source>
+        <target>Next</target>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="No, I'm done">
+        <source>No, I'm done</source>
+        <target>No, I'm done</target>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="Password reset email sent to %@">
+        <source>Password reset email sent to %@</source>
+        <target>Password reset email sent to %@</target>
+      </trans-unit>
+      <trans-unit id="Please enter a valid email address.">
+        <source>Please enter a valid email address.</source>
+        <target>Please enter a valid email address.</target>
+      </trans-unit>
+      <trans-unit id="Please enter some text before submitting your comment.">
+        <source>Please enter some text before submitting your comment.</source>
+        <target>Please enter some text before submitting your comment.</target>
+      </trans-unit>
+      <trans-unit id="Please enter your email address before submitting your comment.">
+        <source>Please enter your email address before submitting your comment.</source>
+        <target>Please enter your email address before submitting your comment.</target>
+      </trans-unit>
+      <trans-unit id="Please enter your email address before submitting your ticket.">
+        <source>Please enter your email address before submitting your ticket.</source>
+        <target>Please enter your email address before submitting your ticket.</target>
+      </trans-unit>
+      <trans-unit id="Please fill out all required fields.">
+        <source>Please fill out all required fields.</source>
+        <target>Please fill out all required fields.</target>
+      </trans-unit>
+      <trans-unit id="Post">
+        <source>Post</source>
+        <target>Post</target>
+      </trans-unit>
+      <trans-unit id="Post an idea">
+        <source>Post an idea</source>
+        <target>Post an idea</target>
+      </trans-unit>
+      <trans-unit id="Powered by UserVoice">
+        <source>Powered by UserVoice</source>
+        <target>Powered by UserVoice</target>
+      </trans-unit>
+      <trans-unit id="Ranked %@">
+        <source>Ranked %@</source>
+        <target>Ranked %@</target>
+      </trans-unit>
+      <trans-unit id="Related articles">
+        <source>Related articles</source>
+        <target>Related articles</target>
+      </trans-unit>
+      <trans-unit id="Related feedback">
+        <source>Related feedback</source>
+        <target>Related feedback</target>
+      </trans-unit>
+      <trans-unit id="Save draft">
+        <source>Save draft</source>
+        <target>Save draft</target>
+      </trans-unit>
+      <trans-unit id="Search">
+        <source>Search</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="Search forum">
+        <source>Search forum</source>
+        <target>Search forum</target>
+      </trans-unit>
+      <trans-unit id="Send">
+        <source>Send</source>
+        <target>Send</target>
+      </trans-unit>
+      <trans-unit id="Send us a message">
+        <source>Send us a message</source>
+        <target>Send us a message</target>
+      </trans-unit>
+      <trans-unit id="Sign in">
+        <source>Sign in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="Skip">
+        <source>Skip</source>
+        <target>Skip</target>
+      </trans-unit>
+      <trans-unit id="Sorry, there was an error in the application.">
+        <source>Sorry, there was an error in the application.</source>
+        <target>Sorry, there was an error in the application.</target>
+      </trans-unit>
+      <trans-unit id="Thank you!">
+        <source>Thank you!</source>
+        <target>Thank you!</target>
+      </trans-unit>
+      <trans-unit id="There appears to be a problem with your network connection, please check your connectivity and try again.">
+        <source>There appears to be a problem with your network connection, please check your connectivity and try again.</source>
+        <target>There appears to be a problem with your network connection, please check your connectivity and try again.</target>
+      </trans-unit>
+      <trans-unit id="There was a problem logging you in.">
+        <source>There was a problem logging you in.</source>
+        <target>There was a problem logging you in.</target>
+      </trans-unit>
+      <trans-unit id="This application didn't configure UserVoice properly">
+        <source>This application didn't configure UserVoice properly</source>
+        <target>This application didn't configure UserVoice properly</target>
+      </trans-unit>
+      <trans-unit id="Title">
+        <source>Title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="Try again">
+        <source>Try again</source>
+        <target>Try again</target>
+      </trans-unit>
+      <trans-unit id="User name">
+        <source>User name</source>
+        <target>User name</target>
+      </trans-unit>
+      <trans-unit id="View idea">
+        <source>View idea</source>
+        <target>View idea</target>
+      </trans-unit>
+      <trans-unit id="Was this article helpful?">
+        <source>Was this article helpful?</source>
+        <target>Was this article helpful?</target>
+      </trans-unit>
+      <trans-unit id="We'll be in touch.">
+        <source>We'll be in touch.</source>
+        <target>We'll be in touch.</target>
+      </trans-unit>
+      <trans-unit id="When you post an idea on our forum, others will be able to subscribe to it and make comments. When we respond to the idea, you'll get notified.">
+        <source>When you post an idea on our forum, others will be able to subscribe to it and make comments. When we respond to the idea, you'll get notified.</source>
+        <target>When you post an idea on our forum, others will be able to subscribe to it and make comments. When we respond to the idea, you'll get notified.</target>
+      </trans-unit>
+      <trans-unit id="Would you like to contact us?">
+        <source>Would you like to contact us?</source>
+        <target>Would you like to contact us?</target>
+      </trans-unit>
+      <trans-unit id="Write a comment...">
+        <source>Write a comment...</source>
+        <target>Write a comment...</target>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="Yes!">
+        <source>Yes!</source>
+        <target>Yes!</target>
+      </trans-unit>
+      <trans-unit id="Yes, I want to post my idea">
+        <source>Yes, I want to post my idea</source>
+        <target>Yes, I want to post my idea</target>
+      </trans-unit>
+      <trans-unit id="Yes, go to my message">
+        <source>Yes, go to my message</source>
+        <target>Yes, go to my message</target>
+      </trans-unit>
+      <trans-unit id="Your feedback has been posted to our feedback forum.">
+        <source>Your feedback has been posted to our feedback forum.</source>
+        <target>Your feedback has been posted to our feedback forum.</target>
+      </trans-unit>
+      <trans-unit id="enter value">
+        <source>enter value</source>
+        <target>enter value</target>
+      </trans-unit>
+      <trans-unit id="more">
+        <source>more</source>
+        <target>more</target>
+      </trans-unit>
+      <trans-unit id="select">
+        <source>select</source>
+        <target>select</target>
+      </trans-unit>
+      <trans-unit id="this">
+        <source>this</source>
+        <target>this</target>
+      </trans-unit>
+      <trans-unit id="this idea">
+        <source>this idea</source>
+        <target>this idea</target>
+      </trans-unit>
+      <trans-unit id="“Anonymous”">
+        <source>“Anonymous”</source>
+        <target>“Anonymous”</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/ConversationLoadMoreFooter.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="Ach-P5-Xfj.normalTitle">
+        <source>Tap to load archive messages</source>
+        <target>Tap to load archive messages</target>
+        <note>Class = "UIButton"; normalTitle = "Tap to load archive messages"; ObjectID = "Ach-P5-Xfj";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/DiscoverHeaderView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="1SC-nb-8Ha.text">
+        <source>Discover</source>
+        <target>Discover</target>
+        <note>Class = "UILabel"; text = "Discover"; ObjectID = "1SC-nb-8Ha";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/DiscoverShoutFooterView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="LmL-zp-ic0.normalTitle">
+        <source>See All Shouts</source>
+        <target>See All Shouts</target>
+        <note>Class = "UIButton"; normalTitle = "See All Shouts"; ObjectID = "LmL-zp-ic0";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/DiscoverShoutsHeaderView.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="Y1q-7a-GsE.text">
+        <source>Discover Shouts</source>
+        <target>Discover Shouts</target>
+        <note>Class = "UILabel"; text = "Discover Shouts"; ObjectID = "Y1q-7a-GsE";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/IncomingLocationCell.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="3VC-ik-jc1.text">
+        <source>Show Map</source>
+        <target>Show Map</target>
+        <note>Class = "UILabel"; text = "Show Map"; ObjectID = "3VC-ik-jc1";</note>
+      </trans-unit>
+      <trans-unit id="hxf-BT-R6e.text">
+        <source>18:00</source>
+        <target>18:00</target>
+        <note>Class = "UILabel"; text = "18:00"; ObjectID = "hxf-BT-R6e";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphone/View/Base.lproj/OutgoingLocationCell.xib" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="8Hg-mi-OYs.text">
+        <source>Show Map</source>
+        <target>Show Map</target>
+        <note>Class = "UILabel"; text = "Show Map"; ObjectID = "8Hg-mi-OYs";</note>
+      </trans-unit>
+      <trans-unit id="BH2-xc-d12.text">
+        <source>18:00</source>
+        <target>18:00</target>
+        <note>Class = "UILabel"; text = "18:00"; ObjectID = "BH2-xc-d12";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphoneTests/Info.plist" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUCT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target>1.0</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphoneTests/Localizable.strings" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="About">
+        <source>About</source>
+        <target>About</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Account">
+        <source>Account</source>
+        <target>Account</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Auto">
+        <source>Auto</source>
+        <target>Auto</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatically Location Updates">
+        <source>Automatically Location Updates</source>
+        <target>Automatically Location Updates</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Browse">
+        <source>Browse</source>
+        <target>Browse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Chats">
+        <source>Chats</source>
+        <target>Chats</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current location:">
+        <source>Current location:</source>
+        <target>Current location:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Discover">
+        <source>Discover</source>
+        <target>Discover</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Guest">
+        <source>Guest</source>
+        <target>Guest</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Help">
+        <source>Help</source>
+        <target>Help</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Home">
+        <source>Home</source>
+        <target>Home</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Invite Friends">
+        <source>Invite Friends</source>
+        <target>Invite Friends</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Log out">
+        <source>Log out</source>
+        <target>Log out</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Notification">
+        <source>Notification</source>
+        <target>Notification</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Orders">
+        <source>Orders</source>
+        <target>Orders</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Password">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Settings cell title</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <target>Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Turn Off">
+        <source>Turn Off</source>
+        <target>Turn Off</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Turn On">
+        <source>Turn On</source>
+        <target>Turn On</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unsupported Title">
+        <source>Unsupported Title</source>
+        <target>Unsupported Title</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your location will be updated automatically">
+        <source>Your location will be updated automatically</source>
+        <target>Your location will be updated automatically</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="shoutit-iphoneUITests/Info.plist" source-language="en" datatype="plaintext" target-language="en">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUCT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target>1.0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
