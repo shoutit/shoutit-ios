@@ -1,5 +1,5 @@
 //
-//  shoutit-Local-Release.xcconfig
+//  shoutit-Local-Debug.xcconfig
 //  shoutit-iphone
 //
 //  Created by Piotr Bernad on 27/04/16.
@@ -7,15 +7,12 @@
 //
 
 #include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
-#include "../../External/xcconfigs/Base/Configurations/Release.xcconfig"
-#include "shoutit.xcconfig"
+#include "../../External/xcconfigs/Base/Configurations/Debug.xcconfig"
 
 PRODUCT_NAME = Shoutit Staging
 
 PRODUCT_BUNDLE_IDENTIFIER = com.shoutit-iphone.local
 APPLICATION_BUNDLE_IDENTIFIER = com.shoutit-iphone.local
-
-CODE_SIGN_IDENTITY = iPhone Distribution: AppUnite Sp. z o.o.
 
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) LOCAL=1
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "LOCAL"
