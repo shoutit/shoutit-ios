@@ -15,9 +15,6 @@ module Fastlane
           command = "git reset HEAD --hard && git pull origin master"
           Fastlane::Actions.sh command, log: true
           
-          command = "rm *"
-          Fastlane::Actions.sh command, log: true
-          
           command = "cd .."
           Fastlane::Actions.sh command, log: true
           
