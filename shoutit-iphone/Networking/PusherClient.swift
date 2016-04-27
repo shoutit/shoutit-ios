@@ -19,6 +19,8 @@ final class PusherClient : NSObject {
     
     #if STAGING
     private let pusherAppKey = "7bee1e468fabb6287fc5"
+    #elseif LOCAL
+    private let pusherAppKey = "d6a98f27e49289344791"
     #else
     private let pusherAppKey = "86d676926d4afda44089"
     #endif
@@ -28,6 +30,8 @@ final class PusherClient : NSObject {
     var pusherInstance: PTPusher?
     
     private let disposeBag = DisposeBag()
+    
+    var mainChannelSubject = PublishSubject<PTPusherEvent>()
     
     private var authToken : String?
     
@@ -90,12 +94,16 @@ final class PusherClient : NSObject {
     }
     
     func disconnect() {
+        if let channelName = self.mainChannelIdentifier(), ch = self.pusherInstance?.channelNamed(channelName) {
+            ch.unsubscribe()
+        }
+        
         keepDisconnected = true
         
         pusherInstance?.disconnect()
         
         pusherInstance = nil
-        
+
     }
     
     func setAuthorizationToken(token: String?) {
@@ -116,9 +124,7 @@ final class PusherClient : NSObject {
             print("RECEIVED: \(event.name)")
             print(event.data)
             
-            if event.eventType() == .NewListen || event.eventType() == .NewMessage {
-                
-            }
+            self.mainChannelSubject.onNext(event)
             
             if event.eventType() == .StatsUpdate {
                 if let stats : ProfileStats = event.object() {
@@ -161,11 +167,17 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
-        
+       print("==================================")
+       print("=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>==")
+       print("SUBSCRIBED: \(channel.name)")
+       print("==================================")
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
-        
+        print("==================================")
+        print("=<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<==")
+        print("UNSUBSCRIBED: \(channel.name)")
+        print("==================================")
     }
     
     // Error handling
@@ -195,21 +207,28 @@ extension PusherClient : PTPusherDelegate {
 }
 
 extension PusherClient {
-    func mainChannelObservable() -> Observable<PTPusherEvent> {
+    
+    private func mainChannelObservable() -> Observable<PTPusherEvent> {
+        print("Main Channel")
+        
         return Observable.create { (observer) -> Disposable in
-            let cancel = AnonymousDisposable {
-                
-            }
             
             guard let channelName = self.mainChannelIdentifier() else {
                 observer.onError(PusherError.WrongChannelName)
-                return cancel
+                return AnonymousDisposable { }
             }
             
-            guard let channel = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
-                return cancel
-            }
+            let channel : PTPusherChannel
             
+            if let ch = self.pusherInstance?.channelNamed(channelName) {
+                channel = ch
+            } else {
+                guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                    return AnonymousDisposable { }
+                }
+                
+                channel = ch
+            }
             
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
@@ -227,12 +246,14 @@ extension PusherClient {
                 observer.onNext(event)
             })
             
-            return cancel
+            return AnonymousDisposable {
+                channel.unsubscribe()
+            }
         }
     }
     
     func conversationMessagesObservable(conversation: Conversation) -> Observable<Message> {
-        return mainChannelObservable().filter({ (event) -> Bool in
+        return mainChannelSubject.filter({ (event) -> Bool in
             return event.eventType() == .NewMessage
         })
         .flatMap({ (event) -> Observable<Message> in
@@ -247,13 +268,23 @@ extension PusherClient {
     
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
+
+            let channel : PTPusherChannel
             
-            let cancel = AnonymousDisposable {
+            if let ch = self.pusherInstance?.channelNamed(conversation.channelName()) {
+                channel = ch
+            } else {
+                guard let ch = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
+                    assertionFailure()
+                    return AnonymousDisposable{}
+                }
                 
+                channel = ch
             }
             
-            guard let channel = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
-                return cancel
+            
+            let cancel = AnonymousDisposable {
+                channel.unsubscribe()
             }
             
             channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in

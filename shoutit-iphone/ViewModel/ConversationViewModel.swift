@@ -49,7 +49,7 @@ final class ConversationViewModel {
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
     
-    let typingUsers : PublishSubject<Profile?> = PublishSubject()
+    let typingUsers : PublishSubject<TypingInfo?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
     let loadMoreState = Variable(LoadMoreState.NotReady)
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
@@ -59,6 +59,8 @@ final class ConversationViewModel {
     private var delegate : ConversationPresenter?
     
     private let disposeBag = DisposeBag()
+    private var socketsBag : DisposeBag?
+    private var socketsConnected = false
     
     init(conversation: Conversation, delegate: ConversationPresenter? = nil) {
         self.conversation = Variable(conversation)
@@ -66,22 +68,36 @@ final class ConversationViewModel {
     }
     
     func createSocketObservable() {
+        
+        if socketsConnected {
+            return
+        }
+        
+        socketsConnected = true
+        
+        socketsBag = DisposeBag()
         // handle presence/typing/join/left
         PusherClient.sharedInstance.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
             if event.eventType() == .UserTyping {
-                if let user : Profile = event.object() {
+                if let user : TypingInfo = event.object() {
                     self.typingUsers.onNext(user)
                 }
             }
-        }.addDisposableTo(disposeBag)
+        }.addDisposableTo(socketsBag!)
         
         // handle messages
         PusherClient.sharedInstance.conversationMessagesObservable(self.conversation.value).subscribeNext {[weak self] (msg) -> Void in
             if let msg : Message = msg {
                 self?.appendMessages([msg])
             }
-        }.addDisposableTo(disposeBag)
+        }.addDisposableTo(socketsBag!)
     }
+    
+    func unsubscribeSockets() {
+        socketsBag = nil
+        socketsConnected = false
+    }
+    
     
     func createConversation(message: Message) {
         
