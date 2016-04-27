@@ -55,7 +55,7 @@
                             <constraint firstAttribute="width" constant="210" id="WI5-o4-ldx"/>
                             <constraint firstAttribute="height" constant="210" id="seP-0U-yfC"/>
                             <constraint firstItem="g1x-Q1-Ud9" firstAttribute="centerX" secondItem="Fnl-Cm-E1c" secondAttribute="centerX" id="uFI-vt-tRg"/>
-                            <constraint firstItem="aln-6I-idV" firstAttribute="right" secondItem="g1x-Q1-Ud9" secondAttribute="right" constant="-3" id="vmC-IK-nOX"/>
+                            <constraint firstItem="aln-6I-idV" firstAttribute="trailing" secondItem="g1x-Q1-Ud9" secondAttribute="trailing" constant="-3" id="vmC-IK-nOX"/>
                             <constraint firstItem="g1x-Q1-Ud9" firstAttribute="centerY" secondItem="Fnl-Cm-E1c" secondAttribute="centerY" id="xem-VH-uIQ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

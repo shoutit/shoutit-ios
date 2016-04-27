@@ -477,8 +477,11 @@ public class BorderedMaterialTextView: UITextView {
     internal func reloadView() {
         if let p = placeholderLabel {
             removeConstraints(constraints)
-//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top)-[child]-(bottom)-|", options: [], metrics: ["bottom": textContainerInset.bottom, "top": textContainerInset.top], views: ["child" : p]))
-//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left)-[child]", options: [], metrics: ["left": textContainerInset.left, "right": textContainerInset.right], views: ["child" : p]))
+//            let width = 100
+//            let height = bounds.height - textContainerInset.top - textContainerInset.bottom
+//            p.frame = CGRect(x: textContainerInset.left, y: textContainerInset.top, width: 100, height: height)
+//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top@1000)-[child]-(bottom@1000)-|", options: [], metrics: ["bottom": textContainerInset.bottom, "top": textContainerInset.top], views: ["child" : p]))
+//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left@1000)-[child]-(right@1000)-|", options: [], metrics: ["left": textContainerInset.left, "right": textContainerInset.right], views: ["child" : p]))
             MaterialLayout.alignToParent(self,
                                          child: p,
                                          top: textContainerInset.top,
@@ -568,7 +571,7 @@ public class BorderedMaterialTextView: UITextView {
     /// prepares the placeholderLabel property.
     private func preparePlaceholderLabel() {
         if let v: UILabel = placeholderLabel {
-            v.translatesAutoresizingMaskIntoConstraints = false
+            //v.translatesAutoresizingMaskIntoConstraints = false
             v.font = font
             v.textAlignment = textAlignment
             v.numberOfLines = 0

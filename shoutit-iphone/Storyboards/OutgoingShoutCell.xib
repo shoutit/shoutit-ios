@@ -41,15 +41,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="hze-f1-MVV" secondAttribute="right" constant="5" id="75k-w9-f6W"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hze-f1-MVV" secondAttribute="trailing" constant="5" id="75k-w9-f6W"/>
                                     <constraint firstAttribute="bottom" secondItem="mss-d3-qZm" secondAttribute="bottom" constant="5" id="Chi-kD-G0n"/>
                                     <constraint firstItem="mss-d3-qZm" firstAttribute="centerY" secondItem="6WK-eU-U48" secondAttribute="centerY" id="DpH-vo-D8V"/>
                                     <constraint firstItem="hze-f1-MVV" firstAttribute="top" secondItem="UD4-yw-ne2" secondAttribute="top" constant="5" id="G9i-3m-nIy"/>
-                                    <constraint firstItem="6WK-eU-U48" firstAttribute="left" secondItem="UD4-yw-ne2" secondAttribute="left" constant="5" id="Jig-f2-yrz"/>
-                                    <constraint firstItem="mss-d3-qZm" firstAttribute="left" relation="greaterThanOrEqual" secondItem="6WK-eU-U48" secondAttribute="right" constant="5" id="Klx-R1-Cd2"/>
-                                    <constraint firstItem="hze-f1-MVV" firstAttribute="left" secondItem="UD4-yw-ne2" secondAttribute="left" constant="5" id="SUI-c5-LE8"/>
+                                    <constraint firstItem="6WK-eU-U48" firstAttribute="leading" secondItem="UD4-yw-ne2" secondAttribute="leading" constant="5" id="Jig-f2-yrz"/>
+                                    <constraint firstItem="mss-d3-qZm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6WK-eU-U48" secondAttribute="trailing" constant="5" id="Klx-R1-Cd2"/>
+                                    <constraint firstItem="hze-f1-MVV" firstAttribute="leading" secondItem="UD4-yw-ne2" secondAttribute="leading" constant="5" id="SUI-c5-LE8"/>
                                     <constraint firstItem="6WK-eU-U48" firstAttribute="top" secondItem="hze-f1-MVV" secondAttribute="bottom" constant="5" id="enl-Dh-f0b"/>
-                                    <constraint firstAttribute="right" secondItem="mss-d3-qZm" secondAttribute="right" constant="5" id="g6P-Ym-y5j"/>
+                                    <constraint firstAttribute="trailing" secondItem="mss-d3-qZm" secondAttribute="trailing" constant="5" id="g6P-Ym-y5j"/>
                                     <constraint firstAttribute="height" constant="45" id="zjW-RB-CkX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -71,8 +71,8 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="210" id="6DH-hu-7Zk"/>
                             <constraint firstAttribute="width" constant="210" id="JQx-vz-bmo"/>
-                            <constraint firstAttribute="right" secondItem="UD4-yw-ne2" secondAttribute="right" constant="5" id="M9G-1g-MXr"/>
-                            <constraint firstItem="UD4-yw-ne2" firstAttribute="left" secondItem="JoV-VH-Nq3" secondAttribute="left" constant="5" id="X8l-i5-mXm"/>
+                            <constraint firstAttribute="trailing" secondItem="UD4-yw-ne2" secondAttribute="trailing" constant="5" id="M9G-1g-MXr"/>
+                            <constraint firstItem="UD4-yw-ne2" firstAttribute="leading" secondItem="JoV-VH-Nq3" secondAttribute="leading" constant="5" id="X8l-i5-mXm"/>
                             <constraint firstAttribute="height" constant="50" id="bYR-Ua-cfP"/>
                             <constraint firstAttribute="bottom" secondItem="UD4-yw-ne2" secondAttribute="bottom" constant="5" id="hDm-zk-7Q7"/>
                         </constraints>
