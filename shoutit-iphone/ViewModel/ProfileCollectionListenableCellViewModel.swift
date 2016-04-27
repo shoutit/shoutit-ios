@@ -70,7 +70,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
     func hidesListeningButton() -> Bool {
         switch model {
         case .ProfileModel(let profile):
-            return Account.sharedInstance.loggedUser?.id == profile.id
+            return Account.sharedInstance.user?.id == profile.id
         case .TagModel:
             return false
         }

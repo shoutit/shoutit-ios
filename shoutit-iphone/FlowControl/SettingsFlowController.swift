@@ -17,7 +17,6 @@ struct SettingsOption {
 
 final class SettingsFlowController: FlowController {
     let navigationController: UINavigationController
-    private let disposeBag = DisposeBag()
     
     init(navigationController: UINavigationController) {
         
@@ -85,18 +84,12 @@ final class SettingsFlowController: FlowController {
             },
             SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
                 
-                MBProgressHUD.showHUDAddedTo(self.navigationController.view, animated: true)
-                Account.sharedInstance.logout().subscribe {(event) -> Void in
-                    MBProgressHUD.hideAllHUDsForView(self.navigationController.view, animated: true)
-                    switch event {
-                    case .Next:
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
-                        self.navigationController.popToRootViewControllerAnimated(false)
-                    case .Error(let error):
-                        self.navigationController.showError(error)
-                    default: break
-                    }
-                }.addDisposableTo(self.disposeBag)
+                do {
+                    try Account.sharedInstance.logout()
+                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                } catch let error {
+                    self.navigationController.showError(error)
+                }
             }
             ])
     }

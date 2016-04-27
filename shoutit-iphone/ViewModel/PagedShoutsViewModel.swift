@@ -59,7 +59,6 @@ private extension PagedShoutsViewModel {
                 case .Next(let results):
                     self?.updateViewModelWithResult(results, forPage: page)
                 case .Error(let error):
-                    print(error)
                     self?.state.value = .Error(error)
                 default:
                     break

@@ -37,3 +37,8 @@ extension ListenersMetadata: Encodable {
             ])
     }
 }
+
+extension ListenersMetadata: Equatable {}
+func ==(lhs: ListenersMetadata, rhs: ListenersMetadata) -> Bool {
+    return lhs.pages == rhs.pages && lhs.users == rhs.users && lhs.tags == rhs.tags
+}

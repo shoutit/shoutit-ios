@@ -181,8 +181,9 @@ extension FiltersViewController: UITableViewDataSource {
                 .asDriver()
                 .driveNext{[unowned self] (value) in
                     let option = self.viewModel.distanceRestrictionOptionForSliderValue(value)
-                    self.viewModel.cellViewModels[indexPath.row] = .DistanceRestriction(distanceOption: option)
-                    distanceCell.currentValueLabel.text = option.title
+                    let newViewModel = FiltersCellViewModel.DistanceRestriction(distanceOption: option)
+                    self.viewModel.cellViewModels[indexPath.row] = newViewModel
+                    distanceCell.currentValueLabel.text = newViewModel.buttonTitle()
                 }
                 .addDisposableTo(distanceCell.reuseDisposeBag)
         case .FilterValueChoice(let filter, let selectedValues):

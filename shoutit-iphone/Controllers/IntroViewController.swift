@@ -24,8 +24,8 @@ final class IntroViewController: UIViewController {
     @IBOutlet weak var loginButton: CustomUIButton!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    weak var pageViewController: UIPageViewController?
     
     // view model
     var viewModel: IntroViewModel!
@@ -40,10 +40,7 @@ final class IntroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //
         setupRX()
-        scrollView.delegate = self
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -96,6 +93,41 @@ final class IntroViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
     }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: nil)
+        if let pageVC = segue.destinationViewController as? UIPageViewController {
+            pageViewController = pageVC
+            pageVC.dataSource = self
+            pageVC.delegate = self
+            pageVC.setViewControllers([Wireframe.introContentViewControllerForPage(1)], direction: .Forward, animated: false, completion: nil)
+        }
+    }
+}
+
+extension IntroViewController: UIPageViewControllerDataSource {
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        guard let controller = viewController as? IntroContentViewController else { assertionFailure(); return nil; }
+        guard controller.index > 1 else { return nil }
+        return Wireframe.introContentViewControllerForPage(controller.index - 1)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        guard let controller = viewController as? IntroContentViewController else { assertionFailure(); return nil; }
+        guard controller.index < 5 else { return nil }
+        return Wireframe.introContentViewControllerForPage(controller.index + 1)
+    }
+}
+
+extension IntroViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        guard let controller = pendingViewControllers.first as? IntroContentViewController else { return }
+        pageControl.currentPage = controller.index - 1
+    }
 }
 
 extension IntroViewController: UIScrollViewDelegate {
@@ -115,3 +147,7 @@ extension IntroViewController {
         return true
     }
 }
+
+// MARK: - Helpers
+
+

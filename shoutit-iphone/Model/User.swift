@@ -25,6 +25,7 @@ protocol User: Encodable {
 }
 
 extension User {
+    
     func basicEncodedProfile() -> [String: AnyObject]! {
 
         return ["username": self.username.encode(), "id": self.id.encode()].encode().JSONObject() as! [String : AnyObject]

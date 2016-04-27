@@ -17,6 +17,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let disposeBag = DisposeBag()
     let selectionDisposeBag = DisposeBag()
     let refreshControl = UIRefreshControl()
+    private var numberOfReloads = 0
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
@@ -107,9 +108,15 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             let retryObservable = retry.asObservable().filter{$0}
             let userChangeObservable = Account.sharedInstance.userSubject
-            let combined = Observable.combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
+                .distinctUntilChanged{ (lhs, rhs) -> Bool in
+                    guard let old = lhs, new = rhs else { return true }
+                    return old.id != new.id || old.location.address != new.location.address
+                }
             
-            combined.debounce(2, scheduler: MainScheduler.instance)
+            Observable
+                .combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
+                .filter{Account.sharedInstance.isUserAuthenticated}
+                .debounce(1, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
                     })

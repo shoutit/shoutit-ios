@@ -46,11 +46,7 @@ final class MediaUploadingTask: NSObject {
     
     func trackProgress() {
         request?.progress({ [weak self] (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-            
             let percent = (Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
-            
-            print("Uploading: \(percent)")
-            
             self?.progress.value = percent
         })
     }

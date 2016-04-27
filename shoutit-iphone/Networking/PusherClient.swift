@@ -69,7 +69,26 @@ final class PusherClient : NSObject {
         
     }
     
-    func reconnect() {
+    // MARK: - Actions
+    
+    func setAuthorizationToken(token: String) {
+        authToken = token
+        tryToConnect()
+    }
+    
+    func tryToConnect() {
+        connect()
+    }
+    
+    func disconnect() {
+        keepDisconnected = true
+        pusherInstance?.disconnect()
+        pusherInstance = nil
+    }
+    
+    // MARK: - Helpers
+    
+    private func reconnect() {
         if keepDisconnected {
             return
         }
@@ -79,7 +98,7 @@ final class PusherClient : NSObject {
         connect()
     }
     
-    func connect() {
+    private func connect() {
         
         keepDisconnected = false
         
@@ -89,32 +108,8 @@ final class PusherClient : NSObject {
         pusherInstance?.connect()
     }
     
-    func disconnect() {
-        keepDisconnected = true
-        
-        pusherInstance?.disconnect()
-        
-        pusherInstance = nil
-        
-    }
-    
-    func setAuthorizationToken(token: String?) {
-        if let token = token {
-            authToken = token
-            tryToConnect()
-        } else {
-            disconnect()
-        }
-    }
-    
-    func tryToConnect() {
-        connect()
-    }
-    
-    func subscribeToMainChannel() {
+    private func subscribeToMainChannel() {
         mainChannelObservable().subscribeNext { (event) -> Void in
-            print("RECEIVED: \(event.name)")
-            print(event.data)
             
             if event.eventType() == .NewListen || event.eventType() == .NewMessage {
                 
@@ -127,14 +122,16 @@ final class PusherClient : NSObject {
             }
             
             if event.eventType() == .ProfileChange {
-                if let _ = Account.sharedInstance.loggedUser {
+                switch Account.sharedInstance.userModel {
+                case .Some(.Logged):
                     if let profile : DetailedProfile = event.object() {
-                        Account.sharedInstance.loggedUser = profile
+                        Account.sharedInstance.updateUserWithModel(profile)
                     }
-                } else {
+                case .Some(.Guest):
                     if let guest : GuestUser = event.object() {
-                        Account.sharedInstance.guestUser = guest
+                        Account.sharedInstance.updateUserWithModel(guest)
                     }
+                default: break
                 }
             }
 
@@ -144,7 +141,6 @@ final class PusherClient : NSObject {
 }
 
 extension PusherClient : PTPusherDelegate {
-    
     
     // Connection Delegates
     

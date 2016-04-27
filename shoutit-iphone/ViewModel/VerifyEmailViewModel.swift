@@ -34,7 +34,7 @@ final class VerifyEmailViewModel {
                 switch event {
                 case .Next((let success, let detailedProfile)):
                     self?.profile = detailedProfile
-                    Account.sharedInstance.loggedUser = detailedProfile
+                    Account.sharedInstance.updateUserWithModel(detailedProfile)
                     self?.successSubject.onNext(success.message)
                 case .Error(let error):
                     self?.errorSubject.onNext(error)
@@ -53,7 +53,7 @@ final class VerifyEmailViewModel {
                 switch event {
                 case .Next(let detailedProfile):
                     self?.profile = detailedProfile
-                    Account.sharedInstance.loggedUser = detailedProfile
+                    Account.sharedInstance.updateUserWithModel(detailedProfile)
                     if detailedProfile.isActivated {
                         let message = NSLocalizedString("Your account has been successfully verified", comment: "Verify email user message")
                         self?.successSubject.onNext(message)

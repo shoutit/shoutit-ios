@@ -26,10 +26,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     }
     
     private func changeEmail() {
-        
-        guard let username = Account.sharedInstance.loggedUser?.username else {
-            preconditionFailure()
-        }
+        guard case .Logged(let user)? = Account.sharedInstance.userModel else { preconditionFailure() }
         var newEmail: String?
         for case .TextField(let value, .NewEmail) in cellViewModels {
             newEmail = value
@@ -41,11 +38,11 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
         }
         
         let params = EmailParams(email: newEmail)
-        APIProfileService.editEmailForUserWithUsername(username, withEmailParams: params)
+        APIProfileService.editEmailForUserWithUsername(user.username, withEmailParams: params)
             .subscribe {[weak self] (event) in
                 switch event {
                 case .Next(let user):
-                    Account.sharedInstance.loggedUser = user
+                    Account.sharedInstance.updateUserWithModel(user)
                     self?.successSubject.onNext()
                 case .Error(let error):
                     self?.errorSubject.onNext(error)

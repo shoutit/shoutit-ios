@@ -89,6 +89,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
                                     minimumPrice: minimumPrice ?? other.minimumPrice,
                                     maximumPrice: maximumPrice ?? other.maximumPrice,
                                     withinDistance: withinDistance ?? other.withinDistance,
+                                    entireCountry: entireCountry,
                                     sort: sort ?? other.sort,
                                     filters: filters ?? other.filters)
     }

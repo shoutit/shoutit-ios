@@ -340,6 +340,7 @@
 		B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */; };
 		B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */; };
 		B26CEE381C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE371C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift */; };
+		B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2702C331CCFA63100236B5A /* IntroContentViewController.swift */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
 		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
@@ -943,6 +944,7 @@
 		B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionShoutCellViewModel.swift; path = ViewModel/ProfileCollectionShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCollectionCoverSupplementaryView.xib; path = Storyboards/ProfileCollectionCoverSupplementaryView.xib; sourceTree = "<group>"; };
 		B26CEE371C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionFooterButtonSupplementeryView.swift; path = View/ProfileCollectionFooterButtonSupplementeryView.swift; sourceTree = "<group>"; };
+		B2702C331CCFA63100236B5A /* IntroContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroContentViewController.swift; path = Controllers/IntroContentViewController.swift; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
 		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
@@ -2707,6 +2709,7 @@
 			isa = PBXGroup;
 			children = (
 				B27DF77E1C58DC1A006909D4 /* IntroViewController.swift */,
+				B2702C331CCFA63100236B5A /* IntroContentViewController.swift */,
 				B27AF94A1C7B8D1400527306 /* ViewModel */,
 			);
 			name = Intro;
@@ -3743,6 +3746,7 @@
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */,
 				B2B4AADB1CB53D2900926474 /* DiscoverShoutsDisplayable.swift in Sources */,
+				B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */,
 				2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */,
 				246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */,
 				B26081A01CB6CBDF0025DA26 /* ShoutCellViewModel.swift in Sources */,

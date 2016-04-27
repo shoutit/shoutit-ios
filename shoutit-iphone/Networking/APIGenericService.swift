@@ -132,7 +132,6 @@ final class APIGenericService {
             }
             
             guard let json = originalJson as? [String : AnyObject], let errorJson = json["error"] else {
-                print(response.request)
                 assertionFailure()
                 throw InternalParseError.InvalidJson
             }

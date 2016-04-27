@@ -112,7 +112,7 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     func startChat() {
-        guard userIsLoggedIn() else {
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
             return
         }
         
@@ -123,7 +123,6 @@ class ShowDetailContainerViewController: UIViewController {
         }
         
         guard conversations.count == 1 else {
-            print("multiple conversations")
             return
         }
         
@@ -209,7 +208,7 @@ class ShowDetailContainerViewController: UIViewController {
     }
 
     private func videoCall() {
-        guard userIsLoggedIn() else {
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
           return
         }
         

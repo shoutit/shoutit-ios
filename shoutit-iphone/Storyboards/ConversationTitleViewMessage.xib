@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -30,14 +30,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Wr4-hf-D2L" firstAttribute="top" secondItem="hrR-1X-n3j" secondAttribute="top" id="2Dt-rz-Cfz"/>
-                <constraint firstItem="Wr4-hf-D2L" firstAttribute="leading" secondItem="hrR-1X-n3j" secondAttribute="leading" constant="5" id="6je-wr-pKl"/>
+                <constraint firstItem="Wr4-hf-D2L" firstAttribute="left" secondItem="hrR-1X-n3j" secondAttribute="left" constant="5" id="6je-wr-pKl"/>
                 <constraint firstItem="Wr4-hf-D2L" firstAttribute="centerX" secondItem="hrR-1X-n3j" secondAttribute="centerX" id="9G3-tH-6Da"/>
-                <constraint firstItem="xx5-yJ-bDC" firstAttribute="leading" secondItem="YCH-yR-1DD" secondAttribute="trailing" constant="4" id="HzM-aE-boB"/>
-                <constraint firstAttribute="trailing" secondItem="Wr4-hf-D2L" secondAttribute="trailing" constant="5" id="I7f-5r-eG2"/>
-                <constraint firstItem="YCH-yR-1DD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hrR-1X-n3j" secondAttribute="leading" constant="5" id="Yfp-Xg-zPC"/>
+                <constraint firstItem="xx5-yJ-bDC" firstAttribute="left" secondItem="YCH-yR-1DD" secondAttribute="right" constant="4" id="HzM-aE-boB"/>
+                <constraint firstAttribute="right" secondItem="Wr4-hf-D2L" secondAttribute="right" constant="5" id="I7f-5r-eG2"/>
+                <constraint firstItem="YCH-yR-1DD" firstAttribute="left" relation="greaterThanOrEqual" secondItem="hrR-1X-n3j" secondAttribute="left" constant="5" id="Yfp-Xg-zPC"/>
                 <constraint firstItem="xx5-yJ-bDC" firstAttribute="centerX" secondItem="hrR-1X-n3j" secondAttribute="centerX" id="jLg-YD-FXH"/>
                 <constraint firstItem="YCH-yR-1DD" firstAttribute="centerY" secondItem="xx5-yJ-bDC" secondAttribute="centerY" id="qlG-bu-zzy"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xx5-yJ-bDC" secondAttribute="trailing" constant="5" id="rNm-TO-VKp"/>
+                <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="xx5-yJ-bDC" secondAttribute="right" constant="5" id="rNm-TO-VKp"/>
                 <constraint firstAttribute="bottom" secondItem="xx5-yJ-bDC" secondAttribute="bottom" constant="2" id="v4M-AM-Klw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

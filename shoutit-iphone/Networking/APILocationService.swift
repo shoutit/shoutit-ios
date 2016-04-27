@@ -28,17 +28,16 @@ final class APILocationService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    let loggedUser: DetailedProfile? = try? APIGenericService.parseJson(json, failureExpected: true)
-                    let guestUser: GuestUser? = try? APIGenericService.parseJson(json, failureExpected: true)
-                    
-                    guard (guestUser != nil || loggedUser != nil) && (guestUser == nil || loggedUser == nil) else {
+                    if let loggedUser: DetailedProfile = try? APIGenericService.parseJson(json, failureExpected: true) {
+                        Account.sharedInstance.updateUserWithModel(loggedUser)
+                        observer.onNext(loggedUser)
+                    } else if let guestUser: GuestUser = try? APIGenericService.parseJson(json, failureExpected: true) {
+                        Account.sharedInstance.updateUserWithModel(guestUser)
+                        observer.onNext(guestUser)
+                    } else {
                         throw InternalParseError.InvalidJson
                     }
                     
-                    Account.sharedInstance.guestUser = guestUser
-                    Account.sharedInstance.loggedUser = loggedUser
-                    
-                    observer.onNext(guestUser ?? loggedUser!)
                     observer.onCompleted()
                 } catch let error {
                     observer.onError(error)

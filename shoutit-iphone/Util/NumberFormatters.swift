@@ -48,7 +48,7 @@ final class NumberFormatters {
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         formatter.currencyGroupingSeparator = " "
-        formatter.locale = NSLocale.systemLocale()
+        formatter.locale = .autoupdatingCurrentLocale()
         
         if let currency = currency {
             formatter.currencyCode = currency.lowercaseString
@@ -56,5 +56,18 @@ final class NumberFormatters {
         }
         
         return formatter.stringFromNumber(Double(price)/100.0)
+    }
+    
+    static func badgeCountStringWithNumber(number: Int) -> String {
+        
+        if number > 99 {
+            return "\(NSLocalizedString("+99", comment: "More than 99 Notifications")) "
+        }
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .NoStyle
+        formatter.locale = .autoupdatingCurrentLocale()
+        
+        return formatter.stringFromNumber(number)!
     }
 }
