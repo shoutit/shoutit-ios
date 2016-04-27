@@ -11,6 +11,11 @@ sudo gem install fastlane
 fastlane ios production
 ```
 create and upload ipa to crashlytics
+### ios local
+```
+fastlane ios local
+```
+
 ### ios staging
 ```
 fastlane ios staging
