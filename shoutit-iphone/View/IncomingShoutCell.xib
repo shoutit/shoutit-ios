@@ -59,16 +59,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="xyc-XG-d39" firstAttribute="left" relation="greaterThanOrEqual" secondItem="dI9-KE-4dZ" secondAttribute="right" constant="5" id="6Fe-SE-2V3"/>
+                                    <constraint firstItem="xyc-XG-d39" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dI9-KE-4dZ" secondAttribute="trailing" constant="5" id="6Fe-SE-2V3"/>
                                     <constraint firstItem="dI9-KE-4dZ" firstAttribute="top" secondItem="r7r-05-cHu" secondAttribute="bottom" constant="5" id="8XJ-nP-mYe"/>
                                     <constraint firstItem="xyc-XG-d39" firstAttribute="centerY" secondItem="dI9-KE-4dZ" secondAttribute="centerY" id="C5z-1k-law"/>
                                     <constraint firstItem="r7r-05-cHu" firstAttribute="top" secondItem="lFu-zF-mjU" secondAttribute="top" constant="5" id="DbV-eQ-bVI"/>
                                     <constraint firstAttribute="bottom" secondItem="xyc-XG-d39" secondAttribute="bottom" constant="5" id="RGm-gB-OEy"/>
-                                    <constraint firstItem="dI9-KE-4dZ" firstAttribute="left" secondItem="lFu-zF-mjU" secondAttribute="left" constant="5" id="eln-eC-zMS"/>
+                                    <constraint firstItem="dI9-KE-4dZ" firstAttribute="leading" secondItem="lFu-zF-mjU" secondAttribute="leading" constant="5" id="eln-eC-zMS"/>
                                     <constraint firstAttribute="height" constant="45" id="nwa-lX-plH"/>
                                     <constraint firstItem="r7r-05-cHu" firstAttribute="left" secondItem="lFu-zF-mjU" secondAttribute="left" constant="5" id="ugE-LU-5WG"/>
                                     <constraint firstAttribute="trailing" secondItem="xyc-XG-d39" secondAttribute="trailing" constant="5" id="wN3-11-RZ4"/>
-                                    <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="r7r-05-cHu" secondAttribute="right" constant="5" id="yZK-SV-AVa"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="r7r-05-cHu" secondAttribute="trailing" constant="5" id="yZK-SV-AVa"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -102,9 +102,9 @@
                         <constraints>
                             <constraint firstItem="lMt-on-ACz" firstAttribute="top" secondItem="iwM-KN-E1q" secondAttribute="top" constant="5" id="ChZ-av-l7a"/>
                             <constraint firstItem="Rzo-Ba-Odo" firstAttribute="top" secondItem="lMt-on-ACz" secondAttribute="top" constant="3" id="I41-Y3-Od7"/>
-                            <constraint firstItem="lFu-zF-mjU" firstAttribute="left" secondItem="iwM-KN-E1q" secondAttribute="left" constant="5" id="IDa-0A-5rf"/>
-                            <constraint firstItem="Rzo-Ba-Odo" firstAttribute="right" secondItem="lMt-on-ACz" secondAttribute="right" constant="-3" id="JjZ-49-eGh"/>
-                            <constraint firstAttribute="right" secondItem="lFu-zF-mjU" secondAttribute="right" constant="5" id="OuL-3a-f2A"/>
+                            <constraint firstItem="lFu-zF-mjU" firstAttribute="leading" secondItem="iwM-KN-E1q" secondAttribute="leading" constant="5" id="IDa-0A-5rf"/>
+                            <constraint firstItem="Rzo-Ba-Odo" firstAttribute="trailing" secondItem="lMt-on-ACz" secondAttribute="trailing" constant="-3" id="JjZ-49-eGh"/>
+                            <constraint firstAttribute="trailing" secondItem="lFu-zF-mjU" secondAttribute="trailing" constant="5" id="OuL-3a-f2A"/>
                             <constraint firstItem="lFu-zF-mjU" firstAttribute="top" secondItem="lMt-on-ACz" secondAttribute="bottom" constant="-1" id="WbX-7q-g5d"/>
                             <constraint firstAttribute="height" constant="210" id="gFm-oS-oQN"/>
                             <constraint firstItem="lMt-on-ACz" firstAttribute="centerX" secondItem="iwM-KN-E1q" secondAttribute="centerX" id="o6n-7J-U8z"/>

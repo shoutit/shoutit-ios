@@ -38,7 +38,7 @@ extension LocalizedParams {
         var p: [String : AnyObject] = [:]
         p["country"] = country
         p["state"] = state
-        p["city"] = state
+        p["city"] = city
         return p
 
     }

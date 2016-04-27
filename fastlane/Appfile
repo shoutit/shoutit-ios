@@ -6,6 +6,11 @@ for_lane :testflight do
 	apple_id "shoutit@appunite.com"
 end
 
+for_lane :local do 
+	app_identifier "com.shoutit-iphone.local"
+	apple_id "shoutit@appunite.com"
+end
+
 for_lane :production do 
 	app_identifier "com.shoutit-iphone"
 	apple_id "shoutit@appunite.com"

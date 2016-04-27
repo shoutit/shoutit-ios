@@ -406,6 +406,7 @@ public class BorderedMaterialTextView: UITextView {
         placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
         titleLabel?.frame.size.width = bounds.width
         updateDetailLabelFrameSilently()
+        updatePlaceholderLabelFrame()
     }
     
     /// Overriding the layout callback for sublayers.
@@ -475,15 +476,7 @@ public class BorderedMaterialTextView: UITextView {
     
     /// Reloads necessary components when the view has changed.
     internal func reloadView() {
-        if let p = placeholderLabel {
-            removeConstraints(constraints)
-            MaterialLayout.alignToParent(self,
-                                         child: p,
-                                         top: textContainerInset.top,
-                                         left: textContainerInset.left,
-                                         bottom: textContainerInset.bottom,
-                                         right: textContainerInset.right)
-        }
+        
     }
     
     /// Notification handler for when text editing began.
@@ -566,7 +559,6 @@ public class BorderedMaterialTextView: UITextView {
     /// prepares the placeholderLabel property.
     private func preparePlaceholderLabel() {
         if let v: UILabel = placeholderLabel {
-            v.translatesAutoresizingMaskIntoConstraints = false
             v.font = font
             v.textAlignment = textAlignment
             v.numberOfLines = 0
@@ -672,6 +664,14 @@ public class BorderedMaterialTextView: UITextView {
             if frame != v.frame {
                 v.frame = frame
             }
+        }
+    }
+    
+    private func updatePlaceholderLabelFrame() {
+        if let p = placeholderLabel {
+            let width = bounds.width - textContainerInset.left - textContainerInset.right
+            let height = p.font.lineHeight
+            p.frame = CGRect(x: textContainerInset.left, y: textContainerInset.top, width: width, height: height)
         }
     }
     

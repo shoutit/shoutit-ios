@@ -41,9 +41,12 @@ final class SearchShoutsResultsViewModel {
         }
         
         if case .CategoryShouts(let category) = context {
-            return FiltersState(category: (category, .Disabled), location: (Account.sharedInstance.user?.location, .Enabled))
+            return FiltersState(category: (category, .Disabled),
+                                location: (Account.sharedInstance.user?.location, .Enabled),
+                                withinDistance: (.Distance(kilometers: 20), .Enabled))
         }
         
-        return FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
+        return FiltersState(location: (Account.sharedInstance.user?.location, .Enabled),
+                            withinDistance: (.Distance(kilometers: 20), .Enabled))
     }
 }

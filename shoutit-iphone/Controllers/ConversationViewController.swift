@@ -47,6 +47,18 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.createSocketObservable()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.unsubscribeSockets()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
