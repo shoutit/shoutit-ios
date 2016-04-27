@@ -9,7 +9,16 @@ module Fastlane
         params[:languages].strip.split(" ").each do |lang|
           Helper.log.info "Generating localization file for: #{lang}"
           
-          command = "cd #{params[:export_dir]} && git reset HEAD --hard && git pull origin master && cd .."
+          command = "cd #{params[:export_dir]}"
+          Fastlane::Actions.sh command, log: true
+          
+          command = "git reset HEAD --hard && git pull origin master"
+          Fastlane::Actions.sh command, log: true
+          
+          command = "rm *"
+          Fastlane::Actions.sh command, log: true
+          
+          command = "cd .."
           Fastlane::Actions.sh command, log: true
           
           command = "xcodebuild -exportLocalizations -localizationPath #{params[:export_dir]} -project #{params[:project_file_path]} -exportLanguage #{lang}"
