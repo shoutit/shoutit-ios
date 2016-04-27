@@ -122,14 +122,14 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let listenersCount = detailedUser?.listenersCount ?? user.listenersCount
         let listeningMetadata = detailedUser?.listeningMetadata ?? user.listeningMetadata
         
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(listenersCount)
+        let listenersCountString = NumberFormatters.numberToShortString(listenersCount)
         
         var listeningCountString = ""
         var interestsCountString = ""
         
         if let listeningMetadata = listeningMetadata {
-            listeningCountString = NumberFormatters.sharedInstance.numberToShortString(listeningMetadata.users)
-            interestsCountString = NumberFormatters.sharedInstance.numberToShortString(listeningMetadata.tags)
+            listeningCountString = NumberFormatters.numberToShortString(listeningMetadata.users)
+            interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         
         return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]

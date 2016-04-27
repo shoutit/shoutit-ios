@@ -132,7 +132,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return .Local(image: UIImage.profileTagAvatar())
     }
     var infoButtons: [ProfileCollectionInfoButton] {
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(tag?.listenersCount ?? 0)
+        let listenersCountString = NumberFormatters.numberToShortString(tag?.listenersCount ?? 0)
         return [.Listeners(countString: listenersCountString),
                 .HiddenButton(position: .BigCenter),
                 .Listen(isListening: tag?.isListening ?? false),

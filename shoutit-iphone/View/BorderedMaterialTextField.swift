@@ -383,7 +383,8 @@ public class BorderedMaterialTextField : UITextField {
     }
     
     public override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.minX, y: bounds.minY - 8, width: bounds.width, height: bounds.height)
+        let rect = super.placeholderRectForBounds(bounds)
+        return CGRect(x: rect.minX, y: rect.minY - 8, width: rect.width, height: rect.height)
     }
     
     /**

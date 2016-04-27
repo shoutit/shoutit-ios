@@ -477,6 +477,8 @@ public class BorderedMaterialTextView: UITextView {
     internal func reloadView() {
         if let p = placeholderLabel {
             removeConstraints(constraints)
+//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top)-[child]-(bottom)-|", options: [], metrics: ["bottom": textContainerInset.bottom, "top": textContainerInset.top], views: ["child" : p]))
+//            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left)-[child]", options: [], metrics: ["left": textContainerInset.left, "right": textContainerInset.right], views: ["child" : p]))
             MaterialLayout.alignToParent(self,
                                          child: p,
                                          top: textContainerInset.top,

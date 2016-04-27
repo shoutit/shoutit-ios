@@ -63,7 +63,7 @@ class HomeShoutsViewModel: AnyObject {
     }
     
     func getFiltersState() -> FiltersState {
-        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled))
+        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled), withinDistance: (.Distance(kilometers: 20), .Enabled))
     }
     
     func applyFiltersState(state: FiltersState) {

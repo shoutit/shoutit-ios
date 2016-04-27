@@ -648,3 +648,9 @@
 /* Displayed on shout detail screen if user's firstname would be null */
 "shouter" = "معلن";
 
+/* No comment provided by engineer. */
+"K" = "ألف";
+
+/* No comment provided by engineer. */
+"M" = "مليون";
+

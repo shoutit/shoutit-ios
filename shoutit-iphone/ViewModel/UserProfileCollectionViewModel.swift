@@ -99,7 +99,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(detailedUser?.listenersCount ?? profile.listenersCount)
+        let listenersCountString = NumberFormatters.numberToShortString(detailedUser?.listenersCount ?? profile.listenersCount)
         return [.Listeners(countString: listenersCountString),
                 .Chat,
                 .Listen(isListening: detailedUser?.isListening ?? profile.isListening ?? false),
