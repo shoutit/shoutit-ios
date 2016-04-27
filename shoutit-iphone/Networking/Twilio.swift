@@ -63,7 +63,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             self?.accessManager = nil
             self?.connecting = false
             
-            if Account.sharedInstance.loggedUser != nil {
+            if case .Logged(_)? = Account.sharedInstance.userModel {
                 // fetch token with small delay to avoid disposing client
                 self?.performSelector(#selector(Twilio.retriveToken), withObject: nil, afterDelay: 2.0)
             }

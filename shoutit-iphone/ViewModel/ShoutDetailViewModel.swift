@@ -77,7 +77,6 @@ final class ShoutDetailViewModel {
                 switch event {
                 case .Next(let otherShouts):
                     if let strongSelf = self {
-                        print(otherShouts)
                         strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(otherShouts.prefix(4)), withSeeAllCell: false)
                     }
                 case .Error(let error):

@@ -38,15 +38,15 @@ final class APIManager {
     
     // MARK: - Token
     
-    static func setAuthToken(token: String, tokenType: String) {
-        _setAuthToken("\(tokenType) \(token)")
+    static func setAuthToken(token: String, tokenType: String, isGuestUser: Bool) {
+        _setAuthToken("\(tokenType) \(token)", isGuestUser: isGuestUser)
     }
     
     static func eraseAuthToken() {
-        _setAuthToken(nil)
+        _setAuthToken(nil, isGuestUser: nil)
     }
     
-    private static func _setAuthToken(token: String?) {
+    private static func _setAuthToken(token: String?, isGuestUser: Bool?) {
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -59,10 +59,13 @@ final class APIManager {
             request.allHTTPHeaderFields = headerFields
         }
         
-        PusherClient.sharedInstance.setAuthorizationToken(token)
-        
-        // Authorize Twilio
-        _ = Twilio.sharedInstance
+        if let token = token where isGuestUser == false {
+            PusherClient.sharedInstance.setAuthorizationToken(token)
+            // Authorize Twilio
+            _ = Twilio.sharedInstance
+        } else {
+            PusherClient.sharedInstance.disconnect()
+        }
     }
     
     // MARK: - Reachability

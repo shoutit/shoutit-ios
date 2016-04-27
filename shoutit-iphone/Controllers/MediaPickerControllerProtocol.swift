@@ -116,8 +116,6 @@ extension UIImage {
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         
-        print(newImage.size)
-        
         UIGraphicsEndImageContext()
         
         return newImage

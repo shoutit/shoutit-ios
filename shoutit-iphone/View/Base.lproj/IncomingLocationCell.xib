@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -44,7 +44,7 @@
                             <constraint firstItem="Jix-uC-XRV" firstAttribute="centerY" secondItem="WHm-Hf-hCT" secondAttribute="centerY" id="A6S-ka-R6m"/>
                             <constraint firstAttribute="width" constant="210" id="Gkr-gw-SnN"/>
                             <constraint firstItem="Jix-uC-XRV" firstAttribute="centerX" secondItem="WHm-Hf-hCT" secondAttribute="centerX" id="UFm-XS-kKK"/>
-                            <constraint firstItem="lah-UX-Cpg" firstAttribute="leading" secondItem="WHm-Hf-hCT" secondAttribute="leading" constant="10" id="Z1E-yl-qwz"/>
+                            <constraint firstItem="lah-UX-Cpg" firstAttribute="left" secondItem="WHm-Hf-hCT" secondAttribute="left" constant="10" id="Z1E-yl-qwz"/>
                             <constraint firstItem="lah-UX-Cpg" firstAttribute="centerY" secondItem="Jix-uC-XRV" secondAttribute="centerY" id="jQg-E7-jPD"/>
                             <constraint firstAttribute="height" constant="50" id="vjr-5y-DVD"/>
                         </constraints>
@@ -99,16 +99,16 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VC-ik-jc1">
                         <rect key="frame" x="128" y="21" width="76" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="WHm-Hf-hCT" secondAttribute="bottom" constant="5" id="4Rs-QG-GsS"/>
                     <constraint firstItem="kAH-5I-FgM" firstAttribute="top" secondItem="H25-ru-AqM" secondAttribute="top" constant="10" id="DOg-sE-Ccb"/>
-                    <constraint firstItem="kAH-5I-FgM" firstAttribute="leading" secondItem="H25-ru-AqM" secondAttribute="leading" constant="10" id="Fda-3A-bTy"/>
+                    <constraint firstItem="kAH-5I-FgM" firstAttribute="left" secondItem="H25-ru-AqM" secondAttribute="left" constant="10" id="Fda-3A-bTy"/>
                     <constraint firstItem="WHm-Hf-hCT" firstAttribute="top" secondItem="H25-ru-AqM" secondAttribute="top" constant="5" id="UbO-1x-rYN"/>
-                    <constraint firstItem="WHm-Hf-hCT" firstAttribute="leading" secondItem="kAH-5I-FgM" secondAttribute="trailing" constant="10" id="sut-mq-urW"/>
+                    <constraint firstItem="WHm-Hf-hCT" firstAttribute="left" secondItem="kAH-5I-FgM" secondAttribute="right" constant="10" id="sut-mq-urW"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

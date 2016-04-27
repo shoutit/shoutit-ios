@@ -45,7 +45,6 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 case .Error(let error):
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
-                    print(error)
                 }
                 })
             .addDisposableTo(disposeBag)

@@ -10,6 +10,11 @@ import Foundation
 
 struct FiltersState {
     
+    enum DistanceRestriction {
+        case Distance(kilometers: Int)
+        case EntireCountry
+    }
+    
     enum Editing {
         case Enabled
         case Disabled
@@ -20,7 +25,7 @@ struct FiltersState {
     let minimumPrice: (Int?, Editing)
     let maximumPrice: (Int?, Editing)
     let location: (Address?, Editing)
-    let withinDistance: (Int?, Editing)
+    let withinDistance: (DistanceRestriction?, Editing)
     let filters: [(Filter, [FilterValue])]?
     
     init(shoutType: (ShoutType?, Editing) = (nil, .Enabled),
@@ -29,7 +34,7 @@ struct FiltersState {
          minimumPrice: (Int?, Editing) = (nil, .Enabled),
          maximumPrice: (Int?, Editing) = (nil, .Enabled),
          location: (Address?, Editing) = (nil, .Enabled),
-         withinDistance: (Int?, Editing) = (nil, .Enabled),
+         withinDistance: (DistanceRestriction?, Editing) = (nil, .Enabled),
          filters: [(Filter, [FilterValue])]? = nil)
     {
         self.shoutType = shoutType
@@ -43,6 +48,22 @@ struct FiltersState {
     }
     
     func composeParams() -> FilteredShoutsParams {
+        
+        let distance: Int?
+        let entireCountry: Bool
+        
+        switch withinDistance.0 {
+        case .Some(.EntireCountry):
+            entireCountry = true
+            distance = nil
+        case .Some(.Distance(let kilometers)):
+            entireCountry = false
+            distance = kilometers
+        default:
+            entireCountry = false
+            distance = nil
+        }
+        
         return FilteredShoutsParams(country: location.0?.country,
                                     state: location.0?.state,
                                     city: location.0?.city,
@@ -50,9 +71,22 @@ struct FiltersState {
                                     category: category.0?.slug,
                                     minimumPrice: minimumPrice.0 == nil ? nil : minimumPrice.0! * 100,
                                     maximumPrice: maximumPrice.0 == nil ? nil : maximumPrice.0! * 100,
-                                    withinDistance: withinDistance.0,
-                                    entireCountry: withinDistance.0 == nil,
+                                    withinDistance: distance,
+                                    entireCountry: entireCountry,
                                     sort: sortType.0,
                                     filters: filters)
+    }
+}
+
+extension FiltersState.DistanceRestriction: Equatable {}
+
+func ==(lhs: FiltersState.DistanceRestriction, rhs: FiltersState.DistanceRestriction) -> Bool {
+    switch (lhs, rhs) {
+    case (.EntireCountry, .EntireCountry):
+        return true
+    case (.Distance(let lhsDistance), .Distance(let rhsDistance)):
+        return lhsDistance == rhsDistance
+    default:
+        return false
     }
 }

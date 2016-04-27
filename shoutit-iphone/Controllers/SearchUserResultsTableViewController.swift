@@ -126,19 +126,20 @@ final class SearchUserResultsTableViewController: UITableViewController {
         cell.listenButton.setImage(listenButtonImage, forState: .Normal)
         cell.listenButton.hidden = cellModel.hidesListeningButton()
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
-            guard self != nil && self!.userIsLoggedIn() else { return }
+            guard let `self` = self else { return }
+            guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
             cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                 switch event {
                 case .Next(let (listening, successMessage, error)):
                     let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                     cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
                     if let message = successMessage {
-                        self?.showSuccessMessage(message)
+                        self.showSuccessMessage(message)
                     } else if let error = error {
-                        self?.showError(error)
+                        self.showError(error)
                     }
                 case .Completed:
-                    self?.viewModel.reloadItemAtIndex(indexPath.row)
+                    self.viewModel.reloadItemAtIndex(indexPath.row)
                 default:
                     break
                 }

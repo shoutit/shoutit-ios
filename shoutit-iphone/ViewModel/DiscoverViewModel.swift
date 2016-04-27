@@ -48,6 +48,10 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
     let shouts = BehaviorSubject<[Shout]?>(value: [])
     let displayable = DiscoverDisplayable()
     
+    var isRootDiscoverView: Bool {
+        return false
+    }
+    
     func retriveDiscoverItems() {
         fatalError("Not implemented")
     }

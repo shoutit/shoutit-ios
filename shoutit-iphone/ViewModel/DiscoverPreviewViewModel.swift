@@ -39,7 +39,13 @@
     
     required init() {
         
-        let countryObservable : Driver<String?> = Account.sharedInstance.userSubject.asDriver(onErrorJustReturn: nil).map { (user) -> String? in
+        let countryObservable : Driver<String?> = Account.sharedInstance
+            .userSubject
+            .distinctUntilChanged{ (lhs, rhs) -> Bool in
+                guard let old = lhs, new = rhs else { return true }
+                return old.id != new.id || old.location.address != new.location.address
+            }
+            .asDriver(onErrorJustReturn: nil).map { (user) -> String? in
             return user?.location.country
         }
         
@@ -47,6 +53,7 @@
         mainItemObservable = countryObservable
             .distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
             .asObservable()
+            .filter{(_) in Account.sharedInstance.isUserAuthenticated}
             .flatMap { (location) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
             }.map{ (items) -> DiscoverItem? in
@@ -66,13 +73,15 @@
             }
             .share()
         
-        mainItemObservable.subscribeNext { (mainItem) -> Void in
-            if let _ = mainItem {
-                self.state.value = .Loading
-            } else {
-                self.state.value = .NoItems
+        mainItemObservable
+            .subscribeNext { (mainItem) -> Void in
+                if let _ = mainItem {
+                    self.state.value = .Loading
+                } else {
+                    self.state.value = .NoItems
+                }
             }
-            }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
         
         dataSource.subscribeNext { (items) -> Void in
             self.state.value = .Loaded

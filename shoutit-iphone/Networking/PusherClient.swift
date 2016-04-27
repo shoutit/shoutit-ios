@@ -106,13 +106,9 @@ final class PusherClient : NSObject {
 
     }
     
-    func setAuthorizationToken(token: String?) {
-        if let token = token {
-            authToken = token
-            tryToConnect()
-        } else {
-            disconnect()
-        }
+    func setAuthorizationToken(token: String) {
+        authToken = token
+        tryToConnect()
     }
     
     func tryToConnect() {
@@ -133,14 +129,16 @@ final class PusherClient : NSObject {
             }
             
             if event.eventType() == .ProfileChange {
-                if let _ = Account.sharedInstance.loggedUser {
+                switch Account.sharedInstance.userModel {
+                case .Some(.Logged):
                     if let profile : DetailedProfile = event.object() {
-                        Account.sharedInstance.loggedUser = profile
+                        Account.sharedInstance.updateUserWithModel(profile)
                     }
-                } else {
+                case .Some(.Guest):
                     if let guest : GuestUser = event.object() {
-                        Account.sharedInstance.guestUser = guest
+                        Account.sharedInstance.updateUserWithModel(guest)
                     }
+                default: break
                 }
             }
 
@@ -167,17 +165,9 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
-       print("==================================")
-       print("=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>==")
-       print("SUBSCRIBED: \(channel.name)")
-       print("==================================")
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
-        print("==================================")
-        print("=<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<==")
-        print("UNSUBSCRIBED: \(channel.name)")
-        print("==================================")
     }
     
     // Error handling

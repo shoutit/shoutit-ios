@@ -48,8 +48,6 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         
         let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
-        print(parameters)
-        
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         APIShoutsService.updateShoutWithParams(parameters, uid: editController.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in

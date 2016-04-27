@@ -91,7 +91,7 @@ extension SearchShoutsResultsViewModel {
                                               includeCurrentUserLocation: true)
             case .CategoryShouts(let category):
                 params = FilteredShoutsParams(searchPhrase: phrase,
-                                              tag: category.slug,
+                                              category: category.slug,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
@@ -99,7 +99,6 @@ extension SearchShoutsResultsViewModel {
             }
             
             applyParamsToFilterParamsIfAny(&params)
-            
             return APIShoutsService.searchShoutsWithParams(params)
         }
     }

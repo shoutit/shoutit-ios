@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -80,15 +80,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="AmM-T1-WIJ" firstAttribute="top" secondItem="0fC-IS-mqG" secondAttribute="top" constant="5" id="0Vi-Dk-a0w"/>
-                    <constraint firstItem="AmM-T1-WIJ" firstAttribute="leading" secondItem="0fC-IS-mqG" secondAttribute="leading" constant="5" id="2Yx-Ci-vXA"/>
+                    <constraint firstItem="AmM-T1-WIJ" firstAttribute="left" secondItem="0fC-IS-mqG" secondAttribute="left" constant="5" id="2Yx-Ci-vXA"/>
                     <constraint firstItem="Cgl-E0-dNa" firstAttribute="centerX" secondItem="AmM-T1-WIJ" secondAttribute="centerX" id="2xK-bD-31u"/>
                     <constraint firstAttribute="bottom" secondItem="0fC-IS-mqG" secondAttribute="bottom" constant="5" id="3xP-96-1M7"/>
-                    <constraint firstItem="oLk-fa-x7a" firstAttribute="trailing" secondItem="AmM-T1-WIJ" secondAttribute="trailing" constant="-3" id="4LW-Pt-71p"/>
+                    <constraint firstItem="oLk-fa-x7a" firstAttribute="right" secondItem="AmM-T1-WIJ" secondAttribute="right" constant="-3" id="4LW-Pt-71p"/>
                     <constraint firstItem="hg6-M1-Ffg" firstAttribute="centerY" secondItem="AmM-T1-WIJ" secondAttribute="centerY" id="Gi2-cb-wn1"/>
                     <constraint firstItem="hg6-M1-Ffg" firstAttribute="centerX" secondItem="AmM-T1-WIJ" secondAttribute="centerX" id="WAk-YH-OmG"/>
                     <constraint firstItem="0fC-IS-mqG" firstAttribute="top" secondItem="YTB-bS-Z8q" secondAttribute="top" constant="5" id="cgR-tI-k60"/>
                     <constraint firstItem="oLk-fa-x7a" firstAttribute="top" secondItem="AmM-T1-WIJ" secondAttribute="top" constant="3" id="dg5-GD-jwF"/>
-                    <constraint firstAttribute="trailing" secondItem="0fC-IS-mqG" secondAttribute="trailing" constant="10" id="ntR-0y-7Q6"/>
+                    <constraint firstAttribute="right" secondItem="0fC-IS-mqG" secondAttribute="right" constant="10" id="ntR-0y-7Q6"/>
                     <constraint firstItem="Cgl-E0-dNa" firstAttribute="centerY" secondItem="AmM-T1-WIJ" secondAttribute="centerY" id="ypd-aa-F0t"/>
                 </constraints>
             </tableViewCellContentView>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -46,7 +46,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hg-mi-OYs">
                         <rect key="frame" x="125" y="20" width="76" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P5o-2c-3mD">
@@ -79,17 +79,17 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KeC-eB-snh" firstAttribute="leading" secondItem="mbB-m7-Pdp" secondAttribute="leading" constant="5" id="8ne-fj-NtE"/>
+                    <constraint firstItem="KeC-eB-snh" firstAttribute="left" secondItem="mbB-m7-Pdp" secondAttribute="left" constant="5" id="8ne-fj-NtE"/>
                     <constraint firstItem="mbB-m7-Pdp" firstAttribute="top" secondItem="PqO-XS-P50" secondAttribute="top" constant="5" id="KhE-J2-mST"/>
                     <constraint firstAttribute="bottom" secondItem="mbB-m7-Pdp" secondAttribute="bottom" constant="5" id="Kwa-J3-49a"/>
                     <constraint firstItem="P5o-2c-3mD" firstAttribute="centerY" secondItem="KeC-eB-snh" secondAttribute="centerY" id="NXM-Tv-A6G"/>
                     <constraint firstItem="KeC-eB-snh" firstAttribute="top" secondItem="mbB-m7-Pdp" secondAttribute="top" constant="5" id="Orp-pY-ELu"/>
                     <constraint firstItem="LQt-8d-OE0" firstAttribute="centerY" secondItem="KeC-eB-snh" secondAttribute="centerY" id="Qk9-Zs-QiN"/>
                     <constraint firstItem="P5o-2c-3mD" firstAttribute="centerX" secondItem="KeC-eB-snh" secondAttribute="centerX" id="cuC-sc-m93"/>
-                    <constraint firstAttribute="trailing" secondItem="mbB-m7-Pdp" secondAttribute="trailing" constant="10" id="dV3-y5-ecN"/>
-                    <constraint firstItem="KeC-eB-snh" firstAttribute="leading" secondItem="LQt-8d-OE0" secondAttribute="trailing" constant="-41" id="feX-AR-RFy"/>
-                    <constraint firstItem="LQt-8d-OE0" firstAttribute="leading" secondItem="KeC-eB-snh" secondAttribute="leading" constant="10" id="mYE-FL-FTr"/>
-                    <constraint firstItem="BH2-xc-d12" firstAttribute="trailing" secondItem="KeC-eB-snh" secondAttribute="trailing" constant="-3" id="nFs-pu-iJC"/>
+                    <constraint firstAttribute="right" secondItem="mbB-m7-Pdp" secondAttribute="right" constant="10" id="dV3-y5-ecN"/>
+                    <constraint firstItem="KeC-eB-snh" firstAttribute="left" secondItem="LQt-8d-OE0" secondAttribute="right" constant="-41" id="feX-AR-RFy"/>
+                    <constraint firstItem="LQt-8d-OE0" firstAttribute="left" secondItem="KeC-eB-snh" secondAttribute="left" constant="10" id="mYE-FL-FTr"/>
+                    <constraint firstItem="BH2-xc-d12" firstAttribute="right" secondItem="KeC-eB-snh" secondAttribute="right" constant="-3" id="nFs-pu-iJC"/>
                     <constraint firstItem="8Hg-mi-OYs" firstAttribute="centerY" secondItem="KeC-eB-snh" secondAttribute="centerY" id="oRU-ej-Nf7"/>
                     <constraint firstItem="BH2-xc-d12" firstAttribute="top" secondItem="KeC-eB-snh" secondAttribute="top" constant="3" id="oqv-3M-Ovi"/>
                     <constraint firstItem="8Hg-mi-OYs" firstAttribute="centerX" secondItem="KeC-eB-snh" secondAttribute="centerX" id="s4P-HD-C0N"/>

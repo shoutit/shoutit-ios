@@ -35,8 +35,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         listSection = listSectionWithModels(pages, isLoading: true)
         Account.sharedInstance.userSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext { (_) in
-                self.invalidateUser()
+            .subscribeNext {[weak self] (newUser) in
+                self?.detailedUser = newUser as? DetailedProfile
+                self?.reloadSubject.onNext()
             }
             .addDisposableTo(disposeBag)
     }
@@ -53,10 +54,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
-                case .Error(let error):
+                case .Error:
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
-                    print(error)
                 }
                 })
             .addDisposableTo(disposeBag)
@@ -178,11 +178,6 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     // MARK: - Helpers
-    
-    private func invalidateUser() {
-        detailedUser = nil
-        reloadContent()
-    }
     
     private func reloadPages(currentlyLoading loading: Bool = false) {
         let pages = detailedUser?.pages ?? user?.pages ?? []

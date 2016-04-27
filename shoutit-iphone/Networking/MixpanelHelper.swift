@@ -13,9 +13,12 @@ final class MixpanelHelper {
     
     #if STAGING
     private static let mixpanelToken  = "d2de0109a8de7237dede66874c7b8951"
+    #elseif LOCAL
+    private static let mixpanelToken  = "a5774a99b9068ae66129859421ade687"
     #else
     private static let mixpanelToken  = "c9d0a1dc521ac1962840e565fa971574"
     #endif
+    
     private static let didOpenAppUserDefailt = "didOpenAppUserDefailt"
     
     struct Actions {

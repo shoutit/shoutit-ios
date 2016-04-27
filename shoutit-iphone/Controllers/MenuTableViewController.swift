@@ -50,7 +50,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         let contentHeight = kTableHeaderHeight + kTableFooterHeight + 5 * kTablePrimaryCellHeight + 3 * kTableSecondaryCellHeight
         tableView.scrollEnabled = contentHeight > tableView.frame.height
         
-        Account.sharedInstance.userSubject.subscribeNext { (user: User?) in
+        Account.sharedInstance.userSubject.subscribeNext { (user) in
             self.headerView?.fillWith(user)
         }.addDisposableTo(disposeBag)
         

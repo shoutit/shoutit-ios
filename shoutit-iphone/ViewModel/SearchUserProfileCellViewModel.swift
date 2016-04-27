@@ -24,7 +24,7 @@ final class SearchUserProfileCellViewModel {
     }
     
     func hidesListeningButton() -> Bool {
-        return Account.sharedInstance.loggedUser?.id == profile.id
+        return Account.sharedInstance.user?.id == profile.id
     }
     
     func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {

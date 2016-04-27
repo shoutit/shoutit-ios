@@ -48,8 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 sourceApplication: sourceApplication,
                 annotation: annotation)
             
-            let ret = fb ? fb : (g ? g : false)
-            return ret;
+            return fb ? fb : (g ? g : false)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -64,7 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
-        PusherClient.sharedInstance.tryToConnect()
+        if Account.sharedInstance.isUserLoggedIn {
+            PusherClient.sharedInstance.tryToConnect()
+        }
         
         Account.sharedInstance.fetchUserProfile()
     }

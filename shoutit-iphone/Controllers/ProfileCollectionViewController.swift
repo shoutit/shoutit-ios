@@ -173,7 +173,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
             
             cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
-                guard self != nil && self!.userIsLoggedIn() else { return }
+                guard self != nil && self!.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let (listening, successMessage, error)):
@@ -306,7 +306,8 @@ extension ProfileCollectionViewController {
             infoView.verifyAccountButton
                 .rx_tap.asDriver()
                 .driveNext{ [weak self] in
-                    self?.flowDelegate?.showVerifyEmailView(Account.sharedInstance.loggedUser!, successBlock: { (message) in
+                    guard case .Logged(let user)? = Account.sharedInstance.userModel else { assertionFailure(); return; }
+                    self?.flowDelegate?.showVerifyEmailView(user, successBlock: { (message) in
                         self?.showSuccessMessage(message)
                     })
                 }
@@ -513,7 +514,7 @@ extension ProfileCollectionViewController {
     
     func startChat() {
         
-        guard userIsLoggedIn() else {
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
             return
         }
         
