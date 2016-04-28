@@ -23,16 +23,7 @@ module Fastlane
           
         end
 
-        command = "cd #{params[:export_dir]}"
-        Fastlane::Actions.sh command, log: true
-        
-        command = "git add -A && git commit -am 'translations update'"
-        Fastlane::Actions.sh command, log: true
-        
-        command = "git pull origin master"
-        Fastlane::Actions.sh command, log: true
-        
-        command = "git push origin HEAD:master"
+        command = "cd #{params[:export_dir]} && git add -A && git commit -am 'translations update' && git pull origin master && git push origin HEAD:master"
         Fastlane::Actions.sh command, log: true
         
         Helper.log.info "Localization files exported to #{params[:export_dir]}"
