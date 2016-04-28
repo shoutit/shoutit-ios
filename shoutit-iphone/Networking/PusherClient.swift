@@ -306,6 +306,10 @@ extension PusherClient {
                 observer.onNext(event)
             })
             
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
             return cancel
             
         })
