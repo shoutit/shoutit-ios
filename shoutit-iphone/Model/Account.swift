@@ -138,12 +138,14 @@ final class Account {
         let data = SecureCoder.dataWithJsonConvertible(authData)
         try keychain.set(data, key: authDataKey)
         
-        // set instance vars
+        // auth
         self.authData = authData
-        updateUserWithModel(user)
         
         // update apimanager token
         APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
+        
+        // user
+        updateUserWithModel(user)
     }
     
     func updateUserWithModel<T: User>(user: T) {
