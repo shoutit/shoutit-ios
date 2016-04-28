@@ -75,17 +75,12 @@ final class PusherClient : NSObject {
         
     }
     
-    func reconnect() {
-        if keepDisconnected {
-            return
-        }
-        
-        pusherInstance?.disconnect()
-        
+    func setAuthorizationToken(token: String) {
+        authToken = token
         connect()
     }
     
-    func connect() {
+    func tryToConnect() {
         
         var userLoggedIn = false
         
@@ -122,12 +117,27 @@ final class PusherClient : NSObject {
         pusherInstance?.disconnect()
     }
     
-    func setAuthorizationToken(token: String) {
-        authToken = token
-        connect()
+    private func connect() {
+        
+        keepDisconnected = false
+        
+        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
+        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
+        
+        // Connect only when user is logged
+        pusherInstance?.connect()
     }
     
-    func subscribeToMainChannel() {
+    private func reconnect() {
+        if keepDisconnected {
+            return
+        }
+        
+        pusherInstance?.disconnect()
+        tryToConnect()
+    }
+    
+    private func subscribeToMainChannel() {
         mainChannelObservable().subscribeNext { (event) -> Void in
             print("RECEIVED: \(event.name)")
             print(event.data)
