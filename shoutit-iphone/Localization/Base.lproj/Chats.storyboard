@@ -260,17 +260,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Do-5b-qBM">
                                 <rect key="frame" x="0.0" y="316" width="320" height="208"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJX-ge-up6">
-                                        <rect key="frame" x="70" y="16" width="56" height="76"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="76" id="1dc-jU-xYP"/>
-                                            <constraint firstAttribute="width" constant="56" id="6tK-jg-NZz"/>
-                                        </constraints>
-                                        <state key="normal" image="att_photo"/>
-                                        <connections>
-                                            <action selector="photoAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="Utv-1x-Ij3"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzl-uf-cX2">
                                         <rect key="frame" x="70" y="110" width="56" height="76"/>
                                         <constraints>
@@ -328,6 +317,17 @@
                                             <constraint firstAttribute="height" constant="47" id="RMh-lA-7Yu"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJX-ge-up6">
+                                        <rect key="frame" x="70" y="16" width="56" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="76" id="1dc-jU-xYP"/>
+                                            <constraint firstAttribute="width" constant="56" id="6tK-jg-NZz"/>
+                                        </constraints>
+                                        <state key="normal" image="att_photo"/>
+                                        <connections>
+                                            <action selector="photoAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="Utv-1x-Ij3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

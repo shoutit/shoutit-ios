@@ -120,7 +120,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }        
     }
     
-    func setupDataSource() {
+    private func setupDataSource() {
         viewModel = ConversationViewModel(conversation: self.conversation, delegate: self)
         viewModel.fetchMessages()
         
@@ -153,7 +153,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
     }
     
-    func setupAttachmentManager() {
+    private func setupAttachmentManager() {
         attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
             self?.viewModel.sendMessageWithAttachment(attachment)
         }.addDisposableTo(disposeBag)
@@ -173,7 +173,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
     }
     
-    func registerSupplementaryViews() {
+    private func registerSupplementaryViews() {
         guard let tableView = tableView else {
             assertionFailure()
             return
@@ -201,7 +201,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
     }
     
-    func customizeTable() {
+    private func customizeTable() {
         guard let tableView = tableView else {
             assertionFailure()
             return
@@ -215,7 +215,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
     }
     
-    func customizeInputView() {
+    private func customizeInputView() {
         rightButton.setImage(UIImage.chatsSendButtonImage(), forState: .Normal)
         rightButton.setTitle("", forState: .Normal)
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
@@ -226,6 +226,12 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         typingIndicatorView?.interval = 3.0
         textView.placeholder = NSLocalizedString("Type a message", comment: "")
+        
+        // since autolayout swaps text bar, we swap it back to keep send button on the right
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            textInputbar.transform = CGAffineTransformMakeScale(-1, 1)
+            textInputbar.textView.transform = CGAffineTransformMakeScale(-1, 1)
+        }
     }
     
     override func prefersTabbarHidden() -> Bool {

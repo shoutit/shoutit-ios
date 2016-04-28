@@ -63,6 +63,7 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
     
     var camera : TWCCameraCapturer!
     
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,29 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().idleTimerDisabled = true
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserverForName(UIApplicationDidEnterBackgroundNotification,
+                                                                object: nil, queue: nil) {[weak self] (_) in
+            self?.endCall()
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().idleTimerDisabled = false
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    deinit {
+        UIApplication.sharedApplication().idleTimerDisabled = false
+    }
+    
+    // MARK: - Actions
+    
     @IBAction func startCalling() {
         
         state = .Calling
@@ -93,8 +117,6 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             return
         }
 
-        
-        
         Twilio.sharedInstance.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
             if let error = error {
                 self?.state = .CallFailed

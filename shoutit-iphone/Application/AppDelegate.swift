@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         PusherClient.sharedInstance.disconnect()
-        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

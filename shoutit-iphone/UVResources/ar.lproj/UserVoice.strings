@@ -155,10 +155,10 @@
 "Post an idea" = "نشر فكرة";
 
 /* (No Commment) */
-"Related articles" = "مواضيع متعلقة";
+"Related articles" = "مواضيع مشابهة";
 
 /* (No Commment) */
-"Related feedback" = "تقييمات متعلقة";
+"Related feedback" = "تقييمات مشابهة";
 
 /* (No Commment) */
 "Save draft" = "حفظ كمسودة";
@@ -179,7 +179,7 @@
 "Sign in" = "تسجيل الدخول";
 
 /* (No Commment) */
-"Skip" = "إلغاء";
+"Skip" = "تخطي";
 
 /* (No Commment) */
 "Sorry, there was an error in the application." = "عذراً, حدث خطأ في التطبيق";
@@ -239,7 +239,7 @@
 "enter value" = "أدخل قيمة";
 
 /* (No Commment) */
-"more" = "أكثر";
+"more" = "المزيد";
 
 /* (No Commment) */
 "select" = "إختيار";
