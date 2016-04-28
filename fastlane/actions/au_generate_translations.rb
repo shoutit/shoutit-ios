@@ -6,13 +6,7 @@ module Fastlane
         
         Helper.log.info "Generating localization for project #{params[:project_file_path]}"
         
-        command = "cd #{params[:export_dir]}"
-        Fastlane::Actions.sh command, log: true
-        
-        command = "git reset HEAD --hard"
-        Fastlane::Actions.sh command, log: true
-        
-        command = "cd .."
+        command = "cd #{params[:export_dir]} && git reset HEAD --hard && git pull origin master"
         Fastlane::Actions.sh command, log: true
         
         params[:languages].strip.split(" ").each do |lang|
@@ -23,7 +17,7 @@ module Fastlane
           
         end
 
-        command = "cd #{params[:export_dir]} && git add -A && git commit -am 'translations update' && git pull origin master && git push origin HEAD:master"
+        command = "cd #{params[:export_dir]} && git add -A && git commit -am 'translations update' && git push origin HEAD:master --force"
         Fastlane::Actions.sh command, log: true
         
         Helper.log.info "Localization files exported to #{params[:export_dir]}"
