@@ -1,46 +1,23 @@
 /* No comment provided by engineer. */
-" Details" = "التفاصيل";
-
-/* No comment provided by engineer. */
-" Location" = "الموقع";
-
-/* No comment provided by engineer. */
 "%%x Listened to you" = "%%x يستمع اليك";
 
 /* No comment provided by engineer. */
+"%@ Admins" = "%@ مدراء";
+
+/* No comment provided by engineer. */
 "%@ Listeners" = "%@ مستمعين";
 
 /* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
+"%@ Pages" = "%@ صفحات";
 
 /* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
+"%@ Shouts" = "%@ إعلانات";
 
 /* Search results count string */
-"%@ Shouts" = "%@ إعلان";
+"%d Shouts" = "%d إعلانات";
 
-/* No comment provided by engineer. */
-"%@ Pages" = "صفحات %@";
-
-/* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
-
-/* No comment provided by engineer. */
-"%@ Admins" = "مدراء %@";
-
-/* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
-
-/* No comment provided by engineer. */
-"%@ Listeners" = "%@ مستمعين";
-
-/* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
-
-/* No comment provided by engineer. */
-"%@ Shouts" = "إعلانات %@";
-
-/* Settings cell title */
+/* About screen title
+   Settings cell title */
 "About" = "حول";
 
 /* Settings cell title */
@@ -54,6 +31,12 @@
 
 /* No comment provided by engineer. */
 "Attachment" = "المرفقات";
+
+/* No comment provided by engineer. */
+"Auto" = "تلقائي";
+
+/* No comment provided by engineer. */
+"Automatically Location Updates" = "تحديث موقع تلقائي";
 
 /* Edit profile placeholder text */
 "Bio" = "المعلومات الشخصية";
@@ -100,7 +83,7 @@
 /* Shout detail tab bar item */
 "Chat" = "المحادثة";
 
-/* No comment provided by engineer. */
+/* Shout detail tab bar item */
 "Chats" = "المحادثات";
 
 /* Displayed on filter button when no location is chosen */
@@ -150,6 +133,9 @@
 
 /* No comment provided by engineer. */
 "Current Password" = "كلمة المرور الحالية";
+
+/* No comment provided by engineer. */
+"Current location:" = "الموقع الحالي:";
 
 /* Shout details */
 "Date" = "التاريخ";
@@ -255,9 +241,6 @@
 "Incoming Call" = "مكالمة واردة";
 
 /* No comment provided by engineer. */
-"Incoming Call from " = "مكالمة واردة من ";
-
-/* No comment provided by engineer. */
 "Interests" = "إهتمامات";
 
 /* No comment provided by engineer. */
@@ -277,13 +260,13 @@
 "Legal" = "قانوني";
 
 /* No comment provided by engineer. */
-"Listen" = "استماع";
+"Listen" = "إستماع";
 
 /* No comment provided by engineer. */
 "Listeners" = "مستمعين";
 
 /* No comment provided by engineer. */
-"Listening" = "استماعات";
+"Listening" = "إستماعات";
 
 /* No comment provided by engineer. */
 "Loading Messages..." = "تحميل الرسائل...";
@@ -305,10 +288,10 @@
 "Mobile" = "رقم الموبايل";
 
 /* Shout detail tab bar item */
-"More" = "أكثر";
+"More" = "المزيد";
 
-/* Shout detail */
-"More shouts from %@" = "إعلانات أكثر من %@";
+/* No comment provided by engineer. */
+"More shouts from %@" = "إعلانات بواسطة %@";
 
 /* No comment provided by engineer. */
 "My Pages" = "صفحاتي";
@@ -347,7 +330,7 @@
 "No images are available" = "لا يوجد صور للعرض";
 
 /* No comment provided by engineer. */
-"No more messages to show" = "لا يوجد رسائل اكثر للعرض";
+"No more messages to show" = "لا يوجد رسائل أخرى للعرض";
 
 /* No comment provided by engineer. */
 "No notifications to show" = "لا يوجد إشعارات للعرض";
@@ -368,7 +351,7 @@
 "No users were found" = "لم يتم العثور على مستخدمين";
 
 /* Settings cell title */
-"Notification" = "الإشعارات";
+"Notification" = "إشعار";
 
 /* No comment provided by engineer. */
 "Notification Settings" = "ضبط الإشعارات";
@@ -444,13 +427,13 @@
 "Recent searches" = "تم البحث عنه";
 
 /* No comment provided by engineer. */
-"Related Interests" = "إهتمامات متعلقة";
+"Related Interests" = "إهتمامات مشابهة";
 
 /* No comment provided by engineer. */
-"Related Shouts" = "إعلانات متعلقة";
+"Related Shouts" = "إعلانات مشابهة";
 
 /* Shout detail */
-"Related shouts" = "إعلانات متعلقة";
+"Related shouts" = "إعلانات مشابهة";
 
 /* No comment provided by engineer. */
 "Remove" = "حذف";
@@ -471,10 +454,7 @@
 "Results" = "النتائج";
 
 /* Search results for search phrase section header */
-"Results for '%@'" = "نتائج '%@'";
-
-/* Search results for category section header */
-"Results for %@" = "نتائج %@";
+"Results for '%@'" = "النتائج ل '%@'";
 
 /* Search text field placeholder */
 "Search Shoutit" = "ابحث في شاوت ات";
@@ -483,16 +463,7 @@
 "Search Users" = "البحث عن مستخدمين";
 
 /* Search text field placeholder */
-"Search in %@ shouts" = "ابحث في %@";
-
-/* Search text field placeholder */
-"Search in %@ shouts" = "بحث في إعلانات %@";
-
-/* Search text field placeholder */
-"Search in %@ shouts" = "بحث في إعلانات %@";
-
-/* Search text field placeholder */
-"Search in %@ shouts" = "بحث في %@";
+"Search in %@ shouts" = "إبحث في إعلانات %@";
 
 /* No comment provided by engineer. */
 "See All Shouts" = "إظهار كافة الإعلانات";
@@ -504,7 +475,7 @@
 "Send" = "إرسال";
 
 /* No comment provided by engineer. */
-"Send Attachment" = "إرسال مرفقات";
+"Send Attachment" = "إرسال";
 
 /* No comment provided by engineer. */
 "Sending message" = "إرسال";
@@ -530,7 +501,7 @@
 /* No comment provided by engineer. */
 "Shouts" = "الإعلانات";
 
-/* Browse section header */
+/* No comment provided by engineer. */
 "Shouts in %@" = "الإعلانات في %@";
 
 /* Signup view. Should be the same as whole text's part */
@@ -543,7 +514,7 @@
 "Sort By" = "ترتيب حسب";
 
 /* No comment provided by engineer. */
-"Stop Listening" = "الغاء الإستماع";
+"Stop Listening" = "إلغاء الإستماع";
 
 /* No comment provided by engineer. */
 "Suggested Pages" = "صفحات مقترحة";
@@ -560,6 +531,12 @@
 
 /* No comment provided by engineer. */
 "The maximum length of the video is 60 seconds. Choose a shorter movie." = "الحد الأعلى للفيديو 60 ثانية, إختر فيديو اقصر";
+
+/* No comment provided by engineer. */
+"Turn Off" = "إطفاء";
+
+/* No comment provided by engineer. */
+"Turn On" = "تشغيل";
 
 /* Shout type button title label */
 "Type" = "نوع";
@@ -589,10 +566,10 @@
 "Video is too long" = "مدة الفيديو طويلة";
 
 /* No comment provided by engineer. */
-"View Profile" = "رؤية الصفحة الشخصية";
+"View Profile" = "عرض الصفحة الشخصية";
 
-/* Shout Detail */
-"Visit %@'s profile" = "زيارة صفحة %@";
+/* No comment provided by engineer. */
+"Visit %@'s profile" = "زيارة صفحة %@ الشخصية";
 
 /* Edit profile placeholder text */
 "Website" = "الموقع الإلكتروني";
@@ -610,16 +587,16 @@
 "You can only start a chat with your listeners" = "يمكنك بدء المحادثة فقط مع مستمعينك";
 
 /* No comment provided by engineer. */
-"You can start new conversation in shout details or user profile." = "يمكنك بدء محادثة في تفاصيل الإعلان او صفحة المستخدم";
+"You can start new conversation in shout details or user profile." = "يمكنك بدء محادثة في صفحة الإعلان او صفحة المستخدم";
 
 /* No comment provided by engineer. */
 "You can't chat with yourself" = "لايمكن اجراء محادثة مع نفسك";
 
 /* No comment provided by engineer. */
-"You have successfully started listening to %@" = "لقد بدأت بالإستماع إلى إعلانات %@";
+"You have successfully started listening to %@" = "لقد قمت بالإستماع إلى %@ بنجاح";
 
 /* No comment provided by engineer. */
-"You have successfully stopped listening to %@" = "لقد توقفت عن الإستماع إلى إعلانات %@";
+"You have successfully stopped listening to %@" = "لقد توقفت عن الإستماع إلى %@ بنجاح";
 
 /* No comment provided by engineer. */
 "You must be logged in to perform this action" = "يجب أن تكون مسجل لتنفيذ هذا الإجراء";
@@ -631,26 +608,20 @@
 "Your account isn't verified yet" = "حسابك غير مفعل حتى الآن";
 
 /* No comment provided by engineer. */
-"Your current location:" = "موقعك الحالي:";
+"Your location will be updated automatically" = "سيتم تحديد موقعك تلقائيا";
 
 /* No comment provided by engineer. */
-"Your offer \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك \"@%\" على شاوت ات بعد قليل.";
+"Your offer \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل.";
 
 /* No comment provided by engineer. */
 "Your offer will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
 
 /* No comment provided by engineer. */
-"Your request \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك \"@%\" على شاوت ات بعد قليل.";
+"Your request \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل.";
 
 /* No comment provided by engineer. */
 "Your request will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
 
 /* Displayed on shout detail screen if user's firstname would be null */
 "shouter" = "معلن";
-
-/* No comment provided by engineer. */
-"K" = "ألف";
-
-/* No comment provided by engineer. */
-"M" = "مليون";
 

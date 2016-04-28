@@ -269,7 +269,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woj-57-1w2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="225" width="265.5" height="34"/>
+                                    <rect key="frame" x="29" y="225" width="266" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="lhO-h5-wHe"/>
                                     </constraints>
@@ -277,7 +277,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onr-sH-VzS" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="314.5" y="205" width="265.5" height="56"/>
+                                    <rect key="frame" x="315" y="205" width="265" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="cw2-71-dTh"/>
                                     </constraints>

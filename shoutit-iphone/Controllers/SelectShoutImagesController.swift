@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class SelectShoutImagesController: UICollectionViewController, MediaPickerControllerDelegate {
+final class SelectShoutImagesController: UICollectionViewController {
     
     private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
     private let numberOfItems = 5
@@ -32,6 +32,10 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareLayout()
+    }
+    
+    private func prepareLayout() {
         
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
@@ -49,7 +53,10 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         let indexPath = NSIndexPath(forItem: numberOfItems - 1, inSection: 0)
         collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
     }
+}
 
+extension SelectShoutImagesController {
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -70,14 +77,9 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         
         return cell
     }
-    
-    func selectedAttachments() -> [MediaAttachment] {
-        return Array(self.attachments.values) 
-    }
-    
-    func indexActive(indexPath: NSIndexPath) -> Bool {
-        return indexPath.item <= selectedAttachments().count
-    }
+}
+
+extension SelectShoutImagesController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -95,6 +97,9 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         
         mediaPicker.showMediaPickerController()
     }
+}
+
+extension SelectShoutImagesController: MediaPickerControllerDelegate {
     
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         if checkIfAttachmentCanBeAdded(attachment) == false {
@@ -122,6 +127,17 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         }
         
         toManyImagesAlert()
+    }
+}
+
+private extension SelectShoutImagesController {
+    
+    func selectedAttachments() -> [MediaAttachment] {
+        return Array(self.attachments.values)
+    }
+    
+    func indexActive(indexPath: NSIndexPath) -> Bool {
+        return indexPath.item <= selectedAttachments().count
     }
     
     func startUploadingAttachment(attachment: MediaAttachment) {
@@ -214,9 +230,5 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         
         return nil
     }
-}
-
-private extension SelectShoutImagesController {
-    
 }
 
