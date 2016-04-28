@@ -260,15 +260,6 @@
                                     <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s4-KE-dNg">
-                                    <rect key="frame" x="0.0" y="51" width="600" height="80"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="KO5-GA-C0k"/>
-                                    </constraints>
-                                    <connections>
-                                        <segue destination="Pac-9I-fcr" kind="embed" id="Ebq-xB-Etc"/>
-                                    </connections>
-                                </containerView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZp-Em-qUh" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="29" y="161" width="542" height="34"/>
                                     <constraints>
@@ -278,7 +269,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woj-57-1w2" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="225" width="266" height="34"/>
+                                    <rect key="frame" x="29" y="225" width="265.5" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="lhO-h5-wHe"/>
                                     </constraints>
@@ -286,7 +277,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onr-sH-VzS" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="315" y="205" width="265" height="56"/>
+                                    <rect key="frame" x="314.5" y="205" width="265.5" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="cw2-71-dTh"/>
                                     </constraints>
@@ -308,15 +299,24 @@
                                         <action selector="selectCurrency:" destination="vi7-2B-9jh" eventType="touchUpInside" id="f4V-CU-J2f"/>
                                     </connections>
                                 </button>
+                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s4-KE-dNg">
+                                    <rect key="frame" x="0.0" y="51" width="600" height="80"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="KO5-GA-C0k"/>
+                                    </constraints>
+                                    <connections>
+                                        <segue destination="Pac-9I-fcr" kind="embed" id="Ebq-xB-Etc"/>
+                                    </connections>
+                                </containerView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="kE2-fo-MaD" firstAttribute="centerX" secondItem="Rdk-TL-ayt" secondAttribute="centerX" id="8MB-CC-ctp"/>
-                                <constraint firstAttribute="trailing" secondItem="2s4-KE-dNg" secondAttribute="trailing" id="Bgv-H5-rC6"/>
+                                <constraint firstAttribute="right" secondItem="2s4-KE-dNg" secondAttribute="right" id="Bgv-H5-rC6"/>
                                 <constraint firstItem="onr-sH-VzS" firstAttribute="width" secondItem="Woj-57-1w2" secondAttribute="width" id="E4W-Dh-iv3"/>
                                 <constraint firstAttribute="trailing" secondItem="WZp-Em-qUh" secondAttribute="trailing" constant="29" id="GXA-La-VyT"/>
                                 <constraint firstItem="2s4-KE-dNg" firstAttribute="top" secondItem="kE2-fo-MaD" secondAttribute="bottom" constant="8" id="QbD-1R-XmE"/>
-                                <constraint firstItem="2s4-KE-dNg" firstAttribute="leading" secondItem="Rdk-TL-ayt" secondAttribute="leading" id="TWi-sr-mU6"/>
+                                <constraint firstItem="2s4-KE-dNg" firstAttribute="left" secondItem="Rdk-TL-ayt" secondAttribute="left" id="TWi-sr-mU6"/>
                                 <constraint firstItem="WZp-Em-qUh" firstAttribute="leading" secondItem="Rdk-TL-ayt" secondAttribute="leading" constant="29" id="VB6-ha-kkK"/>
                                 <constraint firstItem="WZp-Em-qUh" firstAttribute="top" secondItem="2s4-KE-dNg" secondAttribute="bottom" constant="30" id="WDW-Pp-1oK"/>
                                 <constraint firstItem="kE2-fo-MaD" firstAttribute="top" secondItem="Rdk-TL-ayt" secondAttribute="top" constant="22" id="beU-bc-0yk"/>

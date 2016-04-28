@@ -33,7 +33,7 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
         }
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -43,6 +43,11 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
             layout.scrollDirection = .Horizontal
             collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        let indexPath = NSIndexPath(forItem: numberOfItems - 1, inSection: 0)
+        collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -209,5 +214,9 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         
         return nil
     }
+}
+
+private extension SelectShoutImagesController {
+    
 }
 
