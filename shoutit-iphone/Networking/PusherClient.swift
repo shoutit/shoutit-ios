@@ -39,6 +39,8 @@ final class PusherClient : NSObject {
     
     private var reachability: Reachability!
     
+    private var subscribedChannels : [String] = []
+    
     override init() {
         super.init()
         
@@ -98,12 +100,13 @@ final class PusherClient : NSObject {
             ch.unsubscribe()
         }
         
-        keepDisconnected = true
+        for channelName in self.subscribedChannels {
+            if let ch = self.pusherInstance?.channelNamed(channelName) {
+                ch.unsubscribe()
+            }
+        }
         
         pusherInstance?.disconnect()
-        
-//        pusherInstance = nil
-
     }
     
     func setAuthorizationToken(token: String) {
@@ -165,9 +168,11 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
+        debugPrint("didSubscribeToChannel: \(channel.name)")
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
+        debugPrint("didUnsubscribeFromChannel: \(channel.name)")
     }
     
     // Error handling
@@ -216,6 +221,8 @@ extension PusherClient {
                 guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
                     return AnonymousDisposable { }
                 }
+                
+                self.subscribedChannels.append(channelName)
                 
                 channel = ch
             }
@@ -268,6 +275,8 @@ extension PusherClient {
                     assertionFailure()
                     return AnonymousDisposable{}
                 }
+                
+                self.subscribedChannels.append(conversation.channelName())
                 
                 channel = ch
             }
