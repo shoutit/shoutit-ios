@@ -87,12 +87,25 @@ final class PusherClient : NSObject {
     
     func connect() {
         
+        var userLoggedIn = false
+        
+        if case .Logged(_)? = Account.sharedInstance.userModel {
+            userLoggedIn = true
+        }
+        
+        if !userLoggedIn {
+            disconnect()
+        }
+        
         keepDisconnected = false
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
-        pusherInstance?.connect()
+        // Connect only when user is logged
+        if userLoggedIn {
+            pusherInstance?.connect()
+        }
     }
     
     func disconnect() {
@@ -111,10 +124,6 @@ final class PusherClient : NSObject {
     
     func setAuthorizationToken(token: String) {
         authToken = token
-        tryToConnect()
-    }
-    
-    func tryToConnect() {
         connect()
     }
     
@@ -158,7 +167,6 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
         debugPrint("PUSHER CONNECTED")
         subscribeToMainChannel()
-        
     }
     
     func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
