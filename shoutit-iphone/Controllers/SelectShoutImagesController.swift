@@ -12,6 +12,7 @@ import RxSwift
 final class SelectShoutImagesController: UICollectionViewController, MediaPickerControllerDelegate {
     
     private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
+    private let numberOfItems = 5
     
     var selectedIdx : Int?
     
@@ -35,6 +36,13 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
             self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
         }
+        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: 74, height: 74)
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.scrollDirection = .Horizontal
+            collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -42,31 +50,20 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return numberOfItems
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
-        
-        let modifiedIndexPath = indexPathForIndexPath(indexPath)
-        
-        let attachment = attachments[modifiedIndexPath.item]
+        let attachment = attachments[indexPath.item]
         cell.fillWith(attachment)
         
         let task = self.mediaUploader.taskForAttachment(attachment)
         cell.fillWith(task)
         
-        cell.setActive(indexActive(modifiedIndexPath))
+        cell.setActive(indexActive(indexPath))
         
         return cell
-    }
-    
-    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-            return NSIndexPath(forItem: 5 - indexPath.item, inSection: indexPath.section)
-        } else {
-            return indexPath
-        }
     }
     
     func selectedAttachments() -> [MediaAttachment] {
@@ -74,21 +71,17 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
     }
     
     func indexActive(indexPath: NSIndexPath) -> Bool {
-        let modifiedIndexPath = indexPathForIndexPath(indexPath)
-        
-        return modifiedIndexPath.item <= selectedAttachments().count
+        return indexPath.item <= selectedAttachments().count
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let modifiedIndexPath = indexPathForIndexPath(indexPath)
-        
-        if !indexActive(modifiedIndexPath) {
+        if !indexActive(indexPath) {
             return
         }
         
-        if attachments[modifiedIndexPath.item] != nil {
-            selectedIdx = modifiedIndexPath.item
+        if attachments[indexPath.item] != nil {
+            selectedIdx = indexPath.item
             showEditAlert()
             return
         }
@@ -208,7 +201,7 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
     }
     
     func firstEmptyIndex() -> Int? {
-        for idx in 0...5 {
+        for idx in 0..<numberOfItems {
             if attachments[idx] == nil {
                 return idx
             }
@@ -216,6 +209,5 @@ final class SelectShoutImagesController: UICollectionViewController, MediaPicker
         
         return nil
     }
-    
 }
 
