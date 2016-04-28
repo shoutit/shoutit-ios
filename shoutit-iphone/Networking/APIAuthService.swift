@@ -36,7 +36,6 @@ final class APIAuthService {
                     let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"])
                     let authData: AuthData = try APIGenericService.parseJson(json)
                     let user: T = try APIGenericService.parseJson(userJson)
-                    Account.sharedInstance.updateUserWithModel(user)
                     observer.onNext((authData, user))
                     observer.onCompleted()
                 } catch let error {

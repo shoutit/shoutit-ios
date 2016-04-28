@@ -81,7 +81,7 @@
 "Change password" = "تغيير كلمة المرور";
 
 /* Shout detail tab bar item */
-"Chat" = "المحادثة";
+"Chat" = "محادثة";
 
 /* Shout detail tab bar item */
 "Chats" = "المحادثات";
@@ -250,6 +250,9 @@
    User profile date joined cell */
 "Joined" = "مسجل من";
 
+/* No comment provided by engineer. */
+"K" = "ألف";
+
 /* Edit profile placeholder text */
 "Last name" = "الإسم الأخير";
 
@@ -280,6 +283,9 @@
 
 /* Settings cell title */
 "Log out" = "تسجيل الخروج";
+
+/* No comment provided by engineer. */
+"M" = "مليو";
 
 /* No comment provided by engineer. */
 "Mark all as read" = "تحديد الكل كمقروء";
@@ -394,6 +400,9 @@
 
 /* No comment provided by engineer. */
 "Please provide a report message" = "يرجى تقديم رسالة تبليغ";
+
+/* Create Shout: choose filter: Action sheet title */
+"Please select %@" = "أختر %@";
 
 /* No comment provided by engineer. */
 "Please select Category" = "يرجى إختيار تصنيف";
