@@ -350,7 +350,8 @@ extension CreateShoutViewModel {
         
         let filter = filters[indexPath.row - 2]
         
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select \(filter.name ?? "")", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let title = String.localizedStringWithFormat(NSLocalizedString("Please select %@", comment: "Create Shout: choose filter: Action sheet title"), filter.name ?? "")
+        let actionSheetController = UIAlertController(title: title, message: "", preferredStyle: .ActionSheet)
         
         filter.values?.each { (value) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(value.name)", style: .Default, handler: { (alertAction) in
