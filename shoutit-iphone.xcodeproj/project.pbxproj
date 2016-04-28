@@ -346,6 +346,7 @@
 		B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2702C331CCFA63100236B5A /* IntroContentViewController.swift */; };
 		B2702C361CD22AB900236B5A /* LanguageDirectionRespectiveFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2702C351CD22AB900236B5A /* LanguageDirectionRespectiveFlowLayout.swift */; };
 		B2702C391CD252FC00236B5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2702C3B1CD252FC00236B5A /* Localizable.strings */; };
+		B2702C3E1CD28AF200236B5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2702C401CD28AF200236B5A /* Localizable.strings */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
 		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
@@ -955,6 +956,7 @@
 		B2702C331CCFA63100236B5A /* IntroContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroContentViewController.swift; path = Controllers/IntroContentViewController.swift; sourceTree = "<group>"; };
 		B2702C351CD22AB900236B5A /* LanguageDirectionRespectiveFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguageDirectionRespectiveFlowLayout.swift; path = Layout/LanguageDirectionRespectiveFlowLayout.swift; sourceTree = "<group>"; };
 		B2702C3A1CD252FC00236B5A /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2702C3F1CD28AF200236B5A /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
 		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
@@ -1788,6 +1790,7 @@
 		6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B2702C401CD28AF200236B5A /* Localizable.strings */,
 				B25371C71CC7EA8900D63AEC /* InfoPlist.strings */,
 				6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */,
 				6027CF561BE74EAF00124C28 /* Info.plist */,
@@ -3543,6 +3546,7 @@
 				B2D4413B1CB8169B009782AF /* Location.storyboard in Resources */,
 				B25371C51CC7EA8900D63AEC /* InfoPlist.strings in Resources */,
 				B2D441181CB81660009782AF /* Home.storyboard in Resources */,
+				B2702C3E1CD28AF200236B5A /* Localizable.strings in Resources */,
 				B2D4410B1CB81632009782AF /* Root.storyboard in Resources */,
 				B2D441271CB8167D009782AF /* InviteFriends.storyboard in Resources */,
 				AE7AC1651CB3FBB400C9DEB6 /* Menu.storyboard in Resources */,
@@ -4245,6 +4249,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				B2702C3A1CD252FC00236B5A /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B2702C401CD28AF200236B5A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2702C3F1CD28AF200236B5A /* ar */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -216,14 +216,14 @@
                                         </connections>
                                     </button>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVV-YV-hYs">
-                                        <rect key="frame" x="217" y="109" width="126" height="44"/>
+                                        <rect key="frame" x="214" y="109" width="132" height="44"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="phone_disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="H6v-SN-dMK">
-                                                <rect key="frame" x="10" y="10" width="26" height="26"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="H6v-SN-dMK">
+                                                <rect key="frame" x="10" y="16" width="32" height="12"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I74-IB-ecl">
-                                                <rect key="frame" x="46" y="10" width="70" height="23"/>
+                                                <rect key="frame" x="52" y="10" width="70" height="23"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -239,16 +239,16 @@
                                         </constraints>
                                     </view>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGN-6V-3uC">
-                                        <rect key="frame" x="218" y="57" width="125" height="44"/>
+                                        <rect key="frame" x="219" y="57" width="123" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8C-qw-JQt">
-                                                <rect key="frame" x="46" y="10" width="69" height="23"/>
+                                                <rect key="frame" x="44" y="10" width="69" height="23"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="yTR-V7-gv1">
-                                                <rect key="frame" x="10" y="9" width="26" height="26"/>
+                                                <rect key="frame" x="10" y="10" width="24" height="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </imageView>
                                         </subviews>
@@ -314,7 +314,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="phone" width="26" height="26"/>
-        <image name="phone_disconnected" width="26" height="26"/>
+        <image name="phone" width="24" height="24"/>
+        <image name="phone_disconnected" width="32" height="12"/>
     </resources>
 </document>
