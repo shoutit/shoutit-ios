@@ -84,6 +84,13 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         
     }
     
+    func disconnect() {
+        self.client?.unlisten()
+        self.client = nil
+        self.accessManager = nil
+        self.connecting = false
+    }
+    
     func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
         
         APIChatsService.twilioVideoIdentity(profile.username)

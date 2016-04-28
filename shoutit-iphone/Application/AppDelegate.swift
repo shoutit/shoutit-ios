@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         if Account.sharedInstance.isUserLoggedIn {
-            PusherClient.sharedInstance.tryToConnect()
+            PusherClient.sharedInstance.connect()
         }
         
         Account.sharedInstance.fetchUserProfile()

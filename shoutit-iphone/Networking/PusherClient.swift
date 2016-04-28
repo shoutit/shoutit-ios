@@ -39,6 +39,8 @@ final class PusherClient : NSObject {
     
     private var reachability: Reachability!
     
+    private var subscribedChannels : [String] = []
+    
     override init() {
         super.init()
         
@@ -85,12 +87,25 @@ final class PusherClient : NSObject {
     
     func connect() {
         
+        var userLoggedIn = false
+        
+        if case .Logged(_)? = Account.sharedInstance.userModel {
+            userLoggedIn = true
+        }
+        
+        if !userLoggedIn {
+            disconnect()
+        }
+        
         keepDisconnected = false
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
-        pusherInstance?.connect()
+        // Connect only when user is logged
+        if userLoggedIn {
+            pusherInstance?.connect()
+        }
     }
     
     func disconnect() {
@@ -98,20 +113,17 @@ final class PusherClient : NSObject {
             ch.unsubscribe()
         }
         
-        keepDisconnected = true
+        for channelName in self.subscribedChannels {
+            if let ch = self.pusherInstance?.channelNamed(channelName) {
+                ch.unsubscribe()
+            }
+        }
         
         pusherInstance?.disconnect()
-        
-//        pusherInstance = nil
-
     }
     
     func setAuthorizationToken(token: String) {
         authToken = token
-        tryToConnect()
-    }
-    
-    func tryToConnect() {
         connect()
     }
     
@@ -155,7 +167,6 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
         debugPrint("PUSHER CONNECTED")
         subscribeToMainChannel()
-        
     }
     
     func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
@@ -165,9 +176,11 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
+        debugPrint("didSubscribeToChannel: \(channel.name)")
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
+        debugPrint("didUnsubscribeFromChannel: \(channel.name)")
     }
     
     // Error handling
@@ -216,6 +229,8 @@ extension PusherClient {
                 guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
                     return AnonymousDisposable { }
                 }
+                
+                self.subscribedChannels.append(channelName)
                 
                 channel = ch
             }
@@ -269,6 +284,8 @@ extension PusherClient {
                     return AnonymousDisposable{}
                 }
                 
+                self.subscribedChannels.append(conversation.channelName())
+                
                 channel = ch
             }
             
@@ -286,6 +303,10 @@ extension PusherClient {
             })
             
             channel.bindToEventNamed(PusherEventType.LeftChat.rawValue, handleWithBlock: { (event) -> Void in
+                observer.onNext(event)
+            })
+            
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
                 observer.onNext(event)
             })
             

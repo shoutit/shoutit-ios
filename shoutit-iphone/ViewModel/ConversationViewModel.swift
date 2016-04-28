@@ -83,12 +83,11 @@ final class ConversationViewModel {
                     self.typingUsers.onNext(user)
                 }
             }
-        }.addDisposableTo(socketsBag!)
-        
-        // handle messages
-        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation.value).subscribeNext {[weak self] (msg) -> Void in
-            if let msg : Message = msg {
-                self?.appendMessages([msg])
+            
+            if event.eventType() == .NewMessage {
+                if let msg : Message = event.object() {
+                    self.appendMessages([msg])
+                }
             }
         }.addDisposableTo(socketsBag!)
     }

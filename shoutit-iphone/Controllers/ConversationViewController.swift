@@ -45,18 +45,34 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
+        
+        
+    }
+    
+    func subscribeSockets() {
+        self.viewModel.createSocketObservable()
+    }
+    
+    func unsubscribeSockets() {
+        self.viewModel.unsubscribeSockets()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         viewModel.createSocketObservable()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(subscribeSockets), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(unsubscribeSockets), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         viewModel.unsubscribeSockets()
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
     
     override func viewWillLayoutSubviews() {

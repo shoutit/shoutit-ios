@@ -166,6 +166,8 @@ final class Account {
         self.userModel = nil
         self.authData = nil
         APIManager.eraseAuthToken()
+        PusherClient.sharedInstance.disconnect()
+        Twilio.sharedInstance.disconnect()
     }
     
     func fetchUserProfile() {
