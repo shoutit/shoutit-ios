@@ -7,8 +7,8 @@
 /* Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT"; */
 "IHn-L1-0lT.text" = "يتصل";
 
-/* Class = "UIButton"; normalTitle = "Discard"; ObjectID = "Imm-ov-Sdy"; */
-"Imm-ov-Sdy.normalTitle" = "رفض";
+/* Class = "UILabel"; normalTitle = "Discard"; ObjectID = "I74-IB-ecl"; */
+"I74-IB-ecl.text" = "رفض";
 
 /* Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0"; */
 "Otg-mn-IP0.text" = "مكالمة واردة من XX";
@@ -16,6 +16,6 @@
 /* Class = "UILabel"; text = "Calling"; ObjectID = "wAE-6B-zom"; */
 "wAE-6B-zom.text" = "يتصل";
 
-/* Class = "UIButton"; normalTitle = "Answer"; ObjectID = "y6h-PZ-MHd"; */
-"y6h-PZ-MHd.normalTitle" = "اجابة";
+/* Class = "UILabel"; text = "Answer"; ObjectID = "Y8C-qw-JQt"; */
+"Y8C-qw-JQt.text" = "اجابة";
 
