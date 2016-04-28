@@ -24,8 +24,12 @@ final class APIChatsService {
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
     // MARK: - Traditional
 
-    static func requestConversations() -> Observable<[Conversation]> {
-        return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    static func requestConversations() -> Observable<PagedResponse<Conversation>> {
+        return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: nil)
+    }
+    
+    static func requestMoreConversations(nextPageParams: String?) -> Observable<PagedResponse<Conversation>> {
+        return APIGenericService.requestWithMethod(.GET, url: conversationsURL + (nextPageParams ?? ""), params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
     static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<PagedResponse<Message>> {
