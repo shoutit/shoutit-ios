@@ -1,21 +1,17 @@
-
-/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "5LU-gw-tJA"; */
-"5LU-gw-tJA.text" = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text";
-
 /* Class = "UINavigationItem"; title = "Home"; ObjectID = "9fl-Jy-3uV"; */
-"9fl-Jy-3uV.title" = "Home";
+"9fl-Jy-3uV.title" = "الرئيسية";
 
 /* Class = "UILabel"; text = "$44 USD"; ObjectID = "9jz-Ro-msM"; */
 "9jz-Ro-msM.text" = "$44 USD";
 
 /* Class = "UILabel"; text = "MORE"; ObjectID = "Gpo-QI-XW9"; */
-"Gpo-QI-XW9.text" = "MORE";
+"Gpo-QI-XW9.text" = "المزيد";
 
 /* Class = "UILabel"; text = "See All"; ObjectID = "PFK-9S-LV6"; */
-"PFK-9S-LV6.text" = "See All";
+"PFK-9S-LV6.text" = "إظهار الكل";
 
 /* Class = "UILabel"; text = "My Feed"; ObjectID = "Pcc-xA-8Xa"; */
-"Pcc-xA-8Xa.text" = "My Feed";
+"Pcc-xA-8Xa.text" = "مستجدات";
 
 /* Class = "UILabel"; text = "John Smith"; ObjectID = "RCG-32-Miu"; */
 "RCG-32-Miu.text" = "John Smith";
@@ -27,19 +23,20 @@
 "RRw-th-eLm.text" = "John Smith";
 
 /* Class = "UILabel"; text = "DISCOVER"; ObjectID = "XEq-OI-7Sa"; */
-"XEq-OI-7Sa.text" = "DISCOVER";
+"XEq-OI-7Sa.text" = "إكتشف";
 
 /* Class = "UILabel"; text = "2 hours ago"; ObjectID = "YcE-Dk-RY6"; */
 "YcE-Dk-RY6.text" = "2 hours ago";
 
 /* Class = "UILabel"; text = "MY FEED"; ObjectID = "c7k-qF-xRA"; */
-"c7k-qF-xRA.text" = "MY FEED";
+"c7k-qF-xRA.text" = "مستجدات";
 
 /* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "fIE-Gj-UPD"; */
 "fIE-Gj-UPD.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
 
 /* Class = "UILabel"; text = "Offer"; ObjectID = "g4b-PM-Eek"; */
-"g4b-PM-Eek.text" = "Offer";
+"g4b-PM-Eek.text" = "عرض";
 
 /* Class = "UILabel"; text = "$44 USD"; ObjectID = "xzi-n2-YF9"; */
 "xzi-n2-YF9.text" = "$44 USD";
+

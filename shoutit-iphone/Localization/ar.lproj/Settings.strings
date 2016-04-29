@@ -1,12 +1,12 @@
-
 /* Class = "UILabel"; text = "Setting"; ObjectID = "aTs-Bq-b02"; */
-"aTs-Bq-b02.text" = "Setting";
+"aTs-Bq-b02.text" = "الإعدادات";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "f48-fJ-cyN"; */
-"f48-fJ-cyN.placeholder" = "Email";
+"f48-fJ-cyN.placeholder" = "البريد الإلكتروني";
 
 /* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "jwp-Rd-nto"; */
-"jwp-Rd-nto.normalTitle" = "Reset password";
+"jwp-Rd-nto.normalTitle" = "إعادة ضبط كلمة المرور";
 
 /* Class = "UITableViewController"; title = "Settings"; ObjectID = "od8-aL-3Ox"; */
-"od8-aL-3Ox.title" = "Settings";
+"od8-aL-3Ox.title" = "الإعدادات";
+

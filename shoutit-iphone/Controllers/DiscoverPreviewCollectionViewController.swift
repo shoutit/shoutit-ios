@@ -23,8 +23,22 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let collection = self.collectionView {
+            
+            if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.itemSize = CGSize(width: 50, height: 50)
+                layout.minimumInteritemSpacing = 10
+                layout.minimumLineSpacing = 10
+            }
+            
+            if #available(iOS 9.0, *) {
+                collectionView?.semanticContentAttribute = .ForceLeftToRight
+            }
+            
+            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+            }
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
@@ -36,10 +50,8 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
                         return
                     }
                     
-                    if let modifiedIndexPath = self?.indexPathForIndexPath(indexPath) {
-                        let element = self?.items[modifiedIndexPath.item]
+                    let element = self?.items[indexPath.item]
                         self?.selectedModel.value = element
-                    }
                 }
                 
             }).addDisposableTo(disposeBag)
@@ -48,12 +60,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
                 self?.items = items
                 self?.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
-            
-            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-                collection.transform = CGAffineTransformMakeScale(-1, 1)
-            }
         }
-
     }
     
     // MARK: UICollectionViewDataSource
@@ -62,39 +69,17 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         
         if indexPath.item == indexForSeeAll() {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
-            
             cell.transform = collectionView.transform
-            
             return cell
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
-    
-        let modifiedIndexPath = indexPathForIndexPath(indexPath)
-        
-        let element = items[modifiedIndexPath.item]
-        
-        cell.bindWith(DiscoverItem: element)
-        
         cell.transform = collectionView.transform
+        
+        let element = items[indexPath.item]
+        cell.bindWith(DiscoverItem: element)
     
         return cell
-    }
-    
-    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-            return NSIndexPath(forItem: self.items.count - indexPath.item, inSection: indexPath.section)
-        } else {
-            return indexPath
-        }
-    }
-    
-    func indexForSeeAll() -> NSInteger {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-            return 0
-        } else {
-            return self.items.count
-        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,5 +89,11 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+}
 
+private extension DiscoverPreviewCollectionViewController {
+    
+    func indexForSeeAll() -> NSInteger {
+        return self.items.count
+    }
 }

@@ -1,6 +1,6 @@
-
 /* Class = "UILabel"; text = "Name"; ObjectID = "KZ7-CZ-FMm"; */
-"KZ7-CZ-FMm.text" = "Name";
+"KZ7-CZ-FMm.text" = "الإسم ";
 
 /* Class = "UILabel"; text = "0 Listeners"; ObjectID = "Ny6-0g-pQL"; */
-"Ny6-0g-pQL.text" = "0 Listeners";
+"Ny6-0g-pQL.text" = "0 مستمعون";
+

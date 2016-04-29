@@ -1,21 +1,14 @@
-
-/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "1zO-PU-axo"; */
-"1zO-PU-axo.text" = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text";
-
 /* Class = "UILabel"; text = "John Smith"; ObjectID = "C39-Cu-yZU"; */
 "C39-Cu-yZU.text" = "John Smith";
 
-/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "DFH-Ro-KZo"; */
-"DFH-Ro-KZo.text" = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text";
-
 /* Class = "UILabel"; text = "Offer"; ObjectID = "HG0-FE-ywc"; */
-"HG0-FE-ywc.text" = "Offer";
+"HG0-FE-ywc.text" = "عرض";
 
 /* Class = "UINavigationItem"; title = "Discover"; ObjectID = "UUU-eQ-eO1"; */
-"UUU-eQ-eO1.title" = "Discover";
+"UUU-eQ-eO1.title" = "إكتشف";
 
 /* Class = "UINavigationItem"; title = "Home"; ObjectID = "UhY-5k-cKs"; */
-"UhY-5k-cKs.title" = "Home";
+"UhY-5k-cKs.title" = "الرئيسية";
 
 /* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "XR2-l8-Hdh"; */
 "XR2-l8-Hdh.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
@@ -25,9 +18,6 @@
 
 /* Class = "UILabel"; text = "$44 USD"; ObjectID = "axF-rE-D1W"; */
 "axF-rE-D1W.text" = "$44 USD";
-
-/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "eMu-SA-8L3"; */
-"eMu-SA-8L3.text" = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text";
 
 /* Class = "UILabel"; text = "$44 USD"; ObjectID = "jMN-dN-Vu2"; */
 "jMN-dN-Vu2.text" = "$44 USD";
@@ -39,4 +29,5 @@
 "t0W-ij-BKo.text" = "John Smith";
 
 /* Class = "UILabel"; text = "My Feed"; ObjectID = "x6d-mC-5Uf"; */
-"x6d-mC-5Uf.text" = "My Feed";
+"x6d-mC-5Uf.text" = "مستجدات";
+

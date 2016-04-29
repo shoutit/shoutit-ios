@@ -37,21 +37,19 @@ final class SelectShoutImagesController: UICollectionViewController {
     
     private func prepareLayout() {
         
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-            self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
-        }
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 74, height: 74)
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.scrollDirection = .Horizontal
             collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            if #available(iOS 9.0, *) {
+                collectionView?.semanticContentAttribute = .ForceLeftToRight
+            }
+            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+            }
         }
-        
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        let indexPath = NSIndexPath(forItem: numberOfItems - 1, inSection: 0)
-        collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
     }
 }
 
@@ -67,6 +65,7 @@ extension SelectShoutImagesController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
+        cell.transform = collectionView.transform
         let attachment = attachments[indexPath.item]
         cell.fillWith(attachment)
         
