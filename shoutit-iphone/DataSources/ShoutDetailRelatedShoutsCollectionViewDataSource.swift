@@ -54,6 +54,7 @@ final class ShoutDetailRelatedShoutsCollectionViewDataSource: NSObject, UICollec
             break
         }
         
+        cell.transform = collectionView.transform
         return cell
     }
 }

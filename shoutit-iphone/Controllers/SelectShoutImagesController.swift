@@ -15,7 +15,6 @@ final class SelectShoutImagesController: UICollectionViewController {
     private let numberOfItems = 5
     
     var selectedIdx : Int?
-    private var token = 0
     
     var attachments : [Int : MediaAttachment]!
     
@@ -36,14 +35,6 @@ final class SelectShoutImagesController: UICollectionViewController {
         prepareLayout()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        dispatch_once(&token) { 
-            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-            self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
-        }
-    }
-    
     private func prepareLayout() {
         
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -52,6 +43,12 @@ final class SelectShoutImagesController: UICollectionViewController {
             layout.minimumInteritemSpacing = 10
             layout.scrollDirection = .Horizontal
             collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            if #available(iOS 9.0, *) {
+                collectionView?.semanticContentAttribute = .ForceLeftToRight
+            }
+            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+            }
         }
     }
 }
@@ -68,6 +65,7 @@ extension SelectShoutImagesController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
+        cell.transform = collectionView.transform
         let attachment = attachments[indexPath.item]
         cell.fillWith(attachment)
         

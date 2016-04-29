@@ -16,7 +16,6 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     private let disposeBag = DisposeBag()
     
-    private var token = 0
     var items : [DiscoverItem] = []
     
     let selectedModel : Variable<DiscoverItem?> = Variable(nil)
@@ -24,8 +23,22 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let collection = self.collectionView {
+            
+            if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.itemSize = CGSize(width: 50, height: 50)
+                layout.minimumInteritemSpacing = 10
+                layout.minimumLineSpacing = 10
+            }
+            
+            if #available(iOS 9.0, *) {
+                collectionView?.semanticContentAttribute = .ForceLeftToRight
+            }
+            
+            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+            }
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
@@ -50,35 +63,21 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if items.count > 0 {
-            dispatch_once(&token) {
-                let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-                self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
-            }
-        }
-    }
-    
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if indexPath.item == indexForSeeAll() {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
-            
             cell.transform = collectionView.transform
-            
             return cell
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
+        cell.transform = collectionView.transform
         
         let element = items[indexPath.item]
-        
         cell.bindWith(DiscoverItem: element)
-        
-        cell.transform = collectionView.transform
     
         return cell
     }

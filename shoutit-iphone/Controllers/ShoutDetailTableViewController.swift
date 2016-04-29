@@ -74,6 +74,12 @@ final class ShoutDetailTableViewController: UITableViewController {
                 .subscribeNext{[weak self] (collectionView) in
                     collectionView.dataSource = self?.relatedShoutsDataSource
                     collectionView.delegate = self
+                    if #available(iOS 9.0, *) {
+                        collectionView.semanticContentAttribute = .ForceLeftToRight
+                    }
+                    if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+                        collectionView.transform = CGAffineTransformMakeScale(-1, 1)
+                    }
                 }
                 .addDisposableTo(disposeBag)
             
