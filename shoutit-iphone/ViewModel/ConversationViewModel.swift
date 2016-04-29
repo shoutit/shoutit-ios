@@ -87,6 +87,11 @@ final class ConversationViewModel {
             if event.eventType() == .NewMessage {
                 if let msg : Message = event.object() {
                     self.appendMessages([msg])
+                    
+                    APIChatsService.markMessageAsRead(msg).subscribeNext {
+                        
+                    }.addDisposableTo(self.disposeBag)
+                    
                 }
             }
         }.addDisposableTo(socketsBag!)
