@@ -1,30 +1,30 @@
+/* Class = "UIButton"; normalTitle = "done"; ObjectID = "5kN-QW-7VN"; */
+"5kN-QW-7VN.normalTitle" = "تم";
 
 /* Class = "UIViewController"; title = "VideoPreview"; ObjectID = "07x-bq-AvW"; */
-"07x-bq-AvW.title" = "VideoPreview";
-
-/* Class = "UIButton"; normalTitle = "done"; ObjectID = "5kN-QW-7VN"; */
-"5kN-QW-7VN.normalTitle" = "done";
+"07x-bq-AvW.title" = "عرض الفيديو";
 
 /* Class = "UIButton"; normalTitle = "Record"; ObjectID = "HXZ-4s-AyI"; */
-"HXZ-4s-AyI.normalTitle" = "Record";
+"HXZ-4s-AyI.normalTitle" = "تسجيل";
 
 /* Class = "UILabel"; text = "00:05"; ObjectID = "SN9-Be-ehn"; */
 "SN9-Be-ehn.text" = "00:05";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "T1H-Pn-i9k"; */
-"T1H-Pn-i9k.normalTitle" = "Back";
+"T1H-Pn-i9k.normalTitle" = "رجوع";
 
 /* Class = "UIButton"; normalTitle = "Camera flip"; ObjectID = "ZaW-tw-s3x"; */
-"ZaW-tw-s3x.normalTitle" = "Camera flip";
+"ZaW-tw-s3x.normalTitle" = "قلب الكاميرا";
 
 /* Class = "UIButton"; normalTitle = "flash off"; ObjectID = "ah9-Bk-7o7"; */
-"ah9-Bk-7o7.normalTitle" = "flash off";
+"ah9-Bk-7o7.normalTitle" = "اغلاق الفلاش";
 
 /* Class = "UINavigationController"; title = "CameraNivigationController"; ObjectID = "hZQ-9o-tYc"; */
-"hZQ-9o-tYc.title" = "CameraNivigationController";
+"hZQ-9o-tYc.title" = "التحكم بموقع الكاميرا";
 
 /* Class = "UITabBarItem"; title = "ShoutIT"; ObjectID = "kZw-8m-9Tx"; */
-"kZw-8m-9Tx.title" = "ShoutIT";
+"kZw-8m-9Tx.title" = "شاوت ات ";
 
 /* Class = "UIViewController"; title = "PhotoPreview"; ObjectID = "wW7-p1-emq"; */
-"wW7-p1-emq.title" = "PhotoPreview";
+"wW7-p1-emq.title" = "عرض الصورة";
+
