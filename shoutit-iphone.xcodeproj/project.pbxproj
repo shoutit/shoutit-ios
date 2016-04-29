@@ -311,6 +311,7 @@
 		B22CCD6E1CD3BDAF0019AB27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22CCD701CD3BDAF0019AB27 /* InfoPlist.strings */; };
 		B22CCD731CD3BDB20019AB27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22CCD751CD3BDB20019AB27 /* InfoPlist.strings */; };
 		B22CCD781CD3BF590019AB27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22CCD7A1CD3BF590019AB27 /* Localizable.strings */; };
+		B22CCD7D1CD3C52B0019AB27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22CCD7F1CD3C52B0019AB27 /* Localizable.strings */; };
 		B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D196E1C74F45600A620F3 /* CustomUILabel.swift */; };
 		B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
@@ -1027,6 +1028,7 @@
 		B22CCD6F1CD3BDAF0019AB27 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22CCD741CD3BDB20019AB27 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22CCD791CD3BF590019AB27 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B22CCD7E1CD3C52B0019AB27 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B22D196E1C74F45600A620F3 /* CustomUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUILabel.swift; path = View/CustomUILabel.swift; sourceTree = "<group>"; };
 		B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlcaholderCollectionViewCell.swift; path = View/PlcaholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
@@ -1785,6 +1787,7 @@
 		6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B22CCD7F1CD3C52B0019AB27 /* Localizable.strings */,
 				B22CCD751CD3BDB20019AB27 /* InfoPlist.strings */,
 				6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */,
 				6027CF561BE74EAF00124C28 /* Info.plist */,
@@ -3541,6 +3544,7 @@
 				B2D4413B1CB8169B009782AF /* Location.storyboard in Resources */,
 				B22CCD731CD3BDB20019AB27 /* InfoPlist.strings in Resources */,
 				B2D441181CB81660009782AF /* Home.storyboard in Resources */,
+				B22CCD7D1CD3C52B0019AB27 /* Localizable.strings in Resources */,
 				B2D4410B1CB81632009782AF /* Root.storyboard in Resources */,
 				B2D441271CB8167D009782AF /* InviteFriends.storyboard in Resources */,
 				AE7AC1651CB3FBB400C9DEB6 /* Menu.storyboard in Resources */,
@@ -4250,6 +4254,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				B22CCD791CD3BF590019AB27 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B22CCD7F1CD3C52B0019AB27 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B22CCD7E1CD3C52B0019AB27 /* ar */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
