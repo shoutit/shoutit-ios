@@ -1,27 +1,21 @@
+
 /* Class = "UIButton"; normalTitle = "Call"; ObjectID = "6Fl-rk-iIB"; */
-"6Fl-rk-iIB.normalTitle" = "مكالمة";
+"6Fl-rk-iIB.normalTitle" = "Call";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6ax-sw-xDW"; */
-"6ax-sw-xDW.normalTitle" = "إلغاء";
+"6ax-sw-xDW.normalTitle" = "Cancel";
 
 /* Class = "UILabel"; text = "Discard"; ObjectID = "I74-IB-ecl"; */
-"I74-IB-ecl.text" = "رفض";
+"I74-IB-ecl.text" = "Discard";
 
 /* Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT"; */
-"IHn-L1-0lT.text" = "يتصل";
-
-/* (No Commment) */
-"Imm-ov-Sdy.normalTitle" = "رفض";
+"IHn-L1-0lT.text" = "Connecting";
 
 /* Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0"; */
-"Otg-mn-IP0.text" = "مكالمة واردة من XX";
+"Otg-mn-IP0.text" = "Incoming call from XX";
 
 /* Class = "UILabel"; text = "Answer"; ObjectID = "Y8C-qw-JQt"; */
-"Y8C-qw-JQt.text" = "اجابة";
+"Y8C-qw-JQt.text" = "Answer";
 
 /* Class = "UILabel"; text = "Calling"; ObjectID = "wAE-6B-zom"; */
-"wAE-6B-zom.text" = "يتصل";
-
-/* (No Commment) */
-"y6h-PZ-MHd.normalTitle" = "اجابة";
-
+"wAE-6B-zom.text" = "Calling";

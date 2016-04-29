@@ -1,12 +1,24 @@
+
 /* Class = "UIButton"; normalTitle = "Verify your account!"; ObjectID = "5lp-g0-eW6"; */
-"5lp-g0-eW6.normalTitle" = "تفعيل الحساب!";
+"5lp-g0-eW6.normalTitle" = "Verify your account!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EQN-bl-1ww"; */
+"EQN-bl-1ww.text" = "Label";
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "Flv-lN-M3r"; */
-"Flv-lN-M3r.text" = "إسم المستخدم";
+"Flv-lN-M3r.text" = "Username";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "KDv-JO-N1f"; */
+"KDv-JO-N1f.text" = "Label";
 
 /* Class = "UILabel"; text = "listening to you"; ObjectID = "Mwz-aW-TRC"; */
-"Mwz-aW-TRC.text" = "يستمع إليك";
+"Mwz-aW-TRC.text" = "listening to you";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TWk-RE-4Gq"; */
+"TWk-RE-4Gq.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qLN-yo-Sdx"; */
+"qLN-yo-Sdx.text" = "Label";
 
 /* Class = "UILabel"; text = "Firstname Lastname"; ObjectID = "zC2-Xl-F8D"; */
-"zC2-Xl-F8D.text" = "الإسم الأول الإسم الأخير";
-
+"zC2-Xl-F8D.text" = "Firstname Lastname";

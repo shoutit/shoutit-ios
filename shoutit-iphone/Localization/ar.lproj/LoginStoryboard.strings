@@ -1,174 +1,144 @@
+
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "0w1-iB-LJP"; */
-"0w1-iB-LJP.normalTitle" = "تم";
-
-/* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
-"2hM-uG-45m.normalTitle" = "هل نسيت كلمة المرور؟";
-
-/* Class = "UILabel"; text = "Search"; ObjectID = "2sy-bq-ms4"; */
-"2sy-bq-ms4.text" = "ابحث";
-
-/* Class = "UIButton"; normalTitle = "About"; ObjectID = "7eJ-mp-XEv"; */
-"7eJ-mp-XEv.normalTitle" = "حول";
+"0w1-iB-LJP.normalTitle" = "Done";
 
 /* Class = "UILabel"; text = "List anything for FREE. Include Photos and Videos to appeal to Buyers."; ObjectID = "14e-Rq-a3Y"; */
-"14e-Rq-a3Y.text" = "يمكنك وضع صور وفيديو في إعلاناتك.";
+"14e-Rq-a3Y.text" = "List anything for FREE. Include Photos and Videos to appeal to Buyers.";
+
+/* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
+"2hM-uG-45m.normalTitle" = "Forgot your password?";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "2sy-bq-ms4"; */
+"2sy-bq-ms4.text" = "Search";
+
+/* Class = "UIButton"; normalTitle = "About"; ObjectID = "7eJ-mp-XEv"; */
+"7eJ-mp-XEv.normalTitle" = "About";
 
 /* Class = "UILabel"; text = "Join Now!"; ObjectID = "A0X-MT-0sG"; */
-"A0X-MT-0sG.text" = "اشترك الآن!";
+"A0X-MT-0sG.text" = "Join Now!";
 
 /* Class = "UITextField"; placeholder = "Email or Username"; ObjectID = "A5j-dd-Kjd"; */
-"A5j-dd-Kjd.placeholder" = "البريد الإلكتروني أو إسم المستخدم";
+"A5j-dd-Kjd.placeholder" = "Email or Username";
 
 /* Class = "UITableViewController"; title = "Sign up"; ObjectID = "DkI-1W-qTm"; */
-"DkI-1W-qTm.title" = "التسجيل";
+"DkI-1W-qTm.title" = "Sign up";
 
 /* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "FeT-P1-QuZ"; */
-"FeT-P1-QuZ.normalTitle" = "تسجيل الدخول";
-
-/* (No Commment) */
-"Fqu-0M-TP9.text" = "راسل المعلنين بسهولة. أرسل صور و فيديو وإعلانات.";
-
-/* (No Commment) */
-"GEI-7W-x2d.text" = "يمكنك وضع صور وفيديو في إعلاناتك.";
+"FeT-P1-QuZ.normalTitle" = "Log in";
 
 /* Class = "UILabel"; text = "What interests you the most?"; ObjectID = "GcV-kC-fXX"; */
-"GcV-kC-fXX.text" = "ما هي إهتماماتك";
+"GcV-kC-fXX.text" = "What interests you the most?";
 
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "Gcm-Gs-6OL"; */
-"Gcm-Gs-6OL.normalTitle" = "التالي";
+"Gcm-Gs-6OL.normalTitle" = "Next";
 
 /* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Gv6-Vf-08z"; */
-"Gv6-Vf-08z.text" = "أهلاً بكم في شاوت ات";
+"Gv6-Vf-08z.text" = "Welcome to Shoutit";
 
 /* Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR"; */
-"HYX-k8-0GR.title" = "اعادة ضبط كلمة المرور";
+"HYX-k8-0GR.title" = "Reset password";
 
 /* Class = "UILabel"; text = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts."; ObjectID = "KGf-9Z-ybk"; */
-"KGf-9Z-ybk.text" = "راسل المعلنين بسهولة.\\nأرسل صور و فيديو وإعلانات.";
-
-/* (No Commment) */
-"L2w-j2-mMw.normalTitle" = "تسجيل الدخول بإسنخدام فيس بوك";
+"KGf-9Z-ybk.text" = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts.";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "N11-JB-SIw"; */
-"N11-JB-SIw.placeholder" = "البريد الإلكتروني";
+"N11-JB-SIw.placeholder" = "Email";
 
-/* (No Commment) */
-"P55-Vf-kY2.normalTitle" = "باستخدام البريد الإلكتروني";
+/* Class = "UILabel"; text = "Label"; ObjectID = "OfY-0g-YBp"; */
+"OfY-0g-YBp.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "PgP-fT-oWw"; */
-"PgP-fT-oWw.normalTitle" = "المساعدة";
+"PgP-fT-oWw.normalTitle" = "Help";
 
 /* Class = "UIButton"; normalTitle = "Back to log in"; ObjectID = "QAm-Q7-PXd"; */
-"QAm-Q7-PXd.normalTitle" = "العودة لتسجيل الدخول";
+"QAm-Q7-PXd.normalTitle" = "Back to log in";
 
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "QGu-kD-nqv"; */
-"QGu-kD-nqv.normalTitle" = "تخطي التسجيل";
+"QGu-kD-nqv.normalTitle" = "Skip";
 
 /* Class = "UITextField"; placeholder = "Name"; ObjectID = "RaH-ti-Eac"; */
-"RaH-ti-Eac.placeholder" = "الإسم";
+"RaH-ti-Eac.placeholder" = "Name";
 
 /* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "RiB-S8-6Dt"; */
-"RiB-S8-6Dt.normalTitle" = "إعادة ضبط كلمة المرور";
+"RiB-S8-6Dt.normalTitle" = "Reset password";
 
 /* Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "Rwd-Tt-HmF"; */
-"Rwd-Tt-HmF.text" = "ابحث عن كل شي تريده في منطقتك أو في أي مكان في العالم.";
+"Rwd-Tt-HmF.text" = "Find what you need in your Community or anywhere in the World.";
 
 /* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "Soz-bA-Q3z"; */
-"Soz-bA-Q3z.text" = "بيع و اشتري وأنت تدردش!";
+"Soz-bA-Q3z.text" = "Buy and Sell while Chatting";
 
 /* Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "V9W-3j-fHJ"; */
-"V9W-3j-fHJ.text" = "الفيديو معبر اكثر!\\nاتصل مع المعلنين مباشرة من خلال خدمة الفيديو شات.";
+"V9W-3j-fHJ.text" = "Video is worth a thousand pictures! see what you want to buy live before buying it.";
 
 /* Class = "UILabel"; text = "Log in with Facebook"; ObjectID = "VwE-WR-Gmn"; */
-"VwE-WR-Gmn.text" = "بواسطة فيس بوك";
+"VwE-WR-Gmn.text" = "Log in with Facebook";
 
 /* Class = "UITableViewController"; title = "Log in"; ObjectID = "Wji-o7-jPI"; */
-"Wji-o7-jPI.title" = "تسجيل الدخول";
+"Wji-o7-jPI.title" = "Log in";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "Wk4-LN-gj4"; */
-"Wk4-LN-gj4.normalTitle" = "مساعدة";
+"Wk4-LN-gj4.normalTitle" = "Help";
 
 /* Class = "UILabel"; text = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy."; ObjectID = "WpN-aG-jKl"; */
-"WpN-aG-jKl.text" = "عند المتابعة ستكون قد وافقت على شروط الخدمة وسياسة الخصوصية لشاوت ات";
+"WpN-aG-jKl.text" = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "X4Y-Df-Xe1"; */
-"X4Y-Df-Xe1.placeholder" = "البريد الإلكتروني";
+"X4Y-Df-Xe1.placeholder" = "Email";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "X9g-nR-IJq"; */
-"X9g-nR-IJq.placeholder" = "كلمة المرور";
+"X9g-nR-IJq.placeholder" = "Password";
 
 /* Class = "UIButton"; normalTitle = "About"; ObjectID = "XFT-nv-LfW"; */
-"XFT-nv-LfW.normalTitle" = "حول";
+"XFT-nv-LfW.normalTitle" = "About";
 
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "YRB-cn-kU9"; */
-"YRB-cn-kU9.normalTitle" = "تخطي التسجيل";
-
-/* (No Commment) */
-"Zhq-6O-ODa.text" = "أهلاً بكم في شاوت ات";
-
-/* (No Commment) */
-"bbC-mk-YUZ.text" = "أعلن مجانا";
+"YRB-cn-kU9.normalTitle" = "Skip";
 
 /* Class = "UIButton"; normalTitle = "Have an account? Log in"; ObjectID = "esA-10-tDe"; */
-"esA-10-tDe.normalTitle" = "هل يوجد لديك حساب؟ / تسجيل الدخول";
-
-/* (No Commment) */
-"fZu-Xf-8hV.text" = "ابحث عن كل شي تريده في منطقتك أو في أي مكان في العالم.";
+"esA-10-tDe.normalTitle" = "Have an account? Log in";
 
 /* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
-"ff2-Jg-zkJ.text" = "بواسطة غوغل";
+"ff2-Jg-zkJ.text" = "Log in with Google";
 
-/* (No Commment) */
-"hDf-O1-dvh.text" = "ابحث";
-
-/* (No Commment) */
-"hXd-vs-HMY.text" = "تحدث صوت وصورة";
+/* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
+"fg0-TH-CXc.text" = "Login and discover what others are selling in your neighborhood or start selling in seconds ";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
-"iKX-Fx-ZOg.placeholder" = "كلمة المرور";
+"iKX-Fx-ZOg.placeholder" = "Password";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "kPZ-aZ-cg3"; */
-"kPZ-aZ-cg3.normalTitle" = "مساعدة";
+"kPZ-aZ-cg3.normalTitle" = "Help";
 
 /* Class = "UILabel"; text = "Sign up / Log in with Email"; ObjectID = "l8Q-QA-1Iv"; */
-"l8Q-QA-1Iv.text" = "بواسطة البريد الإلكتروني";
+"l8Q-QA-1Iv.text" = "Sign up / Log in with Email";
 
 /* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "mgc-hU-1eG"; */
-"mgc-hU-1eG.normalTitle" = "تقييم";
+"mgc-hU-1eG.normalTitle" = "Feedback";
 
 /* Class = "UILabel"; text = "Video Chat"; ObjectID = "o79-CH-fAu"; */
-"o79-CH-fAu.text" = "تحدث صوت وصورة";
-
-/* (No Commment) */
-"otB-pC-3lO.text" = "الفيديو معبر اكثر!\\nاتصل مع المعلنين مباشرة من خلال خدمة الفيديو شات.";
-
-/* (No Commment) */
-"pNC-Ay-C46.text" = "دردش";
-
-/* (No Commment) */
-"pZ6-XI-dIh.normalTitle" = "تسجيل الدخول بإستخدام غوغل";
-
-/* (No Commment) */
-"qd5-UA-hrc.text" = "بيع و اشتري وأنت تدردش!";
+"o79-CH-fAu.text" = "Video Chat";
 
 /* Class = "UIButton"; normalTitle = "New to Shoutit? Sign up"; ObjectID = "qkS-QO-udz"; */
-"qkS-QO-udz.normalTitle" = "جديد على شاوت ات؟ إنشاء حساب";
+"qkS-QO-udz.normalTitle" = "New to Shoutit? Sign up";
 
 /* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "sS7-ve-BOz"; */
-"sS7-ve-BOz.normalTitle" = "تقييم";
+"sS7-ve-BOz.normalTitle" = "Feedback";
 
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "stm-aj-Lud"; */
-"stm-aj-Lud.normalTitle" = "إنشاء حساب";
+"stm-aj-Lud.normalTitle" = "Sign up";
 
 /* Class = "UILabel"; text = "Shout"; ObjectID = "tJ8-OD-CZp"; */
-"tJ8-OD-CZp.text" = "أعلن مجانا";
+"tJ8-OD-CZp.text" = "Shout";
 
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "tVc-LS-ZZw"; */
-"tVc-LS-ZZw.normalTitle" = "تخطي التسجيل";
+"tVc-LS-ZZw.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vhV-ST-5zt"; */
+"vhV-ST-5zt.text" = "Label";
 
 /* Class = "UILabel"; text = "Chat"; ObjectID = "w16-Jq-7nF"; */
-"w16-Jq-7nF.text" = "دردش";
+"w16-Jq-7nF.text" = "Chat";
 
 /* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "x1k-1E-QQr"; */
-"x1k-1E-QQr.normalTitle" = "تسجيل الدخول";
-
+"x1k-1E-QQr.normalTitle" = "Log in";

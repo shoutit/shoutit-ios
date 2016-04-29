@@ -11,11 +11,11 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "XRT-0N-mv4"; */
 "XRT-0N-mv4.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Create Shout"; ObjectID = "fm0-dm-zPw"; */
-"fm0-dm-zPw.normalTitle" = "Create Shout";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "pFm-S1-gZk"; */
 "pFm-S1-gZk.text" = "Label";
+
+/* Class = "UILabel"; text = "Create Shout"; ObjectID = "uFf-Pq-9uJ"; */
+"uFf-Pq-9uJ.text" = "Create Shout";
 
 /* Class = "UILabel"; text = "Poznań"; ObjectID = "ys9-SK-6FT"; */
 "ys9-SK-6FT.text" = "Poznań";

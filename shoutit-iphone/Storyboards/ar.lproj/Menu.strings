@@ -1,12 +1,21 @@
+
 /* Class = "UIButton"; normalTitle = "CHANGE"; ObjectID = "DXa-6t-8fv"; */
-"DXa-6t-8fv.normalTitle" = "تغيير";
+"DXa-6t-8fv.normalTitle" = "CHANGE";
 
 /* Class = "UILabel"; text = "Guest"; ObjectID = "FDW-SH-tlA"; */
-"FDW-SH-tlA.text" = "ضيف";
+"FDW-SH-tlA.text" = "Guest";
 
-/* (No Commment) */
-"fm0-dm-zPw.normalTitle" = "إنشاء إعلان";
+/* Class = "UILabel"; text = "Shoutit 2.0.0"; ObjectID = "H2H-0n-97D"; */
+"H2H-0n-97D.text" = "Shoutit 2.0.0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XRT-0N-mv4"; */
+"XRT-0N-mv4.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pFm-S1-gZk"; */
+"pFm-S1-gZk.text" = "Label";
 
 /* Class = "UILabel"; text = "Create Shout"; ObjectID = "uFf-Pq-9uJ"; */
-"uFf-Pq-9uJ.text" = "إنشاء إعلان";
+"uFf-Pq-9uJ.text" = "Create Shout";
 
+/* Class = "UILabel"; text = "Poznań"; ObjectID = "ys9-SK-6FT"; */
+"ys9-SK-6FT.text" = "Poznań";

@@ -1,15 +1,15 @@
+
 /* Class = "UIButton"; normalTitle = "Home"; ObjectID = "3UP-c6-K4D"; */
-"3UP-c6-K4D.normalTitle" = "الرئيسية";
+"3UP-c6-K4D.normalTitle" = "Home";
 
 /* Class = "UIButton"; normalTitle = "Shout"; ObjectID = "P5a-pa-YnH"; */
-"P5a-pa-YnH.normalTitle" = "إعلان";
+"P5a-pa-YnH.normalTitle" = "Shout";
 
 /* Class = "UIButton"; normalTitle = "Discover"; ObjectID = "ccM-e5-uAL"; */
-"ccM-e5-uAL.normalTitle" = "إكتشف";
+"ccM-e5-uAL.normalTitle" = "Discover";
 
 /* Class = "UIButton"; normalTitle = "Profile"; ObjectID = "m7d-LT-LWQ"; */
-"m7d-LT-LWQ.normalTitle" = "الصفحة الشخصية";
+"m7d-LT-LWQ.normalTitle" = "Profile";
 
 /* Class = "UIButton"; normalTitle = "Chats"; ObjectID = "s9F-65-KVv"; */
-"s9F-65-KVv.normalTitle" = "المحادثات";
-
+"s9F-65-KVv.normalTitle" = "Chats";
