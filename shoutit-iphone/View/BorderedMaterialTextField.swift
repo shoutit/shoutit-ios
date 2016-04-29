@@ -374,6 +374,15 @@ public class BorderedMaterialTextField : UITextField {
         }
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if 0 < text?.utf16.count {
+            showTitleLabel()
+        } else if 0 == text?.utf16.count {
+            hideTitleLabel()
+        }
+    }
+    
     public override func caretRectForPosition(position: UITextPosition) -> CGRect {
         let defaultRect = super.caretRectForPosition(position)
         if text == nil || self.text == "" {
@@ -534,7 +543,7 @@ public class BorderedMaterialTextField : UITextField {
     /// Shows and animates the titleLabel property.
     private func showTitleLabel() {
         if let v: UILabel = titleLabel {
-            if v.hidden {
+            if v.hidden || bounds.width != v.bounds.width {
                 if let s: String = placeholder {
                     if 0 == v.text?.utf16.count || nil == v.text {
                         v.text = s

@@ -23,44 +23,47 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
         
-        if let collection = self.collectionView {
+        guard let collection = self.collectionView else { return }
+        
+        if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: 50, height: 50)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 10
+        }
+        
+        if #available(iOS 9.0, *) {
+            collectionView?.semanticContentAttribute = .ForceLeftToRight
+        }
+        
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        }
+        
+        viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
+        
+        viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).driveNext({ [weak self] (indexPath) -> Void in
             
-            if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
-                layout.itemSize = CGSize(width: 50, height: 50)
-                layout.minimumInteritemSpacing = 10
-                layout.minimumLineSpacing = 10
-            }
-            
-            if #available(iOS 9.0, *) {
-                collectionView?.semanticContentAttribute = .ForceLeftToRight
-            }
-            
-            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
-            }
-            
-            viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-            
-            viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).driveNext({ [weak self] (indexPath) -> Void in
-                
-                if let indexPath = indexPath {
-                    if indexPath.item == self?.indexForSeeAll() {
-                        self?.seeAllSubject.onNext(self)
-                        return
-                    }
-                    
-                    let element = self?.items[indexPath.item]
-                        self?.selectedModel.value = element
+            if let indexPath = indexPath {
+                if indexPath.item == self?.indexForSeeAll() {
+                    self?.seeAllSubject.onNext(self)
+                    return
                 }
                 
-            }).addDisposableTo(disposeBag)
+                let element = self?.items[indexPath.item]
+                self?.selectedModel.value = element
+            }
             
-            viewModel.dataSource.subscribeNext({ [weak self] (items) -> Void in
-                self?.items = items
-                self?.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
-        }
+        
+        viewModel.dataSource.subscribeNext({ [weak self] (items) -> Void in
+            self?.items = items
+            self?.collectionView?.reloadData()
+            }).addDisposableTo(disposeBag)
     }
     
     // MARK: UICollectionViewDataSource
