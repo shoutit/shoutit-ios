@@ -11,6 +11,9 @@
 /* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
 "GZ0-mH-W33.title" = "Chats";
 
+/* Class = "UILabel"; text = "Video"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "Video";
+
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "OoV-dq-QkE"; */
 "OoV-dq-QkE.title" = "Title";
 
@@ -25,6 +28,9 @@
 
 /* Class = "UITabBarItem"; title = "Messages"; ObjectID = "YLA-6J-Q2l"; */
 "YLA-6J-Q2l.title" = "Messages";
+
+/* Class = "UILabel"; text = "Shout"; ObjectID = "aBY-UA-vJh"; */
+"aBY-UA-vJh.text" = "Shout";
 
 /* Class = "UILabel"; text = "Offer"; ObjectID = "c6b-2a-MEJ"; */
 "c6b-2a-MEJ.text" = "Offer";
@@ -44,5 +50,14 @@
 /* Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO"; */
 "oR2-Wf-ZJO.text" = "Date";
 
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b"; */
+"pcT-Tt-k2b.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
+
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "Conversations";
+
+/* Class = "UILabel"; text = "Photo"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "Photo";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
+"viM-Sc-CK6.text" = "Location";

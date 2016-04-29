@@ -1,15 +1,15 @@
-/* Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "7oi-GT-QO2"; */
-"7oi-GT-QO2.title" = "تعديل الصفحة الشخصية";
-
-/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8j2-SF-1qK"; */
-"8j2-SF-1qK.title" = "حفظ";
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "37H-7Y-B9a"; */
-"37H-7Y-B9a.normalTitle" = "الموقع";
+"37H-7Y-B9a.normalTitle" = "Location";
+
+/* Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "7oi-GT-QO2"; */
+"7oi-GT-QO2.title" = "Edit Profile";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8j2-SF-1qK"; */
+"8j2-SF-1qK.title" = "Save";
 
 /* Class = "UITableViewController"; title = "Edit Profile"; ObjectID = "cSZ-PW-VNj"; */
-"cSZ-PW-VNj.title" = "تعديل الصفحة الشخصية";
+"cSZ-PW-VNj.title" = "Edit Profile";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "pYY-Ux-Kk4"; */
-"pYY-Ux-Kk4.title" = "إلغاء";
-
+"pYY-Ux-Kk4.title" = "Cancel";

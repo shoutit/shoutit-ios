@@ -48,7 +48,6 @@ final class NumberFormatters {
         
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
-        formatter.currencyGroupingSeparator = " "
         formatter.locale = .autoupdatingCurrentLocale()
         
         if let currency = currency {

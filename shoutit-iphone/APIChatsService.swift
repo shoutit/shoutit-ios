@@ -15,6 +15,7 @@ final class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
     private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
+    private static let readMessageURL = APIManager.baseURL + "/messages/*/read"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
     private static let twilioIdentityURL = APIManager.baseURL + "/twilio/video_identity"
@@ -44,6 +45,11 @@ final class APIChatsService {
     
     static func markConversationAsRead(conversation: Conversation) -> Observable<Void> {
         let url = conversationReadURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
+    }
+    
+    static func markMessageAsRead(message: Message) -> Observable<Void> {
+        let url = readMessageURL.stringByReplacingOccurrencesOfString("*", withString: message.id)
         return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
     }
     

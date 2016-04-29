@@ -2,8 +2,14 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "0w1-iB-LJP"; */
 "0w1-iB-LJP.normalTitle" = "Done";
 
+/* Class = "UILabel"; text = "List anything for FREE. Include Photos and Videos to appeal to Buyers."; ObjectID = "14e-Rq-a3Y"; */
+"14e-Rq-a3Y.text" = "List anything for FREE. Include Photos and Videos to appeal to Buyers.";
+
 /* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
 "2hM-uG-45m.normalTitle" = "Forgot your password?";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "2sy-bq-ms4"; */
+"2sy-bq-ms4.text" = "Search";
 
 /* Class = "UIButton"; normalTitle = "About"; ObjectID = "7eJ-mp-XEv"; */
 "7eJ-mp-XEv.normalTitle" = "About";
@@ -20,32 +26,26 @@
 /* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "FeT-P1-QuZ"; */
 "FeT-P1-QuZ.normalTitle" = "Log in";
 
-/* Class = "UILabel"; text = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts."; ObjectID = "Fqu-0M-TP9"; */
-"Fqu-0M-TP9.text" = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts.";
-
-/* Class = "UILabel"; text = "List anything for FREE. Include Photos and Videos to appeal to Buyers."; ObjectID = "GEI-7W-x2d"; */
-"GEI-7W-x2d.text" = "List anything for FREE. Include Photos and Videos to appeal to Buyers.";
-
 /* Class = "UILabel"; text = "What interests you the most?"; ObjectID = "GcV-kC-fXX"; */
 "GcV-kC-fXX.text" = "What interests you the most?";
 
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "Gcm-Gs-6OL"; */
 "Gcm-Gs-6OL.normalTitle" = "Next";
 
+/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Gv6-Vf-08z"; */
+"Gv6-Vf-08z.text" = "Welcome to Shoutit";
+
 /* Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR"; */
 "HYX-k8-0GR.title" = "Reset password";
 
-/* Class = "UIButton"; normalTitle = "Log in with Facebook"; ObjectID = "L2w-j2-mMw"; */
-"L2w-j2-mMw.normalTitle" = "Log in with Facebook";
+/* Class = "UILabel"; text = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts."; ObjectID = "KGf-9Z-ybk"; */
+"KGf-9Z-ybk.text" = "Connect with Buyers and Sellers. Send Photos, Videos and Shouts.";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "N11-JB-SIw"; */
 "N11-JB-SIw.placeholder" = "Email";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "OfY-0g-YBp"; */
 "OfY-0g-YBp.text" = "Label";
-
-/* Class = "UIButton"; normalTitle = "Sign up / Log in with Email"; ObjectID = "P55-Vf-kY2"; */
-"P55-Vf-kY2.normalTitle" = "Sign up / Log in with Email";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "PgP-fT-oWw"; */
 "PgP-fT-oWw.normalTitle" = "Help";
@@ -61,6 +61,18 @@
 
 /* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "RiB-S8-6Dt"; */
 "RiB-S8-6Dt.normalTitle" = "Reset password";
+
+/* Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "Rwd-Tt-HmF"; */
+"Rwd-Tt-HmF.text" = "Find what you need in your Community or anywhere in the World.";
+
+/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "Soz-bA-Q3z"; */
+"Soz-bA-Q3z.text" = "Buy and Sell while Chatting";
+
+/* Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "V9W-3j-fHJ"; */
+"V9W-3j-fHJ.text" = "Video is worth a thousand pictures! see what you want to buy live before buying it.";
+
+/* Class = "UILabel"; text = "Log in with Facebook"; ObjectID = "VwE-WR-Gmn"; */
+"VwE-WR-Gmn.text" = "Log in with Facebook";
 
 /* Class = "UITableViewController"; title = "Log in"; ObjectID = "Wji-o7-jPI"; */
 "Wji-o7-jPI.title" = "Log in";
@@ -83,26 +95,14 @@
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "YRB-cn-kU9"; */
 "YRB-cn-kU9.normalTitle" = "Skip";
 
-/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Zhq-6O-ODa"; */
-"Zhq-6O-ODa.text" = "Welcome to Shoutit";
-
-/* Class = "UILabel"; text = "Shout"; ObjectID = "bbC-mk-YUZ"; */
-"bbC-mk-YUZ.text" = "Shout";
-
 /* Class = "UIButton"; normalTitle = "Have an account? Log in"; ObjectID = "esA-10-tDe"; */
 "esA-10-tDe.normalTitle" = "Have an account? Log in";
 
-/* Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "fZu-Xf-8hV"; */
-"fZu-Xf-8hV.text" = "Find what you need in your Community or anywhere in the World.";
+/* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
+"ff2-Jg-zkJ.text" = "Log in with Google";
 
 /* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
 "fg0-TH-CXc.text" = "Login and discover what others are selling in your neighborhood or start selling in seconds ";
-
-/* Class = "UILabel"; text = "Search"; ObjectID = "hDf-O1-dvh"; */
-"hDf-O1-dvh.text" = "Search";
-
-/* Class = "UILabel"; text = "Video Chat"; ObjectID = "hXd-vs-HMY"; */
-"hXd-vs-HMY.text" = "Video Chat";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
 "iKX-Fx-ZOg.placeholder" = "Password";
@@ -110,20 +110,14 @@
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "kPZ-aZ-cg3"; */
 "kPZ-aZ-cg3.normalTitle" = "Help";
 
+/* Class = "UILabel"; text = "Sign up / Log in with Email"; ObjectID = "l8Q-QA-1Iv"; */
+"l8Q-QA-1Iv.text" = "Sign up / Log in with Email";
+
 /* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "mgc-hU-1eG"; */
 "mgc-hU-1eG.normalTitle" = "Feedback";
 
-/* Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "otB-pC-3lO"; */
-"otB-pC-3lO.text" = "Video is worth a thousand pictures! see what you want to buy live before buying it.";
-
-/* Class = "UILabel"; text = "Chat"; ObjectID = "pNC-Ay-C46"; */
-"pNC-Ay-C46.text" = "Chat";
-
-/* Class = "UIButton"; normalTitle = "Log in with Google"; ObjectID = "pZ6-XI-dIh"; */
-"pZ6-XI-dIh.normalTitle" = "Log in with Google";
-
-/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "qd5-UA-hrc"; */
-"qd5-UA-hrc.text" = "Buy and Sell while Chatting";
+/* Class = "UILabel"; text = "Video Chat"; ObjectID = "o79-CH-fAu"; */
+"o79-CH-fAu.text" = "Video Chat";
 
 /* Class = "UIButton"; normalTitle = "New to Shoutit? Sign up"; ObjectID = "qkS-QO-udz"; */
 "qkS-QO-udz.normalTitle" = "New to Shoutit? Sign up";
@@ -134,11 +128,17 @@
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "stm-aj-Lud"; */
 "stm-aj-Lud.normalTitle" = "Sign up";
 
+/* Class = "UILabel"; text = "Shout"; ObjectID = "tJ8-OD-CZp"; */
+"tJ8-OD-CZp.text" = "Shout";
+
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "tVc-LS-ZZw"; */
 "tVc-LS-ZZw.normalTitle" = "Skip";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "vhV-ST-5zt"; */
 "vhV-ST-5zt.text" = "Label";
+
+/* Class = "UILabel"; text = "Chat"; ObjectID = "w16-Jq-7nF"; */
+"w16-Jq-7nF.text" = "Chat";
 
 /* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "x1k-1E-QQr"; */
 "x1k-1E-QQr.normalTitle" = "Log in";

@@ -1,4 +1,7 @@
 
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text"; ObjectID = "5LU-gw-tJA"; */
+"5LU-gw-tJA.text" = "Merino Wool Slouchy Hat, Winter \nHat, Chunky Textured Knit Hat and more text";
+
 /* Class = "UINavigationItem"; title = "Home"; ObjectID = "9fl-Jy-3uV"; */
 "9fl-Jy-3uV.title" = "Home";
 
@@ -31,6 +34,9 @@
 
 /* Class = "UILabel"; text = "MY FEED"; ObjectID = "c7k-qF-xRA"; */
 "c7k-qF-xRA.text" = "MY FEED";
+
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "fIE-Gj-UPD"; */
+"fIE-Gj-UPD.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
 
 /* Class = "UILabel"; text = "Offer"; ObjectID = "g4b-PM-Eek"; */
 "g4b-PM-Eek.text" = "Offer";
