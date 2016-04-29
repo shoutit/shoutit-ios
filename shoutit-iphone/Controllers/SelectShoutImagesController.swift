@@ -37,9 +37,9 @@ final class SelectShoutImagesController: UICollectionViewController {
     
     private func prepareLayout() {
         
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-            self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
-        }
+        //if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+          //  self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        //}
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 74, height: 74)
             layout.minimumLineSpacing = 10
@@ -50,7 +50,7 @@ final class SelectShoutImagesController: UICollectionViewController {
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        let indexPath = NSIndexPath(forItem: numberOfItems - 1, inSection: 0)
+        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
         collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
     }
 }
