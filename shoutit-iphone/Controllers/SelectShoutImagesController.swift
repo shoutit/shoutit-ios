@@ -15,6 +15,7 @@ final class SelectShoutImagesController: UICollectionViewController {
     private let numberOfItems = 5
     
     var selectedIdx : Int?
+    private var token = 0
     
     var attachments : [Int : MediaAttachment]!
     
@@ -35,11 +36,16 @@ final class SelectShoutImagesController: UICollectionViewController {
         prepareLayout()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        dispatch_once(&token) { 
+            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+            self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
+        }
+    }
+    
     private func prepareLayout() {
         
-        //if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-          //  self.collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
-        //}
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 74, height: 74)
             layout.minimumLineSpacing = 10
@@ -47,11 +53,6 @@ final class SelectShoutImagesController: UICollectionViewController {
             layout.scrollDirection = .Horizontal
             collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
-        
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
     }
 }
 

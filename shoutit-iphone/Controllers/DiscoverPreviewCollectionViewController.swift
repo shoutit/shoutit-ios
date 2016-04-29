@@ -16,6 +16,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     private let disposeBag = DisposeBag()
     
+    private var token = 0
     var items : [DiscoverItem] = []
     
     let selectedModel : Variable<DiscoverItem?> = Variable(nil)
@@ -36,10 +37,8 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
                         return
                     }
                     
-                    if let modifiedIndexPath = self?.indexPathForIndexPath(indexPath) {
-                        let element = self?.items[modifiedIndexPath.item]
+                    let element = self?.items[indexPath.item]
                         self?.selectedModel.value = element
-                    }
                 }
                 
             }).addDisposableTo(disposeBag)
@@ -48,12 +47,17 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
                 self?.items = items
                 self?.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
-            
-            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-                collection.transform = CGAffineTransformMakeScale(-1, 1)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if items.count > 0 {
+            dispatch_once(&token) {
+                let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+                self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
             }
         }
-
     }
     
     // MARK: UICollectionViewDataSource
@@ -69,32 +73,14 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
-    
-        let modifiedIndexPath = indexPathForIndexPath(indexPath)
         
-        let element = items[modifiedIndexPath.item]
+        let element = items[indexPath.item]
         
         cell.bindWith(DiscoverItem: element)
         
         cell.transform = collectionView.transform
     
         return cell
-    }
-    
-    func indexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-            return NSIndexPath(forItem: self.items.count - indexPath.item, inSection: indexPath.section)
-        } else {
-            return indexPath
-        }
-    }
-    
-    func indexForSeeAll() -> NSInteger {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-            return 0
-        } else {
-            return self.items.count
-        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,5 +90,11 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+}
 
+private extension DiscoverPreviewCollectionViewController {
+    
+    func indexForSeeAll() -> NSInteger {
+        return self.items.count
+    }
 }
