@@ -39,6 +39,7 @@ final class PusherClient : NSObject {
     
     private var reachability: Reachability!
     
+    private var mainChannelIdentifier: String?
     private var subscribedChannels : [String] = []
     
     override init() {
@@ -104,17 +105,20 @@ final class PusherClient : NSObject {
     }
     
     func disconnect() {
-        if let channelName = self.mainChannelIdentifier(), ch = self.pusherInstance?.channelNamed(channelName) {
+        
+        guard let pusher = pusherInstance else { return }
+        
+        if let channelName = self.mainChannelIdentifier, ch = pusher.channelNamed(channelName) {
             ch.unsubscribe()
         }
         
         for channelName in self.subscribedChannels {
-            if let ch = self.pusherInstance?.channelNamed(channelName) {
+            if let ch = pusher.channelNamed(channelName) {
                 ch.unsubscribe()
             }
         }
         
-        pusherInstance?.disconnect()
+        pusher.disconnect()
     }
     
     private func connect() {
@@ -226,12 +230,13 @@ extension PusherClient {
         
         return Observable.create { (observer) -> Disposable in
             
-            guard let channelName = self.mainChannelIdentifier() else {
+            guard let channelName = self.generateMainChannelIdentifier() else {
                 observer.onError(PusherError.WrongChannelName)
                 return AnonymousDisposable { }
             }
             
             let channel : PTPusherChannel
+            self.mainChannelIdentifier = channelName
             
             if let ch = self.pusherInstance?.channelNamed(channelName) {
                 channel = ch
@@ -325,7 +330,7 @@ extension PusherClient {
         })
     }
     
-    func mainChannelIdentifier() -> String? {
+    private func generateMainChannelIdentifier() -> String? {
         if let user = Account.sharedInstance.user {
             return "presence-v3-p-\(user.id)"
         }
