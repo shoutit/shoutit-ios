@@ -11,7 +11,10 @@ import FBSDKCoreKit
 import Fabric
 import Crashlytics
 import UIViewAppearanceSwift
-import Timberjack
+
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        Timberjack.register()
-        Timberjack.logStyle = .Verbose
         
         applyAppearance()
         configureGoogleLogin()
@@ -112,6 +112,17 @@ private extension AppDelegate {
         config.forumId = 290071
         UserVoice.initialize(config)
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
+        
+        
+        // Configure Swift Beaver
+        let console = ConsoleDestination()  // log to Xcode Console
+        let cloud = SBPlatformDestination(appID: "v6ggaZ", appSecret: "ckaIkfmgycLdD78fofhrc48Q6K7Rzpps", encryptionKey: "p8br20ubgBcorJlmlFiortCqtv1wnztd") // to cloud
+        
+        log.addDestination(console)
+        log.addDestination(cloud)
+    
+        // Disable AutoLayout Constraints Warnings
+        NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
     func applyAppearance() {

@@ -172,6 +172,7 @@ final class Account {
         try self.keychain.remove(self.authDataKey)
         self.userModel = nil
         self.authData = nil
+        APIManager.eraseAuthToken()
         pusherManager.disconnect()
         twilioManager.disconnect()
     }
