@@ -29,6 +29,7 @@ local:
   tags:
     - s4
   only:
+    - develop
     - /^local-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 testflight:
   type: build
