@@ -1803,7 +1803,6 @@
 				B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */,
 				248329081C8487900042B0DB /* FilterValue.swift */,
 				249671581C870ECD0011B078 /* FilterResult.swift */,
-				B2C729BC1C6221B0006F7D29 /* Account.swift */,
 				248329001C8443080042B0DB /* Currency.swift */,
 				B2C729BD1C6221B0006F7D29 /* Address.swift */,
 				24826B481C96A8F300032FC9 /* Notification.swift */,
@@ -3067,6 +3066,7 @@
 		B2C729B51C62213C006F7D29 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B2C729BC1C6221B0006F7D29 /* Account.swift */,
 				B20F47C91CAEBCB60091899C /* AWS */,
 				B20F47C61CAEBC280091899C /* Mixpanel */,
 				24D3B0C51C9C471600DE1600 /* Twilio */,

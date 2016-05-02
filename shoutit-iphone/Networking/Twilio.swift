@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 
 final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsClientDelegate {
-    static let sharedInstance = Twilio()
     
     private var authData: TwilioAuth? {
         didSet {
@@ -18,16 +17,20 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         }
     }
     
+    private unowned var account: Account
+    private var client: TwilioConversationsClient?
+    private var accessManager: TwilioAccessManager?
+    
+    // helpers vars
     private var connecting : Bool = false
+    
+    // RX
     private var disposeBag = DisposeBag()
     private var userChangeBag = DisposeBag()
     
-    var client: TwilioConversationsClient?
-    var accessManager: TwilioAccessManager?
-    
-    override init() {
+    init(account: Account) {
+        self.account = account
         super.init()
-        
         retriveToken()
     }
     
@@ -57,13 +60,13 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         // release previous subscripitons
         userChangeBag = DisposeBag()
         
-        Account.sharedInstance.loginSubject.subscribeNext { [weak self] (loginchanged) in
+        account.loginSubject.subscribeNext { [weak self] (loginchanged) in
             self?.client?.unlisten()
             self?.client = nil
             self?.accessManager = nil
             self?.connecting = false
             
-            if case .Logged(_)? = Account.sharedInstance.userModel {
+            if case .Logged(_)? = self?.account.userModel {
                 // fetch token with small delay to avoid disposing client
                 self?.performSelector(#selector(Twilio.retriveToken), withObject: nil, afterDelay: 2.0)
             }

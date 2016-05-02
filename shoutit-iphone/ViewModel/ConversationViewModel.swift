@@ -77,7 +77,7 @@ final class ConversationViewModel {
         
         socketsBag = DisposeBag()
         // handle presence/typing/join/left
-        PusherClient.sharedInstance.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
+        Account.sharedInstance.pusherManager.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
             if event.eventType() == .UserTyping {
                 if let user : TypingInfo = event.object() {
                     self.typingUsers.onNext(user)
@@ -179,7 +179,7 @@ final class ConversationViewModel {
                 return obs.take(1)
             })
             .subscribeNext { _ in
-                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation.value)
+                Account.sharedInstance.pusherManager.sendTypingEventToConversation(self.conversation.value)
             }.addDisposableTo(disposeBag)
 
     }

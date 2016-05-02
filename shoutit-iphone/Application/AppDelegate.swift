@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.stopUpdatingLocation()
         
         
-        PusherClient.sharedInstance.disconnect()
+        Account.sharedInstance.pusherManager.disconnect()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         if Account.sharedInstance.isUserLoggedIn {
-            PusherClient.sharedInstance.tryToConnect()
+            Account.sharedInstance.pusherManager.tryToConnect()
         }
         
         Account.sharedInstance.fetchUserProfile()

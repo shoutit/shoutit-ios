@@ -33,7 +33,7 @@ final class MixpanelHelper {
     private static var actionProperties: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["api_client"] = "shoutit-ios"
-        p["signed_user"] = Account.sharedInstance.authData != nil
+        p["signed_user"] = Account.sharedInstance.isUserAuthenticated
         if let user = Account.sharedInstance.user {
             p["is_guest"] = user.isGuest
         }

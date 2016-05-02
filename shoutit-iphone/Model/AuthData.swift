@@ -13,9 +13,6 @@ import Ogra
 
 struct AuthData {
     
-    // token type
-    //private(set) var guest: Bool = false
-    
     // token
     let accessToken: String
     let refreshToken: String
@@ -53,5 +50,12 @@ extension AuthData: Encodable {
             "new_signup" : self.isNewSignUp.encode(),
             "scope" : self.scope.encode(),
             ])
+    }
+}
+
+extension AuthData {
+    
+    var apiToken: String {
+        return "\(tokenType) \(accessToken)"
     }
 }
