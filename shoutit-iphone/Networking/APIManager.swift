@@ -61,8 +61,6 @@ final class APIManager {
         
         if let token = token where isGuestUser == false {
             PusherClient.sharedInstance.setAuthorizationToken(token)
-            // Authorize Twilio
-            _ = Twilio.sharedInstance
         } else {
             PusherClient.sharedInstance.disconnect()
         }
