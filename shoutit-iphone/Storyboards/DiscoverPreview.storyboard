@@ -70,7 +70,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                     <outlet property="shoutTitle" destination="tsE-nY-AhM" id="qBQ-g0-V4g"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverPreviewCellSeeAll" id="Ie4-0n-rQL">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverPreviewCellSeeAll" id="Ie4-0n-rQL" customClass="RTLSeeAllCollectionViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="318" width="200" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -103,6 +103,9 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                     <constraint firstAttribute="bottom" secondItem="9Lt-fs-885" secondAttribute="bottom" id="mae-1f-H9K"/>
                                 </constraints>
                                 <size key="customSize" width="200" height="239"/>
+                                <connections>
+                                    <outlet property="seeAllLabel" destination="Wg4-zL-xAD" id="71S-BO-zQZ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
