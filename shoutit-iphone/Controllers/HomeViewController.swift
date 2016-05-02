@@ -42,10 +42,6 @@ final class HomeViewController: UIViewController {
         setupNavigationBar()
     }
     
-    deinit {
-        print("DEINIT")
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

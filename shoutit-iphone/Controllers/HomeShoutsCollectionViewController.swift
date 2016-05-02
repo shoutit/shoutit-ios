@@ -37,10 +37,6 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         self.collectionView?.addSubview(refreshControl)
     }
     
-    deinit {
-        print("DEINIT")
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         reloadData()
@@ -94,8 +90,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     private func setupDisplayable() {
         viewModel.displayable.applyOnLayout(self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)
         
-        viewModel.displayable.contentOffset.asObservable().subscribeNext { (offset) -> Void in
-            self.scrollOffset.value = offset
+        viewModel.displayable.contentOffset.asObservable().subscribeNext {[weak self] (offset) -> Void in
+            self?.scrollOffset.value = offset
         }.addDisposableTo(disposeBag)
         
         viewModel.displayable.selectedIndexPath.asObservable().subscribeNext { [weak self] (indexPath) -> Void in
@@ -113,15 +109,15 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             let retryObservable = retry.asObservable().filter{$0}
             let userChangeObservable = Account.sharedInstance
                 .userSubject
-                .distinctUntilChanged{ (lhs, rhs) -> Bool in
-                    guard let old = lhs, new = rhs else { return true }
-                    return old.id != new.id || old.location.address != new.location.address
-                }
             
             Observable
-                .combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
-                .filter{Account.sharedInstance.isUserAuthenticated}
-                .debounce(1, scheduler: MainScheduler.instance)
+                .combineLatest(retryObservable, userChangeObservable) {$0.1}
+                .filter{$0 != nil}
+                .distinctUntilChanged({ (lhs, rhs) -> Bool in
+                    guard let old = lhs, new = rhs else { return true }
+                    return old.id != new.id || old.location.address != new.location.address
+                })
+                .debounce(1.5, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
                     })
@@ -149,18 +145,18 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             self?.collectionView?.reloadData()
         }).addDisposableTo(disposeBag)
         
-        viewModel.loading.asDriver().driveNext { (loading) -> Void in
+        viewModel.loading.asDriver().driveNext {[weak self] (loading) -> Void in
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = loading
             UIView.animateWithDuration(0.2, animations: { () -> Void in
-                self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: loading ? 50.0 : 0, right: 0)
+                self?.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: loading ? 50.0 : 0, right: 0)
             })
             
             if loading {
-                self.showActivityIndicatorView()
-                self.layoutActivityIndicatorView()
+                self?.showActivityIndicatorView()
+                self?.layoutActivityIndicatorView()
             } else {
-                self.hideActivityIndicatorView()
+                self?.hideActivityIndicatorView()
             }
             
         }.addDisposableTo(disposeBag)
