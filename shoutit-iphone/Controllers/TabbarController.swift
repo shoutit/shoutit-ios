@@ -27,15 +27,15 @@ final class TabbarController: UIViewController, Navigation {
     
     override func viewDidLoad() {
         
-        tabs!.each { button in
-            button.rx_tap.subscribeNext {
-                self.tabs!.each { $0.selected = false }
-                
-                button.selected = true
-                
-                self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
-                
-            }.addDisposableTo(self.disposeBag)
+        for button in tabs! {
+            button
+                .rx_tap
+                .subscribeNext {[unowned self] in
+                    self.tabs!.each { $0.selected = false }
+                    button.selected = true
+                    self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
+                }
+                .addDisposableTo(self.disposeBag)
         }
         
         Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
