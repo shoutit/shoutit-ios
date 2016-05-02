@@ -26,8 +26,12 @@ final class Account {
     
     // singleton
     static let sharedInstance = Account()
-    
-    private let disposeBag = DisposeBag()
+    lazy var twilioManager: Twilio = {[unowned self] in
+        return Twilio(account: self)
+    }()
+    lazy var pusherManager: PusherClient = {[unowned self] in
+        return PusherClient(account: self)
+    }()
     
     // public consts
     lazy var userDirectory: String = {
@@ -91,18 +95,12 @@ final class Account {
         }
     }
     
+    // helper vars
+    private let disposeBag = DisposeBag()
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     private var updatingAPNS = false
-    
-    func locationString() -> String {
-        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
-            return "\(city), \(state), \(country)"
-        }
-        
-        return NSLocalizedString("Unknown Location", comment: "")
-    }
     
     // convienience
     var isUserAuthenticated: Bool {
@@ -115,7 +113,7 @@ final class Account {
     
     // MARK - Lifecycle
     
-    init() {
+    private init() {
         
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
             userModel = .Guest(user: guest)
@@ -128,8 +126,17 @@ final class Account {
         guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
         self.authData = authData
-        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
+        APIManager.setAuthToken(authData.apiToken)
         updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
+        configureTwilioAndPusherServices()
+    }
+    
+    func locationString() -> String {
+        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
+            return "\(city), \(state), \(country)"
+        }
+        
+        return NSLocalizedString("Unknown Location", comment: "")
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -141,11 +148,9 @@ final class Account {
         // auth
         self.authData = authData
         
-        // update apimanager token
-        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType, isGuestUser: user.isGuest)
-        
-        // user
+        APIManager.setAuthToken(authData.apiToken)
         updateUserWithModel(user)
+        configureTwilioAndPusherServices()
     }
     
     func updateUserWithModel<T: User>(user: T) {
@@ -168,7 +173,8 @@ final class Account {
         self.userModel = nil
         self.authData = nil
         APIManager.eraseAuthToken()
-        PusherClient.sharedInstance.disconnect()
+        pusherManager.disconnect()
+        twilioManager.disconnect()
     }
     
     func fetchUserProfile() {
@@ -196,6 +202,18 @@ private extension Account {
     
     private func updateApplicationBadgeNumberWithStats(stats: ProfileStats?) {
         UIApplication.sharedApplication().applicationIconBadgeNumber = ((stats?.unreadNotificationsCount) ?? 0) + ((stats?.unreadConversationCount) ?? 0)
+    }
+    
+    private func configureTwilioAndPusherServices() {
+        
+        switch userModel {
+        case .Some(.Logged(_)):
+            guard let authData = authData else { assertionFailure(); return; }
+            pusherManager.setAuthorizationToken(authData.apiToken)
+            _ = twilioManager
+        default:
+            pusherManager.disconnect()
+        }
     }
     
     private func removeFilesFromUserDirecotry() throws {

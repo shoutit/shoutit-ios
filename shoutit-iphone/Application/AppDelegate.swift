@@ -36,9 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // fetch user account to update all stats etc.
         Account.sharedInstance.fetchUserProfile()
         
-        // Initialize Twilio
-        _ = Twilio.sharedInstance
-        
         return true
     }
     
@@ -61,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.stopUpdatingLocation()
         
         
-        PusherClient.sharedInstance.disconnect()
+        Account.sharedInstance.pusherManager.disconnect()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -69,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         if Account.sharedInstance.isUserLoggedIn {
-            PusherClient.sharedInstance.tryToConnect()
+            Account.sharedInstance.pusherManager.tryToConnect()
         }
         
         Account.sharedInstance.fetchUserProfile()

@@ -107,7 +107,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
             let retryObservable = retry.asObservable().filter{$0}
-            let userChangeObservable = Account.sharedInstance.userSubject
+            let userChangeObservable = Account.sharedInstance
+                .userSubject
                 .distinctUntilChanged{ (lhs, rhs) -> Bool in
                     guard let old = lhs, new = rhs else { return true }
                     return old.id != new.id || old.location.address != new.location.address

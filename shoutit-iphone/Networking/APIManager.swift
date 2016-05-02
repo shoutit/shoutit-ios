@@ -38,15 +38,15 @@ final class APIManager {
     
     // MARK: - Token
     
-    static func setAuthToken(token: String, tokenType: String, isGuestUser: Bool) {
-        _setAuthToken("\(tokenType) \(token)", isGuestUser: isGuestUser)
+    static func setAuthToken(token: String) {
+        _setAuthToken(token)
     }
     
     static func eraseAuthToken() {
-        _setAuthToken(nil, isGuestUser: nil)
+        _setAuthToken(nil)
     }
     
-    private static func _setAuthToken(token: String?, isGuestUser: Bool?) {
+    private static func _setAuthToken(token: String?) {
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -57,12 +57,6 @@ final class APIManager {
             var headerFields = request.allHTTPHeaderFields ?? [String : String]()
             headerFields["Authorization"] = token
             request.allHTTPHeaderFields = headerFields
-        }
-        
-        if let token = token where isGuestUser == false {
-            PusherClient.sharedInstance.setAuthorizationToken(token)
-        } else {
-            PusherClient.sharedInstance.disconnect()
         }
     }
     

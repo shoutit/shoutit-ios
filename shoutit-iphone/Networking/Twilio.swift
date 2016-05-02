@@ -11,7 +11,6 @@ import RxSwift
 
 
 final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsClientDelegate {
-    static let sharedInstance = Twilio()
     
     private var authData: TwilioAuth? {
         didSet {
@@ -20,14 +19,19 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         }
     }
     
+    private unowned var account: Account
+    private var client: TwilioConversationsClient?
+    private var accessManager: TwilioAccessManager?
+    
+    // helpers vars
     private var connecting : Bool = false
+    
+    // RX
     private var disposeBag = DisposeBag()
     private var userChangeBag = DisposeBag?()
     
-    var client: TwilioConversationsClient?
-    var accessManager: TwilioAccessManager?
-    
-    override init() {
+    init(account: Account) {
+        self.account = account
         super.init()
         
         connectIfNeeded()
@@ -47,7 +51,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     }
     
     func connectIfNeeded() {
-        if case .Logged(_)? = Account.sharedInstance.userModel {
+        if case .Logged(_)? = account.userModel {
             retriveToken()
         } else {
             disconnect()
@@ -84,7 +88,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
         userChangeBag = bag
         
         //  fetch token with small delay to avoid disposing client
-        Account.sharedInstance.loginSubject.subscribeNext { [weak self] (loginchanged) in
+        account.loginSubject.subscribeNext { [weak self] (loginchanged) in
             guard let strongSelf = self else {
                 return
             }
