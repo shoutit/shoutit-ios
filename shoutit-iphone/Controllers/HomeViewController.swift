@@ -42,10 +42,15 @@ final class HomeViewController: UIViewController {
         setupNavigationBar()
     }
     
+    deinit {
+        print("DEINIT")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let discoverController = discoverParentController?.discoverController, discoverCollection = discoverController.collectionView {
+        if let discoverController = discoverParentController?.discoverController,
+            discoverCollection = discoverController.collectionView {
             discoverCollection.reloadData()
         }
     }
@@ -120,16 +125,16 @@ private extension HomeViewController {
         
         discoverController.selectedModel
             .asDriver()
-            .driveNext { (item) -> Void in
+            .driveNext {[weak self] (item) -> Void in
                 guard let item = item else { return }
-                self.flowDelegate?.showDiscoverForDiscoverItem(item)
+                self?.flowDelegate?.showDiscoverForDiscoverItem(item)
             }.addDisposableTo(disposeBag)
         
         discoverController.seeAllSubject
             .asObservable()
             .skip(1)
-            .subscribeNext { (controller) -> Void in
-                self.flowDelegate?.showDiscover()
+            .subscribeNext {[weak self] (controller) -> Void in
+                self?.flowDelegate?.showDiscover()
             }
             .addDisposableTo(disposeBag)
         

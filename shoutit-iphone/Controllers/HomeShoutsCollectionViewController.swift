@@ -37,6 +37,10 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         self.collectionView?.addSubview(refreshControl)
     }
     
+    deinit {
+        print("DEINIT")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         reloadData()
