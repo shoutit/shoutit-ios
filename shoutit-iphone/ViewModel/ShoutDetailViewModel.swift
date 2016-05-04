@@ -117,15 +117,15 @@ final class ShoutDetailViewModel {
         var models : [ShoutDetailShoutImageViewModel] = []
         
         if let imagePaths = shout.imagePaths {
-            for path in imagePaths {
-                if let url = NSURL(string: path) {
+            for path : String in imagePaths {
+                if let url : NSURL = NSURL(string: path) {
                     models.append(ShoutDetailShoutImageViewModel.Image(url: url))
                 }
             }
         }
         
         if let videos = shout.videos {
-            for video in videos {
+            for video : Video in videos {
                 models.append(ShoutDetailShoutImageViewModel.Movie(video: video))
             }
         }

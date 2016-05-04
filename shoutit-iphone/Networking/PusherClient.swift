@@ -68,7 +68,7 @@ final class PusherClient : NSObject {
             }
             
             if self.pusherInstance?.connection.connected == false {
-                self.connect()
+                self.tryToConnect()
             }
 
         }.addDisposableTo(disposeBag)
@@ -77,7 +77,7 @@ final class PusherClient : NSObject {
     
     func setAuthorizationToken(token: String) {
         authToken = token
-        connect()
+        tryToConnect()
     }
     
     func tryToConnect() {
@@ -115,17 +115,6 @@ final class PusherClient : NSObject {
         }
         
         pusherInstance?.disconnect()
-    }
-    
-    private func connect() {
-        
-        keepDisconnected = false
-        
-        pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
-        
-        // Connect only when user is logged
-        pusherInstance?.connect()
     }
     
     private func reconnect() {

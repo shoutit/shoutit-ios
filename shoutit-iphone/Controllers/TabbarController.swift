@@ -19,7 +19,11 @@ final class TabbarController: UIViewController, Navigation {
     
     var selectedNavigationItem : NavigationItem? {
         didSet {
-            tabs?.each { button in
+            guard let tabs = tabs else {
+                return
+            }
+            
+            for button : TabbarButton in tabs {
                 button.selected = button.tabNavigationItem() == self.selectedNavigationItem
             }
         }
