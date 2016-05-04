@@ -118,8 +118,8 @@ private extension AppDelegate {
         let console = ConsoleDestination()  // log to Xcode Console
         let cloud = SBPlatformDestination(appID: "v6ggaZ", appSecret: "ckaIkfmgycLdD78fofhrc48Q6K7Rzpps", encryptionKey: "p8br20ubgBcorJlmlFiortCqtv1wnztd") // to cloud
         
-        log.addDestination(console)
-        log.addDestination(cloud)
+        assert(log.addDestination(console))
+        assert(log.addDestination(cloud))
     
         // Disable AutoLayout Constraints Warnings
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

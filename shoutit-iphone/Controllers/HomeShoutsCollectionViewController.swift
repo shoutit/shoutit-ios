@@ -105,23 +105,34 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
+                retry.asObservable().debounce(1.5, scheduler: MainScheduler.instance)
+                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
+                    return (self?.viewModel.retriveShouts())!
+                })
+                .subscribeNext({ [weak self] (shouts) -> Void in
+                    self?.items = shouts
+                    self?.collectionView?.reloadData()
+                    self?.refreshControl.endRefreshing()
+                })
+                .addDisposableTo(disposeBag)
             
-            let retryObservable = retry.asObservable()
-            let userChangeObservable = Account.sharedInstance
+            Account.sharedInstance
                 .userSubject
-            
-            Observable
-                .combineLatest(retryObservable, userChangeObservable) {$0.1}
-                .distinctUntilChanged({ (lhs, rhs) -> Bool in
-                    guard let old = lhs, new = rhs else {
+                .flatMap({ (user) -> Observable<String?> in
+                    return Observable.just(user?.location.country)
+                }).distinctUntilChanged { (lhs, rhs) -> Bool in
+                    if lhs == rhs {
                         return true
                     }
-                    return old.id != new.id || old.location.address != new.location.address
-                })
+                    
+                    self.refreshControl.endRefreshing()
+                    
+                    return false
+                }
                 .debounce(1.5, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
-                    })
+                })
                 .subscribeNext({ [weak self] (shouts) -> Void in
                     self?.items = shouts
                     self?.collectionView?.reloadData()
