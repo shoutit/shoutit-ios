@@ -15,7 +15,7 @@ pod 'RxCocoa', '~> 2.3.1'
 pod 'Fabric', '~> 1.6'
 pod 'Crashlytics', '~> 3.6'
 pod 'Mixpanel', '~> 2.9'
-pod 'SwiftyBeaver', '0.5.2'
+pod 'SwiftyBeaver', '~> 0.5'
 
 # google
 pod 'GoogleMaps', '~> 1.10'
