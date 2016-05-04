@@ -116,8 +116,8 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             self.endCall()
             return
         }
-
-        Twilio.sharedInstance.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
+        
+        Account.sharedInstance.twilioManager.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
             if let error = error {
                 self?.state = .CallFailed
                 self?.showError(error)

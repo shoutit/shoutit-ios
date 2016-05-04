@@ -1,21 +1,21 @@
-
 /* Class = "UILabel"; text = "If you have already clicked on the link that was sent to you, you may click “Verify” now."; ObjectID = "3n1-kw-tkU"; */
-"3n1-kw-tkU.text" = "If you have already clicked on the link that was sent to you, you may click “Verify” now.";
+"3n1-kw-tkU.text" = "اذا كنت قد ضغط على الرابط المرسل اليك, يرجى الضغط على \"تحقق الآن\"";
 
 /* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "9i5-7q-LZP"; */
-"9i5-7q-LZP.normalTitle" = "Verify";
+"9i5-7q-LZP.normalTitle" = "تحقق الآن";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "COw-Qu-b4n"; */
-"COw-Qu-b4n.title" = "Cancel";
+"COw-Qu-b4n.title" = "إلغاء";
 
 /* Class = "UINavigationItem"; title = "Email Verification"; ObjectID = "LOQ-XF-eq2"; */
-"LOQ-XF-eq2.title" = "Email Verification";
+"LOQ-XF-eq2.title" = "التحقق من الإيميل";
 
 /* Class = "UIButton"; normalTitle = "Resend"; ObjectID = "PyS-Zd-vAr"; */
-"PyS-Zd-vAr.normalTitle" = "Resend";
+"PyS-Zd-vAr.normalTitle" = "إعادة إرسال";
 
 /* Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d"; */
-"QyQ-mg-M4d.text" = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again.";
+"QyQ-mg-M4d.text" = "تم إرسال رابط التفعيل على بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني والضغط على الرابط للتحقق من الحساب. تستطيع ايضاً تبديل البريد الإلكتروني من خلال الضغط على \"إعادة إرسال\" وسنرسل لك رابط التحقق مرة اخرى";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "wQK-uY-5kn"; */
-"wQK-uY-5kn.placeholder" = "Email";
+"wQK-uY-5kn.placeholder" = "البريد الإلكتروني";
+

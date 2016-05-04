@@ -86,9 +86,6 @@ final class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
         
         if let collectionView = collectionViewLayout?.collectionView {
             collectionView.delegate = self
-            
-//            collectionView.reloadData()
-            
             collectionView.performBatchUpdates({ () -> Void in
             
                 collectionView.reloadItemsAtIndexPaths(collectionView.visibleCells().map({ (cell) -> NSIndexPath in

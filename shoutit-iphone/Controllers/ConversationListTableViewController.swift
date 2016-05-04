@@ -35,7 +35,7 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
         
         reloadConversationList()
         
-        PusherClient.sharedInstance.mainChannelSubject.subscribeNext { [weak self] (event) in
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { [weak self] (event) in
             
             if event.eventType() == .NewMessage {
                 guard let message : Message = event.object() else {

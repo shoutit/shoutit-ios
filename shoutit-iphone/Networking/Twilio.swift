@@ -9,74 +9,99 @@
 import Foundation
 import RxSwift
 
+
 final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsClientDelegate {
-    static let sharedInstance = Twilio()
     
     private var authData: TwilioAuth? {
         didSet {
+            log.info("TWILIO: TOKEN RETRIVED")
             createTwilioClient()
         }
     }
     
+    private unowned var account: Account
+    private var client: TwilioConversationsClient?
+    private var accessManager: TwilioAccessManager?
+    
+    // helpers vars
     private var connecting : Bool = false
+    
+    // RX
     private var disposeBag = DisposeBag()
-    private var userChangeBag = DisposeBag()
+    private var userChangeBag = DisposeBag?()
     
-    var client: TwilioConversationsClient?
-    var accessManager: TwilioAccessManager?
-    
-    override init() {
+    init(account: Account) {
+        self.account = account
         super.init()
         
-        retriveToken()
+        connectIfNeeded()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(connectIfNeeded), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(disconnect), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+        subsribeForUserChange()
     }
     
-    func retriveToken() {
+    
+    deinit {
+        userChangeBag = nil
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    func connectIfNeeded() {
+        if case .Logged(_)? = account.userModel {
+            retriveToken()
+        } else {
+            disconnect()
+        }
+    }
+    
+    @objc private func retriveToken() {
         if connecting {
             return
         }
         
         connecting = true
         
+        log.verbose("TWILIO: TRYING TO RETRIVE TOKEN")
+        
         APIChatsService.twilioVideoAuth().subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
+            self?.connecting = false
+            
             switch event {
             case .Next(let authData):
                 self?.authData = authData
-                self?.connecting = false
-                self?.subsribeForUserChange()
+                
             case .Error(let error):
-                print(error)
-                self?.connecting = false
-                self?.subsribeForUserChange()
+                log.error(error)
             default: break
             }
         }.addDisposableTo(disposeBag)
     }
     
-    func subsribeForUserChange() {
+    private func subsribeForUserChange() {
         // release previous subscripitons
-        userChangeBag = DisposeBag()
+        let bag = DisposeBag()
         
-        Account.sharedInstance.loginSubject.subscribeNext { [weak self] (loginchanged) in
-            self?.client?.unlisten()
-            self?.client = nil
-            self?.accessManager = nil
-            self?.connecting = false
-            
-            if case .Logged(_)? = Account.sharedInstance.userModel {
-                // fetch token with small delay to avoid disposing client
-                self?.performSelector(#selector(Twilio.retriveToken), withObject: nil, afterDelay: 2.0)
+        userChangeBag = bag
+        
+        //  fetch token with small delay to avoid disposing client
+        account.loginSubject.subscribeNext { [weak self] (loginchanged) in
+            guard let strongSelf = self else {
+                return
             }
             
-        }.addDisposableTo(userChangeBag)
+            strongSelf.performSelector(#selector(strongSelf.connectIfNeeded), withObject: nil, afterDelay: 2.0)
+        }.addDisposableTo(bag)
     }
     
-    func createTwilioClient() {
+    private func createTwilioClient() {
         guard let authData = authData else {
-            fatalError("Twilio cannot be initialized before requesting an access token from Shoutit API")
+            log.error("Twilio cannot be initialized before requesting an access token from Shoutit API")
+            return
         }
-        
-        print(authData.token)
         
         self.accessManager = TwilioAccessManager(token:authData.token, delegate:self)
         self.client = TwilioConversationsClient(accessManager: self.accessManager!, delegate: self)
@@ -86,8 +111,6 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     
     func disconnect() {
         self.client?.unlisten()
-        self.client = nil
-        self.accessManager = nil
         self.connecting = false
     }
     
@@ -129,38 +152,35 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
 // Conversations Client Delegate
 extension Twilio {
     func conversationsClientDidStartListeningForInvites(conversationsClient: TwilioConversationsClient) {
-        debugPrint("start listning")
+        log.info("TWILIO: DID START LISTNING FOR INVITES")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
-        debugPrint("did cancel invite")
+        log.info("TWILIO: DID CANCEL INVITE")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
+        log.info("TWILIO: DID RECEIVE INVITE")
+        
         let notification = NSNotification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func conversationsClientDidStopListeningForInvites(conversationsClient: TwilioConversationsClient, error: NSError?) {
-        reconnect()
+        log.warning("TWILIO: DID STOP LISTENING FOR INVITES \(error)")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
         if error.code == 100 {
-            retriveToken()
+            connectIfNeeded()
         }
-    }
-    
-    func reconnect() {
-        self.client?.unlisten()
-        self.client?.listen()
     }
 }
 
 // Access Manager
 extension Twilio {
     func accessManagerTokenExpired(accessManager: TwilioAccessManager!) {
-        retriveToken()
+        connectIfNeeded()
     }
     
     func accessManager(accessManager: TwilioAccessManager!, error: NSError!) {

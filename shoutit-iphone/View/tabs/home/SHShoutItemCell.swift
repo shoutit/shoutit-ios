@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SHShoutItemCell: UICollectionViewCell {
+class SHShoutItemCell: UICollectionViewCell {
     
     @IBOutlet weak var shoutImage: UIImageView!
     @IBOutlet weak var name: UILabel?

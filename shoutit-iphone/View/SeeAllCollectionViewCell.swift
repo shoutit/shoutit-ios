@@ -8,6 +8,6 @@
 
 import UIKit
 
-final class SeeAllCollectionViewCell: UICollectionViewCell {
+class SeeAllCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var seeAllLabel: UILabel!
 }

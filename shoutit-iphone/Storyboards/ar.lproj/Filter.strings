@@ -1,60 +1,60 @@
+/* Class = "UILabel"; text = "Search within: "; ObjectID = "9RO-3f-vYA"; */
+"9RO-3f-vYA.text" = "بحث ضمن: ";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "41h-vW-IAU"; */
 "41h-vW-IAU.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "Search within: "; ObjectID = "9RO-3f-vYA"; */
-"9RO-3f-vYA.text" = "Search within: ";
-
 /* Class = "UILabel"; text = "Location"; ObjectID = "B22-b0-hjV"; */
-"B22-b0-hjV.text" = "Location";
+"B22-b0-hjV.text" = "الموقع";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "Dkj-dY-2zP"; */
-"Dkj-dY-2zP.normalTitle" = "Done";
+"Dkj-dY-2zP.normalTitle" = "تم";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "E74-KZ-76Y"; */
-"E74-KZ-76Y.normalTitle" = "Reset";
+"E74-KZ-76Y.normalTitle" = "إعادة ضبط";
 
 /* Class = "UILabel"; text = "Price"; ObjectID = "Gfz-GJ-JKv"; */
-"Gfz-GJ-JKv.text" = "Price";
+"Gfz-GJ-JKv.text" = "السعر";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "MqN-YC-Za6"; */
 "MqN-YC-Za6.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "OCB-fA-ZCw"; */
-"OCB-fA-ZCw.normalTitle" = "Location";
+"OCB-fA-ZCw.normalTitle" = "الموقع ";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Pz0-Qb-xZc"; */
 "Pz0-Qb-xZc.normalTitle" = "Button";
 
 /* Class = "UITextField"; placeholder = "To"; ObjectID = "S1R-lh-cIJ"; */
-"S1R-lh-cIJ.placeholder" = "To";
+"S1R-lh-cIJ.placeholder" = "إلى";
 
 /* Class = "UILabel"; text = "Filters"; ObjectID = "T98-Va-dQC"; */
-"T98-Va-dQC.text" = "Filters";
+"T98-Va-dQC.text" = "فرز";
 
 /* Class = "UIButton"; normalTitle = "Filter"; ObjectID = "Xhp-Cv-lTv"; */
-"Xhp-Cv-lTv.normalTitle" = "Filter";
+"Xhp-Cv-lTv.normalTitle" = "فرز";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "dpu-Pz-xd5"; */
-"dpu-Pz-xd5.normalTitle" = "Reset";
+"dpu-Pz-xd5.normalTitle" = "إعادة ضبط";
 
 /* Class = "UILabel"; text = "Location"; ObjectID = "dre-GC-uE6"; */
-"dre-GC-uE6.text" = "Location";
+"dre-GC-uE6.text" = "الموقع";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "gC7-LZ-yA3"; */
-"gC7-LZ-yA3.normalTitle" = "Back";
+"gC7-LZ-yA3.normalTitle" = "رجوع";
 
 /* Class = "UILabel"; text = "Filters"; ObjectID = "gnd-0t-PIg"; */
-"gnd-0t-PIg.text" = "Filters";
+"gnd-0t-PIg.text" = "فرز";
 
 /* Class = "UITextField"; placeholder = "From"; ObjectID = "hei-G2-sux"; */
-"hei-G2-sux.placeholder" = "From";
+"hei-G2-sux.placeholder" = "من";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "keH-di-e2o"; */
-"keH-di-e2o.normalTitle" = "Back";
+"keH-di-e2o.normalTitle" = "العودة";
 
 /* Class = "UIButton"; normalTitle = "All Categories"; ObjectID = "ofT-NM-U31"; */
-"ofT-NM-U31.normalTitle" = "All Categories";
+"ofT-NM-U31.normalTitle" = "جيمع التصنيفات";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "qSo-0H-wno"; */
 "qSo-0H-wno.text" = "Label";
+
