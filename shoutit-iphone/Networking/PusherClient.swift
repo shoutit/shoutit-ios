@@ -49,6 +49,8 @@ final class PusherClient : NSObject {
             try reachability.startNotifier()
         } catch let error { print(error) }
         
+        
+        
         NSNotificationCenter.defaultCenter()
           .rx_notification(ReachabilityChangedNotification)
           .asObservable()
@@ -58,7 +60,7 @@ final class PusherClient : NSObject {
             }
                     
             if self.pusherInstance?.connection.connected == false {
-                self.connect()
+                self.tryToConnect()
             }
           }.addDisposableTo(disposeBag)
     }

@@ -106,15 +106,16 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
-            let retryObservable = retry.asObservable().filter{$0}
+            let retryObservable = retry.asObservable()
             let userChangeObservable = Account.sharedInstance
                 .userSubject
             
             Observable
                 .combineLatest(retryObservable, userChangeObservable) {$0.1}
-                .filter{$0 != nil}
                 .distinctUntilChanged({ (lhs, rhs) -> Bool in
-                    guard let old = lhs, new = rhs else { return true }
+                    guard let old = lhs, new = rhs else {
+                        return true
+                    }
                     return old.id != new.id || old.location.address != new.location.address
                 })
                 .debounce(1.5, scheduler: MainScheduler.instance)

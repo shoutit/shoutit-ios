@@ -87,6 +87,7 @@ PODS:
   - SocketRocket (0.4.1)
   - SVProgressHUD (2.0.3)
   - SVPullToRefresh (0.4.1)
+  - SwiftyBeaver (0.5.2)
   - SWXMLHash (2.3.1)
   - Timberjack (0.0.2)
   - TwilioCommon (0.2.1)
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - SlackTextViewController
   - SVProgressHUD
   - SVPullToRefresh (~> 0.4)
+  - SwiftyBeaver (~> 0.5)
   - Timberjack
   - TwilioConversationsClient (~> 0.22.0)
   - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`,
