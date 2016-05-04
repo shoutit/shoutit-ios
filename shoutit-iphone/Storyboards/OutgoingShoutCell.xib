@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -103,8 +103,8 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Da0-wd-JIg">
-                        <rect key="frame" x="153" y="78" width="20" height="20"/>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Da0-wd-JIg">
+                        <rect key="frame" x="153" y="79" width="20" height="20"/>
                     </activityIndicatorView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="18:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeI-n7-9xn">
                         <rect key="frame" x="225" y="13" width="35" height="15"/>
@@ -127,13 +127,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="JoV-VH-Nq3" firstAttribute="top" secondItem="4V6-iH-rOq" secondAttribute="top" constant="5" id="29Z-tX-3G6"/>
-                    <constraint firstAttribute="trailing" secondItem="JoV-VH-Nq3" secondAttribute="trailing" constant="10" id="FPg-tS-0Qc"/>
-                    <constraint firstItem="Xxe-Hi-bnp" firstAttribute="leading" secondItem="JoV-VH-Nq3" secondAttribute="leading" constant="5" id="O99-Ma-yMk"/>
+                    <constraint firstAttribute="right" secondItem="JoV-VH-Nq3" secondAttribute="right" constant="10" id="FPg-tS-0Qc"/>
+                    <constraint firstItem="Xxe-Hi-bnp" firstAttribute="left" secondItem="JoV-VH-Nq3" secondAttribute="left" constant="5" id="O99-Ma-yMk"/>
                     <constraint firstItem="Da0-wd-JIg" firstAttribute="centerX" secondItem="Xxe-Hi-bnp" secondAttribute="centerX" id="RWE-2a-at2"/>
                     <constraint firstItem="Xxe-Hi-bnp" firstAttribute="top" secondItem="JoV-VH-Nq3" secondAttribute="top" constant="5" id="USg-Nv-n4j"/>
                     <constraint firstItem="UD4-yw-ne2" firstAttribute="top" secondItem="Xxe-Hi-bnp" secondAttribute="bottom" constant="-1" id="aU9-hV-tIj"/>
                     <constraint firstAttribute="bottom" secondItem="JoV-VH-Nq3" secondAttribute="bottom" constant="5" id="azH-q1-9bX"/>
-                    <constraint firstItem="SeI-n7-9xn" firstAttribute="trailing" secondItem="Xxe-Hi-bnp" secondAttribute="trailing" constant="-3" id="fxQ-Np-Vyp"/>
+                    <constraint firstItem="SeI-n7-9xn" firstAttribute="right" secondItem="Xxe-Hi-bnp" secondAttribute="right" constant="-3" id="fxQ-Np-Vyp"/>
                     <constraint firstItem="SeI-n7-9xn" firstAttribute="top" secondItem="Xxe-Hi-bnp" secondAttribute="top" constant="3" id="mtB-w6-nhy"/>
                     <constraint firstItem="Da0-wd-JIg" firstAttribute="centerY" secondItem="Xxe-Hi-bnp" secondAttribute="centerY" id="nhe-Ng-eap"/>
                 </constraints>

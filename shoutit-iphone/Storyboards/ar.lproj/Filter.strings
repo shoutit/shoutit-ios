@@ -1,5 +1,8 @@
 /* Class = "UILabel"; text = "Search within: "; ObjectID = "9RO-3f-vYA"; */
-"9RO-3f-vYA.text" = "بحث ضمن:";
+"9RO-3f-vYA.text" = "بحث ضمن: ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "41h-vW-IAU"; */
+"41h-vW-IAU.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Location"; ObjectID = "B22-b0-hjV"; */
 "B22-b0-hjV.text" = "الموقع";
@@ -13,8 +16,14 @@
 /* Class = "UILabel"; text = "Price"; ObjectID = "Gfz-GJ-JKv"; */
 "Gfz-GJ-JKv.text" = "السعر";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "MqN-YC-Za6"; */
+"MqN-YC-Za6.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "OCB-fA-ZCw"; */
-"OCB-fA-ZCw.normalTitle" = "الموقع";
+"OCB-fA-ZCw.normalTitle" = "الموقع ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Pz0-Qb-xZc"; */
+"Pz0-Qb-xZc.normalTitle" = "Button";
 
 /* Class = "UITextField"; placeholder = "To"; ObjectID = "S1R-lh-cIJ"; */
 "S1R-lh-cIJ.placeholder" = "إلى";
@@ -45,4 +54,7 @@
 
 /* Class = "UIButton"; normalTitle = "All Categories"; ObjectID = "ofT-NM-U31"; */
 "ofT-NM-U31.normalTitle" = "جيمع التصنيفات";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qSo-0H-wno"; */
+"qSo-0H-wno.text" = "Label";
 

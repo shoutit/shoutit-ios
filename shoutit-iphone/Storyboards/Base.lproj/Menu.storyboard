@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -85,7 +85,7 @@
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="985" constant="180" id="K9h-IT-cmy"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="  Create Shout" image="tabShout">
+                                    <state key="normal">
                                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -149,6 +149,33 @@
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="uUW-T0-Nem"/>
                                     </constraints>
                                 </view>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhV-Bq-Mwh">
+                                    <rect key="frame" x="225" y="148" width="151" height="44"/>
+                                    <subviews>
+                                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create_shout_menu" translatesAutoresizingMaskIntoConstraints="NO" id="22X-fP-of6">
+                                            <rect key="frame" x="5" y="10" width="24" height="24"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="O0u-PN-jMV"/>
+                                                <constraint firstAttribute="height" constant="24" id="zSV-7P-PPy"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Shout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFf-Pq-9uJ">
+                                            <rect key="frame" x="39" y="12" width="107" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="uFf-Pq-9uJ" firstAttribute="leading" secondItem="22X-fP-of6" secondAttribute="trailing" constant="10" id="84K-BG-qaI"/>
+                                        <constraint firstItem="uFf-Pq-9uJ" firstAttribute="centerY" secondItem="IhV-Bq-Mwh" secondAttribute="centerY" id="LVW-7r-S22"/>
+                                        <constraint firstItem="22X-fP-of6" firstAttribute="centerY" secondItem="IhV-Bq-Mwh" secondAttribute="centerY" id="Vrw-gN-03E"/>
+                                        <constraint firstItem="22X-fP-of6" firstAttribute="leading" secondItem="IhV-Bq-Mwh" secondAttribute="leading" constant="5" id="si7-iX-GoM"/>
+                                        <constraint firstAttribute="trailing" secondItem="uFf-Pq-9uJ" secondAttribute="trailing" constant="5" id="zWm-tk-3YS"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -159,9 +186,12 @@
                                 <constraint firstItem="EKD-QA-81c" firstAttribute="height" secondItem="ycY-Gy-tKS" secondAttribute="height" id="5W8-tZ-Cjo"/>
                                 <constraint firstItem="GwI-Fg-cWQ" firstAttribute="top" secondItem="EGO-eM-OW2" secondAttribute="top" constant="148" id="7QF-cL-HTb"/>
                                 <constraint firstAttribute="bottom" secondItem="vyb-tu-oKn" secondAttribute="bottom" id="80i-7L-40a"/>
+                                <constraint firstItem="IhV-Bq-Mwh" firstAttribute="height" secondItem="fm0-dm-zPw" secondAttribute="height" id="Apf-RG-v0A"/>
+                                <constraint firstItem="IhV-Bq-Mwh" firstAttribute="centerX" secondItem="fm0-dm-zPw" secondAttribute="centerX" id="DNn-dA-n21"/>
                                 <constraint firstItem="ycY-Gy-tKS" firstAttribute="leading" secondItem="EGO-eM-OW2" secondAttribute="leading" id="EF7-zU-1A5"/>
                                 <constraint firstItem="fm0-dm-zPw" firstAttribute="top" secondItem="FDW-SH-tlA" secondAttribute="bottom" constant="21" id="GX2-sK-iEi"/>
                                 <constraint firstItem="cua-sB-g1r" firstAttribute="top" secondItem="fm0-dm-zPw" secondAttribute="bottom" constant="12" id="GZo-eL-vu7"/>
+                                <constraint firstItem="IhV-Bq-Mwh" firstAttribute="leading" secondItem="fm0-dm-zPw" secondAttribute="leading" id="JU9-D2-Efc"/>
                                 <constraint firstItem="ycY-Gy-tKS" firstAttribute="top" secondItem="EGO-eM-OW2" secondAttribute="top" id="LD0-Ae-Nc8"/>
                                 <constraint firstItem="ys9-SK-6FT" firstAttribute="leading" secondItem="cua-sB-g1r" secondAttribute="trailing" constant="30" id="MrP-Ty-5xq"/>
                                 <constraint firstItem="joN-Uc-tki" firstAttribute="top" secondItem="ycY-Gy-tKS" secondAttribute="bottom" id="MwG-Yx-a3U"/>
@@ -186,10 +216,12 @@
                                 <constraint firstItem="joN-Uc-tki" firstAttribute="leading" secondItem="EGO-eM-OW2" secondAttribute="leading" id="lpA-U9-aJr"/>
                                 <constraint firstAttribute="bottom" secondItem="fm0-dm-zPw" secondAttribute="bottom" constant="48" id="pgP-nt-nhH"/>
                                 <constraint firstItem="zlE-2J-uaa" firstAttribute="centerY" secondItem="GwI-Fg-cWQ" secondAttribute="centerY" id="r8o-04-Rz6"/>
+                                <constraint firstItem="IhV-Bq-Mwh" firstAttribute="centerY" secondItem="fm0-dm-zPw" secondAttribute="centerY" id="xBv-2m-MCc"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="itN-bs-3wb"/>
+                                    <exclude reference="JU9-D2-Efc"/>
                                 </mask>
                             </variation>
                             <connections>
@@ -341,7 +373,7 @@
     <resources>
         <image name="PL" width="64" height="64"/>
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
+        <image name="create_shout_menu" width="22" height="22"/>
         <image name="guest avatar" width="66" height="66"/>
-        <image name="tabShout" width="26" height="26"/>
     </resources>
 </document>

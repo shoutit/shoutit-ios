@@ -10,26 +10,12 @@ import Foundation
 
 enum FiltersCellViewModel {
     
-    enum DistanceRestrictionFilterOption {
-        case Distance(kilometers: Int)
-        case EntireCountry
-        
-        var title: String {
-            switch self {
-            case .Distance(let kilometers):
-                return "\(kilometers) km"
-            case .EntireCountry:
-                return NSLocalizedString("Entire country", comment: "")
-            }
-        }
-    }
-    
     case ShoutTypeChoice(shoutType: ShoutType?)
     case SortTypeChoice(sortType: SortType?, loaded: (Void -> Bool))
     case CategoryChoice(category: Category?, enabled: Bool, loaded: (Void -> Bool))
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
-    case DistanceRestriction(distanceOption: DistanceRestrictionFilterOption)
+    case DistanceRestriction(distanceOption: FiltersState.DistanceRestriction)
     case FilterValueChoice(filter: Filter, selectedValues: [FilterValue])
     
     func buttonTitle() -> String? {
@@ -57,22 +43,14 @@ enum FiltersCellViewModel {
             }
             return NSLocalizedString("Choose location", comment: "Displayed on filter button when no location is chosen")
         case .DistanceRestriction(let distanceOption):
-            return distanceOption.title
+            switch distanceOption {
+            case .Distance(let kilometers):
+                return "\(kilometers) km"
+            case .EntireCountry:
+                return NSLocalizedString("Entire country", comment: "")
+            }
         case .FilterValueChoice(_, let values):
             return values.map{$0.name}.joinWithSeparator(", ")
         }
-    }
-}
-
-extension FiltersCellViewModel.DistanceRestrictionFilterOption: Equatable {}
-
-func ==(lhs: FiltersCellViewModel.DistanceRestrictionFilterOption, rhs: FiltersCellViewModel.DistanceRestrictionFilterOption) -> Bool {
-    switch (lhs, rhs) {
-    case (.EntireCountry, .EntireCountry):
-        return true
-    case (.Distance(let lhsDistance), .Distance(let rhsDistance)):
-        return lhsDistance == rhsDistance
-    default:
-        return false
     }
 }

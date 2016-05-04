@@ -270,15 +270,12 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let header = view as? UITableViewHeaderFooterView {
-            header.tintColor = UIColor.whiteColor()
-            header.textLabel?.font = UIFont.systemFontOfSize(14.0)
-        }
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.tintColor = UIColor.whiteColor()
+        header.textLabel?.font = UIFont.systemFontOfSize(14.0)
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.viewModel.sectionTitle(section)
     }
-    
-    
 }

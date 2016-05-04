@@ -34,7 +34,7 @@ final class CreateShoutViewModel: NSObject {
         shoutParams = ShoutParams(type: Variable(type), title: Variable(""),
                                 text: Variable(nil), price: Variable(nil), currency: Variable(nil),
                                 images: Variable([]), videos:  Variable([]), category: Variable(nil),
-                                location:  Variable(Account.sharedInstance.loggedUser?.location),
+                                location:  Variable(Account.sharedInstance.user?.location),
                                 publishToFacebook: Variable(false), filters: Variable([:]), shout: nil, mobile: Variable(nil))
     }
     
@@ -44,7 +44,7 @@ final class CreateShoutViewModel: NSObject {
                                   text: Variable(shout.text), price: Variable(shout.price != nil ? Double(shout.price!/100) : 0.0),
             currency: Variable(nil), images: Variable(shout.imagePaths),
                                 videos:  Variable([]), category: Variable(shout.category),
-                                location:  Variable(Account.sharedInstance.loggedUser?.location),
+                                location:  Variable(Account.sharedInstance.user?.location),
                                 publishToFacebook: Variable(false), filters: Variable([:]), shout: shout, mobile: Variable(shout.mobile))
     }
     
@@ -350,7 +350,8 @@ extension CreateShoutViewModel {
         
         let filter = filters[indexPath.row - 2]
         
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select \(filter.name ?? "")", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let title = String.localizedStringWithFormat(NSLocalizedString("Please select %@", comment: "Create Shout: choose filter: Action sheet title"), filter.name ?? "")
+        let actionSheetController = UIAlertController(title: title, message: "", preferredStyle: .ActionSheet)
         
         filter.values?.each { (value) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(value.name)", style: .Default, handler: { (alertAction) in

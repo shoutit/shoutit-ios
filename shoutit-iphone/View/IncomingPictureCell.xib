@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -90,9 +90,9 @@
                     <constraint firstAttribute="bottom" secondItem="Fnl-Cm-E1c" secondAttribute="bottom" constant="5" id="K0r-Gq-WsG"/>
                     <constraint firstItem="oQT-aU-SKb" firstAttribute="centerX" secondItem="g1x-Q1-Ud9" secondAttribute="centerX" id="Sdm-TQ-rPe"/>
                     <constraint firstItem="oQT-aU-SKb" firstAttribute="centerY" secondItem="g1x-Q1-Ud9" secondAttribute="centerY" id="jzL-ud-IqW"/>
-                    <constraint firstItem="l4o-Tj-1it" firstAttribute="leading" secondItem="9ZF-wf-BTC" secondAttribute="leading" constant="10" id="slG-NS-YYp"/>
+                    <constraint firstItem="l4o-Tj-1it" firstAttribute="left" secondItem="9ZF-wf-BTC" secondAttribute="left" constant="10" id="slG-NS-YYp"/>
                     <constraint firstItem="Fnl-Cm-E1c" firstAttribute="top" secondItem="9ZF-wf-BTC" secondAttribute="top" constant="5" id="xYU-JU-k3d"/>
-                    <constraint firstItem="Fnl-Cm-E1c" firstAttribute="leading" secondItem="l4o-Tj-1it" secondAttribute="trailing" constant="10" id="xmO-Cd-szG"/>
+                    <constraint firstItem="Fnl-Cm-E1c" firstAttribute="left" secondItem="l4o-Tj-1it" secondAttribute="right" constant="10" id="xmO-Cd-szG"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -53,22 +53,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xQ0-XT-zqQ" secondAttribute="trailing" constant="35" id="0aF-Fs-qSz"/>
+                    <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="xQ0-XT-zqQ" secondAttribute="right" constant="35" id="0aF-Fs-qSz"/>
                     <constraint firstItem="6ku-0i-0XB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EyW-K0-QBo" secondAttribute="bottom" id="19V-bB-Xmr"/>
-                    <constraint firstItem="6ku-0i-0XB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xQ0-XT-zqQ" secondAttribute="leading" constant="5" id="DpM-tn-1WP"/>
+                    <constraint firstItem="6ku-0i-0XB" firstAttribute="left" relation="greaterThanOrEqual" secondItem="xQ0-XT-zqQ" secondAttribute="left" constant="5" id="DpM-tn-1WP"/>
                     <constraint firstAttribute="bottom" secondItem="6ku-0i-0XB" secondAttribute="bottom" constant="5" id="J0X-0R-BPK"/>
-                    <constraint firstItem="gc7-2i-ZmR" firstAttribute="leading" secondItem="65j-3e-JXA" secondAttribute="leading" constant="10" id="JJk-v3-17d"/>
+                    <constraint firstItem="gc7-2i-ZmR" firstAttribute="left" secondItem="65j-3e-JXA" secondAttribute="left" constant="10" id="JJk-v3-17d"/>
                     <constraint firstItem="EyW-K0-QBo" firstAttribute="top" secondItem="gc7-2i-ZmR" secondAttribute="top" id="Ng5-X9-ZjM"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EyW-K0-QBo" secondAttribute="bottom" constant="5" id="X5Y-tl-wz3"/>
-                    <constraint firstItem="EyW-K0-QBo" firstAttribute="leading" secondItem="gc7-2i-ZmR" secondAttribute="trailing" constant="10" id="aMl-UG-jF5"/>
-                    <constraint firstItem="xQ0-XT-zqQ" firstAttribute="leading" secondItem="65j-3e-JXA" secondAttribute="leading" constant="55" id="bto-E4-pXy"/>
-                    <constraint firstItem="6ku-0i-0XB" firstAttribute="trailing" secondItem="xQ0-XT-zqQ" secondAttribute="trailing" constant="-5" id="e56-uS-xjk"/>
+                    <constraint firstItem="EyW-K0-QBo" firstAttribute="left" secondItem="gc7-2i-ZmR" secondAttribute="right" constant="10" id="aMl-UG-jF5"/>
+                    <constraint firstItem="xQ0-XT-zqQ" firstAttribute="left" secondItem="65j-3e-JXA" secondAttribute="left" constant="55" id="bto-E4-pXy"/>
+                    <constraint firstItem="6ku-0i-0XB" firstAttribute="right" secondItem="xQ0-XT-zqQ" secondAttribute="right" constant="-5" id="e56-uS-xjk"/>
                     <constraint firstItem="gc7-2i-ZmR" firstAttribute="top" secondItem="65j-3e-JXA" secondAttribute="top" constant="10" id="g6B-bd-G8u"/>
-                    <constraint firstItem="xQ0-XT-zqQ" firstAttribute="trailing" secondItem="EyW-K0-QBo" secondAttribute="trailing" constant="10" id="hXY-7v-oNM"/>
+                    <constraint firstItem="xQ0-XT-zqQ" firstAttribute="right" secondItem="EyW-K0-QBo" secondAttribute="right" constant="10" id="hXY-7v-oNM"/>
                     <constraint firstItem="xQ0-XT-zqQ" firstAttribute="top" secondItem="65j-3e-JXA" secondAttribute="top" constant="5" id="s3i-ws-uvH"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gc7-2i-ZmR" secondAttribute="bottom" constant="5" id="u7R-oF-0vZ"/>
                     <constraint firstAttribute="bottom" secondItem="xQ0-XT-zqQ" secondAttribute="bottom" id="w3S-kz-1OT"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EyW-K0-QBo" secondAttribute="trailing" constant="40" id="yQ4-5o-WHp"/>
+                    <constraint firstAttribute="right" relation="greaterThanOrEqual" secondItem="EyW-K0-QBo" secondAttribute="right" constant="40" id="yQ4-5o-WHp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -8,13 +8,13 @@
 "COw-Qu-b4n.title" = "إلغاء";
 
 /* Class = "UINavigationItem"; title = "Email Verification"; ObjectID = "LOQ-XF-eq2"; */
-"LOQ-XF-eq2.title" = "تحقق من الإيميل";
+"LOQ-XF-eq2.title" = "التحقق من الإيميل";
 
 /* Class = "UIButton"; normalTitle = "Resend"; ObjectID = "PyS-Zd-vAr"; */
 "PyS-Zd-vAr.normalTitle" = "إعادة إرسال";
 
 /* Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d"; */
-"QyQ-mg-M4d.text" = "تم إرسال رابط التفعيل على بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني والضغط على الرابط للتحقق من الحساب. تستطيع ايضاً تبديل البريد الإلكتروني من خلال الضغط على \"إعادة إرسال\" وسنرسل لك رابط التحقق مرة اخرى.";
+"QyQ-mg-M4d.text" = "تم إرسال رابط التفعيل على بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني والضغط على الرابط للتحقق من الحساب. تستطيع ايضاً تبديل البريد الإلكتروني من خلال الضغط على \"إعادة إرسال\" وسنرسل لك رابط التحقق مرة اخرى";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "wQK-uY-5kn"; */
 "wQK-uY-5kn.placeholder" = "البريد الإلكتروني";

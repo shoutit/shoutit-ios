@@ -27,7 +27,7 @@ final class FiltersViewModel {
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
     
     // consts
-    lazy var distanceRestrictionOptions: [FiltersCellViewModel.DistanceRestrictionFilterOption] = {
+    lazy var distanceRestrictionOptions: [FiltersState.DistanceRestriction] = {
         return [
             .Distance(kilometers: 1),
             .Distance(kilometers: 2),
@@ -128,7 +128,7 @@ final class FiltersViewModel {
         var minimumPrice: Int?
         var maximumPrice: Int?
         var location: Address?
-        var distance: Int?
+        var distanceRestriction: FiltersState.DistanceRestriction?
         var filters: [(Filter, [FilterValue])] = []
         
         for cellViewModel in cellViewModels {
@@ -145,12 +145,7 @@ final class FiltersViewModel {
             case .LocationChoice(let address):
                 location = address
             case .DistanceRestriction(let distanceOption):
-                switch distanceOption {
-                case .Distance(let kilometers):
-                    distance = kilometers
-                case .EntireCountry:
-                    distance = nil
-                }
+                distanceRestriction = distanceOption
             case .FilterValueChoice(let filter, let selectedValues):
                 filters.append((filter, selectedValues))
             }
@@ -162,11 +157,11 @@ final class FiltersViewModel {
                             minimumPrice: (minimumPrice, filtersState.minimumPrice.1),
                             maximumPrice: (maximumPrice, filtersState.maximumPrice.1),
                             location: (location, filtersState.location.1),
-                            withinDistance: (distance, filtersState.withinDistance.1),
+                            withinDistance: (distanceRestriction, filtersState.withinDistance.1),
                             filters: filters)
     }
     
-    func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersCellViewModel.DistanceRestrictionFilterOption {
+    func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersState.DistanceRestriction {
         let steps = sliderValueStepsForDistanceRestrictionOptions()
         for (index, rangeEndValue) in steps.enumerate() {
             if value <= rangeEndValue {
@@ -176,7 +171,7 @@ final class FiltersViewModel {
         return .EntireCountry
     }
     
-    func sliderValueForDistanceRestrictionOption(option: FiltersCellViewModel.DistanceRestrictionFilterOption) -> Float {
+    func sliderValueForDistanceRestrictionOption(option: FiltersState.DistanceRestriction) -> Float {
         for (index, distanceRestrictionOption) in distanceRestrictionOptions.enumerate() {
             if distanceRestrictionOption == option {
                 return sliderValueStepsForDistanceRestrictionOptions()[index]
@@ -260,8 +255,8 @@ private extension FiltersViewModel {
             sortTypeCellViewModel = .SortTypeChoice(sortType: nil, loaded: sortTypesLoaded)
         }
         
-        if case (let distance?, _) = filtersState.withinDistance {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: .Distance(kilometers: distance))
+        if case (let distanceRestriction?, _) = filtersState.withinDistance {
+            distanceConstraintViewModel = .DistanceRestriction(distanceOption: distanceRestriction)
         } else {
             distanceConstraintViewModel = .DistanceRestriction(distanceOption: .EntireCountry)
         }
@@ -316,8 +311,8 @@ private extension FiltersViewModel {
             locationViewModel = .LocationChoice(location: Account.sharedInstance.user?.location)
         }
         
-        if case (let distance?, .Disabled) = filtersState.withinDistance {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: .Distance(kilometers: distance))
+        if case (let distanceRestriction?, .Disabled) = filtersState.withinDistance {
+            distanceConstraintViewModel = .DistanceRestriction(distanceOption: distanceRestriction)
         } else {
             distanceConstraintViewModel = .DistanceRestriction(distanceOption: .EntireCountry)
         }

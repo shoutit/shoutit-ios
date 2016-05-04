@@ -21,19 +21,19 @@ final class CallingOutViewController: UIViewController {
 
         let localMedia = TWCLocalMedia()
         
-        Twilio.sharedInstance.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
-            if let error = error {
-                self?.showError(error)
-                return
-            }
-            
-            if let conversation = conversation {
-                let controller = Wireframe.videoCallController()
+        Account.sharedInstance
+            .twilioManager
+            .sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
+                if let error = error {
+                    self?.showError(error)
+                    return
+                }
                 
-                controller.conversation = conversation
-                
-                self?.presentViewController(controller, animated: true, completion: nil)
-            }
+                if let conversation = conversation {
+                    let controller = Wireframe.videoCallController()
+                    controller.conversation = conversation
+                    self?.presentViewController(controller, animated: true, completion: nil)
+                }
         }
     }
 

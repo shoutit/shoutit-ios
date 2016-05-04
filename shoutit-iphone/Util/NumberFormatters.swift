@@ -10,27 +10,28 @@ import Foundation
 
 final class NumberFormatters {
     
-    static let sharedInstance = NumberFormatters()
-    
-    func numberToShortString(number: Int) -> String {
+    static func numberToShortString(number: Int) -> String {
         
         var num:Double = Double(number)
-        
-        let sign = ((num < 0) ? "-" : "" );
         
         num = fabs(num);
         
         if (num < 1000.0){
-            return "\(sign)\(Int(num))";
+            return localizedNumber(Int(num))
         }
         
         let exp:Int = Int(log10(num) / 3.0 ); //log10(1000));
         
-        let units:[String] = ["K","M","G","T","P","E"];
+        let units:[String] = [NSLocalizedString("K", comment: ""),
+                              NSLocalizedString("M", comment: ""),
+                              "G",
+                              "T",
+                              "P",
+                              "E"];
         
         let roundedNum:Double = round(10 * num / pow(1000.0,Double(exp))) / 10;
-        
-        return "\(sign)\(Int(roundedNum))\(units[exp-1])";
+        let string = "\(localizedNumber(Int(roundedNum)))\(units[exp-1])"
+        return string
     }
     
     static func priceStringWithPrice(price: Int?, currency: String? = nil) -> String? {
@@ -47,8 +48,7 @@ final class NumberFormatters {
         
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
-        formatter.currencyGroupingSeparator = " "
-        formatter.locale = NSLocale.systemLocale()
+        formatter.locale = .autoupdatingCurrentLocale()
         
         if let currency = currency {
             formatter.currencyCode = currency.lowercaseString
@@ -56,5 +56,22 @@ final class NumberFormatters {
         }
         
         return formatter.stringFromNumber(Double(price)/100.0)
+    }
+    
+    static func badgeCountStringWithNumber(number: Int) -> String {
+        
+        if number > 99 {
+            return "\(NSLocalizedString("+99", comment: "More than 99 Notifications")) "
+        }
+        
+        return localizedNumber(number)
+    }
+    
+    private static func localizedNumber(number: Int) -> String {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .NoStyle
+        formatter.locale = .autoupdatingCurrentLocale()
+        
+        return formatter.stringFromNumber(number)!
     }
 }

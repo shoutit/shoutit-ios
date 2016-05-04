@@ -1,3 +1,6 @@
 [submodule "External/xcconfigs"]
 	path = External/xcconfigs
 	url = https://github.com/jspahrsummers/xcconfigs.git
+  [submodule "translations"]
+	path = translations
+	url = https://shoutit-bot:shoutitbot1@github.com/shoutit/shoutit-ios-xliff.git

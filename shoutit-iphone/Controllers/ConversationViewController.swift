@@ -45,6 +45,34 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
+        
+        
+    }
+    
+    func subscribeSockets() {
+        self.viewModel.createSocketObservable()
+    }
+    
+    func unsubscribeSockets() {
+        self.viewModel.unsubscribeSockets()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.createSocketObservable()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(subscribeSockets), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(unsubscribeSockets), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.unsubscribeSockets()
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -92,7 +120,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }        
     }
     
-    func setupDataSource() {
+    private func setupDataSource() {
         viewModel = ConversationViewModel(conversation: self.conversation, delegate: self)
         viewModel.fetchMessages()
         
@@ -105,7 +133,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
                 return
             }
             
-            self?.typingIndicatorView?.insertUsername(profile.firstName)
+            self?.typingIndicatorView?.insertUsername(profile.username)
         }.addDisposableTo(disposeBag)
         
         viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
@@ -125,7 +153,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
     }
     
-    func setupAttachmentManager() {
+    private func setupAttachmentManager() {
         attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
             self?.viewModel.sendMessageWithAttachment(attachment)
         }.addDisposableTo(disposeBag)
@@ -145,7 +173,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
     }
     
-    func registerSupplementaryViews() {
+    private func registerSupplementaryViews() {
         guard let tableView = tableView else {
             assertionFailure()
             return
@@ -173,7 +201,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
     }
     
-    func customizeTable() {
+    private func customizeTable() {
         guard let tableView = tableView else {
             assertionFailure()
             return
@@ -187,8 +215,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
     }
     
-    func customizeInputView() {
-        rightButton.setImage(UIImage(named: "send"), forState: .Normal)
+    private func customizeInputView() {
+        rightButton.setImage(UIImage.chatsSendButtonImage(), forState: .Normal)
         rightButton.setTitle("", forState: .Normal)
         rightButton.tintColor = UIColor(shoutitColor: ShoutitColor.ShoutitButtonGreen)
         
@@ -198,6 +226,12 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         typingIndicatorView?.interval = 3.0
         textView.placeholder = NSLocalizedString("Type a message", comment: "")
+        
+        // since autolayout swaps text bar, we swap it back to keep send button on the right
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            textInputbar.transform = CGAffineTransformMakeScale(-1, 1)
+            textInputbar.textView.transform = CGAffineTransformMakeScale(-1, 1)
+        }
     }
     
     override func prefersTabbarHidden() -> Bool {
@@ -246,9 +280,10 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
         
-        loadMoreView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: footerHeight)
+//        loadMoreView?.frame = CGRect(x: 0, y: -64.0, width: 300, height: 5*footerHeight)
         loadMoreView?.layoutIfNeeded()
         loadMoreView?.transform = tableView.transform
+        loadMoreView?.backgroundColor = UIColor.redColor()
         
         loadMoreView?.setState(.ReadyToLoad)
         loadMoreView?.loadMoreButton.addTarget(self, action: #selector(ConversationViewController.loadMore), forControlEvents: .TouchUpInside)
@@ -261,6 +296,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }).addDisposableTo(loadMoreBag)
         
         tableView.tableFooterView = loadMoreView
+        
     }
     
     func setTitleView() {

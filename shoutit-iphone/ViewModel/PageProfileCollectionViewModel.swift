@@ -45,7 +45,6 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 case .Error(let error):
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
-                    print(error)
                 }
                 })
             .addDisposableTo(disposeBag)
@@ -98,7 +97,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
-        let listenersCountString = NumberFormatters.sharedInstance.numberToShortString(detailedProfile?.listenersCount ?? profile.listenersCount)
+        let listenersCountString = NumberFormatters.numberToShortString(detailedProfile?.listenersCount ?? profile.listenersCount)
         return [.Listeners(countString: listenersCountString),
                 .Chat,
                 .Listen(isListening: detailedProfile?.isListening ?? profile.isListening ?? false),

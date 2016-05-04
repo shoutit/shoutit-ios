@@ -61,15 +61,22 @@ final class LocationManager: NSObject {
     }
     
     func updateUserCoordinates(coordinates: CLLocationCoordinate2D) {
+        
+        guard let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? NSNumber else {
+            return
+        }
+
+        if auto.boolValue == false {
+            return
+        }
+        
         guard let username = Account.sharedInstance.user?.username else {
             return
         }
         
         let coordinateParams = CoordinateParams(coordinates: coordinates)
         
-        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext { (user) in
-            print("location updated")
-        }.addDisposableTo(disposeBag)
+        APILocationService.updateLocationForUser(username, withParams: coordinateParams).subscribeNext{(_) in}.addDisposableTo(disposeBag)
     }
     
 }

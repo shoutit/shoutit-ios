@@ -30,8 +30,8 @@ final class EditProfileTableViewModel {
     }()
     
     init() {
-        precondition(Account.sharedInstance.loggedUser != nil)
-        user = Account.sharedInstance.loggedUser!
+        guard case .Logged(let user)? = Account.sharedInstance.userModel else { preconditionFailure() }
+        self.user = user
         cells = [EditProfileCellViewModel(firstname: user.firstName ?? ""),
                  EditProfileCellViewModel(lastname: user.lastName ?? ""),
                  EditProfileCellViewModel(username: user.username),
@@ -80,7 +80,7 @@ final class EditProfileTableViewModel {
                     observer.onNext(.Progress(show: false))
                     switch event {
                     case .Next(let loggedUser):
-                        Account.sharedInstance.loggedUser = loggedUser
+                        Account.sharedInstance.updateUserWithModel(loggedUser)
                         observer.onNext(.Ready)
                     case .Error(let error):
                         observer.onNext(.Error(error: error))

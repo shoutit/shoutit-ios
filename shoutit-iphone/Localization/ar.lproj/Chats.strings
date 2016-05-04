@@ -2,22 +2,34 @@
 "1Cm-xk-7AD.title" = "الموقع";
 
 /* Class = "UILabel"; text = "Participants"; ObjectID = "7lD-XO-jLv"; */
-"7lD-XO-jLv.text" = "منتسبون";
+"7lD-XO-jLv.text" = "المشاركون";
 
 /* Class = "UILabel"; text = "Message Preview"; ObjectID = "Ejl-rm-dWM"; */
-"Ejl-rm-dWM.text" = "عرض الرسالة";
+"Ejl-rm-dWM.text" = "عرض الرسالة ";
 
 /* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
 "GZ0-mH-W33.title" = "المحادثات";
 
+/* Class = "UILabel"; text = "Video"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "فيديو";
+
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "OoV-dq-QkE"; */
 "OoV-dq-QkE.title" = "العنوان";
+
+/* Class = "UILabel"; text = "John Smith"; ObjectID = "QDG-Al-JRl"; */
+"QDG-Al-JRl.text" = "John Smith";
+
+/* Class = "UILabel"; text = "$44 USD"; ObjectID = "Uyo-AD-bj5"; */
+"Uyo-AD-bj5.text" = "$44 USD";
 
 /* Class = "UILabel"; text = "Message Preview"; ObjectID = "VO8-bv-QaH"; */
 "VO8-bv-QaH.text" = "عرض الرسالة";
 
 /* Class = "UITabBarItem"; title = "Messages"; ObjectID = "YLA-6J-Q2l"; */
 "YLA-6J-Q2l.title" = "الرسائل";
+
+/* Class = "UILabel"; text = "Shout"; ObjectID = "aBY-UA-vJh"; */
+"aBY-UA-vJh.text" = "إعلان";
 
 /* Class = "UILabel"; text = "Offer"; ObjectID = "c6b-2a-MEJ"; */
 "c6b-2a-MEJ.text" = "عرض";
@@ -37,6 +49,15 @@
 /* Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO"; */
 "oR2-Wf-ZJO.text" = "التاريخ";
 
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b"; */
+"pcT-Tt-k2b.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
+
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "المحادثات";
+
+/* Class = "UILabel"; text = "Photo"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "صورة";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
+"viM-Sc-CK6.text" = "موقع";
 

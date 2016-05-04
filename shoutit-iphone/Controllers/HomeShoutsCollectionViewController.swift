@@ -17,6 +17,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let disposeBag = DisposeBag()
     let selectionDisposeBag = DisposeBag()
     let refreshControl = UIRefreshControl()
+    private var numberOfReloads = 0
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
@@ -89,8 +90,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     private func setupDisplayable() {
         viewModel.displayable.applyOnLayout(self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout)
         
-        viewModel.displayable.contentOffset.asObservable().subscribeNext { (offset) -> Void in
-            self.scrollOffset.value = offset
+        viewModel.displayable.contentOffset.asObservable().subscribeNext {[weak self] (offset) -> Void in
+            self?.scrollOffset.value = offset
         }.addDisposableTo(disposeBag)
         
         viewModel.displayable.selectedIndexPath.asObservable().subscribeNext { [weak self] (indexPath) -> Void in
@@ -104,15 +105,34 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if let collection = self.collectionView {
             
             viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-            
-            let retryObservable = retry.asObservable().filter{$0}
-            let userChangeObservable = Account.sharedInstance.userSubject
-            let combined = Observable.combineLatest(retryObservable, userChangeObservable) { (_, _) -> Void in}
-            
-            combined.debounce(2, scheduler: MainScheduler.instance)
+                retry.asObservable().debounce(1.5, scheduler: MainScheduler.instance)
                 .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
-                    })
+                })
+                .subscribeNext({ [weak self] (shouts) -> Void in
+                    self?.items = shouts
+                    self?.collectionView?.reloadData()
+                    self?.refreshControl.endRefreshing()
+                })
+                .addDisposableTo(disposeBag)
+            
+            Account.sharedInstance
+                .userSubject
+                .flatMap({ (user) -> Observable<String?> in
+                    return Observable.just(user?.location.country)
+                }).distinctUntilChanged { (lhs, rhs) -> Bool in
+                    if lhs == rhs {
+                        return true
+                    }
+                    
+                    self.refreshControl.endRefreshing()
+                    
+                    return false
+                }
+                .debounce(1.5, scheduler: MainScheduler.instance)
+                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
+                    return (self?.viewModel.retriveShouts())!
+                })
                 .subscribeNext({ [weak self] (shouts) -> Void in
                     self?.items = shouts
                     self?.collectionView?.reloadData()
@@ -137,18 +157,18 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
             self?.collectionView?.reloadData()
         }).addDisposableTo(disposeBag)
         
-        viewModel.loading.asDriver().driveNext { (loading) -> Void in
+        viewModel.loading.asDriver().driveNext {[weak self] (loading) -> Void in
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = loading
             UIView.animateWithDuration(0.2, animations: { () -> Void in
-                self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: loading ? 50.0 : 0, right: 0)
+                self?.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: loading ? 50.0 : 0, right: 0)
             })
             
             if loading {
-                self.showActivityIndicatorView()
-                self.layoutActivityIndicatorView()
+                self?.showActivityIndicatorView()
+                self?.layoutActivityIndicatorView()
             } else {
-                self.hideActivityIndicatorView()
+                self?.hideActivityIndicatorView()
             }
             
         }.addDisposableTo(disposeBag)

@@ -25,29 +25,31 @@ final class ApplicationMainViewController: UIViewController {
     private(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+ 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter()
-            .rx_notification(Constants.Notification.UserDidLogoutNotification)
-            .subscribeNext { (_) in
-                self.showLogin()
-            }.addDisposableTo(disposeBag)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showLogin), name: Constants.Notification.UserDidLogoutNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.UserDidLogoutNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         if !Account.sharedInstance.isUserAuthenticated {
-            Account.sharedInstance.logout().subscribeNext{}.addDisposableTo(disposeBag)
+            _ = try? Account.sharedInstance.clearUserData()
             showLogin()
         }
     }
     
     // MARK: - Navigation
     
-    private func showLogin() {
+    @objc private func showLogin() {
         let navigationController = LoginNavigationViewController()
         loginFlowController = LoginFlowController(navigationController: navigationController)
         presentViewController(navigationController, animated: true, completion: nil)

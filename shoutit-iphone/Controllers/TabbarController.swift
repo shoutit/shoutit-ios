@@ -19,7 +19,11 @@ final class TabbarController: UIViewController, Navigation {
     
     var selectedNavigationItem : NavigationItem? {
         didSet {
-            tabs?.each { button in
+            guard let tabs = tabs else {
+                return
+            }
+            
+            for button : TabbarButton in tabs {
                 button.selected = button.tabNavigationItem() == self.selectedNavigationItem
             }
         }
@@ -27,19 +31,19 @@ final class TabbarController: UIViewController, Navigation {
     
     override func viewDidLoad() {
         
-        tabs!.each { button in
-            button.rx_tap.subscribeNext {
-                self.tabs!.each { $0.selected = false }
-                
-                button.selected = true
-                
-                self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
-                
-            }.addDisposableTo(self.disposeBag)
+        for button in tabs! {
+            button
+                .rx_tap
+                .subscribeNext {[unowned self] in
+                    self.tabs!.each { $0.selected = false }
+                    button.selected = true
+                    self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
+                }
+                .addDisposableTo(self.disposeBag)
         }
         
         Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
-            self?.fillBadges()
+            self?.fillBadgesWithStats(stats)
         }.addDisposableTo(disposeBag)
         
     }
@@ -50,11 +54,9 @@ final class TabbarController: UIViewController, Navigation {
         }
     }
     
-    private func fillBadges() {
-        if let detailedUser = Account.sharedInstance.loggedUser, stats = detailedUser.stats {
-            fillUnreadConversations(stats.unreadConversationCount)
-            fillUnreadNotifications(stats.unreadNotificationsCount)
-        }
+    private func fillBadgesWithStats(stats: ProfileStats?) {
+        fillUnreadConversations(stats?.unreadConversationCount ?? 0)
+        fillUnreadNotifications(stats?.unreadNotificationsCount ?? 0)
     }
     
     func fillUnreadNotifications(unread: Int) {

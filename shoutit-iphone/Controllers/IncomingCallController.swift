@@ -38,7 +38,6 @@ final class IncomingCallController: UIViewController {
                 answerHandler(invitation: self.invitation)
             }
         }
-        
     }
     
     override func viewDidLoad() {
@@ -49,7 +48,7 @@ final class IncomingCallController: UIViewController {
     
     func fetchCallingProfile() {
         APIProfileService.retrieveProfileWithTwilioUsername(invitation.from).subscribeNext { [weak self] (profile) in
-            self?.incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.fullName())"
+            self?.incomingCallLabel?.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.fullName())"
         }.addDisposableTo(disposeBag)
     }
 }

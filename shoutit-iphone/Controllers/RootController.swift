@@ -203,6 +203,8 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
                 }
             }
             
+            locationFlowController.setShouldShowAutoUpdates(true)
+            
             presentFlowControllerModally(locationFlowController)
             return
         }
@@ -274,7 +276,7 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
     
     func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
         let navController = SHNavigationViewController()
-        navController.willShowViewControllerPreferringTabBarHidden = {[unowned self] (hidden) in
+        navController.willShowViewControllerPreferringTabBarHidden = {[unowned self, unowned navController] (hidden) in
             if navController.ignoreTabbarAppearance {
                 return
             }

@@ -36,11 +36,6 @@ final class APIAuthService {
                     let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"])
                     let authData: AuthData = try APIGenericService.parseJson(json)
                     let user: T = try APIGenericService.parseJson(userJson)
-                    if let user = user as? DetailedProfile {
-                        Account.sharedInstance.loggedUser = user
-                    } else if let user = user as? GuestUser {
-                        Account.sharedInstance.guestUser = user
-                    }
                     observer.onNext((authData, user))
                     observer.onCompleted()
                 } catch let error {

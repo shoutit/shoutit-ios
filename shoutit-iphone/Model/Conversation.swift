@@ -68,7 +68,7 @@ struct Conversation: Decodable, Hashable, Equatable {
 }
 
 func ==(lhs: Conversation, rhs: Conversation) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.id == rhs.id && lhs.apiPath == rhs.apiPath
 }
 
 extension Conversation {

@@ -8,13 +8,13 @@
 "5wL-mM-p5l.text" = "أو";
 
 /* Class = "UILabel"; text = "Add photos and videos"; ObjectID = "7Ws-Aq-gda"; */
-"7Ws-Aq-gda.text" = "اضف صور وفيديو";
+"7Ws-Aq-gda.text" = "أضف صور وفيديو";
 
 /* Class = "UIButton"; normalTitle = "Offer"; ObjectID = "ArL-Gz-lqw"; */
 "ArL-Gz-lqw.normalTitle" = "عرض";
 
 /* Class = "UILabel"; text = "What are you posting?"; ObjectID = "C4A-6j-khU"; */
-"C4A-6j-khU.text" = "ماذا تنشر ؟";
+"C4A-6j-khU.text" = "ما هو نوع الإعلان؟";
 
 /* Class = "UIButton"; normalTitle = "Request"; ObjectID = "Ei6-pW-gaf"; */
 "Ei6-pW-gaf.normalTitle" = "طلب";
@@ -55,9 +55,6 @@
 /* Class = "UIButton"; normalTitle = "Create another Shout"; ObjectID = "Yoo-Nj-lhn"; */
 "Yoo-Nj-lhn.normalTitle" = "إنشاء إعلان آخر";
 
-/* (No Commment) */
-"ZCj-gD-P8F.placeholder" = "التفاصيل";
-
 /* Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "dlP-sh-64t"; */
 "dlP-sh-64t.title" = "إنشاء إعلان";
 
@@ -77,14 +74,11 @@
 "onr-sH-VzS.normalTitle" = "العملة";
 
 /* Class = "UIButton"; normalTitle = "Add more details"; ObjectID = "pqA-Zk-PKv"; */
-"pqA-Zk-PKv.normalTitle" = "إضافة معلومات أكثر";
+"pqA-Zk-PKv.normalTitle" = "إضافة معلومات أخرى";
 
 /* Class = "UILabel"; text = "Your shout will appear on Shoutit soon."; ObjectID = "smS-Ws-rTF"; */
-"smS-Ws-rTF.text" = "سيتم عرض اعلانك قريباً على شاوت ات";
+"smS-Ws-rTF.text" = "سيظهر إعلانك على شاوت ات بعد قليل.";
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "ygX-W4-fss"; */
 "ygX-W4-fss.normalTitle" = "الموقع";
-
-/* (No Commment) */
-"zu9-Yn-93s.placeholder" = "الشرح";
 

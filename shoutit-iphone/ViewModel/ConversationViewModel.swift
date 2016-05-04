@@ -49,15 +49,18 @@ final class ConversationViewModel {
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
     
-    let typingUsers : PublishSubject<Profile?> = PublishSubject()
+    let typingUsers : PublishSubject<TypingInfo?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
     let loadMoreState = Variable(LoadMoreState.NotReady)
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
     let sendingMessages : Variable<[Message]> = Variable([])
+    var nextPageParams : String?
     
     private var delegate : ConversationPresenter?
     
     private let disposeBag = DisposeBag()
+    private var socketsBag : DisposeBag?
+    private var socketsConnected = false
     
     init(conversation: Conversation, delegate: ConversationPresenter? = nil) {
         self.conversation = Variable(conversation)
@@ -65,22 +68,40 @@ final class ConversationViewModel {
     }
     
     func createSocketObservable() {
+        
+        if socketsConnected {
+            return
+        }
+        
+        socketsConnected = true
+        
+        socketsBag = DisposeBag()
         // handle presence/typing/join/left
-        PusherClient.sharedInstance.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
+        Account.sharedInstance.pusherManager.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
             if event.eventType() == .UserTyping {
-                if let user : Profile = event.object() {
+                if let user : TypingInfo = event.object() {
                     self.typingUsers.onNext(user)
                 }
             }
-        }.addDisposableTo(disposeBag)
-        
-        // handle messages
-        PusherClient.sharedInstance.conversationMessagesObservable(self.conversation.value).subscribeNext {[weak self] (msg) -> Void in
-            if let msg : Message = msg {
-                self?.appendMessages([msg])
+            
+            if event.eventType() == .NewMessage {
+                if let msg : Message = event.object() {
+                    self.appendMessages([msg])
+                    
+                    APIChatsService.markMessageAsRead(msg).subscribeNext {
+                        
+                    }.addDisposableTo(self.disposeBag)
+                    
+                }
             }
-        }.addDisposableTo(disposeBag)
+        }.addDisposableTo(socketsBag!)
     }
+    
+    func unsubscribeSockets() {
+        socketsBag = nil
+        socketsConnected = false
+    }
+    
     
     func createConversation(message: Message) {
         
@@ -137,7 +158,10 @@ final class ConversationViewModel {
             return
         }
         
-        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (messages) -> Void in
+        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (response) -> Void in
+            let messages : [Message] = response.results
+            
+            self?.nextPageParams = response.beforeParamsString()
             self?.appendMessages(messages)
             if messages.count > 0 {
                 self?.loadMoreState.value = .ReadyToLoad
@@ -155,7 +179,7 @@ final class ConversationViewModel {
                 return obs.take(1)
             })
             .subscribeNext { _ in
-                PusherClient.sharedInstance.sendTypingEventToConversation(self.conversation.value)
+                Account.sharedInstance.pusherManager.sendTypingEventToConversation(self.conversation.value)
             }.addDisposableTo(disposeBag)
 
     }
@@ -164,13 +188,17 @@ final class ConversationViewModel {
         loadMoreState.value = .Loading
         
         if let lastMessage = sortedMessages.last {
-            APIChatsService.moreMessagesForConversation(self.conversation.value, lastMessageEpoch:  lastMessage.createdAt)
-                .subscribe(onNext: { [weak self] (messages) -> Void in
+            APIChatsService.moreMessagesForConversation(self.conversation.value, nextPageParams:  self.nextPageParams)
+                .subscribe(onNext: { [weak self] (response) -> Void in
+                    let messages : [Message] = response.results
+                    
                     self?.appendMessages(messages)
                     if messages.count > 0 {
                         self?.loadMoreState.value = .ReadyToLoad
+                        self?.nextPageParams = response.beforeParamsString()
                     } else {
                         self?.loadMoreState.value = .NoMore
+                        self?.nextPageParams = nil
                     }
                 }, onError: { [weak self] (error) -> Void in
                     self?.loadMoreState.value = .ReadyToLoad

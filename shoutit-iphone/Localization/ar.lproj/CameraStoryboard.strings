@@ -5,7 +5,10 @@
 "07x-bq-AvW.title" = "عرض الفيديو";
 
 /* Class = "UIButton"; normalTitle = "Record"; ObjectID = "HXZ-4s-AyI"; */
-"HXZ-4s-AyI.normalTitle" = "إنشاء حساب";
+"HXZ-4s-AyI.normalTitle" = "تسجيل";
+
+/* Class = "UILabel"; text = "00:05"; ObjectID = "SN9-Be-ehn"; */
+"SN9-Be-ehn.text" = "00:05";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "T1H-Pn-i9k"; */
 "T1H-Pn-i9k.normalTitle" = "رجوع";
@@ -20,7 +23,7 @@
 "hZQ-9o-tYc.title" = "التحكم بموقع الكاميرا";
 
 /* Class = "UITabBarItem"; title = "ShoutIT"; ObjectID = "kZw-8m-9Tx"; */
-"kZw-8m-9Tx.title" = "شاوت ات";
+"kZw-8m-9Tx.title" = "شاوت ات ";
 
 /* Class = "UIViewController"; title = "PhotoPreview"; ObjectID = "wW7-p1-emq"; */
 "wW7-p1-emq.title" = "عرض الصورة";

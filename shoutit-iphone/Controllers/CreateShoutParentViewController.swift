@@ -140,8 +140,6 @@ class CreateShoutParentViewController: UIViewController {
         
         let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
-        print(parameters)
-        
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in

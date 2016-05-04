@@ -29,8 +29,7 @@ extension PushTokens: Encodable {
     
     func encode() -> JSON {
         return JSON.Object([
-            "apns"    : self.apns.encode(),
-            "gcm"  : self.gcm.encode()
+            "apns"    : self.apns.encode()
             ])
     }
 }

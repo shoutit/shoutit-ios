@@ -73,6 +73,53 @@ platform :ios do
     )
     
   end
+  
+  lane :local do 
+    au_add_identity
+
+    `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
+
+    #prepare cocoapods
+    cocoapods
+    
+    ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
+    
+    #download provisioning profile
+    sigh
+    
+    # setup provisioning profile
+    ENV["PROFILE_UDID"] = Actions.lane_context[Actions::SharedValues::SIGH_UDID]
+    
+    # increase build number
+    build_no = `git rev-list --count HEAD`
+    increment_build_number build_number: build_no
+    build_no = build_no.to_s.delete!("\n")
+        
+    #build app
+    gym scheme: ENV["XCODE_SCHEME_LOCAL"], clean: true, use_legacy_build_api: true
+  
+    #upload to crashlytics
+    crashlytics({groups: 'internal-tests, internal-testers'})
+    
+    #prepare git hash
+    git_hash = `git rev-parse --short HEAD`
+    
+    #send slack message
+    slack(
+      message: "New Local Shoutit version available (#{build_no}).", 
+      attachment_properties: {
+        fields: [{
+          title: 'git-hash',
+          value: git_hash,
+          short: true
+        }, {
+          title: 'storage',
+          short: true
+        }]
+      }
+    )
+    
+  end
 
   lane :staging do
 
@@ -152,6 +199,11 @@ platform :ios do
       }
     )
 
+  end
+  
+  desc "Runs all the tests"
+  lane :localizations do
+    au_generate_translations languages: "en ar de", export_dir: "translations/", project_file_path: "shoutit-iphone.xcodeproj"
   end
 
 end

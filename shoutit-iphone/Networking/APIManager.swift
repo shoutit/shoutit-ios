@@ -13,14 +13,15 @@ import Kingfisher
 import Timberjack
 
 final class APIManager {
-    
-    // base url
+
     #if STAGING
-    static let baseURL = "https://dev.api.shoutit.com/v3"
-    // runscope url   "https://dev-api-shoutit-com-qm7w6bwy42b2.runscope.net/v3"
-    // base dev url "http://dev.api.shoutit.com/v2"
+        static let baseURL = "https://dev.api.shoutit.com/v3"
+        // runscope url   "https://dev-api-shoutit-com-qm7w6bwy42b2.runscope.net/v3"
+        // base dev url "http://dev.api.shoutit.com/v2"
+    #elseif LOCAL
+        static let baseURL = "http://api.shoutit.local/v3"
     #else
-    static let baseURL = "https://api.shoutit.com/v3"
+        static let baseURL = "https://api.shoutit.com/v3"
     #endif
     
     static func manager() -> Alamofire.Manager {
@@ -37,8 +38,8 @@ final class APIManager {
     
     // MARK: - Token
     
-    static func setAuthToken(token: String, tokenType: String) {
-        _setAuthToken("\(tokenType) \(token)")
+    static func setAuthToken(token: String) {
+        _setAuthToken(token)
     }
     
     static func eraseAuthToken() {
@@ -57,11 +58,6 @@ final class APIManager {
             headerFields["Authorization"] = token
             request.allHTTPHeaderFields = headerFields
         }
-        
-        PusherClient.sharedInstance.setAuthorizationToken(token)
-        
-        // Authorize Twilio
-        _ = Twilio.sharedInstance
     }
     
     // MARK: - Reachability

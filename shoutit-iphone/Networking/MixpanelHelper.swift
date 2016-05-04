@@ -13,9 +13,12 @@ final class MixpanelHelper {
     
     #if STAGING
     private static let mixpanelToken  = "d2de0109a8de7237dede66874c7b8951"
+    #elseif LOCAL
+    private static let mixpanelToken  = "a5774a99b9068ae66129859421ade687"
     #else
     private static let mixpanelToken  = "c9d0a1dc521ac1962840e565fa971574"
     #endif
+    
     private static let didOpenAppUserDefailt = "didOpenAppUserDefailt"
     
     struct Actions {
@@ -30,7 +33,7 @@ final class MixpanelHelper {
     private static var actionProperties: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["api_client"] = "shoutit-ios"
-        p["signed_user"] = Account.sharedInstance.authData != nil
+        p["signed_user"] = Account.sharedInstance.isUserAuthenticated
         if let user = Account.sharedInstance.user {
             p["is_guest"] = user.isGuest
         }

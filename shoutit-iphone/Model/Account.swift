@@ -12,10 +12,26 @@ import RxSwift
 
 final class Account {
     
+    enum UserModel {
+        case Logged(user: DetailedProfile)
+        case Guest(user: GuestUser)
+        
+        var user: User {
+            switch self {
+            case .Logged(let user): return user
+            case .Guest(let user): return user
+            }
+        }
+    }
+    
     // singleton
     static let sharedInstance = Account()
-    
-    private let disposeBag = DisposeBag()
+    lazy var twilioManager: Twilio = {[unowned self] in
+        return Twilio(account: self)
+    }()
+    lazy var pusherManager: PusherClient = {[unowned self] in
+        return PusherClient(account: self)
+    }()
     
     // public consts
     lazy var userDirectory: String = {
@@ -48,40 +64,43 @@ final class Account {
             self.loginSubject.onNext()
         }
     }
-    var loggedUser: DetailedProfile? {
-        didSet {
-            if let userObject = loggedUser {
-                self.userSubject.onNext(userObject)
-                self.statsSubject.onNext(userObject.stats)
-                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
-            }
-        }
-    }
     
-    var guestUser: GuestUser? {
+    private(set) var userModel: UserModel? {
         didSet {
-            if let userObject = guestUser {
-                self.userSubject.onNext(userObject)
+            switch userModel {
+            case .Some(.Logged(let userObject)):
+                userSubject.onNext(userObject)
+                statsSubject.onNext(userObject.stats)
+                updateApplicationBadgeNumberWithStats(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                updateAPNSIfNeeded()
+            case .Some(.Guest(let userObject)):
+                userSubject.onNext(userObject)
+                statsSubject.onNext(nil)
+                updateApplicationBadgeNumberWithStats(nil)
+                SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
+                updateAPNSIfNeeded()
+            default:
+                statsSubject.onNext(nil)
+                updateApplicationBadgeNumberWithStats(nil)
             }
         }
     }
     
     var user: User? {
-        return loggedUser ?? guestUser
-    }
-    
-    var userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
-    var loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
-    var statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
-    
-    func locationString() -> String {
-        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
-            return "\(city), \(state), \(country)"
+        switch userModel {
+        case .Some(.Logged(let userObject)): return userObject
+        case .Some(.Guest(let userObject)): return userObject
+        default: return nil
         }
-        
-        return NSLocalizedString("Unknown Location", comment: "")
     }
+    
+    // helper vars
+    private let disposeBag = DisposeBag()
+    let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
+    let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
+    let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    private var updatingAPNS = false
     
     // convienience
     var isUserAuthenticated: Bool {
@@ -94,19 +113,30 @@ final class Account {
     
     // MARK - Lifecycle
     
-    init() {
+    private init() {
         
-        guestUser = SecureCoder.readObjectFromFile(archivePath)
-        loggedUser = SecureCoder.readObjectFromFile(archivePath)
-        assert(guestUser == nil || loggedUser == nil)
-        
-        if let data = keychain[data: authDataKey] {
-            authData = SecureCoder.objectWithData(data)
+        if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
+            userModel = .Guest(user: guest)
+        } else if let loggedUser: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
+            userModel = .Logged(user: loggedUser)
         }
         
-        if let authData = self.authData {
-            APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
+        guard let user = user else { return }
+        guard let data = keychain[data: authDataKey] else { return }
+        guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
+        
+        self.authData = authData
+        APIManager.setAuthToken(authData.apiToken)
+        updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
+        configureTwilioAndPusherServices()
+    }
+    
+    func locationString() -> String {
+        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
+            return "\(city), \(state), \(country)"
         }
+        
+        return NSLocalizedString("Unknown Location", comment: "")
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -115,45 +145,76 @@ final class Account {
         let data = SecureCoder.dataWithJsonConvertible(authData)
         try keychain.set(data, key: authDataKey)
         
-        
-        // set instance vars
+        // auth
         self.authData = authData
+        
+        APIManager.setAuthToken(authData.apiToken)
+        updateUserWithModel(user)
+        configureTwilioAndPusherServices()
+    }
+    
+    func updateUserWithModel<T: User>(user: T) {
         if let user = user as? DetailedProfile {
-            loggedUser = user
+            userModel = .Logged(user: user)
         } else if let user = user as? GuestUser {
-            guestUser = user
+            userModel = .Guest(user: user)
         }
-        
-        // update apimanager token
-        APIManager.setAuthToken(authData.accessToken, tokenType: authData.tokenType)
     }
     
+    func logout() throws {
+        APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
+        try clearUserData()
+        GIDSignIn.sharedInstance().signOut()
+    }
     
-    func logout() -> Observable<Void> {
+    func clearUserData() throws {
+        try self.removeFilesFromUserDirecotry()
+        try self.keychain.remove(self.authDataKey)
+        self.userModel = nil
+        self.authData = nil
+        APIManager.eraseAuthToken()
+        pusherManager.disconnect()
+        twilioManager.disconnect()
+    }
+    
+    func fetchUserProfile() {
+        guard case .Logged(let user)? = userModel where isUserLoggedIn else { return }
         
-        return APIProfileService.nullifyPushTokens().flatMap {() -> Observable<Void> in
-            return Observable.create {[unowned self](observer) -> Disposable in
-                
-                do {
-                    try self.removeFilesFromUserDirecotry()
-                    try self.keychain.remove(self.authDataKey)
-                    self.loggedUser = nil
-                    self.guestUser = nil
-                    self.authData = nil
-                    APIManager.eraseAuthToken()
-                    GIDSignIn.sharedInstance().signOut()
-                    observer.onNext()
-                    observer.onCompleted()
-                } catch let error {
-                    observer.onError(error)
-                }
-                
-                return NopDisposable.instance
+        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
+        observable.subscribe{ (event) in
+            switch event {
+            case .Next(let profile):
+                self.userModel = .Logged(user: profile)
+            case .Error(let error): debugPrint(error)
+            default: break
             }
-        }
+            }.addDisposableTo(disposeBag)
     }
     
-    // MARK: - Helpers
+    func updateStats(stats: ProfileStats) {
+        guard case .Logged(let user)? = userModel else { return }
+        self.userModel = .Logged(user: user.updatedProfileWithStats(stats))
+        self.statsSubject.onNext(stats)
+    }
+}
+
+private extension Account {
+    
+    private func updateApplicationBadgeNumberWithStats(stats: ProfileStats?) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = ((stats?.unreadNotificationsCount) ?? 0) + ((stats?.unreadConversationCount) ?? 0)
+    }
+    
+    private func configureTwilioAndPusherServices() {
+        
+        switch userModel {
+        case .Some(.Logged(_)):
+            guard let authData = authData else { assertionFailure(); return; }
+            pusherManager.setAuthorizationToken(authData.apiToken)
+            _ = twilioManager
+        default:
+            pusherManager.disconnect()
+        }
+    }
     
     private func removeFilesFromUserDirecotry() throws {
         guard NSFileManager.defaultManager().fileExistsAtPath(userDirectory) else { return }
@@ -164,68 +225,38 @@ final class Account {
         }
     }
     
-    func updateAPNSIfNeeded() {
+    private func updateAPNSIfNeeded() {
         
-        guard let _ = self.user else {
-            return
-        }
+        guard let user = self.user, apnsToken = self.apnsToken where apnsToken != user.pushTokens?.apns && !updatingAPNS else { return }
         
-        if let apnsToken = self.apnsToken {
-            let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
+        updatingAPNS = true
+        
+        let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
+        
+        if case .Guest(let guest)? = userModel {
+            let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
+            observable
+                .subscribe{ (event) in
+                    self.updatingAPNS = false
+                    switch event {
+                    case .Next(let profile): self.updateUserWithModel(profile)
+                    default: break
+                    }
+                }
+                .addDisposableTo(disposeBag)
             
-            if let guest = self.guestUser {
-                let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
-                observable.subscribe{ (event) in
+        }
+        else if case .Logged(let user)? = userModel {
+            let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+            observable
+                .subscribe{ (event) in
+                    self.updatingAPNS = false
                     switch event {
-                    case .Next(let profile): print(profile)
-                    case .Error(let error): debugPrint(error)
+                    case .Next(let profile): self.updateUserWithModel(profile)
                     default: break
                     }
-                }.addDisposableTo(disposeBag)
-                
-            } else if let user = self.loggedUser {
-                let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
-                observable.subscribe{ (event) in
-                    switch event {
-                    case .Next(let profile): print(profile)
-                    case .Error(let error): debugPrint(error)
-                    default: break
-                    }
-                    }.addDisposableTo(disposeBag)
-            }
+                }
+                .addDisposableTo(disposeBag)
         }
-    }
-    
-    func updateStats(stats: ProfileStats) {
-        guard let user = self.loggedUser else {
-            return
-        }
-        
-        self.loggedUser = user.updatedProfileWithStats(stats)
-        
-        self.statsSubject.onNext(stats)
-    }
-    
-    func fetchUserProfile() {
-        if !self.isUserLoggedIn {
-            return
-        }
-        
-        guard let user = self.loggedUser else {
-            return
-        }
-        
-        
-        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
-        observable.subscribe{ (event) in
-            switch event {
-            case .Next(let profile):
-                print(profile.stats)
-                UIApplication.sharedApplication().applicationIconBadgeNumber = ((profile.stats?.unreadNotificationsCount) ?? 0) + ((profile.stats?.unreadConversationCount) ?? 0)
-                self.loggedUser = profile
-            case .Error(let error): debugPrint(error)
-            default: break
-        }
-        }.addDisposableTo(disposeBag)
     }
 }

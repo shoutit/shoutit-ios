@@ -56,9 +56,6 @@
 /* Class = "UIButton"; normalTitle = "Create another Shout"; ObjectID = "Yoo-Nj-lhn"; */
 "Yoo-Nj-lhn.normalTitle" = "Create another Shout";
 
-/* Class = "UITextField"; placeholder = "Description"; ObjectID = "ZCj-gD-P8F"; */
-"ZCj-gD-P8F.placeholder" = "Description";
-
 /* Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "dlP-sh-64t"; */
 "dlP-sh-64t.title" = "Create Shout";
 
@@ -85,6 +82,3 @@
 
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "ygX-W4-fss"; */
 "ygX-W4-fss.normalTitle" = "Location";
-
-/* Class = "UITextField"; placeholder = "Description"; ObjectID = "zu9-Yn-93s"; */
-"zu9-Yn-93s.placeholder" = "Description";

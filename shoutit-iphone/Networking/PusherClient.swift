@@ -15,130 +15,139 @@ import ReachabilitySwift
 
 final class PusherClient : NSObject {
     
-    static let sharedInstance = PusherClient()
-    
+    #if STAGING
     private let pusherAppKey = "7bee1e468fabb6287fc5"
+    #elseif LOCAL
+    private let pusherAppKey = "d6a98f27e49289344791"
+    #else
+    private let pusherAppKey = "86d676926d4afda44089"
+    #endif
     private let pusherURL = APIManager.baseURL + "/pusher/auth"
     
-    var pusherInstance: PTPusher?
-    
-    private let disposeBag = DisposeBag()
-    
-    private var authToken : String?
-    
-    var keepDisconnected = false
-    
+    private unowned var account: Account
+    private var pusherInstance: PTPusher?
     private var reachability: Reachability!
     
-    override init() {
+    private var authToken : String?
+    private var mainChannelIdentifier: String?
+    private var subscribedChannels : [String] = []
+    private var keepDisconnected = false
+    
+    // RX
+    private let disposeBag = DisposeBag()
+    var mainChannelSubject = PublishSubject<PTPusherEvent>()
+    
+    init(account: Account) {
+        self.account = account
         super.init()
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
-        
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            debugPrint("Unable to create Reachability")
-            return
-        }
-        
-        do {
             try reachability.startNotifier()
-        } catch {
-            debugPrint("Unable to start notifier")
-        }
+        } catch let error { print(error) }
         
         
-        NSNotificationCenter.defaultCenter().rx_notification(ReachabilityChangedNotification).asObservable().subscribeNext { (notification) in
+        
+        NSNotificationCenter.defaultCenter()
+          .rx_notification(ReachabilityChangedNotification)
+          .asObservable()
+          .subscribeNext { (notification) in
             if APIManager.isNetworkReachable() == false {
                 return
             }
-            
+                    
             if self.pusherInstance?.connection.connected == false {
-                self.connect()
+                self.tryToConnect()
             }
-
-        }.addDisposableTo(disposeBag)
-        
+          }.addDisposableTo(disposeBag)
     }
     
-    func reconnect() {
-        if keepDisconnected {
-            return
+    func setAuthorizationToken(token: String) {
+        authToken = token
+        tryToConnect()
+    }
+    
+    func tryToConnect() {
+        
+        var userLoggedIn = false
+        
+        if case .Logged(_)? = account.userModel {
+            userLoggedIn = true
         }
         
-        pusherInstance?.disconnect()
-        
-        connect()
-    }
-    
-    func connect() {
+        if !userLoggedIn {
+            disconnect()
+        }
         
         keepDisconnected = false
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
         pusherInstance?.authorizationURL = NSURL(string: pusherURL)
         
-        pusherInstance?.connect()
-    }
-    
-    func disconnect() {
-        keepDisconnected = true
-        
-        pusherInstance?.disconnect()
-        
-        pusherInstance = nil
-        
-    }
-    
-    func setAuthorizationToken(token: String?) {
-        if let token = token {
-            authToken = token
-            tryToConnect()
-        } else {
-            disconnect()
+        // Connect only when user is logged
+        if userLoggedIn {
+            pusherInstance?.connect()
         }
     }
     
-    func tryToConnect() {
-        connect()
+    func disconnect() {
+        
+        guard let pusher = pusherInstance else { return }
+        
+        if let channelName = self.mainChannelIdentifier, ch = pusher.channelNamed(channelName) {
+            ch.unsubscribe()
+        }
+        
+        for channelName in self.subscribedChannels {
+            if let ch = pusher.channelNamed(channelName) {
+                ch.unsubscribe()
+            }
+        }
+        
+        pusher.disconnect()
     }
     
-    func subscribeToMainChannel() {
+    private func reconnect() {
+        if keepDisconnected {
+            return
+        }
+        
+        pusherInstance?.disconnect()
+        tryToConnect()
+    }
+    
+    private func subscribeToMainChannel() {
         mainChannelObservable().subscribeNext { (event) -> Void in
-            print("RECEIVED: \(event.name)")
-            print(event.data)
+        
+            log.info("PUSHER: MAIN CHANNEL EVENT: \(event.name) --- \n ---- \(event.data)")
             
-            if event.eventType() == .NewListen || event.eventType() == .NewMessage {
-                
-            }
+            self.mainChannelSubject.onNext(event)
             
             if event.eventType() == .StatsUpdate {
                 if let stats : ProfileStats = event.object() {
-                    Account.sharedInstance.updateStats(stats)
+                    self.account.updateStats(stats)
                 }
             }
             
             if event.eventType() == .ProfileChange {
-                if let _ = Account.sharedInstance.loggedUser {
+                switch self.account.userModel {
+                case .Some(.Logged):
                     if let profile : DetailedProfile = event.object() {
-                        Account.sharedInstance.loggedUser = profile
+                        self.account.updateUserWithModel(profile)
                     }
-                } else {
+                case .Some(.Guest):
                     if let guest : GuestUser = event.object() {
-                        Account.sharedInstance.guestUser = guest
+                        self.account.updateUserWithModel(guest)
                     }
+                default: break
                 }
             }
 
             
         }.addDisposableTo(disposeBag)
-    }
-    
-    func handleMessage(message: Message) {
-        
     }
 }
 
@@ -148,9 +157,8 @@ extension PusherClient : PTPusherDelegate {
     // Connection Delegates
     
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
-        debugPrint("PUSHER CONNECTED")
+        log.verbose("PUSHER: CONNECTED")
         subscribeToMainChannel()
-        
     }
     
     func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
@@ -160,120 +168,122 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
-        
+        log.info("PUSHER: didSubscribeToChannel: \(channel.name)")
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
-        
+        log.info("PUSHER: didUnsubscribeFromChannel: \(channel.name)")
     }
     
     // Error handling
     
     func pusher(pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
-        debugPrint("PUSHER DID RECEIVE ERROR EVENT")
-        print(errorEvent)
-        print(errorEvent.data)
+        log.error("PUSHER: DID RECEIVE ERROR EVENT: | \(errorEvent.data["message"])")
     }
     
     func pusher(pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
-        print(error ?? "nilError")
+        log.error("PUSHER: DID FAIL TO SUBSCRIBE TO CHANNEL: \(channel) --- \n ---- \(error)")
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
-        debugPrint("PUSHER DID DISCONNECT WITH ERROR")
-        print(error ?? "nilError")
+        log.error("PUSHER: DID DISCONNECT WITH ERROR: \(error)")
+    
         if !keepDisconnected {
             reconnect()
         }
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
-        debugPrint("FAILED WITH ERROR")
-        print(error ?? "nilError")
+        log.error("PUSHER: FAILED WITH ERROR: \(error)")
     }
 }
 
 extension PusherClient {
-    func mainChannelObservable() -> Observable<PTPusherEvent> {
+    
+    private func mainChannelObservable() -> Observable<PTPusherEvent> {
         return Observable.create { (observer) -> Disposable in
-            let cancel = AnonymousDisposable {
-                
-            }
             
-            guard let channelName = self.mainChannelIdentifier() else {
+            guard let channelName = self.generateMainChannelIdentifier() else {
                 observer.onError(PusherError.WrongChannelName)
-                return cancel
+                return AnonymousDisposable { }
             }
             
-            guard let channel = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
-                return cancel
+            let channel : PTPusherChannel
+            self.mainChannelIdentifier = channelName
+            
+            if let ch = self.pusherInstance?.channelNamed(channelName) {
+                channel = ch
+            } else {
+                guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                    return AnonymousDisposable { }
+                }
+                
+                self.subscribedChannels.append(channelName)
+                
+                channel = ch
             }
             
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
             
-            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            channel.bindToEventNamed(PusherEventType.NewListen.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            return cancel
+            return AnonymousDisposable {
+                channel.unsubscribe()
+            }
         }
     }
     
     func conversationMessagesObservable(conversation: Conversation) -> Observable<Message> {
-        return mainChannelObservable().filter({ (event) -> Bool in
-            return event.eventType() == .NewMessage
-        })
-        .flatMap({ (event) -> Observable<Message> in
-            if let msg : Message = event.object() {
-                if msg.conversationId == conversation.id {
-                    return Observable.just(msg)
-                }
+        return mainChannelSubject
+            .filter{ (event) -> Bool in
+                return event.eventType() == .NewMessage
             }
-            return Observable.never()
-        })
+            .flatMap{ (event) -> Observable<Message> in
+                if let msg : Message = event.object() {
+                    if msg.conversationId == conversation.id {
+                        return Observable.just(msg)
+                    }
+                }
+                return Observable.never()
+            }
     }
     
     func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
+
+            let channel : PTPusherChannel
+            
+            if let ch = self.pusherInstance?.channelNamed(conversation.channelName()) {
+                channel = ch
+            } else {
+                guard let ch = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
+                    assertionFailure()
+                    return AnonymousDisposable{}
+                }
+                
+                self.subscribedChannels.append(conversation.channelName())
+                
+                channel = ch
+            }
+            
             
             let cancel = AnonymousDisposable {
-                
+                channel.unsubscribe()
             }
             
-            guard let channel = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
-                return cancel
-            }
-            
-            channel.bindToEventNamed(PusherEventType.UserTyping.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
-            
-            channel.bindToEventNamed(PusherEventType.LeftChat.rawValue, handleWithBlock: { (event) -> Void in
-                observer.onNext(event)
-            })
+            channel.bindToEventNamed(PusherEventType.UserTyping.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.LeftChat.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
             
             return cancel
             
         })
     }
     
-    func mainChannelIdentifier() -> String? {
-        if let user = Account.sharedInstance.user {
+    private func generateMainChannelIdentifier() -> String? {
+        if let user = account.user {
             return "presence-v3-p-\(user.id)"
         }
         
@@ -281,7 +291,7 @@ extension PusherClient {
     }
     
     func sendTypingEventToConversation(conversation: Conversation) {
-        guard let user = Account.sharedInstance.user else {
+        guard let user = account.user else {
             return
         }
     

@@ -15,6 +15,7 @@ final class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
     private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
+    private static let readMessageURL = APIManager.baseURL + "/messages/*/read"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
     private static let twilioIdentityURL = APIManager.baseURL + "/twilio/video_identity"
@@ -24,22 +25,31 @@ final class APIChatsService {
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
     // MARK: - Traditional
 
-    static func requestConversations() -> Observable<[Conversation]> {
-        return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    static func requestConversations() -> Observable<PagedResponse<Conversation>> {
+        return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
-    static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<[Message]> {
+    static func requestMoreConversations(nextPageParams: String?) -> Observable<PagedResponse<Conversation>> {
+        return APIGenericService.requestWithMethod(.GET, url: conversationsURL + (nextPageParams ?? ""), params: NopParams(), encoding: .URL, responseJsonPath: nil)
+    }
+    
+    static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<PagedResponse<Message>> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
-    static func moreMessagesForConversation(conversation: Conversation, lastMessageEpoch: Int) -> Observable<[Message]> {
-        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + "?before=\(lastMessageEpoch)"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: ["results"])
+    static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResponse<Message>> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + (nextPageParams ?? "")
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
     static func markConversationAsRead(conversation: Conversation) -> Observable<Void> {
         let url = conversationReadURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
+    }
+    
+    static func markMessageAsRead(message: Message) -> Observable<Void> {
+        let url = readMessageURL.stringByReplacingOccurrencesOfString("*", withString: message.id)
         return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
     }
     

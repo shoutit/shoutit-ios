@@ -23,6 +23,8 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
     
     private let disposeBag = DisposeBag()
     private var conversationDisposeBag : DisposeBag?
+    private var nextParams : String?
+    private var loading = false
     
     weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
     
@@ -33,7 +35,7 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
         
         reloadConversationList()
         
-        PusherClient.sharedInstance.mainChannelObservable().subscribeNext { [weak self] (event) in
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { [weak self] (event) in
             
             if event.eventType() == .NewMessage {
                 guard let message : Message = event.object() else {
@@ -87,18 +89,34 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
     }
     
     func reloadConversationList() {
-        APIChatsService.requestConversations().subscribe(onNext: { [weak self] (conversations) -> Void in
-            self?.conversations = conversations.filter({ (conversation) -> Bool in
-                return conversation.users?.count > 1
-            })
-            self?.renewConversationSubscriptions()
-            self?.tableView.reloadData()
-            self?.refreshControl?.endRefreshing()
+        loading = true
+        
+        APIChatsService.requestConversations().subscribe(onNext: { [weak self] (response) -> Void in
+            self?.loading = false
+            
+            let conversations = response.results
+            
+            self?.nextParams = response.beforeParamsString()
+            
+            // clear existing conversations
+            self?.conversations = []
+            
+            self?.appendConversations(conversations)
+            
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
         }, onError: { [weak self] (error) -> Void in
             self?.refreshControl?.endRefreshing()
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
         }, onCompleted: nil , onDisposed: nil).addDisposableTo(disposeBag)
+    }
+    
+    func appendConversations(cons: [Conversation]) {
+        self.conversations = (self.conversations + cons).filter({ (conversation) -> Bool in
+            return conversation.users?.count > 1
+        }).unique()
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -133,23 +151,6 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
         self.flowDelegate?.showConversation(conversation)
     }
     
-    func renewConversationSubscriptions() {
-        // release existing subsriptions
-        conversationDisposeBag = DisposeBag()
-        
-        for conversation in self.conversations {
-            let idx = self.conversations.indexOf(conversation)!
-            
-            PusherClient.sharedInstance.conversationMessagesObservable(conversation).subscribeNext({ [weak self] (msg) -> Void in
-                let updatedConversation = conversation.copyWithLastMessage(msg)
-                self?.conversations.removeAtIndex(idx)
-                self?.conversations.insert(updatedConversation, atIndex: idx)
-                self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)], withRowAnimation: .Automatic)
-            }).addDisposableTo(disposeBag)
-        }
-        
-    }
-    
     func conversationWithId(conversationId: String?) -> Conversation? {
         guard let conversationId = conversationId else {
             return nil
@@ -163,5 +164,43 @@ final class ConversationListTableViewController: UITableViewController, DZNEmpty
         }
         
         return candidates.first
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
+            loadNextPage()
+        }
+    }
+    
+    func loadNextPage() {
+        if loading {
+            return
+        }
+        
+        guard self.nextParams != nil else {
+            return
+        }
+        
+        loading = true
+        
+        APIChatsService.requestMoreConversations(self.nextParams).subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let response):
+                let conversations = response.results
+
+                self?.nextParams = response.beforeParamsString()
+                
+                self?.loading = false
+                
+                self?.appendConversations(conversations)
+            case .Error:
+                self?.loading = false
+            default:
+                break;
+            }
+            
+        }.addDisposableTo(disposeBag)
+        
+ 
     }
 }

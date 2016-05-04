@@ -20,11 +20,11 @@ final class SearchUserProfileCellViewModel {
     }
     
     func listeningCountString() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.sharedInstance.numberToShortString(profile.listenersCount))
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(profile.listenersCount))
     }
     
     func hidesListeningButton() -> Bool {
-        return Account.sharedInstance.loggedUser?.id == profile.id
+        return Account.sharedInstance.user?.id == profile.id
     }
     
     func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {
