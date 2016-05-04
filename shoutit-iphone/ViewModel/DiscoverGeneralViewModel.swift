@@ -17,15 +17,15 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
     }
     
     override func retriveDiscoverItems() {
-        Account.sharedInstance.userSubject
-            .distinctUntilChanged{ (lhs, rhs) -> Bool in
-                guard let old = lhs, new = rhs else { return true }
-                return old.id != new.id || old.location.address != new.location.address
-            }
-            .asObservable()
-            .map { (user) -> String? in
-                return user?.location.country
-            }
+        let countryObservable : Observable<String?> = Account.sharedInstance
+            .userSubject
+            .flatMap({ (user) -> Observable<String?> in
+                return Observable.just(user?.location.country)
+            }).distinctUntilChanged { (lhs, rhs) -> Bool in
+                return lhs == rhs
+        }
+        
+            countryObservable
             .flatMap { (location) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
             }

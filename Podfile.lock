@@ -132,7 +132,7 @@ DEPENDENCIES:
   - SlackTextViewController
   - SVProgressHUD
   - SVPullToRefresh (~> 0.4)
-  - SwiftyBeaver (~> 0.5)
+  - SwiftyBeaver (= 0.5.2)
   - Timberjack
   - TwilioConversationsClient (~> 0.22.0)
   - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`,
