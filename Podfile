@@ -5,7 +5,7 @@ platform :ios, '8.1'
 use_frameworks!
 
 # Twilio
-pod 'TwilioConversationsClient', '~>0.22.0'
+pod 'TwilioConversationsClient', '~>0.24.0'
 
 # RX
 pod 'RxSwift', '~> 2.3.1'
