@@ -129,6 +129,8 @@ final class Account {
         APIManager.setAuthToken(authData.apiToken)
         updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
         configureTwilioAndPusherServices()
+        
+        userSubject.onNext(user)
     }
     
     func locationString() -> String {

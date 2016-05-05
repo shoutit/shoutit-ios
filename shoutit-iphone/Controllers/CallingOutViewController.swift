@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol CallingOutViewControllerFlowDelegate: class, ChatDisplayable {}
 
@@ -15,26 +16,29 @@ final class CallingOutViewController: UIViewController {
     weak var flowDelegate: CallingOutViewControllerFlowDelegate?
     
     var callingToProfile: Profile!
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let localMedia = TWCLocalMedia()
         
+        
         Account.sharedInstance
             .twilioManager
-            .sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
-                if let error = error {
+            .makeCallTo(callingToProfile, media: localMedia).subscribe({[weak self] (event) in
+                switch event {
+                case .Error(let error):
                     self?.showError(error)
-                    return
-                }
-                
-                if let conversation = conversation {
+                case .Next(let conversation):
                     let controller = Wireframe.videoCallController()
                     controller.conversation = conversation
                     self?.presentViewController(controller, animated: true, completion: nil)
+                default:
+                    break
                 }
-        }
+            })
+            .addDisposableTo(disposeBag)
     }
 
     @IBAction func cancelAction(sender: AnyObject) {
