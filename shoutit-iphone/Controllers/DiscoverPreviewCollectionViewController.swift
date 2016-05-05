@@ -60,10 +60,13 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
             
             }).addDisposableTo(disposeBag)
         
-        viewModel.dataSource.subscribeNext({ [weak self] (items) -> Void in
-            self?.items = items
-            self?.collectionView?.reloadData()
-            }).addDisposableTo(disposeBag)
+        viewModel.dataSource
+            .observeOn(MainScheduler.instance)
+            .subscribeNext{ [weak self] (items) -> Void in
+                self?.items = items
+                self?.collectionView?.reloadData()
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: UICollectionViewDataSource

@@ -17,15 +17,15 @@
     case Loaded
  }
  
- final class DiscoverPreviewViewModel: AnyObject {
+ final class DiscoverPreviewViewModel {
     
     let displayable = ShoutsDisplayable(layout: ShoutsLayout.HorizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
     
     var state = Variable(DiscoverPreviewState.Loading)
-    var dataSource : Observable<[DiscoverItem]>
-    var mainItemObservable : Observable<DiscoverItem?>
+    private(set) var dataSource : Observable<[DiscoverItem]>
+    private(set) var mainItemObservable : Observable<DiscoverItem?>
     
     private let disposeBag = DisposeBag()
     
@@ -39,26 +39,21 @@
     
     required init() {
         
-        let countryObservable : Observable<String?> = Account.sharedInstance
+        mainItemObservable = Account.sharedInstance
             .userSubject
-            .flatMap({ (user) -> Observable<String?> in
-                return Observable.just(user?.location.country)
-            }).distinctUntilChanged { (lhs, rhs) -> Bool in
-                return lhs == rhs
+            .distinctUntilChanged { (lhs, rhs) -> Bool in
+                return lhs?.location.address == rhs?.location.address
             }
-        
-        
-        mainItemObservable = countryObservable
-            .distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
             .filter{(_) in Account.sharedInstance.isUserAuthenticated}
-            .flatMap { (location) in
-                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
+            .flatMap { (user) in
+                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: user?.location.country))
             }.map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
                     return items[0]
                 }
                 return nil
-            }.share()
+            }
+            .share()
         
         dataSource = mainItemObservable
             .filter{$0 != nil}
@@ -71,18 +66,20 @@
             .share()
         
         mainItemObservable
-            .subscribeNext { (mainItem) -> Void in
+            .subscribeNext {[weak self] (mainItem) -> Void in
                 if let _ = mainItem {
-                    self.state.value = .Loading
+                    self?.state.value = .Loading
                 } else {
-                    self.state.value = .NoItems
+                    self?.state.value = .NoItems
                 }
             }
             .addDisposableTo(disposeBag)
         
-        dataSource.subscribeNext { (items) -> Void in
-            self.state.value = .Loaded
-            }.addDisposableTo(disposeBag)
+        dataSource
+            .subscribeNext {[weak self] (items) -> Void in
+                self?.state.value = .Loaded
+            }
+            .addDisposableTo(disposeBag)
         
     }
  }

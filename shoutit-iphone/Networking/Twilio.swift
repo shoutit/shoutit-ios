@@ -176,7 +176,8 @@ private extension Twilio {
         userChangeBag = bag
         
         //  fetch token with small delay to avoid disposing client
-        account.loginSubject
+        Account.sharedInstance.loginSubject
+            .observeOn(MainScheduler.instance)
             .subscribeNext { [weak self] (loginchanged) in
                 guard let `self` = self else { return }
                 self.performSelector(#selector(self.connectIfNeeded), withObject: nil, afterDelay: 2.0)
