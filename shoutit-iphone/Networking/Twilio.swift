@@ -75,37 +75,53 @@ final class Twilio: NSObject {
         self.retryScheduler.resetAttemptsCount()
     }
     
-    func sendInvitationTo(profile: Profile, media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
-        
-        APIChatsService.twilioVideoIdentity(profile.username)
-        .subscribe(onNext: { [weak self] (identity) in
-            self?.sendInvitationToIdentity(identity, media: media, handler: handler)
-        }, onError: { [weak self] (error) in
-            self?.sendInvitationToIdentity(nil, media: media, handler: handler)
-        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+    func makeCallTo(profile: Profile, media: TWCLocalMedia) -> Observable<TWCConversation> {
+        return APIChatsService.twilioVideoIdentity(profile.username)
+            .flatMap { (identity) -> Observable<TWCConversation> in
+                return self
+                    .inviteWithTwilioIdentity(identity, media: media)
+                    .retryWhen{ (errorObservable) -> Observable<Int> in
+                        let rangeObservable = Observable.range(start: 0, count: 3)
+                        return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, ErrorType) in
+                            return (attempt, error)
+                        }).flatMap({ (attempt, error) -> Observable<Int> in
+                            if (error as NSError).code == 106 && attempt < 2 {
+                                return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
+                            } else {
+                                return Observable.error(error)
+                            }
+                        })
+                    }
+                    .doOnError({ (error) in
+                        APIChatsService.twilioVideoCallWithParams(VideoCallParams(identity: identity.identity, missed: true))
+                            .subscribe{ (event) in
+                                switch event {
+                                case .Next: print("Call missed")
+                                case .Error(let error): print("Call missed \(error)")
+                                default: break
+                                }
+                            }
+                            .addDisposableTo(self.disposeBag)
+                    })
+        }
     }
     
-    func sendInvitationToIdentity(identity: TwilioIdentity?,media: TWCLocalMedia, handler: (TWCConversation?, NSError?) -> Void) {
-        guard let identity = identity else {
-            let error = NSError(domain: "com.shoutit.internal", code: 403, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("You are not able to call this user", comment: "")])
-            handler(nil, error)
-            return
-        }
+    private func inviteWithTwilioIdentity(identity: TwilioIdentity, media: TWCLocalMedia) -> Observable<TWCConversation> {
         
-        self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
-            defer { handler(conversation, error) }
-            guard let _ = error else { return }
-            
-            APIChatsService.twilioMissedCallWithParams(MissedCallParams(identity: identity.identity))
-                .subscribe{ (event) in
-                    switch event {
-                    case .Next: print("Call missed")
-                    case .Error(let error): print("Call missed \(error)")
-                    default: break
-                    }
+        return Observable.create{[unowned self] (observer) -> Disposable in
+            let params = VideoCallParams(identity: identity.identity, missed: false)
+            APIChatsService.twilioVideoCallWithParams(params).subscribe{}.addDisposableTo(self.disposeBag)
+            self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
+                if let conversation = conversation {
+                    observer.onNext(conversation)
+                    observer.onCompleted()
+                } else if let error = error {
+                    observer.onError(error)
                 }
-                .addDisposableTo(self.disposeBag)
-        })
+            })
+            
+            return NopDisposable.instance
+        }
     }
 }
 

@@ -117,20 +117,20 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             return
         }
         
-        Account.sharedInstance.twilioManager.sendInvitationTo(callingToProfile, media: localMedia) { [weak self] (conversation, error) in
-            if let error = error {
-                self?.state = .CallFailed
-                self?.showError(error)
-                
-                
-                
-                return
-            }
-            
-            if let conversation = conversation {
-                self?.conversation = conversation
-            }
-        }
+        Account.sharedInstance
+            .twilioManager
+            .makeCallTo(callingToProfile, media: localMedia).subscribe({[weak self] (event) in
+                switch event {
+                case .Error(let error):
+                    self?.state = .CallFailed
+                    self?.showError(error)
+                case .Next(let conversation):
+                    self?.conversation = conversation
+                default:
+                    break
+                }
+                })
+            .addDisposableTo(disposeBag)
     }
     
     func invalidateMessage() {
