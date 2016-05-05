@@ -9,6 +9,7 @@
 import UIKit
 import AssetsLibrary
 import AVFoundation
+import LLVideoEditor
 
 enum WatermarkPosition {
     case TopLeft
@@ -20,117 +21,36 @@ enum WatermarkPosition {
 
 final class WatermarkGenerator: AnyObject {
     
-    func watermark(video videoAsset:AVAsset, watermarkText text : String, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
-        self.watermark(video: videoAsset, watermarkText: text, imageName: nil, saveToLibrary: flag, watermarkPosition: position) { (status, session, outputURL) -> () in
+    func watermark(videoAssetURL:NSURL, watermarkText text : String, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
+        self.watermark(video: videoAssetURL, watermarkText: text, imageName: nil, saveToLibrary: flag, watermarkPosition: position) { (status, session, outputURL) -> () in
             completion!(status: status, session: session, outputURL: outputURL)
         }
     }
     
-    func watermark(video videoAsset:AVAsset, imageName name : String, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
-        self.watermark(video: videoAsset, watermarkText: nil, imageName: name, saveToLibrary: flag, watermarkPosition: position) { (status, session, outputURL) -> () in
+    func watermark(videoAssetURL:NSURL, imageName name : String, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
+        self.watermark(video: videoAssetURL, watermarkText: nil, imageName: name, saveToLibrary: flag, watermarkPosition: position) { (status, session, outputURL) -> () in
             completion!(status: status, session: session, outputURL: outputURL)
         }
     }
     
-    private func watermark(video videoAsset:AVAsset, watermarkText text : String!, imageName name : String!, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
+    private func watermark(video videoAssetURL:NSURL, watermarkText text : String!, imageName name : String!, saveToLibrary flag : Bool, watermarkPosition position : WatermarkPosition, completion : ((status : AVAssetExportSessionStatus!, session: AVAssetExportSession!, outputURL : NSURL!) -> ())?) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-            // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
-            let mixComposition = AVMutableComposition()
-            
-            
-            // 2 - Create video tracks
-            let compositionVideoTrack = mixComposition.addMutableTrackWithMediaType(AVMediaTypeVideo, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
-            
-            let clipVideoTrack = videoAsset.tracksWithMediaType(AVMediaTypeVideo)[0] as AVAssetTrack
-            
-            try? compositionVideoTrack.insertTimeRange(CMTimeRangeMake(kCMTimeZero, videoAsset.duration), ofTrack: clipVideoTrack, atTime: kCMTimeZero)
-            
-            clipVideoTrack.preferredTransform
-            
-            // Video size
-            let videoSize = clipVideoTrack.naturalSize
-            
-            
-            let parentLayer = CALayer()
-            parentLayer.frame = CGRect(x: 0, y: 0, width: videoSize.width, height: videoSize.height)
-            parentLayer.opaque = true
-            parentLayer.backgroundColor = UIColor.clearColor().CGColor
-            
-            let videoLayer = CALayer()
-            videoLayer.frame = CGRect(x: 0, y: 0, width: videoSize.width, height: videoSize.height)
-            
-            videoLayer.opaque = true
-            videoLayer.backgroundColor = UIColor.clearColor().CGColor
-            
-            parentLayer.addSublayer(videoLayer)
-            
-            if text != nil {
-                let titleLayer = self.textLayerWithText(text, videoSize: videoSize)
-                parentLayer.addSublayer(titleLayer)
-            }
-            
-            if name != nil {
-                let imageLayer = self.imageLayerWithImageNamed(name, videoSize: videoSize, position: position)
-                parentLayer.addSublayer(imageLayer)
-            }
-            
-            let videoComp = AVMutableVideoComposition()
-            videoComp.renderSize = videoSize
-            videoComp.frameDuration = CMTime(value: 1, timescale: 30) // 30 FPS
-            videoComp.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer, inLayer: parentLayer)
-            
-            /// instruction
-            let instruction = AVMutableVideoCompositionInstruction()
-            instruction.backgroundColor = UIColor.clearColor().CGColor
-            instruction.timeRange = CMTimeRangeMake(kCMTimeZero, mixComposition.duration)
-            
-            let layerInstruction = self.videoCompositionInstructionForTrack(compositionVideoTrack, asset: videoAsset)
-            
-            
-            instruction.layerInstructions = [layerInstruction]
-            videoComp.instructions = [instruction]
-            
-            // 4 - Get path
-            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-            let savePath = documentDirectory.stringByAppendingPathComponent("shoutitvideo-\(NSDate().timeIntervalSince1970).mov")
-            let url = NSURL(fileURLWithPath: savePath)
-            
-            // 5 - Create Exporter
-            guard let exporter = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) else {
-                return
-            }
-            
-            exporter.outputURL = url
-            exporter.outputFileType = AVFileTypeQuickTimeMovie
-            exporter.shouldOptimizeForNetworkUse = true
-            exporter.videoComposition = videoComp
-            
-            // 6 - Perform the Export
-            exporter.exportAsynchronouslyWithCompletionHandler() {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if exporter.status == AVAssetExportSessionStatus.Completed {
-                        let outputURL = exporter.outputURL
-                        if flag {
-                            // Save to library
-                            let library = ALAssetsLibrary()
-                            if library.videoAtPathIsCompatibleWithSavedPhotosAlbum(outputURL) {
-                                library.writeVideoAtPathToSavedPhotosAlbum(outputURL,
-                                    completionBlock: { (assetURL:NSURL!, error:NSError!) -> Void in
-                                        completion!(status: AVAssetExportSessionStatus.Completed, session: exporter, outputURL: outputURL)
-                                })
-                            }
-                        } else {
-                            // Dont svae to library
-                            completion!(status: AVAssetExportSessionStatus.Completed, session: exporter, outputURL: outputURL)
-                        }
-                        
-                    } else {
-                        // Error
-                        completion!(status: exporter.status, session: exporter, outputURL: nil)
-                    }
-                })
-            }
+        let videoEditor = LLVideoEditor(videoURL: videoAssetURL)
+    
+        let clipVideoTrack = AVAsset(URL: videoAssetURL).tracksWithMediaType(AVMediaTypeVideo)[0] as! AVAssetTrack
+        let videoSize = clipVideoTrack.naturalSize
+         
+        if name != nil {
+            let imageLayer = self.imageLayerWithImageNamed(name, videoSize: videoSize, position: position)
+            videoEditor.addLayer(imageLayer)
+        }
+         
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let savePath = documentDirectory.stringByAppendingPathComponent("shoutitvideo-\(NSDate().timeIntervalSince1970).mov")
+        let exportURL = NSURL(fileURLWithPath: savePath)
+        
+        videoEditor.exportToUrl(exportURL, completionBlock: { (session) in
+            completion!(status: session.status, session: session, outputURL: exportURL)
         })
     }
     
@@ -192,7 +112,7 @@ final class WatermarkGenerator: AnyObject {
             yPosition = videoSize.height - 60.0 - padding
             break
         }
-
+        
         return CGRect(x: xPosition, y: yPosition, width: image.size.width, height: image.size.height)
     }
     
@@ -241,7 +161,7 @@ final class WatermarkGenerator: AnyObject {
             }
             instruction.setTransform(concat, atTime: kCMTimeZero)
         }
- 
+        
         
         return instruction
     }}

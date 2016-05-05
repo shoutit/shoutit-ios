@@ -40,11 +40,9 @@ final class VideoProcessor: AnyObject {
     
     func generateMovieData(url: NSURL, handler: (data: NSData?) -> Void) {
         
-        let asset = AVAsset(URL: url)
-        
         let generator = WatermarkGenerator()
         
-        generator.watermark(video: asset, imageName:"shoutit_logo_white", saveToLibrary: true, watermarkPosition: .TopRight) { (status, session, outputURL) in
+        generator.watermark(url, imageName:"shoutit_logo_white", saveToLibrary: true, watermarkPosition: .TopRight) { (status, session, outputURL) in
             if status == .Completed {
                 let data = NSData(contentsOfURL: outputURL)
                 handler(data: data)
