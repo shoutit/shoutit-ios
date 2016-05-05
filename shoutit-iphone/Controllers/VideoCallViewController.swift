@@ -121,9 +121,6 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             if let error = error {
                 self?.state = .CallFailed
                 self?.showError(error)
-                
-                
-                
                 return
             }
             
@@ -149,6 +146,19 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
     
     @IBAction func endCall() {
         self.conversation?.disconnect()
+        
+        let sentInvitations = Account.sharedInstance.twilioManager.sentInvitations
+        
+        for invite : TWCOutgoingInvite in sentInvitations {
+            invite.cancel()
+        }
+        
+        // Clear sent invitations
+        
+        // remove this invitation, beacuse it is no longer needed
+        Account.sharedInstance.twilioManager.sentInvitations = []
+        
+        
         state = .CallEnded
     }
     

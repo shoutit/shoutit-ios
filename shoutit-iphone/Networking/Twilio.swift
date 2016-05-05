@@ -30,6 +30,8 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
     private var disposeBag = DisposeBag()
     private var userChangeBag = DisposeBag?()
     
+    var sentInvitations : [TWCOutgoingInvite] = []
+    
     init(account: Account) {
         self.account = account
         super.init()
@@ -131,7 +133,7 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
             return
         }
         
-        self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
+        let invite = self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
             if let _ = error {
                 APIChatsService.twilioMissedCallWithParams(MissedCallParams(identity: identity.identity)).subscribe({ (event) in
                     switch event {
@@ -140,9 +142,15 @@ final class Twilio: NSObject, TwilioAccessManagerDelegate, TwilioConversationsCl
                     default: break
                     }
                 }).addDisposableTo(self.disposeBag)
+                return
             }
+            
             handler(conversation, error)
         })
+        
+        if let invite = invite {
+            self.sentInvitations.append(invite)
+        }
     }
     
     
