@@ -60,6 +60,7 @@ PODS:
     - libPusher/Core (= 1.6.1)
   - libPusher/Core (1.6.1):
     - SocketRocket (= 0.4.1)
+  - LLVideoEditor (1.0.0)
   - Material (1.39.10)
   - MBMapSnapshotter (1.0):
     - AFNetworking (~> 2.0)
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - KeychainAccess (~> 2.3)
   - Kingfisher (~> 2.2)
   - libPusher (~> 1.6)
+  - LLVideoEditor (~> 1.0)
   - Material (~> 1.39)
   - MBMapSnapshotter
   - MBProgressHUD (~> 0.9.1)
@@ -181,6 +183,7 @@ SPEC CHECKSUMS:
   KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
   Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
   libPusher: 5ea58aeb83fa4ac1f5d8ef8543b1def6ace997b8
+  LLVideoEditor: f287ea4a532dade2b40ba042c80bf76a546325e5
   Material: ad48594da116b7004751dc042e44cc7a8c52ad0a
   MBMapSnapshotter: ccc9b1ddb03525af965c6bd81d73505392cb2a67
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1

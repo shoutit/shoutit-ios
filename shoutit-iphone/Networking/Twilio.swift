@@ -30,6 +30,7 @@ final class Twilio: NSObject {
             self.connectIfNeeded()
         }
     }()
+    var sentInvitations : [TWCOutgoingInvite] = []
     
     // RX
     private var disposeBag = DisposeBag()
@@ -86,6 +87,7 @@ final class Twilio: NSObject {
                             return (attempt, error)
                         }).flatMap({ (attempt, error) -> Observable<Int> in
                             if (error as NSError).code == 106 && attempt < 2 {
+                                self.sentInvitations.removeLast()
                                 return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
                             } else {
                                 return Observable.error(error)
@@ -111,7 +113,7 @@ final class Twilio: NSObject {
         return Observable.create{[unowned self] (observer) -> Disposable in
             let params = VideoCallParams(identity: identity.identity, missed: false)
             APIChatsService.twilioVideoCallWithParams(params).subscribe{}.addDisposableTo(self.disposeBag)
-            self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
+            let invite = self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
                 if let conversation = conversation {
                     observer.onNext(conversation)
                     observer.onCompleted()
@@ -119,6 +121,9 @@ final class Twilio: NSObject {
                     observer.onError(error)
                 }
             })
+            if let invite = invite {
+                self.sentInvitations.append(invite)
+            }
             
             return NopDisposable.instance
         }

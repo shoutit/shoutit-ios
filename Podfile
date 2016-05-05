@@ -49,6 +49,7 @@ pod 'SDWebImage', '~> 3.7'
 pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
 pod 'Nemo'
 pod 'MBMapSnapshotter'
+pod 'LLVideoEditor', '~> 1.0'
 
 # serialization
 pod 'Argo'

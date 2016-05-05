@@ -16,3 +16,4 @@
 #import <TwilioConversationsClient/TwilioConversationsClient.h>
 #import "TWCLocalMedia+Additions.h"
 #import "PhotoBrowser.h"
+#import <LLVideoEditor/LLVideoEditor.h>
