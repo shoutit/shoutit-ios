@@ -85,7 +85,7 @@ struct LoginGuestParams: AuthParams {
     var authParams: [String : AnyObject] {
         return [
             "profile":
-                ["push_tokens" : ["apns" : apns, "gcm" : NSNull()]]
+                ["push_tokens" : ["apns" : apns]]
         ]
     }
 }
