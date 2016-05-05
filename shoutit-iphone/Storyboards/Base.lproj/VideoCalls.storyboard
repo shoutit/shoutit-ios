@@ -274,7 +274,9 @@
                                     <constraint firstItem="KVV-YV-hYs" firstAttribute="height" secondItem="Imm-ov-Sdy" secondAttribute="height" id="Zi1-Md-yDL"/>
                                     <constraint firstItem="y6h-PZ-MHd" firstAttribute="top" secondItem="Otg-mn-IP0" secondAttribute="bottom" constant="13" id="arz-nA-ZAc"/>
                                     <constraint firstAttribute="height" constant="164" id="d7d-BU-jS1"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Otg-mn-IP0" secondAttribute="trailing" constant="10" id="gG4-P8-Pyv"/>
                                     <constraint firstItem="KVV-YV-hYs" firstAttribute="centerY" secondItem="Imm-ov-Sdy" secondAttribute="centerY" id="hIB-63-caG"/>
+                                    <constraint firstItem="Otg-mn-IP0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="o9d-5T-XwT" secondAttribute="leading" constant="10" id="i8Q-GJ-xen"/>
                                     <constraint firstItem="QGN-6V-3uC" firstAttribute="centerY" secondItem="y6h-PZ-MHd" secondAttribute="centerY" id="nXw-nJ-BXC"/>
                                     <constraint firstItem="QGN-6V-3uC" firstAttribute="centerX" secondItem="y6h-PZ-MHd" secondAttribute="centerX" id="odj-CE-irQ"/>
                                     <constraint firstItem="QGN-6V-3uC" firstAttribute="height" secondItem="y6h-PZ-MHd" secondAttribute="height" id="tux-im-Kpl"/>

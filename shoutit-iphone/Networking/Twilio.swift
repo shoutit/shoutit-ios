@@ -87,7 +87,10 @@ final class Twilio: NSObject {
                             return (attempt, error)
                         }).flatMap({ (attempt, error) -> Observable<Int> in
                             if (error as NSError).code == 106 && attempt < 2 {
-                                self.sentInvitations.removeLast()
+                                if self.sentInvitations.count > 0 {
+                                    let invitation = self.sentInvitations.removeLast()
+                                    invitation.cancel()
+                                }
                                 return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
                             } else {
                                 return Observable.error(error)
