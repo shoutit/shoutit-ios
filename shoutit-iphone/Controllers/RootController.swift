@@ -76,8 +76,14 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
 
         Account.sharedInstance
             .loginSubject
+            .distinctUntilChanged{(old, new) -> Bool in
+                if old == nil {
+                    return true
+                }
+                return false
+            }
             .observeOn(MainScheduler.instance)
-            .subscribeNext {
+            .subscribeNext {_ in
                 self.sh_invalidateControllersCache()
                 self.openItem(.Home)
             }
