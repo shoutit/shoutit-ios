@@ -16,34 +16,30 @@ enum MessageAttachmentType {
     case Location
     case Video
     case Image
+    case Profile
 }
 
 struct MessageAttachment: Decodable {
     let shout: Shout?
     let location: MessageLocation?
+    let profile: Profile?
     let videos: [Video]?
     let images: [String]?
         
     func type() -> MessageAttachmentType {
-        if let _ = shout {
-            return .Shout
-        }
-        if let _ = location {
-            return .Location
-        }
-        if let videos = videos {
-            if videos.count > 0 {
-                return .Video
-            }
-        }
-        
-        return .Image
+        if let _ = shout { return .Shout }
+        if let _ = location { return .Location }
+        if let _ = profile { return .Profile }
+        if let v = videos where v.count > 0 { return .Video }
+        if let i = images where i.count > 0 { return .Image }
+        fatalError("Enexpected attachment object")
     }
     
     static func decode(j: JSON) -> Decoded<MessageAttachment> {
         return curry(MessageAttachment.init)
             <^> j <|? "shout"
             <*> j <|? "location"
+            <*> j <|? "profile"
             <*> j <||? "videos"
             <*> j <||? "images"
     }

@@ -60,7 +60,9 @@ struct MediaAttachment : Hashable, Equatable {
     }
 
 }
+
 extension MediaAttachment {
+    
     func asMessageAttachment() -> MessageAttachment {
         if self.type == .Image {
             return MessageAttachment(shout: nil, location: nil, videos: nil, images: [(self.remoteURL?.absoluteString)!])

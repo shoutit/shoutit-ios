@@ -57,24 +57,6 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         
     }
     
-    private func requestImageAttachment() {
-        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100), targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, videoLength: 10.0, maximumItems: 1, maximumVideos: 0, allowsVideos: false)
-        
-        let mediaPicker = MediaPickerController(delegate: self, settings: settings)
-        
-        mediaPicker.presentingSubject.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
-            }
-            
-            self?.presentingSubject.onNext(controller)
-            
-        }.addDisposableTo(disposeBag)
-        
-        mediaPicker.showMediaPickerController()
-        
-    }
-    
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         let task = uploader.uploadAttachment(attachment)
         
@@ -97,19 +79,47 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         showConfirmationControllerForAttachment(attachment)
     }
     
-    private func requestVideoAttachment() {
-        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100), targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, videoLength: 10.0, maximumItems: 1, maximumVideos: 1, allowsVideos: true)
+    private func requestImageAttachment() {
+        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100),
+                                           targetSize: PHImageManagerMaximumSize,
+                                           contentMode: .AspectFill,
+                                           videoLength: 10.0,
+                                           maximumItems: 1,
+                                           maximumVideos: 0,
+                                           allowsVideos: false)
         
         let mediaPicker = MediaPickerController(delegate: self, settings: settings)
         
-        mediaPicker.presentingSubject.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
+        mediaPicker
+            .presentingSubject
+            .asDriver(onErrorJustReturn: nil)
+            .driveNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.presentingSubject.onNext(controller)
             }
-            
-            self?.presentingSubject.onNext(controller)
-            
-            }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
+        
+        mediaPicker.showMediaPickerController()
+    }
+    
+    private func requestVideoAttachment() {
+        let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100),
+                                           targetSize: PHImageManagerMaximumSize,
+                                           contentMode: .AspectFill,
+                                           videoLength: 10.0,
+                                           maximumItems: 1,
+                                           maximumVideos: 1,
+                                           allowsVideos: true)
+        
+        let mediaPicker = MediaPickerController(delegate: self, settings: settings)
+        
+        mediaPicker.presentingSubject
+            .asDriver(onErrorJustReturn: nil)
+            .driveNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.presentingSubject.onNext(controller)
+            }
+            .addDisposableTo(disposeBag)
         
         mediaPicker.showMediaPickerController()
     }
