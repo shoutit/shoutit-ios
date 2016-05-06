@@ -102,43 +102,28 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     }
     
     private func setupDataSource() {
+        
         if let collection = self.collectionView {
             
-            viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
-                retry.asObservable().debounce(1.5, scheduler: MainScheduler.instance)
-                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
-                    return (self?.viewModel.retriveShouts())!
+            let userObservable = Observable.combineLatest(retry.asObservable(), Account.sharedInstance.userSubject) {$0.1}
+            userObservable
+                .filter({ (user) -> Bool in
+                    return user != nil
                 })
-                .subscribeNext({ [weak self] (shouts) -> Void in
+                .distinctUntilChanged { (lhs, rhs) -> Bool in
+                    return lhs?.id == rhs?.id && lhs?.location.address == rhs?.location.address
+                }
+                .flatMap{ [weak self] (reload) -> Observable<[Shout]> in
+                    return (self?.viewModel.retriveShouts())!
+                }
+                .subscribeNext{ [weak self] (shouts) -> Void in
                     self?.items = shouts
                     self?.collectionView?.reloadData()
                     self?.refreshControl.endRefreshing()
-                })
+                }
                 .addDisposableTo(disposeBag)
             
-            Account.sharedInstance
-                .userSubject
-                .flatMap({ (user) -> Observable<String?> in
-                    return Observable.just(user?.location.country)
-                }).distinctUntilChanged { (lhs, rhs) -> Bool in
-                    if lhs == rhs {
-                        return true
-                    }
-                    
-                    self.refreshControl.endRefreshing()
-                    
-                    return false
-                }
-                .debounce(1.5, scheduler: MainScheduler.instance)
-                .flatMap({ [weak self] (reload) -> Observable<[Shout]> in
-                    return (self?.viewModel.retriveShouts())!
-                })
-                .subscribeNext({ [weak self] (shouts) -> Void in
-                    self?.items = shouts
-                    self?.collectionView?.reloadData()
-                    self?.refreshControl.endRefreshing()
-                })
-                .addDisposableTo(disposeBag)
+            viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
             
             collection.emptyDataSetDelegate = self
             collection.emptyDataSetSource = self
