@@ -73,10 +73,21 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
             }
             .addDisposableTo(disposeBag)
         
-        Account.sharedInstance.loginSubject.subscribeNext {
-            self.sh_invalidateControllersCache()
-            self.openItem(.Home)
-        }.addDisposableTo(disposeBag)
+
+        Account.sharedInstance
+            .loginSubject
+            .distinctUntilChanged{(old, new) -> Bool in
+                if old == nil {
+                    return true
+                }
+                return false
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {_ in
+                self.sh_invalidateControllersCache()
+                self.openItem(.Home)
+            }
+            .addDisposableTo(disposeBag)
         
     }
     

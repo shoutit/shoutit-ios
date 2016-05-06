@@ -12,13 +12,18 @@ import RxSwift
 
 final class Twilio: NSObject {
     
+    // consts
+    private struct TwilioErrorCode {
+        static let ParticipantUnavailable = 106
+    }
+    
+    // vars
     private var authData: TwilioAuth? {
         didSet {
             log.info("TWILIO: TOKEN RETRIVED")
             createTwilioClient()
         }
     }
-    
     private unowned var account: Account
     private var client: TwilioConversationsClient?
     private var accessManager: TwilioAccessManager?
@@ -86,7 +91,7 @@ final class Twilio: NSObject {
                         return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, ErrorType) in
                             return (attempt, error)
                         }).flatMap({ (attempt, error) -> Observable<Int> in
-                            if (error as NSError).code == 106 && attempt < 2 {
+                            if (error as NSError).code == TwilioErrorCode.ParticipantUnavailable && attempt < 2 {
                                 if self.sentInvitations.count > 0 {
                                     let invitation = self.sentInvitations.removeLast()
                                     invitation.cancel()
@@ -177,6 +182,7 @@ private extension Twilio {
         
         //  fetch token with small delay to avoid disposing client
         account.loginSubject
+            .observeOn(MainScheduler.instance)
             .subscribeNext { [weak self] (loginchanged) in
                 guard let `self` = self else { return }
                 self.performSelector(#selector(self.connectIfNeeded), withObject: nil, afterDelay: 2.0)

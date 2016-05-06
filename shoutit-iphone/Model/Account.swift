@@ -61,7 +61,7 @@ final class Account {
     }
     private(set) var authData: AuthData? {
         didSet {
-            self.loginSubject.onNext()
+            self.loginSubject.onNext(authData)
         }
     }
     
@@ -98,7 +98,7 @@ final class Account {
     // helper vars
     private let disposeBag = DisposeBag()
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
-    let loginSubject: PublishSubject<Void> = PublishSubject() // triggered on login
+    let loginSubject: PublishSubject<AuthData?> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     private var updatingAPNS = false
     
