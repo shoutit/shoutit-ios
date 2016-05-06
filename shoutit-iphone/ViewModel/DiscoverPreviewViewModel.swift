@@ -42,9 +42,9 @@
         mainItemObservable = Account.sharedInstance
             .userSubject
             .distinctUntilChanged { (lhs, rhs) -> Bool in
-                return lhs?.location.address == rhs?.location.address
+                return lhs?.id == rhs?.id && lhs?.location.address == rhs?.location.address
             }
-            .filter{(_) in Account.sharedInstance.isUserAuthenticated}
+            .filter{$0 != nil}
             .flatMap { (user) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: user?.location.country))
             }.map{ (items) -> DiscoverItem? in

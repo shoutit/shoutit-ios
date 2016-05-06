@@ -21,7 +21,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    var retry = Variable(true)
+    private let retry = Variable(false)
     
     var selectedItem = BehaviorSubject<Shout?>(value: nil)
     
@@ -33,7 +33,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDisplayable()
         setupDataSource()
 
-        refreshControl.addTarget(self, action: #selector(HomeShoutsCollectionViewController.reloadData), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeShoutsCollectionViewController.forceReloadData), forControlEvents: .ValueChanged)
         self.collectionView?.addSubview(refreshControl)
     }
     
@@ -43,7 +43,12 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     }
     
     func reloadData() {
+        retry.value = false
+    }
+    
+    func forceReloadData() {
         retry.value = true
+        retry.value = false
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -105,13 +110,16 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         
         if let collection = self.collectionView {
             
-            let userObservable = Observable.combineLatest(retry.asObservable(), Account.sharedInstance.userSubject) {$0.1}
+            let userObservable = Observable.combineLatest(retry.asObservable(), Account.sharedInstance.userSubject) {$0}
             userObservable
-                .filter({ (user) -> Bool in
+                .filter({ (reload, user) -> Bool in
                     return user != nil
                 })
-                .distinctUntilChanged { (lhs, rhs) -> Bool in
-                    return lhs?.id == rhs?.id && lhs?.location.address == rhs?.location.address
+                .distinctUntilChanged {(lhs, rhs) -> Bool in
+                    let oldUser = lhs.1
+                    let newUser = rhs.1
+                    let forceReload = rhs.0
+                    return oldUser?.id == newUser?.id && oldUser?.location.address == newUser?.location.address && !forceReload
                 }
                 .flatMap{ [weak self] (reload) -> Observable<[Shout]> in
                     return (self?.viewModel.retriveShouts())!
