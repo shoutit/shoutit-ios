@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         
         configureAPS(application)
+        configureURLCache()
         
         // fetch user account to update all stats etc.
         Account.sharedInstance.fetchUserProfile()
@@ -165,5 +166,10 @@ private extension AppDelegate {
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
+    }
+    
+    func configureURLCache() {
+        let URLCache = NSURLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
+        NSURLCache.setSharedURLCache(URLCache)
     }
 }
