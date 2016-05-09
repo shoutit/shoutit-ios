@@ -39,15 +39,31 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
         var attachments : [Int : MediaAttachment] = [:]
         var idx = 0
         
-        self.shout.imagePaths?.each({ (imgPath) -> () in
-            attachments[idx] = MediaAttachment(type: .Image, image: nil, originalData: nil, remoteURL: NSURL(string:imgPath), thumbRemoteURL: NSURL(string:imgPath), uid: MediaAttachment.generateUid(), videoDuration: nil)
+        self.shout.imagePaths?.each{ (imgPath) -> () in
+            attachments[idx] = MediaAttachment(
+                type: .Image,
+                uid: MediaAttachment.generateUid(),
+                remoteURL: NSURL(string:imgPath),
+                thumbRemoteURL: NSURL(string:imgPath),
+                image: nil,
+                videoDuration: nil,
+                originalData: nil
+            )
             idx += 1
-        })
+        }
         
-        self.shout.videos?.each({ (video) -> () in
-            attachments[idx] = MediaAttachment(type: .Video, image: nil, originalData: nil, remoteURL: NSURL(string: video.path), thumbRemoteURL: NSURL(string: video.thumbnailPath), uid: MediaAttachment.generateUid(), videoDuration: Float(video.duration))
+        self.shout.videos?.each{ (video) -> () in
+            attachments[idx] = MediaAttachment(
+                type: .Video,
+                uid: MediaAttachment.generateUid(),
+                remoteURL: NSURL(string: video.path),
+                thumbRemoteURL: NSURL(string: video.thumbnailPath),
+                image: nil,
+                videoDuration: Float(video.duration),
+                originalData: nil
+            )
             idx += 1
-        })
+        }
         
         self.imagesController?.attachments = attachments;
         self.imagesController?.collectionView?.reloadData()

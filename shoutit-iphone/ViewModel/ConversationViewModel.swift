@@ -163,7 +163,7 @@ final class ConversationViewModel {
     func triggerLoadMore() {
         loadMoreState.value = .Loading
         
-        if let lastMessage = sortedMessages.last {
+        if sortedMessages.last != nil {
             APIChatsService.moreMessagesForConversation(self.conversation.value, nextPageParams:  self.nextPageParams)
                 .subscribe(onNext: { [weak self] (response) -> Void in
                     let messages : [Message] = response.results
@@ -229,10 +229,8 @@ final class ConversationViewModel {
         case .ShoutAttachment:
             return msg.isOutgoingCell() ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
         case .ProfileAttachment:
-            
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
         }
-        
-        fatalError()
     }
     
     func previousMessageFor(message: Message) -> Message? {

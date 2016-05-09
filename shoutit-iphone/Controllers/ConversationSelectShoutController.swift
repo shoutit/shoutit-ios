@@ -21,7 +21,6 @@ final class ConversationSelectShoutController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("Select Shout", comment: "")
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(ConversationSelectShoutController.dismiss))
         
         let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30)
         
@@ -31,7 +30,6 @@ final class ConversationSelectShoutController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         tableView.tableFooterView = UIView()
-        
     }
     
     func dismiss() {
@@ -50,10 +48,7 @@ final class ConversationSelectShoutController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ConversationSelectShoutTableViewCell
-
         cell.bindWith(self.shouts[indexPath.row])
-        
-
         return cell
     }
     
@@ -65,5 +60,4 @@ final class ConversationSelectShoutController: UITableViewController {
     override func prefersTabbarHidden() -> Bool {
         return true
     }
-
 }

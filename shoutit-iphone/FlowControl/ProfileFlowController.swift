@@ -32,7 +32,6 @@ final class ProfileFlowController: FlowController {
     }
 }
 
-extension ProfileFlowController: SearchUserResultsTableViewControllerFlowDelegate {}
 extension ProfileFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
 extension ProfileFlowController: SearchViewControllerFlowDelegate {}
 extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {}

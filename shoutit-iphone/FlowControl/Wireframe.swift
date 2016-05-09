@@ -92,8 +92,8 @@ struct Wireframe {
         return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
     }
     
-    static func searchUserResultsTableViewController() -> SearchUserResultsTableViewController {
-        return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchUserResultsTableViewController") as! SearchUserResultsTableViewController
+    static func searchUserResultsTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchUserResultsTableViewController") as! ProfilesListTableViewController
     }
     
     static func searchShoutsResultsCollectionViewController() -> SearchShoutsResultsCollectionViewController {

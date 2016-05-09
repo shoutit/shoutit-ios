@@ -32,7 +32,6 @@ final class ChatsFlowController: FlowController {
     }
 }
 
-extension ChatsFlowController: SearchUserResultsTableViewControllerFlowDelegate {}
 extension ChatsFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
 extension ChatsFlowController: SearchViewControllerFlowDelegate {}
 extension ChatsFlowController: ConversationListTableViewControllerFlowDelegate {}

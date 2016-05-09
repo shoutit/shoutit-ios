@@ -28,7 +28,6 @@ final class BrowseFlowController: FlowController {
 
 extension BrowseFlowController: SearchViewControllerFlowDelegate {}
 extension BrowseFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
-extension BrowseFlowController: SearchUserResultsTableViewControllerFlowDelegate {}
 extension BrowseFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension BrowseFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension BrowseFlowController: DiscoverCollectionViewControllerFlowDelegate {}

@@ -10,6 +10,14 @@ import Foundation
 
 extension PHAsset {
     func asMediaAttachment(image: UIImage? = nil) -> MediaAttachment {
-        return MediaAttachment(type: self.mediaType, image: image, originalData: image?.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
+        return MediaAttachment(
+            type: mediaType,
+            uid: MediaAttachment.generateUid(),
+            remoteURL: nil,
+            thumbRemoteURL: nil,
+            image: image,
+            videoDuration: nil,
+            originalData: image?.dataRepresentation()
+        )
     }
 }

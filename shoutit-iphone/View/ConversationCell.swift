@@ -36,6 +36,10 @@ struct ConversationCellIdentifier {
         static let outgoing = "conversationOutGoingShoutCell"
         static let incoming = "conversationIncomingShoutCell"
     }
+    struct Profile {
+        static let outgoing = "OutgoingProfileCell"
+        static let incoming = "IncomingProfileCell"
+    }
 }
 
 protocol ConversationCell: MessagePresenting {

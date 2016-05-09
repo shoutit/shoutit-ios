@@ -45,8 +45,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         if let shout = conversation.shout {
             setTopicShout(shout)
         }
-        
-        
     }
     
     func subscribeSockets() {
@@ -180,25 +178,23 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
         tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: ConversationCellIdentifier.Wireframe.daySection)
         
-        tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
-        tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
+        tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Text.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Text.incoming)
         
-        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: conversationIncomingLocationCellIdentifier)
-        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingLocationCellIdentifier)
+        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Location.incoming)
+        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Location.outgoing)
         
+        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Picture.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Picture.incoming)
         
-        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
-        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
+        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Video.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Video.incoming)
         
+        tableView.registerNib(UINib(nibName: "OutgoingShoutCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Shout.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingShoutCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Shout.incoming)
         
-        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingVideoCell)
-        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: conversationIncomingVideoCell)
-        
-        
-        tableView.registerNib(UINib(nibName: "OutgoingShoutCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingShoutCell)
-        tableView.registerNib(UINib(nibName: "IncomingShoutCell", bundle: nil), forCellReuseIdentifier: conversationIncomingShoutCell)
-        
-        
+        tableView.registerNib(UINib(nibName: "OutgoingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.incoming)
     }
     
     private func customizeTable() {
@@ -323,38 +319,15 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let msg = self.viewModel.messageAtIndexPath(indexPath)
         
-        guard let attachment = msg.attachment() else {
-            return
-        }
+        guard let attachment = msg.attachment() else { return }
         
-        if attachment.type() == .Location {
-            if let coordinates = msg.attachment()?.location?.coordinate() {
-                self.flowDelegate?.showLocation(coordinates)
-            }
-            return
+        switch attachment.type() {
+        case .LocationAttachment(let location): flowDelegate?.showLocation(location.coordinate())
+        case .ImageAttachment(let path): flowDelegate?.showImagePreview(path.toURL()!)
+        case .VideoAttachment(let video): flowDelegate?.showVideoPreview(video.path.toURL()!)
+        case .ShoutAttachment(let shout): flowDelegate?.showShout(shout)
+        case .ProfileAttachment(let profile): flowDelegate?.showProfile(profile)
         }
-        
-        if attachment.type() == .Image {
-            if let imagePath = msg.attachment()?.imagePath(), imageUrl = NSURL(string: imagePath) {
-                self.flowDelegate?.showImagePreview(imageUrl)
-            }
-            return
-        }
-        
-        if attachment.type() == .Video {
-            if let videoPath = msg.attachment()?.videoPath(), videoURL = NSURL(string: videoPath) {
-                self.flowDelegate?.showVideoPreview(videoURL)
-            }
-            return
-        }
-        
-        if attachment.type() == .Shout {
-            if let shout = msg.attachment()?.shout {
-                self.flowDelegate?.showShout(shout)
-            }
-            return
-        }
-        
     }
     
     override func didPressRightButton(sender: AnyObject!) {
@@ -368,9 +341,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     override func didPressLeftButton(sender: AnyObject!) {
         textView.resignFirstResponder()
         
-        self.flowDelegate?.showAttachmentController({ [weak self] (type) in
+        flowDelegate?.showAttachmentControllerWithTransitioningDelegate(self) {[weak self] (type) in
             self?.attachmentManager.requestAttachmentWithType(type)
-        }, transitionDelegate: self)
+        }
     }
     
     func showSendingError(error: NSError) -> Void {

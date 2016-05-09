@@ -138,17 +138,17 @@ extension Conversation {
             return text
         }
         
-        if msg.attachment()?.type() == .Location {
-            return NSLocalizedString("Location", comment: "")
-        } else if msg.attachment()?.type() == .Image {
-            return NSLocalizedString("Image", comment: "")
-        } else if msg.attachment()?.type() == .Video {
-            return NSLocalizedString("Video", comment: "")
-        } else if msg.attachment()?.type() == .Shout {
-            return NSLocalizedString("Shout", comment: "")
+        guard let attachment = msg.attachment() else {
+            return NSLocalizedString("Attachment", comment: "")
         }
         
-        return NSLocalizedString("Attachment", comment: "")
+        switch attachment.type() {
+        case .LocationAttachment: return NSLocalizedString("Location", comment: "")
+        case .ImageAttachment: return NSLocalizedString("Image", comment: "")
+        case .VideoAttachment: return NSLocalizedString("Video", comment: "")
+        case .ShoutAttachment: return NSLocalizedString("Shout", comment: "")
+        case .ProfileAttachment: return NSLocalizedString("Profile", comment: "")
+        }
     }
     
     func imageURL() -> NSURL? {

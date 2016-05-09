@@ -1,33 +1,26 @@
 //
-//  SearchUserResultsTableViewController.swift
+//  ProfilesListTableViewController.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 17.03.2016.
+//  Created by Łukasz Kasperek on 09.05.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 
-protocol SearchUserResultsTableViewControllerFlowDelegate: class, ProfileDisplayable {}
-
-final class SearchUserResultsTableViewController: UITableViewController {
-    
-    // consts
-    private let cellReuseId = "ProfileTableViewCell"
+class ProfilesListTableViewController: UITableViewController {
     
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
         let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
         return view
-    }()
+        }()
     
-    // view model
-    var viewModel: SearchUserResultsViewModel!
-    
-    // navigation
-    weak var flowDelegate: SearchUserResultsTableViewControllerFlowDelegate?
+    // dependencies
+    var viewModel: ProfilesListViewModel!
+    var eventHandler: ProfilesListEventHandler!
     
     // RX
     private let disposeBag = DisposeBag()
@@ -37,6 +30,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
+        assert(eventHandler != nil)
         
         registerReusables()
         setupRX()
@@ -54,7 +48,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
     // MARK: - Setup
     
     private func registerReusables() {
-        tableView.registerNib(UINib(nibName: cellReuseId, bundle: nil) , forCellReuseIdentifier: cellReuseId)
+        tableView.register(ProfileTableViewCell.self)
     }
     
     private func setupRX() {
@@ -89,7 +83,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         switch viewModel.state.value {
         case .LoadedAllContent(let cells, _):
             return cells.count
@@ -104,7 +98,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cells: [SearchUserProfileCellViewModel]
+        let cells: [ProfilesListCellViewModel]
         switch viewModel.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
@@ -116,7 +110,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
             preconditionFailure()
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseId, forIndexPath: indexPath) as! ProfileTableViewCell
+        let cell: ProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let cellModel = cells[indexPath.row]
         
         cell.nameLabel.text = cellModel.profile.name
@@ -156,7 +150,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cells: [SearchUserProfileCellViewModel]
+        let cells: [ProfilesListCellViewModel]
         switch viewModel.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
@@ -168,7 +162,7 @@ final class SearchUserResultsTableViewController: UITableViewController {
             preconditionFailure()
         }
         let cellViewModel = cells[indexPath.row]
-        flowDelegate?.showProfile(cellViewModel.profile)
+        eventHandler.handleUserDidTapProfile(cellViewModel.profile)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

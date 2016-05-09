@@ -1,15 +1,15 @@
 //
-//  SearchUserProfileCellViewModel.swift
+//  ProfilesListCellViewModel.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 17.03.2016.
+//  Created by Łukasz Kasperek on 09.05.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-final class SearchUserProfileCellViewModel {
+final class ProfilesListCellViewModel {
     
     let profile: Profile
     var isListening: Bool

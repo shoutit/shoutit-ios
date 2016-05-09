@@ -32,12 +32,12 @@ extension SearchDisplayable where Self: FlowController, Self: SearchViewControll
     }
 }
 
-extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsTableViewControllerFlowDelegate, Self: SearchShoutsResultsCollectionViewControllerFlowDelegate {
+extension SearchDisplayable where Self: FlowController, Self: ProfileDisplayable, Self: SearchShoutsResultsCollectionViewControllerFlowDelegate {
     
     func showUserSearchResultsWithPhrase(phrase: String) {
         let controller = Wireframe.searchUserResultsTableViewController()
         controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
-        controller.flowDelegate = self
+        controller.eventHandler = ShowProfileProfilesListEventHandler(profileDisplayable: self)
         navigationController.showViewController(controller, sender: nil)
     }
     
