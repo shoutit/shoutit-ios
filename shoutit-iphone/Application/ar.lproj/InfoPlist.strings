@@ -1,3 +1,6 @@
 /* (No Commment) */
 "CFBundleName" = "شاوت ات";
 
+"NSLocationAlwaysUsageDescription" = "هذا يتيح لنا عرض إعلانات بيع وشراء أقرب إليك";
+"NSLocationWhenInUseUsageDescription" = "هذا يتيح لنا عرض إعلانات بيع وشراء أقرب إليك";
+"NSLocationUsageDescription" = "هذا يتيح لنا عرض إعلانات بيع وشراء أقرب إليك";
