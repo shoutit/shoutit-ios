@@ -58,7 +58,6 @@ class MenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
             }) { (finished) -> Void in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         }
-        
     }
     
     func completionCurve() -> UIViewAnimationCurve {

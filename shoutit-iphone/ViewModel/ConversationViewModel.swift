@@ -9,30 +9,6 @@
 import Foundation
 import RxSwift
 
-let conversationTextCellIdentifier = "conversationTextCellIdentifier"
-let conversationSectionDayIdentifier = "conversationSectionDayIdentifier"
-let conversationLoadMoreIdentifier = "conversationLoadMoreIdentifier"
-
-// text cells
-let conversationOutGoingTextCellIdentifier = "conversationOutGoingCell"
-let conversationIncomingTextCellIdentifier = "conversationIncomingCell"
-
-// location cells
-let conversationIncomingLocationCellIdentifier = "conversationIncomingLocationCell"
-let conversationOutGoingLocationCellIdentifier = "conversationOutGoingLocationCell"
-
-// picture cells
-let conversationOutGoingPictureCell = "conversationOutGoingPictureCell"
-let conversationIncomingPictureCell = "conversationIncomingPictureCell"
-
-// video cells
-let conversationOutGoingVideoCell = "conversationOutGoingVideoCell"
-let conversationIncomingVideoCell = "conversationIncomingVideoCell"
-
-// shout cells
-let conversationOutGoingShoutCell = "conversationOutGoingShoutCell"
-let conversationIncomingShoutCell = "conversationIncomingShoutCell"
-
 enum ConversationDataState : Int {
     case NotLoaded
     case RestLoaded
@@ -235,7 +211,7 @@ final class ConversationViewModel {
             return cellIdentifierForMessageWithAttachment(msg)
         }
         
-        return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier
+        return msg.isOutgoingCell() ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
     }
     
     func cellIdentifierForMessageWithAttachment(msg: Message) -> String {
@@ -243,23 +219,20 @@ final class ConversationViewModel {
             fatalError("this should not happend")
         }
         
-        if attachment.type() == .Location {
-            return msg.isOutgoingCell() ? conversationOutGoingLocationCellIdentifier: conversationIncomingLocationCellIdentifier
+        switch attachment.type() {
+        case .ImageAttachment:
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
+        case .VideoAttachment:
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
+        case .LocationAttachment:
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
+        case .ShoutAttachment:
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
+        case .ProfileAttachment:
+            
         }
         
-        if attachment.type() == .Image {
-            return msg.isOutgoingCell() ? conversationOutGoingPictureCell : conversationIncomingPictureCell
-        }
-        
-        if attachment.type() == .Video {
-            return msg.isOutgoingCell() ? conversationOutGoingVideoCell : conversationIncomingVideoCell
-        }
-        
-        if attachment.type() == .Shout {
-            return msg.isOutgoingCell() ? conversationOutGoingShoutCell : conversationIncomingShoutCell
-        }
-        
-        return msg.isOutgoingCell() ? conversationOutGoingTextCellIdentifier : conversationIncomingTextCellIdentifier
+        fatalError()
     }
     
     func previousMessageFor(message: Message) -> Message? {

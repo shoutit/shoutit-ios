@@ -288,9 +288,9 @@
                                             <constraint firstAttribute="height" constant="56" id="3yl-bZ-KTg"/>
                                             <constraint firstAttribute="width" constant="56" id="Gbu-fo-vTh"/>
                                         </constraints>
-                                        <state key="normal" image="att_video"/>
+                                        <state key="normal" image="att_profile"/>
                                         <connections>
-                                            <action selector="videoAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="1jU-4V-dLf"/>
+                                            <action selector="profileAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="Y7v-ff-zkI"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auO-vf-zR3">
@@ -323,18 +323,12 @@
                                             <constraint firstAttribute="height" constant="56" id="1dc-jU-xYP"/>
                                             <constraint firstAttribute="width" constant="56" id="6tK-jg-NZz"/>
                                         </constraints>
-                                        <state key="normal" image="att_photo"/>
+                                        <state key="normal" image="att_media"/>
                                         <connections>
-                                            <action selector="photoAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="Utv-1x-Ij3"/>
+                                            <action selector="mediaAction" destination="EA2-j7-XC6" eventType="touchUpInside" id="Rag-Nn-AF0"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smL-ce-TDc">
-                                        <rect key="frame" x="81" y="80" width="33" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guq-g6-Q7h">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guq-g6-Q7h">
                                         <rect key="frame" x="207" y="80" width="32" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -350,6 +344,12 @@
                                         <rect key="frame" x="199" y="174" width="48" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smL-ce-TDc">
+                                        <rect key="frame" x="81" y="80" width="33" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -616,9 +616,9 @@
     </scenes>
     <resources>
         <image name="att_location" width="56" height="56"/>
-        <image name="att_photo" width="56" height="56"/>
+        <image name="att_media" width="56" height="56"/>
+        <image name="att_profile" width="56" height="56"/>
         <image name="att_shout" width="56" height="56"/>
-        <image name="att_video" width="56" height="56"/>
         <image name="conversationVideoCall" width="24" height="24"/>
         <image name="messagesTabBar" width="22" height="25"/>
         <image name="more" width="24" height="24"/>

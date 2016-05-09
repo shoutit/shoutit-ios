@@ -11,7 +11,7 @@ import MWPhotoBrowser
 
 protocol ChatDisplayable {
     func showConversation(conversation: Conversation) -> Void
-    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
+    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
     func showVideoPreview(videoURL: NSURL) -> Void
@@ -40,7 +40,7 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate? = nil) -> Void {
+    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: ((type: PickerAttachmentType) -> Void)) -> Void {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion

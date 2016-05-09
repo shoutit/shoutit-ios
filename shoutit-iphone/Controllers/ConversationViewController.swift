@@ -178,7 +178,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             assertionFailure()
             return
         }
-        tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
+        tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: ConversationCellIdentifier.Wireframe.daySection)
         
         tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
         tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
@@ -262,7 +262,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(conversationSectionDayIdentifier) as! ConversationDayHeader
+        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(ConversationCellIdentifier.Wireframe.daySection) as! ConversationDayHeader
         
         view.dateLabel.text = viewModel.sectionTitle(section)
         view.transform = tableView.transform
@@ -276,10 +276,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             assertionFailure()
             return
         }
-        let footerHeight : CGFloat = 60.0
         
         loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
-        
+//        let footerHeight : CGFloat = 60.0
 //        loadMoreView?.frame = CGRect(x: 0, y: -64.0, width: 300, height: 5*footerHeight)
         loadMoreView?.layoutIfNeeded()
         loadMoreView?.transform = tableView.transform

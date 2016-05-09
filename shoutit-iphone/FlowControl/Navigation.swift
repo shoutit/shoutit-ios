@@ -50,9 +50,9 @@ enum NavigationItem : String {
 }
 
 protocol Navigation {
+    
     weak var rootController : RootController? {get set}
+    var selectedNavigationItem : NavigationItem? {get set}
     
     func triggerActionWithItem(navigationItem: NavigationItem)
-    
-    var selectedNavigationItem : NavigationItem? {get set}
 }

@@ -12,11 +12,11 @@ import Curry
 import Ogra
 
 enum MessageAttachmentType {
-    case Shout
-    case Location
-    case Video
-    case Image
-    case Profile
+    case ShoutAttachment(shout: Shout)
+    case LocationAttachment(location: MessageLocation)
+    case ImageAttachment(path: String)
+    case VideoAttachment(video: Video)
+    case ProfileAttachment(profile: Profile)
 }
 
 struct MessageAttachment: Decodable {
@@ -27,11 +27,11 @@ struct MessageAttachment: Decodable {
     let images: [String]?
         
     func type() -> MessageAttachmentType {
-        if let _ = shout { return .Shout }
-        if let _ = location { return .Location }
-        if let _ = profile { return .Profile }
-        if let v = videos where v.count > 0 { return .Video }
-        if let i = images where i.count > 0 { return .Image }
+        if let s = shout { return .ShoutAttachment(shout: s) }
+        if let l = location { return .LocationAttachment(location: l) }
+        if let p = profile { return .ProfileAttachment(profile: p) }
+        if let v = videos where v.count > 0 { return .VideoAttachment(video: v[0]) }
+        if let i = images where i.count > 0 { return .ImageAttachment(path: i[0]) }
         fatalError("Enexpected attachment object")
     }
     
@@ -69,15 +69,16 @@ struct MessageAttachment: Decodable {
 
 extension MessageAttachment {
     func imagePath() -> String? {
-        if self.type() == .Video {
-            return self.videos?.first?.thumbnailPath
+        switch type() {
+        case .VideoAttachment(let video):
+            return video.thumbnailPath
+        case .ImageAttachment(let path):
+            return path
+        case .ShoutAttachment(let shout):
+            return shout.thumbnailPath
+        default:
+            return nil
         }
-        
-        if self.type() == .Shout {
-            return self.shout?.thumbnailPath
-        }
-        
-        return self.images?.first
     }
     
     func videoPath() -> String? {
