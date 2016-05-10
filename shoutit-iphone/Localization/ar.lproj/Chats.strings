@@ -10,8 +10,8 @@
 /* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
 "GZ0-mH-W33.title" = "المحادثات";
 
-/* Class = "UILabel"; text = "Video"; ObjectID = "Guq-g6-Q7h"; */
-"Guq-g6-Q7h.text" = "فيديو";
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "Profile";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "OoV-dq-QkE"; */
 "OoV-dq-QkE.title" = "العنوان";
@@ -55,8 +55,8 @@
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "المحادثات";
 
-/* Class = "UILabel"; text = "Photo"; ObjectID = "smL-ce-TDc"; */
-"smL-ce-TDc.text" = "صورة";
+/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "Media";
 
 /* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
 "viM-Sc-CK6.text" = "موقع";

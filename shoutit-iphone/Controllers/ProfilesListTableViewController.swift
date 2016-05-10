@@ -116,6 +116,12 @@ class ProfilesListTableViewController: UITableViewController {
         cell.nameLabel.text = cellModel.profile.name
         cell.listenersCountLabel.text = cellModel.listeningCountString()
         cell.thumbnailImageView.sh_setImageWithURL(cellModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        
+        guard viewModel.showsListenButtons else {
+            cell.listenButton.hidden = true
+            return cell
+        }
+        
         let listenButtonImage = cellModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
         cell.listenButton.setImage(listenButtonImage, forState: .Normal)
         cell.listenButton.hidden = cellModel.hidesListeningButton()

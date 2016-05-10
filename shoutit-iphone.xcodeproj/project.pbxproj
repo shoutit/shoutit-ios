@@ -362,6 +362,9 @@
 		B27230681CE0F913003547EA /* OutgoingProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B27230671CE0F913003547EA /* OutgoingProfileCell.xib */; };
 		B272306A1CE0FAB0003547EA /* ConversationProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230691CE0FAB0003547EA /* ConversationProfileCell.swift */; };
 		B272306D1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272306C1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift */; };
+		B272306F1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272306E1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift */; };
+		B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */; };
+		B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
 		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
@@ -1095,6 +1098,9 @@
 		B27230671CE0F913003547EA /* OutgoingProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingProfileCell.xib; path = Storyboards/OutgoingProfileCell.xib; sourceTree = "<group>"; };
 		B27230691CE0FAB0003547EA /* ConversationProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationProfileCell.swift; path = View/ConversationProfileCell.swift; sourceTree = "<group>"; };
 		B272306C1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSelectProfileAttachmentViewController.swift; path = Controllers/ConversationSelectProfileAttachmentViewController.swift; sourceTree = "<group>"; };
+		B272306E1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectProfileProfilesListEventHandler.swift; path = EventHandlers/SelectProfileProfilesListEventHandler.swift; sourceTree = "<group>"; };
+		B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListeningProfilesListViewModel.swift; path = ViewModel/ListeningProfilesListViewModel.swift; sourceTree = "<group>"; };
+		B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersProfilesListViewModel.swift; path = ViewModel/ListenersProfilesListViewModel.swift; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
 		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
@@ -1873,7 +1879,6 @@
 				246DEA711CA40619009DF436 /* ConversationLocation */,
 				AEF1E66C1CA1D35A0054640C /* ConversationAttachment */,
 				B2F524661C9AF5F300EA622F /* SearchShoutResults */,
-				B2F524651C9AF5E300EA622F /* SearchUserResults */,
 				B2D9B0FA1C98488B00924941 /* Search */,
 				B2778F9C1CAD429F00BBDD5F /* Filters */,
 				B201A1E61CB40690009DA966 /* CategoryFilters */,
@@ -2724,6 +2729,7 @@
 			children = (
 				B27230571CE0E4A7003547EA /* ProfilesListViewModel.swift */,
 				B27230591CE0E691003547EA /* ProfilesListCellViewModel.swift */,
+				B27230701CE21886003547EA /* SpecificViewModels */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -2741,6 +2747,7 @@
 			isa = PBXGroup;
 			children = (
 				B272305E1CE0F002003547EA /* ShowProfileProfilesListEventHandler.swift */,
+				B272306E1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift */,
 			);
 			name = CommonHandlers;
 			sourceTree = "<group>";
@@ -2784,6 +2791,16 @@
 				B272306C1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift */,
 			);
 			name = ConversationSelectProfileAttachment;
+			sourceTree = "<group>";
+		};
+		B27230701CE21886003547EA /* SpecificViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B2F524711C9AFBA200EA622F /* SearchUserResultsViewModel.swift */,
+				B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */,
+				B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */,
+			);
+			name = SpecificViewModels;
 			sourceTree = "<group>";
 		};
 		B2778F8C1CAAE75200BBDD5F /* VerifyEmail */ = {
@@ -3360,14 +3377,6 @@
 			name = xibs;
 			sourceTree = "<group>";
 		};
-		B2F524651C9AF5E300EA622F /* SearchUserResults */ = {
-			isa = PBXGroup;
-			children = (
-				B2F524701C9AFB8900EA622F /* ViewModel */,
-			);
-			name = SearchUserResults;
-			sourceTree = "<group>";
-		};
 		B2F524661C9AF5F300EA622F /* SearchShoutResults */ = {
 			isa = PBXGroup;
 			children = (
@@ -3393,14 +3402,6 @@
 				B2F5246E1C9AF84E00EA622F /* ProfileTableViewCell.swift */,
 			);
 			name = CommonTableViewCells;
-			sourceTree = "<group>";
-		};
-		B2F524701C9AFB8900EA622F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B2F524711C9AFBA200EA622F /* SearchUserResultsViewModel.swift */,
-			);
-			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		B2F5247B1C9C61D500EA622F /* Layout */ = {
@@ -3845,6 +3846,7 @@
 				B2B540CF1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift in Sources */,
 				244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */,
 				B2B5D01D1C7F55250068A6AF /* CreateShoutDisplayable.swift in Sources */,
+				B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */,
 				248328FF1C842FC60042B0DB /* FormTextField.swift in Sources */,
 				B26081A31CB6D6E60025DA26 /* ShoutsSectionHeader.swift in Sources */,
 				B2778F911CAAEBC700BBDD5F /* VerifyEmailViewModel.swift in Sources */,
@@ -4072,11 +4074,13 @@
 				B2AB73F81CB56C2D00C2C0C0 /* SettingsFormButtonTableViewCell.swift in Sources */,
 				248328FA1C8426210042B0DB /* SelectShoutImagesController.swift in Sources */,
 				B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */,
+				B272306F1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift in Sources */,
 				B2AB73F11CB568C300C2C0C0 /* SettingsFormCellViewModel.swift in Sources */,
 				B2D9B0FF1C9849CB00924941 /* SearchViewModel.swift in Sources */,
 				B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */,
 				B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
+				B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */,
 				B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */,
 				B20F47D61CAEDC640091899C /* SliderFilterTableViewCell.swift in Sources */,
 				B23D132C1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift in Sources */,

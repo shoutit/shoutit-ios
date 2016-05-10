@@ -30,15 +30,8 @@ extension ContainerController where Self: UIViewController {
         guard currentChildViewController !== controller else { return }
         
         currentChildViewController?.willMoveToParentViewController(nil)
-        
         addChildViewController(controller)
-        
         addSubview(controller.view, toView: containerView)
-        //controller.view.alpha = 0.0
-        //controller.view.layoutIfNeeded()
-        
-        //controller.view.alpha = 1.0
-        //self.currentChildViewController?.view.alpha = 0.0
         
         let constraints = Array(self.currentControllerConstraints.dropLast(4))
         self.containerView.removeConstraints(constraints)
@@ -46,30 +39,6 @@ extension ContainerController where Self: UIViewController {
         self.currentChildViewController?.removeFromParentViewController()
         controller.didMoveToParentViewController(self)
         self.currentChildViewController = controller
-        
-        return
-        
-        let animationClosure = {[weak self] in
-            controller.view.alpha = 1.0
-            self?.currentChildViewController?.view.alpha = 0.0
-        }
-        
-        let completionClosure: (Bool) -> Void = {[weak self](_) -> Void in
-            guard let `self` = self else { return }
-            let constraints = Array(self.currentControllerConstraints.dropLast(4))
-            self.containerView.removeConstraints(constraints)
-            self.currentChildViewController?.view.removeFromSuperview()
-            self.currentChildViewController?.removeFromParentViewController()
-            controller.didMoveToParentViewController(self)
-            self.currentChildViewController = controller
-        }
-        
-        if animated {
-            UIView.animateWithDuration(animationDuration, delay: 0.0, options: [], animations: animationClosure, completion: completionClosure)
-        } else {
-            animationClosure()
-            completionClosure(true)
-        }
     }
     
     private func addSubview(subview: UIView, toView view: UIView) {

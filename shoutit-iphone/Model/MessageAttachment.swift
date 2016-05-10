@@ -26,13 +26,13 @@ struct MessageAttachment: Decodable {
     let videos: [Video]?
     let images: [String]?
         
-    func type() -> MessageAttachmentType {
+    func type() -> MessageAttachmentType? {
         if let s = shout { return .ShoutAttachment(shout: s) }
         if let l = location { return .LocationAttachment(location: l) }
         if let p = profile { return .ProfileAttachment(profile: p) }
         if let v = videos where v.count > 0 { return .VideoAttachment(video: v[0]) }
         if let i = images where i.count > 0 { return .ImageAttachment(path: i[0]) }
-        fatalError("Enexpected attachment object")
+        return nil
     }
     
     static func decode(j: JSON) -> Decoded<MessageAttachment> {
@@ -46,30 +46,20 @@ struct MessageAttachment: Decodable {
     
     func encode() -> JSON {
         var encoded = [String:JSON]()
-       
-        if let shout = shout {
-            encoded["shout"] = shout.encode()
-        }
-        
-        if let location = location {
-            encoded["location"] = location.encode()
-        }
-        
-        if let videos = videos {
-            encoded["videos"] = videos.encode()
-        }
-        
-        if let images = images {
-            encoded["images"] = images.encode()
-        }
-        
+        encoded["shout"] = shout?.encode()
+        encoded["location"] = location?.encode()
+        encoded["videos"] = videos?.encode()
+        encoded["images"] = images?.encode()
+        encoded["profile"] = profile?.encode()
         return JSON.Object(encoded)
     }
 }
 
 extension MessageAttachment {
+    
     func imagePath() -> String? {
-        switch type() {
+        guard let type = type() else { return nil }
+        switch type {
         case .VideoAttachment(let video):
             return video.thumbnailPath
         case .ImageAttachment(let path):

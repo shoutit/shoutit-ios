@@ -65,4 +65,14 @@ final class APIProfileService {
                                                    responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
     }
+    
+    static func getListeningProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/listening"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getListenersProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/listening"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
 }

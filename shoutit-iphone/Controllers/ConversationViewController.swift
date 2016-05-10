@@ -156,19 +156,20 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             self?.viewModel.sendMessageWithAttachment(attachment)
         }.addDisposableTo(disposeBag)
         
-        attachmentManager.presentingSubject.subscribeNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
+        attachmentManager.presentingSubject
+            .subscribeNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
             }
-            
-            if let shoutSelection = controller as? ConversationSelectShoutController {
-                self?.navigationController?.showViewController(shoutSelection, sender: nil)
-                return
+            .addDisposableTo(disposeBag)
+        
+        attachmentManager.pushingSubject
+            .subscribeNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.navigationController?.showViewController(controller, sender: nil)
             }
-            
-            self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
-            
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
+        
     }
     
     private func registerSupplementaryViews() {
@@ -319,9 +320,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let msg = self.viewModel.messageAtIndexPath(indexPath)
         
-        guard let attachment = msg.attachment() else { return }
+        guard let attachmentType = msg.attachment()?.type() else { return }
         
-        switch attachment.type() {
+        switch attachmentType {
         case .LocationAttachment(let location): flowDelegate?.showLocation(location.coordinate())
         case .ImageAttachment(let path): flowDelegate?.showImagePreview(path.toURL()!)
         case .VideoAttachment(let video): flowDelegate?.showVideoPreview(video.path.toURL()!)
@@ -346,9 +347,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
     }
     
-    func showSendingError(error: NSError) -> Void {
-        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.localizedDescription)
-        
+    func showSendingError(error: ErrorType) -> Void {
+        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.sh_message)
         navigationController?.presentViewController(controller, animated: true, completion: nil)
     }
     

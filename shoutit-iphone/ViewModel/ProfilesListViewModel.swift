@@ -14,6 +14,7 @@ protocol ProfilesListViewModel: class {
     var disposeBag: DisposeBag {get}
     var requestDisposeBag: DisposeBag {get set}
     var state: Variable<PagedViewModelState<ProfilesListCellViewModel>> { get }
+    var showsListenButtons: Bool {get}
     
     func fetchProfilesForPage(page: Int) -> Observable<PagedResults<Profile>>
 }
@@ -22,6 +23,7 @@ extension ProfilesListViewModel {
     
     // consts
     var pageSize: Int { return 20 }
+    var showsListenButtons: Bool {return true}
     
     func reloadContent() {
         state.value = .Loading

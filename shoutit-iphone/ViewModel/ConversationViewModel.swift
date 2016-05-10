@@ -16,7 +16,7 @@ enum ConversationDataState : Int {
 }
 
 protocol ConversationPresenter {
-    func showSendingError(error: NSError) -> Void
+    func showSendingError(error: ErrorType) -> Void
 }
 
 final class ConversationViewModel {
@@ -206,20 +206,15 @@ final class ConversationViewModel {
     
     func cellIdentifierAtIndexPath(indexPath: NSIndexPath) -> String {
         let msg = messageAtIndexPath(indexPath)
-        
-        if let _ = msg.attachment() {
-            return cellIdentifierForMessageWithAttachment(msg)
-        }
-        
-        return msg.isOutgoingCell() ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
+        return cellIdentifierForMessage(msg)
     }
     
-    func cellIdentifierForMessageWithAttachment(msg: Message) -> String {
-        guard let attachment = msg.attachment() else {
-            fatalError("this should not happend")
+    func cellIdentifierForMessage(msg: Message) -> String {
+        guard let attachmentType = msg.attachment()?.type() else {
+            return msg.isOutgoingCell() ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
         }
         
-        switch attachment.type() {
+        switch attachmentType {
         case .ImageAttachment:
             return msg.isOutgoingCell() ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
         case .VideoAttachment:
@@ -296,11 +291,12 @@ final class ConversationViewModel {
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
+        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value)
+            .subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
                 self?.removeFromSending(msg)
             }, onError: { [weak self] (error) -> Void in
-                self?.delegate?.showSendingError(error as NSError)
+                self?.delegate?.showSendingError(error)
                 self?.removeFromSending(msg)
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
@@ -322,7 +318,7 @@ final class ConversationViewModel {
             self?.removeFromSending(msg)
             }, onError: { [weak self] (error) -> Void in
                 self?.removeFromSending(msg)
-                self?.delegate?.showSendingError(error as NSError)
+                self?.delegate?.showSendingError(error)
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         return true
@@ -338,9 +334,7 @@ final class ConversationViewModel {
     
     func addToSending(msg: Message) {
         var copy = self.sendingMessages.value
-        
         copy.append(msg)
-        
         self.sendingMessages.value = copy
     }
     

@@ -20,6 +20,7 @@ enum PickerAttachmentType {
 final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     let attachmentSelected : PublishSubject<MessageAttachment> = PublishSubject()
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
+    let pushingSubject: PublishSubject<UIViewController?> = PublishSubject()
     
     let disposeBag = DisposeBag()
     
@@ -105,7 +106,13 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     }
     
     private func requestProfileAttachment() {
-        
+        let parentController = Wireframe.conversationSelectProfileAttachmentParentController()
+        parentController.eventHandler = SelectProfileProfilesListEventHandler {[weak self, weak parentController] (profile) in
+            parentController?.navigationController?.popViewControllerAnimated(true)
+            let attachment = MessageAttachment(shout: nil, location: nil, profile: profile, videos: nil, images: nil)
+            self?.showConfirmationControllerForAttachment(attachment)
+        }
+        self.pushingSubject.onNext(parentController)
     }
     
     private func requestShoutAttachment() {
@@ -117,12 +124,12 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
             self?.showConfirmationControllerForAttachment(attachment)
         }.addDisposableTo(disposeBag)
         
-        self.presentingSubject.onNext(controller)
-        
+        self.pushingSubject.onNext(controller)
     }
     
     private func showConfirmationControllerForAttachment(attachment: MessageAttachment) {
-        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: ""), message: confirmationMessageForType(attachment.type()), preferredStyle: .Alert)
+        guard let attachmentType = attachment.type() else { return }
+        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: ""), message: confirmationMessageForType(attachmentType), preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Send Attachment", comment: ""), style: .Default, handler: { (alertAction) in
             self.attachmentSelected.onNext(attachment)

@@ -76,7 +76,6 @@ struct AfterParams: Params {
     }
 }
 
-
 struct MessageParams: Params {
     let message: Message
     

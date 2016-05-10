@@ -218,6 +218,14 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationSelectShoutController") as! ConversationSelectShoutController
     }
     
+    static func conversationSelectProfileAttachmentParentController() -> ConversationSelectProfileAttachmentViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationSelectProfileAttachmentViewController") as! ConversationSelectProfileAttachmentViewController
+    }
+    
+    static func conversationSelectProfileAttachmentController() -> ProfilesListTableViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
+    }
+    
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }

@@ -51,10 +51,6 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    deinit {
-        print("")
-    }
-    
     // MARK: - Setup
     
     private func setupNavigationBar() {

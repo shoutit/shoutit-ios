@@ -138,11 +138,11 @@ extension Conversation {
             return text
         }
         
-        guard let attachment = msg.attachment() else {
+        guard let attachmentType = msg.attachment()?.type() else {
             return NSLocalizedString("Attachment", comment: "")
         }
         
-        switch attachment.type() {
+        switch attachmentType {
         case .LocationAttachment: return NSLocalizedString("Location", comment: "")
         case .ImageAttachment: return NSLocalizedString("Image", comment: "")
         case .VideoAttachment: return NSLocalizedString("Video", comment: "")
