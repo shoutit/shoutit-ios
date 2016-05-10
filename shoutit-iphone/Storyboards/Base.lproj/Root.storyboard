@@ -85,7 +85,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentContainer" destination="wCY-gM-IfM" id="BK2-Ry-eXF"/>
+                        <outlet property="containerView" destination="wCY-gM-IfM" id="ZeJ-RW-pal"/>
                         <outlet property="tabbarHeightConstraint" destination="fGv-Y3-KvU" id="ahM-UP-2v9"/>
                         <segue destination="qHT-9v-mwH" kind="presentation" identifier="presentMenuSegue" id="0LX-my-dzW"/>
                     </connections>

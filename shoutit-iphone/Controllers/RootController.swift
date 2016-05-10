@@ -13,15 +13,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class RootController: UIViewController {
+final class RootController: UIViewController, ContainerController {
     
     private let defaultTabBarHeight: CGFloat = 49
     
-    @IBOutlet weak var contentContainer : UIView?
+    @IBOutlet weak var containerView : UIView!
     @IBOutlet weak var tabbarHeightConstraint: NSLayoutConstraint!
     
     var flowControllers = [NavigationItem: FlowController]()
-    var currentControllerConstraints: [NSLayoutConstraint] = []
     private var loginFlowController: LoginFlowController?
     
     private var token: dispatch_once_t = 0
@@ -44,7 +43,8 @@ final class RootController: UIViewController {
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
     }
-    var currentChildViewController: UIViewController?
+    weak var currentChildViewController: UIViewController?
+    var currentControllerConstraints: [NSLayoutConstraint] = []
     var tabbarController : TabbarController?
     
     // MARK: - Lifecycle
@@ -309,39 +309,6 @@ private extension RootController {
         }
         
         changeContentTo(navigationController)
-    }
-    
-    private func removeCurrentContent() {
-        
-        contentContainer?.removeConstraints(currentControllerConstraints)
-        
-        if let currentContent = contentContainer?.subviews[0] {
-            currentContent.removeFromSuperview()
-        }
-        
-        self.childViewControllers.each { child in
-            child.willMoveToParentViewController(nil)
-            child.removeFromParentViewController()
-        }
-    }
-    
-    private func changeContentTo(controller: UIViewController) {
-        
-        removeCurrentContent()
-        
-        controller.willMoveToParentViewController(self)
-        
-        contentContainer?.addSubview(controller.view!)
-        let views = ["child" : controller.view!]
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        currentControllerConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[child]|", options: [], metrics: nil, views: views)
-        currentControllerConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
-        contentContainer?.addConstraints(currentControllerConstraints)
-        
-        currentChildViewController = controller
-        self.addChildViewController(controller)
-        
-        controller.didMoveToParentViewController(self)
     }
     
     private func presentFlowControllerModally(flowController: FlowController) {

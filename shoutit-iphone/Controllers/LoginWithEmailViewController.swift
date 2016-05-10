@@ -37,6 +37,9 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
     
+    var currentChildViewController: UIViewController?
+    var currentControllerConstraints: [NSLayoutConstraint] = []
+    
     // navigation
     weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
     
@@ -78,7 +81,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         // show initial child
         title = signupViewController.title
         containerHeightConstraint.constant = signupViewHeight
-        addInitialViewController(signupViewController)
+        changeContentTo(signupViewController)
         
         // signup up for keyboard presentation notifications
         setupKeyboardNotifcationListenerForScrollView(scrollView)
@@ -143,20 +146,19 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
     func presentLogin() {
         title = loginViewController.title
         containerHeightConstraint.constant = loginViewHeight
-        let currentChild: UIViewController = childViewControllers.contains(signupViewController) ? signupViewController : resetPasswordViewController
-        cycleFromViewController(currentChild, toViewController: loginViewController, animated: true)
+        changeContentTo(loginViewController, animated: true)
     }
     
     func presentSignup() {
         title = signupViewController.title
         containerHeightConstraint.constant = signupViewHeight
-        cycleFromViewController(loginViewController, toViewController: signupViewController, animated: true)
+        changeContentTo(signupViewController, animated: true)
     }
     
     func presentResetPassword() {
         title = resetPasswordViewController.title
         containerHeightConstraint.constant = resetPasswordViewHeight
-        cycleFromViewController(loginViewController, toViewController: resetPasswordViewController, animated: true)
+        changeContentTo(resetPasswordViewController, animated: true)
     }
     
     func showLoginErrorMessage(message: String) {
