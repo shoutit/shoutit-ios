@@ -28,7 +28,7 @@ class ConversationSelectProfileAttachmentViewController: UIViewController, Conta
         guard let username = Account.sharedInstance.user?.username else { fatalError() }
         let controller = Wireframe.conversationSelectProfileAttachmentController()
         controller.eventHandler = self.eventHandler
-        controller.viewModel = ListeningProfilesListViewModel(username: username)
+        controller.viewModel = ListeningProfilesListViewModel(username: username, showListenButtons: false)
         return controller
     }()
     
@@ -36,7 +36,7 @@ class ConversationSelectProfileAttachmentViewController: UIViewController, Conta
         guard let username = Account.sharedInstance.user?.username else { fatalError() }
         let controller = Wireframe.conversationSelectProfileAttachmentController()
         controller.eventHandler = self.eventHandler
-        controller.viewModel = ListenersProfilesListViewModel(username: username)
+        controller.viewModel = ListenersProfilesListViewModel(username: username, showListenButtons: false)
         return controller
     }()
     

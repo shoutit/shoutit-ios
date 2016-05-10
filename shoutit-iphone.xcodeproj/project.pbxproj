@@ -365,6 +365,7 @@
 		B272306F1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272306E1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift */; };
 		B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */; };
 		B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */; };
+		B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230771CE238A9003547EA /* ListenersDisplaybale.swift */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
 		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
@@ -1101,6 +1102,7 @@
 		B272306E1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectProfileProfilesListEventHandler.swift; path = EventHandlers/SelectProfileProfilesListEventHandler.swift; sourceTree = "<group>"; };
 		B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListeningProfilesListViewModel.swift; path = ViewModel/ListeningProfilesListViewModel.swift; sourceTree = "<group>"; };
 		B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersProfilesListViewModel.swift; path = ViewModel/ListenersProfilesListViewModel.swift; sourceTree = "<group>"; };
+		B27230771CE238A9003547EA /* ListenersDisplaybale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersDisplaybale.swift; path = FlowControl/ListenersDisplaybale.swift; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
 		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
@@ -2623,6 +2625,7 @@
 				B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */,
 				B2778FA11CAD5AAE00BBDD5F /* FilterDisplayable.swift */,
 				B2B4AADA1CB53D2900926474 /* DiscoverShoutsDisplayable.swift */,
+				B27230771CE238A9003547EA /* ListenersDisplaybale.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -4224,6 +4227,7 @@
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
 				2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
+				B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */,
 				AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */,
 				B20F47D21CAEDC080091899C /* LimitingTextFieldsFilterTableViewCell.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,

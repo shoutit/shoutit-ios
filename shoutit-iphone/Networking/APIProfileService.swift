@@ -72,7 +72,7 @@ final class APIProfileService {
     }
     
     static func getListenersProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
-        let url = APIManager.baseURL + "/profiles/\(username)/listening"
+        let url = APIManager.baseURL + "/profiles/\(username)/listeners"
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
 }

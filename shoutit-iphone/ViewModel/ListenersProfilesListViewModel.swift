@@ -18,12 +18,11 @@ final class ListenersProfilesListViewModel: ProfilesListViewModel {
     var requestDisposeBag = DisposeBag()
     let state: Variable<PagedViewModelState<ProfilesListCellViewModel>> = Variable(.Idle)
     
-    var showsListenButtons: Bool {
-        return false
-    }
+    var showsListenButtons: Bool
     
-    init(username: String) {
+    init(username: String, showListenButtons: Bool) {
         self.username = username
+        self.showsListenButtons = showListenButtons
     }
     
     func fetchProfilesForPage(page: Int) -> Observable<PagedResults<Profile>> {

@@ -12,7 +12,7 @@ import RxCocoa
 import Kingfisher
 import MBProgressHUD
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
+protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable, ListenersDisplaybale {}
 
 final class ProfileCollectionViewController: UICollectionViewController {
     
@@ -428,6 +428,26 @@ extension ProfileCollectionViewController {
                         button.setImage(buttonModel.image, countText: nil)
                         button.setTitleText(buttonModel.title)
                     }
+                }
+                .addDisposableTo(disposeBag)
+        case .Listening:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showListeningForUsername(profile.username)
+                }
+                .addDisposableTo(disposeBag)
+        case .Listeners:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showListenersForUsername(profile.username)
                 }
                 .addDisposableTo(disposeBag)
         case .More:

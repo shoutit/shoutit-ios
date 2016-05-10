@@ -194,6 +194,14 @@ struct Wireframe {
         return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
     }
     
+    static func listenersListTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ListenersListViewController") as! ProfilesListTableViewController
+    }
+    
+    static func listeningListTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ListeningListViewController") as! ProfilesListTableViewController
+    }
+    
     static func changeShoutLocationController() -> SelectShoutLocationViewController {
         return storyboard(.Location).instantiateViewControllerWithIdentifier("ShoutLocationController") as! SelectShoutLocationViewController
     }
