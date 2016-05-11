@@ -38,7 +38,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.reloadContent()
+        viewModel.pager.reloadContent()
     }
     
     override func prefersTabbarHidden() -> Bool {
@@ -53,7 +53,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     private func setupRX() {
         
-        viewModel.state
+        viewModel.pager.state
             .asObservable()
             .subscribeNext {[weak self] (state) in
                 switch state {
@@ -84,7 +84,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .LoadedAllContent(let cells, _):
             return cells.count
         case .Loaded(let cells, _):
@@ -99,7 +99,7 @@ class ProfilesListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cells: [ProfilesListCellViewModel]
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
         case .Loaded(let c, _):
@@ -139,7 +139,7 @@ class ProfilesListTableViewController: UITableViewController {
                         self.showError(error)
                     }
                 case .Completed:
-                    self.viewModel.reloadItemAtIndex(indexPath.row)
+                    self.viewModel.pager.reloadItemAtIndex(indexPath.row)
                 default:
                     break
                 }
@@ -157,7 +157,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cells: [ProfilesListCellViewModel]
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
         case .Loaded(let c, _):
@@ -173,7 +173,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
-            viewModel.fetchNextPage()
+            viewModel.pager.fetchNextPage()
         }
     }
 }

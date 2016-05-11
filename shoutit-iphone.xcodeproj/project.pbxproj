@@ -366,6 +366,7 @@
 		B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */; };
 		B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */; };
 		B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230771CE238A9003547EA /* ListenersDisplaybale.swift */; };
+		B272307C1CE34916003547EA /* Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272307B1CE34916003547EA /* Pager.swift */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
 		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
@@ -1103,6 +1104,7 @@
 		B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListeningProfilesListViewModel.swift; path = ViewModel/ListeningProfilesListViewModel.swift; sourceTree = "<group>"; };
 		B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersProfilesListViewModel.swift; path = ViewModel/ListenersProfilesListViewModel.swift; sourceTree = "<group>"; };
 		B27230771CE238A9003547EA /* ListenersDisplaybale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenersDisplaybale.swift; path = FlowControl/ListenersDisplaybale.swift; sourceTree = "<group>"; };
+		B272307B1CE34916003547EA /* Pager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pager.swift; path = Util/Pager.swift; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
 		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
@@ -2643,6 +2645,7 @@
 			children = (
 				B253A3391C68F94600C8B8F9 /* State.swift */,
 				B2E53E951CA1AA6F00F43481 /* PagedViewModelState.swift */,
+				B272307B1CE34916003547EA /* Pager.swift */,
 			);
 			name = StateMachine;
 			sourceTree = "<group>";
@@ -4047,6 +4050,7 @@
 				B2F524881C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift in Sources */,
 				B2B345461CA5584D0066DF15 /* LightError.swift in Sources */,
 				AE8351831C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
+				B272307C1CE34916003547EA /* Pager.swift in Sources */,
 				24A843FB1CA02733007FF9E8 /* ConversationShoutHeader.swift in Sources */,
 				B2B540D31C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift in Sources */,
 				248329091C8487900042B0DB /* FilterValue.swift in Sources */,
