@@ -1,8 +1,8 @@
 //
-//  SearchShoutsResults.swift
+//  PagedResults.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 21.03.2016.
+//  Created by Łukasz Kasperek on 11.05.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -27,5 +27,25 @@ extension PagedResults: Decodable {
             <*> j <|? "next"
             <*> j <|| "results"
         return b
+    }
+}
+
+extension PagedResults {
+    
+    func beforeParamsString() -> String? {
+        
+        guard let next = previousPath else {
+            return nil
+        }
+        
+        if let range : Range<String.Index> = next.rangeOfString("?before=") {
+            
+            let paramsRange : Range<String.Index> = range.startIndex..<next.endIndex
+            let params = next.substringWithRange(paramsRange)
+            
+            return params
+        }
+        
+        return nil
     }
 }

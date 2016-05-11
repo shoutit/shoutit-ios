@@ -87,7 +87,7 @@ class ProfilesListTableViewController: UITableViewController {
         switch viewModel.pager.state.value {
         case .LoadedAllContent(let cells, _):
             return cells.count
-        case .Loaded(let cells, _):
+        case .Loaded(let cells, _, _):
             return cells.count
         case .LoadingMore(let cells, _, _):
             return cells.count
@@ -102,7 +102,7 @@ class ProfilesListTableViewController: UITableViewController {
         switch viewModel.pager.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
-        case .Loaded(let c, _):
+        case .Loaded(let c, _, _):
             cells = c
         case .LoadingMore(let c, _, _):
             cells = c
@@ -160,7 +160,7 @@ class ProfilesListTableViewController: UITableViewController {
         switch viewModel.pager.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
-        case .Loaded(let c, _):
+        case .Loaded(let c, _, _):
             cells = c
         case .LoadingMore(let c, _, _):
             cells = c

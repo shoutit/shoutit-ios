@@ -23,22 +23,19 @@ final class APIChatsService {
     private static let replyShoutsURL = APIManager.baseURL + "/shouts/*/reply"
     private static let conversationURL = APIManager.baseURL + "/conversations/*"
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
-    // MARK: - Traditional
 
-    static func requestConversations() -> Observable<PagedResponse<Conversation>> {
-        return APIGenericService.requestWithMethod(.GET, url: conversationsURL, params: NopParams(), encoding: .URL, responseJsonPath: nil)
+    static func requestConversationsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<Conversation>> {
+        let url = explicitURL ?? conversationsURL
+        let params: ConversationsListParams? = explicitURL == nil ? params : nil
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: nil)
     }
     
-    static func requestMoreConversations(nextPageParams: String?) -> Observable<PagedResponse<Conversation>> {
-        return APIGenericService.requestWithMethod(.GET, url: conversationsURL + (nextPageParams ?? ""), params: NopParams(), encoding: .URL, responseJsonPath: nil)
-    }
-    
-    static func getMessagesForConversation(conversation: Conversation, pageSize : Int = 50) -> Observable<PagedResponse<Message>> {
+    static func getMessagesForConversation(conversation: Conversation) -> Observable<PagedResults<Message>> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
-    static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResponse<Message>> {
+    static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResults<Message>> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + (nextPageParams ?? "")
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }

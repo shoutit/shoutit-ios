@@ -12,15 +12,16 @@ import RxSwift
 final class ListenersProfilesListViewModel: ProfilesListViewModel {
     
     let username: String
-    var pager: Pager<ProfilesListCellViewModel, Profile>
+    var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
     
     var showsListenButtons: Bool
     
     init(username: String, showListenButtons: Bool) {
         self.username = username
         self.showsListenButtons = showListenButtons
-        self.pager = Pager(
-            itemTransformationBlock: {return ProfilesListCellViewModel(profile: $0)},
+        self.pager = NumberedPagePager(
+            itemToCellViewModelBlock: {return ProfilesListCellViewModel(profile: $0)},
+            cellViewModelToItemBlock: {return $0.profile},
             fetchItemObservableFactory: {(page) -> Observable<PagedResults<Profile>> in
                 let params = PageParams(page: page, pageSize: 20)
                 return APIProfileService.getListenersProfilesForUsername(username, params: params)

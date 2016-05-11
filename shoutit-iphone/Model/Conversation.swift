@@ -13,6 +13,7 @@ import Curry
 enum ConversationType : String {
     case Chat = "chat"
     case AboutShout = "about_shout"
+    case PublicChat = "public_chat"
 }
 
 struct Conversation: Decodable, Hashable, Equatable {

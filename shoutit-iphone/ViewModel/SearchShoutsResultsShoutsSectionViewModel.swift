@@ -19,7 +19,7 @@ extension SearchShoutsResultsViewModel {
             return parent.filtersState
         }
         var requestDisposeBag = DisposeBag()
-        private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel>> = Variable(.Idle)
+        private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel, Int, Shout>> = Variable(.Idle)
         
         // data
         var numberOfResults: Int? = 0

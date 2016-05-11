@@ -105,7 +105,7 @@ extension ShoutsCollectionViewController {
         switch viewModel.state.value {
         case .Idle:
             return 0
-        case .Loaded(let cells, _):
+        case .Loaded(let cells, _, _):
             return cells.count
         case .LoadingMore(let cells, _, _):
             return cells.count
@@ -139,7 +139,7 @@ extension ShoutsCollectionViewController {
         case .LoadedAllContent(let cells, _):
             let cellViewModel = cells[indexPath.row]
             return shoutCellWithModel(cellViewModel)
-        case .Loaded(let cells, _):
+        case .Loaded(let cells, _, _):
             let cellViewModel = cells[indexPath.row]
             return shoutCellWithModel(cellViewModel)
         case .LoadingMore(let cells, _, _):
@@ -190,7 +190,7 @@ extension ShoutsCollectionViewController {
         case .LoadedAllContent(let cells, _):
             let cellViewModel = cells[indexPath.row]
             flowDelegate?.showShout(cellViewModel.shout)
-        case .Loaded(let cells, _):
+        case .Loaded(let cells, _, _):
             let cellViewModel = cells[indexPath.row]
             flowDelegate?.showShout(cellViewModel.shout)
         case .LoadingMore(let cells, _, _):

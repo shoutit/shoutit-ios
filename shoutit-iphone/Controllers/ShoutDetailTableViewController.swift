@@ -174,11 +174,7 @@ extension ShoutDetailTableViewController {
             return
         }
         
-        let medias : [MWPhoto] = Array.filterNils(self.imagesDataSource.viewModel.imagesViewModels.map { (model) -> MWPhoto? in
-            return model.mwPhoto()
-        })
-        
-        let photoBrowser = PhotoBrowser(photos: medias)
+        let photoBrowser = PhotoBrowser(photos: imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()})
 
         let idx : UInt
         

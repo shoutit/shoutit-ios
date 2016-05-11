@@ -13,7 +13,7 @@ protocol PagedShoutsViewModel: class {
     
     var filtersState: FiltersState? {get}
     var requestDisposeBag: DisposeBag {get set}
-    var state: Variable<PagedViewModelState<ShoutCellViewModel>> {get}
+    var state: Variable<PagedViewModelState<ShoutCellViewModel, Int, Shout>> {get}
     var numberOfResults: Int? {get set}
     
     func reloadContent() -> Void
@@ -33,7 +33,7 @@ extension PagedShoutsViewModel {
     
     func fetchNextPage() {
         if case .LoadedAllContent = state.value { return }
-        guard case .Loaded(let cells, let page) = state.value else { return }
+        guard case .Loaded(let cells, let page, _) = state.value else { return }
         let pageToLoad = page + 1
         self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
         fetchPage(pageToLoad)
@@ -76,7 +76,7 @@ private extension PagedShoutsViewModel {
             if cells.count < pageSize || result.nextPath == nil {
                 state.value = .LoadedAllContent(cells: cells, page: page)
             } else {
-                state.value = .Loaded(cells: cells, page: page)
+                state.value = .Loaded(cells: cells, page: page, lastPageResults: result)
             }
             return
         }
@@ -92,7 +92,7 @@ private extension PagedShoutsViewModel {
         if shouts.count < pageSize || result.nextPath == nil {
             state.value = .LoadedAllContent(cells: cellViewModels, page: page)
         } else {
-            state.value = .Loaded(cells: cellViewModels, page: page)
+            state.value = .Loaded(cells: cellViewModels, page: page, lastPageResults: result)
         }
     }
 }

@@ -55,7 +55,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     @IBAction func reloadNotifications() {
         loading = true
         
-        APINotificationsService.requestNotificationsAfter(nil).subscribeNext { [weak self] (messages) -> Void in
+        APINotificationsService.requestNotificationsBefore(nil).subscribeNext { [weak self] (messages) -> Void in
             self?.loading = false
             self?.refreshControl?.endRefreshing()
             self?.appendMessages(messages)
@@ -73,7 +73,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         loading = true
         
-        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { [weak self] (event) in
+        APINotificationsService.requestNotificationsBefore(lastNotification.createdAt).subscribe { [weak self] (event) in
             switch event {
             case .Next(let messages):
                 

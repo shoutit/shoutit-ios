@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol ProfilesListViewModel: class {
-    var pager: Pager<ProfilesListCellViewModel, Profile> { get }
+    var pager: NumberedPagePager<ProfilesListCellViewModel, Profile> { get }
     var showsListenButtons: Bool {get}
 }
 
