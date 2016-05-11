@@ -40,28 +40,19 @@ final class ConversationProfileCell: UITableViewCell, ConversationCell {
             hideImageView()
         }
         
+        guard let profile = message.attachment()?.profile else {
+            pictureImageView.image = nil
+            return
+        }
+        
         activityIndicator?.startAnimating()
         activityIndicator?.hidden = false
         
-        setThumbMessage(message)
-        
-        guard let profile = message.attachment()?.profile else {
-            self.pictureImageView.image = nil
-            return
-        }
-        
-        self.titleLabel.text = profile.name
-        self.subtitleLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(profile.listenersCount))
-    }
-    
-    func setThumbMessage(message: Message) {
-        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
-            return
-        }
-        
-        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
-            self.activityIndicator?.stopAnimating()
-            self.activityIndicator?.hidden = true
+        titleLabel.text = profile.name
+        subtitleLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(profile.listenersCount))
+        pictureImageView.sh_setImageWithURL(profile.imagePath?.toURL(), placeholderImage: UIImage.profilePlaceholderImage(), optionsInfo: nil) {[weak self] (image, error, cacheType, imageURL) in
+            self?.activityIndicator?.stopAnimating()
+            self?.activityIndicator?.hidden = true
         }
     }
 }

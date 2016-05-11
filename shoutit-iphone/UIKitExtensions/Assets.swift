@@ -200,4 +200,8 @@ extension UIImage {
     static func shoutsPlaceholderImage() -> UIImage {
         return UIImage(named: "auth_screen_bg_pattern")!
     }
+    
+    static func profilePlaceholderImage() -> UIImage {
+        return UIImage(named: "auth_screen_bg_pattern")!
+    }
 }

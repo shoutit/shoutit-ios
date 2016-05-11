@@ -48,9 +48,9 @@ final class ConversationVideoCell: UITableViewCell, ConversationCell {
             return
         }
         
-        self.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
-            self.activityIndicator?.stopAnimating()
-            self.activityIndicator?.hidden = true
+        self.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) {[weak self] (image, error, cacheType, imageURL) in
+            self?.activityIndicator?.stopAnimating()
+            self?.activityIndicator?.hidden = true
         }
     }
 }
