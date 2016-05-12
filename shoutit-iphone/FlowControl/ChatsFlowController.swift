@@ -21,7 +21,6 @@ final class ChatsFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.chatsViewController()
-        controller.viewModel = ConversationListViewModel()
         controller.flowDelegate = self
 
         navigationController.showViewController(controller, sender: nil)

@@ -186,7 +186,15 @@ struct Wireframe {
         return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController") as! ChangeLocationTableViewController
     }
     
-    static func chatsViewController() -> ConversationListTableViewController {
+    static func chatsViewController() -> ConversationListsParentViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationListsParentViewController") as! ConversationListsParentViewController
+    }
+    
+    static func groupChatsViewController() -> ConversationGroupWrapperViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationGroupWrapperViewController") as! ConversationGroupWrapperViewController
+    }
+    
+    static func chatsListTableViewController() -> ConversationListTableViewController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController") as! ConversationListTableViewController
     }
     

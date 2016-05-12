@@ -11,7 +11,7 @@ import RxSwift
 import DZNEmptyDataSet
 import Pusher
 
-protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable {}
+protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable, SearchDisplayable {}
 
 final class ConversationListTableViewController: UITableViewController {
     
@@ -28,7 +28,7 @@ final class ConversationListTableViewController: UITableViewController {
         }()
     
     // dependencies
-    var viewModel: ConversationListViewModel!
+    var viewModel: ChatsListViewModel!
     weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
     
     // RX
@@ -49,6 +49,11 @@ final class ConversationListTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         reloadConversationList()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableViewPlaceholder.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
     }
     
     // MARK: - Setup

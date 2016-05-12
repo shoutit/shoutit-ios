@@ -319,6 +319,12 @@
 		B22D90701CE3935A00D3C387 /* MessageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D906F1CE3935A00D3C387 /* MessageParams.swift */; };
 		B22D90721CE3941200D3C387 /* VideoCallParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90711CE3941200D3C387 /* VideoCallParams.swift */; };
 		B22D90741CE3954E00D3C387 /* ConversationsListParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90731CE3954E00D3C387 /* ConversationsListParams.swift */; };
+		B22D90771CE4C74D00D3C387 /* ConversationListsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90761CE4C74D00D3C387 /* ConversationListsParentViewController.swift */; };
+		B22D90791CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90781CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift */; };
+		B22D907B1CE4DAAF00D3C387 /* APIPublicChatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D907A1CE4DAAF00D3C387 /* APIPublicChatsService.swift */; };
+		B22D907D1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D907C1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift */; };
+		B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D907E1CE4DB8600D3C387 /* ConversationPagedResults.swift */; };
+		B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90801CE4DC1800D3C387 /* ChatsListViewModel.swift */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
@@ -1063,6 +1069,12 @@
 		B22D906F1CE3935A00D3C387 /* MessageParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageParams.swift; path = Networking/MessageParams.swift; sourceTree = "<group>"; };
 		B22D90711CE3941200D3C387 /* VideoCallParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallParams.swift; path = Networking/VideoCallParams.swift; sourceTree = "<group>"; };
 		B22D90731CE3954E00D3C387 /* ConversationsListParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationsListParams.swift; path = Networking/ConversationsListParams.swift; sourceTree = "<group>"; };
+		B22D90761CE4C74D00D3C387 /* ConversationListsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationListsParentViewController.swift; path = Controllers/ConversationListsParentViewController.swift; sourceTree = "<group>"; };
+		B22D90781CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationGroupWrapperViewController.swift; path = Controllers/ConversationGroupWrapperViewController.swift; sourceTree = "<group>"; };
+		B22D907A1CE4DAAF00D3C387 /* APIPublicChatsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPublicChatsService.swift; path = Networking/APIPublicChatsService.swift; sourceTree = "<group>"; };
+		B22D907C1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicChatsListViewModel.swift; path = ViewModel/PublicChatsListViewModel.swift; sourceTree = "<group>"; };
+		B22D907E1CE4DB8600D3C387 /* ConversationPagedResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationPagedResults.swift; path = ViewModel/ConversationPagedResults.swift; sourceTree = "<group>"; };
+		B22D90801CE4DC1800D3C387 /* ChatsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatsListViewModel.swift; path = ViewModel/ChatsListViewModel.swift; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
 		B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewHeaderView.swift; path = View/EditProfileTableViewHeaderView.swift; sourceTree = "<group>"; };
 		B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileDisplayable.swift; path = FlowControl/EditProfileDisplayable.swift; sourceTree = "<group>"; };
@@ -1583,6 +1595,8 @@
 		24826B4C1C96DEB900032FC9 /* ConversationList */ = {
 			isa = PBXGroup;
 			children = (
+				B22D90761CE4C74D00D3C387 /* ConversationListsParentViewController.swift */,
+				B22D90781CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift */,
 				24826B4D1C96DED800032FC9 /* ConversationListTableViewController.swift */,
 				B272307F1CE36597003547EA /* ViewModel */,
 				24826B4F1C96DF9700032FC9 /* Views */,
@@ -2830,7 +2844,10 @@
 		B272307F1CE36597003547EA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B22D907E1CE4DB8600D3C387 /* ConversationPagedResults.swift */,
+				B22D90801CE4DC1800D3C387 /* ChatsListViewModel.swift */,
 				B27230801CE365B8003547EA /* ConversationListViewModel.swift */,
+				B22D907C1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -3267,6 +3284,7 @@
 				B211AAD61C89F65400C9E8DB /* APIProfileService.swift */,
 				24826B461C96A34900032FC9 /* APINotificationsService.swift */,
 				24826B561C96E3FC00032FC9 /* APIChatsService.swift */,
+				B22D907A1CE4DAAF00D3C387 /* APIPublicChatsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -3940,6 +3958,7 @@
 				B260819B1CB6C7110025DA26 /* ShoutsCollectionViewController.swift in Sources */,
 				B2B5D0151C7F293B0068A6AF /* ShoutDetailButtonTableViewCell.swift in Sources */,
 				B2B5CFFE1C7F1CFE0068A6AF /* ShoutDetailViewModel.swift in Sources */,
+				B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */,
 				B28379AD1C74B459009AFF01 /* DateFormatters.swift in Sources */,
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
 				249FD6D81C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift in Sources */,
@@ -4042,6 +4061,7 @@
 				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2D9B1011C98539500924941 /* ModalNavigationController.swift in Sources */,
+				B22D90771CE4C74D00D3C387 /* ConversationListsParentViewController.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* Validator.swift in Sources */,
 				B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */,
 				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,
@@ -4074,6 +4094,7 @@
 				AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */,
 				B2B5D01B1C7F3CAF0068A6AF /* ShoutDetailSectionHeaderTableViewCell.swift in Sources */,
 				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
+				B22D90791CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift in Sources */,
 				B272306D1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift in Sources */,
 				B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */,
 				B2F524881C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift in Sources */,
@@ -4111,6 +4132,7 @@
 				B2AB73F81CB56C2D00C2C0C0 /* SettingsFormButtonTableViewCell.swift in Sources */,
 				248328FA1C8426210042B0DB /* SelectShoutImagesController.swift in Sources */,
 				B253A3371C68F79F00C8B8F9 /* PostSignupCategoryTableViewCell.swift in Sources */,
+				B22D907D1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift in Sources */,
 				B272306F1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift in Sources */,
 				B2AB73F11CB568C300C2C0C0 /* SettingsFormCellViewModel.swift in Sources */,
 				B2D9B0FF1C9849CB00924941 /* SearchViewModel.swift in Sources */,
@@ -4137,6 +4159,7 @@
 				B2D9B11C1C98984300924941 /* SearchSuggestionCellViewModel.swift in Sources */,
 				240F509E1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift in Sources */,
 				B2B540D61C6A51C30075EDA6 /* Suggestable.swift in Sources */,
+				B22D907B1CE4DAAF00D3C387 /* APIPublicChatsService.swift in Sources */,
 				B27230811CE365B8003547EA /* ConversationListViewModel.swift in Sources */,
 				B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */,
 				B2D9B1181C9897B400924941 /* SearchSectionViewModel.swift in Sources */,
@@ -4180,6 +4203,7 @@
 				B2AB73EA1CB567BA00C2C0C0 /* SettingsFormViewController.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,
 				B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */,
+				B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */,
 				601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */,
 				B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */,
 				AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
