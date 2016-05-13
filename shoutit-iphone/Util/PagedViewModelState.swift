@@ -10,7 +10,6 @@ import Foundation
 import Argo
 
 enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
-    
     case Idle
     case Loading
     case Loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)

@@ -325,6 +325,13 @@
 		B22D907D1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D907C1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift */; };
 		B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D907E1CE4DB8600D3C387 /* ConversationPagedResults.swift */; };
 		B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90801CE4DC1800D3C387 /* ChatsListViewModel.swift */; };
+		B22D90841CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90831CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift */; };
+		B22D90871CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90861CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift */; };
+		B22D908A1CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90891CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift */; };
+		B22D908E1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D908D1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift */; };
+		B22D90901CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D908F1CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift */; };
+		B22D90921CE611F600D3C387 /* CreatePublicChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */; };
+		B22D90941CE6248100D3C387 /* CreatePublicChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90931CE6248100D3C387 /* CreatePublicChatHeaderView.swift */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
@@ -1075,6 +1082,13 @@
 		B22D907C1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicChatsListViewModel.swift; path = ViewModel/PublicChatsListViewModel.swift; sourceTree = "<group>"; };
 		B22D907E1CE4DB8600D3C387 /* ConversationPagedResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationPagedResults.swift; path = ViewModel/ConversationPagedResults.swift; sourceTree = "<group>"; };
 		B22D90801CE4DC1800D3C387 /* ChatsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatsListViewModel.swift; path = ViewModel/ChatsListViewModel.swift; sourceTree = "<group>"; };
+		B22D90831CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatTableViewController.swift; path = Controllers/CreatePublicChatTableViewController.swift; sourceTree = "<group>"; };
+		B22D90861CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatDisplayable.swift; path = FlowControl/CreatePublicChatDisplayable.swift; sourceTree = "<group>"; };
+		B22D90891CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationChoiceTableViewCell.swift; path = View/LocationChoiceTableViewCell.swift; sourceTree = "<group>"; };
+		B22D908D1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatWrappingViewController.swift; path = Controllers/CreatePublicChatWrappingViewController.swift; sourceTree = "<group>"; };
+		B22D908F1CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatSelectionTableViewCell.swift; path = View/CreatePublicChatSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatViewModel.swift; path = ViewModel/CreatePublicChatViewModel.swift; sourceTree = "<group>"; };
+		B22D90931CE6248100D3C387 /* CreatePublicChatHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatHeaderView.swift; path = View/CreatePublicChatHeaderView.swift; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
 		B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewHeaderView.swift; path = View/EditProfileTableViewHeaderView.swift; sourceTree = "<group>"; };
 		B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileDisplayable.swift; path = FlowControl/EditProfileDisplayable.swift; sourceTree = "<group>"; };
@@ -1913,6 +1927,7 @@
 				B2778F9C1CAD429F00BBDD5F /* Filters */,
 				B201A1E61CB40690009DA966 /* CategoryFilters */,
 				B201A1E71CB406A3009DA966 /* FilterLocationWrapper */,
+				B22D90821CE4E84500D3C387 /* CreatePublicChat */,
 				2463B6921C9828FB00BFE6BA /* Conversation */,
 				24826B4C1C96DEB900032FC9 /* ConversationList */,
 				24826B3E1C969A0200032FC9 /* Notifications */,
@@ -2553,6 +2568,35 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B22D90821CE4E84500D3C387 /* CreatePublicChat */ = {
+			isa = PBXGroup;
+			children = (
+				B22D908D1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift */,
+				B22D90831CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift */,
+				B22D90851CE4E86F00D3C387 /* ViewModel */,
+				B22D90881CE4F74D00D3C387 /* Views */,
+			);
+			name = CreatePublicChat;
+			sourceTree = "<group>";
+		};
+		B22D90851CE4E86F00D3C387 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B22D90881CE4F74D00D3C387 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B22D90931CE6248100D3C387 /* CreatePublicChatHeaderView.swift */,
+				B22D90891CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift */,
+				B22D908F1CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		B22F465C1CE0A623009FCD72 /* CellXibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2659,6 +2703,7 @@
 				B2778FA11CAD5AAE00BBDD5F /* FilterDisplayable.swift */,
 				B2B4AADA1CB53D2900926474 /* DiscoverShoutsDisplayable.swift */,
 				B27230771CE238A9003547EA /* ListenersDisplaybale.swift */,
+				B22D90861CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -3959,6 +4004,7 @@
 				B2B5D0151C7F293B0068A6AF /* ShoutDetailButtonTableViewCell.swift in Sources */,
 				B2B5CFFE1C7F1CFE0068A6AF /* ShoutDetailViewModel.swift in Sources */,
 				B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */,
+				B22D90841CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift in Sources */,
 				B28379AD1C74B459009AFF01 /* DateFormatters.swift in Sources */,
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
 				249FD6D81C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift in Sources */,
@@ -4118,6 +4164,7 @@
 				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				B2778FA21CAD5AAE00BBDD5F /* FilterDisplayable.swift in Sources */,
 				B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */,
+				B22D90901CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift in Sources */,
 				2496715B1C873C8A0011B078 /* CreateShoutTextCell.swift in Sources */,
 				B2B3454C1CA572D10066DF15 /* ArgoJsonParams.swift in Sources */,
 				B20F47D41CAEDC4C0091899C /* BigLabelButtonFilterTableViewCell.swift in Sources */,
@@ -4212,6 +4259,7 @@
 				244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */,
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
 				B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */,
+				B22D908E1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift in Sources */,
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
@@ -4229,7 +4277,9 @@
 				AE8635521CCDF7A00076293D /* WatermarkGenerator.swift in Sources */,
 				6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */,
 				B2B3454E1CA57DE80066DF15 /* FilteredDiscoverItemsParams.swift in Sources */,
+				B22D90941CE6248100D3C387 /* CreatePublicChatHeaderView.swift in Sources */,
 				B2F5247A1C9C605800EA622F /* SearchShoutsResultsCollectionViewController.swift in Sources */,
+				B22D90921CE611F600D3C387 /* CreatePublicChatViewModel.swift in Sources */,
 				B253A3401C691B3F00C8B8F9 /* APITagsService.swift in Sources */,
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */,
@@ -4245,6 +4295,7 @@
 				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */,
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
+				B22D908A1CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift in Sources */,
 				249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */,
 				B2E53E921CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift in Sources */,
 				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
@@ -4286,6 +4337,7 @@
 				249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */,
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
 				2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */,
+				B22D90871CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
 				B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */,
 				AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */,

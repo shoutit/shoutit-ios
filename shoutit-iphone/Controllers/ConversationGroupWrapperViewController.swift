@@ -36,7 +36,7 @@ class ConversationGroupWrapperViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext {[weak self] in
-                self?.notImplemented()
+                self?.flowDelegate?.showCreatePublicChat()
             }
             .addDisposableTo(disposeBag)
     }

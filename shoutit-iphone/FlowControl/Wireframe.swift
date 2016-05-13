@@ -198,6 +198,10 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController") as! ConversationListTableViewController
     }
     
+    static func createPublicChatViewController() -> CreatePublicChatWrappingViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("CreatePublicChatWrappingViewController") as! CreatePublicChatWrappingViewController
+    }
+    
     static func profileViewController() -> ProfileCollectionViewController {
         return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
     }

@@ -11,7 +11,7 @@ import RxSwift
 import DZNEmptyDataSet
 import Pusher
 
-protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable, SearchDisplayable {}
+protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable, SearchDisplayable, CreatePublicChatDisplayable {}
 
 final class ConversationListTableViewController: UITableViewController {
     
