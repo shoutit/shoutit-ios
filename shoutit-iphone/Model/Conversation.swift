@@ -30,7 +30,10 @@ struct Conversation: Decodable, Hashable, Equatable {
     let shout: Shout?
     let readby: [ReadBy]?
     let display: ConversationDescription
- 
+    let subject: String?
+    let blocked: [String]
+    let admins: [String]
+    
     var hashValue: Int {
         get {
             return self.id.hashValue
@@ -57,8 +60,12 @@ struct Conversation: Decodable, Hashable, Equatable {
         let d = c
             <*> j <||? "read_by"
             <*> j <| "display"
+            <*> j <|? "subject"
         
-        return d
+        let f = d
+            <*> j <|| "blocked"
+            <*> j <|| "admins"
+        return f
     }
     
     func type() -> ConversationType {
@@ -66,7 +73,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display)
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [])
     }
 }
 

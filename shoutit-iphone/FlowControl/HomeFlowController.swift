@@ -39,3 +39,4 @@ extension HomeFlowController: ConversationListTableViewControllerFlowDelegate {}
 extension HomeFlowController: ConversationViewControllerFlowDelegate {}
 extension HomeFlowController: CallingOutViewControllerFlowDelegate {}
 extension HomeFlowController: ShoutsCollectionViewControllerFlowDelegate {}
+extension HomeFlowController: ConversationInfoViewControllerFlowDelegate {}

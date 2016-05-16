@@ -250,6 +250,10 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationController") as! ConversationViewController
     }
     
+    static func conversationInfoController() -> ConversationInfoViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationInfoController") as! ConversationInfoViewController
+    }
+    
     static func conversationAttachmentController() -> ConversationAttachmentViewController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationAttachmentViewController") as! ConversationAttachmentViewController
     }

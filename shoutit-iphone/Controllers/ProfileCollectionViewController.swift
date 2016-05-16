@@ -562,7 +562,7 @@ extension ProfileCollectionViewController {
             return
         }
         
-        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil))
+        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [])
         
         self.flowDelegate?.showConversation(conversation)
     }

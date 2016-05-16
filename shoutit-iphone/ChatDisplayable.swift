@@ -11,6 +11,7 @@ import MWPhotoBrowser
 
 protocol ChatDisplayable {
     func showConversation(conversation: Conversation) -> Void
+    func showConversationInfo(conversation: Conversation) -> Void
     func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
@@ -19,7 +20,7 @@ protocol ChatDisplayable {
     func showVideoConversation(conversation: TWCConversation) -> Void
 }
 
-extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate {
+extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate, Self: ConversationInfoViewControllerFlowDelegate {
     
     func showConversation(conversation: Conversation) {
         let controller = Wireframe.conversationController()
@@ -38,6 +39,16 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         }
         
         self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showConversationInfo(conversation: Conversation) -> Void {
+        let controller = Wireframe.conversationInfoController()
+        
+        controller.flowDelegate = self
+        controller.conversation = conversation
+        
+        self.navigationController.showViewController(controller, sender: nil)
+        
     }
     
     func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: ((type: PickerAttachmentType) -> Void)) -> Void {

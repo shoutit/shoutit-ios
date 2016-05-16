@@ -25,5 +25,7 @@ final class FormTextField: BorderedMaterialTextField {
         self.detailLabel = UILabel()
         self.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
         self.detailLabelActiveColor = MaterialColor.red.accent3
+        
+        self.backgroundColor = UIColor.clearColor()
     }
 }
