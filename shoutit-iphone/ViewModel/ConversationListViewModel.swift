@@ -23,5 +23,11 @@ class ConversationListViewModel: ChatsListViewModel {
             lastPageDidLoadExaminationBlock: {$0.previousPath == nil},
             firstPageIndex: ConversationPagedResults(results: nil)
         )
+        pager.itemExclusionRule = {conversation -> Bool in
+            if let participants = conversation.users {
+                return participants.count < 2
+            }
+            return false
+        }
     }
 }

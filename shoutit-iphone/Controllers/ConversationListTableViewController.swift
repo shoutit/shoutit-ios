@@ -44,10 +44,6 @@ final class ConversationListTableViewController: UITableViewController {
         registerReusables()
         setupRX()
         subscribeToPusherChannel()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         reloadConversationList()
     }
     
