@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         applyAppearance()
         configureGoogleLogin()
         configureLoggingServices()
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions ?? [:])
         PlacesGeocoder.setup()
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
