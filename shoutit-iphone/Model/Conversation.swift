@@ -29,6 +29,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     let unreadMessagesCount: Int
     let shout: Shout?
     let readby: [ReadBy]?
+    let display: ConversationDescription
  
     var hashValue: Int {
         get {
@@ -55,6 +56,7 @@ struct Conversation: Decodable, Hashable, Equatable {
             
         let d = c
             <*> j <||? "read_by"
+            <*> j <| "display"
         
         return d
     }
@@ -64,7 +66,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby)
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display)
     }
 }
 
@@ -74,37 +76,12 @@ func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 
 extension Conversation {
     func firstLineText() -> NSAttributedString? {
-        if self.type() == .Chat {
-            return NSAttributedString(string: participantNames())
-        }
         
-        return shoutTitle()
+        return NSAttributedString(string: self.display.title ?? "")
     }
     
-    func shoutTitle() -> NSAttributedString? {
-        guard let shoutTitle = shout?.title else {
-            return NSAttributedString(string: "Shout discussion")
-        }
-        
-        let attributedString = NSMutableAttributedString(string: shoutTitle, attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
-        
-        return attributedString
-    }
-    
-    func participantNames() -> String {
-        var names : [String] = []
-        
-        self.users?.each({ (profile) -> () in
-            if profile.value.id != Account.sharedInstance.user?.id {
-                names.append(profile.value.name)
-            }
-        })
-        
-        if self.users?.count > 2 {
-            names.insert(NSLocalizedString("You", comment: ""), atIndex: 0)
-        }
-        
-        return names.joinWithSeparator(", ")
+    func secondLineText() -> NSAttributedString? {
+        return NSAttributedString(string: self.display.subtitle ?? "")
     }
     
     func coParticipant() -> Profile? {
@@ -116,14 +93,6 @@ extension Conversation {
         })
         
         return prof
-    }
-    
-    func secondLineText() -> NSAttributedString? {
-        if self.type() == .Chat {
-            return NSAttributedString(string: lastMessageText())
-        }
-        
-        return NSAttributedString(string: participantNames())
     }
     
     func thirdLineText() -> NSAttributedString? {
@@ -155,14 +124,9 @@ extension Conversation {
     func imageURL() -> NSURL? {
         var url : NSURL?
         
-        self.users?.each({ (profile) -> () in
-            if profile.value.id != Account.sharedInstance.user?.id {
-                if let path = profile.value.imagePath {
-                    url = NSURL(string: path)
-                    return
-                }
-            }
-        })
+        if let path = self.display.image {
+            url = NSURL(string: path)
+        }
         
         return url
     }
