@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class LocationChoiceTableViewCell: UITableViewCell {
+    private(set) var reuseDisposeBag = DisposeBag()
     
     @IBOutlet weak var button: SelectionButton!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }
 
 extension LocationChoiceTableViewCell: ReusableView {}

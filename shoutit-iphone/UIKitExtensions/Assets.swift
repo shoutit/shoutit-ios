@@ -194,6 +194,14 @@ extension UIImage {
         return UIImage(named: "profile_avatar_tag")!
     }
     
+    static func cameraIconWhite() -> UIImage {
+        return UIImage(named: "photo_icon_small_white")!
+    }
+    
+    static func cameraIconGray() -> UIImage {
+        return UIImage(named: "photo_icon")!
+    }
+    
     // MARK: - Placeholders
     
     static func squareAvatarPlaceholder() -> UIImage {

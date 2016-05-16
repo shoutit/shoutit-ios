@@ -332,6 +332,9 @@
 		B22D90901CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D908F1CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift */; };
 		B22D90921CE611F600D3C387 /* CreatePublicChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */; };
 		B22D90941CE6248100D3C387 /* CreatePublicChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90931CE6248100D3C387 /* CreatePublicChatHeaderView.swift */; };
+		B22D90961CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90951CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift */; };
+		B22D90981CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90971CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift */; };
+		B22D909A1CEA18CE00D3C387 /* CreatePublicChatParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D90991CEA18CE00D3C387 /* CreatePublicChatParams.swift */; };
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
@@ -1089,6 +1092,9 @@
 		B22D908F1CE5F3BC00D3C387 /* CreatePublicChatSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatSelectionTableViewCell.swift; path = View/CreatePublicChatSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatViewModel.swift; path = ViewModel/CreatePublicChatViewModel.swift; sourceTree = "<group>"; };
 		B22D90931CE6248100D3C387 /* CreatePublicChatHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatHeaderView.swift; path = View/CreatePublicChatHeaderView.swift; sourceTree = "<group>"; };
+		B22D90951CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatSectionViewModel.swift; path = ViewModel/CreatePublicChatSectionViewModel.swift; sourceTree = "<group>"; };
+		B22D90971CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatCellViewModel.swift; path = ViewModel/CreatePublicChatCellViewModel.swift; sourceTree = "<group>"; };
+		B22D90991CEA18CE00D3C387 /* CreatePublicChatParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePublicChatParams.swift; path = Networking/CreatePublicChatParams.swift; sourceTree = "<group>"; };
 		B23ABC891C751B5900CC69E6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = Util/StringExtensions.swift; sourceTree = "<group>"; };
 		B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewHeaderView.swift; path = View/EditProfileTableViewHeaderView.swift; sourceTree = "<group>"; };
 		B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileDisplayable.swift; path = FlowControl/EditProfileDisplayable.swift; sourceTree = "<group>"; };
@@ -2491,6 +2497,7 @@
 				B22D906F1CE3935A00D3C387 /* MessageParams.swift */,
 				B22D90711CE3941200D3C387 /* VideoCallParams.swift */,
 				B22D90731CE3954E00D3C387 /* ConversationsListParams.swift */,
+				B22D90991CEA18CE00D3C387 /* CreatePublicChatParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -2583,6 +2590,8 @@
 			isa = PBXGroup;
 			children = (
 				B22D90911CE611F600D3C387 /* CreatePublicChatViewModel.swift */,
+				B22D90951CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift */,
+				B22D90971CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -3967,6 +3976,7 @@
 				B272305F1CE0F002003547EA /* ShowProfileProfilesListEventHandler.swift in Sources */,
 				B24E29FA1CBD237500328503 /* CreateShoutTextViewCell.swift in Sources */,
 				24826B571C96E3FC00032FC9 /* APIChatsService.swift in Sources */,
+				B22D909A1CEA18CE00D3C387 /* CreatePublicChatParams.swift in Sources */,
 				AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */,
 				B249D5691CA3F8EE004F57A6 /* AutocompletionParams.swift in Sources */,
 				249324821C7EFFD200A1AB6A /* DiscoverShoutsViewModel.swift in Sources */,
@@ -4042,6 +4052,7 @@
 				AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,
 				B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */,
 				B2E715531C6E05FC007F95CF /* ProfileCollectionCoverSupplementaryView.swift in Sources */,
+				B22D90981CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift in Sources */,
 				B272305C1CE0EE49003547EA /* ProfilesListEventHandler.swift in Sources */,
 				B2B4AACF1CB436FB00926474 /* CategoryFiltersTableViewCell.swift in Sources */,
 				B2F5246F1C9AF84E00EA622F /* ProfileTableViewCell.swift in Sources */,
@@ -4096,6 +4107,7 @@
 				B211AAD11C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift in Sources */,
 				B2778F991CAC11E400BBDD5F /* EmailParams.swift in Sources */,
 				B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */,
+				B22D90961CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift in Sources */,
 				B2C729D01C62224A006F7D29 /* FeedbackDisplayable.swift in Sources */,
 				AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */,
 				AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */,

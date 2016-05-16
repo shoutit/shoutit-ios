@@ -96,7 +96,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         loadInitialState()
     }
     
-    @IBAction func dismiss() {
+    @IBAction override func dismiss() {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

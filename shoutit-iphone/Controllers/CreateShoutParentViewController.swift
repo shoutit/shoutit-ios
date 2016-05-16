@@ -49,7 +49,7 @@ class CreateShoutParentViewController: UIViewController {
         
     }
     
-    func dismiss() {
+    override func dismiss() {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

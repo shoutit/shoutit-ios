@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 final class CreatePublicChatWrappingViewController: UIViewController {
     
@@ -44,9 +45,22 @@ final class CreatePublicChatWrappingViewController: UIViewController {
         
         createButton
             .rx_tap
-            .asDriver()
-            .driveNext {[weak self] in
-                self?.notImplemented()
+            .flatMapFirst {[unowned self] () -> Observable<CreatePublicChatViewModel.OperationStatus> in
+                return self.viewModel.createChat()
+            }
+            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+                switch status {
+                case .Error(let error):
+                    self?.showError(error)
+                case .Progress(let show):
+                    if show {
+                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                    } else {
+                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    }
+                case .Ready:
+                    self?.dismiss()
+                }
             }
             .addDisposableTo(disposeBag)
     }

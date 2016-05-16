@@ -11,6 +11,16 @@ import RxSwift
 
 class CreatePublicChatViewModel {
     
+    enum OperationStatus {
+        case Ready
+        case Error(error: ErrorType)
+        case Progress(show: Bool)
+    }
+    
+    // state
+    private(set) var sections: [CreatePublicChatSectionViewModel] = []
+    var chatSubject: String = ""
+    
     // upload
     private(set) var imageUploadTask: MediaUploadingTask?
     lazy var mediaUploader: MediaUploader = {
@@ -18,12 +28,73 @@ class CreatePublicChatViewModel {
     }()
     
     init() {
-        
+        self.sections = createChildViewModels()
     }
+    
+    // MARK: - Actions
     
     func uploadImageAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         imageUploadTask = task
         return task
+    }
+    
+    func createChat() -> Observable<OperationStatus> {
+        
+        return Observable.create{[unowned self] (observer) -> Disposable in
+            
+            do {
+                try self.validateFields()
+                observer.onNext(.Progress(show: true))
+                return APIPublicChatsService.requestCreatePublicChatWithParams(self.composeParameters()).subscribe{ (event) in
+                    observer.onNext(.Progress(show: false))
+                    switch event {
+                    case .Next:
+                        observer.onNext(.Ready)
+                    case .Error(let error):
+                        observer.onNext(.Error(error: error))
+                        observer.onCompleted()
+                    case .Completed:
+                        observer.onCompleted()
+                    }
+                }
+            }
+            catch (let error) {
+                observer.onNext(.Error(error: error))
+                observer.onCompleted()
+            }
+            return NopDisposable.instance
+        }
+    }
+    
+    // MARK: - Setup
+    
+    private func createChildViewModels() -> [CreatePublicChatSectionViewModel] {
+        guard let user = Account.sharedInstance.user else { fatalError() }
+        let firstSectionCells: [CreatePublicChatCellViewModel] = [.Location(location: user.location)]
+        let secondSectionCells: [CreatePublicChatCellViewModel] = [.Selectable(option: .Facebook, selected: true), .Selectable(option: .Twitter, selected: false)]
+        let firstSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("LOCATION", comment: "Create public chat section title"),
+                                                            cellViewModels: firstSectionCells)
+        let secondSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("SHARING", comment: "Create public chat section title"),
+                                                            cellViewModels: secondSectionCells)
+        return [firstSection, secondSection]
+    }
+    
+    // MARK: - Convenience
+    
+    private func validateFields() throws {
+        if let task = imageUploadTask where task.status.value == .Uploading {
+            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+        }
+        
+        if chatSubject.utf16.count < 1 {
+            throw LightError(userMessage: NSLocalizedString("Please enter chat subject", comment: ""))
+        }
+    }
+    
+    private func composeParameters() -> CreatePublicChatParams {
+        let params = CreatePublicChatParams(subject: chatSubject,
+                                            iconPath: imageUploadTask?.attachment.remoteURL?.absoluteString)
+        return params
     }
 }

@@ -120,7 +120,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Location)
     }
     
-    func dismiss() {
+    override func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     

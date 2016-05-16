@@ -20,7 +20,7 @@ final class EditProfileTableViewModel {
     let charactersLimit = 150
     
     let user: DetailedProfile
-    private(set) var cells: [EditProfileCellViewModel]
+    var cells: [EditProfileCellViewModel]
     
     private(set) var avatarUploadTask: MediaUploadingTask?
     private(set) var coverUploadTask: MediaUploadingTask?
@@ -94,10 +94,8 @@ final class EditProfileTableViewModel {
                 observer.onNext(.Error(error: error))
                 observer.onCompleted()
             }
-
             return NopDisposable.instance
         }
-        
     }
     
     func uploadCoverAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
@@ -122,12 +120,8 @@ final class EditProfileTableViewModel {
             throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
         
-        for cell in cells {
-            if case .RichText(let bio, _, .Bio) = cell {
-                if bio.characters.count > charactersLimit {
-                    throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
-                }
-            }
+        for case .RichText(let bio, _, .Bio) in cells where bio.characters.count > charactersLimit {
+            throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
         }
     }
     

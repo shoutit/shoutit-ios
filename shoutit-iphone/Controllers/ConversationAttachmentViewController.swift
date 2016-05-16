@@ -34,7 +34,7 @@ final class ConversationAttachmentViewController: UIViewController {
         }
     }
     
-    @IBAction func dismiss() {
+    @IBAction override func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
