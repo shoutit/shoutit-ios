@@ -46,9 +46,27 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         self.firstPageIndex = firstPageIndex
     }
     
-    func reloadContent() {
+    func loadContent() {
         state.value = .Loading
         fetchPage(firstPageIndex)
+    }
+    
+    func refreshContent() {
+        switch state.value {
+        case let .Loaded(cells, page, _):
+            state.value = .Refreshing(cells: cells, page: page)
+            fetchPage(firstPageIndex)
+        case let .LoadedAllContent(cells, page):
+            state.value = .Refreshing(cells: cells, page: page)
+            fetchPage(firstPageIndex)
+        case let .LoadingMore(cells, currentPage, _):
+            state.value = .Refreshing(cells: cells, page: currentPage)
+            fetchPage(firstPageIndex)
+        case .Refreshing:
+            break
+        default:
+            loadContent()
+        }
     }
     
     func fetchNextPage() {

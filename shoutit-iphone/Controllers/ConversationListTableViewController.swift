@@ -44,12 +44,16 @@ final class ConversationListTableViewController: UITableViewController {
         registerReusables()
         setupRX()
         subscribeToPusherChannel()
-        reloadConversationList()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableViewPlaceholder.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshConversationList()
     }
     
     // MARK: - Setup
@@ -71,7 +75,7 @@ final class ConversationListTableViewController: UITableViewController {
     
     private func setupPullToRefresh() {
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.reloadConversationList), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.refreshConversationList), forControlEvents: .ValueChanged)
     }
     
     private func setupRX() {
@@ -88,6 +92,8 @@ final class ConversationListTableViewController: UITableViewController {
                 case .Loaded, .LoadedAllContent, .LoadingMore:
                     self?.tableView.tableHeaderView = nil
                     self?.refreshControl?.endRefreshing()
+                case .Refreshing:
+                    self?.tableView.tableHeaderView = nil
                 case .NoContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(NSLocalizedString("You can start new conversation in shout details or user profile.", comment: ""), title: NSLocalizedString("No conversations to show", comment: ""))
@@ -104,8 +110,8 @@ final class ConversationListTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    func reloadConversationList() {
-        viewModel.pager.reloadContent()
+    func refreshConversationList() {
+        viewModel.pager.refreshContent()
     }
     
     // MARK: - UITableViewDataSource
