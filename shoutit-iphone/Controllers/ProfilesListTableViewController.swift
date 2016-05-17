@@ -21,6 +21,7 @@ class ProfilesListTableViewController: UITableViewController {
     // dependencies
     var viewModel: ProfilesListViewModel!
     var eventHandler: ProfilesListEventHandler!
+    var dismissAfterSelection = false
     
     // RX
     private let disposeBag = DisposeBag()
@@ -169,6 +170,10 @@ class ProfilesListTableViewController: UITableViewController {
         }
         let cellViewModel = cells[indexPath.row]
         eventHandler.handleUserDidTapProfile(cellViewModel.profile)
+        
+        if dismissAfterSelection {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

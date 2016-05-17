@@ -182,7 +182,30 @@ class ConversationInfoViewController: UITableViewController {
     }
     
     func addMember() {
+        guard let username = Account.sharedInstance.user?.username else { fatalError() }
+        let controller = Wireframe.conversationSelectProfileAttachmentController()
         
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
+            
+            self.viewModel.addParticipantToConversation(profile).subscribe({ (event) in
+                
+                switch event {
+                    case .Next(_):
+                        self.showSuccessMessage(NSLocalizedString("You've successfully added new profile to chat.", comment: ""))
+                    case .Error(let error):
+                        self.showError(error)
+                    default:
+                        break
+                }
+                
+            }).addDisposableTo(self.disposeBag)
+        })
+        
+        controller.viewModel = ListenersProfilesListViewModel(username: username, showListenButtons: false)
+        controller.navigationItem.title = NSLocalizedString("Add Member", comment: "")
+        controller.dismissAfterSelection = true
+        
+        self.navigationController?.showViewController(controller, sender: nil)
     }
     
     func showParticipants() {
