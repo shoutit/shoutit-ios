@@ -149,7 +149,11 @@ extension Conversation {
 // Public Chats Helpers
 
 extension Conversation {
-    func isAdmin(profileId: String) -> Bool {
+    func isAdmin(profileId: String?) -> Bool {
+        guard let profileId = profileId else {
+            return false
+        }
+        
         return self.admins.contains(profileId)
     }
 }

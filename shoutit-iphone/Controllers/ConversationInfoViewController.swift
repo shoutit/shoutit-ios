@@ -42,7 +42,12 @@ class ConversationInfoViewController: UITableViewController {
         self.footerLabel.text = NSLocalizedString("Chat created by \(self.conversation)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
         self.headerView.subjectTextField?.text = self.conversation.subject
         
-        let imagePlaceholder = UIImage(named: "chats_image_placeholder ")
+        let isAdmin = self.conversation.isAdmin(Account.sharedInstance.user?.id)
+        
+        self.headerView.subjectTextField?.enabled = isAdmin
+        
+        
+        let imagePlaceholder = UIImage(named: "chats_image_placeholder")
         
         if let path = self.conversation.icon {
             self.headerView.imageView?.sh_setImageWithURL(NSURL(string: path), placeholderImage: imagePlaceholder)
@@ -62,7 +67,8 @@ class ConversationInfoViewController: UITableViewController {
                     self?.navigationController?.popViewControllerAnimated(true)
                 
             case .Error(let error):
-                    debugPrint(error)
+                    self?.showError(error)
+                
             default:
                 break
                 
@@ -102,6 +108,86 @@ class ConversationInfoViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        notImplemented()
+        
+        let isAdmin = self.conversation.isAdmin(Account.sharedInstance.user?.id)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                showShouts()
+            case 1:
+                showMedia()
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                if isAdmin {
+                    addMember()
+                } else {
+                    notAuthorized()
+                }
+            case 1:
+                showParticipants()
+            case 2:
+                if isAdmin {
+                    showBlocked()
+                } else {
+                    notAuthorized()
+                }
+            default:
+                break
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                if isAdmin {
+                    clearChat()
+                } else {
+                    notAuthorized()
+                }
+            default:
+                exitChat()
+            }
+        default:
+            break
+        }
+        
+    }
+    
+    func notAuthorized() {
+        self.showErrorMessage(NSLocalizedString("You are not allowed to do this action", comment: "Chat Info actions message"))
+    }
+    
+    func showShouts() {
+        
+    }
+    
+    func showMedia() {
+        
+    }
+    
+    func addMember() {
+        
+    }
+    
+    func showParticipants() {
+        
+    }
+    
+    func showBlocked() {
+        
+    }
+    
+    func clearChat() {
+        
+    }
+    
+    func exitChat() {
+        
     }
 }
