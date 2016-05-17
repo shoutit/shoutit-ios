@@ -37,3 +37,4 @@ extension BrowseFlowController: ConversationListTableViewControllerFlowDelegate 
 extension BrowseFlowController: ConversationViewControllerFlowDelegate {}
 extension BrowseFlowController: CallingOutViewControllerFlowDelegate {}
 extension BrowseFlowController: ShoutsCollectionViewControllerFlowDelegate {}
+extension BrowseFlowController: ConversationInfoViewControllerFlowDelegate {}

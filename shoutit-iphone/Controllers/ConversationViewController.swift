@@ -380,27 +380,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func moreAction() {
-        let alert = viewModel.moreActionAlert { [weak self] (action) in
-            let action = action
-            
-            if action.title == NSLocalizedString("View Profile", comment: "") {
-                if let user = self?.conversation.shout?.user {
-                    self?.flowDelegate?.showProfile(user)
-                    return
-                }
-                
-                if let user = self?.conversation.coParticipant() {
-                    self?.flowDelegate?.showProfile(user)
-                }
-                
-                return
-            }
-            
-            
-            self?.deleteAction()
-            
-        }
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        
+        self.flowDelegate?.showConversationInfo(self.conversation)
     }
     
     func deleteAction() {

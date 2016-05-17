@@ -43,3 +43,4 @@ extension ProfileFlowController: ConversationViewControllerFlowDelegate {}
 extension ProfileFlowController: ConversationListTableViewControllerFlowDelegate {}
 extension ProfileFlowController: CallingOutViewControllerFlowDelegate {}
 extension ProfileFlowController: ShoutsCollectionViewControllerFlowDelegate {}
+extension ProfileFlowController: ConversationInfoViewControllerFlowDelegate {}

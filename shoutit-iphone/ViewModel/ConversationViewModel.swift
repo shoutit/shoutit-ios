@@ -98,7 +98,7 @@ final class ConversationViewModel {
     
     func createConversationAboutShout(shout: Shout, message: Message) {
         APIChatsService.startConversationAboutShout(shout, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
-            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription(title: nil, subtitle: nil, image: nil))
+            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil)
             self?.conversation.value = newConversation
             self?.fetchMessages()
             self?.removeFromSending(message)
@@ -110,7 +110,7 @@ final class ConversationViewModel {
     
     func createConversationWithUsername(username: String, message: Message) {
         APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
-            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription(title: nil, subtitle: nil, image: nil))
+            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil)
             self?.conversation.value = newConversation
             self?.fetchMessages()
             self?.removeFromSending(msg)
@@ -358,22 +358,6 @@ final class ConversationViewModel {
                 }, onCompleted: {
                     completion()
                 }, onDisposed: nil).addDisposableTo(self.disposeBag)
-        }))
-        
-        return alert
-    }
-    
-    func moreActionAlert(completion: ((action: UIAlertAction) -> Void)) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("View Profile", comment: ""), style: .Default, handler: { (alertAction) in
-            completion(action: alertAction)
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
-            completion(action: alertAction)
         }))
         
         return alert
