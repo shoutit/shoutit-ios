@@ -21,17 +21,17 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     // consts
     let context: Context
+    private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
     
     // state
     var filtersState: FiltersState?
-    var requestDisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel, Int, Shout>> = Variable(.Idle)
-    
-    // data
-    var numberOfResults: Int? = 0
     
     init(context: Context) {
         self.context = context
+        self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
+                                       cellViewModelToItemBlock: {$0.shout},
+                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+        )
     }
     
     func applyFilters(filtersState: FiltersState) {

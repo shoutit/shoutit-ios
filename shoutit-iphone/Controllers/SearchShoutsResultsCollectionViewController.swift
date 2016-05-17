@@ -65,7 +65,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     private func setupRX() {
         
-        viewModel.shoutsSection.state
+        viewModel.shoutsSection.pager.state
             .asDriver()
             .driveNext {[weak self] (state) in
                 self?.collectionView?.reloadData()
@@ -110,7 +110,7 @@ extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch viewModel.shoutsSection.state.value {
+        switch viewModel.shoutsSection.pager.state.value {
         case .Idle:
             return 0
         case .Loaded(let cells, _, _):
@@ -143,7 +143,7 @@ extension SearchShoutsResultsCollectionViewController {
             return cell
         }
         
-        switch viewModel.shoutsSection.state.value {
+        switch viewModel.shoutsSection.pager.state.value {
         case .Idle:
             fatalError()
         case .LoadedAllContent(let cells, _):
@@ -201,7 +201,7 @@ extension SearchShoutsResultsCollectionViewController {
 extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch viewModel.shoutsSection.state.value {
+        switch viewModel.shoutsSection.pager.state.value {
         case .LoadedAllContent(let cells, _):
             let cellViewModel = cells[indexPath.row]
             flowDelegate?.showShout(cellViewModel.shout)
@@ -232,7 +232,7 @@ extension SearchShoutsResultsCollectionViewController: SearchShoutsResultsCollec
     }
     
     func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
-        switch viewModel.shoutsSection.state.value {
+        switch viewModel.shoutsSection.pager.state.value {
         case .Loaded, .LoadingMore, .LoadedAllContent:
             return .Regular
         default:

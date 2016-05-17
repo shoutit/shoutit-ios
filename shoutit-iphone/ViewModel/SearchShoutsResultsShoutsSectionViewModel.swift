@@ -14,18 +14,18 @@ extension SearchShoutsResultsViewModel {
     final class ShoutsSection: PagedShoutsViewModel {
         
         unowned var parent: SearchShoutsResultsViewModel
+        private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
         
         var filtersState: FiltersState? {
             return parent.filtersState
         }
-        var requestDisposeBag = DisposeBag()
-        private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel, Int, Shout>> = Variable(.Idle)
-        
-        // data
-        var numberOfResults: Int? = 0
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent
+            self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
+                                           cellViewModelToItemBlock: {$0.shout},
+                                           fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+            )
         }
         
         // MARK: - To display

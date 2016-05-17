@@ -63,7 +63,7 @@ final class ShoutsCollectionViewController: UICollectionViewController {
     
     private func setupRX() {
         
-        viewModel.state
+        viewModel.pager.state
             .asDriver()
             .driveNext {[weak self] (state) in
                 self?.collectionView?.reloadData()
@@ -102,7 +102,7 @@ extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .Idle:
             return 0
         case .Loaded(let cells, _, _):
@@ -135,7 +135,7 @@ extension ShoutsCollectionViewController {
             return cell
         }
         
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .Idle:
             fatalError()
         case .LoadedAllContent(let cells, _):
@@ -191,7 +191,7 @@ extension ShoutsCollectionViewController {
 extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cellViewModels = viewModel.state.value.getCellViewModels() else { return }
+        guard let cellViewModels = viewModel.pager.state.value.getCellViewModels() else { return }
         let cellViewModel = cellViewModels[indexPath.row]
         flowDelegate?.showShout(cellViewModel.shout)
     }
@@ -212,7 +212,7 @@ extension ShoutsCollectionViewController: SearchShoutsResultsCollectionViewLayou
     }
     
     func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
-        switch viewModel.state.value {
+        switch viewModel.pager.state.value {
         case .Loaded, .LoadingMore, .LoadedAllContent, .Refreshing:
             return .Regular
         default:
