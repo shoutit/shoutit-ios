@@ -20,6 +20,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     let disposeBag: DisposeBag = DisposeBag()
     private(set) var requestDisposeBag: DisposeBag = DisposeBag()
     private(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
+    private(set) var numberOfResults: Int?
     
     let firstPageIndex: PageIndexType
     
@@ -127,6 +128,8 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     // MARK: - Helpers
     
     private func appendItems(results: PagedResults<ItemType>, forPage page: PageIndexType) {
+        
+        numberOfResults = results.count ?? numberOfResults
         
         let items = results.results.filter{(item) -> Bool in
             if let rule = self.itemExclusionRule {

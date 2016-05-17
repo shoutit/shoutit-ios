@@ -18,5 +18,20 @@ enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable 
     case LoadedAllContent(cells: [CellViewModelType], page: PageIndexType)
     case NoContent
     case Error(ErrorType)
+    
+    func getCellViewModels() -> [CellViewModelType]? {
+        switch self {
+        case .Refreshing(let cells, _):
+            return cells
+        case .LoadingMore(let cells, _, _):
+            return cells
+        case .Loaded(let cells, _, _):
+            return cells
+        case .LoadedAllContent(let cells, _):
+            return cells
+        default:
+            return nil
+        }
+    }
 }
 

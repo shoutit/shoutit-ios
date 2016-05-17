@@ -15,6 +15,8 @@ final class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"
     private static let conversationWithUserURL = APIManager.baseURL + "/profiles/*/chat"
     private static let messagesURL = APIManager.baseURL + "/conversations/*/messages"
+    private static let shoutsURL = APIManager.baseURL + "/conversations/*/shouts"
+    private static let mediaURL = APIManager.baseURL + "/conversations/*/media"
     private static let readMessageURL = APIManager.baseURL + "/messages/*/read"
     private static let replyURL = APIManager.baseURL + "/conversations/*/reply"
     private static let twilioURL = APIManager.baseURL + "/twilio/video_auth"
@@ -27,12 +29,22 @@ final class APIChatsService {
     static func requestConversationsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<Conversation>> {
         let url = explicitURL ?? conversationsURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: nil)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
     static func getMessagesForConversation(conversation: Conversation) -> Observable<PagedResults<Message>> {
         let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
+    }
+    
+    static func getShoutsForConversationWithId(id: String, params: PageParams) -> Observable<PagedResults<Shout>> {
+        let url = shoutsURL.stringByReplacingOccurrencesOfString("*", withString: id)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
+    }
+    
+    static func getAttachmentsForConversationWithId(id: String, params: PageParams) -> Observable<PagedResults<MessageAttachment>> {
+        let url = mediaURL.stringByReplacingOccurrencesOfString("*", withString: id)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
     static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResults<Message>> {
@@ -80,13 +92,11 @@ final class APIChatsService {
     static func deleteConversation(conversation: Conversation) -> Observable<Void> {
         let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
-
     }
     
     static func conversationWithId(conversationId: String) -> Observable<Conversation> {
         let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
-        
     }
     
     static func updateConversationWithId(conversationId: String, params: ConversationUpdateParams) -> Observable<Conversation> {

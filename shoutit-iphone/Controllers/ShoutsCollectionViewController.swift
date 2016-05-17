@@ -191,19 +191,9 @@ extension ShoutsCollectionViewController {
 extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch viewModel.state.value {
-        case .LoadedAllContent(let cells, _):
-            let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
-        case .Loaded(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
-        case .LoadingMore(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
-        default:
-            return
-        }
+        guard let cellViewModels = viewModel.state.value.getCellViewModels() else { return }
+        let cellViewModel = cellViewModels[indexPath.row]
+        flowDelegate?.showShout(cellViewModel.shout)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -223,7 +213,7 @@ extension ShoutsCollectionViewController: SearchShoutsResultsCollectionViewLayou
     
     func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
         switch viewModel.state.value {
-        case .Loaded, .LoadingMore, .LoadedAllContent:
+        case .Loaded, .LoadingMore, .LoadedAllContent, .Refreshing:
             return .Regular
         default:
             return .Placeholder

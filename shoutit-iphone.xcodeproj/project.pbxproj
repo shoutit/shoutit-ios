@@ -425,6 +425,8 @@
 		B28379AF1C74C2DE009AFF01 /* NumberFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379AE1C74C2DE009AFF01 /* NumberFormatters.swift */; };
 		B288D3EC1C68B58400895302 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3EB1C68B58400895302 /* Profile.swift */; };
 		B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC891CEB298000131B31 /* Pager+Convenience.swift */; };
+		B294BC901CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC8F1CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift */; };
+		B294BC921CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC911CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift */; };
 		B2956F011CDCEDBC0041C6CD /* UIImage+Resizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2956F001CDCEDBC0041C6CD /* UIImage+Resizing.swift */; };
 		B2956F031CDCEE020041C6CD /* PHAsset+MediaAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */; };
 		B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F7F1C728CED00EEA9A2 /* GoogleSignIn.framework */; };
@@ -1191,6 +1193,8 @@
 		B28379AE1C74C2DE009AFF01 /* NumberFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberFormatters.swift; path = Util/NumberFormatters.swift; sourceTree = "<group>"; };
 		B288D3EB1C68B58400895302 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
 		B294BC891CEB298000131B31 /* Pager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pager+Convenience.swift"; path = "Util/Pager+Convenience.swift"; sourceTree = "<group>"; };
+		B294BC8F1CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageAttachmentPhotoBrowserViewController.swift; path = Controllers/MessageAttachmentPhotoBrowserViewController.swift; sourceTree = "<group>"; };
+		B294BC911CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageAttachmentPhotoBrowserViewModel.swift; path = ViewModel/MessageAttachmentPhotoBrowserViewModel.swift; sourceTree = "<group>"; };
 		B2956F001CDCEDBC0041C6CD /* UIImage+Resizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resizing.swift"; path = "UIKitExtensions/UIImage+Resizing.swift"; sourceTree = "<group>"; };
 		B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PHAsset+MediaAttachment.swift"; path = "Util/PHAsset+MediaAttachment.swift"; sourceTree = "<group>"; };
 		B2985F7F1C728CED00EEA9A2 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -1932,6 +1936,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B294BC8D1CEB4C8A00131B31 /* MessageAttachmentPhotoBrowser */,
 				B27230491CE0D99E003547EA /* ProfilesListTableViewController */,
 				B2587D711CC55D0D00B51B69 /* GenericViewModels */,
 				B26081991CB6C6F00025DA26 /* SeeAllShouts */,
@@ -3068,6 +3073,23 @@
 			name = Formatters;
 			sourceTree = "<group>";
 		};
+		B294BC8D1CEB4C8A00131B31 /* MessageAttachmentPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B294BC8F1CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift */,
+				B294BC8E1CEB4C9900131B31 /* ViewModel */,
+			);
+			name = MessageAttachmentPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		B294BC8E1CEB4C9900131B31 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B294BC911CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B29DEABE1C777954008864B8 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -4043,6 +4065,7 @@
 				B2B5CFFE1C7F1CFE0068A6AF /* ShoutDetailViewModel.swift in Sources */,
 				AE3DEE771CEB17F7009EA0F3 /* ConversationUpdateParams.swift in Sources */,
 				B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */,
+				B294BC921CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift in Sources */,
 				B22D90841CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift in Sources */,
 				B28379AD1C74B459009AFF01 /* DateFormatters.swift in Sources */,
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
@@ -4131,6 +4154,7 @@
 				B249D5671CA333FF004F57A6 /* AutocompletionTerm.swift in Sources */,
 				B2E1071F1C97373D00F7F4EF /* FilteredShoutsParams.swift in Sources */,
 				B22D90741CE3954E00D3C387 /* ConversationsListParams.swift in Sources */,
+				B294BC901CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift in Sources */,
 				B2C729B11C6220EE006F7D29 /* Assets.swift in Sources */,
 				B23CA2461C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift in Sources */,
 				B2C729D11C62224A006F7D29 /* HelpDisplayable.swift in Sources */,
