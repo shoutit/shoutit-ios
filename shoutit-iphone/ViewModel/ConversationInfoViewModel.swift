@@ -65,6 +65,9 @@ class ConversationInfoViewModel: AnyObject {
     
     
     func fillCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        
+        cell.tintColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
+        
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -95,7 +98,7 @@ class ConversationInfoViewModel: AnyObject {
         case 2:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = NSLocalizedString("Clear Cache", comment: "")
+                cell.textLabel?.text = NSLocalizedString("Clear Chat", comment: "")
                 
             case 1:
                 cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")

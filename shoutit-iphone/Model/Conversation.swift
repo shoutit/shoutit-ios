@@ -33,6 +33,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     let subject: String?
     let blocked: [String]
     let admins: [String]
+    let icon: String?
     
     var hashValue: Int {
         get {
@@ -65,6 +66,8 @@ struct Conversation: Decodable, Hashable, Equatable {
         let f = d
             <*> j <|| "blocked"
             <*> j <|| "admins"
+            <*> j <|? "icon"
+        
         return f
     }
     
@@ -73,7 +76,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [])
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [], icon: self.icon)
     }
 }
 
@@ -140,6 +143,14 @@ extension Conversation {
     
     func isRead() -> Bool {
         return self.unreadMessagesCount == 0
+    }
+}
+
+// Public Chats Helpers
+
+extension Conversation {
+    func isAdmin(profileId: String) -> Bool {
+        return self.admins.contains(profileId)
     }
 }
 

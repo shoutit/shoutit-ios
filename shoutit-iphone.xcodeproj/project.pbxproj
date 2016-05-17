@@ -139,6 +139,7 @@
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9751C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
+		AE3DEE771CEB17F7009EA0F3 /* ConversationUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */; };
 		AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */; };
 		AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */; };
 		AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */; };
@@ -842,6 +843,7 @@
 		AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewModel.swift; path = ViewModel/ConversationInfoViewModel.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
+		AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationUpdateParams.swift; path = Model/ConversationUpdateParams.swift; sourceTree = "<group>"; };
 		AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -2496,6 +2498,7 @@
 				B22D906F1CE3935A00D3C387 /* MessageParams.swift */,
 				B22D90711CE3941200D3C387 /* VideoCallParams.swift */,
 				B22D90731CE3954E00D3C387 /* ConversationsListParams.swift */,
+				AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3979,6 +3982,7 @@
 				B260819B1CB6C7110025DA26 /* ShoutsCollectionViewController.swift in Sources */,
 				B2B5D0151C7F293B0068A6AF /* ShoutDetailButtonTableViewCell.swift in Sources */,
 				B2B5CFFE1C7F1CFE0068A6AF /* ShoutDetailViewModel.swift in Sources */,
+				AE3DEE771CEB17F7009EA0F3 /* ConversationUpdateParams.swift in Sources */,
 				B22D90811CE4DC1800D3C387 /* ChatsListViewModel.swift in Sources */,
 				B28379AD1C74B459009AFF01 /* DateFormatters.swift in Sources */,
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
