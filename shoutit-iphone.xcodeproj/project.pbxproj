@@ -136,6 +136,10 @@
 		AE1F29731CE9DE2400D1AA76 /* ConversationInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F29721CE9DE2400D1AA76 /* ConversationInfoHeaderView.swift */; };
 		AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */; };
 		AE1F3FDE1CEB323800C3432F /* ConversationMemberParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FDD1CEB323800C3432F /* ConversationMemberParams.swift */; };
+		AE1F3FE01CEB3A8200C3432F /* ProfileCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FDF1CEB3A8200C3432F /* ProfileCellConfigurator.swift */; };
+		AE1F3FE21CEB3CD300C3432F /* AddMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */; };
+		AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */; };
+		AE1F3FE61CEB4ED800C3432F /* ConversationBlockedListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2CB9741C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
@@ -853,6 +857,10 @@
 		AE1F29721CE9DE2400D1AA76 /* ConversationInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoHeaderView.swift; path = View/ConversationInfoHeaderView.swift; sourceTree = "<group>"; };
 		AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewModel.swift; path = ViewModel/ConversationInfoViewModel.swift; sourceTree = "<group>"; };
 		AE1F3FDD1CEB323800C3432F /* ConversationMemberParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberParams.swift; path = Model/ConversationMemberParams.swift; sourceTree = "<group>"; };
+		AE1F3FDF1CEB3A8200C3432F /* ProfileCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCellConfigurator.swift; path = Other/ProfileCellConfigurator.swift; sourceTree = "<group>"; };
+		AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddMemberCellConfigurator.swift; path = Other/AddMemberCellConfigurator.swift; sourceTree = "<group>"; };
+		AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMembersListViewModel.swift; path = ViewModel/ConversationMembersListViewModel.swift; sourceTree = "<group>"; };
+		AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationBlockedListModel.swift; path = ViewModel/ConversationBlockedListModel.swift; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationUpdateParams.swift; path = Model/ConversationUpdateParams.swift; sourceTree = "<group>"; };
@@ -2857,6 +2865,8 @@
 			children = (
 				B272305B1CE0EE49003547EA /* ProfilesListEventHandler.swift */,
 				B272305D1CE0EFD9003547EA /* CommonHandlers */,
+				AE1F3FDF1CEB3A8200C3432F /* ProfileCellConfigurator.swift */,
+				AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */,
 			);
 			name = EventHandler;
 			sourceTree = "<group>";
@@ -2917,6 +2927,8 @@
 				B2F524711C9AFBA200EA622F /* SearchUserResultsViewModel.swift */,
 				B27230731CE218D5003547EA /* ListeningProfilesListViewModel.swift */,
 				B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */,
+				AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */,
+				AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */,
 			);
 			name = SpecificViewModels;
 			sourceTree = "<group>";
@@ -3985,6 +3997,7 @@
 				B288D3EC1C68B58400895302 /* Profile.swift in Sources */,
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */,
+				AE1F3FE61CEB4ED800C3432F /* ConversationBlockedListModel.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
 				B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */,
 				B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */,
@@ -4116,6 +4129,7 @@
 				AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
 				B2985FB41C733C4700EEA9A2 /* UIViewController+Debug.swift in Sources */,
 				B2B5D0381C80691E0068A6AF /* Filter.swift in Sources */,
+				AE1F3FE01CEB3A8200C3432F /* ProfileCellConfigurator.swift in Sources */,
 				AEAE36A81CD0B80D00AA18AE /* TypingInfo.swift in Sources */,
 				AE83517F1C5F7DA50055C71F /* HomeFlowController.swift in Sources */,
 				B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */,
@@ -4241,6 +4255,7 @@
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
 				242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */,
+				AE1F3FE21CEB3CD300C3432F /* AddMemberCellConfigurator.swift in Sources */,
 				B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */,
 				B2E7155D1C6E11F4007F95CF /* ProfileReusableViewKind.swift in Sources */,
 				B2AB73F31CB569BE00C2C0C0 /* SettingsFormViewModel.swift in Sources */,
@@ -4280,6 +4295,7 @@
 				B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */,
 				24826B511C96DFAA00032FC9 /* ConversationTableViewCell.swift in Sources */,
 				B2B5D0301C7F87400068A6AF /* ShoutDetailTableViewDataSource.swift in Sources */,
+				AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */,
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
 				249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */,
 				B22D906E1CE3932900D3C387 /* BeforeTimestampParams.swift in Sources */,

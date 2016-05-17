@@ -22,6 +22,7 @@ class ProfilesListTableViewController: UITableViewController {
     var viewModel: ProfilesListViewModel!
     var eventHandler: ProfilesListEventHandler!
     var dismissAfterSelection = false
+    var cellConfigurator : ProfileCellConfigurator! = ProfileCellConfigurator()
     
     // RX
     private let disposeBag = DisposeBag()
@@ -114,18 +115,13 @@ class ProfilesListTableViewController: UITableViewController {
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let cellModel = cells[indexPath.row]
         
-        cell.nameLabel.text = cellModel.profile.name
-        cell.listenersCountLabel.text = cellModel.listeningCountString()
-        cell.thumbnailImageView.sh_setImageWithURL(cellModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        cellConfigurator.configureCell(cell, cellViewModel: cellModel, showsListenButton: viewModel.showsListenButtons)
         
         guard viewModel.showsListenButtons else {
             cell.listenButton.hidden = true
             return cell
         }
         
-        let listenButtonImage = cellModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
-        cell.listenButton.setImage(listenButtonImage, forState: .Normal)
-        cell.listenButton.hidden = cellModel.hidesListeningButton()
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
@@ -145,7 +141,8 @@ class ProfilesListTableViewController: UITableViewController {
                     break
                 }
                 }).addDisposableTo(cell.reuseDisposeBag)
-            }.addDisposableTo(cell.reuseDisposeBag)
+        }.addDisposableTo(cell.reuseDisposeBag)
+        
         
         return cell
     }

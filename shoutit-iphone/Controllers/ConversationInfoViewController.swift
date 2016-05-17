@@ -191,7 +191,8 @@ class ConversationInfoViewController: UITableViewController {
                 
                 switch event {
                     case .Next(_):
-                        self.showSuccessMessage(NSLocalizedString("You've successfully added new profile to chat.", comment: ""))
+                        let profileName = profile.firstName ?? profile.username
+                        self.showSuccessMessage(NSLocalizedString("You've successfully added \(profileName) to chat.", comment: ""))
                     case .Error(let error):
                         self.showError(error)
                     default:
@@ -205,14 +206,53 @@ class ConversationInfoViewController: UITableViewController {
         controller.navigationItem.title = NSLocalizedString("Add Member", comment: "")
         controller.dismissAfterSelection = true
         
+        let configurator = AddMemberCellConfigurator()
+        
+        if let users = self.conversation.users {
+            let members : [Profile] = users.map({ (box) -> Profile in
+                return box.value
+            })
+            
+            let ids = members.map({ (profile) -> String in
+                return profile.id
+            })
+            
+            controller.viewModel.pager.itemExclusionRule = { (profile) -> Bool in
+                return ids.contains(profile.id)
+            }
+            
+            configurator.members = members
+        }
+        
+        controller.cellConfigurator = configurator
+        
         self.navigationController?.showViewController(controller, sender: nil)
     }
     
     func showParticipants() {
+        let controller = Wireframe.conversationSelectProfileAttachmentController()
         
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
+            
+        })
+        
+        controller.viewModel = ConversationMembersListViewModel(conversation: self.conversation)
+        controller.navigationItem.title = NSLocalizedString("Participants", comment: "")
+        
+        self.navigationController?.showViewController(controller, sender: nil)
     }
     
     func showBlocked() {
+        let controller = Wireframe.conversationSelectProfileAttachmentController()
+        
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
+            
+        })
+        
+        controller.viewModel = ConversationBlockedListModel(conversation: self.conversation)
+        controller.navigationItem.title = NSLocalizedString("Blocked", comment: "")
+        
+        self.navigationController?.showViewController(controller, sender: nil)
         
     }
     
