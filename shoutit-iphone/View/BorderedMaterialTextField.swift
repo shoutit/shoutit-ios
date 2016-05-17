@@ -454,7 +454,7 @@ public class BorderedMaterialTextField : UITextField {
      when subclassing.
      */
     public func prepareView() {
-        backgroundColor = MaterialColor.white
+        //backgroundColor = MaterialColor.white
         shadowColor = MaterialColor.black
         borderColor = MaterialColor.black
         masksToBounds = false

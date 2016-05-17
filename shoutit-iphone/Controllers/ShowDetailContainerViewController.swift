@@ -250,22 +250,22 @@ class ShowDetailContainerViewController: UIViewController {
         button
             .rx_tap
             .observeOn(MainScheduler.instance)
-            .subscribeNext {
+            .subscribeNext {[weak self] in
                 switch model {
                 case .Call:
-                    self.makeCall()
+                    self?.makeCall()
                 case .VideoCall:
-                    self.videoCall()
+                    self?.videoCall()
                 case .Chat:
-                    self.startChat()
+                    self?.startChat()
                 case .More:
-                    self.moreAction()
+                    self?.moreAction()
                 case .Chats:
-                    self.notImplemented()
+                    self?.notImplemented()
                 case .Edit:
-                    self.showEditController()
+                    self?.showEditController()
                 case .Delete:
-                    self.deleteAction()
+                    self?.deleteAction()
                 }
             }
             .addDisposableTo(buttonsDisposeBag)

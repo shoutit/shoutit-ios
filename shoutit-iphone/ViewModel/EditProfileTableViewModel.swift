@@ -22,8 +22,8 @@ final class EditProfileTableViewModel {
     let user: DetailedProfile
     var cells: [EditProfileCellViewModel]
     
-    var avatarUploadTask: MediaUploadingTask?
-    var coverUploadTask: MediaUploadingTask?
+    private(set) var avatarUploadTask: MediaUploadingTask?
+    private(set) var coverUploadTask: MediaUploadingTask?
     
     lazy var mediaUploader: MediaUploader = {
         return MediaUploader(bucket: .UserImage)
@@ -94,10 +94,8 @@ final class EditProfileTableViewModel {
                 observer.onNext(.Error(error: error))
                 observer.onCompleted()
             }
-
             return NopDisposable.instance
         }
-        
     }
     
     func uploadCoverAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
@@ -122,12 +120,8 @@ final class EditProfileTableViewModel {
             throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
         
-        for cell in cells {
-            if case .RichText(let bio, _, .Bio) = cell {
-                if bio.characters.count > charactersLimit {
-                    throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
-                }
-            }
+        for case .RichText(let bio, _, .Bio) in cells where bio.characters.count > charactersLimit {
+            throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
         }
     }
     

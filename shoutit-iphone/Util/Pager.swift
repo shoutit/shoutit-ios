@@ -28,6 +28,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     let fetchItemObservableFactory: (PageIndexType -> Observable<PagedResults<ItemType>>)
     let nextPageComputerBlock: ((PageIndexType, PagedResults<ItemType>) -> PageIndexType)
     let lastPageDidLoadExaminationBlock: (PagedResults<ItemType> -> Bool)
+    var itemExclusionRule: (ItemType -> Bool)? // return true if item should be excluded
     
     init(itemToCellViewModelBlock: ItemType -> CellViewModelType,
          cellViewModelToItemBlock: CellViewModelType -> ItemType,
@@ -45,9 +46,27 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         self.firstPageIndex = firstPageIndex
     }
     
-    func reloadContent() {
+    func loadContent() {
         state.value = .Loading
         fetchPage(firstPageIndex)
+    }
+    
+    func refreshContent() {
+        switch state.value {
+        case let .Loaded(cells, page, _):
+            state.value = .Refreshing(cells: cells, page: page)
+            fetchPage(firstPageIndex)
+        case let .LoadedAllContent(cells, page):
+            state.value = .Refreshing(cells: cells, page: page)
+            fetchPage(firstPageIndex)
+        case let .LoadingMore(cells, currentPage, _):
+            state.value = .Refreshing(cells: cells, page: currentPage)
+            fetchPage(firstPageIndex)
+        case .Refreshing:
+            break
+        default:
+            loadContent()
+        }
     }
     
     func fetchNextPage() {
@@ -109,9 +128,15 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     
     private func appendItems(results: PagedResults<ItemType>, forPage page: PageIndexType) {
         
+        let items = results.results.filter{(item) -> Bool in
+            if let rule = self.itemExclusionRule {
+                return !rule(item)
+            }
+            return true
+        }
+        
         if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
-            let fetchedItems = results.results
-            cells += fetchedItems.map{itemToCellViewModelBlock($0)}
+            cells += items.map{itemToCellViewModelBlock($0)}
             if lastPageDidLoadExaminationBlock(results) {
                 state.value = .LoadedAllContent(cells: cells, page: page)
             } else {
@@ -121,8 +146,6 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         }
         
         assert(page == firstPageIndex)
-        
-        let items = results.results
         
         if items.count == 0 {
             state.value = .NoContent

@@ -25,10 +25,10 @@ extension ChatsListViewModel {
             do {
                 try pager.replaceItemAtIndex(index, withItem: updatedConversation)
             } catch {
-                pager.reloadContent()
+                pager.refreshContent()
             }
         } else {
-            pager.reloadContent()
+            pager.refreshContent()
         }
     }
 }

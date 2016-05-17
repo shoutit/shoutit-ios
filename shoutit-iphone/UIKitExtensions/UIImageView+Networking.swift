@@ -61,6 +61,10 @@ extension UIImageView {
         }
     }
     
+    public func sh_cancelImageDownload() {
+        kf_cancelDownloadTask()
+    }
+    
     private func estimateAppropriateVariation() -> ImageVariation? {
         let scale = UIScreen.mainScreen().scale
         let scaledWidth = floor(bounds.size.width * scale)

@@ -38,7 +38,7 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.pager.reloadContent()
+        viewModel.pager.refreshContent()
     }
     
     override func prefersTabbarHidden() -> Bool {
@@ -62,7 +62,7 @@ class ProfilesListTableViewController: UITableViewController {
                 case .Loading:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .Loaded, .LoadedAllContent, .LoadingMore:
+                case .Loaded, .LoadedAllContent, .LoadingMore, .Refreshing:
                     self?.tableView.tableHeaderView = nil
                 case .NoContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder

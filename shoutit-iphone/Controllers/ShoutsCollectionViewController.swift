@@ -111,6 +111,8 @@ extension ShoutsCollectionViewController {
             return cells.count
         case .LoadedAllContent(let cells, _):
             return cells.count
+        case .Refreshing(let cells, _):
+            return cells.count
         case .Error, .NoContent, .Loading:
             return 1
         }
@@ -137,6 +139,9 @@ extension ShoutsCollectionViewController {
         case .Idle:
             fatalError()
         case .LoadedAllContent(let cells, _):
+            let cellViewModel = cells[indexPath.row]
+            return shoutCellWithModel(cellViewModel)
+        case .Refreshing(let cells, _):
             let cellViewModel = cells[indexPath.row]
             return shoutCellWithModel(cellViewModel)
         case .Loaded(let cells, _, _):

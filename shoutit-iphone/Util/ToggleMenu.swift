@@ -17,4 +17,8 @@ extension UIViewController {
     @IBAction func pop() {
         navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func dismiss() {
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
