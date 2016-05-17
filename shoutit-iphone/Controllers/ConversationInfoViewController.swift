@@ -37,25 +37,35 @@ class ConversationInfoViewController: UITableViewController {
     }
 
     func fillViews() {
-        let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(self.conversation.createdAt)
         
-        self.footerLabel.text = NSLocalizedString("Chat created by \(self.conversation)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
-        self.headerView.subjectTextField?.text = self.conversation.subject
-        
-        let isAdmin = self.conversation.isAdmin(Account.sharedInstance.user?.id)
-        
-        self.headerView.subjectTextField?.enabled = isAdmin
-        
-        
-        let imagePlaceholder = UIImage(named: "chats_image_placeholder")
-        
-        if let path = self.conversation.icon {
-            self.headerView.imageView?.sh_setImageWithURL(NSURL(string: path), placeholderImage: imagePlaceholder)
+        if conversation.type() != .PublicChat {
+            // clear header
+            self.tableView.tableHeaderView = nil
         } else {
-            self.headerView.imageView?.image = imagePlaceholder
+            
+            // fill header
+            self.headerView.subjectTextField?.text = self.conversation.subject
+            
+            let isAdmin = self.conversation.isAdmin(Account.sharedInstance.user?.id)
+            
+            self.headerView.subjectTextField?.enabled = isAdmin
+            
+            
+            let imagePlaceholder = UIImage(named: "chats_image_placeholder")
+            
+            if let path = self.conversation.icon {
+                self.headerView.imageView?.sh_setImageWithURL(NSURL(string: path), placeholderImage: imagePlaceholder)
+            } else {
+                self.headerView.imageView?.image = imagePlaceholder
+            }
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(saveAction))
         }
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(saveAction))
+        // fill footer
+        let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(self.conversation.createdAt)
+        self.footerLabel.text = NSLocalizedString("Chat created by \(self.conversation)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
+        
     }
     
     func saveAction() {
