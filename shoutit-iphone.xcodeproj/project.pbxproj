@@ -424,6 +424,7 @@
 		B28379AD1C74B459009AFF01 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379AC1C74B459009AFF01 /* DateFormatters.swift */; };
 		B28379AF1C74C2DE009AFF01 /* NumberFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379AE1C74C2DE009AFF01 /* NumberFormatters.swift */; };
 		B288D3EC1C68B58400895302 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B288D3EB1C68B58400895302 /* Profile.swift */; };
+		B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC891CEB298000131B31 /* Pager+Convenience.swift */; };
 		B2956F011CDCEDBC0041C6CD /* UIImage+Resizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2956F001CDCEDBC0041C6CD /* UIImage+Resizing.swift */; };
 		B2956F031CDCEE020041C6CD /* PHAsset+MediaAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */; };
 		B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F7F1C728CED00EEA9A2 /* GoogleSignIn.framework */; };
@@ -1189,6 +1190,7 @@
 		B28379AC1C74B459009AFF01 /* DateFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateFormatters.swift; path = Util/DateFormatters.swift; sourceTree = "<group>"; };
 		B28379AE1C74C2DE009AFF01 /* NumberFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberFormatters.swift; path = Util/NumberFormatters.swift; sourceTree = "<group>"; };
 		B288D3EB1C68B58400895302 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Model/Profile.swift; sourceTree = "<group>"; };
+		B294BC891CEB298000131B31 /* Pager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pager+Convenience.swift"; path = "Util/Pager+Convenience.swift"; sourceTree = "<group>"; };
 		B2956F001CDCEDBC0041C6CD /* UIImage+Resizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resizing.swift"; path = "UIKitExtensions/UIImage+Resizing.swift"; sourceTree = "<group>"; };
 		B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PHAsset+MediaAttachment.swift"; path = "Util/PHAsset+MediaAttachment.swift"; sourceTree = "<group>"; };
 		B2985F7F1C728CED00EEA9A2 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -2754,6 +2756,7 @@
 				B253A3391C68F94600C8B8F9 /* State.swift */,
 				B2E53E951CA1AA6F00F43481 /* PagedViewModelState.swift */,
 				B272307B1CE34916003547EA /* Pager.swift */,
+				B294BC891CEB298000131B31 /* Pager+Convenience.swift */,
 				B27230821CE36DFD003547EA /* NumberedPagePager.swift */,
 			);
 			name = StateMachine;
@@ -4008,6 +4011,7 @@
 				B25EB87D1CA468F00013241A /* APIError.swift in Sources */,
 				248320F51C99975D00C12D90 /* BubbleView.swift in Sources */,
 				248320F11C996E7000C12D90 /* ConversationTextCell.swift in Sources */,
+				B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */,
 				B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */,
 				AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */,
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,

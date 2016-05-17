@@ -121,37 +121,12 @@ final class ConversationListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch viewModel.pager.state.value {
-        case .LoadedAllContent(let cells, _):
-            return cells.count
-        case .Loaded(let cells, _, _):
-            return cells.count
-        case .LoadingMore(let cells, _, _):
-            return cells.count
-        case .Refreshing(let cells, _):
-            return cells.count
-        default:
-            return 0
-        }
+        guard let models = viewModel.pager.getCellViewModels() else { return 0 }
+        return models.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let models: [Conversation]
-        switch viewModel.pager.state.value {
-        case .Refreshing(let c, _):
-            models = c
-        case .LoadedAllContent(let c, _):
-            models = c
-        case .Loaded(let c, _, _):
-            models = c
-        case .LoadingMore(let c, _, _):
-            models = c
-        default:
-            preconditionFailure()
-        }
-        
+        guard let models = viewModel.pager.getCellViewModels() else { preconditionFailure() }
         let conversation = models[indexPath.row]
         let cell: ConversationTableViewCell
         switch conversation.type() {
@@ -172,19 +147,7 @@ final class ConversationListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cells: [Conversation]
-        switch viewModel.pager.state.value {
-        case .LoadedAllContent(let c, _):
-            cells = c
-        case .Refreshing(let c, _):
-            cells = c
-        case .Loaded(let c, _, _):
-            cells = c
-        case .LoadingMore(let c, _, _):
-            cells = c
-        default:
-            return
-        }
+        guard let cells = viewModel.pager.getCellViewModels() else { return }
         let conversation = cells[indexPath.row]
         flowDelegate?.showConversation(conversation)
     }
