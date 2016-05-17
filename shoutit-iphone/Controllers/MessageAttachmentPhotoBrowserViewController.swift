@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import RxSwift
 
 class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
     
+    private let disposeBag = DisposeBag()
     var viewModel: MessageAttachmentPhotoBrowserViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        precondition(viewModel != nil)
+        setupRX()
+        viewModel.pager.loadContent()
+    }
+    
+    private func setupRX() {
+        
+        viewModel.pager.state
+            .asObservable()
+            .subscribeNext {[weak self] (_) in
+                self?.reloadData()
+            }
+            .addDisposableTo(disposeBag)
     }
 }

@@ -18,31 +18,25 @@ enum ShoutDetailShoutImageViewModel {
 }
 
 extension ShoutDetailShoutImageViewModel {
+    
     func canShowPreview() -> Bool {
-        if case .Image = self {
+        switch self {
+        case .Image, .Movie:
             return true
+        default:
+            return false
         }
-        
-        if case .Movie = self {
-            return true
-        }
-        
-        return false
     }
     
     func mwPhoto() -> MWPhoto? {
-        if case .Image(let path) = self {
-            return MWPhoto(URL: path)
-        }
-        
-        if case .Movie(let video) = self {
-            guard let url = NSURL(string: video.path) else {
-                return nil
-            }
-            
+        switch self {
+        case .Image(let url):
+            return MWPhoto(URL: url)
+        case .Movie(let video):
+            guard let url = video.path.toURL() else { return nil }
             return MWPhoto(videoURL: url)
+        default:
+            return nil
         }
-        
-        return nil
     }
 }

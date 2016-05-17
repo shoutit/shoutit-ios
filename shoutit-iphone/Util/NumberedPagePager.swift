@@ -12,12 +12,15 @@ import Argo
 
 class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType>: Pager<Int, CellViewModelType, ItemType> {
     
-    let pageSize = 20
+    let pageSize: Int
     
-    init(itemToCellViewModelBlock: ItemType -> CellViewModelType,
-         cellViewModelToItemBlock: CellViewModelType -> ItemType,
-         fetchItemObservableFactory: (Int -> Observable<PagedResults<ItemType>>))
+    init(
+        itemToCellViewModelBlock: ItemType -> CellViewModelType,
+        cellViewModelToItemBlock: CellViewModelType -> ItemType,
+        fetchItemObservableFactory: (Int -> Observable<PagedResults<ItemType>>),
+        pageSize: Int = 20)
     {
+        self.pageSize = pageSize
         super.init(
             itemToCellViewModelBlock: itemToCellViewModelBlock,
             cellViewModelToItemBlock: cellViewModelToItemBlock,

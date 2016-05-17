@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol ConversationInfoViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable, AllShoutsDisplayable {}
+protocol ConversationInfoViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable, AllShoutsDisplayable, MediaDisplayable {}
 
 class ConversationInfoViewController: UITableViewController {
 
@@ -168,7 +168,7 @@ class ConversationInfoViewController: UITableViewController {
     }
     
     func showMedia() {
-        
+        flowDelegate?.showMediaForConversation(conversation)
     }
     
     func addMember() {
