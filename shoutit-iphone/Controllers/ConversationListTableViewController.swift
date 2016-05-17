@@ -129,6 +129,8 @@ final class ConversationListTableViewController: UITableViewController {
             return cells.count
         case .LoadingMore(let cells, _, _):
             return cells.count
+        case .Refreshing(let cells, _):
+            return cells.count
         default:
             return 0
         }
@@ -138,6 +140,8 @@ final class ConversationListTableViewController: UITableViewController {
         
         let models: [Conversation]
         switch viewModel.pager.state.value {
+        case .Refreshing(let c, _):
+            models = c
         case .LoadedAllContent(let c, _):
             models = c
         case .Loaded(let c, _, _):
@@ -172,12 +176,14 @@ final class ConversationListTableViewController: UITableViewController {
         switch viewModel.pager.state.value {
         case .LoadedAllContent(let c, _):
             cells = c
+        case .Refreshing(let c, _):
+            cells = c
         case .Loaded(let c, _, _):
             cells = c
         case .LoadingMore(let c, _, _):
             cells = c
         default:
-            preconditionFailure()
+            return
         }
         let conversation = cells[indexPath.row]
         flowDelegate?.showConversation(conversation)
