@@ -85,33 +85,13 @@ class ProfilesListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch viewModel.pager.state.value {
-        case .LoadedAllContent(let cells, _):
-            return cells.count
-        case .Loaded(let cells, _, _):
-            return cells.count
-        case .LoadingMore(let cells, _, _):
-            return cells.count
-        default:
-            return 0
-        }
+        guard let models = viewModel.pager.getCellViewModels() else { return 0 }
+        return models.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cells: [ProfilesListCellViewModel]
-        switch viewModel.pager.state.value {
-        case .LoadedAllContent(let c, _):
-            cells = c
-        case .Loaded(let c, _, _):
-            cells = c
-        case .LoadingMore(let c, _, _):
-            cells = c
-        default:
-            preconditionFailure()
-        }
-        
+        guard let cells = viewModel.pager.getCellViewModels() else { preconditionFailure() }
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let cellModel = cells[indexPath.row]
         
@@ -154,17 +134,7 @@ class ProfilesListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cells: [ProfilesListCellViewModel]
-        switch viewModel.pager.state.value {
-        case .LoadedAllContent(let c, _):
-            cells = c
-        case .Loaded(let c, _, _):
-            cells = c
-        case .LoadingMore(let c, _, _):
-            cells = c
-        default:
-            preconditionFailure()
-        }
+        guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
         eventHandler.handleUserDidTapProfile(cellViewModel.profile)
         

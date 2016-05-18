@@ -36,7 +36,6 @@ extension ShoutDisplayable where Self: FlowController, Self: ShoutDetailTableVie
         
         navigationController.presentViewController(navigation, animated: true, completion: nil)
     }
-    
 }
 
 extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionViewControllerFlowDelegate {
@@ -49,7 +48,6 @@ extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionV
         
         navigationController.showViewController(controller, sender: nil)
     }
-    
 }
 
 extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionViewControllerFlowDelegate {
@@ -67,6 +65,5 @@ extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionV
         
         navigationController.showViewController(controller, sender: nil)
     }
-    
 }
 

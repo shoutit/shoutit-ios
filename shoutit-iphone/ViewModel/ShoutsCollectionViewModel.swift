@@ -16,21 +16,22 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case RelatedShouts(shout: Shout)
         case TagShouts(tag: Tag)
         case DiscoverItemShouts(discoverItem: DiscoverItem)
+        case ConversationShouts(conversation: Conversation)
     }
     
     // consts
     let context: Context
+    private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
     
     // state
     var filtersState: FiltersState?
-    var requestDisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<ShoutCellViewModel, Int, Shout>> = Variable(.Idle)
-    
-    // data
-    var numberOfResults: Int? = 0
     
     init(context: Context) {
         self.context = context
+        self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
+                                       cellViewModelToItemBlock: {$0.shout},
+                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+        )
     }
     
     func applyFilters(filtersState: FiltersState) {
@@ -50,6 +51,8 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), tag.name)
         case .DiscoverItemShouts(let discoverItem):
             return discoverItem.title
+        case .ConversationShouts:
+            return NSLocalizedString("Conversation Shouts", comment: "")
         }
     }
     
@@ -81,6 +84,9 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             var params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
+        case .ConversationShouts(let conversation):
+            let params = PageParams(page: page, pageSize: pageSize)
+            return APIChatsService.getShoutsForConversationWithId(conversation.id, params: params)
         }
     }
 }

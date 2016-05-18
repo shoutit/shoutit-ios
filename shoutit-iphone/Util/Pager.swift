@@ -20,6 +20,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     let disposeBag: DisposeBag = DisposeBag()
     private(set) var requestDisposeBag: DisposeBag = DisposeBag()
     private(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
+    private(set) var numberOfResults: Int?
     
     let firstPageIndex: PageIndexType
     
@@ -93,7 +94,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     }
     
     func findItemWithComparisonBlock(block: (ItemType -> Bool)) -> (Int, ItemType)? {
-        guard let (cells, _) = try? getCellViewModels() else { return nil }
+        guard let (cells, _) = try? getCellViewModelsForManipulation() else { return nil }
         for (index, cell) in cells.enumerate() {
             let item = cellViewModelToItemBlock(cell)
             if block(item) {
@@ -128,6 +129,8 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     
     private func appendItems(results: PagedResults<ItemType>, forPage page: PageIndexType) {
         
+        numberOfResults = results.count ?? numberOfResults
+        
         let items = results.results.filter{(item) -> Bool in
             if let rule = self.itemExclusionRule {
                 return !rule(item)
@@ -160,7 +163,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         }
     }
     
-    private func getCellViewModels() throws -> ([CellViewModelType], PageIndexType) {
+    private func getCellViewModelsForManipulation() throws -> ([CellViewModelType], PageIndexType) {
         switch state.value {
         case .Loaded(let cells, let page, _):
             return (cells, page)
