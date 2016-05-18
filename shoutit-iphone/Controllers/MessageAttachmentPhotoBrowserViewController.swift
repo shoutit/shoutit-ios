@@ -19,20 +19,16 @@ class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
         enableGrid = true
         startOnGrid = true
         setupRX()
-        viewModel.pager.loadContent()
+        viewModel.loadContent()
     }
     
     private func setupRX() {
         
-        viewModel.pager.state
-            .asObservable()
-            .subscribeNext {[weak self] (status) in
-                switch status {
-                case .Loaded, .LoadedAllContent, .LoadingMore, .Refreshing:
-                    self?.reloadData()
-                default:
-                    break
-                }
+        viewModel
+            .reloadSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] in
+                self?.reloadData()
             }
             .addDisposableTo(disposeBag)
     }

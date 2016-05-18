@@ -148,7 +148,8 @@
 #pragma mark - Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [_browser numberOfPhotos];
+    NSInteger number = [_browser numberOfPhotos];
+    return number;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
