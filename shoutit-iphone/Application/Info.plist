@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -135,15 +137,6 @@
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
-			<key>api.shoutit.local</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
 			<key>dev-api-shoutit-com-qm7w6bwy42b2.runscope.net</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -162,6 +155,15 @@
 			</dict>
 			<key>fbcdn.net</key>
 			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>local.api.shoutit.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
 				<key>NSIncludesSubdomains</key>
 				<true/>
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
@@ -198,6 +200,8 @@
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This allows us to show you nearby offers and requests</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This allows us to show you nearby offers and requests</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This allows us to show you nearby offers and requests</string>
 	<key>UILaunchStoryboardName</key>
@@ -222,10 +226,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
-	<key>NSLocationUsageDescription</key>
-	<string>This allows us to show you nearby offers and requests</string>
-	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 </dict>
 </plist>
