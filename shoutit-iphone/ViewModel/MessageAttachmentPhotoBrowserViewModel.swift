@@ -75,8 +75,9 @@ private extension MessageAttachmentPhotoBrowserViewModel {
     
     private func appendItems(results: PagedResults<MessageAttachment>, forPage page: Int) {
         
-        numberOfResults = results.count ?? numberOfResults
-        
+        defer {
+            numberOfResults = results.count ?? numberOfResults
+        }
         let items = results.results.filter{($0.images ?? []).count > 0 || ($0.videos ?? []).count > 0}
         let lastPageDidLoad = results.nextPath == nil
         

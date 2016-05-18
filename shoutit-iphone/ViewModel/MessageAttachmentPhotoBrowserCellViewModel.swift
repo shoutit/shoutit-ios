@@ -86,7 +86,12 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
             return
         }
         
-        guard case .ImageAttachment(let path)? = attachment.type() else {
+        let path: String
+        if case .ImageAttachment(let p)? = attachment.type() {
+            path = p
+        } else if case .VideoAttachment(let video)? = attachment.type() {
+            path = video.thumbnailPath
+        } else {
             loadingInProgress = false
             return
         }
