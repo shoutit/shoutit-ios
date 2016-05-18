@@ -30,7 +30,7 @@ struct MessageAttachmentPhotoBrowserCellViewModel {
         case .ImageAttachment(let path):
             return MWPhoto(URL: path.toURL()?.imageUrlByAppendingVaraitionComponent(.Small))
         case .VideoAttachment(let video):
-            return MWPhoto(videoURL: video.thumbnailPath.toURL()?.imageUrlByAppendingVaraitionComponent(.Small))
+            return MWPhoto(videoURL: video.thumbnailPath.toURL())
         default:
             return nil
         }

@@ -12,11 +12,12 @@ import RxSwift
 
 class MessageAttachmentPhotoBrowserViewModel: NSObject {
     
+
     let conversation: Conversation
     let pager: NumberedPagePager<MessageAttachmentPhotoBrowserCellViewModel, MessageAttachment>
     
     init(conversation: Conversation) {
-        let pageSize = 50
+        let pageSize = 30
         self.conversation = conversation
         self.pager = NumberedPagePager(
             itemToCellViewModelBlock: {MessageAttachmentPhotoBrowserCellViewModel(attachment: $0)},
@@ -38,18 +39,24 @@ extension MessageAttachmentPhotoBrowserViewModel: MWPhotoBrowserDelegate {
     }
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        guard let photos = pager.getCellViewModels() else {return nil}
-        let mwPhotos = photos.flatMap{$0.mwPhoto()}
-        let i = Int(index)
-        guard mwPhotos.count < i else { return nil }
-        return mwPhotos[i]
+        return photoWithCellViewModels(Int(index)) {$0.mwPhoto()}
     }
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
-        guard let photos = pager.getCellViewModels() else {return nil}
-        let mwPhotos = photos.flatMap{$0.thumbnailMwPhoto()}
-        let i = Int(index)
-        guard mwPhotos.count < i else { return nil }
-        return mwPhotos[i]
+        return photoWithCellViewModels(Int(index)) {$0.thumbnailMwPhoto()}
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, didDisplayPhotoAtIndex index: UInt) {
+        print("DISPLAYED INDEX: \(index)")
+    }
+    
+    private func photoWithCellViewModels(index: Int, block: (MessageAttachmentPhotoBrowserCellViewModel -> MWPhoto?)) -> MWPhoto? {
+        guard let photos = pager.getCellViewModels() else { return nil }
+        let mwPhotos = photos.flatMap(block)
+        guard mwPhotos.count > index else {
+            //pager.fetchNextPage()
+            return nil
+        }
+        return mwPhotos[index]
     }
 }

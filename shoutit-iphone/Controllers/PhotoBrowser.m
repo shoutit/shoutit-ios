@@ -16,8 +16,6 @@
 
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     
-    [button setImage:[UIImage imageNamed:@"backThin"] forState:UIControlStateNormal];
-    
     if ([UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
         [button setImage:[UIImage imageNamed:@"rtl_backThin"] forState:UIControlStateNormal];
     } else {

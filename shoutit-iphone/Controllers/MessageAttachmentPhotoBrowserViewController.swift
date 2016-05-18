@@ -16,6 +16,8 @@ class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        enableGrid = true
+        startOnGrid = true
         setupRX()
         viewModel.pager.loadContent()
     }
@@ -24,8 +26,13 @@ class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (_) in
-                self?.reloadData()
+            .subscribeNext {[weak self] (status) in
+                switch status {
+                case .Loaded, .LoadedAllContent, .LoadingMore, .Refreshing:
+                    self?.reloadData()
+                default:
+                    break
+                }
             }
             .addDisposableTo(disposeBag)
     }
