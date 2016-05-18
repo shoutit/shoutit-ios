@@ -27,6 +27,10 @@ final class APIChatsService {
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
     private static let conversationAddProfileURL = APIManager.baseURL + "/conversations/*/add_profile"
     private static let conversationBlockedProfilesURL = APIManager.baseURL + "/conversations/*/blocked"
+    
+    private static let conversationUnblockProfileURL = APIManager.baseURL + "/conversations/*/unblock_profile"
+    private static let conversationBlockProfileURL = APIManager.baseURL + "/conversations/*/block_profile"
+    private static let conversationPromoteAdminProfileURL = APIManager.baseURL + "/conversations/*/promote_admin"
 
     static func requestConversationsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<Conversation>> {
         let url = explicitURL ?? conversationsURL
@@ -108,6 +112,21 @@ final class APIChatsService {
     
     static func addMemberToConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
         let url = conversationAddProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+    }
+    
+    static func blockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+        let url = conversationBlockProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+    }
+    
+    static func unblockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+        let url = conversationUnblockProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+    }
+    
+    static func promoteToAdminProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+        let url = conversationPromoteAdminProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
         return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     

@@ -175,6 +175,7 @@
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0A1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6B1D0B1C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
+		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
 		AE7AC1641CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
 		AE7AC1651CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
@@ -997,6 +998,7 @@
 		AE6654CF1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VideoCalls.strings; sourceTree = "<group>"; };
 		AE6654D01CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SeeAllShouts.strings; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
+		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE7AC1661CB3FBB400C9DEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		AE7FFFDE1CAC55A7009F3FBC /* TWCLocalMedia+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TWCLocalMedia+Additions.h"; path = "Other/TWCLocalMedia+Additions.h"; sourceTree = "<group>"; };
 		AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TWCLocalMedia+Additions.m"; path = "Other/TWCLocalMedia+Additions.m"; sourceTree = "<group>"; };
@@ -2883,6 +2885,7 @@
 				B272305B1CE0EE49003547EA /* ProfilesListEventHandler.swift */,
 				B272305D1CE0EFD9003547EA /* CommonHandlers */,
 				AE1F3FDF1CEB3A8200C3432F /* ProfileCellConfigurator.swift */,
+				AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */,
 				AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */,
 			);
 			name = EventHandler;
@@ -4114,6 +4117,7 @@
 				B2AB73E21CB55BFB00C2C0C0 /* ChangePasswordParams.swift in Sources */,
 				B28379A31C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift in Sources */,
 				B27230521CE0DF6F003547EA /* UITableView+Reusables.swift in Sources */,
+				AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,

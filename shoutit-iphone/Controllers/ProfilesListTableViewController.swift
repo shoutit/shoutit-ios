@@ -22,6 +22,7 @@ class ProfilesListTableViewController: UITableViewController {
     var viewModel: ProfilesListViewModel!
     var eventHandler: ProfilesListEventHandler!
     var dismissAfterSelection = false
+    var autoDeselct = false
     var cellConfigurator : ProfileCellConfigurator! = ProfileCellConfigurator()
     
     // RX
@@ -138,9 +139,15 @@ class ProfilesListTableViewController: UITableViewController {
         let cellViewModel = cells[indexPath.row]
         eventHandler.handleUserDidTapProfile(cellViewModel.profile)
         
+        if autoDeselct {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
         if dismissAfterSelection {
             self.navigationController?.popViewControllerAnimated(true)
         }
+        
+        
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
