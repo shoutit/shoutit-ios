@@ -32,6 +32,7 @@ class MessageAttachmentPhotoBrowserViewModel: NSObject {
     init(conversation: Conversation) {
         self.conversation = conversation
         super.init()
+        observeLoadingState()
     }
     
     func loadContent() {

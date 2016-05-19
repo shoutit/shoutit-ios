@@ -549,8 +549,6 @@ extension ProfileCollectionViewController {
             return
         }
         
-        
-        
         guard let model = viewModel.model, case .ProfileModel(let profile) = model else {
             debugPrint("Could not create conversation without profile")
             return
@@ -562,7 +560,7 @@ extension ProfileCollectionViewController {
             return
         }
         
-        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil)
+        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
         
         self.flowDelegate?.showConversation(conversation)
     }

@@ -237,6 +237,9 @@
         if ([photo underlyingImage]) {
             // Successful load
             [self displayImage];
+            if ([photo respondsToSelector:@selector(isVideo)]) {
+                _videoIndicator.hidden = !photo.isVideo;
+            }
         } else {
             // Failed to load
             [self showImageFailure];

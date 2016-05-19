@@ -34,6 +34,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     let blocked: [String]
     let admins: [String]
     let icon: String?
+    let attachmentCount: AttachmentCount
     
     var hashValue: Int {
         get {
@@ -67,6 +68,7 @@ struct Conversation: Decodable, Hashable, Equatable {
             <*> j <|| "blocked"
             <*> j <|| "admins"
             <*> j <|? "icon"
+            <*> j <| "attachments_count"
         
         return f
     }
@@ -76,7 +78,7 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [], icon: self.icon)
+        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [], icon: self.icon, attachmentCount: self.attachmentCount)
     }
 }
 

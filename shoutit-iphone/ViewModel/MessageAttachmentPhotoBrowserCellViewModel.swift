@@ -16,8 +16,12 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
         didSet {
             if case .Some(.VideoAttachment(let video)) = attachment?.type() {
                 isVideo = true
-                videoURLLoadedBlock?(video.path.toURL()!)
-                videoURLLoadedBlock = nil
+                if isThumbnail {
+                    loadUnderlyingImageAndNotify()
+                } else {
+                    videoURLLoadedBlock?(video.path.toURL()!)
+                    videoURLLoadedBlock = nil
+                }
             } else {
                 loadUnderlyingImageAndNotify()
             }
@@ -27,7 +31,7 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
     var isVideo: Bool
     private var webImageOperation: SDWebImageOperation?
     private var videoURLLoadedBlock: (NSURL -> Void)?
-    private var isThumbnail: Bool
+    private let isThumbnail: Bool
     private var loadingInProgress = false
     private unowned let parent: MessageAttachmentPhotoBrowserViewModel
     

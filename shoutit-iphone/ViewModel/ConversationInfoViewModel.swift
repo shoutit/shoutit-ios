@@ -74,11 +74,11 @@ class ConversationInfoViewModel: AnyObject {
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = NSLocalizedString("Shouts", comment: "")
-                cell.detailTextLabel?.text = NSLocalizedString("Shouts", comment: "")
+                cell.detailTextLabel?.text = String(conversation.attachmentCount.shout)
                 
             case 1:
                 cell.textLabel?.text = NSLocalizedString("Media", comment: "")
-                cell.detailTextLabel?.text = NSLocalizedString("Media", comment: "")
+                cell.detailTextLabel?.text = String(conversation.attachmentCount.media)
             default:
                 break
             }
@@ -86,7 +86,6 @@ class ConversationInfoViewModel: AnyObject {
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = NSLocalizedString("Add Member", comment: "")
-                
             case 1:
                 cell.textLabel?.text = NSLocalizedString("Participants", comment: "")
                 cell.detailTextLabel?.text = NSLocalizedString("\(self.conversation.users?.count ?? 0)", comment: "Participants count")
