@@ -12,7 +12,7 @@ import Kingfisher
 extension UIImageView {
     
     public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
-        if let url = url {
+        if let url = url where url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             } else {
@@ -26,7 +26,7 @@ extension UIImageView {
     }
     
     public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?) {
-        if let url = url {
+        if let url = url where url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage)
             } else {

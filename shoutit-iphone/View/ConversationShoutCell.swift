@@ -57,7 +57,7 @@ final class ConversationShoutCell: UITableViewCell, ConversationCell {
     }
     
     func setThumbMessage(message: Message) {
-        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
+        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) where imagePath.utf16.count > 0 else {
             return
         }
         

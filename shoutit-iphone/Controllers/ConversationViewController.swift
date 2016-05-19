@@ -16,8 +16,6 @@ protocol ConversationViewControllerFlowDelegate: class, ChatDisplayable, ShoutDi
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: ConversationViewControllerFlowDelegate?
     
-    var conversation: Conversation!
-    
     var viewModel : ConversationViewModel!
     let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
@@ -42,7 +40,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         setupAttachmentManager()
         
-        if let shout = conversation.shout {
+        if let shout = viewModel.conversation.value.shout {
             setTopicShout(shout)
         }
     }
@@ -80,7 +78,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     func layoutInsets() {
-        if let _ = conversation.shout?.id {
+        if let _ = viewModel.conversation.value.shout?.id {
             tableView?.contentInset = UIEdgeInsetsMake(0, 0, 64.0, 0)
         } else {
             tableView?.contentInset = UIEdgeInsetsZero
@@ -113,13 +111,13 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     func showShout() {
-        if let shout = self.conversation.shout {
+        if let shout = viewModel.conversation.value.shout {
             self.flowDelegate?.showShout(shout)
         }        
     }
     
     private func setupDataSource() {
-        viewModel = ConversationViewModel(conversation: self.conversation, delegate: self)
+        
         viewModel.fetchMessages()
         
         viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
@@ -361,7 +359,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
         
         let attributedText : NSAttributedString
-        if self.conversation.id == "" {
+        if viewModel.conversation.value.id == "" {
             attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
         } else if viewModel.loadMoreState.value == .ReadyToLoad {
             attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
@@ -381,7 +379,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     
     @IBAction func moreAction() {
         
-        self.flowDelegate?.showConversationInfo(self.conversation)
+        self.flowDelegate?.showConversationInfo(viewModel.conversation.value)
     }
     
     func deleteAction() {
@@ -393,12 +391,12 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func videoCall() {
-        if let profile = self.conversation.coParticipant() {
+        if let profile = viewModel.conversation.value.coParticipant() {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
         }
         
-        if let user = self.conversation.shout?.user {
+        if let user = viewModel.conversation.value.shout?.user {
             self.flowDelegate?.startVideoCallWithProfile(user)
         }
     }
@@ -406,11 +404,11 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
 
 extension ConversationViewController {
     func showSendingMessage() {
-        titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        titleView.setTitle(viewModel.conversation.value.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
     }
     
     func hideSendingMessage() {
-        titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        titleView.setTitle(viewModel.conversation.value.firstLineText()?.string, message: nil)
     }
 }
 

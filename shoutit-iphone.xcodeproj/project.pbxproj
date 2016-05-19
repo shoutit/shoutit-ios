@@ -1593,8 +1593,8 @@
 			isa = PBXGroup;
 			children = (
 				2463B6931C98291300BFE6BA /* ConversationViewController.swift */,
-				249F78231C9963B600FCB9A6 /* Views */,
 				2463B6971C984A4600BFE6BA /* ViewModel */,
+				249F78231C9963B600FCB9A6 /* Views */,
 			);
 			name = Conversation;
 			sourceTree = "<group>";

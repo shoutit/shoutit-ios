@@ -26,7 +26,7 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         let controller = Wireframe.conversationController()
         
         controller.flowDelegate = self
-        controller.conversation = conversation
+        controller.viewModel = ConversationViewModel(conversation: conversation, delegate: controller)
         
         // if there was conversation pop instead of adding another controller to stack
         let previousControllersCount = (self.navigationController.viewControllers.count - 2)

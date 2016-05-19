@@ -15,12 +15,12 @@ enum ConversationDataState : Int {
     case PusherLoaded
 }
 
-protocol ConversationPresenter {
+protocol ConversationPresenter: class {
     func showSendingError(error: ErrorType) -> Void
 }
 
 final class ConversationViewModel {
-    private var conversation: Variable<Conversation>!
+    let conversation: Variable<Conversation>!
     
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
@@ -32,7 +32,7 @@ final class ConversationViewModel {
     let sendingMessages : Variable<[Message]> = Variable([])
     var nextPageParams : String?
     
-    private var delegate : ConversationPresenter?
+    private weak var delegate : ConversationPresenter?
     
     private let disposeBag = DisposeBag()
     private var socketsBag : DisposeBag?
@@ -313,9 +313,19 @@ final class ConversationViewModel {
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value).subscribe(onNext: { [weak self] (message) -> Void in
-            self?.appendMessages([message])
-            self?.removeFromSending(msg)
+        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value)
+            .doOnNext{[weak self] (message) in
+                guard let `self` = self else { return }
+                APIChatsService
+                    .conversationWithId(self.conversation.value.id)
+                    .subscribeNext{ (conversation) in
+                        self.conversation.value = conversation
+                    }
+                    .addDisposableTo(self.disposeBag)
+            }
+            .subscribe(onNext: { [weak self] (message) -> Void in
+                self?.appendMessages([message])
+                self?.removeFromSending(msg)
             }, onError: { [weak self] (error) -> Void in
                 self?.removeFromSending(msg)
                 self?.delegate?.showSendingError(error)
