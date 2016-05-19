@@ -12,9 +12,6 @@ production:
     - s4
   only:
     - develop
-  except:
-    - /^local-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-    - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 alpha:
   type: build
   script: "bundle exec fastlane staging"
@@ -23,14 +20,15 @@ alpha:
   except:
     - /^local-.*$/ # any git refs (e.g. tag) starting with "appstore-"
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
+    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 local:
   type: build
   script: "bundle exec fastlane local"
   tags:
     - s4
-  only:
-    - develop
-    - /^local-.*$/ # any git refs (e.g. tag) starting with "appstore-"
+  except:
+    - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
+    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 testflight:
   type: build
   script: "bundle exec fastlane testflight"

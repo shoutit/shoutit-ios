@@ -93,8 +93,19 @@ class CreatePublicChatViewModel {
     }
     
     private func composeParameters() -> CreatePublicChatParams {
+        var address: Address!
+        let cellViewModels = sections.flatMap{$0.cellViewModels}
+        for cell in cellViewModels {
+            switchStatement: switch cell {
+            case .Location(let location):
+                address = location
+            default:
+                break switchStatement
+            }
+        }
         let params = CreatePublicChatParams(subject: chatSubject,
-                                            iconPath: imageUploadTask?.attachment.remoteURL?.absoluteString)
+                                            iconPath: imageUploadTask?.attachment.remoteURL?.absoluteString,
+                                            location: address)
         return params
     }
 }

@@ -47,30 +47,26 @@ struct Conversation: Decodable, Hashable, Equatable {
             <^> j <| "id"
             <*> j <| "created_at"
             <*> j <|? "modified_at"
-        
         let b = a
             <*> j <|? "api_url"
             <*> j <|? "web_url"
             <*> j <| "type"
-        
         let c = b
             <*> j <||? "profiles"
             <*> j <|? "last_message"
             <*> j <| "unread_messages_count"
             <*> j <|? "about"
-            
         let d = c
             <*> j <||? "read_by"
             <*> j <| "display"
             <*> j <|? "subject"
-        
         let f = d
             <*> j <|| "blocked"
             <*> j <|| "admins"
             <*> j <|? "icon"
+        let g = f
             <*> j <| "attachments_count"
-        
-        return f
+        return g
     }
     
     func type() -> ConversationType {
@@ -78,7 +74,23 @@ struct Conversation: Decodable, Hashable, Equatable {
     }
     
     func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby, display: self.display, subject: self.subject, blocked: [], admins: [], icon: self.icon, attachmentCount: self.attachmentCount)
+        return Conversation(id: self.id,
+                            createdAt: self.createdAt,
+                            modifiedAt: self.modifiedAt,
+                            apiPath: self.apiPath,
+                            webPath: self.webPath,
+                            typeString: self.typeString,
+                            users: self.users,
+                            lastMessage: message,
+                            unreadMessagesCount: self.unreadMessagesCount + 1,
+                            shout: self.shout,
+                            readby: self.readby,
+                            display: self.display,
+                            subject: self.subject,
+                            blocked: [],
+                            admins: [],
+                            icon: self.icon,
+                            attachmentCount: self.attachmentCount)
     }
 }
 
