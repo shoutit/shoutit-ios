@@ -17,6 +17,11 @@ struct ConversationDescription {
     let title: String?
     let subtitle: String?
     let image: String?
+    let lastMessageSummary: String?
+    
+    static var nilDescription: ConversationDescription {
+        return ConversationDescription(title: nil, subtitle: nil, image: nil, lastMessageSummary: nil)
+    }
 }
 
 
@@ -27,6 +32,7 @@ extension ConversationDescription: Decodable {
             <^> j <|? "title"
             <*> j <|? "sub_title"
             <*> j <|? "image"
+            <*> j <|? "last_message_summary"
         return f
     }
 }

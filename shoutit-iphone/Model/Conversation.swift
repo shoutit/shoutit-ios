@@ -99,13 +99,15 @@ func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 }
 
 extension Conversation {
+    
     func firstLineText() -> NSAttributedString? {
-        
-        return NSAttributedString(string: self.display.title ?? "")
+        guard let title = display.title else { return nil }
+        return NSAttributedString(string: title)
     }
     
     func secondLineText() -> NSAttributedString? {
-        return NSAttributedString(string: self.display.subtitle ?? "")
+        guard let subtitle = display.subtitle else { return nil }
+        return NSAttributedString(string: subtitle)
     }
     
     func coParticipant() -> Profile? {
@@ -120,7 +122,8 @@ extension Conversation {
     }
     
     func thirdLineText() -> NSAttributedString? {
-        return NSAttributedString(string: lastMessageText())
+        guard let lastMessageSummary = display.lastMessageSummary else { return nil }
+        return NSAttributedString(string: lastMessageSummary)
     }
     
     func lastMessageText() -> String {
