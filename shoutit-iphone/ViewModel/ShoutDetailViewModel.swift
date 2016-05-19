@@ -144,7 +144,7 @@ final class ShoutDetailViewModel {
             completion(alertController: alertController)
         })
         
-        if self.shout.user.id == Account.sharedInstance.user?.id {
+        if self.shout.user?.id == Account.sharedInstance.user?.id {
             reportAction.enabled = false
         }
         
@@ -189,7 +189,7 @@ final class ShoutDetailViewModel {
     }
     
     func tabbarButtons() -> [ShoutDetailTabbarButton] {
-        if shout.user.id == Account.sharedInstance.user?.id {
+        if shout.user?.id == Account.sharedInstance.user?.id {
             return [.Edit, .Delete, .More]
         }
         
@@ -270,7 +270,7 @@ private extension ShoutDetailViewModel {
     }
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: shout.user.username, page: 1, pageSize: 4)
+        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
@@ -304,7 +304,7 @@ private extension ShoutDetailViewModel {
         }
         
         // other
-        let firstname = shout.user.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
+        let firstname = shout.user?.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
         models.append(.SectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), firstname)))
         models.append(.OtherShouts)
         models.append(.Button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), firstname), type: .VisitProfile))

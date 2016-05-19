@@ -112,12 +112,10 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     func startChat() {
-        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
-            return
-        }
-        
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
+        guard let user = viewModel.shout.user else { return }
         guard let conversations = self.viewModel.shout.conversations where conversations.count > 0 else {
-            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, unreadMessagesCount: 0, shout: viewModel.shout, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
+            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(user)], lastMessage: nil, unreadMessagesCount: 0, shout: viewModel.shout, readby: nil, display: ConversationDescription(title: nil, subtitle: nil, image: nil), subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
             self.flowDelegate?.showConversation(conversation)
             return
         }
@@ -208,11 +206,9 @@ class ShowDetailContainerViewController: UIViewController {
     }
 
     private func videoCall() {
-        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
-          return
-        }
-        
-        self.flowDelegate?.startVideoCallWithProfile(viewModel.shout.user)
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
+        guard let user = viewModel.shout.user else { return }
+        self.flowDelegate?.startVideoCallWithProfile(user)
     }
     
     @IBAction func searchAction() {

@@ -52,7 +52,7 @@ final class ConversationShoutCell: UITableViewCell, ConversationCell {
         }
         
         self.titleLabel.text = shout.title
-        self.subtitleLabel?.text = shout.user.name
+        self.subtitleLabel?.text = shout.user?.name
         self.priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
     }
     

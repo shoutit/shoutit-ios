@@ -398,8 +398,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             return
         }
         
-        if let shout = self.conversation.shout {
-            self.flowDelegate?.startVideoCallWithProfile(shout.user)
+        if let user = self.conversation.shout?.user {
+            self.flowDelegate?.startVideoCallWithProfile(user)
         }
     }
 }

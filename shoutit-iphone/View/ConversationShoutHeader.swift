@@ -28,7 +28,7 @@ final class ConversationShoutHeader: UIView {
     func bindWith(Shout shout: Shout) {
         
         titleLabel.text = shout.title
-        subtitleLabel.text = shout.user.name
+        subtitleLabel.text = shout.user?.name
         priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
 
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {

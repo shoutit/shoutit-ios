@@ -25,7 +25,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let currency: String?
     let thumbnailPath: String?
     let videoPath: String?
-    let user: Profile
+    let user: Profile?
     let publishedAtEpoch: Int?
     let category: Category
     let tags: [Tag]?
@@ -57,7 +57,7 @@ struct Shout: Decodable, Hashable, Equatable {
         let c = b
             <*> j <|? "thumbnail"
             <*> j <|? "video_url"
-            <*> j <| "profile"
+            <*> j <|? "profile"
             <*> j <|? "date_published"
         let d = c
             <*> j <| "category"

@@ -47,28 +47,8 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
         super.init()
     }
     
-    func mwPhoto() -> MWPhoto? {
-        guard let type = attachment?.type() else { return nil }
-        switch type {
-        case .ImageAttachment(let path):
-            return MWPhoto(URL: path.toURL())
-        case .VideoAttachment(let video):
-            return MWPhoto(videoURL: video.path.toURL())
-        default:
-            return nil
-        }
-    }
-    
-    func thumbnailMwPhoto() -> MWPhoto? {
-        guard let type = attachment?.type() else { return nil }
-        switch type {
-        case .ImageAttachment(let path):
-            return MWPhoto(URL: path.toURL()?.imageUrlByAppendingVaraitionComponent(.Small))
-        case .VideoAttachment(let video):
-            return MWPhoto(videoURL: video.thumbnailPath.toURL())
-        default:
-            return nil
-        }
+    func caption() -> String! {
+        return nil
     }
     
     // MARK: - MWPhotoProtocol

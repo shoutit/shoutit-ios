@@ -146,8 +146,6 @@ class ProfilesListTableViewController: UITableViewController {
         if dismissAfterSelection {
             self.navigationController?.popViewControllerAnimated(true)
         }
-        
-        
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

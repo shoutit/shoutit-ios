@@ -126,8 +126,8 @@ final class ShoutDetailTableViewController: UITableViewController {
     // MARK: - Setup
     
     private func hydrateHeader() {
-        headerView.authorNameLabel.text = viewModel.shout.user.name
-        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.authorNameLabel.text = viewModel.shout.user?.name
+        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.locationLabel.text = viewModel.locationString()
         headerView.shoutTypeLabel.text = viewModel.shout.type()?.title()
         headerView.titleLabel.text = viewModel.shout.title
@@ -139,7 +139,8 @@ final class ShoutDetailTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.flowDelegate?.showProfile(self.viewModel.shout.user)
+                guard let user = self.viewModel.shout.user else { return }
+                self.flowDelegate?.showProfile(user)
             }
             .addDisposableTo(headerDisposeBag)
         

@@ -50,7 +50,7 @@ enum ShoutDetailShoutCellViewModel {
         guard case .Content(let shout) = self else {
             return nil
         }
-        return shout.user.name
+        return shout.user?.name
     }
     
     var priceString: String? {
