@@ -490,12 +490,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1H8-KH-vfe">
-                                    <rect key="frame" x="20" y="26" width="48" height="48"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1H8-KH-vfe">
+                                    <rect key="frame" x="20" y="20" width="50" height="50"/>
                                     <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="Cvs-De-2Mp"/>
-                                        <constraint firstAttribute="width" constant="48" id="xrk-d5-lvh"/>
+                                        <constraint firstAttribute="height" constant="50" id="Cvs-De-2Mp"/>
+                                        <constraint firstAttribute="width" constant="50" id="xrk-d5-lvh"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -503,11 +503,11 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kv0-Uf-2F5" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="98" y="43" width="482" height="34"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kv0-Uf-2F5" customClass="FormTextField" customModule="Shoutit" customModuleProvider="target">
+                                    <rect key="frame" x="89" y="40" width="482" height="28"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="34" id="cm5-Fj-1OG"/>
+                                        <constraint firstAttribute="height" constant="28" id="cm5-Fj-1OG"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -515,12 +515,20 @@
                             </subviews>
                             <color key="backgroundColor" red="0.97768733640000005" green="0.97768733640000005" blue="0.97768733640000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="kv0-Uf-2F5" secondAttribute="trailing" constant="20" id="4eF-zM-LN7"/>
+                                <constraint firstAttribute="trailing" secondItem="kv0-Uf-2F5" secondAttribute="trailing" constant="29" id="4eF-zM-LN7"/>
+                                <constraint firstItem="kv0-Uf-2F5" firstAttribute="bottom" secondItem="1H8-KH-vfe" secondAttribute="bottom" constant="-2" id="5e2-hv-gE6"/>
+                                <constraint firstItem="kv0-Uf-2F5" firstAttribute="baseline" secondItem="1H8-KH-vfe" secondAttribute="baseline" constant="-2" id="8Ew-i9-C1y"/>
                                 <constraint firstItem="kv0-Uf-2F5" firstAttribute="centerY" secondItem="vw7-IM-ALw" secondAttribute="centerY" constant="10" id="AnK-GK-e1J"/>
-                                <constraint firstItem="kv0-Uf-2F5" firstAttribute="leading" secondItem="1H8-KH-vfe" secondAttribute="trailing" constant="30" id="D1t-e1-UAu"/>
+                                <constraint firstItem="kv0-Uf-2F5" firstAttribute="leading" secondItem="1H8-KH-vfe" secondAttribute="trailing" constant="19" id="D1t-e1-UAu"/>
                                 <constraint firstItem="1H8-KH-vfe" firstAttribute="leading" secondItem="vw7-IM-ALw" secondAttribute="leading" constant="20" id="D7x-7R-eTW"/>
                                 <constraint firstItem="1H8-KH-vfe" firstAttribute="centerY" secondItem="vw7-IM-ALw" secondAttribute="centerY" id="XvT-Wf-laN"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="8Ew-i9-C1y"/>
+                                    <exclude reference="AnK-GK-e1J"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <outlet property="imageView" destination="1H8-KH-vfe" id="d4c-Ep-NX5"/>
                                 <outlet property="subjectTextField" destination="kv0-Uf-2F5" id="Pgx-se-MQC"/>
