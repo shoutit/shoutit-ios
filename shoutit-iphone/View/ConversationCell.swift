@@ -21,8 +21,8 @@ struct ConversationCellIdentifier {
         static let incoming = "conversationIncomingCell"
     }
     struct Location {
-        static let outgoing = "conversationIncomingLocationCell"
-        static let incoming = "conversationOutGoingLocationCell"
+        static let outgoing = "conversationOutGoingLocationCell"
+        static let incoming = "conversationIncomingLocationCell"
     }
     struct Picture {
         static let outgoing = "conversationOutGoingPictureCell"

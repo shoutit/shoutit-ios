@@ -62,19 +62,20 @@ struct Shout: Decodable, Hashable, Equatable {
         let d = c
             <*> j <| "category"
             <*> j <||? "tags"
-            <*> j <||? "filters"
         let e = d
+            <*> j <||? "filters"
+        let f = e
             <*> j <||? "images"
             <*> j <||? "videos"
             //<*> j <|? "published_on"
             <*> j <|? "reply_url"
-        let f = e
+        let g = f
             <*> j <||? "related_requests"
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
             <*> j <|? "mobile"
-        return f
+        return g
     }
     
     var hashValue: Int {
