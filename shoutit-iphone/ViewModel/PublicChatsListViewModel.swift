@@ -11,7 +11,7 @@ import Pusher
 
 class PublicChatsListViewModel: ChatsListViewModel {
     
-    let pager: Pager<ConversationPagedResults, Conversation, Conversation>
+    let pager: Pager<ConversationPagedResults, MiniConversation, MiniConversation>
     
     init() {
         self.pager = Pager(

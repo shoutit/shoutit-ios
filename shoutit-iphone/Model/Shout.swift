@@ -38,7 +38,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let replyPath: String?
     let relatedRequests: [Shout]?
     let relatedOffers: [Shout]?
-    let conversations: [Conversation]?
+    let conversations: [MiniConversation]?
     let isMobileSet: Bool?
     let mobile: String?
     

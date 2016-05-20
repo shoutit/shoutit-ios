@@ -85,12 +85,12 @@ class ConversationInfoViewController: UITableViewController {
         // fill header
         let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
         
-        headerView.chatSubjectTextField.text = viewModel.conversation.subject
+        headerView.chatSubjectTextField.text = viewModel.conversation.display.title
         headerView.chatSubjectTextField.enabled = isAdmin
         headerView.chatImageButton.enabled = isAdmin
         headerView.chatSubjectTextField.alpha = isAdmin ? 1.0 : 0.5
         
-        if let path = viewModel.conversation.icon {
+        if let path = viewModel.conversation.display.image {
             headerView.setupImageViewWithStatus(.Uploaded)
             headerView.setChatImage(.URL(path: path))
         } else {

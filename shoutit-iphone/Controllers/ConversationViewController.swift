@@ -117,6 +117,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     
     private func setupDataSource() {
         
+        viewModel.fetchFullConversation()
         viewModel.fetchMessages()
         
         viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
@@ -144,13 +145,12 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         viewModel.conversation.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (conversationExistance) in
-                switch conversationExistance {
-                case .Created(let conversation):
+                if let conversation = self?.viewModel.conversation.value.conversationInterface {
                     self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
                     if let moreButtonItem = self?.navigationItem.rightBarButtonItems?.first where conversation.type() == .PublicChat {
                         self?.navigationItem.rightBarButtonItems = [moreButtonItem]
                     }
-                case .NotCreated:
+                } else {
                     self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = false}
                 }
             }
@@ -298,7 +298,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }).addDisposableTo(loadMoreBag)
         
         tableView.tableFooterView = loadMoreView
-        
     }
     
     func setTitleView() {
@@ -386,7 +385,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func moreAction() {
-        guard case .Created(let conversation) = viewModel.conversation.value else { assertionFailure(); return; }
+        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { assertionFailure(); return; }
         self.flowDelegate?.showConversationInfo(conversation)
     }
     
@@ -399,7 +398,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func videoCall() {
-        guard case .Created(let conversation) = viewModel.conversation.value else { return }
+        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
         if let profile = conversation.coParticipant() {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
@@ -417,6 +416,8 @@ extension ConversationViewController {
         switch viewModel.conversation.value {
         case let .Created(conversation):
             titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        case let .CreatedAndLoaded(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
         case let .NotCreated(_, user, _):
             titleView.setTitle(user.name, message: NSLocalizedString("Sending message", comment: ""))
         }
@@ -425,6 +426,8 @@ extension ConversationViewController {
     func hideSendingMessage() {
         switch viewModel.conversation.value {
         case let .Created(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        case let .CreatedAndLoaded(conversation):
             titleView.setTitle(conversation.firstLineText()?.string, message: nil)
         case let .NotCreated(_, user, _):
             titleView.setTitle(user.name, message: nil)

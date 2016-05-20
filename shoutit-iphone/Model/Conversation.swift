@@ -10,13 +10,7 @@ import Foundation
 import Argo
 import Curry
 
-enum ConversationType : String {
-    case Chat = "chat"
-    case AboutShout = "about_shout"
-    case PublicChat = "public_chat"
-}
-
-struct Conversation: Decodable, Hashable, Equatable {
+struct Conversation: ConversationInterface {
     
     let id: String
     let createdAt: Int
@@ -30,17 +24,12 @@ struct Conversation: Decodable, Hashable, Equatable {
     let shout: Shout?
     let readby: [ReadBy]?
     let display: ConversationDescription
-    let subject: String?
     let blocked: [String]
     let admins: [String]
-    let icon: String?
     let attachmentCount: AttachmentCount
-    
-    var hashValue: Int {
-        get {
-            return self.id.hashValue
-        }
-    }
+}
+
+extension Conversation: Decodable {
     
     static func decode(j: JSON) -> Decoded<Conversation> {
         let a = curry(Conversation.init)
@@ -59,38 +48,22 @@ struct Conversation: Decodable, Hashable, Equatable {
         let d = c
             <*> j <||? "read_by"
             <*> j <| "display"
-            <*> j <|? "subject"
         let f = d
             <*> j <|| "blocked"
             <*> j <|| "admins"
-            <*> j <|? "icon"
         let g = f
             <*> j <| "attachments_count"
         return g
     }
+
+}
+
+extension Conversation: Equatable, Hashable {
     
-    func type() -> ConversationType {
-        return ConversationType(rawValue: self.typeString)!
-    }
-    
-    func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id,
-                            createdAt: self.createdAt,
-                            modifiedAt: self.modifiedAt,
-                            apiPath: self.apiPath,
-                            webPath: self.webPath,
-                            typeString: self.typeString,
-                            users: self.users,
-                            lastMessage: message,
-                            unreadMessagesCount: self.unreadMessagesCount + 1,
-                            shout: self.shout,
-                            readby: self.readby,
-                            display: self.display,
-                            subject: self.subject,
-                            blocked: [],
-                            admins: [],
-                            icon: self.icon,
-                            attachmentCount: self.attachmentCount)
+    var hashValue: Int {
+        get {
+            return self.id.hashValue
+        }
     }
 }
 
@@ -99,16 +72,6 @@ func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 }
 
 extension Conversation {
-    
-    func firstLineText() -> NSAttributedString? {
-        guard let title = display.title else { return nil }
-        return NSAttributedString(string: title)
-    }
-    
-    func secondLineText() -> NSAttributedString? {
-        guard let subtitle = display.subtitle else { return nil }
-        return NSAttributedString(string: subtitle)
-    }
     
     func coParticipant() -> Profile? {
         var prof : Profile?
@@ -119,11 +82,6 @@ extension Conversation {
         })
         
         return prof
-    }
-    
-    func thirdLineText() -> NSAttributedString? {
-        guard let lastMessageSummary = display.lastMessageSummary else { return nil }
-        return NSAttributedString(string: lastMessageSummary)
     }
     
     func lastMessageText() -> String {
@@ -147,36 +105,14 @@ extension Conversation {
         case .ProfileAttachment: return NSLocalizedString("Profile", comment: "")
         }
     }
-    
-    func imageURL() -> NSURL? {
-        var url : NSURL?
-        
-        if let path = self.display.image {
-            url = NSURL(string: path)
-        }
-        
-        return url
-    }
-    
-    func isRead() -> Bool {
-        return self.unreadMessagesCount == 0
-    }
 }
 
 // Public Chats Helpers
-
 extension Conversation {
     func isAdmin(profileId: String?) -> Bool {
         guard let profileId = profileId else {
             return false
         }
         return self.admins.contains(profileId)
-    }
-}
-
-// Pusher Extensions
-extension Conversation {
-    func channelName() -> String {
-        return "presence-v3-c-\(self.id)"
     }
 }

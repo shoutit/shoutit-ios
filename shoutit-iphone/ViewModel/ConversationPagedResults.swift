@@ -9,7 +9,7 @@
 import Foundation
 
 struct ConversationPagedResults: Equatable {
-    let results: PagedResults<Conversation>?
+    let results: PagedResults<MiniConversation>?
 }
 
 func ==(lhs: ConversationPagedResults, rhs: ConversationPagedResults) -> Bool {

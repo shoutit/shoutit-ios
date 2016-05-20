@@ -82,7 +82,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return profile
     }
     
-    var conversation: Conversation? {
+    var conversation: MiniConversation? {
         return detailedUser?.conversation
     }
     

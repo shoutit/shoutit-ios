@@ -13,7 +13,7 @@ import Alamofire
 
 final class APIPublicChatsService {
     
-    static func requestPublicChatsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<Conversation>> {
+    static func requestPublicChatsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<MiniConversation>> {
         let baseURL = APIManager.baseURL + "/public_chats"
         let url = explicitURL ?? baseURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil

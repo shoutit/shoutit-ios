@@ -10,7 +10,7 @@ import Foundation
 import Pusher
 
 protocol ChatsListViewModel {
-    var pager: Pager<ConversationPagedResults, Conversation, Conversation> { get }
+    var pager: Pager<ConversationPagedResults, MiniConversation, MiniConversation> { get }
 }
 
 extension ChatsListViewModel {
@@ -18,17 +18,7 @@ extension ChatsListViewModel {
     func handlePusherEvent(event: PTPusherEvent) {
         
         guard event.eventType() == .NewMessage else { return }
-        guard let message : Message = event.object() else { return }
-        let result = pager.findItemWithComparisonBlock {$0.id == message.conversationId}
-        if let (index, conversation) = result {
-            let updatedConversation = conversation.copyWithLastMessage(message)
-            do {
-                try pager.replaceItemAtIndex(index, withItem: updatedConversation)
-            } catch {
-                pager.refreshContent()
-            }
-        } else {
-            pager.refreshContent()
-        }
+        guard let _ : Message = event.object() else { return }
+        pager.refreshContent()
     }
 }

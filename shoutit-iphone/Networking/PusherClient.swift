@@ -249,7 +249,7 @@ extension PusherClient {
             }
     }
     
-    func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
+    func conversationObservable(conversation: ConversationInterface) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
 
             let channel : PTPusherChannel
@@ -278,7 +278,6 @@ extension PusherClient {
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
             
             return cancel
-            
         })
     }
     
@@ -290,7 +289,7 @@ extension PusherClient {
         return nil
     }
     
-    func sendTypingEventToConversation(conversation: Conversation) {
+    func sendTypingEventToConversation(conversation: ConversationInterface) {
         guard let user = account.user else {
             return
         }

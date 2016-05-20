@@ -15,12 +15,14 @@ final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var participantsImageView: UIImageView!
 
-    func bindWithConversation(conversation: Conversation) {
+    func bindWithConversation(conversation: MiniConversation) {
         self.firstLineLabel.attributedText = conversation.firstLineText()
         self.secondLineLabel.attributedText = conversation.secondLineText()
         self.thirdLineLabel?.attributedText = conversation.thirdLineText()
-
-        self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(conversation.modifiedAt ?? conversation.createdAt)
+        
+        if let modifiedEpoch = conversation.modifiedAt {
+            self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(modifiedEpoch)
+        }
         self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         if conversation.isRead() {

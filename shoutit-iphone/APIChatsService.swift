@@ -32,14 +32,14 @@ final class APIChatsService {
     private static let conversationBlockProfileURL = APIManager.baseURL + "/conversations/*/block_profile"
     private static let conversationPromoteAdminProfileURL = APIManager.baseURL + "/conversations/*/promote_admin"
 
-    static func requestConversationsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<Conversation>> {
+    static func requestConversationsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<MiniConversation>> {
         let url = explicitURL ?? conversationsURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func getMessagesForConversation(conversation: Conversation) -> Observable<PagedResults<Message>> {
-        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+    static func getMessagesForConversationWithId(conversationId: String) -> Observable<PagedResults<Message>> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
@@ -53,8 +53,8 @@ final class APIChatsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func moreMessagesForConversation(conversation: Conversation, nextPageParams: String?) -> Observable<PagedResults<Message>> {
-        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id) + (nextPageParams ?? "")
+    static func moreMessagesForConversationWithId(conversationId: String, nextPageParams: String?) -> Observable<PagedResults<Message>> {
+        let url = messagesURL.stringByReplacingOccurrencesOfString("*", withString: conversationId) + (nextPageParams ?? "")
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil)
     }
     
@@ -68,8 +68,8 @@ final class APIChatsService {
         return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .JSON)
     }
     
-    static func replyWithMessage(message: Message, onConversation conversation: Conversation) -> Observable<Message> {
-        let url = replyURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+    static func replyWithMessage(message: Message, onConversationWithId id: String) -> Observable<Message> {
+        let url = replyURL.stringByReplacingOccurrencesOfString("*", withString: id)
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
@@ -95,8 +95,8 @@ final class APIChatsService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .JSON)
     }
     
-    static func deleteConversation(conversation: Conversation) -> Observable<Void> {
-        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversation.id)
+    static func deleteConversationWithId(conversationId: String) -> Observable<Void> {
+        let url = conversationURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON)
     }
     

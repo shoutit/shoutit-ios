@@ -80,7 +80,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return nil
     }
     
-    var conversation: Conversation? {
+    var conversation: MiniConversation? {
         return nil // profile.conversation
     }
     

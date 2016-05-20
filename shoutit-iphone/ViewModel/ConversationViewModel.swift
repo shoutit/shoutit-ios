@@ -22,15 +22,26 @@ protocol ConversationPresenter: class {
 final class ConversationViewModel {
     
     enum ConversationExistance {
-        case Created(conversation: Conversation)
+        case Created(conversation: MiniConversation)
+        case CreatedAndLoaded(conversation: Conversation)
         case NotCreated(type: ConversationType, user: Profile, aboutShout: Shout?)
         
         var shout: Shout? {
             switch self {
-            case .Created(let conversation):
+            case .Created:
+                return nil
+            case .CreatedAndLoaded(let conversation):
                 return conversation.shout
             case .NotCreated(_, _, let aboutShout):
                 return aboutShout
+            }
+        }
+        
+        var conversationInterface: ConversationInterface? {
+            switch self {
+            case .CreatedAndLoaded(let conversation): return conversation
+            case .Created(let conversation): return conversation
+            default: return nil
             }
         }
     }
@@ -106,7 +117,7 @@ final class ConversationViewModel {
             .subscribe {[weak self] (event) in
                 switch event {
                 case .Next(let conversation, _):
-                    self?.conversation.value = .Created(conversation: conversation)
+                    self?.conversation.value = .CreatedAndLoaded(conversation: conversation)
                     self?.fetchMessages()
                     self?.removeFromSending(message)
                 case .Error(let error):
@@ -120,15 +131,16 @@ final class ConversationViewModel {
     }
     
     func deleteConversation() -> Observable<Void> {
-        guard case .Created(let conversation) = conversation.value else {
-            return Observable.empty()
+        switch conversation.value {
+        case .NotCreated: return Observable.empty()
+        case .Created(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
+        case .CreatedAndLoaded(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
         }
-        return APIChatsService.deleteConversation(conversation)
     }
     
     func fetchMessages() {
-        guard case .Created(let conversation) = self.conversation.value else { return }
-        APIChatsService.getMessagesForConversation(conversation).subscribeNext {[weak self] (response) -> Void in
+        guard let conversation = conversation.value.conversationInterface else { return }
+        APIChatsService.getMessagesForConversationWithId(conversation.id).subscribeNext {[weak self] (response) -> Void in
             let messages : [Message] = response.results
             
             self?.nextPageParams = response.beforeParamsString()
@@ -142,8 +154,17 @@ final class ConversationViewModel {
         registerForTyping()
     }
     
+    func fetchFullConversation() {
+        guard case .Created(let conversation) = self.conversation.value else { return }
+        APIChatsService.conversationWithId(conversation.id)
+            .subscribeNext {[weak self] (conversation) in
+                self?.conversation.value = .CreatedAndLoaded(conversation: conversation)
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
     func registerForTyping() {
-        guard case .Created(let conversation) = conversation.value else { return }
+        guard let conversation = conversation.value.conversationInterface else { return }
         nowTyping.asObservable()
             .window(timeSpan: 3, count: 10000, scheduler: MainScheduler.instance)
             .flatMapLatest({ (obs) -> Observable<Bool> in
@@ -155,10 +176,10 @@ final class ConversationViewModel {
     }
     
     func triggerLoadMore() {
-        guard case .Created(let conversation) = conversation.value else { return }
+        guard let conversation = conversation.value.conversationInterface else { return }
         loadMoreState.value = .Loading
         if sortedMessages.last != nil {
-            APIChatsService.moreMessagesForConversation(conversation, nextPageParams:  self.nextPageParams)
+            APIChatsService.moreMessagesForConversationWithId(conversation.id, nextPageParams:  self.nextPageParams)
                 .subscribe(onNext: { [weak self] (response) -> Void in
                     let messages : [Message] = response.results
                     
@@ -278,14 +299,14 @@ final class ConversationViewModel {
         
         let msg = Message.messageWithText(text)
         
-        guard case .Created(let conversation) = conversation.value else {
+        guard let conversation = conversation.value.conversationInterface else {
             createConversation(msg)
             return true
         }
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: conversation)
+        APIChatsService.replyWithMessage(msg, onConversationWithId: conversation.id)
             .subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
                 self?.removeFromSending(msg)
@@ -307,13 +328,13 @@ final class ConversationViewModel {
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: conversation)
+        APIChatsService.replyWithMessage(msg, onConversationWithId: conversation.id)
             .doOnNext{[weak self] (message) in
                 guard let `self` = self else { return }
                 APIChatsService
                     .conversationWithId(conversation.id)
                     .subscribeNext{ (updatedConversation) in
-                        self.conversation.value = .Created(conversation: updatedConversation)
+                        self.conversation.value = .CreatedAndLoaded(conversation: updatedConversation)
                     }
                     .addDisposableTo(self.disposeBag)
             }

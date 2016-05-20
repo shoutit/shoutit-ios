@@ -107,7 +107,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return (user?.coverPath != nil) ? NSURL(string: user!.coverPath!) : nil
     }
     
-    var conversation: Conversation? { return nil }
+    var conversation: MiniConversation? { return nil }
     
     var hidesVerifyAccountButton: Bool {
         return detailedUser?.isActivated ?? user?.isActivated ?? true
