@@ -70,7 +70,7 @@ final class ConversationViewModel {
     }
     
     func createSocketObservable() {
-        guard case .Created(let conversation) = conversation.value else { return }
+        guard let conversation = conversation.value.conversationInterface else { return }
         if socketsConnected { return }
         socketsConnected = true
         socketsBag = DisposeBag()
@@ -89,6 +89,11 @@ final class ConversationViewModel {
                         .markMessageAsRead(msg)
                         .subscribeNext{}
                         .addDisposableTo(self.disposeBag)
+                }
+            }
+            if event.eventType() == .ConversationUpdate {
+                if let conversation: Conversation = event.object() {
+                    self.conversation.value = .CreatedAndLoaded(conversation: conversation)
                 }
             }
         }.addDisposableTo(socketsBag!)
@@ -321,7 +326,7 @@ final class ConversationViewModel {
     func sendMessageWithAttachment(attachment: MessageAttachment) -> Bool {
         let msg = Message.messageWithAttachment(attachment)
         
-        guard case .Created(let conversation) = conversation.value else {
+        guard let conversation = conversation.value.conversationInterface else {
             createConversation(msg)
             return true
         }
