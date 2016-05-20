@@ -544,8 +544,8 @@ extension ProfileCollectionViewController {
             return
         }
         
-        if let conv = viewModel.conversation {
-            self.flowDelegate?.showConversation(conv)
+        if let conversation = viewModel.conversation {
+            flowDelegate?.showConversation(.Created(conversation: conversation))
             return
         }
         
@@ -560,8 +560,6 @@ extension ProfileCollectionViewController {
             return
         }
         
-        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil, display: ConversationDescription.nilDescription, subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
-        
-        self.flowDelegate?.showConversation(conversation)
+        flowDelegate?.showConversation(.NotCreated(type: .Chat, user: profile, aboutShout: nil))
     }
 }

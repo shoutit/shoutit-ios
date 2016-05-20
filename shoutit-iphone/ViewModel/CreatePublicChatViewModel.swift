@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class CreatePublicChatViewModel {
+class CreatePublicChatViewModel: ConversationSubjectEditable {
     
     enum OperationStatus {
         case Ready
@@ -19,9 +19,9 @@ class CreatePublicChatViewModel {
     
     // state
     private(set) var sections: [CreatePublicChatSectionViewModel] = []
-    var chatSubject: String = ""
     
-    // upload
+    // ConversationSubjectEditable
+    var chatSubject: String = ""
     private(set) var imageUploadTask: MediaUploadingTask?
     lazy var mediaUploader: MediaUploader = {
         return MediaUploader(bucket: .TagImage)
@@ -42,7 +42,6 @@ class CreatePublicChatViewModel {
     func createChat() -> Observable<OperationStatus> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
-            
             do {
                 try self.validateFields()
                 observer.onNext(.Progress(show: true))
@@ -81,16 +80,6 @@ class CreatePublicChatViewModel {
     }
     
     // MARK: - Convenience
-    
-    private func validateFields() throws {
-        if let task = imageUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
-        }
-        
-        if chatSubject.utf16.count < 1 {
-            throw LightError(userMessage: NSLocalizedString("Please enter chat subject", comment: ""))
-        }
-    }
     
     private func composeParameters() -> CreatePublicChatParams {
         var address: Address!

@@ -149,7 +149,7 @@ final class ConversationListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let cells = viewModel.pager.getCellViewModels() else { return }
         let conversation = cells[indexPath.row]
-        flowDelegate?.showConversation(conversation)
+        flowDelegate?.showConversation(.Created(conversation: conversation))
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

@@ -10,17 +10,12 @@ import UIKit
 
 struct ConversationUpdateParams: Params {
     let subject : String?
-    let icon: String? = nil
+    let icon: String?
     
     var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
-        
         params["subject"] = subject
-        
-        if icon != nil {
-            params["icon"] = icon
-        }
-        
+        params["icon"] = icon
         return params
     }
 }

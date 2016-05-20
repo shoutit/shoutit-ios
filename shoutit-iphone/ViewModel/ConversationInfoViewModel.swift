@@ -9,13 +9,72 @@
 import UIKit
 import RxSwift
 
-class ConversationInfoViewModel: AnyObject {
+class ConversationInfoViewModel: ConversationSubjectEditable {
+    
+    enum OperationStatus {
+        case Ready
+        case Error(error: ErrorType)
+        case Progress(show: Bool)
+    }
     
     private let addButtonCellIdentifier = "ChatInfoAddButtonCell"
     private let destructiveButtonCellIdentifier = "ChatInfoDescructiveButtonCell"
     private let infoCellIdentifier = "ChatInfoCell"
     
-    var conversation: Conversation!
+    // data
+    private(set) var conversation: Conversation
+    
+    // ConversationSubjectEditable
+    var chatSubject: String = ""
+    private(set) var imageUploadTask: MediaUploadingTask?
+    lazy var mediaUploader: MediaUploader = {
+        return MediaUploader(bucket: .TagImage)
+    }()
+    
+    init(conversation: Conversation) {
+        self.conversation = conversation
+    }
+    
+    // MARK: - Actions
+    
+    func uploadImageAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+        let task = mediaUploader.uploadAttachment(attachment)
+        imageUploadTask = task
+        return task
+    }
+    
+    func saveChat() -> Observable<OperationStatus> {
+        
+        return Observable.create{[unowned self] (observer) -> Disposable in
+            do {
+                try self.validateFields()
+                observer.onNext(.Progress(show: true))
+                
+                return APIChatsService
+                    .updateConversationWithId(self.conversation.id, params: self.composeParameters())
+                    .subscribe { [weak self] (event) in
+                        observer.onNext(.Progress(show: false))
+                        switch event {
+                        case .Next(let conversation):
+                            self?.conversation = conversation
+                            observer.onNext(.Ready)
+                        case .Error(let error):
+                            observer.onNext(.Error(error: error))
+                            observer.onCompleted()
+                        case .Completed:
+                            observer.onCompleted()
+                        }
+                    }
+            }
+            catch (let error) {
+                observer.onNext(.Error(error: error))
+                observer.onCompleted()
+            }
+            return NopDisposable.instance
+        }
+    }
+    
+    // MARK: - Table view data
     
     func numberOfSections() -> Int {
         return 3
@@ -31,7 +90,6 @@ class ConversationInfoViewModel: AnyObject {
                 return 2
             default:
                 return 0
-            
         }
     }
     
@@ -56,14 +114,12 @@ class ConversationInfoViewModel: AnyObject {
         switch section {
         case 0:
             return NSLocalizedString("ATTACHMENTS", comment: "")
-            
         case 1:
             return NSLocalizedString("MEMBERS", comment: "")
         default:
             return ""
         }
     }
-    
     
     func fillCell(cell: UITableViewCell, indexPath: NSIndexPath) {
         
@@ -99,7 +155,6 @@ class ConversationInfoViewModel: AnyObject {
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = NSLocalizedString("Clear Chat", comment: "")
-                
             case 1:
                 cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
             default:
@@ -107,13 +162,21 @@ class ConversationInfoViewModel: AnyObject {
             }
         default:
             break
-        
         }
     }
+}
+
+private extension ConversationInfoViewModel {
     
+    func composeParameters() -> ConversationUpdateParams {
+        let params = ConversationUpdateParams(subject: chatSubject,
+                                              icon: imageUploadTask?.attachment.remoteURL?.absoluteString)
+        return params
+    }
 }
 
 extension ConversationInfoViewModel {
+    
     func addParticipantToConversation(profile: Profile) -> Observable<Void> {
         return APIChatsService.addMemberToConversationWithId(self.conversation.id, profile: profile)
     }

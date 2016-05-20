@@ -73,7 +73,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         layoutInsets()
     }
     
@@ -125,10 +124,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
         
         viewModel.typingUsers.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (profile) -> Void in
-            guard let profile = profile else {
-                return
-            }
-            
+            guard let profile = profile else { return }
             self?.typingIndicatorView?.insertUsername(profile.username)
         }.addDisposableTo(disposeBag)
         
@@ -141,12 +137,24 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
         
         viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
-            }
+            guard let controller = controller else { return }
             self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
-            
         }.addDisposableTo(disposeBag)
+        
+        viewModel.conversation.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (conversationExistance) in
+                switch conversationExistance {
+                case .Created(let conversation):
+                    self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
+                    if let moreButtonItem = self?.navigationItem.rightBarButtonItems?.first where conversation.type() == .PublicChat {
+                        self?.navigationItem.rightBarButtonItems = [moreButtonItem]
+                    }
+                case .NotCreated:
+                    self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = false}
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
     
     private func setupAttachmentManager() {
@@ -359,7 +367,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
         
         let attributedText : NSAttributedString
-        if viewModel.conversation.value.id == "" {
+        if case .NotCreated = viewModel.conversation.value {
             attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
         } else if viewModel.loadMoreState.value == .ReadyToLoad {
             attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
@@ -378,8 +386,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func moreAction() {
-        
-        self.flowDelegate?.showConversationInfo(viewModel.conversation.value)
+        guard case .Created(let conversation) = viewModel.conversation.value else { assertionFailure(); return; }
+        self.flowDelegate?.showConversationInfo(conversation)
     }
     
     func deleteAction() {
@@ -391,24 +399,36 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func videoCall() {
-        if let profile = viewModel.conversation.value.coParticipant() {
+        guard case .Created(let conversation) = viewModel.conversation.value else { return }
+        if let profile = conversation.coParticipant() {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
         }
         
-        if let user = viewModel.conversation.value.shout?.user {
+        if let user = conversation.shout?.user {
             self.flowDelegate?.startVideoCallWithProfile(user)
         }
     }
 }
 
 extension ConversationViewController {
+    
     func showSendingMessage() {
-        titleView.setTitle(viewModel.conversation.value.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        switch viewModel.conversation.value {
+        case let .Created(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        case let .NotCreated(_, user, _):
+            titleView.setTitle(user.name, message: NSLocalizedString("Sending message", comment: ""))
+        }
     }
     
     func hideSendingMessage() {
-        titleView.setTitle(viewModel.conversation.value.firstLineText()?.string, message: nil)
+        switch viewModel.conversation.value {
+        case let .Created(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        case let .NotCreated(_, user, _):
+            titleView.setTitle(user.name, message: nil)
+        }
     }
 }
 

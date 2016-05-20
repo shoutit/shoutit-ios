@@ -114,17 +114,11 @@ class ShowDetailContainerViewController: UIViewController {
     func startChat() {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         guard let user = viewModel.shout.user else { return }
-        guard let conversations = self.viewModel.shout.conversations where conversations.count > 0 else {
-            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(user)], lastMessage: nil, unreadMessagesCount: 0, shout: viewModel.shout, readby: nil, display: ConversationDescription.nilDescription, subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
-            self.flowDelegate?.showConversation(conversation)
-            return
+        if let conversation = viewModel.shout.conversations?.first {
+            flowDelegate?.showConversation(.Created(conversation: conversation))
+        } else {
+            flowDelegate?.showConversation(.NotCreated(type: .AboutShout, user: user, aboutShout: viewModel.shout))
         }
-        
-        guard conversations.count == 1 else {
-            return
-        }
-        
-        self.flowDelegate?.showConversation(conversations.first!)
     }
     
     private func reportAction() {
@@ -175,10 +169,7 @@ class ShowDetailContainerViewController: UIViewController {
                 default:
                     break
                 }
-
             }).addDisposableTo(self.disposeBag)
-         
-           
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)

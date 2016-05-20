@@ -170,7 +170,6 @@ extension Conversation {
         guard let profileId = profileId else {
             return false
         }
-        
         return self.admins.contains(profileId)
     }
 }

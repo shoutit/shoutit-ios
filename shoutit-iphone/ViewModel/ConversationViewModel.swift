@@ -20,7 +20,22 @@ protocol ConversationPresenter: class {
 }
 
 final class ConversationViewModel {
-    let conversation: Variable<Conversation>!
+    
+    enum ConversationExistance {
+        case Created(conversation: Conversation)
+        case NotCreated(type: ConversationType, user: Profile, aboutShout: Shout?)
+        
+        var shout: Shout? {
+            switch self {
+            case .Created(let conversation):
+                return conversation.shout
+            case .NotCreated(_, _, let aboutShout):
+                return aboutShout
+            }
+        }
+    }
+    
+    let conversation: Variable<ConversationExistance>
     
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
@@ -38,36 +53,31 @@ final class ConversationViewModel {
     private var socketsBag : DisposeBag?
     private var socketsConnected = false
     
-    init(conversation: Conversation, delegate: ConversationPresenter? = nil) {
+    init(conversation: ConversationExistance, delegate: ConversationPresenter? = nil) {
         self.conversation = Variable(conversation)
         self.delegate = delegate
     }
     
     func createSocketObservable() {
-        
-        if socketsConnected {
-            return
-        }
-        
+        guard case .Created(let conversation) = conversation.value else { return }
+        if socketsConnected { return }
         socketsConnected = true
-        
         socketsBag = DisposeBag()
         // handle presence/typing/join/left
-        Account.sharedInstance.pusherManager.conversationObservable(self.conversation.value).subscribeNext { (event) -> Void in
+        Account.sharedInstance.pusherManager.conversationObservable(conversation).subscribeNext { (event) -> Void in
             if event.eventType() == .UserTyping {
                 if let user : TypingInfo = event.object() {
                     self.typingUsers.onNext(user)
                 }
             }
-            
             if event.eventType() == .NewMessage {
                 if let msg : Message = event.object() {
                     self.appendMessages([msg])
                     
-                    APIChatsService.markMessageAsRead(msg).subscribeNext {
-                        
-                    }.addDisposableTo(self.disposeBag)
-                    
+                    APIChatsService
+                        .markMessageAsRead(msg)
+                        .subscribeNext{}
+                        .addDisposableTo(self.disposeBag)
                 }
             }
         }.addDisposableTo(socketsBag!)
@@ -79,62 +89,46 @@ final class ConversationViewModel {
     }
     
     
-    func createConversation(message: Message) {
-        
+    private func createConversation(message: Message) {
+        guard case .NotCreated(_, let user, let shout) = conversation.value else { return }
         self.addToSending(message)
-        
-        if let shout = self.conversation.value.shout {
-            createConversationAboutShout(shout, message: message)
-            return
+        let observable: Observable<Message>
+        if let shout = shout {
+            observable = APIChatsService.startConversationAboutShout(shout, message: message)
+        } else {
+            observable = APIChatsService.startConversationWithUsername(user.username, message: message)
         }
-        
-        guard let username = self.conversation.value.users?.first?.value.username else {
-            debugPrint("could not create conversation without username")
-            return
-        }
-        
-        createConversationWithUsername(username, message: message)
-    }
-    
-    func createConversationAboutShout(shout: Shout, message: Message) {
-        APIChatsService.startConversationAboutShout(shout, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
-            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription.nilDescription, subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
-            self?.conversation.value = newConversation
-            self?.fetchMessages()
-            self?.removeFromSending(message)
-        }, onError: { [weak self] (error) -> Void in
-            debugPrint(error)
-            self?.removeFromSending(message)
-        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-    }
-    
-    func createConversationWithUsername(username: String, message: Message) {
-        APIChatsService.startConversationWithUsername(username, message: message).subscribe(onNext: { [weak self] (msg) -> Void in
-            let newConversation = Conversation(id: msg.conversationId!, createdAt: 0, modifiedAt: nil, apiPath: nil, webPath: nil, typeString: "chat", users: self?.conversation.value.users ?? [], lastMessage: msg, unreadMessagesCount: 0, shout: self?.conversation.value.shout, readby: self?.conversation.value.readby, display: ConversationDescription.nilDescription, subject: nil, blocked: [], admins: [], icon: nil, attachmentCount: AttachmentCount.zeroCount)
-            self?.conversation.value = newConversation
-            self?.fetchMessages()
-            self?.removeFromSending(msg)
-        }, onError: { [weak self] (error) -> Void in
-                debugPrint(error)
-                self?.removeFromSending(message)
-        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+        observable
+            .flatMapFirst { (message) -> Observable<(Conversation, Message)> in
+                let fetchConversationObservable = APIChatsService.conversationWithId(message.conversationId!)
+                return Observable.zip(fetchConversationObservable, Observable.just(message)) { ($0, $1) }
+            }
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let conversation, _):
+                    self?.conversation.value = .Created(conversation: conversation)
+                    self?.fetchMessages()
+                    self?.removeFromSending(message)
+                case .Error(let error):
+                    debugPrint(error)
+                    self?.removeFromSending(message)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
     
     func deleteConversation() -> Observable<Void> {
-        
-        if conversation.value.id == "" {
+        guard case .Created(let conversation) = conversation.value else {
             return Observable.empty()
         }
-        
-        return APIChatsService.deleteConversation(self.conversation.value)
+        return APIChatsService.deleteConversation(conversation)
     }
     
     func fetchMessages() {
-        if self.conversation.value.id == "" {
-            return
-        }
-        
-        APIChatsService.getMessagesForConversation(self.conversation.value).subscribeNext {[weak self] (response) -> Void in
+        guard case .Created(let conversation) = self.conversation.value else { return }
+        APIChatsService.getMessagesForConversation(conversation).subscribeNext {[weak self] (response) -> Void in
             let messages : [Message] = response.results
             
             self?.nextPageParams = response.beforeParamsString()
@@ -149,22 +143,22 @@ final class ConversationViewModel {
     }
     
     func registerForTyping() {
+        guard case .Created(let conversation) = conversation.value else { return }
         nowTyping.asObservable()
             .window(timeSpan: 3, count: 10000, scheduler: MainScheduler.instance)
             .flatMapLatest({ (obs) -> Observable<Bool> in
                 return obs.take(1)
             })
             .subscribeNext { _ in
-                Account.sharedInstance.pusherManager.sendTypingEventToConversation(self.conversation.value)
+                Account.sharedInstance.pusherManager.sendTypingEventToConversation(conversation)
             }.addDisposableTo(disposeBag)
-
     }
     
     func triggerLoadMore() {
+        guard case .Created(let conversation) = conversation.value else { return }
         loadMoreState.value = .Loading
-        
         if sortedMessages.last != nil {
-            APIChatsService.moreMessagesForConversation(self.conversation.value, nextPageParams:  self.nextPageParams)
+            APIChatsService.moreMessagesForConversation(conversation, nextPageParams:  self.nextPageParams)
                 .subscribe(onNext: { [weak self] (response) -> Void in
                     let messages : [Message] = response.results
                     
@@ -284,14 +278,14 @@ final class ConversationViewModel {
         
         let msg = Message.messageWithText(text)
         
-        if self.conversation.value.id == "" {
-            self.createConversation(msg)
+        guard case .Created(let conversation) = conversation.value else {
+            createConversation(msg)
             return true
         }
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value)
+        APIChatsService.replyWithMessage(msg, onConversation: conversation)
             .subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
                 self?.removeFromSending(msg)
@@ -306,20 +300,20 @@ final class ConversationViewModel {
     func sendMessageWithAttachment(attachment: MessageAttachment) -> Bool {
         let msg = Message.messageWithAttachment(attachment)
         
-        if self.conversation.value.id == "" {
-            self.createConversation(msg)
+        guard case .Created(let conversation) = conversation.value else {
+            createConversation(msg)
             return true
         }
         
         self.addToSending(msg)
         
-        APIChatsService.replyWithMessage(msg, onConversation: self.conversation.value)
+        APIChatsService.replyWithMessage(msg, onConversation: conversation)
             .doOnNext{[weak self] (message) in
                 guard let `self` = self else { return }
                 APIChatsService
-                    .conversationWithId(self.conversation.value.id)
-                    .subscribeNext{ (conversation) in
-                        self.conversation.value = conversation
+                    .conversationWithId(conversation.id)
+                    .subscribeNext{ (updatedConversation) in
+                        self.conversation.value = .Created(conversation: updatedConversation)
                     }
                     .addDisposableTo(self.disposeBag)
             }
@@ -336,9 +330,7 @@ final class ConversationViewModel {
     
     func removeFromSending(msg: Message) {
         var copy = self.sendingMessages.value
-        
         copy.removeElementIfExists(msg)
-        
         self.sendingMessages.value = copy
     }
     

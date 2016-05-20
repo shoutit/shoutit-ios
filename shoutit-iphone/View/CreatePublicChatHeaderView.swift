@@ -22,7 +22,7 @@ class CreatePublicChatHeaderView: UIView {
         case Uploaded
     }
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel?
     @IBOutlet weak var chatSubjectTextField: FormTextField!
     
     // photo

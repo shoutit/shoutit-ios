@@ -10,7 +10,7 @@ import Foundation
 import MWPhotoBrowser
 
 protocol ChatDisplayable {
-    func showConversation(conversation: Conversation) -> Void
+    func showConversation(conversation: ConversationViewModel.ConversationExistance) -> Void
     func showConversationInfo(conversation: Conversation) -> Void
     func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
@@ -22,7 +22,7 @@ protocol ChatDisplayable {
 
 extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate, Self: ConversationInfoViewControllerFlowDelegate {
     
-    func showConversation(conversation: Conversation) {
+    func showConversation(conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()
         
         controller.flowDelegate = self
@@ -43,12 +43,9 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
     
     func showConversationInfo(conversation: Conversation) -> Void {
         let controller = Wireframe.conversationInfoController()
-        
+        controller.viewModel = ConversationInfoViewModel(conversation: conversation)
         controller.flowDelegate = self
-        controller.conversation = conversation
-        
         self.navigationController.showViewController(controller, sender: nil)
-        
     }
     
     func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: ((type: PickerAttachmentType) -> Void)) -> Void {
