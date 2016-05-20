@@ -11,14 +11,14 @@ import UIKit
 final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var firstLineLabel: UILabel!
     @IBOutlet weak var secondLineLabel: UILabel!
-    @IBOutlet weak var thirdLineLabel: UILabel?
+    @IBOutlet weak var thirdLineLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var participantsImageView: UIImageView!
 
     func bindWithConversation(conversation: MiniConversation) {
-        self.firstLineLabel.attributedText = conversation.firstLineText()
-        self.secondLineLabel.attributedText = conversation.secondLineText()
-        self.thirdLineLabel?.attributedText = conversation.thirdLineText()
+        self.firstLineLabel.text = conversation.display.title
+        self.secondLineLabel.text = conversation.display.subtitle
+        self.thirdLineLabel.text = conversation.display.lastMessageSummary
         
         if let modifiedEpoch = conversation.modifiedAt {
             self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(modifiedEpoch)

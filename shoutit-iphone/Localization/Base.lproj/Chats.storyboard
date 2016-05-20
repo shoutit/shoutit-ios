@@ -92,17 +92,26 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Preview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBG-ve-pv0">
+                                            <rect key="frame" x="70" y="46" width="113" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cTb-jK-D0D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fMa-98-BMN" secondAttribute="trailing" constant="4" id="3da-kS-wwX"/>
                                         <constraint firstItem="Ejl-rm-dWM" firstAttribute="leading" secondItem="phx-3b-uwz" secondAttribute="trailing" constant="12" id="4jD-Qt-Ny0"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fMa-98-BMN" secondAttribute="trailing" constant="10" id="Ggt-cr-3Ci"/>
                                         <constraint firstItem="cTb-jK-D0D" firstAttribute="top" secondItem="phx-3b-uwz" secondAttribute="top" id="Oej-sT-OQa"/>
+                                        <constraint firstItem="rBG-ve-pv0" firstAttribute="top" secondItem="Ejl-rm-dWM" secondAttribute="bottom" id="Vvr-32-HaW"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rBG-ve-pv0" secondAttribute="trailing" constant="16" id="Xm3-bv-Ifj"/>
                                         <constraint firstItem="fMa-98-BMN" firstAttribute="leading" secondItem="phx-3b-uwz" secondAttribute="trailing" constant="12" id="Xr7-zQ-ezY"/>
                                         <constraint firstAttribute="trailing" secondItem="cTb-jK-D0D" secondAttribute="trailing" constant="10" id="Yzg-sn-9Cl"/>
                                         <constraint firstItem="phx-3b-uwz" firstAttribute="centerY" secondItem="fZ0-oh-1Yu" secondAttribute="centerY" id="chT-tK-yVV"/>
                                         <constraint firstItem="Ejl-rm-dWM" firstAttribute="top" secondItem="fMa-98-BMN" secondAttribute="bottom" priority="999" id="fia-k4-DDq"/>
-                                        <constraint firstItem="Ejl-rm-dWM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cTb-jK-D0D" secondAttribute="bottom" constant="3" id="jdA-rP-4e5"/>
+                                        <constraint firstItem="Ejl-rm-dWM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cTb-jK-D0D" secondAttribute="bottom" id="jdA-rP-4e5"/>
+                                        <constraint firstItem="rBG-ve-pv0" firstAttribute="leading" secondItem="fMa-98-BMN" secondAttribute="leading" id="k6g-Sa-P4Q"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ejl-rm-dWM" secondAttribute="trailing" constant="16" id="m2n-jh-hui"/>
                                         <constraint firstItem="phx-3b-uwz" firstAttribute="leading" secondItem="fZ0-oh-1Yu" secondAttribute="leading" constant="10" id="nJ3-Rw-KEO"/>
                                         <constraint firstItem="fMa-98-BMN" firstAttribute="top" secondItem="phx-3b-uwz" secondAttribute="top" constant="-2" id="rI1-mp-3z8"/>
@@ -113,6 +122,7 @@
                                     <outlet property="firstLineLabel" destination="fMa-98-BMN" id="kHa-HS-FnC"/>
                                     <outlet property="participantsImageView" destination="phx-3b-uwz" id="evN-bI-8aa"/>
                                     <outlet property="secondLineLabel" destination="Ejl-rm-dWM" id="rdG-Xr-Vo3"/>
+                                    <outlet property="thirdLineLabel" destination="rBG-ve-pv0" id="X7z-in-rz6"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupConversationCellIdentifier" rowHeight="88" id="Fjn-uc-D4E" customClass="ConversationTableViewCell" customModule="Shoutit" customModuleProvider="target">
@@ -144,6 +154,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-oU-PHB">
                                             <rect key="frame" x="70" y="38" width="113" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oR2-Wf-ZJO">
