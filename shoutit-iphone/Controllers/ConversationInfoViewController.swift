@@ -15,6 +15,7 @@ protocol ConversationInfoViewControllerFlowDelegate: class, ChatDisplayable, Sho
 class ConversationInfoViewController: UITableViewController {
 
     private let disposeBag = DisposeBag()
+    private var socketsBag : DisposeBag?
     
     // navigation
     weak var flowDelegate: ConversationInfoViewControllerFlowDelegate?
@@ -47,6 +48,7 @@ class ConversationInfoViewController: UITableViewController {
         super.viewDidLoad()
         precondition(viewModel != nil)
         fillViews()
+        registerForConversationUpdates()
         setupRX()
     }
     
@@ -69,13 +71,33 @@ class ConversationInfoViewController: UITableViewController {
                 self?.viewModel.chatSubject = text
             }
             .addDisposableTo(disposeBag)
+        
+        
+        
+    }
+    
+    func registerForConversationUpdates() {
+        socketsBag = DisposeBag()
+        
+        Account.sharedInstance.pusherManager.conversationObservable(self.viewModel.conversation).subscribeNext { (event) -> Void in
+            if event.eventType() == .ConversationUpdate {
+                if let conversation: Conversation = event.object() {
+                    self.viewModel.conversation = conversation
+                    self.tableView.reloadData()
+                    self.fillViews()
+                }
+            }
+        }.addDisposableTo(socketsBag!)
     }
 
     private func fillViews() {
         
         // fill footer
-        let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(viewModel.conversation.createdAt)
-        self.footerLabel.text = NSLocalizedString("Chat created by \(viewModel.conversation)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
+        let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(viewModel.conversation.createdAt ?? 0)
+        
+        if let creator = viewModel.conversation.creator {
+            self.footerLabel.text = NSLocalizedString("Chat created by \(creator.name)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
+        }
         
         guard case .PublicChat = viewModel.conversation.type() else {
             self.tableView.tableHeaderView = nil
@@ -314,6 +336,7 @@ class ConversationInfoViewController: UITableViewController {
             case .Next(_):
                 let profileName = profile.fullName()
                 self.showSuccessMessage(NSLocalizedString("\(profileName) can now administrate this chat", comment: ""))
+                self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)
             default:
@@ -329,6 +352,7 @@ class ConversationInfoViewController: UITableViewController {
             case .Next(_):
                 let profileName = profile.fullName()
                 self.showSuccessMessage(NSLocalizedString("You've successfully blocked \(profileName)", comment: ""))
+                self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)
             default:
@@ -343,6 +367,7 @@ class ConversationInfoViewController: UITableViewController {
             case .Next(_):
                 let profileName = profile.fullName()
                 self.showSuccessMessage(NSLocalizedString("You've successfully unblocked \(profileName)", comment: ""))
+                self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)
             default:

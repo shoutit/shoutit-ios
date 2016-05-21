@@ -276,6 +276,7 @@ extension PusherClient {
             channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.LeftChat.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.ConversationUpdate.rawValue) {observer.onNext($0)}
             
             return cancel
         })

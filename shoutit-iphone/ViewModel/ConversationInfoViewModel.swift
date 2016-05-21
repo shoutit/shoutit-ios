@@ -22,7 +22,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
     private let infoCellIdentifier = "ChatInfoCell"
     
     // data
-    private(set) var conversation: Conversation
+    var conversation: Conversation
     
     // ConversationSubjectEditable
     var chatSubject: String = ""

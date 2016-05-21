@@ -13,7 +13,7 @@ import Curry
 struct Conversation: ConversationInterface {
     
     let id: String
-    let createdAt: Int
+    let createdAt: Int?
     let modifiedAt: Int?
     let apiPath: String?
     let webPath: String?
@@ -27,6 +27,7 @@ struct Conversation: ConversationInterface {
     let blocked: [String]
     let admins: [String]
     let attachmentCount: AttachmentCount
+    let creator: MiniProfile?
 }
 
 extension Conversation: Decodable {
@@ -34,7 +35,7 @@ extension Conversation: Decodable {
     static func decode(j: JSON) -> Decoded<Conversation> {
         let a = curry(Conversation.init)
             <^> j <| "id"
-            <*> j <| "created_at"
+            <*> j <|? "created_at"
             <*> j <|? "modified_at"
         let b = a
             <*> j <|? "api_url"
@@ -53,6 +54,7 @@ extension Conversation: Decodable {
             <*> j <|| "admins"
         let g = f
             <*> j <| "attachments_count"
+            <*> j <|? "creator"
         return g
     }
 

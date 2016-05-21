@@ -13,7 +13,7 @@ import Curry
 struct MiniProfile {
     let id: String
     let username: String
-    let name: String
+    let name: String?
 }
 
 extension MiniProfile: Decodable {
@@ -22,6 +22,6 @@ extension MiniProfile: Decodable {
         return curry(MiniProfile.init)
             <^> j <| "id"
             <*> j <| "username"
-            <*> j <| "name"
+            <*> j <|? "name"
     }
 }

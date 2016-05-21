@@ -15,7 +15,7 @@ struct MiniConversation: ConversationInterface {
     let typeString: String
     let unreadMessagesCount: Int
     let display: ConversationDescription
-    let creator: MiniProfile
+    let creator: MiniProfile?
     let modifiedAt: Int?
 }
 
@@ -28,7 +28,7 @@ extension MiniConversation: Decodable {
             <*> j <| "unread_messages_count"
         return a
             <*> j <| "display"
-            <*> j <| "creator"
+            <*> j <|? "creator"
             <*> j <|? "modified_at"
     }
 }

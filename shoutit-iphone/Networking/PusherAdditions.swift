@@ -41,6 +41,7 @@ extension PTPusherEvent {
             return object
         case .Failure(let decodeError):
             debugPrint("Could not parse pusher object \(decodeError)")
+            debugPrint(self.data)
             return nil
         }
     }
