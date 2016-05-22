@@ -188,6 +188,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
+            self?.showError(error)
             self?.tableView.reloadData()
         }, onCompleted: { () -> Void in
                 

@@ -17,6 +17,7 @@ struct Notification: Decodable, Hashable, Equatable {
     
     let type: String
     let object:  AttachedObject?
+    let display: Display?
     
     var hashValue: Int {
         get {
@@ -32,6 +33,7 @@ struct Notification: Decodable, Hashable, Equatable {
         let b = a
             <*> j <| "type"
             <*> j <|? "attached_object"
+            <*> j <|? "display"
         
         return b
     }
@@ -41,100 +43,39 @@ struct Notification: Decodable, Hashable, Equatable {
     }
     
     func readCopy() -> Notification {
-        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object)
+        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: nil)
     }
 }
 
 extension Notification {
     func attributedText() -> NSAttributedString? {
-        if type == "new_listen" {
-            return followAttributedText()
-        }
         
-        if type == "new_message" {
-            return messageAttributedText()
+        if let display = self.display {
+            let attributed = NSMutableAttributedString(string: display.text)
+            
+            guard let ranges = display.ranges else {
+                return attributed
+            }
+            
+            for range in ranges {
+                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: NSMakeRange(range.offset, range.length))
+            }
+            
+            return attributed
         }
-        
+
         return nil
     }
     
     func imageURL() -> NSURL? {
-        if type == "new_listen" {
-            return followImageURL()
-        }
-        if type == "new_message" {
-            return messageImageURL()
+        
+        if let display = self.display, path = display.image {
+            return NSURL(string: path)
         }
         
         return nil
     }
     
-    func followAttributedText() -> NSAttributedString? {
-        
-        let base = NSLocalizedString("%%x Listened to you", comment: "")
-        
-        var name = NSLocalizedString("Someone", comment: "")
-        
-        if let profile = object?.profile {
-           name = profile.name
-        }
-        
-        let text = base.stringByReplacingOccurrencesOfString("%%x", withString: name)
-        
-        let attributedString = NSMutableAttributedString(string: text)
-        
-        let range = (text as NSString).rangeOfString(name)
-        
-        attributedString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: range)
-        
-        return attributedString
-    }
-    
-    func messageAttributedText() -> NSAttributedString? {
-        
-        let base = NSLocalizedString("%%x: %%mm", comment: "")
-        
-        var name = NSLocalizedString("Someone", comment: "")
-        
-        if let profile = object?.message?.user {
-            name = profile.name
-        }
-        
-        var text = base.stringByReplacingOccurrencesOfString("%%x", withString: name)
-        
-        var msgText : String? = nil
-        
-        if let msg = object?.message, txt = msg.text {
-            msgText = txt
-        }
-        
-        text = text.stringByReplacingOccurrencesOfString("%%mm", withString: msgText ?? NSLocalizedString("Sends you message", comment: ""))
-        
-        let attributedString = NSMutableAttributedString(string: text)
-        
-        let range = (text as NSString).rangeOfString(name)
-        
-        attributedString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: range)
-        
-        return attributedString
-    }
-    
-    func messageImageURL() -> NSURL? {
-        
-        if let message = object?.message, imagePath = message.user?.imagePath {
-            return NSURL(string: imagePath)
-        }
-        
-        return nil
-    }
-    
-    func followImageURL() -> NSURL? {
-        if let profile = object?.profile, imagePath = profile.imagePath {
-            return NSURL(string: imagePath)
-        }
-        
-        return nil
-    }
 }
 
 func ==(lhs: Notification, rhs: Notification) -> Bool {

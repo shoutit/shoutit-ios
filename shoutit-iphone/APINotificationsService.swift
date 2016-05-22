@@ -25,7 +25,7 @@ final class APINotificationsService {
     static func markNotificationAsRead(notification: Notification) -> Observable<Notification> {
         let url = APIManager.baseURL + "/notifications/\(notification.id)/read"
         
-        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams())
+        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
     static func markAllAsRead() -> Observable<Void> {
