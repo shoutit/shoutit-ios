@@ -385,7 +385,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func moreAction() {
-        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { assertionFailure(); return; }
+        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
         self.flowDelegate?.showConversationInfo(conversation)
     }
     
