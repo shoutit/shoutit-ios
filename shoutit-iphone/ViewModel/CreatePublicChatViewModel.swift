@@ -71,12 +71,12 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
     private func createChildViewModels() -> [CreatePublicChatSectionViewModel] {
         guard let user = Account.sharedInstance.user else { fatalError() }
         let firstSectionCells: [CreatePublicChatCellViewModel] = [.Location(location: user.location)]
-        let secondSectionCells: [CreatePublicChatCellViewModel] = [.Selectable(option: .Facebook, selected: true), .Selectable(option: .Twitter, selected: false)]
+//        let secondSectionCells: [CreatePublicChatCellViewModel] = [.Selectable(option: .Facebook, selected: true), .Selectable(option: .Twitter, selected: false)]
         let firstSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("LOCATION", comment: "Create public chat section title"),
                                                             cellViewModels: firstSectionCells)
-        let secondSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("SHARING", comment: "Create public chat section title"),
-                                                            cellViewModels: secondSectionCells)
-        return [firstSection, secondSection]
+        // No Sharing in this version
+        /*        let secondSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("SHARING", comment: "Create public chat section title"), cellViewModels: secondSectionCells) */
+        return [firstSection /*, secondSection */]
     }
     
     // MARK: - Convenience

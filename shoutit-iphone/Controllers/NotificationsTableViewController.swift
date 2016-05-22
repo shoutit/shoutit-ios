@@ -177,15 +177,18 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         MBProgressHUD.showHUDAddedTo(self.tableView, animated: true)
         
-        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: { [weak self] (noti) -> Void in
-            MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
+        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: {
+            MBProgressHUD.hideAllHUDsForView(self.tableView, animated: true)
             
             if let idx = notificationIdx {
-                self?.messages.removeAtIndex(idx)
-                self?.messages.insert(noti, atIndex: idx)
+                
+                let readedCopy = notification.readCopy()
+                
+                self.messages.removeAtIndex(idx)
+                self.messages.insert(readedCopy, atIndex: idx)
             }
             
-            self?.tableView.reloadData()
+            self.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
             self?.showError(error)

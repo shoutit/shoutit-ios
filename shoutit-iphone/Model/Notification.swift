@@ -43,7 +43,7 @@ struct Notification: Decodable, Hashable, Equatable {
     }
     
     func readCopy() -> Notification {
-        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: nil)
+        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display)
     }
 }
 
