@@ -180,4 +180,8 @@ extension ConversationInfoViewModel {
     func addParticipantToConversation(profile: Profile) -> Observable<Void> {
         return APIChatsService.addMemberToConversationWithId(self.conversation.id, profile: profile)
     }
+    
+    func removeParticipantFromConversation(profile: Profile) -> Observable<Void> {
+        return APIChatsService.removeMemberFromConversationWithId(self.conversation.id, profile: profile)
+    }
 }

@@ -321,6 +321,10 @@ class ConversationInfoViewController: UITableViewController {
                 }))
             }
             
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (action) in
+                self.remove(profile)
+            }))
+            
             optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
             }))
             
@@ -328,6 +332,23 @@ class ConversationInfoViewController: UITableViewController {
         })
         
         self.navigationController?.showViewController(controller, sender: nil)
+    }
+    
+    func remove(profile: Profile) {
+        self.viewModel.removeParticipantFromConversation(profile).subscribe({ (event) in
+            
+            switch event {
+            case .Next(_):
+                let profileName = profile.fullName()
+                self.showSuccessMessage(NSLocalizedString("You've successfully removed \(profileName) from chat.", comment: ""))
+                self.navigationController?.popToViewController(self, animated: true)
+            case .Error(let error):
+                self.showError(error)
+            default:
+                break
+            }
+            
+        }).addDisposableTo(self.disposeBag)
     }
     
     func promoteToAdmin(profile: Profile) {

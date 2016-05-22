@@ -689,6 +689,9 @@
                         <rightBarButtonItems>
                             <barButtonItem image="more" id="NeR-WC-mNg">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="moreAction" destination="mhG-kG-xgO" id="WCf-PR-3AW"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem image="conversationVideoCall" id="60Z-y3-M4s">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

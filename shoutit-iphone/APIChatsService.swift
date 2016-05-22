@@ -26,6 +26,7 @@ final class APIChatsService {
     private static let conversationURL = APIManager.baseURL + "/conversations/*"
     private static let conversationReadURL = APIManager.baseURL + "/conversations/*/read"
     private static let conversationAddProfileURL = APIManager.baseURL + "/conversations/*/add_profile"
+    private static let conversationRemoveProfileURL = APIManager.baseURL + "/conversations/*/remove_profile"
     private static let conversationBlockedProfilesURL = APIManager.baseURL + "/conversations/*/blocked"
     
     private static let conversationUnblockProfileURL = APIManager.baseURL + "/conversations/*/unblock_profile"
@@ -112,6 +113,11 @@ final class APIChatsService {
     
     static func addMemberToConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
         let url = conversationAddProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+    }
+    
+    static func removeMemberFromConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+        let url = conversationRemoveProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
         return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
