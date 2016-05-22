@@ -227,6 +227,7 @@ extension PusherClient {
             channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewNotification.rawValue) {observer.onNext($0)}
             
             return AnonymousDisposable {
                 channel.unsubscribe()

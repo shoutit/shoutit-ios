@@ -18,6 +18,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"
     private let disposeBag = DisposeBag()
+    private var pusherBag : DisposeBag?
     private var messages : [Notification] = []
     
     var loading : Bool = false {
@@ -45,7 +46,30 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForNotificationUpdates()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        pusherBag = nil
+    }
+    
+    func registerForNotificationUpdates() {
+        pusherBag = DisposeBag()
+        
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { [weak self] (event) in
+            if event.eventType() == .NewNotification {
+                if let notification : Notification = event.object() {
+                    self?.insertMessage(notification)
+                }
+            }
+        }.addDisposableTo(pusherBag!)
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -97,6 +121,16 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         self.messages.appendContentsOf(messages)
         self.messages = self.messages.unique()
         self.tableView.reloadData()
+    }
+    
+    private func insertMessage(message: Notification) {
+        
+        self.tableView.beginUpdates()
+        
+        self.messages.insert(message, atIndex: 0)
+        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
+        
+        self.tableView.endUpdates()
     }
 
     // MARK: - Table view data source

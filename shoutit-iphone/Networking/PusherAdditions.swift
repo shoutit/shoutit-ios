@@ -20,6 +20,7 @@ enum PusherEventType : String {
     case LeftChat = "client-left_chat"
     case StatsUpdate = "stats_update"
     case ConversationUpdate = "conversation_update"
+    case NewNotification = "new_notification"
 }
 
 extension PTPusherEvent {
