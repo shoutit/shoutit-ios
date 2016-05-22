@@ -85,6 +85,9 @@ class ConversationInfoViewController: UITableViewController {
                     self.viewModel.conversation = conversation
                     self.tableView.reloadData()
                     self.fillViews()
+                } else {
+                    print(event.data)
+                    assertionFailure("Expected Conversation Object")
                 }
             }
         }.addDisposableTo(socketsBag!)
@@ -95,8 +98,8 @@ class ConversationInfoViewController: UITableViewController {
         // fill footer
         let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(viewModel.conversation.createdAt ?? 0)
         
-        if let creator = viewModel.conversation.creator {
-            self.footerLabel.text = NSLocalizedString("Chat created by \(creator.name)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
+        if let creator = viewModel.conversation.creator, name = creator.name {
+            self.footerLabel.text = NSLocalizedString("Chat created by \(name)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
         }
         
         guard case .PublicChat = viewModel.conversation.type() else {
@@ -195,10 +198,8 @@ class ConversationInfoViewController: UITableViewController {
             showBlocked()
         case (1, 2, false):
             showNotAuthorizedMessage()
-        case (2, 0, true):
-            clearChat()
-        case (2, 0, false):
-            showNotAuthorizedMessage()
+        case (2, 0, _):
+            reportChat()
         case (2, 1, _):
             exitChat()
         default:
@@ -419,8 +420,36 @@ class ConversationInfoViewController: UITableViewController {
         
     }
     
-    func exitChat() {
+    func reportChat() {
         
+        let alert = self.viewModel.conversation.reportAlert { (report) in
+            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
+                switch event {
+                case .Next(_):
+                    self?.showSuccessMessage(NSLocalizedString("Conversation reported succesfully", comment: ""))
+                case .Error(let error):
+                    self?.showError(error)
+                default:
+                    break
+                }
+            }).addDisposableTo(self.disposeBag)
+        }
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func exitChat() {
+        APIChatsService.deleteConversationWithId(self.viewModel.conversation.id).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(_):
+                self?.showSuccessMessage(NSLocalizedString("Conversation Deleted succesfully", comment: ""))
+                self?.navigationController?.popToRootViewControllerAnimated(true)
+            case .Error(let error):
+                self?.showError(error)
+                default:
+                    break
+            }
+        }.addDisposableTo(disposeBag)
     }
 }
 

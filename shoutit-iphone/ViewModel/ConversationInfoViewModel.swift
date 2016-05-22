@@ -154,7 +154,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
         case 2:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = NSLocalizedString("Clear Chat", comment: "")
+                cell.textLabel?.text = NSLocalizedString("Report Chat", comment: "")
             case 1:
                 cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
             default:

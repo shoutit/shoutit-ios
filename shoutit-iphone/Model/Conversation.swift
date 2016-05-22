@@ -109,6 +109,16 @@ extension Conversation {
     }
 }
 
+extension Conversation : Reportable {
+    func attachedObjectJSON() -> JSON {
+        return ["conversation" : ["id" : self.id.encode()].encode()].encode()
+    }
+    
+    func reportTitle() -> String {
+        return NSLocalizedString("Report Chat", comment: "")
+    }
+}
+
 // Public Chats Helpers
 extension Conversation {
     func isAdmin(profileId: String?) -> Bool {
