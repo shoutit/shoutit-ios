@@ -28,6 +28,10 @@ extension ConversationInterface {
         return ConversationType(rawValue: self.typeString)!
     }
     
+    func isPublicChat() -> Bool {
+        return self.type() == .PublicChat
+    }
+    
     func firstLineText() -> NSAttributedString? {
         guard let title = display.title else { return nil }
         return NSAttributedString(string: title)

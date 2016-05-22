@@ -87,7 +87,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
             case 1:
                 return 3
             case 2:
-                return 2
+                return 1 + (self.conversation.isPublicChat() ? 1 : 0)
             default:
                 return 0
         }
@@ -152,10 +152,12 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
                 break
             }
         case 2:
-            switch indexPath.row {
-            case 0:
+            switch (indexPath.row, conversation.isPublicChat()) {
+            case (0, true):
                 cell.textLabel?.text = NSLocalizedString("Report Chat", comment: "")
-            case 1:
+            case (0, false):
+                cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
+            case (1, _):
                 cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
             default:
                 break

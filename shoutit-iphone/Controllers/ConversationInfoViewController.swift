@@ -100,6 +100,8 @@ class ConversationInfoViewController: UITableViewController {
         
         if let creator = viewModel.conversation.creator, name = creator.name {
             self.footerLabel.text = NSLocalizedString("Chat created by \(name)\nCreated on \(createdDateString)", comment: "Chat Info Bottom Description")
+        } else {
+            self.footerLabel.text = NSLocalizedString("Chat created by Shoutit", comment: "Chat Info Bottom Description")
         }
         
         guard case .PublicChat = viewModel.conversation.type() else {
@@ -183,24 +185,26 @@ class ConversationInfoViewController: UITableViewController {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        switch (indexPath.section, indexPath.row, isAdmin) {
-        case (0, 0, _):
+        switch (indexPath.section, indexPath.row, isAdmin, self.viewModel.conversation.isPublicChat()) {
+        case (0, 0, _, _):
             showShouts()
-        case (0, 1, _):
+        case (0, 1, _, _):
             showMedia()
-        case (1, 0, true):
+        case (1, 0, true, _):
             addMember()
-        case (1, 0, false):
+        case (1, 0, false, _):
             showNotAuthorizedMessage()
-        case (1, 1, _):
+        case (1, 1, _, _):
             showParticipants()
-        case (1, 2, true):
+        case (1, 2, true, _):
             showBlocked()
-        case (1, 2, false):
+        case (1, 2, false, _):
             showNotAuthorizedMessage()
-        case (2, 0, _):
+        case (2, 0, _, true):
             reportChat()
-        case (2, 1, _):
+        case (2, 0, _, false):
+            exitChat()
+        case (2, 1, _, _):
             exitChat()
         default:
             assertionFailure()
@@ -460,6 +464,19 @@ class ConversationInfoViewController: UITableViewController {
     }
     
     func exitChat() {
+        
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .ActionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
+            self?.deleteConversation()
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func deleteConversation() {
         APIChatsService.deleteConversationWithId(self.viewModel.conversation.id).subscribe { [weak self] (event) in
             switch event {
             case .Next(_):
@@ -467,8 +484,8 @@ class ConversationInfoViewController: UITableViewController {
                 self?.navigationController?.popToRootViewControllerAnimated(true)
             case .Error(let error):
                 self?.showError(error)
-                default:
-                    break
+            default:
+                break
             }
         }.addDisposableTo(disposeBag)
     }
