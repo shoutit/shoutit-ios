@@ -11,6 +11,7 @@ import UIKit
 final class ShoutFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     
     init(navigationController: UINavigationController) {
         

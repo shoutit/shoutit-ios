@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import Fabric
 import Crashlytics
 import UIViewAppearanceSwift
-
+import DeepLinkKit
 import SwiftyBeaver
 
 let log = SwiftyBeaver.self
@@ -20,6 +20,7 @@ let log = SwiftyBeaver.self
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let router = DPLDeepLinkRouter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -34,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAPS(application)
         configureURLCache()
         
+        registerRoutes()
+        
         // fetch user account to update all stats etc.
         Account.sharedInstance.fetchUserProfile()
         
@@ -44,12 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // handle the URL that your application receives at the end of the authentication process -- Google
     func application(application: UIApplication,
         openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-            let fb  = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            let g = GIDSignIn.sharedInstance().handleURL(url,
-                sourceApplication: sourceApplication,
-                annotation: annotation)
-            
-            return fb ? fb : (g ? g : false)
+        
+        if FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        
+        if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        
+        return self.router.handleURL(url, withCompletion:nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -171,5 +178,32 @@ private extension AppDelegate {
     func configureURLCache() {
         let URLCache = NSURLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         NSURLCache.setSharedURLCache(URLCache)
+    }
+}
+
+extension AppDelegate {
+    func registerRoutes() {
+        
+        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout]
+        
+        for route in routableElements {
+            self.router.registerBlock({ [weak self] (deeplink) in
+                self?.routeToNavigationItem(route, withDeeplink: deeplink)
+            }, forRoute: route.rawValue)
+        }
+        
+    }
+    
+    func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
+        
+        guard let applicationMainController = self.window?.rootViewController as? ApplicationMainViewController else {
+            return
+        }
+        
+        guard let rootController = applicationMainController.childViewControllers.first as? RootController else {
+            return
+        }
+        
+        rootController.routeToNavigationItem(navigationItem, withDeeplink: deeplink)
     }
 }

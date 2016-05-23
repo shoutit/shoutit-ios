@@ -17,6 +17,7 @@ struct SettingsOption {
 
 final class SettingsFlowController: FlowController {
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     
     init(navigationController: UINavigationController) {
         

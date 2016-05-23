@@ -11,6 +11,13 @@ import UIKit
 final class ChatsFlowController: FlowController {
     
     let navigationController: UINavigationController
+    
+    var deepLink : DPLDeepLink? {
+        didSet {
+            setupDeepLinkRoute()
+        }
+    }
+    
     lazy var filterTransition: FilterTransition = {
         return FilterTransition()
     }()
@@ -22,8 +29,18 @@ final class ChatsFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.chatsViewController()
         controller.flowDelegate = self
-
+        
         navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func setupDeepLinkRoute() {
+        guard let deepLink = deepLink else {
+            return
+        }
+        
+        if let parentController = self.navigationController.visibleViewController as? DeepLinkHandling {
+            parentController.handleDeeplink(deepLink)
+        }
     }
     
     func requiresLoggedInUser() -> Bool {

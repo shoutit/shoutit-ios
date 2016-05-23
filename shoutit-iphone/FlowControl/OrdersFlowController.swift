@@ -11,6 +11,7 @@ import UIKit
 final class OrdersFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     
     init(navigationController: UINavigationController) {
         

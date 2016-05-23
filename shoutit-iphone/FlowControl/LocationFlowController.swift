@@ -11,6 +11,7 @@ import GooglePlaces
 
 final class LocationFlowController: FlowController {
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     
     var finishedBlock: ((Bool, Address?) -> Void)? {
         didSet {

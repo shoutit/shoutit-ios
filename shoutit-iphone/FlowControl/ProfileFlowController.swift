@@ -11,6 +11,8 @@ import UIKit
 final class ProfileFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
+    
     lazy var filterTransition: FilterTransition = {
         return FilterTransition()
     }()

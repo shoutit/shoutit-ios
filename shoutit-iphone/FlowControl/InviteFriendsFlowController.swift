@@ -10,6 +10,7 @@ import UIKit
 
 final class InviteFriendsFlowController: FlowController {
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     
     init(navigationController: UINavigationController) {
         

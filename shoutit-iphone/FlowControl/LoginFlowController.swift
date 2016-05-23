@@ -11,6 +11,7 @@ import UIKit
 final class LoginFlowController: FlowController {
     
     let navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
     var loginFinishedBlock: ((Bool) -> Void)?
     
     init(navigationController: UINavigationController, skipIntro: Bool = false) {

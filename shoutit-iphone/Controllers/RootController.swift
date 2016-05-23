@@ -12,6 +12,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import DeepLinkKit
 
 final class RootController: UIViewController, ContainerController {
     
@@ -134,19 +135,29 @@ final class RootController: UIViewController, ContainerController {
     
     // MARK: - Actions
     
-    func openItem(navigationItem: NavigationItem) {
+    func openItem(navigationItem: NavigationItem, deepLink: DPLDeepLink? = nil) {
+        
+        var item = navigationItem
+        
+        if navigationItem == .PublicChats || navigationItem == .Conversation {
+            item = .Chats
+        }
+        
+        if navigationItem == .Notifications {
+            item = .Settings
+        }
         
         // Woooot!
         // Create Shout Controller should be presented above root Controller, so skip flow controller logic
-        if navigationItem == .Shout {
+        if item == .CreateShout {
             showCreateShout()
             return
-        } else if navigationItem == .Help {
+        } else if item == .Help {
             showHelp()
             return
         }
         
-        self.currentNavigationItem = navigationItem
+        self.currentNavigationItem = item
         
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
@@ -154,11 +165,11 @@ final class RootController: UIViewController, ContainerController {
         
         let flowControllerToShow: FlowController
         
-        if let loadedFlowController = flowControllers[navigationItem] {
+        if let loadedFlowController = cachedFlowControllerForNavigationItem(item) {
             flowControllerToShow = loadedFlowController
         } else {
-            flowControllerToShow = flowControllerFor(navigationItem)
-            flowControllers[navigationItem] = flowControllerToShow
+            flowControllerToShow = flowControllerFor(item)
+            flowControllers[item] = flowControllerToShow
         }
         
         // Location Controller Should Be Presented Modally instead of within tabbar
@@ -182,7 +193,13 @@ final class RootController: UIViewController, ContainerController {
             return
         }
         
+        flowControllerToShow.deepLink = deepLink
+        
         presentWith(flowControllerToShow)
+    }
+    
+    func cachedFlowControllerForNavigationItem(navigationItem: NavigationItem) -> FlowController? {
+        return flowControllers[navigationItem]
     }
 }
 
@@ -202,6 +219,13 @@ extension RootController: UIViewControllerTransitioningDelegate {
         }
         
         return OverlayDismissAnimationController()
+    }
+}
+
+// MARK: - Routing
+extension RootController {
+    func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
+        self.openItem(navigationItem, deepLink: deeplink)
     }
 }
 
@@ -287,8 +311,8 @@ private extension RootController {
             
         case .Home: flowController          = HomeFlowController(navigationController: navController)
         case .Discover: flowController      = DiscoverFlowController(navigationController: navController)
-        case .Shout: flowController         = ShoutFlowController(navigationController: navController)
-        case .Chats: flowController         = ChatsFlowController(navigationController: navController)
+        case .CreateShout: flowController   = ShoutFlowController(navigationController: navController)
+        case .Chats: flowController = ChatsFlowController(navigationController: navController)
         case .Profile: flowController       = ProfileFlowController(navigationController: navController)
         case .Settings: flowController      = SettingsFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
@@ -364,7 +388,7 @@ private extension RootController {
         }
         
         if !Account.sharedInstance.isUserLoggedIn {
-            promptUserForLogin(.Shout)
+            promptUserForLogin(.CreateShout)
             return
         }
         

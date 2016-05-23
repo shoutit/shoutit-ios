@@ -233,14 +233,12 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     }
     
     func openMessageObject(notification: Notification) {
-        if let profile = notification.object?.profile {
-            self.flowDelegate?.showProfile(profile)
+        guard let path = notification.display?.appPath, url = NSURL(string: path) else {
             return
         }
         
-        if let shout = notification.object?.shout {
-            self.flowDelegate?.showShout(shout)
-            return
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
         }
         
     }

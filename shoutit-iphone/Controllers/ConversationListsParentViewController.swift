@@ -18,6 +18,8 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
     @IBOutlet weak var listChoiceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
     
+    var loadWithNavigationItem : NavigationItem?
+    
     // ContainerController
     weak var currentChildViewController: UIViewController?
     var currentControllerConstraints: [NSLayoutConstraint] = []
@@ -42,10 +44,29 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
         super.viewDidLoad()
         setupRX()
         setupNavigationBar()
+    
+    }
+    
+    func openCorrectPage() {
+        if loadWithNavigationItem == .PublicChats {
+            self.switchToPublicChats()
+        } else if loadWithNavigationItem == .Chats {
+            self.switchToMyChats()
+        }
     }
     
     private func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
+    }
+    
+    func switchToPublicChats() {
+        listChoiceSegmentedControl.selectedSegmentIndex = 1
+        self.changeContentTo(self.publicChatsViewController)
+    }
+    
+    func switchToMyChats() {
+        listChoiceSegmentedControl.selectedSegmentIndex = 0
+        self.changeContentTo(self.myChatsViewController)
     }
     
     private func setupRX() {
@@ -66,5 +87,15 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
     
     @IBAction func searchAction(sender: AnyObject) {
         flowDelegate?.showSearchInContext(.General)
+    }
+}
+
+extension ConversationListsParentViewController : DeepLinkHandling {
+    func handleDeeplink(deepLink: DPLDeepLink) {
+        self.loadWithNavigationItem = deepLink.navigationItem
+        
+        if let _ = self.view {
+            openCorrectPage()
+        }
     }
 }
