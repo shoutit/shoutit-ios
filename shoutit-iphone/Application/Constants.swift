@@ -9,19 +9,6 @@
 import Foundation
 
 struct Constants {
-    struct Messages {
-        static let SHImageMediaItem = "SHImageMediaItem"
-        static let SHVideoMediaItem = "SHVideoMediaItem"
-    }
-    
-    struct Shout {
-        static let TIME_VIDEO_SHOUT = 60
-        static let TIME_VIDEO_CV = 60
-    }
-    
-    struct Common {
-        static let SH_PAGE_SIZE = 60
-    }
     
     struct Facebook {
         static let loginReadPermissions = ["public_profile", "email", "user_birthday"]
@@ -67,13 +54,6 @@ struct Constants {
         static let SH_AMAZON_URL = "https://s3-eu-west-1.amazonaws.com/"
         static let SH_AWS_SHOUT_URL = "https://shout-image.static.shoutit.com/"
         static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
-    }
-    
-    struct MessagesStatus {
-        static let kStatusDelivered = NSLocalizedString("Delivered", comment: "Delivered")
-        static let kStatusSent = NSLocalizedString("Sent", comment: "Sent")
-        static let kStatusPending = NSLocalizedString("Pending", comment: "Pending")
-        static let kStatusFailed = NSLocalizedString("Failed", comment: "Failed")
     }
 }
 
