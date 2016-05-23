@@ -282,6 +282,11 @@
 		B209C5181CEF5B5000727095 /* MiniConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5171CEF5B5000727095 /* MiniConversation.swift */; };
 		B209C51A1CEF5B6C00727095 /* ConversationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5191CEF5B6C00727095 /* ConversationInterface.swift */; };
 		B209C51C1CEF5C7700727095 /* MiniProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C51B1CEF5C7700727095 /* MiniProfile.swift */; };
+		B209C5231CF3181E00727095 /* PhotosMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C51E1CF3181E00727095 /* PhotosMenuController.swift */; };
+		B209C5241CF3181E00727095 /* PhotosMenuControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C51F1CF3181E00727095 /* PhotosMenuControllerDelegate.swift */; };
+		B209C5251CF3181E00727095 /* RecentPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5201CF3181E00727095 /* RecentPhotosCollectionViewController.swift */; };
+		B209C5261CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5211CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift */; };
+		B209C5271CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5221CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift */; };
 		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
 		B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */; };
 		B20EDBCC1CAABD2300AD9F2A /* AlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */; };
@@ -1066,6 +1071,11 @@
 		B209C5171CEF5B5000727095 /* MiniConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MiniConversation.swift; path = Model/MiniConversation.swift; sourceTree = "<group>"; };
 		B209C5191CEF5B6C00727095 /* ConversationInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInterface.swift; path = Model/ConversationInterface.swift; sourceTree = "<group>"; };
 		B209C51B1CEF5C7700727095 /* MiniProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MiniProfile.swift; path = Model/MiniProfile.swift; sourceTree = "<group>"; };
+		B209C51E1CF3181E00727095 /* PhotosMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosMenuController.swift; path = Nemo/PhotosMenuController.swift; sourceTree = "<group>"; };
+		B209C51F1CF3181E00727095 /* PhotosMenuControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosMenuControllerDelegate.swift; path = Nemo/PhotosMenuControllerDelegate.swift; sourceTree = "<group>"; };
+		B209C5201CF3181E00727095 /* RecentPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentPhotosCollectionViewController.swift; path = Nemo/RecentPhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		B209C5211CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentPhotosCollectionViewControllerDelegate.swift; path = Nemo/RecentPhotosCollectionViewControllerDelegate.swift; sourceTree = "<group>"; };
+		B209C5221CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentPhotosPhotoCollectionViewCell.swift; path = Nemo/RecentPhotosPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Error.swift"; path = "UIKitExtensions/UIViewController+Error.swift"; sourceTree = "<group>"; };
 		B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertBarView.xib; path = Storyboards/AlertBarView.xib; sourceTree = "<group>"; };
 		B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertBarView.swift; path = View/AlertBarView.swift; sourceTree = "<group>"; };
@@ -1971,6 +1981,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B209C51D1CF317C600727095 /* PhotosMenuController */,
 				B294BC8D1CEB4C8A00131B31 /* MessageAttachmentPhotoBrowser */,
 				B27230491CE0D99E003547EA /* ProfilesListTableViewController */,
 				B2587D711CC55D0D00B51B69 /* GenericViewModels */,
@@ -2425,6 +2436,18 @@
 				B209AC111C6CCCEA00EF2B8E /* SettingsTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B209C51D1CF317C600727095 /* PhotosMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				B209C51E1CF3181E00727095 /* PhotosMenuController.swift */,
+				B209C51F1CF3181E00727095 /* PhotosMenuControllerDelegate.swift */,
+				B209C5201CF3181E00727095 /* RecentPhotosCollectionViewController.swift */,
+				B209C5211CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift */,
+				B209C5221CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift */,
+			);
+			name = PhotosMenuController;
 			sourceTree = "<group>";
 		};
 		B20EDBCA1CAABD0000AD9F2A /* XibBackedClasses */ = {
@@ -4242,6 +4265,7 @@
 				24826B4B1C96B57C00032FC9 /* AttachedObject.swift in Sources */,
 				6027CF911BE7539400124C28 /* Constants.swift in Sources */,
 				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
+				B209C5271CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift in Sources */,
 				B2C729C51C6221B0006F7D29 /* AuthData.swift in Sources */,
 				B2D9B1011C98539500924941 /* ModalNavigationController.swift in Sources */,
 				B22D90771CE4C74D00D3C387 /* ConversationListsParentViewController.swift in Sources */,
@@ -4352,6 +4376,8 @@
 				B27AF9451C7B529B00527306 /* UIViewController+ScrollViewResize.swift in Sources */,
 				B2D9B1181C9897B400924941 /* SearchSectionViewModel.swift in Sources */,
 				B2B5D02A1C7F7DB50068A6AF /* IndexedCollectionView.swift in Sources */,
+				B209C5241CF3181E00727095 /* PhotosMenuControllerDelegate.swift in Sources */,
+				B209C5251CF3181E00727095 /* RecentPhotosCollectionViewController.swift in Sources */,
 				B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */,
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
@@ -4481,7 +4507,9 @@
 				249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */,
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
 				2499EA6B1C8093970086DEA9 /* CreateShoutTableViewController.swift in Sources */,
+				B209C5261CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift in Sources */,
 				B22D90871CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift in Sources */,
+				B209C5231CF3181E00727095 /* PhotosMenuController.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
 				B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */,
 				AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */,

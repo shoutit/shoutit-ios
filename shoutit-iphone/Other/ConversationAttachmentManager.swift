@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import Nemo
 
 enum PickerAttachmentType {
     case Media

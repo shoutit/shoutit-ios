@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import Nemo
 import MobileCoreServices
 
 protocol MediaPickerControllerDelegate {

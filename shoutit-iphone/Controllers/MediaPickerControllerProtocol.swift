@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Nemo
 import MobileCoreServices
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
