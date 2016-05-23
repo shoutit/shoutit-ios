@@ -15,7 +15,5 @@ protocol ProfilesListViewModel: class {
 }
 
 extension ProfilesListViewModel {
-    
-    // consts
     var showsListenButtons: Bool {return true}
 }

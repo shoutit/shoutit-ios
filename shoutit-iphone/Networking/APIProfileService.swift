@@ -75,4 +75,9 @@ final class APIProfileService {
         let url = APIManager.baseURL + "/profiles/\(username)/listeners"
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
+    
+    static func getInterestsProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Tag>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/interests"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
 }

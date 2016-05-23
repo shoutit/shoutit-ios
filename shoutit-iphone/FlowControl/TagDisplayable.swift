@@ -14,7 +14,7 @@ protocol TagDisplayable {
     func showTag(category: Category) -> Void
 }
 
-extension EditProfileDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
+extension TagDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
     
     func showTag(tag: Tag) {
         let controller = Wireframe.profileViewController()

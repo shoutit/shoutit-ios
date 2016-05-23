@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ShowProfileProfilesListEventHandler: ProfilesListEventHandler {
+final class ShowProfileProfilesListEventHandler: ProfilesListEventHandler {
     
     let profileDisplayable: ProfileDisplayable
     

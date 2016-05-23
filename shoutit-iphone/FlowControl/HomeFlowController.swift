@@ -27,6 +27,7 @@ final class HomeFlowController: FlowController {
     }
 }
 
+extension HomeFlowController: TagsListTableViewControllerFlowDelegate {}
 extension HomeFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
 extension HomeFlowController: SearchViewControllerFlowDelegate {}
 extension HomeFlowController: HomeViewControllerFlowDelegate {}

@@ -9,10 +9,12 @@
 import Foundation
 import RxSwift
 
-final class ProfilesListCellViewModel {
+final class ProfilesListCellViewModel: Listenable {
     
     let profile: Profile
     var isListening: Bool
+    var startedListeningMessage: String { return UserMessages.startedListeningMessageWithName(self.profile.name) }
+    var stoppedListeningMessage: String { return UserMessages.stoppedListeningMessageWithName(self.profile.name) }
     
     init(profile: Profile) {
         self.profile = profile
@@ -27,33 +29,7 @@ final class ProfilesListCellViewModel {
         return Account.sharedInstance.user?.id == profile.id
     }
     
-    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {
-        
-        return Observable.create{[weak self] (observer) -> Disposable in
-            
-            guard let `self` = self else {
-                return NopDisposable.instance
-            }
-            
-            self.isListening = !self.isListening
-            observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
-            
-            let subscribeBlock: (RxSwift.Event<Void> -> Void) = {(event) in
-                switch event {
-                case .Completed:
-                    let message = self.isListening ? UserMessages.startedListeningMessageWithName(self.profile.name) : UserMessages.stoppedListeningMessageWithName(self.profile.name)
-                    observer.onNext((listening: self.isListening, successMessage: message, error: nil))
-                    observer.onCompleted()
-                case .Error(let error):
-                    self.isListening = !self.isListening
-                    observer.onNext((listening: self.isListening, successMessage: nil, error: error))
-                    observer.onError(error)
-                default:
-                    break
-                }
-            }
-            
-            return APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username).subscribe(subscribeBlock)
-        }
+    func listenRequestObservable() -> Observable<Void> {
+        return APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username)
     }
 }

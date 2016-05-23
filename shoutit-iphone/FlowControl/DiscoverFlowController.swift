@@ -33,6 +33,7 @@ final class DiscoverFlowController: FlowController {
     }
 }
 
+extension DiscoverFlowController: TagsListTableViewControllerFlowDelegate {}
 extension DiscoverFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
 extension DiscoverFlowController: SearchViewControllerFlowDelegate {}
 extension DiscoverFlowController: DiscoverCollectionViewControllerFlowDelegate {}

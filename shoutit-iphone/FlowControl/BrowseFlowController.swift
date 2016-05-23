@@ -32,6 +32,7 @@ extension BrowseFlowController: ShoutDetailTableViewControllerFlowDelegate {}
 extension BrowseFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
 extension BrowseFlowController: DiscoverCollectionViewControllerFlowDelegate {}
 extension BrowseFlowController: ProfileCollectionViewControllerFlowDelegate {}
+extension BrowseFlowController: TagsListTableViewControllerFlowDelegate {}
 extension BrowseFlowController: NotificationsTableViewControllerFlowDelegate {}
 extension BrowseFlowController: ConversationListTableViewControllerFlowDelegate {}
 extension BrowseFlowController: ConversationViewControllerFlowDelegate {}

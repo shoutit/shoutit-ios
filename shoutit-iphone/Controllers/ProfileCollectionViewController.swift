@@ -450,6 +450,16 @@ extension ProfileCollectionViewController {
                     self?.flowDelegate?.showListenersForUsername(profile.username)
                 }
                 .addDisposableTo(disposeBag)
+        case .Interests:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showInterestsForUsername(profile.username)
+                }
+                .addDisposableTo(disposeBag)
         case .More:
             button.rx_tap.asDriver().driveNext({ [weak self] in
                 self?.moreAction()

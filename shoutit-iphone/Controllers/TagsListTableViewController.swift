@@ -1,15 +1,17 @@
 //
-//  ProfilesListTableViewController.swift
+//  TagsListTableViewController.swift
 //  shoutit-iphone
 //
-//  Created by Łukasz Kasperek on 09.05.2016.
+//  Created by Łukasz Kasperek on 23.05.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RxSwift
 
-class ProfilesListTableViewController: UITableViewController {
+protocol TagsListTableViewControllerFlowDelegate: class, TagDisplayable {}
+
+final class TagsListTableViewController: UITableViewController {
     
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
@@ -19,11 +21,8 @@ class ProfilesListTableViewController: UITableViewController {
         }()
     
     // dependencies
-    var viewModel: ProfilesListViewModel!
-    var eventHandler: ProfilesListEventHandler!
-    var dismissAfterSelection = false
-    var autoDeselct = false
-    var cellConfigurator : ProfileCellConfigurator! = ProfileCellConfigurator()
+    var viewModel: InterestsTagsListViewModel!
+    weak var flowDelegate: TagsListTableViewControllerFlowDelegate?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -33,7 +32,6 @@ class ProfilesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
-        assert(eventHandler != nil)
         
         registerReusables()
         setupRX()
@@ -94,19 +92,18 @@ class ProfilesListTableViewController: UITableViewController {
         
         guard let cells = viewModel.pager.getCellViewModels() else { preconditionFailure() }
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        let cellModel = cells[indexPath.row]
+        let cellViewModel = cells[indexPath.row]
+        let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
         
-        cellConfigurator.configureCell(cell, cellViewModel: cellModel, showsListenButton: viewModel.showsListenButtons)
+        cell.nameLabel.text = cellViewModel.tag.name
+        cell.listenersCountLabel.text = cellViewModel.listeningCountString()
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.tag.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        cell.listenButton.setImage(listenButtonImage, forState: .Normal)
         
-        guard viewModel.showsListenButtons else {
-            cell.listenButton.hidden = true
-            return cell
-        }
-        
-        cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
+        cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
-            cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
+            cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                 switch event {
                 case .Next(let (listening, successMessage, error)):
                     let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
@@ -120,7 +117,8 @@ class ProfilesListTableViewController: UITableViewController {
                     break
                 }
                 }).addDisposableTo(cell.reuseDisposeBag)
-        }.addDisposableTo(cell.reuseDisposeBag)
+            }.addDisposableTo(cell.reuseDisposeBag)
+        
         
         return cell
     }
@@ -134,15 +132,7 @@ class ProfilesListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
-        eventHandler.handleUserDidTapProfile(cellViewModel.profile)
-        
-        if autoDeselct {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
-        
-        if dismissAfterSelection {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
+        flowDelegate?.showTag(cellViewModel.tag)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

@@ -13,6 +13,7 @@ import Argo
 class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType>: Pager<Int, CellViewModelType, ItemType> {
     
     let pageSize: Int
+    var cellViewModelsComparisonBlock: ((lhs: CellViewModelType, rhs: CellViewModelType) -> Bool)?
     
     init(
         itemToCellViewModelBlock: ItemType -> CellViewModelType,
