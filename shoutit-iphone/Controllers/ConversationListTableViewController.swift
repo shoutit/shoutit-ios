@@ -11,8 +11,6 @@ import RxSwift
 import DZNEmptyDataSet
 import Pusher
 
-protocol ConversationListTableViewControllerFlowDelegate: class, ChatDisplayable, SearchDisplayable, CreatePublicChatDisplayable {}
-
 final class ConversationListTableViewController: UITableViewController {
     
     private struct CellIdentifiers {
@@ -29,7 +27,7 @@ final class ConversationListTableViewController: UITableViewController {
     
     // dependencies
     var viewModel: ChatsListViewModel!
-    weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private let disposeBag = DisposeBag()

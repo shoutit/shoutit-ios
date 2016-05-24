@@ -10,10 +10,6 @@ import UIKit
 import RxSwift
 import MWPhotoBrowser
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable, AllShoutsDisplayable {
-    
-}
-
 final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
@@ -54,7 +50,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     
     // navigation
-    weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // data sources
     private var dataSource: ShoutDetailTableViewDataSource! {

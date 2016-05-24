@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol PostSignupInterestsViewControllerFlowDelegate: class, PostSignupDisplayable, LoginFinishable {}
-
 final class PostSignupInterestsViewController: UIViewController {
     
     // consts
@@ -37,7 +35,7 @@ final class PostSignupInterestsViewController: UIViewController {
     var viewModel: PostSignupInterestsViewModel!
     
     // navigation
-    weak var flowDelegate: PostSignupInterestsViewControllerFlowDelegate?
+    weak var flowDelegate: LoginFlowController?
     
     // Rx
     private let disposeBag = DisposeBag()

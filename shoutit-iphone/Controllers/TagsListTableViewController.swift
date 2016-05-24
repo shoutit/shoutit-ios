@@ -9,8 +9,6 @@
 import Foundation
 import RxSwift
 
-protocol TagsListTableViewControllerFlowDelegate: class, TagDisplayable {}
-
 final class TagsListTableViewController: UITableViewController {
     
     // UI
@@ -22,7 +20,7 @@ final class TagsListTableViewController: UITableViewController {
     
     // dependencies
     var viewModel: InterestsTagsListViewModel!
-    weak var flowDelegate: TagsListTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private let disposeBag = DisposeBag()

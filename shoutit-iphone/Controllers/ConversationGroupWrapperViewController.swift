@@ -18,7 +18,7 @@ class ConversationGroupWrapperViewController: UIViewController {
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     
     // navigation
-    weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // MARK: - Lifecycle
     

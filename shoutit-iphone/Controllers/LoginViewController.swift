@@ -27,7 +27,7 @@ final class LoginViewController: UITableViewController {
     weak var delegate: LoginWithEmailViewControllerChildDelegate?
     
     // navigation
-    weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // view model
     weak var viewModel: LoginWithEmailViewModel!

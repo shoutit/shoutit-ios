@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol ShoutsCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, FilterDisplayable {}
-
 final class ShoutsCollectionViewController: UICollectionViewController {
 
     enum CellType {
@@ -32,7 +30,7 @@ final class ShoutsCollectionViewController: UICollectionViewController {
     var viewModel: ShoutsCollectionViewModel!
     
     // navigation
-    weak var flowDelegate: ShoutsCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     let disposeBag = DisposeBag()

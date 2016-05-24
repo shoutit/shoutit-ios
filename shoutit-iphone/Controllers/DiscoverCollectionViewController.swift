@@ -9,13 +9,11 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, DiscoverShoutsDisplayable, AllShoutsDisplayable {}
-
 final class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
-    weak var flowDelegate: DiscoverCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

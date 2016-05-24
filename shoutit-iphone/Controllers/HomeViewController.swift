@@ -9,9 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol HomeViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, FilterDisplayable {
-    
-}
 
 final class HomeViewController: UIViewController {
     
@@ -19,7 +16,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var discoverHeight: NSLayoutConstraint!
     
     // navigation
-    weak var flowDelegate: HomeViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     private let disposeBag = DisposeBag()
     

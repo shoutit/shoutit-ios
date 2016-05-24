@@ -11,8 +11,6 @@ import RxSwift
 import MBProgressHUD
 import DZNEmptyDataSet
 
-protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, NotificationsDisplayable {}
-
 final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -33,7 +31,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         }
     }
     
-    weak var flowDelegate: NotificationsTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -233,14 +231,12 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     }
     
     func openMessageObject(notification: Notification) {
-        if let profile = notification.object?.profile {
-            self.flowDelegate?.showProfile(profile)
+        guard let path = notification.appPath, url = NSURL(string: path) else {
             return
         }
         
-        if let shout = notification.object?.shout {
-            self.flowDelegate?.showShout(shout)
-            return
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
         }
         
     }

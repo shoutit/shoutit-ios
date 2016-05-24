@@ -27,19 +27,15 @@ struct Display: Decodable {
     let text: String
     var ranges: [DisplayRange]?
     let image: String?
-    let webPath: String?
-    let appPath: String?
+    
     
     static func decode(j: JSON) -> Decoded<Display> {
         let a = curry(Display.init)
             <^> j <| "text"
             <*> j <||? "ranges"
-            <*> j <|? "image"
-        let b = a
-            <*> j <|? "web_url"
-            <*> j <|? "app_url"
+            <*> j <|? "image"        
         
-        return b
+        return a
     }
     
 }

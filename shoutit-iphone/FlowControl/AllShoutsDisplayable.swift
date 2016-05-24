@@ -16,7 +16,7 @@ protocol AllShoutsDisplayable {
     func showShoutsForConversation(conversation: Conversation) -> Void
 }
 
-extension AllShoutsDisplayable where Self: FlowController, Self: ShoutsCollectionViewControllerFlowDelegate {
+extension FlowController : AllShoutsDisplayable {
     
     func showShoutsForProfile(profile: Profile) {
         showShoutsWithViewModel(ShoutsCollectionViewModel(context: .ProfileShouts(user: profile)))

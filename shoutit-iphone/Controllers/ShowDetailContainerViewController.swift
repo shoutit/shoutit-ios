@@ -65,7 +65,7 @@ class ShowDetailContainerViewController: UIViewController {
     var viewModel: ShoutDetailViewModel!
     
     // navigation
-    weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private var buttonsDisposeBag = DisposeBag()

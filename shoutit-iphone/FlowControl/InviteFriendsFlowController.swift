@@ -8,12 +8,9 @@
 
 import UIKit
 
-final class InviteFriendsFlowController: FlowController {
-    let navigationController: UINavigationController
-    
+final class InviteFriendsFlowController: FlowController {    
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         let controller = Wireframe.inviteFriendsViewController()
@@ -21,7 +18,7 @@ final class InviteFriendsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func requiresLoggedInUser() -> Bool {
+    override func requiresLoggedInUser() -> Bool {
         return true
     }
 }

@@ -15,7 +15,7 @@ protocol ShoutDisplayable {
     func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void
 }
 
-extension ShoutDisplayable where Self: FlowController, Self: ShoutDetailTableViewControllerFlowDelegate {
+extension FlowController : ShoutDisplayable {
     
     func showShout(shout: Shout) {
         
@@ -36,9 +36,7 @@ extension ShoutDisplayable where Self: FlowController, Self: ShoutDetailTableVie
         
         navigationController.presentViewController(navigation, animated: true, completion: nil)
     }
-}
-
-extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionViewControllerFlowDelegate {
+    
     func showDiscover() -> Void {
         let controller = Wireframe.discoverViewController()
         
@@ -48,9 +46,6 @@ extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionV
         
         navigationController.showViewController(controller, sender: nil)
     }
-}
-
-extension ShoutDisplayable where Self: FlowController, Self: DiscoverCollectionViewControllerFlowDelegate {
     
     func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void {
         let controller = Wireframe.discoverViewController()

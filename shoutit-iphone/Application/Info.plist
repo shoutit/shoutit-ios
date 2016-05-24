@@ -74,6 +74,16 @@
 				<string>com.appunite.shoutit</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>shoutit</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>shoutit</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1066</string>
@@ -99,6 +109,7 @@
 	<dict/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>shoutit</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>

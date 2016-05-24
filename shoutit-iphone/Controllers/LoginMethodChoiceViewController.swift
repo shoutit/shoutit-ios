@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol LoginMethodChoiceViewControllerFlowDelegate: class, FlowController, HelpDisplayable, FeedbackDisplayable, AboutDisplayable, LoginScreenDisplayable, PostSignupDisplayable, LoginFinishable {}
 
 final class LoginMethodChoiceViewController: UIViewController {
     
@@ -27,7 +26,7 @@ final class LoginMethodChoiceViewController: UIViewController {
     var viewModel: LoginMethodChoiceViewModel!
     
     // navigation
-    weak var flowDelegate: LoginMethodChoiceViewControllerFlowDelegate?
+    weak var flowDelegate: LoginFlowController?
     
     // rx
     private let disposeBag = DisposeBag()

@@ -113,7 +113,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
     }
     
     @IBAction func createShout(sender: AnyObject) {
-        triggerActionWithItem(.Shout)
+        triggerActionWithItem(.CreateShout)
     }
     
     @IBAction func changeLocation(sender: AnyObject) {

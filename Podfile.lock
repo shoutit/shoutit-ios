@@ -40,6 +40,7 @@ PODS:
   - Curry (1.4.0)
   - DACircularProgress (2.3.1)
   - DAProgressOverlayView (1.0.2)
+  - DeepLinkKit (1.2.1)
   - DZNEmptyDataSet (1.8)
   - Fabric (1.6.7)
   - FBSDKCoreKit (4.11.0):
@@ -106,6 +107,7 @@ DEPENDENCIES:
   - Crashlytics (~> 3.6)
   - Curry (< 2.0)
   - DAProgressOverlayView (~> 1.0)
+  - DeepLinkKit (~> 1.2.1)
   - DZNEmptyDataSet
   - Fabric (~> 1.6)
   - FBSDKCoreKit (~> 4.7)
@@ -170,6 +172,7 @@ SPEC CHECKSUMS:
   Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DAProgressOverlayView: 08bbeaab98a0604fddb77672f100e8389472cec2
+  DeepLinkKit: 4c3a713b7ecc6c6e25ba56c87d0c728f6035a9ef
   DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b

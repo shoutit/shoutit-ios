@@ -11,10 +11,8 @@ import SlackTextViewController
 import RxSwift
 import DZNEmptyDataSet
 
-protocol ConversationViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable {}
-
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
-    weak var flowDelegate: ConversationViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     var viewModel : ConversationViewModel!
     let attachmentManager = ConversationAttachmentManager()

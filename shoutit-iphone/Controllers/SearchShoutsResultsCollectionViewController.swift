@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol SearchShoutsResultsCollectionViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable, FilterDisplayable {}
-
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
     // consts
@@ -33,7 +31,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     var viewModel: SearchShoutsResultsViewModel!
     
     // navigation
-    weak var flowDelegate: SearchShoutsResultsCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     let disposeBag = DisposeBag()

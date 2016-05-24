@@ -11,9 +11,6 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol IntroViewControllerFlowDelegate: class, HelpDisplayable, LoginFinishable {
-    func showLoginChoice() -> Void
-}
 
 final class IntroViewController: UIViewController {
     
@@ -34,7 +31,7 @@ final class IntroViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // navigation
-    weak var flowDelegate: IntroViewControllerFlowDelegate?
+    weak var flowDelegate: LoginFlowController?
     
     // MARK: - Lifecycle
     

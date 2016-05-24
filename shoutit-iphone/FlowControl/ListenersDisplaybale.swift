@@ -14,7 +14,7 @@ protocol ListenersDisplaybale {
     func showInterestsForUsername(username: String) -> Void
 }
 
-extension ListenersDisplaybale where Self: FlowController, Self: ProfileDisplayable, Self: PageDisplayable, Self: TagsListTableViewControllerFlowDelegate {
+extension FlowController : ListenersDisplaybale {
     
     func showListenersForUsername(username: String) {
         let controller = Wireframe.listenersListTableViewController()

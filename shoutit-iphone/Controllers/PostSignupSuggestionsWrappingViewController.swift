@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol PostSignupSuggestionViewControllerFlowDelegate: class, LoginFinishable {}
 
 final class PostSignupSuggestionsWrappingViewController: UIViewController {
     
@@ -38,7 +37,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     var viewModel: PostSignupSuggestionViewModel!
     
     // navigation
-    weak var flowDelegate: PostSignupSuggestionViewControllerFlowDelegate?
+    weak var flowDelegate: LoginFlowController?
     
     // RX
     private let disposeBag = DisposeBag()

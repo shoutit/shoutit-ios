@@ -10,14 +10,8 @@ import UIKit
 
 final class ProfileFlowController: FlowController {
     
-    let navigationController: UINavigationController
-    lazy var filterTransition: FilterTransition = {
-        return FilterTransition()
-    }()
-    
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         let controller = Wireframe.profileViewController()
@@ -27,21 +21,7 @@ final class ProfileFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func requiresLoggedInUser() -> Bool {
+    override func requiresLoggedInUser() -> Bool {
         return true
     }
 }
-
-extension ProfileFlowController: TagsListTableViewControllerFlowDelegate {}
-extension ProfileFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
-extension ProfileFlowController: SearchViewControllerFlowDelegate {}
-extension ProfileFlowController: ProfileCollectionViewControllerFlowDelegate {}
-extension ProfileFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension ProfileFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
-extension ProfileFlowController: DiscoverCollectionViewControllerFlowDelegate {}
-extension ProfileFlowController: NotificationsTableViewControllerFlowDelegate {}
-extension ProfileFlowController: ConversationViewControllerFlowDelegate {}
-extension ProfileFlowController: ConversationListTableViewControllerFlowDelegate {}
-extension ProfileFlowController: CallingOutViewControllerFlowDelegate {}
-extension ProfileFlowController: ShoutsCollectionViewControllerFlowDelegate {}
-extension ProfileFlowController: ConversationInfoViewControllerFlowDelegate {}
