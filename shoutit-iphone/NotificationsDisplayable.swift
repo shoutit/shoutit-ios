@@ -13,7 +13,7 @@ protocol NotificationsDisplayable {
     func showNotifications() -> Void
 }
 
-extension NotificationsDisplayable where Self: FlowController, Self: NotificationsTableViewControllerFlowDelegate {
+extension FlowController : NotificationsDisplayable {
     
     func showNotifications() {
         let controller = Wireframe.notificationsController()

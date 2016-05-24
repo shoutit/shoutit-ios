@@ -25,7 +25,7 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
     var currentControllerConstraints: [NSLayoutConstraint] = []
     
     // navigation
-    weak var flowDelegate: ConversationListTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     lazy var myChatsViewController: ConversationListTableViewController = {[unowned self] in
         let controller = Wireframe.chatsListTableViewController()

@@ -9,11 +9,9 @@
 import UIKit
 import RxSwift
 
-protocol CallingOutViewControllerFlowDelegate: class, ChatDisplayable {}
-
 final class CallingOutViewController: UIViewController {
 
-    weak var flowDelegate: CallingOutViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     var callingToProfile: Profile!
     private let disposeBag = DisposeBag()

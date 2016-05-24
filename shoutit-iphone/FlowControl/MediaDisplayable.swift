@@ -12,7 +12,7 @@ protocol MediaDisplayable {
     func showMediaForConversation(conversation: Conversation) -> Void
 }
 
-extension MediaDisplayable where Self: FlowController {
+extension FlowController : MediaDisplayable {
     
     func showMediaForConversation(conversation: Conversation) {
         let viewModel = MessageAttachmentPhotoBrowserViewModel(conversation: conversation)

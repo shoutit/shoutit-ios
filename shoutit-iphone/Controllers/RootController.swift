@@ -139,7 +139,12 @@ final class RootController: UIViewController, ContainerController {
         
         var item = navigationItem
         
-        if navigationItem == .PublicChats || navigationItem == .Conversation {
+        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) {
+            self.showOverExistingFlowController(navigationItem, deepLink: deepLink)
+            return
+        }
+        
+        if navigationItem == .PublicChats {
             item = .Chats
         }
         
@@ -150,7 +155,7 @@ final class RootController: UIViewController, ContainerController {
         // Woooot!
         // Create Shout Controller should be presented above root Controller, so skip flow controller logic
         if item == .CreateShout {
-            showCreateShout()
+            showCreateShout(deepLink)
             return
         } else if item == .Help {
             showHelp()
@@ -194,8 +199,58 @@ final class RootController: UIViewController, ContainerController {
         }
         
         flowControllerToShow.deepLink = deepLink
+        flowControllerToShow.handleDeeplink(deepLink)
         
         presentWith(flowControllerToShow)
+    }
+    
+    func showOverExistingFlowController(navigationItem: NavigationItem, deepLink: DPLDeepLink?) {
+        if self.presentedViewController != nil {
+            self.presentedViewController?.dismissViewControllerAnimated(false, completion: nil)
+        }
+        
+        var currentItem : NavigationItem? = self.currentNavigationItem
+        
+        if currentItem == nil {
+            currentItem = .Home
+            self.openItem(.Home)
+        }
+        
+        guard let currentFlowController = self.flowControllers[currentItem!] else {
+            return
+        }
+        
+        switch navigationItem {
+        case .Conversation:
+            
+            if !Account.sharedInstance.isUserLoggedIn {
+                promptUserForLogin(navigationItem, deepLink: deepLink)
+                return
+            }
+            
+            guard let conversationId = deepLink?.queryParameters["id"] as? String else {
+                return
+            }
+            
+            currentFlowController.showConversationWithId(conversationId)
+            
+        case .Shout:
+            guard let shoutId = deepLink?.queryParameters["id"] as? String else {
+                return
+            }
+            
+            currentFlowController.showShoutWithId(shoutId)
+            
+        case .Profile:
+            guard let profileId = deepLink?.queryParameters["username"] as? String else {
+                return
+            }
+            
+            currentFlowController.showProfileWithId(profileId)
+            
+        default:
+            break
+        }
     }
     
     func cachedFlowControllerForNavigationItem(navigationItem: NavigationItem) -> FlowController? {
@@ -356,7 +411,7 @@ private extension RootController {
 
 private extension RootController {
     
-    private func promptUserForLogin(destinationNavigationItem: NavigationItem) {
+    private func promptUserForLogin(destinationNavigationItem: NavigationItem, deepLink : DPLDeepLink? = nil) {
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
@@ -366,7 +421,7 @@ private extension RootController {
         loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
             self?.sh_invalidateControllersCache()
             self?.loginFlowController?.navigationController.dismissViewControllerAnimated(true, completion: nil)
-            self?.openItem(destinationNavigationItem)
+            self?.openItem(destinationNavigationItem, deepLink: deepLink)
         }
         
         self.presentViewController(navigationController, animated: true, completion: nil)
@@ -382,7 +437,7 @@ private extension RootController {
         UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
     }
     
-    private func showCreateShout() {
+    private func showCreateShout(deepLink: DPLDeepLink? = nil) {
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
@@ -394,6 +449,9 @@ private extension RootController {
         
         let navController = SHNavigationViewController()
         let shoutsFlowController = ShoutFlowController(navigationController: navController)
+        
+        shoutsFlowController.deepLink = deepLink
+        shoutsFlowController.handleDeeplink(deepLink)
         
         navController.modalPresentationStyle = .Custom
         navController.transitioningDelegate = self

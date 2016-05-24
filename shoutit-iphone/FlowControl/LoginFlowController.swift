@@ -10,18 +10,15 @@ import UIKit
 
 final class LoginFlowController: FlowController {
     
-    let navigationController: UINavigationController
-    var deepLink : DPLDeepLink?
     var loginFinishedBlock: ((Bool) -> Void)?
     
     init(navigationController: UINavigationController, skipIntro: Bool = false) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         if skipIntro {
-            showLoginChoice()
+            self.showLoginChoice()
         } else {
-            showIntroController()
+            self.showIntroController()
         }
     }
     
@@ -36,7 +33,7 @@ final class LoginFlowController: FlowController {
 
 extension LoginFlowController: ApplicationMainViewControllerRootObject {}
 
-extension LoginFlowController: IntroViewControllerFlowDelegate {
+extension LoginFlowController  {
     
     func showLoginChoice() {
         
@@ -47,21 +44,4 @@ extension LoginFlowController: IntroViewControllerFlowDelegate {
         navigationController.showViewController(controller, sender: nil)
     }
 }
-
-extension LoginFlowController: LoginFinishable {
-    
-    func didFinishLoginProcessWithSuccess(success: Bool) {
-        if let loginFinishedBlock = loginFinishedBlock {
-            loginFinishedBlock(success)
-        } else {
-            navigationController.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-}
-
-extension LoginFlowController: TermsAndPolicyDisplayable {}
-extension LoginFlowController: LoginMethodChoiceViewControllerFlowDelegate {}
-extension LoginFlowController: LoginWithEmailViewControllerFlowDelegate {}
-extension LoginFlowController: PostSignupInterestsViewControllerFlowDelegate {}
-extension LoginFlowController: PostSignupSuggestionViewControllerFlowDelegate {}
 

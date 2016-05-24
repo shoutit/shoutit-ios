@@ -12,7 +12,7 @@ protocol CreatePublicChatDisplayable {
     func showCreatePublicChat() -> Void
 }
 
-extension CreatePublicChatDisplayable where Self: FlowController {
+extension FlowController : CreatePublicChatDisplayable {
     
     func showCreatePublicChat() {
         let controller = Wireframe.createPublicChatViewController()

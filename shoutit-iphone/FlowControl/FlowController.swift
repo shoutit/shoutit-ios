@@ -8,49 +8,86 @@
 
 import UIKit
 import DeepLinkKit
+import RxSwift
+import MBProgressHUD
 
 protocol UserAccess {
     func requiresLoggedInUser() -> Bool
 }
 
-extension FlowController {
+class FlowController : UserAccess {
+    var navigationController: UINavigationController
+    var deepLink : DPLDeepLink?
+    
+    lazy var filterTransition: FilterTransition = {
+        return FilterTransition()
+    }()
+    
+    init(navigationController: UINavigationController, deepLink: DPLDeepLink? = nil) {
+        self.navigationController = navigationController
+        self.deepLink = deepLink
+        handleDeeplink(deepLink)
+    }
+    
     func requiresLoggedInUser() -> Bool {
         return false
     }
-}
-
-protocol FlowController : UserAccess {
-    var navigationController: UINavigationController {get}
-    var deepLink : DPLDeepLink? { get set }
+    
+    func handleDeeplink(deepLink: DPLDeepLink?) {
+        
+    }
 }
 
 protocol PartialChatDisplayable {
     func showConversationWithId(conversationId: String)
+    func showProfileWithId(profileId: String)
+    func showShoutWithId(shoutId: String)
 }
 
-extension FlowController where Self : PartialChatDisplayable {
+
+extension FlowController : PartialChatDisplayable {
     func showConversationWithId(conversationId: String) {
-        self.navigationController.showViewController(<#T##vc: UIViewController##UIViewController#>, sender: <#T##AnyObject?#>)
-    }
-    
-    
-    func showConversation(conversation: ConversationViewModel.ConversationExistance) {
-        let controller = Wireframe.conversationController()
         
-        controller.flowDelegate = self
-        controller.viewModel = ConversationViewModel(conversation: conversation, delegate: controller)
+        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
         
-        // if there was conversation pop instead of adding another controller to stack
-        let previousControllersCount = (self.navigationController.viewControllers.count - 2)
+        _ = APIChatsService.conversationWithId(conversationId).subscribe { (event) in
+            
+            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
         
-        if previousControllersCount >= 0 {
-            if let conversation = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController {
-                self.navigationController.popToViewController(conversation, animated: true)
-                return
+            if case .Next(let conversation) = event {
+                self.showConversation(.CreatedAndLoaded(conversation: conversation))
             }
+        
         }
         
-        self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showProfileWithId(profileId: String) {
+        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
+        
+        _ = APIProfileService.retrieveProfileWithUsername(profileId).subscribe { (event) in
+            
+            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
+            
+            if case .Next(let profile) = event {
+                self.showProfile(Profile.profileWithUser(profile))
+            }
+            
+        }
+    }
+    
+    func showShoutWithId(shoutId: String) {
+        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
+        
+        _ = APIShoutsService.retrieveShoutWithId(shoutId).subscribe { (event) in
+            
+            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
+            
+            if case .Next(let shout) = event {
+                self.showShout(shout)
+            }
+            
+        }
+
     }
 }
-

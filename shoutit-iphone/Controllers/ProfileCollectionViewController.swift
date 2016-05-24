@@ -12,8 +12,6 @@ import RxCocoa
 import Kingfisher
 import MBProgressHUD
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable, ListenersDisplaybale {}
-
 final class ProfileCollectionViewController: UICollectionViewController {
     
     // consts
@@ -23,7 +21,7 @@ final class ProfileCollectionViewController: UICollectionViewController {
     var viewModel: ProfileCollectionViewModelInterface!
     
     // navigation
-    weak var flowDelegate: ProfileCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // rx
     let disposeBag = DisposeBag()

@@ -13,8 +13,7 @@ protocol AboutDisplayable: class {
     func showAboutInterface() -> Void
 }
 
-extension AboutDisplayable where Self: FlowController, Self: TermsAndPolicyDisplayable {
-    
+extension FlowController : AboutDisplayable {
     func showAboutInterface() {
         let aboutViewController = Wireframe.settingsViewController()
         aboutViewController.models = aboutOptions()

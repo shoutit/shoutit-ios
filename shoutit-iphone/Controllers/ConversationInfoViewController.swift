@@ -10,15 +10,13 @@ import UIKit
 import RxSwift
 import MBProgressHUD
 
-protocol ConversationInfoViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable, AllShoutsDisplayable, MediaDisplayable {}
-
 class ConversationInfoViewController: UITableViewController {
 
     private let disposeBag = DisposeBag()
     private var socketsBag : DisposeBag?
     
     // navigation
-    weak var flowDelegate: ConversationInfoViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // outlets
     @IBOutlet weak var headerView: CreatePublicChatHeaderView!

@@ -19,6 +19,9 @@ struct Notification: Decodable, Hashable, Equatable {
     let object:  AttachedObject?
     let display: Display?
     
+    let webPath: String?
+    let appPath: String?
+    
     var hashValue: Int {
         get {
             return self.id.hashValue
@@ -34,8 +37,11 @@ struct Notification: Decodable, Hashable, Equatable {
             <*> j <| "type"
             <*> j <|? "attached_object"
             <*> j <|? "display"
+        let c = b
+            <*> j <|? "web_url"
+            <*> j <|? "app_url"
         
-        return b
+        return c
     }
     
     mutating func markAsRead() {
@@ -43,7 +49,7 @@ struct Notification: Decodable, Hashable, Equatable {
     }
     
     func readCopy() -> Notification {
-        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display)
+        return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display, webPath: self.webPath, appPath:self.appPath)
     }
 }
 

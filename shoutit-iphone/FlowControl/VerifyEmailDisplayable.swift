@@ -12,7 +12,7 @@ protocol VerifyEmailDisplayable {
     func showVerifyEmailView(profile: DetailedProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) -> Void
 }
 
-extension VerifyEmailDisplayable where Self: FlowController {
+extension FlowController : VerifyEmailDisplayable {
     
     func showVerifyEmailView(profile: DetailedProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) {
         let controller = Wireframe.verifyEmailViewController()

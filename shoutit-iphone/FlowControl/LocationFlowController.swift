@@ -10,8 +10,6 @@ import UIKit
 import GooglePlaces
 
 final class LocationFlowController: FlowController {
-    let navigationController: UINavigationController
-    var deepLink : DPLDeepLink?
     
     var finishedBlock: ((Bool, Address?) -> Void)? {
         didSet {
@@ -22,8 +20,7 @@ final class LocationFlowController: FlowController {
     }
     
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         if let navigationController = navigationController as? SHNavigationViewController {
             navigationController.ignoreTabbarAppearance = true

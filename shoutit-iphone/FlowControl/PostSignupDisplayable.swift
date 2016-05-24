@@ -13,7 +13,7 @@ protocol PostSignupDisplayable {
     func showPostSignupSuggestions() -> Void
 }
 
-extension PostSignupDisplayable where Self: FlowController, Self: PostSignupInterestsViewControllerFlowDelegate, Self: PostSignupSuggestionViewControllerFlowDelegate {
+extension LoginFlowController : PostSignupDisplayable {
     
     func showPostSignupInterests() {
         let postSignupController = Wireframe.postSignupInterestsViewController()

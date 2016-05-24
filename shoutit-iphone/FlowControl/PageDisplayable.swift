@@ -12,7 +12,7 @@ protocol PageDisplayable {
     func showPage(page: Profile) -> Void
 }
 
-extension PageDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
+extension FlowController : PageDisplayable {
     
     func showPage(page: Profile) {
         

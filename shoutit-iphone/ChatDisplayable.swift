@@ -20,7 +20,7 @@ protocol ChatDisplayable {
     func showVideoConversation(conversation: TWCConversation) -> Void
 }
 
-extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate, Self: ConversationInfoViewControllerFlowDelegate {
+extension FlowController : ChatDisplayable {
     
     func showConversation(conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()

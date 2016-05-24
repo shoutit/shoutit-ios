@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
-
 final class DiscoverShoutsParentViewController: UIViewController {
     
     // UI
@@ -22,7 +20,7 @@ final class DiscoverShoutsParentViewController: UIViewController {
     var viewModel : DiscoverShoutsViewModel!
     
     // navigation
-    weak var flowDelegate: DiscoverShoutsParentViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private let disposeBag = DisposeBag()

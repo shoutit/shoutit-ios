@@ -13,7 +13,7 @@ protocol ListenersDisplaybale {
     func showListeningForUsername(username: String) -> Void
 }
 
-extension ListenersDisplaybale where Self: FlowController, Self: ProfileDisplayable {
+extension FlowController : ListenersDisplaybale {
     
     func showListenersForUsername(username: String) {
         let controller = Wireframe.listenersListTableViewController()

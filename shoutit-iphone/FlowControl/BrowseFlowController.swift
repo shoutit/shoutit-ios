@@ -10,14 +10,8 @@ import UIKit
 
 final class BrowseFlowController: FlowController {
     
-    let navigationController: UINavigationController
-    var deepLink : DPLDeepLink?
-    
-    lazy var filterTransition: FilterTransition = {
-        return FilterTransition()
-    }()
-    
     init(navigationController: UINavigationController) {
+        super.init(navigationController: navigationController)
         
         self.navigationController = navigationController
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
@@ -27,16 +21,3 @@ final class BrowseFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
 }
-
-extension BrowseFlowController: SearchViewControllerFlowDelegate {}
-extension BrowseFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
-extension BrowseFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension BrowseFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
-extension BrowseFlowController: DiscoverCollectionViewControllerFlowDelegate {}
-extension BrowseFlowController: ProfileCollectionViewControllerFlowDelegate {}
-extension BrowseFlowController: NotificationsTableViewControllerFlowDelegate {}
-extension BrowseFlowController: ConversationListTableViewControllerFlowDelegate {}
-extension BrowseFlowController: ConversationViewControllerFlowDelegate {}
-extension BrowseFlowController: CallingOutViewControllerFlowDelegate {}
-extension BrowseFlowController: ShoutsCollectionViewControllerFlowDelegate {}
-extension BrowseFlowController: ConversationInfoViewControllerFlowDelegate {}

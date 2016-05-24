@@ -7,15 +7,12 @@
 //
 
 import UIKit
+import DeepLinkKit
 
 final class ShoutFlowController: FlowController {
     
-    let navigationController: UINavigationController
-    var deepLink : DPLDeepLink?
-    
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         if let snavigation = navigationController as? SHNavigationViewController {
@@ -27,7 +24,25 @@ final class ShoutFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func requiresLoggedInUser() -> Bool {
+    override func requiresLoggedInUser() -> Bool {
         return true
+    }
+
+    override func handleDeeplink(deepLink: DPLDeepLink?) {
+        
+        guard let createShoutViewController = self.navigationController.visibleViewController as? CreateShoutPopupViewController else {
+            print(self.navigationController.visibleViewController)
+            return
+        }
+        
+        guard let dplink = deepLink, shoutType = dplink.queryParameters["shout_type"] as? String else {
+            return
+        }
+        
+        if shoutType == "offer" {
+            createShoutViewController.createOffer()
+        } else if shoutType == "request" {
+            createShoutViewController.createRequest()
+        }
     }
 }

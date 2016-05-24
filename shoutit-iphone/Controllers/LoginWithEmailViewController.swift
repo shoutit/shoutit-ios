@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-protocol LoginWithEmailViewControllerFlowDelegate: class, FeedbackDisplayable, HelpDisplayable, AboutDisplayable, TermsAndPolicyDisplayable, PostSignupDisplayable, LoginFinishable {}
-
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
     func presentSignup()
@@ -41,7 +39,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     var currentControllerConstraints: [NSLayoutConstraint] = []
     
     // navigation
-    weak var flowDelegate: LoginWithEmailViewControllerFlowDelegate?
+    weak var flowDelegate: LoginFlowController?
     
     // view model
     var viewModel: LoginWithEmailViewModel!

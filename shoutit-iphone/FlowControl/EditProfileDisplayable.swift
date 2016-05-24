@@ -12,10 +12,9 @@ protocol EditProfileDisplayable {
     func showEditProfile() -> Void
 }
 
-extension EditProfileDisplayable where Self: FlowController {
+extension FlowController : EditProfileDisplayable {
     
-    func showEditProfile() {
-        
+    func showEditProfile() -> Void {
         let controller = Wireframe.editProfileTableViewController()
         controller.viewModel = EditProfileTableViewModel()
         let nav = ModalNavigationController(rootViewController: controller)

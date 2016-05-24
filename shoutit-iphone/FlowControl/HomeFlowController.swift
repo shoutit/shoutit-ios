@@ -9,17 +9,9 @@
 import UIKit
 
 final class HomeFlowController: FlowController {
-    
-    let navigationController: UINavigationController
-    var deepLink : DPLDeepLink?
-    
-    lazy var filterTransition: FilterTransition = {
-        return FilterTransition()
-    }()
-    
+
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         let controller = Wireframe.homeViewController()
@@ -28,17 +20,3 @@ final class HomeFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
 }
-
-extension HomeFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
-extension HomeFlowController: SearchViewControllerFlowDelegate {}
-extension HomeFlowController: HomeViewControllerFlowDelegate {}
-extension HomeFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension HomeFlowController: ProfileCollectionViewControllerFlowDelegate {}
-extension HomeFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
-extension HomeFlowController: DiscoverCollectionViewControllerFlowDelegate {}
-extension HomeFlowController: NotificationsTableViewControllerFlowDelegate {}
-extension HomeFlowController: ConversationListTableViewControllerFlowDelegate {}
-extension HomeFlowController: ConversationViewControllerFlowDelegate {}
-extension HomeFlowController: CallingOutViewControllerFlowDelegate {}
-extension HomeFlowController: ShoutsCollectionViewControllerFlowDelegate {}
-extension HomeFlowController: ConversationInfoViewControllerFlowDelegate {}
