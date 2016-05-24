@@ -43,4 +43,5 @@ translations:
     - artifacts
   only:
     - develop
+    - /^translations-.*$/
   
