@@ -26,43 +26,31 @@ final class Account {
     
     // singleton
     static let sharedInstance = Account()
-    lazy var twilioManager: Twilio = {[unowned self] in
-        return Twilio(account: self)
-    }()
-    lazy var pusherManager: PusherClient = {[unowned self] in
-        return PusherClient(account: self)
-    }()
     
-    // public consts
-    lazy var userDirectory: String = {
-        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let userDirecotryPath = NSURL(fileURLWithPath: documentsDirectory).URLByAppendingPathComponent("user").path!
-        if !NSFileManager.defaultManager().fileExistsAtPath(userDirecotryPath) {
-            try! NSFileManager.defaultManager().createDirectoryAtPath(userDirecotryPath, withIntermediateDirectories: false, attributes: nil)
-        }
-        return userDirecotryPath
-    }()
+    // public
+    let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
+    let loginSubject: PublishSubject<AuthData?> = PublishSubject() // triggered on login
+    let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    lazy var twilioManager: Twilio = {[unowned self] in Twilio(account: self) }()
+    lazy var pusherManager: PusherClient = {[unowned self] in PusherClient(account: self) }()
+    lazy var facebookManager: FacebookManager = {[unowned self] in FacebookManager(account: self) }()
+    lazy var userDirectory: String = self.createUserDirectory()
     
     // private consts
-    lazy private var archivePath: String = {[unowned self] in
-        let fileURL = NSURL(fileURLWithPath: self.userDirectory).URLByAppendingPathComponent("user.data")
-        return fileURL.path!
-    }()
+    private lazy var archivePath: String = {[unowned self] in NSURL(fileURLWithPath: self.userDirectory).URLByAppendingPathComponent("user.data").path! }()
     private let authDataKey = "authData"
-    lazy private var keychain: Keychain = {
-        return Keychain(service: "com.shoutit-iphone")
-    }()
+    private lazy var keychain: Keychain = { return Keychain(service: "com.shoutit-iphone") }()
+    
+    // helper vars
+    private var updatingAPNS = false
+    private let disposeBag = DisposeBag()
     
     // data
     var apnsToken: String? {
-        didSet {
-            self.updateAPNSIfNeeded()
-        }
+        didSet { self.updateAPNSIfNeeded() }
     }
     private(set) var authData: AuthData? {
-        didSet {
-            self.loginSubject.onNext(authData)
-        }
+        didSet { self.loginSubject.onNext(authData) }
     }
     
     private(set) var userModel: UserModel? {
@@ -74,6 +62,7 @@ final class Account {
                 updateApplicationBadgeNumberWithStats(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
+                facebookManager.checkExpiryDate()
             case .Some(.Guest(let userObject)):
                 userSubject.onNext(userObject)
                 statsSubject.onNext(nil)
@@ -94,13 +83,6 @@ final class Account {
         default: return nil
         }
     }
-    
-    // helper vars
-    private let disposeBag = DisposeBag()
-    let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
-    let loginSubject: PublishSubject<AuthData?> = PublishSubject() // triggered on login
-    let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
-    private var updatingAPNS = false
     
     // convienience
     var isUserAuthenticated: Bool {
@@ -131,14 +113,6 @@ final class Account {
         configureTwilioAndPusherServices()
         
         userSubject.onNext(user)
-    }
-    
-    func locationString() -> String {
-        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
-            return "\(city), \(state), \(country)"
-        }
-        
-        return NSLocalizedString("Unknown Location", comment: "")
     }
     
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
@@ -177,6 +151,17 @@ final class Account {
         APIManager.eraseAuthToken()
         pusherManager.disconnect()
         twilioManager.disconnect()
+    }
+}
+
+extension Account {
+    
+    func locationString() -> String {
+        if let city = user?.location.city, state = user?.location.state, country = user?.location.country {
+            return "\(city), \(state), \(country)"
+        }
+        
+        return NSLocalizedString("Unknown Location", comment: "")
     }
     
     func fetchUserProfile() {
@@ -260,5 +245,14 @@ private extension Account {
                 }
                 .addDisposableTo(disposeBag)
         }
+    }
+    
+    private func createUserDirectory() -> String {
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let userDirecotryPath = NSURL(fileURLWithPath: documentsDirectory).URLByAppendingPathComponent("user").path!
+        if !NSFileManager.defaultManager().fileExistsAtPath(userDirecotryPath) {
+            try! NSFileManager.defaultManager().createDirectoryAtPath(userDirecotryPath, withIntermediateDirectories: false, attributes: nil)
+        }
+        return userDirecotryPath
     }
 }

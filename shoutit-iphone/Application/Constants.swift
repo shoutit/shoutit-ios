@@ -10,10 +10,6 @@ import Foundation
 
 struct Constants {
     
-    struct Facebook {
-        static let loginReadPermissions = ["public_profile", "email", "user_birthday"]
-    }
-    
     struct Google {
         static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
         static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"

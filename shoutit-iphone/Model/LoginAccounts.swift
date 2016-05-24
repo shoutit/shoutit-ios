@@ -13,7 +13,7 @@ import Ogra
 
 struct LoginAccounts {
     let gplus: Bool
-    let facebook: Bool
+    let facebook: FacebookAccount
 }
 
 extension LoginAccounts: Decodable {
