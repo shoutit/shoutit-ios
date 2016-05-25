@@ -41,7 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerRoutes()
         
-        if let userInfo = launchOptions, aps = userInfo["aps"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey] else {
+            return true
+        }
+        
+        if let aps = userInfo["data"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
             application.openURL(urlToOpen)
         }
         
@@ -98,12 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print(error)
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        if let aps = userInfo["aps"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
-            application.openURL(urlToOpen)
-        }
     }
 }
 
