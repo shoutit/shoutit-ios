@@ -22,6 +22,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     private let disposeBag = DisposeBag()
     private var loadMoreBag = DisposeBag()
  
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,18 +38,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         setLoadMoreFooter()
         
         setupAttachmentManager()
-        
-        if let shout = viewModel.conversation.value.shout {
-            setTopicShout(shout)
-        }
-    }
-    
-    func subscribeSockets() {
-        self.viewModel.createSocketObservable()
-    }
-    
-    func unsubscribeSockets() {
-        self.viewModel.unsubscribeSockets()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,10 +57,18 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         layoutInsets()
+    }
+    
+    func subscribeSockets() {
+        self.viewModel.createSocketObservable()
+    }
+    
+    func unsubscribeSockets() {
+        self.viewModel.unsubscribeSockets()
     }
     
     func layoutInsets() {
@@ -82,7 +79,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
     }
     
-    func setTopicShout(shout: Shout) {
+    private func setTopicShout(shout: Shout) {
         guard let shoutView = NSBundle.mainBundle().loadNibNamed("ConversationShoutHeader", owner: self, options: nil)[0] as? ConversationShoutHeader else {
             return
         }
@@ -143,7 +140,10 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         viewModel.conversation.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (conversationExistance) in
-                if let conversation = self?.viewModel.conversation.value.conversationInterface {
+                if let shout = conversationExistance.shout {
+                    self?.setTopicShout(shout)
+                }
+                if let conversation = conversationExistance.conversationInterface {
                     self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
                     if let moreButtonItem = self?.navigationItem.rightBarButtonItems?.first where conversation.type() == .PublicChat {
                         self?.navigationItem.rightBarButtonItems = [moreButtonItem]
