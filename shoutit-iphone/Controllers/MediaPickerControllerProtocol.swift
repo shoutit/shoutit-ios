@@ -61,6 +61,10 @@ struct MediaAttachment : Hashable, Equatable {
             return self.uid.hashValue
         }
     }
+    
+    func mediaAttachmentWithExchangedImage(nimage: UIImage, data: NSData) -> MediaAttachment {
+        return MediaAttachment(type: self.type, uid: self.uid, remoteURL: self.remoteURL, thumbRemoteURL: self.thumbRemoteURL, image: nimage, videoDuration: self.videoDuration, originalData: data)
+    }
 
 }
 

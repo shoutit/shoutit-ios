@@ -21,6 +21,11 @@ final class SelectShoutImagesController: UICollectionViewController {
     var mediaPicker : MediaPickerController!
     var mediaUploader : MediaUploader!
     
+    var editingAttachment : MediaAttachment?
+    var editingCompletion : ((attachment: MediaAttachment) -> Void)?
+    
+    var editingController : AVYPhotoEditorController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,6 +33,8 @@ final class SelectShoutImagesController: UICollectionViewController {
         mediaUploader = MediaUploader(bucket: .ShoutImage)
         
         attachments = [:]
+        
+        AVYOpenGLManager.beginOpenGLLoad()
     }
     
     override func viewDidLoad() {
@@ -118,14 +125,79 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
         if let idx = newAttachmentIdx {
             self.attachments[idx] = attachment
             
-            startUploadingAttachment(attachment)
-            
             self.collectionView?.reloadData()
+            
+            showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (attachment) in
+                self?.attachments[idx] = attachment
+                
+                self?.startUploadingAttachment(attachment)
+                
+                self?.collectionView?.reloadData()
+            })
             
             return
         }
         
         toManyImagesAlert()
+    }
+}
+
+extension SelectShoutImagesController : AVYPhotoEditorControllerDelegate {
+    func photoEditor(editor: AVYPhotoEditorController, finishedWithImage image: UIImage) {
+        
+        editingController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else {
+            return
+        }
+        
+        guard let imageData = image.dataRepresentation() else {
+            editingCompletion(attachment: editingAttachment)
+            return
+        }
+        
+        let newAttachment = editingAttachment.mediaAttachmentWithExchangedImage(image, data: imageData)
+        
+        editingCompletion(attachment: newAttachment)
+    }
+    
+    func photoEditorCanceled(editor: AVYPhotoEditorController!) {
+        editingController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension SelectShoutImagesController {
+    
+    func showPhotoEditingForAttechmentIfNeeded(attachment: MediaAttachment, completion: (attachment : MediaAttachment) -> Void ) {
+        if attachment.type != .Image {
+            completion(attachment: attachment)
+            return
+        }
+        
+        guard let img = attachment.image else {
+            completion(attachment: attachment)
+            return
+        }
+        
+        
+        var token: dispatch_once_t = 0
+        
+        dispatch_once(&token) {
+            AVYPhotoEditorController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
+        }
+            
+        self.editingAttachment = attachment
+        self.editingCompletion = completion
+        
+        editingController = AVYPhotoEditorController(image: img)
+        
+        editingController?.delegate = self
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.mediaPicker.presentingSubject.onNext(self.editingController)
+        }
     }
 }
 
