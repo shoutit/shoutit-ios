@@ -24,6 +24,7 @@ PODS:
     - Alamofire (~> 3.0)
     - SWXMLHash (~> 2.0)
   - Argo (2.3.0)
+  - AviarySDK (4.4.5)
   - AWSCognito (2.4.1):
     - AWSCore (= 2.4.1)
   - AWSCore (2.4.1)
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.3.0)
   - AmazonS3RequestManager
   - Argo
+  - AviarySDK (~> 4.4)
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - Crashlytics (~> 3.6)
@@ -164,6 +166,7 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AmazonS3RequestManager: a88f4596165b46961a6bf904f357ba2aab4931b6
   Argo: 3dbecf4204b1a3cdd1df88ebd5e23d01b652d34b
+  AviarySDK: 311bdc7c2a81aee93ab1dc7bb5f3e4ef6ee52041
   AWSCognito: a57173a82505161bd1a9c8cfe393cea9b5b1f6bb
   AWSCore: 9bfd632f04aaf12053e639d2a9120372844beb0d
   AWSS3: d7a3a694ffc4010e90b14755b5b9dbf70989c117

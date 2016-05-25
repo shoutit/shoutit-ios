@@ -16,6 +16,11 @@ struct Constants {
         static let GOOGLE_API_KEY = "AIzaSyBZsjPCMTtOFB79RsWn3oUGVPDImf4ceTU"
     }
     
+    struct Aviary {
+        static let clientSecret = "12f2bb3e-d7e5-43e0-b0b5-6eea40f855d8"
+        static let clientID = "31c7e2be6b374423a80966a3489a93e2"
+    }
+    
     struct URL {
         static let ShoutItWebsite = "http://www.shoutit.com"
     }
