@@ -38,7 +38,7 @@ struct Profile {
                        isActivated: user.isActivated,
                        imagePath: user.imagePath,
                        coverPath: user.coverPath,
-                       isListening: nil,
+                       isListening: user.isListening,
                        listenersCount: user.listenersCount)
     }
 }

@@ -414,12 +414,12 @@ extension ProfileCollectionViewController {
                     return !isGuest
                 }
                 .flatMapFirst{[weak button] () -> Observable<Void> in
-                if let button = button as? ProfileInfoHeaderButton {
-                    let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
-                    button.setImage(switchedModel.image, countText: nil)
-                    button.setTitleText(switchedModel.title)
-                }
-                return listenObservable
+                    if let button = button as? ProfileInfoHeaderButton {
+                        let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
+                        button.setImage(switchedModel.image, countText: nil)
+                        button.setTitleText(switchedModel.title)
+                    }
+                    return listenObservable
                 }
                 .subscribeError{[weak button] (_) in
                     if let button = button as? ProfileInfoHeaderButton {
