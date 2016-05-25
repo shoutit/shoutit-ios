@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -333,15 +333,15 @@
                             </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="89" id="3NB-Gg-FJh" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="298" width="600" height="89"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="96" id="3NB-Gg-FJh" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="298" width="600" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="3NB-Gg-FJh" id="nHj-Xf-F24">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3NB-Gg-FJh" id="nHj-Xf-F24">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAQ-ZA-HOP" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="17" width="544" height="56"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAQ-ZA-HOP" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="20" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Jc8-fC-1Ap"/>
                                             </constraints>
@@ -365,9 +365,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="JAQ-ZA-HOP" firstAttribute="leading" secondItem="nHj-Xf-F24" secondAttribute="leading" constant="20" id="dOh-aM-8ZS"/>
-                                        <constraint firstItem="JAQ-ZA-HOP" firstAttribute="top" secondItem="nHj-Xf-F24" secondAttribute="topMargin" id="fu1-Q9-711"/>
                                         <constraint firstAttribute="trailing" secondItem="JAQ-ZA-HOP" secondAttribute="trailing" constant="20" id="g3Z-gn-tM5"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="JAQ-ZA-HOP" secondAttribute="bottom" id="nMS-Rw-HyN"/>
+                                        <constraint firstItem="JAQ-ZA-HOP" firstAttribute="centerY" secondItem="nHj-Xf-F24" secondAttribute="centerY" id="k9v-I9-pS2"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -375,14 +374,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Czx-jM-0bA" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="387" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="394" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Czx-jM-0bA" id="IoV-81-pXc">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Czx-jM-0bA" id="IoV-81-pXc">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygX-W4-fss" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="18" width="544" height="56"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygX-W4-fss" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="2" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="bOc-4I-GI3"/>
                                             </constraints>
@@ -406,14 +405,21 @@
                                         <constraint firstAttribute="trailing" secondItem="ygX-W4-fss" secondAttribute="trailing" constant="20" id="Kjv-pe-yHk"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ygX-W4-fss" secondAttribute="bottom" id="ZB8-aB-fPq"/>
                                         <constraint firstItem="ygX-W4-fss" firstAttribute="leading" secondItem="IoV-81-pXc" secondAttribute="leading" constant="20" id="guZ-aA-Lck"/>
+                                        <constraint firstItem="ygX-W4-fss" firstAttribute="centerY" secondItem="IoV-81-pXc" secondAttribute="centerY" id="vt7-oY-vbb"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="80m-Al-iMb"/>
+                                            <exclude reference="ZB8-aB-fPq"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="ygX-W4-fss" id="i6c-dy-KJ6"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="HFJ-Ts-iX9" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="600" height="119"/>
+                                <rect key="frame" x="0.0" y="453" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFJ-Ts-iX9" id="Vc0-S2-Qkf">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
@@ -438,14 +444,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="565" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="572" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-pO-O7x" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="8" width="560" height="32"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-pO-O7x" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="17" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Kyd-5O-nrT"/>
                                             </constraints>
@@ -466,18 +472,25 @@
                                         </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="XyM-pO-O7x" firstAttribute="centerY" secondItem="FRE-Wk-clz" secondAttribute="centerY" id="58x-AC-msH"/>
                                         <constraint firstAttribute="trailing" secondItem="XyM-pO-O7x" secondAttribute="trailing" constant="20" id="F7p-H8-9tk"/>
                                         <constraint firstItem="XyM-pO-O7x" firstAttribute="leading" secondItem="FRE-Wk-clz" secondAttribute="leading" constant="20" id="Nlg-uO-VBM"/>
                                         <constraint firstItem="XyM-pO-O7x" firstAttribute="top" secondItem="FRE-Wk-clz" secondAttribute="top" constant="8" id="fAM-9u-GnQ"/>
                                         <constraint firstAttribute="bottom" secondItem="XyM-pO-O7x" secondAttribute="bottom" constant="8" id="k6b-JR-GfT"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="fAM-9u-GnQ"/>
+                                            <exclude reference="k6b-JR-GfT"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="XyM-pO-O7x" id="0c7-Bq-q2S"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="59" id="8fc-as-Csv" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="654" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="661" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fc-as-Csv" id="Tr2-IM-qUF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -971,7 +984,7 @@
             </objects>
             <point key="canvasLocation" x="-3147" y="-1758"/>
         </scene>
-        <!--Create Shout-->
+        <!--Edit Shout-->
         <scene sceneID="f75-ca-Nlm">
             <objects>
                 <tableViewController id="Cc8-TZ-xhW" customClass="EditShoutTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -1065,12 +1078,12 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="89" id="DQ8-5W-d82" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="298" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="DQ8-5W-d82" id="FhP-c3-g2g">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DQ8-5W-d82" id="FhP-c3-g2g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPi-sh-l28" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="17" width="544" height="56"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPi-sh-l28" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="17" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="CKy-ff-U1i"/>
                                             </constraints>
@@ -1094,10 +1107,17 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gPi-sh-l28" firstAttribute="top" secondItem="FhP-c3-g2g" secondAttribute="topMargin" id="9IQ-g1-xr0"/>
+                                        <constraint firstItem="gPi-sh-l28" firstAttribute="centerY" secondItem="FhP-c3-g2g" secondAttribute="centerY" id="FZ8-bo-dVN"/>
                                         <constraint firstItem="gPi-sh-l28" firstAttribute="leading" secondItem="FhP-c3-g2g" secondAttribute="leading" constant="20" id="Oty-Od-uni"/>
                                         <constraint firstAttribute="trailing" secondItem="gPi-sh-l28" secondAttribute="trailing" constant="20" id="UfH-wN-vAz"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="gPi-sh-l28" secondAttribute="bottom" id="d4F-Qh-QBq"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9IQ-g1-xr0"/>
+                                            <exclude reference="d4F-Qh-QBq"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="gPi-sh-l28" id="d56-bY-AhA"/>
@@ -1106,12 +1126,12 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Sd6-kJ-fTz" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="387" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Sd6-kJ-fTz" id="KrO-iQ-auC">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sd6-kJ-fTz" id="KrO-iQ-auC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijV-G2-BmC" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="18" width="544" height="56"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijV-G2-BmC" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="2" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="PvM-Ib-1E4"/>
                                             </constraints>
@@ -1135,7 +1155,14 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="ijV-G2-BmC" secondAttribute="bottom" id="8pq-DF-eLh"/>
                                         <constraint firstItem="ijV-G2-BmC" firstAttribute="leading" secondItem="KrO-iQ-auC" secondAttribute="leading" constant="20" id="CoL-yV-2kv"/>
                                         <constraint firstAttribute="trailing" secondItem="ijV-G2-BmC" secondAttribute="trailing" constant="20" id="edt-6r-l89"/>
+                                        <constraint firstItem="ijV-G2-BmC" firstAttribute="centerY" secondItem="KrO-iQ-auC" secondAttribute="centerY" id="n4h-3T-6X4"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="4aV-E2-WFY"/>
+                                            <exclude reference="8pq-DF-eLh"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="ijV-G2-BmC" id="z6I-t6-coY"/>
@@ -1195,12 +1222,12 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="4XR-xv-08w" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="624" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="4XR-xv-08w" id="tEU-yM-GzF">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4XR-xv-08w" id="tEU-yM-GzF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhb-3U-Wnp" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="8" width="560" height="32"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhb-3U-Wnp" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="17" width="560" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="SMa-r9-Hjt"/>
                                             </constraints>
@@ -1223,9 +1250,16 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Mhb-3U-Wnp" secondAttribute="bottom" constant="8" id="04Z-O4-Vqe"/>
                                         <constraint firstAttribute="trailing" secondItem="Mhb-3U-Wnp" secondAttribute="trailing" constant="20" id="9zE-0t-cT0"/>
+                                        <constraint firstItem="Mhb-3U-Wnp" firstAttribute="centerY" secondItem="tEU-yM-GzF" secondAttribute="centerY" id="EqT-4i-shz"/>
                                         <constraint firstItem="Mhb-3U-Wnp" firstAttribute="top" secondItem="tEU-yM-GzF" secondAttribute="top" constant="8" id="SfA-4Q-8ef"/>
                                         <constraint firstItem="Mhb-3U-Wnp" firstAttribute="leading" secondItem="tEU-yM-GzF" secondAttribute="leading" constant="20" id="XMy-6N-b6S"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="04Z-O4-Vqe"/>
+                                            <exclude reference="SfA-4Q-8ef"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectButton" destination="Mhb-3U-Wnp" id="esF-Ls-0Sv"/>
@@ -1238,7 +1272,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Create Shout" id="Qcg-aH-k2h">
+                    <navigationItem key="navigationItem" title="Edit Shout" id="Qcg-aH-k2h">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gmw-au-MpQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
