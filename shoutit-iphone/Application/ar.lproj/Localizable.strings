@@ -5,12 +5,6 @@
 " Location" = "الموقع";
 
 /* No comment provided by engineer. */
-"%%x Listened to you" = "%%x يستمع اليك";
-
-/* No comment provided by engineer. */
-"%%x: %%mm" = "%%x: %%mm";
-
-/* No comment provided by engineer. */
 "%@ Admins" = "%@ مدراء";
 
 /* No comment provided by engineer. */
@@ -28,8 +22,20 @@
 /* Shout detail location string */
 "(location.city), (location.country)" = "(location.city), (location.country)";
 
+/* No comment provided by engineer. */
+"(profileName) can now administrate this chat" = "(profileName) يستطيع الآن إدارة المحادثة";
+
+/* Blocked Users count */
+"(self.conversation.blocked.count)" = "(self.conversation.blocked.count)";
+
+/* Participants count */
+"(self.conversation.users?.count ?? 0)" = "(self.conversation.users?.count ?? 0)";
+
 /* More than 99 Notifications */
 "+99" = "+99";
+
+/* No comment provided by engineer. */
+"ATTACHMENTS" = "المرفقات";
 
 /* About screen title
    Settings cell title */
@@ -38,8 +44,20 @@
 /* Settings cell title */
 "Account" = "الحساب";
 
+/* No comment provided by engineer. */
+"Add %d Photos" = "إضافة %d صور";
+
+/* No comment provided by engineer. */
+"Add Member" = "إضافة مشترك";
+
+/* No comment provided by engineer. */
+"Administrator" = "مدير";
+
 /* Default category - filter button title */
 "All Categories" = "جميع التصنيفات";
+
+/* No comment provided by engineer. */
+"Already a member" = "مشترك حاليا";
 
 /* No comment provided by engineer. */
 "Are you sure?" = "هل انت متأكد ؟";
@@ -58,6 +76,12 @@
 
 /* No comment provided by engineer. */
 "Bio has too many characters" = "لايمكن ان يحتوي على الكثير من الأحرف";
+
+/* No comment provided by engineer. */
+"Block" = "حظر";
+
+/* No comment provided by engineer. */
+"Blocked" = "محظور";
 
 /* No comment provided by engineer. */
 "Browse" = "إستعرض";
@@ -98,6 +122,9 @@
 /* Shout detail tab bar item */
 "Chat" = "محادثة";
 
+/* Chat Info Bottom Description */
+"Chat created by Shoutit" = "محادثة من شاوت ات";
+
 /* Shout detail tab bar item */
 "Chats" = "المحادثات";
 
@@ -109,6 +136,15 @@
 
 /* Default table view placeholder */
 "Content unavailable" = "المحتوى غير متاح";
+
+/* No comment provided by engineer. */
+"Conversation Deleted succesfully" = "تم مسح المحادثة";
+
+/* No comment provided by engineer. */
+"Conversation Shouts" = "إعلانات المحادثة";
+
+/* No comment provided by engineer. */
+"Conversation reported succesfully" = "تم التبليغ عن المحادثة بنجاح";
 
 /* No comment provided by engineer. */
 "Could not establish connection right now." = "لايمكن تأسيس إتصال الآن ";
@@ -161,9 +197,6 @@
 /* No comment provided by engineer. */
 "Delete Conversation" = "حذف المحادثة";
 
-/* Delivered */
-"Delivered" = "تم التسليم";
-
 /* Description cell placeholder text
    Shout details */
 "Description" = "الشرح";
@@ -185,6 +218,9 @@
 
 /* No comment provided by engineer. */
 "Do you want to send selected picture?" = "هل ترغب بإرسال الصورة المحددة؟";
+
+/* No comment provided by engineer. */
+"Do you want to send selected profile?" = "هل ترغب في إرسال الملف الشخصي المحدد؟";
 
 /* No comment provided by engineer. */
 "Do you want to send selected shout?" = "هل ترغب بإرسال الإعلان المحدد؟ ";
@@ -223,10 +259,13 @@
 "Entire country" = "كامل الدولة";
 
 /* No comment provided by engineer. */
+"Exit Chat" = "ترك المحادثة";
+
+/* No comment provided by engineer. */
 "FREE" = "مجاناً";
 
-/* Failed */
-"Failed" = "فشل";
+/* Create public chat cell title */
+"Facebook" = "فيسبوك";
 
 /* No comment provided by engineer. */
 "Fields must not be empty" = "لابمكن ترك الحقول فارغة";
@@ -268,6 +307,9 @@
 /* No comment provided by engineer. */
 "K" = "ألف";
 
+/* Create public chat section title */
+"LOCATION" = "الموقع";
+
 /* Edit profile placeholder text */
 "Last name" = "الإسم الأخير";
 
@@ -303,7 +345,16 @@
 "M" = "مليو";
 
 /* No comment provided by engineer. */
+"MEMBERS" = "المشاركون";
+
+/* No comment provided by engineer. */
+"Manage User" = "إدارة المشترك";
+
+/* No comment provided by engineer. */
 "Mark all as read" = "تحديد الكل كمقروء";
+
+/* No comment provided by engineer. */
+"Media" = "وسائط متعددة";
 
 /* Edit profile placeholder text */
 "Mobile" = "رقم الموبايل";
@@ -395,14 +446,20 @@
 /* No comment provided by engineer. */
 "Orders" = "المشتريات";
 
+/* No comment provided by engineer. */
+"Participants" = "المشاركون";
+
 /* Settings cell title */
 "Password" = "كلمة المرور";
 
 /* Password characters limit should be between 6-20 */
 "PasswordValidationError" = "خطأ في كلمة المرور";
 
-/* Pending */
-"Pending" = "إنتظار";
+/* No comment provided by engineer. */
+"Photo Library" = "مكتبة الصور";
+
+/* No comment provided by engineer. */
+"Please enter chat subject" = "الرجاء ادخال موضوع المحادثة";
 
 /* No comment provided by engineer. */
 "Please enter report message" = "يرجى ادخال رسالة تبليغ";
@@ -445,7 +502,13 @@
 "Privacy Policy" = "سياسة الخصوصية";
 
 /* No comment provided by engineer. */
+"Profile" = "الصفحة الشخصية";
+
+/* No comment provided by engineer. */
 "Profile Reported Successfully" = "تم التبليغ عن المستخدم بنجاح";
+
+/* No comment provided by engineer. */
+"Promote to admin" = "ترقية لمدير";
 
 /* Recent searches header */
 "Recent searches" = "تم البحث عنه";
@@ -466,6 +529,9 @@
 "Remove Currency" = "حذف العملة";
 
 /* No comment provided by engineer. */
+"Report Chat" = "تبليغ عن المحادثة";
+
+/* No comment provided by engineer. */
 "Report Profile" = "تبليغ عن المستخدم";
 
 /* No comment provided by engineer. */
@@ -479,6 +545,9 @@
 
 /* Search results for search phrase section header */
 "Results for '%@'" = "النتائج ل '%@'";
+
+/* Create public chat section title */
+"SHARING" = "مشاركة";
 
 /* Search text field placeholder */
 "Search Shoutit" = "ابحث في شاوت ات";
@@ -505,12 +574,6 @@
 "Sending message" = "إرسال رسالة";
 
 /* No comment provided by engineer. */
-"Sends you message" = "أرسل لك رسالة";
-
-/* Sent */
-"Sent" = "تم الإرسال";
-
-/* No comment provided by engineer. */
 "Settings" = "الإعدادات";
 
 /* No comment provided by engineer. */
@@ -531,9 +594,6 @@
 /* Signup view. Should be the same as whole text's part */
 "Sign up" = "إنشاء حساب";
 
-/* No comment provided by engineer. */
-"Someone" = "شخص ما";
-
 /* Sort type button title label */
 "Sort By" = "فرز حسب";
 
@@ -545,6 +605,18 @@
 
 /* No comment provided by engineer. */
 "Suggested Users" = "مستخدمين مقترحين";
+
+/* No comment provided by engineer. */
+"Take Photo" = "التقط صورة";
+
+/* No comment provided by engineer. */
+"Take Photo or Video" = "التقط صورة أو فيديو";
+
+/* No comment provided by engineer. */
+"Take Video" = "التقط فيديو";
+
+/* No comment provided by engineer. */
+"Tap to add to chat" = "اضغط للإضافة إلى المحادثة";
 
 /* No comment provided by engineer. */
 "Tap to load archive messages" = "إضغط لتحميل الرسائل المؤرشفة";
@@ -562,11 +634,17 @@
 /* No comment provided by engineer. */
 "Turn On" = "تشغيل";
 
+/* Create public chat cell title */
+"Twitter" = "تويتر";
+
 /* Shout type button title label */
 "Type" = "نوع";
 
 /* No comment provided by engineer. */
 "Type a message" = "اكتب رسالة";
+
+/* No comment provided by engineer. */
+"Unblock" = "إلغاء حظر";
 
 /* No comment provided by engineer. */
 "Unknown Location" = "موقع غير معروف";
@@ -590,9 +668,6 @@
 "Video is too long" = "مدة الفيديو طويلة";
 
 /* No comment provided by engineer. */
-"View Profile" = "عرض الصفحة الشخصية";
-
-/* No comment provided by engineer. */
 "Visit %@'s profile" = "زيارة صفحة %@ الشخصية";
 
 /* Edit profile placeholder text */
@@ -601,11 +676,8 @@
 /* No comment provided by engineer. */
 "Yes, Delete Shout" = "نعم, إحذف هذا الإعلان";
 
-/* No comment provided by engineer. */
-"You" = "أنت";
-
-/* No comment provided by engineer. */
-"You are not able to call this user" = "لابمكنك الإتصال بهذا المستخدم";
+/* Chat Info actions message */
+"You are not allowed to do this action" = "لا يمكنك القيام بهذه العملية";
 
 /* No comment provided by engineer. */
 "You can only start a chat with your listeners" = "يمكنك بدء المحادثة فقط مع مستمعينك";
@@ -624,6 +696,18 @@
 
 /* No comment provided by engineer. */
 "You must be logged in to perform this action" = "يجب أن تكون مسجل لتنفيذ هذا الإجراء ";
+
+/* No comment provided by engineer. */
+"You've successfully added (profileName) to chat." = "لقد قمت بإضافة (profileName) إلى المحادثة بنجاح";
+
+/* No comment provided by engineer. */
+"You've successfully blocked (profileName)" = "لقد قمت بحظر (profileName) من المحادثة بنجاح";
+
+/* No comment provided by engineer. */
+"You've successfully removed (profileName) from chat." = "لقد قمت بإزالة (profileName) من المحادثة بنجاح";
+
+/* No comment provided by engineer. */
+"You've successfully unblocked (profileName)" = "لقد قمت بإلغاء حظر(profileName)  بنجاح";
 
 /* Verify email user message */
 "Your account has been successfully verified" = "تم تفعيل حسابك بنجاح";
