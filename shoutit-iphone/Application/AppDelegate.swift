@@ -94,6 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Push notifications
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if let appPath = userInfo["data"]?["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+            application.openURL(urlToOpen)
+        }
+    }
+    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
         Account.sharedInstance.apnsToken = token
