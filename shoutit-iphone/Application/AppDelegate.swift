@@ -25,8 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         applyAppearance()
-        configureGoogleLogin()
         configureLoggingServices()
+        
+        // fetch user account to update all stats etc.
+        Account.sharedInstance.fetchUserProfile()
+        
+        configureGoogleLogin()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions ?? [:])
         PlacesGeocoder.setup()
         MixpanelHelper.handleUserDidOpenApp()
@@ -36,9 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureURLCache()
         
         registerRoutes()
-        
-        // fetch user account to update all stats etc.
-        Account.sharedInstance.fetchUserProfile()
         
         if let userInfo = launchOptions, aps = userInfo["aps"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
             application.openURL(urlToOpen)

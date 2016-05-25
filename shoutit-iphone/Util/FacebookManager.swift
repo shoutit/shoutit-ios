@@ -42,8 +42,7 @@ extension FacebookManager {
         return facebookAccount.scopes.contains(FacebookPermissions.PublishActions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(FacebookPermissions.PublishActions.rawValue)
     }
     
-    func checkExpiryDate() {
-        guard case .Some(.Logged(let profile)) = account.userModel else { return }
+    func checkExpiryDateWithProfile(profile: DetailedProfile) {
         guard let facebookAccount = profile.linkedAccounts?.facebook else { return }
         let expiryDate = NSDate(timeIntervalSince1970: NSTimeInterval(facebookAccount.expiresAtEpoch))
         if NSDate().compare(expiryDate) == NSComparisonResult.OrderedAscending {
