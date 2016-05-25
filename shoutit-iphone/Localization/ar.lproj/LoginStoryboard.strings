@@ -1,5 +1,5 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "0w1-iB-LJP"; */
-"0w1-iB-LJP.normalTitle" = "Done";
+"0w1-iB-LJP.normalTitle" = "تم";
 
 /* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
 "2hM-uG-45m.normalTitle" = "هل نسيت كلمة المرور؟ ";
@@ -99,9 +99,6 @@
 
 /* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
 "ff2-Jg-zkJ.text" = "بواسطة غوغل";
-
-/* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
-"fg0-TH-CXc.text" = "سجل دخولك واكتشف ماذا يقوم الآخرين بالبيع في منطقتك أو قم بالبيع في ثوان";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
 "iKX-Fx-ZOg.placeholder" = "كلمة المرور";

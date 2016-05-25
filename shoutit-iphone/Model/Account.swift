@@ -62,7 +62,7 @@ final class Account {
                 updateApplicationBadgeNumberWithStats(userObject.stats)
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
-                facebookManager.checkExpiryDate()
+                facebookManager.checkExpiryDateWithProfile(userObject)
             case .Some(.Guest(let userObject)):
                 userSubject.onNext(userObject)
                 statsSubject.onNext(nil)
@@ -109,7 +109,8 @@ final class Account {
         
         self.authData = authData
         APIManager.setAuthToken(authData.apiToken)
-        updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
+        let stats = (user as? DetailedProfile)?.stats
+        updateApplicationBadgeNumberWithStats(stats)
         configureTwilioAndPusherServices()
         
         userSubject.onNext(user)

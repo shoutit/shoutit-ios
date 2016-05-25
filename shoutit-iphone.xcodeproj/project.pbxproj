@@ -563,8 +563,10 @@
 		B2B5D0421C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5D0411C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift */; };
 		B2B5D0451C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2B5D0441C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib */; };
 		B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5D0461C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift */; };
+		B2B93F661CF5DD4F004934B1 /* GoogleAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */; };
 		B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */; };
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
+		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
 		B2C4ABC01C91F00900DF3C47 /* EditProfileParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4ABBF1C91F00900DF3C47 /* EditProfileParams.swift */; };
 		B2C729AC1C622088006F7D29 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* Validator.swift */; };
@@ -1360,8 +1362,10 @@
 		B2B5D0411C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailTableViewCellViewModel.swift; path = ViewModel/ShoutDetailTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B2B5D0441C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutsSmallCollectionViewCell.xib; path = Storyboards/ShoutsSmallCollectionViewCell.xib; sourceTree = "<group>"; };
 		B2B5D0461C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailShoutCellViewModel.swift; path = ViewModel/ShoutDetailShoutCellViewModel.swift; sourceTree = "<group>"; };
+		B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAccount.swift; path = Model/GoogleAccount.swift; sourceTree = "<group>"; };
 		B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewController.swift; path = Controllers/EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewModel.swift; path = ViewModel/EditProfileTableViewModel.swift; sourceTree = "<group>"; };
+		B2BC1EC71CF5A2BC00E56ECF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Nemo.strings; sourceTree = "<group>"; };
 		B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsHeaderView.swift; path = View/DiscoverShoutsHeaderView.swift; sourceTree = "<group>"; };
 		B2C4ABBF1C91F00900DF3C47 /* EditProfileParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileParams.swift; path = Networking/EditProfileParams.swift; sourceTree = "<group>"; };
 		B2C729AB1C622088006F7D29 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Util/Validator.swift; sourceTree = "<group>"; };
@@ -1948,6 +1952,7 @@
 				B2C729BF1C6221B0006F7D29 /* ListenersMetadata.swift */,
 				B2C729C01C6221B0006F7D29 /* LoginAccounts.swift */,
 				B271E5EB1CF4638A0038A02C /* FacebookAccount.swift */,
+				B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */,
 				B2A144171C64BE68002CD70A /* PushTokens.swift */,
 				B2C729C11C6221B0006F7D29 /* Success.swift */,
 				B2ACBDEE1C68BDE2000FA302 /* Category.swift */,
@@ -2057,6 +2062,7 @@
 		6027CF661BE74F7800124C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */,
 				B22CCD6B1CD3BDAB0019AB27 /* Localizable.strings */,
 				B22CCD661CD3BDA90019AB27 /* InfoPlist.strings */,
 				6027CF401BE74EAE00124C28 /* Info.plist */,
@@ -3866,6 +3872,7 @@
 				B2D441AF1CB81A02009782AF /* ConversationLoadMoreFooter.xib in Resources */,
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
 				AEDE15981C6E0BBF002D2AF7 /* DiscoverPreview.storyboard in Resources */,
+				B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */,
 				B2D441C11CB81A24009782AF /* OutgoingLocationCell.xib in Resources */,
 				B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */,
 				B2D441901CB81987009782AF /* PlaceholderCollectionViewCell.xib in Resources */,
@@ -4145,6 +4152,7 @@
 				B2C729C71C6221B0006F7D29 /* LoginAccounts.swift in Sources */,
 				2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */,
 				AE1F3FE61CEB4ED800C3432F /* ConversationBlockedListModel.swift in Sources */,
+				B2B93F661CF5DD4F004934B1 /* GoogleAccount.swift in Sources */,
 				B2ACBDF11C68BE0C000FA302 /* Tag.swift in Sources */,
 				B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */,
 				B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */,
@@ -4745,6 +4753,15 @@
 				B22CCD7E1CD3C52B0019AB27 /* ar */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2BC1EC71CF5A2BC00E56ECF /* ar */,
+			);
+			name = Nemo.strings;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		B2D440DD1CB81466009782AF /* Filter.storyboard */ = {

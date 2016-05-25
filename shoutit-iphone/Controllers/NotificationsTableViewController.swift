@@ -231,14 +231,10 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     }
     
     func openMessageObject(notification: Notification) {
-        guard let path = notification.appPath, url = NSURL(string: path) else {
-            return
-        }
-        
+        guard let path = notification.appPath, url = NSURL(string: path) else { return }
         if UIApplication.sharedApplication().canOpenURL(url) {
             UIApplication.sharedApplication().openURL(url)
         }
-        
     }
     
     func openNotificationSettings() {
@@ -256,5 +252,4 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
             loadNextPage()
         }
     }
-    
 }

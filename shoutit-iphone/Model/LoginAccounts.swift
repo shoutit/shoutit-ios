@@ -12,16 +12,16 @@ import Curry
 import Ogra
 
 struct LoginAccounts {
-    let gplus: Bool
-    let facebook: FacebookAccount
+    let facebook: FacebookAccount?
+    let gplus: GoogleAccount?
 }
 
 extension LoginAccounts: Decodable {
     
     static func decode(j: JSON) -> Decoded<LoginAccounts> {
         return curry(LoginAccounts.init)
-            <^> j <| "gplus"
-            <*> j <| "facebook"
+            <^> j <|? "facebook"
+            <*> j <|? "gplus"
     }
 }
 
@@ -29,8 +29,8 @@ extension LoginAccounts: Encodable {
     
     func encode() -> JSON {
         return JSON.Object([
-            "gplus"    : self.gplus.encode(),
-            "facebook"  : self.facebook.encode()
+            "facebook"  : self.facebook.encode(),
+            "gplus"    : self.gplus.encode()
             ])
     }
 }
