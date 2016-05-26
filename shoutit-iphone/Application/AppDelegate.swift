@@ -41,13 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerRoutes()
         
-        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey] else {
+        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey], userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
             return true
         }
         
-        if let aps = userInfo["data"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
-            application.openURL(urlToOpen)
-        }
+        handlePushNotificationData(userInfoData, dispatchAfter: 2)
         
         return true
     }
@@ -96,8 +94,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Push notifications
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        if let appPath = userInfo["data"]?["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
-            application.openURL(urlToOpen)
+        guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+            return
+        }
+        
+        handlePushNotificationData(userInfoData, dispatchAfter: 0)
+    }
+    
+    func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
+        
+        if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.router.handleURL(urlToOpen, withCompletion:nil)
+            }
+            
+            
         }
     }
     
