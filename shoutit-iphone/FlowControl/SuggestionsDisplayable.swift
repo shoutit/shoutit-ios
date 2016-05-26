@@ -18,7 +18,9 @@ extension FlowController : SuggestionsDisplayable {
     func showSuggestedUsers() {
         let controller = Wireframe.suggestionsController()
         
-        controller.viewModel = PostSignupSuggestionViewModel()
+        controller.flowDelegate = self
+        
+        controller.sectionViewModel = controller.viewModel.usersSection
         
         navigationController.showViewController(controller, sender: nil)
         
@@ -26,7 +28,9 @@ extension FlowController : SuggestionsDisplayable {
     func showSuggestedPages() {
         let controller = Wireframe.suggestionsController()
         
-        controller.viewModel = PostSignupSuggestionViewModel()
+        controller.flowDelegate = self
+
+        controller.sectionViewModel = controller.viewModel.pagesSection
 
         navigationController.showViewController(controller, sender: nil)
     }

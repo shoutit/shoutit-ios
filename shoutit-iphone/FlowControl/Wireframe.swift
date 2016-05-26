@@ -230,8 +230,8 @@ struct Wireframe {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutParentViewController
     }
     
-    static func suggestionsController() -> PostSignupSuggestionsTableViewController {
-        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("SuggestionsTableViewController") as! PostSignupSuggestionsTableViewController
+    static func suggestionsController() -> SuggestedProfilesTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("SuggestionsTableViewController") as! SuggestedProfilesTableViewController
     }
     
     static func createShoutWithTypeController(type: ShoutType) -> CreateShoutParentViewController {
