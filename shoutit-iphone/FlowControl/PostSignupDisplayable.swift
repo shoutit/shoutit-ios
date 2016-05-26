@@ -29,3 +29,11 @@ extension LoginFlowController : PostSignupDisplayable {
         navigationController.showViewController(postSignupController, sender: nil)
     }
 }
+
+extension FlowController {
+    func showSuggestions() {
+        let postSignupController = Wireframe.postSignupSuggestionsViewController()
+        postSignupController.viewModel = PostSignupSuggestionViewModel()
+        navigationController.showViewController(postSignupController, sender: nil)
+    }
+}

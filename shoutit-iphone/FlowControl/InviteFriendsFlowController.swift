@@ -15,6 +15,8 @@ final class InviteFriendsFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.inviteFriendsViewController()
         
+        controller.flowDelegate = self
+        
         navigationController.showViewController(controller, sender: nil)
     }
     

@@ -178,8 +178,8 @@ struct Wireframe {
         return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsFormViewController") as! SettingsFormViewController
     }
     
-    static func inviteFriendsViewController() -> UIViewController {
-        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController")
+    static func inviteFriendsViewController() -> InviteFriendsTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController") as! InviteFriendsTableViewController
     }
     
     static func locationViewController() -> ChangeLocationTableViewController {
@@ -228,6 +228,10 @@ struct Wireframe {
     
     static func editShoutController() -> EditShoutParentViewController {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutParentViewController
+    }
+    
+    static func suggestionsController() -> PostSignupSuggestionsTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("SuggestionsTableViewController") as! PostSignupSuggestionsTableViewController
     }
     
     static func createShoutWithTypeController(type: ShoutType) -> CreateShoutParentViewController {
