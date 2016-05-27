@@ -202,6 +202,10 @@ extension UIImage {
         return UIImage(named: "photo_icon")!
     }
     
+    static func tickIcon() -> UIImage {
+        return UIImage(named: "tick")!
+    }
+    
     // MARK: - Placeholders
     
     static func squareAvatarPlaceholder() -> UIImage {

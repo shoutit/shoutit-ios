@@ -15,23 +15,17 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
  
     override func createViewModel() {
         viewModel = CreateShoutViewModel(shout: shout)
-        viewModel.showFilters = true
-        viewModel.showType = false
-        viewModel.showMobile = true
-        
-        self.tableView.reloadData()
-        
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fillWithShoutData()
     }
     
     func fillWithShoutData() {
-        self.headerView.titleTextField.text = self.shout.title
-        self.viewModel.shoutParams.title.value = self.shout.title
+        headerView.titleTextField.text = shout.title
+        viewModel.shoutParams.title.value = shout.title
  
         self.headerView.priceTextField.text = self.shout.priceTextWithoutFree()
         self.viewModel.shoutParams.price.value = self.shout.price != nil ? Double(self.shout.price! / 100) : 0.0

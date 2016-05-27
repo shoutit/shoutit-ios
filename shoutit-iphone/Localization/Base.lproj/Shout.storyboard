@@ -247,7 +247,7 @@
             <objects>
                 <tableViewController id="vi7-2B-9jh" customClass="CreateShoutTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" id="mhQ-oV-r1G">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="516"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Rdk-TL-ayt" customClass="CreateShoutTableHeaderView" customModule="Shoutit" customModuleProvider="target">
@@ -515,6 +515,52 @@
                                     <outlet property="mobileTextField" destination="JgV-Ob-3ub" id="fjl-Q7-T2G"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutSelectableCell" rowHeight="59" id="h2r-uU-zUM" customClass="CreateShoutSelectableCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="720" width="600" height="59"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h2r-uU-zUM" id="BME-0M-uCN">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuC-Yi-RWb" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="560" height="59"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8a7-SP-t4R">
+                                                    <rect key="frame" x="10" y="19" width="44" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-8h-mvb">
+                                                    <rect key="frame" x="526" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="CmL-3k-lZf"/>
+                                                        <constraint firstAttribute="width" constant="24" id="R9x-aY-COk"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="8a7-SP-t4R" firstAttribute="leading" secondItem="JuC-Yi-RWb" secondAttribute="leading" constant="10" id="BHR-hi-Ixp"/>
+                                                <constraint firstAttribute="trailing" secondItem="qsQ-8h-mvb" secondAttribute="trailing" constant="10" id="ddF-27-fsB"/>
+                                                <constraint firstItem="qsQ-8h-mvb" firstAttribute="centerY" secondItem="JuC-Yi-RWb" secondAttribute="centerY" id="hIs-7y-j8m"/>
+                                                <constraint firstItem="8a7-SP-t4R" firstAttribute="centerY" secondItem="JuC-Yi-RWb" secondAttribute="centerY" id="ioo-8X-iaD"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="JuC-Yi-RWb" secondAttribute="trailing" constant="20" id="4HE-sF-xsW"/>
+                                        <constraint firstItem="JuC-Yi-RWb" firstAttribute="leading" secondItem="BME-0M-uCN" secondAttribute="leading" constant="20" id="6kW-pd-weo"/>
+                                        <constraint firstAttribute="bottom" secondItem="JuC-Yi-RWb" secondAttribute="bottom" id="HxQ-QJ-a3T"/>
+                                        <constraint firstItem="JuC-Yi-RWb" firstAttribute="top" secondItem="BME-0M-uCN" secondAttribute="top" id="Y6V-sx-a4i"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="internalContentView" destination="JuC-Yi-RWb" id="BXT-Nc-63J"/>
+                                    <outlet property="selectionTitleLabel" destination="8a7-SP-t4R" id="UZa-Gq-gwa"/>
+                                    <outlet property="tickImageView" destination="qsQ-8h-mvb" id="imQ-yw-wWU"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="vi7-2B-9jh" id="FJR-ae-yOU"/>
@@ -531,6 +577,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1000"/>
                     <connections>
                         <outlet property="headerView" destination="Rdk-TL-ayt" id="nq5-xf-mGk"/>
                     </connections>
@@ -538,7 +586,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3e-hk-IXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="IJj-W5-jT5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-450" y="-783"/>
+            <point key="canvasLocation" x="-459" y="-1019"/>
         </scene>
         <!--Shout Confirmation View Controller-->
         <scene sceneID="fIo-sU-qg3">
@@ -1379,5 +1427,6 @@
         <image name="photo_icon" width="30" height="27"/>
         <image name="share_icon" width="17" height="23"/>
         <image name="success_icon" width="34" height="31"/>
+        <image name="tick" width="15" height="13"/>
     </resources>
 </document>

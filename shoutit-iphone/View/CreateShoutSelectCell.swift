@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CreateShoutSelectCell: UITableViewCell {
+    
+    private(set) var reuseDisposeBag = DisposeBag()
     @IBOutlet var selectButton : SelectionButton!
  
     func fillWithFilter(filter: Filter, currentValue: FilterValue?) {
@@ -17,5 +20,10 @@ final class CreateShoutSelectCell: UITableViewCell {
         } else {
             self.selectButton.setTitle(filter.name, forState: .Normal)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
     }
 }

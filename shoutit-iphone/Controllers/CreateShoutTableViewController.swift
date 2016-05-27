@@ -18,8 +18,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     var type : ShoutType!
     
-    var disposables : [NSIndexPath: Disposable?] = [NSIndexPath():nil]
-    
     var viewModel : CreateShoutViewModel!
     
     @IBOutlet var headerView : CreateShoutTableHeaderView!
@@ -32,23 +30,17 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         createViewModel()
         setupRX()
-        loadData()
     }
     
     func createViewModel() {
         viewModel = CreateShoutViewModel(type: type)
     }
     
-    // Load Data
-    func loadData() {
-        viewModel.fetchCurrencies()
-        viewModel.fetchCategories()
-    }
-    
     // RX
     
     func setupRX() {
-        viewModel.currencies
+        
+        viewModel.detailsSectionViewModel.currencies
             .asDriver()
             .driveNext { [weak self] (currencies) -> Void in
                 self?.headerView.currencyButton.showActivity(currencies.count == 0)
@@ -62,33 +54,37 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.categories
-            .asDriver()
-            .driveNext({ [weak self] (category) -> Void in
+        let categoriesObserver = viewModel.detailsSectionViewModel.categories.asDriver().map{_ in return Void()}
+        let reloadObserver = viewModel.detailsSectionViewModel.reloadSubject.asDriver(onErrorJustReturn: Void())
+        Observable.of(categoriesObserver, reloadObserver)
+            .merge()
+            .subscribeNext {[weak self] in
                 self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-            })
+            }
             .addDisposableTo(disposeBag)
-        
-        viewModel.filters
-            .asDriver()
-            .driveNext { [weak self] (filters) -> Void in
-                self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-            }.addDisposableTo(disposeBag)
         
         viewModel.shoutParams.category
             .asDriver()
             .driveNext { (category) -> Void in
                 self.tableView.reloadData()
-            }.addDisposableTo(disposeBag)
+            }
+            .addDisposableTo(disposeBag)
         
-        headerView.titleTextField.rx_text.flatMap({ (text) -> Observable<String?> in
-            return Observable.just(text)
-        }).bindTo(viewModel.shoutParams.title).addDisposableTo(disposeBag)
+        headerView.titleTextField
+            .rx_text
+            .flatMap{ (text) -> Observable<String?> in
+                return Observable.just(text)
+            }
+            .bindTo(viewModel.shoutParams.title)
+            .addDisposableTo(disposeBag)
         
-        headerView.priceTextField.rx_text.flatMap({ (stringValue) -> Observable<Double?> in
-            return Observable.just(stringValue.doubleValue)
-        }).bindTo(viewModel.shoutParams.price).addDisposableTo(disposeBag)
-        
+        headerView.priceTextField
+            .rx_text
+            .flatMap{ (stringValue) -> Observable<Double?> in
+                return Observable.just(stringValue.doubleValue)
+            }
+            .bindTo(viewModel.shoutParams.price)
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: Media Selection
@@ -140,76 +136,85 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     @IBAction func selectCurrency(sender: UIButton) {
         let actionSheetController = viewModel.currenciesActionSheet(nil)
-        
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
+}
 
-    // MARK: - Table view data source
+// MARK: - UITableViewDataSource
 
+extension CreateShoutTableViewController {
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.viewModel.numberOfSections()
+        return viewModel.sectionViewModels.count
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.numberOfRowsInSection(section)
+        return viewModel.sectionViewModels[section].cellViewModels.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = self.viewModel.cellIdentifierAt(indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell!
         
-        self.viewModel.fillCell(cell, forIndexPath: indexPath)
-        
-        if let existingDisposable = disposables[indexPath] {
-            existingDisposable?.dispose()
-        }
-        
-        if let textCell = cell as? CreateShoutTextViewCell {
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        switch cellViewModel {
+        case .Category:
+            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellCategory", forIndexPath: indexPath) as! CreateShoutSelectCell
+            viewModel.fillCategoryCell(cell)
+            cell.selectButton
+                .rx_controlEvent(.TouchUpInside)
+                .asDriver()
+                .driveNext{ [weak self] () -> Void in
+                    let actionSheetController = self?.viewModel.categoriesActionSheet({ (alertAction) -> Void in
+                        self?.tableView.reloadData()
+                    })
+                    self?.presentViewController(actionSheetController!, animated: true, completion: nil)
+                }
+                .addDisposableTo(cell.reuseDisposeBag)
             
-            let disposable = textCell.textView
+            return cell
+        case .Description:
+            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellDescription", forIndexPath: indexPath) as! CreateShoutTextViewCell
+            cell.textView
                 .rx_text
                 .flatMap{ (text) -> Observable<String?> in
                     return Observable.just(text)
                 }
                 .bindTo(viewModel.shoutParams.text)
-            textCell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
+                .addDisposableTo(cell.reuseDisposeBag)
+            
+            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
             
             if let shout = self.viewModel.shoutParams.shout {
-                if textCell.textView.text == "" {
-                    textCell.textView.text = shout.text
+                if cell.textView.text == "" {
+                    cell.textView.text = shout.text
                 }
             }
-            
-            disposables[indexPath] = disposable
-            
-        }
-        
-        if let mobileCell = cell as? CreateShoutMobileCell {
-            let disposable = mobileCell.mobileTextField.rx_text.flatMap({ (text) -> Observable<String?> in
-                return Observable.just(text)
-            }).bindTo(viewModel.shoutParams.mobile)
-        
-            if let shout = self.viewModel.shoutParams.shout {
-                if mobileCell.mobileTextField.text == "" {
-                    mobileCell.mobileTextField.text = shout.mobile
-                }
-            }
-            
-            disposables[indexPath] = disposable
-        }
-        
-        guard let selectCell = cell as? CreateShoutSelectCell else {
             return cell
-        }
-        
-        if indexPath.section == 1 {
-            
-            let disposable = selectCell.selectButton
+        case .FilterChoice(let filter):
+            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellOption", forIndexPath: indexPath) as! CreateShoutSelectCell
+            viewModel.fillFilterCell(cell, withFilter: filter)
+            cell.selectButton
+                .rx_controlEvent(.TouchUpInside)
+                .asDriver()
+                .driveNext{ [weak self] () -> Void in
+                    guard let actionSheetController = self?.viewModel.filterActionSheet(forFilter: filter, handler: { (alertAction) -> Void in
+                        self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    }) else {
+                        return
+                    }
+                    
+                    self?.presentViewController(actionSheetController, animated: true, completion: nil)
+                }
+                .addDisposableTo(cell.reuseDisposeBag)
+            return cell
+        case .Location:
+            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellLocation", forIndexPath: indexPath) as! CreateShoutSelectCell
+            viewModel.fillLocationCell(cell)
+            cell.selectButton
                 .rx_controlEvent(.TouchUpInside)
                 .asDriver()
                 .driveNext({ [weak self] () -> Void in
                     
-                    let controller = Wireframe.changeShoutLocationController() 
+                    let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = { (success, place) -> Void in
                         self?.viewModel.shoutParams.location.value = place
@@ -217,65 +222,67 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
                     }
                     
                     self?.navigationController?.showViewController(controller, sender: nil)
-
-                })
-            
-            disposables[indexPath] = disposable
-            
-            return selectCell
-        }
-        
-        if indexPath.row == 0 {
-            
-            let disposable = selectCell.selectButton
-                .rx_controlEvent(.TouchUpInside)
-                .asDriver()
-                .driveNext({ [weak self] () -> Void in
-                    let actionSheetController = self?.viewModel.categoriesActionSheet({ (alertAction) -> Void in
-                        self?.tableView.reloadData()
+                    
                     })
-                    self?.presentViewController(actionSheetController!, animated: true, completion: nil)
-                    })
-            
-            disposables[indexPath] = disposable
-          
-            return selectCell
-        }
-        
-        let disposable = selectCell.selectButton
-            .rx_controlEvent(.TouchUpInside)
-            .asDriver()
-            .driveNext({ [weak self] () -> Void in
-                guard let actionSheetController = self?.viewModel.filterActionSheet(forIndexPath: indexPath, handler: { (alertAction) -> Void in
-                    self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                }) else {
-                    return
+                .addDisposableTo(cell.reuseDisposeBag)
+            return cell
+        case .Mobile:
+            let cell = tableView.dequeueReusableCellWithIdentifier("createShoutCellMobile", forIndexPath: indexPath) as! CreateShoutMobileCell
+            cell.mobileTextField
+                .rx_text
+                .flatMap{ (text) -> Observable<String?> in
+                    return Observable.just(text)
                 }
-                
-                self?.presentViewController(actionSheetController, animated: true, completion: nil)
-                
-                })
-        
-        disposables[indexPath] = disposable
-        
-        return cell
+                .bindTo(viewModel.shoutParams.mobile)
+                .addDisposableTo(cell.reuseDisposeBag)
+            
+            if let shout = self.viewModel.shoutParams.shout {
+                if cell.mobileTextField.text == "" {
+                    cell.mobileTextField.text = shout.mobile
+                }
+            }
+            return cell
+        case .Selectable(let title):
+            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutSelectableCell", forIndexPath: indexPath) as! CreateShoutSelectableCell
+            cell.selectionTitleLabel.text = title
+            cell.setBorders(cellIsFirst: true, cellIsLast: true)
+            
+            return cell
+        }
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sectionViewModels[section].title
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension CreateShoutTableViewController {
+    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.viewModel.heightForHeaderAt(section)
+        if viewModel.detailsSectionViewModel.hideFilters && section == 0 {
+            return 0
+        }
+        return 40
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.viewModel.heightForRowAt(indexPath)
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        switch cellViewModel {
+        case .Mobile: return 80
+        case .Description: return 160
+        case .Selectable: return 44
+        default: return 70
+        }
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.tintColor = UIColor.whiteColor()
         header.textLabel?.font = UIFont.systemFontOfSize(14.0)
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.viewModel.sectionTitle(section)
+        header.textLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
     }
 }
+
+
