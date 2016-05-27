@@ -30,7 +30,7 @@ final class LoginMethodChoiceViewModel {
     
     func loginWithFacebookFromViewController(viewController: UIViewController) {
         progressHUDSubject.onNext(true)
-        Account.sharedInstance.facebookManager.requestReadPermissionsFromViewController(viewController).subscribe { (event) in
+        Account.sharedInstance.facebookManager.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController).subscribe { (event) in
             switch event {
             case .Next(let token):
                 let params = FacebookLoginParams(token: token)

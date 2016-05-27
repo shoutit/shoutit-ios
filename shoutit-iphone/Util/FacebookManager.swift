@@ -16,6 +16,7 @@ enum FacebookPermissions: String {
     case PublicProfile = "public_profile"
     case UserBirthday = "user_birthday"
     case PublishActions = "publish_actions"
+    case UserFriends = "user_friends"
     
     static var loginReadPermissions: [FacebookPermissions] {
         return [.Email, .PublicProfile]
@@ -36,10 +37,10 @@ class FacebookManager {
 
 extension FacebookManager {
     
-    func hasPublishPermissions() -> Bool {
+    func hasPermissions(permissions: FacebookPermissions) -> Bool {
         guard case .Some(.Logged(let user)) = account.userModel else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
-        return facebookAccount.scopes.contains(FacebookPermissions.PublishActions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(FacebookPermissions.PublishActions.rawValue)
+        return facebookAccount.scopes.contains(permissions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(permissions.rawValue)
     }
     
     func checkExpiryDateWithProfile(profile: DetailedProfile) {
@@ -50,12 +51,12 @@ extension FacebookManager {
         }
     }
     
-    func requestReadPermissionsFromViewController(viewController: UIViewController) -> Observable<String> {
+    func requestReadPermissionsFromViewController(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<String> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
             
             self.loginManager
-                .logInWithReadPermissions(FacebookPermissions.loginReadPermissions.map{$0.rawValue},
+                .logInWithReadPermissions(permissions.map{$0.rawValue},
                 fromViewController: viewController) { (result, error) -> Void in
                     
                     switch (result, error) {
@@ -78,9 +79,9 @@ extension FacebookManager {
         }
     }
     
-    func requestPublishPermssionsFromViewController(viewController: UIViewController) -> Observable<DetailedProfile> {
+    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<DetailedProfile> {
         
-        return facebookPublishPermssionsObservableWithViewController(viewController)
+        return facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
             .flatMap{ (profile) -> Observable<DetailedProfile> in
                 guard let facebook = profile.linkedAccounts?.facebook else {
@@ -90,17 +91,17 @@ extension FacebookManager {
                     return Observable.error(SocialActionError.FacebookPermissionsFailedError)
                 }
                 return Observable.just(profile)
-            }
+        }
     }
 }
 
 private extension FacebookManager {
     
-    func facebookPublishPermssionsObservableWithViewController(viewController: UIViewController) -> Observable<String> {
+    func facebookPublishPermssionsObservableWithViewController(permissions:[FacebookPermissions], viewController: UIViewController) -> Observable<String> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
             self.loginManager
-                .logInWithPublishPermissions([FacebookPermissions.PublishActions.rawValue], fromViewController: viewController) { (result, error) in
+                .logInWithPublishPermissions(permissions.map({$0.rawValue}), fromViewController: viewController) { (result, error) in
                     
                     switch (result, error) {
                     case let (_, e?):

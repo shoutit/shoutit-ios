@@ -9,10 +9,13 @@
 import UIKit
 import FBSDKShareKit
 import Social
+import RxSwift
 
 class InviteFriendsTableViewController: UITableViewController {
     
     var flowDelegate : FlowController?
+    
+    private let disposeBag = DisposeBag()
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section, indexPath.row) {
@@ -56,7 +59,37 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     private func findFacebookFriends() {
+        if !Account.sharedInstance.facebookManager.hasPermissions(.UserFriends) {
+            Account.sharedInstance.facebookManager.requestReadPermissionsFromViewController([.UserFriends], viewController: self).subscribe { (event) in
+                switch event {
+                case .Next(_):
+                    self.fetchFacebookContacts()
+                case .Error(LocalError.Cancelled):
+                    break
+                case .Error(let error):
+                    self.showError(error)
+                default:
+                    break
+                }
+                }.addDisposableTo(disposeBag)
+            return
+        }
         
+        fetchFacebookContacts()
+    }
+    
+    func fetchFacebookContacts() {
+        let request = FBSDKGraphRequest(graphPath: "/me/friends", parameters: [:], HTTPMethod: "GET")
+        
+        request.startWithCompletionHandler { [weak self] (connection, object, error) in
+         
+            if let error = error {
+                self?.showError(error)
+                return
+            }
+            
+            print(object)
+        }
     }
     
     private func findContactsFriends() {

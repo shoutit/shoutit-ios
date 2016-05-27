@@ -50,11 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (launchOptions?[UIApplicationLaunchOptionsURLKey] == nil && firstLaunch) {
             FBSDKAppLinkUtility.fetchDeferredAppLink({ (url, error) in
-                
+                // to decide what needs to be done here, completion closure takes link from where app is installed
             })
             
             FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
-                
+                // to decide what needs to be done here, url - refferal
             })
         }
         
