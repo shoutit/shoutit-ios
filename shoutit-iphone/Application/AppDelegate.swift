@@ -13,6 +13,7 @@ import Crashlytics
 import UIViewAppearanceSwift
 import DeepLinkKit
 import SwiftyBeaver
+import FBSDKCoreKit
 
 let log = SwiftyBeaver.self
 
@@ -39,6 +40,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAPS(application)
         configureURLCache()
         
+        var firstLaunch = false
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
+            firstLaunch = true
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedOnce")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
+        if (launchOptions?[UIApplicationLaunchOptionsURLKey] == nil && firstLaunch) {
+            FBSDKAppLinkUtility.fetchDeferredAppLink({ (url, error) in
+                
+            })
+            
+            FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
+                
+            })
+        }
+        
+        FBSDKAppEvents.activateApp()
+        
         registerRoutes()
         
         guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey], userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
@@ -61,6 +82,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
+        }
+        
+        let parsedUrl = BFURL.init(inboundURL: url, sourceApplication: sourceApplication)
+        
+        if ((parsedUrl.appLinkData) != nil) {
+            return self.router.handleURL(parsedUrl.targetURL, withCompletion: nil)
         }
         
         return self.router.handleURL(url, withCompletion:nil)

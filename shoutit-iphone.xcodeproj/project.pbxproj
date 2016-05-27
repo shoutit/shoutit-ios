@@ -271,6 +271,7 @@
 		AEECB95F1C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */; };
+		AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFB8E571CF86667003D82A0 /* Social.framework */; };
 		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
 		B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */; };
 		B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */; };
@@ -1074,6 +1075,8 @@
 		AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginNavigationViewController.swift; path = Controllers/LoginNavigationViewController.swift; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
 		AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentViewController.swift; path = Controllers/ConversationAttachmentViewController.swift; sourceTree = "<group>"; };
+		AEFB8E551CF86612003D82A0 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		AEFB8E571CF86667003D82A0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersViewController.swift; path = Controllers/CategoryFiltersViewController.swift; sourceTree = "<group>"; };
 		B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterLocationChoiceWrapperViewController.swift; path = Controllers/FilterLocationChoiceWrapperViewController.swift; sourceTree = "<group>"; };
 		B2082D721C62638C007EB2FB /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLViewController.swift; path = Controllers/HTMLViewController.swift; sourceTree = "<group>"; };
@@ -1498,6 +1501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */,
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
@@ -1556,6 +1560,8 @@
 		1E0F57B258AD6D899B14A1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEFB8E571CF86667003D82A0 /* Social.framework */,
+				AEFB8E551CF86612003D82A0 /* Twitter.framework */,
 				AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */,
 				AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */,
 				AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */,

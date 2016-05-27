@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKShareKit
+import Social
 
 class InviteFriendsTableViewController: UITableViewController {
     
@@ -35,6 +37,14 @@ class InviteFriendsTableViewController: UITableViewController {
     
     @IBAction func shareShoutitApp(sender: AnyObject) {
         
+        let objectsToShare = [NSURL(string: Constants.Invite.inviteURL)!, Constants.Invite.inviteText]
+        
+        let activityController = UIActivityViewController(activityItems:  objectsToShare, applicationActivities: nil)
+        
+        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeAirDrop, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
+        
+        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
+        
     }
     
     private func showSuggestedUsers() {
@@ -54,10 +64,29 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     private func inviteFacebookFriends() {
+        let inviteContent = FBSDKAppInviteContent()
         
+        inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
+        
+        FBSDKAppInviteDialog.showFromViewController(self.navigationController, withContent: inviteContent, delegate: self)
     }
     
     private func inviteTwitterFriends() {
+        let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        
+        vc.setInitialText(Constants.Invite.inviteText)
+        vc.addURL(NSURL(string: Constants.Invite.inviteURL))
+        
+        self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+    }
+}
+
+extension InviteFriendsTableViewController : FBSDKAppInviteDialogDelegate {
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+        
+    }
+    
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
         
     }
 }
