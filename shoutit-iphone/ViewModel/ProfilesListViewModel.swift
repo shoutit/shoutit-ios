@@ -12,6 +12,7 @@ import RxSwift
 protocol ProfilesListViewModel: class {
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile> { get }
     var showsListenButtons: Bool {get}
+    var sectionTitle : String? {get set}
 }
 
 extension ProfilesListViewModel {

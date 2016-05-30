@@ -97,16 +97,9 @@ extension FacebookManager {
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }
     
-    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<DetailedProfile> {
+    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
         return requestReadPermissionsFromViewController(permissions, viewController: viewController)
                 .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
-                .flatMap{ (profile) -> Observable<DetailedProfile> in
-                    guard let _ = profile.linkedAccounts?.facebook else {
-                        return Observable.error(SocialActionError.FacebookPermissionsFailedError)
-                    }
-                
-                    return Observable.just(profile)
-        }
     }
 }
 
@@ -156,11 +149,7 @@ private extension FacebookManager {
             
             APIProfileService
                 .linkSocialAccountWithParams(.Facebook(token: FBSDKAccessToken.currentAccessToken().tokenString))
-                .subscribe{(event) in
-                    guard case .Next(let profile) = event else { return }
-                    guard case .Some(.Logged(_)) = self.account.userModel else { return }
-                    self.account.updateUserWithModel(profile)
-                }
+                .subscribe{(_) in }
                 .addDisposableTo(self.disposeBag)
         }
     }

@@ -75,6 +75,9 @@ pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearan
 # other
 pod 'libPusher', '~> 1.6'
 
+#contacts
+pod 'ContactsPicker'
+
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|
   require 'fileutils'

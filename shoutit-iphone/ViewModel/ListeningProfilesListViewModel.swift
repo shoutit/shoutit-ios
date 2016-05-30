@@ -15,6 +15,7 @@ final class ListeningProfilesListViewModel: ProfilesListViewModel {
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
     
     var showsListenButtons: Bool
+    var sectionTitle : String?
     
     init(username: String, showListenButtons: Bool) {
         self.username = username

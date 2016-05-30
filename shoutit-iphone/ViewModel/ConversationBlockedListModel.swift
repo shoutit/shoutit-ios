@@ -13,6 +13,7 @@ final class ConversationBlockedListModel: ProfilesListViewModel {
     let conversation : Conversation
     
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
+    var sectionTitle : String?
     
     init(conversation: Conversation) {
         self.conversation = conversation

@@ -254,6 +254,16 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
     }
     
+    static func profileListController() -> ProfilesListTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
+    }
+    
+    static func facebookProfileListController() -> FacebookFriendsListTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListTableViewController") as! FacebookFriendsListTableViewController
+    }
+    
+    
+    
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }

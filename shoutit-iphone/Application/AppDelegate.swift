@@ -125,7 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        handlePushNotificationData(userInfoData, dispatchAfter: 0)
+        if application.applicationState == .Background {
+            handlePushNotificationData(userInfoData, dispatchAfter: 0)
+        }
     }
     
     func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
