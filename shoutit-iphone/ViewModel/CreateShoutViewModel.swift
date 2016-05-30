@@ -19,6 +19,7 @@ final class CreateShoutViewModel: NSObject {
     // section view models
     private(set) var detailsSectionViewModel: CreateShoutDetailsSectionViewModel!
     private(set) var locationSectionViewModel: CreateShoutLocationSectionViewModel!
+    private(set) var sharingSectionViewModel: CreateShoutSocialSharingSectionViewModel!
     var sectionViewModels: [CreateShoutSectionViewModel] { return [detailsSectionViewModel, locationSectionViewModel] }
     
     init(type: ShoutType = ShoutType.Request) {
@@ -26,6 +27,7 @@ final class CreateShoutViewModel: NSObject {
         super.init()
         detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category], parent: self, hideFilters: true)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location], parent: self)
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Selectable(title: NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view"))])
     }
     
     init(shout: Shout) {
@@ -40,6 +42,7 @@ final class CreateShoutViewModel: NSObject {
         super.init()
         detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category, .Description], parent: self, hideFilters: false)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location, .Mobile], parent: self)
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Selectable(title: NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view"))])
     }
     
     func changeToRequest() {
@@ -96,6 +99,7 @@ extension CreateShoutViewModel {
 
 // Present Action Sheets
 extension CreateShoutViewModel {
+    
     func changeTypeActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Type", comment: ""), message: "", preferredStyle: .ActionSheet)
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Request", comment: ""), style: .Default, handler: handler))

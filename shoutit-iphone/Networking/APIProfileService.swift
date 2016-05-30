@@ -82,12 +82,12 @@ final class APIProfileService {
     }
     
     static func linkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<DetailedProfile> {
-        let url = APIManager.baseURL + "profiles/me/link"
+        let url = APIManager.baseURL + "/profiles/me/link"
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
     static func unlinkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<DetailedProfile> {
-        let url = APIManager.baseURL + "profiles/me/link"
+        let url = APIManager.baseURL + "/profiles/me/link"
         return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
 }

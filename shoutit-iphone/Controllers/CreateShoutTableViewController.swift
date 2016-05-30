@@ -261,10 +261,12 @@ extension CreateShoutTableViewController {
 extension CreateShoutTableViewController {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if viewModel.detailsSectionViewModel.hideFilters && section == 0 {
-            return 0
+        switch section {
+        case 0:
+            return viewModel.detailsSectionViewModel.hideFilters ? 0 : 40
+        default:
+            return 40
         }
-        return 40
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -284,5 +286,3 @@ extension CreateShoutTableViewController {
         header.textLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
     }
 }
-
-
