@@ -10,12 +10,15 @@ import UIKit
 import FBSDKShareKit
 import Social
 import RxSwift
+import ContactsPicker
+import MBProgressHUD
 
 class InviteFriendsTableViewController: UITableViewController {
     
     var flowDelegate : FlowController?
     
     private let disposeBag = DisposeBag()
+    private var addressBook : AddressBook?
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section, indexPath.row) {
@@ -79,11 +82,13 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     func showFacebookContacts() {
-        let controller = Wireframe.conversationSelectProfileAttachmentController()
+        let controller = Wireframe.facebookProfileListController()
         
         controller.viewModel = MutualProfilesViewModel(showListenButtons: true)
         
-        controller.navigationItem.title = NSLocalizedString("Facebook Friends", comment: "")
+        controller.viewModel.sectionTitle = NSLocalizedString("Facebook Friends", comment: "")
+        
+        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -94,6 +99,66 @@ class InviteFriendsTableViewController: UITableViewController {
     
     private func findContactsFriends() {
         
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        do {
+            self.addressBook = try AddressBook()
+            
+            self.addressBook?.requestAccessToAddressBook({ [weak self] (access, error) -> Void in
+                
+                let queryBuilder = self?.addressBook?.queryBuilder()
+                
+                queryBuilder?.queryAsync({ (results, error) in
+                    MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    
+                    guard let contacts = results else {
+                        self?.showErrorMessage(NSLocalizedString("We couldnt find any contacts in your address book", comment: ""))
+                        return
+                    }
+                    
+                    self?.contactsFetched(contacts)
+                })
+                
+            })
+        } catch {
+            
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            
+            self.showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: ""))
+        }
+    }
+    
+    private func contactsFetched(contacts: [ContactProtocol]) {
+        
+        let params = ContactsParams(contacts: contacts.map({$0.toContact()}))
+        
+        APIProfileService.updateProfileContacts(params).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(_):
+                self?.showUserContacts()
+            case .Error(let error):
+                self?.showError(error)
+            default: break
+            }
+        }.addDisposableTo(disposeBag)
+        
+    }
+    
+    private func showUserContacts() {
+        let controller = Wireframe.profileListController()
+        
+        controller.viewModel = MutualContactsViewModel(showListenButtons: true)
+        
+        controller.viewModel.sectionTitle = NSLocalizedString("Contacts Friends", comment: "")
+        
+        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
+        
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
+            self?.flowDelegate?.showProfile(profile)
+            })
+        
+        self.navigationController?.showViewController(controller, sender: nil)
+
     }
     
     private func inviteFacebookFriends() {

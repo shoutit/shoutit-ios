@@ -150,4 +150,8 @@ class ProfilesListTableViewController: UITableViewController {
             viewModel.pager.fetchNextPage()
         }
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sectionTitle
+    }
 }

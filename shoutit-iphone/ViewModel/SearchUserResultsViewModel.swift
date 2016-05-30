@@ -13,6 +13,7 @@ final class SearchUserResultsViewModel: ProfilesListViewModel {
     
     let searchPhrase: String
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
+    var sectionTitle: String?
     
     init(searchPhrase: String) {
         self.searchPhrase = searchPhrase
