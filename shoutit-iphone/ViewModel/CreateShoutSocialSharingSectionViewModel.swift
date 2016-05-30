@@ -37,7 +37,8 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
                 return facebookManager.requestPublishPermissions([.PublishActions], viewController: controller).subscribe { (event) in
                     switch event {
                     case .Next:
-                        
+                        observer.onNext(!publish)
+                        observer.onCompleted()
                     case .Error(let error):
                         observer.onError(error)
                     case .Completed:
