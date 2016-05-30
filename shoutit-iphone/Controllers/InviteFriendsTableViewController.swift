@@ -21,6 +21,9 @@ class InviteFriendsTableViewController: UITableViewController {
     private var addressBook : AddressBook?
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         switch (indexPath.section, indexPath.row) {
         case (0,0):
             showSuggestedUsers()

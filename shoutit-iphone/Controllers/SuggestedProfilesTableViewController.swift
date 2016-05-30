@@ -75,9 +75,12 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         
         tableView.rx_itemSelected
             .subscribeNext{[unowned self] (indexPath) in
+                
                 let cellViewModel = self.sectionViewModel.cells[indexPath.row]
-                cellViewModel.selected = !cellViewModel.selected
-                self.tableView.reloadData()
+                if let profile = cellViewModel.item as? Profile {
+                    self.flowDelegate?.showProfile(profile)
+                }
+                
             }
             .addDisposableTo(disposeBag)
     }
