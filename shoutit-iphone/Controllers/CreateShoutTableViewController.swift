@@ -71,8 +71,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
         
         viewModel.shoutParams.category
             .asDriver()
-            .driveNext { (category) -> Void in
-                self.tableView.reloadData()
+            .driveNext {[weak self] (category) -> Void in
+                self?.tableView.reloadData()
             }
             .addDisposableTo(disposeBag)
         
