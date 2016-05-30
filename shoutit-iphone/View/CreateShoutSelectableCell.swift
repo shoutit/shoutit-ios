@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CreateShoutSelectableCell: UITableViewCell, Borderable {
+    
+    private(set) var reuseDisposeBag = DisposeBag()
+    
     @IBOutlet weak var internalContentView: BorderedView!
     @IBOutlet weak var selectionTitleLabel: UILabel!
     @IBOutlet weak var tickImageView: UIImageView!
@@ -16,5 +20,10 @@ final class CreateShoutSelectableCell: UITableViewCell, Borderable {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         tickImageView.image = selected ? UIImage.tickIcon() : nil
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
     }
 }

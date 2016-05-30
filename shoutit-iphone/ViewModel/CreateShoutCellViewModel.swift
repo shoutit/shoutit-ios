@@ -14,5 +14,5 @@ enum CreateShoutCellViewModel {
     case Location
     case Mobile
     case FilterChoice(filter: Filter)
-    case Selectable(title: String)
+    case Facebook
 }

@@ -79,19 +79,22 @@ extension FacebookManager {
         }
     }
     
-    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<DetailedProfile> {
+    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
         
-        return facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
+        return hasBasicReadPermissionsObservable()
+            .flatMap{[unowned self] (hasReadPermissions) -> Observable<Void> in
+                if hasReadPermissions {
+                    return Observable.just()
+                } else {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                        .map{ (_) -> Void in
+                            return Void()
+                    }
+                }
+            }.flatMap {[unowned self](_) -> Observable<String> in
+                return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
+            }
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
-            .flatMap{ (profile) -> Observable<DetailedProfile> in
-                guard let facebook = profile.linkedAccounts?.facebook else {
-                    return Observable.error(SocialActionError.FacebookPermissionsFailedError)
-                }
-                guard facebook.scopes.contains(FacebookPermissions.PublishActions.rawValue) else {
-                    return Observable.error(SocialActionError.FacebookPermissionsFailedError)
-                }
-                return Observable.just(profile)
-        }
     }
     
     func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<DetailedProfile> {
@@ -135,7 +138,17 @@ private extension FacebookManager {
         }
     }
     
+    func hasBasicReadPermissionsObservable() -> Observable<Bool> {
+        
+        return Observable.create{[unowned self] (observer) -> Disposable in
+            observer.onNext(self.hasPermissions(.Email) && self.hasPermissions(.PublicProfile))
+            observer.onCompleted()
+            return NopDisposable.instance
+        }
+    }
+    
     func renewPermissions() {
+        
         FBSDKAccessToken.refreshCurrentAccessToken {[unowned self] (fbsdkgraphrequestconnection, result, error) in
             guard error == nil else {
                 return

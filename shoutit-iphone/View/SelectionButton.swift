@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-final class SelectionButton: UIButton {
+final class SelectionButton: UIButton, UIGestureRecognizerDelegate {
     
     // state
     private var disclosureType: DisclosureType {
@@ -189,7 +189,7 @@ private extension SelectionButton {
         
         layer.cornerRadius = 4.0
         layer.borderWidth = borderWidth
-        layer.borderColor = MaterialColor.grey.lighten1.CGColor
+        layer.borderColor = UIColor(shoutitColor: .TextFieldBorderGrayColor).CGColor
         
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             contentHorizontalAlignment = .Right

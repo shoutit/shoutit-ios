@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewModel {
     
@@ -14,8 +15,36 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
         return " " + NSLocalizedString("SHARING", comment: "Sharing section header on create shout")
     }
     private(set) var cellViewModels: [CreateShoutCellViewModel]
+    private unowned var parent: CreateShoutViewModel
     
-    init(cellViewModels: [CreateShoutCellViewModel]) {
+    init(cellViewModels: [CreateShoutCellViewModel], parent: CreateShoutViewModel) {
         self.cellViewModels = cellViewModels
+        self.parent = parent
+    }
+    
+    func togglePublishToFacebookFromViewController(controller: UIViewController) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] (observer) -> Disposable in
+            guard let `self` = self else { return NopDisposable.instance }
+            let publish = self.parent.shoutParams.publishToFacebook.value
+            let facebookManager = Account.sharedInstance.facebookManager
+            if publish || facebookManager.hasPermissions(.PublishActions) {
+                self.parent.shoutParams.publishToFacebook.value = !publish
+                observer.onNext(!publish)
+                observer.onCompleted()
+                return NopDisposable.instance
+            } else {
+                return facebookManager.requestPublishPermissions([.PublishActions], viewController: controller).subscribe { (event) in
+                    switch event {
+                    case .Next:
+                        
+                    case .Error(let error):
+                        observer.onError(error)
+                    case .Completed:
+                        observer.onCompleted()
+                    }
+                }
+            }
+        }
     }
 }

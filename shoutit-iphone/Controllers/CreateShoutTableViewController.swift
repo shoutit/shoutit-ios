@@ -28,8 +28,13 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupAppearance()
         createViewModel()
         setupRX()
+    }
+    
+    private func setupAppearance() {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     }
     
     func createViewModel() {
@@ -38,7 +43,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     // RX
     
-    func setupRX() {
+    private func setupRX() {
         
         viewModel.detailsSectionViewModel.currencies
             .asDriver()
@@ -242,10 +247,21 @@ extension CreateShoutTableViewController {
                 }
             }
             return cell
-        case .Selectable(let title):
+        case .Facebook:
             let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutSelectableCell", forIndexPath: indexPath) as! CreateShoutSelectableCell
-            cell.selectionTitleLabel.text = title
+            cell.selectionTitleLabel.text = NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view")
             cell.setBorders(cellIsFirst: true, cellIsLast: true)
+            viewModel.shoutParams
+                .publishToFacebook
+                .asDriver()
+                .driveNext{ (publish) in
+                    if publish {
+                        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+                    } else {
+                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    }
+                }
+                .addDisposableTo(cell.reuseDisposeBag)
             
             return cell
         }
@@ -274,7 +290,7 @@ extension CreateShoutTableViewController {
         switch cellViewModel {
         case .Mobile: return 80
         case .Description: return 160
-        case .Selectable: return 44
+        case .Facebook: return 44
         default: return 70
         }
     }
@@ -284,5 +300,19 @@ extension CreateShoutTableViewController {
         header.tintColor = UIColor.whiteColor()
         header.textLabel?.font = UIFont.systemFontOfSize(14.0)
         header.textLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        guard case .Facebook = cellViewModel else { return }
+        viewModel.sharingSectionViewModel.togglePublishToFacebook()
+    }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        if case .Facebook = cellViewModel {
+            return true
+        }
+        return false
     }
 }

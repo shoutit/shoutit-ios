@@ -81,14 +81,14 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
     
-    static func linkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<DetailedProfile> {
+    static func linkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/me/link"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func unlinkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<DetailedProfile> {
+    static func unlinkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/me/link"
-        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
     static func getMutualProfiles(params: PageParams) -> Observable<PagedResults<Profile>> {

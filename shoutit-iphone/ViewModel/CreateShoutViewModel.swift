@@ -20,14 +20,14 @@ final class CreateShoutViewModel: NSObject {
     private(set) var detailsSectionViewModel: CreateShoutDetailsSectionViewModel!
     private(set) var locationSectionViewModel: CreateShoutLocationSectionViewModel!
     private(set) var sharingSectionViewModel: CreateShoutSocialSharingSectionViewModel!
-    var sectionViewModels: [CreateShoutSectionViewModel] { return [detailsSectionViewModel, locationSectionViewModel] }
+    var sectionViewModels: [CreateShoutSectionViewModel] { return [detailsSectionViewModel, locationSectionViewModel, sharingSectionViewModel] }
     
     init(type: ShoutType = ShoutType.Request) {
         shoutParams = ShoutParams(type: type, publishToFacebook: Account.sharedInstance.facebookManager.hasPermissions(.PublishActions))
         super.init()
         detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category], parent: self, hideFilters: true)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location], parent: self)
-        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Selectable(title: NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view"))])
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }
     
     init(shout: Shout) {
@@ -42,7 +42,7 @@ final class CreateShoutViewModel: NSObject {
         super.init()
         detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category, .Description], parent: self, hideFilters: false)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location, .Mobile], parent: self)
-        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Selectable(title: NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view"))])
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }
     
     func changeToRequest() {
