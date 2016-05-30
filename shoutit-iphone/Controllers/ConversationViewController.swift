@@ -18,6 +18,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
     var titleView : ConversationTitleView!
+    @IBOutlet var moreRightBarButtonItem: UIBarButtonItem!
+    @IBOutlet var videoCallRightBarButtonItem: UIBarButtonItem!
     
     private let disposeBag = DisposeBag()
     private var loadMoreBag = DisposeBag()
@@ -143,14 +145,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
                 if let shout = conversationExistance.shout {
                     self?.setTopicShout(shout)
                 }
-                if let conversation = conversationExistance.conversationInterface {
-                    self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
-                    if let moreButtonItem = self?.navigationItem.rightBarButtonItems?.first where conversation.type() == .PublicChat {
-                        self?.navigationItem.rightBarButtonItems = [moreButtonItem]
-                    }
-                } else {
-                    self?.navigationItem.rightBarButtonItems?.forEach{$0.enabled = false}
-                }
+                self?.setupBarButtonItemsForConversationState(conversationExistance)
             }
             .addDisposableTo(disposeBag)
     }
@@ -434,11 +429,35 @@ extension ConversationViewController {
 }
 
 extension ConversationViewController {
+    
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return OverlayAnimationController()
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return OverlayDismissAnimationController()
+    }
+}
+
+private extension ConversationViewController {
+    
+    func setupBarButtonItemsForConversationState(state: ConversationViewModel.ConversationExistance) {
+        
+        switch state {
+        case .Created:
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
+            navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+        case .CreatedAndLoaded(let conversation):
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
+            if conversation.type() == .PublicChat {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+            } else if let participants = conversation.users where participants.count != 2 {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+            } else {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem, videoCallRightBarButtonItem], animated: true)
+            }
+        case .NotCreated:
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = false}
+        }
     }
 }

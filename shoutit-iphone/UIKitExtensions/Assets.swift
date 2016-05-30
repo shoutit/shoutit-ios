@@ -56,8 +56,8 @@ extension UIImage {
         return UIImage(named: "disclosure_indicator_red")!
     }
     
-    static func rightGreenArrowDisclosureIndicator() -> UIImage {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+    static func rightGreenArrowDisclosureIndicator(forceLeftToRight forceLeftToRight: Bool = false) -> UIImage {
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft && forceLeftToRight == false {
             return UIImage(named: "rtl_disclosure_indicator_green")!
         }
         return UIImage(named: "disclosure_indicator_green")!

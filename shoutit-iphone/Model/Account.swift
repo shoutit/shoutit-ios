@@ -142,6 +142,7 @@ final class Account {
         APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
         try clearUserData()
         GIDSignIn.sharedInstance().signOut()
+        facebookManager.logout()
     }
     
     func clearUserData() throws {

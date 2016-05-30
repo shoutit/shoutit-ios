@@ -42,7 +42,7 @@ class ConversationGroupWrapperViewController: UIViewController {
     }
     
     private func setupViews() {
-        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
+        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator(forceLeftToRight: true)
     }
     
     // MARK: - Navigation

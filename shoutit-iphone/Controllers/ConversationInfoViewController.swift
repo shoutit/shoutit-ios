@@ -50,6 +50,10 @@ class ConversationInfoViewController: UITableViewController {
         setupRX()
     }
     
+    override func prefersMenuHamburgerHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {

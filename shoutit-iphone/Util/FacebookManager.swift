@@ -101,6 +101,10 @@ extension FacebookManager {
         return requestReadPermissionsFromViewController(permissions, viewController: viewController)
                 .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }
+    
+    func logout() {
+        loginManager.logOut()
+    }
 }
 
 private extension FacebookManager {

@@ -10,12 +10,17 @@ import UIKit
 
 protocol NavigationBarContext {
     func prefersNavigationBarHidden() -> Bool
+    func prefersMenuHamburgerHidden() -> Bool
     func hasFakeNavigationBar() -> Bool
 }
 
 extension UIViewController: NavigationBarContext {
     
     func prefersNavigationBarHidden() -> Bool {
+        return false
+    }
+    
+    func prefersMenuHamburgerHidden() -> Bool {
         return false
     }
     

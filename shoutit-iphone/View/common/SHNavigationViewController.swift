@@ -57,10 +57,17 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
             return
         }
         
-        if self.viewControllers.count > 1 {
-            viewController.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: #selector(UIViewController.pop)), UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: #selector(UIViewController.toggleMenu))]
+        let toggleMenuBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: #selector(UIViewController.toggleMenu))
+        let backBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: #selector(UIViewController.pop))
+        
+        if viewControllers.count > 1 {
+            if viewController.prefersMenuHamburgerHidden() {
+                viewController.navigationItem.leftBarButtonItem = backBarButtonItem
+            } else {
+                viewController.navigationItem.leftBarButtonItems = [backBarButtonItem, toggleMenuBarButtonItem]
+            }
         } else {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: #selector(UIViewController.toggleMenu))
+            viewController.navigationItem.leftBarButtonItem = toggleMenuBarButtonItem
         }
     }
     
