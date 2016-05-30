@@ -261,6 +261,7 @@
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE15981C6E0BBF002D2AF7 /* DiscoverPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE15971C6E0BBF002D2AF7 /* DiscoverPreview.storyboard */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
+		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
 		AEE1044B1CB7907A002E7921 /* APNParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE1044A1CB7907A002E7921 /* APNParams.swift */; };
 		AEE924B61C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
 		AEE924B71C6884D600EFBF43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729C21C6221B0006F7D29 /* User.swift */; };
@@ -1071,6 +1072,7 @@
 		AEDE15971C6E0BBF002D2AF7 /* DiscoverPreview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DiscoverPreview.storyboard; path = Storyboards/DiscoverPreview.storyboard; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
 		AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HomeShouts.storyboard; path = Storyboards/HomeShouts.storyboard; sourceTree = "<group>"; };
+		AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutualProfilesViewModel.swift; path = ViewModel/MutualProfilesViewModel.swift; sourceTree = "<group>"; };
 		AEE1044A1CB7907A002E7921 /* APNParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNParams.swift; sourceTree = "<group>"; };
 		AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginNavigationViewController.swift; path = Controllers/LoginNavigationViewController.swift; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
@@ -3064,6 +3066,7 @@
 				B27230751CE218E7003547EA /* ListenersProfilesListViewModel.swift */,
 				AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */,
 				AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */,
+				AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */,
 			);
 			name = SpecificViewModels;
 			sourceTree = "<group>";
@@ -4397,6 +4400,7 @@
 				B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */,
 				B2F524881C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift in Sources */,
 				B2B345461CA5584D0066DF15 /* LightError.swift in Sources */,
+				AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */,
 				AE8351831C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				B272307C1CE34916003547EA /* Pager.swift in Sources */,
 				24A843FB1CA02733007FF9E8 /* ConversationShoutHeader.swift in Sources */,

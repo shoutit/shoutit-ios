@@ -93,6 +93,18 @@ extension FacebookManager {
                 return Observable.just(profile)
         }
     }
+    
+    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<DetailedProfile> {
+        return requestReadPermissionsFromViewController(permissions, viewController: viewController)
+                .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
+                .flatMap{ (profile) -> Observable<DetailedProfile> in
+                    guard let _ = profile.linkedAccounts?.facebook else {
+                        return Observable.error(SocialActionError.FacebookPermissionsFailedError)
+                    }
+                
+                    return Observable.just(profile)
+        }
+    }
 }
 
 private extension FacebookManager {

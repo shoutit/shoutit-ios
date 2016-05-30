@@ -60,10 +60,10 @@ class InviteFriendsTableViewController: UITableViewController {
     
     private func findFacebookFriends() {
         if !Account.sharedInstance.facebookManager.hasPermissions(.UserFriends) {
-            Account.sharedInstance.facebookManager.requestReadPermissionsFromViewController([.UserFriends], viewController: self).subscribe { (event) in
+            Account.sharedInstance.facebookManager.extendUserReadPermissions([.UserFriends], viewController: self).subscribe { (event) in
                 switch event {
                 case .Next(_):
-                    self.fetchFacebookContacts()
+                    self.showFacebookContacts()
                 case .Error(LocalError.Cancelled):
                     break
                 case .Error(let error):
@@ -75,21 +75,21 @@ class InviteFriendsTableViewController: UITableViewController {
             return
         }
         
-        fetchFacebookContacts()
+        showFacebookContacts()
     }
     
-    func fetchFacebookContacts() {
-        let request = FBSDKGraphRequest(graphPath: "/me/friends", parameters: [:], HTTPMethod: "GET")
+    func showFacebookContacts() {
+        let controller = Wireframe.conversationSelectProfileAttachmentController()
         
-        request.startWithCompletionHandler { [weak self] (connection, object, error) in
-         
-            if let error = error {
-                self?.showError(error)
-                return
-            }
-            
-            print(object)
-        }
+        controller.viewModel = MutualProfilesViewModel(showListenButtons: true)
+        
+        controller.navigationItem.title = NSLocalizedString("Facebook Friends", comment: "")
+        
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
+            self?.flowDelegate?.showProfile(profile)
+        })
+        
+        self.navigationController?.showViewController(controller, sender: nil)
     }
     
     private func findContactsFriends() {
