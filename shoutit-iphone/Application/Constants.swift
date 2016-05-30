@@ -56,6 +56,12 @@ struct Constants {
         static let SH_AWS_SHOUT_URL = "https://shout-image.static.shoutit.com/"
         static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
     }
+    
+    struct Invite {
+        static let inviteURL = "https://www.shoutit.com/app"
+        static let inviteText = NSLocalizedString("Join Shoutit on shoutit.com", comment: "")
+        static let facebookURL = "https://fb.me/1224908360855680"
+    }
 }
 
 struct Platform {

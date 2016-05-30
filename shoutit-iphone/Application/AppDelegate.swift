@@ -13,6 +13,7 @@ import Crashlytics
 import UIViewAppearanceSwift
 import DeepLinkKit
 import SwiftyBeaver
+import FBSDKCoreKit
 
 let log = SwiftyBeaver.self
 
@@ -39,15 +40,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAPS(application)
         configureURLCache()
         
+        var firstLaunch = false
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
+            firstLaunch = true
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedOnce")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
+        if (launchOptions?[UIApplicationLaunchOptionsURLKey] == nil && firstLaunch) {
+            FBSDKAppLinkUtility.fetchDeferredAppLink({ (url, error) in
+                // to decide what needs to be done here, completion closure takes link from where app is installed
+            })
+            
+            FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
+                // to decide what needs to be done here, url - refferal
+            })
+        }
+        
+        FBSDKAppEvents.activateApp()
+        
         registerRoutes()
         
-        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey] else {
+        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey], userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
             return true
         }
         
-        if let aps = userInfo["data"], appPath = aps["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
-            application.openURL(urlToOpen)
-        }
+        handlePushNotificationData(userInfoData, dispatchAfter: 2)
         
         return true
     }
@@ -63,6 +82,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
+        }
+        
+        let parsedUrl = BFURL.init(inboundURL: url, sourceApplication: sourceApplication)
+        
+        if ((parsedUrl.appLinkData) != nil) {
+            return self.router.handleURL(parsedUrl.targetURL, withCompletion: nil)
         }
         
         return self.router.handleURL(url, withCompletion:nil)
@@ -94,6 +119,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Push notifications
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+            return
+        }
+        
+        handlePushNotificationData(userInfoData, dispatchAfter: 0)
+    }
+    
+    func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
+        
+        if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.router.handleURL(urlToOpen, withCompletion:nil)
+            }
+            
+            
+        }
+    }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")

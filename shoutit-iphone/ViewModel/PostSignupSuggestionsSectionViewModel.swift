@@ -20,6 +20,8 @@ enum PostSignupSuggestionsSection {
             return NSLocalizedString("Suggested Pages", comment: "")
         }
     }
+    
+    
 }
 
 final class PostSignupSuggestionsSectionViewModel {
@@ -34,5 +36,9 @@ final class PostSignupSuggestionsSectionViewModel {
     
     func updateCellsWithModels(models: [Suggestable]) {
         self.cells = models.map{PostSignupSuggestionsCellViewModel(item: $0)}
+    }
+    
+    var noContentTitle: String {
+        return NSLocalizedString("There is no suggestions for you at the moment", comment: "")
     }
 }

@@ -23,7 +23,7 @@ final class CreateShoutViewModel: NSObject {
     var sectionViewModels: [CreateShoutSectionViewModel] { return [detailsSectionViewModel, locationSectionViewModel] }
     
     init(type: ShoutType = ShoutType.Request) {
-        shoutParams = ShoutParams(type: type, publishToFacebook: Account.sharedInstance.facebookManager.hasPublishPermissions())
+        shoutParams = ShoutParams(type: type, publishToFacebook: Account.sharedInstance.facebookManager.hasPermissions(.PublishActions))
         super.init()
         detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category], parent: self, hideFilters: true)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location], parent: self)
