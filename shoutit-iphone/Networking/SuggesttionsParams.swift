@@ -10,12 +10,13 @@ import Foundation
 
 struct SuggestionsParams: Params {
     
-    init(address: Address, pageSize: Int, type: SuggestionsTypes) {
+    init(address: Address, pageSize: Int, type: SuggestionsTypes, page: Int) {
         self.pageSize = pageSize
         self.country = address.country
         self.state = address.state
         self.city = address.city
         self.type = type
+        self.page = page
     }
     
     let pageSize: Int
@@ -23,6 +24,7 @@ struct SuggestionsParams: Params {
     let state: String
     let city: String
     let type: SuggestionsTypes
+    let page: Int
     
     var params: [String : AnyObject] {
         return [
@@ -30,7 +32,8 @@ struct SuggestionsParams: Params {
             "page_size" : pageSize,
             "country" : country,
             "state" : state,
-            "city" : city
+            "city" : city,
+            "page" : page
         ]
     }
 }

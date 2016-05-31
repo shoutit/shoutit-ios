@@ -137,6 +137,7 @@
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
 		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
+		AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */; };
 		AE1F296E1CE9BF5300D1AA76 /* ConversationDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */; };
 		AE1F29701CE9C94F00D1AA76 /* ConversationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */; };
 		AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */; };
@@ -894,6 +895,7 @@
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
+		AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedUsersViewModel.swift; path = ViewModel/SuggestedUsersViewModel.swift; sourceTree = "<group>"; };
 		AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationDescription.swift; path = Model/ConversationDescription.swift; sourceTree = "<group>"; };
 		AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewController.swift; path = Controllers/ConversationInfoViewController.swift; sourceTree = "<group>"; };
 		AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewModel.swift; path = ViewModel/ConversationInfoViewModel.swift; sourceTree = "<group>"; };
@@ -3073,6 +3075,7 @@
 				AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */,
 				AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */,
 				AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */,
+				AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */,
 			);
 			name = SpecificViewModels;
 			sourceTree = "<group>";
@@ -4523,6 +4526,7 @@
 				B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */,
 				B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */,
 				601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */,
+				AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */,
 				B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */,
 				AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
 				B2B5D0111C7F28E50068A6AF /* ShoutDetailKeyValueTableViewCell.swift in Sources */,

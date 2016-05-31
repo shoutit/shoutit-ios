@@ -28,6 +28,13 @@ extension PagedResults: Decodable {
             <*> j <|| "results"
         return b
     }
+    
+    init(_ results: [T]) {
+        self.results = results
+        self.count = results.count
+        self.previousPath = nil
+        self.nextPath = nil
+    }
 }
 
 extension PagedResults {
