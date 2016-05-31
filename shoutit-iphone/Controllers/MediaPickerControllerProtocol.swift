@@ -41,6 +41,7 @@ struct MediaAttachment : Hashable, Equatable {
     var originalData: NSData?
     
     func remoteFilename(user: User) -> String {
+        
         if self.type == .Image {
             return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
         }
