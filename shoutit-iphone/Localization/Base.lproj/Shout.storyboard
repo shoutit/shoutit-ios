@@ -814,27 +814,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9i7-Q0-Q3w">
-                                            <rect key="frame" x="23" y="23" width="28" height="28"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9i7-Q0-Q3w">
+                                            <rect key="frame" x="11" y="11" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="28" id="863-0x-7Hf"/>
                                                 <constraint firstAttribute="width" constant="28" id="C7X-zJ-IT4"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKr-Pg-72d">
-                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sKr-Pg-72d">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxB-6n-5vU" customClass="ACPDownloadView">
-                                            <rect key="frame" x="15" y="15" width="44" height="44"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxB-6n-5vU" customClass="ACPDownloadView">
+                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="56B-e9-DVk">
-                                            <rect key="frame" x="54" y="2" width="18" height="18"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="56B-e9-DVk">
+                                            <rect key="frame" x="30" y="2" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="Gxx-s6-5o2"/>
                                                 <constraint firstAttribute="width" constant="18" id="aqp-OT-Z4f"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_play_small" translatesAutoresizingMaskIntoConstraints="NO" id="rIO-rA-r53">
+                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="bkK-ob-CQH"/>
+                                                <constraint firstAttribute="width" constant="30" id="izY-Dw-1pI"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -849,8 +856,10 @@
                                     <constraint firstAttribute="bottom" secondItem="sKr-Pg-72d" secondAttribute="bottom" id="Ebq-Cd-IQG"/>
                                     <constraint firstItem="56B-e9-DVk" firstAttribute="top" secondItem="5G3-L1-hw2" secondAttribute="top" constant="2" id="HRW-Ju-6JP"/>
                                     <constraint firstItem="fxB-6n-5vU" firstAttribute="leading" secondItem="5G3-L1-hw2" secondAttribute="leading" constant="15" id="Ocf-2g-ONE"/>
+                                    <constraint firstItem="rIO-rA-r53" firstAttribute="centerX" secondItem="5G3-L1-hw2" secondAttribute="centerX" id="Rde-99-k0y"/>
                                     <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerX" secondItem="5G3-L1-hw2" secondAttribute="centerX" id="SAN-57-JXw"/>
                                     <constraint firstAttribute="trailing" secondItem="sKr-Pg-72d" secondAttribute="trailing" id="SQD-xM-ntc"/>
+                                    <constraint firstItem="rIO-rA-r53" firstAttribute="centerY" secondItem="5G3-L1-hw2" secondAttribute="centerY" id="TTR-Z3-Lhb"/>
                                     <constraint firstAttribute="trailing" secondItem="56B-e9-DVk" secondAttribute="trailing" constant="2" id="Y5k-EM-flO"/>
                                     <constraint firstItem="9i7-Q0-Q3w" firstAttribute="centerY" secondItem="5G3-L1-hw2" secondAttribute="centerY" id="ew8-7O-0rQ"/>
                                     <constraint firstItem="sKr-Pg-72d" firstAttribute="top" secondItem="5G3-L1-hw2" secondAttribute="top" id="rHS-39-YJd"/>
@@ -859,6 +868,7 @@
                                     <outlet property="editIconImageView" destination="56B-e9-DVk" id="5EE-oM-r7i"/>
                                     <outlet property="imageView" destination="sKr-Pg-72d" id="J5b-QX-Cbe"/>
                                     <outlet property="progressView" destination="fxB-6n-5vU" id="aim-Z0-VL4"/>
+                                    <outlet property="videoIconImageView" destination="rIO-rA-r53" id="Kiq-w9-XvZ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -870,7 +880,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agq-ZF-3ft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267" y="-941"/>
+            <point key="canvasLocation" x="265" y="-929"/>
         </scene>
         <!--Location Selection View Controller-->
         <scene sceneID="9oL-uQ-clQ">
@@ -1422,27 +1432,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="a6F-PK-eH1">
-                                            <rect key="frame" x="23" y="23" width="28" height="28"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="a6F-PK-eH1">
+                                            <rect key="frame" x="11" y="11" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="28" id="1DU-Js-bfh"/>
                                                 <constraint firstAttribute="width" constant="28" id="izx-9t-4rE"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-dZ-2hC">
-                                            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-dZ-2hC">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoO-Ff-Xzj" customClass="ACPDownloadView">
-                                            <rect key="frame" x="15" y="15" width="44" height="44"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FoO-Ff-Xzj" customClass="ACPDownloadView">
+                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="5bN-a5-bPz">
-                                            <rect key="frame" x="54" y="2" width="18" height="18"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="5bN-a5-bPz">
+                                            <rect key="frame" x="30" y="2" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="18" id="Sos-Sh-NKC"/>
                                                 <constraint firstAttribute="height" constant="18" id="ptL-IQ-0Rv"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_play_small" translatesAutoresizingMaskIntoConstraints="NO" id="Kxl-cT-WRI">
+                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="iFq-pM-MYd"/>
+                                                <constraint firstAttribute="width" constant="30" id="vmP-Lc-cht"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -1456,10 +1473,12 @@
                                     <constraint firstItem="FoO-Ff-Xzj" firstAttribute="leading" secondItem="rqM-Ls-6Si" secondAttribute="leading" constant="15" id="NSD-Ic-Wl1"/>
                                     <constraint firstItem="FoO-Ff-Xzj" firstAttribute="top" secondItem="rqM-Ls-6Si" secondAttribute="top" constant="15" id="RB3-w9-u2q"/>
                                     <constraint firstAttribute="trailing" secondItem="FoO-Ff-Xzj" secondAttribute="trailing" constant="15" id="S4R-b4-xTd"/>
+                                    <constraint firstItem="Kxl-cT-WRI" firstAttribute="centerY" secondItem="rqM-Ls-6Si" secondAttribute="centerY" id="XUt-ZV-vEk"/>
                                     <constraint firstItem="tpM-dZ-2hC" firstAttribute="top" secondItem="rqM-Ls-6Si" secondAttribute="top" id="bjF-yL-1fp"/>
                                     <constraint firstItem="tpM-dZ-2hC" firstAttribute="leading" secondItem="rqM-Ls-6Si" secondAttribute="leading" id="fve-o5-GCk"/>
                                     <constraint firstAttribute="bottom" secondItem="FoO-Ff-Xzj" secondAttribute="bottom" constant="15" id="nhb-FU-FLU"/>
                                     <constraint firstItem="5bN-a5-bPz" firstAttribute="top" secondItem="rqM-Ls-6Si" secondAttribute="top" constant="2" id="oGH-tf-Whw"/>
+                                    <constraint firstItem="Kxl-cT-WRI" firstAttribute="centerX" secondItem="rqM-Ls-6Si" secondAttribute="centerX" id="omy-OV-szz"/>
                                     <constraint firstItem="a6F-PK-eH1" firstAttribute="centerX" secondItem="rqM-Ls-6Si" secondAttribute="centerX" id="tmQ-dW-M7E"/>
                                     <constraint firstItem="a6F-PK-eH1" firstAttribute="centerY" secondItem="rqM-Ls-6Si" secondAttribute="centerY" id="wYs-gf-txd"/>
                                 </constraints>
@@ -1467,6 +1486,7 @@
                                     <outlet property="editIconImageView" destination="5bN-a5-bPz" id="u5O-dG-Sts"/>
                                     <outlet property="imageView" destination="tpM-dZ-2hC" id="4QE-Gf-H9W"/>
                                     <outlet property="progressView" destination="FoO-Ff-Xzj" id="bWb-f1-iLL"/>
+                                    <outlet property="videoIconImageView" destination="Kxl-cT-WRI" id="f5m-h7-Zpu"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1490,5 +1510,6 @@
         <image name="share_icon" width="17" height="23"/>
         <image name="success_icon" width="34" height="31"/>
         <image name="tick" width="15" height="13"/>
+        <image name="video_play_small" width="36" height="36"/>
     </resources>
 </document>
