@@ -65,6 +65,7 @@ struct Constants {
 }
 
 struct Platform {
+    
     static let isSimulator: Bool = {
         var isSim = false
         #if arch(i386) || arch(x86_64)
@@ -72,4 +73,8 @@ struct Platform {
         #endif
         return isSim
     }()
+    
+    static var isRTL: Bool {
+        return UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft
+    }
 }

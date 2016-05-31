@@ -42,7 +42,8 @@ class ConversationGroupWrapperViewController: UIViewController {
     }
     
     private func setupViews() {
-        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator(forceLeftToRight: true)
+        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
+        createPublicChatButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
     }
     
     // MARK: - Navigation
