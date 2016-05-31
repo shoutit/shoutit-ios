@@ -42,14 +42,14 @@ struct MediaAttachment : Hashable, Equatable {
     
     func remoteFilename(user: User) -> String {
         if self.type == .Image {
-            return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).jpg"
+            return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
         }
         
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).mp4"
+        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).mp4"
     }
     
     func thumbRemoteFilename(user: User) -> String {
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id)_thumbnail.jpg"
+        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id)_thumbnail.jpg"
     }
     
     static func generateUid() -> String {

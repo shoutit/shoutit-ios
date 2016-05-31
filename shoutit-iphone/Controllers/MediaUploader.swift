@@ -80,7 +80,6 @@ final class MediaUploader: AnyObject {
         }
         
         uploadVideoAttachment(task, user: user)
-        
     }
     
     func removeAttachment(attachment: MediaAttachment) {
@@ -110,9 +109,7 @@ final class MediaUploader: AnyObject {
         
         if let data = task.attachment.image?.dataRepresentation() {
             let destination = task.attachment.thumbRemoteFilename(user)
-            
             amazonManager.putObject(data, destinationPath: destination)
-            
             task.attachment.thumbRemoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
         }
     }
@@ -130,5 +127,4 @@ final class MediaUploader: AnyObject {
         
         return nil
     }
-    
 }

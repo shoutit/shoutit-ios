@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import MobileCoreServices
 
-protocol MediaPickerControllerDelegate {
+protocol MediaPickerControllerDelegate: class {
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
 }
 
@@ -23,7 +23,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     var presentingSubject : BehaviorSubject<UIViewController?>
     
-    var delegate : MediaPickerControllerDelegate?
+    weak var delegate : MediaPickerControllerDelegate?
     
     init(delegate: MediaPickerControllerDelegate? = nil, settings: MediaPickerSettings = MediaPickerSettings()) {
         self.pickerSettings = settings
@@ -36,9 +36,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     func showMediaPickerController() {
         let controller = mediaPickerController(self.pickerSettings, sender: nil)
-        
         controller.delegate = self
-        
         self.presentingSubject.onNext(controller)
     }
     

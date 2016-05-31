@@ -14,7 +14,7 @@ import MobileCoreServices
 public class PhotosMenuController: UIAlertController {
 
     /// The photo menu’s delegate object.
-    public var delegate: protocol<PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>?
+    public weak var delegate: protocol<PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>?
     
     /// An array indicating the media types to be accessed by the media picker controller.
     public var mediaTypesForImagePicker: [String] = [kUTTypeImage as String] {
@@ -30,7 +30,7 @@ public class PhotosMenuController: UIAlertController {
     private var cancelAction: UIAlertAction!
     private var customActions: Array<UIAlertAction> = []
     
-    private var capturedPresentingViewController: UIViewController?
+    private weak var capturedPresentingViewController: UIViewController?
     private var capturedPopoverPresentationControllerBarButtonItem: UIBarButtonItem?
     private var capturedPopoverPresentationControllerSourceView: UIView?
     private var capturedPopoverPresentationControllerSourceRect: CGRect?

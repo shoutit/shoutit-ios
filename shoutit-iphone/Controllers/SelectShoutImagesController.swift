@@ -14,17 +14,16 @@ final class SelectShoutImagesController: UICollectionViewController {
     private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
     private let numberOfItems = 5
     
-    var selectedIdx : Int?
+    private var selectedIdx : Int?
     
     var attachments : [Int : MediaAttachment]!
     
     var mediaPicker : MediaPickerController!
     var mediaUploader : MediaUploader!
     
-    var editingAttachment : MediaAttachment?
-    var editingCompletion : ((attachment: MediaAttachment) -> Void)?
-    
-    var editingController : AVYPhotoEditorController?
+    private var editingAttachment : MediaAttachment?
+    private var editingCompletion : ((attachment: MediaAttachment) -> Void)?
+    private var editingController : AVYPhotoEditorController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,19 +42,17 @@ final class SelectShoutImagesController: UICollectionViewController {
     }
     
     private func prepareLayout() {
-        
-        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = CGSize(width: 74, height: 74)
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
-            layout.scrollDirection = .Horizontal
-            collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            if #available(iOS 9.0, *) {
-                collectionView?.semanticContentAttribute = .ForceLeftToRight
-            }
-            if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-                collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
-            }
+        guard let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return}
+        layout.itemSize = CGSize(width: 74, height: 74)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.scrollDirection = .Horizontal
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        if #available(iOS 9.0, *) {
+            collectionView?.semanticContentAttribute = .ForceLeftToRight
+        }
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+            collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
         }
     }
 }
@@ -73,12 +70,11 @@ extension SelectShoutImagesController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
         cell.transform = collectionView.transform
+        
         let attachment = attachments[indexPath.item]
-        cell.fillWith(attachment)
-        
         let task = self.mediaUploader.taskForAttachment(attachment)
+        cell.fillWith(attachment)
         cell.fillWith(task)
-        
         cell.setActive(indexActive(indexPath))
         
         return cell
@@ -100,7 +96,6 @@ extension SelectShoutImagesController {
         }
         
         selectedIdx = nil
-        
         mediaPicker.showMediaPickerController()
     }
 }
@@ -137,25 +132,29 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
 }
 
 extension SelectShoutImagesController : AVYPhotoEditorControllerDelegate {
+    
     func photoEditor(editor: AVYPhotoEditorController, finishedWithImage image: UIImage) {
         
         editingController?.dismissViewControllerAnimated(true, completion: nil)
-        
-        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else {
-            return
-        }
-        
+        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else { return }
         guard let imageData = image.dataRepresentation() else {
             editingCompletion(attachment: editingAttachment)
             return
         }
         
         let newAttachment = editingAttachment.mediaAttachmentWithExchangedImage(image, data: imageData)
-        
         editingCompletion(attachment: newAttachment)
+        
+        self.editingAttachment = nil
+        self.editingCompletion = nil
     }
     
     func photoEditorCanceled(editor: AVYPhotoEditorController!) {
+        if let editingAttachment = editingAttachment, editingCompletion = editingCompletion {
+            editingCompletion(attachment: editingAttachment)
+        }
+        self.editingAttachment = nil
+        self.editingCompletion = nil
         editingController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
@@ -163,35 +162,29 @@ extension SelectShoutImagesController : AVYPhotoEditorControllerDelegate {
 extension SelectShoutImagesController {
     
     func showPhotoEditingForAttechmentIfNeeded(attachment: MediaAttachment, completion: (attachment : MediaAttachment) -> Void ) {
-        if attachment.type != .Image {
+        
+        guard let img = attachment.image where attachment.type == .Image else {
             completion(attachment: attachment)
             return
         }
-        
-        guard let img = attachment.image else {
-            completion(attachment: attachment)
-            return
-        }
-        
-        
-        var token: dispatch_once_t = 0
-        
-        dispatch_once(&token) {
-            AVYPhotoEditorController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
-        }
-            
-        self.editingAttachment = attachment
-        self.editingCompletion = completion
-        
-        editingController = AVYPhotoEditorController(image: img)
-        
-        editingController?.delegate = self
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            guard self.editingController?.presentingViewController == nil else { return }
-            self.mediaPicker.presentingSubject.onNext(self.editingController)
+        dispatch_after(delayTime, dispatch_get_main_queue()) {[weak self] in
+            guard self?.editingController?.presentingViewController == nil else {
+                completion(attachment: attachment)
+                return
+            }
+            
+            var token: dispatch_once_t = 0
+            dispatch_once(&token) {
+                AVYPhotoEditorController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
+            }
+            
+            self?.editingAttachment = attachment
+            self?.editingCompletion = completion
+            self?.editingController = AVYPhotoEditorController(image: img)
+            self?.editingController?.delegate = self
+            self?.mediaPicker.presentingSubject.onNext(self?.editingController)
         }
     }
 }
@@ -250,24 +243,24 @@ private extension SelectShoutImagesController {
     func showEditAlert() {
         let alert = UIAlertController(title: "Edit Shout Media", message: "", preferredStyle: .ActionSheet)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (alertAction) in
-            self.selectedIdx = nil
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {[weak self] (alertAction) in
+            self?.selectedIdx = nil
         }))
         
-        alert.addAction(UIAlertAction(title: "Change", style: .Default, handler: { (alertAction) in
-            self.mediaPicker.showMediaPickerController()
+        alert.addAction(UIAlertAction(title: "Change", style: .Default, handler: {[weak self] (alertAction) in
+            self?.mediaPicker.showMediaPickerController()
         }))
         
-        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (alertAction) in
-            if let selectedIdx = self.selectedIdx {
-                if let attachment = self.attachments[selectedIdx] {
-                    self.mediaUploader.removeAttachment(attachment)
-                    self.attachments[selectedIdx] = nil
-                    self.rearangeAttachments()
+        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {[weak self] (alertAction) in
+            if let selectedIdx = self?.selectedIdx {
+                if let attachment = self?.attachments[selectedIdx] {
+                    self?.mediaUploader.removeAttachment(attachment)
+                    self?.attachments[selectedIdx] = nil
+                    self?.rearangeAttachments()
                 }
             }
             
-            self.collectionView?.reloadData()
+            self?.collectionView?.reloadData()
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)

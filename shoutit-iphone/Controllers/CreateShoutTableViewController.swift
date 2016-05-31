@@ -116,16 +116,15 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let imagesController = segue.destinationViewController as? SelectShoutImagesController {
-            
             self.imagesController = imagesController
-            
-            imagesController.mediaPicker.presentingSubject.asDriver(onErrorRecover: { (error) -> Driver<UIViewController?> in
-                return Driver.just(nil)
-            }).driveNext({ [weak self] (controllerToShow) -> Void in
-                if let controllerToShow = controllerToShow {
-                    self?.navigationController?.presentViewController(controllerToShow, animated: true, completion: nil)
+            imagesController.mediaPicker
+                .presentingSubject
+                .observeOn(MainScheduler.instance).subscribeNext{[weak self] (controllerToShow) in
+                    if let controllerToShow = controllerToShow {
+                        self?.navigationController?.presentViewController(controllerToShow, animated: true, completion: nil)
+                    }
                 }
-            }).addDisposableTo(disposeBag)
+                .addDisposableTo(disposeBag)
         }
     }
     
