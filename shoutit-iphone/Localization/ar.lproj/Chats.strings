@@ -19,6 +19,9 @@
 /* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
 "GZ0-mH-W33.title" = "المحادثات";
 
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "Profile";
+
 /* Class = "UILabel"; text = "Clear Chat"; ObjectID = "IF9-nC-Rc0"; */
 "IF9-nC-Rc0.text" = "مسح الرسائل";
 
@@ -103,6 +106,9 @@
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "المحادثات";
 
+/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "Media";
+
 /* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
 "viM-Sc-CK6.text" = "موقع";
 
@@ -114,4 +120,3 @@
 
 /* Class = "UISegmentedControl"; xdz-jg-dvB.segmentTitles[1] = "Listeners"; ObjectID = "xdz-jg-dvB"; */
 "xdz-jg-dvB.segmentTitles[1]" = "مستمعون";
-

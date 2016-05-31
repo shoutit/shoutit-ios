@@ -1,6 +1,6 @@
 
-/* Class = "UIButton"; normalTitle = "Call"; ObjectID = "6Fl-rk-iIB"; */
-"6Fl-rk-iIB.normalTitle" = "Call";
+/* Class = "UILabel"; text = "Call"; ObjectID = "WrL-1Z-BUo"; */
+"WrL-1Z-BUo.text" = "Call";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6ax-sw-xDW"; */
 "6ax-sw-xDW.normalTitle" = "Cancel";

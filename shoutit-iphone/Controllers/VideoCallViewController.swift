@@ -139,12 +139,25 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
     
     func messageText() -> String? {
         switch self.state {
-            case .ReadyForCall: return "Video call with \(callingToProfile?.username ?? "")"
-            case .Calling: return "Connecting with \(conversation?.participants.first?.identity ?? "")..."
-            case .InCall: return "\(conversation!.participants.first?.identity ?? "")"
-            case .CallEnded: return "Call Ended"
-            case .CallFailed: return "Call Failed"
+            case .ReadyForCall:
+                if let username = callingToProfile?.username {
+                    return String.localizedStringWithFormat(NSLocalizedString("Video call with %@", comment: "Video call status message"), username)
+                }
+            case .Calling:
+                if let participantIdentity = conversation?.participants.first?.identity {
+                    return String.localizedStringWithFormat(NSLocalizedString("Connecting with %@...", comment: "Video call status message"), participantIdentity)
+                } else {
+                    return NSLocalizedString("Connecting...", comment: "Video call status message")
+                }
+            case .InCall:
+                return "\(conversation!.participants.first?.identity ?? "")"
+            case .CallEnded:
+                return NSLocalizedString("Call Ended", comment: "Video call status message")
+            case .CallFailed:
+                return NSLocalizedString("Call Failed", comment: "Video call status message")
         }
+        
+        return nil
     }
     
     @IBAction func endCall() {
