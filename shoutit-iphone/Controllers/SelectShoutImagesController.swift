@@ -121,20 +121,14 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
             newAttachmentIdx = idx
         }
         
-        
         if let idx = newAttachmentIdx {
             self.attachments[idx] = attachment
-            
             self.collectionView?.reloadData()
-            
             showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (attachment) in
                 self?.attachments[idx] = attachment
-                
                 self?.startUploadingAttachment(attachment)
-                
                 self?.collectionView?.reloadData()
             })
-            
             return
         }
         
@@ -196,6 +190,7 @@ extension SelectShoutImagesController {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         
         dispatch_after(delayTime, dispatch_get_main_queue()) {
+            guard self.editingController?.presentingViewController == nil else { return }
             self.mediaPicker.presentingSubject.onNext(self.editingController)
         }
     }
@@ -289,7 +284,6 @@ private extension SelectShoutImagesController {
         }
         
         attachments = atts
-        
     }
     
     func firstEmptyIndex() -> Int? {

@@ -30,20 +30,23 @@ final class LoginMethodChoiceViewModel {
     
     func loginWithFacebookFromViewController(viewController: UIViewController) {
         progressHUDSubject.onNext(true)
-        Account.sharedInstance.facebookManager.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController).subscribe { (event) in
-            switch event {
-            case .Next(let token):
-                let params = FacebookLoginParams(token: token)
-                self.authenticateWithParameters(params)
-            case .Error(LocalError.Cancelled):
-                self.progressHUDSubject.onNext(false)
-            case .Error(let error):
-                self.errorSubject.onNext(error)
-                self.progressHUDSubject.onNext(false)
-            default:
-                break
+        Account.sharedInstance.facebookManager
+            .requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+            .subscribe { (event) in
+                switch event {
+                case .Next(let token):
+                    let params = FacebookLoginParams(token: token)
+                    self.authenticateWithParameters(params)
+                case .Error(LocalError.Cancelled):
+                    self.progressHUDSubject.onNext(false)
+                case .Error(let error):
+                    self.errorSubject.onNext(error)
+                    self.progressHUDSubject.onNext(false)
+                default:
+                    break
+                }
             }
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - Private

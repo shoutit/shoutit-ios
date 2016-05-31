@@ -31,9 +31,9 @@ extension FacebookAccount: Encodable {
     
     func encode() -> JSON {
         return JSON.Object([
-            "scopes"    : self.scopes.encode(),
-            "expires_at"  : self.expiresAtEpoch.encode(),
-            "facebook_id" : self.facebookId.encode()
+            "scopes"    : scopes.encode(),
+            "expires_at"  : expiresAtEpoch.encode(),
+            "facebook_id" : facebookId.encode()
             ]
         )
     }

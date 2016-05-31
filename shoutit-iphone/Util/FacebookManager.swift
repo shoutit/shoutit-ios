@@ -147,10 +147,7 @@ private extension FacebookManager {
     func renewPermissions() {
         
         FBSDKAccessToken.refreshCurrentAccessToken {[unowned self] (fbsdkgraphrequestconnection, result, error) in
-            guard error == nil else {
-                return
-            }
-            
+            guard error == nil else { return }
             APIProfileService
                 .linkSocialAccountWithParams(.Facebook(token: FBSDKAccessToken.currentAccessToken().tokenString))
                 .subscribe{(_) in }

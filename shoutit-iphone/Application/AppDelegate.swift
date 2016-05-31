@@ -98,8 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         LocationManager.sharedInstance.stopUpdatingLocation()
-        
-        
         Account.sharedInstance.pusherManager.disconnect()
     }
 
@@ -107,8 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
-        if Account.sharedInstance.isUserLoggedIn {
+        if case .Logged(let user)? = Account.sharedInstance.userModel {
             Account.sharedInstance.pusherManager.tryToConnect()
+            Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }
         
         Account.sharedInstance.fetchUserProfile()

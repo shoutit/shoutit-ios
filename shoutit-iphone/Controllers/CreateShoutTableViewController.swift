@@ -140,10 +140,8 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             
             if title == "Request" {
                 self.selectShoutType(.Request)
-                
             } else if title == "Shout" {
                 self.selectShoutType(.Offer)
-                
             }
         }
         
