@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -92,9 +92,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Arc-jR-c3o">
-                        <barButtonItem key="rightBarButtonItem" image="search" id="ZYL-jX-FtV">
+                        <barButtonItem key="rightBarButtonItem" image="share_icon" style="plain" id="ZYL-jX-FtV">
                             <connections>
-                                <action selector="searchAction" destination="PrV-RL-Ryp" id="FIb-Zf-XFV"/>
+                                <action selector="shareAction" destination="PrV-RL-Ryp" id="FkA-Ox-aVb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -690,7 +690,7 @@
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
-        <image name="search" width="25" height="24"/>
+        <image name="share_icon" width="17" height="23"/>
         <image name="shoutdetail_tab_call" width="29" height="28"/>
         <image name="shoutdetail_tab_chat" width="24" height="23"/>
         <image name="shoutdetail_tab_tabmore" width="30" height="6"/>

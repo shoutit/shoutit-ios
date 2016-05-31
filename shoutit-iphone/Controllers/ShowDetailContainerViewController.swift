@@ -202,8 +202,11 @@ class ShowDetailContainerViewController: UIViewController {
         self.flowDelegate?.startVideoCallWithProfile(user)
     }
     
-    @IBAction func searchAction() {
-        flowDelegate?.showSearchInContext(.General)
+    @IBAction func shareAction() {
+        let url = viewModel.shout.webPath.toURL()!
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
+        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
