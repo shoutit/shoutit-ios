@@ -65,4 +65,44 @@ final class APIProfileService {
                                                    responseJsonPath: ["results"],
                                                    headers: ["Accept": "application/json"])
     }
+    
+    static func getListeningProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/listening"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getListenersProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/listeners"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getInterestsProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Tag>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/interests"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func linkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me/link"
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
+    
+    static func unlinkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me/link"
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
+    
+    static func getMutualProfiles(params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/me/mutual_friends"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getMutualContacts(params: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/me/mutual_contacts"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func updateProfileContacts(params: ContactsParams) -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me/contacts"
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
 }

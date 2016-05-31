@@ -30,24 +30,23 @@ final class LoginMethodChoiceViewModel {
     
     func loginWithFacebookFromViewController(viewController: UIViewController) {
         progressHUDSubject.onNext(true)
-        let facebookLoginManager = FBSDKLoginManager()
-        facebookLoginManager.logInWithReadPermissions(Constants.Facebook.loginReadPermissions, fromViewController: viewController) { (loginResult, error) -> Void in
-            
-            if let error = error {
-                self.errorSubject.onNext(error)
-                self.progressHUDSubject.onNext(false)
-                return
+        Account.sharedInstance.facebookManager
+            .requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+            .subscribe { (event) in
+                switch event {
+                case .Next(let token):
+                    let params = FacebookLoginParams(token: token)
+                    self.authenticateWithParameters(params)
+                case .Error(LocalError.Cancelled):
+                    self.progressHUDSubject.onNext(false)
+                case .Error(let error):
+                    self.errorSubject.onNext(error)
+                    self.progressHUDSubject.onNext(false)
+                default:
+                    break
+                }
             }
-            
-            if loginResult.isCancelled {
-                self.progressHUDSubject.onNext(false)
-            }
-            
-            if let token = loginResult.token {
-                let params = FacebookLoginParams(token: token.tokenString)
-                self.authenticateWithParameters(params)
-            }
-        }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - Private
@@ -55,7 +54,9 @@ final class LoginMethodChoiceViewModel {
     private func authenticateWithParameters(params: AuthParams) {
         
         let observable: Observable<(AuthData, DetailedProfile)> = APIAuthService.getOAuthToken(params)
-        observable
+            
+            observable
+            .observeOn(MainScheduler.instance)
             .subscribe {[weak self] (event) in
                 self?.progressHUDSubject.onNext(false)
                 switch event {

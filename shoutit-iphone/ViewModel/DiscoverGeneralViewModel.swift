@@ -25,7 +25,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                 return lhs == rhs
         }
         
-            countryObservable
+        countryObservable
             .flatMap { (location) in
                 return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
             }

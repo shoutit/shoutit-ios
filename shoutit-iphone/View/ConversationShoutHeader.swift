@@ -26,22 +26,17 @@ final class ConversationShoutHeader: UIView {
     }
     
     func bindWith(Shout shout: Shout) {
-        self.titleLabel.text = shout.title
         
-        self.subtitleLabel.text = shout.user.name
-        
-        self.priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+        titleLabel.text = shout.title
+        subtitleLabel.text = shout.user?.name
+        priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
 
-        
-        
         if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
-            self.imageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+            imageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         } else {
-            self.imageView.image = UIImage(named:"auth_screen_bg_pattern")
+            imageView.image = UIImage(named:"auth_screen_bg_pattern")
         }
         
-        self.typeLabel.text = shout.type()?.title()
-        
+        typeLabel.text = shout.type()?.title()
     }
-
 }

@@ -11,7 +11,8 @@
 @implementation UIImage (MWPhotoBrowser)
 
 + (UIImage *)imageForResourcePath:(NSString *)path ofType:(NSString *)type inBundle:(NSBundle *)bundle {
-    return [UIImage imageWithContentsOfFile:[bundle pathForResource:path ofType:type]];
+    UIImage *image = [UIImage imageWithContentsOfFile:[bundle pathForResource:path ofType:type]];
+    return image;
 }
 
 + (UIImage *)clearImageWithSize:(CGSize)size {

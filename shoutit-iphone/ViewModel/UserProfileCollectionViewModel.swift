@@ -82,7 +82,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return profile
     }
     
-    var conversation: Conversation? {
+    var conversation: MiniConversation? {
         return detailedUser?.conversation
     }
     
@@ -145,8 +145,8 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     func listen() -> Observable<Void>? {
-        guard let listening = profile.isListening else {return nil}
-        let listen = !(detailedUser?.isListening ?? listening)
+        guard let listening = detailedUser?.isListening ?? profile.isListening else {return nil}
+        let listen = !listening
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedUser = profile
             self?.reloadSubject.onNext()

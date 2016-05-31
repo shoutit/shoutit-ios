@@ -56,6 +56,13 @@ extension UIImage {
         return UIImage(named: "disclosure_indicator_red")!
     }
     
+    static func rightGreenArrowDisclosureIndicator(forceLeftToRight forceLeftToRight: Bool = false) -> UIImage {
+        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft && forceLeftToRight == false {
+            return UIImage(named: "rtl_disclosure_indicator_green")!
+        }
+        return UIImage(named: "disclosure_indicator_green")!
+    }
+    
     static func chatsSendButtonImage() -> UIImage {
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             return UIImage(named: "rtl_send")!
@@ -187,6 +194,18 @@ extension UIImage {
         return UIImage(named: "profile_avatar_tag")!
     }
     
+    static func cameraIconWhite() -> UIImage {
+        return UIImage(named: "photo_icon_small_white")!
+    }
+    
+    static func cameraIconGray() -> UIImage {
+        return UIImage(named: "photo_icon")!
+    }
+    
+    static func tickIcon() -> UIImage {
+        return UIImage(named: "tick")!
+    }
+    
     // MARK: - Placeholders
     
     static func squareAvatarPlaceholder() -> UIImage {
@@ -198,6 +217,10 @@ extension UIImage {
     }
     
     static func shoutsPlaceholderImage() -> UIImage {
+        return UIImage(named: "auth_screen_bg_pattern")!
+    }
+    
+    static func profilePlaceholderImage() -> UIImage {
         return UIImage(named: "auth_screen_bg_pattern")!
     }
 }

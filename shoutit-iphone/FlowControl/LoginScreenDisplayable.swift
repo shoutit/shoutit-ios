@@ -12,8 +12,8 @@ protocol LoginScreenDisplayable {
     func showLoginWithEmail() -> Void
 }
 
-extension LoginScreenDisplayable where Self: FlowController, Self: LoginWithEmailViewControllerFlowDelegate {
-    
+extension LoginFlowController : LoginScreenDisplayable {
+
     func showLoginWithEmail() {
         let controller = Wireframe.loginWithEmailViewController()
         controller.viewModel = LoginWithEmailViewModel()

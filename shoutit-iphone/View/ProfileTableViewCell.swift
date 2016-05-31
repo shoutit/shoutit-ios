@@ -31,3 +31,5 @@ final class ProfileTableViewCell: UITableViewCell {
         thumbnailImageView.image = nil
     }
 }
+
+extension ProfileTableViewCell: NibLoadableView, ReusableView {}

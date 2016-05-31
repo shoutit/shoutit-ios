@@ -10,10 +10,6 @@ import UIKit
 import RxSwift
 import MWPhotoBrowser
 
-protocol ShoutDetailTableViewControllerFlowDelegate: class, ShoutDisplayable, ChatDisplayable, ProfileDisplayable, TagDisplayable, SearchDisplayable, AllShoutsDisplayable {
-    
-}
-
 final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
@@ -54,7 +50,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     
     // navigation
-    weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // data sources
     private var dataSource: ShoutDetailTableViewDataSource! {
@@ -126,8 +122,8 @@ final class ShoutDetailTableViewController: UITableViewController {
     // MARK: - Setup
     
     private func hydrateHeader() {
-        headerView.authorNameLabel.text = viewModel.shout.user.name
-        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.authorNameLabel.text = viewModel.shout.user?.name
+        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.locationLabel.text = viewModel.locationString()
         headerView.shoutTypeLabel.text = viewModel.shout.type()?.title()
         headerView.titleLabel.text = viewModel.shout.title
@@ -139,7 +135,8 @@ final class ShoutDetailTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext{[unowned self] in
-                self.flowDelegate?.showProfile(self.viewModel.shout.user)
+                guard let user = self.viewModel.shout.user else { return }
+                self.flowDelegate?.showProfile(user)
             }
             .addDisposableTo(headerDisposeBag)
         
@@ -174,11 +171,7 @@ extension ShoutDetailTableViewController {
             return
         }
         
-        let medias : [MWPhoto] = Array.filterNils(self.imagesDataSource.viewModel.imagesViewModels.map { (model) -> MWPhoto? in
-            return model.mwPhoto()
-        })
-        
-        let photoBrowser = PhotoBrowser(photos: medias)
+        let photoBrowser = PhotoBrowser(photos: imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()})
 
         let idx : UInt
         

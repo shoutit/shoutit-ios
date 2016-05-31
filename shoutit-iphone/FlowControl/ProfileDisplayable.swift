@@ -12,7 +12,7 @@ protocol ProfileDisplayable {
     func showProfile(profile: Profile) -> Void
 }
 
-extension ProfileDisplayable where Self: FlowController, Self: ProfileCollectionViewControllerFlowDelegate {
+extension FlowController : ProfileDisplayable {
     
     func showProfile(profile: Profile) {
         

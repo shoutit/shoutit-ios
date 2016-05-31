@@ -32,13 +32,12 @@ extension SHShoutItemCell {
     
     func bindWith(Shout shout: Shout) {
         self.shoutTitle.text = shout.title
+        self.name?.text = shout.user?.name
         
-        self.name?.text = shout.user.name
-        
-        if let publishedAt = shout.publishedAtEpoch {
-            self.shoutSubtitle?.text = "\(shout.user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
-        } else {
-            self.shoutSubtitle?.text = shout.user.name
+        if let publishedAt = shout.publishedAtEpoch, user = shout.user {
+            self.shoutSubtitle?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
+        } else if let user = shout.user {
+            self.shoutSubtitle?.text = user.name
         }
         
         self.shoutPrice.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)

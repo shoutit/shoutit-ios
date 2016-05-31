@@ -11,32 +11,10 @@ import Kingfisher
 
 extension UIImageView {
     
-    public enum ImageVariation {
-        case Small
-        case Medium
-        case Large
-        
-        var pathComponent: String {
-            switch self {
-            case .Small: return "_small"
-            case .Medium: return "_medium"
-            case .Large: return "_large"
-            }
-        }
-        
-        var size: CGSize {
-            switch self {
-            case .Small: return CGSize(width: 240, height: 240)
-            case .Medium: return CGSize(width: 480, height: 480)
-            case .Large: return CGSize(width: 720, height: 720)
-            }
-        }
-    }
-    
     public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
-        if let url = url {
+        if let url = url where url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
-                kf_setImageWithURL(imageUrlByAppendingVaraitionComponent(variation, toURL: url), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             } else {
                 kf_setImageWithURL(url, placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             }
@@ -48,9 +26,9 @@ extension UIImageView {
     }
     
     public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?) {
-        if let url = url {
+        if let url = url where url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
-                kf_setImageWithURL(imageUrlByAppendingVaraitionComponent(variation, toURL: url), placeholderImage: placeholderImage)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage)
             } else {
                 kf_setImageWithURL(url, placeholderImage: placeholderImage)
             }
@@ -59,6 +37,10 @@ extension UIImageView {
         } else {
             self.image = nil
         }
+    }
+    
+    public func sh_cancelImageDownload() {
+        kf_cancelDownloadTask()
     }
     
     private func estimateAppropriateVariation() -> ImageVariation? {
@@ -73,12 +55,5 @@ extension UIImageView {
         }
         
         return nil
-    }
-    
-    private func imageUrlByAppendingVaraitionComponent(varation: ImageVariation, toURL url: NSURL) -> NSURL {
-        guard let fileExtension = url.pathExtension else { assertionFailure(); return url; }
-        guard let originalPath = url.URLByDeletingPathExtension?.absoluteString else { assertionFailure(); return url; }
-        guard let noExtensionURL = NSURL(string: originalPath + varation.pathComponent) else { assertionFailure(); return url; }
-        return noExtensionURL.URLByAppendingPathExtension(fileExtension)
     }
 }

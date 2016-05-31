@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SearchViewControllerFlowDelegate: class, SearchDisplayable {}
-
 final class SearchViewController: UIViewController {
     
     // consts
@@ -49,7 +47,7 @@ final class SearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // navigation
-    weak var flowDelegate: SearchViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // MARK: - Lifecycle
     

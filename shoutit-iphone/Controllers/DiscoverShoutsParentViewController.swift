@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol DiscoverShoutsParentViewControllerFlowDelegate: class, ShoutDisplayable, SearchDisplayable {}
-
 final class DiscoverShoutsParentViewController: UIViewController {
     
     // UI
@@ -22,7 +20,7 @@ final class DiscoverShoutsParentViewController: UIViewController {
     var viewModel : DiscoverShoutsViewModel!
     
     // navigation
-    weak var flowDelegate: DiscoverShoutsParentViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -44,11 +42,11 @@ final class DiscoverShoutsParentViewController: UIViewController {
         self.titleLabel.text = self.viewModel.headerTitle()
     }
     
-    func setupNavigationBar() {
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
+    private func setupNavigationBar() {
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
-    func setupRX() {
+    private func setupRX() {
         self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: #selector(DiscoverShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
         
         shoutsCollectionViewController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in

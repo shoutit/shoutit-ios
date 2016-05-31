@@ -242,7 +242,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     // Left button - Grid
     if (_enableGrid) {
         hasItems = YES;
-        [items addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageForResourcePath:@"MWPhotoBrowser.bundle/UIBarButtonItemGrid" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]] style:UIBarButtonItemStylePlain target:self action:@selector(showGridAnimated)]];
+        NSBundle *bundle = [NSBundle bundleForClass:[MWPhotoBrowser class]];
+        [items addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageForResourcePath:@"MWPhotoBrowser.bundle/UIBarButtonItemGrid" ofType:@"png" inBundle:bundle] style:UIBarButtonItemStylePlain target:self action:@selector(showGridAnimated)]];
     } else {
         [items addObject:fixedSpace];
     }
@@ -623,7 +624,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         [self performLayout];
         [self.view setNeedsLayout];
     }
-    
+    [_gridController.collectionView reloadData];
 }
 
 - (NSUInteger)numberOfPhotos {

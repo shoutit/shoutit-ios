@@ -26,6 +26,36 @@ final class APIMiscService {
         return APIGenericService.requestWithMethod(.GET, url: suggestionURL, params: params, encoding: .URL)
     }
     
+    static func requestSuggestedUsersWithParams(params: SuggestionsParams) -> Observable<PagedResults<Profile>> {
+        return requestSuggestionsWithParams(params).map { (suggestions) -> PagedResults<Profile> in
+            
+            var results : PagedResults<Profile>
+            
+            if let users = suggestions.users {
+                results = PagedResults(users)
+            } else {
+                results = PagedResults([])
+            }
+            
+            return results
+        }
+    }
+    
+    static func requestSuggestedPagesWithParams(params: SuggestionsParams) -> Observable<PagedResults<Profile>> {
+        return requestSuggestionsWithParams(params).map { (suggestions) -> PagedResults<Profile> in
+            
+            var results : PagedResults<Profile>
+            
+            if let users = suggestions.pages {
+                results = PagedResults(users)
+            } else {
+                results = PagedResults([])
+            }
+            
+            return results
+        }
+    }
+    
     static func requestCurrencies() -> Observable<[Currency]> {
         return APIGenericService.requestWithMethod(.GET, url: currenciesURL, params: NopParams(), encoding: .JSON)
     }

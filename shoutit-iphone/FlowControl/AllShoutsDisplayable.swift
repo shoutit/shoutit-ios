@@ -13,10 +13,10 @@ protocol AllShoutsDisplayable {
     func showRelatedShoutsForShout(shout: Shout) -> Void
     func showShoutsForTag(tag: Tag) -> Void
     func showShoutsForDiscoverItem(discoverItem: DiscoverItem) -> Void
-    
+    func showShoutsForConversation(conversation: Conversation) -> Void
 }
 
-extension AllShoutsDisplayable where Self: FlowController, Self: ShoutsCollectionViewControllerFlowDelegate {
+extension FlowController : AllShoutsDisplayable {
     
     func showShoutsForProfile(profile: Profile) {
         showShoutsWithViewModel(ShoutsCollectionViewModel(context: .ProfileShouts(user: profile)))
@@ -32,6 +32,10 @@ extension AllShoutsDisplayable where Self: FlowController, Self: ShoutsCollectio
     
     func showShoutsForDiscoverItem(discoverItem: DiscoverItem) {
         showShoutsWithViewModel(ShoutsCollectionViewModel(context: .DiscoverItemShouts(discoverItem: discoverItem)))
+    }
+    
+    func showShoutsForConversation(conversation: Conversation) {
+        showShoutsWithViewModel(ShoutsCollectionViewModel(context: .ConversationShouts(conversation: conversation)))
     }
     
     private func showShoutsWithViewModel(viewModel: ShoutsCollectionViewModel) {

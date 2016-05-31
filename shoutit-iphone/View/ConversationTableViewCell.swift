@@ -11,16 +11,18 @@ import UIKit
 final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var firstLineLabel: UILabel!
     @IBOutlet weak var secondLineLabel: UILabel!
-    @IBOutlet weak var thirdLineLabel: UILabel?
+    @IBOutlet weak var thirdLineLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var participantsImageView: UIImageView!
 
-    func bindWithConversation(conversation: Conversation) {
-        self.firstLineLabel.attributedText = conversation.firstLineText()
-        self.secondLineLabel.attributedText = conversation.secondLineText()
-        self.thirdLineLabel?.attributedText = conversation.thirdLineText()
-
-        self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(conversation.modifiedAt ?? conversation.createdAt)
+    func bindWithConversation(conversation: MiniConversation) {
+        self.firstLineLabel.text = conversation.display.title
+        self.secondLineLabel.text = conversation.display.subtitle
+        self.thirdLineLabel.text = conversation.display.lastMessageSummary
+        
+        if let modifiedEpoch = conversation.modifiedAt {
+            self.dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(modifiedEpoch)
+        }
         self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         if conversation.isRead() {

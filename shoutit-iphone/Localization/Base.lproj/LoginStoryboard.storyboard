@@ -625,7 +625,7 @@
                     <connections>
                         <outlet property="aboutButton" destination="7eJ-mp-XEv" id="ZvK-Tm-KUE"/>
                         <outlet property="containerHeightConstraint" destination="czh-rq-tng" id="H73-IF-Sv5"/>
-                        <outlet property="containerView" destination="QrS-8Z-8WO" id="JuI-IY-zJT"/>
+                        <outlet property="containerView" destination="QrS-8Z-8WO" id="SUg-7j-3VQ"/>
                         <outlet property="errorMessageLabel" destination="vhV-ST-5zt" id="t2c-zU-hUK"/>
                         <outlet property="feedbackButton" destination="sS7-ve-BOz" id="K8p-Kf-xPS"/>
                         <outlet property="helpButton" destination="kPZ-aZ-cg3" id="8MV-fQ-A3g"/>

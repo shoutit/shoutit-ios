@@ -10,15 +10,10 @@ import Foundation
 import Argo
 import Curry
 
-enum ConversationType : String {
-    case Chat = "chat"
-    case AboutShout = "about_shout"
-}
-
-struct Conversation: Decodable, Hashable, Equatable {
+struct Conversation: ConversationInterface {
     
     let id: String
-    let createdAt: Int
+    let createdAt: Int?
     let modifiedAt: Int?
     let apiPath: String?
     let webPath: String?
@@ -28,42 +23,49 @@ struct Conversation: Decodable, Hashable, Equatable {
     let unreadMessagesCount: Int
     let shout: Shout?
     let readby: [ReadBy]?
- 
-    var hashValue: Int {
-        get {
-            return self.id.hashValue
-        }
-    }
+    let display: ConversationDescription
+    let blocked: [String]
+    let admins: [String]
+    let attachmentCount: AttachmentCount
+    let creator: MiniProfile?
+}
+
+extension Conversation: Decodable {
     
     static func decode(j: JSON) -> Decoded<Conversation> {
         let a = curry(Conversation.init)
             <^> j <| "id"
-            <*> j <| "created_at"
+            <*> j <|? "created_at"
             <*> j <|? "modified_at"
-        
         let b = a
             <*> j <|? "api_url"
             <*> j <|? "web_url"
             <*> j <| "type"
-        
         let c = b
             <*> j <||? "profiles"
             <*> j <|? "last_message"
             <*> j <| "unread_messages_count"
             <*> j <|? "about"
-            
         let d = c
             <*> j <||? "read_by"
-        
-        return d
+            <*> j <| "display"
+        let f = d
+            <*> j <|| "blocked"
+            <*> j <|| "admins"
+        let g = f
+            <*> j <| "attachments_count"
+            <*> j <|? "creator"
+        return g
     }
+
+}
+
+extension Conversation: Equatable, Hashable {
     
-    func type() -> ConversationType {
-        return ConversationType(rawValue: self.typeString)!
-    }
-    
-    func copyWithLastMessage(message: Message?) -> Conversation {
-        return Conversation(id: self.id, createdAt: self.createdAt, modifiedAt: self.modifiedAt, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, users: self.users, lastMessage: message, unreadMessagesCount: self.unreadMessagesCount + 1, shout: self.shout, readby: self.readby)
+    var hashValue: Int {
+        get {
+            return self.id.hashValue
+        }
     }
 }
 
@@ -72,39 +74,6 @@ func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 }
 
 extension Conversation {
-    func firstLineText() -> NSAttributedString? {
-        if self.type() == .Chat {
-            return NSAttributedString(string: participantNames())
-        }
-        
-        return shoutTitle()
-    }
-    
-    func shoutTitle() -> NSAttributedString? {
-        guard let shoutTitle = shout?.title else {
-            return NSAttributedString(string: "Shout discussion")
-        }
-        
-        let attributedString = NSMutableAttributedString(string: shoutTitle, attributes: [NSForegroundColorAttributeName: UIColor(red: 64.0/255.0, green: 196.0/255.0, blue: 255.0/255.0, alpha: 1.0)])
-        
-        return attributedString
-    }
-    
-    func participantNames() -> String {
-        var names : [String] = []
-        
-        self.users?.each({ (profile) -> () in
-            if profile.value.id != Account.sharedInstance.user?.id {
-                names.append(profile.value.name)
-            }
-        })
-        
-        if self.users?.count > 2 {
-            names.insert(NSLocalizedString("You", comment: ""), atIndex: 0)
-        }
-        
-        return names.joinWithSeparator(", ")
-    }
     
     func coParticipant() -> Profile? {
         var prof : Profile?
@@ -117,18 +86,6 @@ extension Conversation {
         return prof
     }
     
-    func secondLineText() -> NSAttributedString? {
-        if self.type() == .Chat {
-            return NSAttributedString(string: lastMessageText())
-        }
-        
-        return NSAttributedString(string: participantNames())
-    }
-    
-    func thirdLineText() -> NSAttributedString? {
-        return NSAttributedString(string: lastMessageText())
-    }
-    
     func lastMessageText() -> String {
         guard let msg = lastMessage else {
             return ""
@@ -138,42 +95,36 @@ extension Conversation {
             return text
         }
         
-        if msg.attachment()?.type() == .Location {
-            return NSLocalizedString("Location", comment: "")
-        } else if msg.attachment()?.type() == .Image {
-            return NSLocalizedString("Image", comment: "")
-        } else if msg.attachment()?.type() == .Video {
-            return NSLocalizedString("Video", comment: "")
-        } else if msg.attachment()?.type() == .Shout {
-            return NSLocalizedString("Shout", comment: "")
+        guard let attachmentType = msg.attachment()?.type() else {
+            return NSLocalizedString("Attachment", comment: "")
         }
         
-        return NSLocalizedString("Attachment", comment: "")
-    }
-    
-    func imageURL() -> NSURL? {
-        var url : NSURL?
-        
-        self.users?.each({ (profile) -> () in
-            if profile.value.id != Account.sharedInstance.user?.id {
-                if let path = profile.value.imagePath {
-                    url = NSURL(string: path)
-                    return
-                }
-            }
-        })
-        
-        return url
-    }
-    
-    func isRead() -> Bool {
-        return self.unreadMessagesCount == 0
+        switch attachmentType {
+        case .LocationAttachment: return NSLocalizedString("Location", comment: "")
+        case .ImageAttachment: return NSLocalizedString("Image", comment: "")
+        case .VideoAttachment: return NSLocalizedString("Video", comment: "")
+        case .ShoutAttachment: return NSLocalizedString("Shout", comment: "")
+        case .ProfileAttachment: return NSLocalizedString("Profile", comment: "")
+        }
     }
 }
 
-// Pusher Extensions
+extension Conversation : Reportable {
+    func attachedObjectJSON() -> JSON {
+        return ["conversation" : ["id" : self.id.encode()].encode()].encode()
+    }
+    
+    func reportTitle() -> String {
+        return NSLocalizedString("Report Chat", comment: "")
+    }
+}
+
+// Public Chats Helpers
 extension Conversation {
-    func channelName() -> String {
-        return "presence-v3-c-\(self.id)"
+    func isAdmin(profileId: String?) -> Bool {
+        guard let profileId = profileId else {
+            return false
+        }
+        return self.admins.contains(profileId)
     }
 }

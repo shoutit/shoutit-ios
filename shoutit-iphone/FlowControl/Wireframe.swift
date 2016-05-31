@@ -92,8 +92,8 @@ struct Wireframe {
         return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
     }
     
-    static func searchUserResultsTableViewController() -> SearchUserResultsTableViewController {
-        return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchUserResultsTableViewController") as! SearchUserResultsTableViewController
+    static func searchUserResultsTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Search).instantiateViewControllerWithIdentifier("SearchUserResultsTableViewController") as! ProfilesListTableViewController
     }
     
     static func searchShoutsResultsCollectionViewController() -> SearchShoutsResultsCollectionViewController {
@@ -178,20 +178,44 @@ struct Wireframe {
         return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsFormViewController") as! SettingsFormViewController
     }
     
-    static func inviteFriendsViewController() -> UIViewController {
-        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController")
+    static func inviteFriendsViewController() -> InviteFriendsTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("InviteFriendsRootController") as! InviteFriendsTableViewController
     }
     
     static func locationViewController() -> ChangeLocationTableViewController {
         return storyboard(.Location).instantiateViewControllerWithIdentifier("LocationRootController") as! ChangeLocationTableViewController
     }
     
-    static func chatsViewController() -> ConversationListTableViewController {
+    static func chatsViewController() -> ConversationListsParentViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationListsParentViewController") as! ConversationListsParentViewController
+    }
+    
+    static func groupChatsViewController() -> ConversationGroupWrapperViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationGroupWrapperViewController") as! ConversationGroupWrapperViewController
+    }
+    
+    static func chatsListTableViewController() -> ConversationListTableViewController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("SHConversationsTableViewController") as! ConversationListTableViewController
+    }
+    
+    static func createPublicChatViewController() -> CreatePublicChatWrappingViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("CreatePublicChatWrappingViewController") as! CreatePublicChatWrappingViewController
     }
     
     static func profileViewController() -> ProfileCollectionViewController {
         return storyboard(.Profile).instantiateViewControllerWithIdentifier("ProfileCollectionViewController") as! ProfileCollectionViewController
+    }
+    
+    static func listenersListTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ListenersListViewController") as! ProfilesListTableViewController
+    }
+    
+    static func listeningListTableViewController() -> ProfilesListTableViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("ListeningListViewController") as! ProfilesListTableViewController
+    }
+    
+    static func interestsListTableViewController() -> TagsListTableViewController {
+        return storyboard(.Profile).instantiateViewControllerWithIdentifier("InterestsListViewController") as! TagsListTableViewController
     }
     
     static func changeShoutLocationController() -> SelectShoutLocationViewController {
@@ -206,6 +230,10 @@ struct Wireframe {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("editShoutTableViewController") as! EditShoutParentViewController
     }
     
+    static func suggestionsController() -> SuggestedProfilesTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("SuggestionsTableViewController") as! SuggestedProfilesTableViewController
+    }
+    
     static func createShoutWithTypeController(type: ShoutType) -> CreateShoutParentViewController {
         let controller =  storyboard(.Shout).instantiateViewControllerWithIdentifier("createShoutParentController") as! CreateShoutParentViewController
 
@@ -218,12 +246,34 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationSelectShoutController") as! ConversationSelectShoutController
     }
     
+    static func conversationSelectProfileAttachmentParentController() -> ConversationSelectProfileAttachmentViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationSelectProfileAttachmentViewController") as! ConversationSelectProfileAttachmentViewController
+    }
+    
+    static func conversationSelectProfileAttachmentController() -> ProfilesListTableViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
+    }
+    
+    static func profileListController() -> ProfilesListTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
+    }
+    
+    static func facebookProfileListController() -> FacebookFriendsListTableViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListTableViewController") as! FacebookFriendsListTableViewController
+    }
+    
+    
+    
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }
     
     static func conversationController() -> ConversationViewController {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationController") as! ConversationViewController
+    }
+    
+    static func conversationInfoController() -> ConversationInfoViewController {
+        return storyboard(.Chats).instantiateViewControllerWithIdentifier("conversationInfoController") as! ConversationInfoViewController
     }
     
     static func conversationAttachmentController() -> ConversationAttachmentViewController {

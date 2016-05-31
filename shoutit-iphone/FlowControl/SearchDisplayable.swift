@@ -22,22 +22,12 @@ protocol SearchDisplayable {
     func showShoutsSearchResultsWithPhrase(phrase: String?, context: SearchContext) -> Void
 }
 
-extension SearchDisplayable where Self: FlowController, Self: SearchViewControllerFlowDelegate {
-    
-    func showSearchInContext(context: SearchContext) {
-        let controller = Wireframe.searchViewController()
-        controller.flowDelegate = self
-        controller.viewModel = SearchViewModel(context: context)
-        navigationController.showViewController(controller, sender: nil)
-    }
-}
-
-extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsTableViewControllerFlowDelegate, Self: SearchShoutsResultsCollectionViewControllerFlowDelegate {
+extension FlowController : SearchDisplayable {
     
     func showUserSearchResultsWithPhrase(phrase: String) {
         let controller = Wireframe.searchUserResultsTableViewController()
         controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
-        controller.flowDelegate = self
+        controller.eventHandler = ShowProfileProfilesListEventHandler(profileDisplayable: self)
         navigationController.showViewController(controller, sender: nil)
     }
     
@@ -45,6 +35,13 @@ extension SearchDisplayable where Self: FlowController, Self: SearchUserResultsT
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
         controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: phrase, inContext: context)
         controller.flowDelegate = self
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showSearchInContext(context: SearchContext) {
+        let controller = Wireframe.searchViewController()
+        controller.flowDelegate = self
+        controller.viewModel = SearchViewModel(context: context)
         navigationController.showViewController(controller, sender: nil)
     }
 }

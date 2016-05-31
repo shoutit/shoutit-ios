@@ -1,1 +1,9 @@
-/* No Localized Strings */
+/* Class = "UINavigationItem"; title = "Listening"; ObjectID = "Cpe-Md-hiS"; */
+"Cpe-Md-hiS.title" = "إستماعات";
+
+/* Class = "UINavigationItem"; title = "Interests"; ObjectID = "hHc-hP-Vp8"; */
+"hHc-hP-Vp8.title" = "إهتمامات";
+
+/* Class = "UINavigationItem"; title = "Listeners"; ObjectID = "zSz-BR-UtJ"; */
+"zSz-BR-UtJ.title" = "مستمعون";
+

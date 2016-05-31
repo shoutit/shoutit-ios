@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Nemo
 import MobileCoreServices
 
 final class CaptureViewController: PhotosMenuController {

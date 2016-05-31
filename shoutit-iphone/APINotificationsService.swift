@@ -18,14 +18,14 @@ final class APINotificationsService {
     
     // MARK: - Traditional
     
-    static func requestNotificationsAfter(after: Int?) -> Observable<[Notification]> {
-        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: AfterParams(afterTimeStamp: after), encoding: .URL, responseJsonPath: ["results"])
+    static func requestNotificationsBefore(before: Int?) -> Observable<[Notification]> {
+        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .URL, responseJsonPath: ["results"])
     }
     
-    static func markNotificationAsRead(notification: Notification) -> Observable<Notification> {
+    static func markNotificationAsRead(notification: Notification) -> Observable<Void> {
         let url = APIManager.baseURL + "/notifications/\(notification.id)/read"
         
-        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams())
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
     static func markAllAsRead() -> Observable<Void> {

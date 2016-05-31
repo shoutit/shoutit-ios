@@ -38,12 +38,12 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     
     func hydrateWithShout(shout: Shout) {
         titleLabel.text = shout.title
-        userNameLabel?.text = shout.user.name
+        userNameLabel?.text = shout.user?.name
         
-        if let publishedAt = shout.publishedAtEpoch {
-            subtitleLabel?.text = "\(shout.user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
-        } else {
-            subtitleLabel?.text = shout.user.name
+        if let publishedAt = shout.publishedAtEpoch, user = shout.user {
+            subtitleLabel?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
+        } else if let user = shout.user {
+            subtitleLabel?.text = user.name
         }
         
         priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
@@ -63,7 +63,6 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         }
         
         shoutTypeLabel?.text = shout.type()?.title()
-        
     }
     
     func hydrateWithDiscoverItem(discoverItem: DiscoverItem) {

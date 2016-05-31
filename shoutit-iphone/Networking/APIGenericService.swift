@@ -49,8 +49,6 @@ final class APIGenericService {
                 } catch let error {
                     observer.onError(error)
                 }
-                
-                
             }
             
             return cancel
@@ -77,6 +75,7 @@ final class APIGenericService {
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
+                    print(json)
                     let object: T = try parseJson(json)
                     observer.onNext(object)
                     observer.onCompleted()
@@ -163,6 +162,7 @@ final class APIGenericService {
         }
         guard let j = nestedJson else {
             assertionFailure(InternalParseError.InvalidJson.userMessage)
+            print(json)
             throw InternalParseError.InvalidJson
         }
         

@@ -16,202 +16,51 @@ final class CreateShoutViewModel: NSObject {
     
     var shoutParams : ShoutParams!
     
-    var filters : Variable<[Filter]?> = Variable([])
-    var categories : Variable<[Category]> = Variable([])
-    var currencies : Variable<[Currency]> = Variable([])
-    
-    let createShoutCellCategory = "CreateShoutCellCategory"
-    let createShoutCellDescription = "CreateShoutCellDescription"
-    let createShoutCellOption = "CreateShoutCellOption"
-    let createShoutCellLocation = "CreateShoutCellLocation"
-    let createShoutCellMobile = "createShoutCellMobile"
-    
-    var showFilters = false
-    var showType = true
-    var showMobile = false
+    // section view models
+    private(set) var detailsSectionViewModel: CreateShoutDetailsSectionViewModel!
+    private(set) var locationSectionViewModel: CreateShoutLocationSectionViewModel!
+    private(set) var sharingSectionViewModel: CreateShoutSocialSharingSectionViewModel!
+    var sectionViewModels: [CreateShoutSectionViewModel] { return [detailsSectionViewModel, locationSectionViewModel, sharingSectionViewModel] }
     
     init(type: ShoutType = ShoutType.Request) {
-        shoutParams = ShoutParams(type: Variable(type), title: Variable(""),
-                                text: Variable(nil), price: Variable(nil), currency: Variable(nil),
-                                images: Variable([]), videos:  Variable([]), category: Variable(nil),
-                                location:  Variable(Account.sharedInstance.user?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: nil, mobile: Variable(nil))
+        shoutParams = ShoutParams(type: type, publishToFacebook: Account.sharedInstance.facebookManager.hasPermissions(.PublishActions))
+        super.init()
+        detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category], parent: self, hideFilters: true)
+        locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location], parent: self)
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }
     
     init(shout: Shout) {
-        
-        shoutParams = ShoutParams(type: Variable(shout.type()!), title: Variable(shout.title),
-                                  text: Variable(shout.text), price: Variable(shout.price != nil ? Double(shout.price!/100) : 0.0),
-            currency: Variable(nil), images: Variable(shout.imagePaths),
-                                videos:  Variable([]), category: Variable(shout.category),
-                                location:  Variable(Account.sharedInstance.user?.location),
-                                publishToFacebook: Variable(false), filters: Variable([:]), shout: shout, mobile: Variable(shout.mobile))
+        shoutParams = ShoutParams(type: shout.type()!,
+                                  title: shout.title,
+                                  text: shout.text,
+                                  price: shout.price != nil ? Double(shout.price!/100) : 0.0,
+                                  images: shout.imagePaths ?? [],
+                                  category: shout.category,
+                                  shout: shout,
+                                  mobile: shout.mobile)
+        super.init()
+        detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category, .Description], parent: self, hideFilters: false)
+        locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location, .Mobile], parent: self)
+        sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }
     
     func changeToRequest() {
-        if let _ = self.shoutParams.shout {
-            return
-        }
-        
-        self.shoutParams.type.value = .Request
+        if let _ = shoutParams.shout { return }
+        shoutParams.type.value = .Request
     }
     
     func changeToShout() {
-        if let _ = self.shoutParams.shout {
-            return
-        }
-        
-        self.shoutParams.type.value = .Offer
-    }
-    
-    // MARK: TableView Data Source
-    
-    func numberOfSections() -> Int {
-        return 2
-    }
-    
-    func numberOfRowsInSection(section: Int) -> Int {
-        if section == 1 {
-            return 1 + Int(self.showMobile)
-        }
-        
-        if self.showFilters == false {
-            return 1
-        }
-        
-        return (self.filters.value?.count ?? 0) + 2
-    }
-    
-    func sectionTitle(section: Int) -> String {
-        if section == 0 {
-            return NSLocalizedString(" Details", comment: "")
-        }
-        
-        return NSLocalizedString(" Location", comment: "")
-    }
-    
-    func heightForRowAt(indexPath: NSIndexPath) -> CGFloat {
-        
-        if indexPath.section == 0 && indexPath.row == 1 {
-            return 160.0 // description
-        }
-        
-        if indexPath.section == 1 && indexPath.row == 1 {
-            return 80.0
-        }
-        
-        return 70.0
-    }
-    
-    func heightForHeaderAt(section: Int) -> CGFloat {
-        if section == 0 && self.showFilters == false {
-            return 0.0
-        }
-        
-        return 40.0
-    }
-    
-    func cellIdentifierAt(indexPath: NSIndexPath) -> String {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return createShoutCellCategory
-        }
-        
-        if indexPath.section == 0 && indexPath.row == 1 {
-            return createShoutCellDescription
-        }
-        
-        if indexPath.section == 1 {
-            return indexPath.row == 0 ? createShoutCellLocation : createShoutCellMobile
-        }
-        
-        return createShoutCellOption
-    }
-    
-}
-
-// Fetch Data
-extension CreateShoutViewModel {
-    func fetchCurrencies() {
-        APIMiscService.requestCurrencies().subscribe {[weak self] (event) in
-            switch event {
-            case .Next(let currencies):
-                self?.currencies.value = currencies
-                self?.fillCurrencyFromShout()
-            case .Error(let error):
-                print(error)
-            default:
-                break
-            }
-        }.addDisposableTo(disposeBag)
-    }
-    
-    func fetchCategories() {
-        APIMiscService.requestCategories()
-            .subscribe {[weak self] (event) in
-                switch event {
-                case .Next(let categories):
-                    self?.categories.value = categories
-                    self?.fillCategoryFromShout()
-                case .Error(let error):
-                    print(error)
-                default:
-                    break
-                }
-            }
-            .addDisposableTo(disposeBag)
-    }
-}
-// fill with shout data
-extension CreateShoutViewModel {
-    
-    func fillCategoryFromShout() {
-        guard let shout = self.shoutParams.shout else {
-            return
-        }
-        
-        for cat in self.categories.value {
-            if shout.category == cat {
-                self.setCategory(cat)
-                return
-            }
-        }
-    }
-    
-    func fillCurrencyFromShout() {
-        guard let shout = self.shoutParams.shout else {
-            return
-        }
-        
-        for currency in self.currencies.value {
-            if currency.code == shout.currency {
-                self.shoutParams.currency.value = currency
-                return
-            }
-        }
+        if let _ = shoutParams.shout { return }
+        shoutParams.type.value = .Offer
     }
 }
 
 // Fill Views
 extension CreateShoutViewModel {
-    func fillCell(cell: UITableViewCell, forIndexPath indexPath:NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            fillCategoryCell(cell as? CreateShoutSelectCell)
-        } else if indexPath.section == 0 {
-            
-            if let filters = self.filters.value {
-                if (indexPath.row - 2) >= 0 && (indexPath.row - 2 <= filters.count) {
-                    let filter = filters[indexPath.row - 2]
-                    fillFilterCell(cell as? CreateShoutSelectCell, withFilter: filter)
-                }
-            }
-            
-        } else if indexPath.section == 1 {
-            fillLocationCell(cell as? CreateShoutSelectCell)
-        }
-    }
-    
+        
     func fillCategoryCell(cell: CreateShoutSelectCell?) {
-        cell?.selectButton.showActivity(self.categories.value.count <= 0)
+        cell?.selectButton.showActivity(detailsSectionViewModel.categories.value.count <= 0)
         
         cell?.selectButton.setImage(nil, forState: .Normal)
         
@@ -250,20 +99,18 @@ extension CreateShoutViewModel {
 
 // Present Action Sheets
 extension CreateShoutViewModel {
+    
     func changeTypeActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Type", comment: ""), message: "", preferredStyle: .ActionSheet)
-        
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Request", comment: ""), style: .Default, handler: handler))
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Offer", comment: ""), style: .Default, handler: handler))
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
-        
         return actionSheetController
     }
     
     func mediaNotReadyAlertController() -> UIAlertController {
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "", preferredStyle: .ActionSheet)
-        
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "",preferredStyle: .ActionSheet)
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),style: .Cancel, handler: nil))
         
         return actionSheetController
     }
@@ -271,7 +118,7 @@ extension CreateShoutViewModel {
     func currenciesActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Currency", comment: ""), message: "", preferredStyle: .ActionSheet)
         
-        self.currencies.value.each { (currency) -> () in
+        detailsSectionViewModel.currencies.value.each { (currency) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(currency.name) (\(currency.code))", style: .Default, handler: { [weak self] (alertAction) in
                 
                 self?.shoutParams.currency.value = currency
@@ -279,19 +126,14 @@ extension CreateShoutViewModel {
                 if let completion = handler {
                     completion(alertAction)
                 }
-                
             }))
         }
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
-            
-            self?.shoutParams.currency.value = nil
-            
-            if let completion = handler {
-                completion(alertAction)
-            }
-            
-            }))
+        actionSheetController
+            .addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: ""), style: .Destructive) { [weak self] (alertAction) in
+                self?.shoutParams.currency.value = nil
+                handler?(alertAction)
+            })
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
@@ -299,56 +141,19 @@ extension CreateShoutViewModel {
     
     func categoriesActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Category", comment: ""), message: "", preferredStyle: .ActionSheet)
-        
-        self.categories.value.each { (category) -> () in
-            actionSheetController.addAction(UIAlertAction(title: "\(category.name)", style: .Default, handler: { [weak self] (alertAction) in
-                
-                self?.setCategory(category)
-                
-                if let completion = handler {
-                    completion(alertAction)
-                }
-                
-                }))
+        detailsSectionViewModel.categories.value.each { (category) -> () in
+            let action = UIAlertAction(title: "\(category.name)", style: .Default) { [weak self] (alertAction) in
+                self?.detailsSectionViewModel.setCategory(category)
+                handler?(alertAction)
+            }
+            actionSheetController.addAction(action)
         }
         
         actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
         return actionSheetController
     }
     
-    func setCategory(category: Category?) {
-        
-        self.shoutParams.filters.value = [:]
-        self.shoutParams.category.value = category
-        
-        if let filters = category?.filters {
-            if let shout = self.shoutParams.shout, shoutFilters = shout.filters {
-                for filter in filters {
-                    for fl in shoutFilters {
-                        if fl == filter {
-                            self.shoutParams.filters.value[fl] = fl.value
-                        }
-                    }
-                }
-            }
-            
-            self.filters.value = filters
-        } else {
-            self.filters.value = []
-        }
-    }
-    
-    func filterActionSheet(forIndexPath indexPath: NSIndexPath, handler: ((UIAlertAction) -> Void)?) -> UIAlertController? {
-        
-        guard let filters = self.filters.value else {
-            return nil
-        }
-        
-        if (indexPath.row - 2) < 0 || (indexPath.row - 2 >= filters.count) {
-            return nil
-        }
-        
-        let filter = filters[indexPath.row - 2]
+    func filterActionSheet(forFilter filter: Filter, handler: ((UIAlertAction) -> Void)?) -> UIAlertController? {
         
         let title = String.localizedStringWithFormat(NSLocalizedString("Please select %@", comment: "Create Shout: choose filter: Action sheet title"), filter.name ?? "")
         let actionSheetController = UIAlertController(title: title, message: "", preferredStyle: .ActionSheet)
@@ -361,7 +166,6 @@ extension CreateShoutViewModel {
                 if let completion = handler {
                     completion(alertAction)
                 }
-                
             }))
         }
         
@@ -373,7 +177,6 @@ extension CreateShoutViewModel {
             if let completion = handler {
                 completion(alertAction)
             }
-            
         }))
         
         return actionSheetController

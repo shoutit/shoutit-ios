@@ -33,6 +33,7 @@ enum ShoutitColor: Int {
     case FailureRed = 0xFF5252
     case SuccessGreen = 0x4BA63F
     case LightGreen = 0xC8E6C9
+    case TextFieldBorderGrayColor = 0xC3C3C3
     
     var alpha: Float {
         switch self {

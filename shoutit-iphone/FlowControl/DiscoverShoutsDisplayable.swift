@@ -12,7 +12,7 @@ protocol DiscoverShoutsDisplayable {
     func showDiscoverItem(item: DiscoverItem) -> Void
 }
 
-extension DiscoverShoutsDisplayable where Self: FlowController, Self: DiscoverCollectionViewControllerFlowDelegate {
+extension FlowController : DiscoverShoutsDisplayable {
     
     func showDiscoverItem(item: DiscoverItem) {
         

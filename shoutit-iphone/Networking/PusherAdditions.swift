@@ -19,6 +19,8 @@ enum PusherEventType : String {
     case JoinedChat = "client-joined_chat"
     case LeftChat = "client-left_chat"
     case StatsUpdate = "stats_update"
+    case ConversationUpdate = "conversation_update"
+    case NewNotification = "new_notification"
 }
 
 extension PTPusherEvent {
@@ -40,6 +42,7 @@ extension PTPusherEvent {
             return object
         case .Failure(let decodeError):
             debugPrint("Could not parse pusher object \(decodeError)")
+            debugPrint(self.data)
             return nil
         }
     }

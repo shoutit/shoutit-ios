@@ -8,12 +8,17 @@
 
 import Foundation
 import UIKit
+import DeepLinkKit
 
 enum NavigationItem : String {
     case Home = "home"
     case Discover = "discover"
     case Shout = "shout"
+    case CreateShout = "create_shout"
     case Chats = "chats"
+    case Notifications = "notifications"
+    case Conversation = "conversation"
+    case PublicChats = "public_chats"
     case Profile = "profile"
     case Location = "location"
     case Browse = "browse"
@@ -28,6 +33,8 @@ enum NavigationItem : String {
         case .Home: return NSLocalizedString("Home",comment: "")
         case .Discover: return NSLocalizedString("Discover",comment: "")
         case .Browse: return NSLocalizedString("Browse",comment: "")
+        case .PublicChats: return NSLocalizedString("Public Chats",comment: "")
+        case .Conversation: return NSLocalizedString("Conversation",comment: "")
         case .Chats: return NSLocalizedString("Chats",comment: "")
         case .Orders: return NSLocalizedString("Orders",comment: "")
         case .Settings: return NSLocalizedString("Settings",comment: "")
@@ -50,9 +57,23 @@ enum NavigationItem : String {
 }
 
 protocol Navigation {
+    
     weak var rootController : RootController? {get set}
+    var selectedNavigationItem : NavigationItem? {get set}
     
     func triggerActionWithItem(navigationItem: NavigationItem)
-    
-    var selectedNavigationItem : NavigationItem? {get set}
+}
+
+protocol DeepLinkHandling {
+    func handleDeeplink(deepLink: DPLDeepLink)
+}
+
+extension DPLDeepLink {
+    var navigationItem : NavigationItem? {
+        if let host = self.URL.host {
+            return NavigationItem(rawValue: host)
+        }
+        
+        return nil
+    }
 }

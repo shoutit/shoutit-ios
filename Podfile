@@ -47,9 +47,9 @@ pod 'Validator', '~> 1.1'
 pod 'Kingfisher', '~> 2.2'
 pod 'SDWebImage', '~> 3.7'
 pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
-pod 'Nemo'
 pod 'MBMapSnapshotter'
 pod 'LLVideoEditor', '~> 1.0'
+pod 'AviarySDK', '~> 4.4'
 
 # serialization
 pod 'Argo'
@@ -67,10 +67,16 @@ pod 'DZNEmptyDataSet'
 pod 'ACPDownload', '~> 1.1.0'
 pod 'SlackTextViewController'
 
+#deeplinks
+pod 'DeepLinkKit', '~> 1.2.1'
+
 pod 'UIViewAppearanceSwift', :git => 'https://github.com/levantAJ/UIViewAppearanceSwift.git', :commit => '2ba05f14a8c1a7eb16b1525ac325962516d6992a'
 
 # other
 pod 'libPusher', '~> 1.6'
+
+#contacts
+pod 'ContactsPicker'
 
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|

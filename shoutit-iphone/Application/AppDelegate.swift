@@ -11,8 +11,9 @@ import FBSDKCoreKit
 import Fabric
 import Crashlytics
 import UIViewAppearanceSwift
-
+import DeepLinkKit
 import SwiftyBeaver
+import FBSDKCoreKit
 
 let log = SwiftyBeaver.self
 
@@ -20,13 +21,18 @@ let log = SwiftyBeaver.self
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let router = DPLDeepLinkRouter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         applyAppearance()
-        configureGoogleLogin()
         configureLoggingServices()
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // fetch user account to update all stats etc.
+        Account.sharedInstance.fetchUserProfile()
+        
+        configureGoogleLogin()
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions ?? [:])
         PlacesGeocoder.setup()
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
@@ -34,8 +40,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAPS(application)
         configureURLCache()
         
-        // fetch user account to update all stats etc.
-        Account.sharedInstance.fetchUserProfile()
+        var firstLaunch = false
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
+            firstLaunch = true
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedOnce")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
+        if (launchOptions?[UIApplicationLaunchOptionsURLKey] == nil && firstLaunch) {
+            FBSDKAppLinkUtility.fetchDeferredAppLink({ (url, error) in
+                // to decide what needs to be done here, completion closure takes link from where app is installed
+            })
+            
+            FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
+                // to decide what needs to be done here, url - refferal
+            })
+        }
+        
+        FBSDKAppEvents.activateApp()
+        
+        registerRoutes()
+        
+        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey], userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+            return true
+        }
+        
+        handlePushNotificationData(userInfoData, dispatchAfter: 2)
         
         return true
     }
@@ -44,12 +75,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // handle the URL that your application receives at the end of the authentication process -- Google
     func application(application: UIApplication,
         openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-            let fb  = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            let g = GIDSignIn.sharedInstance().handleURL(url,
-                sourceApplication: sourceApplication,
-                annotation: annotation)
-            
-            return fb ? fb : (g ? g : false)
+        
+        if FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        
+        if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        
+        let parsedUrl = BFURL.init(inboundURL: url, sourceApplication: sourceApplication)
+        
+        if ((parsedUrl.appLinkData) != nil) {
+            return self.router.handleURL(parsedUrl.targetURL, withCompletion: nil)
+        }
+        
+        return self.router.handleURL(url, withCompletion:nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -57,8 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         LocationManager.sharedInstance.stopUpdatingLocation()
-        
-        
         Account.sharedInstance.pusherManager.disconnect()
     }
 
@@ -66,8 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
-        if Account.sharedInstance.isUserLoggedIn {
+        if case .Logged(let user)? = Account.sharedInstance.userModel {
             Account.sharedInstance.pusherManager.tryToConnect()
+            Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }
         
         Account.sharedInstance.fetchUserProfile()
@@ -78,6 +118,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Push notifications
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+            return
+        }
+        
+        if application.applicationState == .Inactive || application.applicationState == .Background {
+            handlePushNotificationData(userInfoData, dispatchAfter: 0)
+        }
+    }
+    
+    func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
+        
+        if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.router.handleURL(urlToOpen, withCompletion:nil)
+            }
+            
+            
+        }
+    }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
@@ -171,5 +235,32 @@ private extension AppDelegate {
     func configureURLCache() {
         let URLCache = NSURLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         NSURLCache.setSharedURLCache(URLCache)
+    }
+}
+
+extension AppDelegate {
+    func registerRoutes() {
+        
+        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout]
+        
+        for route in routableElements {
+            self.router.registerBlock({ [weak self] (deeplink) in
+                self?.routeToNavigationItem(route, withDeeplink: deeplink)
+            }, forRoute: route.rawValue)
+        }
+        
+    }
+    
+    func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
+        
+        guard let applicationMainController = self.window?.rootViewController as? ApplicationMainViewController else {
+            return
+        }
+        
+        guard let rootController = applicationMainController.childViewControllers.first as? RootController else {
+            return
+        }
+        
+        rootController.routeToNavigationItem(navigationItem, withDeeplink: deeplink)
     }
 }

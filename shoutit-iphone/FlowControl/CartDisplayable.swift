@@ -12,7 +12,7 @@ protocol CartDisplayable {
     func showCart() -> Void
 }
 
-extension CartDisplayable where Self: FlowController {
+extension FlowController : CartDisplayable {
     
     func showCart() {
         navigationController.notImplemented()

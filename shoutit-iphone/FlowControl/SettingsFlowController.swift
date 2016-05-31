@@ -16,11 +16,9 @@ struct SettingsOption {
 }
 
 final class SettingsFlowController: FlowController {
-    let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         let controller = Wireframe.settingsViewController()
@@ -28,7 +26,7 @@ final class SettingsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func requiresLoggedInUser() -> Bool {
+    override func requiresLoggedInUser() -> Bool {
         return true
     }
     
@@ -94,6 +92,3 @@ final class SettingsFlowController: FlowController {
             ])
     }
 }
-
-extension SettingsFlowController: AboutDisplayable {}
-extension SettingsFlowController: TermsAndPolicyDisplayable {}

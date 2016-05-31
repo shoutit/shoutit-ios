@@ -65,7 +65,7 @@ class ShowDetailContainerViewController: UIViewController {
     var viewModel: ShoutDetailViewModel!
     
     // navigation
-    weak var flowDelegate: ShoutDetailTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // RX
     private var buttonsDisposeBag = DisposeBag()
@@ -112,21 +112,13 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     func startChat() {
-        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
-            return
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
+        guard let user = viewModel.shout.user else { return }
+        if let conversation = viewModel.shout.conversations?.first {
+            flowDelegate?.showConversation(.Created(conversation: conversation))
+        } else {
+            flowDelegate?.showConversation(.NotCreated(type: .AboutShout, user: user, aboutShout: viewModel.shout))
         }
-        
-        guard let conversations = self.viewModel.shout.conversations where conversations.count > 0 else {
-            let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "about_shout", users:  [Box(viewModel.shout.user)], lastMessage: nil, unreadMessagesCount: 0, shout: viewModel.shout, readby: nil)
-            self.flowDelegate?.showConversation(conversation)
-            return
-        }
-        
-        guard conversations.count == 1 else {
-            return
-        }
-        
-        self.flowDelegate?.showConversation(conversations.first!)
     }
     
     private func reportAction() {
@@ -177,10 +169,7 @@ class ShowDetailContainerViewController: UIViewController {
                 default:
                     break
                 }
-
             }).addDisposableTo(self.disposeBag)
-         
-           
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
@@ -208,15 +197,16 @@ class ShowDetailContainerViewController: UIViewController {
     }
 
     private func videoCall() {
-        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else {
-          return
-        }
-        
-        self.flowDelegate?.startVideoCallWithProfile(viewModel.shout.user)
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
+        guard let user = viewModel.shout.user else { return }
+        self.flowDelegate?.startVideoCallWithProfile(user)
     }
     
-    @IBAction func searchAction() {
-        flowDelegate?.showSearchInContext(.General)
+    @IBAction func shareAction() {
+        let url = viewModel.shout.webPath.toURL()!
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
+        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
@@ -250,22 +240,22 @@ class ShowDetailContainerViewController: UIViewController {
         button
             .rx_tap
             .observeOn(MainScheduler.instance)
-            .subscribeNext {
+            .subscribeNext {[weak self] in
                 switch model {
                 case .Call:
-                    self.makeCall()
+                    self?.makeCall()
                 case .VideoCall:
-                    self.videoCall()
+                    self?.videoCall()
                 case .Chat:
-                    self.startChat()
+                    self?.startChat()
                 case .More:
-                    self.moreAction()
+                    self?.moreAction()
                 case .Chats:
-                    self.notImplemented()
+                    self?.notImplemented()
                 case .Edit:
-                    self.showEditController()
+                    self?.showEditController()
                 case .Delete:
-                    self.deleteAction()
+                    self?.deleteAction()
                 }
             }
             .addDisposableTo(buttonsDisposeBag)

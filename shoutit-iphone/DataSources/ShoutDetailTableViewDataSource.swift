@@ -94,7 +94,8 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
                     case .Policies:
                         break
                     case .VisitProfile:
-                        self.controller.flowDelegate?.showProfile(self.viewModel.shout.user)
+                        guard let profile = self.viewModel.shout.user else { return }
+                        self.controller.flowDelegate?.showProfile(profile)
                     }
                 }
                 .addDisposableTo(buttonCell.reuseDisposeBag!)

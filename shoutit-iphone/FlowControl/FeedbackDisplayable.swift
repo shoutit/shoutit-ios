@@ -12,7 +12,7 @@ protocol FeedbackDisplayable {
     func showFeedbackInterface() -> Void
 }
 
-extension FeedbackDisplayable where Self: FlowController {
+extension FlowController : FeedbackDisplayable {
     
     func showFeedbackInterface() {
         UserVoice.presentUserVoiceContactUsFormForParentViewController(navigationController)

@@ -7,14 +7,31 @@
 //
 
 import Foundation
+import Argo
 
-enum PagedViewModelState <T> {
+enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
     case Idle
     case Loading
-    case Loaded(cells: [T], page: Int)
-    case LoadingMore(cells: [T], currentPage: Int, loadingPage: Int)
-    case LoadedAllContent(cells: [T], page: Int)
+    case Loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)
+    case LoadingMore(cells: [CellViewModelType], currentPage: PageIndexType, loadingPage: PageIndexType)
+    case Refreshing(cells: [CellViewModelType], page: PageIndexType)
+    case LoadedAllContent(cells: [CellViewModelType], page: PageIndexType)
     case NoContent
     case Error(ErrorType)
+    
+    func getCellViewModels() -> [CellViewModelType]? {
+        switch self {
+        case .Refreshing(let cells, _):
+            return cells
+        case .LoadingMore(let cells, _, _):
+            return cells
+        case .Loaded(let cells, _, _):
+            return cells
+        case .LoadedAllContent(let cells, _):
+            return cells
+        default:
+            return nil
+        }
+    }
 }
 

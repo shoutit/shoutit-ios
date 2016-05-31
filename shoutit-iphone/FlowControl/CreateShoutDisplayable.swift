@@ -12,7 +12,7 @@ protocol CreateShoutDisplayable {
     func showCreateShout() -> Void
 }
 
-extension CreateShoutDisplayable where Self: FlowController {
+extension FlowController : CreateShoutDisplayable {
     
     func showCreateShout() {
         navigationController.notImplemented()

@@ -8,21 +8,9 @@
 
 import UIKit
 
-class ShoutDetailBackgroundSwappableTableViewCell: UITableViewCell {
+class ShoutDetailBackgroundSwappableTableViewCell: UITableViewCell, Borderable {
     
     @IBOutlet weak var internalContentView: BorderedView!
-    
-    func setBorders(cellIsFirst first: Bool, cellIsLast last: Bool) {
-        var borders: UIRectEdge = [.Left, .Right]
-        if first {
-            borders = borders.union(.Top)
-        }
-        if last {
-            borders = borders.union(.Bottom)
-        }
-        
-        internalContentView.borders = borders
-    }
     
     func setBackgroundForRow(row: Int) {
         let isEven = row % 2 == 0

@@ -12,8 +12,6 @@ import RxCocoa
 import Kingfisher
 import MBProgressHUD
 
-protocol ProfileCollectionViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, TagDisplayable, NotificationsDisplayable, ChatDisplayable, VerifyEmailDisplayable {}
-
 final class ProfileCollectionViewController: UICollectionViewController {
     
     // consts
@@ -23,7 +21,7 @@ final class ProfileCollectionViewController: UICollectionViewController {
     var viewModel: ProfileCollectionViewModelInterface!
     
     // navigation
-    weak var flowDelegate: ProfileCollectionViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     // rx
     let disposeBag = DisposeBag()
@@ -416,18 +414,48 @@ extension ProfileCollectionViewController {
                     return !isGuest
                 }
                 .flatMapFirst{[weak button] () -> Observable<Void> in
-                if let button = button as? ProfileInfoHeaderButton {
-                    let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
-                    button.setImage(switchedModel.image, countText: nil)
-                    button.setTitleText(switchedModel.title)
-                }
-                return listenObservable
+                    if let button = button as? ProfileInfoHeaderButton {
+                        let switchedModel = ProfileCollectionInfoButton.Listen(isListening: !isListening)
+                        button.setImage(switchedModel.image, countText: nil)
+                        button.setTitleText(switchedModel.title)
+                    }
+                    return listenObservable
                 }
                 .subscribeError{[weak button] (_) in
                     if let button = button as? ProfileInfoHeaderButton {
                         button.setImage(buttonModel.image, countText: nil)
                         button.setTitleText(buttonModel.title)
                     }
+                }
+                .addDisposableTo(disposeBag)
+        case .Listening:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showListeningForUsername(profile.username)
+                }
+                .addDisposableTo(disposeBag)
+        case .Listeners:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showListenersForUsername(profile.username)
+                }
+                .addDisposableTo(disposeBag)
+        case .Interests:
+            button.rx_tap
+                .asDriver()
+                .driveNext{[weak self] in
+                    guard let model = self?.viewModel.model else { return }
+                    guard case .ProfileModel(let profile) = model else { return }
+                    guard profile.username == Account.sharedInstance.user?.username else { return }
+                    self?.flowDelegate?.showInterestsForUsername(profile.username)
                 }
                 .addDisposableTo(disposeBag)
         case .More:
@@ -524,12 +552,10 @@ extension ProfileCollectionViewController {
             return
         }
         
-        if let conv = viewModel.conversation {
-            self.flowDelegate?.showConversation(conv)
+        if let conversation = viewModel.conversation {
+            flowDelegate?.showConversation(.Created(conversation: conversation))
             return
         }
-        
-        
         
         guard let model = viewModel.model, case .ProfileModel(let profile) = model else {
             debugPrint("Could not create conversation without profile")
@@ -542,8 +568,6 @@ extension ProfileCollectionViewController {
             return
         }
         
-        let conversation = Conversation(id: "", createdAt: 0, modifiedAt: 0, apiPath: "", webPath: "", typeString: "chat", users:  [Box(profile)], lastMessage: nil, unreadMessagesCount: 0, shout: nil, readby: nil)
-        
-        self.flowDelegate?.showConversation(conversation)
+        flowDelegate?.showConversation(.NotCreated(type: .Chat, user: profile, aboutShout: nil))
     }
 }

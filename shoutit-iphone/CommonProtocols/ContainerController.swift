@@ -8,58 +8,49 @@
 
 import UIKit
 
-protocol ContainerController {
+protocol ContainerController: class {
+    
     var animationDuration: Double {get}
+    
     var containerView: UIView! {get}
+    weak var currentChildViewController: UIViewController? { get set }
+    var currentControllerConstraints: [NSLayoutConstraint] { get set }
+}
+
+// MARK: - Default values
+
+extension ContainerController {
+    var animationDuration: Double { return 0.0 }
 }
 
 extension ContainerController where Self: UIViewController {
     
-    func addInitialViewController(viewController: UIViewController) {
+    func changeContentTo(controller: UIViewController, animated: Bool = false) {
         
-        addChildViewController(viewController)
-        addSubview(viewController.view, toView: containerView)
-        viewController.view.layoutIfNeeded()
-        viewController.didMoveToParentViewController(self)
+        guard currentChildViewController !== controller else { return }
+        
+        currentChildViewController?.willMoveToParentViewController(nil)
+        addChildViewController(controller)
+        addSubview(controller.view, toView: containerView)
+        
+        let constraints = Array(self.currentControllerConstraints.dropLast(4))
+        self.containerView.removeConstraints(constraints)
+        self.currentChildViewController?.view.removeFromSuperview()
+        self.currentChildViewController?.removeFromParentViewController()
+        controller.didMoveToParentViewController(self)
+        self.currentChildViewController = controller
     }
     
-    func cycleFromViewController(oldViewController: UIViewController, toViewController newViewController: UIViewController, animated: Bool) {
-        
-        // prepare for transition
-        oldViewController.willMoveToParentViewController(nil)
-        addChildViewController(newViewController)
-        
-        //
-        newViewController.view.alpha = 0.0
-        addSubview(newViewController.view, toView: containerView)
-        newViewController.view.layoutIfNeeded()
-        
-        let animationClosure = {
-            newViewController.view.alpha = 1.0
-            oldViewController.view.alpha = 0.0
-        }
-        
-        let completionClosure: (Bool) -> Void = {(_) -> Void in
-            oldViewController.view.removeFromSuperview()
-            oldViewController.removeFromParentViewController()
-            newViewController.didMoveToParentViewController(self)
-        }
-        
-        if animated {
-            UIView.animateWithDuration(animationDuration, delay: 0.0, options: [], animations: animationClosure, completion: completionClosure)
-        } else {
-            animationClosure()
-            completionClosure(true)
-        }
-    }
-    
-    func addSubview(subview: UIView, toView view: UIView) {
+    private func addSubview(subview: UIView, toView view: UIView) {
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
         
-        let views = ["subview" : subview]
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: [], metrics: nil, views: views))
+        let views = ["child" : subview]
+        var constraints: [NSLayoutConstraint] = []
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[child]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
+        view.addConstraints(constraints)
+        currentControllerConstraints += constraints
     }
 }

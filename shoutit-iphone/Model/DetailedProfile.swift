@@ -51,7 +51,7 @@ struct DetailedProfile: User {
     let chatPath: String?
     let pages: [Profile]?
     let admins: [Profile]?
-    let conversation: Conversation?
+    let conversation: MiniConversation?
     let stats: ProfileStats?
 }
 

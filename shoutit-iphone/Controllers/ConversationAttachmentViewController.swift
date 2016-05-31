@@ -10,37 +10,31 @@ import UIKit
 
 final class ConversationAttachmentViewController: UIViewController {
 
-    var completion: ((type: MessageAttachmentType) -> Void)!
+    var completion: ((type: PickerAttachmentType) -> Void)!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func photoAction() {
-        dismissWithType(MessageAttachmentType.Image)
+    @IBAction func mediaAction() {
+        dismissWithType(.Media)
     }
     
     @IBAction func shoutAction() {
-        dismissWithType(MessageAttachmentType.Shout)
+        dismissWithType(.Shout)
     }
     
     @IBAction func locationAction() {
-        dismissWithType(MessageAttachmentType.Location)
+        dismissWithType(.Location)
     }
     
-    @IBAction func videoAction() {
-        dismissWithType(MessageAttachmentType.Video)
+    @IBAction func profileAction() {
+        dismissWithType(.Profile)
     }
     
-    private func dismissWithType(type: MessageAttachmentType) {
+    private func dismissWithType(type: PickerAttachmentType) {
         self.dismissViewControllerAnimated(true) { 
             self.completion(type: type)
         }
     }
     
-    @IBAction func dismiss() {
+    @IBAction override func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

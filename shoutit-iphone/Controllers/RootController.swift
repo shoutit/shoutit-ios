@@ -12,16 +12,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import DeepLinkKit
 
-final class RootController: UIViewController, UIViewControllerTransitioningDelegate {
+final class RootController: UIViewController, ContainerController {
     
     private let defaultTabBarHeight: CGFloat = 49
     
-    @IBOutlet weak var contentContainer : UIView?
+    @IBOutlet weak var containerView : UIView!
     @IBOutlet weak var tabbarHeightConstraint: NSLayoutConstraint!
     
     var flowControllers = [NavigationItem: FlowController]()
-    var currentControllerConstraints: [NSLayoutConstraint] = []
     private var loginFlowController: LoginFlowController?
     
     private var token: dispatch_once_t = 0
@@ -44,35 +44,16 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
             self.tabbarController?.selectedNavigationItem = currentNavigationItem
         }
     }
-    var currentChildViewController: UIViewController?
+    weak var currentChildViewController: UIViewController?
+    var currentControllerConstraints: [NSLayoutConstraint] = []
     var tabbarController : TabbarController?
     
-    // MARK: Life Cycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter()
-            .rx_notification(Constants.Notification.UserDidLogoutNotification)
-            .subscribeNext { [unowned self] notification in
-                self.openItem(.Home)
-            }
-            .addDisposableTo(disposeBag)
-        
-        NSNotificationCenter.defaultCenter()
-            .rx_notification(Constants.Notification.ToggleMenuNotification)
-            .subscribeNext { notification in
-                self.toggleMenuAction()
-            }
-            .addDisposableTo(disposeBag)
-        
-        NSNotificationCenter.defaultCenter()
-            .rx_notification(Constants.Notification.IncomingCallNotification)
-            .subscribeNext { notification in
-                self.incomingCall(notification)
-            }
-            .addDisposableTo(disposeBag)
-        
+        registerForNotifications()
 
         Account.sharedInstance
             .loginSubject
@@ -93,7 +74,6 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
 //        adjustTabbarHeight()
     }
     
@@ -104,6 +84,18 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
             self.openItem(.Home)
         }
     }
+    
+    // MARK: - Status bar
+    
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return currentChildViewController
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if var destination = segue.destinationViewController as? Navigation {
@@ -133,10 +125,191 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
         self.view.setNeedsDisplay()
     }
     
-    // MARK: Side Menu
+    // MARK: - IB
     
     @IBAction func toggleMenuAction() {
         self.performSegueWithIdentifier(presentMenuSegue, sender: nil)
+    }
+    
+    @IBAction func unwindToRootController(segue: UIStoryboardSegue) {}
+    
+    // MARK: - Actions
+    
+    func openItem(navigationItem: NavigationItem, deepLink: DPLDeepLink? = nil) {
+        
+        var item = navigationItem
+        
+        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) {
+            self.showOverExistingFlowController(navigationItem, deepLink: deepLink)
+            return
+        }
+        
+        if navigationItem == .PublicChats {
+            item = .Chats
+        }
+        
+        if navigationItem == .Notifications {
+            item = .Settings
+        }
+        
+        // Woooot!
+        // Create Shout Controller should be presented above root Controller, so skip flow controller logic
+        if item == .CreateShout {
+            showCreateShout(deepLink)
+            return
+        } else if item == .Help {
+            showHelp()
+            return
+        }
+        
+        self.currentNavigationItem = item
+        
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        let flowControllerToShow: FlowController
+        
+        if let loadedFlowController = cachedFlowControllerForNavigationItem(item) {
+            flowControllerToShow = loadedFlowController
+        } else {
+            flowControllerToShow = flowControllerFor(item)
+            flowControllers[item] = flowControllerToShow
+        }
+        
+        // Location Controller Should Be Presented Modally instead of within tabbar
+        if let locationFlowController = flowControllerToShow as? LocationFlowController {
+            
+            locationFlowController.finishedBlock = { (success, place) -> Void in
+                if let controller = locationFlowController.navigationController.visibleViewController as? ChangeLocationTableViewController {
+                    controller.dismiss()
+                }
+            }
+            
+            locationFlowController.setShouldShowAutoUpdates(true)
+            
+            presentFlowControllerModally(locationFlowController)
+            return
+        }
+        
+        // Check if controller requires logged user
+        if flowControllerToShow.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
+            promptUserForLogin(navigationItem)
+            return
+        }
+        
+        flowControllerToShow.deepLink = deepLink
+        flowControllerToShow.handleDeeplink(deepLink)
+        
+        presentWith(flowControllerToShow)
+    }
+    
+    func showOverExistingFlowController(navigationItem: NavigationItem, deepLink: DPLDeepLink?) {
+        if self.presentedViewController != nil {
+            self.presentedViewController?.dismissViewControllerAnimated(false, completion: nil)
+        }
+        
+        var currentItem : NavigationItem? = self.currentNavigationItem
+        
+        if currentItem == nil {
+            currentItem = .Home
+            self.openItem(.Home)
+        }
+        
+        guard let currentFlowController = self.flowControllers[currentItem!] else {
+            return
+        }
+        
+        switch navigationItem {
+        case .Conversation:
+            
+            if !Account.sharedInstance.isUserLoggedIn {
+                promptUserForLogin(navigationItem, deepLink: deepLink)
+                return
+            }
+            
+            guard let conversationId = deepLink?.queryParameters["id"] as? String else {
+                return
+            }
+            
+            currentFlowController.showConversationWithId(conversationId)
+            
+        case .Shout:
+            guard let shoutId = deepLink?.queryParameters["id"] as? String else {
+                return
+            }
+            
+            currentFlowController.showShoutWithId(shoutId)
+            
+        case .Profile:
+            guard let profileId = deepLink?.queryParameters["username"] as? String else {
+                return
+            }
+            
+            currentFlowController.showProfileWithId(profileId)
+            
+        default:
+            break
+        }
+    }
+    
+    func cachedFlowControllerForNavigationItem(navigationItem: NavigationItem) -> FlowController? {
+        return flowControllers[navigationItem]
+    }
+}
+
+extension RootController: UIViewControllerTransitioningDelegate {
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let _ = presented as? MenuTableViewController {
+            return MenuAnimationController()
+        }
+        
+        return OverlayAnimationController()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let _ = dismissed as? MenuTableViewController {
+            return MenuDismissAnimationController()
+        }
+        
+        return OverlayDismissAnimationController()
+    }
+}
+
+// MARK: - Routing
+extension RootController {
+    func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
+        self.openItem(navigationItem, deepLink: deeplink)
+    }
+}
+
+// MARK: - Notifications
+
+extension RootController {
+    
+    private func registerForNotifications() {
+        
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.UserDidLogoutNotification)
+            .subscribeNext { [unowned self] notification in
+                self.openItem(.Home)
+            }
+            .addDisposableTo(disposeBag)
+        
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.ToggleMenuNotification)
+            .subscribeNext { notification in
+                self.toggleMenuAction()
+            }
+            .addDisposableTo(disposeBag)
+        
+        NSNotificationCenter.defaultCenter()
+            .rx_notification(Constants.Notification.IncomingCallNotification)
+            .subscribeNext { notification in
+                self.incomingCall(notification)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     func incomingCall(notification: NSNotification) {
@@ -169,123 +342,14 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
         controller.transitioningDelegate = self
         
         self.presentViewController(controller, animated: true, completion: nil)
-        
     }
+}
+
+// MARK: - Main logic
+
+private extension RootController {
     
-    // MARK: Content Managing
-    
-    private func sh_invalidateControllersCache() {
-        flowControllers.removeAll()
-    }
-    
-    func openItem(navigationItem: NavigationItem) {
-        
-        // Woooot!
-        // Create Shout Controller should be presented above root Controller, so skip flow controller logic
-        if navigationItem == .Shout {
-            showCreateShout()
-            return
-        } else if navigationItem == .Help {
-            showHelp()
-            return
-        }
-        
-        self.currentNavigationItem = navigationItem
-        
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let flowControllerToShow: FlowController
-        
-        if let loadedFlowController = flowControllers[navigationItem] {
-            flowControllerToShow = loadedFlowController
-        } else {
-            flowControllerToShow = flowControllerFor(navigationItem)
-            flowControllers[navigationItem] = flowControllerToShow
-        }
-        
-        // Location Controller Should Be Presented Modally instead of within tabbar
-        if let locationFlowController = flowControllerToShow as? LocationFlowController {
-            
-            locationFlowController.finishedBlock = { (success, place) -> Void in
-                if let controller = locationFlowController.navigationController.visibleViewController as? ChangeLocationTableViewController {
-                    controller.dismiss()
-                }
-            }
-            
-            locationFlowController.setShouldShowAutoUpdates(true)
-            
-            presentFlowControllerModally(locationFlowController)
-            return
-        }
-        
-        // Check if controller requires logged user
-        if flowControllerToShow.requiresLoggedInUser() && !Account.sharedInstance.isUserLoggedIn {
-            promptUserForLogin(navigationItem)
-            return
-        }
-        
-        presentWith(flowControllerToShow)
-    }
-    
-    func showHelp() {
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
-    }
-    
-    func showCreateShout() {
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        if !Account.sharedInstance.isUserLoggedIn {
-            promptUserForLogin(.Shout)
-            return
-        }
-        
-        let navController = SHNavigationViewController()
-        let shoutsFlowController = ShoutFlowController(navigationController: navController)
-        
-        navController.modalPresentationStyle = .Custom
-        navController.transitioningDelegate = self
-        
-        // present directly above current content
-        self.presentViewController(shoutsFlowController.navigationController, animated: true, completion: nil)
-    }
-    
-    func presentFlowControllerModally(flowController: FlowController) {
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        if let navController = flowController.navigationController as? SHNavigationViewController {
-            navController.ignoreToggleMenu = true
-        }
-        
-        self.presentViewController(flowController.navigationController, animated: true, completion: nil)
-    }
-    
-    func promptUserForLogin(destinationNavigationItem: NavigationItem) {
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let navigationController = LoginNavigationViewController()
-        loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
-        loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
-            self?.sh_invalidateControllersCache()
-            self?.loginFlowController?.navigationController.dismissViewControllerAnimated(true, completion: nil)
-            self?.openItem(destinationNavigationItem)
-        }
-        
-        self.presentViewController(navigationController, animated: true, completion: nil)
-        
-    }
-    
-    func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
+    private func flowControllerFor(navigationItem: NavigationItem) -> FlowController {
         let navController = SHNavigationViewController()
         navController.willShowViewControllerPreferringTabBarHidden = {[unowned self, unowned navController] (hidden) in
             if navController.ignoreTabbarAppearance {
@@ -302,8 +366,8 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
             
         case .Home: flowController          = HomeFlowController(navigationController: navController)
         case .Discover: flowController      = DiscoverFlowController(navigationController: navController)
-        case .Shout: flowController         = ShoutFlowController(navigationController: navController)
-        case .Chats: flowController         = ChatsFlowController(navigationController: navController)
+        case .CreateShout: flowController   = ShoutFlowController(navigationController: navController)
+        case .Chats: flowController = ChatsFlowController(navigationController: navController)
         case .Profile: flowController       = ProfileFlowController(navigationController: navController)
         case .Settings: flowController      = SettingsFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
@@ -317,7 +381,7 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
         return flowController
     }
     
-    func presentWith(flowController: FlowController) {
+    private func presentWith(flowController: FlowController) {
         
         guard let navigationController : UINavigationController = flowController.navigationController else  {
             fatalError("Flow Controller did not return UIViewController")
@@ -326,66 +390,74 @@ final class RootController: UIViewController, UIViewControllerTransitioningDeleg
         changeContentTo(navigationController)
     }
     
-    func removeCurrentContent() {
-        
-        contentContainer?.removeConstraints(currentControllerConstraints)
-        
-        if let currentContent = contentContainer?.subviews[0] {
-            currentContent.removeFromSuperview()
+    private func presentFlowControllerModally(flowController: FlowController) {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        self.childViewControllers.each { child in
-            child.willMoveToParentViewController(nil)
-            child.removeFromParentViewController()
-        }
-    }
-    
-    func changeContentTo(controller: UIViewController) {
-        
-        removeCurrentContent()
-        
-        controller.willMoveToParentViewController(self)
-        
-        contentContainer?.addSubview(controller.view!)
-        let views = ["child" : controller.view!]
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        currentControllerConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[child]|", options: [], metrics: nil, views: views)
-        currentControllerConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
-        contentContainer?.addConstraints(currentControllerConstraints)
-        
-        currentChildViewController = controller
-        self.addChildViewController(controller)
-        
-        controller.didMoveToParentViewController(self)
-    }
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let _ = presented as? MenuTableViewController {
-           return MenuAnimationController()
-        }
-       
-        return OverlayAnimationController()
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let _ = dismissed as? MenuTableViewController {
-            return MenuDismissAnimationController()
+        if let navController = flowController.navigationController as? SHNavigationViewController {
+            navController.ignoreToggleMenu = true
         }
         
-        return OverlayDismissAnimationController()
+        self.presentViewController(flowController.navigationController, animated: true, completion: nil)
     }
     
-    @IBAction func unwindToRootController(segue: UIStoryboardSegue) {
+    private func sh_invalidateControllersCache() {
+        flowControllers.removeAll()
+    }
+}
+
+// MARK: - Login
+
+private extension RootController {
+    
+    private func promptUserForLogin(destinationNavigationItem: NavigationItem, deepLink : DPLDeepLink? = nil) {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        let navigationController = LoginNavigationViewController()
+        loginFlowController = LoginFlowController(navigationController: navigationController, skipIntro: true)
+        loginFlowController?.loginFinishedBlock = {[weak self](success) -> Void in
+            self?.sh_invalidateControllersCache()
+            self?.loginFlowController?.navigationController.dismissViewControllerAnimated(true, completion: nil)
+            self?.openItem(destinationNavigationItem, deepLink: deepLink)
+        }
+        
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+}
+
+private extension RootController {
+    
+    private func showHelp() {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
     }
     
-    // MARK: - Status bar
-    
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
-        return currentChildViewController
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    private func showCreateShout(deepLink: DPLDeepLink? = nil) {
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        if !Account.sharedInstance.isUserLoggedIn {
+            promptUserForLogin(.CreateShout)
+            return
+        }
+        
+        let navController = SHNavigationViewController()
+        let shoutsFlowController = ShoutFlowController(navigationController: navController)
+        
+        shoutsFlowController.deepLink = deepLink
+        shoutsFlowController.handleDeeplink(deepLink)
+        
+        navController.modalPresentationStyle = .Custom
+        navController.transitioningDelegate = self
+        
+        // present directly above current content
+        self.presentViewController(shoutsFlowController.navigationController, animated: true, completion: nil)
     }
 }
 

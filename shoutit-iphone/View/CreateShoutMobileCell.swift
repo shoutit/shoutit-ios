@@ -7,7 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CreateShoutMobileCell: UITableViewCell {
+    
+    private(set) var reuseDisposeBag = DisposeBag()
     @IBOutlet var mobileTextField : UITextField!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        reuseDisposeBag = DisposeBag()
+    }
 }

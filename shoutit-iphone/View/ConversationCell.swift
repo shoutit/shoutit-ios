@@ -12,6 +12,36 @@ protocol MessagePresenting {
     func bindWithMessage(message: Message, previousMessage: Message?)
 }
 
+struct ConversationCellIdentifier {
+    struct Wireframe {
+        static let daySection = "conversationSectionDayIdentifier"
+    }
+    struct Text {
+        static let outgoing = "conversationOutGoingCell"
+        static let incoming = "conversationIncomingCell"
+    }
+    struct Location {
+        static let outgoing = "conversationOutGoingLocationCell"
+        static let incoming = "conversationIncomingLocationCell"
+    }
+    struct Picture {
+        static let outgoing = "conversationOutGoingPictureCell"
+        static let incoming = "conversationIncomingPictureCell"
+    }
+    struct Video {
+        static let outgoing = "conversationOutGoingVideoCell"
+        static let incoming = "conversationIncomingVideoCell"
+    }
+    struct Shout {
+        static let outgoing = "conversationOutGoingShoutCell"
+        static let incoming = "conversationIncomingShoutCell"
+    }
+    struct Profile {
+        static let outgoing = "OutgoingProfileCell"
+        static let incoming = "IncomingProfileCell"
+    }
+}
+
 protocol ConversationCell: MessagePresenting {
     weak var imageHeightConstraint: NSLayoutConstraint? {get set}
     weak var activityIndicator: UIActivityIndicatorView? {get set}

@@ -9,28 +9,16 @@
 import Foundation
 
 struct Constants {
-    struct Messages {
-        static let SHImageMediaItem = "SHImageMediaItem"
-        static let SHVideoMediaItem = "SHVideoMediaItem"
-    }
-    
-    struct Shout {
-        static let TIME_VIDEO_SHOUT = 60
-        static let TIME_VIDEO_CV = 60
-    }
-    
-    struct Common {
-        static let SH_PAGE_SIZE = 60
-    }
-    
-    struct Facebook {
-        static let loginReadPermissions = ["public_profile", "email", "user_birthday"]
-    }
     
     struct Google {
         static let clientID = "935842257865-lppn1neft859vr84flug604an2lh33dk.apps.googleusercontent.com"
         static let serverClientID = "935842257865-s6069gqjq4bvpi4rcbjtdtn2kggrvi06.apps.googleusercontent.com"
         static let GOOGLE_API_KEY = "AIzaSyBZsjPCMTtOFB79RsWn3oUGVPDImf4ceTU"
+    }
+    
+    struct Aviary {
+        static let clientSecret = "12f2bb3e-d7e5-43e0-b0b5-6eea40f855d8"
+        static let clientID = "31c7e2be6b374423a80966a3489a93e2"
     }
     
     struct URL {
@@ -69,15 +57,15 @@ struct Constants {
         static let SH_AWS_USER_URL = "https://user-image.static.shoutit.com/"
     }
     
-    struct MessagesStatus {
-        static let kStatusDelivered = NSLocalizedString("Delivered", comment: "Delivered")
-        static let kStatusSent = NSLocalizedString("Sent", comment: "Sent")
-        static let kStatusPending = NSLocalizedString("Pending", comment: "Pending")
-        static let kStatusFailed = NSLocalizedString("Failed", comment: "Failed")
+    struct Invite {
+        static let inviteURL = "https://www.shoutit.com/app"
+        static let inviteText = NSLocalizedString("Join Shoutit on shoutit.com", comment: "")
+        static let facebookURL = "https://fb.me/1224908360855680"
     }
 }
 
 struct Platform {
+    
     static let isSimulator: Bool = {
         var isSim = false
         #if arch(i386) || arch(x86_64)
@@ -85,4 +73,8 @@ struct Platform {
         #endif
         return isSim
     }()
+    
+    static var isRTL: Bool {
+        return UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft
+    }
 }

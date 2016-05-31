@@ -32,9 +32,38 @@ struct ShoutParams {
     var shout: Shout?
     var mobile:  Variable<String?>
     
+    init(type: ShoutType,
+         title: String? = "",
+         text: String? = nil,
+         price: Double? = nil,
+         currency: Currency? = nil,
+         images:[String] = [],
+         videos: [Video] = [],
+         category: Category? = nil,
+         location: Address? = Account.sharedInstance.user?.location,
+         publishToFacebook: Bool = false,
+         filters: [Filter : FilterValue] = [:],
+         shout: Shout? = nil,
+         mobile: String? = nil) {
+        
+        self.type = Variable(type)
+        self.title = Variable(title)
+        self.text = Variable(text)
+        self.price = Variable(price)
+        self.currency = Variable(currency)
+        self.images = Variable(images)
+        self.videos = Variable(videos)
+        self.category = Variable(category)
+        self.location = Variable(location)
+        self.publishToFacebook = Variable(publishToFacebook)
+        self.filters = Variable(filters)
+        self.shout = shout
+        self.mobile = Variable(mobile)
+    }
 }
 
 extension ShoutParams: Encodable {
+    
     func encode() -> JSON {
         
         var values : [String: JSON] = [:]

@@ -11,13 +11,12 @@ import RxSwift
 import MBProgressHUD
 import DZNEmptyDataSet
 
-protocol NotificationsTableViewControllerFlowDelegate: class, CreateShoutDisplayable, AllShoutsDisplayable, CartDisplayable, SearchDisplayable, ShoutDisplayable, PageDisplayable, EditProfileDisplayable, ProfileDisplayable, NotificationsDisplayable {}
-
 final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"
     private let disposeBag = DisposeBag()
+    private var pusherBag : DisposeBag?
     private var messages : [Notification] = []
     
     var loading : Bool = false {
@@ -32,7 +31,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         }
     }
     
-    weak var flowDelegate: NotificationsTableViewControllerFlowDelegate?
+    weak var flowDelegate: FlowController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +44,32 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForNotificationUpdates()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        pusherBag = nil
+        
+        self.refreshControl?.endRefreshing()
+    }
+    
+    func registerForNotificationUpdates() {
+        pusherBag = DisposeBag()
+        
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { [weak self] (event) in
+            if event.eventType() == .NewNotification {
+                if let notification : Notification = event.object() {
+                    self?.insertMessage(notification)
+                }
+            }
+        }.addDisposableTo(pusherBag!)
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -55,7 +79,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     @IBAction func reloadNotifications() {
         loading = true
         
-        APINotificationsService.requestNotificationsAfter(nil).subscribeNext { [weak self] (messages) -> Void in
+        APINotificationsService.requestNotificationsBefore(nil).subscribeNext { [weak self] (messages) -> Void in
             self?.loading = false
             self?.refreshControl?.endRefreshing()
             self?.appendMessages(messages)
@@ -73,7 +97,7 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         loading = true
         
-        APINotificationsService.requestNotificationsAfter(lastNotification.createdAt).subscribe { [weak self] (event) in
+        APINotificationsService.requestNotificationsBefore(lastNotification.createdAt).subscribe { [weak self] (event) in
             switch event {
             case .Next(let messages):
                 
@@ -97,6 +121,16 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         self.messages.appendContentsOf(messages)
         self.messages = self.messages.unique()
         self.tableView.reloadData()
+    }
+    
+    private func insertMessage(message: Notification) {
+        
+        self.tableView.beginUpdates()
+        
+        self.messages.insert(message, atIndex: 0)
+        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
+        
+        self.tableView.endUpdates()
     }
 
     // MARK: - Table view data source
@@ -177,17 +211,21 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         
         MBProgressHUD.showHUDAddedTo(self.tableView, animated: true)
         
-        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: { [weak self] (noti) -> Void in
-            MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
+        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: {
+            MBProgressHUD.hideAllHUDsForView(self.tableView, animated: true)
             
             if let idx = notificationIdx {
-                self?.messages.removeAtIndex(idx)
-                self?.messages.insert(noti, atIndex: idx)
+                
+                let readedCopy = notification.readCopy()
+                
+                self.messages.removeAtIndex(idx)
+                self.messages.insert(readedCopy, atIndex: idx)
             }
             
-            self?.tableView.reloadData()
+            self.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
             MBProgressHUD.hideAllHUDsForView(self?.tableView, animated: true)
+            self?.showError(error)
             self?.tableView.reloadData()
         }, onCompleted: { () -> Void in
                 
@@ -195,16 +233,10 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
     }
     
     func openMessageObject(notification: Notification) {
-        if let profile = notification.object?.profile {
-            self.flowDelegate?.showProfile(profile)
-            return
+        guard let path = notification.appPath, url = NSURL(string: path) else { return }
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
         }
-        
-        if let shout = notification.object?.shout {
-            self.flowDelegate?.showShout(shout)
-            return
-        }
-        
     }
     
     func openNotificationSettings() {
@@ -222,5 +254,4 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
             loadNextPage()
         }
     }
-    
 }

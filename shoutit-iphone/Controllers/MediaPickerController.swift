@@ -8,10 +8,9 @@
 
 import UIKit
 import RxSwift
-import Nemo
 import MobileCoreServices
 
-protocol MediaPickerControllerDelegate {
+protocol MediaPickerControllerDelegate: class {
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
 }
 
@@ -24,7 +23,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     var presentingSubject : BehaviorSubject<UIViewController?>
     
-    var delegate : MediaPickerControllerDelegate?
+    weak var delegate : MediaPickerControllerDelegate?
     
     init(delegate: MediaPickerControllerDelegate? = nil, settings: MediaPickerSettings = MediaPickerSettings()) {
         self.pickerSettings = settings
@@ -37,9 +36,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     func showMediaPickerController() {
         let controller = mediaPickerController(self.pickerSettings, sender: nil)
-        
         controller.delegate = self
-        
         self.presentingSubject.onNext(controller)
     }
     
@@ -55,6 +52,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     }
     
     func photosMenuController(controller: PhotosMenuController, didPickPhotos photos: [PHAsset]) {
+        
         for photo in photos {
             
             let options = PHImageRequestOptions()
@@ -72,7 +70,6 @@ final class MediaPickerController: NSObject, MediaPicker  {
                     self.attachmentSelected(attachment)
             })
         }
-        
     }
     
     func photosMenuControllerDidCancel(controller: PhotosMenuController) {
@@ -87,21 +84,23 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let attachment = MediaAttachment(type: .Image, image: image, originalData: image.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
+            let attachment = MediaAttachment(type: .Image,
+                                             uid: MediaAttachment.generateUid(),
+                                             remoteURL: nil,
+                                             thumbRemoteURL: nil,
+                                             image: image,
+                                             videoDuration: nil,
+                                             originalData: image.dataRepresentation())
             self.attachmentSelected(attachment)
         }
         
-        if let type = info[UIImagePickerControllerMediaType] as? String {
-            if type == (kUTTypeMovie as String) {
-                
-                if videoCanBeProcessed(info[UIImagePickerControllerMediaURL] as? NSURL) == false {
-                    picker.dismissViewControllerAnimated(true, completion: {
-                        self.showToLongVideoAlert()
-                    })
-                }
-                
-                processVideoFromURL(info[UIImagePickerControllerMediaURL] as? NSURL)
+        if let type = info[UIImagePickerControllerMediaType] as? String where type == (kUTTypeMovie as String) {
+            if videoCanBeProcessed(info[UIImagePickerControllerMediaURL] as? NSURL) == false {
+                picker.dismissViewControllerAnimated(true, completion: {
+                    self.showToLongVideoAlert()
+                })
             }
+            processVideoFromURL(info[UIImagePickerControllerMediaURL] as? NSURL)
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -126,24 +125,26 @@ final class MediaPickerController: NSObject, MediaPicker  {
     }
     
     func processVideoFromURL(url: NSURL?) {
-        guard let url = url else {
-            return
-        }
         
-        videoProcessor.generateMovieData(url) { (data) -> Void in
-            guard let data = data else {
-                return
-            }
-            
+        guard let url = url else { return }
+        
+        videoProcessor.generateMovieData(url) {[weak self] (data) -> Void in
+            guard let `self` = self, data = data else { return }
             let image = self.videoProcessor.generateThumbImage(url)
-            let attachment = MediaAttachment(type: .Video, image: image, originalData: data, remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: self.videoProcessor.videoDuration(url))
+            let attachment = MediaAttachment(type: .Video,
+                                             uid: MediaAttachment.generateUid(),
+                                             remoteURL: nil,
+                                             thumbRemoteURL: nil,
+                                             image: image,
+                                             videoDuration: self.videoProcessor.videoDuration(url),
+                                             originalData: data)
             self.attachmentSelected(attachment)
         }
     }
     
     func attachmentSelected(attachment: MediaAttachment) {
+        
         self.selectedAttachments.append(attachment)
-
         if let delegate = delegate {
             delegate.attachmentSelected(attachment, mediaPicker: self)
         }

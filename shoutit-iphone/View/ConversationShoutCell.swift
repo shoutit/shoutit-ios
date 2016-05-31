@@ -52,18 +52,20 @@ final class ConversationShoutCell: UITableViewCell, ConversationCell {
         }
         
         self.titleLabel.text = shout.title
-        self.subtitleLabel?.text = shout.user.name
+        self.subtitleLabel?.text = shout.user?.name
         self.priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
     }
     
     func setThumbMessage(message: Message) {
-        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
+        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) where imagePath.utf16.count > 0 else {
+            activityIndicator?.stopAnimating()
+            activityIndicator?.hidden = true
             return
         }
         
-        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) { (image, error, cacheType, imageURL) in
-            self.activityIndicator?.stopAnimating()
-            self.activityIndicator?.hidden = true
+        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) {[weak self] (image, error, cacheType, imageURL) in
+            self?.activityIndicator?.stopAnimating()
+            self?.activityIndicator?.hidden = true
         }
     }
 }

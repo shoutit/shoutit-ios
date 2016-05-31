@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-final class SelectionButton: UIButton {
+final class SelectionButton: UIButton, UIGestureRecognizerDelegate {
     
     // state
     private var disclosureType: DisclosureType {
@@ -28,6 +28,7 @@ final class SelectionButton: UIButton {
     @IBInspectable var ib_fieldTitleLabelType: Int = 0
     @IBInspectable var ib_iconImageType: Int = 0
     @IBInspectable var fieldTitleLabelFontColor: UIColor = UIColor(shoutitColor: .DiscoverBorder)
+    @IBInspectable var borderWidth: CGFloat = 1
     
     // constraints
     private var _constraints: [NSLayoutConstraint] = []
@@ -187,8 +188,8 @@ private extension SelectionButton {
         titleLabel?.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
         
         layer.cornerRadius = 4.0
-        layer.borderWidth = 1.0
-        layer.borderColor = MaterialColor.grey.lighten1.CGColor
+        layer.borderWidth = borderWidth
+        layer.borderColor = UIColor(shoutitColor: .TextFieldBorderGrayColor).CGColor
         
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
             contentHorizontalAlignment = .Right

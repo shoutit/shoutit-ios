@@ -10,14 +10,8 @@ import UIKit
 
 final class DiscoverFlowController: FlowController {
     
-    let navigationController: UINavigationController
-    lazy var filterTransition: FilterTransition = {
-        return FilterTransition()
-    }()
-    
     init(navigationController: UINavigationController, discoverItem: DiscoverItem? = nil) {
-        
-        self.navigationController = navigationController
+        super.init(navigationController: navigationController)
         
         // create initial view controller
         let controller = Wireframe.discoverViewController()
@@ -32,16 +26,3 @@ final class DiscoverFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
 }
-
-extension DiscoverFlowController: SearchUserResultsTableViewControllerFlowDelegate {}
-extension DiscoverFlowController: SearchShoutsResultsCollectionViewControllerFlowDelegate {}
-extension DiscoverFlowController: SearchViewControllerFlowDelegate {}
-extension DiscoverFlowController: DiscoverCollectionViewControllerFlowDelegate {}
-extension DiscoverFlowController: ShoutDetailTableViewControllerFlowDelegate {}
-extension DiscoverFlowController: ProfileCollectionViewControllerFlowDelegate {}
-extension DiscoverFlowController: DiscoverShoutsParentViewControllerFlowDelegate {}
-extension DiscoverFlowController: NotificationsTableViewControllerFlowDelegate {}
-extension DiscoverFlowController: ConversationViewControllerFlowDelegate {}
-extension DiscoverFlowController: ConversationListTableViewControllerFlowDelegate {}
-extension DiscoverFlowController: CallingOutViewControllerFlowDelegate {}
-extension DiscoverFlowController: ShoutsCollectionViewControllerFlowDelegate {}

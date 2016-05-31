@@ -12,7 +12,8 @@ protocol HelpDisplayable {
     func showHelpInterface() -> Void
 }
 
-extension HelpDisplayable where Self: FlowController {
+
+extension FlowController : HelpDisplayable {
     
     func showHelpInterface() {
         UserVoice.presentUserVoiceInterfaceForParentViewController(navigationController)

@@ -42,7 +42,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
-                case .Error(let error):
+                case .Error:
                     self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 }
@@ -80,7 +80,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return nil
     }
     
-    var conversation: Conversation? {
+    var conversation: MiniConversation? {
         return nil // profile.conversation
     }
     
@@ -142,8 +142,8 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     func listen() -> Observable<Void>? {
-        guard let isListening = profile.isListening else {return nil}
-        let listen = !(detailedProfile?.isListening ?? isListening)
+        guard let isListening = detailedProfile?.isListening ?? profile.isListening else {return nil}
+        let listen = !isListening
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedProfile = profile
             self?.reloadSubject.onNext()

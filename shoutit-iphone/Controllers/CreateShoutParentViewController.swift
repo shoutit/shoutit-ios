@@ -49,7 +49,21 @@ class CreateShoutParentViewController: UIViewController {
         
     }
     
-    func dismiss() {
+    override func dismiss() {
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: ""), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .Destructive, handler: { (alertaction) in
+            self.close()
+        }))
+            
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Do nothing", comment: ""), style: .Default, handler: { (alert) in
+                
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func close() {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

@@ -10,8 +10,9 @@ import Foundation
 import MWPhotoBrowser
 
 protocol ChatDisplayable {
-    func showConversation(conversation: Conversation) -> Void
-    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate?) -> Void
+    func showConversation(conversation: ConversationViewModel.ConversationExistance) -> Void
+    func showConversationInfo(conversation: Conversation) -> Void
+    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
     func showVideoPreview(videoURL: NSURL) -> Void
@@ -19,13 +20,13 @@ protocol ChatDisplayable {
     func showVideoConversation(conversation: TWCConversation) -> Void
 }
 
-extension ChatDisplayable where Self: FlowController, Self: ConversationListTableViewControllerFlowDelegate, Self: ConversationViewControllerFlowDelegate, Self: CallingOutViewControllerFlowDelegate {
+extension FlowController : ChatDisplayable {
     
-    func showConversation(conversation: Conversation) {
+    func showConversation(conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()
         
         controller.flowDelegate = self
-        controller.conversation = conversation
+        controller.viewModel = ConversationViewModel(conversation: conversation, delegate: controller)
         
         // if there was conversation pop instead of adding another controller to stack
         let previousControllersCount = (self.navigationController.viewControllers.count - 2)
@@ -40,7 +41,14 @@ extension ChatDisplayable where Self: FlowController, Self: ConversationListTabl
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func showAttachmentController(completion: ((type: MessageAttachmentType) -> Void), transitionDelegate: UIViewControllerTransitioningDelegate? = nil) -> Void {
+    func showConversationInfo(conversation: Conversation) -> Void {
+        let controller = Wireframe.conversationInfoController()
+        controller.viewModel = ConversationInfoViewModel(conversation: conversation)
+        controller.flowDelegate = self
+        self.navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: ((type: PickerAttachmentType) -> Void)) -> Void {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion

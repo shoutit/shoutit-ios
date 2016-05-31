@@ -25,7 +25,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let currency: String?
     let thumbnailPath: String?
     let videoPath: String?
-    let user: Profile
+    let user: Profile?
     let publishedAtEpoch: Int?
     let category: Category
     let tags: [Tag]?
@@ -38,7 +38,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let replyPath: String?
     let relatedRequests: [Shout]?
     let relatedOffers: [Shout]?
-    let conversations: [Conversation]?
+    let conversations: [MiniConversation]?
     let isMobileSet: Bool?
     let mobile: String?
     
@@ -57,24 +57,25 @@ struct Shout: Decodable, Hashable, Equatable {
         let c = b
             <*> j <|? "thumbnail"
             <*> j <|? "video_url"
-            <*> j <| "profile"
+            <*> j <|? "profile"
             <*> j <|? "date_published"
         let d = c
             <*> j <| "category"
             <*> j <||? "tags"
-            <*> j <||? "filters"
         let e = d
+            <*> j <||? "filters"
+        let f = e
             <*> j <||? "images"
             <*> j <||? "videos"
             //<*> j <|? "published_on"
             <*> j <|? "reply_url"
-        let f = e
+        let g = f
             <*> j <||? "related_requests"
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
             <*> j <|? "mobile"
-        return f
+        return g
     }
     
     var hashValue: Int {

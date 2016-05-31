@@ -66,6 +66,11 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
+    override func dismiss() {
+        close()
+    }
+
+    
     override func prefersTabbarHidden() -> Bool {
         return true
     }

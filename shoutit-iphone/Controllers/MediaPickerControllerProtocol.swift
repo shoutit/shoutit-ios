@@ -7,8 +7,12 @@
 //
 
 import UIKit
-import Nemo
 import MobileCoreServices
+
+protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+    var pickerSettings : MediaPickerSettings { get set }
+    func attachmentSelected(attachment: MediaAttachment)
+}
 
 struct MediaPickerSettings {
     var thumbnailSize : CGSize = CGSize(width: 100, height: 100)
@@ -23,30 +27,30 @@ struct MediaPickerSettings {
 struct MediaAttachment : Hashable, Equatable {
     
     static let maximumImageWidth : CGFloat = 1024.0
+    let provider = "shoutit_s3"
     
     let type: PHAssetMediaType
     
-    var image: UIImage?
-    var originalData: NSData?
+    var uid: String!
     
     var remoteURL: NSURL?
     var thumbRemoteURL: NSURL?
     
-    var uid: String!
-    
+    var image: UIImage?
     var videoDuration : Float?
-    let provider = "shoutit_s3"
+    var originalData: NSData?
     
     func remoteFilename(user: User) -> String {
+        
         if self.type == .Image {
-            return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).jpg"
+            return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
         }
         
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id).mp4"
+        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).mp4"
     }
     
     func thumbRemoteFilename(user: User) -> String {
-        return "\(Int(NSDate().timeIntervalSince1970))_\(user.id)_thumbnail.jpg"
+        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id)_thumbnail.jpg"
     }
     
     static func generateUid() -> String {
@@ -58,78 +62,40 @@ struct MediaAttachment : Hashable, Equatable {
             return self.uid.hashValue
         }
     }
-
-}
-extension MediaAttachment {
-    func asMessageAttachment() -> MessageAttachment {
-        if self.type == .Image {
-            return MessageAttachment(shout: nil, location: nil, videos: nil, images: [(self.remoteURL?.absoluteString)!])
-        }
-        
-        if self.type == .Video {
-            return MessageAttachment(shout: nil, location: nil, videos: [self.asVideoObject()!], images: nil)
-        }
-        
-        return MessageAttachment(shout: nil, location: nil, videos: nil, images: nil)
+    
+    func mediaAttachmentWithExchangedImage(nimage: UIImage, data: NSData) -> MediaAttachment {
+        return MediaAttachment(type: self.type, uid: self.uid, remoteURL: self.remoteURL, thumbRemoteURL: self.thumbRemoteURL, image: nimage, videoDuration: self.videoDuration, originalData: data)
     }
+
 }
 
 func ==(lhs: MediaAttachment, rhs: MediaAttachment) -> Bool {
     return lhs.uid == rhs.uid
 }
 
-
-protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+extension MediaAttachment {
     
-    var pickerSettings : MediaPickerSettings { get set }
-
-    func attachmentSelected(attachment: MediaAttachment)
-    
+    func asMessageAttachment() -> MessageAttachment {
+        if self.type == .Image {
+            return MessageAttachment(shout: nil, location: nil, profile: nil, videos: nil, images: [(self.remoteURL?.absoluteString)!])
+        }
+        
+        if self.type == .Video {
+            return MessageAttachment(shout: nil, location: nil, profile: nil, videos: [self.asVideoObject()!], images: nil)
+        }
+        
+        fatalError("Unexpected attachment type")
+    }
 }
 
 extension MediaAttachment {
+    
     func asVideoObject() -> Video? {
-        
-        if let remoteURL = self.remoteURL {
-            return Video(path: remoteURL.absoluteString, thumbnailPath: (self.thumbRemoteURL?.absoluteString ?? ""), provider: self.provider, idOnProvider: (remoteURL.lastPathComponent ?? ""), duration: Int(self.videoDuration ?? 0))
-        }
-        
-        return nil
-    }
-}
-
-extension UIImage {
-    
-    static func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
-        
-        if newWidth > image.size.width {
-            return image
-        }
-        
-        let scale = newWidth / image.size.width
-        
-        let newHeight = image.size.height * scale
-        
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-        
-        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
-    func dataRepresentation() -> NSData? {
-        let resizedImage = UIImage.resizeImage(self, newWidth: MediaAttachment.maximumImageWidth)
-        
-        return UIImageJPEGRepresentation(resizedImage, 0.7)
-    }
-}
-
-extension PHAsset {
-    func asMediaAttachment(image: UIImage? = nil) -> MediaAttachment {
-        return MediaAttachment(type: self.mediaType, image: image, originalData: image?.dataRepresentation(), remoteURL: nil, thumbRemoteURL: nil, uid: MediaAttachment.generateUid(), videoDuration: nil)
+        guard let remoteURL = self.remoteURL else { return nil }
+        return Video(path: remoteURL.absoluteString,
+                     thumbnailPath: (self.thumbRemoteURL?.absoluteString ?? ""),
+                     provider: self.provider,
+                     idOnProvider: (remoteURL.lastPathComponent ?? ""),
+                     duration: Int(self.videoDuration ?? 0))
     }
 }

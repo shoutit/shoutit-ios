@@ -12,76 +12,63 @@ import Curry
 import Ogra
 
 enum MessageAttachmentType {
-    case Shout
-    case Location
-    case Video
-    case Image
+    case ShoutAttachment(shout: Shout)
+    case LocationAttachment(location: MessageLocation)
+    case ImageAttachment(path: String)
+    case VideoAttachment(video: Video)
+    case ProfileAttachment(profile: Profile)
 }
 
 struct MessageAttachment: Decodable {
     let shout: Shout?
     let location: MessageLocation?
+    let profile: Profile?
     let videos: [Video]?
     let images: [String]?
         
-    func type() -> MessageAttachmentType {
-        if let _ = shout {
-            return .Shout
-        }
-        if let _ = location {
-            return .Location
-        }
-        if let videos = videos {
-            if videos.count > 0 {
-                return .Video
-            }
-        }
-        
-        return .Image
+    func type() -> MessageAttachmentType? {
+        if let s = shout { return .ShoutAttachment(shout: s) }
+        if let l = location { return .LocationAttachment(location: l) }
+        if let p = profile { return .ProfileAttachment(profile: p) }
+        if let v = videos where v.count > 0 { return .VideoAttachment(video: v[0]) }
+        if let i = images where i.count > 0 { return .ImageAttachment(path: i[0]) }
+        return nil
     }
     
     static func decode(j: JSON) -> Decoded<MessageAttachment> {
         return curry(MessageAttachment.init)
             <^> j <|? "shout"
             <*> j <|? "location"
+            <*> j <|? "profile"
             <*> j <||? "videos"
             <*> j <||? "images"
     }
     
     func encode() -> JSON {
         var encoded = [String:JSON]()
-       
-        if let shout = shout {
-            encoded["shout"] = shout.encode()
-        }
-        
-        if let location = location {
-            encoded["location"] = location.encode()
-        }
-        
-        if let videos = videos {
-            encoded["videos"] = videos.encode()
-        }
-        
-        if let images = images {
-            encoded["images"] = images.encode()
-        }
-        
+        encoded["shout"] = shout?.encode()
+        encoded["location"] = location?.encode()
+        encoded["videos"] = videos?.encode()
+        encoded["images"] = images?.encode()
+        encoded["profile"] = profile?.encode()
         return JSON.Object(encoded)
     }
 }
 
 extension MessageAttachment {
+    
     func imagePath() -> String? {
-        if self.type() == .Video {
-            return self.videos?.first?.thumbnailPath
+        guard let type = type() else { return nil }
+        switch type {
+        case .VideoAttachment(let video):
+            return video.thumbnailPath
+        case .ImageAttachment(let path):
+            return path
+        case .ShoutAttachment(let shout):
+            return shout.thumbnailPath
+        default:
+            return nil
         }
-        
-        if self.type() == .Shout {
-            return self.shout?.thumbnailPath
-        }
-        
-        return self.images?.first
     }
     
     func videoPath() -> String? {

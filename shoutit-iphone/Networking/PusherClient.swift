@@ -227,6 +227,7 @@ extension PusherClient {
             channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewNotification.rawValue) {observer.onNext($0)}
             
             return AnonymousDisposable {
                 channel.unsubscribe()
@@ -249,7 +250,7 @@ extension PusherClient {
             }
     }
     
-    func conversationObservable(conversation: Conversation) -> Observable<PTPusherEvent> {
+    func conversationObservable(conversation: ConversationInterface) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
 
             let channel : PTPusherChannel
@@ -276,9 +277,9 @@ extension PusherClient {
             channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.LeftChat.rawValue) {observer.onNext($0)}
             channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.ConversationUpdate.rawValue) {observer.onNext($0)}
             
             return cancel
-            
         })
     }
     
@@ -290,7 +291,7 @@ extension PusherClient {
         return nil
     }
     
-    func sendTypingEventToConversation(conversation: Conversation) {
+    func sendTypingEventToConversation(conversation: ConversationInterface) {
         guard let user = account.user else {
             return
         }

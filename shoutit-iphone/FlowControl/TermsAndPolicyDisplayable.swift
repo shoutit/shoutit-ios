@@ -14,8 +14,7 @@ protocol TermsAndPolicyDisplayable {
     func showPrivacyPolicy() -> Void
 }
 
-extension TermsAndPolicyDisplayable where Self: FlowController {
-    
+extension FlowController : TermsAndPolicyDisplayable {
     func showRules() {
         showHTMLControllerWithHTML(.Rules)
     }

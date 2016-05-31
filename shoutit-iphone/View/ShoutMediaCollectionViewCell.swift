@@ -15,6 +15,7 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView : UIImageView!
     @IBOutlet var progressView : ACPDownloadView!
     @IBOutlet var editIconImageView : UIImageView?
+    @IBOutlet var videoIconImageView : UIImageView!
     
     private var disposeBag = DisposeBag()
     
@@ -25,70 +26,64 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
     
     func fillWith(attachment: MediaAttachment?) {
         
-        if attachment?.image != nil {
-            self.imageView.image = attachment?.image
+        if let attachment = attachment, image = attachment.image {
+            imageView.image = image
             editIconImageView?.hidden = false
-        } else if attachment?.thumbRemoteURL != nil {
-            self.imageView.sh_setImageWithURL(attachment?.thumbRemoteURL, placeholderImage: nil)
+            videoIconImageView.hidden = attachment.type != .Video
+        } else if let attachment = attachment, thumbURL = attachment.thumbRemoteURL {
+            imageView.sh_setImageWithURL(thumbURL, placeholderImage: nil)
             editIconImageView?.hidden = false
+            videoIconImageView.hidden = attachment.type != .Video
         } else {
-            self.imageView.image = nil
+            imageView.image = nil
             editIconImageView?.hidden = true
+            videoIconImageView.hidden = true
         }
     }
     
     func fillWith(uploadTask: MediaUploadingTask?) {
         guard let task = uploadTask else {
-            self.progressView.hidden = true
+            progressView.hidden = true
             return
         }
         
-        fillWithTaskStatus(task.status.value)
+        fillWithTaskStatus(task.status.value, attachment: task.attachment)
         
-        task.progress.asDriver().driveNext({ [weak self] (progress) in
+        task.progress.asDriver().driveNext{ [weak self] (progress) in
             self?.progressView.setProgress(progress, animated: true)
-        }).addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
         
         task.status.asDriver().driveNext { [weak self] (status) in
-            self?.fillWithTaskStatus(status)
+            self?.fillWithTaskStatus(status, attachment: task.attachment)
         }.addDisposableTo(disposeBag)
     }
     
     func setActive(active: Bool) {
-        self.imageView.hidden = !active
-        
-        if active {
-            self.contentView.backgroundColor = UIColor(shoutitColor: .LightGreen)
-        } else {
-            self.contentView.backgroundColor = UIColor(shoutitColor: .SeparatorGray)
-        }
+        imageView.hidden = !active
+        contentView.backgroundColor = active ? UIColor(shoutitColor: .LightGreen) : UIColor(shoutitColor: .SeparatorGray)
     }
     
-    func fillWithTaskStatus(status: MediaUploadingTaskStatus) {
+    func fillWithTaskStatus(status: MediaUploadingTaskStatus, attachment: MediaAttachment) {
         switch (status) {
-            
         case .Uploading:
-            self.progressView.hidden = false
-            self.progressView.setIndicatorStatus(.Running)
-            self.editIconImageView?.hidden = true
-            break
-            
+            progressView.hidden = false
+            progressView.setIndicatorStatus(.Running)
+            editIconImageView?.hidden = true
+            videoIconImageView.hidden = true
         case .Error:
-            self.progressView.hidden = true
-            self.progressView.setIndicatorStatus(.None)
-            self.editIconImageView?.hidden = false
-            break
-            
+            progressView.hidden = true
+            progressView.setIndicatorStatus(.None)
+            editIconImageView?.hidden = false
+            videoIconImageView.hidden = true
         case .Uploaded:
-            self.progressView.hidden = true
-            self.editIconImageView?.hidden = false
-            break
+            progressView.hidden = true
+            editIconImageView?.hidden = false
+            videoIconImageView.hidden = attachment.type != .Video
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         disposeBag = DisposeBag()
     }
 }

@@ -16,23 +16,11 @@ extension Array {
     }
 }
 
-extension Array {
-    static func filterNils(array: [Element?]) -> [Element] {
-        return array.filter { $0 != nil }.map { $0! }
-    }
-}
-
-extension Array where Element:Equatable {
+extension Array where Element: Equatable {
     func unique() -> [Element] {
-        var result = [Element]()
-        
-        for value in self {
-            if result.contains(value) == false {
-                result.append(value)
-            }
+        return reduce([]) { (elements, element) -> [Element] in
+            return elements.contains(element) ? elements : elements + [element]
         }
-        
-        return result
     }
     
     mutating func removeElementIfExists(element: Element) {
@@ -40,6 +28,7 @@ extension Array where Element:Equatable {
         for (index, value) in self.enumerate() {
             if element == value {
                 indexToRemove = index
+                break
             }
         }
         if let index = indexToRemove {

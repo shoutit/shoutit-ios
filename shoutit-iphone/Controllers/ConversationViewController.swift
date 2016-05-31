@@ -11,21 +11,20 @@ import SlackTextViewController
 import RxSwift
 import DZNEmptyDataSet
 
-protocol ConversationViewControllerFlowDelegate: class, ChatDisplayable, ShoutDisplayable, PageDisplayable, ProfileDisplayable {}
-
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
-    weak var flowDelegate: ConversationViewControllerFlowDelegate?
-    
-    var conversation: Conversation!
+    weak var flowDelegate: FlowController?
     
     var viewModel : ConversationViewModel!
     let attachmentManager = ConversationAttachmentManager()
     var loadMoreView : ConversationLoadMoreFooter?
     var titleView : ConversationTitleView!
+    @IBOutlet var moreRightBarButtonItem: UIBarButtonItem!
+    @IBOutlet var videoCallRightBarButtonItem: UIBarButtonItem!
     
     private let disposeBag = DisposeBag()
     private var loadMoreBag = DisposeBag()
  
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,20 +40,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         setLoadMoreFooter()
         
         setupAttachmentManager()
-        
-        if let shout = conversation.shout {
-            setTopicShout(shout)
-        }
-        
-        
-    }
-    
-    func subscribeSockets() {
-        self.viewModel.createSocketObservable()
-    }
-    
-    func unsubscribeSockets() {
-        self.viewModel.unsubscribeSockets()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,22 +59,29 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         layoutInsets()
     }
     
+    func subscribeSockets() {
+        self.viewModel.createSocketObservable()
+    }
+    
+    func unsubscribeSockets() {
+        self.viewModel.unsubscribeSockets()
+    }
+    
     func layoutInsets() {
-        if let _ = conversation.shout?.id {
+        if let _ = viewModel.conversation.value.shout?.id {
             tableView?.contentInset = UIEdgeInsetsMake(0, 0, 64.0, 0)
         } else {
             tableView?.contentInset = UIEdgeInsetsZero
         }
     }
     
-    func setTopicShout(shout: Shout) {
+    private func setTopicShout(shout: Shout) {
         guard let shoutView = NSBundle.mainBundle().loadNibNamed("ConversationShoutHeader", owner: self, options: nil)[0] as? ConversationShoutHeader else {
             return
         }
@@ -115,13 +107,14 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     func showShout() {
-        if let shout = self.conversation.shout {
+        if let shout = viewModel.conversation.value.shout {
             self.flowDelegate?.showShout(shout)
         }        
     }
     
     private func setupDataSource() {
-        viewModel = ConversationViewModel(conversation: self.conversation, delegate: self)
+        
+        viewModel.fetchFullConversation()
         viewModel.fetchMessages()
         
         viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
@@ -129,10 +122,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
         
         viewModel.typingUsers.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (profile) -> Void in
-            guard let profile = profile else {
-                return
-            }
-            
+            guard let profile = profile else { return }
             self?.typingIndicatorView?.insertUsername(profile.username)
         }.addDisposableTo(disposeBag)
         
@@ -145,12 +135,19 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }.addDisposableTo(disposeBag)
         
         viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
-            }
+            guard let controller = controller else { return }
             self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
-            
         }.addDisposableTo(disposeBag)
+        
+        viewModel.conversation.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (conversationExistance) in
+                if let shout = conversationExistance.shout {
+                    self?.setTopicShout(shout)
+                }
+                self?.setupBarButtonItemsForConversationState(conversationExistance)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     private func setupAttachmentManager() {
@@ -158,19 +155,20 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             self?.viewModel.sendMessageWithAttachment(attachment)
         }.addDisposableTo(disposeBag)
         
-        attachmentManager.presentingSubject.subscribeNext { [weak self] (controller) in
-            guard let controller = controller else {
-                return
+        attachmentManager.presentingSubject
+            .subscribeNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
             }
-            
-            if let shoutSelection = controller as? ConversationSelectShoutController {
-                self?.navigationController?.showViewController(shoutSelection, sender: nil)
-                return
+            .addDisposableTo(disposeBag)
+        
+        attachmentManager.pushingSubject
+            .subscribeNext { [weak self] (controller) in
+                guard let controller = controller else { return }
+                self?.navigationController?.showViewController(controller, sender: nil)
             }
-            
-            self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
-            
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
+        
     }
     
     private func registerSupplementaryViews() {
@@ -178,27 +176,25 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             assertionFailure()
             return
         }
-        tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: conversationSectionDayIdentifier)
+        tableView.registerNib(UINib(nibName: "ConversationDayHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: ConversationCellIdentifier.Wireframe.daySection)
         
-        tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingTextCellIdentifier)
-        tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: conversationIncomingTextCellIdentifier)
+        tableView.registerNib(UINib(nibName: "OutgoingCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Text.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Text.incoming)
         
-        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: conversationIncomingLocationCellIdentifier)
-        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingLocationCellIdentifier)
+        tableView.registerNib(UINib(nibName: "IncomingLocationCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Location.incoming)
+        tableView.registerNib(UINib(nibName: "OutgoingLocationCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Location.outgoing)
         
+        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Picture.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Picture.incoming)
         
-        tableView.registerNib(UINib(nibName: "OutgoingPictureCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingPictureCell)
-        tableView.registerNib(UINib(nibName: "IncomingPictureCell", bundle: nil), forCellReuseIdentifier: conversationIncomingPictureCell)
+        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Video.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Video.incoming)
         
+        tableView.registerNib(UINib(nibName: "OutgoingShoutCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Shout.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingShoutCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Shout.incoming)
         
-        tableView.registerNib(UINib(nibName: "OutgoingVideoCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingVideoCell)
-        tableView.registerNib(UINib(nibName: "IncomingVideoCell", bundle: nil), forCellReuseIdentifier: conversationIncomingVideoCell)
-        
-        
-        tableView.registerNib(UINib(nibName: "OutgoingShoutCell", bundle: nil), forCellReuseIdentifier: conversationOutGoingShoutCell)
-        tableView.registerNib(UINib(nibName: "IncomingShoutCell", bundle: nil), forCellReuseIdentifier: conversationIncomingShoutCell)
-        
-        
+        tableView.registerNib(UINib(nibName: "OutgoingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.outgoing)
+        tableView.registerNib(UINib(nibName: "IncomingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.incoming)
     }
     
     private func customizeTable() {
@@ -262,7 +258,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(conversationSectionDayIdentifier) as! ConversationDayHeader
+        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(ConversationCellIdentifier.Wireframe.daySection) as! ConversationDayHeader
         
         view.dateLabel.text = viewModel.sectionTitle(section)
         view.transform = tableView.transform
@@ -276,10 +272,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
             assertionFailure()
             return
         }
-        let footerHeight : CGFloat = 60.0
         
         loadMoreView = NSBundle.mainBundle().loadNibNamed("ConversationLoadMoreFooter", owner: self, options: nil)[0] as? ConversationLoadMoreFooter
-        
+//        let footerHeight : CGFloat = 60.0
 //        loadMoreView?.frame = CGRect(x: 0, y: -64.0, width: 300, height: 5*footerHeight)
         loadMoreView?.layoutIfNeeded()
         loadMoreView?.transform = tableView.transform
@@ -296,7 +291,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }).addDisposableTo(loadMoreBag)
         
         tableView.tableFooterView = loadMoreView
-        
     }
     
     func setTitleView() {
@@ -324,38 +318,15 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let msg = self.viewModel.messageAtIndexPath(indexPath)
         
-        guard let attachment = msg.attachment() else {
-            return
-        }
+        guard let attachmentType = msg.attachment()?.type() else { return }
         
-        if attachment.type() == .Location {
-            if let coordinates = msg.attachment()?.location?.coordinate() {
-                self.flowDelegate?.showLocation(coordinates)
-            }
-            return
+        switch attachmentType {
+        case .LocationAttachment(let location): flowDelegate?.showLocation(location.coordinate())
+        case .ImageAttachment(let path): flowDelegate?.showImagePreview(path.toURL()!)
+        case .VideoAttachment(let video): flowDelegate?.showVideoPreview(video.path.toURL()!)
+        case .ShoutAttachment(let shout): flowDelegate?.showShout(shout)
+        case .ProfileAttachment(let profile): flowDelegate?.showProfile(profile)
         }
-        
-        if attachment.type() == .Image {
-            if let imagePath = msg.attachment()?.imagePath(), imageUrl = NSURL(string: imagePath) {
-                self.flowDelegate?.showImagePreview(imageUrl)
-            }
-            return
-        }
-        
-        if attachment.type() == .Video {
-            if let videoPath = msg.attachment()?.videoPath(), videoURL = NSURL(string: videoPath) {
-                self.flowDelegate?.showVideoPreview(videoURL)
-            }
-            return
-        }
-        
-        if attachment.type() == .Shout {
-            if let shout = msg.attachment()?.shout {
-                self.flowDelegate?.showShout(shout)
-            }
-            return
-        }
-        
     }
     
     override func didPressRightButton(sender: AnyObject!) {
@@ -369,14 +340,13 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     override func didPressLeftButton(sender: AnyObject!) {
         textView.resignFirstResponder()
         
-        self.flowDelegate?.showAttachmentController({ [weak self] (type) in
+        flowDelegate?.showAttachmentControllerWithTransitioningDelegate(self) {[weak self] (type) in
             self?.attachmentManager.requestAttachmentWithType(type)
-        }, transitionDelegate: self)
+        }
     }
     
-    func showSendingError(error: NSError) -> Void {
-        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.localizedDescription)
-        
+    func showSendingError(error: ErrorType) -> Void {
+        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.sh_message)
         navigationController?.presentViewController(controller, animated: true, completion: nil)
     }
     
@@ -389,7 +359,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
         
         let attributedText : NSAttributedString
-        if self.conversation.id == "" {
+        if case .NotCreated = viewModel.conversation.value {
             attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
         } else if viewModel.loadMoreState.value == .ReadyToLoad {
             attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
@@ -408,27 +378,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func moreAction() {
-        let alert = viewModel.moreActionAlert { [weak self] (action) in
-            let action = action
-            
-            if action.title == NSLocalizedString("View Profile", comment: "") {
-                if let user = self?.conversation.shout?.user {
-                    self?.flowDelegate?.showProfile(user)
-                    return
-                }
-                
-                if let user = self?.conversation.coParticipant() {
-                    self?.flowDelegate?.showProfile(user)
-                }
-                
-                return
-            }
-            
-            
-            self?.deleteAction()
-            
-        }
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
+        self.flowDelegate?.showConversationInfo(conversation)
     }
     
     func deleteAction() {
@@ -440,33 +391,73 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     @IBAction func videoCall() {
-        if let profile = self.conversation.coParticipant() {
+        guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
+        if let profile = conversation.coParticipant() {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
         }
         
-        if let shout = self.conversation.shout {
-            self.flowDelegate?.startVideoCallWithProfile(shout.user)
+        if let user = conversation.shout?.user {
+            self.flowDelegate?.startVideoCallWithProfile(user)
         }
     }
 }
 
 extension ConversationViewController {
+    
     func showSendingMessage() {
-        titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        switch viewModel.conversation.value {
+        case let .Created(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        case let .CreatedAndLoaded(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+        case let .NotCreated(_, user, _):
+            titleView.setTitle(user.name, message: NSLocalizedString("Sending message", comment: ""))
+        }
     }
     
     func hideSendingMessage() {
-        titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        switch viewModel.conversation.value {
+        case let .Created(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        case let .CreatedAndLoaded(conversation):
+            titleView.setTitle(conversation.firstLineText()?.string, message: nil)
+        case let .NotCreated(_, user, _):
+            titleView.setTitle(user.name, message: nil)
+        }
     }
 }
 
 extension ConversationViewController {
+    
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return OverlayAnimationController()
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return OverlayDismissAnimationController()
+    }
+}
+
+private extension ConversationViewController {
+    
+    func setupBarButtonItemsForConversationState(state: ConversationViewModel.ConversationExistance) {
+        
+        switch state {
+        case .Created:
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
+            navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+        case .CreatedAndLoaded(let conversation):
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = true}
+            if conversation.type() == .PublicChat {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+            } else if let participants = conversation.users where participants.count != 2 {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem], animated: true)
+            } else {
+                navigationItem.setRightBarButtonItems([moreRightBarButtonItem, videoCallRightBarButtonItem], animated: true)
+            }
+        case .NotCreated:
+            navigationItem.rightBarButtonItems?.forEach{$0.enabled = false}
+        }
     }
 }
