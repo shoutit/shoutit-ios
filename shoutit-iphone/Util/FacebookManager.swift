@@ -40,7 +40,7 @@ extension FacebookManager {
     func hasPermissions(permissions: FacebookPermissions) -> Bool {
         guard case .Some(.Logged(let user)) = account.userModel else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
-        return facebookAccount.scopes.contains(permissions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(permissions.rawValue)
+        return facebookAccount.scopes.contains(permissions.rawValue)
     }
     
     func checkExpiryDateWithProfile(profile: DetailedProfile) {

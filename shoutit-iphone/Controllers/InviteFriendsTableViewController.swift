@@ -57,11 +57,39 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     private func showSuggestedUsers() {
-        self.flowDelegate?.showSuggestedUsers()
+        
+        let controller = Wireframe.profileListController()
+        
+        controller.viewModel = SuggestedUsersViewModel(showListenButtons: true)
+        
+        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "")
+        
+        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "")
+        
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
+            self?.flowDelegate?.showProfile(profile)
+            })
+        
+        self.navigationController?.showViewController(controller, sender: nil)
+
     }
     
     private func showSuggestedPages() {
-        self.flowDelegate?.showSuggestedPages()
+        
+        let controller = Wireframe.profileListController()
+        
+        controller.viewModel = SuggestedPagesViewModel(showListenButtons: true)
+        
+        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "")
+        
+        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "")
+        
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
+            self?.flowDelegate?.showProfile(profile)
+            })
+        
+        self.navigationController?.showViewController(controller, sender: nil)
+        
     }
     
     private func findFacebookFriends() {

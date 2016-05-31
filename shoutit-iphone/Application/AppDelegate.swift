@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        if application.applicationState == .Background {
+        if application.applicationState == .Inactive || application.applicationState == .Background {
             handlePushNotificationData(userInfoData, dispatchAfter: 0)
         }
     }
