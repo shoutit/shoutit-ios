@@ -54,6 +54,12 @@ final class ConversationListTableViewController: UITableViewController {
         refreshConversationList()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.refreshControl?.endRefreshing()
+    }
+    
     // MARK: - Setup
     
     private func subscribeToPusherChannel() {
