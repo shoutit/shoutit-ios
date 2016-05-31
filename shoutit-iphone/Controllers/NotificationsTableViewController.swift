@@ -56,6 +56,8 @@ final class NotificationsTableViewController: UITableViewController, DZNEmptyDat
         super.viewWillDisappear(animated)
         
         pusherBag = nil
+        
+        self.refreshControl?.endRefreshing()
     }
     
     func registerForNotificationUpdates() {

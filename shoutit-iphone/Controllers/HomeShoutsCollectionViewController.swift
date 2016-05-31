@@ -42,6 +42,12 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         reloadData()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.refreshControl.endRefreshing()
+    }
+    
     func reloadData() {
         retry.value = false
     }

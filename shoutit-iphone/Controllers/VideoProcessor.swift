@@ -18,6 +18,9 @@ final class VideoProcessor: AnyObject {
     func generateThumbImage(url: NSURL) -> UIImage? {
         let asset = AVAsset(URL: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        imageGenerator.appliesPreferredTrackTransform = true
+        
         var duration = asset.duration
         
         duration.value = 0
