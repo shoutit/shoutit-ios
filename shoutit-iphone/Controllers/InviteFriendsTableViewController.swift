@@ -11,7 +11,6 @@ import FBSDKShareKit
 import Social
 import RxSwift
 import ContactsPicker
-import MBProgressHUD
 
 class InviteFriendsTableViewController: UITableViewController {
     
@@ -130,7 +129,7 @@ class InviteFriendsTableViewController: UITableViewController {
     
     private func findContactsFriends() {
         
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        showProgressHUD()
         
         do {
             self.addressBook = try AddressBook()
@@ -140,9 +139,8 @@ class InviteFriendsTableViewController: UITableViewController {
                 let queryBuilder = self?.addressBook?.queryBuilder()
                 
                 queryBuilder?.queryAsync({ (results, error) in
-                    MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-                    
                     guard let contacts = results else {
+                        self?.hideProgressHUD()
                         self?.showErrorMessage(NSLocalizedString("We couldnt find any contacts in your address book", comment: ""))
                         return
                     }
@@ -152,10 +150,8 @@ class InviteFriendsTableViewController: UITableViewController {
                 
             })
         } catch {
-            
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-            
-            self.showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: ""))
+            hideProgressHUD()
+            showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: ""))
         }
     }
     
@@ -164,6 +160,7 @@ class InviteFriendsTableViewController: UITableViewController {
         let params = ContactsParams(contacts: contacts.map({$0.toContact()}))
         
         APIProfileService.updateProfileContacts(params).subscribe { [weak self] (event) in
+            self?.hideProgressHUD()
             switch event {
             case .Next(_):
                 self?.showUserContacts()
@@ -189,7 +186,6 @@ class InviteFriendsTableViewController: UITableViewController {
             })
         
         self.navigationController?.showViewController(controller, sender: nil)
-
     }
     
     private func inviteFacebookFriends() {
