@@ -49,7 +49,7 @@ pod 'SDWebImage', '~> 3.7'
 pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
 pod 'MBMapSnapshotter'
 pod 'LLVideoEditor', '~> 1.0'
-pod 'AviarySDK', '~> 4.4'
+pod 'AviarySDK', :path => "AviarySDK/"
 
 # serialization
 pod 'Argo'

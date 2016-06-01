@@ -104,7 +104,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.3.0)
   - AmazonS3RequestManager
   - Argo
-  - AviarySDK (~> 4.4)
+  - AviarySDK (from `AviarySDK/`)
   - AWSCognito (~> 2.3)
   - AWSS3 (~> 2.3)
   - ContactsPicker
@@ -146,6 +146,8 @@ DEPENDENCIES:
   - Validator (~> 1.1)
 
 EXTERNAL SOURCES:
+  AviarySDK:
+    :path: AviarySDK/
   GooglePlaces:
     :git: https://github.com/piotrbernad/Swift-Google-Maps-API
   MWPhotoBrowser:
@@ -168,7 +170,7 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AmazonS3RequestManager: a88f4596165b46961a6bf904f357ba2aab4931b6
   Argo: 3dbecf4204b1a3cdd1df88ebd5e23d01b652d34b
-  AviarySDK: 311bdc7c2a81aee93ab1dc7bb5f3e4ef6ee52041
+  AviarySDK: 488f88f5cc8bc871792f8ada014712f7c770a7dd
   AWSCognito: a57173a82505161bd1a9c8cfe393cea9b5b1f6bb
   AWSCore: 9bfd632f04aaf12053e639d2a9120372844beb0d
   AWSS3: d7a3a694ffc4010e90b14755b5b9dbf70989c117
