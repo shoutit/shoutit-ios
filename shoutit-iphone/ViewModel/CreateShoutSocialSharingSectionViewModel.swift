@@ -16,36 +16,36 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
     }
     private(set) var cellViewModels: [CreateShoutCellViewModel]
     private unowned var parent: CreateShoutViewModel
+    private let disposeBag = DisposeBag()
     
     init(cellViewModels: [CreateShoutCellViewModel], parent: CreateShoutViewModel) {
         self.cellViewModels = cellViewModels
         self.parent = parent
     }
     
-    func togglePublishToFacebookFromViewController(controller: UIViewController) -> Observable<Bool> {
-        
-        return Observable.create{[weak self] (observer) -> Disposable in
-            guard let `self` = self else { return NopDisposable.instance }
-            let publish = self.parent.shoutParams.publishToFacebook.value
-            let facebookManager = Account.sharedInstance.facebookManager
-            if publish || facebookManager.hasPermissions(.PublishActions) {
-                self.parent.shoutParams.publishToFacebook.value = !publish
-                observer.onNext(!publish)
-                observer.onCompleted()
-                return NopDisposable.instance
-            } else {
-                return facebookManager.requestPublishPermissions([.PublishActions], viewController: controller).subscribe { (event) in
+    func togglePublishToFacebookFromViewController(controller: UIViewController) {
+
+        let publish = parent.shoutParams.publishToFacebook.value
+        let facebookManager = Account.sharedInstance.facebookManager
+        if publish || facebookManager.hasPermissions(.PublishActions) {
+            parent.shoutParams.publishToFacebook.value = !publish
+        } else {
+            facebookManager
+                .requestPublishPermissions([.PublishActions], viewController: controller)
+                .subscribe {[weak self] (event) in
                     switch event {
                     case .Next:
-                        observer.onNext(!publish)
-                        observer.onCompleted()
+                        self?.parent.shoutParams.publishToFacebook.value = !publish
+                    case .Error(LocalError.Cancelled):
+                        self?.parent.shoutParams.publishToFacebook.value = publish
+                        break
                     case .Error(let error):
-                        observer.onError(error)
+                        self?.parent.errorSubject.onNext(error)
                     case .Completed:
-                        observer.onCompleted()
+                        break
                     }
                 }
-            }
+                .addDisposableTo(disposeBag)
         }
     }
 }

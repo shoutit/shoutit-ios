@@ -13,6 +13,7 @@ import FTGooglePlacesAPI
 final class CreateShoutViewModel: NSObject {
     
     private let disposeBag = DisposeBag()
+    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
     var shoutParams : ShoutParams!
     
