@@ -82,9 +82,8 @@ pod 'ContactsPicker'
 post_install do |installer|
   require 'fileutils'
 
-  acknowledgements_plist = 'Pods/Target Support Files/Pods/Pods-Acknowledgements.plist'
-  if Dir.exists?('Floc/Resources/Settings.bundle') && File.exists?(acknowledgements_plist)
-    FileUtils.cp(acknowledgements_plist, 'Floc/Resources/Settings.bundle/Acknowledgements.plist')
+  if File.exists?('Pods/AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle/Info.plist')
+    system("plutil -remove CFBundleExecutable Pods/AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle/Info.plist")
   end
   
   installer.pods_project.targets.each do |target|
