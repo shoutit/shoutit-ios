@@ -603,6 +603,7 @@
 		B2C8C2661CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */; };
 		B2C8C2681CF89CCA00E80C6A /* CreateShoutSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */; };
 		B2C8C26B1CF89D4800E80C6A /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C26A1CF89D4800E80C6A /* Borderable.swift */; };
+		B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */; };
 		B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D440DD1CB81466009782AF /* Filter.storyboard */; };
 		B2D441091CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
 		B2D4410A1CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
@@ -1419,6 +1420,7 @@
 		B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSocialSharingSectionViewModel.swift; path = ViewModel/CreateShoutSocialSharingSectionViewModel.swift; sourceTree = "<group>"; };
 		B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSelectableCell.swift; path = View/CreateShoutSelectableCell.swift; sourceTree = "<group>"; };
 		B2C8C26A1CF89D4800E80C6A /* Borderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Borderable.swift; path = Util/Borderable.swift; sourceTree = "<group>"; };
+		B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ProgressHUD.swift"; path = "UIKitExtensions/UIViewController+ProgressHUD.swift"; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		B2D4410C1CB81632009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
 		B2D441191CB81660009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
@@ -3283,6 +3285,13 @@
 				B2C729B31C622124006F7D29 /* ContainerController.swift */,
 				B2A03E1E1C85C72100F5E257 /* UIViewController+Tabbar.swift */,
 				B2E107161C96D68200F7F4EF /* UIViewController+NavigationBar.swift */,
+				B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */,
+				B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */,
+				B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */,
+				B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */,
+				B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */,
+				B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */,
+				B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */,
 			);
 			name = ControllerExtensions;
 			sourceTree = "<group>";
@@ -3685,14 +3694,8 @@
 			isa = PBXGroup;
 			children = (
 				AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */,
-				B2E7154A1C6DF078007F95CF /* UIViewController+NavigationItems.swift */,
-				B2985FB31C733C4700EEA9A2 /* UIViewController+Debug.swift */,
 				B28379A91C749F32009AFF01 /* UIImageView+Networking.swift */,
 				B23ABC891C751B5900CC69E6 /* StringExtensions.swift */,
-				B27AF9441C7B529B00527306 /* UIViewController+ScrollViewResize.swift */,
-				B2778F961CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift */,
-				B2F524801C9C6E9B00EA622F /* UIViewController+LoggedUser.swift */,
-				B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */,
 				B2956F001CDCEDBC0041C6CD /* UIImage+Resizing.swift */,
 			);
 			name = Extensions;
@@ -4422,6 +4425,7 @@
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
 				B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */,
 				24D3B0C41C9C3BFF00DE1600 /* TwilioAuth.swift in Sources */,
+				B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */,
 				B2D9B1081C9880AF00924941 /* SearchSuggestionTableViewCell.swift in Sources */,
 				B26CEE381C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift in Sources */,
 				B28379AA1C749F32009AFF01 /* UIImageView+Networking.swift in Sources */,

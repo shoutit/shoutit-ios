@@ -15,7 +15,7 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
 
     private let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
     let disposeBag = DisposeBag()
-    private let facebookTappedSubject: PublishSubject<NSIndexPath> = PublishSubject()
+    private let facebookTappedSubject: PublishSubject<Void> = PublishSubject()
     
     var type : ShoutType!
     
@@ -92,24 +92,19 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
             .bindTo(viewModel.shoutParams.price)
             .addDisposableTo(disposeBag)
         
-        facebookTappedSubject.flatMapFirst {[unowned self] (indexPath) -> Observable<(Bool, NSIndexPath)> in
-            return Observable
-                .zip(self.viewModel.sharingSectionViewModel.togglePublishToFacebookFromViewController(self), Observable.just(indexPath),
-                    resultSelector: { (publish, indexPath) -> (Bool, NSIndexPath) in return (publish, indexPath)})
-        }.subscribe {[weak self] (event) in
-            switch event {
-            case .Next(let publish, let indexPath):
-                if publish {
-                    self?.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-                } else {
-                    self?.tableView.deselectRowAtIndexPath(indexPath, animated: false)
-                }
-            case .Error(let error):
+        viewModel.errorSubject.observeOn(MainScheduler.instance)
+            .subscribeNext { [weak self] (error) in
                 self?.showError(error)
-            case .Completed:
-                break
             }
-        }.addDisposableTo(disposeBag)
+            .addDisposableTo(disposeBag)
+        
+        facebookTappedSubject
+            .asObserver()
+            .subscribeNext {[weak self] in
+                guard let `self` = self else { return }
+                self.viewModel.sharingSectionViewModel.togglePublishToFacebookFromViewController(self)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: Media Selection
@@ -268,12 +263,17 @@ extension CreateShoutTableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutSelectableCell", forIndexPath: indexPath) as! CreateShoutSelectableCell
             cell.selectionTitleLabel.text = NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view")
             cell.setBorders(cellIsFirst: true, cellIsLast: true)
-            let publish = viewModel.shoutParams.publishToFacebook.value
-            if publish {
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-            } else {
-                tableView.deselectRowAtIndexPath(indexPath, animated: false)
-            }
+            viewModel
+                .shoutParams
+                .publishToFacebook
+                .asDriver().driveNext{ (publish) in
+                    if publish {
+                        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+                    } else {
+                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    }
+                }
+                .addDisposableTo(cell.reuseDisposeBag)
             
             return cell
         }
@@ -317,13 +317,13 @@ extension CreateShoutTableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         guard case .Facebook = cellViewModel else { return }
-        facebookTappedSubject.onNext(indexPath)
+        facebookTappedSubject.onNext()
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         guard case .Facebook = cellViewModel else { return }
-        facebookTappedSubject.onNext(indexPath)
+        facebookTappedSubject.onNext()
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
