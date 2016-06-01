@@ -82,7 +82,11 @@ pod 'ContactsPicker'
 post_install do |installer|
   require 'fileutils'
 
-  if File.exists?('Pods/AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle/Info.plist')
+  if File.exists?('Pods/AviarySDK/Resources/AviarySDKResources/AviarySDKContentResources.bundle/Info.plist')
+    system("plutil -remove CFBundleExecutable Pods/AviarySDK/Resources/AviarySDKResources/AviarySDKContentResources.bundle/Info.plist")
+  end
+  
+  if File.exists?('Pods/AviarySDK/Aviary/AviarySDK/AviarySDKResources.bundle/Info.plist')
     system("plutil -remove CFBundleExecutable Pods/AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle/Info.plist")
   end
   
