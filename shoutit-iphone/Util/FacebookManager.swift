@@ -45,8 +45,8 @@ extension FacebookManager {
     
     func checkExpiryDateWithProfile(profile: DetailedProfile) {
         guard let facebookAccount = profile.linkedAccounts?.facebook else { return }
-        let expiryDate = NSDate(timeIntervalSince1970: NSTimeInterval(facebookAccount.expiresAtEpoch))
-        if NSDate().compare(expiryDate) == NSComparisonResult.OrderedAscending {
+        
+        if NSDate().timeIntervalSince1970 >= NSTimeInterval(facebookAccount.expiresAtEpoch) {
             renewPermissions()
         }
     }
