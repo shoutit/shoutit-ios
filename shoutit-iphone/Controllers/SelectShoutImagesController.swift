@@ -117,6 +117,10 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
         }
         
         if let idx = newAttachmentIdx {
+            if let oldAttachment = self.attachments[idx] {
+                self.mediaUploader.removeAttachment(oldAttachment)
+            }
+            
             self.attachments[idx] = attachment
             self.collectionView?.reloadData()
             showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (attachment) in
@@ -241,15 +245,32 @@ private extension SelectShoutImagesController {
     }
     
     func showEditAlert() {
+        guard let idx = self.selectedIdx, attachment = self.attachments[idx] else {
+            return
+        }
+        
         let alert = UIAlertController(title: "Edit Shout Media", message: "", preferredStyle: .ActionSheet)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {[weak self] (alertAction) in
             self?.selectedIdx = nil
         }))
         
-        alert.addAction(UIAlertAction(title: "Change", style: .Default, handler: {[weak self] (alertAction) in
-            self?.mediaPicker.showMediaPickerController()
-        }))
+        if attachment.type == .Image && attachment.image != nil {
+            alert.addAction(UIAlertAction(title: "Edit", style: .Default, handler: {[weak self] (alertAction) in
+            
+            
+                guard attachment.type == .Image else {
+                    return
+                }
+            
+                self?.showPhotoEditingForAttechmentIfNeeded(attachment, completion: { (atts) in
+                    self?.mediaUploader.removeAttachment(attachment)
+                    self?.attachments[idx] = atts
+                    self?.startUploadingAttachment(atts)
+                    self?.collectionView?.reloadData()
+                })
+                }))
+        }
         
         alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {[weak self] (alertAction) in
             if let selectedIdx = self?.selectedIdx {
