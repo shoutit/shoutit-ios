@@ -158,8 +158,9 @@ private extension FacebookManager {
         
         FBSDKAccessToken.refreshCurrentAccessToken {[unowned self] (fbsdkgraphrequestconnection, result, error) in
             guard error == nil else { return }
+            guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return }
             APIProfileService
-                .linkSocialAccountWithParams(.Facebook(token: FBSDKAccessToken.currentAccessToken().tokenString))
+                .linkSocialAccountWithParams(.Facebook(token: currentAccessToken.tokenString))
                 .subscribe{(_) in }
                 .addDisposableTo(self.disposeBag)
         }
