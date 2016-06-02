@@ -23,15 +23,21 @@ enum FacebookPermissions: String {
     }
 }
 
+final class SHFBSDKLoginManager: FBSDKLoginManager {
+    @objc func applicationDidBecomeActive(application: UIApplication) {
+        // override method to disable implicit login cancellation
+    }
+}
+
 class FacebookManager {
     
     private let account: Account
-    private let loginManager: FBSDKLoginManager
+    private let loginManager: SHFBSDKLoginManager
     private let disposeBag = DisposeBag()
     
     init(account: Account) {
         self.account = account
-        self.loginManager = FBSDKLoginManager()
+        self.loginManager = SHFBSDKLoginManager()
     }
 }
 
@@ -92,7 +98,8 @@ extension FacebookManager {
                             return Void()
                     }
                 }
-            }.flatMap {[unowned self](_) -> Observable<String> in
+            }
+            .flatMap {[unowned self](_) -> Observable<String> in
                 return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
             }
             .flatMap{ (token) in
@@ -110,7 +117,7 @@ extension FacebookManager {
                 }
             }
             .flatMap {[unowned self](composedPermissions) -> Observable<String> in
-                self.requestReadPermissionsFromViewController(permissions, viewController: viewController)
+                self.requestReadPermissionsFromViewController(composedPermissions, viewController: viewController)
             }
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }
