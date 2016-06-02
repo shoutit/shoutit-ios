@@ -4,9 +4,6 @@
 /* Class = "UILabel"; text = "Participants"; ObjectID = "7lD-XO-jLv"; */
 "7lD-XO-jLv.text" = "المشاركون";
 
-/* Class = "UILabel"; text = "Public chats are country based conversations that every one can join and post what he is selling or buying. "; ObjectID = "D53-mI-0We"; */
-"D53-mI-0We.text" = "المحادثات العامة هي محادثات مخصصة لكل بلد ويمكن للجميع المشاركة بها ووضع ما يريدون بيعه أو شراءه.";
-
 /* Class = "UITableViewController"; title = "Chat Info"; ObjectID = "E9i-u2-qRC"; */
 "E9i-u2-qRC.title" = "معلومات المحادثة";
 
@@ -18,9 +15,6 @@
 
 /* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
 "GZ0-mH-W33.title" = "المحادثات";
-
-/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
-"Guq-g6-Q7h.text" = "Profile";
 
 /* Class = "UILabel"; text = "Clear Chat"; ObjectID = "IF9-nC-Rc0"; */
 "IF9-nC-Rc0.text" = "مسح الرسائل";
@@ -106,9 +100,6 @@
 /* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
 "rdm-hj-mhG.title" = "المحادثات";
 
-/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
-"smL-ce-TDc.text" = "Media";
-
 /* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
 "viM-Sc-CK6.text" = "موقع";
 
@@ -120,3 +111,4 @@
 
 /* Class = "UISegmentedControl"; xdz-jg-dvB.segmentTitles[1] = "Listeners"; ObjectID = "xdz-jg-dvB"; */
 "xdz-jg-dvB.segmentTitles[1]" = "مستمعون";
+

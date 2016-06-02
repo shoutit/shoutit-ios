@@ -1,3 +1,39 @@
-/* Class = "UINavigationItem"; title = "Title"; ObjectID = "peX-Yc-7Ud"; */
+/* Class = "UILabel"; text = "Contacts"; ObjectID = "Fub-9R-HLo"; */
+"Fub-9R-HLo.text" = "جهات الاتصال";
+
+/* Class = "UILabel"; text = "Twitter"; ObjectID = "MqY-uT-KeA"; */
+"MqY-uT-KeA.text" = "تويتر";
+
+/* Class = "UILabel"; text = "Pages"; ObjectID = "Uip-f1-UcD"; */
+"Uip-f1-UcD.text" = "الصفحات";
+
+/* Class = "UITableViewSection"; headerTitle = "FIND FRIENDS"; ObjectID = "VCE-Sd-pxI"; */
+"VCE-Sd-pxI.headerTitle" = "البحث عن أصدقاء";
+
+/* Class = "UIButton"; normalTitle = "Share Shoutit App"; ObjectID = "X5v-bQ-ho4"; */
+"X5v-bQ-ho4.normalTitle" = "مشاركة تطبيق شاوت ات";
+
+/* Class = "UITableViewSection"; headerTitle = "INVITE FRIENDS"; ObjectID = "XFT-yx-Zs1"; */
+"XFT-yx-Zs1.headerTitle" = "دعوة الأصدقاء";
+
+/* Class = "UITableViewSection"; headerTitle = "SUGGESTIONS"; ObjectID = "dFB-2V-zC5"; */
+"dFB-2V-zC5.headerTitle" = "الاقتراحات";
+
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "hm5-aG-cnI"; */
+"hm5-aG-cnI.text" = "فيسبوك";
+
+/* Class = "UILabel"; text = "Users"; ObjectID = "iHP-TL-zdS"; */
+"iHP-TL-zdS.text" = "المستخدمين";
+
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "iRJ-7L-tXi"; */
+"iRJ-7L-tXi.text" = "فيسبوك";
+
+/* Class = "UITableViewController"; title = "Suggestions"; ObjectID = "jOt-GS-HLf"; */
+"jOt-GS-HLf.title" = "الاقتراحات";
+
+/* (No Commment) */
 "peX-Yc-7Ud.title" = "العنوان";
+
+/* Class = "UITableViewController"; title = "Invite Friends"; ObjectID = "zdj-1O-cwZ"; */
+"zdj-1O-cwZ.title" = "دعوة الأصدقاء";
 

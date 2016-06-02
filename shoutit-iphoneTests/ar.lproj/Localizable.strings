@@ -20,6 +20,9 @@
 "Chats" = "المحادثات";
 
 /* No comment provided by engineer. */
+"Conversation" = "المحادثة";
+
+/* No comment provided by engineer. */
 "Current location:" = "الموقع الحالي:";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* Settings cell title */
 "Password" = "كلمة المرور";
+
+/* No comment provided by engineer. */
+"Public Chats" = "المحادثات العامة";
 
 /* No comment provided by engineer. */
 "Settings" = "الإعدادات";

@@ -1,10 +1,4 @@
 /* No comment provided by engineer. */
-" Details" = "تفاصيل";
-
-/* No comment provided by engineer. */
-" Location" = "الموقع";
-
-/* No comment provided by engineer. */
 "%@ Admins" = "%@ مدراء";
 
 /* No comment provided by engineer. */
@@ -63,6 +57,9 @@
 "Are you sure?" = "هل انت متأكد ؟";
 
 /* No comment provided by engineer. */
+"Are you sure? All Shout data will be lost." = "هل أنت متأكد؟ ستمسح جميع البيانات المدخلة.";
+
+/* No comment provided by engineer. */
 "Attachment" = "المرفقات";
 
 /* No comment provided by engineer. */
@@ -95,8 +92,20 @@
 /* Shout detail tab bar item */
 "Call" = "مكالمة";
 
-/* No comment provided by engineer. */
+/* Video call status message */
+"Call Ended" = "انتهت المكالمة";
+
+/* Video call status message */
+"Call Failed" = "فشلت المكالمة";
+
+/* Edit photo action sheet option */
 "Cancel" = "إلغاء";
+
+/* Alert title - user tries to pick more than allowed number of images in media picker */
+"Cannot add more images" = "لا يمكن إضافة مزيد من الصور";
+
+/* Alert title - user tries to pick more than allowed number of videos in media picker */
+"Cannot add more videos" = "لا يمكن إضافة مزيد من الفيديو";
 
 /* Shout details */
 "Categorie" = "التصنيف";
@@ -132,10 +141,25 @@
 "Choose location" = "إختر موقع ";
 
 /* No comment provided by engineer. */
+"Close" = "إغلاق";
+
+/* No comment provided by engineer. */
 "Confirmation" = "موافقة ";
+
+/* Video call status message */
+"Connecting with %@..." = "جاري الاتصال مع %@...";
+
+/* Video call status message */
+"Connecting..." = "جاري الاتصال ...";
+
+/* No comment provided by engineer. */
+"Contacts Friends" = "أصدقاء من دفتر الهاتف";
 
 /* Default table view placeholder */
 "Content unavailable" = "المحتوى غير متاح";
+
+/* No comment provided by engineer. */
+"Conversation" = "المحادثة";
 
 /* No comment provided by engineer. */
 "Conversation Deleted succesfully" = "تم مسح المحادثة";
@@ -188,10 +212,14 @@
 /* No comment provided by engineer. */
 "Current location:" = "الموقع الحالي:";
 
+/* No comment provided by engineer. */
+"DETAILS" = "التفاصيل";
+
 /* Shout details */
 "Date" = "التاريخ";
 
-/* Shout detail tab bar item */
+/* Edit photo action sheet option
+   Shout detail tab bar item */
 "Delete" = "حذف";
 
 /* No comment provided by engineer. */
@@ -202,13 +230,19 @@
 "Description" = "الشرح";
 
 /* Shout details */
-"Details" = "التفاصيل ";
+"Details" = "التفاصيل";
 
 /* No comment provided by engineer. */
 "Discover" = "إكتشف";
 
 /* No comment provided by engineer. */
 "Discover Shouts" = "إكتشف الإعلانات";
+
+/* No comment provided by engineer. */
+"Do nothing" = "لا";
+
+/* No comment provided by engineer. */
+"Do you want to close?" = "هل تريد الإغلاق؟";
 
 /* No comment provided by engineer. */
 "Do you want to delete this conversation" = "هل ترغب بحذف هذه المحادثة";
@@ -237,7 +271,8 @@
 /* No comment provided by engineer. */
 "Done" = "تم";
 
-/* Shout detail tab bar item */
+/* Edit photo action sheet option
+   Shout detail tab bar item */
 "Edit" = "تعديل";
 
 /* No comment provided by engineer. */
@@ -246,14 +281,17 @@
 /* No comment provided by engineer. */
 "Edit Request" = "تعديل الطلب";
 
+/* Edit media alert title */
+"Edit Shout Media" = "تعديل وسائط الإعلان";
+
 /* Settings cell title */
 "Email" = "البريد الإلكتروني";
 
 /* Enter valid email. */
-"Enter valid email" = "أدخل بريد إلكتروني صحيح";
+"Enter valid email" = "أدخل بريد الكتروني صحيح";
 
 /* Enter valid email / username */
-"Enter valid email / username" = "أدخل بريد إالكتروني صحيح أو إسم مستخدم";
+"Enter valid email / username" = "أدخل اسم مستخدم أو بريد الكتروني صحيح";
 
 /* No comment provided by engineer. */
 "Entire country" = "كامل الدولة";
@@ -264,17 +302,27 @@
 /* No comment provided by engineer. */
 "FREE" = "مجاناً";
 
-/* Create public chat cell title */
+/* Create public chat cell title
+   Facebook cell title on sharing options in create shout view */
 "Facebook" = "فيسبوك";
 
 /* No comment provided by engineer. */
+"Facebook Friends" = "أصدقاء فيسبوك";
+
+/* Returned when updating permissions scope fails on API side */
+"Failed to obtain facebook publish permissions" = "فشل في طلب صلاحية النشر على فيسبوك";
+
+/* No comment provided by engineer. */
 "Fields must not be empty" = "لابمكن ترك الحقول فارغة";
+
+/* No comment provided by engineer. */
+"Find Friends" = "البحث عن أصدقاء";
 
 /* Edit profile placeholder text */
 "First name" = "الإسم الأول";
 
 /* Enter valid first name */
-"First name should have between 2 and 30 characters" = "خطأ في الإسم الأول";
+"First name should have between 2 and 30 characters" = "الاسم الأول لا بد ان يكون بين 2 و 30 حرفا";
 
 /* No comment provided by engineer. */
 "Guest" = "ضيف";
@@ -314,7 +362,7 @@
 "Last name" = "الإسم الأخير";
 
 /* Enter valid last name */
-"Last name name should have between 1 and 30 characters" = "خطأ في الإسم الأخير";
+"Last name name should have between 1 and 30 characters" = "الاسم الاخير لا بد ان يكون بين 1 و 30 حرفا";
 
 /* Settings cell title */
 "Legal" = "قانوني";
@@ -330,6 +378,9 @@
 
 /* No comment provided by engineer. */
 "Loading Messages..." = "تحميل الرسائل .....";
+
+/* No comment provided by engineer. */
+"Loading suggestions" = "تحميل الاقتراحات...";
 
 /* Edit profile placeholder text
    Shout detail */
@@ -428,7 +479,7 @@
 /* No comment provided by engineer. */
 "Notification Settings" = "ضبط الإشعارات";
 
-/* No comment provided by engineer. */
+/* Alert button */
 "OK" = "موافقة";
 
 /* No comment provided by engineer. */
@@ -452,8 +503,8 @@
 /* Settings cell title */
 "Password" = "كلمة المرور";
 
-/* Password characters limit should be between 6-20 */
-"Password should have between 6 and 20 characters" = "خطأ في كلمة المرور";
+/* Password characters number should be between 6-20 */
+"Password should have between 6 and 20 characters" = "كلمة المرور لا بد ان تكون بين 6 و 20 حرفا";
 
 /* No comment provided by engineer. */
 "Photo Library" = "مكتبة الصور";
@@ -483,9 +534,6 @@
 "Please select Currency" = "يرجى إختيار عملة";
 
 /* No comment provided by engineer. */
-"Please select Type" = "يرجى إختيار نوع";
-
-/* No comment provided by engineer. */
 "Please select category" = "يرجى إختيار تصنيف";
 
 /* No comment provided by engineer. */
@@ -509,6 +557,9 @@
 
 /* No comment provided by engineer. */
 "Promote to admin" = "ترقية لمدير";
+
+/* No comment provided by engineer. */
+"Public Chats" = "المحادثات العامة";
 
 /* Recent searches header */
 "Recent searches" = "تم البحث عنه";
@@ -546,8 +597,12 @@
 /* Search results for search phrase section header */
 "Results for '%@'" = "النتائج ل '%@'";
 
-/* Create public chat section title */
+/* Create public chat section title
+   Sharing section header on create shout */
 "SHARING" = "مشاركة";
+
+/* No comment provided by engineer. */
+"SUGGESTED USERS" = "مستخدمين مقترحين";
 
 /* Search text field placeholder */
 "Search Shoutit" = "ابحث في شاوت ات";
@@ -607,6 +662,9 @@
 "Suggested Users" = "مستخدمين مقترحين";
 
 /* No comment provided by engineer. */
+"Suggestions" = "الاقتراحات";
+
+/* No comment provided by engineer. */
 "Take Photo" = "التقط صورة";
 
 /* No comment provided by engineer. */
@@ -627,6 +685,9 @@
 
 /* No comment provided by engineer. */
 "The maximum length of the video is 60 seconds. Choose a shorter movie." = "الحد الأعلى للفيديو 60 ثانية, إختر فيديو اقصر";
+
+/* No comment provided by engineer. */
+"There is no suggestions for you at the moment" = "لا يوجد اقتراحات في الوقت الحالي";
 
 /* No comment provided by engineer. */
 "Turn Off" = "إطفاء";
@@ -664,11 +725,20 @@
 /* Shout detail tab bar item */
 "Video call" = "مكالمة فيديو";
 
+/* Video call status message */
+"Video call with %@" = "مكالمة فيديو مع %@";
+
 /* No comment provided by engineer. */
 "Video is too long" = "مدة الفيديو طويلة";
 
 /* No comment provided by engineer. */
 "Visit %@'s profile" = "زيارة صفحة %@ الشخصية";
+
+/* No comment provided by engineer. */
+"We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app." = "لم نتمكن من الوصول لدفتر الهاتف. الرجاء الذهاب للإعدادات والتأكد من إعطاء صلاحية جهات الاتصال لتطبيق شاوت ات";
+
+/* No comment provided by engineer. */
+"We couldnt find any contacts in your address book" = "لا يوجد أية جهة اتصال في دفتر الهاتف";
 
 /* Edit profile placeholder text */
 "Website" = "الموقع الإلكتروني";
@@ -682,8 +752,14 @@
 /* No comment provided by engineer. */
 "You can only start a chat with your listeners" = "يمكنك بدء المحادثة فقط مع مستمعينك";
 
+/* Alert message - user tries to pick more than allowed number of videos in media picker */
+"You can select only 1 video" = "يمكنك اختيار فيديو واحد فقط";
+
+/* Alert message - user tries to pick more than allowed number of images in media picker */
+"You can select only 5 images" = "يمكنك اختياء 5 صور فقط";
+
 /* No comment provided by engineer. */
-"You can start new conversation in shout details or user profile." = "يمكنك بدء محادثة في تفاصيل الإعلان او صفحة المستخدم";
+"You can start new conversation in shout details or user profile." = "يمكنك بدء محادثة في صفحة الإعلان أو صفحة المستخدم";
 
 /* No comment provided by engineer. */
 "You can't chat with yourself" = "لابمكن اجراء محادثة مع نفسك ";
