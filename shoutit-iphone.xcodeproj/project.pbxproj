@@ -377,6 +377,12 @@
 		B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */; };
 		B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */; };
 		B23D132C1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */; };
+		B2415F501D009E4400669C52 /* AviarySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F4E1D009E4400669C52 /* AviarySDK.framework */; };
+		B2415F511D009E4400669C52 /* AviarySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */; };
+		B2415F531D009E8100669C52 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F521D009E8100669C52 /* libsqlite3.0.tbd */; };
+		B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F541D009E9D00669C52 /* Foundation.framework */; };
+		B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F561D009EA500669C52 /* MessageUI.framework */; };
+		B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F581D009EC700669C52 /* UIKit.framework */; };
 		B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */; };
 		B249D5671CA333FF004F57A6 /* AutocompletionTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */; };
 		B249D5691CA3F8EE004F57A6 /* AutocompletionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */; };
@@ -1193,6 +1199,12 @@
 		B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileSelectButtonTableViewCell.swift; path = View/EditProfileSelectButtonTableViewCell.swift; sourceTree = "<group>"; };
 		B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileCellViewModel.swift; path = ViewModel/EditProfileCellViewModel.swift; sourceTree = "<group>"; };
 		B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTLSeeAllCollectionViewCell.swift; path = View/RTLSeeAllCollectionViewCell.swift; sourceTree = "<group>"; };
+		B2415F4E1D009E4400669C52 /* AviarySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AviarySDK.framework; path = "AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDK.framework"; sourceTree = SOURCE_ROOT; };
+		B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AviarySDKResources.bundle; path = "AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle"; sourceTree = SOURCE_ROOT; };
+		B2415F521D009E8100669C52 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		B2415F541D009E9D00669C52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B2415F561D009EA500669C52 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B2415F581D009EC700669C52 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsCollectionViewLayoutAttributes.swift; path = Layout/ShoutsCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutocompletionTerm.swift; path = Model/AutocompletionTerm.swift; sourceTree = "<group>"; };
 		B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutocompletionParams.swift; path = Networking/AutocompletionParams.swift; sourceTree = "<group>"; };
@@ -1528,6 +1540,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
+				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
+				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
+				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
+				B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */,
+				B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */,
+				B2415F531D009E8100669C52 /* libsqlite3.0.tbd in Frameworks */,
+				B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */,
+				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
 				AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */,
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
@@ -1537,8 +1558,6 @@
 				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
 				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
-				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
-				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
 				B2985FA91C7295B500EEA9A2 /* libz.1.1.3.tbd in Frameworks */,
 				B2985FAA1C7295B500EEA9A2 /* libz.1.2.5.tbd in Frameworks */,
 				B2985FAB1C7295B500EEA9A2 /* libz.1.tbd in Frameworks */,
@@ -1553,10 +1572,8 @@
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
-				B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */,
+				B2415F501D009E4400669C52 /* AviarySDK.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
-				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
-				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
 				92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */,
@@ -1923,6 +1940,7 @@
 				6027CF481BE74EAE00124C28 /* shoutit-iphoneTests */,
 				6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */,
 				6027CF321BE74EAE00124C28 /* Products */,
+				B2415F4D1D009E2A00669C52 /* Frameworks */,
 				AC1C94031BEBB911009400BE /* Resources */,
 				5C715BE26A324BEA80A8404C /* Pods */,
 				1E0F57B258AD6D899B14A1E3 /* Frameworks */,
@@ -2834,6 +2852,28 @@
 				B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B2415F4C1D009E1E00669C52 /* Aviary */ = {
+			isa = PBXGroup;
+			children = (
+				B2415F4E1D009E4400669C52 /* AviarySDK.framework */,
+				B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */,
+			);
+			name = Aviary;
+			sourceTree = "<group>";
+		};
+		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2415F581D009EC700669C52 /* UIKit.framework */,
+				B2415F561D009EA500669C52 /* MessageUI.framework */,
+				B2415F541D009E9D00669C52 /* Foundation.framework */,
+				B2415F521D009E8100669C52 /* libsqlite3.0.tbd */,
+				B2415F4C1D009E1E00669C52 /* Aviary */,
+			);
+			name = Frameworks;
+			path = "shoutit-iphone";
 			sourceTree = "<group>";
 		};
 		B24D17B61C886D6500FB9614 /* Xibs */ = {
@@ -4014,6 +4054,7 @@
 				B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */,
 				B2D4414D1CB816BD009782AF /* EditProfile.storyboard in Resources */,
 				B2985F821C728D0000EEA9A2 /* GoogleSignIn.bundle in Resources */,
+				B2415F511D009E4400669C52 /* AviarySDKResources.bundle in Resources */,
 				B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5378,6 +5419,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5405,6 +5447,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5520,6 +5563,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5610,6 +5654,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
@@ -5708,6 +5753,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5805,6 +5851,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5903,6 +5950,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5993,6 +6041,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -6084,6 +6133,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -6173,6 +6223,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
@@ -6264,6 +6315,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
@@ -6355,6 +6407,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
