@@ -45,16 +45,6 @@ final class CreateShoutViewModel: NSObject {
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location, .Mobile], parent: self)
         sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }
-    
-    func changeToRequest() {
-        if let _ = shoutParams.shout { return }
-        shoutParams.type.value = .Request
-    }
-    
-    func changeToShout() {
-        if let _ = shoutParams.shout { return }
-        shoutParams.type.value = .Offer
-    }
 }
 
 // Fill Views
@@ -100,14 +90,6 @@ extension CreateShoutViewModel {
 
 // Present Action Sheets
 extension CreateShoutViewModel {
-    
-    func changeTypeActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Type", comment: ""), message: "", preferredStyle: .ActionSheet)
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Request", comment: ""), style: .Default, handler: handler))
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Offer", comment: ""), style: .Default, handler: handler))
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
-        return actionSheetController
-    }
     
     func mediaNotReadyAlertController() -> UIAlertController {
         let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "",preferredStyle: .ActionSheet)

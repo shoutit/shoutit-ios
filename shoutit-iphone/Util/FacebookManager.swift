@@ -23,15 +23,21 @@ enum FacebookPermissions: String {
     }
 }
 
+final class SHFBSDKLoginManager: FBSDKLoginManager {
+    @objc func applicationDidBecomeActive(application: UIApplication) {
+        // override method to disable implicit login cancellation
+    }
+}
+
 class FacebookManager {
     
     private let account: Account
-    private let loginManager: FBSDKLoginManager
+    private let loginManager: SHFBSDKLoginManager
     private let disposeBag = DisposeBag()
     
     init(account: Account) {
         self.account = account
-        self.loginManager = FBSDKLoginManager()
+        self.loginManager = SHFBSDKLoginManager()
     }
 }
 
@@ -40,7 +46,8 @@ extension FacebookManager {
     func hasPermissions(permissions: FacebookPermissions) -> Bool {
         guard case .Some(.Logged(let user)) = account.userModel else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
-        return facebookAccount.scopes.contains(permissions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(permissions.rawValue)
+        guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return false }
+        return facebookAccount.scopes.contains(permissions.rawValue) && currentAccessToken.hasGranted(permissions.rawValue)
     }
     
     func checkExpiryDateWithProfile(profile: DetailedProfile) {
@@ -91,10 +98,13 @@ extension FacebookManager {
                             return Void()
                     }
                 }
-            }.flatMap {[unowned self](_) -> Observable<String> in
+            }
+            .flatMap {[unowned self](_) -> Observable<String> in
                 return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
             }
-            .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
+            .flatMap{ (token) in
+                return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))
+            }
     }
     
     func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
@@ -107,7 +117,7 @@ extension FacebookManager {
                 }
             }
             .flatMap {[unowned self](composedPermissions) -> Observable<String> in
-                self.requestReadPermissionsFromViewController(permissions, viewController: viewController)
+                self.requestReadPermissionsFromViewController(composedPermissions, viewController: viewController)
             }
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }

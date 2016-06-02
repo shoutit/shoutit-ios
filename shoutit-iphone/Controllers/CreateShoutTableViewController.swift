@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 
-class CreateShoutTableViewController: UITableViewController, ShoutTypeController {
+class CreateShoutTableViewController: UITableViewController {
 
     private let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
     let disposeBag = DisposeBag()
@@ -120,32 +120,6 @@ class CreateShoutTableViewController: UITableViewController, ShoutTypeController
                     }
                 }
                 .addDisposableTo(disposeBag)
-        }
-    }
-    
-    // MARK: Shout Type Selection
-    
-    @IBAction func changeTypeAction(sender: AnyObject) {
-        
-        let actionSheetController = viewModel.changeTypeActionSheet { (alertAction) -> Void in
-            guard let title = alertAction.title else {
-                fatalError("Not supported action")
-            }
-            
-            if title == "Request" {
-                self.selectShoutType(.Request)
-            } else if title == "Shout" {
-                self.selectShoutType(.Offer)
-            }
-        }
-        
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
-    }
-    
-    func selectShoutType(type: ShoutType) {
-        switch type {
-        case .Offer: self.viewModel.changeToShout()
-        case .Request: self.viewModel.changeToRequest()
         }
     }
 
@@ -266,12 +240,8 @@ extension CreateShoutTableViewController {
             viewModel
                 .shoutParams
                 .publishToFacebook
-                .asDriver().driveNext{ (publish) in
-                    if publish {
-                        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-                    } else {
-                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-                    }
+                .asDriver().driveNext{[weak cell] (publish) in
+                    cell?.ticked = publish
                 }
                 .addDisposableTo(cell.reuseDisposeBag)
             
@@ -315,12 +285,6 @@ extension CreateShoutTableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
-        guard case .Facebook = cellViewModel else { return }
-        facebookTappedSubject.onNext()
-    }
-    
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         guard case .Facebook = cellViewModel else { return }
         facebookTappedSubject.onNext()
