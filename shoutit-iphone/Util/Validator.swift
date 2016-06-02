@@ -19,15 +19,15 @@ enum ValidationError: ValidationErrorType {
     var message: String {
         switch self {
         case .InvalidEmail:
-            return NSLocalizedString("EnterValidMail", comment: "Enter valid email.")
+            return NSLocalizedString("Enter valid email", comment: "Enter valid email.")
         case .InvalidEmailOrUsername:
-            return NSLocalizedString("EnterValidMailOrUsername", comment: "Enter valid email / username")
+            return NSLocalizedString("Enter valid email / username", comment: "Enter valid email / username")
         case .InvalidFirstname:
-            return NSLocalizedString("FirstNameValidationError", comment: "Enter valid first name.")
+            return NSLocalizedString("First name should have between 2 and 30 characters", comment: "Enter valid first name")
         case .InvalidLastname:
-            return NSLocalizedString("LastNameValidationError", comment: "Enter valid last name.")
+            return NSLocalizedString("Last name name should have between 1 and 30 characters", comment: "Enter valid last name")
         case .InvalidPassword:
-            return NSLocalizedString("PasswordValidationError", comment: "Password characters limit should be between 6-20")
+            return NSLocalizedString("Password should have between 6 and 20 characters", comment: "Password characters number should be between 6-20")
         }
     }
 }

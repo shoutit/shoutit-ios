@@ -250,10 +250,10 @@
 "Email" = "البريد الإلكتروني";
 
 /* Enter valid email. */
-"EnterValidMail" = "أدخل بريد إلكتروني صحيح";
+"Enter valid email" = "أدخل بريد إلكتروني صحيح";
 
 /* Enter valid email / username */
-"EnterValidMailOrUsername" = "أدخل بريد إالكتروني صحيح أو إسم مستخدم";
+"Enter valid email / username" = "أدخل بريد إالكتروني صحيح أو إسم مستخدم";
 
 /* No comment provided by engineer. */
 "Entire country" = "كامل الدولة";
@@ -273,8 +273,8 @@
 /* Edit profile placeholder text */
 "First name" = "الإسم الأول";
 
-/* Enter valid first name. */
-"FirstNameValidationError" = "خطأ في الإسم الأول";
+/* Enter valid first name */
+"First name should have between 2 and 30 characters" = "خطأ في الإسم الأول";
 
 /* No comment provided by engineer. */
 "Guest" = "ضيف";
@@ -313,8 +313,8 @@
 /* Edit profile placeholder text */
 "Last name" = "الإسم الأخير";
 
-/* Enter valid last name. */
-"LastNameValidationError" = "خطأ في الإسم الأخير";
+/* Enter valid last name */
+"Last name name should have between 1 and 30 characters" = "خطأ في الإسم الأخير";
 
 /* Settings cell title */
 "Legal" = "قانوني";
@@ -453,7 +453,7 @@
 "Password" = "كلمة المرور";
 
 /* Password characters limit should be between 6-20 */
-"PasswordValidationError" = "خطأ في كلمة المرور";
+"Password should have between 6 and 20 characters" = "خطأ في كلمة المرور";
 
 /* No comment provided by engineer. */
 "Photo Library" = "مكتبة الصور";
