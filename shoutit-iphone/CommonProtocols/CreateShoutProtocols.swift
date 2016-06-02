@@ -12,10 +12,6 @@ protocol ShoutImagesController {
     func selectedImages() -> [UIImage]
 }
 
-protocol ShoutTypeController {
-    func selectShoutType(type: ShoutType)
-}
-
 protocol ShoutCreateFormController {
     func shoutParams() -> [String:String]
 }
