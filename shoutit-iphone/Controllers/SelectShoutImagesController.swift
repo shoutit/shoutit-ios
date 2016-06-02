@@ -174,7 +174,7 @@ extension SelectShoutImagesController {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {[weak self] in
-            guard self?.editingController?.presentingViewController == nil else {
+            guard self?.editingController?.presentingViewController == nil && self?.presentedViewController == nil else {
                 completion(attachment: attachment)
                 return
             }
@@ -231,17 +231,25 @@ private extension SelectShoutImagesController {
     }
     
     func toManyImagesAlert() {
-        let alert = UIAlertController(title: "Cannot add more images", message: "You can select only 5 images.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        let title = NSLocalizedString("Cannot add more images", comment: "Alert title - user tries to pick more than allowed number of images in media picker")
+        let message = NSLocalizedString("You can select only 5 images", comment: "Alert message - user tries to pick more than allowed number of images in media picker")
+        let buttonTitle = NSLocalizedString("OK", comment: "Alert button")
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func toManyMoviesAlert() {
-        let alert = UIAlertController(title: "Cannot add more videos", message: "You can select only 1 video.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        let title = NSLocalizedString("Cannot add more videos", comment: "Alert title - user tries to pick more than allowed number of videos in media picker")
+        let message = NSLocalizedString("You can select only 1 video", comment: "Alert message - user tries to pick more than allowed number of videos in media picker")
+        let buttonTitle = NSLocalizedString("OK", comment: "Alert button")
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func showEditAlert() {
@@ -249,14 +257,19 @@ private extension SelectShoutImagesController {
             return
         }
         
-        let alert = UIAlertController(title: "Edit Shout Media", message: "", preferredStyle: .ActionSheet)
+        let title = NSLocalizedString("Edit Shout Media", comment: "Edit media alert title")
+        let cancelButtonTitle = NSLocalizedString("Cancel", comment: "Edit photo action sheet option")
+        let changeButtonTitle = NSLocalizedString("Edit", comment: "Edit photo action sheet option")
+        let deleteButtonTitle = NSLocalizedString("Delete", comment: "Edit photo action sheet option")
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {[weak self] (alertAction) in
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
+        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: {[weak self] (alertAction) in
             self?.selectedIdx = nil
         }))
         
+
         if attachment.type == .Image && attachment.image != nil {
-            alert.addAction(UIAlertAction(title: "Edit", style: .Default, handler: {[weak self] (alertAction) in
+            alert.addAction(UIAlertAction(title: changeButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
             
             
                 guard attachment.type == .Image else {
@@ -272,7 +285,7 @@ private extension SelectShoutImagesController {
                 }))
         }
         
-        alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {[weak self] (alertAction) in
+        alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
             if let selectedIdx = self?.selectedIdx {
                 if let attachment = self?.attachments[selectedIdx] {
                     self?.mediaUploader.removeAttachment(attachment)

@@ -184,7 +184,7 @@ platform :ios do
 
     ENV["FASTLANE_PASSWORD"] = ENV["TESTFLIGHT_DELIVER_PASSWORD"]
     
-    pilot(skip_submission: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
+    pilot(skip_submission: true, skip_waiting_for_build_processing: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
 
     git_hash = `git rev-parse --short HEAD`
     

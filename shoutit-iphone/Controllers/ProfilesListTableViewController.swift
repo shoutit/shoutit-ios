@@ -113,6 +113,7 @@ class ProfilesListTableViewController: UITableViewController {
                     cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
                     if let message = successMessage {
                         self.showSuccessMessage(message)
+                        self.viewModel.pager.reloadItemAtIndex(indexPath.row)
                     } else if let error = error {
                         self.showError(error)
                     }

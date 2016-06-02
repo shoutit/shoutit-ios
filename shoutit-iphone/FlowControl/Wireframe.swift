@@ -262,8 +262,6 @@ struct Wireframe {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListTableViewController") as! FacebookFriendsListTableViewController
     }
     
-    
-    
     static func notificationsController() -> NotificationsTableViewController {
         return storyboard(.Notifications).instantiateInitialViewController() as! NotificationsTableViewController
     }

@@ -40,7 +40,7 @@ extension FacebookManager {
     func hasPermissions(permissions: FacebookPermissions) -> Bool {
         guard case .Some(.Logged(let user)) = account.userModel else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
-        return facebookAccount.scopes.contains(permissions.rawValue)
+        return facebookAccount.scopes.contains(permissions.rawValue) && FBSDKAccessToken.currentAccessToken().hasGranted(permissions.rawValue)
     }
     
     func checkExpiryDateWithProfile(profile: DetailedProfile) {
@@ -98,8 +98,18 @@ extension FacebookManager {
     }
     
     func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
-        return requestReadPermissionsFromViewController(permissions, viewController: viewController)
-                .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
+        return hasBasicReadPermissionsObservable()
+            .flatMap{(hasBasicReadPermissions) -> Observable<[FacebookPermissions]> in
+                if hasBasicReadPermissions {
+                    return Observable.just(permissions)
+                } else {
+                    return Observable.just((permissions + FacebookPermissions.loginReadPermissions).unique())
+                }
+            }
+            .flatMap {[unowned self](composedPermissions) -> Observable<String> in
+                self.requestReadPermissionsFromViewController(permissions, viewController: viewController)
+            }
+            .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }
     
     func logout() {

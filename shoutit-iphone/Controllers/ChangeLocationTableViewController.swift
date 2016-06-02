@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import GooglePlaces
 import CoreLocation
-import MBProgressHUD
 
 class ChangeLocationTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var currentLocationLabel : UILabel!
@@ -66,6 +65,10 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         setupObservers()
     }
     
+    deinit {
+        removeKeyboardNotificationListeners()
+    }
+    
     func showAutoUpdatesButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: ""), style: .Plain, target: self, action: #selector(toggleAutoUpdates))
     }
@@ -111,6 +114,8 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func setupObservers() {
+        
+        setupKeyboardOffsetNotifcationObserver()
         _ = searchBar.rx_text.bindTo(viewModel.searchTextObservable).addDisposableTo(disposeBag)
 
         viewModel.finalObservable?
@@ -121,10 +126,11 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         tableView.rx_modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)
             .asDriver()
-            .driveNext { selectedLocation in
-         
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            .driveNext {[weak self] selectedLocation in
                 
+                guard let `self` = self else { return }
+                
+                self.showProgressHUD()
                 self.loading = true
                 self.autoUpdates = false
                 
@@ -161,9 +167,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         APILocationService.updateLocationForUser(username, withParams: params).subscribeNext {[weak self] (_) in
             if let finish = self?.finishedBlock {
                 self?.searchBar.text = ""
-                
-                MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
-                
+                self?.hideProgressHUD()
                 finish(true, address)
             }
         }.addDisposableTo(disposeBag)
