@@ -23,7 +23,7 @@ final class MenuViewModel: AnyObject {
         func menuItems() -> [NavigationItem] {
             switch self {
             case .Main: return [.Home, .Discover, .Browse, .Chats]
-            case .Help: return [.Settings, .Help, .InviteFriends]
+            case .Help: return [.InviteFriends, .Settings, .Help]
             }
         }
     }

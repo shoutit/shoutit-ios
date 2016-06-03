@@ -101,7 +101,9 @@ class ConversationInfoViewController: UITableViewController {
         let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(viewModel.conversation.createdAt ?? 0)
         
         if let creator = viewModel.conversation.creator, name = creator.name {
-            footerLabel.text = String.localizedStringWithFormat(NSLocalizedString("Chat created by %@\nCreated on %@", comment: "Chat Info Bottom Description"), name, createdDateString)
+            let createdByText = String.localizedStringWithFormat(NSLocalizedString("Chat created by %@", comment: "Chat Info Bottom Description"), name)
+            let chatCreatedOn = String.localizedStringWithFormat(NSLocalizedString("Created on %@", comment: "Chat Info Bottom Description"), createdDateString)
+            footerLabel.text = createdByText + "\n" + chatCreatedOn
         } else {
             footerLabel.text = NSLocalizedString("Chat created by Shoutit", comment: "Chat Info Bottom Description")
         }

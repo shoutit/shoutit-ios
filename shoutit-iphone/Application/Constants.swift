@@ -59,7 +59,7 @@ struct Constants {
     
     struct Invite {
         static let inviteURL = "https://www.shoutit.com/app"
-        static let inviteText = NSLocalizedString("Join Shoutit on shoutit.com", comment: "")
+        static let inviteText = NSLocalizedString("Buy & Sell while Chatting on #Shoutit App! Get it on shoutit.com/app", comment: "")
         static let facebookURL = "https://fb.me/1224908360855680"
     }
 }

@@ -2233,18 +2233,9 @@
 				B2082D701C626331007EB2FB /* HTMLFiles */,
 				B2985F811C728D0000EEA9A2 /* GoogleSignIn.bundle */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
-				AC1C94081BEBBA10009400BE /* Localization */,
 			);
 			name = Resources;
 			path = "shoutit-iphone";
-			sourceTree = "<group>";
-		};
-		AC1C94081BEBBA10009400BE /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Localization;
-			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
 		AC7027D11C1AA66200262622 /* UVHeaders */ = {

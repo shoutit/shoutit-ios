@@ -61,6 +61,12 @@
 /* Class = "UILabel"; text = "Shouts"; ObjectID = "aYa-u5-EZE"; */
 "aYa-u5-EZE.text" = "الإعلانات";
 
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "ملف شخصي`";
+
+/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "وسائط";
+
 /* Class = "UINavigationItem"; title = "Create Public Chat"; ObjectID = "bjg-W9-2zR"; */
 "bjg-W9-2zR.title" = "إنشاء محادثة عامة";
 

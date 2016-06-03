@@ -45,7 +45,7 @@ class InviteFriendsTableViewController: UITableViewController {
     
     @IBAction func shareShoutitApp(sender: AnyObject) {
         
-        let objectsToShare = [NSURL(string: Constants.Invite.inviteURL)!, Constants.Invite.inviteText]
+        let objectsToShare = [Constants.Invite.inviteText]
         
         let activityController = UIActivityViewController(activityItems:  objectsToShare, applicationActivities: nil)
         
