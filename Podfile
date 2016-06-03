@@ -80,20 +80,13 @@ pod 'ContactsPicker'
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|
   require 'fileutils'
-
-  if File.exists?('Pods/AviarySDK/Resources/AviarySDKResources/AviarySDKContentResources.bundle/Info.plist')
-    system("plutil -remove CFBundleExecutable Pods/AviarySDK/Resources/AviarySDKResources/AviarySDKContentResources.bundle/Info.plist")
-  end
-  
-  if File.exists?('Pods/AviarySDK/Aviary/AviarySDK/AviarySDKResources.bundle/Info.plist')
-    system("plutil -remove CFBundleExecutable Pods/AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle/Info.plist")
-  end
   
   installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
           config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
           config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
           config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+          config.build_settings['ENABLE_BITCODE'] = 'NO'
       end
   end
 end
