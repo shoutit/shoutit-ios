@@ -74,13 +74,21 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - Nimble (4.0.1)
   - ObjectMapper (1.3.0)
   - Ogra (2.2.0):
     - Argo (~> 2.2)
+  - Quick (0.9.2)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.11)
+  - RxBlocking (2.3.1):
+    - RxSwift (~> 2.3.1)
   - RxCocoa (2.3.1):
     - RxSwift (~> 2.3.1)
+  - RxNimble (0.2.0):
+    - Nimble (~> 4.0)
+    - RxBlocking (~> 2.0)
+    - RxSwift (~> 2.0)
   - RxSwift (2.3.1)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -127,10 +135,13 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (from `MWPhotoBrowser/`)
+  - Nimble (~> 4.0)
   - Ogra
+  - Quick (~> 0.9)
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
   - RxCocoa (~> 2.3.1)
+  - RxNimble (~> 0.2)
   - RxSwift (~> 2.3.1)
   - SDWebImage (~> 3.7)
   - SlackTextViewController
@@ -139,8 +150,7 @@ DEPENDENCIES:
   - SwiftyBeaver
   - Timberjack
   - TwilioConversationsClient (~> 0.24.0)
-  - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`,
-    commit `2ba05f14a8c1a7eb16b1525ac325962516d6992a`)
+  - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`, commit `2ba05f14a8c1a7eb16b1525ac325962516d6992a`)
   - Validator (~> 1.1)
 
 EXTERNAL SOURCES:
@@ -193,11 +203,15 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: 818d1940c2d9402453b349545022a86968097f57
   MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
+  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   Ogra: 8b90fd2b836203361638a65322554400aed89a28
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: 9e31c425ed082481faf2360689243bb0ec8f8b22
+  RxBlocking: 84fd81865a641a3843b33bae7b8315e78ddbd383
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
+  RxNimble: bfa94ed3a3322c7428209e0490c97b46a2d9ef85
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SlackTextViewController: bd2a34c188d4f7dec93cf42388f38551263fac82
@@ -212,4 +226,6 @@ SPEC CHECKSUMS:
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
   Validator: 3fa8a561459004f4629a698258ee365fc0b82406
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b77520c04a291494a00f90ce9e84d5305999b6f2
+
+COCOAPODS: 1.0.1

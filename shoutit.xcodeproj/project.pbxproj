@@ -107,8 +107,7 @@
 		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
-		891CB167342BC09885468C0A /* Pods_shoutit_iphoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5170806B72721CAA3FA0D7C /* Pods_shoutit_iphoneTests.framework */; };
-		92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DD26576469F744E4920C92 /* Pods.framework */; };
+		97958631CA6A3B5B804FE1B3 /* Pods_shoutit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFDF0F1439041B367F67F87 /* Pods_shoutit.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
 		AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* termsofservice.html */; };
@@ -275,7 +274,6 @@
 		AEECB9601C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */; };
 		AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFB8E571CF86667003D82A0 /* Social.framework */; };
-		B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */; };
 		B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */; };
 		B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1EA1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift */; };
 		B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2082D721C62638C007EB2FB /* HTMLViewController.swift */; };
@@ -705,6 +703,7 @@
 		B2F524881C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524871C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift */; };
 		B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F524891C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib */; };
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
+		C6B0BF51F12A09E20E7D305E /* Pods_shoutitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCFFA4A22F1C2CF4F1A7C2 /* Pods_shoutitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -738,8 +737,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		087967D27ADC24453BD3A43D /* Pods.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution_local.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_production.xcconfig"; sourceTree = "<group>"; };
+		0C022A74F3085B39CE40F1E7 /* Pods-shoutit.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.adhoc_production.xcconfig"; sourceTree = "<group>"; };
 		2404DBC21CA182EB00C19DCF /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Model/Box.swift; sourceTree = "<group>"; };
 		2405803F1C7368CB009ED106 /* APIShoutsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIShoutsService.swift; path = Networking/APIShoutsService.swift; sourceTree = "<group>"; };
 		240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLoadMoreFooter.swift; path = View/ConversationLoadMoreFooter.swift; sourceTree = "<group>"; };
@@ -829,17 +827,15 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; };
-		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
-		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		3AD4359A1769FCE031CC3B94 /* Pods-shoutit-iphoneTests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.debug_production.xcconfig"; sourceTree = "<group>"; };
-		3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_staging.xcconfig"; sourceTree = "<group>"; };
-		3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_production.xcconfig"; sourceTree = "<group>"; };
-		4A368EEEA9BA4D4F180ECB13 /* Pods-shoutit-iphoneTests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		4C9B5A8F2582C8399D560EAC /* Pods-shoutit-iphoneUITests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		5D2507F7B6A595C6F64A5FD0 /* Pods-shoutit-iphoneUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.distribution.xcconfig"; sourceTree = "<group>"; };
+		29CDF858701740F86E4841DE /* Pods-shoutit.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.test_staging.xcconfig"; sourceTree = "<group>"; };
+		3B9C94FBC276EA83EFA70046 /* Pods-shoutit.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_production.xcconfig"; sourceTree = "<group>"; };
+		3F4A9CA25D6D1DAF99C8C90F /* Pods-shoutitTests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_staging.xcconfig"; sourceTree = "<group>"; };
+		43434B809CC55B53046F2170 /* Pods-shoutitTests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_production.xcconfig"; sourceTree = "<group>"; };
+		58DF5A781E7B65445E79446A /* Pods-shoutit.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.profile_production.xcconfig"; sourceTree = "<group>"; };
+		594E9D6DD8C431B63FED07B0 /* Pods-shoutit.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution.xcconfig"; sourceTree = "<group>"; };
+		5B4737E2BB1EE0782A4EC3A7 /* Pods-shoutit.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution_local.xcconfig"; sourceTree = "<group>"; };
+		5D7B303ED22B0FA47D42EE3A /* Pods-shoutitTests.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution_local.xcconfig"; sourceTree = "<group>"; };
+		5DC7C5E7FDC6449B4353D2E1 /* Pods-shoutitTests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCell.swift; path = View/tabs/home/SHShoutItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -864,19 +860,13 @@
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
 		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
-		6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7529AE454679CA817D4C531F /* Pods-shoutit-iphoneUITests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_production.xcconfig"; sourceTree = "<group>"; };
-		81F8878DD9B089047CDC8922 /* Pods-shoutit-iphoneTests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.test_production.xcconfig"; sourceTree = "<group>"; };
-		8381252BC24DE27A875AC9B4 /* Pods-shoutit-iphoneTests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
-		9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit_iphoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_production.xcconfig"; sourceTree = "<group>"; };
-		9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.test_staging.xcconfig"; sourceTree = "<group>"; };
+		62D13CD384F13C3754B9F79C /* Pods-shoutit.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_staging.xcconfig"; sourceTree = "<group>"; };
+		721F2A54E59AFC17E14AB896 /* Pods-shoutitTests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.test_staging.xcconfig"; sourceTree = "<group>"; };
+		7706E2FDA065F1ADDB4EDB5E /* Pods-shoutitTests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
+		819FD22A9ACD58E5D4D5C3FC /* Pods-shoutit.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.profile_staging.xcconfig"; sourceTree = "<group>"; };
+		9EE0E24B149231886CA50551 /* Pods-shoutitTests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
+		A9F538EBF9BDD070169B9E05 /* Pods-shoutitTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution.xcconfig"; sourceTree = "<group>"; };
+		ABFDF0F1439041B367F67F87 /* Pods_shoutit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shoutit-iphone-Bridging-Header.h"; path = "Application/shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
@@ -1523,16 +1513,15 @@
 		B2F524871C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsShoutsHeaderSupplementeryView.swift; path = View/SearchShoutsResultsShoutsHeaderSupplementeryView.swift; sourceTree = "<group>"; };
 		B2F524891C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchShoutsResultsShoutsHeaderSupplementeryView.xib; path = Storyboards/SearchShoutsResultsShoutsHeaderSupplementeryView.xib; sourceTree = "<group>"; };
 		B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsViewModel.swift; path = ViewModel/SearchShoutsResultsViewModel.swift; sourceTree = "<group>"; };
-		B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		D1161FCCD311B5D049959FDB /* Pods-shoutit-iphoneTests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		D2B0E04898C1627AB7FC7B44 /* Pods-shoutit-iphoneUITests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.test_production.xcconfig"; sourceTree = "<group>"; };
-		E5170806B72721CAA3FA0D7C /* Pods_shoutit_iphoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit_iphoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E62C15D7A12F7B10494AE39E /* Pods.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_local.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_local.xcconfig"; sourceTree = "<group>"; };
-		EFAD6D3361C875A858004F32 /* Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		FE9B9F53FD983DBD5FE397C3 /* Pods-shoutit-iphoneTests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.test_staging.xcconfig"; sourceTree = "<group>"; };
+		B39C5D03D76D8B7FA64A4318 /* Pods-shoutitTests.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_local.xcconfig"; sourceTree = "<group>"; };
+		C1349C9B1E8E6B45DFF26E5A /* Pods-shoutitTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.profile_production.xcconfig"; sourceTree = "<group>"; };
+		CDCCFFA4A22F1C2CF4F1A7C2 /* Pods_shoutitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF6100854BB452BF0B878254 /* Pods-shoutitTests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.test_production.xcconfig"; sourceTree = "<group>"; };
+		D729AD83BC2FA43EA95B67B2 /* Pods-shoutit.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.test_production.xcconfig"; sourceTree = "<group>"; };
+		DCA3A80DBBA04D838C359CD9 /* Pods-shoutitTests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.profile_staging.xcconfig"; sourceTree = "<group>"; };
+		E22E79721F81330AE9DED3A2 /* Pods-shoutit.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_local.xcconfig"; sourceTree = "<group>"; };
+		F183E2A56FDFE3BDDF38D518 /* Pods-shoutit.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
+		FAC520A5D15F4E31C74DDA42 /* Pods-shoutit.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution_staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1576,9 +1565,9 @@
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
-				92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */,
 				B2985F8A1C7294BD00EEA9A2 /* GoogleMaps.framework in Frameworks */,
 				B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */,
+				97958631CA6A3B5B804FE1B3 /* Pods_shoutit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1586,7 +1575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				891CB167342BC09885468C0A /* Pods_shoutit_iphoneTests.framework in Frameworks */,
+				C6B0BF51F12A09E20E7D305E /* Pods_shoutitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,7 +1583,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1987431020E4F7E7FC7F189 /* Pods_shoutit_iphoneUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,8 +1626,6 @@
 				B2985F7F1C728CED00EEA9A2 /* GoogleSignIn.framework */,
 				AEBB69861C6B359B00D48E4F /* CoreLocation.framework */,
 				24DD26576469F744E4920C92 /* Pods.framework */,
-				E5170806B72721CAA3FA0D7C /* Pods_shoutit_iphoneTests.framework */,
-				9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1892,47 +1878,6 @@
 			name = Twilio;
 			sourceTree = "<group>";
 		};
-		5C715BE26A324BEA80A8404C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */,
-				7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */,
-				B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */,
-				6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */,
-				7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */,
-				3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */,
-				996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */,
-				9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */,
-				3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */,
-				8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */,
-				8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */,
-				4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */,
-				4A368EEEA9BA4D4F180ECB13 /* Pods-shoutit-iphoneTests.adhoc_production.xcconfig */,
-				8381252BC24DE27A875AC9B4 /* Pods-shoutit-iphoneTests.adhoc_staging.xcconfig */,
-				81F8878DD9B089047CDC8922 /* Pods-shoutit-iphoneTests.test_production.xcconfig */,
-				FE9B9F53FD983DBD5FE397C3 /* Pods-shoutit-iphoneTests.test_staging.xcconfig */,
-				3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */,
-				D1161FCCD311B5D049959FDB /* Pods-shoutit-iphoneTests.profile_staging.xcconfig */,
-				3AD4359A1769FCE031CC3B94 /* Pods-shoutit-iphoneTests.debug_production.xcconfig */,
-				77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */,
-				2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */,
-				FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */,
-				C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */,
-				EFAD6D3361C875A858004F32 /* Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig */,
-				D2B0E04898C1627AB7FC7B44 /* Pods-shoutit-iphoneUITests.test_production.xcconfig */,
-				A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */,
-				4C9B5A8F2582C8399D560EAC /* Pods-shoutit-iphoneUITests.profile_production.xcconfig */,
-				7529AE454679CA817D4C531F /* Pods-shoutit-iphoneUITests.profile_staging.xcconfig */,
-				0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */,
-				BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */,
-				5D2507F7B6A595C6F64A5FD0 /* Pods-shoutit-iphoneUITests.distribution.xcconfig */,
-				4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */,
-				E62C15D7A12F7B10494AE39E /* Pods.debug_local.xcconfig */,
-				087967D27ADC24453BD3A43D /* Pods.distribution_local.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6027CF281BE74EAE00124C28 = {
 			isa = PBXGroup;
 			children = (
@@ -1942,8 +1887,8 @@
 				6027CF321BE74EAE00124C28 /* Products */,
 				B2415F4D1D009E2A00669C52 /* Frameworks */,
 				AC1C94031BEBB911009400BE /* Resources */,
-				5C715BE26A324BEA80A8404C /* Pods */,
 				1E0F57B258AD6D899B14A1E3 /* Frameworks */,
+				A61C7652D338716F20E3388A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2225,6 +2170,37 @@
 				607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */,
 			);
 			name = TextFieldValidator;
+			sourceTree = "<group>";
+		};
+		A61C7652D338716F20E3388A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C022A74F3085B39CE40F1E7 /* Pods-shoutit.adhoc_production.xcconfig */,
+				F183E2A56FDFE3BDDF38D518 /* Pods-shoutit.adhoc_staging.xcconfig */,
+				D729AD83BC2FA43EA95B67B2 /* Pods-shoutit.test_production.xcconfig */,
+				29CDF858701740F86E4841DE /* Pods-shoutit.test_staging.xcconfig */,
+				58DF5A781E7B65445E79446A /* Pods-shoutit.profile_production.xcconfig */,
+				819FD22A9ACD58E5D4D5C3FC /* Pods-shoutit.profile_staging.xcconfig */,
+				3B9C94FBC276EA83EFA70046 /* Pods-shoutit.debug_production.xcconfig */,
+				62D13CD384F13C3754B9F79C /* Pods-shoutit.debug_staging.xcconfig */,
+				E22E79721F81330AE9DED3A2 /* Pods-shoutit.debug_local.xcconfig */,
+				594E9D6DD8C431B63FED07B0 /* Pods-shoutit.distribution.xcconfig */,
+				FAC520A5D15F4E31C74DDA42 /* Pods-shoutit.distribution_staging.xcconfig */,
+				5B4737E2BB1EE0782A4EC3A7 /* Pods-shoutit.distribution_local.xcconfig */,
+				9EE0E24B149231886CA50551 /* Pods-shoutitTests.adhoc_production.xcconfig */,
+				5DC7C5E7FDC6449B4353D2E1 /* Pods-shoutitTests.adhoc_staging.xcconfig */,
+				CF6100854BB452BF0B878254 /* Pods-shoutitTests.test_production.xcconfig */,
+				721F2A54E59AFC17E14AB896 /* Pods-shoutitTests.test_staging.xcconfig */,
+				C1349C9B1E8E6B45DFF26E5A /* Pods-shoutitTests.profile_production.xcconfig */,
+				DCA3A80DBBA04D838C359CD9 /* Pods-shoutitTests.profile_staging.xcconfig */,
+				43434B809CC55B53046F2170 /* Pods-shoutitTests.debug_production.xcconfig */,
+				3F4A9CA25D6D1DAF99C8C90F /* Pods-shoutitTests.debug_staging.xcconfig */,
+				B39C5D03D76D8B7FA64A4318 /* Pods-shoutitTests.debug_local.xcconfig */,
+				A9F538EBF9BDD070169B9E05 /* Pods-shoutitTests.distribution.xcconfig */,
+				7706E2FDA065F1ADDB4EDB5E /* Pods-shoutitTests.distribution_staging.xcconfig */,
+				5D7B303ED22B0FA47D42EE3A /* Pods-shoutitTests.distribution_local.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		AC1C94031BEBB911009400BE /* Resources */ = {
@@ -2865,6 +2841,8 @@
 				B2415F541D009E9D00669C52 /* Foundation.framework */,
 				B2415F521D009E8100669C52 /* libsqlite3.0.tbd */,
 				B2415F4C1D009E1E00669C52 /* Aviary */,
+				ABFDF0F1439041B367F67F87 /* Pods_shoutit.framework */,
+				CDCCFFA4A22F1C2CF4F1A7C2 /* Pods_shoutitTests.framework */,
 			);
 			name = Frameworks;
 			path = "shoutit-iphone";
@@ -3839,14 +3817,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit" */;
 			buildPhases = (
-				DA5D75C47CFFBFE9B77469E0 /* Check Pods Manifest.lock */,
+				7AFD561BA2136766CD6CC19C /* [CP] Check Pods Manifest.lock */,
 				6027CF2D1BE74EAE00124C28 /* Sources */,
 				6027CF2E1BE74EAE00124C28 /* Frameworks */,
 				6027CF2F1BE74EAE00124C28 /* Resources */,
-				D8607C86775441493F0131C1 /* Embed Pods Frameworks */,
-				5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */,
 				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
+				877FE3D00FA2A99F80631AA0 /* [CP] Embed Pods Frameworks */,
+				5B3A170EBC240B75326680B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3861,12 +3839,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6027CF5C1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitTests" */;
 			buildPhases = (
-				DBB56E14DD953CB898229913 /* Check Pods Manifest.lock */,
+				BE427DCF1A1A9C82D2B6B139 /* [CP] Check Pods Manifest.lock */,
 				6027CF411BE74EAE00124C28 /* Sources */,
 				6027CF421BE74EAE00124C28 /* Frameworks */,
 				6027CF431BE74EAE00124C28 /* Resources */,
-				CAC163F0E63C71C73A6A7C0E /* Embed Pods Frameworks */,
-				AA22321099415A561EC034B5 /* Copy Pods Resources */,
+				598C1896E121E7CAE849DC4F /* [CP] Embed Pods Frameworks */,
+				AF4C28912EACAEDC5298AC93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3882,11 +3860,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6027CF5F1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitUITests" */;
 			buildPhases = (
-				C11EC85E2DC99CC9F76BF864 /* Check Pods Manifest.lock */,
 				6027CF4C1BE74EAE00124C28 /* Sources */,
 				6027CF4D1BE74EAE00124C28 /* Frameworks */,
 				6027CF4E1BE74EAE00124C28 /* Resources */,
-				E0CC7F7561C2F79B4A887656 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4084,34 +4060,79 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */ = {
+		598C1896E121E7CAE849DC4F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA22321099415A561EC034B5 /* Copy Pods Resources */ = {
+		5B3A170EBC240B75326680B7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit/Pods-shoutit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7AFD561BA2136766CD6CC19C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		877FE3D00FA2A99F80631AA0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit/Pods-shoutit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF4C28912EACAEDC5298AC93 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */ = {
@@ -4128,94 +4149,19 @@
 			shellPath = /bin/sh;
 			shellScript = "CRASHLYTICS_SCRIPT=\"${PODS_ROOT}/Fabric/run\"\nCRASHLYTICS_API_KEY=\"b058b2dcbf8b8f864860fe9fe12789317aba9da1\"\nCRASHLYTICS_API_SECRET=\"b00b1a8c8e7d6642474c08773f226a750139839f7c8bdc708de3dd34c551078d\"\n\n\"$CRASHLYTICS_SCRIPT\" \"$CRASHLYTICS_API_KEY\" \"$CRASHLYTICS_API_SECRET\"";
 		};
-		C11EC85E2DC99CC9F76BF864 /* Check Pods Manifest.lock */ = {
+		BE427DCF1A1A9C82D2B6B139 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CAC163F0E63C71C73A6A7C0E /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D8607C86775441493F0131C1 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DA5D75C47CFFBFE9B77469E0 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DBB56E14DD953CB898229913 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E0CC7F7561C2F79B4A887656 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -5403,7 +5349,7 @@
 		};
 		6027CF5A1BE74EAF00124C28 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */;
+			baseConfigurationReference = 0C022A74F3085B39CE40F1E7 /* Pods-shoutit.adhoc_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5431,7 +5377,7 @@
 		};
 		6027CF5B1BE74EAF00124C28 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */;
+			baseConfigurationReference = 58DF5A781E7B65445E79446A /* Pods-shoutit.profile_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5458,7 +5404,7 @@
 		};
 		6027CF5D1BE74EAF00124C28 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A368EEEA9BA4D4F180ECB13 /* Pods-shoutit-iphoneTests.adhoc_production.xcconfig */;
+			baseConfigurationReference = 9EE0E24B149231886CA50551 /* Pods-shoutitTests.adhoc_production.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5471,7 +5417,7 @@
 		};
 		6027CF5E1BE74EAF00124C28 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */;
+			baseConfigurationReference = C1349C9B1E8E6B45DFF26E5A /* Pods-shoutitTests.profile_production.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5484,7 +5430,6 @@
 		};
 		6027CF601BE74EAF00124C28 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5497,7 +5442,6 @@
 		};
 		6027CF611BE74EAF00124C28 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C9B5A8F2582C8399D560EAC /* Pods-shoutit-iphoneUITests.profile_production.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5547,7 +5491,7 @@
 		};
 		AEAE36A41CD0B2B800AA18AE /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 087967D27ADC24453BD3A43D /* Pods.distribution_local.xcconfig */;
+			baseConfigurationReference = 5B4737E2BB1EE0782A4EC3A7 /* Pods-shoutit.distribution_local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5575,7 +5519,7 @@
 		};
 		AEAE36A51CD0B2B800AA18AE /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */;
+			baseConfigurationReference = 5D7B303ED22B0FA47D42EE3A /* Pods-shoutitTests.distribution_local.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5588,7 +5532,6 @@
 		};
 		AEAE36A61CD0B2B800AA18AE /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5638,7 +5581,7 @@
 		};
 		AEAE36AC1CD0D4BE00AA18AE /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E62C15D7A12F7B10494AE39E /* Pods.debug_local.xcconfig */;
+			baseConfigurationReference = E22E79721F81330AE9DED3A2 /* Pods-shoutit.debug_local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5667,7 +5610,7 @@
 		};
 		AEAE36AD1CD0D4BE00AA18AE /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */;
+			baseConfigurationReference = B39C5D03D76D8B7FA64A4318 /* Pods-shoutitTests.debug_local.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5680,7 +5623,6 @@
 		};
 		AEAE36AE1CD0D4BE00AA18AE /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5737,7 +5679,7 @@
 		};
 		B227BFC81C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */;
+			baseConfigurationReference = 29CDF858701740F86E4841DE /* Pods-shoutit.test_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5765,7 +5707,7 @@
 		};
 		B227BFC91C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE9B9F53FD983DBD5FE397C3 /* Pods-shoutit-iphoneTests.test_staging.xcconfig */;
+			baseConfigurationReference = 721F2A54E59AFC17E14AB896 /* Pods-shoutitTests.test_staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5778,7 +5720,6 @@
 		};
 		B227BFCA1C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5835,7 +5776,7 @@
 		};
 		B227BFCD1C5796D4003A2D76 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */;
+			baseConfigurationReference = D729AD83BC2FA43EA95B67B2 /* Pods-shoutit.test_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5863,7 +5804,7 @@
 		};
 		B227BFCE1C5796D4003A2D76 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81F8878DD9B089047CDC8922 /* Pods-shoutit-iphoneTests.test_production.xcconfig */;
+			baseConfigurationReference = CF6100854BB452BF0B878254 /* Pods-shoutitTests.test_production.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5876,7 +5817,6 @@
 		};
 		B227BFCF1C5796D4003A2D76 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2B0E04898C1627AB7FC7B44 /* Pods-shoutit-iphoneUITests.test_production.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5933,7 +5873,7 @@
 		};
 		B227BFD21C5796D7003A2D76 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */;
+			baseConfigurationReference = F183E2A56FDFE3BDDF38D518 /* Pods-shoutit.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5962,7 +5902,7 @@
 		};
 		B227BFD31C5796D7003A2D76 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8381252BC24DE27A875AC9B4 /* Pods-shoutit-iphoneTests.adhoc_staging.xcconfig */;
+			baseConfigurationReference = 5DC7C5E7FDC6449B4353D2E1 /* Pods-shoutitTests.adhoc_staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -5975,7 +5915,6 @@
 		};
 		B227BFD41C5796D7003A2D76 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFAD6D3361C875A858004F32 /* Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6025,7 +5964,7 @@
 		};
 		B227BFDC1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */;
+			baseConfigurationReference = FAC520A5D15F4E31C74DDA42 /* Pods-shoutit.distribution_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6053,7 +5992,7 @@
 		};
 		B227BFDD1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */;
+			baseConfigurationReference = 7706E2FDA065F1ADDB4EDB5E /* Pods-shoutitTests.distribution_staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -6066,7 +6005,6 @@
 		};
 		B227BFDE1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6117,7 +6055,7 @@
 		};
 		B227BFE11C57971C003A2D76 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */;
+			baseConfigurationReference = 819FD22A9ACD58E5D4D5C3FC /* Pods-shoutit.profile_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6144,7 +6082,7 @@
 		};
 		B227BFE21C57971C003A2D76 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1161FCCD311B5D049959FDB /* Pods-shoutit-iphoneTests.profile_staging.xcconfig */;
+			baseConfigurationReference = DCA3A80DBBA04D838C359CD9 /* Pods-shoutitTests.profile_staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -6157,7 +6095,6 @@
 		};
 		B227BFE31C57971C003A2D76 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7529AE454679CA817D4C531F /* Pods-shoutit-iphoneUITests.profile_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6207,7 +6144,7 @@
 		};
 		B227BFE61C579720003A2D76 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */;
+			baseConfigurationReference = 3B9C94FBC276EA83EFA70046 /* Pods-shoutit.debug_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6236,7 +6173,7 @@
 		};
 		B227BFE71C579720003A2D76 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AD4359A1769FCE031CC3B94 /* Pods-shoutit-iphoneTests.debug_production.xcconfig */;
+			baseConfigurationReference = 43434B809CC55B53046F2170 /* Pods-shoutitTests.debug_production.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -6249,7 +6186,6 @@
 		};
 		B227BFE81C579720003A2D76 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6299,7 +6235,7 @@
 		};
 		B227BFEB1C579727003A2D76 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */;
+			baseConfigurationReference = 62D13CD384F13C3754B9F79C /* Pods-shoutit.debug_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6328,7 +6264,7 @@
 		};
 		B227BFEC1C579727003A2D76 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */;
+			baseConfigurationReference = 3F4A9CA25D6D1DAF99C8C90F /* Pods-shoutitTests.debug_staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -6341,7 +6277,6 @@
 		};
 		B227BFED1C579727003A2D76 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -6391,7 +6326,7 @@
 		};
 		B227BFF01C57972B003A2D76 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */;
+			baseConfigurationReference = 594E9D6DD8C431B63FED07B0 /* Pods-shoutit.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6420,7 +6355,7 @@
 		};
 		B227BFF11C57972B003A2D76 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */;
+			baseConfigurationReference = A9F538EBF9BDD070169B9E05 /* Pods-shoutitTests.distribution.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "shoutit-iphoneTests/Info.plist";
@@ -6433,7 +6368,6 @@
 		};
 		B227BFF21C57972B003A2D76 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D2507F7B6A595C6F64A5FD0 /* Pods-shoutit-iphoneUITests.distribution.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "shoutit-iphoneUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

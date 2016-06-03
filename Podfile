@@ -4,6 +4,8 @@ source 'https://github.com/twilio/cocoapod-specs'
 platform :ios, '8.1'
 use_frameworks!
 
+target 'shoutit' do
+
 # Twilio
 pod 'TwilioConversationsClient', '~>0.24.0'
 
@@ -76,6 +78,14 @@ pod 'libPusher', '~> 1.6'
 
 #contacts
 pod 'ContactsPicker'
+
+  target "shoutitTests" do
+    inherit! :search_paths
+    pod 'Quick', '~> 0.9'
+    pod 'Nimble', '~> 4.0'
+    pod 'RxNimble', '~> 0.2'
+  end
+end
 
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|
