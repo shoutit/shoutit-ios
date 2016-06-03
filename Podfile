@@ -21,7 +21,6 @@ pod 'SwiftyBeaver'
 
 # google
 pod 'GoogleMaps', '~> 1.10'
-pod 'FTGooglePlacesAPI'
 pod 'GooglePlaces', :git => 'https://github.com/piotrbernad/Swift-Google-Maps-API'
 
 # facebook
@@ -35,7 +34,7 @@ pod 'AWSCognito', '~> 2.3'
 pod 'AmazonS3RequestManager'
 
 # networking
-pod 'Alamofire', '~> 3.3.0'
+pod 'Alamofire', '~> 3.4'
 pod 'ReachabilitySwift', '~> 2.3'
 pod 'Timberjack'
 
@@ -46,10 +45,9 @@ pod 'KeychainAccess', '~> 2.3'
 pod 'Validator', '~> 1.1'
 
 #images
-pod 'Kingfisher', '~> 2.2'
+pod 'Kingfisher', '~> 2.4'
 pod 'SDWebImage', '~> 3.7'
 pod "MWPhotoBrowser", :path => "MWPhotoBrowser/"
-pod 'MBMapSnapshotter'
 pod 'LLVideoEditor', '~> 1.0'
 
 # serialization

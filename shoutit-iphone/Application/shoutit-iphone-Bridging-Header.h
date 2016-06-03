@@ -5,9 +5,6 @@
 #import "TextFieldValidator.h"
 #import <Mixpanel/Mixpanel.h>
 #import "UIImage+Extention.h"
-#import "DOPDropDownMenu.h"
-#import "YTPlayerView.h"
-#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "UIView+Gradient.h"
 #import <Pusher/Pusher.h>
 #import <Pusher/PTPusherEventDispatcher.h>

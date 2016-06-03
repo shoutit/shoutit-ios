@@ -104,7 +104,6 @@
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
 		6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E65C1C2538F30061F56C /* CustomUITextField.swift */; };
 		606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3041BF8AADD0064C53E /* UIImage+Extention.m */; };
-		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
 		97958631CA6A3B5B804FE1B3 /* Pods_shoutit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFDF0F1439041B367F67F87 /* Pods_shoutit.framework */; };
@@ -122,8 +121,6 @@
 		AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC7027FA1C1AA66200262622 /* uv_idea@2x.png */; };
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
-		ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */; };
-		ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CCA1BF930D50097444E /* YTPlayerView.m */; };
 		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		AE0CD35A1CFC6647006B05FD /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD3591CFC6647006B05FD /* Contact.swift */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
@@ -855,8 +852,6 @@
 		6068E65C1C2538F30061F56C /* CustomUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUITextField.swift; path = Util/customViews/CustomUITextField.swift; sourceTree = "<group>"; };
 		606ED3031BF8AADD0064C53E /* UIImage+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Extention.h"; path = "Util/extensions/UIImage+Extention.h"; sourceTree = "<group>"; };
 		606ED3041BF8AADD0064C53E /* UIImage+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extention.m"; path = "Util/extensions/UIImage+Extention.m"; sourceTree = "<group>"; };
-		606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+UIActivityIndicatorForSDWebImage.h"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
-		606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+UIActivityIndicatorForSDWebImage.m"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
 		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
@@ -886,10 +881,6 @@
 		AC7030C01C15A036008F4C00 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Util/extensions/UIView+Gradient.h"; sourceTree = "<group>"; };
 		AC7030C11C15A036008F4C00 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Util/extensions/UIView+Gradient.m"; sourceTree = "<group>"; };
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
-		ACDB3CA91BF904660097444E /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPDropDownMenu.h; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.h; sourceTree = "<group>"; };
-		ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPDropDownMenu.m; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.m; sourceTree = "<group>"; };
-		ACDB3CC91BF930D50097444E /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Libraries/YoutubeHelper/YTPlayerView.h; sourceTree = "<group>"; };
-		ACDB3CCA1BF930D50097444E /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Libraries/YoutubeHelper/YTPlayerView.m; sourceTree = "<group>"; };
 		ACF9E8731C05195400F0B615 /* UIButton+imageText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+imageText.h"; path = "Util/extensions/UIButton+imageText.h"; sourceTree = "<group>"; };
 		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
@@ -2139,15 +2130,6 @@
 			name = common;
 			sourceTree = "<group>";
 		};
-		606ED30A1BF907FA0064C53E /* UIActivityIndicator-for-SDWebImage */ = {
-			isa = PBXGroup;
-			children = (
-				606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
-				606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
-			);
-			name = "UIActivityIndicator-for-SDWebImage";
-			sourceTree = "<group>";
-		};
 		607F75771BEA6F0300F3BA86 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -2155,9 +2137,6 @@
 				AC7027D01C1AA66200262622 /* libUserVoice.a */,
 				AC7027D11C1AA66200262622 /* UVHeaders */,
 				AC7027D61C1AA66200262622 /* UVResources */,
-				ACDB3CC81BF930910097444E /* YoutubeHelper */,
-				606ED30A1BF907FA0064C53E /* UIActivityIndicator-for-SDWebImage */,
-				ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */,
 				607F75781BEA6F0D00F3BA86 /* TextFieldValidator */,
 			);
 			name = Libraries;
@@ -2237,24 +2216,6 @@
 				AC7027FA1C1AA66200262622 /* uv_idea@2x.png */,
 			);
 			path = UVResources;
-			sourceTree = "<group>";
-		};
-		ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				ACDB3CA91BF904660097444E /* DOPDropDownMenu.h */,
-				ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */,
-			);
-			name = DOPDropDownMenu;
-			sourceTree = "<group>";
-		};
-		ACDB3CC81BF930910097444E /* YoutubeHelper */ = {
-			isa = PBXGroup;
-			children = (
-				ACDB3CC91BF930D50097444E /* YTPlayerView.h */,
-				ACDB3CCA1BF930D50097444E /* YTPlayerView.m */,
-			);
-			name = YoutubeHelper;
 			sourceTree = "<group>";
 		};
 		AE1F29711CE9DDE900D1AA76 /* ConversationInfo */ = {
@@ -4285,7 +4246,6 @@
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
-				606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
 				B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */,
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
@@ -4297,7 +4257,6 @@
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				B2AB73F61CB56C1600C2C0C0 /* SettingsFormTextFieldTableViewCell.swift in Sources */,
 				2404DBC31CA182EB00C19DCF /* Box.swift in Sources */,
-				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
 				B22D90721CE3941200D3C387 /* VideoCallParams.swift in Sources */,
 				B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */,
 				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,
@@ -4486,7 +4445,6 @@
 				B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */,
 				B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */,
 				B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */,
-				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
 				249671591C870ECD0011B078 /* FilterResult.swift in Sources */,
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
