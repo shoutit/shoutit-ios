@@ -97,8 +97,8 @@
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF341BE74EAE00124C28 /* AppDelegate.swift */; };
 		6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF3B1BE74EAE00124C28 /* Assets.xcassets */; };
-		6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */; };
-		6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */; };
+		6027CF4A1BE74EAE00124C28 /* shoutitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF491BE74EAE00124C28 /* shoutitTests.swift */; };
+		6027CF551BE74EAF00124C28 /* shoutitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF541BE74EAF00124C28 /* shoutitUITests.swift */; };
 		6027CF911BE7539400124C28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF901BE7539300124C28 /* Constants.swift */; };
 		6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */; };
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
@@ -845,11 +845,11 @@
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
 		6027CF3B1BE74EAE00124C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		6027CF401BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
-		6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shoutit-iphoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutit_iphoneTests.swift; sourceTree = "<group>"; };
+		6027CF451BE74EAE00124C28 /* shoutitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shoutitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6027CF491BE74EAE00124C28 /* shoutitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutitTests.swift; sourceTree = "<group>"; };
 		6027CF4B1BE74EAE00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6027CF501BE74EAE00124C28 /* shoutit-iphoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shoutit-iphoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutit_iphoneUITests.swift; sourceTree = "<group>"; };
+		6027CF501BE74EAE00124C28 /* shoutitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shoutitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6027CF541BE74EAF00124C28 /* shoutitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutitUITests.swift; sourceTree = "<group>"; };
 		6027CF561BE74EAF00124C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6027CF901BE7539300124C28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Application/Constants.swift; sourceTree = "<group>"; };
 		6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHNavigationViewController.swift; path = View/common/SHNavigationViewController.swift; sourceTree = "<group>"; };
@@ -1951,8 +1951,8 @@
 			isa = PBXGroup;
 			children = (
 				6027CF311BE74EAE00124C28 /* Shoutit.app */,
-				6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */,
-				6027CF501BE74EAE00124C28 /* shoutit-iphoneUITests.xctest */,
+				6027CF451BE74EAE00124C28 /* shoutitTests.xctest */,
+				6027CF501BE74EAE00124C28 /* shoutitUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1982,7 +1982,7 @@
 			children = (
 				B22CCD7A1CD3BF590019AB27 /* Localizable.strings */,
 				B22CCD701CD3BDAF0019AB27 /* InfoPlist.strings */,
-				6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */,
+				6027CF491BE74EAE00124C28 /* shoutitTests.swift */,
 				6027CF4B1BE74EAE00124C28 /* Info.plist */,
 			);
 			name = shoutitTests;
@@ -1994,7 +1994,7 @@
 			children = (
 				B22CCD7F1CD3C52B0019AB27 /* Localizable.strings */,
 				B22CCD751CD3BDB20019AB27 /* InfoPlist.strings */,
-				6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */,
+				6027CF541BE74EAF00124C28 /* shoutitUITests.swift */,
 				6027CF561BE74EAF00124C28 /* Info.plist */,
 			);
 			name = shoutitUITests;
@@ -3884,7 +3884,7 @@
 			);
 			name = shoutitTests;
 			productName = "shoutit-iphoneTests";
-			productReference = 6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */;
+			productReference = 6027CF451BE74EAE00124C28 /* shoutitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6027CF4F1BE74EAE00124C28 /* shoutitUITests */ = {
@@ -3904,7 +3904,7 @@
 			);
 			name = shoutitUITests;
 			productName = "shoutit-iphoneUITests";
-			productReference = 6027CF501BE74EAE00124C28 /* shoutit-iphoneUITests.xctest */;
+			productReference = 6027CF501BE74EAE00124C28 /* shoutitUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -4726,7 +4726,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6027CF4A1BE74EAE00124C28 /* shoutit_iphoneTests.swift in Sources */,
+				6027CF4A1BE74EAE00124C28 /* shoutitTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AEBB69841C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,
@@ -4764,7 +4764,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6027CF551BE74EAF00124C28 /* shoutit_iphoneUITests.swift in Sources */,
+				6027CF551BE74EAF00124C28 /* shoutitUITests.swift in Sources */,
 				AE8351731C5F65D50055C71F /* Array+Additions.swift in Sources */,
 				AE4DB35D1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AEBB69851C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,

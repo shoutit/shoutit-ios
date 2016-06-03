@@ -8,7 +8,7 @@
 
 import XCTest
 
-class shoutit_iphoneUITests: XCTestCase {
+class shoutitUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
