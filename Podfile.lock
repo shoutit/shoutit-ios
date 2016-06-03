@@ -74,9 +74,11 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - Nimble (4.0.1)
   - ObjectMapper (1.3.0)
   - Ogra (2.2.0):
     - Argo (~> 2.2)
+  - Quick (0.9.2)
   - ReachabilitySwift (2.3.3)
   - ResponsiveLabel (1.0.11)
   - RxCocoa (2.3.1):
@@ -127,7 +129,9 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel (~> 2.9)
   - MWPhotoBrowser (from `MWPhotoBrowser/`)
+  - Nimble
   - Ogra
+  - Quick
   - ReachabilitySwift (~> 2.3)
   - ResponsiveLabel (~> 1.0)
   - RxCocoa (~> 2.3.1)
@@ -193,8 +197,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Mixpanel: 818d1940c2d9402453b349545022a86968097f57
   MWPhotoBrowser: cebf3540db6b5116f1ad3e3e4c1b9aa11c0bf25f
+  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   Ogra: 8b90fd2b836203361638a65322554400aed89a28
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   ResponsiveLabel: 9e31c425ed082481faf2360689243bb0ec8f8b22
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa

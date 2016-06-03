@@ -94,6 +94,7 @@
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
 		24DC20B31CBFA51800ED6DA7 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */; };
 		24E298921CF1F23700FDB055 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E298911CF1F23700FDB055 /* Display.swift */; };
+		5914BB77E5FA6817D407FEBC /* Pods_shoutitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */; };
 		601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
 		6027CF351BE74EAE00124C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF341BE74EAE00124C28 /* AppDelegate.swift */; };
 		6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF3B1BE74EAE00124C28 /* Assets.xcassets */; };
@@ -235,6 +236,7 @@
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA599851C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA599861C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
+		AEAA41571D01B54D00EBC39A /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA41561D01B54D00EBC39A /* JSONError.swift */; };
 		AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */; };
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
 		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
@@ -250,6 +252,9 @@
 		AEAE36A21CD0B25300AA18AE /* shoutit-Local-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AEAE36A11CD0B25300AA18AE /* shoutit-Local-Release.xcconfig */; };
 		AEAE36A81CD0B80D00AA18AE /* TypingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAE36A71CD0B80D00AA18AE /* TypingInfo.swift */; };
 		AEAE36AA1CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AEAE36A91CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig */; };
+		AEAF683A1D0193D5003B254D /* MediaPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF68391D0193D5003B254D /* MediaPickerTests.swift */; };
+		AEAF683D1D01A563003B254D /* JSONReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683C1D01A563003B254D /* JSONReadable.swift */; };
+		AEAF683F1D01A583003B254D /* JSONWriteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683E1D01A583003B254D /* JSONWriteable.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69811C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -877,6 +882,7 @@
 		996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_production.xcconfig"; sourceTree = "<group>"; };
 		9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_staging.xcconfig"; sourceTree = "<group>"; };
 		A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.test_staging.xcconfig"; sourceTree = "<group>"; };
+		A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shoutit-iphone-Bridging-Header.h"; path = "Application/shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
@@ -1068,6 +1074,7 @@
 		AEA599751C609DA100015AA3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = Controllers/MenuTableViewController.swift; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
+		AEAA41561D01B54D00EBC39A /* JSONError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
 		AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingPictureCell.xib; path = View/IncomingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingPictureCell.xib; path = Storyboards/OutgoingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationTitleViewMessage.xib; path = Storyboards/ConversationTitleViewMessage.xib; sourceTree = "<group>"; };
@@ -1083,6 +1090,9 @@
 		AEAE36A11CD0B25300AA18AE /* shoutit-Local-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Local-Release.xcconfig"; path = "OtherSources/shoutit-Local-Release.xcconfig"; sourceTree = "<group>"; };
 		AEAE36A71CD0B80D00AA18AE /* TypingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypingInfo.swift; path = Model/TypingInfo.swift; sourceTree = "<group>"; };
 		AEAE36A91CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "shoutit-Local-Debug.xcconfig"; path = "OtherSources/shoutit-Local-Debug.xcconfig"; sourceTree = "<group>"; };
+		AEAF68391D0193D5003B254D /* MediaPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerTests.swift; sourceTree = "<group>"; };
+		AEAF683C1D01A563003B254D /* JSONReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONReadable.swift; path = Model/JSONReadable.swift; sourceTree = "<group>"; };
+		AEAF683E1D01A583003B254D /* JSONWriteable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONWriteable.swift; path = Model/JSONWriteable.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1587,6 +1597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				891CB167342BC09885468C0A /* Pods_shoutit_iphoneTests.framework in Frameworks */,
+				5914BB77E5FA6817D407FEBC /* Pods_shoutitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1984,6 +1995,7 @@
 				B22CCD701CD3BDAF0019AB27 /* InfoPlist.strings */,
 				6027CF491BE74EAE00124C28 /* shoutitTests.swift */,
 				6027CF4B1BE74EAE00124C28 /* Info.plist */,
+				AEAF68391D0193D5003B254D /* MediaPickerTests.swift */,
 			);
 			name = shoutitTests;
 			path = "shoutit-iphoneTests";
@@ -2004,6 +2016,7 @@
 		6027CF621BE74F5200124C28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AEAF683B1D01A547003B254D /* Common */,
 				B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */,
 				248329081C8487900042B0DB /* FilterValue.swift */,
 				249671581C870ECD0011B078 /* FilterResult.swift */,
@@ -2426,6 +2439,16 @@
 				AEADF3421CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift */,
 			);
 			name = ConversationSelectShout;
+			sourceTree = "<group>";
+		};
+		AEAF683B1D01A547003B254D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AEAF683C1D01A563003B254D /* JSONReadable.swift */,
+				AEAF683E1D01A583003B254D /* JSONWriteable.swift */,
+				AEAA41561D01B54D00EBC39A /* JSONError.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		AEDE15941C6DF071002D2AF7 /* Home */ = {
@@ -2874,6 +2897,7 @@
 				B2415F541D009E9D00669C52 /* Foundation.framework */,
 				B2415F521D009E8100669C52 /* libsqlite3.0.tbd */,
 				B2415F4C1D009E1E00669C52 /* Aviary */,
+				A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */,
 			);
 			name = Frameworks;
 			path = "shoutit-iphone";
@@ -4120,7 +4144,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */ = {
@@ -4164,7 +4188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D8607C86775441493F0131C1 /* Embed Pods Frameworks */ = {
@@ -4401,6 +4425,7 @@
 				B272306A1CE0FAB0003547EA /* ConversationProfileCell.swift in Sources */,
 				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
 				B209C5161CEF2BCA00727095 /* ConversationSubjectEditable.swift in Sources */,
+				AEAF683D1D01A563003B254D /* JSONReadable.swift in Sources */,
 				B21217CC1CA5BD78001BAEFC /* CoordinateParams.swift in Sources */,
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */,
@@ -4543,6 +4568,7 @@
 				B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */,
+				AEAA41571D01B54D00EBC39A /* JSONError.swift in Sources */,
 				B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */,
 				B20F47D61CAEDC640091899C /* SliderFilterTableViewCell.swift in Sources */,
 				B23D132C1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift in Sources */,
@@ -4552,6 +4578,7 @@
 				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
 				249671591C870ECD0011B078 /* FilterResult.swift in Sources */,
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
+				AEAF683F1D01A583003B254D /* JSONWriteable.swift in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
 				242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */,
 				AE1F3FE21CEB3CD300C3432F /* AddMemberCellConfigurator.swift in Sources */,
@@ -4728,6 +4755,7 @@
 			files = (
 				6027CF4A1BE74EAE00124C28 /* shoutitTests.swift in Sources */,
 				AE8351721C5F65D50055C71F /* Array+Additions.swift in Sources */,
+				AEAF683A1D0193D5003B254D /* MediaPickerTests.swift in Sources */,
 				AE4DB35C1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				AEBB69841C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,
 				AEE924B61C6884D600EFBF43 /* User.swift in Sources */,
@@ -5702,7 +5730,7 @@
 		};
 		B227BFC71C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */;
+			baseConfigurationReference = B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

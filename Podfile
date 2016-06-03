@@ -77,6 +77,11 @@ pod 'libPusher', '~> 1.6'
 #contacts
 pod 'ContactsPicker'
 
+target "shoutitTests", :exclusive => true do
+    pod 'Quick'
+    pod 'Nimble'
+end
+
 # After every installation, copy the license and settings plists over to our project
 post_install do |installer|
   require 'fileutils'
