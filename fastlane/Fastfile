@@ -203,7 +203,7 @@ platform :ios do
   
   desc "Runs all the tests"
   lane :localizations do
-    au_generate_translations languages: "en ar de", export_dir: "translations/", project_file_path: "shoutit-iphone.xcodeproj"
+    au_generate_translations languages: "en ar de", export_dir: "translations/", project_file_path: "shoutit.xcodeproj"
   end
 
 end
