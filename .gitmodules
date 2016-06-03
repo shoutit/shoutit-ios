@@ -4,3 +4,6 @@
   [submodule "translations"]
 	path = translations
 	url = https://shoutit-bot:shoutitbot1@github.com/shoutit/shoutit-ios-xliff.git
+[submodule "AviarySDK"]
+	path = AviarySDK
+	url = git@git.appunite.com:appunite/aviary.git
