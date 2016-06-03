@@ -16,14 +16,14 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6027CF301BE74EAE00124C28"
                BuildableName = "Shoutit.app"
-               BlueprintName = "shoutit-iphone"
-               ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+               BlueprintName = "shoutit"
+               ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Test_Staging"
+      buildConfiguration = "Test_Production"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6027CF441BE74EAE00124C28"
-               BuildableName = "shoutit-iphoneTests.xctest"
-               BlueprintName = "shoutit-iphoneTests"
-               ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+               BuildableName = "shoutitTests.xctest"
+               BlueprintName = "shoutitTests"
+               ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6027CF4F1BE74EAE00124C28"
-               BuildableName = "shoutit-iphoneUITests.xctest"
-               BlueprintName = "shoutit-iphoneUITests"
-               ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+               BuildableName = "shoutitUITests.xctest"
+               BlueprintName = "shoutitUITests"
+               ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,15 +54,15 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6027CF301BE74EAE00124C28"
             BuildableName = "Shoutit.app"
-            BlueprintName = "shoutit-iphone"
-            ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+            BlueprintName = "shoutit"
+            ReferencedContainer = "container:shoutit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug_Staging"
+      buildConfiguration = "Debug_Production"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -77,15 +77,15 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6027CF301BE74EAE00124C28"
             BuildableName = "Shoutit.app"
-            BlueprintName = "shoutit-iphone"
-            ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+            BlueprintName = "shoutit"
+            ReferencedContainer = "container:shoutit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Profile_Staging"
+      buildConfiguration = "Profile_Production"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -96,16 +96,16 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6027CF301BE74EAE00124C28"
             BuildableName = "Shoutit.app"
-            BlueprintName = "shoutit-iphone"
-            ReferencedContainer = "container:shoutit-iphone.xcodeproj">
+            BlueprintName = "shoutit"
+            ReferencedContainer = "container:shoutit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Profile_Staging">
+      buildConfiguration = "Profile_Production">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "AdHoc_Staging"
+      buildConfiguration = "AdHoc_Production"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

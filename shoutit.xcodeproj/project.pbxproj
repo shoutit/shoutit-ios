@@ -1936,9 +1936,9 @@
 		6027CF281BE74EAE00124C28 = {
 			isa = PBXGroup;
 			children = (
-				6027CF331BE74EAE00124C28 /* shoutit-iphone */,
-				6027CF481BE74EAE00124C28 /* shoutit-iphoneTests */,
-				6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */,
+				6027CF331BE74EAE00124C28 /* shoutit */,
+				6027CF481BE74EAE00124C28 /* shoutitTests */,
+				6027CF531BE74EAF00124C28 /* shoutitUITests */,
 				6027CF321BE74EAE00124C28 /* Products */,
 				B2415F4D1D009E2A00669C52 /* Frameworks */,
 				AC1C94031BEBB911009400BE /* Resources */,
@@ -1957,7 +1957,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6027CF331BE74EAE00124C28 /* shoutit-iphone */ = {
+		6027CF331BE74EAE00124C28 /* shoutit */ = {
 			isa = PBXGroup;
 			children = (
 				B227BFA81C579321003A2D76 /* Application */,
@@ -1973,10 +1973,11 @@
 				B227BFA91C57933C003A2D76 /* OtherSources */,
 				607F75771BEA6F0300F3BA86 /* Libraries */,
 			);
+			name = shoutit;
 			path = "shoutit-iphone";
 			sourceTree = "<group>";
 		};
-		6027CF481BE74EAE00124C28 /* shoutit-iphoneTests */ = {
+		6027CF481BE74EAE00124C28 /* shoutitTests */ = {
 			isa = PBXGroup;
 			children = (
 				B22CCD7A1CD3BF590019AB27 /* Localizable.strings */,
@@ -1984,10 +1985,11 @@
 				6027CF491BE74EAE00124C28 /* shoutit_iphoneTests.swift */,
 				6027CF4B1BE74EAE00124C28 /* Info.plist */,
 			);
+			name = shoutitTests;
 			path = "shoutit-iphoneTests";
 			sourceTree = "<group>";
 		};
-		6027CF531BE74EAF00124C28 /* shoutit-iphoneUITests */ = {
+		6027CF531BE74EAF00124C28 /* shoutitUITests */ = {
 			isa = PBXGroup;
 			children = (
 				B22CCD7F1CD3C52B0019AB27 /* Localizable.strings */,
@@ -1995,6 +1997,7 @@
 				6027CF541BE74EAF00124C28 /* shoutit_iphoneUITests.swift */,
 				6027CF561BE74EAF00124C28 /* Info.plist */,
 			);
+			name = shoutitUITests;
 			path = "shoutit-iphoneUITests";
 			sourceTree = "<group>";
 		};
@@ -3841,9 +3844,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6027CF301BE74EAE00124C28 /* shoutit-iphone */ = {
+		6027CF301BE74EAE00124C28 /* shoutit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphone" */;
+			buildConfigurationList = 6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit" */;
 			buildPhases = (
 				DA5D75C47CFFBFE9B77469E0 /* Check Pods Manifest.lock */,
 				6027CF2D1BE74EAE00124C28 /* Sources */,
@@ -3858,14 +3861,14 @@
 			);
 			dependencies = (
 			);
-			name = "shoutit-iphone";
+			name = shoutit;
 			productName = "shoutit-iphone";
 			productReference = 6027CF311BE74EAE00124C28 /* Shoutit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6027CF441BE74EAE00124C28 /* shoutit-iphoneTests */ = {
+		6027CF441BE74EAE00124C28 /* shoutitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6027CF5C1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphoneTests" */;
+			buildConfigurationList = 6027CF5C1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitTests" */;
 			buildPhases = (
 				DBB56E14DD953CB898229913 /* Check Pods Manifest.lock */,
 				6027CF411BE74EAE00124C28 /* Sources */,
@@ -3879,14 +3882,14 @@
 			dependencies = (
 				6027CF471BE74EAE00124C28 /* PBXTargetDependency */,
 			);
-			name = "shoutit-iphoneTests";
+			name = shoutitTests;
 			productName = "shoutit-iphoneTests";
 			productReference = 6027CF451BE74EAE00124C28 /* shoutit-iphoneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		6027CF4F1BE74EAE00124C28 /* shoutit-iphoneUITests */ = {
+		6027CF4F1BE74EAE00124C28 /* shoutitUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6027CF5F1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphoneUITests" */;
+			buildConfigurationList = 6027CF5F1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitUITests" */;
 			buildPhases = (
 				C11EC85E2DC99CC9F76BF864 /* Check Pods Manifest.lock */,
 				6027CF4C1BE74EAE00124C28 /* Sources */,
@@ -3899,7 +3902,7 @@
 			dependencies = (
 				6027CF521BE74EAE00124C28 /* PBXTargetDependency */,
 			);
-			name = "shoutit-iphoneUITests";
+			name = shoutitUITests;
 			productName = "shoutit-iphoneUITests";
 			productReference = 6027CF501BE74EAE00124C28 /* shoutit-iphoneUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -3933,7 +3936,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6027CF2C1BE74EAE00124C28 /* Build configuration list for PBXProject "shoutit-iphone" */;
+			buildConfigurationList = 6027CF2C1BE74EAE00124C28 /* Build configuration list for PBXProject "shoutit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3948,9 +3951,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6027CF301BE74EAE00124C28 /* shoutit-iphone */,
-				6027CF441BE74EAE00124C28 /* shoutit-iphoneTests */,
-				6027CF4F1BE74EAE00124C28 /* shoutit-iphoneUITests */,
+				6027CF301BE74EAE00124C28 /* shoutit */,
+				6027CF441BE74EAE00124C28 /* shoutitTests */,
+				6027CF4F1BE74EAE00124C28 /* shoutitUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -4800,12 +4803,12 @@
 /* Begin PBXTargetDependency section */
 		6027CF471BE74EAE00124C28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6027CF301BE74EAE00124C28 /* shoutit-iphone */;
+			target = 6027CF301BE74EAE00124C28 /* shoutit */;
 			targetProxy = 6027CF461BE74EAE00124C28 /* PBXContainerItemProxy */;
 		};
 		6027CF521BE74EAE00124C28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6027CF301BE74EAE00124C28 /* shoutit-iphone */;
+			target = 6027CF301BE74EAE00124C28 /* shoutit */;
 			targetProxy = 6027CF511BE74EAE00124C28 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -5471,7 +5474,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = AdHoc_Production;
 		};
@@ -5484,7 +5487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Profile_Production;
 		};
@@ -5588,7 +5591,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Distribution_Local;
 		};
@@ -5680,7 +5683,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Debug_Local;
 		};
@@ -5778,7 +5781,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Test_Staging;
 		};
@@ -5876,7 +5879,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Test_Production;
 		};
@@ -5975,7 +5978,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = AdHoc_Staging;
 		};
@@ -6066,7 +6069,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Distribution_Staging;
 		};
@@ -6157,7 +6160,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Profile_Staging;
 		};
@@ -6249,7 +6252,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Debug_Production;
 		};
@@ -6341,7 +6344,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Debug_Staging;
 		};
@@ -6433,7 +6436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shoutit.shoutit-iphoneTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit-iphone.app/shoutit-iphone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shoutit.app/shoutit";
 			};
 			name = Distribution;
 		};
@@ -6453,7 +6456,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6027CF2C1BE74EAE00124C28 /* Build configuration list for PBXProject "shoutit-iphone" */ = {
+		6027CF2C1BE74EAE00124C28 /* Build configuration list for PBXProject "shoutit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6027CF571BE74EAF00124C28 /* AdHoc_Production */,
@@ -6472,7 +6475,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;
 		};
-		6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphone" */ = {
+		6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6027CF5A1BE74EAF00124C28 /* AdHoc_Production */,
@@ -6491,7 +6494,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;
 		};
-		6027CF5C1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphoneTests" */ = {
+		6027CF5C1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6027CF5D1BE74EAF00124C28 /* AdHoc_Production */,
@@ -6510,7 +6513,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;
 		};
-		6027CF5F1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit-iphoneUITests" */ = {
+		6027CF5F1BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutitUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6027CF601BE74EAF00124C28 /* AdHoc_Production */,

@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import shoutit_iphone
 
 class shoutit_iphoneTests: XCTestCase {
     
