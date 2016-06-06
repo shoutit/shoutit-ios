@@ -9,80 +9,43 @@
 import UIKit
 import RxSwift
 
+final class VideoCallViewController: UIViewController {
 
-enum VideoCallViewControllerState {
-    case ReadyForCall
-    case Calling
-    case InCall
-    case CallEnded
-    case CallFailed
-}
-
-final class VideoCallViewController: UIViewController, TWCParticipantDelegate, TWCConversationDelegate, TWCCameraCapturerDelegate, TWCVideoTrackDelegate, TWCLocalMediaDelegate, TWCVideoViewRendererDelegate {
-
+    // UI
     @IBOutlet weak var videoPreView: UIView!
     @IBOutlet weak var myVideoPreView: UIView!
+    @IBOutlet weak var chatInfoHeaderView: UIView!
+    @IBOutlet weak var callerNameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var audioButton: RoundSwitchableButton!
+    @IBOutlet weak var videoButton: RoundSwitchableButton!
+    
+    // constraints
     @IBOutlet weak var previewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var callButton: UIButton!
+    
+    // private
     private let disposeBag = DisposeBag()
     
+    // state
+    var viewModel: VideoCallViewModel!
     var remoteVideoRenderer: TWCVideoViewRenderer?
-    
-    var state : VideoCallViewControllerState = .ReadyForCall {
-        didSet {
-            invalidateMessage()
-            
-            if state == .CallEnded {
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-            
-            self.callButton.hidden = state != .ReadyForCall
-        }
-    }
-    
-    var conversation : TWCConversation? {
-        didSet {
-            if let conversation = conversation {
-                conversation.delegate = self
-            }
-        }
-    }
-    
-    var localMedia : TWCLocalMedia! {
-        didSet {
-            localMedia.delegate = self
-            
-        }
-    }
-    
-    var callingToProfile: Profile?
-    
     var camera : TWCCameraCapturer!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if conversation != nil {
-            state = .Calling
-        } else {
-            state = .ReadyForCall
-        }
-        
-        if localMedia == nil {
-            localMedia = TWCLocalMedia()
-        }
-        
+        precondition(viewModel != nil)
+        viewModel.localMedia.delegate = self
         setPreviewOnFullScreen()
-        
         if (!Platform.isSimulator) {
             createCapturer()
         }
+        setupRX()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,7 +55,7 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
             .defaultCenter()
             .addObserverForName(UIApplicationDidEnterBackgroundNotification,
                                                                 object: nil, queue: nil) {[weak self] (_) in
-            self?.endCall()
+            self?.viewModel.endCall()
         }
     }
     
@@ -106,82 +69,57 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         UIApplication.sharedApplication().idleTimerDisabled = false
     }
     
-    // MARK: - Actions
+    // MARK: - Setup
     
-    @IBAction func startCalling() {
+    private func setupRX() {
         
-        state = .Calling
-        
-        guard let callingToProfile = callingToProfile else {
-            self.endCall()
-            return
-        }
-        
-        Account.sharedInstance
-            .twilioManager
-            .makeCallTo(callingToProfile, media: localMedia).subscribe({[weak self] (event) in
-                switch event {
-                case .Error(let error):
-                    self?.state = .CallFailed
-                    self?.showError(error)
-                case .Next(let conversation):
-                    self?.conversation = conversation
-                default:
+        viewModel.state
+            .asDriver()
+            .driveNext { [weak self] (state) in
+                self?.invalidateMessage()
+                self?.callButton.hidden = state != .ReadyForCall
+                
+                switch state {
+                case .ReadyForCall:
                     break
+                case .InCall:
+                    break
+                case .Calling:
+                    break
+                case .CallFailed:
+                    break
+                case .CallEnded:
+                    self?.dismissViewControllerAnimated(true, completion: nil)
                 }
-                })
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.callerProfile
+            .asDriver()
+            .driveNext { [weak self] (profile) in
+                self?.callerNameLabel.text = profile?.name
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.conversation
+            .asDriver()
+            .driveNext { (conversation) in
+                conversation?.delegate = self
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.errorSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] (error) in
+                self?.showError(error)
+            }
             .addDisposableTo(disposeBag)
     }
     
-    func invalidateMessage() {
-        self.messageLabel.text = messageText()
-    }
-    
-    func messageText() -> String? {
-        switch self.state {
-            case .ReadyForCall:
-                if let username = callingToProfile?.username {
-                    return String.localizedStringWithFormat(NSLocalizedString("Video call with %@", comment: "Video call status message"), username)
-                }
-            case .Calling:
-                if let participantIdentity = conversation?.participants.first?.identity {
-                    return String.localizedStringWithFormat(NSLocalizedString("Connecting with %@...", comment: "Video call status message"), participantIdentity)
-                } else {
-                    return NSLocalizedString("Connecting...", comment: "Video call status message")
-                }
-            case .InCall:
-                return "\(conversation!.participants.first?.identity ?? "")"
-            case .CallEnded:
-                return NSLocalizedString("Call Ended", comment: "Video call status message")
-            case .CallFailed:
-                return NSLocalizedString("Call Failed", comment: "Video call status message")
-        }
-        
-        return nil
-    }
-    
-    @IBAction func endCall() {
-        self.conversation?.disconnect()
-        
-        let sentInvitations = Account.sharedInstance.twilioManager.sentInvitations
-        
-        for invite : TWCOutgoingInvite in sentInvitations {
-            invite.cancel()
-        }
-        
-        // Clear sent invitations
-        
-        // remove this invitation, beacuse it is no longer needed
-        Account.sharedInstance.twilioManager.sentInvitations = []
-        
-        
-        state = .CallEnded
-    }
-    
-    func createCapturer() {
+    private func createCapturer() {
         
         do {
-            try self.camera = self.localMedia.sh_addCameraTrack()
+            try self.camera = viewModel.localMedia.sh_addCameraTrack()
         } catch let error as NSError {
             print("Error: \(error)")
         }
@@ -191,43 +129,27 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         }
         
         videoTrack.delegate = self
-        
         videoTrack.attach(self.myVideoPreView)
     }
     
-    //MARK - TWCConversationDelegate
+    // MARK: - Actions
     
-    func conversationEnded(conversation: TWCConversation, error: NSError) {
-        state = .CallEnded
+    @IBAction func startCalling() {
+        viewModel.startCall()
     }
     
-    func conversation(conversation: TWCConversation, didConnectParticipant participant: TWCParticipant) {
-        state = .InCall
-        
-        adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
-        
-        participant.delegate = self
-        
-        if let videoTrack = participant.media.videoTracks.first {
-            videoTrack.attach(self.videoPreView)
-        }
+    func invalidateMessage() {
+        self.messageLabel.text = messageText()
     }
     
-    func conversation(conversation: TWCConversation, didFailToConnectParticipant participant: TWCParticipant, error: NSError) {
-        state = .CallFailed
+    @IBAction func endCall() {
+        viewModel.endCall()
     }
+}
+
+private extension VideoCallViewController {
     
-    //MARK - TWCVideoTrackDelegate
-    
-    func videoTrack(track: TWCVideoTrack, dimensionsDidChange dimensions: CMVideoDimensions) {
-        if state == .InCall {
-            adjustPreviewSize(dimensions)
-        } else {
-            setPreviewOnFullScreen()
-        }
-    }
-    
-    func adjustPreviewSize(dimensions: CMVideoDimensions) {
+    private func adjustPreviewSize(dimensions: CMVideoDimensions) {
         let maxWidth : CGFloat = min(round(CGRectGetWidth(self.view.bounds) * 0.35), 80.0)
         
         var height = round(CGFloat(dimensions.height / dimensions.width) * maxWidth)
@@ -243,7 +165,7 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         self.view.layoutIfNeeded()
     }
     
-    func setPreviewOnFullScreen() {
+    private func setPreviewOnFullScreen() {
         self.previewWidthConstraint.constant = CGRectGetWidth(self.view.bounds)
         self.previewHeightConstraint.constant = CGRectGetHeight(self.view.bounds)
         self.previewLeadingConstraint.constant = 0.0
@@ -251,24 +173,7 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         self.view.layoutIfNeeded()
     }
     
-    //MARK - TWCLocalMediaDelegate
-    
-    func localMedia(media: TWCLocalMedia, didAddVideoTrack videoTrack: TWCVideoTrack) {
-        videoTrack.attach(self.myVideoPreView)
-        videoTrack.delegate = self
-    }
-    
-    func localMedia(media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
-        videoTrack.detach(self.myVideoPreView)
-    }
-    
-    //MARK - TWCParticipantDelegate
-    
-    func participant(participant: TWCParticipant, addedVideoTrack videoTrack: TWCVideoTrack) {
-        createRendererForVideoTrack(videoTrack)
-    }
-    
-    func createRendererForVideoTrack(videoTrack: TWCVideoTrack) {
+    private func createRendererForVideoTrack(videoTrack: TWCVideoTrack) {
         let renderer = TWCVideoViewRenderer(delegate: self)
         
         renderer.view.bounds = self.videoPreView.frame
@@ -285,32 +190,9 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
         
         self.remoteVideoRenderer = renderer
     }
-    
-    func participant(participant: TWCParticipant, removedVideoTrack videoTrack: TWCVideoTrack) {
-        setPreviewOnFullScreen()
-    }
-    
-    func participant(participant: TWCParticipant, addedAudioTrack audioTrack: TWCAudioTrack) {
-        if let videoTrack = participant.media.videoTracks.first {
-            videoTrack.attach(self.videoPreView)
-        }
-    }
-    
-    func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
-        adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
-    }
-    
-    func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
-        setPreviewOnFullScreen()
-    }
-    
-    func conversation(conversation: TWCConversation, didDisconnectParticipant participant: TWCParticipant) {
-        if conversation.participants.count < 2 {
-           state = .CallEnded
-        }
-    }
-    
-    //MARK- TWCVideoViewRendererDelegate
+}
+
+extension VideoCallViewController: TWCVideoViewRendererDelegate {
     
     func rendererDidReceiveVideoData(renderer: TWCVideoViewRenderer) {
         // Called when the first frame of video is received on the remote Participant's video track
@@ -333,5 +215,84 @@ final class VideoCallViewController: UIViewController, TWCParticipantDelegate, T
     func rendererShouldRotateContent(renderer: TWCVideoViewRenderer) -> Bool {
         return true
     }
+}
 
+extension VideoCallViewController: TWCLocalMediaDelegate {
+    
+    func localMedia(media: TWCLocalMedia, didAddVideoTrack videoTrack: TWCVideoTrack) {
+        videoTrack.attach(self.myVideoPreView)
+        videoTrack.delegate = self
+    }
+    
+    func localMedia(media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
+        videoTrack.detach(self.myVideoPreView)
+    }
+}
+
+extension VideoCallViewController: TWCParticipantDelegate {
+    
+    func participant(participant: TWCParticipant, addedVideoTrack videoTrack: TWCVideoTrack) {
+        createRendererForVideoTrack(videoTrack)
+    }
+    
+    func participant(participant: TWCParticipant, removedVideoTrack videoTrack: TWCVideoTrack) {
+        setPreviewOnFullScreen()
+    }
+    
+    func participant(participant: TWCParticipant, addedAudioTrack audioTrack: TWCAudioTrack) {
+        if let videoTrack = participant.media.videoTracks.first {
+            videoTrack.attach(self.videoPreView)
+        }
+    }
+    
+    func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
+        adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
+    }
+    
+    func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
+        setPreviewOnFullScreen()
+    }
+}
+
+extension VideoCallViewController: TWCConversationDelegate {
+    
+    func conversationEnded(conversation: TWCConversation, error: NSError) {
+        viewModel.state.value = .CallEnded
+    }
+    
+    func conversation(conversation: TWCConversation, didConnectParticipant participant: TWCParticipant) {
+        
+        viewModel.state.value = .InCall
+        adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
+        participant.delegate = self
+        
+        if let videoTrack = participant.media.videoTracks.first {
+            videoTrack.attach(self.videoPreView)
+        }
+    }
+    
+    func conversation(conversation: TWCConversation, didFailToConnectParticipant participant: TWCParticipant, error: NSError) {
+        viewModel.state.value = .CallFailed
+    }
+    
+    func conversation(conversation: TWCConversation, didDisconnectParticipant participant: TWCParticipant) {
+        if conversation.participants.count < 2 {
+            viewModel.state.value = .CallEnded
+        }
+    }
+}
+
+extension VideoCallViewController: TWCVideoTrackDelegate {
+    
+    func videoTrack(track: TWCVideoTrack, dimensionsDidChange dimensions: CMVideoDimensions) {
+        if case .InCall = viewModel.state.value {
+            adjustPreviewSize(dimensions)
+        } else {
+            setPreviewOnFullScreen()
+        }
+    }
+}
+
+extension VideoCallViewController: TWCCameraCapturerDelegate {
+    
 }

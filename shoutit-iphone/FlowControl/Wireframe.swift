@@ -282,10 +282,6 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationLocationController") as! ConversationLocationController
     }
     
-    static func callingoutController() -> CallingOutViewController {
-        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("CallingOutViewController") as! CallingOutViewController
-    }
-    
     static func videoCallController() -> VideoCallViewController {
         return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("VideoCallViewController") as! VideoCallViewController
     }
