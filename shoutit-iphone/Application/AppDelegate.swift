@@ -99,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LocationManager.sharedInstance.stopUpdatingLocation()
         Account.sharedInstance.pusherManager.disconnect()
+        MixpanelHelper.handleAppDidEnterBackground()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -112,10 +113,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Account.sharedInstance.fetchUserProfile()
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        MixpanelHelper.handleAppDidTerminate()
     }
     
     // MARK: - Push notifications

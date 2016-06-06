@@ -47,7 +47,7 @@ final class MixpanelHelper {
         sendAppOpenEvent()
     }
     
-    static func handleAppDidTerminate() {
+    static func handleAppDidEnterBackground() {
         sendAppDidCloseEvent()
     }
     
