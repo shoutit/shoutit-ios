@@ -11,17 +11,17 @@ import Argo
 import Curry
 import Ogra
 
-struct Currency {
+public struct Currency {
     
-    let code: String
-    let country: String
-    let name: String
+    public let code: String
+    public let country: String
+    public let name: String
 }
 
 
 extension Currency: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Currency> {
+    public static func decode(j: JSON) -> Decoded<Currency> {
         let f = curry(Currency.init)
             <^> j <| "code"
             <*> j <| "country"
@@ -32,7 +32,7 @@ extension Currency: Decodable {
 
 extension Currency: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "code"    : self.code.encode(),
             "country"  : self.country.encode(),

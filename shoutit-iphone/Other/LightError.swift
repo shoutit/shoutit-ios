@@ -8,6 +8,10 @@
 
 import Foundation
 
-struct LightError: ShoutitError {
-    let userMessage: String
+public struct LightError: ShoutitError {
+    public let userMessage: String
+    
+    public init(userMessage: String) {
+        self.userMessage = userMessage
+    }
 }

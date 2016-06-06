@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 import DZNEmptyDataSet
+import ShoutitKit
 
 class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     var flowDelegate : FlowController?

@@ -10,6 +10,7 @@ import UIKit
 import SlackTextViewController
 import RxSwift
 import DZNEmptyDataSet
+import ShoutitKit
 
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: FlowController?

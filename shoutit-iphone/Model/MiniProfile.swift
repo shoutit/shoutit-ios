@@ -10,15 +10,21 @@ import Foundation
 import Argo
 import Curry
 
-struct MiniProfile {
-    let id: String
-    let username: String
-    let name: String?
+public struct MiniProfile {
+    public let id: String
+    public let username: String
+    public let name: String?
+    
+    public init (id: String, username: String, name: String?) {
+        self.id = id
+        self.username = username
+        self.name = name
+    }
 }
 
 extension MiniProfile: Decodable {
     
-    static func decode(j: JSON) -> Decoded<MiniProfile> {
+    public static func decode(j: JSON) -> Decoded<MiniProfile> {
         return curry(MiniProfile.init)
             <^> j <| "id"
             <*> j <| "username"

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 enum PostSignupSuggestionsSection {
     case Users

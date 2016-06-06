@@ -11,15 +11,15 @@ import Argo
 import Curry
 import Ogra
 
-struct FacebookAccount {
-    let scopes: [String]
-    let expiresAtEpoch: Int
-    let facebookId: String
+public struct FacebookAccount {
+    public let scopes: [String]
+    public let expiresAtEpoch: Int
+    public let facebookId: String
 }
 
 extension FacebookAccount: Decodable {
     
-    static func decode(j: JSON) -> Decoded<FacebookAccount> {
+    public static func decode(j: JSON) -> Decoded<FacebookAccount> {
         return curry(FacebookAccount.init)
             <^> j <|| "scopes"
             <*> j <| "expires_at"
@@ -29,7 +29,7 @@ extension FacebookAccount: Decodable {
 
 extension FacebookAccount: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "scopes"    : scopes.encode(),
             "expires_at"  : expiresAtEpoch.encode(),

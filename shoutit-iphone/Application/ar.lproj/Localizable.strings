@@ -83,6 +83,9 @@
 /* No comment provided by engineer. */
 "Browse" = "إستعرض";
 
+/* No comment provided by engineer. */
+"Buy & Sell while Chatting on #Shoutit App! Get it on shoutit.com/app" = "بيع و اشتري وانت تدردش على شاوت ات! حمل التطبيق الآن shoutit.com/app #شاوت_ات #Shoutit";
+
 /* Signup screen terms and policy message message */
 "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy." = "عند المتابعة ستكون قد وافقت على شروط الخدمة وسياسة الخصوصية لشاوت ات.";
 
@@ -130,6 +133,9 @@
 
 /* Shout detail tab bar item */
 "Chat" = "محادثة";
+
+/* Chat Info Bottom Description */
+"Chat created by %@" = "أنشئت بواسطة %@";
 
 /* Chat Info Bottom Description */
 "Chat created by Shoutit" = "محادثة من شاوت ات";
@@ -202,6 +208,9 @@
 
 /* No comment provided by engineer. */
 "Create another Request" = "إنشاء طلب آخر";
+
+/* Chat Info Bottom Description */
+"Created on %@" = "بتاريخ %@";
 
 /* No comment provided by engineer. */
 "Currency" = "العملة";

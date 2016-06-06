@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol ConversationSubjectEditable: class {
     var chatSubject: String { get set }

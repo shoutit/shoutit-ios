@@ -8,6 +8,7 @@
 
 import UIKit
 import GooglePlaces
+import ShoutitKit
 
 final class SelectShoutLocationViewController: ChangeLocationTableViewController {
 

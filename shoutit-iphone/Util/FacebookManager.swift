@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import FBSDKCoreKit
 import FBSDKLoginKit
+import ShoutitKit
 
 enum FacebookPermissions: String {
     case Email = "email"

@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import ShoutitKit
 
 final class PostSignupInterestCellViewModel {
     
-    let category: Category
+    let category: ShoutitKit.Category
     var selected: Bool = false
     
-    init(category: Category) {
+    init(category: ShoutitKit.Category) {
         self.category = category
     }
 }

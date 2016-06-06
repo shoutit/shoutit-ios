@@ -8,7 +8,8 @@
 
 import UIKit
 import RxSwift
-
+import ShoutitKit
+ 
 final class PostSignupSuggestionsCellViewModel {
     
     let item: Suggestable

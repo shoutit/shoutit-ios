@@ -11,6 +11,7 @@ import Alamofire
 import Argo
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 final class APIGenericService {
     

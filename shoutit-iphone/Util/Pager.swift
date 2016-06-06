@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Argo
+import ShoutitKit
 
 enum PagerError: ErrorType {
     case StateDoesNotAllowManipulation

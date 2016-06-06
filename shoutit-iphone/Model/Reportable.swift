@@ -11,13 +11,13 @@ import Argo
 import Curry
 import Ogra
 
-protocol Reportable {
+public protocol Reportable {
     func attachedObjectJSON() -> JSON
     func reportTitle() -> String
 }
 
 extension Reportable {
-    func reportAlert(completion: (report: Report) -> Void) -> UIAlertController {
+    public func reportAlert(completion: (report: Report) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: reportTitle(), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in

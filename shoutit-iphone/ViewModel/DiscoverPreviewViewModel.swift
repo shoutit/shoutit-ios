@@ -9,6 +9,7 @@
  import UIKit
  import RxSwift
  import RxCocoa
+ import ShoutitKit
  
  enum DiscoverPreviewState {
     case NotLoaded
@@ -46,7 +47,7 @@
             }
             .filter{$0 != nil}
             .flatMap { (user) in
-                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: user?.location.country))
+                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: user?.location.country, location: user?.location))
             }.map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
                     return items[0]

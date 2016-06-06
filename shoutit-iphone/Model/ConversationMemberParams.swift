@@ -8,10 +8,14 @@
 
 import UIKit
 
-struct ConversationMemberParams: Params {
-    let profileId : String
+public struct ConversationMemberParams: Params {
+    public let profileId : String
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return ["profile": ["id": profileId]]
+    }
+    
+    public init(profileId: String) {
+        self.profileId = profileId
     }
 }

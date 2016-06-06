@@ -8,18 +8,18 @@
 
 import UIKit
 
-final class DateFormatters {
+public final class DateFormatters {
     
-    static let sharedInstance = DateFormatters()
+    public static let sharedInstance = DateFormatters()
     
     private let formatter: NSDateFormatter
     
-    init() {
+    public init() {
         formatter = NSDateFormatter()
         
     }
     
-    func stringFromDateEpoch(epoch: Int) -> String {
+    public func stringFromDateEpoch(epoch: Int) -> String {
         let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
         
         setDayFormat()
@@ -27,21 +27,21 @@ final class DateFormatters {
         return stringFromDate(date)
     }
     
-    func stringFromDate(date: NSDate) -> String {
+    public func stringFromDate(date: NSDate) -> String {
         setDayFormat()
         
         return formatter.stringFromDate(date)
     }
     
-    func setDayFormat() {
+    public func setDayFormat() {
         formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
     }
     
-    func setHourFormat() {
+    public func setHourFormat() {
         formatter.setLocalizedDateFormatFromTemplate("HH:mm")
     }
     
-    func hourStringFromEpoch(epoch: Int) -> String {
+    public func hourStringFromEpoch(epoch: Int) -> String {
         let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
         
         setHourFormat()

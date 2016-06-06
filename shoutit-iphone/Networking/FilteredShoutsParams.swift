@@ -8,27 +8,28 @@
 
 import Foundation
 
-struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
+public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     
-    let searchPhrase: String?
-    let discoverId: String?
-    let username: String?
-    let tag: String?
-    let page: Int?
-    let pageSize: Int?
-    let country: String?
-    let state: String?
-    let city: String?
-    let shoutType: ShoutType?
-    let category: String?
-    let minimumPrice: Int?
-    let maximumPrice: Int?
-    let withinDistance: Int?
-    let entireCountry: Bool
-    let sort: SortType?
-    let filters: [(Filter, [FilterValue])]?
+    public let searchPhrase: String?
+    public let discoverId: String?
+    public let username: String?
+    public let tag: String?
+    public let page: Int?
+    public let pageSize: Int?
+    public let country: String?
+    public let state: String?
+    public let city: String?
+    public let shoutType: ShoutType?
+    public let category: String?
+    public let minimumPrice: Int?
+    public let maximumPrice: Int?
+    public let withinDistance: Int?
+    public let entireCountry: Bool
+    public let sort: SortType?
+    public let filters: [(Filter, [FilterValue])]?
+    public let currentUserLocation: Address?
     
-    init(searchPhrase: String? = nil,
+    public init(searchPhrase: String? = nil,
          discoverId: String? = nil,
          username: String? = nil,
          tag: String? = nil,
@@ -46,7 +47,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          sort: SortType? = nil,
          filters: [(Filter, [FilterValue])]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
-         includeCurrentUserLocation: Bool = false) {
+         currentUserLocation: Address?) {
         
         self.searchPhrase = searchPhrase
         self.discoverId = discoverId
@@ -62,9 +63,10 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.entireCountry = entireCountry
         self.sort = sort
         self.filters = filters
+        self.currentUserLocation = currentUserLocation
         
         // location
-        let location = includeCurrentUserLocation ? Account.sharedInstance.user?.location : nil
+        let location = currentUserLocation
         if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
             self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
         } else {
@@ -74,7 +76,7 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.city = city ?? location?.city
     }
     
-    func paramsByReplacingEmptyFieldsWithFieldsFrom(other: FilteredShoutsParams) -> FilteredShoutsParams {
+    public func paramsByReplacingEmptyFieldsWithFieldsFrom(other: FilteredShoutsParams) -> FilteredShoutsParams {
         return FilteredShoutsParams(searchPhrase: searchPhrase ?? other.searchPhrase,
                                     discoverId: discoverId ?? other.discoverId,
                                     username: username ?? other.username,
@@ -91,10 +93,11 @@ struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
                                     withinDistance: withinDistance ?? other.withinDistance,
                                     entireCountry: entireCountry,
                                     sort: sort ?? other.sort,
-                                    filters: filters ?? other.filters)
+                                    filters: filters ?? other.filters,
+                                    currentUserLocation: currentUserLocation)
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         
         p["search"] = searchPhrase

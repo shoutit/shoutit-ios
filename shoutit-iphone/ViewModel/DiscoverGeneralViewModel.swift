@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class DiscoverGeneralViewModel: DiscoverViewModel {
     let disposeBag = DisposeBag()
@@ -27,7 +28,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
         
         countryObservable
             .flatMap { (location) in
-                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location))
+                return APIDiscoverService.discoverItemsWithParams(FilteredDiscoverItemsParams(country: location, location: Account.sharedInstance.user?.location))
             }
             .map{ (items) -> DiscoverItem? in
                 if (items.count > 0) {
@@ -43,7 +44,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                 
                 guard let `self` = self else { return }
                 self.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
-                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
                 
                 APIShoutsService
                     .listShoutsWithParams(params)

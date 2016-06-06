@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol TagDisplayable {
     func showTag(tag: Tag) -> Void
     func showTag(filter: Filter) -> Void
-    func showTag(category: Category) -> Void
+    func showTag(category: ShoutitKit.Category) -> Void
 }
 
 extension FlowController : TagDisplayable {
@@ -30,7 +31,7 @@ extension FlowController : TagDisplayable {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func showTag(category: Category) {
+    func showTag(category: ShoutitKit.Category) {
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
         controller.viewModel = TagProfileCollectionViewModel(category: category)

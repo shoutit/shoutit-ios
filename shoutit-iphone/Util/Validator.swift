@@ -8,6 +8,7 @@
 
 import Foundation
 import Validator
+import ShoutitKit
 
 enum ValidationError: ValidationErrorType {
     case InvalidEmail

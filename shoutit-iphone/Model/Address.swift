@@ -10,22 +10,31 @@ import Foundation
 import Argo
 import Curry
 import Ogra
-import GooglePlaces
 
-struct Address {
+public struct Address {
     
-    let address: String?
-    let city: String
-    let country: String
-    let latitude: Double?
-    let longitude: Double?
-    let postalCode: String
-    let state: String
+    public let address: String?
+    public let city: String
+    public let country: String
+    public let latitude: Double?
+    public let longitude: Double?
+    public let postalCode: String
+    public let state: String
+    
+    public init(address: String?, city: String, country: String, latitude: Double?, longitude: Double?, postalCode: String, state: String) {
+        self.address = address
+        self.city = city
+        self.country = country
+        self.latitude = latitude
+        self.longitude = longitude
+        self.postalCode = postalCode
+        self.state = state
+    }
 }
 
 extension Address: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Address> {
+    public static func decode(j: JSON) -> Decoded<Address> {
         let f = curry(Address.init)
             <^> j <|? "address"
             <*> j <| "city"
@@ -40,7 +49,7 @@ extension Address: Decodable {
 
 extension Address: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "address"    : self.address.encode(),
             "city"  : self.city.encode(),
@@ -50,11 +59,5 @@ extension Address: Encodable {
             "postal_code" : self.postalCode.encode(),
             "state" : self.state.encode(),
         ])
-    }
-}
-
-extension GooglePlaces.PlaceDetailsResponse.Result {
-    func toAddressObject() -> Address { 
-        return Address(address: self.formattedAddress, city: "", country: "", latitude: self.geometryLocation?.latitude, longitude: self.geometryLocation?.longitude, postalCode: "", state: "")
     }
 }

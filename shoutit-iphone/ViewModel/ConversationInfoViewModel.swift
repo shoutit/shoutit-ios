@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 class ConversationInfoViewModel: ConversationSubjectEditable {
     
@@ -22,7 +23,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
     private let infoCellIdentifier = "ChatInfoCell"
     
     // data
-    var conversation: Conversation
+    var conversation: ShoutitKit.Conversation
     
     // ConversationSubjectEditable
     var chatSubject: String = ""
@@ -31,7 +32,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
         return MediaUploader(bucket: .TagImage)
     }()
     
-    init(conversation: Conversation) {
+    init(conversation: ShoutitKit.Conversation) {
         self.conversation = conversation
     }
     

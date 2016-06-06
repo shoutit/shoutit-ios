@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Pusher
+import ShoutitKit
 
 class ConversationListViewModel: ChatsListViewModel {
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import ShoutitKit
 
 final class ConversationLocationCell: UITableViewCell, ConversationCell {
     

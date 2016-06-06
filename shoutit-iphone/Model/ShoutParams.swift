@@ -11,8 +11,9 @@ import RxSwift
 import Argo
 import Curry
 import Ogra
+import ShoutitKit
 
-struct ShoutParams {
+public struct ShoutParams {
     let type: Variable<ShoutType>
     var title: Variable<String?>
     var text:  Variable<String?>
@@ -23,7 +24,7 @@ struct ShoutParams {
     var images:  Variable<[String]?>
     var videos:  Variable<[Video]?>
     
-    var category:  Variable<Category?>
+    var category:  Variable<ShoutitKit.Category?>
     
     var location:  Variable<Address?>
     var publishToFacebook:  Variable<Bool>
@@ -32,14 +33,14 @@ struct ShoutParams {
     var shout: Shout?
     var mobile:  Variable<String?>
     
-    init(type: ShoutType,
+    public init(type: ShoutType,
          title: String? = "",
          text: String? = nil,
          price: Double? = nil,
          currency: Currency? = nil,
          images:[String] = [],
          videos: [Video] = [],
-         category: Category? = nil,
+         category: ShoutitKit.Category? = nil,
          location: Address? = Account.sharedInstance.user?.location,
          publishToFacebook: Bool = false,
          filters: [Filter : FilterValue] = [:],
@@ -64,7 +65,7 @@ struct ShoutParams {
 
 extension ShoutParams: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         
         var values : [String: JSON] = [:]
         

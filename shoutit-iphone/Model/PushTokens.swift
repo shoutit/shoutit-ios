@@ -11,14 +11,19 @@ import Argo
 import Curry
 import Ogra
 
-struct PushTokens {
+public struct PushTokens {
     let apns: String?
     let gcm: String?
+    
+    public init(apns: String?, gcm: String?) {
+            self.apns = apns
+            self.gcm = gcm
+    }
 }
 
 extension PushTokens: Decodable {
     
-    static func decode(j: JSON) -> Decoded<PushTokens> {
+    public static func decode(j: JSON) -> Decoded<PushTokens> {
         return curry(PushTokens.init)
             <^> j <|? "apns"
             <*> j <|? "gcm"
@@ -27,7 +32,7 @@ extension PushTokens: Decodable {
 
 extension PushTokens: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "apns"    : self.apns.encode()
             ])
@@ -35,7 +40,7 @@ extension PushTokens: Encodable {
 }
 
 extension PushTokens: Params {
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return self.encode().JSONObject() as! [String: AnyObject]
     }
 }

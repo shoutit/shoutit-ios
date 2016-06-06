@@ -48,6 +48,26 @@
                ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AE32C5071D055B99009A49C5"
+               BuildableName = "ShoutitDataTests.xctest"
+               BlueprintName = "ShoutitDataTests"
+               ReferencedContainer = "container:shoutit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AE32C53D1D055BFB009A49C5"
+               BuildableName = "ShoutitKitTests.xctest"
+               BlueprintName = "ShoutitKitTests"
+               ReferencedContainer = "container:shoutit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

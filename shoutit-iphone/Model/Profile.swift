@@ -11,22 +11,22 @@ import Argo
 import Curry
 import Ogra
 
-struct Profile {
-    let id: String
-    let type: UserType
-    let apiPath: String
-    let webPath: String?
-    let username: String
-    let name: String
-    let firstName: String?
-    let lastName: String?
-    let isActivated: Bool
-    let imagePath: String?
-    let coverPath: String?
-    let isListening: Bool?
-    let listenersCount: Int
+public struct Profile {
+    public let id: String
+    public let type: UserType
+    public let apiPath: String
+    public let webPath: String?
+    public let username: String
+    public let name: String
+    public let firstName: String?
+    public let lastName: String?
+    public let isActivated: Bool
+    public let imagePath: String?
+    public let coverPath: String?
+    public let isListening: Bool?
+    public let listenersCount: Int
     
-    static func profileWithUser(user: DetailedProfile) -> Profile {
+    public static func profileWithUser(user: DetailedProfile) -> Profile {
         return Profile(id: user.id,
                        type: user.type,
                        apiPath: user.apiPath,
@@ -44,7 +44,7 @@ struct Profile {
 }
 
 extension Profile {
-    func fullName() -> String {
+    public func fullName() -> String {
         if self.type == .User {
             return "\(firstName ?? "") \(lastName ?? "")"
         }
@@ -55,7 +55,7 @@ extension Profile {
 
 extension Profile: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Profile> {
+    public static func decode(j: JSON) -> Decoded<Profile> {
         let a =  curry(Profile.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -78,7 +78,7 @@ extension Profile: Decodable {
 
 extension Profile: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
@@ -98,11 +98,11 @@ extension Profile: Encodable {
 }
 
 extension Profile: Reportable {
-    func attachedObjectJSON() -> JSON {
+    public func attachedObjectJSON() -> JSON {
         return ["profile" : ["id" : self.id.encode()].encode()].encode()
     }
     
-    func reportTitle() -> String {
+    public func reportTitle() -> String {
         return NSLocalizedString("Report Profile", comment: "")
     }
 }

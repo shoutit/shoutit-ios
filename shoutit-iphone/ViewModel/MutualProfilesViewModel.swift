@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 class MutualProfilesViewModel: ProfilesListViewModel {
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>

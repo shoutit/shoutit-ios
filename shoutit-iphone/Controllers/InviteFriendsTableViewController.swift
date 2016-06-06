@@ -11,6 +11,7 @@ import FBSDKShareKit
 import Social
 import RxSwift
 import ContactsPicker
+import ShoutitKit
 
 class InviteFriendsTableViewController: UITableViewController {
     
@@ -45,7 +46,7 @@ class InviteFriendsTableViewController: UITableViewController {
     
     @IBAction func shareShoutitApp(sender: AnyObject) {
         
-        let objectsToShare = [NSURL(string: Constants.Invite.inviteURL)!, Constants.Invite.inviteText]
+        let objectsToShare = [Constants.Invite.inviteText]
         
         let activityController = UIActivityViewController(activityItems:  objectsToShare, applicationActivities: nil)
         
@@ -92,6 +93,8 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     private func findFacebookFriends() {
+        
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         if !Account.sharedInstance.facebookManager.hasPermissions(.UserFriends) {
             Account.sharedInstance.facebookManager.extendUserReadPermissions([.UserFriends], viewController: self).subscribe { (event) in
                 switch event {
@@ -111,7 +114,9 @@ class InviteFriendsTableViewController: UITableViewController {
         showFacebookContacts()
     }
     
-    func showFacebookContacts() {
+    private func showFacebookContacts() {
+        
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         let controller = Wireframe.facebookProfileListController()
         
         controller.viewModel = MutualProfilesViewModel(showListenButtons: true)
@@ -129,6 +134,7 @@ class InviteFriendsTableViewController: UITableViewController {
     
     private func findContactsFriends() {
         
+        guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         showProgressHUD()
         
         do {

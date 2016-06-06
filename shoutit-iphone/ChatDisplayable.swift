@@ -8,6 +8,7 @@
 
 import Foundation
 import MWPhotoBrowser
+import ShoutitKit
 
 protocol ChatDisplayable {
     func showConversation(conversation: ConversationViewModel.ConversationExistance) -> Void

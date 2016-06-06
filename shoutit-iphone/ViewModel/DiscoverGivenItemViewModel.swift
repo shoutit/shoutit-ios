@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class DiscoverGivenItemViewModel: DiscoverViewModel {
     let disposeBag = DisposeBag()
@@ -24,7 +25,7 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
             .discoverItems(forDiscoverItem: self.itemToShow)
             .subscribeNext { [weak self] detailedItem -> Void in
                 self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
-                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4)
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
                 APIShoutsService.listShoutsWithParams(params)
                     .subscribeNext{ [weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))

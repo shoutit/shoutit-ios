@@ -12,6 +12,7 @@ import RxSwift
 import Argo
 import Ogra
 import ReachabilitySwift
+import ShoutitKit
 
 final class PusherClient : NSObject {
     

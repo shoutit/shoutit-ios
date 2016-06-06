@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 class HomeShoutsViewModel: AnyObject {
     private var filtersState: FiltersState?

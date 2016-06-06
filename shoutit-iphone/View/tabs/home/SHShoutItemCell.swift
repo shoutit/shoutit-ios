@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 class SHShoutItemCell: UICollectionViewCell {
     

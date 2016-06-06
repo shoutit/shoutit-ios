@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import MBProgressHUD
+import ShoutitKit
 
 struct SettingsOption {
     let name: String

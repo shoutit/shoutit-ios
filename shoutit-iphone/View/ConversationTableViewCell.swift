@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var firstLineLabel: UILabel!

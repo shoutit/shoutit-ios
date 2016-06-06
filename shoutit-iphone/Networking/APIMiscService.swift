@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import Argo
 import RxSwift
+import ShoutitKit
 
 final class APIMiscService {
     
@@ -18,7 +19,7 @@ final class APIMiscService {
     private static let currenciesURL = APIManager.baseURL + "/misc/currencies"
     private static let reportURL = APIManager.baseURL + "/misc/reports"
     
-    static func requestCategories() -> Observable<[Category]> {
+    static func requestCategories() -> Observable<[ShoutitKit.Category]> {
         return APIGenericService.requestWithMethod(.GET, url: categoriesURL, params: NopParams(), encoding: .JSON)
     }
     

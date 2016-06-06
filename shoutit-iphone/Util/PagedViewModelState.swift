@@ -8,6 +8,7 @@
 
 import Foundation
 import Argo
+import ShoutitKit
 
 enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
     case Idle

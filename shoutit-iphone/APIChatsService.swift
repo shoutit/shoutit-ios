@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Alamofire
+import ShoutitKit
 
 final class APIChatsService {
     private static let conversationsURL = APIManager.baseURL + "/conversations"

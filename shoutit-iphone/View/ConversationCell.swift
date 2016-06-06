@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 protocol MessagePresenting {
     func bindWithMessage(message: Message, previousMessage: Message?)

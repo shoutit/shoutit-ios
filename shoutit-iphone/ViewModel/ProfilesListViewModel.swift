@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 protocol ProfilesListViewModel: class {
     var pager: NumberedPagePager<ProfilesListCellViewModel, Profile> { get }

@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import RxSwift
+import ShoutitKit
 
 final class LocationManager: NSObject {
     

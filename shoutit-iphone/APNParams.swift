@@ -9,10 +9,14 @@
 import Foundation
 import Ogra
 
-struct APNParams: Params {
-    let tokens: PushTokens
+public struct APNParams: Params {
+    public let tokens: PushTokens
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return ["push_tokens" : self.tokens.encode().JSONObject()]
+    }
+    
+    public init(tokens: PushTokens) {
+        self.tokens = tokens
     }
 }

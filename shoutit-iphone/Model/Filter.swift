@@ -9,13 +9,13 @@ import Foundation
 import Argo
 import Curry
 
-struct Filter: Hashable, Equatable {
-    let name: String?
-    let slug: String
-    let values: [FilterValue]?
-    let value: FilterValue?
+public struct Filter: Hashable, Equatable {
+    public let name: String?
+    public let slug: String
+    public let values: [FilterValue]?
+    public let value: FilterValue?
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.slug.hashValue
         }
@@ -24,7 +24,7 @@ struct Filter: Hashable, Equatable {
 
 extension Filter: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Filter> {
+    public static func decode(j: JSON) -> Decoded<Filter> {
         
         let f = curry(Filter.init)
             <^> j <|? "name"
@@ -35,6 +35,6 @@ extension Filter: Decodable {
     }
 }
 
-func ==(lhs: Filter, rhs: Filter) -> Bool {
+public func ==(lhs: Filter, rhs: Filter) -> Bool {
     return lhs.slug == rhs.slug
 }

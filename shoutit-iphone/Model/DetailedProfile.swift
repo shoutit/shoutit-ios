@@ -11,53 +11,53 @@ import Argo
 import Curry
 import Ogra
 
-struct DetailedProfile: User {
+public struct DetailedProfile: User {
     
-    var isGuest: Bool {
+    public var isGuest: Bool {
         return false
     }
     
-    let id: String
-    let type: UserType
-    let apiPath: String
-    let webPath: String?
-    let username: String
-    let name: String
-    let firstName: String?
-    let lastName: String?
-    let isActivated: Bool
-    let imagePath: String?
-    let coverPath: String?
-    let isListening: Bool?
-    let listenersCount: Int
-    let gender: Gender?
-    let video: Video?
-    let dateJoinedEpoch: Int
-    let bio: String?
-    let about: String?
-    let location: Address
-    let email: String?
-    let mobile: String?
-    let website: String?
-    let linkedAccounts: LoginAccounts?
-    let pushTokens: PushTokens?
-    let isPasswordSet: Bool?
-    let isListener: Bool?
-    let shoutsPath: String?
-    let listenersPath: String
-    let listeningMetadata: ListenersMetadata?
-    let listeningPath: String?
-    let isOwner: Bool
-    let chatPath: String?
-    let pages: [Profile]?
-    let admins: [Profile]?
-    let conversation: MiniConversation?
-    let stats: ProfileStats?
+    public let id: String
+    public let type: UserType
+    public let apiPath: String
+    public let webPath: String?
+    public let username: String
+    public let name: String
+    public let firstName: String?
+    public let lastName: String?
+    public let isActivated: Bool
+    public let imagePath: String?
+    public let coverPath: String?
+    public let isListening: Bool?
+    public let listenersCount: Int
+    public let gender: Gender?
+    public let video: Video?
+    public let dateJoinedEpoch: Int
+    public let bio: String?
+    public let about: String?
+    public let location: Address
+    public let email: String?
+    public let mobile: String?
+    public let website: String?
+    public let linkedAccounts: LoginAccounts?
+    public let pushTokens: PushTokens?
+    public let isPasswordSet: Bool?
+    public let isListener: Bool?
+    public let shoutsPath: String?
+    public let listenersPath: String
+    public let listeningMetadata: ListenersMetadata?
+    public let listeningPath: String?
+    public let isOwner: Bool
+    public let chatPath: String?
+    public let pages: [Profile]?
+    public let admins: [Profile]?
+    public let conversation: MiniConversation?
+    public let stats: ProfileStats?
 }
 
 extension DetailedProfile: Decodable {
     
-    static func decode(j: JSON) -> Decoded<DetailedProfile> {
+    public static func decode(j: JSON) -> Decoded<DetailedProfile> {
         let a =  curry(DetailedProfile.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -108,7 +108,7 @@ extension DetailedProfile: Decodable {
 
 extension DetailedProfile: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
@@ -151,7 +151,7 @@ extension DetailedProfile: Encodable {
 
 
 extension DetailedProfile {
-    func updatedProfileWithStats(stts: ProfileStats?) -> DetailedProfile {
+    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedProfile {
         return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, pages: self.pages, admins: self.admins, conversation: self.conversation, stats: stts)
     }
 }

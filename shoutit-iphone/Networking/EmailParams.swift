@@ -8,12 +8,16 @@
 
 import Foundation
 
-struct EmailParams: Params {
-    let email: String?
+public struct EmailParams: Params {
+    public let email: String?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["email"] = email
         return p
+    }
+    
+    public init(email: String?) {
+        self.email = email
     }
 }

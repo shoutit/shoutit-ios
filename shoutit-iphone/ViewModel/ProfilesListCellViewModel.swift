@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class ProfilesListCellViewModel: Listenable {
     

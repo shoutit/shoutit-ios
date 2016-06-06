@@ -12,6 +12,7 @@ import RxCocoa
 import Alamofire
 import FBSDKCoreKit
 import FBSDKLoginKit
+import ShoutitKit
 
 final class LoginMethodChoiceViewModel {
     

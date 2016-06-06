@@ -8,26 +8,27 @@
 
 import Foundation
 
-struct FilteredDiscoverItemsParams: Params, PagedParams, LocalizedParams {
+public struct FilteredDiscoverItemsParams: Params, PagedParams, LocalizedParams {
     
-    let page: Int?
-    let pageSize: Int?
-    let country: String?
-    let state: String?
-    let city: String?
+    public let page: Int?
+    public let pageSize: Int?
+    public let country: String?
+    public let state: String?
+    public let city: String?
+    public var location: Address?
+    // Account.sharedInstance.user?.location
     
-    init(page: Int? = 1,
+    public init(page: Int? = 1,
          pageSize: Int? = 5,
          country: String? = nil,
          state: String? = nil,
          city: String? = nil,
-         useLocaleBasedCountryCodeWhenNil: Bool = false,
-         includeCurrentUserLocation: Bool = false) {
+         location: Address?,
+         useLocaleBasedCountryCodeWhenNil: Bool = false) {
         
         self.page = page
         self.pageSize = pageSize
         
-        let location = includeCurrentUserLocation ? Account.sharedInstance.user?.location : nil
         if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
             self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
         } else {
@@ -37,7 +38,7 @@ struct FilteredDiscoverItemsParams: Params, PagedParams, LocalizedParams {
         self.city = city ?? location?.city
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         
         for (key, value) in pagedParams {

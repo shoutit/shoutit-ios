@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 class SelectProfileProfilesListEventHandler: ProfilesListEventHandler {
     

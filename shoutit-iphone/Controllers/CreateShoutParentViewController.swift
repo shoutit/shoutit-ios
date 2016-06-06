@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import RxSwift
+import ShoutitKit
 
 class CreateShoutParentViewController: UIViewController {
     

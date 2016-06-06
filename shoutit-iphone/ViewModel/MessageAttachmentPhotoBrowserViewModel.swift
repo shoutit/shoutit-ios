@@ -9,11 +9,12 @@
 import Foundation
 import MWPhotoBrowser
 import RxSwift
+import ShoutitKit
 
 class MessageAttachmentPhotoBrowserViewModel: NSObject {
 
     let pageSize = 20
-    let conversation: Conversation
+    let conversation: ShoutitKit.Conversation
     
     private let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
@@ -29,7 +30,7 @@ class MessageAttachmentPhotoBrowserViewModel: NSObject {
         }
     }
     
-    init(conversation: Conversation) {
+    init(conversation: ShoutitKit.Conversation) {
         self.conversation = conversation
         super.init()
         observeLoadingState()

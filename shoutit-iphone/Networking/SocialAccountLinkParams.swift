@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum SocialAccountLinkParams: Params {
+public enum SocialAccountLinkParams: Params {
     
     case Facebook(token: String?)
     case Google(code: String?)
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         switch self {
         case .Facebook(let token):

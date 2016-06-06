@@ -10,12 +10,12 @@ import Foundation
 import Argo
 import Curry
 
-struct Success {
-    let message: String
+public struct Success {
+    public let message: String
 }
 
 extension Success: Decodable {
-    static func decode(j: JSON) -> Decoded<Success> {
+    public static func decode(j: JSON) -> Decoded<Success> {
         return curry(Success.init)
             <^> j <| "success"
     }

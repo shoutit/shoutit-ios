@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
@@ -136,7 +137,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     // MARK: - Fetch
     
     func fetchShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4)
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

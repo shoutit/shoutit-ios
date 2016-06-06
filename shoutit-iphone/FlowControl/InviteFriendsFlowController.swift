@@ -21,6 +21,6 @@ final class InviteFriendsFlowController: FlowController {
     }
     
     override func requiresLoggedInUser() -> Bool {
-        return true
+        return false
     }
 }

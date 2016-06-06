@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 final class FiltersViewController: UIViewController {
     
@@ -249,7 +250,7 @@ private extension FiltersViewController {
         let categoryNames = categories.map{$0.name}
         let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
         self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) {[weak self] (index) in
-            let category: Category? = index == 0 ? nil : categories[index - 1]
+            let category: ShoutitKit.Category? = index == 0 ? nil : categories[index - 1]
             self?.viewModel.changeCategoryToCategory(category)
         }
     }

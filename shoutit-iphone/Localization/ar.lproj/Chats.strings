@@ -61,6 +61,12 @@
 /* Class = "UILabel"; text = "Shouts"; ObjectID = "aYa-u5-EZE"; */
 "aYa-u5-EZE.text" = "الإعلانات";
 
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "ملف شخصي";
+
+/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "وسائط";
+
 /* Class = "UINavigationItem"; title = "Create Public Chat"; ObjectID = "bjg-W9-2zR"; */
 "bjg-W9-2zR.title" = "إنشاء محادثة عامة";
 
@@ -75,6 +81,9 @@
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "cTb-jK-D0D"; */
 "cTb-jK-D0D.text" = "التاريخ";
+
+/* Class = "UILabel"; text = "Public chats are country based conversations that every one can join and post what he is selling or buying."; ObjectID = "D53-mI-0We"; */
+"D53-mI-0We.text" = "المحادثات العامة هي محادثات مخصصة لكل بلد ويمكن للجميع المشاركة بها ووضع ما يريدون بيعه أو شراءه.";
 
 /* Class = "UILabel"; text = "Participants"; ObjectID = "fMa-98-BMN"; */
 "fMa-98-BMN.text" = "المشاركون";

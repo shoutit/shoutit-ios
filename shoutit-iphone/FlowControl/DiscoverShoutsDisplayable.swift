@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol DiscoverShoutsDisplayable {
     func showDiscoverItem(item: DiscoverItem) -> Void

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct SuggestionsParams: Params {
+public struct SuggestionsParams: Params {
     
-    init(address: Address, pageSize: Int, type: SuggestionsTypes, page: Int) {
+    public init(address: Address, pageSize: Int, type: SuggestionsTypes, page: Int) {
         self.pageSize = pageSize
         self.country = address.country
         self.state = address.state
@@ -19,14 +19,14 @@ struct SuggestionsParams: Params {
         self.page = page
     }
     
-    let pageSize: Int
-    let country: String
-    let state: String
-    let city: String
-    let type: SuggestionsTypes
-    let page: Int
+    public let pageSize: Int
+    public let country: String
+    public let state: String
+    public let city: String
+    public let type: SuggestionsTypes
+    public let page: Int
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return [
             "type" : type.parameters(),
             "page_size" : pageSize,
@@ -38,17 +38,21 @@ struct SuggestionsParams: Params {
     }
 }
 
-struct SuggestionsTypes: OptionSetType {
+public struct SuggestionsTypes: OptionSetType {
     
-    let rawValue: Int
+    public let rawValue: Int
     
-    static let None = SuggestionsTypes(rawValue: 0)
-    static let Users = SuggestionsTypes(rawValue: 1 << 0)
-    static let Pages = SuggestionsTypes(rawValue: 1 << 1)
-    static let Tags = SuggestionsTypes(rawValue: 1 << 2)
-    static let Shouts = SuggestionsTypes(rawValue: 1 << 3)
+    public static let None = SuggestionsTypes(rawValue: 0)
+    public static let Users = SuggestionsTypes(rawValue: 1 << 0)
+    public static let Pages = SuggestionsTypes(rawValue: 1 << 1)
+    public static let Tags = SuggestionsTypes(rawValue: 1 << 2)
+    public static let Shouts = SuggestionsTypes(rawValue: 1 << 3)
     
-    func parameters() -> String {
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    public func parameters() -> String {
         
         var params = ""
         if self.contains(.Users) {

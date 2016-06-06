@@ -10,28 +10,28 @@ import Foundation
 import Argo
 import Curry
 
-struct DetailedDiscoverItem {
-    let id: String
-    let apiUrl: String
-    let title: String
-    let subtitle: String?
-    let position: Int
-    let image: String?
-    let cover: String?
-    let icon: String?
-    let showChildren: Bool
-    let children: [DiscoverItem]
-    let showShouts: Bool
-    let shoutsPath: String?
+public struct DetailedDiscoverItem {
+    public let id: String
+    public let apiUrl: String
+    public let title: String
+    public let subtitle: String?
+    public let position: Int
+    public let image: String?
+    public let cover: String?
+    public let icon: String?
+    public let showChildren: Bool
+    public let children: [DiscoverItem]
+    public let showShouts: Bool
+    public let shoutsPath: String?
     
-    func simpleForm() -> DiscoverItem {
+    public func simpleForm() -> DiscoverItem {
         return DiscoverItem(id: id, apiUrl: apiUrl, title: title, subtitle: subtitle, position: position, image: image, cover: cover, icon: icon)
     }
 }
 
 extension DetailedDiscoverItem: Decodable {
     
-    static func decode(j: JSON) -> Decoded<DetailedDiscoverItem> {
+    public static func decode(j: JSON) -> Decoded<DetailedDiscoverItem> {
         let f = curry(DetailedDiscoverItem.init)
             <^> j <| "id"
             <*> j <| "api_url"
@@ -53,13 +53,13 @@ extension DetailedDiscoverItem: Decodable {
 
 extension DetailedDiscoverItem: Hashable, Equatable {
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
 }
 
-func ==(lhs: DetailedDiscoverItem, rhs: DetailedDiscoverItem) -> Bool {
+public func ==(lhs: DetailedDiscoverItem, rhs: DetailedDiscoverItem) -> Bool {
     return lhs.id == rhs.id
 }

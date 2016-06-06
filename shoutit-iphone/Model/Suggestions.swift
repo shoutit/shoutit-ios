@@ -10,15 +10,21 @@ import Foundation
 import Argo
 import Curry
 
-struct Suggestions {
-    let users: [Profile]?
-    let pages: [Profile]?
-    let tags: [Tag]?
+public struct Suggestions {
+    public let users: [Profile]?
+    public let pages: [Profile]?
+    public let tags: [Tag]?
+    
+    public init(users: [Profile]?, pages: [Profile]?, tags: [Tag]?) {
+        self.users = users
+        self.pages = pages
+        self.tags = tags
+    }
 }
 
 extension Suggestions: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Suggestions> {
+    public static func decode(j: JSON) -> Decoded<Suggestions> {
         return curry(Suggestions.init)
             <^> j <||? "users"
             <*> j <||? "pages"

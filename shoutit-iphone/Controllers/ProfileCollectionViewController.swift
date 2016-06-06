@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 import MBProgressHUD
+import ShoutitKit
 
 final class ProfileCollectionViewController: UICollectionViewController {
     

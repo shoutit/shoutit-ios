@@ -8,15 +8,19 @@
 
 import Foundation
 
-struct BeforeTimestampParams: Params {
+public struct BeforeTimestampParams: Params {
     
-    var beforeTimeStamp : Int?
+    public var beforeTimeStamp : Int?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         if let after = self.beforeTimeStamp {
             return ["before":after, "page_size":20]
         }
         
         return [:]
+    }
+    
+    public init(beforeTimeStamp: Int?) {
+        self.beforeTimeStamp = beforeTimeStamp
     }
 }

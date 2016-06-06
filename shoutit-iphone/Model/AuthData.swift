@@ -11,22 +11,22 @@ import Argo
 import Curry
 import Ogra
 
-struct AuthData {
+public struct AuthData {
     
     // token
-    let accessToken: String
-    let refreshToken: String
-    let tokenType: String
-    let expiresInEpoch: Int
+    public let accessToken: String
+    public let refreshToken: String
+    public let tokenType: String
+    public let expiresInEpoch: Int
     
     // other
-    let isNewSignUp: Bool
-    let scope: String
+    public let isNewSignUp: Bool
+    public let scope: String
 }
 
 extension AuthData: Decodable {
     
-    static func decode(j: JSON) -> Decoded<AuthData> {
+    public static func decode(j: JSON) -> Decoded<AuthData> {
         let f = curry(AuthData.init)
             <^> j <| "access_token"
             <*> j <| "refresh_token"
@@ -41,7 +41,7 @@ extension AuthData: Decodable {
 
 extension AuthData: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "access_token"    : self.accessToken.encode(),
             "refresh_token"  : self.refreshToken.encode(),
@@ -55,7 +55,7 @@ extension AuthData: Encodable {
 
 extension AuthData {
     
-    var apiToken: String {
+    public var apiToken: String {
         return "\(tokenType) \(accessToken)"
     }
 }

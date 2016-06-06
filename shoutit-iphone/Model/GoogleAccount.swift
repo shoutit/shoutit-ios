@@ -11,13 +11,13 @@ import Argo
 import Curry
 import Ogra
 
-struct GoogleAccount {
+public struct GoogleAccount {
     let gplusId: String
 }
 
 extension GoogleAccount: Decodable {
     
-    static func decode(j: JSON) -> Decoded<GoogleAccount> {
+    public static func decode(j: JSON) -> Decoded<GoogleAccount> {
         return curry(GoogleAccount.init)
             <^> j <| "gplus_id"
     }
@@ -25,7 +25,7 @@ extension GoogleAccount: Decodable {
 
 extension GoogleAccount: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "gplus_id" : self.gplusId.encode()
             ]

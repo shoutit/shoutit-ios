@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 enum BundledHTMLFile: String {
     case Policy = "policy"

@@ -9,6 +9,7 @@
 import Foundation
 import AWSS3
 import AVFoundation
+import ShoutitKit
 
 final class AmazonAWS: NSObject {
     

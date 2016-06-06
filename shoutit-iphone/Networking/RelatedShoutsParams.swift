@@ -8,14 +8,21 @@
 
 import Foundation
 
-struct RelatedShoutsParams: Params, PagedParams {
+public struct RelatedShoutsParams: Params, PagedParams {
     
-    let shout: Shout
-    let page: Int?
-    let pageSize: Int?
-    let type: ShoutType?
+    public let shout: Shout
+    public let page: Int?
+    public let pageSize: Int?
+    public let type: ShoutType?
     
-    var params: [String : AnyObject] {
+    public init(shout: Shout, page: Int?, pageSize: Int?, type: ShoutType?) {
+        self.shout = shout
+        self.page = page
+        self.pageSize = pageSize
+        self.type = type
+    }
+    
+    public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [
             "id" : shout.id,
             "shout_type" : type?.rawValue ?? "all",

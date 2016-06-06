@@ -8,11 +8,16 @@
 
 import Foundation
 
-struct PageParams: Params {
-    var page : Int
-    var pageSize : Int
+public struct PageParams: Params {
+    public var page : Int
+    public var pageSize : Int
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return ["page":self.page, "page_size": self.pageSize]
+    }
+    
+    public init(page: Int, pageSize: Int) {
+        self.page = page
+        self.pageSize = pageSize
     }
 }

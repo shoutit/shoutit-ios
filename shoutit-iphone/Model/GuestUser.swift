@@ -11,21 +11,21 @@ import Argo
 import Curry
 import Ogra
 
-struct GuestUser: User {
+public struct GuestUser: User {
     
-    let id: String
-    let type: UserType
-    let isGuest: Bool
-    let apiPath: String
-    let username: String
-    let dateJoinedEpoch: Int
-    let location: Address
-    let pushTokens: PushTokens?
+    public let id: String
+    public let type: UserType
+    public let isGuest: Bool
+    public let apiPath: String
+    public let username: String
+    public let dateJoinedEpoch: Int
+    public let location: Address
+    public let pushTokens: PushTokens?
 }
 
 extension GuestUser: Decodable {
     
-    static func decode(j: JSON) -> Decoded<GuestUser> {
+    public static func decode(j: JSON) -> Decoded<GuestUser> {
         let a = curry(GuestUser.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -42,7 +42,7 @@ extension GuestUser: Decodable {
 
 extension GuestUser {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),

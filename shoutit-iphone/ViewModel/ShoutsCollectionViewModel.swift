@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
@@ -73,15 +74,15 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize, type: nil)
             return APIShoutsService.relatedShoutsWithParams(params)
         case .ProfileShouts(let profile):
-            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .TagShouts(let tag):
-            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .DiscoverItemShouts(let discoverItem):
-            var params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize)
+            var params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .ConversationShouts(let conversation):

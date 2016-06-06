@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import MBProgressHUD
 import DZNEmptyDataSet
+import ShoutitKit
 
 final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 

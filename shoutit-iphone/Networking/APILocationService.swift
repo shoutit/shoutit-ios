@@ -11,6 +11,7 @@ import UIKit
 import Argo
 import Alamofire
 import RxSwift
+import ShoutitKit
 
 final class APILocationService {
     private static let usersURL = APIManager.baseURL + "/profiles/*"

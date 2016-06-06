@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 enum PusherError: ShoutitError {
     case WrongChannelName

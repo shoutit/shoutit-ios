@@ -9,17 +9,17 @@
 import Foundation
 import Ogra
 
-protocol Params {
+public protocol Params {
     var params: [String : AnyObject] {get}
 }
 
-protocol PagedParams {
+public protocol PagedParams {
     var page: Int? {get}
     var pageSize: Int? {get}
 }
 
 extension PagedParams {
-    var pagedParams: [String : AnyObject] {
+    public var pagedParams: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["page"] = page
         p["page_size"] = pageSize
@@ -27,14 +27,14 @@ extension PagedParams {
     }
 }
 
-protocol LocalizedParams {
+public protocol LocalizedParams {
     var country: String? {get}
     var state: String? {get}
     var city: String? {get}
 }
 
 extension LocalizedParams {
-    var localizedParams: [String : AnyObject] {
+    public var localizedParams: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["country"] = country
         p["state"] = state
@@ -44,13 +44,13 @@ extension LocalizedParams {
     }
 }
 
-struct NopParams: Params {
+public struct NopParams: Params {
     
-    init?() {
+    public init?() {
         return nil
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return [:]
     }
 }

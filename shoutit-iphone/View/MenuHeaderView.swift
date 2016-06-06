@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import ShoutitKit
 
 final class MenuHeaderView: UIView {
     
