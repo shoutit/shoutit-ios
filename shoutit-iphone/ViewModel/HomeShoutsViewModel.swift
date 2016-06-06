@@ -125,14 +125,14 @@ class HomeShoutsViewModel: AnyObject {
     private func loadPageObservable(page: Int) -> Observable<[Shout]> {
         let user = Account.sharedInstance.user
         if let user = user where user.isGuest == false {
-            var params = FilteredShoutsParams(page: page, pageSize: 20)
+            var params = FilteredShoutsParams(page: page, pageSize: 20, currentUserLocation: Account.sharedInstance.user?.location)
             if let filtersState = filtersState {
                 let filterParams = filtersState.composeParams()
                 params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)
             }
             return APIProfileService.homeShoutsWithParams(params)
         } else {
-            var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, includeCurrentUserLocation: true)
+            var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, currentUserLocation: Account.sharedInstance.user?.location)
             if let filtersState = filtersState {
                 let filterParams = filtersState.composeParams()
                 params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)

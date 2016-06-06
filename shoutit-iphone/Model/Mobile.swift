@@ -11,7 +11,10 @@ import Argo
 import Curry
 
 public struct Mobile {
-    let phone: String
+    public let phone: String
+    public init(phone: String) {
+        self.phone = phone
+    }
 }
 
 extension Mobile: Decodable {

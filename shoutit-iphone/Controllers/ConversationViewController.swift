@@ -393,7 +393,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     
     @IBAction func videoCall() {
         guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
-        if let profile = conversation.coParticipant() {
+        if let profile = conversation.coParticipant(Account.sharedInstance.user?.id) {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
         }

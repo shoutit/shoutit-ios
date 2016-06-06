@@ -12,8 +12,8 @@ import Curry
 import Ogra
 
 public struct PushTokens {
-    let apns: String?
-    let gcm: String?
+    public let apns: String?
+    public let gcm: String?
     
     public init(apns: String?, gcm: String?) {
             self.apns = apns

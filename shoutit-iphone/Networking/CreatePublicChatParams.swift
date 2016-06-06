@@ -26,4 +26,10 @@ public struct CreatePublicChatParams: Params {
         }
         return params
     }
+    
+    public init(subject: String, iconPath: String?, location: Address) {
+        self.subject = subject
+        self.iconPath = iconPath
+        self.location = location
+    }
 }

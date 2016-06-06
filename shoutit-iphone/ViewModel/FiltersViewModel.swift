@@ -125,7 +125,7 @@ final class FiltersViewModel {
     func composeFiltersState() -> FiltersState {
         var shoutType: ShoutType?
         var sort: SortType?
-        var category: Category?
+        var category: ShoutitKit.Category?
         var minimumPrice: Int?
         var maximumPrice: Int?
         var location: Address?

@@ -14,6 +14,7 @@ import UIViewAppearanceSwift
 import DeepLinkKit
 import SwiftyBeaver
 import FBSDKCoreKit
+import ShoutitKit
 
 let log = SwiftyBeaver.self
 

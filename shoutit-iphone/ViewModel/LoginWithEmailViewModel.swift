@@ -20,12 +20,12 @@ final class LoginWithEmailViewModel {
     let disposeBag = DisposeBag()
     
     func loginWithEmail(email: String, password: String) {
-        let loginParams = LoginParams(email: email, password: password)
+        let loginParams = LoginParams(email: email, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
         authenticateWithParameters(loginParams)
     }
     
     func signupWithName(name: String, email: String, password: String) {
-        let signupParams = SignupParams(name: name, email: email, password: password)
+        let signupParams = SignupParams(name: name, email: email, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
         authenticateWithParameters(signupParams)
     }
     

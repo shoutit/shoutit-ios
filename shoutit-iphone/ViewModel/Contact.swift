@@ -12,11 +12,19 @@ import Curry
 import Ogra
 
 public struct Contact {
-    let firstName: String?
-    let lastName: String?
-    let name: String?
-    let mobiles: [String]?
-    let emails: [String]?
+    public let firstName: String?
+    public let lastName: String?
+    public let name: String?
+    public let mobiles: [String]?
+    public let emails: [String]?
+    
+    public init(firstName: String?, lastName: String?, name: String?, mobiles: [String]?, emails: [String]?) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.name = name
+        self.mobiles = mobiles
+        self.emails = emails
+    }
 }
 
 public struct ContactsParams : Params {

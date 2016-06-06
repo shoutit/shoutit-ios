@@ -12,6 +12,11 @@ public struct GeocodeParams: Params {
     public let latitude: Double
     public let longitude: Double
     
+    public init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
     public var params: [String : AnyObject] {
         let geocodeValue : String = "\(latitude),\(longitude)"
         return ["latlng" : geocodeValue] as Dictionary<String, AnyObject>

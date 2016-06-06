@@ -55,6 +55,13 @@ public struct LoginParams: AuthParams {
     public var mixPanelDistinctId: String
     public var currentUserCoordinates: CLLocationCoordinate2D
     
+    public init(email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.email = email
+        self.password = password
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
+    
     public var authParams: [String : AnyObject] {
         return [
             "email": email,
@@ -73,6 +80,14 @@ public struct SignupParams: AuthParams {
     
     public var mixPanelDistinctId: String
     public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public init(name: String, email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.name = name
+        self.email = email
+        self.password = password
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
     
     public var authParams: [String : AnyObject] {
         return [
@@ -125,6 +140,12 @@ public struct FacebookLoginParams: AuthParams {
             "facebook_access_token": token
         ]
     }
+    
+    public init(token: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.token = token
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
 }
 
 public struct GoogleLoginParams: AuthParams {
@@ -141,6 +162,12 @@ public struct GoogleLoginParams: AuthParams {
             "gplus_code": gplusCode
         ]
     }
+    
+    public init(gplusCode: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.gplusCode = gplusCode
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
 }
 
 public struct ResetPasswordParams: Params {
@@ -149,5 +176,9 @@ public struct ResetPasswordParams: Params {
     
     public var params: [String : AnyObject] {
         return ["email" : email]
+    }
+    
+    public init(email: String) {
+        self.email = email
     }
 }
