@@ -23,7 +23,7 @@ final class SelectShoutImagesController: UICollectionViewController {
     
     private var editingAttachment : MediaAttachment?
     private var editingCompletion : ((attachment: MediaAttachment) -> Void)?
-    private var editingController : AVYPhotoEditorController?
+    private var editingController : AdobeUXImageEditorViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,7 @@ final class SelectShoutImagesController: UICollectionViewController {
         
         attachments = [:]
         
-        AVYOpenGLManager.beginOpenGLLoad()
+        AdobeImageEditorOpenGLManager.beginOpenGLLoad()
     }
     
     override func viewDidLoad() {
@@ -135,13 +135,13 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
     }
 }
 
-extension SelectShoutImagesController : AVYPhotoEditorControllerDelegate {
+extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate {
     
-    func photoEditor(editor: AVYPhotoEditorController, finishedWithImage image: UIImage) {
+    func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
         
         editingController?.dismissViewControllerAnimated(true, completion: nil)
         guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else { return }
-        guard let imageData = image.dataRepresentation() else {
+        guard let image = image, imageData = image.dataRepresentation() else {
             editingCompletion(attachment: editingAttachment)
             return
         }
@@ -153,7 +153,7 @@ extension SelectShoutImagesController : AVYPhotoEditorControllerDelegate {
         self.editingCompletion = nil
     }
     
-    func photoEditorCanceled(editor: AVYPhotoEditorController!) {
+    func photoEditorCanceled(editor: AdobeUXImageEditorViewController) {
         if let editingAttachment = editingAttachment, editingCompletion = editingCompletion {
             editingCompletion(attachment: editingAttachment)
         }
@@ -183,12 +183,12 @@ extension SelectShoutImagesController {
                 static var token: dispatch_once_t = 0
             }
             dispatch_once(&Static.token) {
-                AVYPhotoEditorController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
+                AdobeUXImageEditorViewController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
             }
             
             self?.editingAttachment = attachment
             self?.editingCompletion = completion
-            self?.editingController = AVYPhotoEditorController(image: img)
+            self?.editingController = AdobeUXImageEditorViewController(image: img)
             self?.editingController?.delegate = self
             self?.mediaPicker.presentingSubject.onNext(self?.editingController)
         }
