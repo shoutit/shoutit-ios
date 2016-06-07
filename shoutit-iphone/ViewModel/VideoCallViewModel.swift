@@ -21,25 +21,32 @@ class VideoCallViewModel {
     
     let callerProfile: Variable<Profile?>
     let conversation: Variable<TWCConversation?>
+    let audioMuted: Variable<Bool>
+    let videoDisabled: Variable<Bool>
     let localMedia: TWCLocalMedia
     let state: Variable<State>
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     private let disposeBag = DisposeBag()
     
-    var callDurationTimer: NSTimer?
+    private var callDurationTimer: NSTimer?
+    let ticks: Variable<NSTimeInterval> = Variable(0.0)
     
     init(callerProfile: Profile?) {
         self.callerProfile = Variable(callerProfile)
         self.conversation = Variable(nil)
         self.localMedia = TWCLocalMedia()
         self.state = Variable(.ReadyForCall)
+        self.audioMuted =  Variable(false)
+        self.videoDisabled = Variable(false)
     }
     
-    init(conversation: TWCConversation, localMedia: TWCLocalMedia) {
+    init(conversation: TWCConversation, localMedia: TWCLocalMedia?) {
         self.conversation = Variable(conversation)
         self.callerProfile = Variable(nil)
-        self.localMedia = localMedia
+        self.localMedia = localMedia ?? TWCLocalMedia()
         self.state = Variable(.Calling)
+        self.audioMuted =  Variable(localMedia?.microphoneAdded ?? false)
+        self.videoDisabled = Variable(false)
         if let identity = conversation.participants.first?.identity {
             fetchCallingProfileWithIdentity(identity)
         }
@@ -49,7 +56,7 @@ class VideoCallViewModel {
     
     func startCall() {
         
-        guard let callingToProfile = callerProfile else {
+        guard let callingToProfile = callerProfile.value else {
             assertionFailure()
             endCall()
             return
@@ -65,7 +72,7 @@ class VideoCallViewModel {
                     self?.state.value = .CallFailed
                     self?.errorSubject.onNext(error)
                 case .Next(let conversation):
-                    self?.conversation = conversation
+                    self?.conversation.value = conversation
                 default:
                     break
                 }
@@ -75,7 +82,7 @@ class VideoCallViewModel {
     
     func endCall() {
         
-        conversation?.disconnect()
+        conversation.value?.disconnect()
         
         let sentInvitations = Account.sharedInstance.twilioManager.sentInvitations
         for invite : TWCOutgoingInvite in sentInvitations {
@@ -83,34 +90,24 @@ class VideoCallViewModel {
         }
         Account.sharedInstance.twilioManager.sentInvitations = []
         
-        state = .CallEnded
+        state.value = .CallEnded
     }
     
-    // MARK: - Readable data
+    func muteAudio() {
+        localMedia.microphoneMuted = !localMedia.microphoneMuted
+        audioMuted.value = localMedia.microphoneMuted
+    }
     
-    func messageText() -> String? {
-        switch self.state {
-        case .ReadyForCall:
-            if let username = callingToProfile?.username {
-                return String.localizedStringWithFormat(NSLocalizedString("Video call with %@", comment: "Video call status message"), username)
-            }
-        case .Calling:
-            if let participantIdentity = conversation?.participants.first?.identity {
-                return String.localizedStringWithFormat(NSLocalizedString("Connecting with %@...", comment: "Video call status message"), participantIdentity)
-            } else {
-                return NSLocalizedString("Connecting...", comment: "Video call status message")
-            }
-        case .InCall:
-            return "\(conversation!.participants.first?.identity ?? "")"
-        case .CallEnded:
-            return NSLocalizedString("Call Ended", comment: "Video call status message")
-        case .CallFailed:
-            return NSLocalizedString("Call Failed", comment: "Video call status message")
+    func disableVideo() {
+        guard let videoTrack = localMedia.videoTracks.first as? TWCLocalVideoTrack else {
+            return
         }
-        
-        return nil
+        videoTrack.enabled = !videoTrack.enabled
+        videoDisabled.value = !videoTrack.enabled
     }
 }
+
+// MARK: - Fetch
 
 private extension VideoCallViewModel {
     
@@ -122,5 +119,24 @@ private extension VideoCallViewModel {
                 self?.callerProfile.value = profile
             }
             .addDisposableTo(disposeBag)
+    }
+}
+
+// MARK: - Timer
+
+extension VideoCallViewModel {
+    
+    private func startTimer() {
+        ticks.value = 0.0
+        callDurationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerTick(_:)), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
+        callDurationTimer?.invalidate()
+        callDurationTimer = nil
+    }
+    
+    @objc func timerTick(timer: NSTimer) {
+        ticks.value = ticks.value + 1.0
     }
 }

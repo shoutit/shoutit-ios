@@ -80,17 +80,13 @@ extension FlowController : ChatDisplayable {
     
     func startVideoCallWithProfile(profile: Profile) -> Void {
         let controller = Wireframe.videoCallController()
-        
-        controller.callingToProfile = profile
-        
+        controller.viewModel = VideoCallViewModel(callerProfile: profile)
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
     
     func showVideoConversation(conversation: TWCConversation) -> Void {
         let controller = Wireframe.videoCallController()
-        
-        controller.conversation = conversation
-        
+        controller.viewModel = VideoCallViewModel(conversation: conversation, localMedia: nil)
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
 }

@@ -30,7 +30,7 @@ final class CallingOutViewController: UIViewController {
                     self?.showError(error)
                 case .Next(let conversation):
                     let controller = Wireframe.videoCallController()
-                    controller.conversation = conversation
+                    controller.viewModel = VideoCallViewModel(conversation: conversation, localMedia: nil)
                     self?.presentViewController(controller, animated: true, completion: nil)
                 default:
                     break

@@ -465,10 +465,7 @@ extension RootController: ApplicationMainViewControllerRootObject {}
 extension RootController {
     func showVideoConversation(conversation: TWCConversation, media: TWCLocalMedia) -> Void {
         let controller = Wireframe.videoCallController()
-        
-        controller.conversation = conversation
-        controller.localMedia = media
-        
+        controller.viewModel = VideoCallViewModel(conversation: conversation, localMedia: media)
         self.presentViewController(controller, animated: true, completion: nil)
     }
 }

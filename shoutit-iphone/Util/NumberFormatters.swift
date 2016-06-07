@@ -10,6 +10,15 @@ import Foundation
 
 final class NumberFormatters {
     
+    static func minutesAndSecondsUserDisplayableStringWithTimeInterval(time: NSTimeInterval) -> String {
+        let seconds = Int(time)
+        let minutesPart = seconds / 60
+        let secondsPart = seconds % 60
+        let minutesString = localizedNumber(minutesPart, numberOfDigits: 2)
+        let secondsString = localizedNumber(secondsPart, numberOfDigits: 2)
+        return "\(minutesString):\(secondsString)"
+    }
+    
     static func numberToShortString(number: Int) -> String {
         
         var num:Double = Double(number)
@@ -67,10 +76,14 @@ final class NumberFormatters {
         return localizedNumber(number)
     }
     
-    private static func localizedNumber(number: Int) -> String {
+    private static func localizedNumber(number: Int, numberOfDigits: Int? = nil) -> String {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .NoStyle
         formatter.locale = .autoupdatingCurrentLocale()
+        if let numberOfDigits = numberOfDigits {
+            formatter.minimumIntegerDigits = numberOfDigits
+            formatter.maximumIntegerDigits = numberOfDigits
+        }
         
         return formatter.stringFromNumber(number)!
     }
