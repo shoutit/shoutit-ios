@@ -84,9 +84,9 @@ PODS:
   - RxCocoa (2.3.1):
     - RxSwift (~> 2.3.1)
   - RxSwift (2.3.1)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - SlackTextViewController (1.9.3)
   - SocketRocket (0.4.1)
   - SVProgressHUD (2.0.3)
@@ -205,7 +205,7 @@ SPEC CHECKSUMS:
   ResponsiveLabel: 9e31c425ed082481faf2360689243bb0ec8f8b22
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SlackTextViewController: bd2a34c188d4f7dec93cf42388f38551263fac82
   SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4

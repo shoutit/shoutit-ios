@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
         
+        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
+        
         configureAPS(application)
         configureURLCache()
         

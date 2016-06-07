@@ -64,4 +64,3 @@ extension Contact: Encodable {
             "emails" : self.emails.encode()])
     }
 }
-

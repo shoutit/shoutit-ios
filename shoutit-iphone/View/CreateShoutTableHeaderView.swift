@@ -14,7 +14,7 @@ final class CreateShoutTableHeaderView: UIView {
     @IBOutlet var titleTextField : UITextField!
     @IBOutlet var priceTextField : UITextField!
     
-    func setCurrency(currency: Currency?) {
+    func setCurrency(currency: ShoutitKit.Currency?) {
         if let curr = currency {
             self.currencyButton.setTitle(curr.code, forState: .Normal)
         } else {

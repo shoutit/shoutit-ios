@@ -122,6 +122,12 @@
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
 		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
+		AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */; };
+		AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */; };
+		AE1BE17B1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */; };
+		AE1BE17C1D06DD5300C196EE /* PagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272307D1CE3560F003547EA /* PagedResults.swift */; };
+		AE1BE17E1D06DD8A00C196EE /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
+		AE1BE1801D06E0C700C196EE /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329001C8443080042B0DB /* Currency.swift */; };
 		AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */; };
 		AE1F29701CE9C94F00D1AA76 /* ConversationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */; };
 		AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */; };
@@ -145,7 +151,6 @@
 		AE32C59B1D055C33009A49C5 /* AutocompletionTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5661CA333FF004F57A6 /* AutocompletionTerm.swift */; };
 		AE32C59C1D055C33009A49C5 /* FilterValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329081C8487900042B0DB /* FilterValue.swift */; };
 		AE32C59D1D055C33009A49C5 /* FilterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671581C870ECD0011B078 /* FilterResult.swift */; };
-		AE32C59E1D055C33009A49C5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329001C8443080042B0DB /* Currency.swift */; };
 		AE32C59F1D055C33009A49C5 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729BD1C6221B0006F7D29 /* Address.swift */; };
 		AE32C5A01D055C33009A49C5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B481C96A8F300032FC9 /* Notification.swift */; };
 		AE32C5A11D055C33009A49C5 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729BE1C6221B0006F7D29 /* AuthData.swift */; };
@@ -162,7 +167,6 @@
 		AE32C5AC1D055C33009A49C5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B541C96E28E00032FC9 /* Message.swift */; };
 		AE32C5AD1D055C33009A49C5 /* ReadBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6901C981D5000BFE6BA /* ReadBy.swift */; };
 		AE32C5AE1D055C33009A49C5 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25EB87C1CA468F00013241A /* APIError.swift */; };
-		AE32C5AF1D055C33009A49C5 /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
 		AE32C5B01D055C33009A49C5 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5D0391C806EBC0068A6AF /* Video.swift */; };
 		AE32C5B11D055C33009A49C5 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2515AC61CB2C36100625791 /* SortType.swift */; };
 		AE32C5B21D055C33009A49C5 /* DiscoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC361C732CDE00694575 /* DiscoverItem.swift */; };
@@ -184,7 +188,6 @@
 		AE32C5C21D055C33009A49C5 /* TwilioAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */; };
 		AE32C5C31D055C33009A49C5 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404DBC21CA182EB00C19DCF /* Box.swift */; };
 		AE32C5C41D055C33009A49C5 /* TypingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAE36A71CD0B80D00AA18AE /* TypingInfo.swift */; };
-		AE32C5C51D055C33009A49C5 /* PagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272307D1CE3560F003547EA /* PagedResults.swift */; };
 		AE32C5C61D055C33009A49C5 /* ConversationDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */; };
 		AE32C5C71D055C33009A49C5 /* AttachmentCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ED3E981CEDC745001D8A22 /* AttachmentCount.swift */; };
 		AE32C5C81D055C33009A49C5 /* MiniProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C51B1CEF5C7700727095 /* MiniProfile.swift */; };
@@ -364,8 +367,6 @@
 		B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */; };
 		B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */; };
 		B23D132C1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */; };
-		B2415F501D009E4400669C52 /* AviarySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F4E1D009E4400669C52 /* AviarySDK.framework */; };
-		B2415F511D009E4400669C52 /* AviarySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */; };
 		B2415F531D009E8100669C52 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F521D009E8100669C52 /* libsqlite3.0.tbd */; };
 		B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F541D009E9D00669C52 /* Foundation.framework */; };
 		B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F561D009EA500669C52 /* MessageUI.framework */; };
@@ -893,6 +894,9 @@
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
+		AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
+		AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
+		AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKCoreResources.bundle; path = ../AviarySDK/SDK/AdobeCreativeSDKCore.framework/Versions/A/Resources/AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
 		AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedUsersViewModel.swift; path = ViewModel/SuggestedUsersViewModel.swift; sourceTree = "<group>"; };
 		AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationDescription.swift; path = Model/ConversationDescription.swift; sourceTree = "<group>"; };
 		AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewController.swift; path = Controllers/ConversationInfoViewController.swift; sourceTree = "<group>"; };
@@ -1566,10 +1570,11 @@
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
+				AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */,
+				AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */,
 				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
 				AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */,
 				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
-				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
 				B2985FA91C7295B500EEA9A2 /* libz.1.1.3.tbd in Frameworks */,
@@ -1586,7 +1591,7 @@
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
-				B2415F501D009E4400669C52 /* AviarySDK.framework in Frameworks */,
+				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
@@ -2599,6 +2604,7 @@
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
 			isa = PBXGroup;
 			children = (
+				AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */,
 				AC1C93E61BE90D2A009400BE /* policy.html */,
 				AC1C93E71BE90D2A009400BE /* rules.html */,
 				AC1C93E81BE90D2A009400BE /* termsofservice.html */,
@@ -2972,6 +2978,8 @@
 		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */,
+				AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */,
 				B2415F581D009EC700669C52 /* UIKit.framework */,
 				B2415F561D009EA500669C52 /* MessageUI.framework */,
 				B2415F541D009E9D00669C52 /* Foundation.framework */,
@@ -4113,6 +4121,7 @@
 				B2E715681C6E37B8007F95CF /* ShoutsCollectionViewCell.xib in Resources */,
 				B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */,
 				AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */,
+				AE1BE17B1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				248320F31C99715D00C12D90 /* OutgoingCell.xib in Resources */,
 				B2D441391CB8169B009782AF /* Location.storyboard in Resources */,
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
@@ -4203,7 +4212,6 @@
 				B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */,
 				B2D4414D1CB816BD009782AF /* EditProfile.storyboard in Resources */,
 				B2985F821C728D0000EEA9A2 /* GoogleSignIn.bundle in Resources */,
-				B2415F511D009E4400669C52 /* AviarySDKResources.bundle in Resources */,
 				B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4840,10 +4848,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1BE1801D06E0C700C196EE /* Currency.swift in Sources */,
 				AE32C59D1D055C33009A49C5 /* FilterResult.swift in Sources */,
 				AE32C5E01D0564C5009A49C5 /* ConversationsListParams.swift in Sources */,
 				AE32C5BF1D055C33009A49C5 /* Profile.swift in Sources */,
-				AE32C5AF1D055C33009A49C5 /* Shout.swift in Sources */,
 				AE32C5D21D0564C5009A49C5 /* RelatedTagsParams.swift in Sources */,
 				AE32C5C01D055C33009A49C5 /* DetailedProfile.swift in Sources */,
 				AE32C5B61D055C33009A49C5 /* Report.swift in Sources */,
@@ -4860,6 +4868,7 @@
 				AE32C5BE1D055C33009A49C5 /* GuestUser.swift in Sources */,
 				AE32C5CF1D0564C5009A49C5 /* ListenParams.swift in Sources */,
 				AE32C5A01D055C33009A49C5 /* Notification.swift in Sources */,
+				AE1BE17C1D06DD5300C196EE /* PagedResults.swift in Sources */,
 				AE32C5AD1D055C33009A49C5 /* ReadBy.swift in Sources */,
 				AE32C5AB1D055C33009A49C5 /* AttachedObject.swift in Sources */,
 				AE32C5E21D0564C5009A49C5 /* ConversationUpdateParams.swift in Sources */,
@@ -4878,7 +4887,6 @@
 				AE32C5AE1D055C33009A49C5 /* APIError.swift in Sources */,
 				AE32C5DB1D0564C5009A49C5 /* ChangePasswordParams.swift in Sources */,
 				AE32C5E71D05652D009A49C5 /* DateFormatters.swift in Sources */,
-				AE32C5C51D055C33009A49C5 /* PagedResults.swift in Sources */,
 				AE32C5D51D0564C5009A49C5 /* SearchParams.swift in Sources */,
 				AE32C5BA1D055C33009A49C5 /* Conversation.swift in Sources */,
 				AE32C5E41D0564C5009A49C5 /* SocialAccountLinkParams.swift in Sources */,
@@ -4887,7 +4895,6 @@
 				AE32C5CB1D0564BF009A49C5 /* Params.swift in Sources */,
 				AE32C5B91D055C33009A49C5 /* MiniConversation.swift in Sources */,
 				AE32C59B1D055C33009A49C5 /* AutocompletionTerm.swift in Sources */,
-				AE32C59E1D055C33009A49C5 /* Currency.swift in Sources */,
 				AE32C5E61D056513009A49C5 /* ShoutItErrors.swift in Sources */,
 				AE32C5D61D0564C5009A49C5 /* AutocompletionParams.swift in Sources */,
 				AE32C5E51D0564FD009A49C5 /* NumberFormatters.swift in Sources */,
@@ -4913,6 +4920,7 @@
 				AE32C5B71D055C33009A49C5 /* Reportable.swift in Sources */,
 				AE32C5A21D055C33009A49C5 /* ListenersMetadata.swift in Sources */,
 				AE32C5CD1D0564C5009A49C5 /* AuthParams.swift in Sources */,
+				AE1BE17E1D06DD8A00C196EE /* Shout.swift in Sources */,
 				AE32C5DA1D0564C5009A49C5 /* GeocodeParams.swift in Sources */,
 				AE32C5E81D05655F009A49C5 /* Array+Additions.swift in Sources */,
 				AE32C5A41D055C33009A49C5 /* FacebookAccount.swift in Sources */,
@@ -5550,7 +5558,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5558,6 +5570,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -5577,7 +5733,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -5585,6 +5745,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -6179,9 +6483,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6191,12 +6496,14 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6208,8 +6515,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6239,9 +6546,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6250,7 +6558,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6262,7 +6573,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6292,9 +6604,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6303,7 +6616,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6315,7 +6631,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6345,9 +6662,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6356,7 +6674,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6368,7 +6689,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6398,9 +6720,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6409,7 +6732,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6421,7 +6747,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6451,9 +6778,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6462,7 +6790,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6474,7 +6805,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6504,9 +6836,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6516,12 +6849,14 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6533,8 +6868,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6564,9 +6899,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6576,12 +6912,14 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6593,8 +6931,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6624,9 +6962,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6636,12 +6974,14 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6653,8 +6993,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6684,9 +7024,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6695,7 +7036,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6707,7 +7051,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6737,9 +7082,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6748,7 +7094,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6760,7 +7109,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6790,9 +7140,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -6801,7 +7152,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6813,7 +7167,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = SH.ShoutitKit;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7429,7 +7784,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7437,6 +7796,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7493,15 +7996,164 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7564,7 +8216,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7572,6 +8228,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7634,7 +8434,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7642,6 +8446,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7705,7 +8653,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7713,6 +8665,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7769,7 +8865,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7777,6 +8877,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7833,7 +9077,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -7841,6 +9089,150 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7897,15 +9289,163 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -7962,15 +9502,164 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -8027,15 +9716,163 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/AviarySDK-4.4.5/AviarySDK",
+					"$(PROJECT_DIR)/AviarySDK/SDK",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_CSDK_COMPONENTS,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ACPDownload\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AWSCognito\"",
+					"-framework",
+					"\"AWSCore\"",
+					"-framework",
+					"\"AWSS3\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AmazonS3RequestManager\"",
+					"-framework",
+					"\"Argo\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"ContactsPicker\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Curry\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"DAProgressOverlayView\"",
+					"-framework",
+					"\"DZNEmptyDataSet\"",
+					"-framework",
+					"\"DeepLinkKit\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FTGooglePlacesAPI\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KeychainAccess\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"LLVideoEditor\"",
+					"-framework",
+					"\"MBMapSnapshotter\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"Material\"",
+					"-framework",
+					"\"Mixpanel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"Ogra\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Pusher\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReachabilitySwift\"",
+					"-framework",
+					"\"ResponsiveLabel\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"SWXMLHash\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SlackTextViewController\"",
+					"-framework",
+					"\"SocketRocket\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Timberjack\"",
+					"-framework",
+					"\"TwilioCommon\"",
+					"-framework",
+					"\"TwilioConversationsClient\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIViewAppearanceSwift\"",
+					"-framework",
+					"\"Validator\"",
+					"-framework",
+					"\"VideoToolbox\"",
 				);
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";

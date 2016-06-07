@@ -18,7 +18,7 @@ class CreateShoutTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     private let facebookTappedSubject: PublishSubject<Void> = PublishSubject()
     
-    var type : ShoutType!
+    var type : ShoutitKit.ShoutType!
     
     var viewModel : CreateShoutViewModel!
     
