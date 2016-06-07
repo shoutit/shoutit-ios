@@ -190,9 +190,9 @@ extension SelectShoutImagesController {
             struct Static {
                 static var token: dispatch_once_t = 0
             }
-//            dispatch_once(&Static.token) {
-//                AdobeUXImageEditorViewController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
-//            }
+            dispatch_once(&Static.token) {
+                AdobeUXImageEditorViewController.setAPIKey(Constants.Aviary.clientID, secret: Constants.Aviary.clientSecret)
+            }
             
             self?.editingAttachment = attachment
             self?.editingCompletion = completion

@@ -92,7 +92,6 @@
 		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
-		92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DD26576469F744E4920C92 /* Pods.framework */; };
 		A59E87E13FF2DACE38D43878 /* Pods_ShoutitKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1061BE8E9FD81CBEA9066607 /* Pods_ShoutitKitTests.framework */; };
 		A6AC31328CF8987364D6A771 /* Pods_shoutitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
@@ -124,7 +123,6 @@
 		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
 		AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */; };
 		AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */; };
-		AE1BE17B1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */; };
 		AE1BE17C1D06DD5300C196EE /* PagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272307D1CE3560F003547EA /* PagedResults.swift */; };
 		AE1BE17E1D06DD8A00C196EE /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
 		AE1BE1801D06E0C700C196EE /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329001C8443080042B0DB /* Currency.swift */; };
@@ -259,6 +257,8 @@
 		AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599751C609DA100015AA3 /* MenuTableViewController.swift */; };
 		AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */; };
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
+		AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */; };
+		AEA844241D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */; };
 		AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */; };
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
 		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
@@ -896,7 +896,7 @@
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
 		AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
 		AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
-		AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKCoreResources.bundle; path = ../AviarySDK/SDK/AdobeCreativeSDKCore.framework/Versions/A/Resources/AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
+		AE1BE17A1D06D13600C196EE /* AviarySDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AviarySDKResource.bundle; path = ../AviarySDK/SDK/AdobeCreativeSDKCore.framework/Versions/A/Resources/AviarySDKResource.bundle; sourceTree = "<group>"; };
 		AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedUsersViewModel.swift; path = ViewModel/SuggestedUsersViewModel.swift; sourceTree = "<group>"; };
 		AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationDescription.swift; path = Model/ConversationDescription.swift; sourceTree = "<group>"; };
 		AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewController.swift; path = Controllers/ConversationInfoViewController.swift; sourceTree = "<group>"; };
@@ -1067,6 +1067,8 @@
 		AEA599751C609DA100015AA3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = Controllers/MenuTableViewController.swift; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
+		AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
+		AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework/Versions/A/Resources/AdobeCreativeSDKImageResources.bundle; sourceTree = "<group>"; };
 		AEAA41561D01B54D00EBC39A /* JSONError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
 		AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingPictureCell.xib; path = View/IncomingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingPictureCell.xib; path = Storyboards/OutgoingPictureCell.xib; sourceTree = "<group>"; };
@@ -1595,7 +1597,6 @@
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
-				92FB0B7C3AF5D5DBC2F82B90 /* Pods.framework in Frameworks */,
 				B2985F8A1C7294BD00EEA9A2 /* GoogleMaps.framework in Frameworks */,
 				B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */,
 				0E93643B008880E9B613BFF3 /* Pods_shoutit.framework in Frameworks */,
@@ -2013,6 +2014,7 @@
 		6027CF281BE74EAE00124C28 = {
 			isa = PBXGroup;
 			children = (
+				AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */,
 				6027CF331BE74EAE00124C28 /* shoutit */,
 				6027CF481BE74EAE00124C28 /* shoutitTests */,
 				AE32C5361D055BFB009A49C5 /* ShoutitKit */,
@@ -2301,6 +2303,8 @@
 		AC1C94031BEBB911009400BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */,
+				AE1BE17A1D06D13600C196EE /* AviarySDKResource.bundle */,
 				B2082D701C626331007EB2FB /* HTMLFiles */,
 				B2985F811C728D0000EEA9A2 /* GoogleSignIn.bundle */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
@@ -2604,7 +2608,6 @@
 		B2082D701C626331007EB2FB /* HTMLFiles */ = {
 			isa = PBXGroup;
 			children = (
-				AE1BE17A1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle */,
 				AC1C93E61BE90D2A009400BE /* policy.html */,
 				AC1C93E71BE90D2A009400BE /* rules.html */,
 				AC1C93E81BE90D2A009400BE /* termsofservice.html */,
@@ -4119,9 +4122,10 @@
 			files = (
 				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
 				B2E715681C6E37B8007F95CF /* ShoutsCollectionViewCell.xib in Resources */,
+				AEA844241D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle in Resources */,
 				B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */,
+				AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */,
-				AE1BE17B1D06D13600C196EE /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				248320F31C99715D00C12D90 /* OutgoingCell.xib in Resources */,
 				B2D441391CB8169B009782AF /* Location.storyboard in Resources */,
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
@@ -5574,7 +5578,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -5749,7 +5752,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -7800,7 +7802,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -8010,11 +8011,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -8232,7 +8232,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -8450,7 +8449,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -8669,7 +8667,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -8881,7 +8878,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -9093,7 +9089,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -9306,7 +9301,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -9516,11 +9510,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
@@ -9733,7 +9726,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-all_load",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"z\"",
