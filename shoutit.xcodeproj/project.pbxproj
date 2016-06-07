@@ -142,7 +142,7 @@
 		AE32C53F1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; };
 		AE32C5461D055BFD009A49C5 /* ShoutitKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE32C5451D055BFD009A49C5 /* ShoutitKitTests.swift */; };
 		AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; };
-		AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE32C5981D055C33009A49C5 /* JSONReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683C1D01A563003B254D /* JSONReadable.swift */; };
 		AE32C5991D055C33009A49C5 /* JSONWriteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683E1D01A583003B254D /* JSONWriteable.swift */; };
 		AE32C59A1D055C33009A49C5 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA41561D01B54D00EBC39A /* JSONError.swift */; };
@@ -6485,6 +6485,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -6547,6 +6548,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -7018,6 +7020,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -7075,6 +7078,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -7132,6 +7136,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
