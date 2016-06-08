@@ -40,14 +40,16 @@ class VideoCallViewModel {
         self.videoDisabled = Variable(false)
     }
     
-    init(conversation: TWCConversation, localMedia: TWCLocalMedia?) {
+    init(conversation: TWCConversation, localMedia: TWCLocalMedia?, invitation: TWCIncomingInvite?) {
         self.conversation = Variable(conversation)
         self.callerProfile = Variable(nil)
         self.localMedia = localMedia ?? TWCLocalMedia()
         self.state = Variable(.Calling)
-        self.audioMuted =  Variable(localMedia?.microphoneAdded ?? false)
+        self.audioMuted =  Variable(localMedia?.microphoneMuted ?? false)
         self.videoDisabled = Variable(false)
         if let identity = conversation.participants.first?.identity {
+            fetchCallingProfileWithIdentity(identity)
+        } else if let identity = invitation?.from {
             fetchCallingProfileWithIdentity(identity)
         }
     }
@@ -111,7 +113,7 @@ class VideoCallViewModel {
 
 private extension VideoCallViewModel {
     
-    private func fetchCallingProfileWithIdentity(identity: String) {
+    func fetchCallingProfileWithIdentity(identity: String) {
         
         APIProfileService
             .retrieveProfileWithTwilioUsername(identity)

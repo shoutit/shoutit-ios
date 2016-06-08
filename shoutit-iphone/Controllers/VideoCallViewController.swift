@@ -321,28 +321,13 @@ extension VideoCallViewController: TWCLocalMediaDelegate {
 extension VideoCallViewController: TWCParticipantDelegate {
     
     func participant(participant: TWCParticipant, addedVideoTrack videoTrack: TWCVideoTrack) {
-        addRemoteCallRendererWithVideoTrack(videoTrack)
+        if remoteCameraViewRenderer == nil {
+            addRemoteCallRendererWithVideoTrack(videoTrack)
+        }
     }
     
     func participant(participant: TWCParticipant, removedVideoTrack videoTrack: TWCVideoTrack) {
         removeRemoteCallRendererFromVideoTrack(videoTrack)
-    }
-    
-    func participant(participant: TWCParticipant, addedAudioTrack audioTrack: TWCAudioTrack) {
-        if let videoTrack = participant.media.videoTracks.first {
-        }
-    }
-    
-    func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
-        if let videoTrack = track as? TWCVideoTrack {
-            
-        }
-    }
-    
-    func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
-        if let _ = track as? TWCVideoTrack {
-            
-        }
     }
 }
 
@@ -355,7 +340,7 @@ extension VideoCallViewController: TWCConversationDelegate {
     func conversation(conversation: TWCConversation, didConnectParticipant participant: TWCParticipant) {
         viewModel.state.value = .InCall
         participant.delegate = self
-        if let videoTrack = participant.media.videoTracks.first {
+        if let videoTrack = participant.media.videoTracks.first where remoteCameraViewRenderer == nil {
             addRemoteCallRendererWithVideoTrack(videoTrack)
         }
     }

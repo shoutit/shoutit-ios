@@ -329,7 +329,7 @@ extension RootController {
                 }
                 
                 if let conversation = conversation {
-                    self.showVideoConversation(conversation, media: media)
+                    self.showVideoConversation(conversation, media: media, invitation: invitation)
                 }
             })
         }
@@ -463,9 +463,9 @@ private extension RootController {
 
 extension RootController: ApplicationMainViewControllerRootObject {}
 extension RootController {
-    func showVideoConversation(conversation: TWCConversation, media: TWCLocalMedia) -> Void {
+    func showVideoConversation(conversation: TWCConversation, media: TWCLocalMedia, invitation: TWCIncomingInvite) -> Void {
         let controller = Wireframe.videoCallController()
-        controller.viewModel = VideoCallViewModel(conversation: conversation, localMedia: media)
+        controller.viewModel = VideoCallViewModel(conversation: conversation, localMedia: media, invitation: invitation)
         self.presentViewController(controller, animated: true, completion: nil)
     }
 }
