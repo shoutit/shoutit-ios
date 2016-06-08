@@ -77,7 +77,7 @@ PODS:
   - SwiftyBeaver (0.5.3)
   - SWXMLHash (2.3.1)
   - Timberjack (0.0.2)
-  - TwilioCommon (0.2.1)
+  - TwilioCommon (0.2.2)
   - TwilioConversationsClient (0.24.1):
     - TwilioCommon (~> 0.2.0)
   - UIViewAppearanceSwift (0.0.1)
@@ -124,7 +124,7 @@ DEPENDENCIES:
   - SVPullToRefresh (~> 0.4)
   - SwiftyBeaver
   - Timberjack
-  - TwilioConversationsClient (~> 0.24.0)
+  - TwilioConversationsClient (~> 0.24)
   - UIViewAppearanceSwift (from `https://github.com/levantAJ/UIViewAppearanceSwift.git`, commit `2ba05f14a8c1a7eb16b1525ac325962516d6992a`)
   - Validator (~> 1.1)
 
@@ -193,11 +193,11 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 20afdb23012f8bcacb7e865880e90301bf70ad37
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
   Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42
-  TwilioCommon: a2dbaf7c080c9fa8f69f9a0605be965501c87334
+  TwilioCommon: b697446b6f151255c4118f065e959c3dedee44e5
   TwilioConversationsClient: b14e7ad53f315bb3fbd86e4a2c9d3b6c07840739
   UIViewAppearanceSwift: 8313bfad3f7b7e129a7494b70e9b9b1f170e5b9f
   Validator: 3fa8a561459004f4629a698258ee365fc0b82406
 
-PODFILE CHECKSUM: 386379ad026ce0ab6109ade1602071e54bc84cc0
+PODFILE CHECKSUM: 6ccd8c3eada24ccbe153a31cf612701ba96d7e45
 
 COCOAPODS: 1.0.1

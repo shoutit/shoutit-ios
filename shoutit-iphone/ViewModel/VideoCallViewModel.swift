@@ -126,12 +126,12 @@ private extension VideoCallViewModel {
 
 extension VideoCallViewModel {
     
-    private func startTimer() {
+    func startTimer() {
         ticks.value = 0.0
         callDurationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerTick(_:)), userInfo: nil, repeats: true)
     }
     
-    private func stopTimer() {
+    func stopTimer() {
         callDurationTimer?.invalidate()
         callDurationTimer = nil
     }

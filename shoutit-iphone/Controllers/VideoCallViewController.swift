@@ -12,8 +12,13 @@ import RxSwift
 final class VideoCallViewController: UIViewController {
 
     // UI
-    @IBOutlet weak var callerCameraView: UIView!
-    @IBOutlet weak var selfCameraView: UIView!
+    @IBOutlet weak var remoteCameraView: UIView! {
+        didSet {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleControlsHidden))
+            remoteCameraView.addGestureRecognizer(tapGesture)
+        }
+    }
+    @IBOutlet weak var localCameraView: UIView!
     @IBOutlet weak var chatInfoHeaderView: UIView!
     @IBOutlet weak var statusBarBackgroundView: UIView!
     @IBOutlet weak var callerNameLabel: UILabel!
@@ -23,6 +28,13 @@ final class VideoCallViewController: UIViewController {
     @IBOutlet weak var callButtonLabel: UILabel!
     @IBOutlet weak var audioButton: RoundSwitchableButton!
     @IBOutlet weak var videoButton: RoundSwitchableButton!
+    @IBOutlet weak var endCallButton: UIButton!
+    private var hideableViews: [UIView] {
+        return [chatInfoHeaderView, statusBarBackgroundView, audioButton, videoButton, endCallButton]
+    }
+    private var hideableViewsAreHidden: Bool {
+        return endCallButton.hidden
+    }
     
     // constraints
     @IBOutlet weak var selfCameraViewWidthConstraint: NSLayoutConstraint!
@@ -37,17 +49,10 @@ final class VideoCallViewController: UIViewController {
     var viewModel: VideoCallViewModel!
     var camera : TWCCameraCapturer!
     private var cameraPreviewViewConstraints: [NSLayoutConstraint]?
-    private var previewActive: Bool = false {
-        didSet {
-            if oldValue == previewActive { return }
-            if previewActive { startPreview() }
-            else { stopPreview() }
-        }
-    }
-    private var callerCameraViewRenderer: TWCVideoViewRenderer?
-    private var selfCameraViewRenderer: TWCVideoViewRenderer?
-    private var callerCameraRendererViewConstraints: [NSLayoutConstraint]?
-    private var selfCameraRendererViewConstraints: [NSLayoutConstraint]?
+    private var remoteCameraViewRenderer: TWCVideoViewRenderer?
+    private var localCameraViewRenderer: TWCVideoViewRenderer?
+    private var remoteCameraRendererViewConstraints: [NSLayoutConstraint]?
+    private var localCameraRendererViewConstraints: [NSLayoutConstraint]?
     
     // MARK: - Lifecycle
     
@@ -80,6 +85,10 @@ final class VideoCallViewController: UIViewController {
         return .LightContent
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return hideableViewsAreHidden
+    }
+    
     deinit {
         UIApplication.sharedApplication().idleTimerDisabled = false
     }
@@ -87,6 +96,22 @@ final class VideoCallViewController: UIViewController {
     // MARK: - Setup
     
     private func setupRX() {
+        
+        audioButton
+            .rx_tap
+            .asDriver()
+            .driveNext { [weak self] in
+                self?.viewModel.muteAudio()
+            }
+            .addDisposableTo(disposeBag)
+        
+        videoButton
+            .rx_tap
+            .asDriver()
+            .driveNext { [weak self] in
+                self?.viewModel.disableVideo()
+            }
+            .addDisposableTo(disposeBag)
         
         viewModel.state
             .asDriver()
@@ -97,16 +122,18 @@ final class VideoCallViewController: UIViewController {
                 self.callButton.hidden = state != .ReadyForCall && state != .CallFailed
                 self.callButtonLabel.hidden = state != .ReadyForCall && state != .CallFailed
                 self.callButtonIconImageView.hidden = state != .ReadyForCall && state != .CallFailed
-                self.previewActive = state == .ReadyForCall || state == .Calling || state == .CallFailed
+                self.setHideableViewsHidden(false)
                 
                 switch state {
                 case .ReadyForCall:
                     if let username = self.viewModel.callerProfile.value?.username {
                         self.messageLabel.text = String.localizedStringWithFormat(NSLocalizedString("Video call with %@", comment: "Video call status message"), username)
                     }
+                    self.startPreview()
                 case .InCall:
                     self.messageLabel.text = NumberFormatters.minutesAndSecondsUserDisplayableStringWithTimeInterval(self.viewModel.ticks.value)
                     self.adjustPreviewSize(CMVideoDimensions(width: 640, height: 480))
+                    self.viewModel.startTimer()
                 case .Calling:
                     self.messageLabel.text = NSLocalizedString("calling...", comment: "Video call status message")
                 case .CallFailed:
@@ -114,6 +141,7 @@ final class VideoCallViewController: UIViewController {
                 case .CallEnded:
                     self.messageLabel.text = NSLocalizedString("Call Ended", comment: "Video call status message")
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    self.viewModel.stopTimer()
                 }
             }
             .addDisposableTo(disposeBag)
@@ -172,6 +200,17 @@ final class VideoCallViewController: UIViewController {
     @IBAction func endCall() {
         viewModel.endCall()
     }
+    
+    func toggleControlsHidden() {
+        guard case .InCall = viewModel.state.value else { return }
+        let hidden = hideableViewsAreHidden
+        setHideableViewsHidden(!hidden)
+    }
+    
+    private func setHideableViewsHidden(hidden: Bool) {
+        hideableViews.forEach{ $0.hidden = hidden }
+        setNeedsStatusBarAppearanceUpdate()
+    }
 }
 
 private extension VideoCallViewController {
@@ -193,7 +232,7 @@ private extension VideoCallViewController {
     }
     
     private func adjustPreviewSize(dimensions: CMVideoDimensions) {
-        let maxWidth : CGFloat = min(round(CGRectGetWidth(self.view.bounds) * 0.35), 80.0)
+        let maxWidth : CGFloat = min(round(CGRectGetWidth(self.view.bounds) * 0.35), 125.0)
         
         var height = round(CGFloat(dimensions.height / dimensions.width) * maxWidth)
         
@@ -209,12 +248,13 @@ private extension VideoCallViewController {
     }
     
     private func startPreview() {
+        guard camera.capturing == false else { return }
         camera.startPreview()
         guard let previewView = camera.previewView else {
             return
         }
-        selfCameraView.addSubview(previewView)
-        previewView.contentMode = .ScaleAspectFill
+        localCameraView.addSubview(previewView)
+        previewView.contentMode = .ScaleAspectFit
         previewView.translatesAutoresizingMaskIntoConstraints = false
         cameraPreviewViewConstraints = []
         let views = ["preview" : previewView]
@@ -238,58 +278,6 @@ private extension VideoCallViewController {
         selfCameraViewLeadingConstraint.constant = 0.0
         selfCameraViewBottomConstraint.constant = 0.0
         view.layoutIfNeeded()
-    }
-    
-    private func createRendererForVideoTrack(videoTrack: TWCVideoTrack) -> TWCVideoViewRenderer {
-        let renderer = TWCVideoViewRenderer(delegate: self)
-        renderer.view.translatesAutoresizingMaskIntoConstraints = false
-        renderer.view.contentMode = .ScaleAspectFill
-        videoTrack.addRenderer(renderer)
-        return renderer
-    }
-    
-    private func enableCallerCameraRendererWithTrack(track: TWCVideoTrack) {
-        var renderer = callerCameraViewRenderer
-        if renderer == nil {
-            renderer = createRendererForVideoTrack(track)
-            self.callerCameraViewRenderer = renderer
-        }
-        guard renderer?.view.superview == nil else { return }
-        callerCameraRendererViewConstraints = []
-        let views = ["view" : renderer!.view]
-        callerCameraView.addSubview(renderer!.view)
-        callerCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
-        callerCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
-        callerCameraRendererViewConstraints!.forEach{ $0.active = true }
-    }
-    
-    private func enableSelfCameraRendererWithTrack(track: TWCVideoTrack) {
-        var renderer = selfCameraViewRenderer
-        if renderer == nil {
-            renderer = createRendererForVideoTrack(track)
-            self.selfCameraViewRenderer = renderer
-        }
-        guard renderer?.view.superview == nil else { return }
-        selfCameraRendererViewConstraints = []
-        let views = ["view" : renderer!.view]
-        selfCameraView.addSubview(renderer!.view)
-        selfCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
-        selfCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
-        selfCameraRendererViewConstraints!.forEach{ $0.active = true }
-    }
-    
-    private func disableCallerCameraRenderer() {
-        guard let constraints = callerCameraRendererViewConstraints else { return }
-        constraints.forEach{ $0.active = false }
-        callerCameraRendererViewConstraints = nil
-        callerCameraViewRenderer?.view.removeFromSuperview()
-    }
-    
-    private func disableSelfCameraRenderer() {
-        guard let constraints = selfCameraRendererViewConstraints else { return }
-        constraints.forEach{ $0.active = false }
-        selfCameraRendererViewConstraints = nil
-        selfCameraViewRenderer?.view.removeFromSuperview()
     }
 }
 
@@ -321,47 +309,39 @@ extension VideoCallViewController: TWCVideoViewRendererDelegate {
 extension VideoCallViewController: TWCLocalMediaDelegate {
     
     func localMedia(media: TWCLocalMedia, didAddVideoTrack videoTrack: TWCVideoTrack) {
-        previewActive = false
-        enableSelfCameraRendererWithTrack(videoTrack)
+        addLocalCallRendererWithVideoTrack(videoTrack)
         videoTrack.delegate = self
     }
     
     func localMedia(media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
-        switch viewModel.state.value {
-        case .CallFailed, .ReadyForCall, .Calling:
-            previewActive = true
-        default:
-            break
-        }
-        disableSelfCameraRenderer()
+        removeLocalCallRendererFromVideoTrack(videoTrack)
     }
 }
 
 extension VideoCallViewController: TWCParticipantDelegate {
     
     func participant(participant: TWCParticipant, addedVideoTrack videoTrack: TWCVideoTrack) {
-        enableCallerCameraRendererWithTrack(videoTrack)
+        addRemoteCallRendererWithVideoTrack(videoTrack)
     }
     
     func participant(participant: TWCParticipant, removedVideoTrack videoTrack: TWCVideoTrack) {
-        disableCallerCameraRenderer()
+        removeRemoteCallRendererFromVideoTrack(videoTrack)
     }
     
     func participant(participant: TWCParticipant, addedAudioTrack audioTrack: TWCAudioTrack) {
         if let videoTrack = participant.media.videoTracks.first {
-            enableCallerCameraRendererWithTrack(videoTrack)
         }
     }
     
     func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
         if let videoTrack = track as? TWCVideoTrack {
-            enableCallerCameraRendererWithTrack(videoTrack)
+            
         }
     }
     
     func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
         if let _ = track as? TWCVideoTrack {
-            disableCallerCameraRenderer()
+            
         }
     }
 }
@@ -375,6 +355,9 @@ extension VideoCallViewController: TWCConversationDelegate {
     func conversation(conversation: TWCConversation, didConnectParticipant participant: TWCParticipant) {
         viewModel.state.value = .InCall
         participant.delegate = self
+        if let videoTrack = participant.media.videoTracks.first {
+            addRemoteCallRendererWithVideoTrack(videoTrack)
+        }
     }
     
     func conversation(conversation: TWCConversation, didFailToConnectParticipant participant: TWCParticipant, error: NSError) {
@@ -399,4 +382,63 @@ extension VideoCallViewController: TWCVideoTrackDelegate {
 
 extension VideoCallViewController: TWCCameraCapturerDelegate {
     
+}
+
+private extension VideoCallViewController {
+    
+    func addLocalCallRendererWithVideoTrack(videoTrack: TWCVideoTrack) {
+        let renderer = createRendererForVideoTrack(videoTrack)
+        if localCameraViewRenderer != nil {
+            removeLocalCallRendererFromVideoTrack(videoTrack)
+        }
+        localCameraRendererViewConstraints = []
+        let views = ["view" : renderer.view]
+        localCameraView.addSubview(renderer.view)
+        localCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints!.forEach{ $0.active = true }
+    }
+    
+    func removeLocalCallRendererFromVideoTrack(videoTrack: TWCVideoTrack) {
+        if let constraints = localCameraRendererViewConstraints {
+            constraints.forEach{ $0.active = false }
+            localCameraRendererViewConstraints = nil
+        }
+        guard let renderer = remoteCameraViewRenderer else { return }
+        videoTrack.removeRenderer(renderer)
+        renderer.view.removeFromSuperview()
+        remoteCameraViewRenderer = nil
+    }
+    
+    func addRemoteCallRendererWithVideoTrack(videoTrack: TWCVideoTrack) {
+        let renderer = createRendererForVideoTrack(videoTrack)
+        if remoteCameraViewRenderer != nil {
+            removeRemoteCallRendererFromVideoTrack(videoTrack)
+        }
+        remoteCameraRendererViewConstraints = []
+        let views = ["view" : renderer.view]
+        remoteCameraView.addSubview(renderer.view)
+        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
+        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
+        remoteCameraRendererViewConstraints!.forEach{ $0.active = true }
+    }
+    
+    func removeRemoteCallRendererFromVideoTrack(videoTrack: TWCVideoTrack) {
+        if let constraints = remoteCameraRendererViewConstraints {
+            constraints.forEach{ $0.active = false }
+            remoteCameraRendererViewConstraints = nil
+        }
+        guard let renderer = remoteCameraViewRenderer else { return }
+        videoTrack.removeRenderer(renderer)
+        renderer.view.removeFromSuperview()
+        remoteCameraViewRenderer = nil
+    }
+    
+    func createRendererForVideoTrack(videoTrack: TWCVideoTrack) -> TWCVideoViewRenderer {
+        let renderer = TWCVideoViewRenderer(delegate: self)
+        renderer.view.translatesAutoresizingMaskIntoConstraints = false
+        renderer.view.contentMode = .ScaleAspectFit
+        videoTrack.addRenderer(renderer)
+        return renderer
+    }
 }

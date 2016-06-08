@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7F-Z8-VAp">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.060309332770270271" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-2N-CDM">
@@ -169,6 +169,7 @@
                             <constraint firstItem="Rgc-Fp-vmy" firstAttribute="centerX" secondItem="X7F-Z8-VAp" secondAttribute="centerX" id="Xau-ZO-18f"/>
                             <constraint firstItem="QSY-pP-PgW" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="cEe-rN-Pku"/>
                             <constraint firstItem="seF-6F-IeU" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="h2O-qG-PhV"/>
+                            <constraint firstItem="X7F-Z8-VAp" firstAttribute="top" secondItem="LdK-fk-gNV" secondAttribute="topMargin" id="kSP-IA-wtf"/>
                             <constraint firstAttribute="trailing" secondItem="Two-nQ-Lpy" secondAttribute="trailing" id="kzL-UF-0op"/>
                             <constraint firstAttribute="trailing" secondItem="Rgc-Fp-vmy" secondAttribute="trailing" constant="24" id="lGa-Gu-usR"/>
                             <constraint firstItem="EHD-Dg-pcH" firstAttribute="centerX" secondItem="LdK-fk-gNV" secondAttribute="centerX" id="lNm-8v-jbe"/>
@@ -180,6 +181,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="0hg-wf-A8f"/>
                                 <exclude reference="5rS-j3-b2d"/>
                                 <exclude reference="Xau-ZO-18f"/>
                             </mask>
@@ -190,11 +192,12 @@
                         <outlet property="callButton" destination="6Fl-rk-iIB" id="lwt-eN-Tb7"/>
                         <outlet property="callButtonIconImageView" destination="O99-qL-sOy" id="S6k-1X-cNc"/>
                         <outlet property="callButtonLabel" destination="WrL-1Z-BUo" id="fD6-94-RpV"/>
-                        <outlet property="callerCameraView" destination="X7F-Z8-VAp" id="tdS-dB-dQz"/>
                         <outlet property="callerNameLabel" destination="7sw-fv-yOp" id="JaE-bN-xtJ"/>
                         <outlet property="chatInfoHeaderView" destination="QSY-pP-PgW" id="sca-pL-bbe"/>
+                        <outlet property="endCallButton" destination="Rgc-Fp-vmy" id="es7-wU-NAJ"/>
+                        <outlet property="localCameraView" destination="jUR-2N-CDM" id="4at-jb-Kgm"/>
                         <outlet property="messageLabel" destination="IHn-L1-0lT" id="a5a-9h-7HK"/>
-                        <outlet property="selfCameraView" destination="jUR-2N-CDM" id="lbR-Uk-qif"/>
+                        <outlet property="remoteCameraView" destination="X7F-Z8-VAp" id="FTQ-Qz-p0m"/>
                         <outlet property="selfCameraViewBottomConstraint" destination="Hye-C5-bS7" id="A06-9J-5tU"/>
                         <outlet property="selfCameraViewHeightConstraint" destination="htp-KM-jAo" id="f3k-u1-dQ2"/>
                         <outlet property="selfCameraViewLeadingConstraint" destination="Jnv-cT-7Kd" id="G4R-g8-6m6"/>

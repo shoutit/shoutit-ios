@@ -7,7 +7,7 @@ use_frameworks!
 target 'shoutit' do
 
 # Twilio
-pod 'TwilioConversationsClient', '~>0.24.0'
+pod 'TwilioConversationsClient', '~>0.24'
 
 # RX
 pod 'RxSwift', '~> 2.3.1'
