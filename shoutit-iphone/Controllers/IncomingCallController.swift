@@ -13,6 +13,13 @@ final class IncomingCallController: UIViewController {
 
     var invitation : TWCIncomingInvite! {
         didSet {
+            if #available(iOS 9.0, *) {
+                loadViewIfNeeded()
+            } else {
+                if isViewLoaded() == false {
+                    self.view.layoutIfNeeded()
+                }
+            }
             fetchCallingProfile()
         }
     }
