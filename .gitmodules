@@ -10,3 +10,6 @@
 [submodule "ExternalFrameworks/TwilioCommon"]
 	path = ExternalFrameworks/TwilioCommon
 	url = git@git.appunite.com:shoutit/TwilioCommon.git
+[submodule "ExternalFrameworks/TwilioConversationsClient"]
+	path = ExternalFrameworks/TwilioConversationsClient
+	url = git@git.appunite.com:shoutit/TwilioConversationsClient.git
