@@ -12,12 +12,7 @@ import RxSwift
 final class VideoCallViewController: UIViewController {
 
     // UI
-    @IBOutlet weak var remoteCameraView: UIView! {
-        didSet {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleControlsHidden))
-            remoteCameraView.addGestureRecognizer(tapGesture)
-        }
-    }
+    @IBOutlet weak var remoteCameraView: UIView!
     @IBOutlet weak var localCameraView: UIView!
     @IBOutlet weak var chatInfoHeaderView: UIView!
     @IBOutlet weak var statusBarBackgroundView: UIView!
@@ -30,6 +25,7 @@ final class VideoCallViewController: UIViewController {
     @IBOutlet weak var videoButton: RoundSwitchableButton!
     @IBOutlet weak var endCallButton: UIButton!
     @IBOutlet weak var transparentLogoImageView: UIImageView!
+    @IBOutlet weak var callerAvatarImageView: UIImageView!
     private var hideableViews: [UIView] {
         return [chatInfoHeaderView, statusBarBackgroundView, audioButton, videoButton, endCallButton]
     }
@@ -63,6 +59,7 @@ final class VideoCallViewController: UIViewController {
         viewModel.localMedia.delegate = self
         createCapturer()
         setupRX()
+        setupGestureRecognizer()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -149,6 +146,7 @@ final class VideoCallViewController: UIViewController {
             .asDriver()
             .driveNext { [weak self] (profile) in
                 self?.callerNameLabel.text = profile?.name
+                self?.callerAvatarImageView.sh_setImageWithURL(profile?.imagePath?.toURL(), placeholderImage: nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -170,6 +168,7 @@ final class VideoCallViewController: UIViewController {
             .asDriver()
             .driveNext { [weak self] (disabled) in
                 self?.videoButton.setOn(disabled)
+                self?.localCameraView.hidden = disabled
             }
             .addDisposableTo(disposeBag)
         
@@ -190,6 +189,11 @@ final class VideoCallViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
+    private func setupGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleControlsHidden))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
     // MARK: - Actions
     
     @IBAction func startCalling() {
@@ -207,9 +211,27 @@ final class VideoCallViewController: UIViewController {
     }
     
     private func setHideableViewsHidden(hidden: Bool) {
-        hideableViews.forEach{ $0.hidden = hidden }
-        transparentLogoImageView.hidden = !hidden
-        setNeedsStatusBarAppearanceUpdate()
+        
+        if !hidden {
+            self.hideableViews.forEach{ $0.hidden = false }
+            self.transparentLogoImageView.hidden = true
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+        
+        UIView.animateWithDuration(0.3, animations: {
+            let alpha: CGFloat = hidden ? 0.0 : 1.0
+            self.hideableViews.forEach{ $0.alpha = alpha }
+        }
+        ) { (finished) in
+            self.hideableViews.forEach{ $0.hidden = hidden }
+            self.transparentLogoImageView.hidden = !hidden
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    private func setCallerViewHidden(hidden: Bool) {
+        remoteCameraView.hidden = hidden
+        callerAvatarImageView.hidden = !hidden
     }
 }
 
@@ -329,6 +351,18 @@ extension VideoCallViewController: TWCParticipantDelegate {
     func participant(participant: TWCParticipant, removedVideoTrack videoTrack: TWCVideoTrack) {
         removeRemoteCallRendererFromVideoTrack(videoTrack)
     }
+    
+    func participant(participant: TWCParticipant, enabledTrack track: TWCMediaTrack) {
+        if let _ = track as? TWCVideoTrack {
+            setCallerViewHidden(false)
+        }
+    }
+    
+    func participant(participant: TWCParticipant, disabledTrack track: TWCMediaTrack) {
+        if let _ = track as? TWCVideoTrack {
+            setCallerViewHidden(true)
+        }
+    }
 }
 
 extension VideoCallViewController: TWCConversationDelegate {
@@ -389,10 +423,10 @@ private extension VideoCallViewController {
             constraints.forEach{ $0.active = false }
             localCameraRendererViewConstraints = nil
         }
-        guard let renderer = remoteCameraViewRenderer else { return }
+        guard let renderer = localCameraViewRenderer else { return }
         videoTrack.removeRenderer(renderer)
         renderer.view.removeFromSuperview()
-        remoteCameraViewRenderer = nil
+        localCameraViewRenderer = nil
     }
     
     func addRemoteCallRendererWithVideoTrack(videoTrack: TWCVideoTrack) {
