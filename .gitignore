@@ -132,6 +132,10 @@ report.xml
 *.hmap
 *.ipa
 
+### Objective-C Patch ###
+*.xcscmblueprint
+
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -143,12 +147,8 @@ Pods/
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+Carthage/Checkouts
 
-Carthage/Build
-
-### Objective-C Patch ###
-*.xcscmblueprint
 
 ### Carthage ###
 # Carthage - A simple, decentralized dependency manager for Cocoa

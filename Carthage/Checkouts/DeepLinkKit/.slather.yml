@@ -1,3 +1,0 @@
-coverage_service: coveralls
-xcodeproj: DeepLinkKit.xcodeproj
-source_directory: DeepLinkKit
