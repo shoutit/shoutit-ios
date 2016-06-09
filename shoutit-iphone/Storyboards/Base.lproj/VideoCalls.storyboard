@@ -144,6 +144,9 @@
                                     <constraint firstAttribute="height" constant="20" id="dUJ-AV-mRs"/>
                                 </constraints>
                             </view>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="KX9-CO-JVS">
+                                <rect key="frame" x="495" y="32" width="93" height="24"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -167,6 +170,7 @@
                             <constraint firstItem="wZ7-H0-Y72" firstAttribute="centerY" secondItem="6Fl-rk-iIB" secondAttribute="centerY" id="URg-XZ-oT9"/>
                             <constraint firstAttribute="trailing" secondItem="seF-6F-IeU" secondAttribute="trailing" id="V2p-lM-dSS"/>
                             <constraint firstItem="Rgc-Fp-vmy" firstAttribute="centerX" secondItem="X7F-Z8-VAp" secondAttribute="centerX" id="Xau-ZO-18f"/>
+                            <constraint firstItem="KX9-CO-JVS" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" constant="12" id="c3i-dU-HF4"/>
                             <constraint firstItem="QSY-pP-PgW" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="cEe-rN-Pku"/>
                             <constraint firstItem="seF-6F-IeU" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="h2O-qG-PhV"/>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="top" secondItem="LdK-fk-gNV" secondAttribute="topMargin" id="kSP-IA-wtf"/>
@@ -174,6 +178,7 @@
                             <constraint firstAttribute="trailing" secondItem="Rgc-Fp-vmy" secondAttribute="trailing" constant="24" id="lGa-Gu-usR"/>
                             <constraint firstItem="EHD-Dg-pcH" firstAttribute="centerX" secondItem="LdK-fk-gNV" secondAttribute="centerX" id="lNm-8v-jbe"/>
                             <constraint firstItem="uGh-jB-5rD" firstAttribute="top" secondItem="Rgc-Fp-vmy" secondAttribute="bottom" constant="24" id="ld9-Xx-gJu"/>
+                            <constraint firstAttribute="trailing" secondItem="KX9-CO-JVS" secondAttribute="trailing" constant="12" id="li2-dW-zno"/>
                             <constraint firstItem="QSY-pP-PgW" firstAttribute="top" secondItem="jN9-un-N2c" secondAttribute="bottom" id="mU9-Bq-Jtj"/>
                             <constraint firstAttribute="trailing" secondItem="QSY-pP-PgW" secondAttribute="trailing" id="pMv-SQ-m4C"/>
                             <constraint firstItem="X7F-Z8-VAp" firstAttribute="leading" secondItem="LdK-fk-gNV" secondAttribute="leading" id="rDC-Ic-pV1"/>
@@ -203,6 +208,7 @@
                         <outlet property="selfCameraViewLeadingConstraint" destination="Jnv-cT-7Kd" id="G4R-g8-6m6"/>
                         <outlet property="selfCameraViewWidthConstraint" destination="2a6-jV-eSI" id="n5c-rT-m0E"/>
                         <outlet property="statusBarBackgroundView" destination="Two-nQ-Lpy" id="FXg-QA-jJe"/>
+                        <outlet property="transparentLogoImageView" destination="KX9-CO-JVS" id="P08-O4-udf"/>
                         <outlet property="videoButton" destination="bel-Sf-mhv" id="4Sl-2b-K5O"/>
                     </connections>
                 </viewController>
@@ -426,6 +432,7 @@
     </scenes>
     <resources>
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
+        <image name="logo_transparent" width="93" height="24"/>
         <image name="phone" width="24" height="24"/>
         <image name="phone_disconnected" width="32" height="12"/>
         <image name="videocall_audio_icon" width="29" height="30"/>

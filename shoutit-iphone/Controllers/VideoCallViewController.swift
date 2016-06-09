@@ -29,6 +29,7 @@ final class VideoCallViewController: UIViewController {
     @IBOutlet weak var audioButton: RoundSwitchableButton!
     @IBOutlet weak var videoButton: RoundSwitchableButton!
     @IBOutlet weak var endCallButton: UIButton!
+    @IBOutlet weak var transparentLogoImageView: UIImageView!
     private var hideableViews: [UIView] {
         return [chatInfoHeaderView, statusBarBackgroundView, audioButton, videoButton, endCallButton]
     }
@@ -126,9 +127,7 @@ final class VideoCallViewController: UIViewController {
                 
                 switch state {
                 case .ReadyForCall:
-                    if let username = self.viewModel.callerProfile.value?.username {
-                        self.messageLabel.text = String.localizedStringWithFormat(NSLocalizedString("Video call with %@", comment: "Video call status message"), username)
-                    }
+                    self.messageLabel.text = nil
                     self.startPreview()
                 case .InCall:
                     self.messageLabel.text = NumberFormatters.minutesAndSecondsUserDisplayableStringWithTimeInterval(self.viewModel.ticks.value)
@@ -209,6 +208,7 @@ final class VideoCallViewController: UIViewController {
     
     private func setHideableViewsHidden(hidden: Bool) {
         hideableViews.forEach{ $0.hidden = hidden }
+        transparentLogoImageView.hidden = !hidden
         setNeedsStatusBarAppearanceUpdate()
     }
 }
