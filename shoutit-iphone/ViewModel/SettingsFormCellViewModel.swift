@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Validator
 
 enum SettingsFormCellViewModel {
     
@@ -35,8 +34,8 @@ enum SettingsFormCellViewModel {
         
         var validator: (String -> ValidationResult)? {
             switch self {
-            case .NewPassword: return Validator.validatePassword
-            case .NewEmail: return Validator.validateEmail
+            case .NewPassword: return ShoutitValidator.validatePassword
+            case .NewEmail: return ShoutitValidator.validateEmail
             default: return nil
             }
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 import Argo
-import Curry
+
 
 public struct Notification: Decodable, Hashable, Equatable {
     public let id: String

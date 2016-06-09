@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
 import Argo
-import Curry
 import Ogra
 
 public struct ConversationDescription {

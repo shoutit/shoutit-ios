@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public struct AttachmentCount {
     public let shout: Int

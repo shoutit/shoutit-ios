@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import Pusher
 import RxSwift
 import Argo
 import Ogra
-import ReachabilitySwift
+import Reachability
 import ShoutitKit
 
 final class PusherClient : NSObject {

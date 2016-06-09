@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import DeepLinkKit
 
 enum NavigationItem : String {
     case Home = "home"

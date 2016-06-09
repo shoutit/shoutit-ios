@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public struct DiscoverItem: Decodable, Hashable, Equatable {
     public let id: String

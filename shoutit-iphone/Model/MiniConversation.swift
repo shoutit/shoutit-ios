@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public struct MiniConversation: ConversationInterface {
     public let id: String

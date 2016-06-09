@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DeepLinkKit
 import RxSwift
 import MBProgressHUD
 import ShoutitKit

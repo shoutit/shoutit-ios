@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import GooglePlaces
 import CoreLocation
 import ShoutitKit
 

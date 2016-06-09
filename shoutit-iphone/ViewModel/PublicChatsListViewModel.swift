@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Pusher
 import ShoutitKit
 
 class PublicChatsListViewModel: ChatsListViewModel {

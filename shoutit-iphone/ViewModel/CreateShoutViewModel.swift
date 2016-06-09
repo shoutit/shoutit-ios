@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import FTGooglePlacesAPI
 import ShoutitKit
 
 final class CreateShoutViewModel: NSObject {

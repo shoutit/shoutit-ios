@@ -12,7 +12,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import DeepLinkKit
 import ShoutitKit
 
 final class RootController: UIViewController, ContainerController {

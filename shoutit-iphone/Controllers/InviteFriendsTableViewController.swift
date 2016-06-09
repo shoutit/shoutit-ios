@@ -10,7 +10,6 @@ import UIKit
 import FBSDKShareKit
 import Social
 import RxSwift
-import ContactsPicker
 import ShoutitKit
 
 class InviteFriendsTableViewController: UITableViewController {

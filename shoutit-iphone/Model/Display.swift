@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public struct DisplayRange: Decodable {
     let offset: Int

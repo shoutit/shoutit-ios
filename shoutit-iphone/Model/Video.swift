@@ -8,7 +8,7 @@
 
 import Foundation
 import Argo
-import Curry
+
 import Ogra
 
 public struct Video {

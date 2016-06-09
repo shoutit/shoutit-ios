@@ -7,7 +7,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public struct Filter: Hashable, Equatable {
     public let name: String?

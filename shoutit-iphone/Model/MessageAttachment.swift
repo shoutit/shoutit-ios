@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
 import CoreLocation
 

@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Material
-import ResponsiveLabel
-import Validator
 import MBProgressHUD
 
 final class LoginViewController: UITableViewController {

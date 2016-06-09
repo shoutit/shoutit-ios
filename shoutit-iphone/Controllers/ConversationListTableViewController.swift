@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import DZNEmptyDataSet
-import Pusher
 
 final class ConversationListTableViewController: UITableViewController {
     

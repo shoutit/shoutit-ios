@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MWPhotoBrowser
 import ShoutitKit
 
 enum ShoutDetailShoutImageViewModel {

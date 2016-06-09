@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Pusher
 import Argo
 
 enum PusherEventType : String {

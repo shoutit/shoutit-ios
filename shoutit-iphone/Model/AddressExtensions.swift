@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GooglePlaces
 import ShoutitKit
 
 extension GooglePlaces.PlaceDetailsResponse.Result {

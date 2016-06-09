@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import Argo
-import Curry
+
 import Ogra
 import ShoutitKit
 

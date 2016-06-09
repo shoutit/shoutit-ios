@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import MWPhotoBrowser
-import SDWebImage
 import ShoutitKit
 
 class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {

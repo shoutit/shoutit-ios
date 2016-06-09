@@ -8,7 +8,7 @@
 
 import Foundation
 import Argo
-import Curry
+
 
 public struct PagedResults<T: Decodable where T.DecodedType == T> {
     public let count: Int?

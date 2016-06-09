@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 
 public final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
     public var value: T

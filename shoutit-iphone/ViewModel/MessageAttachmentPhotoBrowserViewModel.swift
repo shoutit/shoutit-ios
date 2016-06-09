@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MWPhotoBrowser
 import RxSwift
 import ShoutitKit
 

@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
 
 public struct Shout: Decodable, Hashable, Equatable {
@@ -76,33 +75,6 @@ public struct Shout: Decodable, Hashable, Equatable {
             <*> j <|? "is_mobile_set"
             <*> j <|? "mobile"
         return g
-    }
-    
-    public init(id: String, apiPath: String, webPath: String, typeString: String, location: Address?, title: String?, text: String?, price: Int?, currency: String?, thumbnailPath: String?, videoPath: String?, user: Profile?, publishedAtEpoch: Int?, category: Category, tags: [Tag]?, filters: [Filter]?, imagePaths: [String]?, videos: [Video]?, replyPath: String?, relatedRequests: [Shout]?, relatedOffers: [Shout]?, conversations: [MiniConversation]?, isMobileSet: Bool?, mobile: String?) {
-        self.id = id
-        self.apiPath = apiPath
-        self.webPath = webPath
-        self.typeString = typeString
-        self.location = location
-        self.title = title
-        self.text = text
-        self.price = price
-        self.currency = currency
-        self.thumbnailPath = thumbnailPath
-        self.videoPath = videoPath
-        self.user = user
-        self.publishedAtEpoch = publishedAtEpoch
-        self.category = category
-        self.tags = tags
-        self.filters = filters
-        self.imagePaths = imagePaths
-        self.videos = videos
-        self.replyPath = replyPath
-        self.relatedRequests = relatedRequests
-        self.relatedOffers = relatedOffers
-        self.conversations = conversations
-        self.isMobileSet = isMobileSet
-        self.mobile = mobile
     }
     
     

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ContactsPicker
 import ShoutitKit
 
 extension ContactProtocol {
