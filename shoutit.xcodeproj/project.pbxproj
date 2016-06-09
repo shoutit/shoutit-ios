@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08FFC4C3C0C8BC372E88CA1A /* Pods_ShoutitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98E8F33BB91F48D21EEEF58 /* Pods_ShoutitKit.framework */; };
-		0E93643B008880E9B613BFF3 /* Pods_shoutit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C827A133812B4133689C810 /* Pods_shoutit.framework */; };
 		240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2405803F1C7368CB009ED106 /* APIShoutsService.swift */; };
 		240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */; };
 		240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */; };
@@ -92,8 +90,6 @@
 		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
-		A59E87E13FF2DACE38D43878 /* Pods_ShoutitKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1061BE8E9FD81CBEA9066607 /* Pods_ShoutitKitTests.framework */; };
-		A6AC31328CF8987364D6A771 /* Pods_shoutitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
 		AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* termsofservice.html */; };
@@ -258,7 +254,6 @@
 		AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */; };
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
 		AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */; };
-		AEA844241D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */; };
 		AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */; };
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
 		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
@@ -277,6 +272,35 @@
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
 		AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
+		AED2918A1D08676E000F9DAF /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2918B1D08676E000F9DAF /* AmazonS3RequestManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2918C1D08676E000F9DAF /* Argo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2918D1D08676E000F9DAF /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291781D08676D000F9DAF /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2918E1D08676E000F9DAF /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291791D08676D000F9DAF /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2918F1D08676E000F9DAF /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917A1D08676D000F9DAF /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291901D08676E000F9DAF /* AWSMobileAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917C1D08676D000F9DAF /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291921D08676E000F9DAF /* Curry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917D1D08676D000F9DAF /* Curry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291941D08676E000F9DAF /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917F1D08676D000F9DAF /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291801D08676D000F9DAF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291811D08676D000F9DAF /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291821D08676D000F9DAF /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291981D08676E000F9DAF /* Mixpanel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291831D08676D000F9DAF /* Mixpanel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED291991D08676E000F9DAF /* Ogra.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2919A1D08676E000F9DAF /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291851D08676D000F9DAF /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2919C1D08676F000F9DAF /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2919D1D08676F000F9DAF /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
+		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
+		AED291A11D086A87000F9DAF /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917D1D08676D000F9DAF /* Curry.framework */; };
+		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
+		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
+		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
+		AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */; };
+		AED291AB1D0872EC000F9DAF /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291A61D0870C6000F9DAF /* TwilioCommon.framework */; };
+		AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291AC1D08731A000F9DAF /* Fabric.framework */; };
+		AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291B31D094905000F9DAF /* GoogleMaps.framework */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
 		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
@@ -453,7 +477,6 @@
 		B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F831C728F6E00EEA9A2 /* AddressBook.framework */; };
 		B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F851C728F7700EEA9A2 /* StoreKit.framework */; };
 		B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F871C728F8100EEA9A2 /* SystemConfiguration.framework */; };
-		B2985F8A1C7294BD00EEA9A2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F891C7294BD00EEA9A2 /* GoogleMaps.framework */; };
 		B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8B1C7294F300EEA9A2 /* Accelerate.framework */; };
 		B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8D1C7294F900EEA9A2 /* AVFoundation.framework */; };
 		B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8F1C72950F00EEA9A2 /* CoreData.framework */; };
@@ -684,6 +707,25 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */,
+				AED2918A1D08676E000F9DAF /* Alamofire.framework in Embed Frameworks */,
+				AED2918B1D08676E000F9DAF /* AmazonS3RequestManager.framework in Embed Frameworks */,
+				AED2918C1D08676E000F9DAF /* Argo.framework in Embed Frameworks */,
+				AED2918D1D08676E000F9DAF /* AWSAPIGateway.framework in Embed Frameworks */,
+				AED2918E1D08676E000F9DAF /* AWSCognito.framework in Embed Frameworks */,
+				AED2918F1D08676E000F9DAF /* AWSCore.framework in Embed Frameworks */,
+				AED291901D08676E000F9DAF /* AWSMobileAnalytics.framework in Embed Frameworks */,
+				AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */,
+				AED291921D08676E000F9DAF /* Curry.framework in Embed Frameworks */,
+				AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */,
+				AED291941D08676E000F9DAF /* KeychainAccess.framework in Embed Frameworks */,
+				AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */,
+				AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */,
+				AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */,
+				AED291981D08676E000F9DAF /* Mixpanel.framework in Embed Frameworks */,
+				AED291991D08676E000F9DAF /* Ogra.framework in Embed Frameworks */,
+				AED2919A1D08676E000F9DAF /* Reachability.framework in Embed Frameworks */,
+				AED2919C1D08676F000F9DAF /* RxCocoa.framework in Embed Frameworks */,
+				AED2919D1D08676F000F9DAF /* RxSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,14 +733,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		035C8545637E13F5BD23F6BD /* Pods-ShoutitKitTests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		04363A76F8CB9C3E544F1443 /* Pods-ShoutitKit.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		087967D27ADC24453BD3A43D /* Pods.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution_local.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		0B370AEFD7A168B0AF90E6ED /* Pods-shoutit.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_production.xcconfig"; sourceTree = "<group>"; };
-		0EEDD6F7CF7CE6C3BBC071C9 /* Pods-ShoutitKitTests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.test_staging.xcconfig"; sourceTree = "<group>"; };
-		1061BE8E9FD81CBEA9066607 /* Pods_ShoutitKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoutitKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C827A133812B4133689C810 /* Pods_shoutit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2404DBC21CA182EB00C19DCF /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Model/Box.swift; sourceTree = "<group>"; };
 		2405803F1C7368CB009ED106 /* APIShoutsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIShoutsService.swift; path = Networking/APIShoutsService.swift; sourceTree = "<group>"; };
 		240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLoadMoreFooter.swift; path = View/ConversationLoadMoreFooter.swift; sourceTree = "<group>"; };
@@ -788,29 +822,6 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; };
 		24DD26576469F744E4920C92 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; };
-		251D4F8BBBF2CFDAD4AEF12E /* Pods-ShoutitKit.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.debug_production.xcconfig"; sourceTree = "<group>"; };
-		262894D6CE04F70CC0F74ACC /* Pods-shoutit.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		29C915063CCA44455CCB5895 /* Pods-ShoutitKit.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.debug_local.xcconfig"; sourceTree = "<group>"; };
-		2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution.xcconfig"; sourceTree = "<group>"; };
-		316FC14439C720AB8D617E15 /* Pods-shoutit.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_production.xcconfig"; sourceTree = "<group>"; };
-		31DA1E1762C2B8C716423C62 /* Pods-shoutitTests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		36FE2512F01C64FE0B5049B5 /* Pods-shoutitTests.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		3825247A12CB899CA67382CF /* Pods-shoutitTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution.xcconfig"; sourceTree = "<group>"; };
-		3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		3AD4359A1769FCE031CC3B94 /* Pods-shoutit-iphoneTests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.debug_production.xcconfig"; sourceTree = "<group>"; };
-		3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_staging.xcconfig"; sourceTree = "<group>"; };
-		3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_production.xcconfig"; sourceTree = "<group>"; };
-		412A2CD4A99706F8EC99D0D6 /* Pods-shoutitTests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		4A368EEEA9BA4D4F180ECB13 /* Pods-shoutit-iphoneTests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		4C9B5A8F2582C8399D560EAC /* Pods-shoutit-iphoneUITests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		50834B66C7DA75CAA22803ED /* Pods-shoutitTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		50FCD5474D86691A00808B6C /* Pods-ShoutitKit.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		54C1C098B032FADDD6D2D8A6 /* Pods-ShoutitKitTests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		596BA098080D1D1A27B2211E /* Pods-ShoutitKit.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.test_staging.xcconfig"; sourceTree = "<group>"; };
-		5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		5D2507F7B6A595C6F64A5FD0 /* Pods-shoutit-iphoneUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.distribution.xcconfig"; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCell.swift; path = View/tabs/home/SHShoutItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -831,37 +842,7 @@
 		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
 		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
-		672C33EEAFB409E4307EFCE8 /* Pods-ShoutitKitTests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.test_production.xcconfig"; sourceTree = "<group>"; };
-		6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		6AF23D5399E2E46A5B4F2B6E /* Pods-shoutit.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.test_staging.xcconfig"; sourceTree = "<group>"; };
-		6C5CF7FFA316B762F89B4D18 /* Pods-shoutitTests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		6CE8CB659E7CE272DD942144 /* Pods-shoutit.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.test_production.xcconfig"; sourceTree = "<group>"; };
-		7185ED58A78673835E803868 /* Pods-shoutit.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7529AE454679CA817D4C531F /* Pods-shoutit-iphoneUITests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		75DF48CBEF5D9B7769B8F3FF /* Pods-shoutitTests.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_local.xcconfig"; sourceTree = "<group>"; };
-		77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		785315615E0D6B0AAC6C1CE8 /* Pods-shoutit.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.profile_production.xcconfig"; sourceTree = "<group>"; };
-		7B4A473EA3C88058D9EBE087 /* Pods-shoutitTests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.test_staging.xcconfig"; sourceTree = "<group>"; };
-		7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test_production.xcconfig"; sourceTree = "<group>"; };
-		7DA8260E87B044713B4E156C /* Pods-ShoutitKit.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.test_production.xcconfig"; sourceTree = "<group>"; };
-		81F8878DD9B089047CDC8922 /* Pods-shoutit-iphoneTests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.test_production.xcconfig"; sourceTree = "<group>"; };
-		824DD6768F41F133EC4E86F5 /* Pods-ShoutitKitTests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		8381252BC24DE27A875AC9B4 /* Pods-shoutit-iphoneTests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
-		8D24FA554171412D54CA9704 /* Pods-ShoutitKitTests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
 		9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit_iphoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		91B40B73EE565A1215EBAF25 /* Pods-ShoutitKitTests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		952C063D87401E787392D796 /* Pods-ShoutitKitTests.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.profile_production.xcconfig"; sourceTree = "<group>"; };
-		996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_production.xcconfig"; sourceTree = "<group>"; };
-		9AD07BB6B57CCEF834AE09EB /* Pods-ShoutitKitTests.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		9D2AD437F1B29E6534C7B329 /* Pods-shoutit.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.profile_staging.xcconfig; path = "Pods/Target Support Files/Pods/Pods.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		A0DEADC62FD3898FF3B9AB4C /* Pods-shoutit.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution.xcconfig"; sourceTree = "<group>"; };
-		A60034535D14BFC966734E82 /* Pods-ShoutitKit.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.test_staging.xcconfig"; sourceTree = "<group>"; };
-		A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shoutit-iphone-Bridging-Header.h"; path = "Application/shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1C93E61BE90D2A009400BE /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = policy.html; path = View/auth/Resource/policy.html; sourceTree = "<group>"; };
 		AC1C93E71BE90D2A009400BE /* rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = rules.html; path = View/auth/Resource/rules.html; sourceTree = "<group>"; };
@@ -896,7 +877,6 @@
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
 		AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
 		AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
-		AE1BE17A1D06D13600C196EE /* AviarySDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AviarySDKResource.bundle; path = ../AviarySDK/SDK/AdobeCreativeSDKCore.framework/Versions/A/Resources/AviarySDKResource.bundle; sourceTree = "<group>"; };
 		AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedUsersViewModel.swift; path = ViewModel/SuggestedUsersViewModel.swift; sourceTree = "<group>"; };
 		AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationDescription.swift; path = Model/ConversationDescription.swift; sourceTree = "<group>"; };
 		AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewController.swift; path = Controllers/ConversationInfoViewController.swift; sourceTree = "<group>"; };
@@ -906,6 +886,7 @@
 		AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddMemberCellConfigurator.swift; path = Other/AddMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMembersListViewModel.swift; path = ViewModel/ConversationMembersListViewModel.swift; sourceTree = "<group>"; };
 		AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationBlockedListModel.swift; path = ViewModel/ConversationBlockedListModel.swift; sourceTree = "<group>"; };
+		AE25CDCF1D0810A6009D121C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutMediaCollectionViewCell.swift; path = View/ShoutMediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE2EB7C91D057799000A324D /* ContactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactExtensions.swift; path = Model/ContactExtensions.swift; sourceTree = "<group>"; };
@@ -1068,7 +1049,6 @@
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
 		AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
-		AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework/Versions/A/Resources/AdobeCreativeSDKImageResources.bundle; sourceTree = "<group>"; };
 		AEAA41561D01B54D00EBC39A /* JSONError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
 		AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingPictureCell.xib; path = View/IncomingPictureCell.xib; sourceTree = "<group>"; };
 		AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingPictureCell.xib; path = Storyboards/OutgoingPictureCell.xib; sourceTree = "<group>"; };
@@ -1092,6 +1072,31 @@
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+RX.swift"; path = "Util/CLGeocoder+RX.swift"; sourceTree = "<group>"; };
+		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
+		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
+		AED291781D08676D000F9DAF /* AWSAPIGateway.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSAPIGateway.framework; path = ../Carthage/Build/iOS/AWSAPIGateway.framework; sourceTree = "<group>"; };
+		AED291791D08676D000F9DAF /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = ../Carthage/Build/iOS/AWSCognito.framework; sourceTree = "<group>"; };
+		AED2917A1D08676D000F9DAF /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = ../Carthage/Build/iOS/AWSCore.framework; sourceTree = "<group>"; };
+		AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileAnalytics.framework; path = ../Carthage/Build/iOS/AWSMobileAnalytics.framework; sourceTree = "<group>"; };
+		AED2917C1D08676D000F9DAF /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = ../Carthage/Build/iOS/AWSS3.framework; sourceTree = "<group>"; };
+		AED2917D1D08676D000F9DAF /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = ../Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
+		AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = ../Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
+		AED2917F1D08676D000F9DAF /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		AED291801D08676D000F9DAF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = ../Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		AED291811D08676D000F9DAF /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = ../Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
+		AED291821D08676D000F9DAF /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = ../Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
+		AED291831D08676D000F9DAF /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = ../Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
+		AED291841D08676D000F9DAF /* Ogra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogra.framework; path = ../Carthage/Build/iOS/Ogra.framework; sourceTree = "<group>"; };
+		AED291851D08676D000F9DAF /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = ../Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		AED291861D08676E000F9DAF /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		AED291871D08676E000F9DAF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		AED291881D08676E000F9DAF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		AED291891D08676E000F9DAF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
+		AED291A61D0870C6000F9DAF /* TwilioCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioCommon.framework; path = ../ExternalFrameworks/TwilioCommon/TwilioCommon.framework; sourceTree = "<group>"; };
+		AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioConversationsClient.framework; path = ../ExternalFrameworks/TwilioConversationsClient/TwilioConversationsClient.framework; sourceTree = "<group>"; };
+		AED291AC1D08731A000F9DAF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ExternalFrameworks/Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
+		AED291B31D094905000F9DAF /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ExternalFrameworks/GoogleMaps/Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -1526,32 +1531,7 @@
 		B2F524871C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsShoutsHeaderSupplementeryView.swift; path = View/SearchShoutsResultsShoutsHeaderSupplementeryView.swift; sourceTree = "<group>"; };
 		B2F524891C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchShoutsResultsShoutsHeaderSupplementeryView.xib; path = Storyboards/SearchShoutsResultsShoutsHeaderSupplementeryView.xib; sourceTree = "<group>"; };
 		B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsViewModel.swift; path = ViewModel/SearchShoutsResultsViewModel.swift; sourceTree = "<group>"; };
-		B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc_production.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		B57CDAF829FCCA473DABD3A4 /* Pods-shoutit.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		B9B57FCD0DC1E650F063B787 /* Pods-ShoutitKit.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.distribution.xcconfig"; sourceTree = "<group>"; };
-		BE3F53BAE43EC80DE2B0E27A /* Pods-shoutitTests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.test_production.xcconfig"; sourceTree = "<group>"; };
-		BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		C10A42D167FC5ED9A2B61689 /* Pods-ShoutitKit.profile_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.profile_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.profile_production.xcconfig"; sourceTree = "<group>"; };
-		C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.adhoc_production.xcconfig"; sourceTree = "<group>"; };
-		CCFBAB488DAD66D05B2EE226 /* Pods-ShoutitKit.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		CDD1F4DCAFB42828769A3622 /* Pods-ShoutitKit.distribution_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.distribution_local.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.distribution_local.xcconfig"; sourceTree = "<group>"; };
-		D0213566076973FC23D96AE2 /* Pods-shoutit.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.debug_local.xcconfig"; sourceTree = "<group>"; };
-		D1161FCCD311B5D049959FDB /* Pods-shoutit-iphoneTests.profile_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.profile_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.profile_staging.xcconfig"; sourceTree = "<group>"; };
-		D2B0E04898C1627AB7FC7B44 /* Pods-shoutit-iphoneUITests.test_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.test_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.test_production.xcconfig"; sourceTree = "<group>"; };
-		D78F435CA07B915557F63B88 /* Pods-ShoutitKitTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.distribution.xcconfig"; sourceTree = "<group>"; };
-		D928ECDD3B11B0A45B8048A2 /* Pods-shoutit.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit/Pods-shoutit.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		D98E8F33BB91F48D21EEEF58 /* Pods_ShoutitKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoutitKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE5F9DEE2AF19AB19F26BB12 /* Pods-ShoutitKitTests.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.debug_local.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.debug_local.xcconfig"; sourceTree = "<group>"; };
-		E33BA8AB1C63378A59F94C06 /* Pods-shoutitTests.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		E4BD43DB944043872DC91868 /* Pods-ShoutitKitTests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKitTests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests.debug_production.xcconfig"; sourceTree = "<group>"; };
 		E5170806B72721CAA3FA0D7C /* Pods_shoutit_iphoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit_iphoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E62C15D7A12F7B10494AE39E /* Pods.debug_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug_local.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug_local.xcconfig"; sourceTree = "<group>"; };
-		E7EF48084C1D739C46A9C67E /* Pods-ShoutitKit.debug_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoutitKit.debug_staging.xcconfig"; path = "Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit.debug_staging.xcconfig"; sourceTree = "<group>"; };
-		EDBA683C2D9BE393F2BC9A11 /* Pods-shoutitTests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		EFAD6D3361C875A858004F32 /* Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneUITests/Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig"; sourceTree = "<group>"; };
-		F4176069950BF755CE31344F /* Pods-shoutitTests.debug_production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutitTests.debug_production.xcconfig"; path = "Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests.debug_production.xcconfig"; sourceTree = "<group>"; };
-		FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.distribution_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.distribution_staging.xcconfig"; sourceTree = "<group>"; };
-		FE9B9F53FD983DBD5FE397C3 /* Pods-shoutit-iphoneTests.test_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoutit-iphoneTests.test_staging.xcconfig"; path = "Pods/Target Support Files/Pods-shoutit-iphoneTests/Pods-shoutit-iphoneTests.test_staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1572,6 +1552,7 @@
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
+				AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */,
 				AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */,
 				AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */,
 				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
@@ -1596,10 +1577,11 @@
 				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
+				AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */,
+				AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */,
+				AED291AB1D0872EC000F9DAF /* TwilioCommon.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
-				B2985F8A1C7294BD00EEA9A2 /* GoogleMaps.framework in Frameworks */,
 				B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */,
-				0E93643B008880E9B613BFF3 /* Pods_shoutit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,7 +1589,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6AC31328CF8987364D6A771 /* Pods_shoutitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1615,7 +1596,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08FFC4C3C0C8BC372E88CA1A /* Pods_ShoutitKit.framework in Frameworks */,
+				AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */,
+				AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */,
+				AED291A11D086A87000F9DAF /* Curry.framework in Frameworks */,
+				AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */,
+				AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */,
+				AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1624,7 +1610,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE32C53F1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
-				A59E87E13FF2DACE38D43878 /* Pods_ShoutitKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1922,99 +1907,10 @@
 			name = Twilio;
 			sourceTree = "<group>";
 		};
-		5C715BE26A324BEA80A8404C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5B3DCAEB55BA0724CDA803A5 /* Pods.debug.xcconfig */,
-				7480BBE5F70434C5BF5A5BE4 /* Pods.release.xcconfig */,
-				B4CA6FB9BA62DF18050E7D8C /* Pods.adhoc_production.xcconfig */,
-				6A5A31667DD160DB20475D57 /* Pods.adhoc_staging.xcconfig */,
-				7C9DB4AE386EA1CEB9394C02 /* Pods.test_production.xcconfig */,
-				3CC38DF574C7949EF2EFD6DF /* Pods.test_staging.xcconfig */,
-				996F23211CC7758DF9DAC8C8 /* Pods.profile_production.xcconfig */,
-				9F8725C7954245BB7F2CA691 /* Pods.profile_staging.xcconfig */,
-				3D5CEE905C74FEEF9BF05974 /* Pods.debug_production.xcconfig */,
-				8B683061E123FD616973E834 /* Pods.debug_staging.xcconfig */,
-				8BD283992109D8759E70A81E /* Pods.distribution.xcconfig */,
-				4B72216593818158E8039C6D /* Pods.distribution_staging.xcconfig */,
-				4A368EEEA9BA4D4F180ECB13 /* Pods-shoutit-iphoneTests.adhoc_production.xcconfig */,
-				8381252BC24DE27A875AC9B4 /* Pods-shoutit-iphoneTests.adhoc_staging.xcconfig */,
-				81F8878DD9B089047CDC8922 /* Pods-shoutit-iphoneTests.test_production.xcconfig */,
-				FE9B9F53FD983DBD5FE397C3 /* Pods-shoutit-iphoneTests.test_staging.xcconfig */,
-				3AA3311D1193E260F5E3084B /* Pods-shoutit-iphoneTests.profile_production.xcconfig */,
-				D1161FCCD311B5D049959FDB /* Pods-shoutit-iphoneTests.profile_staging.xcconfig */,
-				3AD4359A1769FCE031CC3B94 /* Pods-shoutit-iphoneTests.debug_production.xcconfig */,
-				77024A92E6066055D76A8FA7 /* Pods-shoutit-iphoneTests.debug_staging.xcconfig */,
-				2EEBF079CDA52425317729C0 /* Pods-shoutit-iphoneTests.distribution.xcconfig */,
-				FB1DBBC78EFAB2B44C6705EB /* Pods-shoutit-iphoneTests.distribution_staging.xcconfig */,
-				C3DD70169EA9B0620C2FC0D9 /* Pods-shoutit-iphoneUITests.adhoc_production.xcconfig */,
-				EFAD6D3361C875A858004F32 /* Pods-shoutit-iphoneUITests.adhoc_staging.xcconfig */,
-				D2B0E04898C1627AB7FC7B44 /* Pods-shoutit-iphoneUITests.test_production.xcconfig */,
-				A630F3C8C9E257C2169601D7 /* Pods-shoutit-iphoneUITests.test_staging.xcconfig */,
-				4C9B5A8F2582C8399D560EAC /* Pods-shoutit-iphoneUITests.profile_production.xcconfig */,
-				7529AE454679CA817D4C531F /* Pods-shoutit-iphoneUITests.profile_staging.xcconfig */,
-				0D015D2B9792BF8ECC068FAF /* Pods-shoutit-iphoneUITests.debug_production.xcconfig */,
-				BEB88F6AC5EDEFBDC9E13FBB /* Pods-shoutit-iphoneUITests.debug_staging.xcconfig */,
-				5D2507F7B6A595C6F64A5FD0 /* Pods-shoutit-iphoneUITests.distribution.xcconfig */,
-				4BD31E3FA36D8639FF9C1F79 /* Pods-shoutit-iphoneUITests.distribution_staging.xcconfig */,
-				E62C15D7A12F7B10494AE39E /* Pods.debug_local.xcconfig */,
-				087967D27ADC24453BD3A43D /* Pods.distribution_local.xcconfig */,
-				04363A76F8CB9C3E544F1443 /* Pods-ShoutitKit.adhoc_production.xcconfig */,
-				A60034535D14BFC966734E82 /* Pods-ShoutitKit.adhoc_staging.xcconfig */,
-				7DA8260E87B044713B4E156C /* Pods-ShoutitKit.test_production.xcconfig */,
-				596BA098080D1D1A27B2211E /* Pods-ShoutitKit.test_staging.xcconfig */,
-				C10A42D167FC5ED9A2B61689 /* Pods-ShoutitKit.profile_production.xcconfig */,
-				50FCD5474D86691A00808B6C /* Pods-ShoutitKit.profile_staging.xcconfig */,
-				251D4F8BBBF2CFDAD4AEF12E /* Pods-ShoutitKit.debug_production.xcconfig */,
-				E7EF48084C1D739C46A9C67E /* Pods-ShoutitKit.debug_staging.xcconfig */,
-				29C915063CCA44455CCB5895 /* Pods-ShoutitKit.debug_local.xcconfig */,
-				B9B57FCD0DC1E650F063B787 /* Pods-ShoutitKit.distribution.xcconfig */,
-				CCFBAB488DAD66D05B2EE226 /* Pods-ShoutitKit.distribution_staging.xcconfig */,
-				CDD1F4DCAFB42828769A3622 /* Pods-ShoutitKit.distribution_local.xcconfig */,
-				035C8545637E13F5BD23F6BD /* Pods-ShoutitKitTests.adhoc_production.xcconfig */,
-				8D24FA554171412D54CA9704 /* Pods-ShoutitKitTests.adhoc_staging.xcconfig */,
-				672C33EEAFB409E4307EFCE8 /* Pods-ShoutitKitTests.test_production.xcconfig */,
-				0EEDD6F7CF7CE6C3BBC071C9 /* Pods-ShoutitKitTests.test_staging.xcconfig */,
-				952C063D87401E787392D796 /* Pods-ShoutitKitTests.profile_production.xcconfig */,
-				824DD6768F41F133EC4E86F5 /* Pods-ShoutitKitTests.profile_staging.xcconfig */,
-				E4BD43DB944043872DC91868 /* Pods-ShoutitKitTests.debug_production.xcconfig */,
-				91B40B73EE565A1215EBAF25 /* Pods-ShoutitKitTests.debug_staging.xcconfig */,
-				DE5F9DEE2AF19AB19F26BB12 /* Pods-ShoutitKitTests.debug_local.xcconfig */,
-				D78F435CA07B915557F63B88 /* Pods-ShoutitKitTests.distribution.xcconfig */,
-				54C1C098B032FADDD6D2D8A6 /* Pods-ShoutitKitTests.distribution_staging.xcconfig */,
-				9AD07BB6B57CCEF834AE09EB /* Pods-ShoutitKitTests.distribution_local.xcconfig */,
-				31DA1E1762C2B8C716423C62 /* Pods-shoutitTests.adhoc_production.xcconfig */,
-				6C5CF7FFA316B762F89B4D18 /* Pods-shoutitTests.adhoc_staging.xcconfig */,
-				BE3F53BAE43EC80DE2B0E27A /* Pods-shoutitTests.test_production.xcconfig */,
-				7B4A473EA3C88058D9EBE087 /* Pods-shoutitTests.test_staging.xcconfig */,
-				50834B66C7DA75CAA22803ED /* Pods-shoutitTests.profile_production.xcconfig */,
-				412A2CD4A99706F8EC99D0D6 /* Pods-shoutitTests.profile_staging.xcconfig */,
-				F4176069950BF755CE31344F /* Pods-shoutitTests.debug_production.xcconfig */,
-				E33BA8AB1C63378A59F94C06 /* Pods-shoutitTests.debug_staging.xcconfig */,
-				75DF48CBEF5D9B7769B8F3FF /* Pods-shoutitTests.debug_local.xcconfig */,
-				3825247A12CB899CA67382CF /* Pods-shoutitTests.distribution.xcconfig */,
-				EDBA683C2D9BE393F2BC9A11 /* Pods-shoutitTests.distribution_staging.xcconfig */,
-				36FE2512F01C64FE0B5049B5 /* Pods-shoutitTests.distribution_local.xcconfig */,
-				7185ED58A78673835E803868 /* Pods-shoutit.adhoc_production.xcconfig */,
-				0B370AEFD7A168B0AF90E6ED /* Pods-shoutit.adhoc_staging.xcconfig */,
-				6CE8CB659E7CE272DD942144 /* Pods-shoutit.test_production.xcconfig */,
-				6AF23D5399E2E46A5B4F2B6E /* Pods-shoutit.test_staging.xcconfig */,
-				785315615E0D6B0AAC6C1CE8 /* Pods-shoutit.profile_production.xcconfig */,
-				9D2AD437F1B29E6534C7B329 /* Pods-shoutit.profile_staging.xcconfig */,
-				316FC14439C720AB8D617E15 /* Pods-shoutit.debug_production.xcconfig */,
-				262894D6CE04F70CC0F74ACC /* Pods-shoutit.debug_staging.xcconfig */,
-				D0213566076973FC23D96AE2 /* Pods-shoutit.debug_local.xcconfig */,
-				A0DEADC62FD3898FF3B9AB4C /* Pods-shoutit.distribution.xcconfig */,
-				D928ECDD3B11B0A45B8048A2 /* Pods-shoutit.distribution_staging.xcconfig */,
-				B57CDAF829FCCA473DABD3A4 /* Pods-shoutit.distribution_local.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6027CF281BE74EAE00124C28 = {
 			isa = PBXGroup;
 			children = (
-				AEA844231D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle */,
+				AE25CDCF1D0810A6009D121C /* Cartfile */,
 				6027CF331BE74EAE00124C28 /* shoutit */,
 				6027CF481BE74EAE00124C28 /* shoutitTests */,
 				AE32C5361D055BFB009A49C5 /* ShoutitKit */,
@@ -2023,7 +1919,6 @@
 				6027CF321BE74EAE00124C28 /* Products */,
 				B2415F4D1D009E2A00669C52 /* Frameworks */,
 				AC1C94031BEBB911009400BE /* Resources */,
-				5C715BE26A324BEA80A8404C /* Pods */,
 				1E0F57B258AD6D899B14A1E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -2304,7 +2199,6 @@
 			isa = PBXGroup;
 			children = (
 				AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */,
-				AE1BE17A1D06D13600C196EE /* AviarySDKResource.bundle */,
 				B2082D701C626331007EB2FB /* HTMLFiles */,
 				B2985F811C728D0000EEA9A2 /* GoogleSignIn.bundle */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
@@ -2981,6 +2875,31 @@
 		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AED291B31D094905000F9DAF /* GoogleMaps.framework */,
+				AED291AC1D08731A000F9DAF /* Fabric.framework */,
+				AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */,
+				AED291A61D0870C6000F9DAF /* TwilioCommon.framework */,
+				AED291751D08676D000F9DAF /* Alamofire.framework */,
+				AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */,
+				AED291771D08676D000F9DAF /* Argo.framework */,
+				AED291781D08676D000F9DAF /* AWSAPIGateway.framework */,
+				AED291791D08676D000F9DAF /* AWSCognito.framework */,
+				AED2917A1D08676D000F9DAF /* AWSCore.framework */,
+				AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */,
+				AED2917C1D08676D000F9DAF /* AWSS3.framework */,
+				AED2917D1D08676D000F9DAF /* Curry.framework */,
+				AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */,
+				AED2917F1D08676D000F9DAF /* KeychainAccess.framework */,
+				AED291801D08676D000F9DAF /* Kingfisher.framework */,
+				AED291811D08676D000F9DAF /* Material.framework */,
+				AED291821D08676D000F9DAF /* MBProgressHUD.framework */,
+				AED291831D08676D000F9DAF /* Mixpanel.framework */,
+				AED291841D08676D000F9DAF /* Ogra.framework */,
+				AED291851D08676D000F9DAF /* Reachability.framework */,
+				AED291861D08676E000F9DAF /* RxBlocking.framework */,
+				AED291871D08676E000F9DAF /* RxCocoa.framework */,
+				AED291881D08676E000F9DAF /* RxSwift.framework */,
+				AED291891D08676E000F9DAF /* RxTests.framework */,
 				AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */,
 				AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */,
 				B2415F581D009EC700669C52 /* UIKit.framework */,
@@ -2988,10 +2907,6 @@
 				B2415F541D009E9D00669C52 /* Foundation.framework */,
 				B2415F521D009E8100669C52 /* libsqlite3.0.tbd */,
 				B2415F4C1D009E1E00669C52 /* Aviary */,
-				A80D2DC3D77A13D43084C319 /* Pods_shoutitTests.framework */,
-				D98E8F33BB91F48D21EEEF58 /* Pods_ShoutitKit.framework */,
-				1061BE8E9FD81CBEA9066607 /* Pods_ShoutitKitTests.framework */,
-				1C827A133812B4133689C810 /* Pods_shoutit.framework */,
 			);
 			name = Frameworks;
 			path = "shoutit-iphone";
@@ -3977,14 +3892,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6027CF591BE74EAF00124C28 /* Build configuration list for PBXNativeTarget "shoutit" */;
 			buildPhases = (
-				DA5D75C47CFFBFE9B77469E0 /* Check Pods Manifest.lock */,
 				6027CF2D1BE74EAE00124C28 /* Sources */,
 				6027CF2E1BE74EAE00124C28 /* Frameworks */,
 				6027CF2F1BE74EAE00124C28 /* Resources */,
-				D8607C86775441493F0131C1 /* Embed Pods Frameworks */,
-				5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */,
 				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
+				AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4000,12 +3913,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE2EB7D81D057A49000A324D /* Build configuration list for PBXNativeTarget "shoutitTests" */;
 			buildPhases = (
-				4B6C36BC8FFF59BB7988389B /* Check Pods Manifest.lock */,
 				AE2EB7CD1D057A48000A324D /* Sources */,
 				AE2EB7CE1D057A48000A324D /* Frameworks */,
 				AE2EB7CF1D057A48000A324D /* Resources */,
-				46E12C2CC37928B9B8B09C5E /* Embed Pods Frameworks */,
-				AD13B7D63F54699AD8055F1D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4021,12 +3931,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE32C54C1D055BFD009A49C5 /* Build configuration list for PBXNativeTarget "ShoutitKit" */;
 			buildPhases = (
-				6AF0837DA49E40F1C55E91D4 /* Check Pods Manifest.lock */,
 				AE32C5301D055BFA009A49C5 /* Sources */,
 				AE32C5311D055BFA009A49C5 /* Frameworks */,
 				AE32C5321D055BFA009A49C5 /* Headers */,
 				AE32C5331D055BFA009A49C5 /* Resources */,
-				B32819CA2BD47C105B916506 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4041,12 +3949,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE32C5591D055BFD009A49C5 /* Build configuration list for PBXNativeTarget "ShoutitKitTests" */;
 			buildPhases = (
-				D1764BDDD1AB1D8F5A2B0296 /* Check Pods Manifest.lock */,
 				AE32C53A1D055BFB009A49C5 /* Sources */,
 				AE32C53B1D055BFB009A49C5 /* Frameworks */,
 				AE32C53C1D055BFB009A49C5 /* Resources */,
-				B6D699038B878FB78202BD03 /* Embed Pods Frameworks */,
-				B3A6075035CA43373F5F990C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4122,7 +4027,6 @@
 			files = (
 				AC1C93E91BE90D2A009400BE /* policy.html in Resources */,
 				B2E715681C6E37B8007F95CF /* ShoutsCollectionViewCell.xib in Resources */,
-				AEA844241D070E8E00C723D9 /* AdobeCreativeSDKImageResources.bundle in Resources */,
 				B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */,
 				AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */,
@@ -4244,80 +4148,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		46E12C2CC37928B9B8B09C5E /* Embed Pods Frameworks */ = {
+		AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AmazonS3RequestManager.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AWSAPIGateway.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AWSCognito.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AWSCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AWSMobileAnalytics.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AWSS3.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DZNEmptyDataSet.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Material.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mixpanel.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Ogra.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 			);
-			name = "Embed Pods Frameworks";
+			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B6C36BC8FFF59BB7988389B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5F93769BB2706A1BAF3425F1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit/Pods-shoutit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6AF0837DA49E40F1C55E91D4 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AD13B7D63F54699AD8055F1D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutitTests/Pods-shoutitTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4331,97 +4193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CRASHLYTICS_SCRIPT=\"${PODS_ROOT}/Fabric/run\"\nCRASHLYTICS_API_KEY=\"b058b2dcbf8b8f864860fe9fe12789317aba9da1\"\nCRASHLYTICS_API_SECRET=\"b00b1a8c8e7d6642474c08773f226a750139839f7c8bdc708de3dd34c551078d\"\n\n\"$CRASHLYTICS_SCRIPT\" \"$CRASHLYTICS_API_KEY\" \"$CRASHLYTICS_API_SECRET\"";
-		};
-		B32819CA2BD47C105B916506 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoutitKit/Pods-ShoutitKit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3A6075035CA43373F5F990C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6D699038B878FB78202BD03 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoutitKitTests/Pods-ShoutitKitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1764BDDD1AB1D8F5A2B0296 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D8607C86775441493F0131C1 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shoutit/Pods-shoutit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DA5D75C47CFFBFE9B77469E0 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
+			shellScript = "./ExternalFrameworks/Fabric.framework/run b058b2dcbf8b8f864860fe9fe12789317aba9da1 b00b1a8c8e7d6642474c08773f226a750139839f7c8bdc708de3dd34c551078d";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -5552,7 +5324,6 @@
 		};
 		6027CF5A1BE74EAF00124C28 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7185ED58A78673835E803868 /* Pods-shoutit.adhoc_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5563,6 +5334,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -5718,7 +5491,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -5726,7 +5498,6 @@
 		};
 		6027CF5B1BE74EAF00124C28 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 785315615E0D6B0AAC6C1CE8 /* Pods-shoutit.profile_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5737,6 +5508,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -5892,7 +5665,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -5900,7 +5672,6 @@
 		};
 		AE2EB7D91D057A49000A324D /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31DA1E1762C2B8C716423C62 /* Pods-shoutitTests.adhoc_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5952,7 +5723,6 @@
 		};
 		AE2EB7DA1D057A49000A324D /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C5CF7FFA316B762F89B4D18 /* Pods-shoutitTests.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5997,7 +5767,6 @@
 		};
 		AE2EB7DB1D057A49000A324D /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE3F53BAE43EC80DE2B0E27A /* Pods-shoutitTests.test_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6042,7 +5811,6 @@
 		};
 		AE2EB7DC1D057A49000A324D /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B4A473EA3C88058D9EBE087 /* Pods-shoutitTests.test_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6087,7 +5855,6 @@
 		};
 		AE2EB7DD1D057A49000A324D /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50834B66C7DA75CAA22803ED /* Pods-shoutitTests.profile_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6132,7 +5899,6 @@
 		};
 		AE2EB7DE1D057A49000A324D /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 412A2CD4A99706F8EC99D0D6 /* Pods-shoutitTests.profile_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6177,7 +5943,6 @@
 		};
 		AE2EB7DF1D057A49000A324D /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4176069950BF755CE31344F /* Pods-shoutitTests.debug_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6229,7 +5994,6 @@
 		};
 		AE2EB7E01D057A49000A324D /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E33BA8AB1C63378A59F94C06 /* Pods-shoutitTests.debug_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6281,7 +6045,6 @@
 		};
 		AE2EB7E11D057A49000A324D /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75DF48CBEF5D9B7769B8F3FF /* Pods-shoutitTests.debug_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6333,7 +6096,6 @@
 		};
 		AE2EB7E21D057A49000A324D /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3825247A12CB899CA67382CF /* Pods-shoutitTests.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6378,7 +6140,6 @@
 		};
 		AE2EB7E31D057A49000A324D /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDBA683C2D9BE393F2BC9A11 /* Pods-shoutitTests.distribution_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6423,7 +6184,6 @@
 		};
 		AE2EB7E41D057A49000A324D /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36FE2512F01C64FE0B5049B5 /* Pods-shoutitTests.distribution_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6468,7 +6228,6 @@
 		};
 		AE32C54D1D055BFD009A49C5 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04363A76F8CB9C3E544F1443 /* Pods-ShoutitKit.adhoc_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6496,6 +6255,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -6518,7 +6281,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6531,7 +6294,6 @@
 		};
 		AE32C54E1D055BFD009A49C5 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A60034535D14BFC966734E82 /* Pods-ShoutitKit.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6559,6 +6321,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -6576,7 +6342,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6589,7 +6355,6 @@
 		};
 		AE32C54F1D055BFD009A49C5 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DA8260E87B044713B4E156C /* Pods-ShoutitKit.test_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6616,6 +6381,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -6633,7 +6402,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6646,7 +6415,6 @@
 		};
 		AE32C5501D055BFD009A49C5 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 596BA098080D1D1A27B2211E /* Pods-ShoutitKit.test_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6673,6 +6441,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -6690,7 +6462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6703,7 +6475,6 @@
 		};
 		AE32C5511D055BFD009A49C5 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C10A42D167FC5ED9A2B61689 /* Pods-ShoutitKit.profile_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6730,6 +6501,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -6747,7 +6522,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6760,7 +6535,6 @@
 		};
 		AE32C5521D055BFD009A49C5 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50FCD5474D86691A00808B6C /* Pods-ShoutitKit.profile_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6787,6 +6561,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -6804,7 +6582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6817,7 +6595,6 @@
 		};
 		AE32C5531D055BFD009A49C5 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 251D4F8BBBF2CFDAD4AEF12E /* Pods-ShoutitKit.debug_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6844,6 +6621,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -6866,7 +6647,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6879,7 +6660,6 @@
 		};
 		AE32C5541D055BFD009A49C5 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7EF48084C1D739C46A9C67E /* Pods-ShoutitKit.debug_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6906,6 +6686,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -6928,7 +6712,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6941,7 +6725,6 @@
 		};
 		AE32C5551D055BFD009A49C5 /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29C915063CCA44455CCB5895 /* Pods-ShoutitKit.debug_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6968,6 +6751,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -6990,7 +6777,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7003,7 +6790,6 @@
 		};
 		AE32C5561D055BFD009A49C5 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9B57FCD0DC1E650F063B787 /* Pods-ShoutitKit.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7031,6 +6817,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7048,7 +6838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7061,7 +6851,6 @@
 		};
 		AE32C5571D055BFD009A49C5 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCFBAB488DAD66D05B2EE226 /* Pods-ShoutitKit.distribution_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7089,6 +6878,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7106,7 +6899,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7119,7 +6912,6 @@
 		};
 		AE32C5581D055BFD009A49C5 /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDD1F4DCAFB42828769A3622 /* Pods-ShoutitKit.distribution_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7147,6 +6939,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7164,7 +6960,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appunite.shoutit.shoutitKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7177,7 +6973,6 @@
 		};
 		AE32C55A1D055BFD009A49C5 /* AdHoc_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 035C8545637E13F5BD23F6BD /* Pods-ShoutitKitTests.adhoc_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7228,7 +7023,6 @@
 		};
 		AE32C55B1D055BFD009A49C5 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D24FA554171412D54CA9704 /* Pods-ShoutitKitTests.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7272,7 +7066,6 @@
 		};
 		AE32C55C1D055BFD009A49C5 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 672C33EEAFB409E4307EFCE8 /* Pods-ShoutitKitTests.test_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7316,7 +7109,6 @@
 		};
 		AE32C55D1D055BFD009A49C5 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EEDD6F7CF7CE6C3BBC071C9 /* Pods-ShoutitKitTests.test_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7360,7 +7152,6 @@
 		};
 		AE32C55E1D055BFD009A49C5 /* Profile_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 952C063D87401E787392D796 /* Pods-ShoutitKitTests.profile_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7404,7 +7195,6 @@
 		};
 		AE32C55F1D055BFD009A49C5 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 824DD6768F41F133EC4E86F5 /* Pods-ShoutitKitTests.profile_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7448,7 +7238,6 @@
 		};
 		AE32C5601D055BFD009A49C5 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4BD43DB944043872DC91868 /* Pods-ShoutitKitTests.debug_production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7499,7 +7288,6 @@
 		};
 		AE32C5611D055BFD009A49C5 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91B40B73EE565A1215EBAF25 /* Pods-ShoutitKitTests.debug_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7550,7 +7338,6 @@
 		};
 		AE32C5621D055BFD009A49C5 /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE5F9DEE2AF19AB19F26BB12 /* Pods-ShoutitKitTests.debug_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7601,7 +7388,6 @@
 		};
 		AE32C5631D055BFD009A49C5 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D78F435CA07B915557F63B88 /* Pods-ShoutitKitTests.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7645,7 +7431,6 @@
 		};
 		AE32C5641D055BFD009A49C5 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54C1C098B032FADDD6D2D8A6 /* Pods-ShoutitKitTests.distribution_staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7689,7 +7474,6 @@
 		};
 		AE32C5651D055BFD009A49C5 /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AD07BB6B57CCEF834AE09EB /* Pods-ShoutitKitTests.distribution_local.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7770,7 +7554,6 @@
 		};
 		AEAE36A41CD0B2B800AA18AE /* Distribution_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B57CDAF829FCCA473DABD3A4 /* Pods-shoutit.distribution_local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -7781,6 +7564,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -7936,7 +7721,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -7981,7 +7765,6 @@
 		};
 		AEAE36AC1CD0D4BE00AA18AE /* Debug_Local */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0213566076973FC23D96AE2 /* Pods-shoutit.debug_local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -7992,6 +7775,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -8149,7 +7934,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8200,7 +7984,6 @@
 		};
 		B227BFC81C5796CF003A2D76 /* Test_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AF23D5399E2E46A5B4F2B6E /* Pods-shoutit.test_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -8211,6 +7994,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8366,7 +8151,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8417,7 +8201,6 @@
 		};
 		B227BFCD1C5796D4003A2D76 /* Test_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CE8CB659E7CE272DD942144 /* Pods-shoutit.test_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -8428,6 +8211,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8583,7 +8368,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8634,7 +8418,6 @@
 		};
 		B227BFD21C5796D7003A2D76 /* AdHoc_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B370AEFD7A168B0AF90E6ED /* Pods-shoutit.adhoc_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -8646,6 +8429,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8801,7 +8586,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -8846,7 +8630,6 @@
 		};
 		B227BFDC1C57970E003A2D76 /* Distribution_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D928ECDD3B11B0A45B8048A2 /* Pods-shoutit.distribution_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -8857,6 +8640,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9012,7 +8797,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -9057,7 +8841,6 @@
 		};
 		B227BFE11C57971C003A2D76 /* Profile_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D2AD437F1B29E6534C7B329 /* Pods-shoutit.profile_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -9068,6 +8851,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9223,7 +9008,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -9268,7 +9052,6 @@
 		};
 		B227BFE61C579720003A2D76 /* Debug_Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 316FC14439C720AB8D617E15 /* Pods-shoutit.debug_production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -9279,6 +9062,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9435,7 +9220,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -9480,7 +9264,6 @@
 		};
 		B227BFEB1C579727003A2D76 /* Debug_Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 262894D6CE04F70CC0F74ACC /* Pods-shoutit.debug_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -9491,6 +9274,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9648,7 +9433,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -9693,7 +9477,6 @@
 		};
 		B227BFF01C57972B003A2D76 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0DEADC62FD3898FF3B9AB4C /* Pods-shoutit.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -9704,6 +9487,8 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/AviarySDK/SDK",
+					"$(PROJECT_DIR)/ExternalFrameworks/**",
+					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9860,7 +9645,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

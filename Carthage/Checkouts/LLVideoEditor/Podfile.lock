@@ -1,0 +1,19 @@
+PODS:
+  - EDColor (1.0.0)
+  - LLSimpleCamera (3.0.0)
+  - Masonry (0.6.1)
+  - ViewUtils (1.1.2)
+
+DEPENDENCIES:
+  - EDColor
+  - LLSimpleCamera (~> 3.0)
+  - Masonry (~> 0.6)
+  - ViewUtils
+
+SPEC CHECKSUMS:
+  EDColor: c83f9a61f9f9b3c23d541f1feb561558e29cb088
+  LLSimpleCamera: 3c41b46917f9ca53b91ef9c0cf24a75ce0ab4cd8
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  ViewUtils: 68e42c708a4b3912e39691cef5080282dc5013fb
+
+COCOAPODS: 0.35.0

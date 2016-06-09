@@ -8,8 +8,8 @@
 
 import UIKit
 import FBSDKCoreKit
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 import UIViewAppearanceSwift
 import DeepLinkKit
 import SwiftyBeaver
@@ -170,7 +170,7 @@ private extension AppDelegate {
     }
     
     func configureLoggingServices() {
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         AmazonAWS.configureS3()
         
         //UserVoice
