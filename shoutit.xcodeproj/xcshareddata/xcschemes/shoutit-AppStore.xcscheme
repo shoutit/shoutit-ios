@@ -32,29 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6027CF441BE74EAE00124C28"
+               BlueprintIdentifier = "AE2EB7D01D057A48000A324D"
                BuildableName = "shoutitTests.xctest"
                BlueprintName = "shoutitTests"
-               ReferencedContainer = "container:shoutit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6027CF4F1BE74EAE00124C28"
-               BuildableName = "shoutitUITests.xctest"
-               BlueprintName = "shoutitUITests"
-               ReferencedContainer = "container:shoutit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AE32C5071D055B99009A49C5"
-               BuildableName = "ShoutitDataTests.xctest"
-               BlueprintName = "ShoutitDataTests"
                ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
          </TestableReference>
