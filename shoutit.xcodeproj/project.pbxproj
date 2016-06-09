@@ -301,6 +301,7 @@
 		AED291AB1D0872EC000F9DAF /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291A61D0870C6000F9DAF /* TwilioCommon.framework */; };
 		AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291AC1D08731A000F9DAF /* Fabric.framework */; };
 		AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291B31D094905000F9DAF /* GoogleMaps.framework */; };
+		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
 		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
@@ -1574,6 +1575,7 @@
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
+				AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */,
 				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
@@ -5336,6 +5338,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -5510,6 +5513,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -7566,6 +7570,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -7777,6 +7782,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -7996,6 +8002,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8213,6 +8220,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8431,6 +8439,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8642,6 +8651,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8853,6 +8863,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9064,6 +9075,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9276,6 +9288,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9489,6 +9502,7 @@
 					"$(PROJECT_DIR)/AviarySDK/SDK",
 					"$(PROJECT_DIR)/ExternalFrameworks/**",
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
