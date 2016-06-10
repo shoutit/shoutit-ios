@@ -75,6 +75,14 @@ final class RootController: UIViewController, ContainerController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        adjustTabbarHeight()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(openItemFromNotification), name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -134,6 +142,12 @@ final class RootController: UIViewController, ContainerController {
     @IBAction func unwindToRootController(segue: UIStoryboardSegue) {}
     
     // MARK: - Actions
+    
+    func openItemFromNotification(notification: NSNotification) {
+        if let itemString = notification.userInfo?["item"] as? String, item = NavigationItem(rawValue: itemString) {
+            openItem(item)
+        }
+    }
     
     func openItem(navigationItem: NavigationItem, deepLink: DPLDeepLink? = nil) {
         
@@ -374,6 +388,7 @@ private extension RootController {
         case .Location: flowController      = LocationFlowController(navigationController: navController)
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)
         case .Browse: flowController        = BrowseFlowController(navigationController: navController)
+        case .Credits: flowController       = CreditsFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
             
         }

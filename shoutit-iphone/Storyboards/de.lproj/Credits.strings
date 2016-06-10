@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "CkO-zA-Ksj"; */
+"CkO-zA-Ksj.text" = "0";
+
+/* Class = "UILabel"; text = "Your Balance"; ObjectID = "EgL-Ym-IV3"; */
+"EgL-Ym-IV3.text" = "Your Balance";
+
+/* Class = "UITableViewController"; title = "Shoutit Credit"; ObjectID = "NDj-hU-OIW"; */
+"NDj-hU-OIW.title" = "Shoutit Credit";
+
+/* Class = "UILabel"; text = "New Shout from Lenovo"; ObjectID = "SHW-zV-Ekc"; */
+"SHW-zV-Ekc.text" = "New Shout from Lenovo";
+
+/* Class = "UINavigationItem"; title = "Notifications"; ObjectID = "WKn-YE-WSC"; */
+"WKn-YE-WSC.title" = "Notifications";
+
+/* Class = "UILabel"; text = "Shoutit credit is virtual currency that can be earned and spent while using Shoutit. "; ObjectID = "iWT-2p-dBP"; */
+"iWT-2p-dBP.text" = "Shoutit credit is virtual currency that can be earned and spent while using Shoutit. ";
+
+/* Class = "UITableViewSection"; headerTitle = "SPEND ON"; ObjectID = "je5-D3-tN0"; */
+"je5-D3-tN0.headerTitle" = "SPEND ON";
+
+/* Class = "UILabel"; text = "Inviting friends"; ObjectID = "kcK-NU-wMP"; */
+"kcK-NU-wMP.text" = "Inviting friends";
+
+/* Class = "UILabel"; text = "Sharing on Facebook"; ObjectID = "oMY-aR-CUG"; */
+"oMY-aR-CUG.text" = "Sharing on Facebook";
+
+/* Class = "UILabel"; text = "Completing your Profile"; ObjectID = "qVW-0I-0lz"; */
+"qVW-0I-0lz.text" = "Completing your Profile";
+
+/* Class = "UITableViewSection"; headerTitle = "EARN BY"; ObjectID = "uqL-Lb-dPE"; */
+"uqL-Lb-dPE.headerTitle" = "EARN BY";
+
+/* Class = "UILabel"; text = "Mon at 12:30"; ObjectID = "uuR-dj-cjf"; */
+"uuR-dj-cjf.text" = "Mon at 12:30";
+
+/* Class = "UILabel"; text = "Promoting Shouts"; ObjectID = "yNA-eF-VUq"; */
+"yNA-eF-VUq.text" = "Promoting Shouts";
+
+/* Class = "UILabel"; text = "Listening to friends"; ObjectID = "yuf-93-mCi"; */
+"yuf-93-mCi.text" = "Listening to friends";

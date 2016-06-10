@@ -120,6 +120,11 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Location)
     }
     
+    @IBAction func showCreditsAction(sender: AnyObject) {
+        triggerActionWithItem(.Credits)
+    }
+    
+    
     override func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }

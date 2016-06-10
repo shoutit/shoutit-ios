@@ -20,6 +20,7 @@ final class MenuHeaderView: UIView {
     
     @IBOutlet weak var createShoutButton : UIButton?
     @IBOutlet weak var changeCountryButton : UIButton?
+    @IBOutlet weak var creditsCountLabel : UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,6 +56,9 @@ final class MenuHeaderView: UIView {
         profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
         profileImageView?.layer.borderWidth = 1.0
         profileImageView?.layer.masksToBounds = true
+        
+        creditsCountLabel?.hidden = false
+        creditsCountLabel?.text = "\(user.stats?.credit ?? 0)"
     }
     
     private func fillAsGuest() {
@@ -65,6 +69,8 @@ final class MenuHeaderView: UIView {
         profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
         profileImageView?.layer.borderWidth = 0.0
         profileImageView?.layer.masksToBounds = true
+        
+        creditsCountLabel?.hidden = true
     }
     
     private func fillLocation() {

@@ -11,7 +11,7 @@ import RxSwift
 import MBProgressHUD
 import DZNEmptyDataSet
 
-final class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"
