@@ -467,6 +467,23 @@
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
 		B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */; };
+		B21D8A8C1D0B3D6400EE1549 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
+		B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */; };
+		B21D8A8E1D0B3DB200EE1549 /* AWSAPIGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291781D08676D000F9DAF /* AWSAPIGateway.framework */; };
+		B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291791D08676D000F9DAF /* AWSCognito.framework */; };
+		B21D8A901D0B3DDB00EE1549 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917A1D08676D000F9DAF /* AWSCore.framework */; };
+		B21D8A911D0B3DE100EE1549 /* AWSMobileAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */; };
+		B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917C1D08676D000F9DAF /* AWSS3.framework */; };
+		B21D8A931D0B3DF400EE1549 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */; };
+		B21D8A941D0B3E1000EE1549 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291801D08676D000F9DAF /* Kingfisher.framework */; };
+		B21D8A951D0B3E3200EE1549 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291811D08676D000F9DAF /* Material.framework */; };
+		B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291821D08676D000F9DAF /* MBProgressHUD.framework */; };
+		B21D8A971D0B3E5100EE1549 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291831D08676D000F9DAF /* Mixpanel.framework */; };
+		B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
+		B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291851D08676D000F9DAF /* Reachability.framework */; };
+		B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
+		B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
+		B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */; };
 		B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B41C63DC5E0013E99F /* LocationManager.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
 		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
@@ -1457,6 +1474,7 @@
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
 		B2190D861C5A41C6007FF33B /* UnwrapOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwrapOperators.swift; path = CommonOperators/UnwrapOperators.swift; sourceTree = "<group>"; };
+		B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = Carthage/Build/iOS/SWXMLHash.framework; sourceTree = SOURCE_ROOT; };
 		B21EA3B41C63DC5E0013E99F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Util/LocationManager.swift; sourceTree = "<group>"; };
 		B21EA3B71C63E80E0013E99F /* AuthParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthParams.swift; path = Networking/AuthParams.swift; sourceTree = "<group>"; };
 		B21EA3B91C63E8900013E99F /* Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Params.swift; path = Networking/Params.swift; sourceTree = "<group>"; };
@@ -1845,20 +1863,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */,
 				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
+				B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
+				B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */,
 				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
 				B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */,
 				B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */,
+				AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */,
 				B2415F531D009E8100669C52 /* libsqlite3.0.tbd in Frameworks */,
 				B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */,
 				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
+				B21D8A971D0B3E5100EE1549 /* Mixpanel.framework in Frameworks */,
 				AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */,
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
+				B21D8A931D0B3DF400EE1549 /* DZNEmptyDataSet.framework in Frameworks */,
 				B212D12C1D0B0F1D00E9E19D /* Bolts.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
+				B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */,
+				B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */,
 				AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */,
 				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
 				AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */,
@@ -1877,19 +1903,28 @@
 				B2985FA31C7295A900EEA9A2 /* libicucore.A.tbd in Frameworks */,
 				B2985FA41C7295A900EEA9A2 /* libicucore.tbd in Frameworks */,
 				B2985F9E1C72958E00EEA9A2 /* libc++.1.tbd in Frameworks */,
+				B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */,
 				B2985F9F1C72958E00EEA9A2 /* libc++.tbd in Frameworks */,
 				B2985FA01C72958E00EEA9A2 /* libc++abi.tbd in Frameworks */,
 				B2985F9A1C72955100EEA9A2 /* ImageIO.framework in Frameworks */,
+				B21D8A8E1D0B3DB200EE1549 /* AWSAPIGateway.framework in Frameworks */,
+				B21D8A8C1D0B3D6400EE1549 /* Alamofire.framework in Frameworks */,
 				B2985F961C72953800EEA9A2 /* CoreText.framework in Frameworks */,
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
+				B21D8A951D0B3E3200EE1549 /* Material.framework in Frameworks */,
+				B21D8A911D0B3DE100EE1549 /* AWSMobileAnalytics.framework in Frameworks */,
+				B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
+				B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */,
+				B21D8A941D0B3E1000EE1549 /* Kingfisher.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
-				AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */,
 				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
+				B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */,
 				B212D1421D0B2F4800E9E19D /* KeychainAccess.framework in Frameworks */,
+				B21D8A901D0B3DDB00EE1549 /* AWSCore.framework in Frameworks */,
 				B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */,
 				AEB3F2FE1D0993B700393428 /* WebImage.framework in Frameworks */,
 				AEB3F3FB1D099E8B00393428 /* FBSDKCoreKit.framework in Frameworks */,
@@ -3469,6 +3504,7 @@
 		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */,
 				B212D1431D0B33BC00E9E19D /* Validator.framework */,
 				B212D1411D0B2F4800E9E19D /* KeychainAccess.framework */,
 				B212D13A1D0B2BBA00E9E19D /* DACircularProgress */,
