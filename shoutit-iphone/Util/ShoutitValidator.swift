@@ -8,6 +8,7 @@
 
 import Foundation
 import ShoutitKit
+import Validator
 
 extension ValidationError: ShoutitError {
     public var userMessage: String {

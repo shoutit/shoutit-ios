@@ -9,7 +9,7 @@
 #import "PTPusherConnection.h"
 #import "PTPusherEvent.h"
 #define SR_ENABLE_LOG
-#import "SRWebSocket.h"
+#import <SocketRocket/SocketRocket.h>
 #import "PTJSON.h"
 
 NSString *const PTPusherConnectionEstablishedEvent = @"pusher:connection_established";

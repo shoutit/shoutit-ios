@@ -85,10 +85,8 @@
 		6027CF3C1BE74EAE00124C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF3B1BE74EAE00124C28 /* Assets.xcassets */; };
 		6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CFA31BE75B7800124C28 /* SHNavigationViewController.swift */; };
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
-		6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E65C1C2538F30061F56C /* CustomUITextField.swift */; };
 		606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3041BF8AADD0064C53E /* UIImage+Extention.m */; };
 		606ED30D1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
-		607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
@@ -104,9 +102,6 @@
 		AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC7027FA1C1AA66200262622 /* uv_idea@2x.png */; };
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
-		ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */; };
-		ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB3CCA1BF930D50097444E /* YTPlayerView.m */; };
-		ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF9E8741C05195400F0B615 /* UIButton+imageText.m */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
 		AE1516761D059688009E8357 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
 		AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
@@ -353,24 +348,6 @@
 		AEB3F4121D09A1CB00393428 /* NSMutableAttributedString+BoundChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F40A1D09A1CB00393428 /* NSMutableAttributedString+BoundChecker.m */; };
 		AEB3F4131D09A1CB00393428 /* PatternDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F40C1D09A1CB00393428 /* PatternDescriptor.m */; };
 		AEB3F4141D09A1CB00393428 /* ResponsiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F40E1D09A1CB00393428 /* ResponsiveLabel.m */; };
-		AEB3F41C1D09A3FC00393428 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4161D09A3FC00393428 /* Validatable.swift */; };
-		AEB3F41D1D09A3FC00393428 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4171D09A3FC00393428 /* ValidationError.swift */; };
-		AEB3F41E1D09A3FC00393428 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4181D09A3FC00393428 /* ValidationResult.swift */; };
-		AEB3F41F1D09A3FC00393428 /* ValidationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4191D09A3FC00393428 /* ValidationRule.swift */; };
-		AEB3F4201D09A3FC00393428 /* ValidationRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F41A1D09A3FC00393428 /* ValidationRuleSet.swift */; };
-		AEB3F4211D09A3FC00393428 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F41B1D09A3FC00393428 /* Validator.swift */; };
-		AEB3F4251D09A40300393428 /* UISlider+Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4221D09A40300393428 /* UISlider+Validator.swift */; };
-		AEB3F4261D09A40300393428 /* UITextField+Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4231D09A40300393428 /* UITextField+Validator.swift */; };
-		AEB3F4271D09A40300393428 /* ValidatableInterfaceElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4241D09A40300393428 /* ValidatableInterfaceElement.swift */; };
-		AEB3F4311D09A40C00393428 /* ValidationRuleComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4281D09A40C00393428 /* ValidationRuleComparison.swift */; };
-		AEB3F4321D09A40C00393428 /* ValidationRuleCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4291D09A40C00393428 /* ValidationRuleCondition.swift */; };
-		AEB3F4331D09A40C00393428 /* ValidationRuleContains.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42A1D09A40C00393428 /* ValidationRuleContains.swift */; };
-		AEB3F4341D09A40C00393428 /* ValidationRuleEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42B1D09A40C00393428 /* ValidationRuleEquality.swift */; };
-		AEB3F4351D09A40C00393428 /* ValidationRuleLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42C1D09A40C00393428 /* ValidationRuleLength.swift */; };
-		AEB3F4361D09A40C00393428 /* ValidationRulePattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42D1D09A40C00393428 /* ValidationRulePattern.swift */; };
-		AEB3F4371D09A40C00393428 /* ValidationRulePaymentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42E1D09A40C00393428 /* ValidationRulePaymentCard.swift */; };
-		AEB3F4381D09A40C00393428 /* ValidationRuleRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F42F1D09A40C00393428 /* ValidationRuleRequired.swift */; };
-		AEB3F4391D09A40C00393428 /* ValidationRuleURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4301D09A40C00393428 /* ValidationRuleURL.swift */; };
 		AEB3F43D1D09A5C000393428 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F43B1D09A5C000393428 /* Dictionary+Extensions.swift */; };
 		AEB3F43E1D09A5C000393428 /* GoogleMapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F43C1D09A5C000393428 /* GoogleMapsService.swift */; };
 		AEB3F4401D09A5E000393428 /* PlacesSharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F43F1D09A5E000393428 /* PlacesSharedTypes.swift */; };
@@ -406,7 +383,6 @@
 		AEB3F4811D09A7FB00393428 /* ContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4761D09A7FB00393428 /* ContactsPicker.swift */; };
 		AEB3F4821D09A7FB00393428 /* ContactValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4771D09A7FB00393428 /* ContactValues.swift */; };
 		AEB3F4831D09A7FB00393428 /* DictionaryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4781D09A7FB00393428 /* DictionaryUtils.swift */; };
-		AEB3F4851D09ABB100393428 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB3F4841D09ABB100393428 /* Keychain.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
@@ -420,7 +396,6 @@
 		AED291901D08676E000F9DAF /* AWSMobileAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917C1D08676D000F9DAF /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291941D08676E000F9DAF /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917F1D08676D000F9DAF /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291801D08676D000F9DAF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291811D08676D000F9DAF /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291821D08676D000F9DAF /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -439,8 +414,6 @@
 		AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291AC1D08731A000F9DAF /* Fabric.framework */; };
 		AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291B31D094905000F9DAF /* GoogleMaps.framework */; };
 		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
-		AED291BA1D098AD5000F9DAF /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED291B91D098AD5000F9DAF /* Curry.swift */; };
-		AED291BB1D098AD5000F9DAF /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED291B91D098AD5000F9DAF /* Curry.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
 		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
@@ -480,6 +453,16 @@
 		B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */; };
 		B211AAD51C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */; };
 		B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD61C89F65400C9E8DB /* APIProfileService.swift */; };
+		B212D1201D0AEDFA00E9E19D /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212D11F1D0AEDFA00E9E19D /* Curry.swift */; };
+		B212D1271D0B023600E9E19D /* ACPDownload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D1261D0B023600E9E19D /* ACPDownload.framework */; };
+		B212D12A1D0B0B0100E9E19D /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D1291D0B0B0100E9E19D /* WebImage.framework */; };
+		B212D12C1D0B0F1D00E9E19D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D12B1D0B0F1D00E9E19D /* Bolts.framework */; };
+		B212D12F1D0B136900E9E19D /* SHAppearanceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B212D12E1D0B136900E9E19D /* SHAppearanceBridge.m */; };
+		B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D1381D0B27DF00E9E19D /* SocketRocket.framework */; };
+		B212D13F1D0B2BBA00E9E19D /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B212D13C1D0B2BBA00E9E19D /* DACircularProgressView.m */; };
+		B212D1401D0B2BBA00E9E19D /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B212D13E1D0B2BBA00E9E19D /* DALabeledCircularProgressView.m */; };
+		B212D1421D0B2F4800E9E19D /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D1411D0B2F4800E9E19D /* KeychainAccess.framework */; };
+		B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B212D1431D0B33BC00E9E19D /* Validator.framework */; };
 		B2190D791C5A2A05007FF33B /* LoginMethodChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */; };
 		B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */; };
 		B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */; };
@@ -860,7 +843,6 @@
 				AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */,
 				AEB3F2FF1D0993CE00393428 /* WebImage.framework in Embed Frameworks */,
 				AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */,
-				AED291941D08676E000F9DAF /* KeychainAccess.framework in Embed Frameworks */,
 				AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */,
 				AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */,
 				AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */,
@@ -977,13 +959,10 @@
 		604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Util/extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		6068E6461C2445690061F56C /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIButton.swift; path = View/CustomUIButton.swift; sourceTree = "<group>"; };
 		6068E64C1C2472260061F56C /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUIView.swift; path = View/CustomUIView.swift; sourceTree = "<group>"; };
-		6068E65C1C2538F30061F56C /* CustomUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUITextField.swift; path = Util/customViews/CustomUITextField.swift; sourceTree = "<group>"; };
 		606ED3031BF8AADD0064C53E /* UIImage+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Extention.h"; path = "Util/extensions/UIImage+Extention.h"; sourceTree = "<group>"; };
 		606ED3041BF8AADD0064C53E /* UIImage+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extention.m"; path = "Util/extensions/UIImage+Extention.m"; sourceTree = "<group>"; };
 		606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+UIActivityIndicatorForSDWebImage.h"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+UIActivityIndicatorForSDWebImage.m"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
-		607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldValidator.h; path = Libraries/TextFieldValidator/TextFieldValidator.h; sourceTree = "<group>"; };
-		607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldValidator.m; path = Libraries/TextFieldValidator/TextFieldValidator.m; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		9198B9725D93D097F75A4F93 /* Pods_shoutit_iphoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shoutit_iphoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "shoutit-iphone-Bridging-Header.h"; path = "Application/shoutit-iphone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1005,12 +984,6 @@
 		AC7030C01C15A036008F4C00 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Util/extensions/UIView+Gradient.h"; sourceTree = "<group>"; };
 		AC7030C11C15A036008F4C00 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Util/extensions/UIView+Gradient.m"; sourceTree = "<group>"; };
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
-		ACDB3CA91BF904660097444E /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPDropDownMenu.h; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.h; sourceTree = "<group>"; };
-		ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPDropDownMenu.m; path = Libraries/DOPDropDownMenu/DOPDropDownMenu.m; sourceTree = "<group>"; };
-		ACDB3CC91BF930D50097444E /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Libraries/YoutubeHelper/YTPlayerView.h; sourceTree = "<group>"; };
-		ACDB3CCA1BF930D50097444E /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Libraries/YoutubeHelper/YTPlayerView.m; sourceTree = "<group>"; };
-		ACF9E8731C05195400F0B615 /* UIButton+imageText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+imageText.h"; path = "Util/extensions/UIButton+imageText.h"; sourceTree = "<group>"; };
-		ACF9E8741C05195400F0B615 /* UIButton+imageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+imageText.m"; path = "Util/extensions/UIButton+imageText.m"; sourceTree = "<group>"; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
 		AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListTableViewController.swift; path = Controllers/FacebookFriendsListTableViewController.swift; sourceTree = "<group>"; };
 		AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageAttachment.swift; path = Model/MessageAttachment.swift; sourceTree = "<group>"; };
@@ -1345,24 +1318,6 @@
 		AEB3F40C1D09A1CB00393428 /* PatternDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternDescriptor.m; sourceTree = "<group>"; };
 		AEB3F40D1D09A1CB00393428 /* ResponsiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponsiveLabel.h; sourceTree = "<group>"; };
 		AEB3F40E1D09A1CB00393428 /* ResponsiveLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponsiveLabel.m; sourceTree = "<group>"; };
-		AEB3F4161D09A3FC00393428 /* Validatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
-		AEB3F4171D09A3FC00393428 /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
-		AEB3F4181D09A3FC00393428 /* ValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
-		AEB3F4191D09A3FC00393428 /* ValidationRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRule.swift; sourceTree = "<group>"; };
-		AEB3F41A1D09A3FC00393428 /* ValidationRuleSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleSet.swift; sourceTree = "<group>"; };
-		AEB3F41B1D09A3FC00393428 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		AEB3F4221D09A40300393428 /* UISlider+Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISlider+Validator.swift"; sourceTree = "<group>"; };
-		AEB3F4231D09A40300393428 /* UITextField+Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Validator.swift"; sourceTree = "<group>"; };
-		AEB3F4241D09A40300393428 /* ValidatableInterfaceElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatableInterfaceElement.swift; sourceTree = "<group>"; };
-		AEB3F4281D09A40C00393428 /* ValidationRuleComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleComparison.swift; sourceTree = "<group>"; };
-		AEB3F4291D09A40C00393428 /* ValidationRuleCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleCondition.swift; sourceTree = "<group>"; };
-		AEB3F42A1D09A40C00393428 /* ValidationRuleContains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleContains.swift; sourceTree = "<group>"; };
-		AEB3F42B1D09A40C00393428 /* ValidationRuleEquality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleEquality.swift; sourceTree = "<group>"; };
-		AEB3F42C1D09A40C00393428 /* ValidationRuleLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleLength.swift; sourceTree = "<group>"; };
-		AEB3F42D1D09A40C00393428 /* ValidationRulePattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRulePattern.swift; sourceTree = "<group>"; };
-		AEB3F42E1D09A40C00393428 /* ValidationRulePaymentCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRulePaymentCard.swift; sourceTree = "<group>"; };
-		AEB3F42F1D09A40C00393428 /* ValidationRuleRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleRequired.swift; sourceTree = "<group>"; };
-		AEB3F4301D09A40C00393428 /* ValidationRuleURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationRuleURL.swift; sourceTree = "<group>"; };
 		AEB3F43B1D09A5C000393428 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		AEB3F43C1D09A5C000393428 /* GoogleMapsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsService.swift; sourceTree = "<group>"; };
 		AEB3F43F1D09A5E000393428 /* PlacesSharedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesSharedTypes.swift; sourceTree = "<group>"; };
@@ -1399,7 +1354,6 @@
 		AEB3F4761D09A7FB00393428 /* ContactsPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPicker.swift; sourceTree = "<group>"; };
 		AEB3F4771D09A7FB00393428 /* ContactValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactValues.swift; sourceTree = "<group>"; };
 		AEB3F4781D09A7FB00393428 /* DictionaryUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryUtils.swift; sourceTree = "<group>"; };
-		AEB3F4841D09ABB100393428 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1413,7 +1367,6 @@
 		AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileAnalytics.framework; path = ../Carthage/Build/iOS/AWSMobileAnalytics.framework; sourceTree = "<group>"; };
 		AED2917C1D08676D000F9DAF /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = ../Carthage/Build/iOS/AWSS3.framework; sourceTree = "<group>"; };
 		AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = ../Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
-		AED2917F1D08676D000F9DAF /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AED291801D08676D000F9DAF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = ../Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		AED291811D08676D000F9DAF /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = ../Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
 		AED291821D08676D000F9DAF /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = ../Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
@@ -1479,6 +1432,27 @@
 		B211AAD61C89F65400C9E8DB /* APIProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIProfileService.swift; path = Networking/APIProfileService.swift; sourceTree = "<group>"; };
 		B21217C91CA5A280001BAEFC /* DetailedDiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedDiscoverItem.swift; path = Model/DetailedDiscoverItem.swift; sourceTree = "<group>"; };
 		B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoordinateParams.swift; path = Networking/CoordinateParams.swift; sourceTree = "<group>"; };
+		B212D11F1D0AEDFA00E9E19D /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		B212D1261D0B023600E9E19D /* ACPDownload.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ACPDownload.framework; path = Carthage/Build/iOS/ACPDownload.framework; sourceTree = SOURCE_ROOT; };
+		B212D1291D0B0B0100E9E19D /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = SOURCE_ROOT; };
+		B212D12B1D0B0F1D00E9E19D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = SOURCE_ROOT; };
+		B212D12D1D0B136900E9E19D /* SHAppearanceBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHAppearanceBridge.h; path = Other/SHAppearanceBridge.h; sourceTree = "<group>"; };
+		B212D12E1D0B136900E9E19D /* SHAppearanceBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHAppearanceBridge.m; path = Other/SHAppearanceBridge.m; sourceTree = "<group>"; };
+		B212D1301D0B25CA00E9E19D /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+QueryString.h"; sourceTree = "<group>"; };
+		B212D1311D0B25CA00E9E19D /* NSString+Hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashing.h"; sourceTree = "<group>"; };
+		B212D1321D0B25CA00E9E19D /* PTBlockEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBlockEventListener.h; sourceTree = "<group>"; };
+		B212D1331D0B25CA00E9E19D /* PTJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTJSON.h; sourceTree = "<group>"; };
+		B212D1341D0B25CA00E9E19D /* PTPusherChannel_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPusherChannel_Private.h; sourceTree = "<group>"; };
+		B212D1351D0B25CA00E9E19D /* PTPusherChannelAuthorizationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPusherChannelAuthorizationOperation.h; sourceTree = "<group>"; };
+		B212D1361D0B25CA00E9E19D /* PTTargetActionEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTargetActionEventListener.h; sourceTree = "<group>"; };
+		B212D1371D0B25CA00E9E19D /* PTURLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTURLRequestOperation.h; sourceTree = "<group>"; };
+		B212D1381D0B27DF00E9E19D /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketRocket.framework; path = Carthage/Build/iOS/SocketRocket.framework; sourceTree = SOURCE_ROOT; };
+		B212D13B1D0B2BBA00E9E19D /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		B212D13C1D0B2BBA00E9E19D /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		B212D13D1D0B2BBA00E9E19D /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		B212D13E1D0B2BBA00E9E19D /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		B212D1411D0B2F4800E9E19D /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = SOURCE_ROOT; };
+		B212D1431D0B33BC00E9E19D /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = SOURCE_ROOT; };
 		B2190D781C5A2A05007FF33B /* LoginMethodChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewController.swift; path = Controllers/LoginMethodChoiceViewController.swift; sourceTree = "<group>"; };
 		B2190D7B1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginMethodChoiceViewModel.swift; path = ViewModel/LoginMethodChoiceViewModel.swift; sourceTree = "<group>"; };
 		B2190D831C5A3DC0007FF33B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = UIKitExtensions/UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -1883,8 +1857,10 @@
 				AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */,
 				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
+				B212D12C1D0B0F1D00E9E19D /* Bolts.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
 				AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */,
+				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
 				AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */,
 				AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */,
 				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
@@ -1892,6 +1868,8 @@
 				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
 				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
+				B212D12A1D0B0B0100E9E19D /* WebImage.framework in Frameworks */,
+				B212D1271D0B023600E9E19D /* ACPDownload.framework in Frameworks */,
 				B2985FA91C7295B500EEA9A2 /* libz.1.1.3.tbd in Frameworks */,
 				B2985FAA1C7295B500EEA9A2 /* libz.1.2.5.tbd in Frameworks */,
 				B2985FAB1C7295B500EEA9A2 /* libz.1.tbd in Frameworks */,
@@ -1911,6 +1889,8 @@
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */,
+				B212D1421D0B2F4800E9E19D /* KeychainAccess.framework in Frameworks */,
+				B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */,
 				AEB3F2FE1D0993B700393428 /* WebImage.framework in Frameworks */,
 				AEB3F3FB1D099E8B00393428 /* FBSDKCoreKit.framework in Frameworks */,
 				AEB3F3FC1D099E8B00393428 /* FBSDKLoginKit.framework in Frameworks */,
@@ -2254,7 +2234,6 @@
 				AE2EB7D21D057A48000A324D /* shoutitTests */,
 				6027CF321BE74EAE00124C28 /* Products */,
 				B2415F4D1D009E2A00669C52 /* Frameworks */,
-				AEB3F4011D09A0B900393428 /* New Group */,
 				AC1C94031BEBB911009400BE /* Resources */,
 				1E0F57B258AD6D899B14A1E3 /* Frameworks */,
 			);
@@ -2445,8 +2424,6 @@
 			children = (
 				AC7030C01C15A036008F4C00 /* UIView+Gradient.h */,
 				AC7030C11C15A036008F4C00 /* UIView+Gradient.m */,
-				ACF9E8731C05195400F0B615 /* UIButton+imageText.h */,
-				ACF9E8741C05195400F0B615 /* UIButton+imageText.m */,
 				606ED3031BF8AADD0064C53E /* UIImage+Extention.h */,
 				606ED3041BF8AADD0064C53E /* UIImage+Extention.m */,
 				604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */,
@@ -2515,21 +2492,9 @@
 				AC7027D01C1AA66200262622 /* libUserVoice.a */,
 				AC7027D11C1AA66200262622 /* UVHeaders */,
 				AC7027D61C1AA66200262622 /* UVResources */,
-				ACDB3CC81BF930910097444E /* YoutubeHelper */,
 				606ED30A1BF907FA0064C53E /* UIActivityIndicator-for-SDWebImage */,
-				ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */,
-				607F75781BEA6F0D00F3BA86 /* TextFieldValidator */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		607F75781BEA6F0D00F3BA86 /* TextFieldValidator */ = {
-			isa = PBXGroup;
-			children = (
-				607F75791BEA6F1E00F3BA86 /* TextFieldValidator.h */,
-				607F757A1BEA6F1E00F3BA86 /* TextFieldValidator.m */,
-			);
-			name = TextFieldValidator;
 			sourceTree = "<group>";
 		};
 		AC1C94031BEBB911009400BE /* Resources */ = {
@@ -2567,24 +2532,6 @@
 				AC7027FA1C1AA66200262622 /* uv_idea@2x.png */,
 			);
 			path = UVResources;
-			sourceTree = "<group>";
-		};
-		ACDB3CA21BF8DD220097444E /* DOPDropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				ACDB3CA91BF904660097444E /* DOPDropDownMenu.h */,
-				ACDB3CAA1BF904670097444E /* DOPDropDownMenu.m */,
-			);
-			name = DOPDropDownMenu;
-			sourceTree = "<group>";
-		};
-		ACDB3CC81BF930910097444E /* YoutubeHelper */ = {
-			isa = PBXGroup;
-			children = (
-				ACDB3CC91BF930D50097444E /* YTPlayerView.h */,
-				ACDB3CCA1BF930D50097444E /* YTPlayerView.m */,
-			);
-			name = YoutubeHelper;
 			sourceTree = "<group>";
 		};
 		AE1F29711CE9DDE900D1AA76 /* ConversationInfo */ = {
@@ -2777,6 +2724,14 @@
 				AEB3F3041D09951E00393428 /* NSString+Hashing.m */,
 				AEB3F3051D09951E00393428 /* PTBlockEventListener.m */,
 				AEB3F3061D09951E00393428 /* PTEventListener.h */,
+				B212D1301D0B25CA00E9E19D /* NSDictionary+QueryString.h */,
+				B212D1311D0B25CA00E9E19D /* NSString+Hashing.h */,
+				B212D1321D0B25CA00E9E19D /* PTBlockEventListener.h */,
+				B212D1331D0B25CA00E9E19D /* PTJSON.h */,
+				B212D1341D0B25CA00E9E19D /* PTPusherChannel_Private.h */,
+				B212D1351D0B25CA00E9E19D /* PTPusherChannelAuthorizationOperation.h */,
+				B212D1361D0B25CA00E9E19D /* PTTargetActionEventListener.h */,
+				B212D1371D0B25CA00E9E19D /* PTURLRequestOperation.h */,
 				AEB3F3071D09951E00393428 /* PTJSON.m */,
 				AEB3F3081D09951E00393428 /* PTPusher.h */,
 				AEB3F3091D09951E00393428 /* PTPusher.m */,
@@ -2982,13 +2937,6 @@
 			name = Router;
 			sourceTree = "<group>";
 		};
-		AEB3F4011D09A0B900393428 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
 		AEB3F4021D09A1BF00393428 /* ResponsiveLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3006,31 +2954,6 @@
 				AEB3F40E1D09A1CB00393428 /* ResponsiveLabel.m */,
 			);
 			name = ResponsiveLabel;
-			sourceTree = "<group>";
-		};
-		AEB3F4151D09A3EF00393428 /* Validator */ = {
-			isa = PBXGroup;
-			children = (
-				AEB3F4281D09A40C00393428 /* ValidationRuleComparison.swift */,
-				AEB3F4291D09A40C00393428 /* ValidationRuleCondition.swift */,
-				AEB3F42A1D09A40C00393428 /* ValidationRuleContains.swift */,
-				AEB3F42B1D09A40C00393428 /* ValidationRuleEquality.swift */,
-				AEB3F42C1D09A40C00393428 /* ValidationRuleLength.swift */,
-				AEB3F42D1D09A40C00393428 /* ValidationRulePattern.swift */,
-				AEB3F42E1D09A40C00393428 /* ValidationRulePaymentCard.swift */,
-				AEB3F42F1D09A40C00393428 /* ValidationRuleRequired.swift */,
-				AEB3F4301D09A40C00393428 /* ValidationRuleURL.swift */,
-				AEB3F4221D09A40300393428 /* UISlider+Validator.swift */,
-				AEB3F4231D09A40300393428 /* UITextField+Validator.swift */,
-				AEB3F4241D09A40300393428 /* ValidatableInterfaceElement.swift */,
-				AEB3F4161D09A3FC00393428 /* Validatable.swift */,
-				AEB3F4171D09A3FC00393428 /* ValidationError.swift */,
-				AEB3F4181D09A3FC00393428 /* ValidationResult.swift */,
-				AEB3F4191D09A3FC00393428 /* ValidationRule.swift */,
-				AEB3F41A1D09A3FC00393428 /* ValidationRuleSet.swift */,
-				AEB3F41B1D09A3FC00393428 /* Validator.swift */,
-			);
-			name = Validator;
 			sourceTree = "<group>";
 		};
 		AEB3F43A1D09A5AD00393428 /* GooglePlaces */ = {
@@ -3267,6 +3190,18 @@
 			name = EditProfile;
 			sourceTree = "<group>";
 		};
+		B212D13A1D0B2BBA00E9E19D /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				B212D13B1D0B2BBA00E9E19D /* DACircularProgressView.h */,
+				B212D13C1D0B2BBA00E9E19D /* DACircularProgressView.m */,
+				B212D13D1D0B2BBA00E9E19D /* DALabeledCircularProgressView.h */,
+				B212D13E1D0B2BBA00E9E19D /* DALabeledCircularProgressView.m */,
+			);
+			name = DACircularProgress;
+			path = CopiedLibraries/DACircularProgress;
+			sourceTree = "<group>";
+		};
 		B2190D771C5A29DC007FF33B /* LoginMethodChoice */ = {
 			isa = PBXGroup;
 			children = (
@@ -3370,6 +3305,8 @@
 				6027CF341BE74EAE00124C28 /* AppDelegate.swift */,
 				6027CF901BE7539300124C28 /* Constants.swift */,
 				B275469E1CC145BC00172FE3 /* UserMessages.swift */,
+				B212D12D1D0B136900E9E19D /* SHAppearanceBridge.h */,
+				B212D12E1D0B136900E9E19D /* SHAppearanceBridge.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -3532,11 +3469,17 @@
 		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEB3F4841D09ABB100393428 /* Keychain.swift */,
+				B212D1431D0B33BC00E9E19D /* Validator.framework */,
+				B212D1411D0B2F4800E9E19D /* KeychainAccess.framework */,
+				B212D13A1D0B2BBA00E9E19D /* DACircularProgress */,
+				B212D1381D0B27DF00E9E19D /* SocketRocket.framework */,
+				B212D12B1D0B0F1D00E9E19D /* Bolts.framework */,
+				B212D1291D0B0B0100E9E19D /* WebImage.framework */,
+				B212D1261D0B023600E9E19D /* ACPDownload.framework */,
+				B212D11F1D0AEDFA00E9E19D /* Curry.swift */,
 				AEB3F46C1D09A7EA00393428 /* ContactsPicker */,
 				AEB3F44D1D09A62700393428 /* ObjectMapper */,
 				AEB3F43A1D09A5AD00393428 /* GooglePlaces */,
-				AEB3F4151D09A3EF00393428 /* Validator */,
 				AEB3F4021D09A1BF00393428 /* ResponsiveLabel */,
 				AEB3F3921D0995E800393428 /* DeeplinkKit */,
 				AEB3F3301D09958700393428 /* MWPhotoBrowser */,
@@ -3558,7 +3501,6 @@
 				AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */,
 				AED2917C1D08676D000F9DAF /* AWSS3.framework */,
 				AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */,
-				AED2917F1D08676D000F9DAF /* KeychainAccess.framework */,
 				AED291801D08676D000F9DAF /* Kingfisher.framework */,
 				AED291811D08676D000F9DAF /* Material.framework */,
 				AED291821D08676D000F9DAF /* MBProgressHUD.framework */,
@@ -3601,7 +3543,6 @@
 		B24E29FB1CBD246800328503 /* TextEntry */ = {
 			isa = PBXGroup;
 			children = (
-				6068E65C1C2538F30061F56C /* CustomUITextField.swift */,
 				248328FE1C842FC60042B0DB /* FormTextField.swift */,
 				B27AF9461C7B7BBF00527306 /* BorderedMaterialTextField.swift */,
 				B23CA2431C8DE8EA008E85F9 /* BorderedMaterialTextView.swift */,
@@ -4928,7 +4869,6 @@
 				B2A849351C846B2A00176EB0 /* SeeAllCollectionViewCell.swift in Sources */,
 				B2B5D00F1C7F286E0068A6AF /* ShoutDetailBackgroundSwappableTableViewCell.swift in Sources */,
 				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
-				AEB3F4271D09A40300393428 /* ValidatableInterfaceElement.swift in Sources */,
 				B2B5D0281C7F690C0068A6AF /* ProfileCollectionInfoSupplementeryViewModel.swift in Sources */,
 				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				B27230581CE0E4A7003547EA /* ProfilesListViewModel.swift in Sources */,
@@ -4937,14 +4877,12 @@
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				B2E715591C6E0BD7007F95CF /* PagesCollectionViewCell.swift in Sources */,
-				AEB3F4201D09A3FC00393428 /* ValidationRuleSet.swift in Sources */,
 				B2B540CF1C6A471F0075EDA6 /* PostSignupSuggestionsWrappingViewController.swift in Sources */,
 				244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */,
 				AEB3F3231D09951E00393428 /* PTBlockEventListener.m in Sources */,
 				AEB3F34B1D09959600393428 /* MWTapDetectingImageView.m in Sources */,
 				AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */,
 				AEB3F34E1D09959600393428 /* UIImage+MWPhotoBrowser.m in Sources */,
-				AEB3F41F1D09A3FC00393428 /* ValidationRule.swift in Sources */,
 				B2B5D01D1C7F55250068A6AF /* CreateShoutDisplayable.swift in Sources */,
 				B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */,
 				248328FF1C842FC60042B0DB /* FormTextField.swift in Sources */,
@@ -4975,16 +4913,13 @@
 				B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */,
 				248320F51C99975D00C12D90 /* BubbleView.swift in Sources */,
 				AEB3F32C1D09951E00393428 /* PTPusherEventDispatcher.m in Sources */,
-				AED291BA1D098AD5000F9DAF /* Curry.swift in Sources */,
 				248320F11C996E7000C12D90 /* ConversationTextCell.swift in Sources */,
 				B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */,
 				B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */,
 				AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */,
-				AEB3F41E1D09A3FC00393428 /* ValidationResult.swift in Sources */,
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
 				AE180F851C7F8EB20069BB1A /* HomeShoutsCollectionViewController.swift in Sources */,
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
-				AEB3F4341D09A40C00393428 /* ValidationRuleEquality.swift in Sources */,
 				24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */,
 				B2B4AADB1CB53D2900926474 /* DiscoverShoutsDisplayable.swift in Sources */,
 				B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */,
@@ -5028,6 +4963,7 @@
 				B28379A31C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift in Sources */,
 				B27230521CE0DF6F003547EA /* UITableView+Reusables.swift in Sources */,
 				AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */,
+				B212D13F1D0B2BBA00E9E19D /* DACircularProgressView.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
@@ -5043,7 +4979,6 @@
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				AEB3F3F21D0996A300393428 /* DPLDeepLink+AppLinks.m in Sources */,
 				B2AB73F61CB56C1600C2C0C0 /* SettingsFormTextFieldTableViewCell.swift in Sources */,
-				ACDB3CCB1BF930D50097444E /* YTPlayerView.m in Sources */,
 				B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */,
 				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
@@ -5137,7 +5072,6 @@
 				AEB3F3211D09951E00393428 /* NSDictionary+QueryString.m in Sources */,
 				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
-				AEB3F4331D09A40C00393428 /* ValidationRuleContains.swift in Sources */,
 				B2E715621C6E1B65007F95CF /* ProfileInfoHeaderButton.swift in Sources */,
 				AEB3F4831D09A7FB00393428 /* DictionaryUtils.swift in Sources */,
 				AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */,
@@ -5148,7 +5082,6 @@
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
 				AEB3F43D1D09A5C000393428 /* Dictionary+Extensions.swift in Sources */,
 				AEB3F4541D09A63A00393428 /* FromJSON.swift in Sources */,
-				AEB3F4251D09A40300393428 /* UISlider+Validator.swift in Sources */,
 				B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */,
 				AEB3F4801D09A7FB00393428 /* CNContactRecord.swift in Sources */,
 				B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */,
@@ -5158,7 +5091,6 @@
 				AEB3F4671D09A64400393428 /* ISO8601DateTransform.swift in Sources */,
 				B26CEE381C71EA910091470D /* ProfileCollectionFooterButtonSupplementeryView.swift in Sources */,
 				B28379AA1C749F32009AFF01 /* UIImageView+Networking.swift in Sources */,
-				AEB3F4261D09A40300393428 /* UITextField+Validator.swift in Sources */,
 				240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */,
 				B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */,
 				AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
@@ -5170,13 +5102,10 @@
 				AEB3F4131D09A1CB00393428 /* PatternDescriptor.m in Sources */,
 				B2E1071D1C97311700F7F4EF /* TagDisplayable.swift in Sources */,
 				AEB3F44B1D09A5F300393428 /* PlaceDetailsResponse.swift in Sources */,
-				AEB3F4351D09A40C00393428 /* ValidationRuleLength.swift in Sources */,
 				B294BC971CEB814900131B31 /* ImageVariation.swift in Sources */,
 				AEB3F3461D09959600393428 /* MWCaptionView.m in Sources */,
 				AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */,
-				AEB3F41D1D09A3FC00393428 /* ValidationError.swift in Sources */,
 				B2B5D01B1C7F3CAF0068A6AF /* ShoutDetailSectionHeaderTableViewCell.swift in Sources */,
-				6068E65D1C2538F30061F56C /* CustomUITextField.swift in Sources */,
 				B22D90791CE4CEA600D3C387 /* ConversationGroupWrapperViewController.swift in Sources */,
 				B272306D1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift in Sources */,
 				B271E5F51CF4A0F90038A02C /* SocialActionError.swift in Sources */,
@@ -5188,7 +5117,6 @@
 				B272307C1CE34916003547EA /* Pager.swift in Sources */,
 				24A843FB1CA02733007FF9E8 /* ConversationShoutHeader.swift in Sources */,
 				AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */,
-				AEB3F4371D09A40C00393428 /* ValidationRulePaymentCard.swift in Sources */,
 				B2B540D31C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift in Sources */,
 				24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */,
 				B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */,
@@ -5241,7 +5169,6 @@
 				B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */,
 				B22D19711C75095C00A620F3 /* PlcaholderCollectionViewCell.swift in Sources */,
 				B2B540DF1C6A696F0075EDA6 /* PostSignupSuggestionsTableViewCell.swift in Sources */,
-				ACDB3CAB1BF904670097444E /* DOPDropDownMenu.m in Sources */,
 				240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */,
 				AEB3F3491D09959600393428 /* MWPhoto.m in Sources */,
 				AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */,
@@ -5279,8 +5206,8 @@
 				24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
 				AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */,
-				AEB3F4321D09A40C00393428 /* ValidationRuleCondition.swift in Sources */,
 				2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */,
+				B212D1401D0B2BBA00E9E19D /* DALabeledCircularProgressView.m in Sources */,
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				B2F524841C9C7F5F00EA622F /* SearchShoutsResultsCategoriesHeaderSupplementeryView.swift in Sources */,
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
@@ -5302,8 +5229,6 @@
 				2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
 				B2AB73EA1CB567BA00C2C0C0 /* SettingsFormViewController.swift in Sources */,
-				AEB3F4311D09A40C00393428 /* ValidationRuleComparison.swift in Sources */,
-				AEB3F4851D09ABB100393428 /* Keychain.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,
 				B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */,
 				B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */,
@@ -5326,16 +5251,15 @@
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
+				B212D12F1D0B136900E9E19D /* SHAppearanceBridge.m in Sources */,
 				AEB3F32F1D09951E00393428 /* PTURLRequestOperation.m in Sources */,
 				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
-				AEB3F4381D09A40C00393428 /* ValidationRuleRequired.swift in Sources */,
 				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
 				246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */,
 				AEB3F44A1D09A5F300393428 /* PlaceAutocompleteResponse.swift in Sources */,
 				B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */,
-				AEB3F41C1D09A3FC00393428 /* Validatable.swift in Sources */,
 				B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */,
 				24AEF7901CF755AA00C57C7C /* SuggestionsDisplayable.swift in Sources */,
 				AE4DB3431C635026001EB84B /* MenuAnimationController.swift in Sources */,
@@ -5346,7 +5270,6 @@
 				B22D90921CE611F600D3C387 /* CreatePublicChatViewModel.swift in Sources */,
 				B253A3401C691B3F00C8B8F9 /* APITagsService.swift in Sources */,
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
-				AEB3F4391D09A40C00393428 /* ValidationRuleURL.swift in Sources */,
 				2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */,
 				B2D9B1061C98805600924941 /* SearchCategoryTableViewCell.swift in Sources */,
 				AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */,
@@ -5359,13 +5282,11 @@
 				B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */,
 				B2B4AAD21CB43CB400926474 /* CategoryFiltersViewModel.swift in Sources */,
 				AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */,
-				607F757B1BEA6F1E00F3BA86 /* TextFieldValidator.m in Sources */,
 				248328F71C8423C40042B0DB /* CreateShoutProtocols.swift in Sources */,
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
 				B22D908A1CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift in Sources */,
 				249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */,
 				B2E53E921CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift in Sources */,
-				ACF9E8751C05195500F0B615 /* UIButton+imageText.m in Sources */,
 				B20F47C81CAEBC410091899C /* MixpanelHelper.swift in Sources */,
 				B27230831CE36DFD003547EA /* NumberedPagePager.swift in Sources */,
 				AEB3F4661D09A64400393428 /* EnumTransform.swift in Sources */,
@@ -5375,7 +5296,6 @@
 				B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */,
 				B2B4AAD41CB43CCD00926474 /* CategoryFiltersCellViewModel.swift in Sources */,
 				AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
-				AEB3F4361D09A40C00393428 /* ValidationRulePattern.swift in Sources */,
 				AEB3F4431D09A5E800393428 /* DateTransformInteger.swift in Sources */,
 				B2B5D01F1C7F5A370068A6AF /* ShoutDetailTableHeaderView.swift in Sources */,
 				B2E53E8E1CA1A53800F43481 /* SearchShoutsResultsCategoriesSectionViewModel.swift in Sources */,
@@ -5403,7 +5323,6 @@
 				B2C8C2631CF8627E00E80C6A /* CreateShoutLocationSectionViewModel.swift in Sources */,
 				B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */,
 				AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */,
-				AEB3F4211D09A3FC00393428 /* Validator.swift in Sources */,
 				249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */,
 				AE180F881C7F8F910069BB1A /* APIAuthService.swift in Sources */,
 				AEB3F3F41D0996A300393428 /* DPLMutableDeepLink+AppLinks.m in Sources */,
@@ -5512,7 +5431,7 @@
 				AE32C5A61D055C33009A49C5 /* PushTokens.swift in Sources */,
 				AE32C5E91D05657D009A49C5 /* Constants.swift in Sources */,
 				AE32C59F1D055C33009A49C5 /* Address.swift in Sources */,
-				AED291BB1D098AD5000F9DAF /* Curry.swift in Sources */,
+				B212D1201D0AEDFA00E9E19D /* Curry.swift in Sources */,
 				AE32C5D71D0564C5009A49C5 /* ArgoJsonParams.swift in Sources */,
 				AE32C5D81D0564C5009A49C5 /* CoordinateParams.swift in Sources */,
 				AE32C5B71D055C33009A49C5 /* Reportable.swift in Sources */,
@@ -6160,6 +6079,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -6181,8 +6101,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -6203,8 +6121,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -6221,13 +6137,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -6235,15 +6145,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -6251,41 +6157,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -6297,15 +6187,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -6332,6 +6218,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -6353,8 +6240,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -6375,8 +6260,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -6393,13 +6276,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -6407,15 +6284,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -6423,41 +6296,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -6469,15 +6326,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -8422,6 +8275,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8443,8 +8297,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -8465,8 +8317,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -8483,13 +8333,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -8497,15 +8341,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -8513,41 +8353,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -8559,15 +8383,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -8631,6 +8451,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -8654,8 +8475,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -8676,8 +8495,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -8694,13 +8511,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -8708,15 +8519,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -8724,41 +8531,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -8770,15 +8561,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -8848,6 +8635,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8869,8 +8657,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -8891,8 +8677,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -8909,13 +8693,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -8923,15 +8701,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -8939,41 +8713,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -8985,15 +8743,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -9063,6 +8817,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9084,8 +8839,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -9106,8 +8859,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -9124,13 +8875,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -9138,15 +8883,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -9154,41 +8895,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -9200,15 +8925,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -9279,6 +9000,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9300,8 +9022,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -9322,8 +9042,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -9340,13 +9058,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -9354,15 +9066,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -9370,41 +9078,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -9416,15 +9108,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -9488,6 +9176,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9509,8 +9198,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -9531,8 +9218,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -9549,13 +9234,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -9563,15 +9242,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -9579,41 +9254,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -9625,15 +9284,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -9697,6 +9352,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9718,8 +9374,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -9740,8 +9394,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -9758,13 +9410,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -9772,15 +9418,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -9788,41 +9430,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -9834,15 +9460,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -9906,6 +9528,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9928,8 +9551,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -9950,8 +9571,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -9968,13 +9587,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -9982,15 +9595,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -9998,41 +9607,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -10044,15 +9637,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -10116,6 +9705,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10139,8 +9729,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -10161,8 +9749,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -10179,13 +9765,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -10193,15 +9773,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -10209,41 +9785,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -10255,15 +9815,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",
@@ -10327,6 +9883,7 @@
 					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
+					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10349,8 +9906,6 @@
 					"-framework",
 					"\"ACPDownload\"",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"AVFoundation\"",
 					"-framework",
 					"\"AWSCognito\"",
@@ -10371,8 +9926,6 @@
 					"-framework",
 					"\"Bolts\"",
 					"-framework",
-					"\"ContactsPicker\"",
-					"-framework",
 					"\"CoreBluetooth\"",
 					"-framework",
 					"\"CoreData\"",
@@ -10389,13 +9942,7 @@
 					"-framework",
 					"\"Crashlytics\"",
 					"-framework",
-					"\"DACircularProgress\"",
-					"-framework",
-					"\"DAProgressOverlayView\"",
-					"-framework",
 					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"DeepLinkKit\"",
 					"-framework",
 					"\"FBSDKCoreKit\"",
 					"-framework",
@@ -10403,15 +9950,11 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FTGooglePlacesAPI\"",
-					"-framework",
 					"\"Fabric\"",
 					"-framework",
 					"\"GLKit\"",
 					"-framework",
 					"\"GoogleMaps\"",
-					"-framework",
-					"\"GooglePlaces\"",
 					"-framework",
 					"\"ImageIO\"",
 					"-framework",
@@ -10419,41 +9962,25 @@
 					"-framework",
 					"\"Kingfisher\"",
 					"-framework",
-					"\"LLVideoEditor\"",
-					"-framework",
-					"\"MBMapSnapshotter\"",
-					"-framework",
 					"\"MBProgressHUD\"",
-					"-framework",
-					"\"MWPhotoBrowser\"",
 					"-framework",
 					"\"Material\"",
 					"-framework",
 					"\"Mixpanel\"",
 					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
 					"\"Ogra\"",
 					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
-					"\"Pusher\"",
-					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
-					"\"ReachabilitySwift\"",
-					"-framework",
-					"\"ResponsiveLabel\"",
+					"\"Reachability\"",
 					"-framework",
 					"\"RxCocoa\"",
 					"-framework",
 					"\"RxSwift\"",
 					"-framework",
 					"\"SVProgressHUD\"",
-					"-framework",
-					"\"SVPullToRefresh\"",
-					"-framework",
-					"\"SWXMLHash\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",
@@ -10465,15 +9992,11 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"Timberjack\"",
-					"-framework",
 					"\"TwilioCommon\"",
 					"-framework",
 					"\"TwilioConversationsClient\"",
 					"-framework",
 					"\"UIKit\"",
-					"-framework",
-					"\"UIViewAppearanceSwift\"",
 					"-framework",
 					"\"Validator\"",
 					"-framework",

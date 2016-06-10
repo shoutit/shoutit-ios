@@ -8,6 +8,7 @@
 
 import Foundation
 import ShoutitKit
+import WebImage
 
 class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
     

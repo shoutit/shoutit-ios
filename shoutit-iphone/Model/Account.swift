@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import ShoutitKit
+import KeychainAccess
 
 final class Account {
     

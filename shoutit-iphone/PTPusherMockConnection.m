@@ -9,7 +9,7 @@
 #import "PTPusherMockConnection.h"
 #import "PTJSON.h"
 #import "PTPusherEvent.h"
-#import "SRWebSocket.h"
+#import <SocketRocket/SocketRocket.h>
 
 @interface PTPusherConnection () <SRWebSocketDelegate>
 @end

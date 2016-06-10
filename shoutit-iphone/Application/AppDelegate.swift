@@ -10,10 +10,10 @@ import UIKit
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
-
 import SwiftyBeaver
 import FBSDKCoreKit
 import ShoutitKit
+import Bolts
 
 let log = SwiftyBeaver.self
 
@@ -202,8 +202,7 @@ private extension AppDelegate {
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         } else {
-            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
-            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+            SHAppearanceBridge.applyNavigationBarAppearanceWithColor(UIColor(shoutitColor: .PrimaryGreen))
         }
     }
     

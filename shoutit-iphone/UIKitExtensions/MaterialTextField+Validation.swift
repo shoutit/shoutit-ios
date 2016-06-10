@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Material
+import Validator
 
 extension BorderedMaterialTextField {
     
