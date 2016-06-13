@@ -28,6 +28,7 @@ enum NavigationItem : String {
     case InviteFriends = "inviteFriends"
     case Search = "search"
     case Credits = "credits"
+    case CreditsTransations = "credit_transaction"
     
     func title() -> String {
         switch self {

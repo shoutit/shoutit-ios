@@ -191,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="442" y="330"/>
         </scene>
-        <!--Transactions-->
+        <!--Credit Transactions-->
         <scene sceneID="qkK-h4-chy">
             <objects>
                 <tableViewController storyboardIdentifier="CreditTransactionsTableViewController" id="jRN-Od-p2a" customClass="CreditTransactionsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -290,9 +290,10 @@
                             <outlet property="delegate" destination="jRN-Od-p2a" id="Pie-N6-Zb9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Transactions" id="WKn-YE-WSC">
-                        <barButtonItem key="rightBarButtonItem" image="more" id="2Vi-zR-lSI"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Credit Transactions" id="WKn-YE-WSC"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="dYc-28-VDH" id="Klv-OC-laF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1i-mt-x9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -513,7 +514,6 @@
         <image name="credits_icon_menu" width="24" height="24"/>
         <image name="facebookX28AltX29Copy3" width="24" height="24"/>
         <image name="facebookX28AltX29Copy4" width="24" height="24"/>
-        <image name="more" width="24" height="24"/>
         <image name="stopListenCopy2" width="24" height="24"/>
         <image name="time" width="16" height="16"/>
     </resources>

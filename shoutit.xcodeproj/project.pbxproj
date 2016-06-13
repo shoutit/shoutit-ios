@@ -261,6 +261,8 @@
 		AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
 		AEBB698A1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
 		AEBB698B1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
+		AED505321D0EC9F500CD965C /* APICreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED505311D0EC9F500CD965C /* APICreditsService.swift */; };
+		AED505341D0ECC3900CD965C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED505331D0ECC3900CD965C /* Transaction.swift */; };
 		AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDDCC701CB6467800B98A94 /* Reportable.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
@@ -1087,6 +1089,8 @@
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+RX.swift"; path = "Util/CLGeocoder+RX.swift"; sourceTree = "<group>"; };
+		AED505311D0EC9F500CD965C /* APICreditsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICreditsService.swift; path = Networking/APICreditsService.swift; sourceTree = "<group>"; };
+		AED505331D0ECC3900CD965C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Model/Transaction.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -2006,6 +2010,7 @@
 				B209C51B1CEF5C7700727095 /* MiniProfile.swift */,
 				24E298911CF1F23700FDB055 /* Display.swift */,
 				AE0CD3591CFC6647006B05FD /* Contact.swift */,
+				AED505331D0ECC3900CD965C /* Transaction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3618,6 +3623,7 @@
 				24826B461C96A34900032FC9 /* APINotificationsService.swift */,
 				24826B561C96E3FC00032FC9 /* APIChatsService.swift */,
 				B22D907A1CE4DAAF00D3C387 /* APIPublicChatsService.swift */,
+				AED505311D0EC9F500CD965C /* APICreditsService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -4296,6 +4302,7 @@
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
 				B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */,
+				AED505321D0EC9F500CD965C /* APICreditsService.swift in Sources */,
 				240F509A1C71C36F00AE4A76 /* ShoutsDisplayable.swift in Sources */,
 				B260819B1CB6C7110025DA26 /* ShoutsCollectionViewController.swift in Sources */,
 				B294BC9B1CEB861400131B31 /* MediaDisplayable.swift in Sources */,
@@ -4428,6 +4435,7 @@
 				B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */,
 				AEB32F531D0AB4A6000183D3 /* CreditsFlowController.swift in Sources */,
 				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,
+				AED505341D0ECC3900CD965C /* Transaction.swift in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				B21EA3BA1C63E8900013E99F /* Params.swift in Sources */,
 				24DC20B31CBFA51800ED6DA7 /* ProfileStats.swift in Sources */,

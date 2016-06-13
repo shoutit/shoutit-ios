@@ -153,13 +153,17 @@ final class RootController: UIViewController, ContainerController {
         
         var item = navigationItem
         
-        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) {
+        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) || navigationItem == .CreditsTransations {
             self.showOverExistingFlowController(navigationItem, deepLink: deepLink)
             return
         }
         
         if navigationItem == .PublicChats {
             item = .Chats
+        }
+        
+        if navigationItem == .CreditsTransations {
+            item = .Credits
         }
         
         if navigationItem == .Notifications {
@@ -261,7 +265,14 @@ final class RootController: UIViewController, ContainerController {
             }
             
             currentFlowController.showProfileWithId(profileId)
+        
+        case .CreditsTransations:
+            if !Account.sharedInstance.isUserLoggedIn {
+                promptUserForLogin(navigationItem, deepLink: deepLink)
+                return
+            }
             
+            currentFlowController.showCreditTransactions()
         default:
             break
         }
