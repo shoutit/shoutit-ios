@@ -265,23 +265,6 @@
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
 		AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
-		AED2918A1D08676E000F9DAF /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2918B1D08676E000F9DAF /* AmazonS3RequestManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2918C1D08676E000F9DAF /* Argo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2918D1D08676E000F9DAF /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291781D08676D000F9DAF /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2918E1D08676E000F9DAF /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291791D08676D000F9DAF /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2918F1D08676E000F9DAF /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917A1D08676D000F9DAF /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291901D08676E000F9DAF /* AWSMobileAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917B1D08676D000F9DAF /* AWSMobileAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917C1D08676D000F9DAF /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291801D08676D000F9DAF /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291811D08676D000F9DAF /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291821D08676D000F9DAF /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291981D08676E000F9DAF /* Mixpanel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291831D08676D000F9DAF /* Mixpanel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED291991D08676E000F9DAF /* Ogra.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2919A1D08676E000F9DAF /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291851D08676D000F9DAF /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2919C1D08676F000F9DAF /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AED2919D1D08676F000F9DAF /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
 		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
@@ -572,6 +555,17 @@
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
 		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
 		B2C0E2E21D0EFB0200058FEF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; };
+		B2C0E2E31D0F00A200058FEF /* Crashlytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E41D0F00A200058FEF /* GoogleSignIn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E51D0F00A200058FEF /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E61D0F00A200058FEF /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E71D0F00A200058FEF /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719361D0EEC99002C1D74 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E81D0F00A200058FEF /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2E91D0F00B900058FEF /* TwilioConversationsClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2EA1D0F00B900058FEF /* TwilioCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2EB1D0F00B900058FEF /* AdobeCreativeSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2EC1D0F00B900058FEF /* AdobeCreativeSDKImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
 		B2C729AC1C622088006F7D29 /* ShoutitValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* ShoutitValidator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
@@ -856,31 +850,25 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		6068E6451C2435D20061F56C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */,
-				AED2918A1D08676E000F9DAF /* Alamofire.framework in Embed Frameworks */,
-				AED2918B1D08676E000F9DAF /* AmazonS3RequestManager.framework in Embed Frameworks */,
-				AED2918C1D08676E000F9DAF /* Argo.framework in Embed Frameworks */,
-				AED2918D1D08676E000F9DAF /* AWSAPIGateway.framework in Embed Frameworks */,
-				AED2918E1D08676E000F9DAF /* AWSCognito.framework in Embed Frameworks */,
-				AED2918F1D08676E000F9DAF /* AWSCore.framework in Embed Frameworks */,
-				AED291901D08676E000F9DAF /* AWSMobileAnalytics.framework in Embed Frameworks */,
-				AED291911D08676E000F9DAF /* AWSS3.framework in Embed Frameworks */,
-				AED291931D08676E000F9DAF /* DZNEmptyDataSet.framework in Embed Frameworks */,
-				AED291951D08676E000F9DAF /* Kingfisher.framework in Embed Frameworks */,
-				AED291961D08676E000F9DAF /* Material.framework in Embed Frameworks */,
-				AED291971D08676E000F9DAF /* MBProgressHUD.framework in Embed Frameworks */,
-				AED291981D08676E000F9DAF /* Mixpanel.framework in Embed Frameworks */,
-				AED291991D08676E000F9DAF /* Ogra.framework in Embed Frameworks */,
-				AED2919A1D08676E000F9DAF /* Reachability.framework in Embed Frameworks */,
-				AED2919C1D08676F000F9DAF /* RxCocoa.framework in Embed Frameworks */,
-				AED2919D1D08676F000F9DAF /* RxSwift.framework in Embed Frameworks */,
+				B2C0E2E31D0F00A200058FEF /* Crashlytics.framework in Embed Frameworks */,
+				B2C0E2E41D0F00A200058FEF /* GoogleSignIn.framework in Embed Frameworks */,
+				B2C0E2E51D0F00A200058FEF /* Fabric.framework in Embed Frameworks */,
+				B2C0E2E61D0F00A200058FEF /* FBSDKCoreKit.framework in Embed Frameworks */,
+				B2C0E2E71D0F00A200058FEF /* FBSDKLoginKit.framework in Embed Frameworks */,
+				B2C0E2E81D0F00A200058FEF /* FBSDKShareKit.framework in Embed Frameworks */,
+				B2C0E2E91D0F00B900058FEF /* TwilioConversationsClient.framework in Embed Frameworks */,
+				B2C0E2EA1D0F00B900058FEF /* TwilioCommon.framework in Embed Frameworks */,
+				B2C0E2EB1D0F00B900058FEF /* AdobeCreativeSDKCore.framework in Embed Frameworks */,
+				B2C0E2EC1D0F00B900058FEF /* AdobeCreativeSDKImage.framework in Embed Frameworks */,
+				B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -1885,6 +1873,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2F719131D0ECE5B002C1D74 /* AWSKinesis.framework in Frameworks */,
 				B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */,
 				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
@@ -1961,7 +1950,6 @@
 				B2F719391D0EEC99002C1D74 /* FBSDKLoginKit.framework in Frameworks */,
 				B2F7193A1D0EEC99002C1D74 /* FBSDKShareKit.framework in Frameworks */,
 				B2F719091D0ECE1F002C1D74 /* AWSCognitoIdentityProvider.framework in Frameworks */,
-				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2F719051D0ECDFC002C1D74 /* AWSAutoScaling.framework in Frameworks */,
 				B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */,
