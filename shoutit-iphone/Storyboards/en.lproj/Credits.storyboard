@@ -191,10 +191,10 @@
             </objects>
             <point key="canvasLocation" x="442" y="330"/>
         </scene>
-        <!--Notifications-->
+        <!--Transactions-->
         <scene sceneID="qkK-h4-chy">
             <objects>
-                <tableViewController storyboardIdentifier="CreditTransactionsTableViewController" id="jRN-Od-p2a" customClass="NotificationsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreditTransactionsTableViewController" id="jRN-Od-p2a" customClass="CreditTransactionsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="UL8-RE-5nb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,16 +290,9 @@
                             <outlet property="delegate" destination="jRN-Od-p2a" id="Pie-N6-Zb9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notifications" id="WKn-YE-WSC">
-                        <barButtonItem key="rightBarButtonItem" image="more" id="2Vi-zR-lSI">
-                            <connections>
-                                <action selector="moreAction" destination="jRN-Od-p2a" id="tuw-SD-lGg"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Transactions" id="WKn-YE-WSC">
+                        <barButtonItem key="rightBarButtonItem" image="more" id="2Vi-zR-lSI"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="activityIndicator" destination="dYc-28-VDH" id="5UQ-eP-AJL"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1i-mt-x9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -327,10 +320,10 @@
                                 <rect key="frame" x="20" y="77" width="560" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0d-Yk-0j8">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="27"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PREMIUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-kT-6Si">
-                                                <rect key="frame" x="82" y="4" width="77" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="PREMIUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-kT-6Si">
+                                                <rect key="frame" x="22" y="4" width="77" height="20"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" red="0.97768733640000005" green="0.97768733640000005" blue="0.97768733640000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -341,7 +334,7 @@
                                             <constraint firstAttribute="height" constant="27" id="7Nj-rP-Vvy"/>
                                             <constraint firstItem="DeZ-kT-6Si" firstAttribute="centerY" secondItem="z0d-Yk-0j8" secondAttribute="centerY" id="AbU-bW-sa1"/>
                                             <constraint firstItem="DeZ-kT-6Si" firstAttribute="centerX" secondItem="z0d-Yk-0j8" secondAttribute="centerX" id="cul-d9-8NU"/>
-                                            <constraint firstAttribute="width" constant="240" id="nyB-tF-Swm"/>
+                                            <constraint firstAttribute="width" priority="999" constant="120" id="nyB-tF-Swm"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your shout will be highlighted in all searches." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbO-8L-Z9b">
@@ -373,10 +366,10 @@
                                 <rect key="frame" x="20" y="187" width="560" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhf-Og-NNd">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="27"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rks-cy-K03">
-                                                <rect key="frame" x="104" y="4" width="33" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="TOP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rks-cy-K03">
+                                                <rect key="frame" x="44" y="4" width="33" height="20"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" red="0.97768733640000005" green="0.97768733640000005" blue="0.97768733640000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -387,7 +380,7 @@
                                             <constraint firstItem="rks-cy-K03" firstAttribute="centerY" secondItem="Lhf-Og-NNd" secondAttribute="centerY" id="DsS-bR-b0T"/>
                                             <constraint firstItem="rks-cy-K03" firstAttribute="centerX" secondItem="Lhf-Og-NNd" secondAttribute="centerX" id="NcM-u0-GXj"/>
                                             <constraint firstAttribute="height" constant="27" id="hog-eo-9SC"/>
-                                            <constraint firstAttribute="width" constant="240" id="vwx-Xy-J6d"/>
+                                            <constraint firstAttribute="width" priority="999" constant="120" id="vwx-Xy-J6d"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your shout will appear on top of search results." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woo-li-ecU">
@@ -415,14 +408,41 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDH-sU-Y2e">
+                                <rect key="frame" x="20" y="407" width="542" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Promote each shout on your Profile individually by clicking “">
+                                        <attributes>
+                                            <color key="NSColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Promote">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="”. To promote a shout you need  to have enough Shoutit Credit.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxl-Yb-gnR" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="20" y="297" width="560" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a82-ZK-GST">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="27"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOP PREMIUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riA-hS-qaF">
-                                                <rect key="frame" x="64" y="4" width="113" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="TOP PREMIUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riA-hS-qaF">
+                                                <rect key="frame" x="4" y="4" width="113" height="20"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" red="0.97768733640000005" green="0.97768733640000005" blue="0.97768733640000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -433,7 +453,7 @@
                                             <constraint firstItem="riA-hS-qaF" firstAttribute="centerX" secondItem="a82-ZK-GST" secondAttribute="centerX" id="JJf-Zr-llG"/>
                                             <constraint firstItem="riA-hS-qaF" firstAttribute="centerY" secondItem="a82-ZK-GST" secondAttribute="centerY" id="QXJ-1a-bLJ"/>
                                             <constraint firstAttribute="height" constant="27" id="hUT-gv-SaM"/>
-                                            <constraint firstAttribute="width" constant="240" id="mr6-BG-3sg"/>
+                                            <constraint firstAttribute="width" priority="999" constant="120" id="mr6-BG-3sg"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your shout will be highlighted and appear on top of all searches." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ck-23-bpl">
@@ -461,13 +481,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDH-sU-Y2e">
-                                <rect key="frame" x="20" y="407" width="542" height="34"/>
-                                <string key="text">Promote each shout on your Profile individually by clicking “Promote”. To promote a shout you need  to have enough Shoutit Credit.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
