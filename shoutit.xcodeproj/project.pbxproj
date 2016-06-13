@@ -112,8 +112,6 @@
 		AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */; };
 		AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */; };
 		AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */; };
-		AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */; };
-		AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */; };
 		AE1BE17C1D06DD5300C196EE /* PagedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272307D1CE3560F003547EA /* PagedResults.swift */; };
 		AE1BE17E1D06DD8A00C196EE /* Shout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B540C81C6A38AE0075EDA6 /* Shout.swift */; };
 		AE1BE1801D06E0C700C196EE /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248329001C8443080042B0DB /* Currency.swift */; };
@@ -407,10 +405,7 @@
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
 		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
-		AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */; };
-		AED291AB1D0872EC000F9DAF /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291A61D0870C6000F9DAF /* TwilioCommon.framework */; };
 		AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291AC1D08731A000F9DAF /* Fabric.framework */; };
-		AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291B31D094905000F9DAF /* GoogleMaps.framework */; };
 		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
@@ -821,6 +816,11 @@
 		B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */; };
 		B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */; };
 		B2F719291D0ED008002C1D74 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */; };
+		B2F7192C1D0EE769002C1D74 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; };
+		B2F7192F1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; };
+		B2F719301D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; };
+		B2F719321D0EE795002C1D74 /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; };
+		B2F719341D0EE79E002C1D74 /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; };
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -1021,8 +1021,6 @@
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
 		AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutMobileCell.swift; path = View/CreateShoutMobileCell.swift; sourceTree = "<group>"; };
 		AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BadgeButton.swift; path = View/BadgeButton.swift; sourceTree = "<group>"; };
-		AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
-		AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
 		AE1D738F1CFD826E0030E2ED /* SuggestedUsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedUsersViewModel.swift; path = ViewModel/SuggestedUsersViewModel.swift; sourceTree = "<group>"; };
 		AE1F296D1CE9BF5300D1AA76 /* ConversationDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationDescription.swift; path = Model/ConversationDescription.swift; sourceTree = "<group>"; };
 		AE1F296F1CE9C94F00D1AA76 /* ConversationInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoViewController.swift; path = Controllers/ConversationInfoViewController.swift; sourceTree = "<group>"; };
@@ -1406,10 +1404,7 @@
 		AED291871D08676E000F9DAF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		AED291881D08676E000F9DAF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		AED291891D08676E000F9DAF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
-		AED291A61D0870C6000F9DAF /* TwilioCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioCommon.framework; path = ../ExternalFrameworks/TwilioCommon/TwilioCommon.framework; sourceTree = "<group>"; };
-		AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioConversationsClient.framework; path = ../ExternalFrameworks/TwilioConversationsClient/TwilioConversationsClient.framework; sourceTree = "<group>"; };
 		AED291AC1D08731A000F9DAF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ExternalFrameworks/Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
-		AED291B31D094905000F9DAF /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ExternalFrameworks/GoogleMaps/Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
 		AED291B91D098AD5000F9DAF /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Curry.swift; path = ../../../Downloads/Pods/Curry/Source/Curry.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
@@ -1543,8 +1538,6 @@
 		B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileSelectButtonTableViewCell.swift; path = View/EditProfileSelectButtonTableViewCell.swift; sourceTree = "<group>"; };
 		B23CA24B1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileCellViewModel.swift; path = ViewModel/EditProfileCellViewModel.swift; sourceTree = "<group>"; };
 		B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTLSeeAllCollectionViewCell.swift; path = View/RTLSeeAllCollectionViewCell.swift; sourceTree = "<group>"; };
-		B2415F4E1D009E4400669C52 /* AviarySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AviarySDK.framework; path = "AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDK.framework"; sourceTree = SOURCE_ROOT; };
-		B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AviarySDKResources.bundle; path = "AviarySDK/AviarySDK-4.4.5/AviarySDK/AviarySDKResources.bundle"; sourceTree = SOURCE_ROOT; };
 		B2415F521D009E8100669C52 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		B2415F541D009E9D00669C52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2415F561D009EA500669C52 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1883,6 +1876,11 @@
 		B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackTextViewController.framework; path = Carthage/Build/iOS/SlackTextViewController.framework; sourceTree = SOURCE_ROOT; };
 		B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = SOURCE_ROOT; };
 		B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = SOURCE_ROOT; };
+		B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = External/GoogleMaps/Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
+		B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
+		B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
+		B2F719311D0EE795002C1D74 /* TwilioCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioCommon.framework; path = External/TwilioCommon/TwilioCommon.framework; sourceTree = SOURCE_ROOT; };
+		B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioConversationsClient.framework; path = External/TwilioConversationsClient/TwilioConversationsClient.framework; sourceTree = SOURCE_ROOT; };
 		B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsViewModel.swift; path = ViewModel/SearchShoutsResultsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1895,6 +1893,7 @@
 				B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */,
 				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
+				B2F719341D0EE79E002C1D74 /* TwilioConversationsClient.framework in Frameworks */,
 				B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
 				B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */,
@@ -1914,11 +1913,8 @@
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
 				B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */,
 				B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */,
-				AED291B41D094905000F9DAF /* GoogleMaps.framework in Frameworks */,
 				B2F719231D0ECEFF002C1D74 /* Curry.framework in Frameworks */,
 				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
-				AE1BE1781D06CE2200C196EE /* AdobeCreativeSDKCore.framework in Frameworks */,
-				AE1BE1791D06CE2200C196EE /* AdobeCreativeSDKImage.framework in Frameworks */,
 				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
 				AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */,
 				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
@@ -1936,6 +1932,8 @@
 				B2985FA31C7295A900EEA9A2 /* libicucore.A.tbd in Frameworks */,
 				B2985FA41C7295A900EEA9A2 /* libicucore.tbd in Frameworks */,
 				B2F7191B1D0ECEB7002C1D74 /* AWSSES.framework in Frameworks */,
+				B2F7192F1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework in Frameworks */,
+				B2F719321D0EE795002C1D74 /* TwilioCommon.framework in Frameworks */,
 				B2F7190F1D0ECE4A002C1D74 /* AWSElasticLoadBalancing.framework in Frameworks */,
 				B2985F9E1C72958E00EEA9A2 /* libc++.1.tbd in Frameworks */,
 				B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */,
@@ -1954,6 +1952,7 @@
 				B2F7190B1D0ECE3A002C1D74 /* AWSDynamoDB.framework in Frameworks */,
 				B21D8A911D0B3DE100EE1549 /* AWSMobileAnalytics.framework in Frameworks */,
 				B2F719171D0ECE67002C1D74 /* AWSMachineLearning.framework in Frameworks */,
+				B2F7192C1D0EE769002C1D74 /* GoogleMaps.framework in Frameworks */,
 				B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
 				B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */,
@@ -1966,17 +1965,16 @@
 				B2F719051D0ECDFC002C1D74 /* AWSAutoScaling.framework in Frameworks */,
 				B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
-				AED291AA1D0872EC000F9DAF /* TwilioConversationsClient.framework in Frameworks */,
 				B212D1421D0B2F4800E9E19D /* KeychainAccess.framework in Frameworks */,
 				B21D8A901D0B3DDB00EE1549 /* AWSCore.framework in Frameworks */,
 				B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */,
+				B2F719301D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework in Frameworks */,
 				AEB3F3FB1D099E8B00393428 /* FBSDKCoreKit.framework in Frameworks */,
 				AEB3F3FC1D099E8B00393428 /* FBSDKLoginKit.framework in Frameworks */,
 				AEB3F3FD1D099E8B00393428 /* FBSDKShareKit.framework in Frameworks */,
 				B2F719071D0ECE06002C1D74 /* AWSCloudWatch.framework in Frameworks */,
 				B2F719151D0ECE61002C1D74 /* AWSLambda.framework in Frameworks */,
 				AED291AD1D08731A000F9DAF /* Fabric.framework in Frameworks */,
-				AED291AB1D0872EC000F9DAF /* TwilioCommon.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
 				B2985F801C728CED00EEA9A2 /* GoogleSignIn.framework in Frameworks */,
 			);
@@ -3537,18 +3535,10 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		B2415F4C1D009E1E00669C52 /* Aviary */ = {
-			isa = PBXGroup;
-			children = (
-				B2415F4E1D009E4400669C52 /* AviarySDK.framework */,
-				B2415F4F1D009E4400669C52 /* AviarySDKResources.bundle */,
-			);
-			name = Aviary;
-			sourceTree = "<group>";
-		};
 		B2415F4D1D009E2A00669C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2F7192A1D0EE75A002C1D74 /* Submodules */,
 				1E0F57B258AD6D899B14A1E3 /* SystemFrameworks */,
 				B2F719031D0ECCB1002C1D74 /* Carthage */,
 				B2F719021D0ECCA7002C1D74 /* EmbeddedFrameworks */,
@@ -3562,16 +3552,10 @@
 				AEB3F3921D0995E800393428 /* DeeplinkKit */,
 				AEB3F3301D09958700393428 /* MWPhotoBrowser */,
 				AEB3F3021D09950B00393428 /* Pusher */,
-				AED291B31D094905000F9DAF /* GoogleMaps.framework */,
 				AEB3F3F81D099E8B00393428 /* FBSDKCoreKit.framework */,
 				AEB3F3F91D099E8B00393428 /* FBSDKLoginKit.framework */,
 				AEB3F3FA1D099E8B00393428 /* FBSDKShareKit.framework */,
 				AED291AC1D08731A000F9DAF /* Fabric.framework */,
-				AED291A81D0870D0000F9DAF /* TwilioConversationsClient.framework */,
-				AED291A61D0870C6000F9DAF /* TwilioCommon.framework */,
-				AE1BE1761D06CE2200C196EE /* AdobeCreativeSDKCore.framework */,
-				AE1BE1771D06CE2200C196EE /* AdobeCreativeSDKImage.framework */,
-				B2415F4C1D009E1E00669C52 /* Aviary */,
 			);
 			name = Frameworks;
 			path = "shoutit-iphone";
@@ -4590,6 +4574,18 @@
 				B212D1261D0B023600E9E19D /* ACPDownload.framework */,
 			);
 			name = Carthage;
+			sourceTree = "<group>";
+		};
+		B2F7192A1D0EE75A002C1D74 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */,
+				B2F719311D0EE795002C1D74 /* TwilioCommon.framework */,
+				B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */,
+				B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */,
+				B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */,
+			);
+			name = Submodules;
 			sourceTree = "<group>";
 		};
 		B2FE53911CA083F9007E23F5 /* ViewModel */ = {
@@ -6199,6 +6195,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -6338,6 +6338,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8395,6 +8399,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8571,6 +8579,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -8755,6 +8767,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8937,6 +8953,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9120,6 +9140,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9296,6 +9320,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9472,6 +9500,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9648,6 +9680,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9825,6 +9861,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10003,6 +10043,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
 					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
+					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/External/AviarySDK/SDK",
+					"$(PROJECT_DIR)/External/TwilioCommon",
+					"$(PROJECT_DIR)/External/TwilioConversationsClient",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
