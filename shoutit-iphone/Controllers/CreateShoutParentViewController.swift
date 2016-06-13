@@ -26,6 +26,13 @@ class CreateShoutParentViewController: UIViewController {
         
         setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(bottomConstraint)
         setTitle()
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("createShoutLaunchedFirstTime") == false) {
+            showFirstOpenAlert()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "createShoutLaunchedFirstTime")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
     }
@@ -47,6 +54,21 @@ class CreateShoutParentViewController: UIViewController {
             self.navigationItem.title = NSLocalizedString("Create Request", comment: "")
         }
         
+    }
+    
+    func showFirstOpenAlert() {
+        
+        if Account.sharedInstance.facebookManager.hasPermissions(.PublishActions) {
+            return
+        }
+        
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+            self.close()
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func dismiss() {
