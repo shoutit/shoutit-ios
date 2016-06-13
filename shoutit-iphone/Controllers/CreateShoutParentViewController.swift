@@ -65,7 +65,6 @@ class CreateShoutParentViewController: UIViewController {
         let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
-            self.close()
         }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)

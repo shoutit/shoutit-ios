@@ -263,6 +263,8 @@
 		AEBB698B1C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
 		AED505321D0EC9F500CD965C /* APICreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED505311D0EC9F500CD965C /* APICreditsService.swift */; };
 		AED505341D0ECC3900CD965C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED505331D0ECC3900CD965C /* Transaction.swift */; };
+		AED505361D0EE57B00CD965C /* SectionHeaderWithDetailsButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED505351D0EE57B00CD965C /* SectionHeaderWithDetailsButton.xib */; };
+		AED505381D0EE67E00CD965C /* SectionHeaderWithDetailsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED505371D0EE67E00CD965C /* SectionHeaderWithDetailsButton.swift */; };
 		AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDDCC701CB6467800B98A94 /* Reportable.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
@@ -1091,6 +1093,8 @@
 		AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+RX.swift"; path = "Util/CLGeocoder+RX.swift"; sourceTree = "<group>"; };
 		AED505311D0EC9F500CD965C /* APICreditsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICreditsService.swift; path = Networking/APICreditsService.swift; sourceTree = "<group>"; };
 		AED505331D0ECC3900CD965C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Model/Transaction.swift; sourceTree = "<group>"; };
+		AED505351D0EE57B00CD965C /* SectionHeaderWithDetailsButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SectionHeaderWithDetailsButton.xib; path = View/SectionHeaderWithDetailsButton.xib; sourceTree = "<group>"; };
+		AED505371D0EE67E00CD965C /* SectionHeaderWithDetailsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionHeaderWithDetailsButton.swift; path = View/SectionHeaderWithDetailsButton.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -2779,6 +2783,7 @@
 				AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */,
 				AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */,
 				B20F65F81D05C34200EEAF68 /* RoundSwitchableButton.swift */,
+				AED505371D0EE67E00CD965C /* SectionHeaderWithDetailsButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2888,6 +2893,7 @@
 			children = (
 				B2D441A81CB819D2009782AF /* TableViewPlaceholderView.xib */,
 				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
+				AED505351D0EE57B00CD965C /* SectionHeaderWithDetailsButton.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -3991,6 +3997,7 @@
 				B2D441F71CB81B66009782AF /* PostSignupSuggestionsSectionHeader.xib in Resources */,
 				B2D441AF1CB81A02009782AF /* ConversationLoadMoreFooter.xib in Resources */,
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
+				AED505361D0EE57B00CD965C /* SectionHeaderWithDetailsButton.xib in Resources */,
 				B2E8F1F71CFE03690051DA58 /* DiscoverPreview.storyboard in Resources */,
 				B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */,
 				B2D441C11CB81A24009782AF /* OutgoingLocationCell.xib in Resources */,
@@ -4338,6 +4345,7 @@
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				B2AB73F61CB56C1600C2C0C0 /* SettingsFormTextFieldTableViewCell.swift in Sources */,
 				2404DBC31CA182EB00C19DCF /* Box.swift in Sources */,
+				AED505381D0EE67E00CD965C /* SectionHeaderWithDetailsButton.swift in Sources */,
 				B22D90721CE3941200D3C387 /* VideoCallParams.swift in Sources */,
 				B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */,
 				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,

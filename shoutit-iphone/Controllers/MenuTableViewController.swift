@@ -106,6 +106,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
         return kTableSecondaryCellHeight
     }
     
+
+    
     // MARK: User Interactions
     
     @IBAction func profileAction(sender: AnyObject) {
