@@ -52,6 +52,7 @@ public struct DetailedProfile: User {
     public let admins: [Profile]?
     public let conversation: MiniConversation?
     public let stats: ProfileStats?
+    public let birthday: Int?
 }
 
 extension DetailedProfile: Decodable {
@@ -101,6 +102,7 @@ extension DetailedProfile: Decodable {
             <*> j <||? "admins"
             <*> j <|? "conversation"
             <*> j <|? "stats"
+            <*> j <|? "birthday"
         return h
     }
 }
@@ -143,7 +145,8 @@ extension DetailedProfile: Encodable {
             "chat_url" : self.chatPath.encode(),
             "pages" : self.pages.encode(),
             "admins" : self.admins.encode(),
-            "stats" : self.stats.encode()
+            "stats" : self.stats.encode(),
+            "birthday" : self.birthday.encode()
             ])
     }
 }
@@ -151,6 +154,12 @@ extension DetailedProfile: Encodable {
 
 extension DetailedProfile {
     public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedProfile {
-        return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, pages: self.pages, admins: self.admins, conversation: self.conversation, stats: stts)
+        return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, pages: self.pages, admins: self.admins, conversation: self.conversation, stats: stts, birthday: self.birthday)
+    }
+}
+
+extension DetailedProfile {
+    func hasAllRequiredFieldsFilled() -> Bool {
+        return (self.imagePath?.characters.count > 0) && (self.gender != nil) && (self.birthday != nil)
     }
 }

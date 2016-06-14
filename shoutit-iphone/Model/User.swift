@@ -66,6 +66,7 @@ extension UserType: Encodable {
 public enum Gender: String {
     case Male = "male"
     case Female = "female"
+    case Other = "other"
 }
 
 extension Gender: Decodable {

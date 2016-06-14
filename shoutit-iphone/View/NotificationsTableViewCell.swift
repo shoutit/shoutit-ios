@@ -29,4 +29,11 @@ final class NotificationsTableViewCell: UITableViewCell {
         
     }
 
+    func bindWithTransaction(transaction: Transaction) {
+        self.titleLabel.attributedText = transaction.attributedText()
+        self.notificationImage.sh_setImageWithURL(transaction.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        
+        dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(transaction.createdAt)
+        
+    }
 }

@@ -14,6 +14,7 @@ import Ogra
 public struct ProfileStats {
     public let unreadConversationCount: Int
     public let unreadNotificationsCount: Int
+    public let credit: Int
 }
 
 extension ProfileStats: Decodable {
@@ -22,6 +23,7 @@ extension ProfileStats: Decodable {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
+            <*> j <| "credit"
     }
 }
 
@@ -29,6 +31,7 @@ extension ProfileStats: Encodable {
     public func encode() -> JSON {
         return JSON.Object([
             "unread_conversations_count" : self.unreadConversationCount.encode(),
-            "unread_notifications_count" : self.unreadNotificationsCount.encode()])
+            "unread_notifications_count" : self.unreadNotificationsCount.encode(),
+            "credit" : self.credit.encode()])
     }
 }

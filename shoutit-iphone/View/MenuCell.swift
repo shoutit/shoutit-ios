@@ -25,6 +25,8 @@ final class MenuCell: UITableViewCell {
         
         setSeparatorVisible(item == .Chats || current)
         
+//        self.accessoryType = ((item == .InviteFriends) ? .DetailButton : .None)
+//        self.tintColor = UIColor(shoutitColor: .PrimaryGreen)
     }
     
     func setSeparatorVisible(visible: Bool) {

@@ -18,7 +18,13 @@ class InviteFriendsTableViewController: UITableViewController {
     
     private let disposeBag = DisposeBag()
     private var addressBook : AddressBook?
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.registerNib(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -39,6 +45,46 @@ class InviteFriendsTableViewController: UITableViewController {
         default:
             break
         }
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let sectionHeader = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("SectionHeaderWithDetailsButton") as? SectionHeaderWithDetailsButton {
+            sectionHeader.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+            sectionHeader.infoButton.hidden = section == 0
+            sectionHeader.infoButton.tag = section
+            sectionHeader.infoButton.addTarget(self, action: #selector(showSectionAlert), forControlEvents: .TouchUpInside)
+            return sectionHeader
+        }
+        
+        return nil
+    }
+    
+    func showSectionAlert(button: UIButton) {
+        if button.tag == 1 {
+            self.showFindFriendsAlert()
+        } else if button.tag == 2 {
+            self.showInviteFriendsAlert()
+        }
+    }
+    
+    func showFindFriendsAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn up to 10 Shoutit Credits for finding your friends and listening to them", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+            
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showInviteFriendsAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit whenever a friend you invited signs up", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+            
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK - Actions

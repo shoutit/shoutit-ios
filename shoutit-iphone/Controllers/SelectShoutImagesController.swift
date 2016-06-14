@@ -138,18 +138,10 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
 
 extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate {
     
-    
     func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
         
-        guard let image = image else {
-            editor.dismissViewControllerAnimated(true, completion: nil)
-            return
-        }
-        
-        editor.dismissViewControllerAnimated(true, completion: nil)
-        
         guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else { return }
-        guard let imageData = image.dataRepresentation() else {
+        guard let image = image, imageData = image.dataRepresentation() else {
             editingCompletion(attachment: editingAttachment)
             return
         }

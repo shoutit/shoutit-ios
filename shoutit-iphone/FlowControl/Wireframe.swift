@@ -17,6 +17,7 @@ struct Wireframe {
         case HTML = "HTML"
         case Home = "Home"
         case Discover = "Discover"
+        case Credits = "Credits"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
         case Chats = "Chats"
@@ -163,6 +164,18 @@ struct Wireframe {
         return UIViewController()
     }
     
+    static func creditsViewController() -> CreditsMainViewController {
+        return storyboard(.Credits).instantiateViewControllerWithIdentifier("CreditsMainViewController") as! CreditsMainViewController
+    }
+    
+    static func creditTransactionsViewController() -> CreditTransactionsTableViewController {
+        return storyboard(.Credits).instantiateViewControllerWithIdentifier("CreditTransactionsTableViewController") as! CreditTransactionsTableViewController
+    }
+    
+    static func creditPromotingShoutsInfoViewController() -> PromotingShoutsInfoController {
+        return storyboard(.Credits).instantiateViewControllerWithIdentifier("PromotingShoutsInfoController") as! PromotingShoutsInfoController
+    }
+    
     static func discoverViewController() -> DiscoverCollectionViewController {
         return storyboard(.Discover).instantiateViewControllerWithIdentifier("SHDiscoverCollectionViewController") as! DiscoverCollectionViewController
     }
@@ -283,10 +296,6 @@ struct Wireframe {
         return storyboard(.Chats).instantiateViewControllerWithIdentifier("ConversationLocationController") as! ConversationLocationController
     }
     
-    static func callingoutController() -> CallingOutViewController {
-        return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("CallingOutViewController") as! CallingOutViewController
-    }
-    
     static func videoCallController() -> VideoCallViewController {
         return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("VideoCallViewController") as! VideoCallViewController
     }
@@ -294,5 +303,6 @@ struct Wireframe {
     static func incomingCallController() -> IncomingCallController {
         return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("IncomingCallController") as! IncomingCallController
     }
+    
     
 }

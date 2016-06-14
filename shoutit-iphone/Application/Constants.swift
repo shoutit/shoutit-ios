@@ -43,6 +43,7 @@ public struct Constants {
         public static let UserDidLogoutNotification = "UserDidLogoutNotification"
         public static let IncomingCallNotification = "IncomingCallNotification"
         public static let ShoutDeletedNotification = "ShoutDeletedNotification"
+        public static let RootControllerShouldOpenNavigationItem = "RootControllerShouldOpenNavigationItem" 
     }
     
     public struct AWS {

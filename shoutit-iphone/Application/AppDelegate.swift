@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureGoogleLogin()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions ?? [:])
+        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
         PlacesGeocoder.setup()
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
@@ -101,22 +102,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LocationManager.sharedInstance.stopUpdatingLocation()
         Account.sharedInstance.pusherManager.disconnect()
+        MixpanelHelper.handleAppDidEnterBackground()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
+        MixpanelHelper.handleUserDidOpenApp()
         if case .Logged(let user)? = Account.sharedInstance.userModel {
             Account.sharedInstance.pusherManager.tryToConnect()
             Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }
         
         Account.sharedInstance.fetchUserProfile()
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        MixpanelHelper.handleAppDidTerminate()
     }
     
     // MARK: - Push notifications
@@ -242,7 +241,7 @@ private extension AppDelegate {
 extension AppDelegate {
     func registerRoutes() {
         
-        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout]
+        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout, .CreditsTransations]
         
         for route in routableElements {
             self.router.registerBlock({ [weak self] (deeplink) in

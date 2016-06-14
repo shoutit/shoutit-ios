@@ -17,7 +17,6 @@ protocol ChatDisplayable {
     func showImagePreview(imageURL: NSURL) -> Void
     func showVideoPreview(videoURL: NSURL) -> Void
     func startVideoCallWithProfile(profile: Profile) -> Void
-    func showVideoConversation(conversation: TWCConversation) -> Void
 }
 
 extension FlowController : ChatDisplayable {
@@ -80,17 +79,7 @@ extension FlowController : ChatDisplayable {
     
     func startVideoCallWithProfile(profile: Profile) -> Void {
         let controller = Wireframe.videoCallController()
-        
-        controller.callingToProfile = profile
-        
-        self.navigationController.presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    func showVideoConversation(conversation: TWCConversation) -> Void {
-        let controller = Wireframe.videoCallController()
-        
-        controller.conversation = conversation
-        
+        controller.viewModel = VideoCallViewModel(callerProfile: profile)
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
 }
