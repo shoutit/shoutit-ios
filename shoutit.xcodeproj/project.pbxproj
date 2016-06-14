@@ -387,6 +387,17 @@
 		B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F541D009E9D00669C52 /* Foundation.framework */; };
 		B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F561D009EA500669C52 /* MessageUI.framework */; };
 		B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2415F581D009EC700669C52 /* UIKit.framework */; };
+		B2463C581D10259B0006BD6E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; };
+		B2463C591D1025A60006BD6E /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */; };
+		B2463C5A1D1025C70006BD6E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; };
+		B2463C5B1D1025E00006BD6E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */; };
+		B2463C5C1D1025E00006BD6E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719361D0EEC99002C1D74 /* FBSDKLoginKit.framework */; };
+		B2463C5D1D1025E00006BD6E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; };
+		B2463C5E1D1025EC0006BD6E /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; };
+		B2463C5F1D1025EC0006BD6E /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; };
+		B2463C601D1026000006BD6E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; };
+		B2463C611D1026080006BD6E /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; };
+		B2463C621D1026080006BD6E /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; };
 		B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */; };
 		B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */; };
 		B24E29FA1CBD237500328503 /* CreateShoutTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E29F91CBD237500328503 /* CreateShoutTextViewCell.swift */; };
@@ -552,18 +563,6 @@
 		B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */; };
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
 		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
-		B2C0E2E21D0EFB0200058FEF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; };
-		B2C0E2E31D0F00A200058FEF /* Crashlytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E41D0F00A200058FEF /* GoogleSignIn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E51D0F00A200058FEF /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E61D0F00A200058FEF /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E71D0F00A200058FEF /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719361D0EEC99002C1D74 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E81D0F00A200058FEF /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2E91D0F00B900058FEF /* TwilioConversationsClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2EA1D0F00B900058FEF /* TwilioCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2EB1D0F00B900058FEF /* AdobeCreativeSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2EC1D0F00B900058FEF /* AdobeCreativeSDKImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
 		B2C729AC1C622088006F7D29 /* ShoutitValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* ShoutitValidator.swift */; };
@@ -686,17 +685,7 @@
 		B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */; };
 		B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */; };
 		B2F719291D0ED008002C1D74 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */; };
-		B2F7192C1D0EE769002C1D74 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; };
-		B2F7192F1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; };
-		B2F719301D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; };
-		B2F719321D0EE795002C1D74 /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; };
-		B2F719341D0EE79E002C1D74 /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; };
-		B2F719381D0EEC99002C1D74 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */; };
-		B2F719391D0EEC99002C1D74 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719361D0EEC99002C1D74 /* FBSDKLoginKit.framework */; };
-		B2F7193A1D0EEC99002C1D74 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; };
-		B2F7193C1D0EECEE002C1D74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; };
 		B2F7193E1D0EEDA9002C1D74 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F7193D1D0EEDA9002C1D74 /* GoogleSignIn.bundle */; };
-		B2F719401D0EEDB3002C1D74 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */; };
 		B2F719621D0EEEF5002C1D74 /* ImageError.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F719411D0EEEF5002C1D74 /* ImageError.png */; };
 		B2F719631D0EEEF5002C1D74 /* ImageError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F719421D0EEEF5002C1D74 /* ImageError@2x.png */; };
 		B2F719641D0EEEF5002C1D74 /* ImageError@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F719431D0EEEF5002C1D74 /* ImageError@3x.png */; };
@@ -854,17 +843,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */,
-				B2C0E2E31D0F00A200058FEF /* Crashlytics.framework in Embed Frameworks */,
-				B2C0E2E41D0F00A200058FEF /* GoogleSignIn.framework in Embed Frameworks */,
-				B2C0E2E51D0F00A200058FEF /* Fabric.framework in Embed Frameworks */,
-				B2C0E2E61D0F00A200058FEF /* FBSDKCoreKit.framework in Embed Frameworks */,
-				B2C0E2E71D0F00A200058FEF /* FBSDKLoginKit.framework in Embed Frameworks */,
-				B2C0E2E81D0F00A200058FEF /* FBSDKShareKit.framework in Embed Frameworks */,
-				B2C0E2E91D0F00B900058FEF /* TwilioConversationsClient.framework in Embed Frameworks */,
-				B2C0E2EA1D0F00B900058FEF /* TwilioCommon.framework in Embed Frameworks */,
-				B2C0E2EB1D0F00B900058FEF /* AdobeCreativeSDKCore.framework in Embed Frameworks */,
-				B2C0E2EC1D0F00B900058FEF /* AdobeCreativeSDKImage.framework in Embed Frameworks */,
-				B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1872,12 +1850,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2463C611D1026080006BD6E /* AdobeCreativeSDKCore.framework in Frameworks */,
+				B2463C621D1026080006BD6E /* AdobeCreativeSDKImage.framework in Frameworks */,
+				B2463C601D1026000006BD6E /* GoogleMaps.framework in Frameworks */,
 				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B2F719131D0ECE5B002C1D74 /* AWSKinesis.framework in Frameworks */,
 				B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */,
+				B2463C591D1025A60006BD6E /* GoogleSignIn.framework in Frameworks */,
 				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
-				B2F719341D0EE79E002C1D74 /* TwilioConversationsClient.framework in Frameworks */,
+				B2463C5A1D1025C70006BD6E /* Fabric.framework in Frameworks */,
 				B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
 				B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */,
@@ -1896,7 +1878,6 @@
 				B212D12C1D0B0F1D00E9E19D /* Bolts.framework in Frameworks */,
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
 				B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */,
-				B2C0E2E21D0EFB0200058FEF /* Crashlytics.framework in Frameworks */,
 				B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */,
 				B2F719231D0ECEFF002C1D74 /* Curry.framework in Frameworks */,
 				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
@@ -1906,6 +1887,8 @@
 				B2F719111D0ECE52002C1D74 /* AWSIoT.framework in Frameworks */,
 				B2F7191F1D0ECEC4002C1D74 /* AWSSNS.framework in Frameworks */,
 				B2F7190D1D0ECE42002C1D74 /* AWSEC2.framework in Frameworks */,
+				B2463C5E1D1025EC0006BD6E /* TwilioConversationsClient.framework in Frameworks */,
+				B2463C5F1D1025EC0006BD6E /* TwilioCommon.framework in Frameworks */,
 				246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */,
 				B2985FB21C7295D400EEA9A2 /* Security.framework in Frameworks */,
 				B212D12A1D0B0B0100E9E19D /* WebImage.framework in Frameworks */,
@@ -1917,14 +1900,10 @@
 				B2985FA31C7295A900EEA9A2 /* libicucore.A.tbd in Frameworks */,
 				B2985FA41C7295A900EEA9A2 /* libicucore.tbd in Frameworks */,
 				B2F7191B1D0ECEB7002C1D74 /* AWSSES.framework in Frameworks */,
-				B2F7193C1D0EECEE002C1D74 /* Fabric.framework in Frameworks */,
-				B2F7192F1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework in Frameworks */,
-				B2F719321D0EE795002C1D74 /* TwilioCommon.framework in Frameworks */,
 				B2F7190F1D0ECE4A002C1D74 /* AWSElasticLoadBalancing.framework in Frameworks */,
 				B2985F9E1C72958E00EEA9A2 /* libc++.1.tbd in Frameworks */,
 				B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */,
 				B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */,
-				B2F719381D0EEC99002C1D74 /* FBSDKCoreKit.framework in Frameworks */,
 				B2985F9F1C72958E00EEA9A2 /* libc++.tbd in Frameworks */,
 				B2985FA01C72958E00EEA9A2 /* libc++abi.tbd in Frameworks */,
 				B2985F9A1C72955100EEA9A2 /* ImageIO.framework in Frameworks */,
@@ -1939,25 +1918,24 @@
 				B2F7190B1D0ECE3A002C1D74 /* AWSDynamoDB.framework in Frameworks */,
 				B21D8A911D0B3DE100EE1549 /* AWSMobileAnalytics.framework in Frameworks */,
 				B2F719171D0ECE67002C1D74 /* AWSMachineLearning.framework in Frameworks */,
-				B2F7192C1D0EE769002C1D74 /* GoogleMaps.framework in Frameworks */,
 				B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
 				B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */,
 				B21D8A941D0B3E1000EE1549 /* Kingfisher.framework in Frameworks */,
 				B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
-				B2F719391D0EEC99002C1D74 /* FBSDKLoginKit.framework in Frameworks */,
-				B2F7193A1D0EEC99002C1D74 /* FBSDKShareKit.framework in Frameworks */,
 				B2F719091D0ECE1F002C1D74 /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */,
 				B2F719051D0ECDFC002C1D74 /* AWSAutoScaling.framework in Frameworks */,
 				B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */,
-				B2F719401D0EEDB3002C1D74 /* GoogleSignIn.framework in Frameworks */,
 				B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */,
 				B212D1421D0B2F4800E9E19D /* KeychainAccess.framework in Frameworks */,
 				B21D8A901D0B3DDB00EE1549 /* AWSCore.framework in Frameworks */,
 				B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */,
-				B2F719301D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework in Frameworks */,
+				B2463C5B1D1025E00006BD6E /* FBSDKCoreKit.framework in Frameworks */,
+				B2463C5C1D1025E00006BD6E /* FBSDKLoginKit.framework in Frameworks */,
+				B2463C5D1D1025E00006BD6E /* FBSDKShareKit.framework in Frameworks */,
+				B2463C581D10259B0006BD6E /* Crashlytics.framework in Frameworks */,
 				B2F719071D0ECE06002C1D74 /* AWSCloudWatch.framework in Frameworks */,
 				B2F719151D0ECE61002C1D74 /* AWSLambda.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
