@@ -128,10 +128,8 @@
 		AE2EB7CC1D057847000A324D /* AddressExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EB7CB1D057847000A324D /* AddressExtensions.swift */; };
 		AE2EB7D41D057A48000A324D /* shoutitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EB7D31D057A48000A324D /* shoutitTests.swift */; };
 		AE32C5381D055BFB009A49C5 /* ShoutitKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AE32C5371D055BFB009A49C5 /* ShoutitKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE32C53F1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; };
 		AE32C5461D055BFD009A49C5 /* ShoutitKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE32C5451D055BFD009A49C5 /* ShoutitKitTests.swift */; };
 		AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; };
-		AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE32C5981D055C33009A49C5 /* JSONReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683C1D01A563003B254D /* JSONReadable.swift */; };
 		AE32C5991D055C33009A49C5 /* JSONWriteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF683E1D01A583003B254D /* JSONWriteable.swift */; };
 		AE32C59A1D055C33009A49C5 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA41561D01B54D00EBC39A /* JSONError.swift */; };
@@ -566,6 +564,7 @@
 		B2C0E2EB1D0F00B900058FEF /* AdobeCreativeSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C0E2EC1D0F00B900058FEF /* AdobeCreativeSDKImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
 		B2C729AC1C622088006F7D29 /* ShoutitValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AB1C622088006F7D29 /* ShoutitValidator.swift */; };
 		B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C729AE1C6220AD006F7D29 /* SecureCoder.swift */; };
@@ -850,11 +849,11 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		6068E6451C2435D20061F56C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AE32C54B1D055BFD009A49C5 /* ShoutitKit.framework in Embed Frameworks */,
+				B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */,
 				B2C0E2E31D0F00A200058FEF /* Crashlytics.framework in Embed Frameworks */,
 				B2C0E2E41D0F00A200058FEF /* GoogleSignIn.framework in Embed Frameworks */,
 				B2C0E2E51D0F00A200058FEF /* Fabric.framework in Embed Frameworks */,
@@ -868,7 +867,7 @@
 				B2C0E2ED1D0F00B900058FEF /* GoogleMaps.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -1018,7 +1017,7 @@
 		AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWithEmailViewModel.swift; path = ViewModel/LoginWithEmailViewModel.swift; sourceTree = "<group>"; };
 		AE2EB7C91D057799000A324D /* ContactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactExtensions.swift; path = Model/ContactExtensions.swift; sourceTree = "<group>"; };
 		AE2EB7CB1D057847000A324D /* AddressExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressExtensions.swift; path = Model/AddressExtensions.swift; sourceTree = "<group>"; };
-		AE2EB7D11D057A48000A324D /* shoutitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shoutitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EB7D11D057A48000A324D /* shoutit.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shoutit.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2EB7D31D057A48000A324D /* shoutitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoutitTests.swift; sourceTree = "<group>"; };
 		AE2EB7D51D057A48000A324D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShoutitKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1988,7 +1987,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE32C53F1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2307,7 +2305,7 @@
 				6027CF311BE74EAE00124C28 /* Shoutit.app */,
 				AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */,
 				AE32C53E1D055BFB009A49C5 /* ShoutitKitTests.xctest */,
-				AE2EB7D11D057A48000A324D /* shoutitTests.xctest */,
+				AE2EB7D11D057A48000A324D /* shoutit.temp_caseinsensitive_renameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4571,7 +4569,7 @@
 			);
 			name = shoutitTests;
 			productName = shoutitTests;
-			productReference = AE2EB7D11D057A48000A324D /* shoutitTests.xctest */;
+			productReference = AE2EB7D11D057A48000A324D /* shoutit.temp_caseinsensitive_renameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		AE32C5341D055BFA009A49C5 /* ShoutitKit */ = {
@@ -4582,7 +4580,6 @@
 				AE32C5311D055BFA009A49C5 /* Frameworks */,
 				AE32C5321D055BFA009A49C5 /* Headers */,
 				AE32C5331D055BFA009A49C5 /* Resources */,
-				AED291B81D098563000F9DAF /* Carthage copy frameworks */,
 			);
 			buildRules = (
 			);
@@ -4883,25 +4880,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ACPDownload.framework",
 			);
 			name = "Carthage Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		AED291B81D098563000F9DAF /* Carthage copy frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Ogra.framework",
-			);
-			name = "Carthage copy frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6136,14 +6114,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -6283,14 +6256,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -6465,7 +6433,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
@@ -6509,7 +6477,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6553,7 +6521,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6597,7 +6565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6641,7 +6609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6685,7 +6653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6736,7 +6704,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
@@ -6787,7 +6755,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
@@ -6838,7 +6806,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
@@ -6882,7 +6850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6926,7 +6894,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6970,7 +6938,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SH.shoutitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = shoutit.temp_caseinsensitive_renameTests;
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoutit Staging.app/Shoutit Staging";
 				VALIDATE_PRODUCT = YES;
@@ -6999,7 +6967,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1372;
 				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1372;
@@ -8348,14 +8316,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -8532,14 +8495,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -8724,14 +8682,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -8914,14 +8867,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -9105,14 +9053,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -9289,14 +9232,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -9473,14 +9411,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -9657,14 +9590,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -9842,14 +9770,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -10028,14 +9951,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/AviarySDK/SDK",
-					"$(PROJECT_DIR)/ExternalFrameworks/**",
-					"$(PROJECT_DIR)/ExternalFrameworks/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/shoutit-iphone",
-					"$(PROJECT_DIR)/ExternalFrameworks/ACPDownload-1.1.0",
 					"$(PROJECT_DIR)/External/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/External/AviarySDK/SDK",
 					"$(PROJECT_DIR)/External/TwilioCommon",
@@ -10045,7 +9963,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 				);
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",

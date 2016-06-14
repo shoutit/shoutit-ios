@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AE2EB7D01D057A48000A324D"
-               BuildableName = "shoutitTests.xctest"
+               BuildableName = "shoutit.temp_caseinsensitive_renameTests.xctest"
                BlueprintName = "shoutitTests"
                ReferencedContainer = "container:shoutit.xcodeproj">
             </BuildableReference>
