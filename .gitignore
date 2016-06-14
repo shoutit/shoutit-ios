@@ -95,7 +95,6 @@ Pods/
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 Carthage/Checkouts
-Carthage/Build
 
 ### Objective-C ###
 # Xcode
@@ -132,23 +131,3 @@ report.xml
 
 ### Objective-C Patch ###
 *.xcscmblueprint
-
-
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-Pods/
-
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-Carthage/Checkouts
-
-
-### Carthage ###
-# Carthage - A simple, decentralized dependency manager for Cocoa
-Carthage.checkout
-Carthage.build
