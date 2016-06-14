@@ -295,6 +295,7 @@
 		B209C5351CF3437E00727095 /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5341CF3437E00727095 /* Listenable.swift */; };
 		B209C5371CF34F3800727095 /* TagsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5361CF34F3800727095 /* TagsListCellViewModel.swift */; };
 		B20BFFC31D102B6F00D90729 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B20BFFC21D102B6F00D90729 /* Info.plist */; };
+		B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20BFFC41D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle */; };
 		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
 		B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */; };
 		B20EDBCC1CAABD2300AD9F2A /* AlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */; };
@@ -1231,6 +1232,7 @@
 		B209C5341CF3437E00727095 /* Listenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Listenable.swift; path = ViewModel/Listenable.swift; sourceTree = "<group>"; };
 		B209C5361CF34F3800727095 /* TagsListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagsListCellViewModel.swift; path = ViewModel/TagsListCellViewModel.swift; sourceTree = "<group>"; };
 		B20BFFC21D102B6F00D90729 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B20BFFC41D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = External/AviarySDK/SDK/AdobeCreativeSDKImage.framework/Versions/A/Resources/AdobeCreativeSDKImageResources.bundle; sourceTree = SOURCE_ROOT; };
 		B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Error.swift"; path = "UIKitExtensions/UIViewController+Error.swift"; sourceTree = "<group>"; };
 		B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertBarView.xib; path = Storyboards/AlertBarView.xib; sourceTree = "<group>"; };
 		B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertBarView.swift; path = View/AlertBarView.swift; sourceTree = "<group>"; };
@@ -2540,6 +2542,7 @@
 		AC1C94031BEBB911009400BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B20BFFC41D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle */,
 				B2F7193D1D0EEDA9002C1D74 /* GoogleSignIn.bundle */,
 				AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */,
 				B2082D701C626331007EB2FB /* HTMLFiles */,
@@ -4664,6 +4667,7 @@
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
 				AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */,
 				B2D442091CB81BB0009782AF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
+				B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */,
 				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
