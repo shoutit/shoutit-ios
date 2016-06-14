@@ -8,13 +8,12 @@
 
 import Foundation
 import Argo
-
 import Ogra
 
 public struct ProfileStats {
     public let unreadConversationCount: Int
     public let unreadNotificationsCount: Int
-    public let credit: Int
+    public let credit: Int?
 }
 
 extension ProfileStats: Decodable {
@@ -23,7 +22,7 @@ extension ProfileStats: Decodable {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
-            <*> j <| "credit"
+            <*> j <|? "credit"
     }
 }
 

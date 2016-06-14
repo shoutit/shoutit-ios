@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -151,8 +151,36 @@
                                     <outlet property="textField" destination="qbQ-9y-MTg" id="9E3-kd-Eth"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileSelectButtonCell" rowHeight="70" id="W9T-Md-wlk" customClass="EditProfileSelectButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileDateTextFieldCell" rowHeight="70" id="IdP-DR-trI" customClass="EditProfileTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="362" width="600" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IdP-DR-trI" id="pOG-ut-Lct">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DN-Sh-DcV" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="30" width="544" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="GGk-9L-0sZ"/>
+                                            </constraints>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7DN-Sh-DcV" firstAttribute="leading" secondItem="pOG-ut-Lct" secondAttribute="leading" constant="28" id="7MZ-ld-B1N"/>
+                                        <constraint firstItem="7DN-Sh-DcV" firstAttribute="top" secondItem="pOG-ut-Lct" secondAttribute="top" constant="30" id="IYN-Yg-bnm"/>
+                                        <constraint firstAttribute="trailing" secondItem="7DN-Sh-DcV" secondAttribute="trailing" constant="28" id="cXS-G5-I55"/>
+                                        <constraint firstAttribute="bottom" secondItem="7DN-Sh-DcV" secondAttribute="bottom" constant="10" id="s15-oN-YHi"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="7DN-Sh-DcV" id="ICK-gJ-Krt"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileSelectButtonCell" rowHeight="70" id="W9T-Md-wlk" customClass="EditProfileSelectButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="432" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9T-Md-wlk" id="dJy-O5-9uj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -189,7 +217,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileTextViewCell" rowHeight="160" id="Lok-Ge-eKD" customClass="EditProfileTextViewTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="432" width="600" height="160"/>
+                                <rect key="frame" x="0.0" y="502" width="600" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lok-Ge-eKD" id="4CE-nw-a1W">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>

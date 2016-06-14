@@ -20,6 +20,8 @@ public struct EditProfileParams: Params {
     public let imagePath: String?
     public let coverPath : String?
     public let mobile: String?
+    public let birthday: String?
+    public let gender: Gender?
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
@@ -35,12 +37,14 @@ public struct EditProfileParams: Params {
         }
         p["image"] = imagePath
         p["cover"] = coverPath
+        p["birthday"] = birthday
+        p["gender"] = gender != nil ? (gender!.rawValue) : NSNull()
         
         
         return p
     }
     
-    public init(firstname: String?, lastname: String?, name: String?, username: String?, bio: String?, website: String?, location: Address?, imagePath: String?, coverPath: String?, mobile: String?){
+    public init(firstname: String?, lastname: String?, name: String?, username: String?, bio: String?, website: String?, location: Address?, imagePath: String?, coverPath: String?, mobile: String?, birthday: String?, gender: Gender?){
         self.firstname = firstname
         self.lastname = lastname
         self.name = name
@@ -51,5 +55,7 @@ public struct EditProfileParams: Params {
         self.imagePath = imagePath
         self.coverPath = coverPath
         self.mobile = mobile
+        self.birthday = birthday
+        self.gender = gender
     }
 }

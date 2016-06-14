@@ -279,14 +279,7 @@ extension CreateShoutTableViewController {
         default: return 70
         }
     }
-    
-//    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        guard let header = view as? UITableViewHeaderFooterView else { return }
-//        header.tintColor = UIColor.whiteColor()
-//        header.textLabel?.font = UIFont.systemFontOfSize(14.0)
-//        header.textLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
-//    }
-//    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         guard case .Facebook = cellViewModel else { return }

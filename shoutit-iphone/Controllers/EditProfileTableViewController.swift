@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MBProgressHUD
+import ShoutitKit
 
 final class EditProfileTableViewController: UITableViewController {
     
@@ -27,6 +28,8 @@ final class EditProfileTableViewController: UITableViewController {
     @IBOutlet weak var headerView: EditProfileTableViewHeaderView!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
+    
+    weak private var dateField : UITextField?
     
     // children
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
@@ -52,6 +55,8 @@ final class EditProfileTableViewController: UITableViewController {
         // setup photos
         headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
+        
+        self.tableView.keyboardDismissMode = .OnDrag
         
         setupRX()
     }
@@ -130,6 +135,7 @@ extension EditProfileTableViewController {
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             cell.textField.text = value
+            cell.textField.inputView = nil
             if case .Mobile = identity {
                 cell.textField.keyboardType = .PhonePad
             }
@@ -139,6 +145,49 @@ extension EditProfileTableViewController {
                 .driveNext{[unowned self] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
                 }
+                .addDisposableTo(cell.disposeBag)
+        case .Date(let value, let placeholder, _):
+            let cell = cell as! EditProfileTextFieldTableViewCell
+            cell.textField.placeholder = placeholder
+            cell.textField.text = value
+            
+            let picker =  UIDatePicker()
+            picker.datePickerMode = .Date
+            picker.addTarget(self, action: #selector(birthDateSelected), forControlEvents: .ValueChanged)
+            
+            dateField = cell.textField
+            cell.textField.inputView = picker
+            
+            cell.textField
+                .rx_text
+                .asDriver()
+                .driveNext{[unowned self] (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
+                }
+                .addDisposableTo(cell.disposeBag)
+        case .Gender(let value, let placeholder, _):
+            let cell = cell as! EditProfileSelectButtonTableViewCell
+            cell.selectButton.fieldTitleLabel.text = placeholder
+            cell.selectButton.showIcon(false)
+            cell.selectButton.setTitle((value != nil ? (value!.capitalizedString) : (genderValues().first!.capitalizedString)), forState: .Normal)
+            cell.selectButton
+                .rx_tap
+                .asDriver()
+                .driveNext({ [weak self] () -> Void in
+                    
+                    
+                    let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: ""), message: nil, preferredStyle: .ActionSheet)
+                    
+                    self?.genderValues().each({ (genderString) in
+                    controller.addAction(UIAlertAction(title: genderString.capitalizedString, style: .Default, handler: { (alert) in
+                        self?.viewModel.mutateModelForIndex(indexPath.row, withString: genderString)
+                        self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    }))
+                    })
+                    
+                    self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
+                    
+                    })
                 .addDisposableTo(cell.disposeBag)
         case .RichText(let value, let placeholder, _):
             let cell = cell as! EditProfileTextViewTableViewCell
@@ -185,6 +234,22 @@ extension EditProfileTableViewController {
 }
 
 extension EditProfileTableViewController {
+    func genderValues() -> [String] {
+        return [NSLocalizedString("Not specified", comment: ""), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
+    }
+    
+    func birthDateSelected(sender: UIDatePicker) {
+        let result = DateFormatters.sharedInstance.apiStringFromDate(sender.date)
+        
+        let newViewModel = EditProfileCellViewModel(birthday: result)
+        
+        self.viewModel.cells[7] = newViewModel
+        
+        dateField?.text = result
+    }
+}
+
+extension EditProfileTableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -193,6 +258,8 @@ extension EditProfileTableViewController {
         case .BasicText: return 70
         case .RichText: return 150
         case .Location: return 70
+        case .Date: return 70
+        case .Gender: return 70
         }
     }
 }
