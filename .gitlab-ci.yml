@@ -6,9 +6,7 @@ before_script:
   - rm -rf Gemfile.lock
   - gem install bundler
   - bundle install
-  - carthage bootstrap
   - carthage build --no-skip-current
-  - carthage archive $FRAMEWORK_NAME
 
 production:
   type: build
