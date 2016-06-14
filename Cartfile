@@ -1,6 +1,5 @@
 github "ReactiveX/RxSwift" == 2.3.1
 github "thoughtbot/Argo"
-github "thoughtbot/Curry" == 2.0
 github "edwardaux/Ogra" == 3.0.0
 github "mixpanel/mixpanel-iphone" == 2.9
 github "SwiftyBeaver/SwiftyBeaver"

@@ -693,7 +693,6 @@
 		B2F7191D1D0ECEBC002C1D74 /* AWSSimpleDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7191C1D0ECEBC002C1D74 /* AWSSimpleDB.framework */; };
 		B2F7191F1D0ECEC4002C1D74 /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7191E1D0ECEC4002C1D74 /* AWSSNS.framework */; };
 		B2F719211D0ECECA002C1D74 /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719201D0ECECA002C1D74 /* AWSSQS.framework */; };
-		B2F719231D0ECEFF002C1D74 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719221D0ECEFF002C1D74 /* Curry.framework */; };
 		B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */; };
 		B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */; };
 		B2F719291D0ED008002C1D74 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */; };
@@ -1675,7 +1674,6 @@
 		B2F7191C1D0ECEBC002C1D74 /* AWSSimpleDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSimpleDB.framework; path = Carthage/Build/iOS/AWSSimpleDB.framework; sourceTree = SOURCE_ROOT; };
 		B2F7191E1D0ECEC4002C1D74 /* AWSSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSNS.framework; path = Carthage/Build/iOS/AWSSNS.framework; sourceTree = SOURCE_ROOT; };
 		B2F719201D0ECECA002C1D74 /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSQS.framework; path = Carthage/Build/iOS/AWSSQS.framework; sourceTree = SOURCE_ROOT; };
-		B2F719221D0ECEFF002C1D74 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/iOS/Curry.framework; sourceTree = SOURCE_ROOT; };
 		B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackTextViewController.framework; path = Carthage/Build/iOS/SlackTextViewController.framework; sourceTree = SOURCE_ROOT; };
 		B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = SOURCE_ROOT; };
 		B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = SOURCE_ROOT; };
@@ -1907,7 +1905,6 @@
 				AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */,
 				B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */,
 				B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */,
-				B2F719231D0ECEFF002C1D74 /* Curry.framework in Frameworks */,
 				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
 				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
 				AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */,
@@ -4533,7 +4530,6 @@
 				AED291801D08676D000F9DAF /* Kingfisher.framework */,
 				B212D1411D0B2F4800E9E19D /* KeychainAccess.framework */,
 				AED2917E1D08676D000F9DAF /* DZNEmptyDataSet.framework */,
-				B2F719221D0ECEFF002C1D74 /* Curry.framework */,
 				B212D12B1D0B0F1D00E9E19D /* Bolts.framework */,
 				B2F719201D0ECECA002C1D74 /* AWSSQS.framework */,
 				B2F7191E1D0ECEC4002C1D74 /* AWSSNS.framework */,
@@ -4911,7 +4907,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AWSCore.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AWSMobileAnalytics.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AWSS3.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DZNEmptyDataSet.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
@@ -4931,7 +4926,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTests.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Bolts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AWSSQS.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AWSSNS.framework",
