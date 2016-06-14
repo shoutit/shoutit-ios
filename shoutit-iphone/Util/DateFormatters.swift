@@ -13,9 +13,11 @@ final class DateFormatters {
     static let sharedInstance = DateFormatters()
     
     private let formatter: NSDateFormatter
+    private let apiFormatter: NSDateFormatter
     
     init() {
         formatter = NSDateFormatter()
+        apiFormatter = NSDateFormatter()
         
     }
     
@@ -33,11 +35,23 @@ final class DateFormatters {
         return formatter.stringFromDate(date)
     }
     
+    func apiStringFromDate(date: NSDate) -> String {
+        setAPIFormat()
+        
+        return apiFormatter.stringFromDate(date)
+    }
+    
+    func setAPIFormat() {
+        apiFormatter.dateFormat = "yyyy-MM-dd"
+    }
+    
     func setDayFormat() {
+        formatter.dateFormat = "MM/dd/yyyy"
         formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
     }
     
     func setHourFormat() {
+        formatter.dateFormat = "HH:mm"
         formatter.setLocalizedDateFormatFromTemplate("HH:mm")
     }
     
@@ -48,4 +62,15 @@ final class DateFormatters {
         
         return formatter.stringFromDate(date)
     }
+    
+    func dateFromBasicString(string: String?) -> NSDate? {
+        guard let string = string else {
+            return nil
+        }
+        
+        setAPIFormat()
+        
+        return formatter.dateFromString(string)
+    }
+
 }

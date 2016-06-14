@@ -108,9 +108,15 @@ final class Account {
         guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
         self.authData = authData
+        
         APIManager.setAuthToken(authData.apiToken)
-        let stats = (user as? DetailedProfile)?.stats
-        updateApplicationBadgeNumberWithStats(stats)
+    
+        if let detailed = user as? DetailedProfile, stats = detailed.stats {
+                updateApplicationBadgeNumberWithStats(stats)
+        } else {
+            updateApplicationBadgeNumberWithStats(nil)
+        }
+    
         configureTwilioAndPusherServices()
         
         userSubject.onNext(user)

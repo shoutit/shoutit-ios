@@ -20,6 +20,8 @@ struct EditProfileParams: Params {
     let imagePath: String?
     let coverPath : String?
     let mobile: String?
+    let birthday: String?
+    let gender: Gender?
     
     var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
@@ -35,6 +37,8 @@ struct EditProfileParams: Params {
         }
         p["image"] = imagePath
         p["cover"] = coverPath
+        p["birthday"] = birthday
+        p["gender"] = gender != nil ? (gender!.rawValue) : NSNull()
         
         
         return p

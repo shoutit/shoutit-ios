@@ -38,7 +38,10 @@ final class EditProfileTableViewModel {
                  EditProfileCellViewModel(bio: user.bio ?? ""),
                  EditProfileCellViewModel(location: user.location),
                  EditProfileCellViewModel(website: user.website ?? ""),
-                 EditProfileCellViewModel(mobile: user.mobile ?? "")
+                 EditProfileCellViewModel(mobile: user.mobile ?? ""),
+                 EditProfileCellViewModel(birthday: user.birthday),
+                 EditProfileCellViewModel(gender: ((user.gender != nil) ? (user.gender!.rawValue) : NSLocalizedString("Not specified", comment: "")))
+            
         ]
     }
     
@@ -61,6 +64,10 @@ final class EditProfileTableViewModel {
             cells[index] = EditProfileCellViewModel(website: string)
         case .Mobile:
             cells[index] = EditProfileCellViewModel(mobile: string)
+        case .Birthday:
+            cells[index] = EditProfileCellViewModel(birthday: string)
+        case .Gender:
+            cells[index] = EditProfileCellViewModel(gender: string)
         case .Location:
             break
         }
@@ -135,6 +142,8 @@ final class EditProfileTableViewModel {
         var website: String?
         var mobile: String?
         var location: Address?
+        var birthday: String?
+        var gender: Gender?
         
         for cell in cells {
             switch cell {
@@ -154,6 +163,12 @@ final class EditProfileTableViewModel {
                 website = value
             case .BasicText(let value, _, .Mobile):
                 mobile = value
+            case .Date(let value, _, .Birthday):
+                birthday = value
+            case .Gender(let value, _, .Gender):
+                if value != nil {
+                    gender = Gender(rawValue: value!)
+                }
             default:
                 break
             }
@@ -168,6 +183,8 @@ final class EditProfileTableViewModel {
                                  location: location,
                                  imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString,
                                  coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString,
-                                 mobile: mobile)
+                                 mobile: mobile,
+                                 birthday: birthday,
+                                 gender: gender)
     }
 }

@@ -14,7 +14,7 @@ import Ogra
 struct ProfileStats {
     let unreadConversationCount: Int
     let unreadNotificationsCount: Int
-    let credit: Int
+    let credit: Int?
 }
 
 extension ProfileStats: Decodable {
@@ -23,7 +23,7 @@ extension ProfileStats: Decodable {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
-            <*> j <| "credit"
+            <*> j <|? "credit"
     }
 }
 

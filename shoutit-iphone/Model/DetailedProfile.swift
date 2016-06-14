@@ -53,7 +53,7 @@ struct DetailedProfile: User {
     let admins: [Profile]?
     let conversation: MiniConversation?
     let stats: ProfileStats?
-    let birthday: Int?
+    let birthday: String?
 }
 
 extension DetailedProfile: Decodable {
