@@ -1,9 +1,16 @@
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
 before_script:
   - export LANG=en_US.UTF-8
   - git submodule update --init --recursive
   - rm -rf Gemfile.lock
   - gem install bundler
   - bundle install
+  - carthage bootstrap
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
 
 production:
   type: build
