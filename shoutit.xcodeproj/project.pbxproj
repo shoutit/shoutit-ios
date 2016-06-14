@@ -217,6 +217,7 @@
 		AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */; };
 		AE8351981C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */; };
 		AE8351991C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */; };
+		AE8593B01D0FF984005780C5 /* Credits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8593B21D0FF984005780C5 /* Credits.storyboard */; };
 		AE8635521CCDF7A00076293D /* WatermarkGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */; };
 		AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */; };
 		AE9300331C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */; };
@@ -249,7 +250,6 @@
 		AEB32F581D0AB723000183D3 /* CreditsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB32F571D0AB723000183D3 /* CreditsMainViewController.swift */; };
 		AEB57B2F1D0ADC4C000280BB /* CreditsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB57B2E1D0ADC4C000280BB /* CreditsDisplayable.swift */; };
 		AEB57B321D0AE02E000280BB /* CreditTransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB57B311D0AE02E000280BB /* CreditTransactionsTableViewController.swift */; };
-		AEB57B331D0AE947000280BB /* Credits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEB57B351D0AE947000280BB /* Credits.storyboard */; };
 		AEB57B3D1D0AE988000280BB /* PromotingShoutsInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB57B3C1D0AE988000280BB /* PromotingShoutsInfoController.swift */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69801C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
@@ -1056,6 +1056,10 @@
 		AE83518E1C5F7DE60055C71F /* OrdersFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrdersFlowController.swift; path = FlowControl/OrdersFlowController.swift; sourceTree = "<group>"; };
 		AE8351921C5F7DFA0055C71F /* ProfileFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileFlowController.swift; path = FlowControl/ProfileFlowController.swift; sourceTree = "<group>"; };
 		AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutFlowController.swift; path = FlowControl/ShoutFlowController.swift; sourceTree = "<group>"; };
+		AE8593B11D0FF984005780C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Credits.storyboard; sourceTree = "<group>"; };
+		AE8593B41D0FF992005780C5 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Credits.strings; sourceTree = "<group>"; };
+		AE8593B61D0FF994005780C5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Credits.strings; sourceTree = "<group>"; };
+		AE8593B81D0FF996005780C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Credits.strings; sourceTree = "<group>"; };
 		AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatermarkGenerator.swift; path = Other/WatermarkGenerator.swift; sourceTree = "<group>"; };
 		AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesGeocoder.swift; path = Util/PlacesGeocoder.swift; sourceTree = "<group>"; };
 		AEA599751C609DA100015AA3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = Controllers/MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -1082,10 +1086,6 @@
 		AEB32F571D0AB723000183D3 /* CreditsMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditsMainViewController.swift; path = Controllers/CreditsMainViewController.swift; sourceTree = "<group>"; };
 		AEB57B2E1D0ADC4C000280BB /* CreditsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditsDisplayable.swift; path = FlowControl/CreditsDisplayable.swift; sourceTree = "<group>"; };
 		AEB57B311D0AE02E000280BB /* CreditTransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditTransactionsTableViewController.swift; path = Controllers/CreditTransactionsTableViewController.swift; sourceTree = "<group>"; };
-		AEB57B341D0AE947000280BB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Credits.storyboard; sourceTree = "<group>"; };
-		AEB57B371D0AE94D000280BB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Credits.strings; sourceTree = "<group>"; };
-		AEB57B391D0AE951000280BB /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Credits.strings; sourceTree = "<group>"; };
-		AEB57B3A1D0AE954000280BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Credits.storyboard; sourceTree = "<group>"; };
 		AEB57B3C1D0AE988000280BB /* PromotingShoutsInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotingShoutsInfoController.swift; path = Controllers/PromotingShoutsInfoController.swift; sourceTree = "<group>"; };
 		AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationTableViewController.swift; path = Controllers/ChangeLocationTableViewController.swift; sourceTree = "<group>"; };
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
@@ -2150,7 +2150,7 @@
 				B2D441741CB816FB009782AF /* VideoCalls.storyboard */,
 				B2D4417D1CB81704009782AF /* SeeAllShouts.storyboard */,
 				B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */,
-				AEB57B351D0AE947000280BB /* Credits.storyboard */,
+				AE8593B21D0FF984005780C5 /* Credits.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -4020,6 +4020,7 @@
 				AC7027FF1C1AA66200262622 /* UserVoice.strings in Resources */,
 				AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */,
 				AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */,
+				AE8593B01D0FF984005780C5 /* Credits.storyboard in Resources */,
 				B2D441EE1CB81B10009782AF /* SearchCategoriesHeaderView.xib in Resources */,
 				AEADF33C1CA5518A0051DABA /* OutgoingVideoCell.xib in Resources */,
 				B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */,
@@ -4040,7 +4041,6 @@
 				B227BFC21C579597003A2D76 /* shoutit-Staging-Profile.xcconfig in Resources */,
 				B2F524861C9C7F8A00EA622F /* SearchShoutsResultsCategoriesHeaderSupplementeryView.xib in Resources */,
 				B2E715641C6E2F85007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.xib in Resources */,
-				AEB57B331D0AE947000280BB /* Credits.storyboard in Resources */,
 				B2D9B10A1C9881C000924941 /* SearchCategoryTableViewCell.xib in Resources */,
 				B2B5D0451C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib in Resources */,
 				B2D441601CB816DA009782AF /* Search.storyboard in Resources */,
@@ -4822,13 +4822,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		AEB57B351D0AE947000280BB /* Credits.storyboard */ = {
+		AE8593B21D0FF984005780C5 /* Credits.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AEB57B341D0AE947000280BB /* en */,
-				AEB57B371D0AE94D000280BB /* de */,
-				AEB57B391D0AE951000280BB /* ar */,
-				AEB57B3A1D0AE954000280BB /* Base */,
+				AE8593B11D0FF984005780C5 /* Base */,
+				AE8593B41D0FF992005780C5 /* ar */,
+				AE8593B61D0FF994005780C5 /* de */,
+				AE8593B81D0FF996005780C5 /* en */,
 			);
 			name = Credits.storyboard;
 			path = Storyboards;
