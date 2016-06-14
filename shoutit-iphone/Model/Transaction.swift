@@ -8,26 +8,26 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct Transaction: Decodable, Hashable, Equatable {
-    let id: String
-    let createdAt: Int
+public struct Transaction: Decodable, Hashable, Equatable {
     
-    let type: String
-    let object:  AttachedObject?
-    let display: Display?
+    public let id: String
+    public let createdAt: Int
     
-    let webPath: String?
-    let appPath: String?
+    public let type: String
+    public let object:  AttachedObject?
+    public let display: Display?
     
-    var hashValue: Int {
+    public let webPath: String?
+    public let appPath: String?
+    
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
     
-    static func decode(j: JSON) -> Decoded<Transaction> {
+    public static func decode(j: JSON) -> Decoded<Transaction> {
         let a = curry(Transaction.init)
             <^> j <| "id"
             <*> j <| "created_at"
@@ -42,12 +42,13 @@ struct Transaction: Decodable, Hashable, Equatable {
         return c
     }
     
-    func readCopy() -> Transaction {
+    public func readCopy() -> Transaction {
         return Transaction(id: self.id, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display, webPath: self.webPath, appPath:self.appPath)
     }
 }
 
-extension Transaction {
+public extension Transaction {
+    
     func attributedText() -> NSAttributedString? {
         
         if let display = self.display {
@@ -78,6 +79,6 @@ extension Transaction {
     
 }
 
-func ==(lhs: Transaction, rhs: Transaction) -> Bool {
+public func ==(lhs: Transaction, rhs: Transaction) -> Bool {
     return lhs.id == rhs.id
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 class CreditsMainViewController: UITableViewController {
 

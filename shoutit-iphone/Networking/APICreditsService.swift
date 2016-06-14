@@ -8,8 +8,8 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 import Alamofire
+import ShoutitKit
 
 final class APICreditsService {
     
