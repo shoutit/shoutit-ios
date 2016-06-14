@@ -1,0 +1,4178 @@
+BCSymbolMap Version: 1.0
+-[AWSCognitoDatasetMetadata initWithDatasetName:dataSource:]
+-[AWSCognitoDatasetMetadata isDeleted]
+-[AWSCognitoDatasetMetadata name]
+-[AWSCognitoDatasetMetadata setName:]
+-[AWSCognitoDatasetMetadata lastSyncCount]
+-[AWSCognitoDatasetMetadata setLastSyncCount:]
+-[AWSCognitoDatasetMetadata creationDate]
+-[AWSCognitoDatasetMetadata setCreationDate:]
+-[AWSCognitoDatasetMetadata dataStorage]
+-[AWSCognitoDatasetMetadata setDataStorage:]
+-[AWSCognitoDatasetMetadata lastModifiedBy]
+-[AWSCognitoDatasetMetadata setLastModifiedBy:]
+-[AWSCognitoDatasetMetadata lastModifiedDate]
+-[AWSCognitoDatasetMetadata setLastModifiedDate:]
+-[AWSCognitoDatasetMetadata numRecords]
+-[AWSCognitoDatasetMetadata setNumRecords:]
+-[AWSCognitoDatasetMetadata .cxx_destruct]
+-[AWSCognitoDataset initWithDatasetName:sqliteManager:cognitoService:]
+-[AWSCognitoDataset dealloc]
+-[AWSCognitoDataset stringForKey:]
+-[AWSCognitoDataset setString:forKey:]
+-[AWSCognitoDataset putRecord:error:]
+-[AWSCognitoDataset recordForKey:]
+-[AWSCognitoDataset getRecordById:error:]
+-[AWSCognitoDataset removeRecordById:error:]
+-[AWSCognitoDataset getAllRecords]
+-[AWSCognitoDataset getAll]
+-[AWSCognitoDataset removeObjectForKey:]
+-[AWSCognitoDataset clear]
+-[AWSCognitoDataset size]
+-[AWSCognitoDataset sizeForKey:]
+-[AWSCognitoDataset sizeForRecord:]
+-[AWSCognitoDataset sizeForString:]
+-[AWSCognitoDataset syncPull:]
+__30-[AWSCognitoDataset syncPull:]_block_invoke
+__30-[AWSCognitoDataset syncPull:]_block_invoke_2
+__copy_helper_block_
+__destroy_helper_block_
+__copy_helper_block_.276
+__destroy_helper_block_.277
+-[AWSCognitoDataset syncPush:]
+__30-[AWSCognitoDataset syncPush:]_block_invoke
+__copy_helper_block_.324
+__destroy_helper_block_.325
+-[AWSCognitoDataset synchronize]
+__32-[AWSCognitoDataset synchronize]_block_invoke
+__32-[AWSCognitoDataset synchronize]_block_invoke_2
+__copy_helper_block_.345
+__destroy_helper_block_.346
+__copy_helper_block_.348
+__destroy_helper_block_.349
+__32-[AWSCognitoDataset synchronize]_block_invoke.351
+__copy_helper_block_.354
+__destroy_helper_block_.355
+-[AWSCognitoDataset synchronizeInternal:]
+__41-[AWSCognitoDataset synchronizeInternal:]_block_invoke
+__copy_helper_block_.366
+__destroy_helper_block_.367
+__41-[AWSCognitoDataset synchronizeInternal:]_block_invoke.371
+__copy_helper_block_.374
+__destroy_helper_block_.375
+-[AWSCognitoDataset synchronizeOnConnectivity]
+__46-[AWSCognitoDataset synchronizeOnConnectivity]_block_invoke
+__46-[AWSCognitoDataset synchronizeOnConnectivity]_block_invoke_2
+__copy_helper_block_.389
+__destroy_helper_block_.390
+__copy_helper_block_.392
+__destroy_helper_block_.393
+-[AWSCognitoDataset subscribe]
+__30-[AWSCognitoDataset subscribe]_block_invoke
+-[AWSCognitoDataset unsubscribe]
+__32-[AWSCognitoDataset unsubscribe]_block_invoke
+-[AWSCognitoDataset identityChanged:]
+-[AWSCognitoDataset checkForLocalMergedDatasets]
+__48-[AWSCognitoDataset checkForLocalMergedDatasets]_block_invoke
+__copy_helper_block_.418
+__destroy_helper_block_.419
+-[AWSCognitoDataset postDidStartSynchronizeNotification]
+__56-[AWSCognitoDataset postDidStartSynchronizeNotification]_block_invoke
+__copy_helper_block_.428
+__destroy_helper_block_.429
+-[AWSCognitoDataset postDidEndSynchronizeNotification]
+__54-[AWSCognitoDataset postDidEndSynchronizeNotification]_block_invoke
+__copy_helper_block_.431
+__destroy_helper_block_.432
+-[AWSCognitoDataset postDidChangeLocalValueFromRemoteNotification:]
+__67-[AWSCognitoDataset postDidChangeLocalValueFromRemoteNotification:]_block_invoke
+__copy_helper_block_.436
+__destroy_helper_block_.437
+-[AWSCognitoDataset postDidChangeRemoteValueNotification:]
+__58-[AWSCognitoDataset postDidChangeRemoteValueNotification:]_block_invoke
+__copy_helper_block_.439
+__destroy_helper_block_.440
+-[AWSCognitoDataset postDidFailToSynchronizeNotification:]
+__58-[AWSCognitoDataset postDidFailToSynchronizeNotification:]_block_invoke
+__copy_helper_block_.444
+__destroy_helper_block_.445
+-[AWSCognitoDataset conflictHandler]
+-[AWSCognitoDataset setConflictHandler:]
+-[AWSCognitoDataset datasetDeletedHandler]
+-[AWSCognitoDataset setDatasetDeletedHandler:]
+-[AWSCognitoDataset datasetMergedHandler]
+-[AWSCognitoDataset setDatasetMergedHandler:]
+-[AWSCognitoDataset synchronizeRetries]
+-[AWSCognitoDataset setSynchronizeRetries:]
+-[AWSCognitoDataset synchronizeOnWiFiOnly]
+-[AWSCognitoDataset setSynchronizeOnWiFiOnly:]
+-[AWSCognitoDataset syncSessionToken]
+-[AWSCognitoDataset setSyncSessionToken:]
+-[AWSCognitoDataset sqliteManager]
+-[AWSCognitoDataset setSqliteManager:]
+-[AWSCognitoDataset cognitoService]
+-[AWSCognitoDataset setCognitoService:]
+-[AWSCognitoDataset reachability]
+-[AWSCognitoDataset setReachability:]
+-[AWSCognitoDataset currentSyncCount]
+-[AWSCognitoDataset setCurrentSyncCount:]
+-[AWSCognitoDataset records]
+-[AWSCognitoDataset setRecords:]
+-[AWSCognitoDataset synchronizeQueue]
+-[AWSCognitoDataset setSynchronizeQueue:]
+-[AWSCognitoDataset serializer]
+-[AWSCognitoDataset setSerializer:]
+-[AWSCognitoDataset .cxx_destruct]
+OBJC_METH_VAR_NAME_
+OBJC_SELECTOR_REFERENCES_
+OBJC_CLASSLIST_SUP_REFS_$_
+OBJC_METH_VAR_NAME_.1
+OBJC_SELECTOR_REFERENCES_.2
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._name
+OBJC_METH_VAR_NAME_.3
+OBJC_SELECTOR_REFERENCES_.4
+OBJC_METH_VAR_NAME_.5
+OBJC_SELECTOR_REFERENCES_.6
+OBJC_METH_VAR_NAME_.7
+OBJC_SELECTOR_REFERENCES_.8
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._lastSyncCount
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._creationDate
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._dataStorage
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._lastModifiedBy
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._lastModifiedDate
+OBJC_IVAR_$_AWSCognitoDatasetMetadata._numRecords
+OBJC_CLASS_NAME_
+l_OBJC_METACLASS_RO_$_AWSCognitoDatasetMetadata
+OBJC_CLASS_NAME_.9
+OBJC_METH_VAR_NAME_.10
+OBJC_METH_VAR_TYPE_
+OBJC_METH_VAR_NAME_.11
+OBJC_METH_VAR_TYPE_.12
+OBJC_METH_VAR_NAME_.13
+OBJC_METH_VAR_TYPE_.14
+OBJC_METH_VAR_NAME_.15
+OBJC_METH_VAR_TYPE_.16
+OBJC_METH_VAR_NAME_.17
+OBJC_METH_VAR_TYPE_.18
+OBJC_METH_VAR_NAME_.19
+OBJC_METH_VAR_NAME_.20
+OBJC_METH_VAR_NAME_.21
+OBJC_METH_VAR_NAME_.22
+OBJC_METH_VAR_NAME_.23
+OBJC_METH_VAR_NAME_.24
+OBJC_METH_VAR_NAME_.25
+OBJC_METH_VAR_NAME_.26
+OBJC_METH_VAR_NAME_.27
+OBJC_METH_VAR_NAME_.28
+OBJC_METH_VAR_NAME_.29
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoDatasetMetadata
+OBJC_METH_VAR_NAME_.30
+OBJC_METH_VAR_TYPE_.31
+OBJC_METH_VAR_NAME_.32
+OBJC_METH_VAR_TYPE_.33
+OBJC_METH_VAR_NAME_.34
+OBJC_METH_VAR_TYPE_.35
+OBJC_METH_VAR_NAME_.36
+OBJC_METH_VAR_NAME_.37
+OBJC_METH_VAR_NAME_.38
+OBJC_METH_VAR_NAME_.39
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoDatasetMetadata
+OBJC_PROP_NAME_ATTR_
+OBJC_PROP_NAME_ATTR_.40
+OBJC_PROP_NAME_ATTR_.41
+OBJC_PROP_NAME_ATTR_.42
+OBJC_PROP_NAME_ATTR_.43
+OBJC_PROP_NAME_ATTR_.44
+OBJC_PROP_NAME_ATTR_.45
+OBJC_PROP_NAME_ATTR_.46
+OBJC_PROP_NAME_ATTR_.47
+OBJC_PROP_NAME_ATTR_.48
+OBJC_PROP_NAME_ATTR_.49
+OBJC_PROP_NAME_ATTR_.50
+OBJC_PROP_NAME_ATTR_.51
+OBJC_PROP_NAME_ATTR_.52
+l_OBJC_$_PROP_LIST_AWSCognitoDatasetMetadata
+l_OBJC_CLASS_RO_$_AWSCognitoDatasetMetadata
+OBJC_CLASSLIST_SUP_REFS_$_.53
+OBJC_SELECTOR_REFERENCES_.54
+OBJC_IVAR_$_AWSCognitoDataset._sqliteManager
+OBJC_IVAR_$_AWSCognitoDataset._cognitoService
+OBJC_CLASSLIST_REFERENCES_$_
+OBJC_METH_VAR_NAME_.55
+OBJC_SELECTOR_REFERENCES_.56
+OBJC_METH_VAR_NAME_.57
+OBJC_SELECTOR_REFERENCES_.58
+OBJC_METH_VAR_NAME_.59
+OBJC_SELECTOR_REFERENCES_.60
+OBJC_METH_VAR_NAME_.61
+OBJC_SELECTOR_REFERENCES_.62
+OBJC_METH_VAR_NAME_.63
+OBJC_SELECTOR_REFERENCES_.64
+OBJC_IVAR_$_AWSCognitoDataset._reachability
+OBJC_IVAR_$_AWSCognitoDataset._synchronizeQueue
+OBJC_IVAR_$_AWSCognitoDataset._serializer
+OBJC_CLASSLIST_REFERENCES_$_.65
+OBJC_METH_VAR_NAME_.66
+OBJC_SELECTOR_REFERENCES_.67
+OBJC_METH_VAR_NAME_.68
+OBJC_SELECTOR_REFERENCES_.69
+OBJC_METH_VAR_NAME_.70
+OBJC_SELECTOR_REFERENCES_.71
+OBJC_METH_VAR_NAME_.72
+OBJC_SELECTOR_REFERENCES_.73
+OBJC_METH_VAR_NAME_.74
+OBJC_SELECTOR_REFERENCES_.75
+OBJC_METH_VAR_NAME_.76
+OBJC_SELECTOR_REFERENCES_.77
+OBJC_CLASSLIST_REFERENCES_$_.78
+OBJC_METH_VAR_NAME_.79
+OBJC_SELECTOR_REFERENCES_.80
+.str
+_unnamed_cfstring_
+OBJC_CLASSLIST_REFERENCES_$_.81
+.str.82
+OBJC_METH_VAR_NAME_.83
+OBJC_SELECTOR_REFERENCES_.84
+OBJC_METH_VAR_NAME_.85
+OBJC_SELECTOR_REFERENCES_.86
+__PRETTY_FUNCTION__.-[AWSCognitoDataset stringForKey:]
+OBJC_METH_VAR_NAME_.87
+OBJC_SELECTOR_REFERENCES_.88
+OBJC_SELECTOR_REFERENCES_.89
+OBJC_CLASSLIST_REFERENCES_$_.90
+OBJC_METH_VAR_NAME_.91
+OBJC_SELECTOR_REFERENCES_.92
+OBJC_METH_VAR_NAME_.93
+OBJC_SELECTOR_REFERENCES_.94
+OBJC_METH_VAR_NAME_.95
+OBJC_SELECTOR_REFERENCES_.96
+OBJC_CLASSLIST_REFERENCES_$_.97
+OBJC_METH_VAR_NAME_.98
+OBJC_SELECTOR_REFERENCES_.99
+OBJC_METH_VAR_NAME_.100
+OBJC_SELECTOR_REFERENCES_.101
+OBJC_METH_VAR_NAME_.102
+OBJC_SELECTOR_REFERENCES_.103
+.str.104
+_unnamed_cfstring_.105
+__PRETTY_FUNCTION__.-[AWSCognitoDataset setString:forKey:]
+OBJC_METH_VAR_NAME_.106
+OBJC_SELECTOR_REFERENCES_.107
+.str.108
+_unnamed_cfstring_.109
+.str.110
+_unnamed_cfstring_.111
+.str.112
+_unnamed_cfstring_.113
+OBJC_METH_VAR_NAME_.114
+OBJC_SELECTOR_REFERENCES_.115
+OBJC_SELECTOR_REFERENCES_.116
+OBJC_METH_VAR_NAME_.117
+OBJC_SELECTOR_REFERENCES_.118
+.str.119
+_unnamed_cfstring_.120
+OBJC_METH_VAR_NAME_.121
+OBJC_SELECTOR_REFERENCES_.122
+OBJC_METH_VAR_NAME_.123
+OBJC_SELECTOR_REFERENCES_.124
+OBJC_CLASSLIST_REFERENCES_$_.125
+.str.126
+_unnamed_cfstring_.127
+OBJC_METH_VAR_NAME_.128
+OBJC_SELECTOR_REFERENCES_.129
+OBJC_METH_VAR_NAME_.130
+OBJC_SELECTOR_REFERENCES_.131
+OBJC_METH_VAR_NAME_.132
+OBJC_SELECTOR_REFERENCES_.133
+OBJC_SELECTOR_REFERENCES_.134
+__PRETTY_FUNCTION__.-[AWSCognitoDataset recordForKey:]
+OBJC_METH_VAR_NAME_.135
+OBJC_SELECTOR_REFERENCES_.136
+OBJC_METH_VAR_NAME_.137
+OBJC_SELECTOR_REFERENCES_.138
+OBJC_CLASSLIST_REFERENCES_$_.139
+OBJC_METH_VAR_NAME_.140
+OBJC_SELECTOR_REFERENCES_.141
+OBJC_METH_VAR_NAME_.142
+OBJC_SELECTOR_REFERENCES_.143
+OBJC_CLASSLIST_REFERENCES_$_.144
+OBJC_METH_VAR_NAME_.145
+OBJC_SELECTOR_REFERENCES_.146
+OBJC_METH_VAR_NAME_.147
+OBJC_SELECTOR_REFERENCES_.148
+OBJC_METH_VAR_NAME_.149
+OBJC_SELECTOR_REFERENCES_.150
+OBJC_METH_VAR_NAME_.151
+OBJC_SELECTOR_REFERENCES_.152
+__PRETTY_FUNCTION__.-[AWSCognitoDataset removeObjectForKey:]
+OBJC_METH_VAR_NAME_.153
+OBJC_SELECTOR_REFERENCES_.154
+__PRETTY_FUNCTION__.-[AWSCognitoDataset clear]
+OBJC_CLASSLIST_REFERENCES_$_.155
+OBJC_METH_VAR_NAME_.156
+OBJC_SELECTOR_REFERENCES_.157
+OBJC_SELECTOR_REFERENCES_.158
+OBJC_METH_VAR_NAME_.159
+OBJC_SELECTOR_REFERENCES_.160
+OBJC_METH_VAR_NAME_.161
+OBJC_SELECTOR_REFERENCES_.162
+OBJC_CLASSLIST_REFERENCES_$_.163
+OBJC_METH_VAR_NAME_.164
+OBJC_SELECTOR_REFERENCES_.165
+OBJC_METH_VAR_NAME_.166
+OBJC_SELECTOR_REFERENCES_.167
+OBJC_METH_VAR_NAME_.168
+OBJC_SELECTOR_REFERENCES_.169
+OBJC_METH_VAR_NAME_.170
+OBJC_SELECTOR_REFERENCES_.171
+OBJC_METH_VAR_NAME_.172
+OBJC_SELECTOR_REFERENCES_.173
+OBJC_METH_VAR_NAME_.174
+OBJC_SELECTOR_REFERENCES_.175
+OBJC_METH_VAR_NAME_.176
+OBJC_SELECTOR_REFERENCES_.177
+OBJC_METH_VAR_NAME_.178
+OBJC_SELECTOR_REFERENCES_.179
+OBJC_METH_VAR_NAME_.180
+OBJC_SELECTOR_REFERENCES_.181
+OBJC_METH_VAR_NAME_.182
+OBJC_SELECTOR_REFERENCES_.183
+OBJC_METH_VAR_NAME_.184
+OBJC_SELECTOR_REFERENCES_.185
+OBJC_METH_VAR_NAME_.186
+OBJC_SELECTOR_REFERENCES_.187
+OBJC_METH_VAR_NAME_.188
+OBJC_SELECTOR_REFERENCES_.189
+OBJC_CLASSLIST_REFERENCES_$_.190
+OBJC_METH_VAR_NAME_.191
+OBJC_SELECTOR_REFERENCES_.192
+OBJC_METH_VAR_NAME_.193
+OBJC_SELECTOR_REFERENCES_.194
+OBJC_CLASSLIST_REFERENCES_$_.195
+OBJC_METH_VAR_NAME_.196
+OBJC_SELECTOR_REFERENCES_.197
+OBJC_METH_VAR_NAME_.198
+OBJC_SELECTOR_REFERENCES_.199
+.str.200
+_unnamed_cfstring_.201
+__PRETTY_FUNCTION__.__30-[AWSCognitoDataset syncPull:]_block_invoke
+OBJC_CLASSLIST_REFERENCES_$_.202
+OBJC_METH_VAR_NAME_.203
+OBJC_SELECTOR_REFERENCES_.204
+OBJC_METH_VAR_NAME_.205
+OBJC_SELECTOR_REFERENCES_.206
+OBJC_METH_VAR_NAME_.207
+OBJC_SELECTOR_REFERENCES_.208
+OBJC_METH_VAR_NAME_.209
+OBJC_SELECTOR_REFERENCES_.210
+OBJC_METH_VAR_NAME_.211
+OBJC_SELECTOR_REFERENCES_.212
+OBJC_METH_VAR_NAME_.213
+OBJC_SELECTOR_REFERENCES_.214
+OBJC_METH_VAR_NAME_.215
+OBJC_SELECTOR_REFERENCES_.216
+OBJC_METH_VAR_NAME_.217
+OBJC_SELECTOR_REFERENCES_.218
+OBJC_METH_VAR_NAME_.219
+OBJC_SELECTOR_REFERENCES_.220
+OBJC_METH_VAR_NAME_.221
+OBJC_SELECTOR_REFERENCES_.222
+OBJC_METH_VAR_NAME_.223
+OBJC_SELECTOR_REFERENCES_.224
+.str.225
+__block_descriptor_tmp
+OBJC_METH_VAR_NAME_.226
+OBJC_SELECTOR_REFERENCES_.227
+OBJC_METH_VAR_NAME_.228
+OBJC_SELECTOR_REFERENCES_.229
+OBJC_METH_VAR_NAME_.230
+OBJC_SELECTOR_REFERENCES_.231
+OBJC_METH_VAR_NAME_.232
+OBJC_SELECTOR_REFERENCES_.233
+OBJC_METH_VAR_NAME_.234
+OBJC_SELECTOR_REFERENCES_.235
+OBJC_METH_VAR_NAME_.236
+OBJC_SELECTOR_REFERENCES_.237
+OBJC_METH_VAR_NAME_.238
+OBJC_SELECTOR_REFERENCES_.239
+OBJC_METH_VAR_NAME_.240
+OBJC_SELECTOR_REFERENCES_.241
+OBJC_METH_VAR_NAME_.242
+OBJC_SELECTOR_REFERENCES_.243
+OBJC_SELECTOR_REFERENCES_.244
+OBJC_SELECTOR_REFERENCES_.245
+OBJC_SELECTOR_REFERENCES_.246
+OBJC_METH_VAR_NAME_.247
+OBJC_SELECTOR_REFERENCES_.248
+.str.249
+_unnamed_cfstring_.250
+OBJC_METH_VAR_NAME_.251
+OBJC_SELECTOR_REFERENCES_.252
+OBJC_METH_VAR_NAME_.253
+OBJC_SELECTOR_REFERENCES_.254
+OBJC_CLASSLIST_REFERENCES_$_.255
+OBJC_METH_VAR_NAME_.256
+OBJC_SELECTOR_REFERENCES_.257
+.str.258
+_unnamed_cfstring_.259
+OBJC_CLASSLIST_REFERENCES_$_.260
+OBJC_METH_VAR_NAME_.261
+OBJC_SELECTOR_REFERENCES_.262
+OBJC_METH_VAR_NAME_.263
+OBJC_SELECTOR_REFERENCES_.264
+OBJC_CLASSLIST_REFERENCES_$_.265
+OBJC_METH_VAR_NAME_.266
+OBJC_SELECTOR_REFERENCES_.267
+OBJC_METH_VAR_NAME_.268
+OBJC_SELECTOR_REFERENCES_.269
+OBJC_METH_VAR_NAME_.270
+OBJC_SELECTOR_REFERENCES_.271
+OBJC_METH_VAR_NAME_.272
+OBJC_SELECTOR_REFERENCES_.273
+OBJC_METH_VAR_NAME_.274
+OBJC_SELECTOR_REFERENCES_.275
+.str.278
+__block_descriptor_tmp.279
+OBJC_METH_VAR_NAME_.280
+OBJC_SELECTOR_REFERENCES_.281
+OBJC_METH_VAR_NAME_.282
+OBJC_SELECTOR_REFERENCES_.283
+OBJC_METH_VAR_NAME_.284
+OBJC_SELECTOR_REFERENCES_.285
+OBJC_METH_VAR_NAME_.286
+OBJC_SELECTOR_REFERENCES_.287
+OBJC_METH_VAR_NAME_.288
+OBJC_SELECTOR_REFERENCES_.289
+OBJC_CLASSLIST_REFERENCES_$_.290
+OBJC_METH_VAR_NAME_.291
+OBJC_SELECTOR_REFERENCES_.292
+OBJC_METH_VAR_NAME_.293
+OBJC_SELECTOR_REFERENCES_.294
+OBJC_METH_VAR_NAME_.295
+OBJC_SELECTOR_REFERENCES_.296
+OBJC_METH_VAR_NAME_.297
+OBJC_SELECTOR_REFERENCES_.298
+OBJC_CLASSLIST_REFERENCES_$_.299
+OBJC_METH_VAR_NAME_.300
+OBJC_SELECTOR_REFERENCES_.301
+OBJC_METH_VAR_NAME_.302
+OBJC_SELECTOR_REFERENCES_.303
+OBJC_METH_VAR_NAME_.304
+OBJC_SELECTOR_REFERENCES_.305
+OBJC_METH_VAR_NAME_.306
+OBJC_SELECTOR_REFERENCES_.307
+OBJC_METH_VAR_NAME_.308
+OBJC_SELECTOR_REFERENCES_.309
+.str.310
+_unnamed_cfstring_.311
+__PRETTY_FUNCTION__.__30-[AWSCognitoDataset syncPush:]_block_invoke
+OBJC_METH_VAR_NAME_.312
+OBJC_SELECTOR_REFERENCES_.313
+.str.314
+_unnamed_cfstring_.315
+OBJC_METH_VAR_NAME_.316
+OBJC_SELECTOR_REFERENCES_.317
+OBJC_METH_VAR_NAME_.318
+OBJC_SELECTOR_REFERENCES_.319
+OBJC_METH_VAR_NAME_.320
+OBJC_SELECTOR_REFERENCES_.321
+OBJC_METH_VAR_NAME_.322
+OBJC_SELECTOR_REFERENCES_.323
+__block_descriptor_tmp.326
+OBJC_METH_VAR_NAME_.327
+OBJC_SELECTOR_REFERENCES_.328
+OBJC_METH_VAR_NAME_.329
+OBJC_SELECTOR_REFERENCES_.330
+OBJC_METH_VAR_NAME_.331
+OBJC_SELECTOR_REFERENCES_.332
+OBJC_METH_VAR_NAME_.333
+OBJC_SELECTOR_REFERENCES_.334
+OBJC_METH_VAR_NAME_.335
+OBJC_SELECTOR_REFERENCES_.336
+OBJC_METH_VAR_NAME_.337
+OBJC_SELECTOR_REFERENCES_.338
+OBJC_METH_VAR_NAME_.339
+OBJC_SELECTOR_REFERENCES_.340
+OBJC_METH_VAR_NAME_.341
+OBJC_SELECTOR_REFERENCES_.342
+OBJC_METH_VAR_NAME_.343
+OBJC_SELECTOR_REFERENCES_.344
+__block_descriptor_tmp.347
+__block_descriptor_tmp.350
+OBJC_METH_VAR_NAME_.352
+OBJC_SELECTOR_REFERENCES_.353
+__block_descriptor_tmp.356
+.str.357
+_unnamed_cfstring_.358
+__PRETTY_FUNCTION__.-[AWSCognitoDataset synchronizeInternal:]
+OBJC_METH_VAR_NAME_.359
+OBJC_SELECTOR_REFERENCES_.360
+OBJC_CLASSLIST_REFERENCES_$_.361
+OBJC_METH_VAR_NAME_.362
+OBJC_SELECTOR_REFERENCES_.363
+.str.364
+_unnamed_cfstring_.365
+__PRETTY_FUNCTION__.__41-[AWSCognitoDataset synchronizeInternal:]_block_invoke
+__block_descriptor_tmp.368
+OBJC_METH_VAR_NAME_.369
+OBJC_SELECTOR_REFERENCES_.370
+OBJC_METH_VAR_NAME_.372
+OBJC_SELECTOR_REFERENCES_.373
+__block_descriptor_tmp.376
+OBJC_METH_VAR_NAME_.377
+OBJC_SELECTOR_REFERENCES_.378
+OBJC_METH_VAR_NAME_.379
+OBJC_SELECTOR_REFERENCES_.380
+OBJC_CLASSLIST_REFERENCES_$_.381
+OBJC_METH_VAR_NAME_.382
+OBJC_SELECTOR_REFERENCES_.383
+OBJC_CLASSLIST_REFERENCES_$_.384
+OBJC_METH_VAR_NAME_.385
+OBJC_SELECTOR_REFERENCES_.386
+OBJC_METH_VAR_NAME_.387
+OBJC_SELECTOR_REFERENCES_.388
+__block_descriptor_tmp.391
+__block_descriptor_tmp.394
+OBJC_METH_VAR_NAME_.395
+OBJC_SELECTOR_REFERENCES_.396
+OBJC_METH_VAR_NAME_.397
+OBJC_SELECTOR_REFERENCES_.398
+OBJC_CLASSLIST_REFERENCES_$_.399
+OBJC_METH_VAR_NAME_.400
+OBJC_SELECTOR_REFERENCES_.401
+.str.402
+_unnamed_cfstring_.403
+__PRETTY_FUNCTION__.__30-[AWSCognitoDataset subscribe]_block_invoke
+OBJC_METH_VAR_NAME_.404
+OBJC_SELECTOR_REFERENCES_.405
+__block_descriptor_tmp.406
+__block_literal_global
+OBJC_CLASSLIST_REFERENCES_$_.407
+OBJC_METH_VAR_NAME_.408
+OBJC_SELECTOR_REFERENCES_.409
+.str.410
+_unnamed_cfstring_.411
+__PRETTY_FUNCTION__.__32-[AWSCognitoDataset unsubscribe]_block_invoke
+__block_descriptor_tmp.412
+__block_literal_global.413
+.str.414
+_unnamed_cfstring_.415
+__PRETTY_FUNCTION__.-[AWSCognitoDataset identityChanged:]
+OBJC_METH_VAR_NAME_.416
+OBJC_SELECTOR_REFERENCES_.417
+__block_descriptor_tmp.420
+.str.421
+_unnamed_cfstring_.422
+OBJC_CLASSLIST_REFERENCES_$_.423
+OBJC_METH_VAR_NAME_.424
+OBJC_SELECTOR_REFERENCES_.425
+OBJC_METH_VAR_NAME_.426
+OBJC_SELECTOR_REFERENCES_.427
+__block_descriptor_tmp.430
+__block_descriptor_tmp.433
+.str.434
+_unnamed_cfstring_.435
+__block_descriptor_tmp.438
+__block_descriptor_tmp.441
+.str.442
+_unnamed_cfstring_.443
+__block_descriptor_tmp.446
+OBJC_IVAR_$_AWSCognitoDataset._conflictHandler
+OBJC_IVAR_$_AWSCognitoDataset._datasetDeletedHandler
+OBJC_IVAR_$_AWSCognitoDataset._datasetMergedHandler
+OBJC_IVAR_$_AWSCognitoDataset._synchronizeRetries
+OBJC_IVAR_$_AWSCognitoDataset._synchronizeOnWiFiOnly
+OBJC_IVAR_$_AWSCognitoDataset._syncSessionToken
+OBJC_IVAR_$_AWSCognitoDataset._currentSyncCount
+OBJC_IVAR_$_AWSCognitoDataset._records
+OBJC_CLASS_NAME_.447
+l_OBJC_METACLASS_RO_$_AWSCognitoDataset
+OBJC_CLASS_NAME_.448
+OBJC_METH_VAR_NAME_.449
+OBJC_METH_VAR_TYPE_.450
+OBJC_METH_VAR_NAME_.451
+OBJC_METH_VAR_TYPE_.452
+OBJC_METH_VAR_NAME_.453
+OBJC_METH_VAR_TYPE_.454
+OBJC_METH_VAR_TYPE_.455
+OBJC_METH_VAR_TYPE_.456
+OBJC_METH_VAR_NAME_.457
+OBJC_METH_VAR_NAME_.458
+OBJC_METH_VAR_NAME_.459
+OBJC_METH_VAR_TYPE_.460
+OBJC_METH_VAR_NAME_.461
+OBJC_METH_VAR_TYPE_.462
+OBJC_METH_VAR_TYPE_.463
+OBJC_METH_VAR_NAME_.464
+OBJC_METH_VAR_NAME_.465
+OBJC_METH_VAR_NAME_.466
+OBJC_METH_VAR_NAME_.467
+OBJC_METH_VAR_TYPE_.468
+OBJC_METH_VAR_TYPE_.469
+OBJC_METH_VAR_NAME_.470
+OBJC_METH_VAR_NAME_.471
+OBJC_METH_VAR_TYPE_.472
+OBJC_METH_VAR_NAME_.473
+OBJC_METH_VAR_TYPE_.474
+OBJC_METH_VAR_NAME_.475
+OBJC_METH_VAR_TYPE_.476
+OBJC_METH_VAR_NAME_.477
+OBJC_METH_VAR_NAME_.478
+OBJC_METH_VAR_NAME_.479
+OBJC_METH_VAR_NAME_.480
+OBJC_METH_VAR_NAME_.481
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoDataset
+OBJC_METH_VAR_NAME_.482
+OBJC_METH_VAR_TYPE_.483
+OBJC_METH_VAR_NAME_.484
+OBJC_METH_VAR_TYPE_.485
+OBJC_METH_VAR_NAME_.486
+OBJC_METH_VAR_NAME_.487
+OBJC_METH_VAR_NAME_.488
+OBJC_METH_VAR_TYPE_.489
+OBJC_METH_VAR_NAME_.490
+OBJC_METH_VAR_NAME_.491
+OBJC_METH_VAR_TYPE_.492
+OBJC_METH_VAR_NAME_.493
+OBJC_METH_VAR_TYPE_.494
+OBJC_METH_VAR_NAME_.495
+OBJC_METH_VAR_TYPE_.496
+OBJC_METH_VAR_NAME_.497
+OBJC_METH_VAR_NAME_.498
+OBJC_METH_VAR_TYPE_.499
+OBJC_METH_VAR_NAME_.500
+OBJC_METH_VAR_TYPE_.501
+OBJC_METH_VAR_NAME_.502
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoDataset
+OBJC_PROP_NAME_ATTR_.503
+OBJC_PROP_NAME_ATTR_.504
+OBJC_PROP_NAME_ATTR_.505
+OBJC_PROP_NAME_ATTR_.506
+OBJC_PROP_NAME_ATTR_.507
+OBJC_PROP_NAME_ATTR_.508
+OBJC_PROP_NAME_ATTR_.509
+OBJC_PROP_NAME_ATTR_.510
+OBJC_PROP_NAME_ATTR_.511
+OBJC_PROP_NAME_ATTR_.512
+OBJC_PROP_NAME_ATTR_.513
+OBJC_PROP_NAME_ATTR_.514
+OBJC_PROP_NAME_ATTR_.515
+OBJC_PROP_NAME_ATTR_.516
+OBJC_PROP_NAME_ATTR_.517
+OBJC_PROP_NAME_ATTR_.518
+OBJC_PROP_NAME_ATTR_.519
+OBJC_PROP_NAME_ATTR_.520
+OBJC_PROP_NAME_ATTR_.521
+OBJC_PROP_NAME_ATTR_.522
+OBJC_PROP_NAME_ATTR_.523
+OBJC_PROP_NAME_ATTR_.524
+OBJC_PROP_NAME_ATTR_.525
+OBJC_PROP_NAME_ATTR_.526
+OBJC_PROP_NAME_ATTR_.527
+OBJC_PROP_NAME_ATTR_.528
+l_OBJC_$_PROP_LIST_AWSCognitoDataset
+l_OBJC_CLASS_RO_$_AWSCognitoDataset
+OBJC_LABEL_CLASS_$
+Apple LLVM version 7.3.0 (clang-703.0.31)
+-[AWSCognitoDataset .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoDataset.m
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios
+-[AWSCognitoDataset setSerializer:]
+-[AWSCognitoDataset serializer]
+-[AWSCognitoDataset setSynchronizeQueue:]
+-[AWSCognitoDataset synchronizeQueue]
+-[AWSCognitoDataset setRecords:]
+-[AWSCognitoDataset records]
+-[AWSCognitoDataset setCurrentSyncCount:]
+-[AWSCognitoDataset currentSyncCount]
+-[AWSCognitoDataset setReachability:]
+-[AWSCognitoDataset reachability]
+-[AWSCognitoDataset setCognitoService:]
+-[AWSCognitoDataset cognitoService]
+-[AWSCognitoDataset setSqliteManager:]
+-[AWSCognitoDataset sqliteManager]
+-[AWSCognitoDataset setSyncSessionToken:]
+-[AWSCognitoDataset syncSessionToken]
+-[AWSCognitoDataset setSynchronizeOnWiFiOnly:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoDataset.h
+-[AWSCognitoDataset synchronizeOnWiFiOnly]
+-[AWSCognitoDataset setSynchronizeRetries:]
+-[AWSCognitoDataset synchronizeRetries]
+-[AWSCognitoDataset setDatasetMergedHandler:]
+-[AWSCognitoDataset datasetMergedHandler]
+-[AWSCognitoDataset setDatasetDeletedHandler:]
+-[AWSCognitoDataset datasetDeletedHandler]
+-[AWSCognitoDataset setConflictHandler:]
+-[AWSCognitoDataset conflictHandler]
+-[AWSCognitoDataset postDidFailToSynchronizeNotification:]
+-[AWSCognitoDataset postDidChangeRemoteValueNotification:]
+-[AWSCognitoDataset postDidChangeLocalValueFromRemoteNotification:]
+-[AWSCognitoDataset postDidEndSynchronizeNotification]
+-[AWSCognitoDataset postDidStartSynchronizeNotification]
+-[AWSCognitoDataset checkForLocalMergedDatasets]
+-[AWSCognitoDataset identityChanged:]
+-[AWSCognitoDataset unsubscribe]
+-[AWSCognitoDataset subscribe]
+-[AWSCognitoDataset synchronizeOnConnectivity]
+-[AWSCognitoDataset synchronizeInternal:]
+-[AWSCognitoDataset synchronize]
+-[AWSCognitoDataset syncPush:]
+-[AWSCognitoDataset syncPull:]
+-[AWSCognitoDataset sizeForString:]
+-[AWSCognitoDataset sizeForRecord:]
+-[AWSCognitoDataset sizeForKey:]
+-[AWSCognitoDataset size]
+-[AWSCognitoDataset clear]
+-[AWSCognitoDataset removeObjectForKey:]
+-[AWSCognitoDataset getAll]
+-[AWSCognitoDataset getAllRecords]
+-[AWSCognitoDataset removeRecordById:error:]
+-[AWSCognitoDataset getRecordById:error:]
+-[AWSCognitoDataset recordForKey:]
+-[AWSCognitoDataset putRecord:error:]
+-[AWSCognitoDataset setString:forKey:]
+-[AWSCognitoDataset stringForKey:]
+-[AWSCognitoDataset dealloc]
+-[AWSCognitoDataset initWithDatasetName:sqliteManager:cognitoService:]
+-[AWSCognitoDatasetMetadata .cxx_destruct]
+-[AWSCognitoDatasetMetadata setNumRecords:]
+-[AWSCognitoDatasetMetadata numRecords]
+-[AWSCognitoDatasetMetadata setLastModifiedDate:]
+-[AWSCognitoDatasetMetadata lastModifiedDate]
+-[AWSCognitoDatasetMetadata setLastModifiedBy:]
+-[AWSCognitoDatasetMetadata lastModifiedBy]
+-[AWSCognitoDatasetMetadata setDataStorage:]
+-[AWSCognitoDatasetMetadata dataStorage]
+-[AWSCognitoDatasetMetadata setCreationDate:]
+-[AWSCognitoDatasetMetadata creationDate]
+-[AWSCognitoDatasetMetadata setLastSyncCount:]
+-[AWSCognitoDatasetMetadata lastSyncCount]
+-[AWSCognitoDatasetMetadata setName:]
+-[AWSCognitoDatasetMetadata name]
+-[AWSCognitoDatasetMetadata isDeleted]
+-[AWSCognitoDatasetMetadata initWithDatasetName:dataSource:]
++[AWSCognitoUtil millisSinceEpochToDate:]
++[AWSCognitoUtil secondsSinceEpochToDate:]
++[AWSCognitoUtil getTimeMillisForDate:]
++[AWSCognitoUtil hexEncode:]
++[AWSCognitoUtil errorRemoteDataStorageFailed:]
++[AWSCognitoUtil errorInvalidDataValue:key:value:]
++[AWSCognitoUtil errorUserDataSizeLimitExceeded:]
++[AWSCognitoUtil errorLocalDataStorageFailed:]
++[AWSCognitoUtil errorIllegalArgument:]
++[AWSCognitoUtil retrieveValue:]
++[AWSCognitoUtil isValidRecordValueType:]
++[AWSCognitoUtil pushPlatformString:]
++[AWSCognitoUtil pushPlatform]
++[AWSCognitoUtil deviceIdKey:]
++[AWSCognitoUtil deviceIdentityKey:]
+OBJC_CLASSLIST_REFERENCES_$_.7
+OBJC_CLASSLIST_REFERENCES_$_.8
+OBJC_METH_VAR_NAME_.9
+OBJC_SELECTOR_REFERENCES_.10
+OBJC_SELECTOR_REFERENCES_.12
+OBJC_SELECTOR_REFERENCES_.14
+OBJC_SELECTOR_REFERENCES_.16
+OBJC_CLASSLIST_REFERENCES_$_.17
+OBJC_METH_VAR_NAME_.18
+OBJC_SELECTOR_REFERENCES_.19
+OBJC_SELECTOR_REFERENCES_.21
+OBJC_SELECTOR_REFERENCES_.23
+OBJC_CLASSLIST_REFERENCES_$_.24
+.str.25
+_unnamed_cfstring_.26
+OBJC_SELECTOR_REFERENCES_.28
+OBJC_CLASSLIST_REFERENCES_$_.29
+OBJC_SELECTOR_REFERENCES_.31
+OBJC_CLASSLIST_REFERENCES_$_.32
+OBJC_METH_VAR_NAME_.33
+OBJC_SELECTOR_REFERENCES_.34
+.str.35
+_unnamed_cfstring_.36
+.str.37
+_unnamed_cfstring_.38
+OBJC_SELECTOR_REFERENCES_.40
+OBJC_METH_VAR_NAME_.41
+OBJC_SELECTOR_REFERENCES_.42
+.str.43
+_unnamed_cfstring_.44
+OBJC_METH_VAR_NAME_.45
+OBJC_SELECTOR_REFERENCES_.46
+.str.47
+_unnamed_cfstring_.48
+OBJC_METH_VAR_NAME_.49
+OBJC_METH_VAR_NAME_.50
+OBJC_METH_VAR_TYPE_.51
+OBJC_METH_VAR_NAME_.52
+OBJC_METH_VAR_NAME_.53
+OBJC_METH_VAR_NAME_.54
+OBJC_METH_VAR_TYPE_.55
+OBJC_METH_VAR_NAME_.56
+OBJC_METH_VAR_NAME_.58
+OBJC_METH_VAR_NAME_.60
+OBJC_METH_VAR_TYPE_.61
+OBJC_METH_VAR_TYPE_.62
+OBJC_METH_VAR_TYPE_.64
+OBJC_METH_VAR_NAME_.65
+l_OBJC_$_CLASS_METHODS_AWSCognitoUtil
+l_OBJC_METACLASS_RO_$_AWSCognitoUtil
+l_OBJC_CLASS_RO_$_AWSCognitoUtil
++[AWSCognitoUtil deviceIdentityKey:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoUtil.m
++[AWSCognitoUtil deviceIdKey:]
++[AWSCognitoUtil pushPlatform]
++[AWSCognitoUtil pushPlatformString:]
++[AWSCognitoUtil isValidRecordValueType:]
++[AWSCognitoUtil retrieveValue:]
++[AWSCognitoUtil errorIllegalArgument:]
++[AWSCognitoUtil errorLocalDataStorageFailed:]
++[AWSCognitoUtil errorUserDataSizeLimitExceeded:]
++[AWSCognitoUtil errorInvalidDataValue:key:value:]
++[AWSCognitoUtil errorRemoteDataStorageFailed:]
++[AWSCognitoUtil hexEncode:]
++[AWSCognitoUtil getTimeMillisForDate:]
++[AWSCognitoUtil secondsSinceEpochToDate:]
++[AWSCognitoUtil millisSinceEpochToDate:]
++[AWSCognitoSyncResponseSerializer initialize]
+-[AWSCognitoSyncResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSCognitoSync defaultCognitoSync]
+__36+[AWSCognitoSync defaultCognitoSync]_block_invoke
++[AWSCognitoSync registerCognitoSyncWithConfiguration:forKey:]
+__62+[AWSCognitoSync registerCognitoSyncWithConfiguration:forKey:]_block_invoke
++[AWSCognitoSync CognitoSyncForKey:]
++[AWSCognitoSync removeCognitoSyncForKey:]
+-[AWSCognitoSync init]
+-[AWSCognitoSync initWithConfiguration:]
+-[AWSCognitoSync invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSCognitoSync bulkPublish:]
+-[AWSCognitoSync bulkPublish:completionHandler:]
+__48-[AWSCognitoSync bulkPublish:completionHandler:]_block_invoke
+-[AWSCognitoSync deleteDataset:]
+-[AWSCognitoSync deleteDataset:completionHandler:]
+__50-[AWSCognitoSync deleteDataset:completionHandler:]_block_invoke
+__copy_helper_block_.238
+__destroy_helper_block_.239
+-[AWSCognitoSync describeDataset:]
+-[AWSCognitoSync describeDataset:completionHandler:]
+__52-[AWSCognitoSync describeDataset:completionHandler:]_block_invoke
+__copy_helper_block_.246
+__destroy_helper_block_.247
+-[AWSCognitoSync describeIdentityPoolUsage:]
+-[AWSCognitoSync describeIdentityPoolUsage:completionHandler:]
+__62-[AWSCognitoSync describeIdentityPoolUsage:completionHandler:]_block_invoke
+__copy_helper_block_.256
+__destroy_helper_block_.257
+-[AWSCognitoSync describeIdentityUsage:]
+-[AWSCognitoSync describeIdentityUsage:completionHandler:]
+__58-[AWSCognitoSync describeIdentityUsage:completionHandler:]_block_invoke
+__copy_helper_block_.266
+__destroy_helper_block_.267
+-[AWSCognitoSync getBulkPublishDetails:]
+-[AWSCognitoSync getBulkPublishDetails:completionHandler:]
+__58-[AWSCognitoSync getBulkPublishDetails:completionHandler:]_block_invoke
+-[AWSCognitoSync getCognitoEvents:]
+-[AWSCognitoSync getCognitoEvents:completionHandler:]
+__53-[AWSCognitoSync getCognitoEvents:completionHandler:]_block_invoke
+__copy_helper_block_.286
+__destroy_helper_block_.287
+-[AWSCognitoSync getIdentityPoolConfiguration:]
+-[AWSCognitoSync getIdentityPoolConfiguration:completionHandler:]
+__65-[AWSCognitoSync getIdentityPoolConfiguration:completionHandler:]_block_invoke
+__copy_helper_block_.296
+__destroy_helper_block_.297
+-[AWSCognitoSync listDatasets:]
+-[AWSCognitoSync listDatasets:completionHandler:]
+__49-[AWSCognitoSync listDatasets:completionHandler:]_block_invoke
+__copy_helper_block_.306
+__destroy_helper_block_.307
+-[AWSCognitoSync listIdentityPoolUsage:]
+-[AWSCognitoSync listIdentityPoolUsage:completionHandler:]
+__58-[AWSCognitoSync listIdentityPoolUsage:completionHandler:]_block_invoke
+__copy_helper_block_.316
+__destroy_helper_block_.317
+-[AWSCognitoSync listRecords:]
+-[AWSCognitoSync listRecords:completionHandler:]
+__48-[AWSCognitoSync listRecords:completionHandler:]_block_invoke
+__copy_helper_block_.326
+__destroy_helper_block_.327
+-[AWSCognitoSync registerDevice:]
+-[AWSCognitoSync registerDevice:completionHandler:]
+__51-[AWSCognitoSync registerDevice:completionHandler:]_block_invoke
+__copy_helper_block_.336
+__destroy_helper_block_.337
+-[AWSCognitoSync setCognitoEvents:]
+-[AWSCognitoSync setCognitoEvents:completionHandler:]
+__53-[AWSCognitoSync setCognitoEvents:completionHandler:]_block_invoke
+__copy_helper_block_.343
+__destroy_helper_block_.344
+-[AWSCognitoSync setIdentityPoolConfiguration:]
+-[AWSCognitoSync setIdentityPoolConfiguration:completionHandler:]
+__65-[AWSCognitoSync setIdentityPoolConfiguration:completionHandler:]_block_invoke
+__copy_helper_block_.351
+__destroy_helper_block_.352
+-[AWSCognitoSync subscribeToDataset:]
+-[AWSCognitoSync subscribeToDataset:completionHandler:]
+__55-[AWSCognitoSync subscribeToDataset:completionHandler:]_block_invoke
+__copy_helper_block_.361
+__destroy_helper_block_.362
+-[AWSCognitoSync unsubscribeFromDataset:]
+-[AWSCognitoSync unsubscribeFromDataset:completionHandler:]
+__59-[AWSCognitoSync unsubscribeFromDataset:completionHandler:]_block_invoke
+__copy_helper_block_.369
+__destroy_helper_block_.370
+-[AWSCognitoSync updateRecords:]
+-[AWSCognitoSync updateRecords:completionHandler:]
+__50-[AWSCognitoSync updateRecords:completionHandler:]_block_invoke
+__copy_helper_block_.377
+__destroy_helper_block_.378
+-[AWSCognitoSync configuration]
+-[AWSCognitoSync setConfiguration:]
+-[AWSCognitoSync networking]
+-[AWSCognitoSync setNetworking:]
+-[AWSCognitoSync .cxx_destruct]
+errorCodeDictionary
+.str.1
+_unnamed_cfstring_.2
+.str.3
+_unnamed_cfstring_.4
+.str.5
+_unnamed_cfstring_.6
+.str.7
+_unnamed_cfstring_.8
+.str.9
+_unnamed_cfstring_.10
+.str.11
+_unnamed_cfstring_.12
+.str.13
+_unnamed_cfstring_.14
+.str.15
+_unnamed_cfstring_.16
+.str.17
+_unnamed_cfstring_.18
+.str.19
+_unnamed_cfstring_.20
+.str.21
+_unnamed_cfstring_.22
+.str.23
+_unnamed_cfstring_.24
+OBJC_CLASSLIST_REFERENCES_$_.27
+OBJC_SELECTOR_REFERENCES_.29
+OBJC_SELECTOR_REFERENCES_.33
+OBJC_SELECTOR_REFERENCES_.35
+OBJC_SELECTOR_REFERENCES_.37
+.str.38
+_unnamed_cfstring_.39
+OBJC_METH_VAR_NAME_.40
+OBJC_SELECTOR_REFERENCES_.41
+.str.42
+_unnamed_cfstring_.43
+OBJC_METH_VAR_NAME_.44
+OBJC_SELECTOR_REFERENCES_.45
+OBJC_METH_VAR_NAME_.46
+OBJC_SELECTOR_REFERENCES_.47
+OBJC_METH_VAR_NAME_.48
+OBJC_SELECTOR_REFERENCES_.49
+OBJC_SELECTOR_REFERENCES_.51
+.str.52
+_unnamed_cfstring_.53
+OBJC_CLASSLIST_REFERENCES_$_.54
+OBJC_CLASSLIST_REFERENCES_$_.57
+OBJC_SELECTOR_REFERENCES_.59
+OBJC_SELECTOR_REFERENCES_.61
+OBJC_METH_VAR_NAME_.62
+OBJC_SELECTOR_REFERENCES_.63
+OBJC_METH_VAR_NAME_.64
+OBJC_SELECTOR_REFERENCES_.65
+OBJC_CLASSLIST_REFERENCES_$_.66
+OBJC_METH_VAR_NAME_.67
+OBJC_SELECTOR_REFERENCES_.68
+OBJC_METH_VAR_NAME_.69
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncResponseSerializer
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncResponseSerializer
+OBJC_METH_VAR_TYPE_.70
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncResponseSerializer
+l_OBJC_CLASS_RO_$_AWSCognitoSyncResponseSerializer
+OBJC_CLASS_NAME_.71
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncRequestRetryHandler
+l_OBJC_CLASS_RO_$_AWSCognitoSyncRequestRetryHandler
+_serviceClients
+defaultCognitoSync._defaultCognitoSync
+defaultCognitoSync.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.72
+OBJC_METH_VAR_NAME_.73
+OBJC_SELECTOR_REFERENCES_.74
+OBJC_METH_VAR_NAME_.75
+OBJC_SELECTOR_REFERENCES_.76
+OBJC_CLASSLIST_REFERENCES_$_.77
+OBJC_METH_VAR_NAME_.78
+OBJC_SELECTOR_REFERENCES_.79
+OBJC_METH_VAR_NAME_.80
+OBJC_SELECTOR_REFERENCES_.81
+OBJC_METH_VAR_NAME_.82
+OBJC_SELECTOR_REFERENCES_.83
+OBJC_METH_VAR_NAME_.84
+OBJC_SELECTOR_REFERENCES_.85
+OBJC_CLASSLIST_REFERENCES_$_.86
+OBJC_METH_VAR_NAME_.89
+OBJC_SELECTOR_REFERENCES_.90
+OBJC_CLASSLIST_REFERENCES_$_.91
+.str.92
+_unnamed_cfstring_.93
+OBJC_METH_VAR_NAME_.94
+OBJC_SELECTOR_REFERENCES_.95
+OBJC_CLASSLIST_REFERENCES_$_.96
+OBJC_METH_VAR_NAME_.97
+OBJC_SELECTOR_REFERENCES_.98
+.str.99
+registerCognitoSyncWithConfiguration:forKey:.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.100
+OBJC_METH_VAR_NAME_.101
+OBJC_SELECTOR_REFERENCES_.102
+__block_descriptor_tmp.103
+__block_literal_global.104
+OBJC_METH_VAR_NAME_.105
+OBJC_SELECTOR_REFERENCES_.106
+OBJC_METH_VAR_NAME_.107
+OBJC_SELECTOR_REFERENCES_.108
+OBJC_METH_VAR_NAME_.109
+OBJC_SELECTOR_REFERENCES_.110
+OBJC_METH_VAR_NAME_.111
+OBJC_SELECTOR_REFERENCES_.112
+.str.113
+_unnamed_cfstring_.114
+OBJC_CLASSLIST_SUP_REFS_$_.115
+OBJC_METH_VAR_NAME_.116
+OBJC_SELECTOR_REFERENCES_.117
+OBJC_METH_VAR_NAME_.118
+OBJC_SELECTOR_REFERENCES_.119
+OBJC_IVAR_$_AWSCognitoSync._configuration
+OBJC_CLASSLIST_REFERENCES_$_.120
+OBJC_METH_VAR_NAME_.125
+OBJC_SELECTOR_REFERENCES_.126
+OBJC_CLASSLIST_REFERENCES_$_.127
+OBJC_CLASSLIST_REFERENCES_$_.134
+OBJC_METH_VAR_NAME_.144
+OBJC_SELECTOR_REFERENCES_.145
+OBJC_METH_VAR_NAME_.146
+OBJC_SELECTOR_REFERENCES_.147
+OBJC_CLASSLIST_REFERENCES_$_.148
+OBJC_CLASSLIST_REFERENCES_$_.151
+OBJC_METH_VAR_NAME_.152
+OBJC_SELECTOR_REFERENCES_.153
+OBJC_METH_VAR_NAME_.154
+OBJC_SELECTOR_REFERENCES_.155
+.str.158
+_unnamed_cfstring_.159
+OBJC_METH_VAR_NAME_.160
+OBJC_SELECTOR_REFERENCES_.161
+.str.162
+_unnamed_cfstring_.163
+.str.164
+_unnamed_cfstring_.165
+OBJC_CLASSLIST_REFERENCES_$_.168
+OBJC_IVAR_$_AWSCognitoSync._networking
+OBJC_CLASSLIST_REFERENCES_$_.169
+OBJC_CLASSLIST_REFERENCES_$_.178
+OBJC_METH_VAR_NAME_.179
+OBJC_SELECTOR_REFERENCES_.180
+OBJC_CLASSLIST_REFERENCES_$_.181
+OBJC_CLASSLIST_REFERENCES_$_.188
+OBJC_METH_VAR_NAME_.189
+OBJC_SELECTOR_REFERENCES_.190
+OBJC_METH_VAR_NAME_.195
+OBJC_SELECTOR_REFERENCES_.196
+.str.197
+_unnamed_cfstring_.198
+.str.199
+_unnamed_cfstring_.200
+.str.201
+_unnamed_cfstring_.202
+OBJC_CLASSLIST_REFERENCES_$_.203
+OBJC_METH_VAR_NAME_.204
+OBJC_SELECTOR_REFERENCES_.205
+OBJC_METH_VAR_NAME_.206
+OBJC_SELECTOR_REFERENCES_.207
+OBJC_METH_VAR_NAME_.208
+OBJC_SELECTOR_REFERENCES_.209
+OBJC_METH_VAR_NAME_.210
+OBJC_SELECTOR_REFERENCES_.211
+OBJC_METH_VAR_NAME_.212
+OBJC_SELECTOR_REFERENCES_.213
+OBJC_CLASSLIST_REFERENCES_$_.214
+.str.217
+_unnamed_cfstring_.218
+OBJC_CLASSLIST_REFERENCES_$_.219
+.str.220
+__PRETTY_FUNCTION__.__48-[AWSCognitoSync bulkPublish:completionHandler:]_block_invoke
+OBJC_METH_VAR_NAME_.225
+OBJC_SELECTOR_REFERENCES_.226
+.str.227
+__block_descriptor_tmp.228
+OBJC_METH_VAR_NAME_.229
+OBJC_SELECTOR_REFERENCES_.230
+.str.231
+_unnamed_cfstring_.232
+.str.233
+_unnamed_cfstring_.234
+OBJC_CLASSLIST_REFERENCES_$_.235
+__PRETTY_FUNCTION__.__50-[AWSCognitoSync deleteDataset:completionHandler:]_block_invoke
+__block_descriptor_tmp.240
+.str.241
+_unnamed_cfstring_.242
+OBJC_CLASSLIST_REFERENCES_$_.243
+OBJC_METH_VAR_NAME_.244
+__PRETTY_FUNCTION__.__52-[AWSCognitoSync describeDataset:completionHandler:]_block_invoke
+__block_descriptor_tmp.248
+.str.251
+_unnamed_cfstring_.252
+OBJC_CLASSLIST_REFERENCES_$_.253
+OBJC_METH_VAR_NAME_.254
+OBJC_SELECTOR_REFERENCES_.255
+__PRETTY_FUNCTION__.__62-[AWSCognitoSync describeIdentityPoolUsage:completionHandler:]_block_invoke
+__block_descriptor_tmp.258
+.str.259
+_unnamed_cfstring_.260
+.str.261
+_unnamed_cfstring_.262
+OBJC_CLASSLIST_REFERENCES_$_.263
+OBJC_METH_VAR_NAME_.264
+OBJC_SELECTOR_REFERENCES_.265
+__PRETTY_FUNCTION__.__58-[AWSCognitoSync describeIdentityUsage:completionHandler:]_block_invoke
+__block_descriptor_tmp.268
+.str.269
+_unnamed_cfstring_.270
+.str.271
+_unnamed_cfstring_.272
+OBJC_CLASSLIST_REFERENCES_$_.273
+__PRETTY_FUNCTION__.__58-[AWSCognitoSync getBulkPublishDetails:completionHandler:]_block_invoke
+__block_descriptor_tmp.278
+.str.279
+_unnamed_cfstring_.280
+.str.281
+_unnamed_cfstring_.282
+OBJC_CLASSLIST_REFERENCES_$_.283
+__PRETTY_FUNCTION__.__53-[AWSCognitoSync getCognitoEvents:completionHandler:]_block_invoke
+__block_descriptor_tmp.288
+.str.289
+_unnamed_cfstring_.290
+.str.291
+_unnamed_cfstring_.292
+OBJC_CLASSLIST_REFERENCES_$_.293
+OBJC_METH_VAR_NAME_.294
+OBJC_SELECTOR_REFERENCES_.295
+__PRETTY_FUNCTION__.__65-[AWSCognitoSync getIdentityPoolConfiguration:completionHandler:]_block_invoke
+__block_descriptor_tmp.298
+.str.299
+_unnamed_cfstring_.300
+.str.301
+_unnamed_cfstring_.302
+OBJC_CLASSLIST_REFERENCES_$_.303
+__PRETTY_FUNCTION__.__49-[AWSCognitoSync listDatasets:completionHandler:]_block_invoke
+__block_descriptor_tmp.308
+.str.309
+_unnamed_cfstring_.310
+.str.311
+_unnamed_cfstring_.312
+OBJC_CLASSLIST_REFERENCES_$_.313
+OBJC_METH_VAR_NAME_.314
+OBJC_SELECTOR_REFERENCES_.315
+__PRETTY_FUNCTION__.__58-[AWSCognitoSync listIdentityPoolUsage:completionHandler:]_block_invoke
+__block_descriptor_tmp.318
+.str.319
+_unnamed_cfstring_.320
+.str.321
+_unnamed_cfstring_.322
+OBJC_CLASSLIST_REFERENCES_$_.323
+OBJC_METH_VAR_NAME_.324
+OBJC_SELECTOR_REFERENCES_.325
+__PRETTY_FUNCTION__.__48-[AWSCognitoSync listRecords:completionHandler:]_block_invoke
+__block_descriptor_tmp.328
+.str.329
+_unnamed_cfstring_.330
+.str.331
+_unnamed_cfstring_.332
+OBJC_CLASSLIST_REFERENCES_$_.333
+OBJC_METH_VAR_NAME_.334
+OBJC_SELECTOR_REFERENCES_.335
+__PRETTY_FUNCTION__.__51-[AWSCognitoSync registerDevice:completionHandler:]_block_invoke
+__block_descriptor_tmp.338
+.str.339
+_unnamed_cfstring_.340
+__PRETTY_FUNCTION__.__53-[AWSCognitoSync setCognitoEvents:completionHandler:]_block_invoke
+__block_descriptor_tmp.345
+.str.346
+_unnamed_cfstring_.347
+OBJC_CLASSLIST_REFERENCES_$_.348
+OBJC_METH_VAR_NAME_.349
+OBJC_SELECTOR_REFERENCES_.350
+__PRETTY_FUNCTION__.__65-[AWSCognitoSync setIdentityPoolConfiguration:completionHandler:]_block_invoke
+__block_descriptor_tmp.353
+.str.354
+_unnamed_cfstring_.355
+.str.356
+_unnamed_cfstring_.357
+OBJC_CLASSLIST_REFERENCES_$_.358
+__PRETTY_FUNCTION__.__55-[AWSCognitoSync subscribeToDataset:completionHandler:]_block_invoke
+__block_descriptor_tmp.363
+OBJC_CLASSLIST_REFERENCES_$_.366
+OBJC_METH_VAR_NAME_.367
+OBJC_SELECTOR_REFERENCES_.368
+__PRETTY_FUNCTION__.__59-[AWSCognitoSync unsubscribeFromDataset:completionHandler:]_block_invoke
+__block_descriptor_tmp.371
+.str.372
+_unnamed_cfstring_.373
+OBJC_CLASSLIST_REFERENCES_$_.374
+OBJC_METH_VAR_NAME_.375
+OBJC_SELECTOR_REFERENCES_.376
+__PRETTY_FUNCTION__.__50-[AWSCognitoSync updateRecords:completionHandler:]_block_invoke
+__block_descriptor_tmp.379
+OBJC_CLASS_NAME_.380
+OBJC_METH_VAR_NAME_.381
+OBJC_METH_VAR_TYPE_.382
+OBJC_METH_VAR_TYPE_.383
+OBJC_METH_VAR_NAME_.384
+OBJC_METH_VAR_TYPE_.385
+OBJC_METH_VAR_NAME_.386
+OBJC_METH_VAR_TYPE_.387
+l_OBJC_$_CLASS_METHODS_AWSCognitoSync
+l_OBJC_METACLASS_RO_$_AWSCognitoSync
+OBJC_CLASS_NAME_.388
+OBJC_METH_VAR_TYPE_.389
+OBJC_METH_VAR_NAME_.390
+OBJC_METH_VAR_TYPE_.391
+OBJC_METH_VAR_NAME_.392
+OBJC_METH_VAR_NAME_.393
+OBJC_METH_VAR_NAME_.394
+OBJC_METH_VAR_NAME_.396
+OBJC_METH_VAR_NAME_.398
+OBJC_METH_VAR_NAME_.399
+OBJC_METH_VAR_NAME_.401
+OBJC_METH_VAR_NAME_.402
+OBJC_METH_VAR_NAME_.403
+OBJC_METH_VAR_NAME_.405
+OBJC_METH_VAR_NAME_.406
+OBJC_METH_VAR_NAME_.407
+OBJC_METH_VAR_NAME_.409
+OBJC_METH_VAR_NAME_.410
+OBJC_METH_VAR_NAME_.411
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSync
+OBJC_METH_VAR_NAME_.412
+OBJC_METH_VAR_TYPE_.413
+OBJC_METH_VAR_NAME_.414
+OBJC_METH_VAR_TYPE_.415
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSync
+OBJC_PROP_NAME_ATTR_.416
+OBJC_PROP_NAME_ATTR_.417
+OBJC_PROP_NAME_ATTR_.418
+l_OBJC_$_PROP_LIST_AWSCognitoSync
+l_OBJC_CLASS_RO_$_AWSCognitoSync
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/include/dispatch/once.h
+-[AWSCognitoSync .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/CognitoSync/AWSCognitoSyncService.m
+-[AWSCognitoSync setNetworking:]
+-[AWSCognitoSync networking]
+-[AWSCognitoSync setConfiguration:]
+-[AWSCognitoSync configuration]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/CognitoSync/AWSCognitoSyncService.h
+-[AWSCognitoSync updateRecords:completionHandler:]
+-[AWSCognitoSync updateRecords:]
+-[AWSCognitoSync unsubscribeFromDataset:completionHandler:]
+-[AWSCognitoSync unsubscribeFromDataset:]
+-[AWSCognitoSync subscribeToDataset:completionHandler:]
+-[AWSCognitoSync subscribeToDataset:]
+-[AWSCognitoSync setIdentityPoolConfiguration:completionHandler:]
+-[AWSCognitoSync setIdentityPoolConfiguration:]
+-[AWSCognitoSync setCognitoEvents:completionHandler:]
+-[AWSCognitoSync setCognitoEvents:]
+-[AWSCognitoSync registerDevice:completionHandler:]
+-[AWSCognitoSync registerDevice:]
+-[AWSCognitoSync listRecords:completionHandler:]
+-[AWSCognitoSync listRecords:]
+-[AWSCognitoSync listIdentityPoolUsage:completionHandler:]
+-[AWSCognitoSync listIdentityPoolUsage:]
+-[AWSCognitoSync listDatasets:completionHandler:]
+-[AWSCognitoSync listDatasets:]
+-[AWSCognitoSync getIdentityPoolConfiguration:completionHandler:]
+-[AWSCognitoSync getIdentityPoolConfiguration:]
+-[AWSCognitoSync getCognitoEvents:completionHandler:]
+-[AWSCognitoSync getCognitoEvents:]
+-[AWSCognitoSync getBulkPublishDetails:completionHandler:]
+-[AWSCognitoSync getBulkPublishDetails:]
+-[AWSCognitoSync describeIdentityUsage:completionHandler:]
+-[AWSCognitoSync describeIdentityUsage:]
+-[AWSCognitoSync describeIdentityPoolUsage:completionHandler:]
+-[AWSCognitoSync describeIdentityPoolUsage:]
+-[AWSCognitoSync describeDataset:completionHandler:]
+-[AWSCognitoSync describeDataset:]
+-[AWSCognitoSync deleteDataset:completionHandler:]
+-[AWSCognitoSync deleteDataset:]
+-[AWSCognitoSync bulkPublish:completionHandler:]
+-[AWSCognitoSync bulkPublish:]
+-[AWSCognitoSync invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSCognitoSync initWithConfiguration:]
+-[AWSCognitoSync init]
++[AWSCognitoSync removeCognitoSyncForKey:]
++[AWSCognitoSync CognitoSyncForKey:]
++[AWSCognitoSync registerCognitoSyncWithConfiguration:forKey:]
++[AWSCognitoSync defaultCognitoSync]
+-[AWSCognitoSyncResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSCognitoSyncResponseSerializer initialize]
++[AWSCognito bundleIdentifier]
++[AWSCognito kitDisplayVersion]
++[AWSCognito initializeIfNeeded]
++[AWSCognito initialize]
++[AWSCognito defaultCognito]
+__28+[AWSCognito defaultCognito]_block_invoke
++[AWSCognito registerCognitoWithConfiguration:forKey:]
+__54+[AWSCognito registerCognitoWithConfiguration:forKey:]_block_invoke
++[AWSCognito CognitoForKey:]
++[AWSCognito removeCognitoForKey:]
+-[AWSCognito init]
+-[AWSCognito initWithConfiguration:]
+-[AWSCognito dealloc]
+-[AWSCognito openOrCreateDataset:]
+-[AWSCognito wipe]
+-[AWSCognito refreshDatasetMetadata]
+__36-[AWSCognito refreshDatasetMetadata]_block_invoke
+__36-[AWSCognito refreshDatasetMetadata]_block_invoke.181
+__copy_helper_block_.204
+__destroy_helper_block_.205
+-[AWSCognito listDatasets]
+-[AWSCognito setDeviceId:]
+-[AWSCognito identityChanged:]
+__30-[AWSCognito identityChanged:]_block_invoke
+__copy_helper_block_.219
+__destroy_helper_block_.220
++[AWSCognito cognitoDeviceId]
++[AWSCognito cognitoDeviceIdentity]
+-[AWSCognito registerDevice:]
+-[AWSCognito registerDeviceInternal:]
+__37-[AWSCognito registerDeviceInternal:]_block_invoke
+__37-[AWSCognito registerDeviceInternal:]_block_invoke_2
+__copy_helper_block_.254
+__destroy_helper_block_.255
+__copy_helper_block_.259
+__destroy_helper_block_.260
+__37-[AWSCognito registerDeviceInternal:]_block_invoke.262
++[AWSCognito setPushPlatform:]
++[AWSCognito pushPlatform]
+-[AWSCognito subscribe:]
+-[AWSCognito subscribeAll]
+-[AWSCognito unsubscribe:]
+-[AWSCognito unsubscribeAll]
++[AWSCognito defaultConflictHandler]
+__36+[AWSCognito defaultConflictHandler]_block_invoke
+-[AWSCognito configuration]
+-[AWSCognito conflictHandler]
+-[AWSCognito setConflictHandler:]
+-[AWSCognito datasetDeletedHandler]
+-[AWSCognito setDatasetDeletedHandler:]
+-[AWSCognito datasetMergedHandler]
+-[AWSCognito setDatasetMergedHandler:]
+-[AWSCognito deviceId]
+-[AWSCognito synchronizeRetries]
+-[AWSCognito setSynchronizeRetries:]
+-[AWSCognito synchronizeOnWiFiOnly]
+-[AWSCognito setSynchronizeOnWiFiOnly:]
+-[AWSCognito sqliteManager]
+-[AWSCognito setSqliteManager:]
+-[AWSCognito cognitoService]
+-[AWSCognito setCognitoService:]
+-[AWSCognito cognitoCredentialsProvider]
+-[AWSCognito setCognitoCredentialsProvider:]
+-[AWSCognito keychain]
+-[AWSCognito setKeychain:]
+-[AWSCognito .cxx_destruct]
+keychain
+OBJC_SELECTOR_REFERENCES_.22
+OBJC_SELECTOR_REFERENCES_.24
+OBJC_CLASSLIST_REFERENCES_$_.25
+OBJC_CLASSLIST_REFERENCES_$_.26
+.str.27
+_unnamed_cfstring_.28
+OBJC_SELECTOR_REFERENCES_.30
+OBJC_METH_VAR_NAME_.31
+OBJC_SELECTOR_REFERENCES_.32
+OBJC_CLASSLIST_REFERENCES_$_.33
+.str.34
+_unnamed_cfstring_.35
+OBJC_CLASSLIST_REFERENCES_$_.36
+OBJC_SELECTOR_REFERENCES_.38
+OBJC_CLASSLIST_REFERENCES_$_.41
+OBJC_METH_VAR_NAME_.42
+OBJC_SELECTOR_REFERENCES_.43
+OBJC_CLASSLIST_REFERENCES_$_.46
+OBJC_METH_VAR_NAME_.47
+OBJC_SELECTOR_REFERENCES_.48
+_pushPlatform
+defaultCognito._defaultCognito
+defaultCognito.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.49
+OBJC_SELECTOR_REFERENCES_.53
+OBJC_CLASSLIST_REFERENCES_$_.63
+.str.68
+_unnamed_cfstring_.69
+.str.75
+_unnamed_cfstring_.76
+OBJC_METH_VAR_NAME_.77
+OBJC_SELECTOR_REFERENCES_.78
+.str.79
+registerCognitoWithConfiguration:forKey:.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.80
+OBJC_METH_VAR_NAME_.81
+OBJC_SELECTOR_REFERENCES_.82
+__block_descriptor_tmp.83
+__block_literal_global.84
+.str.95
+_unnamed_cfstring_.96
+OBJC_CLASSLIST_SUP_REFS_$_.97
+OBJC_IVAR_$_AWSCognito._configuration
+OBJC_IVAR_$_AWSCognito._cognitoCredentialsProvider
+OBJC_IVAR_$_AWSCognito._deviceId
+OBJC_IVAR_$_AWSCognito._synchronizeRetries
+OBJC_IVAR_$_AWSCognito._synchronizeOnWiFiOnly
+OBJC_IVAR_$_AWSCognito._conflictHandler
+OBJC_CLASSLIST_REFERENCES_$_.108
+OBJC_IVAR_$_AWSCognito._sqliteManager
+OBJC_CLASSLIST_REFERENCES_$_.113
+OBJC_IVAR_$_AWSCognito._cognitoService
+OBJC_CLASSLIST_REFERENCES_$_.114
+OBJC_METH_VAR_NAME_.115
+OBJC_METH_VAR_NAME_.119
+OBJC_SELECTOR_REFERENCES_.120
+OBJC_METH_VAR_NAME_.134
+OBJC_SELECTOR_REFERENCES_.135
+OBJC_METH_VAR_NAME_.136
+OBJC_SELECTOR_REFERENCES_.137
+OBJC_METH_VAR_NAME_.138
+OBJC_SELECTOR_REFERENCES_.139
+OBJC_METH_VAR_NAME_.148
+OBJC_SELECTOR_REFERENCES_.149
+OBJC_METH_VAR_NAME_.150
+OBJC_SELECTOR_REFERENCES_.151
+OBJC_METH_VAR_NAME_.158
+OBJC_SELECTOR_REFERENCES_.159
+OBJC_CLASSLIST_REFERENCES_$_.162
+OBJC_METH_VAR_NAME_.169
+OBJC_SELECTOR_REFERENCES_.170
+OBJC_METH_VAR_NAME_.171
+OBJC_SELECTOR_REFERENCES_.172
+OBJC_METH_VAR_NAME_.173
+OBJC_SELECTOR_REFERENCES_.174
+OBJC_METH_VAR_NAME_.175
+OBJC_SELECTOR_REFERENCES_.176
+.str.177
+__block_descriptor_tmp.178
+OBJC_CLASSLIST_REFERENCES_$_.184
+OBJC_METH_VAR_NAME_.185
+OBJC_SELECTOR_REFERENCES_.186
+.str.187
+_unnamed_cfstring_.188
+.str.189
+OBJC_METH_VAR_NAME_.190
+OBJC_SELECTOR_REFERENCES_.191
+OBJC_METH_VAR_NAME_.192
+OBJC_SELECTOR_REFERENCES_.193
+__PRETTY_FUNCTION__.__36-[AWSCognito refreshDatasetMetadata]_block_invoke.181
+OBJC_METH_VAR_NAME_.194
+OBJC_SELECTOR_REFERENCES_.195
+OBJC_METH_VAR_NAME_.200
+OBJC_SELECTOR_REFERENCES_.201
+OBJC_METH_VAR_NAME_.202
+OBJC_SELECTOR_REFERENCES_.203
+__block_descriptor_tmp.206
+.str.211
+_unnamed_cfstring_.212
+__PRETTY_FUNCTION__.-[AWSCognito identityChanged:]
+__block_descriptor_tmp.221
+OBJC_METH_VAR_NAME_.222
+OBJC_SELECTOR_REFERENCES_.223
+OBJC_METH_VAR_NAME_.224
+OBJC_SELECTOR_REFERENCES_.225
+OBJC_CLASSLIST_REFERENCES_$_.230
+OBJC_METH_VAR_NAME_.231
+OBJC_SELECTOR_REFERENCES_.232
+OBJC_METH_VAR_NAME_.233
+OBJC_SELECTOR_REFERENCES_.234
+.str.235
+_unnamed_cfstring_.236
+OBJC_METH_VAR_NAME_.237
+OBJC_SELECTOR_REFERENCES_.238
+OBJC_METH_VAR_NAME_.239
+OBJC_SELECTOR_REFERENCES_.240
+OBJC_METH_VAR_NAME_.241
+OBJC_SELECTOR_REFERENCES_.242
+OBJC_METH_VAR_NAME_.246
+OBJC_SELECTOR_REFERENCES_.247
+OBJC_METH_VAR_NAME_.248
+OBJC_SELECTOR_REFERENCES_.249
+OBJC_METH_VAR_NAME_.250
+OBJC_SELECTOR_REFERENCES_.251
+OBJC_METH_VAR_NAME_.252
+OBJC_SELECTOR_REFERENCES_.253
+__block_descriptor_tmp.256
+OBJC_METH_VAR_NAME_.257
+OBJC_SELECTOR_REFERENCES_.258
+__block_descriptor_tmp.261
+.str.263
+_unnamed_cfstring_.264
+__PRETTY_FUNCTION__.__37-[AWSCognito registerDeviceInternal:]_block_invoke.262
+__block_descriptor_tmp.265
+__block_literal_global.266
+OBJC_CLASSLIST_REFERENCES_$_.267
+OBJC_METH_VAR_NAME_.276
+OBJC_SELECTOR_REFERENCES_.277
+OBJC_METH_VAR_NAME_.278
+OBJC_SELECTOR_REFERENCES_.279
+.str.288
+_unnamed_cfstring_.289
+__PRETTY_FUNCTION__.__36+[AWSCognito defaultConflictHandler]_block_invoke
+OBJC_METH_VAR_NAME_.290
+OBJC_SELECTOR_REFERENCES_.291
+OBJC_METH_VAR_NAME_.292
+OBJC_SELECTOR_REFERENCES_.293
+OBJC_METH_VAR_NAME_.296
+OBJC_SELECTOR_REFERENCES_.297
+OBJC_CLASSLIST_REFERENCES_$_.298
+OBJC_METH_VAR_NAME_.299
+OBJC_SELECTOR_REFERENCES_.300
+OBJC_METH_VAR_NAME_.301
+OBJC_SELECTOR_REFERENCES_.302
+.str.303
+__block_descriptor_tmp.304
+__block_literal_global.305
+OBJC_IVAR_$_AWSCognito._datasetDeletedHandler
+OBJC_IVAR_$_AWSCognito._datasetMergedHandler
+OBJC_IVAR_$_AWSCognito._keychain
+OBJC_METH_VAR_NAME_.307
+OBJC_METH_VAR_TYPE_.308
+OBJC_METH_VAR_NAME_.309
+OBJC_METH_VAR_TYPE_.310
+OBJC_METH_VAR_NAME_.311
+OBJC_METH_VAR_TYPE_.312
+OBJC_METH_VAR_NAME_.313
+OBJC_METH_VAR_TYPE_.314
+OBJC_METH_VAR_NAME_.315
+OBJC_METH_VAR_TYPE_.316
+OBJC_METH_VAR_TYPE_.317
+OBJC_METH_VAR_TYPE_.318
+l_OBJC_$_CLASS_METHODS_AWSCognito
+OBJC_METH_VAR_TYPE_.319
+OBJC_CLASS_NAME_.321
+OBJC_METH_VAR_TYPE_.323
+OBJC_METH_VAR_TYPE_.324
+OBJC_METH_VAR_NAME_.325
+OBJC_METH_VAR_NAME_.326
+OBJC_METH_VAR_TYPE_.327
+OBJC_METH_VAR_NAME_.328
+OBJC_METH_VAR_TYPE_.329
+OBJC_METH_VAR_NAME_.330
+OBJC_METH_VAR_TYPE_.331
+OBJC_METH_VAR_NAME_.332
+OBJC_METH_VAR_TYPE_.333
+OBJC_METH_VAR_TYPE_.334
+OBJC_METH_VAR_NAME_.336
+OBJC_METH_VAR_TYPE_.337
+OBJC_METH_VAR_NAME_.338
+OBJC_METH_VAR_TYPE_.339
+OBJC_METH_VAR_NAME_.340
+OBJC_METH_VAR_TYPE_.342
+OBJC_METH_VAR_NAME_.344
+OBJC_METH_VAR_TYPE_.345
+OBJC_METH_VAR_NAME_.346
+OBJC_METH_VAR_TYPE_.347
+OBJC_METH_VAR_NAME_.348
+OBJC_METH_VAR_NAME_.350
+OBJC_METH_VAR_NAME_.351
+OBJC_CLASS_NAME_.352
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_NSObject
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_OPT_NSObject
+OBJC_PROP_NAME_ATTR_.353
+OBJC_PROP_NAME_ATTR_.354
+OBJC_PROP_NAME_ATTR_.355
+OBJC_PROP_NAME_ATTR_.356
+OBJC_PROP_NAME_ATTR_.357
+OBJC_PROP_NAME_ATTR_.358
+l_OBJC_$_PROP_LIST_NSObject
+l_OBJC_$_PROTOCOL_METHOD_TYPES_NSObject
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_$_PROTOCOL_REFS_FABKit
+l_OBJC_$_PROTOCOL_CLASS_METHODS_FABKit
+l_OBJC_$_PROTOCOL_CLASS_METHODS_OPT_FABKit
+l_OBJC_$_PROTOCOL_METHOD_TYPES_FABKit
+l_OBJC_PROTOCOL_$_FABKit
+l_OBJC_LABEL_PROTOCOL_$_FABKit
+l_OBJC_CLASS_PROTOCOLS_$_AWSCognito
+l_OBJC_METACLASS_RO_$_AWSCognito
+OBJC_CLASS_NAME_.359
+OBJC_METH_VAR_NAME_.360
+OBJC_METH_VAR_NAME_.361
+OBJC_METH_VAR_NAME_.363
+OBJC_METH_VAR_NAME_.364
+OBJC_METH_VAR_NAME_.365
+OBJC_METH_VAR_TYPE_.366
+OBJC_METH_VAR_TYPE_.367
+OBJC_METH_VAR_TYPE_.368
+OBJC_METH_VAR_NAME_.370
+OBJC_METH_VAR_NAME_.371
+OBJC_METH_VAR_NAME_.373
+l_OBJC_$_INSTANCE_METHODS_AWSCognito
+OBJC_METH_VAR_NAME_.374
+OBJC_METH_VAR_TYPE_.375
+OBJC_METH_VAR_NAME_.376
+OBJC_METH_VAR_TYPE_.377
+OBJC_METH_VAR_NAME_.378
+OBJC_METH_VAR_TYPE_.379
+OBJC_METH_VAR_NAME_.380
+OBJC_METH_VAR_NAME_.388
+OBJC_METH_VAR_TYPE_.393
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognito
+OBJC_PROP_NAME_ATTR_.394
+OBJC_PROP_NAME_ATTR_.395
+OBJC_PROP_NAME_ATTR_.396
+OBJC_PROP_NAME_ATTR_.397
+OBJC_PROP_NAME_ATTR_.398
+OBJC_PROP_NAME_ATTR_.399
+OBJC_PROP_NAME_ATTR_.400
+OBJC_PROP_NAME_ATTR_.401
+OBJC_PROP_NAME_ATTR_.402
+OBJC_PROP_NAME_ATTR_.403
+OBJC_PROP_NAME_ATTR_.404
+OBJC_PROP_NAME_ATTR_.405
+OBJC_PROP_NAME_ATTR_.406
+OBJC_PROP_NAME_ATTR_.407
+OBJC_PROP_NAME_ATTR_.408
+OBJC_PROP_NAME_ATTR_.409
+OBJC_PROP_NAME_ATTR_.410
+OBJC_PROP_NAME_ATTR_.411
+OBJC_PROP_NAME_ATTR_.412
+OBJC_PROP_NAME_ATTR_.413
+OBJC_PROP_NAME_ATTR_.414
+OBJC_PROP_NAME_ATTR_.415
+l_OBJC_$_PROP_LIST_AWSCognito
+l_OBJC_CLASS_RO_$_AWSCognito
+-[AWSCognito .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoService.m
+-[AWSCognito setKeychain:]
+-[AWSCognito keychain]
+-[AWSCognito setCognitoCredentialsProvider:]
+-[AWSCognito cognitoCredentialsProvider]
+-[AWSCognito setCognitoService:]
+-[AWSCognito cognitoService]
+-[AWSCognito setSqliteManager:]
+-[AWSCognito sqliteManager]
+-[AWSCognito setSynchronizeOnWiFiOnly:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoService.h
+-[AWSCognito synchronizeOnWiFiOnly]
+-[AWSCognito setSynchronizeRetries:]
+-[AWSCognito synchronizeRetries]
+-[AWSCognito deviceId]
+-[AWSCognito setDatasetMergedHandler:]
+-[AWSCognito datasetMergedHandler]
+-[AWSCognito setDatasetDeletedHandler:]
+-[AWSCognito datasetDeletedHandler]
+-[AWSCognito setConflictHandler:]
+-[AWSCognito conflictHandler]
+-[AWSCognito configuration]
++[AWSCognito defaultConflictHandler]
+-[AWSCognito unsubscribeAll]
+-[AWSCognito unsubscribe:]
+-[AWSCognito subscribeAll]
+-[AWSCognito subscribe:]
++[AWSCognito pushPlatform]
++[AWSCognito setPushPlatform:]
+-[AWSCognito registerDeviceInternal:]
+-[AWSCognito registerDevice:]
++[AWSCognito cognitoDeviceIdentity]
++[AWSCognito cognitoDeviceId]
+-[AWSCognito identityChanged:]
+-[AWSCognito setDeviceId:]
+-[AWSCognito listDatasets]
+-[AWSCognito refreshDatasetMetadata]
+-[AWSCognito wipe]
+-[AWSCognito openOrCreateDataset:]
+-[AWSCognito dealloc]
+-[AWSCognito initWithConfiguration:]
+-[AWSCognito init]
++[AWSCognito removeCognitoForKey:]
++[AWSCognito CognitoForKey:]
++[AWSCognito registerCognitoWithConfiguration:forKey:]
++[AWSCognito defaultCognito]
++[AWSCognito initialize]
++[AWSCognito initializeIfNeeded]
++[AWSCognito kitDisplayVersion]
++[AWSCognito bundleIdentifier]
+.str.29
+_unnamed_cfstring_.30
+.str.31
+_unnamed_cfstring_.32
+.str.33
+_unnamed_cfstring_.34
+.str.39
+_unnamed_cfstring_.40
+.str.41
+_unnamed_cfstring_.42
+.str.45
+_unnamed_cfstring_.46
+.str.49
+_unnamed_cfstring_.50
+.str.51
+_unnamed_cfstring_.52
+.str.53
+_unnamed_cfstring_.54
+.str.55
+_unnamed_cfstring_.56
+.str.57
+_unnamed_cfstring_.58
+.str.59
+_unnamed_cfstring_.60
+.str.61
+_unnamed_cfstring_.62
+.str.63
+_unnamed_cfstring_.64
+.str.65
+_unnamed_cfstring_.66
+.str.67
+_unnamed_cfstring_.68
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoConstants.m
+-[AWSCognitoRecordTuple initWithLocalRecord:remoteRecord:]
+-[AWSCognitoRecordTuple localRecord]
+-[AWSCognitoRecordTuple remoteRecord]
+-[AWSCognitoRecordTuple .cxx_destruct]
+-[AWSCognitoConflict resolveWithLocalRecord]
+-[AWSCognitoConflict resolveWithRemoteRecord]
+-[AWSCognitoConflict resolveWithValue:]
+-[AWSCognitoResolvedConflict initWithRemoteRecord:]
+-[AWSCognitoResolvedConflict initWithLocalRecord:]
+-[AWSCognitoResolvedConflict initWithValue:newValue:]
++[AWSCognitoResolvedConflict resolvedConflictWithRemoteRecord:]
++[AWSCognitoResolvedConflict resolvedConflictWithLocalRecord:]
++[AWSCognitoResolvedConflict resolvedConflictWithValue:newValue:]
+-[AWSCognitoResolvedConflict resolvedConflict]
+-[AWSCognitoResolvedConflict conflict]
+-[AWSCognitoResolvedConflict .cxx_destruct]
+OBJC_IVAR_$_AWSCognitoRecordTuple._localRecord
+OBJC_IVAR_$_AWSCognitoRecordTuple._remoteRecord
+l_OBJC_METACLASS_RO_$_AWSCognitoRecordTuple
+OBJC_CLASS_NAME_.1
+OBJC_METH_VAR_NAME_.2
+OBJC_METH_VAR_TYPE_.4
+OBJC_METH_VAR_TYPE_.6
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoRecordTuple
+OBJC_METH_VAR_NAME_.8
+OBJC_METH_VAR_TYPE_.9
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoRecordTuple
+OBJC_PROP_NAME_ATTR_.11
+OBJC_PROP_NAME_ATTR_.12
+OBJC_PROP_NAME_ATTR_.13
+l_OBJC_$_PROP_LIST_AWSCognitoRecordTuple
+l_OBJC_CLASS_RO_$_AWSCognitoRecordTuple
+OBJC_METH_VAR_NAME_.14
+OBJC_SELECTOR_REFERENCES_.15
+OBJC_METH_VAR_NAME_.16
+OBJC_SELECTOR_REFERENCES_.17
+OBJC_CLASS_NAME_.20
+l_OBJC_METACLASS_RO_$_AWSCognitoConflict
+OBJC_METH_VAR_TYPE_.24
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoConflict
+l_OBJC_CLASS_RO_$_AWSCognitoConflict
+OBJC_CLASSLIST_SUP_REFS_$_.25
+OBJC_IVAR_$_AWSCognitoResolvedConflict._conflict
+OBJC_SELECTOR_REFERENCES_.26
+OBJC_IVAR_$_AWSCognitoResolvedConflict._resolvedConflict
+OBJC_METH_VAR_NAME_.43
+OBJC_SELECTOR_REFERENCES_.44
+OBJC_CLASS_NAME_.47
+l_OBJC_$_CLASS_METHODS_AWSCognitoResolvedConflict
+l_OBJC_METACLASS_RO_$_AWSCognitoResolvedConflict
+OBJC_CLASS_NAME_.48
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoResolvedConflict
+OBJC_METH_VAR_NAME_.51
+OBJC_METH_VAR_TYPE_.53
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoResolvedConflict
+OBJC_PROP_NAME_ATTR_.54
+OBJC_PROP_NAME_ATTR_.55
+OBJC_PROP_NAME_ATTR_.56
+OBJC_PROP_NAME_ATTR_.57
+l_OBJC_$_PROP_LIST_AWSCognitoResolvedConflict
+l_OBJC_CLASS_RO_$_AWSCognitoResolvedConflict
+-[AWSCognitoResolvedConflict .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoConflict.m
+-[AWSCognitoResolvedConflict conflict]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoConflict_Internal.h
+-[AWSCognitoResolvedConflict resolvedConflict]
++[AWSCognitoResolvedConflict resolvedConflictWithValue:newValue:]
++[AWSCognitoResolvedConflict resolvedConflictWithLocalRecord:]
++[AWSCognitoResolvedConflict resolvedConflictWithRemoteRecord:]
+-[AWSCognitoResolvedConflict initWithValue:newValue:]
+-[AWSCognitoResolvedConflict initWithLocalRecord:]
+-[AWSCognitoResolvedConflict initWithRemoteRecord:]
+-[AWSCognitoConflict resolveWithValue:]
+-[AWSCognitoConflict resolveWithRemoteRecord]
+-[AWSCognitoConflict resolveWithLocalRecord]
+-[AWSCognitoRecordTuple .cxx_destruct]
+-[AWSCognitoRecordTuple remoteRecord]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoConflict.h
+-[AWSCognitoRecordTuple localRecord]
+-[AWSCognitoRecordTuple initWithLocalRecord:remoteRecord:]
++[AWSCognitoSyncBulkPublishRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncBulkPublishRequest identityPoolId]
+-[AWSCognitoSyncBulkPublishRequest setIdentityPoolId:]
+-[AWSCognitoSyncBulkPublishRequest .cxx_destruct]
++[AWSCognitoSyncBulkPublishResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncBulkPublishResponse identityPoolId]
+-[AWSCognitoSyncBulkPublishResponse setIdentityPoolId:]
+-[AWSCognitoSyncBulkPublishResponse .cxx_destruct]
++[AWSCognitoSyncCognitoStreams JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncCognitoStreams streamingStatusJSONTransformer]
+__62+[AWSCognitoSyncCognitoStreams streamingStatusJSONTransformer]_block_invoke
+__62+[AWSCognitoSyncCognitoStreams streamingStatusJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncCognitoStreams roleArn]
+-[AWSCognitoSyncCognitoStreams setRoleArn:]
+-[AWSCognitoSyncCognitoStreams streamName]
+-[AWSCognitoSyncCognitoStreams setStreamName:]
+-[AWSCognitoSyncCognitoStreams streamingStatus]
+-[AWSCognitoSyncCognitoStreams setStreamingStatus:]
+-[AWSCognitoSyncCognitoStreams .cxx_destruct]
++[AWSCognitoSyncDataset JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncDataset creationDateJSONTransformer]
+__52+[AWSCognitoSyncDataset creationDateJSONTransformer]_block_invoke
+__52+[AWSCognitoSyncDataset creationDateJSONTransformer]_block_invoke_2
++[AWSCognitoSyncDataset lastModifiedDateJSONTransformer]
+__56+[AWSCognitoSyncDataset lastModifiedDateJSONTransformer]_block_invoke
+__56+[AWSCognitoSyncDataset lastModifiedDateJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncDataset creationDate]
+-[AWSCognitoSyncDataset setCreationDate:]
+-[AWSCognitoSyncDataset dataStorage]
+-[AWSCognitoSyncDataset setDataStorage:]
+-[AWSCognitoSyncDataset datasetName]
+-[AWSCognitoSyncDataset setDatasetName:]
+-[AWSCognitoSyncDataset identityId]
+-[AWSCognitoSyncDataset setIdentityId:]
+-[AWSCognitoSyncDataset lastModifiedBy]
+-[AWSCognitoSyncDataset setLastModifiedBy:]
+-[AWSCognitoSyncDataset lastModifiedDate]
+-[AWSCognitoSyncDataset setLastModifiedDate:]
+-[AWSCognitoSyncDataset numRecords]
+-[AWSCognitoSyncDataset setNumRecords:]
+-[AWSCognitoSyncDataset .cxx_destruct]
++[AWSCognitoSyncDeleteDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDeleteDatasetRequest datasetName]
+-[AWSCognitoSyncDeleteDatasetRequest setDatasetName:]
+-[AWSCognitoSyncDeleteDatasetRequest identityId]
+-[AWSCognitoSyncDeleteDatasetRequest setIdentityId:]
+-[AWSCognitoSyncDeleteDatasetRequest identityPoolId]
+-[AWSCognitoSyncDeleteDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncDeleteDatasetRequest .cxx_destruct]
++[AWSCognitoSyncDeleteDatasetResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncDeleteDatasetResponse datasetJSONTransformer]
+-[AWSCognitoSyncDeleteDatasetResponse dataset]
+-[AWSCognitoSyncDeleteDatasetResponse setDataset:]
+-[AWSCognitoSyncDeleteDatasetResponse .cxx_destruct]
++[AWSCognitoSyncDescribeDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeDatasetRequest datasetName]
+-[AWSCognitoSyncDescribeDatasetRequest setDatasetName:]
+-[AWSCognitoSyncDescribeDatasetRequest identityId]
+-[AWSCognitoSyncDescribeDatasetRequest setIdentityId:]
+-[AWSCognitoSyncDescribeDatasetRequest identityPoolId]
+-[AWSCognitoSyncDescribeDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeDatasetRequest .cxx_destruct]
++[AWSCognitoSyncDescribeDatasetResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncDescribeDatasetResponse datasetJSONTransformer]
+-[AWSCognitoSyncDescribeDatasetResponse dataset]
+-[AWSCognitoSyncDescribeDatasetResponse setDataset:]
+-[AWSCognitoSyncDescribeDatasetResponse .cxx_destruct]
++[AWSCognitoSyncDescribeIdentityPoolUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest identityPoolId]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest .cxx_destruct]
++[AWSCognitoSyncDescribeIdentityPoolUsageResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncDescribeIdentityPoolUsageResponse identityPoolUsageJSONTransformer]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse identityPoolUsage]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse setIdentityPoolUsage:]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse .cxx_destruct]
++[AWSCognitoSyncDescribeIdentityUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityUsageRequest identityId]
+-[AWSCognitoSyncDescribeIdentityUsageRequest setIdentityId:]
+-[AWSCognitoSyncDescribeIdentityUsageRequest identityPoolId]
+-[AWSCognitoSyncDescribeIdentityUsageRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeIdentityUsageRequest .cxx_destruct]
++[AWSCognitoSyncDescribeIdentityUsageResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncDescribeIdentityUsageResponse identityUsageJSONTransformer]
+-[AWSCognitoSyncDescribeIdentityUsageResponse identityUsage]
+-[AWSCognitoSyncDescribeIdentityUsageResponse setIdentityUsage:]
+-[AWSCognitoSyncDescribeIdentityUsageResponse .cxx_destruct]
++[AWSCognitoSyncGetBulkPublishDetailsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest identityPoolId]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest .cxx_destruct]
++[AWSCognitoSyncGetBulkPublishDetailsResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTimeJSONTransformer]
+__85+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTimeJSONTransformer]_block_invoke
+__85+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTimeJSONTransformer]_block_invoke_2
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTimeJSONTransformer]
+__82+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTimeJSONTransformer]_block_invoke
+__82+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTimeJSONTransformer]_block_invoke_2
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatusJSONTransformer]
+__79+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatusJSONTransformer]_block_invoke
+__79+[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatusJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTime]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishCompleteTime:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTime]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishStartTime:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatus]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishStatus:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse failureMessage]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setFailureMessage:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse identityPoolId]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setIdentityPoolId:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse .cxx_destruct]
++[AWSCognitoSyncGetCognitoEventsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetCognitoEventsRequest identityPoolId]
+-[AWSCognitoSyncGetCognitoEventsRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetCognitoEventsRequest .cxx_destruct]
++[AWSCognitoSyncGetCognitoEventsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetCognitoEventsResponse events]
+-[AWSCognitoSyncGetCognitoEventsResponse setEvents:]
+-[AWSCognitoSyncGetCognitoEventsResponse .cxx_destruct]
++[AWSCognitoSyncGetIdentityPoolConfigurationRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest identityPoolId]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest .cxx_destruct]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse cognitoStreamsJSONTransformer]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse pushSyncJSONTransformer]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse cognitoStreams]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setCognitoStreams:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse identityPoolId]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setIdentityPoolId:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse pushSync]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setPushSync:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse .cxx_destruct]
++[AWSCognitoSyncIdentityPoolUsage JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncIdentityPoolUsage lastModifiedDateJSONTransformer]
+__66+[AWSCognitoSyncIdentityPoolUsage lastModifiedDateJSONTransformer]_block_invoke
+__66+[AWSCognitoSyncIdentityPoolUsage lastModifiedDateJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncIdentityPoolUsage dataStorage]
+-[AWSCognitoSyncIdentityPoolUsage setDataStorage:]
+-[AWSCognitoSyncIdentityPoolUsage identityPoolId]
+-[AWSCognitoSyncIdentityPoolUsage setIdentityPoolId:]
+-[AWSCognitoSyncIdentityPoolUsage lastModifiedDate]
+-[AWSCognitoSyncIdentityPoolUsage setLastModifiedDate:]
+-[AWSCognitoSyncIdentityPoolUsage syncSessionsCount]
+-[AWSCognitoSyncIdentityPoolUsage setSyncSessionsCount:]
+-[AWSCognitoSyncIdentityPoolUsage .cxx_destruct]
++[AWSCognitoSyncIdentityUsage JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncIdentityUsage lastModifiedDateJSONTransformer]
+__62+[AWSCognitoSyncIdentityUsage lastModifiedDateJSONTransformer]_block_invoke
+__62+[AWSCognitoSyncIdentityUsage lastModifiedDateJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncIdentityUsage dataStorage]
+-[AWSCognitoSyncIdentityUsage setDataStorage:]
+-[AWSCognitoSyncIdentityUsage datasetCount]
+-[AWSCognitoSyncIdentityUsage setDatasetCount:]
+-[AWSCognitoSyncIdentityUsage identityId]
+-[AWSCognitoSyncIdentityUsage setIdentityId:]
+-[AWSCognitoSyncIdentityUsage identityPoolId]
+-[AWSCognitoSyncIdentityUsage setIdentityPoolId:]
+-[AWSCognitoSyncIdentityUsage lastModifiedDate]
+-[AWSCognitoSyncIdentityUsage setLastModifiedDate:]
+-[AWSCognitoSyncIdentityUsage .cxx_destruct]
++[AWSCognitoSyncListDatasetsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListDatasetsRequest identityId]
+-[AWSCognitoSyncListDatasetsRequest setIdentityId:]
+-[AWSCognitoSyncListDatasetsRequest identityPoolId]
+-[AWSCognitoSyncListDatasetsRequest setIdentityPoolId:]
+-[AWSCognitoSyncListDatasetsRequest maxResults]
+-[AWSCognitoSyncListDatasetsRequest setMaxResults:]
+-[AWSCognitoSyncListDatasetsRequest nextToken]
+-[AWSCognitoSyncListDatasetsRequest setNextToken:]
+-[AWSCognitoSyncListDatasetsRequest .cxx_destruct]
++[AWSCognitoSyncListDatasetsResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncListDatasetsResponse datasetsJSONTransformer]
+-[AWSCognitoSyncListDatasetsResponse count]
+-[AWSCognitoSyncListDatasetsResponse setCount:]
+-[AWSCognitoSyncListDatasetsResponse datasets]
+-[AWSCognitoSyncListDatasetsResponse setDatasets:]
+-[AWSCognitoSyncListDatasetsResponse nextToken]
+-[AWSCognitoSyncListDatasetsResponse setNextToken:]
+-[AWSCognitoSyncListDatasetsResponse .cxx_destruct]
++[AWSCognitoSyncListIdentityPoolUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListIdentityPoolUsageRequest maxResults]
+-[AWSCognitoSyncListIdentityPoolUsageRequest setMaxResults:]
+-[AWSCognitoSyncListIdentityPoolUsageRequest nextToken]
+-[AWSCognitoSyncListIdentityPoolUsageRequest setNextToken:]
+-[AWSCognitoSyncListIdentityPoolUsageRequest .cxx_destruct]
++[AWSCognitoSyncListIdentityPoolUsageResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncListIdentityPoolUsageResponse identityPoolUsagesJSONTransformer]
+-[AWSCognitoSyncListIdentityPoolUsageResponse count]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setCount:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse identityPoolUsages]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setIdentityPoolUsages:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse maxResults]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setMaxResults:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse nextToken]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setNextToken:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse .cxx_destruct]
++[AWSCognitoSyncListRecordsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListRecordsRequest datasetName]
+-[AWSCognitoSyncListRecordsRequest setDatasetName:]
+-[AWSCognitoSyncListRecordsRequest identityId]
+-[AWSCognitoSyncListRecordsRequest setIdentityId:]
+-[AWSCognitoSyncListRecordsRequest identityPoolId]
+-[AWSCognitoSyncListRecordsRequest setIdentityPoolId:]
+-[AWSCognitoSyncListRecordsRequest lastSyncCount]
+-[AWSCognitoSyncListRecordsRequest setLastSyncCount:]
+-[AWSCognitoSyncListRecordsRequest maxResults]
+-[AWSCognitoSyncListRecordsRequest setMaxResults:]
+-[AWSCognitoSyncListRecordsRequest nextToken]
+-[AWSCognitoSyncListRecordsRequest setNextToken:]
+-[AWSCognitoSyncListRecordsRequest syncSessionToken]
+-[AWSCognitoSyncListRecordsRequest setSyncSessionToken:]
+-[AWSCognitoSyncListRecordsRequest .cxx_destruct]
++[AWSCognitoSyncListRecordsResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncListRecordsResponse recordsJSONTransformer]
+-[AWSCognitoSyncListRecordsResponse count]
+-[AWSCognitoSyncListRecordsResponse setCount:]
+-[AWSCognitoSyncListRecordsResponse datasetDeletedAfterRequestedSyncCount]
+-[AWSCognitoSyncListRecordsResponse setDatasetDeletedAfterRequestedSyncCount:]
+-[AWSCognitoSyncListRecordsResponse datasetExists]
+-[AWSCognitoSyncListRecordsResponse setDatasetExists:]
+-[AWSCognitoSyncListRecordsResponse datasetSyncCount]
+-[AWSCognitoSyncListRecordsResponse setDatasetSyncCount:]
+-[AWSCognitoSyncListRecordsResponse lastModifiedBy]
+-[AWSCognitoSyncListRecordsResponse setLastModifiedBy:]
+-[AWSCognitoSyncListRecordsResponse mergedDatasetNames]
+-[AWSCognitoSyncListRecordsResponse setMergedDatasetNames:]
+-[AWSCognitoSyncListRecordsResponse nextToken]
+-[AWSCognitoSyncListRecordsResponse setNextToken:]
+-[AWSCognitoSyncListRecordsResponse records]
+-[AWSCognitoSyncListRecordsResponse setRecords:]
+-[AWSCognitoSyncListRecordsResponse syncSessionToken]
+-[AWSCognitoSyncListRecordsResponse setSyncSessionToken:]
+-[AWSCognitoSyncListRecordsResponse .cxx_destruct]
++[AWSCognitoSyncPushSync JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncPushSync applicationArns]
+-[AWSCognitoSyncPushSync setApplicationArns:]
+-[AWSCognitoSyncPushSync roleArn]
+-[AWSCognitoSyncPushSync setRoleArn:]
+-[AWSCognitoSyncPushSync .cxx_destruct]
++[AWSCognitoSyncRecord JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncRecord deviceLastModifiedDateJSONTransformer]
+__61+[AWSCognitoSyncRecord deviceLastModifiedDateJSONTransformer]_block_invoke
+__61+[AWSCognitoSyncRecord deviceLastModifiedDateJSONTransformer]_block_invoke_2
++[AWSCognitoSyncRecord lastModifiedDateJSONTransformer]
+__55+[AWSCognitoSyncRecord lastModifiedDateJSONTransformer]_block_invoke
+__55+[AWSCognitoSyncRecord lastModifiedDateJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncRecord deviceLastModifiedDate]
+-[AWSCognitoSyncRecord setDeviceLastModifiedDate:]
+-[AWSCognitoSyncRecord key]
+-[AWSCognitoSyncRecord setKey:]
+-[AWSCognitoSyncRecord lastModifiedBy]
+-[AWSCognitoSyncRecord setLastModifiedBy:]
+-[AWSCognitoSyncRecord lastModifiedDate]
+-[AWSCognitoSyncRecord setLastModifiedDate:]
+-[AWSCognitoSyncRecord syncCount]
+-[AWSCognitoSyncRecord setSyncCount:]
+-[AWSCognitoSyncRecord value]
+-[AWSCognitoSyncRecord setValue:]
+-[AWSCognitoSyncRecord .cxx_destruct]
++[AWSCognitoSyncRecordPatch JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncRecordPatch deviceLastModifiedDateJSONTransformer]
+__66+[AWSCognitoSyncRecordPatch deviceLastModifiedDateJSONTransformer]_block_invoke
+__66+[AWSCognitoSyncRecordPatch deviceLastModifiedDateJSONTransformer]_block_invoke_2
++[AWSCognitoSyncRecordPatch opJSONTransformer]
+__46+[AWSCognitoSyncRecordPatch opJSONTransformer]_block_invoke
+__46+[AWSCognitoSyncRecordPatch opJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncRecordPatch deviceLastModifiedDate]
+-[AWSCognitoSyncRecordPatch setDeviceLastModifiedDate:]
+-[AWSCognitoSyncRecordPatch key]
+-[AWSCognitoSyncRecordPatch setKey:]
+-[AWSCognitoSyncRecordPatch op]
+-[AWSCognitoSyncRecordPatch setOp:]
+-[AWSCognitoSyncRecordPatch syncCount]
+-[AWSCognitoSyncRecordPatch setSyncCount:]
+-[AWSCognitoSyncRecordPatch value]
+-[AWSCognitoSyncRecordPatch setValue:]
+-[AWSCognitoSyncRecordPatch .cxx_destruct]
++[AWSCognitoSyncRegisterDeviceRequest JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncRegisterDeviceRequest platformJSONTransformer]
+__62+[AWSCognitoSyncRegisterDeviceRequest platformJSONTransformer]_block_invoke
+__62+[AWSCognitoSyncRegisterDeviceRequest platformJSONTransformer]_block_invoke_2
+-[AWSCognitoSyncRegisterDeviceRequest identityId]
+-[AWSCognitoSyncRegisterDeviceRequest setIdentityId:]
+-[AWSCognitoSyncRegisterDeviceRequest identityPoolId]
+-[AWSCognitoSyncRegisterDeviceRequest setIdentityPoolId:]
+-[AWSCognitoSyncRegisterDeviceRequest platform]
+-[AWSCognitoSyncRegisterDeviceRequest setPlatform:]
+-[AWSCognitoSyncRegisterDeviceRequest token]
+-[AWSCognitoSyncRegisterDeviceRequest setToken:]
+-[AWSCognitoSyncRegisterDeviceRequest .cxx_destruct]
++[AWSCognitoSyncRegisterDeviceResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncRegisterDeviceResponse deviceId]
+-[AWSCognitoSyncRegisterDeviceResponse setDeviceId:]
+-[AWSCognitoSyncRegisterDeviceResponse .cxx_destruct]
++[AWSCognitoSyncSetCognitoEventsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSetCognitoEventsRequest events]
+-[AWSCognitoSyncSetCognitoEventsRequest setEvents:]
+-[AWSCognitoSyncSetCognitoEventsRequest identityPoolId]
+-[AWSCognitoSyncSetCognitoEventsRequest setIdentityPoolId:]
+-[AWSCognitoSyncSetCognitoEventsRequest .cxx_destruct]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest cognitoStreamsJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest pushSyncJSONTransformer]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest cognitoStreams]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setCognitoStreams:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest identityPoolId]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setIdentityPoolId:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest pushSync]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setPushSync:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest .cxx_destruct]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse cognitoStreamsJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse pushSyncJSONTransformer]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse cognitoStreams]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setCognitoStreams:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse identityPoolId]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setIdentityPoolId:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse pushSync]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setPushSync:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse .cxx_destruct]
++[AWSCognitoSyncSubscribeToDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSubscribeToDatasetRequest datasetName]
+-[AWSCognitoSyncSubscribeToDatasetRequest setDatasetName:]
+-[AWSCognitoSyncSubscribeToDatasetRequest deviceId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setDeviceId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest identityId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setIdentityId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest identityPoolId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest .cxx_destruct]
++[AWSCognitoSyncUnsubscribeFromDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest datasetName]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setDatasetName:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest deviceId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setDeviceId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest identityId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setIdentityId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest identityPoolId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest .cxx_destruct]
++[AWSCognitoSyncUpdateRecordsRequest JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncUpdateRecordsRequest recordPatchesJSONTransformer]
+-[AWSCognitoSyncUpdateRecordsRequest clientContext]
+-[AWSCognitoSyncUpdateRecordsRequest setClientContext:]
+-[AWSCognitoSyncUpdateRecordsRequest datasetName]
+-[AWSCognitoSyncUpdateRecordsRequest setDatasetName:]
+-[AWSCognitoSyncUpdateRecordsRequest deviceId]
+-[AWSCognitoSyncUpdateRecordsRequest setDeviceId:]
+-[AWSCognitoSyncUpdateRecordsRequest identityId]
+-[AWSCognitoSyncUpdateRecordsRequest setIdentityId:]
+-[AWSCognitoSyncUpdateRecordsRequest identityPoolId]
+-[AWSCognitoSyncUpdateRecordsRequest setIdentityPoolId:]
+-[AWSCognitoSyncUpdateRecordsRequest recordPatches]
+-[AWSCognitoSyncUpdateRecordsRequest setRecordPatches:]
+-[AWSCognitoSyncUpdateRecordsRequest syncSessionToken]
+-[AWSCognitoSyncUpdateRecordsRequest setSyncSessionToken:]
+-[AWSCognitoSyncUpdateRecordsRequest .cxx_destruct]
++[AWSCognitoSyncUpdateRecordsResponse JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncUpdateRecordsResponse recordsJSONTransformer]
+-[AWSCognitoSyncUpdateRecordsResponse records]
+-[AWSCognitoSyncUpdateRecordsResponse setRecords:]
+-[AWSCognitoSyncUpdateRecordsResponse .cxx_destruct]
+OBJC_IVAR_$_AWSCognitoSyncBulkPublishRequest._identityPoolId
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncBulkPublishRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncBulkPublishRequest
+OBJC_CLASS_NAME_.6
+OBJC_METH_VAR_TYPE_.8
+OBJC_METH_VAR_TYPE_.11
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncBulkPublishRequest
+OBJC_METH_VAR_NAME_.12
+OBJC_METH_VAR_TYPE_.13
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncBulkPublishRequest
+OBJC_PROP_NAME_ATTR_.14
+l_OBJC_$_PROP_LIST_AWSCognitoSyncBulkPublishRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncBulkPublishRequest
+OBJC_IVAR_$_AWSCognitoSyncBulkPublishResponse._identityPoolId
+OBJC_CLASS_NAME_.15
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncBulkPublishResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncBulkPublishResponse
+OBJC_CLASS_NAME_.16
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncBulkPublishResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncBulkPublishResponse
+l_OBJC_$_PROP_LIST_AWSCognitoSyncBulkPublishResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncBulkPublishResponse
+.str.30
+_unnamed_cfstring_.31
+OBJC_CLASSLIST_REFERENCES_$_.34
+OBJC_METH_VAR_NAME_.35
+OBJC_SELECTOR_REFERENCES_.36
+__block_descriptor_tmp.43
+__block_literal_global.44
+OBJC_IVAR_$_AWSCognitoSyncCognitoStreams._roleArn
+OBJC_IVAR_$_AWSCognitoSyncCognitoStreams._streamName
+OBJC_IVAR_$_AWSCognitoSyncCognitoStreams._streamingStatus
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncCognitoStreams
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncCognitoStreams
+OBJC_CLASS_NAME_.49
+OBJC_METH_VAR_TYPE_.57
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncCognitoStreams
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncCognitoStreams
+OBJC_PROP_NAME_ATTR_.62
+OBJC_PROP_NAME_ATTR_.63
+OBJC_PROP_NAME_ATTR_.64
+OBJC_PROP_NAME_ATTR_.65
+OBJC_PROP_NAME_ATTR_.66
+OBJC_PROP_NAME_ATTR_.67
+l_OBJC_$_PROP_LIST_AWSCognitoSyncCognitoStreams
+l_OBJC_CLASS_RO_$_AWSCognitoSyncCognitoStreams
+.str.70
+_unnamed_cfstring_.71
+.str.72
+_unnamed_cfstring_.73
+.str.74
+_unnamed_cfstring_.75
+.str.76
+_unnamed_cfstring_.77
+.str.78
+_unnamed_cfstring_.79
+.str.80
+_unnamed_cfstring_.81
+_unnamed_cfstring_.83
+.str.84
+_unnamed_cfstring_.85
+.str.86
+_unnamed_cfstring_.87
+.str.88
+_unnamed_cfstring_.89
+.str.90
+_unnamed_cfstring_.91
+.str.94
+_unnamed_cfstring_.95
+OBJC_METH_VAR_NAME_.99
+OBJC_SELECTOR_REFERENCES_.100
+.str.101
+__block_descriptor_tmp.102
+__block_literal_global.103
+OBJC_CLASSLIST_REFERENCES_$_.104
+.str.105
+_unnamed_cfstring_.106
+.str.111
+__block_descriptor_tmp.112
+__block_literal_global.113
+__block_descriptor_tmp.114
+__block_literal_global.115
+__block_descriptor_tmp.116
+__block_literal_global.117
+OBJC_IVAR_$_AWSCognitoSyncDataset._creationDate
+OBJC_IVAR_$_AWSCognitoSyncDataset._dataStorage
+OBJC_IVAR_$_AWSCognitoSyncDataset._datasetName
+OBJC_IVAR_$_AWSCognitoSyncDataset._identityId
+OBJC_IVAR_$_AWSCognitoSyncDataset._lastModifiedBy
+OBJC_IVAR_$_AWSCognitoSyncDataset._lastModifiedDate
+OBJC_IVAR_$_AWSCognitoSyncDataset._numRecords
+OBJC_CLASS_NAME_.118
+OBJC_METH_VAR_NAME_.120
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDataset
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDataset
+OBJC_CLASS_NAME_.121
+OBJC_METH_VAR_NAME_.122
+OBJC_METH_VAR_NAME_.124
+OBJC_METH_VAR_NAME_.126
+OBJC_METH_VAR_NAME_.127
+OBJC_METH_VAR_NAME_.129
+OBJC_METH_VAR_NAME_.131
+OBJC_METH_VAR_NAME_.133
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDataset
+OBJC_METH_VAR_TYPE_.137
+OBJC_METH_VAR_TYPE_.139
+OBJC_METH_VAR_NAME_.141
+OBJC_METH_VAR_NAME_.143
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDataset
+OBJC_PROP_NAME_ATTR_.145
+OBJC_PROP_NAME_ATTR_.146
+OBJC_PROP_NAME_ATTR_.147
+OBJC_PROP_NAME_ATTR_.148
+OBJC_PROP_NAME_ATTR_.149
+OBJC_PROP_NAME_ATTR_.150
+OBJC_PROP_NAME_ATTR_.151
+OBJC_PROP_NAME_ATTR_.152
+OBJC_PROP_NAME_ATTR_.153
+OBJC_PROP_NAME_ATTR_.154
+OBJC_PROP_NAME_ATTR_.155
+OBJC_PROP_NAME_ATTR_.156
+OBJC_PROP_NAME_ATTR_.157
+OBJC_PROP_NAME_ATTR_.158
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDataset
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDataset
+OBJC_IVAR_$_AWSCognitoSyncDeleteDatasetRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncDeleteDatasetRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncDeleteDatasetRequest._identityPoolId
+OBJC_CLASS_NAME_.159
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDeleteDatasetRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDeleteDatasetRequest
+OBJC_CLASS_NAME_.160
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDeleteDatasetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDeleteDatasetRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDeleteDatasetRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDeleteDatasetRequest
+.str.161
+_unnamed_cfstring_.162
+.str.163
+_unnamed_cfstring_.164
+OBJC_CLASSLIST_REFERENCES_$_.165
+OBJC_CLASSLIST_REFERENCES_$_.166
+OBJC_METH_VAR_NAME_.167
+OBJC_SELECTOR_REFERENCES_.168
+OBJC_IVAR_$_AWSCognitoSyncDeleteDatasetResponse._dataset
+OBJC_CLASS_NAME_.171
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDeleteDatasetResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDeleteDatasetResponse
+OBJC_CLASS_NAME_.173
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDeleteDatasetResponse
+OBJC_METH_VAR_TYPE_.177
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDeleteDatasetResponse
+OBJC_PROP_NAME_ATTR_.178
+OBJC_PROP_NAME_ATTR_.179
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDeleteDatasetResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDeleteDatasetResponse
+OBJC_IVAR_$_AWSCognitoSyncDescribeDatasetRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncDescribeDatasetRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncDescribeDatasetRequest._identityPoolId
+OBJC_CLASS_NAME_.180
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeDatasetRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeDatasetRequest
+OBJC_CLASS_NAME_.181
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeDatasetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeDatasetRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeDatasetRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeDatasetRequest
+OBJC_IVAR_$_AWSCognitoSyncDescribeDatasetResponse._dataset
+OBJC_CLASS_NAME_.182
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeDatasetResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeDatasetResponse
+OBJC_CLASS_NAME_.183
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeDatasetResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeDatasetResponse
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeDatasetResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeDatasetResponse
+OBJC_IVAR_$_AWSCognitoSyncDescribeIdentityPoolUsageRequest._identityPoolId
+OBJC_CLASS_NAME_.184
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+OBJC_CLASS_NAME_.185
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeIdentityPoolUsageRequest
+.str.186
+_unnamed_cfstring_.187
+.str.188
+_unnamed_cfstring_.189
+OBJC_IVAR_$_AWSCognitoSyncDescribeIdentityPoolUsageResponse._identityPoolUsage
+OBJC_CLASS_NAME_.191
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+OBJC_CLASS_NAME_.193
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+OBJC_METH_VAR_TYPE_.197
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+OBJC_PROP_NAME_ATTR_.198
+OBJC_PROP_NAME_ATTR_.199
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeIdentityPoolUsageResponse
+OBJC_IVAR_$_AWSCognitoSyncDescribeIdentityUsageRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncDescribeIdentityUsageRequest._identityPoolId
+OBJC_CLASS_NAME_.200
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeIdentityUsageRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeIdentityUsageRequest
+OBJC_CLASS_NAME_.201
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeIdentityUsageRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeIdentityUsageRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeIdentityUsageRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeIdentityUsageRequest
+.str.202
+_unnamed_cfstring_.203
+.str.204
+_unnamed_cfstring_.205
+OBJC_CLASSLIST_REFERENCES_$_.206
+OBJC_IVAR_$_AWSCognitoSyncDescribeIdentityUsageResponse._identityUsage
+OBJC_CLASS_NAME_.207
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncDescribeIdentityUsageResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncDescribeIdentityUsageResponse
+OBJC_CLASS_NAME_.209
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncDescribeIdentityUsageResponse
+OBJC_METH_VAR_TYPE_.213
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncDescribeIdentityUsageResponse
+OBJC_PROP_NAME_ATTR_.214
+OBJC_PROP_NAME_ATTR_.215
+l_OBJC_$_PROP_LIST_AWSCognitoSyncDescribeIdentityUsageResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncDescribeIdentityUsageResponse
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsRequest._identityPoolId
+OBJC_CLASS_NAME_.216
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetBulkPublishDetailsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetBulkPublishDetailsRequest
+OBJC_CLASS_NAME_.217
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetBulkPublishDetailsRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetBulkPublishDetailsRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetBulkPublishDetailsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetBulkPublishDetailsRequest
+.str.218
+_unnamed_cfstring_.219
+_unnamed_cfstring_.221
+.str.222
+_unnamed_cfstring_.223
+.str.224
+_unnamed_cfstring_.225
+.str.226
+_unnamed_cfstring_.227
+.str.228
+_unnamed_cfstring_.229
+.str.230
+_unnamed_cfstring_.231
+.str.232
+_unnamed_cfstring_.233
+__block_descriptor_tmp.234
+__block_literal_global.235
+__block_descriptor_tmp.236
+__block_literal_global.237
+__block_descriptor_tmp.238
+__block_literal_global.239
+__block_literal_global.241
+.str.242
+_unnamed_cfstring_.243
+.str.244
+_unnamed_cfstring_.245
+.str.246
+_unnamed_cfstring_.247
+.str.248
+_unnamed_cfstring_.249
+__block_descriptor_tmp.250
+__block_literal_global.251
+__block_descriptor_tmp.252
+__block_literal_global.253
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsResponse._bulkPublishCompleteTime
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsResponse._bulkPublishStartTime
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsResponse._bulkPublishStatus
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsResponse._failureMessage
+OBJC_IVAR_$_AWSCognitoSyncGetBulkPublishDetailsResponse._identityPoolId
+OBJC_CLASS_NAME_.254
+OBJC_METH_VAR_NAME_.255
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetBulkPublishDetailsResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetBulkPublishDetailsResponse
+OBJC_CLASS_NAME_.258
+OBJC_METH_VAR_NAME_.259
+OBJC_METH_VAR_NAME_.260
+OBJC_METH_VAR_NAME_.262
+OBJC_METH_VAR_NAME_.265
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetBulkPublishDetailsResponse
+OBJC_METH_VAR_NAME_.267
+OBJC_METH_VAR_NAME_.269
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetBulkPublishDetailsResponse
+OBJC_PROP_NAME_ATTR_.271
+OBJC_PROP_NAME_ATTR_.272
+OBJC_PROP_NAME_ATTR_.273
+OBJC_PROP_NAME_ATTR_.274
+OBJC_PROP_NAME_ATTR_.275
+OBJC_PROP_NAME_ATTR_.276
+OBJC_PROP_NAME_ATTR_.277
+OBJC_PROP_NAME_ATTR_.278
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetBulkPublishDetailsResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetBulkPublishDetailsResponse
+OBJC_IVAR_$_AWSCognitoSyncGetCognitoEventsRequest._identityPoolId
+OBJC_CLASS_NAME_.279
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetCognitoEventsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetCognitoEventsRequest
+OBJC_CLASS_NAME_.280
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetCognitoEventsRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetCognitoEventsRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetCognitoEventsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetCognitoEventsRequest
+.str.283
+_unnamed_cfstring_.284
+OBJC_IVAR_$_AWSCognitoSyncGetCognitoEventsResponse._events
+OBJC_CLASS_NAME_.285
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetCognitoEventsResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetCognitoEventsResponse
+OBJC_CLASS_NAME_.286
+OBJC_METH_VAR_NAME_.287
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetCognitoEventsResponse
+OBJC_METH_VAR_NAME_.289
+OBJC_METH_VAR_TYPE_.290
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetCognitoEventsResponse
+OBJC_PROP_NAME_ATTR_.291
+OBJC_PROP_NAME_ATTR_.292
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetCognitoEventsResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetCognitoEventsResponse
+OBJC_IVAR_$_AWSCognitoSyncGetIdentityPoolConfigurationRequest._identityPoolId
+OBJC_CLASS_NAME_.293
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+OBJC_CLASS_NAME_.294
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetIdentityPoolConfigurationRequest
+.str.295
+_unnamed_cfstring_.296
+.str.297
+_unnamed_cfstring_.298
+OBJC_CLASSLIST_REFERENCES_$_.304
+OBJC_IVAR_$_AWSCognitoSyncGetIdentityPoolConfigurationResponse._cognitoStreams
+OBJC_IVAR_$_AWSCognitoSyncGetIdentityPoolConfigurationResponse._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncGetIdentityPoolConfigurationResponse._pushSync
+OBJC_CLASS_NAME_.305
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+OBJC_CLASS_NAME_.308
+OBJC_METH_VAR_NAME_.310
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+OBJC_PROP_NAME_ATTR_.317
+OBJC_PROP_NAME_ATTR_.318
+OBJC_PROP_NAME_ATTR_.319
+OBJC_PROP_NAME_ATTR_.320
+l_OBJC_$_PROP_LIST_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncGetIdentityPoolConfigurationResponse
+.str.323
+_unnamed_cfstring_.324
+__block_descriptor_tmp.325
+__block_literal_global.326
+__block_descriptor_tmp.327
+__block_literal_global.328
+OBJC_IVAR_$_AWSCognitoSyncIdentityPoolUsage._dataStorage
+OBJC_IVAR_$_AWSCognitoSyncIdentityPoolUsage._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncIdentityPoolUsage._lastModifiedDate
+OBJC_IVAR_$_AWSCognitoSyncIdentityPoolUsage._syncSessionsCount
+OBJC_CLASS_NAME_.329
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncIdentityPoolUsage
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncIdentityPoolUsage
+OBJC_CLASS_NAME_.330
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncIdentityPoolUsage
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncIdentityPoolUsage
+OBJC_PROP_NAME_ATTR_.334
+OBJC_PROP_NAME_ATTR_.335
+l_OBJC_$_PROP_LIST_AWSCognitoSyncIdentityPoolUsage
+l_OBJC_CLASS_RO_$_AWSCognitoSyncIdentityPoolUsage
+.str.336
+_unnamed_cfstring_.337
+.str.338
+_unnamed_cfstring_.339
+__block_descriptor_tmp.340
+__block_literal_global.341
+__block_descriptor_tmp.342
+__block_literal_global.343
+OBJC_IVAR_$_AWSCognitoSyncIdentityUsage._dataStorage
+OBJC_IVAR_$_AWSCognitoSyncIdentityUsage._datasetCount
+OBJC_IVAR_$_AWSCognitoSyncIdentityUsage._identityId
+OBJC_IVAR_$_AWSCognitoSyncIdentityUsage._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncIdentityUsage._lastModifiedDate
+OBJC_CLASS_NAME_.344
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncIdentityUsage
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncIdentityUsage
+OBJC_CLASS_NAME_.345
+OBJC_METH_VAR_NAME_.347
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncIdentityUsage
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncIdentityUsage
+OBJC_PROP_NAME_ATTR_.349
+OBJC_PROP_NAME_ATTR_.350
+l_OBJC_$_PROP_LIST_AWSCognitoSyncIdentityUsage
+l_OBJC_CLASS_RO_$_AWSCognitoSyncIdentityUsage
+.str.351
+_unnamed_cfstring_.352
+.str.353
+_unnamed_cfstring_.354
+.str.355
+_unnamed_cfstring_.356
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsRequest._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsRequest._maxResults
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsRequest._nextToken
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListDatasetsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListDatasetsRequest
+OBJC_CLASS_NAME_.360
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListDatasetsRequest
+OBJC_METH_VAR_NAME_.366
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListDatasetsRequest
+OBJC_PROP_NAME_ATTR_.367
+OBJC_PROP_NAME_ATTR_.368
+OBJC_PROP_NAME_ATTR_.369
+OBJC_PROP_NAME_ATTR_.370
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListDatasetsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListDatasetsRequest
+.str.371
+_unnamed_cfstring_.372
+.str.373
+_unnamed_cfstring_.374
+.str.375
+_unnamed_cfstring_.376
+.str.377
+_unnamed_cfstring_.378
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsResponse._count
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsResponse._datasets
+OBJC_IVAR_$_AWSCognitoSyncListDatasetsResponse._nextToken
+OBJC_CLASS_NAME_.381
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListDatasetsResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListDatasetsResponse
+OBJC_CLASS_NAME_.383
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListDatasetsResponse
+OBJC_METH_VAR_NAME_.389
+OBJC_METH_VAR_TYPE_.390
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListDatasetsResponse
+OBJC_PROP_NAME_ATTR_.391
+OBJC_PROP_NAME_ATTR_.392
+OBJC_PROP_NAME_ATTR_.393
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListDatasetsResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListDatasetsResponse
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageRequest._maxResults
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageRequest._nextToken
+OBJC_CLASS_NAME_.395
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListIdentityPoolUsageRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListIdentityPoolUsageRequest
+OBJC_CLASS_NAME_.396
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListIdentityPoolUsageRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListIdentityPoolUsageRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListIdentityPoolUsageRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListIdentityPoolUsageRequest
+.str.397
+_unnamed_cfstring_.398
+.str.399
+_unnamed_cfstring_.400
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageResponse._count
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageResponse._identityPoolUsages
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageResponse._maxResults
+OBJC_IVAR_$_AWSCognitoSyncListIdentityPoolUsageResponse._nextToken
+OBJC_CLASS_NAME_.401
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListIdentityPoolUsageResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListIdentityPoolUsageResponse
+OBJC_CLASS_NAME_.403
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListIdentityPoolUsageResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListIdentityPoolUsageResponse
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListIdentityPoolUsageResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListIdentityPoolUsageResponse
+.str.409
+_unnamed_cfstring_.410
+.str.411
+_unnamed_cfstring_.412
+.str.413
+_unnamed_cfstring_.414
+.str.415
+_unnamed_cfstring_.416
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._lastSyncCount
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._maxResults
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._nextToken
+OBJC_IVAR_$_AWSCognitoSyncListRecordsRequest._syncSessionToken
+OBJC_CLASS_NAME_.417
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListRecordsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListRecordsRequest
+OBJC_CLASS_NAME_.418
+OBJC_METH_VAR_NAME_.419
+OBJC_METH_VAR_NAME_.420
+OBJC_METH_VAR_NAME_.421
+OBJC_METH_VAR_NAME_.422
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListRecordsRequest
+OBJC_METH_VAR_NAME_.423
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListRecordsRequest
+OBJC_PROP_NAME_ATTR_.425
+OBJC_PROP_NAME_ATTR_.426
+OBJC_PROP_NAME_ATTR_.427
+OBJC_PROP_NAME_ATTR_.428
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListRecordsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListRecordsRequest
+.str.429
+_unnamed_cfstring_.430
+.str.431
+_unnamed_cfstring_.432
+.str.433
+_unnamed_cfstring_.434
+.str.435
+_unnamed_cfstring_.436
+.str.437
+_unnamed_cfstring_.438
+.str.439
+_unnamed_cfstring_.440
+.str.441
+_unnamed_cfstring_.442
+.str.443
+_unnamed_cfstring_.444
+.str.445
+_unnamed_cfstring_.446
+.str.447
+_unnamed_cfstring_.448
+OBJC_CLASSLIST_REFERENCES_$_.449
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._count
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._datasetDeletedAfterRequestedSyncCount
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._datasetExists
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._datasetSyncCount
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._lastModifiedBy
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._mergedDatasetNames
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._nextToken
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._records
+OBJC_IVAR_$_AWSCognitoSyncListRecordsResponse._syncSessionToken
+OBJC_CLASS_NAME_.450
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncListRecordsResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncListRecordsResponse
+OBJC_CLASS_NAME_.452
+OBJC_METH_VAR_NAME_.454
+OBJC_METH_VAR_NAME_.455
+OBJC_METH_VAR_NAME_.456
+OBJC_METH_VAR_NAME_.460
+OBJC_METH_VAR_NAME_.462
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncListRecordsResponse
+OBJC_METH_VAR_NAME_.463
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncListRecordsResponse
+OBJC_PROP_NAME_ATTR_.468
+OBJC_PROP_NAME_ATTR_.469
+OBJC_PROP_NAME_ATTR_.470
+OBJC_PROP_NAME_ATTR_.471
+OBJC_PROP_NAME_ATTR_.472
+OBJC_PROP_NAME_ATTR_.473
+OBJC_PROP_NAME_ATTR_.474
+OBJC_PROP_NAME_ATTR_.475
+OBJC_PROP_NAME_ATTR_.476
+OBJC_PROP_NAME_ATTR_.477
+l_OBJC_$_PROP_LIST_AWSCognitoSyncListRecordsResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncListRecordsResponse
+.str.478
+_unnamed_cfstring_.479
+.str.480
+_unnamed_cfstring_.481
+OBJC_IVAR_$_AWSCognitoSyncPushSync._applicationArns
+OBJC_IVAR_$_AWSCognitoSyncPushSync._roleArn
+OBJC_CLASS_NAME_.482
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncPushSync
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncPushSync
+OBJC_CLASS_NAME_.483
+OBJC_METH_VAR_NAME_.485
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncPushSync
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncPushSync
+OBJC_PROP_NAME_ATTR_.487
+OBJC_PROP_NAME_ATTR_.488
+l_OBJC_$_PROP_LIST_AWSCognitoSyncPushSync
+l_OBJC_CLASS_RO_$_AWSCognitoSyncPushSync
+.str.489
+_unnamed_cfstring_.490
+.str.491
+_unnamed_cfstring_.492
+.str.493
+_unnamed_cfstring_.494
+.str.495
+_unnamed_cfstring_.496
+.str.497
+_unnamed_cfstring_.498
+.str.499
+_unnamed_cfstring_.500
+.str.501
+_unnamed_cfstring_.502
+.str.503
+_unnamed_cfstring_.504
+__block_descriptor_tmp.505
+__block_literal_global.506
+__block_descriptor_tmp.507
+__block_literal_global.508
+__block_descriptor_tmp.509
+__block_literal_global.510
+__block_descriptor_tmp.511
+__block_literal_global.512
+OBJC_IVAR_$_AWSCognitoSyncRecord._deviceLastModifiedDate
+OBJC_IVAR_$_AWSCognitoSyncRecord._key
+OBJC_IVAR_$_AWSCognitoSyncRecord._lastModifiedBy
+OBJC_IVAR_$_AWSCognitoSyncRecord._lastModifiedDate
+OBJC_IVAR_$_AWSCognitoSyncRecord._syncCount
+OBJC_IVAR_$_AWSCognitoSyncRecord._value
+OBJC_CLASS_NAME_.513
+OBJC_METH_VAR_NAME_.514
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncRecord
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncRecord
+OBJC_CLASS_NAME_.515
+OBJC_METH_VAR_NAME_.516
+OBJC_METH_VAR_NAME_.517
+OBJC_METH_VAR_NAME_.518
+OBJC_METH_VAR_NAME_.519
+OBJC_METH_VAR_NAME_.520
+OBJC_METH_VAR_NAME_.521
+OBJC_METH_VAR_NAME_.522
+OBJC_METH_VAR_NAME_.523
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncRecord
+OBJC_METH_VAR_NAME_.524
+OBJC_METH_VAR_NAME_.525
+OBJC_METH_VAR_NAME_.526
+OBJC_METH_VAR_NAME_.527
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncRecord
+OBJC_PROP_NAME_ATTR_.529
+OBJC_PROP_NAME_ATTR_.530
+OBJC_PROP_NAME_ATTR_.531
+OBJC_PROP_NAME_ATTR_.532
+OBJC_PROP_NAME_ATTR_.533
+OBJC_PROP_NAME_ATTR_.534
+OBJC_PROP_NAME_ATTR_.535
+l_OBJC_$_PROP_LIST_AWSCognitoSyncRecord
+l_OBJC_CLASS_RO_$_AWSCognitoSyncRecord
+.str.536
+_unnamed_cfstring_.537
+.str.538
+_unnamed_cfstring_.539
+__block_descriptor_tmp.540
+__block_literal_global.541
+__block_descriptor_tmp.542
+__block_literal_global.543
+.str.544
+_unnamed_cfstring_.545
+.str.546
+_unnamed_cfstring_.547
+__block_descriptor_tmp.548
+__block_literal_global.549
+__block_descriptor_tmp.550
+__block_literal_global.551
+OBJC_IVAR_$_AWSCognitoSyncRecordPatch._deviceLastModifiedDate
+OBJC_IVAR_$_AWSCognitoSyncRecordPatch._key
+OBJC_IVAR_$_AWSCognitoSyncRecordPatch._op
+OBJC_IVAR_$_AWSCognitoSyncRecordPatch._syncCount
+OBJC_IVAR_$_AWSCognitoSyncRecordPatch._value
+OBJC_CLASS_NAME_.552
+OBJC_METH_VAR_NAME_.553
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncRecordPatch
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncRecordPatch
+OBJC_CLASS_NAME_.554
+OBJC_METH_VAR_NAME_.555
+OBJC_METH_VAR_NAME_.556
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncRecordPatch
+OBJC_METH_VAR_NAME_.557
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncRecordPatch
+OBJC_PROP_NAME_ATTR_.558
+OBJC_PROP_NAME_ATTR_.559
+l_OBJC_$_PROP_LIST_AWSCognitoSyncRecordPatch
+l_OBJC_CLASS_RO_$_AWSCognitoSyncRecordPatch
+.str.560
+_unnamed_cfstring_.561
+.str.562
+_unnamed_cfstring_.563
+.str.564
+_unnamed_cfstring_.565
+.str.566
+_unnamed_cfstring_.567
+.str.568
+_unnamed_cfstring_.569
+.str.570
+_unnamed_cfstring_.571
+.str.572
+_unnamed_cfstring_.573
+.str.574
+_unnamed_cfstring_.575
+__block_descriptor_tmp.576
+__block_literal_global.577
+__block_descriptor_tmp.578
+__block_literal_global.579
+OBJC_IVAR_$_AWSCognitoSyncRegisterDeviceRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncRegisterDeviceRequest._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncRegisterDeviceRequest._platform
+OBJC_IVAR_$_AWSCognitoSyncRegisterDeviceRequest._token
+OBJC_CLASS_NAME_.580
+OBJC_METH_VAR_NAME_.581
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncRegisterDeviceRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncRegisterDeviceRequest
+OBJC_CLASS_NAME_.582
+OBJC_METH_VAR_NAME_.583
+OBJC_METH_VAR_NAME_.584
+OBJC_METH_VAR_NAME_.585
+OBJC_METH_VAR_NAME_.586
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncRegisterDeviceRequest
+OBJC_METH_VAR_NAME_.587
+OBJC_METH_VAR_NAME_.588
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncRegisterDeviceRequest
+OBJC_PROP_NAME_ATTR_.589
+OBJC_PROP_NAME_ATTR_.590
+OBJC_PROP_NAME_ATTR_.591
+OBJC_PROP_NAME_ATTR_.592
+l_OBJC_$_PROP_LIST_AWSCognitoSyncRegisterDeviceRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncRegisterDeviceRequest
+.str.593
+_unnamed_cfstring_.594
+.str.595
+_unnamed_cfstring_.596
+OBJC_IVAR_$_AWSCognitoSyncRegisterDeviceResponse._deviceId
+OBJC_CLASS_NAME_.597
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncRegisterDeviceResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncRegisterDeviceResponse
+OBJC_CLASS_NAME_.598
+OBJC_METH_VAR_NAME_.599
+OBJC_METH_VAR_NAME_.600
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncRegisterDeviceResponse
+OBJC_METH_VAR_NAME_.601
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncRegisterDeviceResponse
+OBJC_PROP_NAME_ATTR_.602
+OBJC_PROP_NAME_ATTR_.603
+l_OBJC_$_PROP_LIST_AWSCognitoSyncRegisterDeviceResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncRegisterDeviceResponse
+OBJC_IVAR_$_AWSCognitoSyncSetCognitoEventsRequest._events
+OBJC_IVAR_$_AWSCognitoSyncSetCognitoEventsRequest._identityPoolId
+OBJC_CLASS_NAME_.604
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncSetCognitoEventsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncSetCognitoEventsRequest
+OBJC_CLASS_NAME_.605
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncSetCognitoEventsRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncSetCognitoEventsRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncSetCognitoEventsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncSetCognitoEventsRequest
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationRequest._cognitoStreams
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationRequest._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationRequest._pushSync
+OBJC_CLASS_NAME_.606
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+OBJC_CLASS_NAME_.607
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncSetIdentityPoolConfigurationRequest
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationResponse._cognitoStreams
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationResponse._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncSetIdentityPoolConfigurationResponse._pushSync
+OBJC_CLASS_NAME_.608
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+OBJC_CLASS_NAME_.609
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+l_OBJC_$_PROP_LIST_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncSetIdentityPoolConfigurationResponse
+OBJC_IVAR_$_AWSCognitoSyncSubscribeToDatasetRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncSubscribeToDatasetRequest._deviceId
+OBJC_IVAR_$_AWSCognitoSyncSubscribeToDatasetRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncSubscribeToDatasetRequest._identityPoolId
+OBJC_CLASS_NAME_.610
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncSubscribeToDatasetRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncSubscribeToDatasetRequest
+OBJC_CLASS_NAME_.611
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncSubscribeToDatasetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncSubscribeToDatasetRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncSubscribeToDatasetRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncSubscribeToDatasetRequest
+OBJC_CLASS_NAME_.612
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncSubscribeToDatasetResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncSubscribeToDatasetResponse
+OBJC_IVAR_$_AWSCognitoSyncUnsubscribeFromDatasetRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncUnsubscribeFromDatasetRequest._deviceId
+OBJC_IVAR_$_AWSCognitoSyncUnsubscribeFromDatasetRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncUnsubscribeFromDatasetRequest._identityPoolId
+OBJC_CLASS_NAME_.613
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncUnsubscribeFromDatasetRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncUnsubscribeFromDatasetRequest
+OBJC_CLASS_NAME_.614
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncUnsubscribeFromDatasetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncUnsubscribeFromDatasetRequest
+l_OBJC_$_PROP_LIST_AWSCognitoSyncUnsubscribeFromDatasetRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncUnsubscribeFromDatasetRequest
+OBJC_CLASS_NAME_.615
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncUnsubscribeFromDatasetResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncUnsubscribeFromDatasetResponse
+.str.616
+_unnamed_cfstring_.617
+.str.618
+_unnamed_cfstring_.619
+.str.620
+_unnamed_cfstring_.621
+.str.622
+_unnamed_cfstring_.623
+OBJC_CLASSLIST_REFERENCES_$_.624
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._clientContext
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._datasetName
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._deviceId
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._identityId
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._identityPoolId
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._recordPatches
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsRequest._syncSessionToken
+OBJC_CLASS_NAME_.625
+OBJC_METH_VAR_NAME_.626
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncUpdateRecordsRequest
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncUpdateRecordsRequest
+OBJC_CLASS_NAME_.627
+OBJC_METH_VAR_NAME_.628
+OBJC_METH_VAR_NAME_.629
+OBJC_METH_VAR_NAME_.630
+OBJC_METH_VAR_NAME_.631
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncUpdateRecordsRequest
+OBJC_METH_VAR_NAME_.632
+OBJC_METH_VAR_NAME_.633
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncUpdateRecordsRequest
+OBJC_PROP_NAME_ATTR_.634
+OBJC_PROP_NAME_ATTR_.635
+OBJC_PROP_NAME_ATTR_.636
+OBJC_PROP_NAME_ATTR_.637
+l_OBJC_$_PROP_LIST_AWSCognitoSyncUpdateRecordsRequest
+l_OBJC_CLASS_RO_$_AWSCognitoSyncUpdateRecordsRequest
+OBJC_IVAR_$_AWSCognitoSyncUpdateRecordsResponse._records
+OBJC_CLASS_NAME_.638
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncUpdateRecordsResponse
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncUpdateRecordsResponse
+OBJC_CLASS_NAME_.639
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncUpdateRecordsResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncUpdateRecordsResponse
+l_OBJC_$_PROP_LIST_AWSCognitoSyncUpdateRecordsResponse
+l_OBJC_CLASS_RO_$_AWSCognitoSyncUpdateRecordsResponse
+-[AWSCognitoSyncUpdateRecordsResponse .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/CognitoSync/AWSCognitoSyncModel.m
+-[AWSCognitoSyncUpdateRecordsResponse setRecords:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/CognitoSync/AWSCognitoSyncModel.h
+-[AWSCognitoSyncUpdateRecordsResponse records]
++[AWSCognitoSyncUpdateRecordsResponse recordsJSONTransformer]
++[AWSCognitoSyncUpdateRecordsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncUpdateRecordsRequest .cxx_destruct]
+-[AWSCognitoSyncUpdateRecordsRequest setSyncSessionToken:]
+-[AWSCognitoSyncUpdateRecordsRequest syncSessionToken]
+-[AWSCognitoSyncUpdateRecordsRequest setRecordPatches:]
+-[AWSCognitoSyncUpdateRecordsRequest recordPatches]
+-[AWSCognitoSyncUpdateRecordsRequest setIdentityPoolId:]
+-[AWSCognitoSyncUpdateRecordsRequest identityPoolId]
+-[AWSCognitoSyncUpdateRecordsRequest setIdentityId:]
+-[AWSCognitoSyncUpdateRecordsRequest identityId]
+-[AWSCognitoSyncUpdateRecordsRequest setDeviceId:]
+-[AWSCognitoSyncUpdateRecordsRequest deviceId]
+-[AWSCognitoSyncUpdateRecordsRequest setDatasetName:]
+-[AWSCognitoSyncUpdateRecordsRequest datasetName]
+-[AWSCognitoSyncUpdateRecordsRequest setClientContext:]
+-[AWSCognitoSyncUpdateRecordsRequest clientContext]
++[AWSCognitoSyncUpdateRecordsRequest recordPatchesJSONTransformer]
++[AWSCognitoSyncUpdateRecordsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest .cxx_destruct]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest identityPoolId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setIdentityId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest identityId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setDeviceId:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest deviceId]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest setDatasetName:]
+-[AWSCognitoSyncUnsubscribeFromDatasetRequest datasetName]
++[AWSCognitoSyncUnsubscribeFromDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSubscribeToDatasetRequest .cxx_destruct]
+-[AWSCognitoSyncSubscribeToDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest identityPoolId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setIdentityId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest identityId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setDeviceId:]
+-[AWSCognitoSyncSubscribeToDatasetRequest deviceId]
+-[AWSCognitoSyncSubscribeToDatasetRequest setDatasetName:]
+-[AWSCognitoSyncSubscribeToDatasetRequest datasetName]
++[AWSCognitoSyncSubscribeToDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse .cxx_destruct]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setPushSync:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse pushSync]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setIdentityPoolId:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse identityPoolId]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse setCognitoStreams:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationResponse cognitoStreams]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse pushSyncJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse cognitoStreamsJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest .cxx_destruct]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setPushSync:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest pushSync]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setIdentityPoolId:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest identityPoolId]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest setCognitoStreams:]
+-[AWSCognitoSyncSetIdentityPoolConfigurationRequest cognitoStreams]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest pushSyncJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest cognitoStreamsJSONTransformer]
++[AWSCognitoSyncSetIdentityPoolConfigurationRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncSetCognitoEventsRequest .cxx_destruct]
+-[AWSCognitoSyncSetCognitoEventsRequest setIdentityPoolId:]
+-[AWSCognitoSyncSetCognitoEventsRequest identityPoolId]
+-[AWSCognitoSyncSetCognitoEventsRequest setEvents:]
+-[AWSCognitoSyncSetCognitoEventsRequest events]
++[AWSCognitoSyncSetCognitoEventsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncRegisterDeviceResponse .cxx_destruct]
+-[AWSCognitoSyncRegisterDeviceResponse setDeviceId:]
+-[AWSCognitoSyncRegisterDeviceResponse deviceId]
++[AWSCognitoSyncRegisterDeviceResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncRegisterDeviceRequest .cxx_destruct]
+-[AWSCognitoSyncRegisterDeviceRequest setToken:]
+-[AWSCognitoSyncRegisterDeviceRequest token]
+-[AWSCognitoSyncRegisterDeviceRequest setPlatform:]
+-[AWSCognitoSyncRegisterDeviceRequest platform]
+-[AWSCognitoSyncRegisterDeviceRequest setIdentityPoolId:]
+-[AWSCognitoSyncRegisterDeviceRequest identityPoolId]
+-[AWSCognitoSyncRegisterDeviceRequest setIdentityId:]
+-[AWSCognitoSyncRegisterDeviceRequest identityId]
++[AWSCognitoSyncRegisterDeviceRequest platformJSONTransformer]
++[AWSCognitoSyncRegisterDeviceRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncRecordPatch .cxx_destruct]
+-[AWSCognitoSyncRecordPatch setValue:]
+-[AWSCognitoSyncRecordPatch value]
+-[AWSCognitoSyncRecordPatch setSyncCount:]
+-[AWSCognitoSyncRecordPatch syncCount]
+-[AWSCognitoSyncRecordPatch setOp:]
+-[AWSCognitoSyncRecordPatch op]
+-[AWSCognitoSyncRecordPatch setKey:]
+-[AWSCognitoSyncRecordPatch key]
+-[AWSCognitoSyncRecordPatch setDeviceLastModifiedDate:]
+-[AWSCognitoSyncRecordPatch deviceLastModifiedDate]
++[AWSCognitoSyncRecordPatch opJSONTransformer]
++[AWSCognitoSyncRecordPatch deviceLastModifiedDateJSONTransformer]
++[AWSCognitoSyncRecordPatch JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncRecord .cxx_destruct]
+-[AWSCognitoSyncRecord setValue:]
+-[AWSCognitoSyncRecord value]
+-[AWSCognitoSyncRecord setSyncCount:]
+-[AWSCognitoSyncRecord syncCount]
+-[AWSCognitoSyncRecord setLastModifiedDate:]
+-[AWSCognitoSyncRecord lastModifiedDate]
+-[AWSCognitoSyncRecord setLastModifiedBy:]
+-[AWSCognitoSyncRecord lastModifiedBy]
+-[AWSCognitoSyncRecord setKey:]
+-[AWSCognitoSyncRecord key]
+-[AWSCognitoSyncRecord setDeviceLastModifiedDate:]
+-[AWSCognitoSyncRecord deviceLastModifiedDate]
++[AWSCognitoSyncRecord lastModifiedDateJSONTransformer]
++[AWSCognitoSyncRecord deviceLastModifiedDateJSONTransformer]
++[AWSCognitoSyncRecord JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncPushSync .cxx_destruct]
+-[AWSCognitoSyncPushSync setRoleArn:]
+-[AWSCognitoSyncPushSync roleArn]
+-[AWSCognitoSyncPushSync setApplicationArns:]
+-[AWSCognitoSyncPushSync applicationArns]
++[AWSCognitoSyncPushSync JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListRecordsResponse .cxx_destruct]
+-[AWSCognitoSyncListRecordsResponse setSyncSessionToken:]
+-[AWSCognitoSyncListRecordsResponse syncSessionToken]
+-[AWSCognitoSyncListRecordsResponse setRecords:]
+-[AWSCognitoSyncListRecordsResponse records]
+-[AWSCognitoSyncListRecordsResponse setNextToken:]
+-[AWSCognitoSyncListRecordsResponse nextToken]
+-[AWSCognitoSyncListRecordsResponse setMergedDatasetNames:]
+-[AWSCognitoSyncListRecordsResponse mergedDatasetNames]
+-[AWSCognitoSyncListRecordsResponse setLastModifiedBy:]
+-[AWSCognitoSyncListRecordsResponse lastModifiedBy]
+-[AWSCognitoSyncListRecordsResponse setDatasetSyncCount:]
+-[AWSCognitoSyncListRecordsResponse datasetSyncCount]
+-[AWSCognitoSyncListRecordsResponse setDatasetExists:]
+-[AWSCognitoSyncListRecordsResponse datasetExists]
+-[AWSCognitoSyncListRecordsResponse setDatasetDeletedAfterRequestedSyncCount:]
+-[AWSCognitoSyncListRecordsResponse datasetDeletedAfterRequestedSyncCount]
+-[AWSCognitoSyncListRecordsResponse setCount:]
+-[AWSCognitoSyncListRecordsResponse count]
++[AWSCognitoSyncListRecordsResponse recordsJSONTransformer]
++[AWSCognitoSyncListRecordsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListRecordsRequest .cxx_destruct]
+-[AWSCognitoSyncListRecordsRequest setSyncSessionToken:]
+-[AWSCognitoSyncListRecordsRequest syncSessionToken]
+-[AWSCognitoSyncListRecordsRequest setNextToken:]
+-[AWSCognitoSyncListRecordsRequest nextToken]
+-[AWSCognitoSyncListRecordsRequest setMaxResults:]
+-[AWSCognitoSyncListRecordsRequest maxResults]
+-[AWSCognitoSyncListRecordsRequest setLastSyncCount:]
+-[AWSCognitoSyncListRecordsRequest lastSyncCount]
+-[AWSCognitoSyncListRecordsRequest setIdentityPoolId:]
+-[AWSCognitoSyncListRecordsRequest identityPoolId]
+-[AWSCognitoSyncListRecordsRequest setIdentityId:]
+-[AWSCognitoSyncListRecordsRequest identityId]
+-[AWSCognitoSyncListRecordsRequest setDatasetName:]
+-[AWSCognitoSyncListRecordsRequest datasetName]
++[AWSCognitoSyncListRecordsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListIdentityPoolUsageResponse .cxx_destruct]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setNextToken:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse nextToken]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setMaxResults:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse maxResults]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setIdentityPoolUsages:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse identityPoolUsages]
+-[AWSCognitoSyncListIdentityPoolUsageResponse setCount:]
+-[AWSCognitoSyncListIdentityPoolUsageResponse count]
++[AWSCognitoSyncListIdentityPoolUsageResponse identityPoolUsagesJSONTransformer]
++[AWSCognitoSyncListIdentityPoolUsageResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListIdentityPoolUsageRequest .cxx_destruct]
+-[AWSCognitoSyncListIdentityPoolUsageRequest setNextToken:]
+-[AWSCognitoSyncListIdentityPoolUsageRequest nextToken]
+-[AWSCognitoSyncListIdentityPoolUsageRequest setMaxResults:]
+-[AWSCognitoSyncListIdentityPoolUsageRequest maxResults]
++[AWSCognitoSyncListIdentityPoolUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListDatasetsResponse .cxx_destruct]
+-[AWSCognitoSyncListDatasetsResponse setNextToken:]
+-[AWSCognitoSyncListDatasetsResponse nextToken]
+-[AWSCognitoSyncListDatasetsResponse setDatasets:]
+-[AWSCognitoSyncListDatasetsResponse datasets]
+-[AWSCognitoSyncListDatasetsResponse setCount:]
+-[AWSCognitoSyncListDatasetsResponse count]
++[AWSCognitoSyncListDatasetsResponse datasetsJSONTransformer]
++[AWSCognitoSyncListDatasetsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncListDatasetsRequest .cxx_destruct]
+-[AWSCognitoSyncListDatasetsRequest setNextToken:]
+-[AWSCognitoSyncListDatasetsRequest nextToken]
+-[AWSCognitoSyncListDatasetsRequest setMaxResults:]
+-[AWSCognitoSyncListDatasetsRequest maxResults]
+-[AWSCognitoSyncListDatasetsRequest setIdentityPoolId:]
+-[AWSCognitoSyncListDatasetsRequest identityPoolId]
+-[AWSCognitoSyncListDatasetsRequest setIdentityId:]
+-[AWSCognitoSyncListDatasetsRequest identityId]
++[AWSCognitoSyncListDatasetsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncIdentityUsage .cxx_destruct]
+-[AWSCognitoSyncIdentityUsage setLastModifiedDate:]
+-[AWSCognitoSyncIdentityUsage lastModifiedDate]
+-[AWSCognitoSyncIdentityUsage setIdentityPoolId:]
+-[AWSCognitoSyncIdentityUsage identityPoolId]
+-[AWSCognitoSyncIdentityUsage setIdentityId:]
+-[AWSCognitoSyncIdentityUsage identityId]
+-[AWSCognitoSyncIdentityUsage setDatasetCount:]
+-[AWSCognitoSyncIdentityUsage datasetCount]
+-[AWSCognitoSyncIdentityUsage setDataStorage:]
+-[AWSCognitoSyncIdentityUsage dataStorage]
++[AWSCognitoSyncIdentityUsage lastModifiedDateJSONTransformer]
++[AWSCognitoSyncIdentityUsage JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncIdentityPoolUsage .cxx_destruct]
+-[AWSCognitoSyncIdentityPoolUsage setSyncSessionsCount:]
+-[AWSCognitoSyncIdentityPoolUsage syncSessionsCount]
+-[AWSCognitoSyncIdentityPoolUsage setLastModifiedDate:]
+-[AWSCognitoSyncIdentityPoolUsage lastModifiedDate]
+-[AWSCognitoSyncIdentityPoolUsage setIdentityPoolId:]
+-[AWSCognitoSyncIdentityPoolUsage identityPoolId]
+-[AWSCognitoSyncIdentityPoolUsage setDataStorage:]
+-[AWSCognitoSyncIdentityPoolUsage dataStorage]
++[AWSCognitoSyncIdentityPoolUsage lastModifiedDateJSONTransformer]
++[AWSCognitoSyncIdentityPoolUsage JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse .cxx_destruct]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setPushSync:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse pushSync]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setIdentityPoolId:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse identityPoolId]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse setCognitoStreams:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationResponse cognitoStreams]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse pushSyncJSONTransformer]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse cognitoStreamsJSONTransformer]
++[AWSCognitoSyncGetIdentityPoolConfigurationResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest .cxx_destruct]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetIdentityPoolConfigurationRequest identityPoolId]
++[AWSCognitoSyncGetIdentityPoolConfigurationRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetCognitoEventsResponse .cxx_destruct]
+-[AWSCognitoSyncGetCognitoEventsResponse setEvents:]
+-[AWSCognitoSyncGetCognitoEventsResponse events]
++[AWSCognitoSyncGetCognitoEventsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetCognitoEventsRequest .cxx_destruct]
+-[AWSCognitoSyncGetCognitoEventsRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetCognitoEventsRequest identityPoolId]
++[AWSCognitoSyncGetCognitoEventsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse .cxx_destruct]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setIdentityPoolId:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse identityPoolId]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setFailureMessage:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse failureMessage]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishStatus:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatus]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishStartTime:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTime]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse setBulkPublishCompleteTime:]
+-[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTime]
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStatusJSONTransformer]
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishStartTimeJSONTransformer]
++[AWSCognitoSyncGetBulkPublishDetailsResponse bulkPublishCompleteTimeJSONTransformer]
++[AWSCognitoSyncGetBulkPublishDetailsResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest .cxx_destruct]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest setIdentityPoolId:]
+-[AWSCognitoSyncGetBulkPublishDetailsRequest identityPoolId]
++[AWSCognitoSyncGetBulkPublishDetailsRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityUsageResponse .cxx_destruct]
+-[AWSCognitoSyncDescribeIdentityUsageResponse setIdentityUsage:]
+-[AWSCognitoSyncDescribeIdentityUsageResponse identityUsage]
++[AWSCognitoSyncDescribeIdentityUsageResponse identityUsageJSONTransformer]
++[AWSCognitoSyncDescribeIdentityUsageResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityUsageRequest .cxx_destruct]
+-[AWSCognitoSyncDescribeIdentityUsageRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeIdentityUsageRequest identityPoolId]
+-[AWSCognitoSyncDescribeIdentityUsageRequest setIdentityId:]
+-[AWSCognitoSyncDescribeIdentityUsageRequest identityId]
++[AWSCognitoSyncDescribeIdentityUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse .cxx_destruct]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse setIdentityPoolUsage:]
+-[AWSCognitoSyncDescribeIdentityPoolUsageResponse identityPoolUsage]
++[AWSCognitoSyncDescribeIdentityPoolUsageResponse identityPoolUsageJSONTransformer]
++[AWSCognitoSyncDescribeIdentityPoolUsageResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest .cxx_destruct]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeIdentityPoolUsageRequest identityPoolId]
++[AWSCognitoSyncDescribeIdentityPoolUsageRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeDatasetResponse .cxx_destruct]
+-[AWSCognitoSyncDescribeDatasetResponse setDataset:]
+-[AWSCognitoSyncDescribeDatasetResponse dataset]
++[AWSCognitoSyncDescribeDatasetResponse datasetJSONTransformer]
++[AWSCognitoSyncDescribeDatasetResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDescribeDatasetRequest .cxx_destruct]
+-[AWSCognitoSyncDescribeDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncDescribeDatasetRequest identityPoolId]
+-[AWSCognitoSyncDescribeDatasetRequest setIdentityId:]
+-[AWSCognitoSyncDescribeDatasetRequest identityId]
+-[AWSCognitoSyncDescribeDatasetRequest setDatasetName:]
+-[AWSCognitoSyncDescribeDatasetRequest datasetName]
++[AWSCognitoSyncDescribeDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDeleteDatasetResponse .cxx_destruct]
+-[AWSCognitoSyncDeleteDatasetResponse setDataset:]
+-[AWSCognitoSyncDeleteDatasetResponse dataset]
++[AWSCognitoSyncDeleteDatasetResponse datasetJSONTransformer]
++[AWSCognitoSyncDeleteDatasetResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDeleteDatasetRequest .cxx_destruct]
+-[AWSCognitoSyncDeleteDatasetRequest setIdentityPoolId:]
+-[AWSCognitoSyncDeleteDatasetRequest identityPoolId]
+-[AWSCognitoSyncDeleteDatasetRequest setIdentityId:]
+-[AWSCognitoSyncDeleteDatasetRequest identityId]
+-[AWSCognitoSyncDeleteDatasetRequest setDatasetName:]
+-[AWSCognitoSyncDeleteDatasetRequest datasetName]
++[AWSCognitoSyncDeleteDatasetRequest JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncDataset .cxx_destruct]
+-[AWSCognitoSyncDataset setNumRecords:]
+-[AWSCognitoSyncDataset numRecords]
+-[AWSCognitoSyncDataset setLastModifiedDate:]
+-[AWSCognitoSyncDataset lastModifiedDate]
+-[AWSCognitoSyncDataset setLastModifiedBy:]
+-[AWSCognitoSyncDataset lastModifiedBy]
+-[AWSCognitoSyncDataset setIdentityId:]
+-[AWSCognitoSyncDataset identityId]
+-[AWSCognitoSyncDataset setDatasetName:]
+-[AWSCognitoSyncDataset datasetName]
+-[AWSCognitoSyncDataset setDataStorage:]
+-[AWSCognitoSyncDataset dataStorage]
+-[AWSCognitoSyncDataset setCreationDate:]
+-[AWSCognitoSyncDataset creationDate]
++[AWSCognitoSyncDataset lastModifiedDateJSONTransformer]
++[AWSCognitoSyncDataset creationDateJSONTransformer]
++[AWSCognitoSyncDataset JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncCognitoStreams .cxx_destruct]
+-[AWSCognitoSyncCognitoStreams setStreamingStatus:]
+-[AWSCognitoSyncCognitoStreams streamingStatus]
+-[AWSCognitoSyncCognitoStreams setStreamName:]
+-[AWSCognitoSyncCognitoStreams streamName]
+-[AWSCognitoSyncCognitoStreams setRoleArn:]
+-[AWSCognitoSyncCognitoStreams roleArn]
++[AWSCognitoSyncCognitoStreams streamingStatusJSONTransformer]
++[AWSCognitoSyncCognitoStreams JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncBulkPublishResponse .cxx_destruct]
+-[AWSCognitoSyncBulkPublishResponse setIdentityPoolId:]
+-[AWSCognitoSyncBulkPublishResponse identityPoolId]
++[AWSCognitoSyncBulkPublishResponse JSONKeyPathsByPropertyKey]
+-[AWSCognitoSyncBulkPublishRequest .cxx_destruct]
+-[AWSCognitoSyncBulkPublishRequest setIdentityPoolId:]
+-[AWSCognitoSyncBulkPublishRequest identityPoolId]
++[AWSCognitoSyncBulkPublishRequest JSONKeyPathsByPropertyKey]
++[AWSCognitoSyncResources sharedInstance]
+__41+[AWSCognitoSyncResources sharedInstance]_block_invoke
+-[AWSCognitoSyncResources JSONObject]
+-[AWSCognitoSyncResources init]
+-[AWSCognitoSyncResources definitionString]
+-[AWSCognitoSyncResources definitionDictionary]
+-[AWSCognitoSyncResources setDefinitionDictionary:]
+-[AWSCognitoSyncResources .cxx_destruct]
+sharedInstance._sharedResources
+sharedInstance.once_token
+OBJC_CLASSLIST_REFERENCES_$_.5
+OBJC_METH_VAR_NAME_.6
+OBJC_SELECTOR_REFERENCES_.7
+OBJC_SELECTOR_REFERENCES_.9
+OBJC_SELECTOR_REFERENCES_.11
+OBJC_IVAR_$_AWSCognitoSyncResources._definitionDictionary
+OBJC_CLASSLIST_REFERENCES_$_.12
+OBJC_CLASSLIST_REFERENCES_$_.16
+__PRETTY_FUNCTION__.-[AWSCognitoSyncResources init]
+.str.24
+_unnamed_cfstring_.25
+l_OBJC_$_CLASS_METHODS_AWSCognitoSyncResources
+l_OBJC_METACLASS_RO_$_AWSCognitoSyncResources
+OBJC_CLASS_NAME_.27
+OBJC_METH_VAR_TYPE_.30
+OBJC_METH_VAR_TYPE_.32
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSyncResources
+OBJC_METH_VAR_TYPE_.34
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSyncResources
+OBJC_PROP_NAME_ATTR_.35
+l_OBJC_$_PROP_LIST_AWSCognitoSyncResources
+l_OBJC_CLASS_RO_$_AWSCognitoSyncResources
+-[AWSCognitoSyncResources .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/CognitoSync/AWSCognitoSyncResources.m
+-[AWSCognitoSyncResources setDefinitionDictionary:]
+-[AWSCognitoSyncResources definitionDictionary]
+-[AWSCognitoSyncResources definitionString]
+-[AWSCognitoSyncResources init]
+-[AWSCognitoSyncResources JSONObject]
++[AWSCognitoSyncResources sharedInstance]
+-[AWSCognitoRecordMetadata initWithId:]
+-[AWSCognitoRecordMetadata initWithDictionary:]
+-[AWSCognitoRecordMetadata isEqualMetadata:]
+-[AWSCognitoRecordMetadata recordId]
+-[AWSCognitoRecordMetadata lastModified]
+-[AWSCognitoRecordMetadata setLastModified:]
+-[AWSCognitoRecordMetadata lastModifiedBy]
+-[AWSCognitoRecordMetadata setLastModifiedBy:]
+-[AWSCognitoRecordMetadata isDirty]
+-[AWSCognitoRecordMetadata dirtyCount]
+-[AWSCognitoRecordMetadata setDirtyCount:]
+-[AWSCognitoRecordMetadata syncCount]
+-[AWSCognitoRecordMetadata setSyncCount:]
+-[AWSCognitoRecordMetadata .cxx_destruct]
+-[AWSCognitoRecord initWithId:data:]
+-[AWSCognitoRecord initWithDictionary:]
+-[AWSCognitoRecord isEqual:]
+-[AWSCognitoRecord dictionaryRepresentation]
+-[AWSCognitoRecord copyForFlush]
+-[AWSCognitoRecord copy]
+-[AWSCognitoRecord isDirty]
+-[AWSCognitoRecord isDeleted]
+-[AWSCognitoRecord description]
+-[AWSCognitoRecord data]
+-[AWSCognitoRecord setData:]
+-[AWSCognitoRecord .cxx_destruct]
+-[AWSCognitoRecordValue init]
+-[AWSCognitoRecordValue initWithString:]
+-[AWSCognitoRecordValue initWithJson:type:]
+-[AWSCognitoRecordValue initWithString:type:]
+-[AWSCognitoRecordValue string]
+-[AWSCognitoRecordValue toJsonString]
+-[AWSCognitoRecordValue isEqual:]
+-[AWSCognitoRecordValue description]
+-[AWSCognitoRecordValue type]
+-[AWSCognitoRecordValue setType:]
+-[AWSCognitoRecordValue stringValue]
+-[AWSCognitoRecordValue setStringValue:]
+-[AWSCognitoRecordValue .cxx_destruct]
+OBJC_IVAR_$_AWSCognitoRecordMetadata._recordId
+OBJC_CLASSLIST_REFERENCES_$_.3
+OBJC_METH_VAR_NAME_.4
+OBJC_SELECTOR_REFERENCES_.5
+OBJC_IVAR_$_AWSCognitoRecordMetadata._lastModified
+OBJC_IVAR_$_AWSCognitoRecordMetadata._lastModifiedBy
+OBJC_IVAR_$_AWSCognitoRecordMetadata._dirtyCount
+OBJC_IVAR_$_AWSCognitoRecordMetadata._syncCount
+OBJC_CLASSLIST_REFERENCES_$_.10
+OBJC_SELECTOR_REFERENCES_.18
+OBJC_SELECTOR_REFERENCES_.20
+OBJC_IVAR_$_AWSCognitoRecordMetadata._dirty
+l_OBJC_METACLASS_RO_$_AWSCognitoRecordMetadata
+OBJC_CLASS_NAME_.29
+OBJC_METH_VAR_TYPE_.36
+OBJC_METH_VAR_TYPE_.38
+OBJC_METH_VAR_TYPE_.41
+OBJC_METH_VAR_TYPE_.42
+OBJC_METH_VAR_TYPE_.44
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoRecordMetadata
+OBJC_METH_VAR_TYPE_.47
+OBJC_METH_VAR_TYPE_.49
+OBJC_METH_VAR_TYPE_.54
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoRecordMetadata
+OBJC_PROP_NAME_ATTR_.58
+OBJC_PROP_NAME_ATTR_.59
+OBJC_PROP_NAME_ATTR_.60
+OBJC_PROP_NAME_ATTR_.61
+l_OBJC_$_PROP_LIST_AWSCognitoRecordMetadata
+l_OBJC_CLASS_RO_$_AWSCognitoRecordMetadata
+OBJC_CLASSLIST_SUP_REFS_$_.67
+OBJC_IVAR_$_AWSCognitoRecord._data
+OBJC_CLASSLIST_REFERENCES_$_.70
+OBJC_METH_VAR_NAME_.71
+OBJC_SELECTOR_REFERENCES_.72
+.str.85
+_unnamed_cfstring_.86
+OBJC_CLASSLIST_REFERENCES_$_.89
+OBJC_METH_VAR_NAME_.90
+OBJC_SELECTOR_REFERENCES_.91
+OBJC_METH_VAR_NAME_.92
+OBJC_SELECTOR_REFERENCES_.93
+OBJC_CLASSLIST_REFERENCES_$_.94
+OBJC_SELECTOR_REFERENCES_.97
+OBJC_CLASSLIST_REFERENCES_$_.101
+OBJC_METH_VAR_NAME_.104
+OBJC_SELECTOR_REFERENCES_.105
+OBJC_METH_VAR_NAME_.110
+OBJC_SELECTOR_REFERENCES_.111
+.str.114
+_unnamed_cfstring_.115
+.str.116
+_unnamed_cfstring_.117
+.str.118
+_unnamed_cfstring_.119
+.str.120
+_unnamed_cfstring_.121
+OBJC_SELECTOR_REFERENCES_.123
+OBJC_CLASS_NAME_.124
+l_OBJC_METACLASS_RO_$_AWSCognitoRecord
+OBJC_CLASS_NAME_.125
+OBJC_METH_VAR_TYPE_.126
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoRecord
+OBJC_METH_VAR_TYPE_.134
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoRecord
+OBJC_PROP_NAME_ATTR_.135
+OBJC_PROP_NAME_ATTR_.136
+l_OBJC_$_PROP_LIST_AWSCognitoRecord
+l_OBJC_CLASS_RO_$_AWSCognitoRecord
+OBJC_CLASSLIST_SUP_REFS_$_.137
+OBJC_IVAR_$_AWSCognitoRecordValue._type
+OBJC_CLASSLIST_REFERENCES_$_.140
+OBJC_SELECTOR_REFERENCES_.142
+OBJC_SELECTOR_REFERENCES_.144
+OBJC_IVAR_$_AWSCognitoRecordValue._stringValue
+.str.151
+_unnamed_cfstring_.152
+.str.153
+_unnamed_cfstring_.154
+OBJC_CLASS_NAME_.155
+l_OBJC_METACLASS_RO_$_AWSCognitoRecordValue
+OBJC_CLASS_NAME_.156
+OBJC_METH_VAR_NAME_.157
+OBJC_METH_VAR_TYPE_.158
+OBJC_METH_VAR_TYPE_.159
+OBJC_METH_VAR_TYPE_.161
+OBJC_METH_VAR_NAME_.162
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoRecordValue
+OBJC_METH_VAR_NAME_.163
+OBJC_METH_VAR_TYPE_.164
+OBJC_METH_VAR_NAME_.165
+OBJC_METH_VAR_TYPE_.166
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoRecordValue
+OBJC_PROP_NAME_ATTR_.167
+OBJC_PROP_NAME_ATTR_.168
+OBJC_PROP_NAME_ATTR_.169
+OBJC_PROP_NAME_ATTR_.170
+l_OBJC_$_PROP_LIST_AWSCognitoRecordValue
+l_OBJC_CLASS_RO_$_AWSCognitoRecordValue
+-[AWSCognitoRecordValue .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoRecord.m
+-[AWSCognitoRecordValue setStringValue:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoRecord_Internal.h
+-[AWSCognitoRecordValue stringValue]
+-[AWSCognitoRecordValue setType:]
+-[AWSCognitoRecordValue type]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/AWSCognitoRecord.h
+-[AWSCognitoRecordValue description]
+-[AWSCognitoRecordValue isEqual:]
+-[AWSCognitoRecordValue toJsonString]
+-[AWSCognitoRecordValue string]
+-[AWSCognitoRecordValue initWithString:type:]
+-[AWSCognitoRecordValue initWithJson:type:]
+-[AWSCognitoRecordValue initWithString:]
+-[AWSCognitoRecordValue init]
+-[AWSCognitoRecord .cxx_destruct]
+-[AWSCognitoRecord setData:]
+-[AWSCognitoRecord data]
+-[AWSCognitoRecord description]
+-[AWSCognitoRecord isDeleted]
+-[AWSCognitoRecord isDirty]
+-[AWSCognitoRecord copy]
+-[AWSCognitoRecord copyForFlush]
+-[AWSCognitoRecord dictionaryRepresentation]
+-[AWSCognitoRecord isEqual:]
+-[AWSCognitoRecord initWithDictionary:]
+-[AWSCognitoRecord initWithId:data:]
+-[AWSCognitoRecordMetadata .cxx_destruct]
+-[AWSCognitoRecordMetadata setSyncCount:]
+-[AWSCognitoRecordMetadata syncCount]
+-[AWSCognitoRecordMetadata setDirtyCount:]
+-[AWSCognitoRecordMetadata dirtyCount]
+-[AWSCognitoRecordMetadata isDirty]
+-[AWSCognitoRecordMetadata setLastModifiedBy:]
+-[AWSCognitoRecordMetadata lastModifiedBy]
+-[AWSCognitoRecordMetadata setLastModified:]
+-[AWSCognitoRecordMetadata lastModified]
+-[AWSCognitoRecordMetadata recordId]
+-[AWSCognitoRecordMetadata isEqualMetadata:]
+-[AWSCognitoRecordMetadata initWithDictionary:]
+-[AWSCognitoRecordMetadata initWithId:]
+-[AWSCognitoSQLiteManager initWithIdentityId:deviceId:]
+-[AWSCognitoSQLiteManager setupSQL]
+-[AWSCognitoSQLiteManager deleteAllData]
+__40-[AWSCognitoSQLiteManager deleteAllData]_block_invoke
+-[AWSCognitoSQLiteManager initializeTables]
+__43-[AWSCognitoSQLiteManager initializeTables]_block_invoke
+__copy_helper_block_.43
+__destroy_helper_block_.44
+-[AWSCognitoSQLiteManager initializeDatasetTables:]
+__51-[AWSCognitoSQLiteManager initializeDatasetTables:]_block_invoke
+__copy_helper_block_.60
+__destroy_helper_block_.61
+-[AWSCognitoSQLiteManager getDatasets:]
+__Block_byref_object_copy_
+__Block_byref_object_dispose_
+__39-[AWSCognitoSQLiteManager getDatasets:]_block_invoke
+__copy_helper_block_.100
+__destroy_helper_block_.101
+-[AWSCognitoSQLiteManager loadDatasetMetadata:error:]
+__53-[AWSCognitoSQLiteManager loadDatasetMetadata:error:]_block_invoke
+__copy_helper_block_.107
+__destroy_helper_block_.108
+-[AWSCognitoSQLiteManager updateDatasetMetadata:error:]
+__55-[AWSCognitoSQLiteManager updateDatasetMetadata:error:]_block_invoke
+__copy_helper_block_.114
+__destroy_helper_block_.115
+-[AWSCognitoSQLiteManager putDatasetMetadata:error:]
+__52-[AWSCognitoSQLiteManager putDatasetMetadata:error:]_block_invoke
+__copy_helper_block_.137
+__destroy_helper_block_.138
+-[AWSCognitoSQLiteManager getRecordById_internal:datasetName:error:sync:]
+__73-[AWSCognitoSQLiteManager getRecordById_internal:datasetName:error:sync:]_block_invoke
+__copy_helper_block_.158
+__destroy_helper_block_.159
+-[AWSCognitoSQLiteManager getRecordById:datasetName:error:]
+-[AWSCognitoSQLiteManager identityId]
+-[AWSCognitoSQLiteManager recordsUpdatedAfterLastSync:error:]
+__61-[AWSCognitoSQLiteManager recordsUpdatedAfterLastSync:error:]_block_invoke
+__copy_helper_block_.170
+__destroy_helper_block_.171
+-[AWSCognitoSQLiteManager allRecords:]
+__38-[AWSCognitoSQLiteManager allRecords:]_block_invoke
+__copy_helper_block_.178
+__destroy_helper_block_.179
+-[AWSCognitoSQLiteManager putRecord:datasetName:error:]
+__55-[AWSCognitoSQLiteManager putRecord:datasetName:error:]_block_invoke
+__copy_helper_block_.195
+__destroy_helper_block_.196
+-[AWSCognitoSQLiteManager conditionallyPutRecord:datasetName:withCurrentState:error:]
+-[AWSCognitoSQLiteManager resetStatement:]
+-[AWSCognitoSQLiteManager conditionallyPutResolvedRecords:datasetName:error:]
+-[AWSCognitoSQLiteManager flagRecordAsDeletedById:datasetName:error:]
+__69-[AWSCognitoSQLiteManager flagRecordAsDeletedById:datasetName:error:]_block_invoke
+__copy_helper_block_.228
+__destroy_helper_block_.229
+-[AWSCognitoSQLiteManager deleteRecordById:datasetName:error:]
+__62-[AWSCognitoSQLiteManager deleteRecordById:datasetName:error:]_block_invoke
+__copy_helper_block_.235
+__destroy_helper_block_.236
+-[AWSCognitoSQLiteManager updateWithRemoteChanges:nonConflicts:resolvedConflicts:error:]
+__88-[AWSCognitoSQLiteManager updateWithRemoteChanges:nonConflicts:resolvedConflicts:error:]_block_invoke
+__copy_helper_block_.251
+__destroy_helper_block_.252
+-[AWSCognitoSQLiteManager updateLocalRecordMetadata:records:error:]
+__67-[AWSCognitoSQLiteManager updateLocalRecordMetadata:records:error:]_block_invoke
+-[AWSCognitoSQLiteManager numRecords:]
+__38-[AWSCognitoSQLiteManager numRecords:]_block_invoke
+__copy_helper_block_.263
+__destroy_helper_block_.264
+-[AWSCognitoSQLiteManager lastSyncCount:]
+__41-[AWSCognitoSQLiteManager lastSyncCount:]_block_invoke
+__copy_helper_block_.270
+__destroy_helper_block_.271
+-[AWSCognitoSQLiteManager updateLastSyncCount:syncCount:lastModifiedBy:]
+__72-[AWSCognitoSQLiteManager updateLastSyncCount:syncCount:lastModifiedBy:]_block_invoke
+__copy_helper_block_.275
+__destroy_helper_block_.276
+-[AWSCognitoSQLiteManager reparentDatasets:withNewId:error:]
+__60-[AWSCognitoSQLiteManager reparentDatasets:withNewId:error:]_block_invoke
+-[AWSCognitoSQLiteManager getMergeDatasets:error:]
+__50-[AWSCognitoSQLiteManager getMergeDatasets:error:]_block_invoke
+__copy_helper_block_.307
+__destroy_helper_block_.308
+-[AWSCognitoSQLiteManager filePath]
+-[AWSCognitoSQLiteManager resetSyncCount:error:]
+__48-[AWSCognitoSQLiteManager resetSyncCount:error:]_block_invoke
+__copy_helper_block_.328
+__destroy_helper_block_.329
+-[AWSCognitoSQLiteManager deleteMetadata:error:]
+__48-[AWSCognitoSQLiteManager deleteMetadata:error:]_block_invoke
+__copy_helper_block_.335
+__destroy_helper_block_.336
+-[AWSCognitoSQLiteManager deleteDataset:error:]
+__47-[AWSCognitoSQLiteManager deleteDataset:error:]_block_invoke
+__copy_helper_block_.342
+__destroy_helper_block_.343
+-[AWSCognitoSQLiteManager columnExists:columnName:]
+__51-[AWSCognitoSQLiteManager columnExists:columnName:]_block_invoke
+__copy_helper_block_.347
+__destroy_helper_block_.348
+-[AWSCognitoSQLiteManager deleteSQLiteDatabase]
+__47-[AWSCognitoSQLiteManager deleteSQLiteDatabase]_block_invoke
+__copy_helper_block_.359
+__destroy_helper_block_.360
+-[AWSCognitoSQLiteManager setIdentityId:]
+-[AWSCognitoSQLiteManager deviceId]
+-[AWSCognitoSQLiteManager setDeviceId:]
+-[AWSCognitoSQLiteManager sqlite]
+-[AWSCognitoSQLiteManager setSqlite:]
+-[AWSCognitoSQLiteManager dispatchQueue]
+-[AWSCognitoSQLiteManager setDispatchQueue:]
+-[AWSCognitoSQLiteManager .cxx_destruct]
+OBJC_IVAR_$_AWSCognitoSQLiteManager._identityId
+OBJC_IVAR_$_AWSCognitoSQLiteManager._deviceId
+OBJC_IVAR_$_AWSCognitoSQLiteManager._dispatchQueue
+OBJC_IVAR_$_AWSCognitoSQLiteManager._sqlite
+__PRETTY_FUNCTION__.-[AWSCognitoSQLiteManager setupSQL]
+.str.22
+_unnamed_cfstring_.23
+OBJC_SELECTOR_REFERENCES_.25
+OBJC_SELECTOR_REFERENCES_.27
+__PRETTY_FUNCTION__.__40-[AWSCognitoSQLiteManager deleteAllData]_block_invoke
+.str.32
+_unnamed_cfstring_.33
+.str.36
+__PRETTY_FUNCTION__.__43-[AWSCognitoSQLiteManager initializeTables]_block_invoke
+__block_descriptor_tmp.45
+.str.46
+_unnamed_cfstring_.47
+.str.48
+_unnamed_cfstring_.49
+__PRETTY_FUNCTION__.__51-[AWSCognitoSQLiteManager initializeDatasetTables:]_block_invoke
+OBJC_CLASSLIST_REFERENCES_$_.50
+OBJC_SELECTOR_REFERENCES_.52
+OBJC_CLASSLIST_REFERENCES_$_.55
+OBJC_SELECTOR_REFERENCES_.57
+.str.58
+_unnamed_cfstring_.59
+__block_descriptor_tmp.62
+.str.66
+_unnamed_cfstring_.67
+__PRETTY_FUNCTION__.__39-[AWSCognitoSQLiteManager getDatasets:]_block_invoke
+OBJC_CLASSLIST_REFERENCES_$_.75
+OBJC_METH_VAR_NAME_.86
+OBJC_SELECTOR_REFERENCES_.87
+OBJC_METH_VAR_NAME_.88
+.str.96
+_unnamed_cfstring_.97
+.str.103
+_unnamed_cfstring_.104
+__PRETTY_FUNCTION__.__53-[AWSCognitoSQLiteManager loadDatasetMetadata:error:]_block_invoke
+__block_descriptor_tmp.109
+__PRETTY_FUNCTION__.__55-[AWSCognitoSQLiteManager updateDatasetMetadata:error:]_block_invoke
+.str.117
+_unnamed_cfstring_.118
+OBJC_SELECTOR_REFERENCES_.128
+OBJC_SELECTOR_REFERENCES_.130
+OBJC_SELECTOR_REFERENCES_.132
+.str.133
+_unnamed_cfstring_.134
+__PRETTY_FUNCTION__.__52-[AWSCognitoSQLiteManager putDatasetMetadata:error:]_block_invoke
+.str.135
+_unnamed_cfstring_.136
+__block_descriptor_tmp.139
+.str.140
+_unnamed_cfstring_.141
+__PRETTY_FUNCTION__.__73-[AWSCognitoSQLiteManager getRecordById_internal:datasetName:error:sync:]_block_invoke
+OBJC_CLASSLIST_REFERENCES_$_.146
+OBJC_CLASSLIST_REFERENCES_$_.147
+__block_descriptor_tmp.160
+__PRETTY_FUNCTION__.__61-[AWSCognitoSQLiteManager recordsUpdatedAfterLastSync:error:]_block_invoke
+__block_descriptor_tmp.172
+OBJC_CLASSLIST_REFERENCES_$_.173
+.str.176
+_unnamed_cfstring_.177
+__PRETTY_FUNCTION__.__38-[AWSCognitoSQLiteManager allRecords:]_block_invoke
+__block_descriptor_tmp.180
+OBJC_METH_VAR_NAME_.181
+OBJC_SELECTOR_REFERENCES_.182
+OBJC_METH_VAR_NAME_.183
+OBJC_SELECTOR_REFERENCES_.184
+.str.185
+_unnamed_cfstring_.186
+OBJC_METH_VAR_NAME_.187
+OBJC_SELECTOR_REFERENCES_.188
+.str.191
+_unnamed_cfstring_.192
+__PRETTY_FUNCTION__.__55-[AWSCognitoSQLiteManager putRecord:datasetName:error:]_block_invoke
+.str.193
+_unnamed_cfstring_.194
+__block_descriptor_tmp.197
+__PRETTY_FUNCTION__.-[AWSCognitoSQLiteManager conditionallyPutRecord:datasetName:withCurrentState:error:]
+.str.208
+_unnamed_cfstring_.209
+.str.210
+_unnamed_cfstring_.211
+.str.212
+_unnamed_cfstring_.213
+.str.214
+_unnamed_cfstring_.215
+.str.216
+_unnamed_cfstring_.217
+OBJC_METH_VAR_NAME_.218
+OBJC_SELECTOR_REFERENCES_.219
+OBJC_METH_VAR_NAME_.220
+OBJC_SELECTOR_REFERENCES_.221
+__PRETTY_FUNCTION__.-[AWSCognitoSQLiteManager conditionallyPutResolvedRecords:datasetName:error:]
+__PRETTY_FUNCTION__.__69-[AWSCognitoSQLiteManager flagRecordAsDeletedById:datasetName:error:]_block_invoke
+__block_descriptor_tmp.230
+__PRETTY_FUNCTION__.__62-[AWSCognitoSQLiteManager deleteRecordById:datasetName:error:]_block_invoke
+__block_descriptor_tmp.237
+.str.238
+OBJC_METH_VAR_NAME_.243
+.str.245
+__PRETTY_FUNCTION__.__88-[AWSCognitoSQLiteManager updateWithRemoteChanges:nonConflicts:resolvedConflicts:error:]_block_invoke
+__block_descriptor_tmp.253
+__PRETTY_FUNCTION__.__67-[AWSCognitoSQLiteManager updateLocalRecordMetadata:records:error:]_block_invoke
+__PRETTY_FUNCTION__.__38-[AWSCognitoSQLiteManager numRecords:]_block_invoke
+.str.266
+_unnamed_cfstring_.267
+.str.268
+_unnamed_cfstring_.269
+__PRETTY_FUNCTION__.__41-[AWSCognitoSQLiteManager lastSyncCount:]_block_invoke
+__block_descriptor_tmp.272
+.str.273
+_unnamed_cfstring_.274
+__PRETTY_FUNCTION__.__72-[AWSCognitoSQLiteManager updateLastSyncCount:syncCount:lastModifiedBy:]_block_invoke
+__block_descriptor_tmp.277
+.str.280
+_unnamed_cfstring_.281
+.str.282
+_unnamed_cfstring_.283
+.str.284
+_unnamed_cfstring_.285
+.str.286
+_unnamed_cfstring_.287
+__PRETTY_FUNCTION__.__60-[AWSCognitoSQLiteManager reparentDatasets:withNewId:error:]_block_invoke
+.str.290
+_unnamed_cfstring_.291
+.str.292
+_unnamed_cfstring_.293
+.str.294
+_unnamed_cfstring_.295
+_unnamed_cfstring_.304
+__PRETTY_FUNCTION__.__50-[AWSCognitoSQLiteManager getMergeDatasets:error:]_block_invoke
+.str.305
+_unnamed_cfstring_.306
+__block_descriptor_tmp.309
+OBJC_SELECTOR_REFERENCES_.311
+.str.312
+_unnamed_cfstring_.313
+.str.316
+_unnamed_cfstring_.317
+__PRETTY_FUNCTION__.-[AWSCognitoSQLiteManager filePath]
+.str.318
+_unnamed_cfstring_.319
+__PRETTY_FUNCTION__.__48-[AWSCognitoSQLiteManager resetSyncCount:error:]_block_invoke
+.str.320
+_unnamed_cfstring_.321
+.str.322
+_unnamed_cfstring_.323
+.str.324
+_unnamed_cfstring_.325
+.str.326
+_unnamed_cfstring_.327
+__block_descriptor_tmp.330
+.str.333
+_unnamed_cfstring_.334
+__PRETTY_FUNCTION__.__48-[AWSCognitoSQLiteManager deleteMetadata:error:]_block_invoke
+__block_descriptor_tmp.337
+.str.340
+_unnamed_cfstring_.341
+__PRETTY_FUNCTION__.__47-[AWSCognitoSQLiteManager deleteDataset:error:]_block_invoke
+__block_descriptor_tmp.344
+.str.345
+_unnamed_cfstring_.346
+__block_descriptor_tmp.349
+OBJC_CLASSLIST_REFERENCES_$_.350
+OBJC_SELECTOR_REFERENCES_.352
+OBJC_METH_VAR_NAME_.353
+OBJC_SELECTOR_REFERENCES_.354
+OBJC_METH_VAR_NAME_.355
+OBJC_SELECTOR_REFERENCES_.356
+__PRETTY_FUNCTION__.__47-[AWSCognitoSQLiteManager deleteSQLiteDatabase]_block_invoke
+__block_descriptor_tmp.361
+l_OBJC_METACLASS_RO_$_AWSCognitoSQLiteManager
+OBJC_CLASS_NAME_.362
+OBJC_METH_VAR_TYPE_.364
+OBJC_METH_VAR_TYPE_.370
+OBJC_METH_VAR_TYPE_.372
+OBJC_METH_VAR_TYPE_.374
+OBJC_METH_VAR_TYPE_.376
+OBJC_METH_VAR_TYPE_.381
+OBJC_METH_VAR_TYPE_.384
+OBJC_METH_VAR_NAME_.391
+OBJC_METH_VAR_TYPE_.400
+OBJC_METH_VAR_TYPE_.404
+OBJC_METH_VAR_TYPE_.406
+l_OBJC_$_INSTANCE_METHODS_AWSCognitoSQLiteManager
+OBJC_METH_VAR_TYPE_.409
+OBJC_METH_VAR_TYPE_.412
+OBJC_METH_VAR_NAME_.413
+OBJC_METH_VAR_TYPE_.414
+l_OBJC_$_INSTANCE_VARIABLES_AWSCognitoSQLiteManager
+OBJC_PROP_NAME_ATTR_.419
+OBJC_PROP_NAME_ATTR_.420
+OBJC_PROP_NAME_ATTR_.421
+l_OBJC_$_PROP_LIST_AWSCognitoSQLiteManager
+l_OBJC_CLASS_RO_$_AWSCognitoSQLiteManager
+-[AWSCognitoSQLiteManager .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoSQLiteManager.m
+-[AWSCognitoSQLiteManager setDispatchQueue:]
+-[AWSCognitoSQLiteManager dispatchQueue]
+-[AWSCognitoSQLiteManager setSqlite:]
+-[AWSCognitoSQLiteManager sqlite]
+-[AWSCognitoSQLiteManager setDeviceId:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCognito/Internal/AWSCognitoSQLiteManager.h
+-[AWSCognitoSQLiteManager deviceId]
+-[AWSCognitoSQLiteManager setIdentityId:]
+-[AWSCognitoSQLiteManager deleteSQLiteDatabase]
+-[AWSCognitoSQLiteManager columnExists:columnName:]
+-[AWSCognitoSQLiteManager deleteDataset:error:]
+-[AWSCognitoSQLiteManager deleteMetadata:error:]
+-[AWSCognitoSQLiteManager resetSyncCount:error:]
+-[AWSCognitoSQLiteManager filePath]
+-[AWSCognitoSQLiteManager getMergeDatasets:error:]
+-[AWSCognitoSQLiteManager reparentDatasets:withNewId:error:]
+-[AWSCognitoSQLiteManager updateLastSyncCount:syncCount:lastModifiedBy:]
+-[AWSCognitoSQLiteManager lastSyncCount:]
+-[AWSCognitoSQLiteManager numRecords:]
+-[AWSCognitoSQLiteManager updateLocalRecordMetadata:records:error:]
+-[AWSCognitoSQLiteManager updateWithRemoteChanges:nonConflicts:resolvedConflicts:error:]
+-[AWSCognitoSQLiteManager deleteRecordById:datasetName:error:]
+-[AWSCognitoSQLiteManager flagRecordAsDeletedById:datasetName:error:]
+-[AWSCognitoSQLiteManager conditionallyPutResolvedRecords:datasetName:error:]
+-[AWSCognitoSQLiteManager resetStatement:]
+-[AWSCognitoSQLiteManager conditionallyPutRecord:datasetName:withCurrentState:error:]
+-[AWSCognitoSQLiteManager putRecord:datasetName:error:]
+-[AWSCognitoSQLiteManager allRecords:]
+-[AWSCognitoSQLiteManager recordsUpdatedAfterLastSync:error:]
+-[AWSCognitoSQLiteManager identityId]
+-[AWSCognitoSQLiteManager getRecordById:datasetName:error:]
+-[AWSCognitoSQLiteManager getRecordById_internal:datasetName:error:sync:]
+-[AWSCognitoSQLiteManager putDatasetMetadata:error:]
+-[AWSCognitoSQLiteManager updateDatasetMetadata:error:]
+-[AWSCognitoSQLiteManager loadDatasetMetadata:error:]
+-[AWSCognitoSQLiteManager getDatasets:]
+-[AWSCognitoSQLiteManager initializeDatasetTables:]
+-[AWSCognitoSQLiteManager initializeTables]
+-[AWSCognitoSQLiteManager deleteAllData]
+-[AWSCognitoSQLiteManager setupSQL]
+-[AWSCognitoSQLiteManager initWithIdentityId:deviceId:]
+/Users/lukasz/Library/Developer/Xcode/DerivedData/AWSiOSSDKv2-cqgditqlqlxkxfdyzbkzoqrzqldw/Build/Intermediates/AWSiOSSDKv2.build/Release-iphoneos/AWSCognito.build/DerivedSources/AWSCognito_vers.c
+_ZL15__ARCLite__loadv
+_ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+_ZL34__arclite_objc_autoreleasePoolPushv
+_ZL33__arclite_objc_autoreleasePoolPopPv
+_ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+_ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+_ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+_ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+_ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+_ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+_ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+_ZL18add_image_hook_ARCPK11mach_headerl
+_ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+_ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+_ZL21__arclite_object_copyP11objc_objectm
+_ZL21__arclite_objc_retainP11objc_object
+_ZL26__arclite_objc_retainBlockP11objc_object
+_ZL22__arclite_objc_releaseP11objc_object
+_ZL26__arclite_objc_autoreleaseP11objc_object
+_ZL32__arclite_objc_retainAutoreleaseP11objc_object
+_ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+_ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+_ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+_ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+_ZL22add_image_hook_swiftV1PK11mach_headerl
+_ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+_ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+_ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+_ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+_ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+_ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+_ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+_ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+_ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+_ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+_ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+_ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+_ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+_ZL32__arclite_object_getIndexedIvarsP11objc_object
+_ZL23__arclite_objc_getClassPKc
+_ZL27__arclite_objc_getMetaClassPKc
+_ZL31__arclite_objc_getRequiredClassPKc
+_ZL26__arclite_objc_lookUpClassPKc
+_ZL26__arclite_objc_getProtocolPKc
+_ZL23__arclite_class_getNameP10objc_class
+_ZL26__arclite_protocol_getNameP8Protocol
+_ZL37__arclite_objc_copyClassNamesForImagePKcPj
+_ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+_ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+_ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+_ZL14initialize_impP11objc_objectP13objc_selector
+_ZL18allocateMaybeSwiftP18glue_swift_class_tm
+_ZL22copySwiftV1MangledNamePKcb
+_ZL13demangledNamePKcb
+_ZL16scanMangledFieldRPKcS0_S1_Ri
+_ZL30arclite_uninitialized_functionv
+_ZL12cxxConstructP11objc_object
+_ZL20fixStringForCoreDataP11objc_object
+OBJC_METACLASS_$___ARCLite__
+_ZL24OBJC_CLASS_$___ARCLite__
+_ZL31OBJC_METACLASS_RO_$___ARCLite__
+_non_lazy_classes
+_ZL27OBJC_CLASS_RO_$___ARCLite__
+_ZL11_class_name
+_ZL32OBJC_$_CLASS_METHODS___ARCLite__
+_ZL17_load_method_name
+_ZL17_load_method_type
+_ZL23NSAutoreleasePool_class
+_ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+_ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+.str.2
+.str.6
+.str.10
+.str.16
+OBJC_METH_VAR_TYPE_.20
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteIndexedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+OBJC_METH_VAR_TYPE_.29
+OBJC_CLASS_NAME_.32
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteKeyedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+_ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+_ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+.str.44
+.str.50
+.str.60
+_ZL30NSUndoManagerProxy_targetClass
+.str.64
+OBJC_SELECTOR_REFERENCES_.66
+_ZL29original_NSManagedObject_init
+_ZL40original_NSManagedObject_allocWithEntity
+OBJC_SELECTOR_REFERENCES_.70
+_ZL35original_NSManagedObject_allocBatch
+_ZL25NSMutableDictionary_class
+.str.71
+_ZL22NSConstantString_class
+_ZL14NSString_class
+.str.73
+_ZL36original_NSKKMS_fastIndexForKnownKey
+_ZL27original_NSKKMS_indexForKey
+_ZL28original_NSKKsD_objectForKey
+_ZL34original_NSKKsD_removeObjectForKey
+_ZL32original_NSKKsD_setObject_forKey
+_ZL40original_NSKKsD_addEntriesFromDictionary
+_ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+_ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+.str.81
+_ZL31original_objc_allocateClassPair
+.str.83
+_ZL31original_object_getIndexedIvars
+_ZL22original_objc_getClass
+_ZL26original_objc_getMetaClass
+_ZL30original_objc_getRequiredClass
+.str.87
+_ZL25original_objc_lookUpClass
+_ZL25original_objc_getProtocol
+.str.89
+_ZL22original_class_getName
+_ZL25original_protocol_getName
+.str.91
+_ZL36original_objc_copyClassNamesForImage
+.str.97
+.str.98
+.str.100
+.str.102
+_ZL12demangleLock
+_ZL9Demangled
+OBJC_METH_VAR_NAME_.108
+OBJC_SELECTOR_REFERENCES_.109
+OBJC_METH_VAR_NAME_.112
+OBJC_SELECTOR_REFERENCES_.113
+Apple LLVM version 7.3.0 (clang-703.0.21)
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -fembed-bitcode -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -fgnu-inline-asm -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -mlinker-version=264.3 -march=armv7a
+__arclite_NSKKsD_addEntriesFromDictionary
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+fixStringForCoreData
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+cxxConstruct
+__arclite_NSManagedObject_init
+arclite_uninitialized_function
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+patch_t<const char **(const char *, unsigned int *)>
+__arclite_objc_copyClassNamesForImage
+patch_t<const char *(Protocol *)>
+__arclite_protocol_getName
+patch_t<const char *(Class)>
+__isctype
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/ctype.h
+isdigit
+scanMangledField
+copySwiftV1DemangledName
+demangledName
+__arclite_class_getName
+patch_t<Protocol *(const char *)>
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+patch_t<Class (const char *)>
+copySwiftV1MangledName
+__arclite_objc_getClass
+patch_t<void *(id)>
+word_align
+__arclite_object_getIndexedIvars
+patch_t<Class (Class, const char *, unsigned long)>
+allocateMaybeSwift
+isSwift
+metaclass
+__arclite_objc_allocateClassPair
+patch_t<Class (Class, const objc_image_info *)>
+initialize_imp
+property_list_nth
+transcribeProperties
+transcribeProtocols
+method_list_nth
+transcribeMethods
+alignment
+max
+ivar_list_nth
+transcribeIvars
+fastFlags
+ro
+__arclite_objc_readClassPair
+add_image_hook_swiftV1
+install_swiftV1
+patch_t<void (id *, id)>
+__arclite_objc_storeStrong
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+patch_t<void (id)>
+__arclite_objc_release
+__arclite_objc_retainBlock
+patch_t<id (id)>
+__arclite_objc_retain
+patch_t<id (id, unsigned long)>
+fixupCopiedReferences
+classOrSuperClassesUseARR
+__arclite_object_copy
+patch_t<void (id, objc_ivar *, id)>
+isScannedOffset
+alignedInstanceStart
+_class_getInstanceStart
+data
+__arclite_class_usesAutomaticRetainRelease
+_ivar_getClass
+__arclite_object_setIvar
+patch_t<objc_ivar *(id, const char *, void *)>
+__arclite_object_setInstanceVariable
+add_image_hook_ARC
+install_ARC
+objc_collectingEnabled
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/objc/objc-auto.h
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+addOrReplaceMethod
+install_dict_nil_value
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+keyedGetter
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+indexedGetter
+__arclite_NSArray_objectAtIndexedSubscript
+addMethod
+install_subscripting
+patch_lazy_pointers
+patch_t<void (void *)>
+__arclite_objc_autoreleasePoolPop
+patch_t<void *()>
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+install_autoreleasepool
+__ARCLite__load

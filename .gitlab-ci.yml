@@ -6,7 +6,6 @@ before_script:
   - rm -rf Gemfile.lock
   - gem install bundler
   - bundle install
-  - carthage update --platform ios
 
 production:
   type: build

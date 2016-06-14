@@ -1,0 +1,4666 @@
+BCSymbolMap Version: 1.0
++[AWSSESAddHeaderAction JSONKeyPathsByPropertyKey]
+-[AWSSESAddHeaderAction headerName]
+-[AWSSESAddHeaderAction setHeaderName:]
+-[AWSSESAddHeaderAction headerValue]
+-[AWSSESAddHeaderAction setHeaderValue:]
+-[AWSSESAddHeaderAction .cxx_destruct]
++[AWSSESBody JSONKeyPathsByPropertyKey]
++[AWSSESBody htmlJSONTransformer]
++[AWSSESBody textJSONTransformer]
+-[AWSSESBody html]
+-[AWSSESBody setHtml:]
+-[AWSSESBody text]
+-[AWSSESBody setText:]
+-[AWSSESBody .cxx_destruct]
++[AWSSESBounceAction JSONKeyPathsByPropertyKey]
+-[AWSSESBounceAction message]
+-[AWSSESBounceAction setMessage:]
+-[AWSSESBounceAction sender]
+-[AWSSESBounceAction setSender:]
+-[AWSSESBounceAction smtpReplyCode]
+-[AWSSESBounceAction setSmtpReplyCode:]
+-[AWSSESBounceAction statusCode]
+-[AWSSESBounceAction setStatusCode:]
+-[AWSSESBounceAction topicArn]
+-[AWSSESBounceAction setTopicArn:]
+-[AWSSESBounceAction .cxx_destruct]
++[AWSSESBouncedRecipientInfo JSONKeyPathsByPropertyKey]
++[AWSSESBouncedRecipientInfo bounceTypeJSONTransformer]
+__55+[AWSSESBouncedRecipientInfo bounceTypeJSONTransformer]_block_invoke
+__55+[AWSSESBouncedRecipientInfo bounceTypeJSONTransformer]_block_invoke_2
++[AWSSESBouncedRecipientInfo recipientDsnFieldsJSONTransformer]
+-[AWSSESBouncedRecipientInfo bounceType]
+-[AWSSESBouncedRecipientInfo setBounceType:]
+-[AWSSESBouncedRecipientInfo recipient]
+-[AWSSESBouncedRecipientInfo setRecipient:]
+-[AWSSESBouncedRecipientInfo recipientArn]
+-[AWSSESBouncedRecipientInfo setRecipientArn:]
+-[AWSSESBouncedRecipientInfo recipientDsnFields]
+-[AWSSESBouncedRecipientInfo setRecipientDsnFields:]
+-[AWSSESBouncedRecipientInfo .cxx_destruct]
++[AWSSESCloneReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESCloneReceiptRuleSetRequest originalRuleSetName]
+-[AWSSESCloneReceiptRuleSetRequest setOriginalRuleSetName:]
+-[AWSSESCloneReceiptRuleSetRequest ruleSetName]
+-[AWSSESCloneReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESCloneReceiptRuleSetRequest .cxx_destruct]
++[AWSSESContent JSONKeyPathsByPropertyKey]
+-[AWSSESContent charset]
+-[AWSSESContent setCharset:]
+-[AWSSESContent data]
+-[AWSSESContent setData:]
+-[AWSSESContent .cxx_destruct]
++[AWSSESCreateReceiptFilterRequest JSONKeyPathsByPropertyKey]
++[AWSSESCreateReceiptFilterRequest filterJSONTransformer]
+-[AWSSESCreateReceiptFilterRequest filter]
+-[AWSSESCreateReceiptFilterRequest setFilter:]
+-[AWSSESCreateReceiptFilterRequest .cxx_destruct]
++[AWSSESCreateReceiptRuleRequest JSONKeyPathsByPropertyKey]
++[AWSSESCreateReceiptRuleRequest ruleJSONTransformer]
+-[AWSSESCreateReceiptRuleRequest after]
+-[AWSSESCreateReceiptRuleRequest setAfter:]
+-[AWSSESCreateReceiptRuleRequest rule]
+-[AWSSESCreateReceiptRuleRequest setRule:]
+-[AWSSESCreateReceiptRuleRequest ruleSetName]
+-[AWSSESCreateReceiptRuleRequest setRuleSetName:]
+-[AWSSESCreateReceiptRuleRequest .cxx_destruct]
++[AWSSESCreateReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESCreateReceiptRuleSetRequest ruleSetName]
+-[AWSSESCreateReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESCreateReceiptRuleSetRequest .cxx_destruct]
++[AWSSESDeleteIdentityPolicyRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteIdentityPolicyRequest identity]
+-[AWSSESDeleteIdentityPolicyRequest setIdentity:]
+-[AWSSESDeleteIdentityPolicyRequest policyName]
+-[AWSSESDeleteIdentityPolicyRequest setPolicyName:]
+-[AWSSESDeleteIdentityPolicyRequest .cxx_destruct]
++[AWSSESDeleteIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteIdentityRequest identity]
+-[AWSSESDeleteIdentityRequest setIdentity:]
+-[AWSSESDeleteIdentityRequest .cxx_destruct]
++[AWSSESDeleteReceiptFilterRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptFilterRequest filterName]
+-[AWSSESDeleteReceiptFilterRequest setFilterName:]
+-[AWSSESDeleteReceiptFilterRequest .cxx_destruct]
++[AWSSESDeleteReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptRuleRequest ruleName]
+-[AWSSESDeleteReceiptRuleRequest setRuleName:]
+-[AWSSESDeleteReceiptRuleRequest ruleSetName]
+-[AWSSESDeleteReceiptRuleRequest setRuleSetName:]
+-[AWSSESDeleteReceiptRuleRequest .cxx_destruct]
++[AWSSESDeleteReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptRuleSetRequest ruleSetName]
+-[AWSSESDeleteReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESDeleteReceiptRuleSetRequest .cxx_destruct]
++[AWSSESDeleteVerifiedEmailAddressRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteVerifiedEmailAddressRequest emailAddress]
+-[AWSSESDeleteVerifiedEmailAddressRequest setEmailAddress:]
+-[AWSSESDeleteVerifiedEmailAddressRequest .cxx_destruct]
++[AWSSESDescribeActiveReceiptRuleSetResponse JSONKeyPathsByPropertyKey]
++[AWSSESDescribeActiveReceiptRuleSetResponse metadataJSONTransformer]
++[AWSSESDescribeActiveReceiptRuleSetResponse rulesJSONTransformer]
+-[AWSSESDescribeActiveReceiptRuleSetResponse metadata]
+-[AWSSESDescribeActiveReceiptRuleSetResponse setMetadata:]
+-[AWSSESDescribeActiveReceiptRuleSetResponse rules]
+-[AWSSESDescribeActiveReceiptRuleSetResponse setRules:]
+-[AWSSESDescribeActiveReceiptRuleSetResponse .cxx_destruct]
++[AWSSESDescribeReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleRequest ruleName]
+-[AWSSESDescribeReceiptRuleRequest setRuleName:]
+-[AWSSESDescribeReceiptRuleRequest ruleSetName]
+-[AWSSESDescribeReceiptRuleRequest setRuleSetName:]
+-[AWSSESDescribeReceiptRuleRequest .cxx_destruct]
++[AWSSESDescribeReceiptRuleResponse JSONKeyPathsByPropertyKey]
++[AWSSESDescribeReceiptRuleResponse ruleJSONTransformer]
+-[AWSSESDescribeReceiptRuleResponse rule]
+-[AWSSESDescribeReceiptRuleResponse setRule:]
+-[AWSSESDescribeReceiptRuleResponse .cxx_destruct]
++[AWSSESDescribeReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleSetRequest ruleSetName]
+-[AWSSESDescribeReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESDescribeReceiptRuleSetRequest .cxx_destruct]
++[AWSSESDescribeReceiptRuleSetResponse JSONKeyPathsByPropertyKey]
++[AWSSESDescribeReceiptRuleSetResponse metadataJSONTransformer]
++[AWSSESDescribeReceiptRuleSetResponse rulesJSONTransformer]
+-[AWSSESDescribeReceiptRuleSetResponse metadata]
+-[AWSSESDescribeReceiptRuleSetResponse setMetadata:]
+-[AWSSESDescribeReceiptRuleSetResponse rules]
+-[AWSSESDescribeReceiptRuleSetResponse setRules:]
+-[AWSSESDescribeReceiptRuleSetResponse .cxx_destruct]
++[AWSSESDestination JSONKeyPathsByPropertyKey]
+-[AWSSESDestination bccAddresses]
+-[AWSSESDestination setBccAddresses:]
+-[AWSSESDestination ccAddresses]
+-[AWSSESDestination setCcAddresses:]
+-[AWSSESDestination toAddresses]
+-[AWSSESDestination setToAddresses:]
+-[AWSSESDestination .cxx_destruct]
++[AWSSESExtensionField JSONKeyPathsByPropertyKey]
+-[AWSSESExtensionField name]
+-[AWSSESExtensionField setName:]
+-[AWSSESExtensionField value]
+-[AWSSESExtensionField setValue:]
+-[AWSSESExtensionField .cxx_destruct]
++[AWSSESGetIdentityDkimAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityDkimAttributesRequest identities]
+-[AWSSESGetIdentityDkimAttributesRequest setIdentities:]
+-[AWSSESGetIdentityDkimAttributesRequest .cxx_destruct]
++[AWSSESGetIdentityDkimAttributesResponse JSONKeyPathsByPropertyKey]
++[AWSSESGetIdentityDkimAttributesResponse dkimAttributesJSONTransformer]
+__72+[AWSSESGetIdentityDkimAttributesResponse dkimAttributesJSONTransformer]_block_invoke
+__72+[AWSSESGetIdentityDkimAttributesResponse dkimAttributesJSONTransformer]_block_invoke_2
+-[AWSSESGetIdentityDkimAttributesResponse dkimAttributes]
+-[AWSSESGetIdentityDkimAttributesResponse setDkimAttributes:]
+-[AWSSESGetIdentityDkimAttributesResponse .cxx_destruct]
++[AWSSESGetIdentityMailFromDomainAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest identities]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest setIdentities:]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest .cxx_destruct]
++[AWSSESGetIdentityMailFromDomainAttributesResponse JSONKeyPathsByPropertyKey]
++[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributesJSONTransformer]
+__92+[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributesJSONTransformer]_block_invoke
+__92+[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributesJSONTransformer]_block_invoke_2
+-[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributes]
+-[AWSSESGetIdentityMailFromDomainAttributesResponse setMailFromDomainAttributes:]
+-[AWSSESGetIdentityMailFromDomainAttributesResponse .cxx_destruct]
++[AWSSESGetIdentityNotificationAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityNotificationAttributesRequest identities]
+-[AWSSESGetIdentityNotificationAttributesRequest setIdentities:]
+-[AWSSESGetIdentityNotificationAttributesRequest .cxx_destruct]
++[AWSSESGetIdentityNotificationAttributesResponse JSONKeyPathsByPropertyKey]
++[AWSSESGetIdentityNotificationAttributesResponse notificationAttributesJSONTransformer]
+__88+[AWSSESGetIdentityNotificationAttributesResponse notificationAttributesJSONTransformer]_block_invoke
+__88+[AWSSESGetIdentityNotificationAttributesResponse notificationAttributesJSONTransformer]_block_invoke_2
+-[AWSSESGetIdentityNotificationAttributesResponse notificationAttributes]
+-[AWSSESGetIdentityNotificationAttributesResponse setNotificationAttributes:]
+-[AWSSESGetIdentityNotificationAttributesResponse .cxx_destruct]
++[AWSSESGetIdentityPoliciesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityPoliciesRequest identity]
+-[AWSSESGetIdentityPoliciesRequest setIdentity:]
+-[AWSSESGetIdentityPoliciesRequest policyNames]
+-[AWSSESGetIdentityPoliciesRequest setPolicyNames:]
+-[AWSSESGetIdentityPoliciesRequest .cxx_destruct]
++[AWSSESGetIdentityPoliciesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityPoliciesResponse policies]
+-[AWSSESGetIdentityPoliciesResponse setPolicies:]
+-[AWSSESGetIdentityPoliciesResponse .cxx_destruct]
++[AWSSESGetIdentityVerificationAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityVerificationAttributesRequest identities]
+-[AWSSESGetIdentityVerificationAttributesRequest setIdentities:]
+-[AWSSESGetIdentityVerificationAttributesRequest .cxx_destruct]
++[AWSSESGetIdentityVerificationAttributesResponse JSONKeyPathsByPropertyKey]
++[AWSSESGetIdentityVerificationAttributesResponse verificationAttributesJSONTransformer]
+__88+[AWSSESGetIdentityVerificationAttributesResponse verificationAttributesJSONTransformer]_block_invoke
+__88+[AWSSESGetIdentityVerificationAttributesResponse verificationAttributesJSONTransformer]_block_invoke_2
+-[AWSSESGetIdentityVerificationAttributesResponse verificationAttributes]
+-[AWSSESGetIdentityVerificationAttributesResponse setVerificationAttributes:]
+-[AWSSESGetIdentityVerificationAttributesResponse .cxx_destruct]
++[AWSSESGetSendQuotaResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetSendQuotaResponse max24HourSend]
+-[AWSSESGetSendQuotaResponse setMax24HourSend:]
+-[AWSSESGetSendQuotaResponse maxSendRate]
+-[AWSSESGetSendQuotaResponse setMaxSendRate:]
+-[AWSSESGetSendQuotaResponse sentLast24Hours]
+-[AWSSESGetSendQuotaResponse setSentLast24Hours:]
+-[AWSSESGetSendQuotaResponse .cxx_destruct]
++[AWSSESGetSendStatisticsResponse JSONKeyPathsByPropertyKey]
++[AWSSESGetSendStatisticsResponse sendDataPointsJSONTransformer]
+-[AWSSESGetSendStatisticsResponse sendDataPoints]
+-[AWSSESGetSendStatisticsResponse setSendDataPoints:]
+-[AWSSESGetSendStatisticsResponse .cxx_destruct]
++[AWSSESIdentityDkimAttributes JSONKeyPathsByPropertyKey]
++[AWSSESIdentityDkimAttributes dkimVerificationStatusJSONTransformer]
+__69+[AWSSESIdentityDkimAttributes dkimVerificationStatusJSONTransformer]_block_invoke
+__69+[AWSSESIdentityDkimAttributes dkimVerificationStatusJSONTransformer]_block_invoke_2
+-[AWSSESIdentityDkimAttributes dkimEnabled]
+-[AWSSESIdentityDkimAttributes setDkimEnabled:]
+-[AWSSESIdentityDkimAttributes dkimTokens]
+-[AWSSESIdentityDkimAttributes setDkimTokens:]
+-[AWSSESIdentityDkimAttributes dkimVerificationStatus]
+-[AWSSESIdentityDkimAttributes setDkimVerificationStatus:]
+-[AWSSESIdentityDkimAttributes .cxx_destruct]
++[AWSSESIdentityMailFromDomainAttributes JSONKeyPathsByPropertyKey]
++[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailureJSONTransformer]
+__76+[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailureJSONTransformer]_block_invoke
+__76+[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailureJSONTransformer]_block_invoke_2
++[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatusJSONTransformer]
+__77+[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatusJSONTransformer]_block_invoke
+__77+[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatusJSONTransformer]_block_invoke_2
+-[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailure]
+-[AWSSESIdentityMailFromDomainAttributes setBehaviorOnMXFailure:]
+-[AWSSESIdentityMailFromDomainAttributes mailFromDomain]
+-[AWSSESIdentityMailFromDomainAttributes setMailFromDomain:]
+-[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatus]
+-[AWSSESIdentityMailFromDomainAttributes setMailFromDomainStatus:]
+-[AWSSESIdentityMailFromDomainAttributes .cxx_destruct]
++[AWSSESIdentityNotificationAttributes JSONKeyPathsByPropertyKey]
+-[AWSSESIdentityNotificationAttributes bounceTopic]
+-[AWSSESIdentityNotificationAttributes setBounceTopic:]
+-[AWSSESIdentityNotificationAttributes complaintTopic]
+-[AWSSESIdentityNotificationAttributes setComplaintTopic:]
+-[AWSSESIdentityNotificationAttributes deliveryTopic]
+-[AWSSESIdentityNotificationAttributes setDeliveryTopic:]
+-[AWSSESIdentityNotificationAttributes forwardingEnabled]
+-[AWSSESIdentityNotificationAttributes setForwardingEnabled:]
+-[AWSSESIdentityNotificationAttributes .cxx_destruct]
++[AWSSESIdentityVerificationAttributes JSONKeyPathsByPropertyKey]
++[AWSSESIdentityVerificationAttributes verificationStatusJSONTransformer]
+__73+[AWSSESIdentityVerificationAttributes verificationStatusJSONTransformer]_block_invoke
+__73+[AWSSESIdentityVerificationAttributes verificationStatusJSONTransformer]_block_invoke_2
+-[AWSSESIdentityVerificationAttributes verificationStatus]
+-[AWSSESIdentityVerificationAttributes setVerificationStatus:]
+-[AWSSESIdentityVerificationAttributes verificationToken]
+-[AWSSESIdentityVerificationAttributes setVerificationToken:]
+-[AWSSESIdentityVerificationAttributes .cxx_destruct]
++[AWSSESLambdaAction JSONKeyPathsByPropertyKey]
++[AWSSESLambdaAction invocationTypeJSONTransformer]
+__51+[AWSSESLambdaAction invocationTypeJSONTransformer]_block_invoke
+__51+[AWSSESLambdaAction invocationTypeJSONTransformer]_block_invoke_2
+-[AWSSESLambdaAction functionArn]
+-[AWSSESLambdaAction setFunctionArn:]
+-[AWSSESLambdaAction invocationType]
+-[AWSSESLambdaAction setInvocationType:]
+-[AWSSESLambdaAction topicArn]
+-[AWSSESLambdaAction setTopicArn:]
+-[AWSSESLambdaAction .cxx_destruct]
++[AWSSESListIdentitiesRequest JSONKeyPathsByPropertyKey]
++[AWSSESListIdentitiesRequest identityTypeJSONTransformer]
+__58+[AWSSESListIdentitiesRequest identityTypeJSONTransformer]_block_invoke
+__58+[AWSSESListIdentitiesRequest identityTypeJSONTransformer]_block_invoke_2
+-[AWSSESListIdentitiesRequest identityType]
+-[AWSSESListIdentitiesRequest setIdentityType:]
+-[AWSSESListIdentitiesRequest maxItems]
+-[AWSSESListIdentitiesRequest setMaxItems:]
+-[AWSSESListIdentitiesRequest nextToken]
+-[AWSSESListIdentitiesRequest setNextToken:]
+-[AWSSESListIdentitiesRequest .cxx_destruct]
++[AWSSESListIdentitiesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentitiesResponse identities]
+-[AWSSESListIdentitiesResponse setIdentities:]
+-[AWSSESListIdentitiesResponse nextToken]
+-[AWSSESListIdentitiesResponse setNextToken:]
+-[AWSSESListIdentitiesResponse .cxx_destruct]
++[AWSSESListIdentityPoliciesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentityPoliciesRequest identity]
+-[AWSSESListIdentityPoliciesRequest setIdentity:]
+-[AWSSESListIdentityPoliciesRequest .cxx_destruct]
++[AWSSESListIdentityPoliciesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentityPoliciesResponse policyNames]
+-[AWSSESListIdentityPoliciesResponse setPolicyNames:]
+-[AWSSESListIdentityPoliciesResponse .cxx_destruct]
++[AWSSESListReceiptFiltersResponse JSONKeyPathsByPropertyKey]
++[AWSSESListReceiptFiltersResponse filtersJSONTransformer]
+-[AWSSESListReceiptFiltersResponse filters]
+-[AWSSESListReceiptFiltersResponse setFilters:]
+-[AWSSESListReceiptFiltersResponse .cxx_destruct]
++[AWSSESListReceiptRuleSetsRequest JSONKeyPathsByPropertyKey]
+-[AWSSESListReceiptRuleSetsRequest nextToken]
+-[AWSSESListReceiptRuleSetsRequest setNextToken:]
+-[AWSSESListReceiptRuleSetsRequest .cxx_destruct]
++[AWSSESListReceiptRuleSetsResponse JSONKeyPathsByPropertyKey]
++[AWSSESListReceiptRuleSetsResponse ruleSetsJSONTransformer]
+-[AWSSESListReceiptRuleSetsResponse nextToken]
+-[AWSSESListReceiptRuleSetsResponse setNextToken:]
+-[AWSSESListReceiptRuleSetsResponse ruleSets]
+-[AWSSESListReceiptRuleSetsResponse setRuleSets:]
+-[AWSSESListReceiptRuleSetsResponse .cxx_destruct]
++[AWSSESListVerifiedEmailAddressesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListVerifiedEmailAddressesResponse verifiedEmailAddresses]
+-[AWSSESListVerifiedEmailAddressesResponse setVerifiedEmailAddresses:]
+-[AWSSESListVerifiedEmailAddressesResponse .cxx_destruct]
++[AWSSESMessage JSONKeyPathsByPropertyKey]
++[AWSSESMessage bodyJSONTransformer]
++[AWSSESMessage subjectJSONTransformer]
+-[AWSSESMessage body]
+-[AWSSESMessage setBody:]
+-[AWSSESMessage subject]
+-[AWSSESMessage setSubject:]
+-[AWSSESMessage .cxx_destruct]
++[AWSSESMessageDsn JSONKeyPathsByPropertyKey]
++[AWSSESMessageDsn arrivalDateJSONTransformer]
+__46+[AWSSESMessageDsn arrivalDateJSONTransformer]_block_invoke
+__46+[AWSSESMessageDsn arrivalDateJSONTransformer]_block_invoke_2
++[AWSSESMessageDsn extensionFieldsJSONTransformer]
+-[AWSSESMessageDsn arrivalDate]
+-[AWSSESMessageDsn setArrivalDate:]
+-[AWSSESMessageDsn extensionFields]
+-[AWSSESMessageDsn setExtensionFields:]
+-[AWSSESMessageDsn reportingMta]
+-[AWSSESMessageDsn setReportingMta:]
+-[AWSSESMessageDsn .cxx_destruct]
++[AWSSESPutIdentityPolicyRequest JSONKeyPathsByPropertyKey]
+-[AWSSESPutIdentityPolicyRequest identity]
+-[AWSSESPutIdentityPolicyRequest setIdentity:]
+-[AWSSESPutIdentityPolicyRequest policy]
+-[AWSSESPutIdentityPolicyRequest setPolicy:]
+-[AWSSESPutIdentityPolicyRequest policyName]
+-[AWSSESPutIdentityPolicyRequest setPolicyName:]
+-[AWSSESPutIdentityPolicyRequest .cxx_destruct]
++[AWSSESRawMessage JSONKeyPathsByPropertyKey]
+-[AWSSESRawMessage data]
+-[AWSSESRawMessage setData:]
+-[AWSSESRawMessage .cxx_destruct]
++[AWSSESReceiptAction JSONKeyPathsByPropertyKey]
++[AWSSESReceiptAction addHeaderActionJSONTransformer]
++[AWSSESReceiptAction bounceActionJSONTransformer]
++[AWSSESReceiptAction lambdaActionJSONTransformer]
++[AWSSESReceiptAction s3ActionJSONTransformer]
++[AWSSESReceiptAction SNSActionJSONTransformer]
++[AWSSESReceiptAction stopActionJSONTransformer]
++[AWSSESReceiptAction workmailActionJSONTransformer]
+-[AWSSESReceiptAction addHeaderAction]
+-[AWSSESReceiptAction setAddHeaderAction:]
+-[AWSSESReceiptAction bounceAction]
+-[AWSSESReceiptAction setBounceAction:]
+-[AWSSESReceiptAction lambdaAction]
+-[AWSSESReceiptAction setLambdaAction:]
+-[AWSSESReceiptAction s3Action]
+-[AWSSESReceiptAction setS3Action:]
+-[AWSSESReceiptAction SNSAction]
+-[AWSSESReceiptAction setSNSAction:]
+-[AWSSESReceiptAction stopAction]
+-[AWSSESReceiptAction setStopAction:]
+-[AWSSESReceiptAction workmailAction]
+-[AWSSESReceiptAction setWorkmailAction:]
+-[AWSSESReceiptAction .cxx_destruct]
++[AWSSESReceiptFilter JSONKeyPathsByPropertyKey]
++[AWSSESReceiptFilter ipFilterJSONTransformer]
+-[AWSSESReceiptFilter ipFilter]
+-[AWSSESReceiptFilter setIpFilter:]
+-[AWSSESReceiptFilter name]
+-[AWSSESReceiptFilter setName:]
+-[AWSSESReceiptFilter .cxx_destruct]
++[AWSSESReceiptIpFilter JSONKeyPathsByPropertyKey]
++[AWSSESReceiptIpFilter policyJSONTransformer]
+__46+[AWSSESReceiptIpFilter policyJSONTransformer]_block_invoke
+__46+[AWSSESReceiptIpFilter policyJSONTransformer]_block_invoke_2
+-[AWSSESReceiptIpFilter cidr]
+-[AWSSESReceiptIpFilter setCidr:]
+-[AWSSESReceiptIpFilter policy]
+-[AWSSESReceiptIpFilter setPolicy:]
+-[AWSSESReceiptIpFilter .cxx_destruct]
++[AWSSESReceiptRule JSONKeyPathsByPropertyKey]
++[AWSSESReceiptRule actionsJSONTransformer]
++[AWSSESReceiptRule tlsPolicyJSONTransformer]
+__45+[AWSSESReceiptRule tlsPolicyJSONTransformer]_block_invoke
+__45+[AWSSESReceiptRule tlsPolicyJSONTransformer]_block_invoke_2
+-[AWSSESReceiptRule actions]
+-[AWSSESReceiptRule setActions:]
+-[AWSSESReceiptRule enabled]
+-[AWSSESReceiptRule setEnabled:]
+-[AWSSESReceiptRule name]
+-[AWSSESReceiptRule setName:]
+-[AWSSESReceiptRule recipients]
+-[AWSSESReceiptRule setRecipients:]
+-[AWSSESReceiptRule scanEnabled]
+-[AWSSESReceiptRule setScanEnabled:]
+-[AWSSESReceiptRule tlsPolicy]
+-[AWSSESReceiptRule setTlsPolicy:]
+-[AWSSESReceiptRule .cxx_destruct]
++[AWSSESReceiptRuleSetMetadata JSONKeyPathsByPropertyKey]
++[AWSSESReceiptRuleSetMetadata createdTimestampJSONTransformer]
+__63+[AWSSESReceiptRuleSetMetadata createdTimestampJSONTransformer]_block_invoke
+__63+[AWSSESReceiptRuleSetMetadata createdTimestampJSONTransformer]_block_invoke_2
+-[AWSSESReceiptRuleSetMetadata createdTimestamp]
+-[AWSSESReceiptRuleSetMetadata setCreatedTimestamp:]
+-[AWSSESReceiptRuleSetMetadata name]
+-[AWSSESReceiptRuleSetMetadata setName:]
+-[AWSSESReceiptRuleSetMetadata .cxx_destruct]
++[AWSSESRecipientDsnFields JSONKeyPathsByPropertyKey]
++[AWSSESRecipientDsnFields actionJSONTransformer]
+__49+[AWSSESRecipientDsnFields actionJSONTransformer]_block_invoke
+__49+[AWSSESRecipientDsnFields actionJSONTransformer]_block_invoke_2
++[AWSSESRecipientDsnFields extensionFieldsJSONTransformer]
++[AWSSESRecipientDsnFields lastAttemptDateJSONTransformer]
+__58+[AWSSESRecipientDsnFields lastAttemptDateJSONTransformer]_block_invoke
+__58+[AWSSESRecipientDsnFields lastAttemptDateJSONTransformer]_block_invoke_2
+-[AWSSESRecipientDsnFields action]
+-[AWSSESRecipientDsnFields setAction:]
+-[AWSSESRecipientDsnFields diagnosticCode]
+-[AWSSESRecipientDsnFields setDiagnosticCode:]
+-[AWSSESRecipientDsnFields extensionFields]
+-[AWSSESRecipientDsnFields setExtensionFields:]
+-[AWSSESRecipientDsnFields finalRecipient]
+-[AWSSESRecipientDsnFields setFinalRecipient:]
+-[AWSSESRecipientDsnFields lastAttemptDate]
+-[AWSSESRecipientDsnFields setLastAttemptDate:]
+-[AWSSESRecipientDsnFields remoteMta]
+-[AWSSESRecipientDsnFields setRemoteMta:]
+-[AWSSESRecipientDsnFields status]
+-[AWSSESRecipientDsnFields setStatus:]
+-[AWSSESRecipientDsnFields .cxx_destruct]
++[AWSSESReorderReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESReorderReceiptRuleSetRequest ruleNames]
+-[AWSSESReorderReceiptRuleSetRequest setRuleNames:]
+-[AWSSESReorderReceiptRuleSetRequest ruleSetName]
+-[AWSSESReorderReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESReorderReceiptRuleSetRequest .cxx_destruct]
++[AWSSESS3Action JSONKeyPathsByPropertyKey]
+-[AWSSESS3Action bucketName]
+-[AWSSESS3Action setBucketName:]
+-[AWSSESS3Action kmsKeyArn]
+-[AWSSESS3Action setKmsKeyArn:]
+-[AWSSESS3Action objectKeyPrefix]
+-[AWSSESS3Action setObjectKeyPrefix:]
+-[AWSSESS3Action topicArn]
+-[AWSSESS3Action setTopicArn:]
+-[AWSSESS3Action .cxx_destruct]
++[AWSSESSNSAction JSONKeyPathsByPropertyKey]
++[AWSSESSNSAction encodingJSONTransformer]
+__42+[AWSSESSNSAction encodingJSONTransformer]_block_invoke
+__42+[AWSSESSNSAction encodingJSONTransformer]_block_invoke_2
+-[AWSSESSNSAction encoding]
+-[AWSSESSNSAction setEncoding:]
+-[AWSSESSNSAction topicArn]
+-[AWSSESSNSAction setTopicArn:]
+-[AWSSESSNSAction .cxx_destruct]
++[AWSSESSendBounceRequest JSONKeyPathsByPropertyKey]
++[AWSSESSendBounceRequest bouncedRecipientInfoListJSONTransformer]
++[AWSSESSendBounceRequest messageDsnJSONTransformer]
+-[AWSSESSendBounceRequest bounceSender]
+-[AWSSESSendBounceRequest setBounceSender:]
+-[AWSSESSendBounceRequest bounceSenderArn]
+-[AWSSESSendBounceRequest setBounceSenderArn:]
+-[AWSSESSendBounceRequest bouncedRecipientInfoList]
+-[AWSSESSendBounceRequest setBouncedRecipientInfoList:]
+-[AWSSESSendBounceRequest explanation]
+-[AWSSESSendBounceRequest setExplanation:]
+-[AWSSESSendBounceRequest messageDsn]
+-[AWSSESSendBounceRequest setMessageDsn:]
+-[AWSSESSendBounceRequest originalMessageId]
+-[AWSSESSendBounceRequest setOriginalMessageId:]
+-[AWSSESSendBounceRequest .cxx_destruct]
++[AWSSESSendBounceResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendBounceResponse messageId]
+-[AWSSESSendBounceResponse setMessageId:]
+-[AWSSESSendBounceResponse .cxx_destruct]
++[AWSSESSendDataPoint JSONKeyPathsByPropertyKey]
++[AWSSESSendDataPoint timestampJSONTransformer]
+__47+[AWSSESSendDataPoint timestampJSONTransformer]_block_invoke
+__47+[AWSSESSendDataPoint timestampJSONTransformer]_block_invoke_2
+-[AWSSESSendDataPoint bounces]
+-[AWSSESSendDataPoint setBounces:]
+-[AWSSESSendDataPoint complaints]
+-[AWSSESSendDataPoint setComplaints:]
+-[AWSSESSendDataPoint deliveryAttempts]
+-[AWSSESSendDataPoint setDeliveryAttempts:]
+-[AWSSESSendDataPoint rejects]
+-[AWSSESSendDataPoint setRejects:]
+-[AWSSESSendDataPoint timestamp]
+-[AWSSESSendDataPoint setTimestamp:]
+-[AWSSESSendDataPoint .cxx_destruct]
++[AWSSESSendEmailRequest JSONKeyPathsByPropertyKey]
++[AWSSESSendEmailRequest destinationJSONTransformer]
++[AWSSESSendEmailRequest messageJSONTransformer]
+-[AWSSESSendEmailRequest destination]
+-[AWSSESSendEmailRequest setDestination:]
+-[AWSSESSendEmailRequest message]
+-[AWSSESSendEmailRequest setMessage:]
+-[AWSSESSendEmailRequest replyToAddresses]
+-[AWSSESSendEmailRequest setReplyToAddresses:]
+-[AWSSESSendEmailRequest returnPath]
+-[AWSSESSendEmailRequest setReturnPath:]
+-[AWSSESSendEmailRequest returnPathArn]
+-[AWSSESSendEmailRequest setReturnPathArn:]
+-[AWSSESSendEmailRequest source]
+-[AWSSESSendEmailRequest setSource:]
+-[AWSSESSendEmailRequest sourceArn]
+-[AWSSESSendEmailRequest setSourceArn:]
+-[AWSSESSendEmailRequest .cxx_destruct]
++[AWSSESSendEmailResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendEmailResponse messageId]
+-[AWSSESSendEmailResponse setMessageId:]
+-[AWSSESSendEmailResponse .cxx_destruct]
++[AWSSESSendRawEmailRequest JSONKeyPathsByPropertyKey]
++[AWSSESSendRawEmailRequest rawMessageJSONTransformer]
+-[AWSSESSendRawEmailRequest destinations]
+-[AWSSESSendRawEmailRequest setDestinations:]
+-[AWSSESSendRawEmailRequest fromArn]
+-[AWSSESSendRawEmailRequest setFromArn:]
+-[AWSSESSendRawEmailRequest rawMessage]
+-[AWSSESSendRawEmailRequest setRawMessage:]
+-[AWSSESSendRawEmailRequest returnPathArn]
+-[AWSSESSendRawEmailRequest setReturnPathArn:]
+-[AWSSESSendRawEmailRequest source]
+-[AWSSESSendRawEmailRequest setSource:]
+-[AWSSESSendRawEmailRequest sourceArn]
+-[AWSSESSendRawEmailRequest setSourceArn:]
+-[AWSSESSendRawEmailRequest .cxx_destruct]
++[AWSSESSendRawEmailResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendRawEmailResponse messageId]
+-[AWSSESSendRawEmailResponse setMessageId:]
+-[AWSSESSendRawEmailResponse .cxx_destruct]
++[AWSSESSetActiveReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetActiveReceiptRuleSetRequest ruleSetName]
+-[AWSSESSetActiveReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESSetActiveReceiptRuleSetRequest .cxx_destruct]
++[AWSSESSetIdentityDkimEnabledRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityDkimEnabledRequest dkimEnabled]
+-[AWSSESSetIdentityDkimEnabledRequest setDkimEnabled:]
+-[AWSSESSetIdentityDkimEnabledRequest identity]
+-[AWSSESSetIdentityDkimEnabledRequest setIdentity:]
+-[AWSSESSetIdentityDkimEnabledRequest .cxx_destruct]
++[AWSSESSetIdentityFeedbackForwardingEnabledRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest forwardingEnabled]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest setForwardingEnabled:]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest identity]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest setIdentity:]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest .cxx_destruct]
++[AWSSESSetIdentityMailFromDomainRequest JSONKeyPathsByPropertyKey]
++[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailureJSONTransformer]
+__76+[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailureJSONTransformer]_block_invoke
+__76+[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailureJSONTransformer]_block_invoke_2
+-[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailure]
+-[AWSSESSetIdentityMailFromDomainRequest setBehaviorOnMXFailure:]
+-[AWSSESSetIdentityMailFromDomainRequest identity]
+-[AWSSESSetIdentityMailFromDomainRequest setIdentity:]
+-[AWSSESSetIdentityMailFromDomainRequest mailFromDomain]
+-[AWSSESSetIdentityMailFromDomainRequest setMailFromDomain:]
+-[AWSSESSetIdentityMailFromDomainRequest .cxx_destruct]
++[AWSSESSetIdentityNotificationTopicRequest JSONKeyPathsByPropertyKey]
++[AWSSESSetIdentityNotificationTopicRequest notificationTypeJSONTransformer]
+__76+[AWSSESSetIdentityNotificationTopicRequest notificationTypeJSONTransformer]_block_invoke
+__76+[AWSSESSetIdentityNotificationTopicRequest notificationTypeJSONTransformer]_block_invoke_2
+-[AWSSESSetIdentityNotificationTopicRequest identity]
+-[AWSSESSetIdentityNotificationTopicRequest setIdentity:]
+-[AWSSESSetIdentityNotificationTopicRequest notificationType]
+-[AWSSESSetIdentityNotificationTopicRequest setNotificationType:]
+-[AWSSESSetIdentityNotificationTopicRequest snsTopic]
+-[AWSSESSetIdentityNotificationTopicRequest setSnsTopic:]
+-[AWSSESSetIdentityNotificationTopicRequest .cxx_destruct]
++[AWSSESSetReceiptRulePositionRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetReceiptRulePositionRequest after]
+-[AWSSESSetReceiptRulePositionRequest setAfter:]
+-[AWSSESSetReceiptRulePositionRequest ruleName]
+-[AWSSESSetReceiptRulePositionRequest setRuleName:]
+-[AWSSESSetReceiptRulePositionRequest ruleSetName]
+-[AWSSESSetReceiptRulePositionRequest setRuleSetName:]
+-[AWSSESSetReceiptRulePositionRequest .cxx_destruct]
++[AWSSESStopAction JSONKeyPathsByPropertyKey]
++[AWSSESStopAction scopeJSONTransformer]
+__40+[AWSSESStopAction scopeJSONTransformer]_block_invoke
+__40+[AWSSESStopAction scopeJSONTransformer]_block_invoke_2
+-[AWSSESStopAction scope]
+-[AWSSESStopAction setScope:]
+-[AWSSESStopAction topicArn]
+-[AWSSESStopAction setTopicArn:]
+-[AWSSESStopAction .cxx_destruct]
++[AWSSESUpdateReceiptRuleRequest JSONKeyPathsByPropertyKey]
++[AWSSESUpdateReceiptRuleRequest ruleJSONTransformer]
+-[AWSSESUpdateReceiptRuleRequest rule]
+-[AWSSESUpdateReceiptRuleRequest setRule:]
+-[AWSSESUpdateReceiptRuleRequest ruleSetName]
+-[AWSSESUpdateReceiptRuleRequest setRuleSetName:]
+-[AWSSESUpdateReceiptRuleRequest .cxx_destruct]
++[AWSSESVerifyDomainDkimRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainDkimRequest domain]
+-[AWSSESVerifyDomainDkimRequest setDomain:]
+-[AWSSESVerifyDomainDkimRequest .cxx_destruct]
++[AWSSESVerifyDomainDkimResponse JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainDkimResponse dkimTokens]
+-[AWSSESVerifyDomainDkimResponse setDkimTokens:]
+-[AWSSESVerifyDomainDkimResponse .cxx_destruct]
++[AWSSESVerifyDomainIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainIdentityRequest domain]
+-[AWSSESVerifyDomainIdentityRequest setDomain:]
+-[AWSSESVerifyDomainIdentityRequest .cxx_destruct]
++[AWSSESVerifyDomainIdentityResponse JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainIdentityResponse verificationToken]
+-[AWSSESVerifyDomainIdentityResponse setVerificationToken:]
+-[AWSSESVerifyDomainIdentityResponse .cxx_destruct]
++[AWSSESVerifyEmailAddressRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyEmailAddressRequest emailAddress]
+-[AWSSESVerifyEmailAddressRequest setEmailAddress:]
+-[AWSSESVerifyEmailAddressRequest .cxx_destruct]
++[AWSSESVerifyEmailIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyEmailIdentityRequest emailAddress]
+-[AWSSESVerifyEmailIdentityRequest setEmailAddress:]
+-[AWSSESVerifyEmailIdentityRequest .cxx_destruct]
++[AWSSESWorkmailAction JSONKeyPathsByPropertyKey]
+-[AWSSESWorkmailAction organizationArn]
+-[AWSSESWorkmailAction setOrganizationArn:]
+-[AWSSESWorkmailAction topicArn]
+-[AWSSESWorkmailAction setTopicArn:]
+-[AWSSESWorkmailAction .cxx_destruct]
+.str
+_unnamed_cfstring_
+.str.1
+_unnamed_cfstring_.2
+.str.3
+_unnamed_cfstring_.4
+.str.5
+_unnamed_cfstring_.6
+.str.7
+_unnamed_cfstring_.8
+OBJC_CLASSLIST_REFERENCES_$_
+OBJC_METH_VAR_NAME_
+OBJC_SELECTOR_REFERENCES_
+OBJC_IVAR_$_AWSSESAddHeaderAction._headerName
+OBJC_IVAR_$_AWSSESAddHeaderAction._headerValue
+OBJC_CLASS_NAME_
+OBJC_METH_VAR_NAME_.9
+OBJC_METH_VAR_TYPE_
+l_OBJC_$_CLASS_METHODS_AWSSESAddHeaderAction
+l_OBJC_METACLASS_RO_$_AWSSESAddHeaderAction
+OBJC_CLASS_NAME_.10
+OBJC_METH_VAR_NAME_.11
+OBJC_METH_VAR_TYPE_.12
+OBJC_METH_VAR_NAME_.13
+OBJC_METH_VAR_NAME_.14
+OBJC_METH_VAR_TYPE_.15
+OBJC_METH_VAR_NAME_.16
+OBJC_METH_VAR_NAME_.17
+l_OBJC_$_INSTANCE_METHODS_AWSSESAddHeaderAction
+OBJC_METH_VAR_NAME_.18
+OBJC_METH_VAR_TYPE_.19
+OBJC_METH_VAR_NAME_.20
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESAddHeaderAction
+OBJC_PROP_NAME_ATTR_
+OBJC_PROP_NAME_ATTR_.21
+OBJC_PROP_NAME_ATTR_.22
+OBJC_PROP_NAME_ATTR_.23
+l_OBJC_$_PROP_LIST_AWSSESAddHeaderAction
+l_OBJC_CLASS_RO_$_AWSSESAddHeaderAction
+.str.24
+_unnamed_cfstring_.25
+.str.26
+_unnamed_cfstring_.27
+.str.28
+_unnamed_cfstring_.29
+.str.30
+_unnamed_cfstring_.31
+OBJC_CLASSLIST_REFERENCES_$_.32
+OBJC_CLASSLIST_REFERENCES_$_.33
+OBJC_METH_VAR_NAME_.34
+OBJC_SELECTOR_REFERENCES_.35
+OBJC_METH_VAR_NAME_.36
+OBJC_SELECTOR_REFERENCES_.37
+OBJC_IVAR_$_AWSSESBody._html
+OBJC_IVAR_$_AWSSESBody._text
+OBJC_CLASS_NAME_.38
+OBJC_METH_VAR_NAME_.39
+OBJC_METH_VAR_NAME_.40
+l_OBJC_$_CLASS_METHODS_AWSSESBody
+l_OBJC_METACLASS_RO_$_AWSSESBody
+OBJC_CLASS_NAME_.41
+OBJC_METH_VAR_NAME_.42
+OBJC_METH_VAR_NAME_.43
+OBJC_METH_VAR_NAME_.44
+OBJC_METH_VAR_NAME_.45
+l_OBJC_$_INSTANCE_METHODS_AWSSESBody
+OBJC_METH_VAR_NAME_.46
+OBJC_METH_VAR_TYPE_.47
+OBJC_METH_VAR_NAME_.48
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESBody
+OBJC_PROP_NAME_ATTR_.49
+OBJC_PROP_NAME_ATTR_.50
+OBJC_PROP_NAME_ATTR_.51
+OBJC_PROP_NAME_ATTR_.52
+l_OBJC_$_PROP_LIST_AWSSESBody
+l_OBJC_CLASS_RO_$_AWSSESBody
+.str.53
+_unnamed_cfstring_.54
+.str.55
+_unnamed_cfstring_.56
+.str.57
+_unnamed_cfstring_.58
+.str.59
+_unnamed_cfstring_.60
+.str.61
+_unnamed_cfstring_.62
+.str.63
+_unnamed_cfstring_.64
+.str.65
+_unnamed_cfstring_.66
+.str.67
+_unnamed_cfstring_.68
+.str.69
+_unnamed_cfstring_.70
+.str.71
+_unnamed_cfstring_.72
+OBJC_IVAR_$_AWSSESBounceAction._message
+OBJC_IVAR_$_AWSSESBounceAction._sender
+OBJC_IVAR_$_AWSSESBounceAction._smtpReplyCode
+OBJC_IVAR_$_AWSSESBounceAction._statusCode
+OBJC_IVAR_$_AWSSESBounceAction._topicArn
+OBJC_CLASS_NAME_.73
+l_OBJC_$_CLASS_METHODS_AWSSESBounceAction
+l_OBJC_METACLASS_RO_$_AWSSESBounceAction
+OBJC_CLASS_NAME_.74
+OBJC_METH_VAR_NAME_.75
+OBJC_METH_VAR_NAME_.76
+OBJC_METH_VAR_NAME_.77
+OBJC_METH_VAR_NAME_.78
+OBJC_METH_VAR_NAME_.79
+OBJC_METH_VAR_NAME_.80
+OBJC_METH_VAR_NAME_.81
+OBJC_METH_VAR_NAME_.82
+OBJC_METH_VAR_NAME_.83
+OBJC_METH_VAR_NAME_.84
+l_OBJC_$_INSTANCE_METHODS_AWSSESBounceAction
+OBJC_METH_VAR_NAME_.85
+OBJC_METH_VAR_NAME_.86
+OBJC_METH_VAR_NAME_.87
+OBJC_METH_VAR_NAME_.88
+OBJC_METH_VAR_NAME_.89
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESBounceAction
+OBJC_PROP_NAME_ATTR_.90
+OBJC_PROP_NAME_ATTR_.91
+OBJC_PROP_NAME_ATTR_.92
+OBJC_PROP_NAME_ATTR_.93
+OBJC_PROP_NAME_ATTR_.94
+OBJC_PROP_NAME_ATTR_.95
+OBJC_PROP_NAME_ATTR_.96
+OBJC_PROP_NAME_ATTR_.97
+OBJC_PROP_NAME_ATTR_.98
+OBJC_PROP_NAME_ATTR_.99
+l_OBJC_$_PROP_LIST_AWSSESBounceAction
+l_OBJC_CLASS_RO_$_AWSSESBounceAction
+.str.100
+_unnamed_cfstring_.101
+.str.102
+_unnamed_cfstring_.103
+.str.104
+_unnamed_cfstring_.105
+.str.106
+_unnamed_cfstring_.107
+.str.108
+_unnamed_cfstring_.109
+.str.110
+_unnamed_cfstring_.111
+.str.112
+_unnamed_cfstring_.113
+.str.114
+_unnamed_cfstring_.115
+OBJC_CLASSLIST_REFERENCES_$_.116
+.str.117
+_unnamed_cfstring_.118
+OBJC_METH_VAR_NAME_.119
+OBJC_SELECTOR_REFERENCES_.120
+OBJC_CLASSLIST_REFERENCES_$_.121
+OBJC_METH_VAR_NAME_.122
+OBJC_SELECTOR_REFERENCES_.123
+.str.124
+_unnamed_cfstring_.125
+.str.126
+_unnamed_cfstring_.127
+.str.128
+_unnamed_cfstring_.129
+.str.130
+_unnamed_cfstring_.131
+.str.132
+_unnamed_cfstring_.133
+.str.134
+__block_descriptor_tmp
+__block_literal_global
+OBJC_METH_VAR_NAME_.135
+OBJC_SELECTOR_REFERENCES_.136
+.str.137
+__block_descriptor_tmp.138
+__block_literal_global.139
+OBJC_METH_VAR_NAME_.140
+OBJC_SELECTOR_REFERENCES_.141
+OBJC_CLASSLIST_REFERENCES_$_.142
+OBJC_IVAR_$_AWSSESBouncedRecipientInfo._bounceType
+OBJC_IVAR_$_AWSSESBouncedRecipientInfo._recipient
+OBJC_IVAR_$_AWSSESBouncedRecipientInfo._recipientArn
+OBJC_IVAR_$_AWSSESBouncedRecipientInfo._recipientDsnFields
+OBJC_CLASS_NAME_.143
+OBJC_METH_VAR_NAME_.144
+OBJC_METH_VAR_NAME_.145
+l_OBJC_$_CLASS_METHODS_AWSSESBouncedRecipientInfo
+l_OBJC_METACLASS_RO_$_AWSSESBouncedRecipientInfo
+OBJC_CLASS_NAME_.146
+OBJC_METH_VAR_NAME_.147
+OBJC_METH_VAR_TYPE_.148
+OBJC_METH_VAR_NAME_.149
+OBJC_METH_VAR_TYPE_.150
+OBJC_METH_VAR_NAME_.151
+OBJC_METH_VAR_NAME_.152
+OBJC_METH_VAR_NAME_.153
+OBJC_METH_VAR_NAME_.154
+OBJC_METH_VAR_NAME_.155
+OBJC_METH_VAR_NAME_.156
+l_OBJC_$_INSTANCE_METHODS_AWSSESBouncedRecipientInfo
+OBJC_METH_VAR_NAME_.157
+OBJC_METH_VAR_TYPE_.158
+OBJC_METH_VAR_NAME_.159
+OBJC_METH_VAR_NAME_.160
+OBJC_METH_VAR_NAME_.161
+OBJC_METH_VAR_TYPE_.162
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESBouncedRecipientInfo
+OBJC_PROP_NAME_ATTR_.163
+OBJC_PROP_NAME_ATTR_.164
+OBJC_PROP_NAME_ATTR_.165
+OBJC_PROP_NAME_ATTR_.166
+OBJC_PROP_NAME_ATTR_.167
+OBJC_PROP_NAME_ATTR_.168
+OBJC_PROP_NAME_ATTR_.169
+OBJC_PROP_NAME_ATTR_.170
+l_OBJC_$_PROP_LIST_AWSSESBouncedRecipientInfo
+l_OBJC_CLASS_RO_$_AWSSESBouncedRecipientInfo
+.str.171
+_unnamed_cfstring_.172
+.str.173
+_unnamed_cfstring_.174
+.str.175
+_unnamed_cfstring_.176
+.str.177
+_unnamed_cfstring_.178
+OBJC_IVAR_$_AWSSESCloneReceiptRuleSetRequest._originalRuleSetName
+OBJC_IVAR_$_AWSSESCloneReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.179
+l_OBJC_$_CLASS_METHODS_AWSSESCloneReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESCloneReceiptRuleSetRequest
+OBJC_CLASS_NAME_.180
+OBJC_METH_VAR_NAME_.181
+OBJC_METH_VAR_NAME_.182
+OBJC_METH_VAR_NAME_.183
+OBJC_METH_VAR_NAME_.184
+l_OBJC_$_INSTANCE_METHODS_AWSSESCloneReceiptRuleSetRequest
+OBJC_METH_VAR_NAME_.185
+OBJC_METH_VAR_NAME_.186
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESCloneReceiptRuleSetRequest
+OBJC_PROP_NAME_ATTR_.187
+OBJC_PROP_NAME_ATTR_.188
+OBJC_PROP_NAME_ATTR_.189
+OBJC_PROP_NAME_ATTR_.190
+l_OBJC_$_PROP_LIST_AWSSESCloneReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESCloneReceiptRuleSetRequest
+OBJC_CLASS_NAME_.191
+l_OBJC_METACLASS_RO_$_AWSSESCloneReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESCloneReceiptRuleSetResponse
+.str.192
+_unnamed_cfstring_.193
+.str.194
+_unnamed_cfstring_.195
+.str.196
+_unnamed_cfstring_.197
+.str.198
+_unnamed_cfstring_.199
+OBJC_IVAR_$_AWSSESContent._charset
+OBJC_IVAR_$_AWSSESContent._data
+OBJC_CLASS_NAME_.200
+l_OBJC_$_CLASS_METHODS_AWSSESContent
+l_OBJC_METACLASS_RO_$_AWSSESContent
+OBJC_CLASS_NAME_.201
+OBJC_METH_VAR_NAME_.202
+OBJC_METH_VAR_NAME_.203
+OBJC_METH_VAR_NAME_.204
+OBJC_METH_VAR_NAME_.205
+l_OBJC_$_INSTANCE_METHODS_AWSSESContent
+OBJC_METH_VAR_NAME_.206
+OBJC_METH_VAR_NAME_.207
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESContent
+OBJC_PROP_NAME_ATTR_.208
+OBJC_PROP_NAME_ATTR_.209
+OBJC_PROP_NAME_ATTR_.210
+OBJC_PROP_NAME_ATTR_.211
+l_OBJC_$_PROP_LIST_AWSSESContent
+l_OBJC_CLASS_RO_$_AWSSESContent
+.str.212
+_unnamed_cfstring_.213
+.str.214
+_unnamed_cfstring_.215
+OBJC_CLASSLIST_REFERENCES_$_.216
+OBJC_IVAR_$_AWSSESCreateReceiptFilterRequest._filter
+OBJC_CLASS_NAME_.217
+OBJC_METH_VAR_NAME_.218
+l_OBJC_$_CLASS_METHODS_AWSSESCreateReceiptFilterRequest
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptFilterRequest
+OBJC_CLASS_NAME_.219
+OBJC_METH_VAR_NAME_.220
+OBJC_METH_VAR_NAME_.221
+l_OBJC_$_INSTANCE_METHODS_AWSSESCreateReceiptFilterRequest
+OBJC_METH_VAR_NAME_.222
+OBJC_METH_VAR_TYPE_.223
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESCreateReceiptFilterRequest
+OBJC_PROP_NAME_ATTR_.224
+OBJC_PROP_NAME_ATTR_.225
+l_OBJC_$_PROP_LIST_AWSSESCreateReceiptFilterRequest
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptFilterRequest
+OBJC_CLASS_NAME_.226
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptFilterResponse
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptFilterResponse
+.str.227
+_unnamed_cfstring_.228
+.str.229
+_unnamed_cfstring_.230
+.str.231
+_unnamed_cfstring_.232
+.str.233
+_unnamed_cfstring_.234
+OBJC_CLASSLIST_REFERENCES_$_.235
+OBJC_IVAR_$_AWSSESCreateReceiptRuleRequest._after
+OBJC_IVAR_$_AWSSESCreateReceiptRuleRequest._rule
+OBJC_IVAR_$_AWSSESCreateReceiptRuleRequest._ruleSetName
+OBJC_CLASS_NAME_.236
+OBJC_METH_VAR_NAME_.237
+l_OBJC_$_CLASS_METHODS_AWSSESCreateReceiptRuleRequest
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptRuleRequest
+OBJC_CLASS_NAME_.238
+OBJC_METH_VAR_NAME_.239
+OBJC_METH_VAR_NAME_.240
+OBJC_METH_VAR_NAME_.241
+OBJC_METH_VAR_NAME_.242
+l_OBJC_$_INSTANCE_METHODS_AWSSESCreateReceiptRuleRequest
+OBJC_METH_VAR_NAME_.243
+OBJC_METH_VAR_NAME_.244
+OBJC_METH_VAR_TYPE_.245
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESCreateReceiptRuleRequest
+OBJC_PROP_NAME_ATTR_.246
+OBJC_PROP_NAME_ATTR_.247
+OBJC_PROP_NAME_ATTR_.248
+OBJC_PROP_NAME_ATTR_.249
+l_OBJC_$_PROP_LIST_AWSSESCreateReceiptRuleRequest
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptRuleRequest
+OBJC_CLASS_NAME_.250
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptRuleResponse
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptRuleResponse
+OBJC_IVAR_$_AWSSESCreateReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.251
+l_OBJC_$_CLASS_METHODS_AWSSESCreateReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptRuleSetRequest
+OBJC_CLASS_NAME_.252
+l_OBJC_$_INSTANCE_METHODS_AWSSESCreateReceiptRuleSetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESCreateReceiptRuleSetRequest
+l_OBJC_$_PROP_LIST_AWSSESCreateReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptRuleSetRequest
+OBJC_CLASS_NAME_.253
+l_OBJC_METACLASS_RO_$_AWSSESCreateReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESCreateReceiptRuleSetResponse
+.str.254
+_unnamed_cfstring_.255
+.str.256
+_unnamed_cfstring_.257
+.str.258
+_unnamed_cfstring_.259
+.str.260
+_unnamed_cfstring_.261
+OBJC_IVAR_$_AWSSESDeleteIdentityPolicyRequest._identity
+OBJC_IVAR_$_AWSSESDeleteIdentityPolicyRequest._policyName
+OBJC_CLASS_NAME_.262
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteIdentityPolicyRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteIdentityPolicyRequest
+OBJC_CLASS_NAME_.263
+OBJC_METH_VAR_NAME_.264
+OBJC_METH_VAR_NAME_.265
+OBJC_METH_VAR_NAME_.266
+OBJC_METH_VAR_NAME_.267
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteIdentityPolicyRequest
+OBJC_METH_VAR_NAME_.268
+OBJC_METH_VAR_NAME_.269
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteIdentityPolicyRequest
+OBJC_PROP_NAME_ATTR_.270
+OBJC_PROP_NAME_ATTR_.271
+OBJC_PROP_NAME_ATTR_.272
+OBJC_PROP_NAME_ATTR_.273
+l_OBJC_$_PROP_LIST_AWSSESDeleteIdentityPolicyRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteIdentityPolicyRequest
+OBJC_CLASS_NAME_.274
+l_OBJC_METACLASS_RO_$_AWSSESDeleteIdentityPolicyResponse
+l_OBJC_CLASS_RO_$_AWSSESDeleteIdentityPolicyResponse
+OBJC_IVAR_$_AWSSESDeleteIdentityRequest._identity
+OBJC_CLASS_NAME_.275
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteIdentityRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteIdentityRequest
+OBJC_CLASS_NAME_.276
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteIdentityRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteIdentityRequest
+l_OBJC_$_PROP_LIST_AWSSESDeleteIdentityRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteIdentityRequest
+OBJC_CLASS_NAME_.277
+l_OBJC_METACLASS_RO_$_AWSSESDeleteIdentityResponse
+l_OBJC_CLASS_RO_$_AWSSESDeleteIdentityResponse
+.str.278
+_unnamed_cfstring_.279
+.str.280
+_unnamed_cfstring_.281
+OBJC_IVAR_$_AWSSESDeleteReceiptFilterRequest._filterName
+OBJC_CLASS_NAME_.282
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteReceiptFilterRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptFilterRequest
+OBJC_CLASS_NAME_.283
+OBJC_METH_VAR_NAME_.284
+OBJC_METH_VAR_NAME_.285
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteReceiptFilterRequest
+OBJC_METH_VAR_NAME_.286
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteReceiptFilterRequest
+OBJC_PROP_NAME_ATTR_.287
+OBJC_PROP_NAME_ATTR_.288
+l_OBJC_$_PROP_LIST_AWSSESDeleteReceiptFilterRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptFilterRequest
+OBJC_CLASS_NAME_.289
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptFilterResponse
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptFilterResponse
+.str.290
+_unnamed_cfstring_.291
+.str.292
+_unnamed_cfstring_.293
+OBJC_IVAR_$_AWSSESDeleteReceiptRuleRequest._ruleName
+OBJC_IVAR_$_AWSSESDeleteReceiptRuleRequest._ruleSetName
+OBJC_CLASS_NAME_.294
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteReceiptRuleRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptRuleRequest
+OBJC_CLASS_NAME_.295
+OBJC_METH_VAR_NAME_.296
+OBJC_METH_VAR_NAME_.297
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteReceiptRuleRequest
+OBJC_METH_VAR_NAME_.298
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteReceiptRuleRequest
+OBJC_PROP_NAME_ATTR_.299
+OBJC_PROP_NAME_ATTR_.300
+l_OBJC_$_PROP_LIST_AWSSESDeleteReceiptRuleRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptRuleRequest
+OBJC_CLASS_NAME_.301
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptRuleResponse
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptRuleResponse
+OBJC_IVAR_$_AWSSESDeleteReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.302
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptRuleSetRequest
+OBJC_CLASS_NAME_.303
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteReceiptRuleSetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteReceiptRuleSetRequest
+l_OBJC_$_PROP_LIST_AWSSESDeleteReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptRuleSetRequest
+OBJC_CLASS_NAME_.304
+l_OBJC_METACLASS_RO_$_AWSSESDeleteReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESDeleteReceiptRuleSetResponse
+.str.305
+_unnamed_cfstring_.306
+.str.307
+_unnamed_cfstring_.308
+OBJC_IVAR_$_AWSSESDeleteVerifiedEmailAddressRequest._emailAddress
+OBJC_CLASS_NAME_.309
+l_OBJC_$_CLASS_METHODS_AWSSESDeleteVerifiedEmailAddressRequest
+l_OBJC_METACLASS_RO_$_AWSSESDeleteVerifiedEmailAddressRequest
+OBJC_CLASS_NAME_.310
+OBJC_METH_VAR_NAME_.311
+OBJC_METH_VAR_NAME_.312
+l_OBJC_$_INSTANCE_METHODS_AWSSESDeleteVerifiedEmailAddressRequest
+OBJC_METH_VAR_NAME_.313
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDeleteVerifiedEmailAddressRequest
+OBJC_PROP_NAME_ATTR_.314
+OBJC_PROP_NAME_ATTR_.315
+l_OBJC_$_PROP_LIST_AWSSESDeleteVerifiedEmailAddressRequest
+l_OBJC_CLASS_RO_$_AWSSESDeleteVerifiedEmailAddressRequest
+OBJC_CLASS_NAME_.316
+l_OBJC_METACLASS_RO_$_AWSSESDescribeActiveReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESDescribeActiveReceiptRuleSetRequest
+.str.317
+_unnamed_cfstring_.318
+.str.319
+_unnamed_cfstring_.320
+.str.321
+_unnamed_cfstring_.322
+.str.323
+_unnamed_cfstring_.324
+OBJC_CLASSLIST_REFERENCES_$_.325
+OBJC_METH_VAR_NAME_.326
+OBJC_SELECTOR_REFERENCES_.327
+OBJC_IVAR_$_AWSSESDescribeActiveReceiptRuleSetResponse._metadata
+OBJC_IVAR_$_AWSSESDescribeActiveReceiptRuleSetResponse._rules
+OBJC_CLASS_NAME_.328
+OBJC_METH_VAR_NAME_.329
+OBJC_METH_VAR_NAME_.330
+l_OBJC_$_CLASS_METHODS_AWSSESDescribeActiveReceiptRuleSetResponse
+l_OBJC_METACLASS_RO_$_AWSSESDescribeActiveReceiptRuleSetResponse
+OBJC_CLASS_NAME_.331
+OBJC_METH_VAR_NAME_.332
+OBJC_METH_VAR_NAME_.333
+OBJC_METH_VAR_NAME_.334
+OBJC_METH_VAR_NAME_.335
+l_OBJC_$_INSTANCE_METHODS_AWSSESDescribeActiveReceiptRuleSetResponse
+OBJC_METH_VAR_NAME_.336
+OBJC_METH_VAR_TYPE_.337
+OBJC_METH_VAR_NAME_.338
+OBJC_METH_VAR_TYPE_.339
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDescribeActiveReceiptRuleSetResponse
+OBJC_PROP_NAME_ATTR_.340
+OBJC_PROP_NAME_ATTR_.341
+OBJC_PROP_NAME_ATTR_.342
+OBJC_PROP_NAME_ATTR_.343
+l_OBJC_$_PROP_LIST_AWSSESDescribeActiveReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESDescribeActiveReceiptRuleSetResponse
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleRequest._ruleName
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleRequest._ruleSetName
+OBJC_CLASS_NAME_.344
+l_OBJC_$_CLASS_METHODS_AWSSESDescribeReceiptRuleRequest
+l_OBJC_METACLASS_RO_$_AWSSESDescribeReceiptRuleRequest
+OBJC_CLASS_NAME_.345
+l_OBJC_$_INSTANCE_METHODS_AWSSESDescribeReceiptRuleRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDescribeReceiptRuleRequest
+l_OBJC_$_PROP_LIST_AWSSESDescribeReceiptRuleRequest
+l_OBJC_CLASS_RO_$_AWSSESDescribeReceiptRuleRequest
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleResponse._rule
+OBJC_CLASS_NAME_.346
+l_OBJC_$_CLASS_METHODS_AWSSESDescribeReceiptRuleResponse
+l_OBJC_METACLASS_RO_$_AWSSESDescribeReceiptRuleResponse
+OBJC_CLASS_NAME_.347
+l_OBJC_$_INSTANCE_METHODS_AWSSESDescribeReceiptRuleResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDescribeReceiptRuleResponse
+l_OBJC_$_PROP_LIST_AWSSESDescribeReceiptRuleResponse
+l_OBJC_CLASS_RO_$_AWSSESDescribeReceiptRuleResponse
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.348
+l_OBJC_$_CLASS_METHODS_AWSSESDescribeReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESDescribeReceiptRuleSetRequest
+OBJC_CLASS_NAME_.349
+l_OBJC_$_INSTANCE_METHODS_AWSSESDescribeReceiptRuleSetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDescribeReceiptRuleSetRequest
+l_OBJC_$_PROP_LIST_AWSSESDescribeReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESDescribeReceiptRuleSetRequest
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleSetResponse._metadata
+OBJC_IVAR_$_AWSSESDescribeReceiptRuleSetResponse._rules
+OBJC_CLASS_NAME_.350
+l_OBJC_$_CLASS_METHODS_AWSSESDescribeReceiptRuleSetResponse
+l_OBJC_METACLASS_RO_$_AWSSESDescribeReceiptRuleSetResponse
+OBJC_CLASS_NAME_.351
+l_OBJC_$_INSTANCE_METHODS_AWSSESDescribeReceiptRuleSetResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDescribeReceiptRuleSetResponse
+l_OBJC_$_PROP_LIST_AWSSESDescribeReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESDescribeReceiptRuleSetResponse
+.str.352
+_unnamed_cfstring_.353
+.str.354
+_unnamed_cfstring_.355
+.str.356
+_unnamed_cfstring_.357
+.str.358
+_unnamed_cfstring_.359
+.str.360
+_unnamed_cfstring_.361
+.str.362
+_unnamed_cfstring_.363
+OBJC_IVAR_$_AWSSESDestination._bccAddresses
+OBJC_IVAR_$_AWSSESDestination._ccAddresses
+OBJC_IVAR_$_AWSSESDestination._toAddresses
+OBJC_CLASS_NAME_.364
+l_OBJC_$_CLASS_METHODS_AWSSESDestination
+l_OBJC_METACLASS_RO_$_AWSSESDestination
+OBJC_CLASS_NAME_.365
+OBJC_METH_VAR_NAME_.366
+OBJC_METH_VAR_NAME_.367
+OBJC_METH_VAR_NAME_.368
+OBJC_METH_VAR_NAME_.369
+OBJC_METH_VAR_NAME_.370
+OBJC_METH_VAR_NAME_.371
+l_OBJC_$_INSTANCE_METHODS_AWSSESDestination
+OBJC_METH_VAR_NAME_.372
+OBJC_METH_VAR_NAME_.373
+OBJC_METH_VAR_NAME_.374
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESDestination
+OBJC_PROP_NAME_ATTR_.375
+OBJC_PROP_NAME_ATTR_.376
+OBJC_PROP_NAME_ATTR_.377
+OBJC_PROP_NAME_ATTR_.378
+OBJC_PROP_NAME_ATTR_.379
+OBJC_PROP_NAME_ATTR_.380
+l_OBJC_$_PROP_LIST_AWSSESDestination
+l_OBJC_CLASS_RO_$_AWSSESDestination
+.str.381
+_unnamed_cfstring_.382
+.str.383
+_unnamed_cfstring_.384
+.str.385
+_unnamed_cfstring_.386
+.str.387
+_unnamed_cfstring_.388
+OBJC_IVAR_$_AWSSESExtensionField._name
+OBJC_IVAR_$_AWSSESExtensionField._value
+OBJC_CLASS_NAME_.389
+l_OBJC_$_CLASS_METHODS_AWSSESExtensionField
+l_OBJC_METACLASS_RO_$_AWSSESExtensionField
+OBJC_CLASS_NAME_.390
+OBJC_METH_VAR_NAME_.391
+OBJC_METH_VAR_NAME_.392
+OBJC_METH_VAR_NAME_.393
+OBJC_METH_VAR_NAME_.394
+l_OBJC_$_INSTANCE_METHODS_AWSSESExtensionField
+OBJC_METH_VAR_NAME_.395
+OBJC_METH_VAR_NAME_.396
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESExtensionField
+OBJC_PROP_NAME_ATTR_.397
+OBJC_PROP_NAME_ATTR_.398
+OBJC_PROP_NAME_ATTR_.399
+OBJC_PROP_NAME_ATTR_.400
+l_OBJC_$_PROP_LIST_AWSSESExtensionField
+l_OBJC_CLASS_RO_$_AWSSESExtensionField
+.str.401
+_unnamed_cfstring_.402
+.str.403
+_unnamed_cfstring_.404
+OBJC_IVAR_$_AWSSESGetIdentityDkimAttributesRequest._identities
+OBJC_CLASS_NAME_.405
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityDkimAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityDkimAttributesRequest
+OBJC_CLASS_NAME_.406
+OBJC_METH_VAR_NAME_.407
+OBJC_METH_VAR_NAME_.408
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityDkimAttributesRequest
+OBJC_METH_VAR_NAME_.409
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityDkimAttributesRequest
+OBJC_PROP_NAME_ATTR_.410
+OBJC_PROP_NAME_ATTR_.411
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityDkimAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityDkimAttributesRequest
+.str.412
+_unnamed_cfstring_.413
+.str.414
+_unnamed_cfstring_.415
+OBJC_CLASSLIST_REFERENCES_$_.416
+OBJC_CLASSLIST_REFERENCES_$_.417
+OBJC_METH_VAR_NAME_.418
+OBJC_SELECTOR_REFERENCES_.419
+.str.420
+__block_descriptor_tmp.421
+__block_literal_global.422
+OBJC_METH_VAR_NAME_.423
+OBJC_SELECTOR_REFERENCES_.424
+__block_descriptor_tmp.425
+__block_literal_global.426
+OBJC_IVAR_$_AWSSESGetIdentityDkimAttributesResponse._dkimAttributes
+OBJC_CLASS_NAME_.427
+OBJC_METH_VAR_NAME_.428
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityDkimAttributesResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityDkimAttributesResponse
+OBJC_CLASS_NAME_.429
+OBJC_METH_VAR_NAME_.430
+OBJC_METH_VAR_NAME_.431
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityDkimAttributesResponse
+OBJC_METH_VAR_NAME_.432
+OBJC_METH_VAR_TYPE_.433
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityDkimAttributesResponse
+OBJC_PROP_NAME_ATTR_.434
+OBJC_PROP_NAME_ATTR_.435
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityDkimAttributesResponse
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityDkimAttributesResponse
+OBJC_IVAR_$_AWSSESGetIdentityMailFromDomainAttributesRequest._identities
+OBJC_CLASS_NAME_.436
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityMailFromDomainAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityMailFromDomainAttributesRequest
+OBJC_CLASS_NAME_.437
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityMailFromDomainAttributesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityMailFromDomainAttributesRequest
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityMailFromDomainAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityMailFromDomainAttributesRequest
+.str.438
+_unnamed_cfstring_.439
+.str.440
+_unnamed_cfstring_.441
+OBJC_CLASSLIST_REFERENCES_$_.442
+__block_descriptor_tmp.443
+__block_literal_global.444
+__block_descriptor_tmp.445
+__block_literal_global.446
+OBJC_IVAR_$_AWSSESGetIdentityMailFromDomainAttributesResponse._mailFromDomainAttributes
+OBJC_CLASS_NAME_.447
+OBJC_METH_VAR_NAME_.448
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityMailFromDomainAttributesResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityMailFromDomainAttributesResponse
+OBJC_CLASS_NAME_.449
+OBJC_METH_VAR_NAME_.450
+OBJC_METH_VAR_NAME_.451
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityMailFromDomainAttributesResponse
+OBJC_METH_VAR_NAME_.452
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityMailFromDomainAttributesResponse
+OBJC_PROP_NAME_ATTR_.453
+OBJC_PROP_NAME_ATTR_.454
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityMailFromDomainAttributesResponse
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityMailFromDomainAttributesResponse
+OBJC_IVAR_$_AWSSESGetIdentityNotificationAttributesRequest._identities
+OBJC_CLASS_NAME_.455
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityNotificationAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityNotificationAttributesRequest
+OBJC_CLASS_NAME_.456
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityNotificationAttributesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityNotificationAttributesRequest
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityNotificationAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityNotificationAttributesRequest
+.str.457
+_unnamed_cfstring_.458
+.str.459
+_unnamed_cfstring_.460
+OBJC_CLASSLIST_REFERENCES_$_.461
+__block_descriptor_tmp.462
+__block_literal_global.463
+__block_descriptor_tmp.464
+__block_literal_global.465
+OBJC_IVAR_$_AWSSESGetIdentityNotificationAttributesResponse._notificationAttributes
+OBJC_CLASS_NAME_.466
+OBJC_METH_VAR_NAME_.467
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityNotificationAttributesResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityNotificationAttributesResponse
+OBJC_CLASS_NAME_.468
+OBJC_METH_VAR_NAME_.469
+OBJC_METH_VAR_NAME_.470
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityNotificationAttributesResponse
+OBJC_METH_VAR_NAME_.471
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityNotificationAttributesResponse
+OBJC_PROP_NAME_ATTR_.472
+OBJC_PROP_NAME_ATTR_.473
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityNotificationAttributesResponse
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityNotificationAttributesResponse
+.str.474
+_unnamed_cfstring_.475
+.str.476
+_unnamed_cfstring_.477
+OBJC_IVAR_$_AWSSESGetIdentityPoliciesRequest._identity
+OBJC_IVAR_$_AWSSESGetIdentityPoliciesRequest._policyNames
+OBJC_CLASS_NAME_.478
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityPoliciesRequest
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityPoliciesRequest
+OBJC_CLASS_NAME_.479
+OBJC_METH_VAR_NAME_.480
+OBJC_METH_VAR_NAME_.481
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityPoliciesRequest
+OBJC_METH_VAR_NAME_.482
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityPoliciesRequest
+OBJC_PROP_NAME_ATTR_.483
+OBJC_PROP_NAME_ATTR_.484
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityPoliciesRequest
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityPoliciesRequest
+.str.485
+_unnamed_cfstring_.486
+.str.487
+_unnamed_cfstring_.488
+OBJC_IVAR_$_AWSSESGetIdentityPoliciesResponse._policies
+OBJC_CLASS_NAME_.489
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityPoliciesResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityPoliciesResponse
+OBJC_CLASS_NAME_.490
+OBJC_METH_VAR_NAME_.491
+OBJC_METH_VAR_NAME_.492
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityPoliciesResponse
+OBJC_METH_VAR_NAME_.493
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityPoliciesResponse
+OBJC_PROP_NAME_ATTR_.494
+OBJC_PROP_NAME_ATTR_.495
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityPoliciesResponse
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityPoliciesResponse
+OBJC_IVAR_$_AWSSESGetIdentityVerificationAttributesRequest._identities
+OBJC_CLASS_NAME_.496
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityVerificationAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityVerificationAttributesRequest
+OBJC_CLASS_NAME_.497
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityVerificationAttributesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityVerificationAttributesRequest
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityVerificationAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityVerificationAttributesRequest
+.str.498
+_unnamed_cfstring_.499
+.str.500
+_unnamed_cfstring_.501
+OBJC_CLASSLIST_REFERENCES_$_.502
+__block_descriptor_tmp.503
+__block_literal_global.504
+__block_descriptor_tmp.505
+__block_literal_global.506
+OBJC_IVAR_$_AWSSESGetIdentityVerificationAttributesResponse._verificationAttributes
+OBJC_CLASS_NAME_.507
+OBJC_METH_VAR_NAME_.508
+l_OBJC_$_CLASS_METHODS_AWSSESGetIdentityVerificationAttributesResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetIdentityVerificationAttributesResponse
+OBJC_CLASS_NAME_.509
+OBJC_METH_VAR_NAME_.510
+OBJC_METH_VAR_NAME_.511
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetIdentityVerificationAttributesResponse
+OBJC_METH_VAR_NAME_.512
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetIdentityVerificationAttributesResponse
+OBJC_PROP_NAME_ATTR_.513
+OBJC_PROP_NAME_ATTR_.514
+l_OBJC_$_PROP_LIST_AWSSESGetIdentityVerificationAttributesResponse
+l_OBJC_CLASS_RO_$_AWSSESGetIdentityVerificationAttributesResponse
+.str.515
+_unnamed_cfstring_.516
+.str.517
+_unnamed_cfstring_.518
+.str.519
+_unnamed_cfstring_.520
+.str.521
+_unnamed_cfstring_.522
+.str.523
+_unnamed_cfstring_.524
+.str.525
+_unnamed_cfstring_.526
+OBJC_IVAR_$_AWSSESGetSendQuotaResponse._max24HourSend
+OBJC_IVAR_$_AWSSESGetSendQuotaResponse._maxSendRate
+OBJC_IVAR_$_AWSSESGetSendQuotaResponse._sentLast24Hours
+OBJC_CLASS_NAME_.527
+l_OBJC_$_CLASS_METHODS_AWSSESGetSendQuotaResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetSendQuotaResponse
+OBJC_CLASS_NAME_.528
+OBJC_METH_VAR_NAME_.529
+OBJC_METH_VAR_NAME_.530
+OBJC_METH_VAR_NAME_.531
+OBJC_METH_VAR_NAME_.532
+OBJC_METH_VAR_NAME_.533
+OBJC_METH_VAR_NAME_.534
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetSendQuotaResponse
+OBJC_METH_VAR_NAME_.535
+OBJC_METH_VAR_TYPE_.536
+OBJC_METH_VAR_NAME_.537
+OBJC_METH_VAR_NAME_.538
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetSendQuotaResponse
+OBJC_PROP_NAME_ATTR_.539
+OBJC_PROP_NAME_ATTR_.540
+OBJC_PROP_NAME_ATTR_.541
+OBJC_PROP_NAME_ATTR_.542
+OBJC_PROP_NAME_ATTR_.543
+OBJC_PROP_NAME_ATTR_.544
+l_OBJC_$_PROP_LIST_AWSSESGetSendQuotaResponse
+l_OBJC_CLASS_RO_$_AWSSESGetSendQuotaResponse
+.str.545
+_unnamed_cfstring_.546
+.str.547
+_unnamed_cfstring_.548
+OBJC_CLASSLIST_REFERENCES_$_.549
+OBJC_IVAR_$_AWSSESGetSendStatisticsResponse._sendDataPoints
+OBJC_CLASS_NAME_.550
+OBJC_METH_VAR_NAME_.551
+l_OBJC_$_CLASS_METHODS_AWSSESGetSendStatisticsResponse
+l_OBJC_METACLASS_RO_$_AWSSESGetSendStatisticsResponse
+OBJC_CLASS_NAME_.552
+OBJC_METH_VAR_NAME_.553
+OBJC_METH_VAR_NAME_.554
+l_OBJC_$_INSTANCE_METHODS_AWSSESGetSendStatisticsResponse
+OBJC_METH_VAR_NAME_.555
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESGetSendStatisticsResponse
+OBJC_PROP_NAME_ATTR_.556
+OBJC_PROP_NAME_ATTR_.557
+l_OBJC_$_PROP_LIST_AWSSESGetSendStatisticsResponse
+l_OBJC_CLASS_RO_$_AWSSESGetSendStatisticsResponse
+.str.558
+_unnamed_cfstring_.559
+.str.560
+_unnamed_cfstring_.561
+.str.562
+_unnamed_cfstring_.563
+.str.564
+_unnamed_cfstring_.565
+.str.566
+_unnamed_cfstring_.567
+.str.568
+_unnamed_cfstring_.569
+.str.570
+_unnamed_cfstring_.571
+.str.572
+_unnamed_cfstring_.573
+.str.574
+_unnamed_cfstring_.575
+.str.576
+_unnamed_cfstring_.577
+__block_descriptor_tmp.578
+__block_literal_global.579
+__block_descriptor_tmp.580
+__block_literal_global.581
+OBJC_IVAR_$_AWSSESIdentityDkimAttributes._dkimEnabled
+OBJC_IVAR_$_AWSSESIdentityDkimAttributes._dkimTokens
+OBJC_IVAR_$_AWSSESIdentityDkimAttributes._dkimVerificationStatus
+OBJC_CLASS_NAME_.582
+OBJC_METH_VAR_NAME_.583
+l_OBJC_$_CLASS_METHODS_AWSSESIdentityDkimAttributes
+l_OBJC_METACLASS_RO_$_AWSSESIdentityDkimAttributes
+OBJC_CLASS_NAME_.584
+OBJC_METH_VAR_NAME_.585
+OBJC_METH_VAR_NAME_.586
+OBJC_METH_VAR_NAME_.587
+OBJC_METH_VAR_NAME_.588
+OBJC_METH_VAR_NAME_.589
+OBJC_METH_VAR_NAME_.590
+l_OBJC_$_INSTANCE_METHODS_AWSSESIdentityDkimAttributes
+OBJC_METH_VAR_NAME_.591
+OBJC_METH_VAR_NAME_.592
+OBJC_METH_VAR_NAME_.593
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESIdentityDkimAttributes
+OBJC_PROP_NAME_ATTR_.594
+OBJC_PROP_NAME_ATTR_.595
+OBJC_PROP_NAME_ATTR_.596
+OBJC_PROP_NAME_ATTR_.597
+OBJC_PROP_NAME_ATTR_.598
+OBJC_PROP_NAME_ATTR_.599
+l_OBJC_$_PROP_LIST_AWSSESIdentityDkimAttributes
+l_OBJC_CLASS_RO_$_AWSSESIdentityDkimAttributes
+.str.600
+_unnamed_cfstring_.601
+.str.602
+_unnamed_cfstring_.603
+.str.604
+_unnamed_cfstring_.605
+.str.606
+_unnamed_cfstring_.607
+.str.608
+_unnamed_cfstring_.609
+.str.610
+_unnamed_cfstring_.611
+.str.612
+_unnamed_cfstring_.613
+.str.614
+_unnamed_cfstring_.615
+__block_descriptor_tmp.616
+__block_literal_global.617
+__block_descriptor_tmp.618
+__block_literal_global.619
+__block_descriptor_tmp.620
+__block_literal_global.621
+__block_descriptor_tmp.622
+__block_literal_global.623
+OBJC_IVAR_$_AWSSESIdentityMailFromDomainAttributes._behaviorOnMXFailure
+OBJC_IVAR_$_AWSSESIdentityMailFromDomainAttributes._mailFromDomain
+OBJC_IVAR_$_AWSSESIdentityMailFromDomainAttributes._mailFromDomainStatus
+OBJC_CLASS_NAME_.624
+OBJC_METH_VAR_NAME_.625
+OBJC_METH_VAR_NAME_.626
+l_OBJC_$_CLASS_METHODS_AWSSESIdentityMailFromDomainAttributes
+l_OBJC_METACLASS_RO_$_AWSSESIdentityMailFromDomainAttributes
+OBJC_CLASS_NAME_.627
+OBJC_METH_VAR_NAME_.628
+OBJC_METH_VAR_NAME_.629
+OBJC_METH_VAR_NAME_.630
+OBJC_METH_VAR_NAME_.631
+OBJC_METH_VAR_NAME_.632
+OBJC_METH_VAR_NAME_.633
+l_OBJC_$_INSTANCE_METHODS_AWSSESIdentityMailFromDomainAttributes
+OBJC_METH_VAR_NAME_.634
+OBJC_METH_VAR_NAME_.635
+OBJC_METH_VAR_NAME_.636
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESIdentityMailFromDomainAttributes
+OBJC_PROP_NAME_ATTR_.637
+OBJC_PROP_NAME_ATTR_.638
+OBJC_PROP_NAME_ATTR_.639
+OBJC_PROP_NAME_ATTR_.640
+OBJC_PROP_NAME_ATTR_.641
+OBJC_PROP_NAME_ATTR_.642
+l_OBJC_$_PROP_LIST_AWSSESIdentityMailFromDomainAttributes
+l_OBJC_CLASS_RO_$_AWSSESIdentityMailFromDomainAttributes
+.str.643
+_unnamed_cfstring_.644
+.str.645
+_unnamed_cfstring_.646
+.str.647
+_unnamed_cfstring_.648
+.str.649
+_unnamed_cfstring_.650
+.str.651
+_unnamed_cfstring_.652
+.str.653
+_unnamed_cfstring_.654
+.str.655
+_unnamed_cfstring_.656
+.str.657
+_unnamed_cfstring_.658
+OBJC_IVAR_$_AWSSESIdentityNotificationAttributes._bounceTopic
+OBJC_IVAR_$_AWSSESIdentityNotificationAttributes._complaintTopic
+OBJC_IVAR_$_AWSSESIdentityNotificationAttributes._deliveryTopic
+OBJC_IVAR_$_AWSSESIdentityNotificationAttributes._forwardingEnabled
+OBJC_CLASS_NAME_.659
+l_OBJC_$_CLASS_METHODS_AWSSESIdentityNotificationAttributes
+l_OBJC_METACLASS_RO_$_AWSSESIdentityNotificationAttributes
+OBJC_CLASS_NAME_.660
+OBJC_METH_VAR_NAME_.661
+OBJC_METH_VAR_NAME_.662
+OBJC_METH_VAR_NAME_.663
+OBJC_METH_VAR_NAME_.664
+OBJC_METH_VAR_NAME_.665
+OBJC_METH_VAR_NAME_.666
+OBJC_METH_VAR_NAME_.667
+OBJC_METH_VAR_NAME_.668
+l_OBJC_$_INSTANCE_METHODS_AWSSESIdentityNotificationAttributes
+OBJC_METH_VAR_NAME_.669
+OBJC_METH_VAR_NAME_.670
+OBJC_METH_VAR_NAME_.671
+OBJC_METH_VAR_NAME_.672
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESIdentityNotificationAttributes
+OBJC_PROP_NAME_ATTR_.673
+OBJC_PROP_NAME_ATTR_.674
+OBJC_PROP_NAME_ATTR_.675
+OBJC_PROP_NAME_ATTR_.676
+OBJC_PROP_NAME_ATTR_.677
+OBJC_PROP_NAME_ATTR_.678
+OBJC_PROP_NAME_ATTR_.679
+OBJC_PROP_NAME_ATTR_.680
+l_OBJC_$_PROP_LIST_AWSSESIdentityNotificationAttributes
+l_OBJC_CLASS_RO_$_AWSSESIdentityNotificationAttributes
+.str.681
+_unnamed_cfstring_.682
+.str.683
+_unnamed_cfstring_.684
+.str.685
+_unnamed_cfstring_.686
+.str.687
+_unnamed_cfstring_.688
+__block_descriptor_tmp.689
+__block_literal_global.690
+__block_descriptor_tmp.691
+__block_literal_global.692
+OBJC_IVAR_$_AWSSESIdentityVerificationAttributes._verificationStatus
+OBJC_IVAR_$_AWSSESIdentityVerificationAttributes._verificationToken
+OBJC_CLASS_NAME_.693
+OBJC_METH_VAR_NAME_.694
+l_OBJC_$_CLASS_METHODS_AWSSESIdentityVerificationAttributes
+l_OBJC_METACLASS_RO_$_AWSSESIdentityVerificationAttributes
+OBJC_CLASS_NAME_.695
+OBJC_METH_VAR_NAME_.696
+OBJC_METH_VAR_NAME_.697
+OBJC_METH_VAR_NAME_.698
+OBJC_METH_VAR_NAME_.699
+l_OBJC_$_INSTANCE_METHODS_AWSSESIdentityVerificationAttributes
+OBJC_METH_VAR_NAME_.700
+OBJC_METH_VAR_NAME_.701
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESIdentityVerificationAttributes
+OBJC_PROP_NAME_ATTR_.702
+OBJC_PROP_NAME_ATTR_.703
+OBJC_PROP_NAME_ATTR_.704
+OBJC_PROP_NAME_ATTR_.705
+l_OBJC_$_PROP_LIST_AWSSESIdentityVerificationAttributes
+l_OBJC_CLASS_RO_$_AWSSESIdentityVerificationAttributes
+.str.706
+_unnamed_cfstring_.707
+.str.708
+_unnamed_cfstring_.709
+.str.710
+_unnamed_cfstring_.711
+.str.712
+_unnamed_cfstring_.713
+.str.714
+_unnamed_cfstring_.715
+.str.716
+_unnamed_cfstring_.717
+__block_descriptor_tmp.718
+__block_literal_global.719
+__block_descriptor_tmp.720
+__block_literal_global.721
+OBJC_IVAR_$_AWSSESLambdaAction._functionArn
+OBJC_IVAR_$_AWSSESLambdaAction._invocationType
+OBJC_IVAR_$_AWSSESLambdaAction._topicArn
+OBJC_CLASS_NAME_.722
+OBJC_METH_VAR_NAME_.723
+l_OBJC_$_CLASS_METHODS_AWSSESLambdaAction
+l_OBJC_METACLASS_RO_$_AWSSESLambdaAction
+OBJC_CLASS_NAME_.724
+OBJC_METH_VAR_NAME_.725
+OBJC_METH_VAR_NAME_.726
+OBJC_METH_VAR_NAME_.727
+OBJC_METH_VAR_NAME_.728
+l_OBJC_$_INSTANCE_METHODS_AWSSESLambdaAction
+OBJC_METH_VAR_NAME_.729
+OBJC_METH_VAR_NAME_.730
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESLambdaAction
+OBJC_PROP_NAME_ATTR_.731
+OBJC_PROP_NAME_ATTR_.732
+OBJC_PROP_NAME_ATTR_.733
+OBJC_PROP_NAME_ATTR_.734
+l_OBJC_$_PROP_LIST_AWSSESLambdaAction
+l_OBJC_CLASS_RO_$_AWSSESLambdaAction
+.str.735
+_unnamed_cfstring_.736
+.str.737
+_unnamed_cfstring_.738
+.str.739
+_unnamed_cfstring_.740
+.str.741
+_unnamed_cfstring_.742
+.str.743
+_unnamed_cfstring_.744
+.str.745
+_unnamed_cfstring_.746
+.str.747
+_unnamed_cfstring_.748
+__block_descriptor_tmp.749
+__block_literal_global.750
+__block_descriptor_tmp.751
+__block_literal_global.752
+OBJC_IVAR_$_AWSSESListIdentitiesRequest._identityType
+OBJC_IVAR_$_AWSSESListIdentitiesRequest._maxItems
+OBJC_IVAR_$_AWSSESListIdentitiesRequest._nextToken
+OBJC_CLASS_NAME_.753
+OBJC_METH_VAR_NAME_.754
+l_OBJC_$_CLASS_METHODS_AWSSESListIdentitiesRequest
+l_OBJC_METACLASS_RO_$_AWSSESListIdentitiesRequest
+OBJC_CLASS_NAME_.755
+OBJC_METH_VAR_NAME_.756
+OBJC_METH_VAR_NAME_.757
+OBJC_METH_VAR_NAME_.758
+OBJC_METH_VAR_NAME_.759
+OBJC_METH_VAR_NAME_.760
+OBJC_METH_VAR_NAME_.761
+l_OBJC_$_INSTANCE_METHODS_AWSSESListIdentitiesRequest
+OBJC_METH_VAR_NAME_.762
+OBJC_METH_VAR_NAME_.763
+OBJC_METH_VAR_NAME_.764
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListIdentitiesRequest
+OBJC_PROP_NAME_ATTR_.765
+OBJC_PROP_NAME_ATTR_.766
+OBJC_PROP_NAME_ATTR_.767
+OBJC_PROP_NAME_ATTR_.768
+OBJC_PROP_NAME_ATTR_.769
+OBJC_PROP_NAME_ATTR_.770
+l_OBJC_$_PROP_LIST_AWSSESListIdentitiesRequest
+l_OBJC_CLASS_RO_$_AWSSESListIdentitiesRequest
+OBJC_IVAR_$_AWSSESListIdentitiesResponse._identities
+OBJC_IVAR_$_AWSSESListIdentitiesResponse._nextToken
+OBJC_CLASS_NAME_.771
+l_OBJC_$_CLASS_METHODS_AWSSESListIdentitiesResponse
+l_OBJC_METACLASS_RO_$_AWSSESListIdentitiesResponse
+OBJC_CLASS_NAME_.772
+l_OBJC_$_INSTANCE_METHODS_AWSSESListIdentitiesResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListIdentitiesResponse
+l_OBJC_$_PROP_LIST_AWSSESListIdentitiesResponse
+l_OBJC_CLASS_RO_$_AWSSESListIdentitiesResponse
+OBJC_IVAR_$_AWSSESListIdentityPoliciesRequest._identity
+OBJC_CLASS_NAME_.773
+l_OBJC_$_CLASS_METHODS_AWSSESListIdentityPoliciesRequest
+l_OBJC_METACLASS_RO_$_AWSSESListIdentityPoliciesRequest
+OBJC_CLASS_NAME_.774
+l_OBJC_$_INSTANCE_METHODS_AWSSESListIdentityPoliciesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListIdentityPoliciesRequest
+l_OBJC_$_PROP_LIST_AWSSESListIdentityPoliciesRequest
+l_OBJC_CLASS_RO_$_AWSSESListIdentityPoliciesRequest
+OBJC_IVAR_$_AWSSESListIdentityPoliciesResponse._policyNames
+OBJC_CLASS_NAME_.775
+l_OBJC_$_CLASS_METHODS_AWSSESListIdentityPoliciesResponse
+l_OBJC_METACLASS_RO_$_AWSSESListIdentityPoliciesResponse
+OBJC_CLASS_NAME_.776
+l_OBJC_$_INSTANCE_METHODS_AWSSESListIdentityPoliciesResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListIdentityPoliciesResponse
+l_OBJC_$_PROP_LIST_AWSSESListIdentityPoliciesResponse
+l_OBJC_CLASS_RO_$_AWSSESListIdentityPoliciesResponse
+OBJC_CLASS_NAME_.777
+l_OBJC_METACLASS_RO_$_AWSSESListReceiptFiltersRequest
+l_OBJC_CLASS_RO_$_AWSSESListReceiptFiltersRequest
+.str.778
+_unnamed_cfstring_.779
+.str.780
+_unnamed_cfstring_.781
+OBJC_IVAR_$_AWSSESListReceiptFiltersResponse._filters
+OBJC_CLASS_NAME_.782
+OBJC_METH_VAR_NAME_.783
+l_OBJC_$_CLASS_METHODS_AWSSESListReceiptFiltersResponse
+l_OBJC_METACLASS_RO_$_AWSSESListReceiptFiltersResponse
+OBJC_CLASS_NAME_.784
+OBJC_METH_VAR_NAME_.785
+OBJC_METH_VAR_NAME_.786
+l_OBJC_$_INSTANCE_METHODS_AWSSESListReceiptFiltersResponse
+OBJC_METH_VAR_NAME_.787
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListReceiptFiltersResponse
+OBJC_PROP_NAME_ATTR_.788
+OBJC_PROP_NAME_ATTR_.789
+l_OBJC_$_PROP_LIST_AWSSESListReceiptFiltersResponse
+l_OBJC_CLASS_RO_$_AWSSESListReceiptFiltersResponse
+OBJC_IVAR_$_AWSSESListReceiptRuleSetsRequest._nextToken
+OBJC_CLASS_NAME_.790
+l_OBJC_$_CLASS_METHODS_AWSSESListReceiptRuleSetsRequest
+l_OBJC_METACLASS_RO_$_AWSSESListReceiptRuleSetsRequest
+OBJC_CLASS_NAME_.791
+l_OBJC_$_INSTANCE_METHODS_AWSSESListReceiptRuleSetsRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListReceiptRuleSetsRequest
+l_OBJC_$_PROP_LIST_AWSSESListReceiptRuleSetsRequest
+l_OBJC_CLASS_RO_$_AWSSESListReceiptRuleSetsRequest
+.str.792
+_unnamed_cfstring_.793
+.str.794
+_unnamed_cfstring_.795
+OBJC_IVAR_$_AWSSESListReceiptRuleSetsResponse._nextToken
+OBJC_IVAR_$_AWSSESListReceiptRuleSetsResponse._ruleSets
+OBJC_CLASS_NAME_.796
+OBJC_METH_VAR_NAME_.797
+l_OBJC_$_CLASS_METHODS_AWSSESListReceiptRuleSetsResponse
+l_OBJC_METACLASS_RO_$_AWSSESListReceiptRuleSetsResponse
+OBJC_CLASS_NAME_.798
+OBJC_METH_VAR_NAME_.799
+OBJC_METH_VAR_NAME_.800
+l_OBJC_$_INSTANCE_METHODS_AWSSESListReceiptRuleSetsResponse
+OBJC_METH_VAR_NAME_.801
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListReceiptRuleSetsResponse
+OBJC_PROP_NAME_ATTR_.802
+OBJC_PROP_NAME_ATTR_.803
+l_OBJC_$_PROP_LIST_AWSSESListReceiptRuleSetsResponse
+l_OBJC_CLASS_RO_$_AWSSESListReceiptRuleSetsResponse
+.str.804
+_unnamed_cfstring_.805
+.str.806
+_unnamed_cfstring_.807
+OBJC_IVAR_$_AWSSESListVerifiedEmailAddressesResponse._verifiedEmailAddresses
+OBJC_CLASS_NAME_.808
+l_OBJC_$_CLASS_METHODS_AWSSESListVerifiedEmailAddressesResponse
+l_OBJC_METACLASS_RO_$_AWSSESListVerifiedEmailAddressesResponse
+OBJC_CLASS_NAME_.809
+OBJC_METH_VAR_NAME_.810
+OBJC_METH_VAR_NAME_.811
+l_OBJC_$_INSTANCE_METHODS_AWSSESListVerifiedEmailAddressesResponse
+OBJC_METH_VAR_NAME_.812
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESListVerifiedEmailAddressesResponse
+OBJC_PROP_NAME_ATTR_.813
+OBJC_PROP_NAME_ATTR_.814
+l_OBJC_$_PROP_LIST_AWSSESListVerifiedEmailAddressesResponse
+l_OBJC_CLASS_RO_$_AWSSESListVerifiedEmailAddressesResponse
+.str.815
+_unnamed_cfstring_.816
+.str.817
+_unnamed_cfstring_.818
+.str.819
+_unnamed_cfstring_.820
+.str.821
+_unnamed_cfstring_.822
+OBJC_CLASSLIST_REFERENCES_$_.823
+OBJC_IVAR_$_AWSSESMessage._body
+OBJC_IVAR_$_AWSSESMessage._subject
+OBJC_CLASS_NAME_.824
+OBJC_METH_VAR_NAME_.825
+OBJC_METH_VAR_NAME_.826
+l_OBJC_$_CLASS_METHODS_AWSSESMessage
+l_OBJC_METACLASS_RO_$_AWSSESMessage
+OBJC_CLASS_NAME_.827
+OBJC_METH_VAR_NAME_.828
+OBJC_METH_VAR_NAME_.829
+OBJC_METH_VAR_NAME_.830
+OBJC_METH_VAR_NAME_.831
+l_OBJC_$_INSTANCE_METHODS_AWSSESMessage
+OBJC_METH_VAR_NAME_.832
+OBJC_METH_VAR_TYPE_.833
+OBJC_METH_VAR_NAME_.834
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESMessage
+OBJC_PROP_NAME_ATTR_.835
+OBJC_PROP_NAME_ATTR_.836
+OBJC_PROP_NAME_ATTR_.837
+OBJC_PROP_NAME_ATTR_.838
+l_OBJC_$_PROP_LIST_AWSSESMessage
+l_OBJC_CLASS_RO_$_AWSSESMessage
+.str.839
+_unnamed_cfstring_.840
+.str.841
+_unnamed_cfstring_.842
+.str.843
+_unnamed_cfstring_.844
+.str.845
+_unnamed_cfstring_.846
+.str.847
+_unnamed_cfstring_.848
+.str.849
+_unnamed_cfstring_.850
+OBJC_CLASSLIST_REFERENCES_$_.851
+OBJC_METH_VAR_NAME_.852
+OBJC_SELECTOR_REFERENCES_.853
+.str.854
+__block_descriptor_tmp.855
+__block_literal_global.856
+OBJC_METH_VAR_NAME_.857
+OBJC_SELECTOR_REFERENCES_.858
+.str.859
+__block_descriptor_tmp.860
+__block_literal_global.861
+OBJC_CLASSLIST_REFERENCES_$_.862
+OBJC_IVAR_$_AWSSESMessageDsn._arrivalDate
+OBJC_IVAR_$_AWSSESMessageDsn._extensionFields
+OBJC_IVAR_$_AWSSESMessageDsn._reportingMta
+OBJC_CLASS_NAME_.863
+OBJC_METH_VAR_NAME_.864
+OBJC_METH_VAR_NAME_.865
+l_OBJC_$_CLASS_METHODS_AWSSESMessageDsn
+l_OBJC_METACLASS_RO_$_AWSSESMessageDsn
+OBJC_CLASS_NAME_.866
+OBJC_METH_VAR_NAME_.867
+OBJC_METH_VAR_NAME_.868
+OBJC_METH_VAR_NAME_.869
+OBJC_METH_VAR_NAME_.870
+OBJC_METH_VAR_NAME_.871
+OBJC_METH_VAR_NAME_.872
+l_OBJC_$_INSTANCE_METHODS_AWSSESMessageDsn
+OBJC_METH_VAR_NAME_.873
+OBJC_METH_VAR_TYPE_.874
+OBJC_METH_VAR_NAME_.875
+OBJC_METH_VAR_NAME_.876
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESMessageDsn
+OBJC_PROP_NAME_ATTR_.877
+OBJC_PROP_NAME_ATTR_.878
+OBJC_PROP_NAME_ATTR_.879
+OBJC_PROP_NAME_ATTR_.880
+OBJC_PROP_NAME_ATTR_.881
+OBJC_PROP_NAME_ATTR_.882
+l_OBJC_$_PROP_LIST_AWSSESMessageDsn
+l_OBJC_CLASS_RO_$_AWSSESMessageDsn
+.str.883
+_unnamed_cfstring_.884
+.str.885
+_unnamed_cfstring_.886
+OBJC_IVAR_$_AWSSESPutIdentityPolicyRequest._identity
+OBJC_IVAR_$_AWSSESPutIdentityPolicyRequest._policy
+OBJC_IVAR_$_AWSSESPutIdentityPolicyRequest._policyName
+OBJC_CLASS_NAME_.887
+l_OBJC_$_CLASS_METHODS_AWSSESPutIdentityPolicyRequest
+l_OBJC_METACLASS_RO_$_AWSSESPutIdentityPolicyRequest
+OBJC_CLASS_NAME_.888
+OBJC_METH_VAR_NAME_.889
+OBJC_METH_VAR_NAME_.890
+l_OBJC_$_INSTANCE_METHODS_AWSSESPutIdentityPolicyRequest
+OBJC_METH_VAR_NAME_.891
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESPutIdentityPolicyRequest
+OBJC_PROP_NAME_ATTR_.892
+OBJC_PROP_NAME_ATTR_.893
+l_OBJC_$_PROP_LIST_AWSSESPutIdentityPolicyRequest
+l_OBJC_CLASS_RO_$_AWSSESPutIdentityPolicyRequest
+OBJC_CLASS_NAME_.894
+l_OBJC_METACLASS_RO_$_AWSSESPutIdentityPolicyResponse
+l_OBJC_CLASS_RO_$_AWSSESPutIdentityPolicyResponse
+OBJC_IVAR_$_AWSSESRawMessage._data
+OBJC_CLASS_NAME_.895
+l_OBJC_$_CLASS_METHODS_AWSSESRawMessage
+l_OBJC_METACLASS_RO_$_AWSSESRawMessage
+OBJC_CLASS_NAME_.896
+l_OBJC_$_INSTANCE_METHODS_AWSSESRawMessage
+OBJC_METH_VAR_TYPE_.897
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESRawMessage
+OBJC_PROP_NAME_ATTR_.898
+l_OBJC_$_PROP_LIST_AWSSESRawMessage
+l_OBJC_CLASS_RO_$_AWSSESRawMessage
+.str.899
+_unnamed_cfstring_.900
+.str.901
+_unnamed_cfstring_.902
+.str.903
+_unnamed_cfstring_.904
+.str.905
+_unnamed_cfstring_.906
+.str.907
+_unnamed_cfstring_.908
+.str.909
+_unnamed_cfstring_.910
+.str.911
+_unnamed_cfstring_.912
+.str.913
+_unnamed_cfstring_.914
+.str.915
+_unnamed_cfstring_.916
+.str.917
+_unnamed_cfstring_.918
+.str.919
+_unnamed_cfstring_.920
+.str.921
+_unnamed_cfstring_.922
+.str.923
+_unnamed_cfstring_.924
+OBJC_CLASSLIST_REFERENCES_$_.925
+OBJC_CLASSLIST_REFERENCES_$_.926
+OBJC_CLASSLIST_REFERENCES_$_.927
+OBJC_CLASSLIST_REFERENCES_$_.928
+OBJC_CLASSLIST_REFERENCES_$_.929
+OBJC_CLASSLIST_REFERENCES_$_.930
+OBJC_CLASSLIST_REFERENCES_$_.931
+OBJC_IVAR_$_AWSSESReceiptAction._addHeaderAction
+OBJC_IVAR_$_AWSSESReceiptAction._bounceAction
+OBJC_IVAR_$_AWSSESReceiptAction._lambdaAction
+OBJC_IVAR_$_AWSSESReceiptAction._s3Action
+OBJC_IVAR_$_AWSSESReceiptAction._SNSAction
+OBJC_IVAR_$_AWSSESReceiptAction._stopAction
+OBJC_IVAR_$_AWSSESReceiptAction._workmailAction
+OBJC_CLASS_NAME_.932
+OBJC_METH_VAR_NAME_.933
+OBJC_METH_VAR_NAME_.934
+OBJC_METH_VAR_NAME_.935
+OBJC_METH_VAR_NAME_.936
+OBJC_METH_VAR_NAME_.937
+OBJC_METH_VAR_NAME_.938
+OBJC_METH_VAR_NAME_.939
+l_OBJC_$_CLASS_METHODS_AWSSESReceiptAction
+l_OBJC_METACLASS_RO_$_AWSSESReceiptAction
+OBJC_CLASS_NAME_.940
+OBJC_METH_VAR_NAME_.941
+OBJC_METH_VAR_NAME_.942
+OBJC_METH_VAR_NAME_.943
+OBJC_METH_VAR_NAME_.944
+OBJC_METH_VAR_NAME_.945
+OBJC_METH_VAR_NAME_.946
+OBJC_METH_VAR_NAME_.947
+OBJC_METH_VAR_NAME_.948
+OBJC_METH_VAR_NAME_.949
+OBJC_METH_VAR_NAME_.950
+OBJC_METH_VAR_NAME_.951
+OBJC_METH_VAR_NAME_.952
+OBJC_METH_VAR_NAME_.953
+OBJC_METH_VAR_NAME_.954
+l_OBJC_$_INSTANCE_METHODS_AWSSESReceiptAction
+OBJC_METH_VAR_NAME_.955
+OBJC_METH_VAR_TYPE_.956
+OBJC_METH_VAR_NAME_.957
+OBJC_METH_VAR_TYPE_.958
+OBJC_METH_VAR_NAME_.959
+OBJC_METH_VAR_TYPE_.960
+OBJC_METH_VAR_NAME_.961
+OBJC_METH_VAR_TYPE_.962
+OBJC_METH_VAR_NAME_.963
+OBJC_METH_VAR_TYPE_.964
+OBJC_METH_VAR_NAME_.965
+OBJC_METH_VAR_TYPE_.966
+OBJC_METH_VAR_NAME_.967
+OBJC_METH_VAR_TYPE_.968
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReceiptAction
+OBJC_PROP_NAME_ATTR_.969
+OBJC_PROP_NAME_ATTR_.970
+OBJC_PROP_NAME_ATTR_.971
+OBJC_PROP_NAME_ATTR_.972
+OBJC_PROP_NAME_ATTR_.973
+OBJC_PROP_NAME_ATTR_.974
+OBJC_PROP_NAME_ATTR_.975
+OBJC_PROP_NAME_ATTR_.976
+OBJC_PROP_NAME_ATTR_.977
+OBJC_PROP_NAME_ATTR_.978
+OBJC_PROP_NAME_ATTR_.979
+OBJC_PROP_NAME_ATTR_.980
+OBJC_PROP_NAME_ATTR_.981
+OBJC_PROP_NAME_ATTR_.982
+l_OBJC_$_PROP_LIST_AWSSESReceiptAction
+l_OBJC_CLASS_RO_$_AWSSESReceiptAction
+.str.983
+_unnamed_cfstring_.984
+.str.985
+_unnamed_cfstring_.986
+OBJC_CLASSLIST_REFERENCES_$_.987
+OBJC_IVAR_$_AWSSESReceiptFilter._ipFilter
+OBJC_IVAR_$_AWSSESReceiptFilter._name
+OBJC_CLASS_NAME_.988
+OBJC_METH_VAR_NAME_.989
+l_OBJC_$_CLASS_METHODS_AWSSESReceiptFilter
+l_OBJC_METACLASS_RO_$_AWSSESReceiptFilter
+OBJC_CLASS_NAME_.990
+OBJC_METH_VAR_NAME_.991
+OBJC_METH_VAR_NAME_.992
+l_OBJC_$_INSTANCE_METHODS_AWSSESReceiptFilter
+OBJC_METH_VAR_NAME_.993
+OBJC_METH_VAR_TYPE_.994
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReceiptFilter
+OBJC_PROP_NAME_ATTR_.995
+OBJC_PROP_NAME_ATTR_.996
+l_OBJC_$_PROP_LIST_AWSSESReceiptFilter
+l_OBJC_CLASS_RO_$_AWSSESReceiptFilter
+.str.997
+_unnamed_cfstring_.998
+.str.999
+_unnamed_cfstring_.1000
+.str.1001
+_unnamed_cfstring_.1002
+.str.1003
+_unnamed_cfstring_.1004
+__block_descriptor_tmp.1005
+__block_literal_global.1006
+__block_descriptor_tmp.1007
+__block_literal_global.1008
+OBJC_IVAR_$_AWSSESReceiptIpFilter._cidr
+OBJC_IVAR_$_AWSSESReceiptIpFilter._policy
+OBJC_CLASS_NAME_.1009
+OBJC_METH_VAR_NAME_.1010
+l_OBJC_$_CLASS_METHODS_AWSSESReceiptIpFilter
+l_OBJC_METACLASS_RO_$_AWSSESReceiptIpFilter
+OBJC_CLASS_NAME_.1011
+OBJC_METH_VAR_NAME_.1012
+OBJC_METH_VAR_NAME_.1013
+l_OBJC_$_INSTANCE_METHODS_AWSSESReceiptIpFilter
+OBJC_METH_VAR_NAME_.1014
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReceiptIpFilter
+OBJC_PROP_NAME_ATTR_.1015
+OBJC_PROP_NAME_ATTR_.1016
+OBJC_PROP_NAME_ATTR_.1017
+l_OBJC_$_PROP_LIST_AWSSESReceiptIpFilter
+l_OBJC_CLASS_RO_$_AWSSESReceiptIpFilter
+.str.1018
+_unnamed_cfstring_.1019
+.str.1020
+_unnamed_cfstring_.1021
+.str.1022
+_unnamed_cfstring_.1023
+.str.1024
+_unnamed_cfstring_.1025
+.str.1026
+_unnamed_cfstring_.1027
+.str.1028
+_unnamed_cfstring_.1029
+.str.1030
+_unnamed_cfstring_.1031
+.str.1032
+_unnamed_cfstring_.1033
+.str.1034
+_unnamed_cfstring_.1035
+.str.1036
+_unnamed_cfstring_.1037
+OBJC_CLASSLIST_REFERENCES_$_.1038
+.str.1039
+_unnamed_cfstring_.1040
+.str.1041
+_unnamed_cfstring_.1042
+__block_descriptor_tmp.1043
+__block_literal_global.1044
+__block_descriptor_tmp.1045
+__block_literal_global.1046
+OBJC_IVAR_$_AWSSESReceiptRule._actions
+OBJC_IVAR_$_AWSSESReceiptRule._enabled
+OBJC_IVAR_$_AWSSESReceiptRule._name
+OBJC_IVAR_$_AWSSESReceiptRule._recipients
+OBJC_IVAR_$_AWSSESReceiptRule._scanEnabled
+OBJC_IVAR_$_AWSSESReceiptRule._tlsPolicy
+OBJC_CLASS_NAME_.1047
+OBJC_METH_VAR_NAME_.1048
+OBJC_METH_VAR_NAME_.1049
+l_OBJC_$_CLASS_METHODS_AWSSESReceiptRule
+l_OBJC_METACLASS_RO_$_AWSSESReceiptRule
+OBJC_CLASS_NAME_.1050
+OBJC_METH_VAR_NAME_.1051
+OBJC_METH_VAR_NAME_.1052
+OBJC_METH_VAR_NAME_.1053
+OBJC_METH_VAR_NAME_.1054
+OBJC_METH_VAR_NAME_.1055
+OBJC_METH_VAR_NAME_.1056
+OBJC_METH_VAR_NAME_.1057
+OBJC_METH_VAR_NAME_.1058
+OBJC_METH_VAR_NAME_.1059
+OBJC_METH_VAR_NAME_.1060
+l_OBJC_$_INSTANCE_METHODS_AWSSESReceiptRule
+OBJC_METH_VAR_NAME_.1061
+OBJC_METH_VAR_NAME_.1062
+OBJC_METH_VAR_NAME_.1063
+OBJC_METH_VAR_NAME_.1064
+OBJC_METH_VAR_NAME_.1065
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReceiptRule
+OBJC_PROP_NAME_ATTR_.1066
+OBJC_PROP_NAME_ATTR_.1067
+OBJC_PROP_NAME_ATTR_.1068
+OBJC_PROP_NAME_ATTR_.1069
+OBJC_PROP_NAME_ATTR_.1070
+OBJC_PROP_NAME_ATTR_.1071
+OBJC_PROP_NAME_ATTR_.1072
+OBJC_PROP_NAME_ATTR_.1073
+OBJC_PROP_NAME_ATTR_.1074
+OBJC_PROP_NAME_ATTR_.1075
+l_OBJC_$_PROP_LIST_AWSSESReceiptRule
+l_OBJC_CLASS_RO_$_AWSSESReceiptRule
+.str.1076
+_unnamed_cfstring_.1077
+.str.1078
+_unnamed_cfstring_.1079
+__block_descriptor_tmp.1080
+__block_literal_global.1081
+__block_descriptor_tmp.1082
+__block_literal_global.1083
+OBJC_IVAR_$_AWSSESReceiptRuleSetMetadata._createdTimestamp
+OBJC_IVAR_$_AWSSESReceiptRuleSetMetadata._name
+OBJC_CLASS_NAME_.1084
+OBJC_METH_VAR_NAME_.1085
+l_OBJC_$_CLASS_METHODS_AWSSESReceiptRuleSetMetadata
+l_OBJC_METACLASS_RO_$_AWSSESReceiptRuleSetMetadata
+OBJC_CLASS_NAME_.1086
+OBJC_METH_VAR_NAME_.1087
+OBJC_METH_VAR_NAME_.1088
+l_OBJC_$_INSTANCE_METHODS_AWSSESReceiptRuleSetMetadata
+OBJC_METH_VAR_NAME_.1089
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReceiptRuleSetMetadata
+OBJC_PROP_NAME_ATTR_.1090
+OBJC_PROP_NAME_ATTR_.1091
+l_OBJC_$_PROP_LIST_AWSSESReceiptRuleSetMetadata
+l_OBJC_CLASS_RO_$_AWSSESReceiptRuleSetMetadata
+.str.1092
+_unnamed_cfstring_.1093
+.str.1094
+_unnamed_cfstring_.1095
+.str.1096
+_unnamed_cfstring_.1097
+.str.1098
+_unnamed_cfstring_.1099
+.str.1100
+_unnamed_cfstring_.1101
+.str.1102
+_unnamed_cfstring_.1103
+.str.1104
+_unnamed_cfstring_.1105
+.str.1106
+_unnamed_cfstring_.1107
+.str.1108
+_unnamed_cfstring_.1109
+.str.1110
+_unnamed_cfstring_.1111
+.str.1112
+_unnamed_cfstring_.1113
+.str.1114
+_unnamed_cfstring_.1115
+.str.1116
+_unnamed_cfstring_.1117
+.str.1118
+_unnamed_cfstring_.1119
+.str.1120
+_unnamed_cfstring_.1121
+.str.1122
+_unnamed_cfstring_.1123
+.str.1124
+_unnamed_cfstring_.1125
+__block_descriptor_tmp.1126
+__block_literal_global.1127
+__block_descriptor_tmp.1128
+__block_literal_global.1129
+__block_descriptor_tmp.1130
+__block_literal_global.1131
+__block_descriptor_tmp.1132
+__block_literal_global.1133
+OBJC_IVAR_$_AWSSESRecipientDsnFields._action
+OBJC_IVAR_$_AWSSESRecipientDsnFields._diagnosticCode
+OBJC_IVAR_$_AWSSESRecipientDsnFields._extensionFields
+OBJC_IVAR_$_AWSSESRecipientDsnFields._finalRecipient
+OBJC_IVAR_$_AWSSESRecipientDsnFields._lastAttemptDate
+OBJC_IVAR_$_AWSSESRecipientDsnFields._remoteMta
+OBJC_IVAR_$_AWSSESRecipientDsnFields._status
+OBJC_CLASS_NAME_.1134
+OBJC_METH_VAR_NAME_.1135
+OBJC_METH_VAR_NAME_.1136
+l_OBJC_$_CLASS_METHODS_AWSSESRecipientDsnFields
+l_OBJC_METACLASS_RO_$_AWSSESRecipientDsnFields
+OBJC_CLASS_NAME_.1137
+OBJC_METH_VAR_NAME_.1138
+OBJC_METH_VAR_NAME_.1139
+OBJC_METH_VAR_NAME_.1140
+OBJC_METH_VAR_NAME_.1141
+OBJC_METH_VAR_NAME_.1142
+OBJC_METH_VAR_NAME_.1143
+OBJC_METH_VAR_NAME_.1144
+OBJC_METH_VAR_NAME_.1145
+OBJC_METH_VAR_NAME_.1146
+OBJC_METH_VAR_NAME_.1147
+OBJC_METH_VAR_NAME_.1148
+OBJC_METH_VAR_NAME_.1149
+l_OBJC_$_INSTANCE_METHODS_AWSSESRecipientDsnFields
+OBJC_METH_VAR_NAME_.1150
+OBJC_METH_VAR_NAME_.1151
+OBJC_METH_VAR_NAME_.1152
+OBJC_METH_VAR_NAME_.1153
+OBJC_METH_VAR_NAME_.1154
+OBJC_METH_VAR_NAME_.1155
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESRecipientDsnFields
+OBJC_PROP_NAME_ATTR_.1156
+OBJC_PROP_NAME_ATTR_.1157
+OBJC_PROP_NAME_ATTR_.1158
+OBJC_PROP_NAME_ATTR_.1159
+OBJC_PROP_NAME_ATTR_.1160
+OBJC_PROP_NAME_ATTR_.1161
+OBJC_PROP_NAME_ATTR_.1162
+OBJC_PROP_NAME_ATTR_.1163
+OBJC_PROP_NAME_ATTR_.1164
+OBJC_PROP_NAME_ATTR_.1165
+OBJC_PROP_NAME_ATTR_.1166
+OBJC_PROP_NAME_ATTR_.1167
+l_OBJC_$_PROP_LIST_AWSSESRecipientDsnFields
+l_OBJC_CLASS_RO_$_AWSSESRecipientDsnFields
+.str.1168
+_unnamed_cfstring_.1169
+.str.1170
+_unnamed_cfstring_.1171
+OBJC_IVAR_$_AWSSESReorderReceiptRuleSetRequest._ruleNames
+OBJC_IVAR_$_AWSSESReorderReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.1172
+l_OBJC_$_CLASS_METHODS_AWSSESReorderReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESReorderReceiptRuleSetRequest
+OBJC_CLASS_NAME_.1173
+OBJC_METH_VAR_NAME_.1174
+OBJC_METH_VAR_NAME_.1175
+l_OBJC_$_INSTANCE_METHODS_AWSSESReorderReceiptRuleSetRequest
+OBJC_METH_VAR_NAME_.1176
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESReorderReceiptRuleSetRequest
+OBJC_PROP_NAME_ATTR_.1177
+OBJC_PROP_NAME_ATTR_.1178
+l_OBJC_$_PROP_LIST_AWSSESReorderReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESReorderReceiptRuleSetRequest
+OBJC_CLASS_NAME_.1179
+l_OBJC_METACLASS_RO_$_AWSSESReorderReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESReorderReceiptRuleSetResponse
+.str.1180
+_unnamed_cfstring_.1181
+.str.1182
+_unnamed_cfstring_.1183
+.str.1184
+_unnamed_cfstring_.1185
+.str.1186
+_unnamed_cfstring_.1187
+.str.1188
+_unnamed_cfstring_.1189
+.str.1190
+_unnamed_cfstring_.1191
+OBJC_IVAR_$_AWSSESS3Action._bucketName
+OBJC_IVAR_$_AWSSESS3Action._kmsKeyArn
+OBJC_IVAR_$_AWSSESS3Action._objectKeyPrefix
+OBJC_IVAR_$_AWSSESS3Action._topicArn
+OBJC_CLASS_NAME_.1192
+l_OBJC_$_CLASS_METHODS_AWSSESS3Action
+l_OBJC_METACLASS_RO_$_AWSSESS3Action
+OBJC_CLASS_NAME_.1193
+OBJC_METH_VAR_NAME_.1194
+OBJC_METH_VAR_NAME_.1195
+OBJC_METH_VAR_NAME_.1196
+OBJC_METH_VAR_NAME_.1197
+OBJC_METH_VAR_NAME_.1198
+OBJC_METH_VAR_NAME_.1199
+l_OBJC_$_INSTANCE_METHODS_AWSSESS3Action
+OBJC_METH_VAR_NAME_.1200
+OBJC_METH_VAR_NAME_.1201
+OBJC_METH_VAR_NAME_.1202
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESS3Action
+OBJC_PROP_NAME_ATTR_.1203
+OBJC_PROP_NAME_ATTR_.1204
+OBJC_PROP_NAME_ATTR_.1205
+OBJC_PROP_NAME_ATTR_.1206
+OBJC_PROP_NAME_ATTR_.1207
+OBJC_PROP_NAME_ATTR_.1208
+l_OBJC_$_PROP_LIST_AWSSESS3Action
+l_OBJC_CLASS_RO_$_AWSSESS3Action
+.str.1209
+_unnamed_cfstring_.1210
+.str.1211
+_unnamed_cfstring_.1212
+.str.1213
+_unnamed_cfstring_.1214
+.str.1215
+_unnamed_cfstring_.1216
+__block_descriptor_tmp.1217
+__block_literal_global.1218
+__block_descriptor_tmp.1219
+__block_literal_global.1220
+OBJC_IVAR_$_AWSSESSNSAction._encoding
+OBJC_IVAR_$_AWSSESSNSAction._topicArn
+OBJC_CLASS_NAME_.1221
+OBJC_METH_VAR_NAME_.1222
+l_OBJC_$_CLASS_METHODS_AWSSESSNSAction
+l_OBJC_METACLASS_RO_$_AWSSESSNSAction
+OBJC_CLASS_NAME_.1223
+OBJC_METH_VAR_NAME_.1224
+OBJC_METH_VAR_NAME_.1225
+l_OBJC_$_INSTANCE_METHODS_AWSSESSNSAction
+OBJC_METH_VAR_NAME_.1226
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSNSAction
+OBJC_PROP_NAME_ATTR_.1227
+OBJC_PROP_NAME_ATTR_.1228
+l_OBJC_$_PROP_LIST_AWSSESSNSAction
+l_OBJC_CLASS_RO_$_AWSSESSNSAction
+.str.1229
+_unnamed_cfstring_.1230
+.str.1231
+_unnamed_cfstring_.1232
+.str.1233
+_unnamed_cfstring_.1234
+.str.1235
+_unnamed_cfstring_.1236
+.str.1237
+_unnamed_cfstring_.1238
+.str.1239
+_unnamed_cfstring_.1240
+.str.1241
+_unnamed_cfstring_.1242
+.str.1243
+_unnamed_cfstring_.1244
+.str.1245
+_unnamed_cfstring_.1246
+.str.1247
+_unnamed_cfstring_.1248
+.str.1249
+_unnamed_cfstring_.1250
+.str.1251
+_unnamed_cfstring_.1252
+OBJC_CLASSLIST_REFERENCES_$_.1253
+OBJC_CLASSLIST_REFERENCES_$_.1254
+OBJC_IVAR_$_AWSSESSendBounceRequest._bounceSender
+OBJC_IVAR_$_AWSSESSendBounceRequest._bounceSenderArn
+OBJC_IVAR_$_AWSSESSendBounceRequest._bouncedRecipientInfoList
+OBJC_IVAR_$_AWSSESSendBounceRequest._explanation
+OBJC_IVAR_$_AWSSESSendBounceRequest._messageDsn
+OBJC_IVAR_$_AWSSESSendBounceRequest._originalMessageId
+OBJC_CLASS_NAME_.1255
+OBJC_METH_VAR_NAME_.1256
+OBJC_METH_VAR_NAME_.1257
+l_OBJC_$_CLASS_METHODS_AWSSESSendBounceRequest
+l_OBJC_METACLASS_RO_$_AWSSESSendBounceRequest
+OBJC_CLASS_NAME_.1258
+OBJC_METH_VAR_NAME_.1259
+OBJC_METH_VAR_NAME_.1260
+OBJC_METH_VAR_NAME_.1261
+OBJC_METH_VAR_NAME_.1262
+OBJC_METH_VAR_NAME_.1263
+OBJC_METH_VAR_NAME_.1264
+OBJC_METH_VAR_NAME_.1265
+OBJC_METH_VAR_NAME_.1266
+OBJC_METH_VAR_NAME_.1267
+OBJC_METH_VAR_NAME_.1268
+OBJC_METH_VAR_NAME_.1269
+OBJC_METH_VAR_NAME_.1270
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendBounceRequest
+OBJC_METH_VAR_NAME_.1271
+OBJC_METH_VAR_NAME_.1272
+OBJC_METH_VAR_NAME_.1273
+OBJC_METH_VAR_NAME_.1274
+OBJC_METH_VAR_NAME_.1275
+OBJC_METH_VAR_TYPE_.1276
+OBJC_METH_VAR_NAME_.1277
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendBounceRequest
+OBJC_PROP_NAME_ATTR_.1278
+OBJC_PROP_NAME_ATTR_.1279
+OBJC_PROP_NAME_ATTR_.1280
+OBJC_PROP_NAME_ATTR_.1281
+OBJC_PROP_NAME_ATTR_.1282
+OBJC_PROP_NAME_ATTR_.1283
+OBJC_PROP_NAME_ATTR_.1284
+OBJC_PROP_NAME_ATTR_.1285
+OBJC_PROP_NAME_ATTR_.1286
+OBJC_PROP_NAME_ATTR_.1287
+OBJC_PROP_NAME_ATTR_.1288
+OBJC_PROP_NAME_ATTR_.1289
+l_OBJC_$_PROP_LIST_AWSSESSendBounceRequest
+l_OBJC_CLASS_RO_$_AWSSESSendBounceRequest
+.str.1290
+_unnamed_cfstring_.1291
+.str.1292
+_unnamed_cfstring_.1293
+OBJC_IVAR_$_AWSSESSendBounceResponse._messageId
+OBJC_CLASS_NAME_.1294
+l_OBJC_$_CLASS_METHODS_AWSSESSendBounceResponse
+l_OBJC_METACLASS_RO_$_AWSSESSendBounceResponse
+OBJC_CLASS_NAME_.1295
+OBJC_METH_VAR_NAME_.1296
+OBJC_METH_VAR_NAME_.1297
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendBounceResponse
+OBJC_METH_VAR_NAME_.1298
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendBounceResponse
+OBJC_PROP_NAME_ATTR_.1299
+OBJC_PROP_NAME_ATTR_.1300
+l_OBJC_$_PROP_LIST_AWSSESSendBounceResponse
+l_OBJC_CLASS_RO_$_AWSSESSendBounceResponse
+.str.1301
+_unnamed_cfstring_.1302
+.str.1303
+_unnamed_cfstring_.1304
+.str.1305
+_unnamed_cfstring_.1306
+.str.1307
+_unnamed_cfstring_.1308
+.str.1309
+_unnamed_cfstring_.1310
+.str.1311
+_unnamed_cfstring_.1312
+.str.1313
+_unnamed_cfstring_.1314
+.str.1315
+_unnamed_cfstring_.1316
+.str.1317
+_unnamed_cfstring_.1318
+.str.1319
+_unnamed_cfstring_.1320
+__block_descriptor_tmp.1321
+__block_literal_global.1322
+__block_descriptor_tmp.1323
+__block_literal_global.1324
+OBJC_IVAR_$_AWSSESSendDataPoint._bounces
+OBJC_IVAR_$_AWSSESSendDataPoint._complaints
+OBJC_IVAR_$_AWSSESSendDataPoint._deliveryAttempts
+OBJC_IVAR_$_AWSSESSendDataPoint._rejects
+OBJC_IVAR_$_AWSSESSendDataPoint._timestamp
+OBJC_CLASS_NAME_.1325
+OBJC_METH_VAR_NAME_.1326
+l_OBJC_$_CLASS_METHODS_AWSSESSendDataPoint
+l_OBJC_METACLASS_RO_$_AWSSESSendDataPoint
+OBJC_CLASS_NAME_.1327
+OBJC_METH_VAR_NAME_.1328
+OBJC_METH_VAR_NAME_.1329
+OBJC_METH_VAR_NAME_.1330
+OBJC_METH_VAR_NAME_.1331
+OBJC_METH_VAR_NAME_.1332
+OBJC_METH_VAR_NAME_.1333
+OBJC_METH_VAR_NAME_.1334
+OBJC_METH_VAR_NAME_.1335
+OBJC_METH_VAR_NAME_.1336
+OBJC_METH_VAR_NAME_.1337
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendDataPoint
+OBJC_METH_VAR_NAME_.1338
+OBJC_METH_VAR_NAME_.1339
+OBJC_METH_VAR_NAME_.1340
+OBJC_METH_VAR_NAME_.1341
+OBJC_METH_VAR_NAME_.1342
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendDataPoint
+OBJC_PROP_NAME_ATTR_.1343
+OBJC_PROP_NAME_ATTR_.1344
+OBJC_PROP_NAME_ATTR_.1345
+OBJC_PROP_NAME_ATTR_.1346
+OBJC_PROP_NAME_ATTR_.1347
+OBJC_PROP_NAME_ATTR_.1348
+OBJC_PROP_NAME_ATTR_.1349
+OBJC_PROP_NAME_ATTR_.1350
+OBJC_PROP_NAME_ATTR_.1351
+OBJC_PROP_NAME_ATTR_.1352
+l_OBJC_$_PROP_LIST_AWSSESSendDataPoint
+l_OBJC_CLASS_RO_$_AWSSESSendDataPoint
+.str.1353
+_unnamed_cfstring_.1354
+.str.1355
+_unnamed_cfstring_.1356
+.str.1357
+_unnamed_cfstring_.1358
+.str.1359
+_unnamed_cfstring_.1360
+.str.1361
+_unnamed_cfstring_.1362
+.str.1363
+_unnamed_cfstring_.1364
+.str.1365
+_unnamed_cfstring_.1366
+.str.1367
+_unnamed_cfstring_.1368
+.str.1369
+_unnamed_cfstring_.1370
+.str.1371
+_unnamed_cfstring_.1372
+.str.1373
+_unnamed_cfstring_.1374
+.str.1375
+_unnamed_cfstring_.1376
+OBJC_CLASSLIST_REFERENCES_$_.1377
+OBJC_CLASSLIST_REFERENCES_$_.1378
+OBJC_IVAR_$_AWSSESSendEmailRequest._destination
+OBJC_IVAR_$_AWSSESSendEmailRequest._message
+OBJC_IVAR_$_AWSSESSendEmailRequest._replyToAddresses
+OBJC_IVAR_$_AWSSESSendEmailRequest._returnPath
+OBJC_IVAR_$_AWSSESSendEmailRequest._returnPathArn
+OBJC_IVAR_$_AWSSESSendEmailRequest._source
+OBJC_IVAR_$_AWSSESSendEmailRequest._sourceArn
+OBJC_CLASS_NAME_.1379
+OBJC_METH_VAR_NAME_.1380
+OBJC_METH_VAR_NAME_.1381
+l_OBJC_$_CLASS_METHODS_AWSSESSendEmailRequest
+l_OBJC_METACLASS_RO_$_AWSSESSendEmailRequest
+OBJC_CLASS_NAME_.1382
+OBJC_METH_VAR_NAME_.1383
+OBJC_METH_VAR_NAME_.1384
+OBJC_METH_VAR_NAME_.1385
+OBJC_METH_VAR_NAME_.1386
+OBJC_METH_VAR_NAME_.1387
+OBJC_METH_VAR_NAME_.1388
+OBJC_METH_VAR_NAME_.1389
+OBJC_METH_VAR_NAME_.1390
+OBJC_METH_VAR_NAME_.1391
+OBJC_METH_VAR_NAME_.1392
+OBJC_METH_VAR_NAME_.1393
+OBJC_METH_VAR_NAME_.1394
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendEmailRequest
+OBJC_METH_VAR_NAME_.1395
+OBJC_METH_VAR_TYPE_.1396
+OBJC_METH_VAR_TYPE_.1397
+OBJC_METH_VAR_NAME_.1398
+OBJC_METH_VAR_NAME_.1399
+OBJC_METH_VAR_NAME_.1400
+OBJC_METH_VAR_NAME_.1401
+OBJC_METH_VAR_NAME_.1402
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendEmailRequest
+OBJC_PROP_NAME_ATTR_.1403
+OBJC_PROP_NAME_ATTR_.1404
+OBJC_PROP_NAME_ATTR_.1405
+OBJC_PROP_NAME_ATTR_.1406
+OBJC_PROP_NAME_ATTR_.1407
+OBJC_PROP_NAME_ATTR_.1408
+OBJC_PROP_NAME_ATTR_.1409
+OBJC_PROP_NAME_ATTR_.1410
+OBJC_PROP_NAME_ATTR_.1411
+OBJC_PROP_NAME_ATTR_.1412
+OBJC_PROP_NAME_ATTR_.1413
+OBJC_PROP_NAME_ATTR_.1414
+OBJC_PROP_NAME_ATTR_.1415
+l_OBJC_$_PROP_LIST_AWSSESSendEmailRequest
+l_OBJC_CLASS_RO_$_AWSSESSendEmailRequest
+OBJC_IVAR_$_AWSSESSendEmailResponse._messageId
+OBJC_CLASS_NAME_.1416
+l_OBJC_$_CLASS_METHODS_AWSSESSendEmailResponse
+l_OBJC_METACLASS_RO_$_AWSSESSendEmailResponse
+OBJC_CLASS_NAME_.1417
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendEmailResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendEmailResponse
+l_OBJC_$_PROP_LIST_AWSSESSendEmailResponse
+l_OBJC_CLASS_RO_$_AWSSESSendEmailResponse
+.str.1418
+_unnamed_cfstring_.1419
+.str.1420
+_unnamed_cfstring_.1421
+.str.1422
+_unnamed_cfstring_.1423
+.str.1424
+_unnamed_cfstring_.1425
+.str.1426
+_unnamed_cfstring_.1427
+.str.1428
+_unnamed_cfstring_.1429
+OBJC_CLASSLIST_REFERENCES_$_.1430
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._destinations
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._fromArn
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._rawMessage
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._returnPathArn
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._source
+OBJC_IVAR_$_AWSSESSendRawEmailRequest._sourceArn
+OBJC_CLASS_NAME_.1431
+OBJC_METH_VAR_NAME_.1432
+l_OBJC_$_CLASS_METHODS_AWSSESSendRawEmailRequest
+l_OBJC_METACLASS_RO_$_AWSSESSendRawEmailRequest
+OBJC_CLASS_NAME_.1433
+OBJC_METH_VAR_NAME_.1434
+OBJC_METH_VAR_NAME_.1435
+OBJC_METH_VAR_NAME_.1436
+OBJC_METH_VAR_NAME_.1437
+OBJC_METH_VAR_NAME_.1438
+OBJC_METH_VAR_NAME_.1439
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendRawEmailRequest
+OBJC_METH_VAR_NAME_.1440
+OBJC_METH_VAR_NAME_.1441
+OBJC_METH_VAR_NAME_.1442
+OBJC_METH_VAR_TYPE_.1443
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendRawEmailRequest
+OBJC_PROP_NAME_ATTR_.1444
+OBJC_PROP_NAME_ATTR_.1445
+OBJC_PROP_NAME_ATTR_.1446
+OBJC_PROP_NAME_ATTR_.1447
+OBJC_PROP_NAME_ATTR_.1448
+OBJC_PROP_NAME_ATTR_.1449
+l_OBJC_$_PROP_LIST_AWSSESSendRawEmailRequest
+l_OBJC_CLASS_RO_$_AWSSESSendRawEmailRequest
+OBJC_IVAR_$_AWSSESSendRawEmailResponse._messageId
+OBJC_CLASS_NAME_.1450
+l_OBJC_$_CLASS_METHODS_AWSSESSendRawEmailResponse
+l_OBJC_METACLASS_RO_$_AWSSESSendRawEmailResponse
+OBJC_CLASS_NAME_.1451
+l_OBJC_$_INSTANCE_METHODS_AWSSESSendRawEmailResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSendRawEmailResponse
+l_OBJC_$_PROP_LIST_AWSSESSendRawEmailResponse
+l_OBJC_CLASS_RO_$_AWSSESSendRawEmailResponse
+OBJC_IVAR_$_AWSSESSetActiveReceiptRuleSetRequest._ruleSetName
+OBJC_CLASS_NAME_.1452
+l_OBJC_$_CLASS_METHODS_AWSSESSetActiveReceiptRuleSetRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetActiveReceiptRuleSetRequest
+OBJC_CLASS_NAME_.1453
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetActiveReceiptRuleSetRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetActiveReceiptRuleSetRequest
+l_OBJC_$_PROP_LIST_AWSSESSetActiveReceiptRuleSetRequest
+l_OBJC_CLASS_RO_$_AWSSESSetActiveReceiptRuleSetRequest
+OBJC_CLASS_NAME_.1454
+l_OBJC_METACLASS_RO_$_AWSSESSetActiveReceiptRuleSetResponse
+l_OBJC_CLASS_RO_$_AWSSESSetActiveReceiptRuleSetResponse
+OBJC_IVAR_$_AWSSESSetIdentityDkimEnabledRequest._dkimEnabled
+OBJC_IVAR_$_AWSSESSetIdentityDkimEnabledRequest._identity
+OBJC_CLASS_NAME_.1455
+l_OBJC_$_CLASS_METHODS_AWSSESSetIdentityDkimEnabledRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityDkimEnabledRequest
+OBJC_CLASS_NAME_.1456
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetIdentityDkimEnabledRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetIdentityDkimEnabledRequest
+l_OBJC_$_PROP_LIST_AWSSESSetIdentityDkimEnabledRequest
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityDkimEnabledRequest
+OBJC_CLASS_NAME_.1457
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityDkimEnabledResponse
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityDkimEnabledResponse
+OBJC_IVAR_$_AWSSESSetIdentityFeedbackForwardingEnabledRequest._forwardingEnabled
+OBJC_IVAR_$_AWSSESSetIdentityFeedbackForwardingEnabledRequest._identity
+OBJC_CLASS_NAME_.1458
+l_OBJC_$_CLASS_METHODS_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+OBJC_CLASS_NAME_.1459
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+l_OBJC_$_PROP_LIST_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityFeedbackForwardingEnabledRequest
+OBJC_CLASS_NAME_.1460
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityFeedbackForwardingEnabledResponse
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityFeedbackForwardingEnabledResponse
+__block_descriptor_tmp.1461
+__block_literal_global.1462
+__block_descriptor_tmp.1463
+__block_literal_global.1464
+OBJC_IVAR_$_AWSSESSetIdentityMailFromDomainRequest._behaviorOnMXFailure
+OBJC_IVAR_$_AWSSESSetIdentityMailFromDomainRequest._identity
+OBJC_IVAR_$_AWSSESSetIdentityMailFromDomainRequest._mailFromDomain
+OBJC_CLASS_NAME_.1465
+l_OBJC_$_CLASS_METHODS_AWSSESSetIdentityMailFromDomainRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityMailFromDomainRequest
+OBJC_CLASS_NAME_.1466
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetIdentityMailFromDomainRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetIdentityMailFromDomainRequest
+l_OBJC_$_PROP_LIST_AWSSESSetIdentityMailFromDomainRequest
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityMailFromDomainRequest
+OBJC_CLASS_NAME_.1467
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityMailFromDomainResponse
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityMailFromDomainResponse
+.str.1468
+_unnamed_cfstring_.1469
+.str.1470
+_unnamed_cfstring_.1471
+.str.1472
+_unnamed_cfstring_.1473
+.str.1474
+_unnamed_cfstring_.1475
+.str.1476
+_unnamed_cfstring_.1477
+.str.1478
+_unnamed_cfstring_.1479
+.str.1480
+_unnamed_cfstring_.1481
+__block_descriptor_tmp.1482
+__block_literal_global.1483
+__block_descriptor_tmp.1484
+__block_literal_global.1485
+OBJC_IVAR_$_AWSSESSetIdentityNotificationTopicRequest._identity
+OBJC_IVAR_$_AWSSESSetIdentityNotificationTopicRequest._notificationType
+OBJC_IVAR_$_AWSSESSetIdentityNotificationTopicRequest._snsTopic
+OBJC_CLASS_NAME_.1486
+OBJC_METH_VAR_NAME_.1487
+l_OBJC_$_CLASS_METHODS_AWSSESSetIdentityNotificationTopicRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityNotificationTopicRequest
+OBJC_CLASS_NAME_.1488
+OBJC_METH_VAR_NAME_.1489
+OBJC_METH_VAR_NAME_.1490
+OBJC_METH_VAR_NAME_.1491
+OBJC_METH_VAR_NAME_.1492
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetIdentityNotificationTopicRequest
+OBJC_METH_VAR_NAME_.1493
+OBJC_METH_VAR_NAME_.1494
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetIdentityNotificationTopicRequest
+OBJC_PROP_NAME_ATTR_.1495
+OBJC_PROP_NAME_ATTR_.1496
+OBJC_PROP_NAME_ATTR_.1497
+OBJC_PROP_NAME_ATTR_.1498
+l_OBJC_$_PROP_LIST_AWSSESSetIdentityNotificationTopicRequest
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityNotificationTopicRequest
+OBJC_CLASS_NAME_.1499
+l_OBJC_METACLASS_RO_$_AWSSESSetIdentityNotificationTopicResponse
+l_OBJC_CLASS_RO_$_AWSSESSetIdentityNotificationTopicResponse
+OBJC_IVAR_$_AWSSESSetReceiptRulePositionRequest._after
+OBJC_IVAR_$_AWSSESSetReceiptRulePositionRequest._ruleName
+OBJC_IVAR_$_AWSSESSetReceiptRulePositionRequest._ruleSetName
+OBJC_CLASS_NAME_.1500
+l_OBJC_$_CLASS_METHODS_AWSSESSetReceiptRulePositionRequest
+l_OBJC_METACLASS_RO_$_AWSSESSetReceiptRulePositionRequest
+OBJC_CLASS_NAME_.1501
+l_OBJC_$_INSTANCE_METHODS_AWSSESSetReceiptRulePositionRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESSetReceiptRulePositionRequest
+l_OBJC_$_PROP_LIST_AWSSESSetReceiptRulePositionRequest
+l_OBJC_CLASS_RO_$_AWSSESSetReceiptRulePositionRequest
+OBJC_CLASS_NAME_.1502
+l_OBJC_METACLASS_RO_$_AWSSESSetReceiptRulePositionResponse
+l_OBJC_CLASS_RO_$_AWSSESSetReceiptRulePositionResponse
+.str.1503
+_unnamed_cfstring_.1504
+.str.1505
+_unnamed_cfstring_.1506
+.str.1507
+_unnamed_cfstring_.1508
+__block_descriptor_tmp.1509
+__block_literal_global.1510
+__block_descriptor_tmp.1511
+__block_literal_global.1512
+OBJC_IVAR_$_AWSSESStopAction._scope
+OBJC_IVAR_$_AWSSESStopAction._topicArn
+OBJC_CLASS_NAME_.1513
+OBJC_METH_VAR_NAME_.1514
+l_OBJC_$_CLASS_METHODS_AWSSESStopAction
+l_OBJC_METACLASS_RO_$_AWSSESStopAction
+OBJC_CLASS_NAME_.1515
+OBJC_METH_VAR_NAME_.1516
+OBJC_METH_VAR_NAME_.1517
+l_OBJC_$_INSTANCE_METHODS_AWSSESStopAction
+OBJC_METH_VAR_NAME_.1518
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESStopAction
+OBJC_PROP_NAME_ATTR_.1519
+OBJC_PROP_NAME_ATTR_.1520
+l_OBJC_$_PROP_LIST_AWSSESStopAction
+l_OBJC_CLASS_RO_$_AWSSESStopAction
+OBJC_IVAR_$_AWSSESUpdateReceiptRuleRequest._rule
+OBJC_IVAR_$_AWSSESUpdateReceiptRuleRequest._ruleSetName
+OBJC_CLASS_NAME_.1521
+l_OBJC_$_CLASS_METHODS_AWSSESUpdateReceiptRuleRequest
+l_OBJC_METACLASS_RO_$_AWSSESUpdateReceiptRuleRequest
+OBJC_CLASS_NAME_.1522
+l_OBJC_$_INSTANCE_METHODS_AWSSESUpdateReceiptRuleRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESUpdateReceiptRuleRequest
+l_OBJC_$_PROP_LIST_AWSSESUpdateReceiptRuleRequest
+l_OBJC_CLASS_RO_$_AWSSESUpdateReceiptRuleRequest
+OBJC_CLASS_NAME_.1523
+l_OBJC_METACLASS_RO_$_AWSSESUpdateReceiptRuleResponse
+l_OBJC_CLASS_RO_$_AWSSESUpdateReceiptRuleResponse
+.str.1524
+_unnamed_cfstring_.1525
+OBJC_IVAR_$_AWSSESVerifyDomainDkimRequest._domain
+OBJC_CLASS_NAME_.1526
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyDomainDkimRequest
+l_OBJC_METACLASS_RO_$_AWSSESVerifyDomainDkimRequest
+OBJC_CLASS_NAME_.1527
+OBJC_METH_VAR_NAME_.1528
+OBJC_METH_VAR_NAME_.1529
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyDomainDkimRequest
+OBJC_METH_VAR_NAME_.1530
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyDomainDkimRequest
+OBJC_PROP_NAME_ATTR_.1531
+OBJC_PROP_NAME_ATTR_.1532
+l_OBJC_$_PROP_LIST_AWSSESVerifyDomainDkimRequest
+l_OBJC_CLASS_RO_$_AWSSESVerifyDomainDkimRequest
+OBJC_IVAR_$_AWSSESVerifyDomainDkimResponse._dkimTokens
+OBJC_CLASS_NAME_.1533
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyDomainDkimResponse
+l_OBJC_METACLASS_RO_$_AWSSESVerifyDomainDkimResponse
+OBJC_CLASS_NAME_.1534
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyDomainDkimResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyDomainDkimResponse
+l_OBJC_$_PROP_LIST_AWSSESVerifyDomainDkimResponse
+l_OBJC_CLASS_RO_$_AWSSESVerifyDomainDkimResponse
+OBJC_IVAR_$_AWSSESVerifyDomainIdentityRequest._domain
+OBJC_CLASS_NAME_.1535
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyDomainIdentityRequest
+l_OBJC_METACLASS_RO_$_AWSSESVerifyDomainIdentityRequest
+OBJC_CLASS_NAME_.1536
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyDomainIdentityRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyDomainIdentityRequest
+l_OBJC_$_PROP_LIST_AWSSESVerifyDomainIdentityRequest
+l_OBJC_CLASS_RO_$_AWSSESVerifyDomainIdentityRequest
+OBJC_IVAR_$_AWSSESVerifyDomainIdentityResponse._verificationToken
+OBJC_CLASS_NAME_.1537
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyDomainIdentityResponse
+l_OBJC_METACLASS_RO_$_AWSSESVerifyDomainIdentityResponse
+OBJC_CLASS_NAME_.1538
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyDomainIdentityResponse
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyDomainIdentityResponse
+l_OBJC_$_PROP_LIST_AWSSESVerifyDomainIdentityResponse
+l_OBJC_CLASS_RO_$_AWSSESVerifyDomainIdentityResponse
+OBJC_IVAR_$_AWSSESVerifyEmailAddressRequest._emailAddress
+OBJC_CLASS_NAME_.1539
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyEmailAddressRequest
+l_OBJC_METACLASS_RO_$_AWSSESVerifyEmailAddressRequest
+OBJC_CLASS_NAME_.1540
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyEmailAddressRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyEmailAddressRequest
+l_OBJC_$_PROP_LIST_AWSSESVerifyEmailAddressRequest
+l_OBJC_CLASS_RO_$_AWSSESVerifyEmailAddressRequest
+OBJC_IVAR_$_AWSSESVerifyEmailIdentityRequest._emailAddress
+OBJC_CLASS_NAME_.1541
+l_OBJC_$_CLASS_METHODS_AWSSESVerifyEmailIdentityRequest
+l_OBJC_METACLASS_RO_$_AWSSESVerifyEmailIdentityRequest
+OBJC_CLASS_NAME_.1542
+l_OBJC_$_INSTANCE_METHODS_AWSSESVerifyEmailIdentityRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESVerifyEmailIdentityRequest
+l_OBJC_$_PROP_LIST_AWSSESVerifyEmailIdentityRequest
+l_OBJC_CLASS_RO_$_AWSSESVerifyEmailIdentityRequest
+OBJC_CLASS_NAME_.1543
+l_OBJC_METACLASS_RO_$_AWSSESVerifyEmailIdentityResponse
+l_OBJC_CLASS_RO_$_AWSSESVerifyEmailIdentityResponse
+.str.1544
+_unnamed_cfstring_.1545
+.str.1546
+_unnamed_cfstring_.1547
+OBJC_IVAR_$_AWSSESWorkmailAction._organizationArn
+OBJC_IVAR_$_AWSSESWorkmailAction._topicArn
+OBJC_CLASS_NAME_.1548
+l_OBJC_$_CLASS_METHODS_AWSSESWorkmailAction
+l_OBJC_METACLASS_RO_$_AWSSESWorkmailAction
+OBJC_CLASS_NAME_.1549
+OBJC_METH_VAR_NAME_.1550
+OBJC_METH_VAR_NAME_.1551
+l_OBJC_$_INSTANCE_METHODS_AWSSESWorkmailAction
+OBJC_METH_VAR_NAME_.1552
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESWorkmailAction
+OBJC_PROP_NAME_ATTR_.1553
+OBJC_PROP_NAME_ATTR_.1554
+l_OBJC_$_PROP_LIST_AWSSESWorkmailAction
+l_OBJC_CLASS_RO_$_AWSSESWorkmailAction
+OBJC_LABEL_CLASS_$
+Apple LLVM version 7.3.0 (clang-703.0.31)
+-[AWSSESWorkmailAction .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSES/AWSSESModel.m
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios
+-[AWSSESWorkmailAction setTopicArn:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSES/AWSSESModel.h
+-[AWSSESWorkmailAction topicArn]
+-[AWSSESWorkmailAction setOrganizationArn:]
+-[AWSSESWorkmailAction organizationArn]
++[AWSSESWorkmailAction JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyEmailIdentityRequest .cxx_destruct]
+-[AWSSESVerifyEmailIdentityRequest setEmailAddress:]
+-[AWSSESVerifyEmailIdentityRequest emailAddress]
++[AWSSESVerifyEmailIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyEmailAddressRequest .cxx_destruct]
+-[AWSSESVerifyEmailAddressRequest setEmailAddress:]
+-[AWSSESVerifyEmailAddressRequest emailAddress]
++[AWSSESVerifyEmailAddressRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainIdentityResponse .cxx_destruct]
+-[AWSSESVerifyDomainIdentityResponse setVerificationToken:]
+-[AWSSESVerifyDomainIdentityResponse verificationToken]
++[AWSSESVerifyDomainIdentityResponse JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainIdentityRequest .cxx_destruct]
+-[AWSSESVerifyDomainIdentityRequest setDomain:]
+-[AWSSESVerifyDomainIdentityRequest domain]
++[AWSSESVerifyDomainIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainDkimResponse .cxx_destruct]
+-[AWSSESVerifyDomainDkimResponse setDkimTokens:]
+-[AWSSESVerifyDomainDkimResponse dkimTokens]
++[AWSSESVerifyDomainDkimResponse JSONKeyPathsByPropertyKey]
+-[AWSSESVerifyDomainDkimRequest .cxx_destruct]
+-[AWSSESVerifyDomainDkimRequest setDomain:]
+-[AWSSESVerifyDomainDkimRequest domain]
++[AWSSESVerifyDomainDkimRequest JSONKeyPathsByPropertyKey]
+-[AWSSESUpdateReceiptRuleRequest .cxx_destruct]
+-[AWSSESUpdateReceiptRuleRequest setRuleSetName:]
+-[AWSSESUpdateReceiptRuleRequest ruleSetName]
+-[AWSSESUpdateReceiptRuleRequest setRule:]
+-[AWSSESUpdateReceiptRuleRequest rule]
++[AWSSESUpdateReceiptRuleRequest ruleJSONTransformer]
++[AWSSESUpdateReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESStopAction .cxx_destruct]
+-[AWSSESStopAction setTopicArn:]
+-[AWSSESStopAction topicArn]
+-[AWSSESStopAction setScope:]
+-[AWSSESStopAction scope]
++[AWSSESStopAction scopeJSONTransformer]
++[AWSSESStopAction JSONKeyPathsByPropertyKey]
+-[AWSSESSetReceiptRulePositionRequest .cxx_destruct]
+-[AWSSESSetReceiptRulePositionRequest setRuleSetName:]
+-[AWSSESSetReceiptRulePositionRequest ruleSetName]
+-[AWSSESSetReceiptRulePositionRequest setRuleName:]
+-[AWSSESSetReceiptRulePositionRequest ruleName]
+-[AWSSESSetReceiptRulePositionRequest setAfter:]
+-[AWSSESSetReceiptRulePositionRequest after]
++[AWSSESSetReceiptRulePositionRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityNotificationTopicRequest .cxx_destruct]
+-[AWSSESSetIdentityNotificationTopicRequest setSnsTopic:]
+-[AWSSESSetIdentityNotificationTopicRequest snsTopic]
+-[AWSSESSetIdentityNotificationTopicRequest setNotificationType:]
+-[AWSSESSetIdentityNotificationTopicRequest notificationType]
+-[AWSSESSetIdentityNotificationTopicRequest setIdentity:]
+-[AWSSESSetIdentityNotificationTopicRequest identity]
++[AWSSESSetIdentityNotificationTopicRequest notificationTypeJSONTransformer]
++[AWSSESSetIdentityNotificationTopicRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityMailFromDomainRequest .cxx_destruct]
+-[AWSSESSetIdentityMailFromDomainRequest setMailFromDomain:]
+-[AWSSESSetIdentityMailFromDomainRequest mailFromDomain]
+-[AWSSESSetIdentityMailFromDomainRequest setIdentity:]
+-[AWSSESSetIdentityMailFromDomainRequest identity]
+-[AWSSESSetIdentityMailFromDomainRequest setBehaviorOnMXFailure:]
+-[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailure]
++[AWSSESSetIdentityMailFromDomainRequest behaviorOnMXFailureJSONTransformer]
++[AWSSESSetIdentityMailFromDomainRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest .cxx_destruct]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest setIdentity:]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest identity]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest setForwardingEnabled:]
+-[AWSSESSetIdentityFeedbackForwardingEnabledRequest forwardingEnabled]
++[AWSSESSetIdentityFeedbackForwardingEnabledRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetIdentityDkimEnabledRequest .cxx_destruct]
+-[AWSSESSetIdentityDkimEnabledRequest setIdentity:]
+-[AWSSESSetIdentityDkimEnabledRequest identity]
+-[AWSSESSetIdentityDkimEnabledRequest setDkimEnabled:]
+-[AWSSESSetIdentityDkimEnabledRequest dkimEnabled]
++[AWSSESSetIdentityDkimEnabledRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSetActiveReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESSetActiveReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESSetActiveReceiptRuleSetRequest ruleSetName]
++[AWSSESSetActiveReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSendRawEmailResponse .cxx_destruct]
+-[AWSSESSendRawEmailResponse setMessageId:]
+-[AWSSESSendRawEmailResponse messageId]
++[AWSSESSendRawEmailResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendRawEmailRequest .cxx_destruct]
+-[AWSSESSendRawEmailRequest setSourceArn:]
+-[AWSSESSendRawEmailRequest sourceArn]
+-[AWSSESSendRawEmailRequest setSource:]
+-[AWSSESSendRawEmailRequest source]
+-[AWSSESSendRawEmailRequest setReturnPathArn:]
+-[AWSSESSendRawEmailRequest returnPathArn]
+-[AWSSESSendRawEmailRequest setRawMessage:]
+-[AWSSESSendRawEmailRequest rawMessage]
+-[AWSSESSendRawEmailRequest setFromArn:]
+-[AWSSESSendRawEmailRequest fromArn]
+-[AWSSESSendRawEmailRequest setDestinations:]
+-[AWSSESSendRawEmailRequest destinations]
++[AWSSESSendRawEmailRequest rawMessageJSONTransformer]
++[AWSSESSendRawEmailRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSendEmailResponse .cxx_destruct]
+-[AWSSESSendEmailResponse setMessageId:]
+-[AWSSESSendEmailResponse messageId]
++[AWSSESSendEmailResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendEmailRequest .cxx_destruct]
+-[AWSSESSendEmailRequest setSourceArn:]
+-[AWSSESSendEmailRequest sourceArn]
+-[AWSSESSendEmailRequest setSource:]
+-[AWSSESSendEmailRequest source]
+-[AWSSESSendEmailRequest setReturnPathArn:]
+-[AWSSESSendEmailRequest returnPathArn]
+-[AWSSESSendEmailRequest setReturnPath:]
+-[AWSSESSendEmailRequest returnPath]
+-[AWSSESSendEmailRequest setReplyToAddresses:]
+-[AWSSESSendEmailRequest replyToAddresses]
+-[AWSSESSendEmailRequest setMessage:]
+-[AWSSESSendEmailRequest message]
+-[AWSSESSendEmailRequest setDestination:]
+-[AWSSESSendEmailRequest destination]
++[AWSSESSendEmailRequest messageJSONTransformer]
++[AWSSESSendEmailRequest destinationJSONTransformer]
++[AWSSESSendEmailRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSendDataPoint .cxx_destruct]
+-[AWSSESSendDataPoint setTimestamp:]
+-[AWSSESSendDataPoint timestamp]
+-[AWSSESSendDataPoint setRejects:]
+-[AWSSESSendDataPoint rejects]
+-[AWSSESSendDataPoint setDeliveryAttempts:]
+-[AWSSESSendDataPoint deliveryAttempts]
+-[AWSSESSendDataPoint setComplaints:]
+-[AWSSESSendDataPoint complaints]
+-[AWSSESSendDataPoint setBounces:]
+-[AWSSESSendDataPoint bounces]
++[AWSSESSendDataPoint timestampJSONTransformer]
++[AWSSESSendDataPoint JSONKeyPathsByPropertyKey]
+-[AWSSESSendBounceResponse .cxx_destruct]
+-[AWSSESSendBounceResponse setMessageId:]
+-[AWSSESSendBounceResponse messageId]
++[AWSSESSendBounceResponse JSONKeyPathsByPropertyKey]
+-[AWSSESSendBounceRequest .cxx_destruct]
+-[AWSSESSendBounceRequest setOriginalMessageId:]
+-[AWSSESSendBounceRequest originalMessageId]
+-[AWSSESSendBounceRequest setMessageDsn:]
+-[AWSSESSendBounceRequest messageDsn]
+-[AWSSESSendBounceRequest setExplanation:]
+-[AWSSESSendBounceRequest explanation]
+-[AWSSESSendBounceRequest setBouncedRecipientInfoList:]
+-[AWSSESSendBounceRequest bouncedRecipientInfoList]
+-[AWSSESSendBounceRequest setBounceSenderArn:]
+-[AWSSESSendBounceRequest bounceSenderArn]
+-[AWSSESSendBounceRequest setBounceSender:]
+-[AWSSESSendBounceRequest bounceSender]
++[AWSSESSendBounceRequest messageDsnJSONTransformer]
++[AWSSESSendBounceRequest bouncedRecipientInfoListJSONTransformer]
++[AWSSESSendBounceRequest JSONKeyPathsByPropertyKey]
+-[AWSSESSNSAction .cxx_destruct]
+-[AWSSESSNSAction setTopicArn:]
+-[AWSSESSNSAction topicArn]
+-[AWSSESSNSAction setEncoding:]
+-[AWSSESSNSAction encoding]
++[AWSSESSNSAction encodingJSONTransformer]
++[AWSSESSNSAction JSONKeyPathsByPropertyKey]
+-[AWSSESS3Action .cxx_destruct]
+-[AWSSESS3Action setTopicArn:]
+-[AWSSESS3Action topicArn]
+-[AWSSESS3Action setObjectKeyPrefix:]
+-[AWSSESS3Action objectKeyPrefix]
+-[AWSSESS3Action setKmsKeyArn:]
+-[AWSSESS3Action kmsKeyArn]
+-[AWSSESS3Action setBucketName:]
+-[AWSSESS3Action bucketName]
++[AWSSESS3Action JSONKeyPathsByPropertyKey]
+-[AWSSESReorderReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESReorderReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESReorderReceiptRuleSetRequest ruleSetName]
+-[AWSSESReorderReceiptRuleSetRequest setRuleNames:]
+-[AWSSESReorderReceiptRuleSetRequest ruleNames]
++[AWSSESReorderReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESRecipientDsnFields .cxx_destruct]
+-[AWSSESRecipientDsnFields setStatus:]
+-[AWSSESRecipientDsnFields status]
+-[AWSSESRecipientDsnFields setRemoteMta:]
+-[AWSSESRecipientDsnFields remoteMta]
+-[AWSSESRecipientDsnFields setLastAttemptDate:]
+-[AWSSESRecipientDsnFields lastAttemptDate]
+-[AWSSESRecipientDsnFields setFinalRecipient:]
+-[AWSSESRecipientDsnFields finalRecipient]
+-[AWSSESRecipientDsnFields setExtensionFields:]
+-[AWSSESRecipientDsnFields extensionFields]
+-[AWSSESRecipientDsnFields setDiagnosticCode:]
+-[AWSSESRecipientDsnFields diagnosticCode]
+-[AWSSESRecipientDsnFields setAction:]
+-[AWSSESRecipientDsnFields action]
++[AWSSESRecipientDsnFields lastAttemptDateJSONTransformer]
++[AWSSESRecipientDsnFields extensionFieldsJSONTransformer]
++[AWSSESRecipientDsnFields actionJSONTransformer]
++[AWSSESRecipientDsnFields JSONKeyPathsByPropertyKey]
+-[AWSSESReceiptRuleSetMetadata .cxx_destruct]
+-[AWSSESReceiptRuleSetMetadata setName:]
+-[AWSSESReceiptRuleSetMetadata name]
+-[AWSSESReceiptRuleSetMetadata setCreatedTimestamp:]
+-[AWSSESReceiptRuleSetMetadata createdTimestamp]
++[AWSSESReceiptRuleSetMetadata createdTimestampJSONTransformer]
++[AWSSESReceiptRuleSetMetadata JSONKeyPathsByPropertyKey]
+-[AWSSESReceiptRule .cxx_destruct]
+-[AWSSESReceiptRule setTlsPolicy:]
+-[AWSSESReceiptRule tlsPolicy]
+-[AWSSESReceiptRule setScanEnabled:]
+-[AWSSESReceiptRule scanEnabled]
+-[AWSSESReceiptRule setRecipients:]
+-[AWSSESReceiptRule recipients]
+-[AWSSESReceiptRule setName:]
+-[AWSSESReceiptRule name]
+-[AWSSESReceiptRule setEnabled:]
+-[AWSSESReceiptRule enabled]
+-[AWSSESReceiptRule setActions:]
+-[AWSSESReceiptRule actions]
++[AWSSESReceiptRule tlsPolicyJSONTransformer]
++[AWSSESReceiptRule actionsJSONTransformer]
++[AWSSESReceiptRule JSONKeyPathsByPropertyKey]
+-[AWSSESReceiptIpFilter .cxx_destruct]
+-[AWSSESReceiptIpFilter setPolicy:]
+-[AWSSESReceiptIpFilter policy]
+-[AWSSESReceiptIpFilter setCidr:]
+-[AWSSESReceiptIpFilter cidr]
++[AWSSESReceiptIpFilter policyJSONTransformer]
++[AWSSESReceiptIpFilter JSONKeyPathsByPropertyKey]
+-[AWSSESReceiptFilter .cxx_destruct]
+-[AWSSESReceiptFilter setName:]
+-[AWSSESReceiptFilter name]
+-[AWSSESReceiptFilter setIpFilter:]
+-[AWSSESReceiptFilter ipFilter]
++[AWSSESReceiptFilter ipFilterJSONTransformer]
++[AWSSESReceiptFilter JSONKeyPathsByPropertyKey]
+-[AWSSESReceiptAction .cxx_destruct]
+-[AWSSESReceiptAction setWorkmailAction:]
+-[AWSSESReceiptAction workmailAction]
+-[AWSSESReceiptAction setStopAction:]
+-[AWSSESReceiptAction stopAction]
+-[AWSSESReceiptAction setSNSAction:]
+-[AWSSESReceiptAction SNSAction]
+-[AWSSESReceiptAction setS3Action:]
+-[AWSSESReceiptAction s3Action]
+-[AWSSESReceiptAction setLambdaAction:]
+-[AWSSESReceiptAction lambdaAction]
+-[AWSSESReceiptAction setBounceAction:]
+-[AWSSESReceiptAction bounceAction]
+-[AWSSESReceiptAction setAddHeaderAction:]
+-[AWSSESReceiptAction addHeaderAction]
++[AWSSESReceiptAction workmailActionJSONTransformer]
++[AWSSESReceiptAction stopActionJSONTransformer]
++[AWSSESReceiptAction SNSActionJSONTransformer]
++[AWSSESReceiptAction s3ActionJSONTransformer]
++[AWSSESReceiptAction lambdaActionJSONTransformer]
++[AWSSESReceiptAction bounceActionJSONTransformer]
++[AWSSESReceiptAction addHeaderActionJSONTransformer]
++[AWSSESReceiptAction JSONKeyPathsByPropertyKey]
+-[AWSSESRawMessage .cxx_destruct]
+-[AWSSESRawMessage setData:]
+-[AWSSESRawMessage data]
++[AWSSESRawMessage JSONKeyPathsByPropertyKey]
+-[AWSSESPutIdentityPolicyRequest .cxx_destruct]
+-[AWSSESPutIdentityPolicyRequest setPolicyName:]
+-[AWSSESPutIdentityPolicyRequest policyName]
+-[AWSSESPutIdentityPolicyRequest setPolicy:]
+-[AWSSESPutIdentityPolicyRequest policy]
+-[AWSSESPutIdentityPolicyRequest setIdentity:]
+-[AWSSESPutIdentityPolicyRequest identity]
++[AWSSESPutIdentityPolicyRequest JSONKeyPathsByPropertyKey]
+-[AWSSESMessageDsn .cxx_destruct]
+-[AWSSESMessageDsn setReportingMta:]
+-[AWSSESMessageDsn reportingMta]
+-[AWSSESMessageDsn setExtensionFields:]
+-[AWSSESMessageDsn extensionFields]
+-[AWSSESMessageDsn setArrivalDate:]
+-[AWSSESMessageDsn arrivalDate]
++[AWSSESMessageDsn extensionFieldsJSONTransformer]
++[AWSSESMessageDsn arrivalDateJSONTransformer]
++[AWSSESMessageDsn JSONKeyPathsByPropertyKey]
+-[AWSSESMessage .cxx_destruct]
+-[AWSSESMessage setSubject:]
+-[AWSSESMessage subject]
+-[AWSSESMessage setBody:]
+-[AWSSESMessage body]
++[AWSSESMessage subjectJSONTransformer]
++[AWSSESMessage bodyJSONTransformer]
++[AWSSESMessage JSONKeyPathsByPropertyKey]
+-[AWSSESListVerifiedEmailAddressesResponse .cxx_destruct]
+-[AWSSESListVerifiedEmailAddressesResponse setVerifiedEmailAddresses:]
+-[AWSSESListVerifiedEmailAddressesResponse verifiedEmailAddresses]
++[AWSSESListVerifiedEmailAddressesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListReceiptRuleSetsResponse .cxx_destruct]
+-[AWSSESListReceiptRuleSetsResponse setRuleSets:]
+-[AWSSESListReceiptRuleSetsResponse ruleSets]
+-[AWSSESListReceiptRuleSetsResponse setNextToken:]
+-[AWSSESListReceiptRuleSetsResponse nextToken]
++[AWSSESListReceiptRuleSetsResponse ruleSetsJSONTransformer]
++[AWSSESListReceiptRuleSetsResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListReceiptRuleSetsRequest .cxx_destruct]
+-[AWSSESListReceiptRuleSetsRequest setNextToken:]
+-[AWSSESListReceiptRuleSetsRequest nextToken]
++[AWSSESListReceiptRuleSetsRequest JSONKeyPathsByPropertyKey]
+-[AWSSESListReceiptFiltersResponse .cxx_destruct]
+-[AWSSESListReceiptFiltersResponse setFilters:]
+-[AWSSESListReceiptFiltersResponse filters]
++[AWSSESListReceiptFiltersResponse filtersJSONTransformer]
++[AWSSESListReceiptFiltersResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentityPoliciesResponse .cxx_destruct]
+-[AWSSESListIdentityPoliciesResponse setPolicyNames:]
+-[AWSSESListIdentityPoliciesResponse policyNames]
++[AWSSESListIdentityPoliciesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentityPoliciesRequest .cxx_destruct]
+-[AWSSESListIdentityPoliciesRequest setIdentity:]
+-[AWSSESListIdentityPoliciesRequest identity]
++[AWSSESListIdentityPoliciesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentitiesResponse .cxx_destruct]
+-[AWSSESListIdentitiesResponse setNextToken:]
+-[AWSSESListIdentitiesResponse nextToken]
+-[AWSSESListIdentitiesResponse setIdentities:]
+-[AWSSESListIdentitiesResponse identities]
++[AWSSESListIdentitiesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESListIdentitiesRequest .cxx_destruct]
+-[AWSSESListIdentitiesRequest setNextToken:]
+-[AWSSESListIdentitiesRequest nextToken]
+-[AWSSESListIdentitiesRequest setMaxItems:]
+-[AWSSESListIdentitiesRequest maxItems]
+-[AWSSESListIdentitiesRequest setIdentityType:]
+-[AWSSESListIdentitiesRequest identityType]
++[AWSSESListIdentitiesRequest identityTypeJSONTransformer]
++[AWSSESListIdentitiesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESLambdaAction .cxx_destruct]
+-[AWSSESLambdaAction setTopicArn:]
+-[AWSSESLambdaAction topicArn]
+-[AWSSESLambdaAction setInvocationType:]
+-[AWSSESLambdaAction invocationType]
+-[AWSSESLambdaAction setFunctionArn:]
+-[AWSSESLambdaAction functionArn]
++[AWSSESLambdaAction invocationTypeJSONTransformer]
++[AWSSESLambdaAction JSONKeyPathsByPropertyKey]
+-[AWSSESIdentityVerificationAttributes .cxx_destruct]
+-[AWSSESIdentityVerificationAttributes setVerificationToken:]
+-[AWSSESIdentityVerificationAttributes verificationToken]
+-[AWSSESIdentityVerificationAttributes setVerificationStatus:]
+-[AWSSESIdentityVerificationAttributes verificationStatus]
++[AWSSESIdentityVerificationAttributes verificationStatusJSONTransformer]
++[AWSSESIdentityVerificationAttributes JSONKeyPathsByPropertyKey]
+-[AWSSESIdentityNotificationAttributes .cxx_destruct]
+-[AWSSESIdentityNotificationAttributes setForwardingEnabled:]
+-[AWSSESIdentityNotificationAttributes forwardingEnabled]
+-[AWSSESIdentityNotificationAttributes setDeliveryTopic:]
+-[AWSSESIdentityNotificationAttributes deliveryTopic]
+-[AWSSESIdentityNotificationAttributes setComplaintTopic:]
+-[AWSSESIdentityNotificationAttributes complaintTopic]
+-[AWSSESIdentityNotificationAttributes setBounceTopic:]
+-[AWSSESIdentityNotificationAttributes bounceTopic]
++[AWSSESIdentityNotificationAttributes JSONKeyPathsByPropertyKey]
+-[AWSSESIdentityMailFromDomainAttributes .cxx_destruct]
+-[AWSSESIdentityMailFromDomainAttributes setMailFromDomainStatus:]
+-[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatus]
+-[AWSSESIdentityMailFromDomainAttributes setMailFromDomain:]
+-[AWSSESIdentityMailFromDomainAttributes mailFromDomain]
+-[AWSSESIdentityMailFromDomainAttributes setBehaviorOnMXFailure:]
+-[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailure]
++[AWSSESIdentityMailFromDomainAttributes mailFromDomainStatusJSONTransformer]
++[AWSSESIdentityMailFromDomainAttributes behaviorOnMXFailureJSONTransformer]
++[AWSSESIdentityMailFromDomainAttributes JSONKeyPathsByPropertyKey]
+-[AWSSESIdentityDkimAttributes .cxx_destruct]
+-[AWSSESIdentityDkimAttributes setDkimVerificationStatus:]
+-[AWSSESIdentityDkimAttributes dkimVerificationStatus]
+-[AWSSESIdentityDkimAttributes setDkimTokens:]
+-[AWSSESIdentityDkimAttributes dkimTokens]
+-[AWSSESIdentityDkimAttributes setDkimEnabled:]
+-[AWSSESIdentityDkimAttributes dkimEnabled]
++[AWSSESIdentityDkimAttributes dkimVerificationStatusJSONTransformer]
++[AWSSESIdentityDkimAttributes JSONKeyPathsByPropertyKey]
+-[AWSSESGetSendStatisticsResponse .cxx_destruct]
+-[AWSSESGetSendStatisticsResponse setSendDataPoints:]
+-[AWSSESGetSendStatisticsResponse sendDataPoints]
++[AWSSESGetSendStatisticsResponse sendDataPointsJSONTransformer]
++[AWSSESGetSendStatisticsResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetSendQuotaResponse .cxx_destruct]
+-[AWSSESGetSendQuotaResponse setSentLast24Hours:]
+-[AWSSESGetSendQuotaResponse sentLast24Hours]
+-[AWSSESGetSendQuotaResponse setMaxSendRate:]
+-[AWSSESGetSendQuotaResponse maxSendRate]
+-[AWSSESGetSendQuotaResponse setMax24HourSend:]
+-[AWSSESGetSendQuotaResponse max24HourSend]
++[AWSSESGetSendQuotaResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityVerificationAttributesResponse .cxx_destruct]
+-[AWSSESGetIdentityVerificationAttributesResponse setVerificationAttributes:]
+-[AWSSESGetIdentityVerificationAttributesResponse verificationAttributes]
++[AWSSESGetIdentityVerificationAttributesResponse verificationAttributesJSONTransformer]
++[AWSSESGetIdentityVerificationAttributesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityVerificationAttributesRequest .cxx_destruct]
+-[AWSSESGetIdentityVerificationAttributesRequest setIdentities:]
+-[AWSSESGetIdentityVerificationAttributesRequest identities]
++[AWSSESGetIdentityVerificationAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityPoliciesResponse .cxx_destruct]
+-[AWSSESGetIdentityPoliciesResponse setPolicies:]
+-[AWSSESGetIdentityPoliciesResponse policies]
++[AWSSESGetIdentityPoliciesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityPoliciesRequest .cxx_destruct]
+-[AWSSESGetIdentityPoliciesRequest setPolicyNames:]
+-[AWSSESGetIdentityPoliciesRequest policyNames]
+-[AWSSESGetIdentityPoliciesRequest setIdentity:]
+-[AWSSESGetIdentityPoliciesRequest identity]
++[AWSSESGetIdentityPoliciesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityNotificationAttributesResponse .cxx_destruct]
+-[AWSSESGetIdentityNotificationAttributesResponse setNotificationAttributes:]
+-[AWSSESGetIdentityNotificationAttributesResponse notificationAttributes]
++[AWSSESGetIdentityNotificationAttributesResponse notificationAttributesJSONTransformer]
++[AWSSESGetIdentityNotificationAttributesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityNotificationAttributesRequest .cxx_destruct]
+-[AWSSESGetIdentityNotificationAttributesRequest setIdentities:]
+-[AWSSESGetIdentityNotificationAttributesRequest identities]
++[AWSSESGetIdentityNotificationAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityMailFromDomainAttributesResponse .cxx_destruct]
+-[AWSSESGetIdentityMailFromDomainAttributesResponse setMailFromDomainAttributes:]
+-[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributes]
++[AWSSESGetIdentityMailFromDomainAttributesResponse mailFromDomainAttributesJSONTransformer]
++[AWSSESGetIdentityMailFromDomainAttributesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest .cxx_destruct]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest setIdentities:]
+-[AWSSESGetIdentityMailFromDomainAttributesRequest identities]
++[AWSSESGetIdentityMailFromDomainAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityDkimAttributesResponse .cxx_destruct]
+-[AWSSESGetIdentityDkimAttributesResponse setDkimAttributes:]
+-[AWSSESGetIdentityDkimAttributesResponse dkimAttributes]
++[AWSSESGetIdentityDkimAttributesResponse dkimAttributesJSONTransformer]
++[AWSSESGetIdentityDkimAttributesResponse JSONKeyPathsByPropertyKey]
+-[AWSSESGetIdentityDkimAttributesRequest .cxx_destruct]
+-[AWSSESGetIdentityDkimAttributesRequest setIdentities:]
+-[AWSSESGetIdentityDkimAttributesRequest identities]
++[AWSSESGetIdentityDkimAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSESExtensionField .cxx_destruct]
+-[AWSSESExtensionField setValue:]
+-[AWSSESExtensionField value]
+-[AWSSESExtensionField setName:]
+-[AWSSESExtensionField name]
++[AWSSESExtensionField JSONKeyPathsByPropertyKey]
+-[AWSSESDestination .cxx_destruct]
+-[AWSSESDestination setToAddresses:]
+-[AWSSESDestination toAddresses]
+-[AWSSESDestination setCcAddresses:]
+-[AWSSESDestination ccAddresses]
+-[AWSSESDestination setBccAddresses:]
+-[AWSSESDestination bccAddresses]
++[AWSSESDestination JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleSetResponse .cxx_destruct]
+-[AWSSESDescribeReceiptRuleSetResponse setRules:]
+-[AWSSESDescribeReceiptRuleSetResponse rules]
+-[AWSSESDescribeReceiptRuleSetResponse setMetadata:]
+-[AWSSESDescribeReceiptRuleSetResponse metadata]
++[AWSSESDescribeReceiptRuleSetResponse rulesJSONTransformer]
++[AWSSESDescribeReceiptRuleSetResponse metadataJSONTransformer]
++[AWSSESDescribeReceiptRuleSetResponse JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESDescribeReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESDescribeReceiptRuleSetRequest ruleSetName]
++[AWSSESDescribeReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleResponse .cxx_destruct]
+-[AWSSESDescribeReceiptRuleResponse setRule:]
+-[AWSSESDescribeReceiptRuleResponse rule]
++[AWSSESDescribeReceiptRuleResponse ruleJSONTransformer]
++[AWSSESDescribeReceiptRuleResponse JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeReceiptRuleRequest .cxx_destruct]
+-[AWSSESDescribeReceiptRuleRequest setRuleSetName:]
+-[AWSSESDescribeReceiptRuleRequest ruleSetName]
+-[AWSSESDescribeReceiptRuleRequest setRuleName:]
+-[AWSSESDescribeReceiptRuleRequest ruleName]
++[AWSSESDescribeReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDescribeActiveReceiptRuleSetResponse .cxx_destruct]
+-[AWSSESDescribeActiveReceiptRuleSetResponse setRules:]
+-[AWSSESDescribeActiveReceiptRuleSetResponse rules]
+-[AWSSESDescribeActiveReceiptRuleSetResponse setMetadata:]
+-[AWSSESDescribeActiveReceiptRuleSetResponse metadata]
++[AWSSESDescribeActiveReceiptRuleSetResponse rulesJSONTransformer]
++[AWSSESDescribeActiveReceiptRuleSetResponse metadataJSONTransformer]
++[AWSSESDescribeActiveReceiptRuleSetResponse JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteVerifiedEmailAddressRequest .cxx_destruct]
+-[AWSSESDeleteVerifiedEmailAddressRequest setEmailAddress:]
+-[AWSSESDeleteVerifiedEmailAddressRequest emailAddress]
++[AWSSESDeleteVerifiedEmailAddressRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESDeleteReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESDeleteReceiptRuleSetRequest ruleSetName]
++[AWSSESDeleteReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptRuleRequest .cxx_destruct]
+-[AWSSESDeleteReceiptRuleRequest setRuleSetName:]
+-[AWSSESDeleteReceiptRuleRequest ruleSetName]
+-[AWSSESDeleteReceiptRuleRequest setRuleName:]
+-[AWSSESDeleteReceiptRuleRequest ruleName]
++[AWSSESDeleteReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteReceiptFilterRequest .cxx_destruct]
+-[AWSSESDeleteReceiptFilterRequest setFilterName:]
+-[AWSSESDeleteReceiptFilterRequest filterName]
++[AWSSESDeleteReceiptFilterRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteIdentityRequest .cxx_destruct]
+-[AWSSESDeleteIdentityRequest setIdentity:]
+-[AWSSESDeleteIdentityRequest identity]
++[AWSSESDeleteIdentityRequest JSONKeyPathsByPropertyKey]
+-[AWSSESDeleteIdentityPolicyRequest .cxx_destruct]
+-[AWSSESDeleteIdentityPolicyRequest setPolicyName:]
+-[AWSSESDeleteIdentityPolicyRequest policyName]
+-[AWSSESDeleteIdentityPolicyRequest setIdentity:]
+-[AWSSESDeleteIdentityPolicyRequest identity]
++[AWSSESDeleteIdentityPolicyRequest JSONKeyPathsByPropertyKey]
+-[AWSSESCreateReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESCreateReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESCreateReceiptRuleSetRequest ruleSetName]
++[AWSSESCreateReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESCreateReceiptRuleRequest .cxx_destruct]
+-[AWSSESCreateReceiptRuleRequest setRuleSetName:]
+-[AWSSESCreateReceiptRuleRequest ruleSetName]
+-[AWSSESCreateReceiptRuleRequest setRule:]
+-[AWSSESCreateReceiptRuleRequest rule]
+-[AWSSESCreateReceiptRuleRequest setAfter:]
+-[AWSSESCreateReceiptRuleRequest after]
++[AWSSESCreateReceiptRuleRequest ruleJSONTransformer]
++[AWSSESCreateReceiptRuleRequest JSONKeyPathsByPropertyKey]
+-[AWSSESCreateReceiptFilterRequest .cxx_destruct]
+-[AWSSESCreateReceiptFilterRequest setFilter:]
+-[AWSSESCreateReceiptFilterRequest filter]
++[AWSSESCreateReceiptFilterRequest filterJSONTransformer]
++[AWSSESCreateReceiptFilterRequest JSONKeyPathsByPropertyKey]
+-[AWSSESContent .cxx_destruct]
+-[AWSSESContent setData:]
+-[AWSSESContent data]
+-[AWSSESContent setCharset:]
+-[AWSSESContent charset]
++[AWSSESContent JSONKeyPathsByPropertyKey]
+-[AWSSESCloneReceiptRuleSetRequest .cxx_destruct]
+-[AWSSESCloneReceiptRuleSetRequest setRuleSetName:]
+-[AWSSESCloneReceiptRuleSetRequest ruleSetName]
+-[AWSSESCloneReceiptRuleSetRequest setOriginalRuleSetName:]
+-[AWSSESCloneReceiptRuleSetRequest originalRuleSetName]
++[AWSSESCloneReceiptRuleSetRequest JSONKeyPathsByPropertyKey]
+-[AWSSESBouncedRecipientInfo .cxx_destruct]
+-[AWSSESBouncedRecipientInfo setRecipientDsnFields:]
+-[AWSSESBouncedRecipientInfo recipientDsnFields]
+-[AWSSESBouncedRecipientInfo setRecipientArn:]
+-[AWSSESBouncedRecipientInfo recipientArn]
+-[AWSSESBouncedRecipientInfo setRecipient:]
+-[AWSSESBouncedRecipientInfo recipient]
+-[AWSSESBouncedRecipientInfo setBounceType:]
+-[AWSSESBouncedRecipientInfo bounceType]
++[AWSSESBouncedRecipientInfo recipientDsnFieldsJSONTransformer]
++[AWSSESBouncedRecipientInfo bounceTypeJSONTransformer]
++[AWSSESBouncedRecipientInfo JSONKeyPathsByPropertyKey]
+-[AWSSESBounceAction .cxx_destruct]
+-[AWSSESBounceAction setTopicArn:]
+-[AWSSESBounceAction topicArn]
+-[AWSSESBounceAction setStatusCode:]
+-[AWSSESBounceAction statusCode]
+-[AWSSESBounceAction setSmtpReplyCode:]
+-[AWSSESBounceAction smtpReplyCode]
+-[AWSSESBounceAction setSender:]
+-[AWSSESBounceAction sender]
+-[AWSSESBounceAction setMessage:]
+-[AWSSESBounceAction message]
++[AWSSESBounceAction JSONKeyPathsByPropertyKey]
+-[AWSSESBody .cxx_destruct]
+-[AWSSESBody setText:]
+-[AWSSESBody text]
+-[AWSSESBody setHtml:]
+-[AWSSESBody html]
++[AWSSESBody textJSONTransformer]
++[AWSSESBody htmlJSONTransformer]
++[AWSSESBody JSONKeyPathsByPropertyKey]
+-[AWSSESAddHeaderAction .cxx_destruct]
+-[AWSSESAddHeaderAction setHeaderValue:]
+-[AWSSESAddHeaderAction headerValue]
+-[AWSSESAddHeaderAction setHeaderName:]
+-[AWSSESAddHeaderAction headerName]
++[AWSSESAddHeaderAction JSONKeyPathsByPropertyKey]
++[AWSSESResponseSerializer initialize]
+-[AWSSESResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSSES initialize]
++[AWSSES defaultSES]
+__20+[AWSSES defaultSES]_block_invoke
++[AWSSES registerSESWithConfiguration:forKey:]
+__46+[AWSSES registerSESWithConfiguration:forKey:]_block_invoke
++[AWSSES SESForKey:]
++[AWSSES removeSESForKey:]
+-[AWSSES init]
+-[AWSSES initWithConfiguration:]
+-[AWSSES invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSSES cloneReceiptRuleSet:]
+-[AWSSES cloneReceiptRuleSet:completionHandler:]
+__48-[AWSSES cloneReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_
+__destroy_helper_block_
+-[AWSSES createReceiptFilter:]
+-[AWSSES createReceiptFilter:completionHandler:]
+__48-[AWSSES createReceiptFilter:completionHandler:]_block_invoke
+__copy_helper_block_.216
+__destroy_helper_block_.217
+-[AWSSES createReceiptRule:]
+-[AWSSES createReceiptRule:completionHandler:]
+__46-[AWSSES createReceiptRule:completionHandler:]_block_invoke
+__copy_helper_block_.224
+__destroy_helper_block_.225
+-[AWSSES createReceiptRuleSet:]
+-[AWSSES createReceiptRuleSet:completionHandler:]
+__49-[AWSSES createReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.232
+__destroy_helper_block_.233
+-[AWSSES deleteIdentity:]
+-[AWSSES deleteIdentity:completionHandler:]
+__43-[AWSSES deleteIdentity:completionHandler:]_block_invoke
+__copy_helper_block_.240
+__destroy_helper_block_.241
+-[AWSSES deleteIdentityPolicy:]
+-[AWSSES deleteIdentityPolicy:completionHandler:]
+__49-[AWSSES deleteIdentityPolicy:completionHandler:]_block_invoke
+__copy_helper_block_.248
+__destroy_helper_block_.249
+-[AWSSES deleteReceiptFilter:]
+-[AWSSES deleteReceiptFilter:completionHandler:]
+__48-[AWSSES deleteReceiptFilter:completionHandler:]_block_invoke
+__copy_helper_block_.256
+__destroy_helper_block_.257
+-[AWSSES deleteReceiptRule:]
+-[AWSSES deleteReceiptRule:completionHandler:]
+__46-[AWSSES deleteReceiptRule:completionHandler:]_block_invoke
+__copy_helper_block_.264
+__destroy_helper_block_.265
+-[AWSSES deleteReceiptRuleSet:]
+-[AWSSES deleteReceiptRuleSet:completionHandler:]
+__49-[AWSSES deleteReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.272
+__destroy_helper_block_.273
+-[AWSSES deleteVerifiedEmailAddress:]
+-[AWSSES deleteVerifiedEmailAddress:completionHandler:]
+__55-[AWSSES deleteVerifiedEmailAddress:completionHandler:]_block_invoke
+__copy_helper_block_.279
+__destroy_helper_block_.280
+-[AWSSES describeActiveReceiptRuleSet:]
+-[AWSSES describeActiveReceiptRuleSet:completionHandler:]
+__57-[AWSSES describeActiveReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.287
+__destroy_helper_block_.288
+-[AWSSES describeReceiptRule:]
+-[AWSSES describeReceiptRule:completionHandler:]
+__48-[AWSSES describeReceiptRule:completionHandler:]_block_invoke
+__copy_helper_block_.295
+__destroy_helper_block_.296
+-[AWSSES describeReceiptRuleSet:]
+-[AWSSES describeReceiptRuleSet:completionHandler:]
+__51-[AWSSES describeReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.303
+__destroy_helper_block_.304
+-[AWSSES getIdentityDkimAttributes:]
+-[AWSSES getIdentityDkimAttributes:completionHandler:]
+__54-[AWSSES getIdentityDkimAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.311
+__destroy_helper_block_.312
+-[AWSSES getIdentityMailFromDomainAttributes:]
+-[AWSSES getIdentityMailFromDomainAttributes:completionHandler:]
+__64-[AWSSES getIdentityMailFromDomainAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.319
+__destroy_helper_block_.320
+-[AWSSES getIdentityNotificationAttributes:]
+-[AWSSES getIdentityNotificationAttributes:completionHandler:]
+__62-[AWSSES getIdentityNotificationAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.327
+__destroy_helper_block_.328
+-[AWSSES getIdentityPolicies:]
+-[AWSSES getIdentityPolicies:completionHandler:]
+__48-[AWSSES getIdentityPolicies:completionHandler:]_block_invoke
+__copy_helper_block_.335
+__destroy_helper_block_.336
+-[AWSSES getIdentityVerificationAttributes:]
+-[AWSSES getIdentityVerificationAttributes:completionHandler:]
+__62-[AWSSES getIdentityVerificationAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.343
+__destroy_helper_block_.344
+-[AWSSES getSendQuota:]
+-[AWSSES getSendQuota:completionHandler:]
+__41-[AWSSES getSendQuota:completionHandler:]_block_invoke
+__copy_helper_block_.351
+__destroy_helper_block_.352
+-[AWSSES getSendStatistics:]
+-[AWSSES getSendStatistics:completionHandler:]
+__46-[AWSSES getSendStatistics:completionHandler:]_block_invoke
+__copy_helper_block_.359
+__destroy_helper_block_.360
+-[AWSSES listIdentities:]
+-[AWSSES listIdentities:completionHandler:]
+__43-[AWSSES listIdentities:completionHandler:]_block_invoke
+__copy_helper_block_.367
+__destroy_helper_block_.368
+-[AWSSES listIdentityPolicies:]
+-[AWSSES listIdentityPolicies:completionHandler:]
+__49-[AWSSES listIdentityPolicies:completionHandler:]_block_invoke
+__copy_helper_block_.375
+__destroy_helper_block_.376
+-[AWSSES listReceiptFilters:]
+-[AWSSES listReceiptFilters:completionHandler:]
+__47-[AWSSES listReceiptFilters:completionHandler:]_block_invoke
+__copy_helper_block_.383
+__destroy_helper_block_.384
+-[AWSSES listReceiptRuleSets:]
+-[AWSSES listReceiptRuleSets:completionHandler:]
+__48-[AWSSES listReceiptRuleSets:completionHandler:]_block_invoke
+__copy_helper_block_.391
+__destroy_helper_block_.392
+-[AWSSES listVerifiedEmailAddresses:]
+-[AWSSES listVerifiedEmailAddresses:completionHandler:]
+__55-[AWSSES listVerifiedEmailAddresses:completionHandler:]_block_invoke
+__copy_helper_block_.399
+__destroy_helper_block_.400
+-[AWSSES putIdentityPolicy:]
+-[AWSSES putIdentityPolicy:completionHandler:]
+__46-[AWSSES putIdentityPolicy:completionHandler:]_block_invoke
+__copy_helper_block_.407
+__destroy_helper_block_.408
+-[AWSSES reorderReceiptRuleSet:]
+-[AWSSES reorderReceiptRuleSet:completionHandler:]
+__50-[AWSSES reorderReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.415
+__destroy_helper_block_.416
+-[AWSSES sendBounce:]
+-[AWSSES sendBounce:completionHandler:]
+__39-[AWSSES sendBounce:completionHandler:]_block_invoke
+__copy_helper_block_.423
+__destroy_helper_block_.424
+-[AWSSES sendEmail:]
+-[AWSSES sendEmail:completionHandler:]
+__38-[AWSSES sendEmail:completionHandler:]_block_invoke
+__copy_helper_block_.431
+__destroy_helper_block_.432
+-[AWSSES sendRawEmail:]
+-[AWSSES sendRawEmail:completionHandler:]
+__41-[AWSSES sendRawEmail:completionHandler:]_block_invoke
+__copy_helper_block_.439
+__destroy_helper_block_.440
+-[AWSSES setActiveReceiptRuleSet:]
+-[AWSSES setActiveReceiptRuleSet:completionHandler:]
+__52-[AWSSES setActiveReceiptRuleSet:completionHandler:]_block_invoke
+__copy_helper_block_.447
+__destroy_helper_block_.448
+-[AWSSES setIdentityDkimEnabled:]
+-[AWSSES setIdentityDkimEnabled:completionHandler:]
+__51-[AWSSES setIdentityDkimEnabled:completionHandler:]_block_invoke
+__copy_helper_block_.455
+__destroy_helper_block_.456
+-[AWSSES setIdentityFeedbackForwardingEnabled:]
+-[AWSSES setIdentityFeedbackForwardingEnabled:completionHandler:]
+__65-[AWSSES setIdentityFeedbackForwardingEnabled:completionHandler:]_block_invoke
+__copy_helper_block_.463
+__destroy_helper_block_.464
+-[AWSSES setIdentityMailFromDomain:]
+-[AWSSES setIdentityMailFromDomain:completionHandler:]
+__54-[AWSSES setIdentityMailFromDomain:completionHandler:]_block_invoke
+__copy_helper_block_.471
+__destroy_helper_block_.472
+-[AWSSES setIdentityNotificationTopic:]
+-[AWSSES setIdentityNotificationTopic:completionHandler:]
+__57-[AWSSES setIdentityNotificationTopic:completionHandler:]_block_invoke
+__copy_helper_block_.479
+__destroy_helper_block_.480
+-[AWSSES setReceiptRulePosition:]
+-[AWSSES setReceiptRulePosition:completionHandler:]
+__51-[AWSSES setReceiptRulePosition:completionHandler:]_block_invoke
+__copy_helper_block_.487
+__destroy_helper_block_.488
+-[AWSSES updateReceiptRule:]
+-[AWSSES updateReceiptRule:completionHandler:]
+__46-[AWSSES updateReceiptRule:completionHandler:]_block_invoke
+__copy_helper_block_.495
+__destroy_helper_block_.496
+-[AWSSES verifyDomainDkim:]
+-[AWSSES verifyDomainDkim:completionHandler:]
+__45-[AWSSES verifyDomainDkim:completionHandler:]_block_invoke
+__copy_helper_block_.503
+__destroy_helper_block_.504
+-[AWSSES verifyDomainIdentity:]
+-[AWSSES verifyDomainIdentity:completionHandler:]
+__49-[AWSSES verifyDomainIdentity:completionHandler:]_block_invoke
+__copy_helper_block_.511
+__destroy_helper_block_.512
+-[AWSSES verifyEmailAddress:]
+-[AWSSES verifyEmailAddress:completionHandler:]
+__47-[AWSSES verifyEmailAddress:completionHandler:]_block_invoke
+__copy_helper_block_.518
+__destroy_helper_block_.519
+-[AWSSES verifyEmailIdentity:]
+-[AWSSES verifyEmailIdentity:completionHandler:]
+__48-[AWSSES verifyEmailIdentity:completionHandler:]_block_invoke
+__copy_helper_block_.526
+__destroy_helper_block_.527
+-[AWSSES configuration]
+-[AWSSES setConfiguration:]
+-[AWSSES networking]
+-[AWSSES setNetworking:]
+-[AWSSES .cxx_destruct]
+errorCodeDictionary
+.str.9
+_unnamed_cfstring_.10
+.str.11
+_unnamed_cfstring_.12
+.str.13
+_unnamed_cfstring_.14
+.str.15
+_unnamed_cfstring_.16
+.str.17
+_unnamed_cfstring_.18
+.str.19
+_unnamed_cfstring_.20
+.str.21
+_unnamed_cfstring_.22
+.str.23
+_unnamed_cfstring_.24
+OBJC_CLASSLIST_REFERENCES_$_.25
+OBJC_METH_VAR_NAME_.26
+OBJC_SELECTOR_REFERENCES_.27
+OBJC_CLASSLIST_SUP_REFS_$_
+OBJC_METH_VAR_NAME_.28
+OBJC_SELECTOR_REFERENCES_.29
+OBJC_METH_VAR_NAME_.30
+OBJC_SELECTOR_REFERENCES_.31
+OBJC_METH_VAR_NAME_.32
+OBJC_SELECTOR_REFERENCES_.33
+.str.34
+_unnamed_cfstring_.35
+.str.38
+_unnamed_cfstring_.39
+OBJC_CLASSLIST_REFERENCES_$_.40
+OBJC_METH_VAR_NAME_.41
+OBJC_SELECTOR_REFERENCES_.42
+OBJC_SELECTOR_REFERENCES_.44
+OBJC_SELECTOR_REFERENCES_.46
+OBJC_METH_VAR_NAME_.47
+OBJC_SELECTOR_REFERENCES_.48
+OBJC_CLASSLIST_REFERENCES_$_.49
+OBJC_METH_VAR_NAME_.50
+OBJC_SELECTOR_REFERENCES_.51
+OBJC_METH_VAR_NAME_.52
+l_OBJC_$_CLASS_METHODS_AWSSESResponseSerializer
+l_OBJC_METACLASS_RO_$_AWSSESResponseSerializer
+OBJC_METH_VAR_TYPE_.53
+l_OBJC_$_INSTANCE_METHODS_AWSSESResponseSerializer
+l_OBJC_CLASS_RO_$_AWSSESResponseSerializer
+OBJC_CLASS_NAME_.54
+l_OBJC_METACLASS_RO_$_AWSSESRequestRetryHandler
+l_OBJC_CLASS_RO_$_AWSSESRequestRetryHandler
+OBJC_CLASSLIST_SUP_REFS_$_.55
+OBJC_SELECTOR_REFERENCES_.56
+OBJC_METH_VAR_NAME_.57
+OBJC_SELECTOR_REFERENCES_.58
+OBJC_CLASSLIST_REFERENCES_$_.59
+OBJC_CLASSLIST_REFERENCES_$_.60
+OBJC_METH_VAR_NAME_.63
+OBJC_SELECTOR_REFERENCES_.64
+OBJC_METH_VAR_NAME_.65
+OBJC_SELECTOR_REFERENCES_.66
+_serviceClients
+defaultSES._defaultSES
+defaultSES.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.67
+OBJC_METH_VAR_NAME_.68
+OBJC_SELECTOR_REFERENCES_.69
+OBJC_METH_VAR_NAME_.70
+OBJC_SELECTOR_REFERENCES_.71
+OBJC_CLASSLIST_REFERENCES_$_.72
+OBJC_METH_VAR_NAME_.73
+OBJC_SELECTOR_REFERENCES_.74
+OBJC_SELECTOR_REFERENCES_.76
+OBJC_SELECTOR_REFERENCES_.78
+OBJC_SELECTOR_REFERENCES_.80
+OBJC_CLASSLIST_REFERENCES_$_.81
+OBJC_SELECTOR_REFERENCES_.83
+OBJC_SELECTOR_REFERENCES_.85
+.str.86
+_unnamed_cfstring_.87
+OBJC_CLASSLIST_REFERENCES_$_.88
+OBJC_SELECTOR_REFERENCES_.90
+.str.91
+registerSESWithConfiguration:forKey:.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.92
+OBJC_METH_VAR_NAME_.93
+OBJC_SELECTOR_REFERENCES_.94
+__block_descriptor_tmp.95
+__block_literal_global.96
+OBJC_METH_VAR_NAME_.97
+OBJC_SELECTOR_REFERENCES_.98
+OBJC_METH_VAR_NAME_.99
+OBJC_SELECTOR_REFERENCES_.100
+OBJC_METH_VAR_NAME_.101
+OBJC_SELECTOR_REFERENCES_.102
+OBJC_METH_VAR_NAME_.103
+OBJC_SELECTOR_REFERENCES_.104
+OBJC_METH_VAR_NAME_.105
+OBJC_SELECTOR_REFERENCES_.106
+.str.107
+_unnamed_cfstring_.108
+OBJC_CLASSLIST_SUP_REFS_$_.109
+OBJC_METH_VAR_NAME_.110
+OBJC_SELECTOR_REFERENCES_.111
+OBJC_METH_VAR_NAME_.112
+OBJC_SELECTOR_REFERENCES_.113
+OBJC_IVAR_$_AWSSES._configuration
+OBJC_CLASSLIST_REFERENCES_$_.114
+OBJC_METH_VAR_NAME_.115
+OBJC_SELECTOR_REFERENCES_.116
+OBJC_METH_VAR_NAME_.117
+OBJC_SELECTOR_REFERENCES_.118
+OBJC_METH_VAR_NAME_.124
+OBJC_SELECTOR_REFERENCES_.125
+OBJC_METH_VAR_NAME_.126
+OBJC_SELECTOR_REFERENCES_.127
+OBJC_CLASSLIST_REFERENCES_$_.128
+OBJC_METH_VAR_NAME_.129
+OBJC_SELECTOR_REFERENCES_.130
+OBJC_METH_VAR_NAME_.131
+OBJC_SELECTOR_REFERENCES_.132
+OBJC_CLASSLIST_REFERENCES_$_.133
+OBJC_METH_VAR_NAME_.134
+OBJC_SELECTOR_REFERENCES_.135
+OBJC_METH_VAR_NAME_.136
+OBJC_SELECTOR_REFERENCES_.137
+OBJC_METH_VAR_NAME_.138
+OBJC_SELECTOR_REFERENCES_.139
+OBJC_METH_VAR_NAME_.143
+OBJC_SELECTOR_REFERENCES_.144
+OBJC_SELECTOR_REFERENCES_.146
+OBJC_SELECTOR_REFERENCES_.148
+OBJC_CLASSLIST_REFERENCES_$_.149
+OBJC_IVAR_$_AWSSES._networking
+OBJC_CLASSLIST_REFERENCES_$_.150
+OBJC_SELECTOR_REFERENCES_.152
+OBJC_SELECTOR_REFERENCES_.154
+OBJC_SELECTOR_REFERENCES_.156
+OBJC_SELECTOR_REFERENCES_.158
+OBJC_SELECTOR_REFERENCES_.160
+OBJC_CLASSLIST_REFERENCES_$_.161
+OBJC_CLASSLIST_REFERENCES_$_.162
+OBJC_METH_VAR_NAME_.163
+OBJC_SELECTOR_REFERENCES_.164
+OBJC_METH_VAR_NAME_.165
+OBJC_SELECTOR_REFERENCES_.166
+OBJC_METH_VAR_NAME_.167
+OBJC_SELECTOR_REFERENCES_.168
+OBJC_METH_VAR_NAME_.169
+OBJC_SELECTOR_REFERENCES_.170
+OBJC_CLASSLIST_REFERENCES_$_.171
+OBJC_METH_VAR_NAME_.172
+OBJC_SELECTOR_REFERENCES_.173
+OBJC_METH_VAR_NAME_.174
+OBJC_SELECTOR_REFERENCES_.175
+OBJC_METH_VAR_NAME_.176
+OBJC_SELECTOR_REFERENCES_.177
+OBJC_METH_VAR_NAME_.178
+OBJC_SELECTOR_REFERENCES_.179
+.str.180
+_unnamed_cfstring_.181
+.str.182
+_unnamed_cfstring_.183
+OBJC_CLASSLIST_REFERENCES_$_.184
+OBJC_SELECTOR_REFERENCES_.186
+OBJC_METH_VAR_NAME_.187
+OBJC_SELECTOR_REFERENCES_.188
+OBJC_METH_VAR_NAME_.189
+OBJC_SELECTOR_REFERENCES_.190
+OBJC_METH_VAR_NAME_.191
+OBJC_SELECTOR_REFERENCES_.192
+OBJC_METH_VAR_NAME_.193
+OBJC_SELECTOR_REFERENCES_.194
+OBJC_CLASSLIST_REFERENCES_$_.195
+OBJC_METH_VAR_NAME_.196
+OBJC_SELECTOR_REFERENCES_.197
+.str.200
+OBJC_METH_VAR_NAME_.201
+OBJC_SELECTOR_REFERENCES_.202
+OBJC_SELECTOR_REFERENCES_.204
+__PRETTY_FUNCTION__.__48-[AWSSES cloneReceiptRuleSet:completionHandler:]_block_invoke
+OBJC_SELECTOR_REFERENCES_.206
+.str.207
+__block_descriptor_tmp.208
+OBJC_METH_VAR_NAME_.209
+OBJC_SELECTOR_REFERENCES_.210
+.str.211
+_unnamed_cfstring_.212
+OBJC_CLASSLIST_REFERENCES_$_.213
+OBJC_METH_VAR_NAME_.214
+OBJC_SELECTOR_REFERENCES_.215
+__PRETTY_FUNCTION__.__48-[AWSSES createReceiptFilter:completionHandler:]_block_invoke
+__block_descriptor_tmp.218
+.str.219
+_unnamed_cfstring_.220
+OBJC_CLASSLIST_REFERENCES_$_.221
+OBJC_SELECTOR_REFERENCES_.223
+__PRETTY_FUNCTION__.__46-[AWSSES createReceiptRule:completionHandler:]_block_invoke
+__block_descriptor_tmp.226
+OBJC_CLASSLIST_REFERENCES_$_.229
+OBJC_METH_VAR_NAME_.230
+OBJC_SELECTOR_REFERENCES_.231
+__PRETTY_FUNCTION__.__49-[AWSSES createReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.234
+.str.235
+_unnamed_cfstring_.236
+OBJC_CLASSLIST_REFERENCES_$_.237
+OBJC_METH_VAR_NAME_.238
+OBJC_SELECTOR_REFERENCES_.239
+__PRETTY_FUNCTION__.__43-[AWSSES deleteIdentity:completionHandler:]_block_invoke
+__block_descriptor_tmp.242
+.str.243
+_unnamed_cfstring_.244
+OBJC_CLASSLIST_REFERENCES_$_.245
+OBJC_METH_VAR_NAME_.246
+OBJC_SELECTOR_REFERENCES_.247
+__PRETTY_FUNCTION__.__49-[AWSSES deleteIdentityPolicy:completionHandler:]_block_invoke
+__block_descriptor_tmp.250
+.str.251
+_unnamed_cfstring_.252
+OBJC_CLASSLIST_REFERENCES_$_.253
+OBJC_METH_VAR_NAME_.254
+OBJC_SELECTOR_REFERENCES_.255
+__PRETTY_FUNCTION__.__48-[AWSSES deleteReceiptFilter:completionHandler:]_block_invoke
+__block_descriptor_tmp.258
+.str.259
+_unnamed_cfstring_.260
+OBJC_CLASSLIST_REFERENCES_$_.261
+OBJC_METH_VAR_NAME_.262
+OBJC_SELECTOR_REFERENCES_.263
+__PRETTY_FUNCTION__.__46-[AWSSES deleteReceiptRule:completionHandler:]_block_invoke
+__block_descriptor_tmp.266
+.str.267
+_unnamed_cfstring_.268
+OBJC_CLASSLIST_REFERENCES_$_.269
+OBJC_METH_VAR_NAME_.270
+OBJC_SELECTOR_REFERENCES_.271
+__PRETTY_FUNCTION__.__49-[AWSSES deleteReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.274
+.str.275
+_unnamed_cfstring_.276
+OBJC_METH_VAR_NAME_.277
+OBJC_SELECTOR_REFERENCES_.278
+__PRETTY_FUNCTION__.__55-[AWSSES deleteVerifiedEmailAddress:completionHandler:]_block_invoke
+__block_descriptor_tmp.281
+.str.282
+_unnamed_cfstring_.283
+OBJC_CLASSLIST_REFERENCES_$_.284
+OBJC_SELECTOR_REFERENCES_.286
+__PRETTY_FUNCTION__.__57-[AWSSES describeActiveReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.289
+OBJC_CLASSLIST_REFERENCES_$_.292
+OBJC_METH_VAR_NAME_.293
+OBJC_SELECTOR_REFERENCES_.294
+__PRETTY_FUNCTION__.__48-[AWSSES describeReceiptRule:completionHandler:]_block_invoke
+__block_descriptor_tmp.297
+.str.298
+_unnamed_cfstring_.299
+OBJC_CLASSLIST_REFERENCES_$_.300
+OBJC_METH_VAR_NAME_.301
+OBJC_SELECTOR_REFERENCES_.302
+__PRETTY_FUNCTION__.__51-[AWSSES describeReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.305
+.str.306
+_unnamed_cfstring_.307
+OBJC_CLASSLIST_REFERENCES_$_.308
+OBJC_METH_VAR_NAME_.309
+OBJC_SELECTOR_REFERENCES_.310
+__PRETTY_FUNCTION__.__54-[AWSSES getIdentityDkimAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.313
+.str.314
+_unnamed_cfstring_.315
+OBJC_CLASSLIST_REFERENCES_$_.316
+OBJC_METH_VAR_NAME_.317
+OBJC_SELECTOR_REFERENCES_.318
+__PRETTY_FUNCTION__.__64-[AWSSES getIdentityMailFromDomainAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.321
+.str.322
+_unnamed_cfstring_.323
+OBJC_CLASSLIST_REFERENCES_$_.324
+OBJC_METH_VAR_NAME_.325
+OBJC_SELECTOR_REFERENCES_.326
+__PRETTY_FUNCTION__.__62-[AWSSES getIdentityNotificationAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.329
+.str.330
+_unnamed_cfstring_.331
+OBJC_CLASSLIST_REFERENCES_$_.332
+OBJC_SELECTOR_REFERENCES_.334
+__PRETTY_FUNCTION__.__48-[AWSSES getIdentityPolicies:completionHandler:]_block_invoke
+__block_descriptor_tmp.337
+.str.338
+_unnamed_cfstring_.339
+OBJC_CLASSLIST_REFERENCES_$_.340
+OBJC_METH_VAR_NAME_.341
+OBJC_SELECTOR_REFERENCES_.342
+__PRETTY_FUNCTION__.__62-[AWSSES getIdentityVerificationAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.345
+.str.346
+_unnamed_cfstring_.347
+OBJC_CLASSLIST_REFERENCES_$_.348
+OBJC_METH_VAR_NAME_.349
+OBJC_SELECTOR_REFERENCES_.350
+__PRETTY_FUNCTION__.__41-[AWSSES getSendQuota:completionHandler:]_block_invoke
+__block_descriptor_tmp.353
+OBJC_CLASSLIST_REFERENCES_$_.356
+OBJC_METH_VAR_NAME_.357
+OBJC_SELECTOR_REFERENCES_.358
+__PRETTY_FUNCTION__.__46-[AWSSES getSendStatistics:completionHandler:]_block_invoke
+__block_descriptor_tmp.361
+OBJC_CLASSLIST_REFERENCES_$_.364
+OBJC_METH_VAR_NAME_.365
+OBJC_SELECTOR_REFERENCES_.366
+__PRETTY_FUNCTION__.__43-[AWSSES listIdentities:completionHandler:]_block_invoke
+__block_descriptor_tmp.369
+.str.370
+_unnamed_cfstring_.371
+OBJC_CLASSLIST_REFERENCES_$_.372
+OBJC_SELECTOR_REFERENCES_.374
+__PRETTY_FUNCTION__.__49-[AWSSES listIdentityPolicies:completionHandler:]_block_invoke
+__block_descriptor_tmp.377
+.str.378
+_unnamed_cfstring_.379
+OBJC_CLASSLIST_REFERENCES_$_.380
+OBJC_METH_VAR_NAME_.381
+OBJC_SELECTOR_REFERENCES_.382
+__PRETTY_FUNCTION__.__47-[AWSSES listReceiptFilters:completionHandler:]_block_invoke
+__block_descriptor_tmp.385
+.str.386
+_unnamed_cfstring_.387
+OBJC_CLASSLIST_REFERENCES_$_.388
+OBJC_METH_VAR_NAME_.389
+OBJC_SELECTOR_REFERENCES_.390
+__PRETTY_FUNCTION__.__48-[AWSSES listReceiptRuleSets:completionHandler:]_block_invoke
+__block_descriptor_tmp.393
+.str.394
+_unnamed_cfstring_.395
+OBJC_CLASSLIST_REFERENCES_$_.396
+OBJC_METH_VAR_NAME_.397
+OBJC_SELECTOR_REFERENCES_.398
+__PRETTY_FUNCTION__.__55-[AWSSES listVerifiedEmailAddresses:completionHandler:]_block_invoke
+__block_descriptor_tmp.401
+.str.402
+_unnamed_cfstring_.403
+OBJC_CLASSLIST_REFERENCES_$_.404
+OBJC_METH_VAR_NAME_.405
+OBJC_SELECTOR_REFERENCES_.406
+__PRETTY_FUNCTION__.__46-[AWSSES putIdentityPolicy:completionHandler:]_block_invoke
+__block_descriptor_tmp.409
+.str.410
+_unnamed_cfstring_.411
+OBJC_CLASSLIST_REFERENCES_$_.412
+OBJC_METH_VAR_NAME_.413
+OBJC_SELECTOR_REFERENCES_.414
+__PRETTY_FUNCTION__.__50-[AWSSES reorderReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.417
+.str.418
+_unnamed_cfstring_.419
+OBJC_CLASSLIST_REFERENCES_$_.420
+OBJC_METH_VAR_NAME_.421
+OBJC_SELECTOR_REFERENCES_.422
+__PRETTY_FUNCTION__.__39-[AWSSES sendBounce:completionHandler:]_block_invoke
+.str.426
+_unnamed_cfstring_.427
+OBJC_CLASSLIST_REFERENCES_$_.428
+OBJC_METH_VAR_NAME_.429
+OBJC_SELECTOR_REFERENCES_.430
+__PRETTY_FUNCTION__.__38-[AWSSES sendEmail:completionHandler:]_block_invoke
+__block_descriptor_tmp.433
+.str.434
+_unnamed_cfstring_.435
+OBJC_CLASSLIST_REFERENCES_$_.436
+OBJC_METH_VAR_NAME_.437
+OBJC_SELECTOR_REFERENCES_.438
+__PRETTY_FUNCTION__.__41-[AWSSES sendRawEmail:completionHandler:]_block_invoke
+__block_descriptor_tmp.441
+.str.442
+_unnamed_cfstring_.443
+OBJC_CLASSLIST_REFERENCES_$_.444
+OBJC_METH_VAR_NAME_.445
+OBJC_SELECTOR_REFERENCES_.446
+__PRETTY_FUNCTION__.__52-[AWSSES setActiveReceiptRuleSet:completionHandler:]_block_invoke
+__block_descriptor_tmp.449
+.str.450
+_unnamed_cfstring_.451
+OBJC_CLASSLIST_REFERENCES_$_.452
+OBJC_METH_VAR_NAME_.453
+OBJC_SELECTOR_REFERENCES_.454
+__PRETTY_FUNCTION__.__51-[AWSSES setIdentityDkimEnabled:completionHandler:]_block_invoke
+__block_descriptor_tmp.457
+.str.458
+_unnamed_cfstring_.459
+OBJC_CLASSLIST_REFERENCES_$_.460
+OBJC_METH_VAR_NAME_.461
+OBJC_SELECTOR_REFERENCES_.462
+__PRETTY_FUNCTION__.__65-[AWSSES setIdentityFeedbackForwardingEnabled:completionHandler:]_block_invoke
+__block_descriptor_tmp.465
+.str.466
+_unnamed_cfstring_.467
+OBJC_CLASSLIST_REFERENCES_$_.468
+OBJC_SELECTOR_REFERENCES_.470
+__PRETTY_FUNCTION__.__54-[AWSSES setIdentityMailFromDomain:completionHandler:]_block_invoke
+__block_descriptor_tmp.473
+OBJC_CLASSLIST_REFERENCES_$_.476
+OBJC_METH_VAR_NAME_.477
+OBJC_SELECTOR_REFERENCES_.478
+__PRETTY_FUNCTION__.__57-[AWSSES setIdentityNotificationTopic:completionHandler:]_block_invoke
+__block_descriptor_tmp.481
+.str.482
+_unnamed_cfstring_.483
+OBJC_CLASSLIST_REFERENCES_$_.484
+OBJC_METH_VAR_NAME_.485
+OBJC_SELECTOR_REFERENCES_.486
+__PRETTY_FUNCTION__.__51-[AWSSES setReceiptRulePosition:completionHandler:]_block_invoke
+__block_descriptor_tmp.489
+.str.490
+_unnamed_cfstring_.491
+OBJC_CLASSLIST_REFERENCES_$_.492
+OBJC_SELECTOR_REFERENCES_.494
+__PRETTY_FUNCTION__.__46-[AWSSES updateReceiptRule:completionHandler:]_block_invoke
+__block_descriptor_tmp.497
+OBJC_CLASSLIST_REFERENCES_$_.500
+OBJC_METH_VAR_NAME_.501
+OBJC_SELECTOR_REFERENCES_.502
+__PRETTY_FUNCTION__.__45-[AWSSES verifyDomainDkim:completionHandler:]_block_invoke
+.str.506
+_unnamed_cfstring_.507
+OBJC_CLASSLIST_REFERENCES_$_.508
+OBJC_METH_VAR_NAME_.509
+OBJC_SELECTOR_REFERENCES_.510
+__PRETTY_FUNCTION__.__49-[AWSSES verifyDomainIdentity:completionHandler:]_block_invoke
+__block_descriptor_tmp.513
+.str.514
+_unnamed_cfstring_.515
+OBJC_METH_VAR_NAME_.516
+OBJC_SELECTOR_REFERENCES_.517
+__PRETTY_FUNCTION__.__47-[AWSSES verifyEmailAddress:completionHandler:]_block_invoke
+__block_descriptor_tmp.520
+OBJC_CLASSLIST_REFERENCES_$_.523
+OBJC_METH_VAR_NAME_.524
+OBJC_SELECTOR_REFERENCES_.525
+__PRETTY_FUNCTION__.__48-[AWSSES verifyEmailIdentity:completionHandler:]_block_invoke
+__block_descriptor_tmp.528
+OBJC_CLASS_NAME_.529
+OBJC_METH_VAR_TYPE_.531
+OBJC_METH_VAR_TYPE_.532
+OBJC_METH_VAR_TYPE_.534
+l_OBJC_$_CLASS_METHODS_AWSSES
+l_OBJC_METACLASS_RO_$_AWSSES
+OBJC_CLASS_NAME_.537
+OBJC_METH_VAR_TYPE_.538
+OBJC_METH_VAR_NAME_.539
+OBJC_METH_VAR_TYPE_.540
+OBJC_METH_VAR_NAME_.541
+OBJC_METH_VAR_NAME_.542
+OBJC_METH_VAR_NAME_.543
+OBJC_METH_VAR_NAME_.544
+OBJC_METH_VAR_NAME_.545
+OBJC_METH_VAR_NAME_.546
+OBJC_METH_VAR_NAME_.547
+OBJC_METH_VAR_NAME_.548
+OBJC_METH_VAR_NAME_.549
+OBJC_METH_VAR_NAME_.550
+OBJC_METH_VAR_NAME_.552
+OBJC_METH_VAR_NAME_.556
+OBJC_METH_VAR_NAME_.557
+OBJC_METH_VAR_NAME_.558
+OBJC_METH_VAR_NAME_.559
+OBJC_METH_VAR_NAME_.560
+OBJC_METH_VAR_NAME_.561
+OBJC_METH_VAR_NAME_.562
+OBJC_METH_VAR_NAME_.563
+OBJC_METH_VAR_NAME_.564
+OBJC_METH_VAR_NAME_.565
+OBJC_METH_VAR_NAME_.566
+OBJC_METH_VAR_NAME_.567
+OBJC_METH_VAR_NAME_.568
+OBJC_METH_VAR_NAME_.569
+OBJC_METH_VAR_NAME_.570
+OBJC_METH_VAR_NAME_.571
+OBJC_METH_VAR_NAME_.572
+OBJC_METH_VAR_NAME_.573
+OBJC_METH_VAR_NAME_.574
+OBJC_METH_VAR_NAME_.575
+OBJC_METH_VAR_NAME_.576
+OBJC_METH_VAR_NAME_.577
+OBJC_METH_VAR_NAME_.578
+OBJC_METH_VAR_NAME_.579
+OBJC_METH_VAR_NAME_.580
+OBJC_METH_VAR_NAME_.581
+OBJC_METH_VAR_NAME_.582
+OBJC_METH_VAR_NAME_.584
+l_OBJC_$_INSTANCE_METHODS_AWSSES
+OBJC_METH_VAR_TYPE_.586
+OBJC_METH_VAR_TYPE_.588
+l_OBJC_$_INSTANCE_VARIABLES_AWSSES
+OBJC_PROP_NAME_ATTR_.589
+OBJC_PROP_NAME_ATTR_.590
+OBJC_PROP_NAME_ATTR_.591
+l_OBJC_$_PROP_LIST_AWSSES
+l_OBJC_CLASS_RO_$_AWSSES
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/include/dispatch/once.h
+-[AWSSES .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSES/AWSSESService.m
+-[AWSSES setNetworking:]
+-[AWSSES networking]
+-[AWSSES setConfiguration:]
+-[AWSSES configuration]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSES/AWSSESService.h
+-[AWSSES verifyEmailIdentity:completionHandler:]
+-[AWSSES verifyEmailIdentity:]
+-[AWSSES verifyEmailAddress:completionHandler:]
+-[AWSSES verifyEmailAddress:]
+-[AWSSES verifyDomainIdentity:completionHandler:]
+-[AWSSES verifyDomainIdentity:]
+-[AWSSES verifyDomainDkim:completionHandler:]
+-[AWSSES verifyDomainDkim:]
+-[AWSSES updateReceiptRule:completionHandler:]
+-[AWSSES updateReceiptRule:]
+-[AWSSES setReceiptRulePosition:completionHandler:]
+-[AWSSES setReceiptRulePosition:]
+-[AWSSES setIdentityNotificationTopic:completionHandler:]
+-[AWSSES setIdentityNotificationTopic:]
+-[AWSSES setIdentityMailFromDomain:completionHandler:]
+-[AWSSES setIdentityMailFromDomain:]
+-[AWSSES setIdentityFeedbackForwardingEnabled:completionHandler:]
+-[AWSSES setIdentityFeedbackForwardingEnabled:]
+-[AWSSES setIdentityDkimEnabled:completionHandler:]
+-[AWSSES setIdentityDkimEnabled:]
+-[AWSSES setActiveReceiptRuleSet:completionHandler:]
+-[AWSSES setActiveReceiptRuleSet:]
+-[AWSSES sendRawEmail:completionHandler:]
+-[AWSSES sendRawEmail:]
+-[AWSSES sendEmail:completionHandler:]
+-[AWSSES sendEmail:]
+-[AWSSES sendBounce:completionHandler:]
+-[AWSSES sendBounce:]
+-[AWSSES reorderReceiptRuleSet:completionHandler:]
+-[AWSSES reorderReceiptRuleSet:]
+-[AWSSES putIdentityPolicy:completionHandler:]
+-[AWSSES putIdentityPolicy:]
+-[AWSSES listVerifiedEmailAddresses:completionHandler:]
+-[AWSSES listVerifiedEmailAddresses:]
+-[AWSSES listReceiptRuleSets:completionHandler:]
+-[AWSSES listReceiptRuleSets:]
+-[AWSSES listReceiptFilters:completionHandler:]
+-[AWSSES listReceiptFilters:]
+-[AWSSES listIdentityPolicies:completionHandler:]
+-[AWSSES listIdentityPolicies:]
+-[AWSSES listIdentities:completionHandler:]
+-[AWSSES listIdentities:]
+-[AWSSES getSendStatistics:completionHandler:]
+-[AWSSES getSendStatistics:]
+-[AWSSES getSendQuota:completionHandler:]
+-[AWSSES getSendQuota:]
+-[AWSSES getIdentityVerificationAttributes:completionHandler:]
+-[AWSSES getIdentityVerificationAttributes:]
+-[AWSSES getIdentityPolicies:completionHandler:]
+-[AWSSES getIdentityPolicies:]
+-[AWSSES getIdentityNotificationAttributes:completionHandler:]
+-[AWSSES getIdentityNotificationAttributes:]
+-[AWSSES getIdentityMailFromDomainAttributes:completionHandler:]
+-[AWSSES getIdentityMailFromDomainAttributes:]
+-[AWSSES getIdentityDkimAttributes:completionHandler:]
+-[AWSSES getIdentityDkimAttributes:]
+-[AWSSES describeReceiptRuleSet:completionHandler:]
+-[AWSSES describeReceiptRuleSet:]
+-[AWSSES describeReceiptRule:completionHandler:]
+-[AWSSES describeReceiptRule:]
+-[AWSSES describeActiveReceiptRuleSet:completionHandler:]
+-[AWSSES describeActiveReceiptRuleSet:]
+-[AWSSES deleteVerifiedEmailAddress:completionHandler:]
+-[AWSSES deleteVerifiedEmailAddress:]
+-[AWSSES deleteReceiptRuleSet:completionHandler:]
+-[AWSSES deleteReceiptRuleSet:]
+-[AWSSES deleteReceiptRule:completionHandler:]
+-[AWSSES deleteReceiptRule:]
+-[AWSSES deleteReceiptFilter:completionHandler:]
+-[AWSSES deleteReceiptFilter:]
+-[AWSSES deleteIdentityPolicy:completionHandler:]
+-[AWSSES deleteIdentityPolicy:]
+-[AWSSES deleteIdentity:completionHandler:]
+-[AWSSES deleteIdentity:]
+-[AWSSES createReceiptRuleSet:completionHandler:]
+-[AWSSES createReceiptRuleSet:]
+-[AWSSES createReceiptRule:completionHandler:]
+-[AWSSES createReceiptRule:]
+-[AWSSES createReceiptFilter:completionHandler:]
+-[AWSSES createReceiptFilter:]
+-[AWSSES cloneReceiptRuleSet:completionHandler:]
+-[AWSSES cloneReceiptRuleSet:]
+-[AWSSES invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSSES initWithConfiguration:]
+-[AWSSES init]
++[AWSSES removeSESForKey:]
++[AWSSES SESForKey:]
++[AWSSES registerSESWithConfiguration:forKey:]
++[AWSSES defaultSES]
++[AWSSES initialize]
+-[AWSSESResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSSESResponseSerializer initialize]
++[AWSSESResources sharedInstance]
+__33+[AWSSESResources sharedInstance]_block_invoke
+-[AWSSESResources JSONObject]
+-[AWSSESResources init]
+-[AWSSESResources definitionString]
+-[AWSSESResources definitionDictionary]
+-[AWSSESResources setDefinitionDictionary:]
+-[AWSSESResources .cxx_destruct]
+sharedInstance._sharedResources
+sharedInstance.once_token
+OBJC_METH_VAR_NAME_.1
+OBJC_SELECTOR_REFERENCES_.2
+OBJC_METH_VAR_NAME_.3
+OBJC_SELECTOR_REFERENCES_.4
+OBJC_CLASSLIST_REFERENCES_$_.5
+OBJC_METH_VAR_NAME_.6
+OBJC_SELECTOR_REFERENCES_.7
+OBJC_METH_VAR_NAME_.8
+OBJC_SELECTOR_REFERENCES_.9
+OBJC_METH_VAR_NAME_.10
+OBJC_SELECTOR_REFERENCES_.11
+OBJC_IVAR_$_AWSSESResources._definitionDictionary
+OBJC_CLASSLIST_REFERENCES_$_.12
+OBJC_SELECTOR_REFERENCES_.14
+OBJC_CLASSLIST_REFERENCES_$_.16
+OBJC_SELECTOR_REFERENCES_.19
+OBJC_SELECTOR_REFERENCES_.21
+__PRETTY_FUNCTION__.-[AWSSESResources init]
+OBJC_METH_VAR_NAME_.22
+OBJC_SELECTOR_REFERENCES_.23
+l_OBJC_$_CLASS_METHODS_AWSSESResources
+l_OBJC_METACLASS_RO_$_AWSSESResources
+OBJC_CLASS_NAME_.27
+OBJC_METH_VAR_NAME_.29
+OBJC_METH_VAR_TYPE_.30
+OBJC_METH_VAR_NAME_.31
+OBJC_METH_VAR_TYPE_.32
+l_OBJC_$_INSTANCE_METHODS_AWSSESResources
+OBJC_METH_VAR_NAME_.33
+OBJC_METH_VAR_TYPE_.34
+l_OBJC_$_INSTANCE_VARIABLES_AWSSESResources
+OBJC_PROP_NAME_ATTR_.35
+l_OBJC_$_PROP_LIST_AWSSESResources
+l_OBJC_CLASS_RO_$_AWSSESResources
+-[AWSSESResources .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSES/AWSSESResources.m
+-[AWSSESResources setDefinitionDictionary:]
+-[AWSSESResources definitionDictionary]
+-[AWSSESResources definitionString]
+-[AWSSESResources init]
+-[AWSSESResources JSONObject]
++[AWSSESResources sharedInstance]
+/Users/lukasz/Library/Developer/Xcode/DerivedData/AWSiOSSDKv2-cqgditqlqlxkxfdyzbkzoqrzqldw/Build/Intermediates/AWSiOSSDKv2.build/Release-iphoneos/AWSSES.build/DerivedSources/AWSSES_vers.c
+_ZL15__ARCLite__loadv
+_ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+_ZL34__arclite_objc_autoreleasePoolPushv
+_ZL33__arclite_objc_autoreleasePoolPopPv
+_ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+_ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+_ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+_ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+_ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+_ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+_ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+_ZL18add_image_hook_ARCPK11mach_headerl
+_ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+_ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+_ZL21__arclite_object_copyP11objc_objectm
+_ZL21__arclite_objc_retainP11objc_object
+_ZL26__arclite_objc_retainBlockP11objc_object
+_ZL22__arclite_objc_releaseP11objc_object
+_ZL26__arclite_objc_autoreleaseP11objc_object
+_ZL32__arclite_objc_retainAutoreleaseP11objc_object
+_ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+_ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+_ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+_ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+_ZL22add_image_hook_swiftV1PK11mach_headerl
+_ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+_ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+_ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+_ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+_ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+_ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+_ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+_ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+_ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+_ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+_ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+_ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+_ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+_ZL32__arclite_object_getIndexedIvarsP11objc_object
+_ZL23__arclite_objc_getClassPKc
+_ZL27__arclite_objc_getMetaClassPKc
+_ZL31__arclite_objc_getRequiredClassPKc
+_ZL26__arclite_objc_lookUpClassPKc
+_ZL26__arclite_objc_getProtocolPKc
+_ZL23__arclite_class_getNameP10objc_class
+_ZL26__arclite_protocol_getNameP8Protocol
+_ZL37__arclite_objc_copyClassNamesForImagePKcPj
+_ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+_ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+_ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+_ZL14initialize_impP11objc_objectP13objc_selector
+_ZL18allocateMaybeSwiftP18glue_swift_class_tm
+_ZL22copySwiftV1MangledNamePKcb
+_ZL13demangledNamePKcb
+_ZL16scanMangledFieldRPKcS0_S1_Ri
+_ZL30arclite_uninitialized_functionv
+_ZL12cxxConstructP11objc_object
+_ZL20fixStringForCoreDataP11objc_object
+OBJC_METACLASS_$___ARCLite__
+_ZL24OBJC_CLASS_$___ARCLite__
+_ZL31OBJC_METACLASS_RO_$___ARCLite__
+_non_lazy_classes
+_ZL27OBJC_CLASS_RO_$___ARCLite__
+_ZL11_class_name
+_ZL32OBJC_$_CLASS_METHODS___ARCLite__
+_ZL17_load_method_name
+_ZL17_load_method_type
+_ZL23NSAutoreleasePool_class
+_ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+_ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+.str.2
+.str.6
+.str.10
+OBJC_SELECTOR_REFERENCES_.12
+OBJC_SELECTOR_REFERENCES_.15
+.str.16
+OBJC_METH_VAR_TYPE_.20
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteIndexedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+OBJC_METH_VAR_NAME_.21
+OBJC_SELECTOR_REFERENCES_.22
+OBJC_METH_VAR_NAME_.23
+OBJC_SELECTOR_REFERENCES_.24
+OBJC_METH_VAR_NAME_.25
+OBJC_SELECTOR_REFERENCES_.26
+OBJC_METH_VAR_NAME_.27
+OBJC_SELECTOR_REFERENCES_.28
+OBJC_METH_VAR_TYPE_.29
+OBJC_METH_VAR_TYPE_.31
+OBJC_CLASS_NAME_.32
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteKeyedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+OBJC_SELECTOR_REFERENCES_.34
+.str.35
+OBJC_SELECTOR_REFERENCES_.36
+OBJC_METH_VAR_NAME_.37
+OBJC_SELECTOR_REFERENCES_.38
+OBJC_SELECTOR_REFERENCES_.40
+_ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+_ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+.str.41
+.str.42
+.str.43
+.str.44
+.str.45
+.str.46
+.str.47
+.str.48
+.str.49
+.str.50
+.str.51
+.str.52
+OBJC_METH_VAR_NAME_.53
+OBJC_SELECTOR_REFERENCES_.54
+OBJC_METH_VAR_NAME_.55
+.str.60
+_ZL30NSUndoManagerProxy_targetClass
+OBJC_METH_VAR_NAME_.61
+OBJC_SELECTOR_REFERENCES_.62
+.str.64
+_ZL29original_NSManagedObject_init
+OBJC_METH_VAR_NAME_.67
+OBJC_SELECTOR_REFERENCES_.68
+_ZL40original_NSManagedObject_allocWithEntity
+OBJC_METH_VAR_NAME_.69
+OBJC_SELECTOR_REFERENCES_.70
+_ZL35original_NSManagedObject_allocBatch
+_ZL25NSMutableDictionary_class
+_ZL22NSConstantString_class
+.str.72
+_ZL14NSString_class
+.str.73
+OBJC_METH_VAR_NAME_.74
+OBJC_SELECTOR_REFERENCES_.75
+_ZL36original_NSKKMS_fastIndexForKnownKey
+OBJC_SELECTOR_REFERENCES_.77
+_ZL27original_NSKKMS_indexForKey
+.str.78
+_ZL28original_NSKKsD_objectForKey
+_ZL34original_NSKKsD_removeObjectForKey
+_ZL32original_NSKKsD_setObject_forKey
+_ZL40original_NSKKsD_addEntriesFromDictionary
+_ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+_ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+.str.81
+.str.82
+_ZL31original_objc_allocateClassPair
+.str.83
+_ZL31original_object_getIndexedIvars
+.str.84
+_ZL22original_objc_getClass
+.str.85
+_ZL26original_objc_getMetaClass
+_ZL30original_objc_getRequiredClass
+.str.87
+_ZL25original_objc_lookUpClass
+.str.88
+_ZL25original_objc_getProtocol
+.str.89
+_ZL22original_class_getName
+.str.90
+_ZL25original_protocol_getName
+_ZL36original_objc_copyClassNamesForImage
+OBJC_METH_VAR_NAME_.92
+OBJC_SELECTOR_REFERENCES_.93
+OBJC_METH_VAR_NAME_.94
+OBJC_SELECTOR_REFERENCES_.95
+.str.96
+.str.97
+.str.98
+.str.99
+.str.101
+.str.103
+_ZL12demangleLock
+_ZL9Demangled
+.str.105
+OBJC_METH_VAR_NAME_.106
+OBJC_SELECTOR_REFERENCES_.107
+OBJC_METH_VAR_NAME_.108
+OBJC_SELECTOR_REFERENCES_.109
+OBJC_METH_VAR_NAME_.114
+OBJC_SELECTOR_REFERENCES_.115
+OBJC_METH_VAR_NAME_.116
+OBJC_SELECTOR_REFERENCES_.117
+Apple LLVM version 7.3.0 (clang-703.0.21)
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -fembed-bitcode -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7s -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -fgnu-inline-asm -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7s/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7s/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7s/arclite.o -mlinker-version=264.3 -march=armv7s
+__arclite_NSKKsD_addEntriesFromDictionary
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+fixStringForCoreData
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+cxxConstruct
+__arclite_NSManagedObject_init
+arclite_uninitialized_function
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+patch_t<const char **(const char *, unsigned int *)>
+__arclite_objc_copyClassNamesForImage
+patch_t<const char *(Protocol *)>
+__arclite_protocol_getName
+patch_t<const char *(Class)>
+__isctype
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/ctype.h
+isdigit
+scanMangledField
+copySwiftV1DemangledName
+demangledName
+__arclite_class_getName
+patch_t<Protocol *(const char *)>
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+patch_t<Class (const char *)>
+copySwiftV1MangledName
+__arclite_objc_getClass
+patch_t<void *(id)>
+word_align
+__arclite_object_getIndexedIvars
+patch_t<Class (Class, const char *, unsigned long)>
+allocateMaybeSwift
+isSwift
+metaclass
+__arclite_objc_allocateClassPair
+patch_t<Class (Class, const objc_image_info *)>
+initialize_imp
+property_list_nth
+transcribeProperties
+transcribeProtocols
+method_list_nth
+transcribeMethods
+alignment
+max
+ivar_list_nth
+transcribeIvars
+fastFlags
+ro
+__arclite_objc_readClassPair
+add_image_hook_swiftV1
+install_swiftV1
+patch_t<void (id *, id)>
+__arclite_objc_storeStrong
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+patch_t<void (id)>
+__arclite_objc_release
+__arclite_objc_retainBlock
+patch_t<id (id)>
+__arclite_objc_retain
+patch_t<id (id, unsigned long)>
+fixupCopiedReferences
+classOrSuperClassesUseARR
+__arclite_object_copy
+patch_t<void (id, objc_ivar *, id)>
+isScannedOffset
+alignedInstanceStart
+_class_getInstanceStart
+data
+__arclite_class_usesAutomaticRetainRelease
+_ivar_getClass
+__arclite_object_setIvar
+patch_t<objc_ivar *(id, const char *, void *)>
+__arclite_object_setInstanceVariable
+add_image_hook_ARC
+install_ARC
+objc_collectingEnabled
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/objc/objc-auto.h
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+addOrReplaceMethod
+install_dict_nil_value
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+keyedGetter
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+indexedGetter
+__arclite_NSArray_objectAtIndexedSubscript
+addMethod
+install_subscripting
+patch_lazy_pointers
+patch_t<void (void *)>
+__arclite_objc_autoreleasePoolPop
+patch_t<void *()>
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+install_autoreleasepool
+__ARCLite__load

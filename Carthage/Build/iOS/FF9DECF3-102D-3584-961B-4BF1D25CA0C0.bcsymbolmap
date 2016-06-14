@@ -1,0 +1,659 @@
+BCSymbolMap Version: 1.0
+-[ACPStaticImagesAlternative updateFrame:]
+-[ACPStaticImagesAlternative updateColor:]
+-[ACPStaticImagesAlternative drawStatusNone]
+-[ACPStaticImagesAlternative drawStatusIndeterminate]
+-[ACPStaticImagesAlternative drawStatusRunning]
+-[ACPStaticImagesAlternative drawStatusComplete]
+-[ACPStaticImagesAlternative strokeColor]
+-[ACPStaticImagesAlternative setStrokeColor:]
+-[ACPStaticImagesAlternative bounds]
+-[ACPStaticImagesAlternative setBounds:]
+-[ACPStaticImagesAlternative .cxx_destruct]
+OBJC_METH_VAR_NAME_
+OBJC_SELECTOR_REFERENCES_
+OBJC_METH_VAR_NAME_.1
+OBJC_SELECTOR_REFERENCES_.2
+OBJC_METH_VAR_NAME_.3
+OBJC_SELECTOR_REFERENCES_.4
+OBJC_CLASSLIST_REFERENCES_$_
+OBJC_METH_VAR_NAME_.5
+OBJC_SELECTOR_REFERENCES_.6
+OBJC_METH_VAR_NAME_.7
+OBJC_SELECTOR_REFERENCES_.8
+OBJC_METH_VAR_NAME_.9
+OBJC_SELECTOR_REFERENCES_.10
+OBJC_METH_VAR_NAME_.11
+OBJC_SELECTOR_REFERENCES_.12
+OBJC_METH_VAR_NAME_.13
+OBJC_SELECTOR_REFERENCES_.14
+OBJC_METH_VAR_NAME_.15
+OBJC_SELECTOR_REFERENCES_.16
+OBJC_METH_VAR_NAME_.17
+OBJC_SELECTOR_REFERENCES_.18
+OBJC_METH_VAR_NAME_.19
+OBJC_SELECTOR_REFERENCES_.20
+OBJC_METH_VAR_NAME_.21
+OBJC_SELECTOR_REFERENCES_.22
+OBJC_CLASSLIST_REFERENCES_$_.23
+OBJC_METH_VAR_NAME_.24
+OBJC_SELECTOR_REFERENCES_.25
+OBJC_METH_VAR_NAME_.26
+OBJC_SELECTOR_REFERENCES_.27
+OBJC_METH_VAR_NAME_.28
+OBJC_SELECTOR_REFERENCES_.29
+OBJC_METH_VAR_NAME_.30
+OBJC_SELECTOR_REFERENCES_.31
+OBJC_METH_VAR_NAME_.32
+OBJC_SELECTOR_REFERENCES_.33
+OBJC_METH_VAR_NAME_.34
+OBJC_SELECTOR_REFERENCES_.35
+OBJC_METH_VAR_NAME_.36
+OBJC_SELECTOR_REFERENCES_.37
+OBJC_IVAR_$_ACPStaticImagesAlternative.strokeColor
+OBJC_IVAR_$_ACPStaticImagesAlternative.bounds
+OBJC_CLASS_NAME_
+OBJC_METH_VAR_NAME_.38
+OBJC_METH_VAR_TYPE_
+OBJC_METH_VAR_NAME_.39
+OBJC_METH_VAR_NAME_.40
+OBJC_METH_VAR_NAME_.41
+OBJC_METH_VAR_NAME_.42
+OBJC_METH_VAR_TYPE_.43
+OBJC_METH_VAR_TYPE_.44
+OBJC_METH_VAR_NAME_.45
+OBJC_METH_VAR_TYPE_.46
+OBJC_METH_VAR_TYPE_.47
+OBJC_METH_VAR_TYPE_.48
+OBJC_METH_VAR_TYPE_.49
+OBJC_CLASS_NAME_.50
+OBJC_METH_VAR_NAME_.51
+OBJC_METH_VAR_TYPE_.52
+OBJC_METH_VAR_NAME_.53
+OBJC_METH_VAR_TYPE_.54
+OBJC_METH_VAR_NAME_.55
+OBJC_METH_VAR_NAME_.56
+OBJC_METH_VAR_TYPE_.57
+OBJC_METH_VAR_NAME_.58
+OBJC_METH_VAR_TYPE_.59
+OBJC_METH_VAR_NAME_.60
+OBJC_METH_VAR_TYPE_.61
+OBJC_METH_VAR_NAME_.62
+OBJC_METH_VAR_TYPE_.63
+OBJC_METH_VAR_NAME_.64
+OBJC_METH_VAR_TYPE_.65
+OBJC_METH_VAR_NAME_.66
+OBJC_METH_VAR_NAME_.67
+OBJC_METH_VAR_TYPE_.68
+OBJC_METH_VAR_NAME_.69
+OBJC_METH_VAR_TYPE_.70
+OBJC_METH_VAR_NAME_.71
+OBJC_METH_VAR_NAME_.72
+OBJC_METH_VAR_TYPE_.73
+OBJC_METH_VAR_NAME_.74
+OBJC_METH_VAR_NAME_.75
+OBJC_METH_VAR_TYPE_.76
+OBJC_METH_VAR_NAME_.77
+OBJC_METH_VAR_TYPE_.78
+OBJC_METH_VAR_NAME_.79
+OBJC_METH_VAR_NAME_.80
+OBJC_METH_VAR_NAME_.81
+OBJC_METH_VAR_TYPE_.82
+OBJC_METH_VAR_NAME_.83
+OBJC_CLASS_NAME_.84
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_NSObject
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_OPT_NSObject
+OBJC_PROP_NAME_ATTR_
+OBJC_PROP_NAME_ATTR_.85
+OBJC_PROP_NAME_ATTR_.86
+OBJC_PROP_NAME_ATTR_.87
+OBJC_PROP_NAME_ATTR_.88
+OBJC_PROP_NAME_ATTR_.89
+OBJC_PROP_NAME_ATTR_.90
+l_OBJC_$_PROP_LIST_NSObject
+l_OBJC_$_PROTOCOL_METHOD_TYPES_NSObject
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_$_PROTOCOL_REFS_ACPStaticImagesProtocol
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_ACPStaticImagesProtocol
+OBJC_PROP_NAME_ATTR_.91
+OBJC_PROP_NAME_ATTR_.92
+OBJC_PROP_NAME_ATTR_.93
+OBJC_PROP_NAME_ATTR_.94
+l_OBJC_$_PROP_LIST_ACPStaticImagesProtocol
+l_OBJC_$_PROTOCOL_METHOD_TYPES_ACPStaticImagesProtocol
+l_OBJC_PROTOCOL_$_ACPStaticImagesProtocol
+l_OBJC_LABEL_PROTOCOL_$_ACPStaticImagesProtocol
+l_OBJC_CLASS_PROTOCOLS_$_ACPStaticImagesAlternative
+l_OBJC_METACLASS_RO_$_ACPStaticImagesAlternative
+OBJC_CLASS_NAME_.95
+OBJC_METH_VAR_NAME_.96
+l_OBJC_$_INSTANCE_METHODS_ACPStaticImagesAlternative
+OBJC_METH_VAR_TYPE_.97
+OBJC_METH_VAR_TYPE_.98
+l_OBJC_$_INSTANCE_VARIABLES_ACPStaticImagesAlternative
+OBJC_PROP_NAME_ATTR_.99
+OBJC_PROP_NAME_ATTR_.100
+l_OBJC_$_PROP_LIST_ACPStaticImagesAlternative
+l_OBJC_CLASS_RO_$_ACPStaticImagesAlternative
+OBJC_LABEL_CLASS_$
+Apple LLVM version 7.3.0 (clang-703.0.31)
+CGPointMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload
+CGRectMake
+-[ACPStaticImagesAlternative .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImagesAlternative.m
+-[ACPStaticImagesAlternative setBounds:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImagesProtocol.h
+-[ACPStaticImagesAlternative bounds]
+-[ACPStaticImagesAlternative setStrokeColor:]
+-[ACPStaticImagesAlternative strokeColor]
+-[ACPStaticImagesAlternative drawStatusComplete]
+-[ACPStaticImagesAlternative drawStatusRunning]
+-[ACPStaticImagesAlternative drawStatusIndeterminate]
+-[ACPStaticImagesAlternative drawStatusNone]
+-[ACPStaticImagesAlternative updateColor:]
+-[ACPStaticImagesAlternative updateFrame:]
+-[ACPIndeterminateLayer layer]
+-[ACPIndeterminateLayer updateFrame:]
+-[ACPIndeterminateLayer updatePath]
+-[ACPIndeterminateLayer startAnimating]
+-[ACPIndeterminateLayer stopAnimating]
+-[ACPIndeterminateLayer updateColor:]
+-[ACPIndeterminateLayer setHidden:]
+-[ACPIndeterminateLayer removeLayer]
+-[ACPIndeterminateLayer setLayer:]
+-[ACPIndeterminateLayer colorLayer]
+-[ACPIndeterminateLayer setColorLayer:]
+-[ACPIndeterminateLayer frame]
+-[ACPIndeterminateLayer setFrame:]
+-[ACPIndeterminateLayer isAnimating]
+-[ACPIndeterminateLayer setAnimate:]
+-[ACPIndeterminateLayer .cxx_destruct]
+OBJC_IVAR_$_ACPIndeterminateLayer._layer
+OBJC_CLASSLIST_REFERENCES_$_.19
+OBJC_METH_VAR_NAME_.20
+OBJC_SELECTOR_REFERENCES_.21
+OBJC_METH_VAR_NAME_.22
+OBJC_SELECTOR_REFERENCES_.23
+OBJC_CLASSLIST_REFERENCES_$_.26
+OBJC_METH_VAR_NAME_.27
+OBJC_SELECTOR_REFERENCES_.28
+.str
+_unnamed_cfstring_
+OBJC_METH_VAR_NAME_.29
+OBJC_SELECTOR_REFERENCES_.30
+OBJC_METH_VAR_NAME_.31
+OBJC_SELECTOR_REFERENCES_.32
+OBJC_CLASSLIST_REFERENCES_$_.33
+OBJC_SELECTOR_REFERENCES_.39
+OBJC_SELECTOR_REFERENCES_.41
+OBJC_SELECTOR_REFERENCES_.43
+OBJC_CLASSLIST_REFERENCES_$_.44
+OBJC_SELECTOR_REFERENCES_.46
+OBJC_METH_VAR_NAME_.47
+OBJC_SELECTOR_REFERENCES_.48
+OBJC_METH_VAR_NAME_.49
+OBJC_SELECTOR_REFERENCES_.50
+OBJC_SELECTOR_REFERENCES_.52
+OBJC_SELECTOR_REFERENCES_.54
+OBJC_SELECTOR_REFERENCES_.56
+OBJC_METH_VAR_NAME_.57
+OBJC_SELECTOR_REFERENCES_.58
+OBJC_METH_VAR_NAME_.59
+OBJC_SELECTOR_REFERENCES_.60
+OBJC_METH_VAR_NAME_.61
+OBJC_SELECTOR_REFERENCES_.62
+OBJC_IVAR_$_ACPIndeterminateLayer._colorLayer
+OBJC_IVAR_$_ACPIndeterminateLayer._frame
+OBJC_IVAR_$_ACPIndeterminateLayer._animate
+OBJC_METH_VAR_NAME_.63
+OBJC_METH_VAR_TYPE_.66
+OBJC_METH_VAR_TYPE_.67
+OBJC_METH_VAR_NAME_.68
+OBJC_METH_VAR_TYPE_.69
+OBJC_METH_VAR_NAME_.70
+OBJC_METH_VAR_TYPE_.72
+OBJC_METH_VAR_TYPE_.74
+OBJC_METH_VAR_TYPE_.75
+OBJC_CLASS_NAME_.77
+OBJC_METH_VAR_NAME_.78
+OBJC_METH_VAR_TYPE_.79
+OBJC_METH_VAR_TYPE_.81
+OBJC_METH_VAR_NAME_.82
+OBJC_METH_VAR_TYPE_.84
+OBJC_METH_VAR_NAME_.85
+OBJC_METH_VAR_TYPE_.86
+OBJC_METH_VAR_NAME_.87
+OBJC_METH_VAR_TYPE_.88
+OBJC_METH_VAR_NAME_.89
+OBJC_METH_VAR_NAME_.90
+OBJC_METH_VAR_TYPE_.91
+OBJC_METH_VAR_NAME_.92
+OBJC_METH_VAR_NAME_.93
+OBJC_METH_VAR_TYPE_.94
+OBJC_METH_VAR_NAME_.95
+OBJC_METH_VAR_TYPE_.96
+OBJC_METH_VAR_NAME_.97
+OBJC_METH_VAR_NAME_.98
+OBJC_METH_VAR_TYPE_.99
+OBJC_METH_VAR_NAME_.100
+OBJC_METH_VAR_NAME_.101
+OBJC_METH_VAR_TYPE_.102
+OBJC_METH_VAR_NAME_.103
+OBJC_METH_VAR_TYPE_.104
+OBJC_METH_VAR_NAME_.105
+OBJC_METH_VAR_NAME_.106
+OBJC_METH_VAR_NAME_.107
+OBJC_METH_VAR_TYPE_.108
+OBJC_METH_VAR_NAME_.109
+OBJC_CLASS_NAME_.110
+OBJC_PROP_NAME_ATTR_.111
+OBJC_PROP_NAME_ATTR_.112
+OBJC_PROP_NAME_ATTR_.113
+OBJC_PROP_NAME_ATTR_.114
+OBJC_PROP_NAME_ATTR_.115
+OBJC_PROP_NAME_ATTR_.116
+l_OBJC_$_PROTOCOL_REFS_ACPLayerProtocol
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_ACPLayerProtocol
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS_OPT_ACPLayerProtocol
+OBJC_PROP_NAME_ATTR_.117
+OBJC_PROP_NAME_ATTR_.118
+OBJC_PROP_NAME_ATTR_.119
+OBJC_PROP_NAME_ATTR_.120
+OBJC_PROP_NAME_ATTR_.121
+OBJC_PROP_NAME_ATTR_.122
+l_OBJC_$_PROP_LIST_ACPLayerProtocol
+l_OBJC_$_PROTOCOL_METHOD_TYPES_ACPLayerProtocol
+l_OBJC_PROTOCOL_$_ACPLayerProtocol
+l_OBJC_LABEL_PROTOCOL_$_ACPLayerProtocol
+l_OBJC_CLASS_PROTOCOLS_$_ACPIndeterminateLayer
+l_OBJC_METACLASS_RO_$_ACPIndeterminateLayer
+OBJC_CLASS_NAME_.123
+OBJC_METH_VAR_NAME_.124
+OBJC_METH_VAR_NAME_.125
+OBJC_METH_VAR_NAME_.126
+OBJC_METH_VAR_TYPE_.127
+l_OBJC_$_INSTANCE_METHODS_ACPIndeterminateLayer
+OBJC_METH_VAR_NAME_.128
+OBJC_METH_VAR_TYPE_.129
+OBJC_METH_VAR_NAME_.130
+OBJC_METH_VAR_TYPE_.131
+OBJC_METH_VAR_NAME_.132
+OBJC_METH_VAR_TYPE_.133
+OBJC_METH_VAR_NAME_.134
+OBJC_METH_VAR_TYPE_.135
+l_OBJC_$_INSTANCE_VARIABLES_ACPIndeterminateLayer
+OBJC_PROP_NAME_ATTR_.136
+OBJC_PROP_NAME_ATTR_.137
+OBJC_PROP_NAME_ATTR_.138
+OBJC_PROP_NAME_ATTR_.139
+OBJC_PROP_NAME_ATTR_.140
+l_OBJC_$_PROP_LIST_ACPIndeterminateLayer
+l_OBJC_CLASS_RO_$_ACPIndeterminateLayer
+-[ACPIndeterminateLayer .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPIndeterminateLayer.m
+-[ACPIndeterminateLayer setAnimate:]
+-[ACPIndeterminateLayer isAnimating]
+-[ACPIndeterminateLayer setFrame:]
+-[ACPIndeterminateLayer frame]
+-[ACPIndeterminateLayer setColorLayer:]
+-[ACPIndeterminateLayer colorLayer]
+-[ACPIndeterminateLayer setLayer:]
+-[ACPIndeterminateLayer removeLayer]
+-[ACPIndeterminateLayer setHidden:]
+-[ACPIndeterminateLayer updateColor:]
+-[ACPIndeterminateLayer stopAnimating]
+-[ACPIndeterminateLayer startAnimating]
+-[ACPIndeterminateLayer updatePath]
+-[ACPIndeterminateLayer updateFrame:]
+-[ACPIndeterminateLayer layer]
+-[ACPProgressLayer init]
+-[ACPProgressLayer layer]
+-[ACPProgressLayer updateFrame:]
+-[ACPProgressLayer updatePath]
+-[ACPProgressLayer setProgress:]
+-[ACPProgressLayer setProgress:animated:]
+-[ACPProgressLayer updateColor:]
+-[ACPProgressLayer setHidden:]
+-[ACPProgressLayer removeLayer]
+-[ACPProgressLayer setLayer:]
+-[ACPProgressLayer colorLayer]
+-[ACPProgressLayer setColorLayer:]
+-[ACPProgressLayer frame]
+-[ACPProgressLayer setFrame:]
+-[ACPProgressLayer isAnimating]
+-[ACPProgressLayer setAnimate:]
+-[ACPProgressLayer progress]
+-[ACPProgressLayer .cxx_destruct]
+OBJC_CLASSLIST_SUP_REFS_$_
+OBJC_IVAR_$_ACPProgressLayer._progress
+OBJC_IVAR_$_ACPProgressLayer._layer
+OBJC_CLASSLIST_REFERENCES_$_.21
+OBJC_CLASSLIST_REFERENCES_$_.30
+OBJC_METH_VAR_NAME_.33
+OBJC_SELECTOR_REFERENCES_.34
+OBJC_CLASSLIST_REFERENCES_$_.35
+OBJC_METH_VAR_NAME_.44
+OBJC_SELECTOR_REFERENCES_.45
+OBJC_METH_VAR_NAME_.46
+OBJC_SELECTOR_REFERENCES_.47
+.str.48
+_unnamed_cfstring_.49
+OBJC_METH_VAR_NAME_.50
+OBJC_SELECTOR_REFERENCES_.51
+OBJC_CLASSLIST_REFERENCES_$_.52
+OBJC_SELECTOR_REFERENCES_.64
+OBJC_IVAR_$_ACPProgressLayer._colorLayer
+OBJC_IVAR_$_ACPProgressLayer._frame
+OBJC_IVAR_$_ACPProgressLayer._animate
+OBJC_METH_VAR_NAME_.65
+OBJC_METH_VAR_TYPE_.71
+OBJC_METH_VAR_NAME_.73
+OBJC_METH_VAR_TYPE_.77
+OBJC_CLASS_NAME_.80
+OBJC_METH_VAR_NAME_.86
+OBJC_METH_VAR_TYPE_.87
+OBJC_METH_VAR_NAME_.88
+OBJC_METH_VAR_TYPE_.89
+OBJC_METH_VAR_NAME_.104
+OBJC_METH_VAR_TYPE_.105
+OBJC_METH_VAR_TYPE_.107
+OBJC_METH_VAR_NAME_.108
+OBJC_METH_VAR_NAME_.110
+OBJC_METH_VAR_TYPE_.111
+OBJC_METH_VAR_NAME_.112
+OBJC_CLASS_NAME_.113
+OBJC_PROP_NAME_ATTR_.123
+OBJC_PROP_NAME_ATTR_.124
+OBJC_PROP_NAME_ATTR_.125
+l_OBJC_CLASS_PROTOCOLS_$_ACPProgressLayer
+l_OBJC_METACLASS_RO_$_ACPProgressLayer
+OBJC_CLASS_NAME_.126
+OBJC_METH_VAR_NAME_.127
+OBJC_METH_VAR_TYPE_.128
+OBJC_METH_VAR_NAME_.129
+OBJC_METH_VAR_NAME_.131
+OBJC_METH_VAR_TYPE_.132
+OBJC_METH_VAR_NAME_.133
+OBJC_METH_VAR_TYPE_.134
+l_OBJC_$_INSTANCE_METHODS_ACPProgressLayer
+OBJC_METH_VAR_NAME_.135
+OBJC_METH_VAR_TYPE_.136
+OBJC_METH_VAR_NAME_.137
+OBJC_METH_VAR_TYPE_.138
+OBJC_METH_VAR_NAME_.139
+OBJC_METH_VAR_TYPE_.140
+OBJC_METH_VAR_NAME_.141
+OBJC_METH_VAR_TYPE_.142
+OBJC_METH_VAR_NAME_.143
+OBJC_METH_VAR_TYPE_.144
+l_OBJC_$_INSTANCE_VARIABLES_ACPProgressLayer
+OBJC_PROP_NAME_ATTR_.145
+OBJC_PROP_NAME_ATTR_.146
+OBJC_PROP_NAME_ATTR_.147
+OBJC_PROP_NAME_ATTR_.148
+OBJC_PROP_NAME_ATTR_.149
+OBJC_PROP_NAME_ATTR_.150
+OBJC_PROP_NAME_ATTR_.151
+l_OBJC_$_PROP_LIST_ACPProgressLayer
+l_OBJC_CLASS_RO_$_ACPProgressLayer
+-[ACPProgressLayer .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPProgressLayer.m
+-[ACPProgressLayer progress]
+-[ACPProgressLayer setAnimate:]
+-[ACPProgressLayer isAnimating]
+-[ACPProgressLayer setFrame:]
+-[ACPProgressLayer frame]
+-[ACPProgressLayer setColorLayer:]
+-[ACPProgressLayer colorLayer]
+-[ACPProgressLayer setLayer:]
+-[ACPProgressLayer removeLayer]
+-[ACPProgressLayer setHidden:]
+-[ACPProgressLayer updateColor:]
+-[ACPProgressLayer setProgress:animated:]
+-[ACPProgressLayer setProgress:]
+-[ACPProgressLayer updatePath]
+-[ACPProgressLayer updateFrame:]
+-[ACPProgressLayer layer]
+-[ACPProgressLayer init]
+-[ACPStaticImages updateFrame:]
+-[ACPStaticImages drawStatusNone]
+-[ACPStaticImages drawStatusIndeterminate]
+-[ACPStaticImages drawStatusRunning]
+-[ACPStaticImages drawStatusComplete]
+-[ACPStaticImages updateColor:]
+-[ACPStaticImages bounds]
+-[ACPStaticImages setBounds:]
+-[ACPStaticImages strokeColor]
+-[ACPStaticImages setStrokeColor:]
+-[ACPStaticImages .cxx_destruct]
+OBJC_METH_VAR_NAME_.23
+OBJC_SELECTOR_REFERENCES_.24
+OBJC_CLASSLIST_REFERENCES_$_.25
+OBJC_IVAR_$_ACPStaticImages.bounds
+OBJC_IVAR_$_ACPStaticImages.strokeColor
+l_OBJC_CLASS_PROTOCOLS_$_ACPStaticImages
+l_OBJC_METACLASS_RO_$_ACPStaticImages
+l_OBJC_$_INSTANCE_METHODS_ACPStaticImages
+l_OBJC_$_INSTANCE_VARIABLES_ACPStaticImages
+l_OBJC_$_PROP_LIST_ACPStaticImages
+l_OBJC_CLASS_RO_$_ACPStaticImages
+-[ACPStaticImages .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImages.m
+-[ACPStaticImages setStrokeColor:]
+-[ACPStaticImages strokeColor]
+-[ACPStaticImages setBounds:]
+-[ACPStaticImages bounds]
+-[ACPStaticImages updateColor:]
+-[ACPStaticImages drawStatusComplete]
+-[ACPStaticImages drawStatusRunning]
+-[ACPStaticImages drawStatusIndeterminate]
+-[ACPStaticImages drawStatusNone]
+-[ACPStaticImages updateFrame:]
+.str.1
+_unnamed_cfstring_.2
+l_OBJC_METACLASS_RO_$_ACPDownloadConstants
+l_OBJC_CLASS_RO_$_ACPDownloadConstants
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadConstants.m
+-[ACPIndeterminateGoogleLayer layer]
+-[ACPIndeterminateGoogleLayer updateFrame:]
+-[ACPIndeterminateGoogleLayer updatePath]
+-[ACPIndeterminateGoogleLayer startAnimating]
+-[ACPIndeterminateGoogleLayer stopAnimating]
+-[ACPIndeterminateGoogleLayer updateColor:]
+-[ACPIndeterminateGoogleLayer setHidden:]
+-[ACPIndeterminateGoogleLayer removeLayer]
+-[ACPIndeterminateGoogleLayer setLayer:]
+-[ACPIndeterminateGoogleLayer colorLayer]
+-[ACPIndeterminateGoogleLayer setColorLayer:]
+-[ACPIndeterminateGoogleLayer frame]
+-[ACPIndeterminateGoogleLayer setFrame:]
+-[ACPIndeterminateGoogleLayer isAnimating]
+-[ACPIndeterminateGoogleLayer setAnimate:]
+-[ACPIndeterminateGoogleLayer .cxx_destruct]
+OBJC_IVAR_$_ACPIndeterminateGoogleLayer._layer
+OBJC_CLASSLIST_REFERENCES_$_.29
+OBJC_CLASSLIST_REFERENCES_$_.36
+OBJC_METH_VAR_NAME_.37
+OBJC_SELECTOR_REFERENCES_.38
+OBJC_SELECTOR_REFERENCES_.40
+OBJC_SELECTOR_REFERENCES_.42
+OBJC_METH_VAR_NAME_.43
+OBJC_SELECTOR_REFERENCES_.44
+.str.49
+_unnamed_cfstring_.50
+.str.53
+_unnamed_cfstring_.54
+OBJC_CLASSLIST_REFERENCES_$_.57
+OBJC_CLASSLIST_REFERENCES_$_.58
+OBJC_SELECTOR_REFERENCES_.66
+OBJC_SELECTOR_REFERENCES_.68
+OBJC_SELECTOR_REFERENCES_.70
+OBJC_SELECTOR_REFERENCES_.72
+OBJC_SELECTOR_REFERENCES_.74
+OBJC_IVAR_$_ACPIndeterminateGoogleLayer._colorLayer
+OBJC_IVAR_$_ACPIndeterminateGoogleLayer._frame
+OBJC_IVAR_$_ACPIndeterminateGoogleLayer._animate
+OBJC_METH_VAR_NAME_.76
+OBJC_METH_VAR_TYPE_.85
+OBJC_CLASS_NAME_.89
+OBJC_METH_VAR_TYPE_.93
+OBJC_METH_VAR_NAME_.94
+OBJC_METH_VAR_NAME_.99
+OBJC_METH_VAR_TYPE_.100
+OBJC_METH_VAR_NAME_.102
+OBJC_METH_VAR_TYPE_.103
+OBJC_METH_VAR_TYPE_.106
+OBJC_METH_VAR_NAME_.113
+OBJC_METH_VAR_TYPE_.114
+OBJC_METH_VAR_NAME_.115
+OBJC_METH_VAR_TYPE_.116
+OBJC_METH_VAR_NAME_.117
+OBJC_METH_VAR_NAME_.118
+OBJC_METH_VAR_NAME_.119
+OBJC_METH_VAR_TYPE_.120
+OBJC_METH_VAR_NAME_.121
+OBJC_CLASS_NAME_.122
+OBJC_PROP_NAME_ATTR_.126
+OBJC_PROP_NAME_ATTR_.127
+OBJC_PROP_NAME_ATTR_.128
+OBJC_PROP_NAME_ATTR_.129
+OBJC_PROP_NAME_ATTR_.130
+OBJC_PROP_NAME_ATTR_.131
+OBJC_PROP_NAME_ATTR_.132
+OBJC_PROP_NAME_ATTR_.133
+OBJC_PROP_NAME_ATTR_.134
+l_OBJC_CLASS_PROTOCOLS_$_ACPIndeterminateGoogleLayer
+l_OBJC_METACLASS_RO_$_ACPIndeterminateGoogleLayer
+OBJC_CLASS_NAME_.135
+OBJC_METH_VAR_NAME_.136
+OBJC_METH_VAR_NAME_.138
+OBJC_METH_VAR_TYPE_.139
+l_OBJC_$_INSTANCE_METHODS_ACPIndeterminateGoogleLayer
+OBJC_METH_VAR_NAME_.140
+OBJC_METH_VAR_TYPE_.141
+OBJC_METH_VAR_NAME_.142
+OBJC_METH_VAR_TYPE_.143
+OBJC_METH_VAR_NAME_.144
+OBJC_METH_VAR_TYPE_.145
+OBJC_METH_VAR_NAME_.146
+OBJC_METH_VAR_TYPE_.147
+l_OBJC_$_INSTANCE_VARIABLES_ACPIndeterminateGoogleLayer
+OBJC_PROP_NAME_ATTR_.152
+l_OBJC_$_PROP_LIST_ACPIndeterminateGoogleLayer
+l_OBJC_CLASS_RO_$_ACPIndeterminateGoogleLayer
+-[ACPIndeterminateGoogleLayer .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPIndeterminateGoogleLayer.m
+-[ACPIndeterminateGoogleLayer setAnimate:]
+-[ACPIndeterminateGoogleLayer isAnimating]
+-[ACPIndeterminateGoogleLayer setFrame:]
+-[ACPIndeterminateGoogleLayer frame]
+-[ACPIndeterminateGoogleLayer setColorLayer:]
+-[ACPIndeterminateGoogleLayer colorLayer]
+-[ACPIndeterminateGoogleLayer setLayer:]
+-[ACPIndeterminateGoogleLayer removeLayer]
+-[ACPIndeterminateGoogleLayer setHidden:]
+-[ACPIndeterminateGoogleLayer updateColor:]
+-[ACPIndeterminateGoogleLayer stopAnimating]
+-[ACPIndeterminateGoogleLayer startAnimating]
+-[ACPIndeterminateGoogleLayer updatePath]
+-[ACPIndeterminateGoogleLayer updateFrame:]
+-[ACPIndeterminateGoogleLayer layer]
+-[ACPDownloadView initWithFrame:]
+-[ACPDownloadView initWithCoder:]
+-[ACPDownloadView initialize]
+-[ACPDownloadView handleSingleTap:]
+-[ACPDownloadView dealloc]
+-[ACPDownloadView layoutSubviews]
+-[ACPDownloadView setIndicatorStatus:]
+-[ACPDownloadView resetAnimations]
+-[ACPDownloadView setProgress:animated:]
+-[ACPDownloadView drawRect:]
+-[ACPDownloadView progressShapelayer]
+-[ACPDownloadView indeterminateLayer]
+-[ACPDownloadView tintColorDidChange]
+-[ACPDownloadView setActionForTap:]
+-[ACPDownloadView setIndeterminateLayer:]
+-[ACPDownloadView setProgressLayer:]
+-[ACPDownloadView initializeIndeterminate]
+-[ACPDownloadView initializeProgress]
+-[ACPDownloadView setImages:]
+-[ACPDownloadView currentStatus]
+-[ACPDownloadView setCurrentStatus:]
+-[ACPDownloadView viewTappedBlock]
+-[ACPDownloadView setViewTappedBlock:]
+-[ACPDownloadView staticImages]
+-[ACPDownloadView setStaticImages:]
+-[ACPDownloadView indeterminateShapelayer]
+-[ACPDownloadView setIndeterminateShapelayer:]
+-[ACPDownloadView setProgressShapelayer:]
+-[ACPDownloadView .cxx_destruct]
+OBJC_CLASSLIST_REFERENCES_$_.13
+OBJC_METH_VAR_NAME_.14
+OBJC_SELECTOR_REFERENCES_.15
+OBJC_METH_VAR_NAME_.16
+OBJC_SELECTOR_REFERENCES_.17
+OBJC_METH_VAR_NAME_.18
+OBJC_SELECTOR_REFERENCES_.19
+OBJC_CLASSLIST_REFERENCES_$_.34
+OBJC_METH_VAR_NAME_.35
+OBJC_SELECTOR_REFERENCES_.36
+OBJC_SELECTOR_REFERENCES_.76
+OBJC_SELECTOR_REFERENCES_.78
+OBJC_IVAR_$_ACPDownloadView._progressShapelayer
+OBJC_CLASSLIST_REFERENCES_$_.79
+OBJC_IVAR_$_ACPDownloadView._indeterminateShapelayer
+OBJC_CLASSLIST_REFERENCES_$_.80
+OBJC_SELECTOR_REFERENCES_.82
+OBJC_SELECTOR_REFERENCES_.84
+OBJC_SELECTOR_REFERENCES_.86
+OBJC_SELECTOR_REFERENCES_.88
+OBJC_IVAR_$_ACPDownloadView._currentStatus
+OBJC_IVAR_$_ACPDownloadView._viewTappedBlock
+OBJC_IVAR_$_ACPDownloadView._staticImages
+l_OBJC_METACLASS_RO_$_ACPDownloadView
+OBJC_METH_VAR_TYPE_.90
+OBJC_METH_VAR_TYPE_.92
+l_OBJC_$_INSTANCE_METHODS_ACPDownloadView
+OBJC_METH_VAR_TYPE_.109
+OBJC_METH_VAR_TYPE_.113
+OBJC_METH_VAR_NAME_.114
+OBJC_METH_VAR_TYPE_.115
+OBJC_METH_VAR_NAME_.116
+l_OBJC_$_INSTANCE_VARIABLES_ACPDownloadView
+l_OBJC_$_PROP_LIST_ACPDownloadView
+l_OBJC_CLASS_RO_$_ACPDownloadView
+-[ACPDownloadView .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadView.m
+-[ACPDownloadView setProgressShapelayer:]
+-[ACPDownloadView setIndeterminateShapelayer:]
+-[ACPDownloadView indeterminateShapelayer]
+-[ACPDownloadView setStaticImages:]
+-[ACPDownloadView staticImages]
+-[ACPDownloadView setViewTappedBlock:]
+-[ACPDownloadView viewTappedBlock]
+-[ACPDownloadView setCurrentStatus:]
+-[ACPDownloadView currentStatus]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadView.h
+-[ACPDownloadView setImages:]
+-[ACPDownloadView initializeProgress]
+-[ACPDownloadView initializeIndeterminate]
+-[ACPDownloadView setProgressLayer:]
+-[ACPDownloadView setIndeterminateLayer:]
+-[ACPDownloadView setActionForTap:]
+-[ACPDownloadView tintColorDidChange]
+-[ACPDownloadView indeterminateLayer]
+-[ACPDownloadView progressShapelayer]
+-[ACPDownloadView drawRect:]
+-[ACPDownloadView setProgress:animated:]
+-[ACPDownloadView resetAnimations]
+-[ACPDownloadView setIndicatorStatus:]
+-[ACPDownloadView layoutSubviews]
+-[ACPDownloadView dealloc]
+-[ACPDownloadView handleSingleTap:]
+-[ACPDownloadView initialize]
+-[ACPDownloadView initWithCoder:]
+-[ACPDownloadView initWithFrame:]
+/Users/lukasz/Library/Developer/Xcode/DerivedData/ACPDownload-hiyxcgixhcwxemfpulmzuudmcplr/Build/Intermediates/ACPDownload.build/Release-iphoneos/ACPDownload iOS.build/DerivedSources/ACPDownload_vers.c

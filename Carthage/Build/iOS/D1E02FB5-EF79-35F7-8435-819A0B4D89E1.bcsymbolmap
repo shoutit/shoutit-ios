@@ -1,0 +1,2303 @@
+BCSymbolMap Version: 1.0
++[AWSCloudWatchAlarmHistoryItem JSONKeyPathsByPropertyKey]
++[AWSCloudWatchAlarmHistoryItem historyItemTypeJSONTransformer]
+__63+[AWSCloudWatchAlarmHistoryItem historyItemTypeJSONTransformer]_block_invoke
+__63+[AWSCloudWatchAlarmHistoryItem historyItemTypeJSONTransformer]_block_invoke_2
++[AWSCloudWatchAlarmHistoryItem timestampJSONTransformer]
+__57+[AWSCloudWatchAlarmHistoryItem timestampJSONTransformer]_block_invoke
+__57+[AWSCloudWatchAlarmHistoryItem timestampJSONTransformer]_block_invoke_2
+-[AWSCloudWatchAlarmHistoryItem alarmName]
+-[AWSCloudWatchAlarmHistoryItem setAlarmName:]
+-[AWSCloudWatchAlarmHistoryItem historyData]
+-[AWSCloudWatchAlarmHistoryItem setHistoryData:]
+-[AWSCloudWatchAlarmHistoryItem historyItemType]
+-[AWSCloudWatchAlarmHistoryItem setHistoryItemType:]
+-[AWSCloudWatchAlarmHistoryItem historySummary]
+-[AWSCloudWatchAlarmHistoryItem setHistorySummary:]
+-[AWSCloudWatchAlarmHistoryItem timestamp]
+-[AWSCloudWatchAlarmHistoryItem setTimestamp:]
+-[AWSCloudWatchAlarmHistoryItem .cxx_destruct]
++[AWSCloudWatchDatapoint JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDatapoint timestampJSONTransformer]
+__50+[AWSCloudWatchDatapoint timestampJSONTransformer]_block_invoke
+__50+[AWSCloudWatchDatapoint timestampJSONTransformer]_block_invoke_2
++[AWSCloudWatchDatapoint unitJSONTransformer]
+__45+[AWSCloudWatchDatapoint unitJSONTransformer]_block_invoke
+__45+[AWSCloudWatchDatapoint unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchDatapoint average]
+-[AWSCloudWatchDatapoint setAverage:]
+-[AWSCloudWatchDatapoint maximum]
+-[AWSCloudWatchDatapoint setMaximum:]
+-[AWSCloudWatchDatapoint minimum]
+-[AWSCloudWatchDatapoint setMinimum:]
+-[AWSCloudWatchDatapoint sampleCount]
+-[AWSCloudWatchDatapoint setSampleCount:]
+-[AWSCloudWatchDatapoint sum]
+-[AWSCloudWatchDatapoint setSum:]
+-[AWSCloudWatchDatapoint timestamp]
+-[AWSCloudWatchDatapoint setTimestamp:]
+-[AWSCloudWatchDatapoint unit]
+-[AWSCloudWatchDatapoint setUnit:]
+-[AWSCloudWatchDatapoint .cxx_destruct]
++[AWSCloudWatchDeleteAlarmsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDeleteAlarmsInput alarmNames]
+-[AWSCloudWatchDeleteAlarmsInput setAlarmNames:]
+-[AWSCloudWatchDeleteAlarmsInput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmHistoryInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmHistoryInput endDateJSONTransformer]
+__64+[AWSCloudWatchDescribeAlarmHistoryInput endDateJSONTransformer]_block_invoke
+__64+[AWSCloudWatchDescribeAlarmHistoryInput endDateJSONTransformer]_block_invoke_2
++[AWSCloudWatchDescribeAlarmHistoryInput historyItemTypeJSONTransformer]
+__72+[AWSCloudWatchDescribeAlarmHistoryInput historyItemTypeJSONTransformer]_block_invoke
+__72+[AWSCloudWatchDescribeAlarmHistoryInput historyItemTypeJSONTransformer]_block_invoke_2
++[AWSCloudWatchDescribeAlarmHistoryInput startDateJSONTransformer]
+__66+[AWSCloudWatchDescribeAlarmHistoryInput startDateJSONTransformer]_block_invoke
+__66+[AWSCloudWatchDescribeAlarmHistoryInput startDateJSONTransformer]_block_invoke_2
+-[AWSCloudWatchDescribeAlarmHistoryInput alarmName]
+-[AWSCloudWatchDescribeAlarmHistoryInput setAlarmName:]
+-[AWSCloudWatchDescribeAlarmHistoryInput endDate]
+-[AWSCloudWatchDescribeAlarmHistoryInput setEndDate:]
+-[AWSCloudWatchDescribeAlarmHistoryInput historyItemType]
+-[AWSCloudWatchDescribeAlarmHistoryInput setHistoryItemType:]
+-[AWSCloudWatchDescribeAlarmHistoryInput maxRecords]
+-[AWSCloudWatchDescribeAlarmHistoryInput setMaxRecords:]
+-[AWSCloudWatchDescribeAlarmHistoryInput nextToken]
+-[AWSCloudWatchDescribeAlarmHistoryInput setNextToken:]
+-[AWSCloudWatchDescribeAlarmHistoryInput startDate]
+-[AWSCloudWatchDescribeAlarmHistoryInput setStartDate:]
+-[AWSCloudWatchDescribeAlarmHistoryInput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmHistoryOutput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmHistoryOutput alarmHistoryItemsJSONTransformer]
+-[AWSCloudWatchDescribeAlarmHistoryOutput alarmHistoryItems]
+-[AWSCloudWatchDescribeAlarmHistoryOutput setAlarmHistoryItems:]
+-[AWSCloudWatchDescribeAlarmHistoryOutput nextToken]
+-[AWSCloudWatchDescribeAlarmHistoryOutput setNextToken:]
+-[AWSCloudWatchDescribeAlarmHistoryOutput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmsForMetricInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmsForMetricInput dimensionsJSONTransformer]
++[AWSCloudWatchDescribeAlarmsForMetricInput statisticJSONTransformer]
+__69+[AWSCloudWatchDescribeAlarmsForMetricInput statisticJSONTransformer]_block_invoke
+__69+[AWSCloudWatchDescribeAlarmsForMetricInput statisticJSONTransformer]_block_invoke_2
++[AWSCloudWatchDescribeAlarmsForMetricInput unitJSONTransformer]
+__64+[AWSCloudWatchDescribeAlarmsForMetricInput unitJSONTransformer]_block_invoke
+__64+[AWSCloudWatchDescribeAlarmsForMetricInput unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchDescribeAlarmsForMetricInput dimensions]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setDimensions:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput metricName]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setMetricName:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput namespace]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setNamespace:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput period]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setPeriod:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput statistic]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setStatistic:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput unit]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setUnit:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmsForMetricOutput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmsForMetricOutput metricAlarmsJSONTransformer]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput metricAlarms]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput setMetricAlarms:]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmsInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmsInput stateValueJSONTransformer]
+__61+[AWSCloudWatchDescribeAlarmsInput stateValueJSONTransformer]_block_invoke
+__61+[AWSCloudWatchDescribeAlarmsInput stateValueJSONTransformer]_block_invoke_2
+-[AWSCloudWatchDescribeAlarmsInput actionPrefix]
+-[AWSCloudWatchDescribeAlarmsInput setActionPrefix:]
+-[AWSCloudWatchDescribeAlarmsInput alarmNamePrefix]
+-[AWSCloudWatchDescribeAlarmsInput setAlarmNamePrefix:]
+-[AWSCloudWatchDescribeAlarmsInput alarmNames]
+-[AWSCloudWatchDescribeAlarmsInput setAlarmNames:]
+-[AWSCloudWatchDescribeAlarmsInput maxRecords]
+-[AWSCloudWatchDescribeAlarmsInput setMaxRecords:]
+-[AWSCloudWatchDescribeAlarmsInput nextToken]
+-[AWSCloudWatchDescribeAlarmsInput setNextToken:]
+-[AWSCloudWatchDescribeAlarmsInput stateValue]
+-[AWSCloudWatchDescribeAlarmsInput setStateValue:]
+-[AWSCloudWatchDescribeAlarmsInput .cxx_destruct]
++[AWSCloudWatchDescribeAlarmsOutput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchDescribeAlarmsOutput metricAlarmsJSONTransformer]
+-[AWSCloudWatchDescribeAlarmsOutput metricAlarms]
+-[AWSCloudWatchDescribeAlarmsOutput setMetricAlarms:]
+-[AWSCloudWatchDescribeAlarmsOutput nextToken]
+-[AWSCloudWatchDescribeAlarmsOutput setNextToken:]
+-[AWSCloudWatchDescribeAlarmsOutput .cxx_destruct]
++[AWSCloudWatchDimension JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDimension name]
+-[AWSCloudWatchDimension setName:]
+-[AWSCloudWatchDimension value]
+-[AWSCloudWatchDimension setValue:]
+-[AWSCloudWatchDimension .cxx_destruct]
++[AWSCloudWatchDimensionFilter JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDimensionFilter name]
+-[AWSCloudWatchDimensionFilter setName:]
+-[AWSCloudWatchDimensionFilter value]
+-[AWSCloudWatchDimensionFilter setValue:]
+-[AWSCloudWatchDimensionFilter .cxx_destruct]
++[AWSCloudWatchDisableAlarmActionsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDisableAlarmActionsInput alarmNames]
+-[AWSCloudWatchDisableAlarmActionsInput setAlarmNames:]
+-[AWSCloudWatchDisableAlarmActionsInput .cxx_destruct]
++[AWSCloudWatchEnableAlarmActionsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchEnableAlarmActionsInput alarmNames]
+-[AWSCloudWatchEnableAlarmActionsInput setAlarmNames:]
+-[AWSCloudWatchEnableAlarmActionsInput .cxx_destruct]
++[AWSCloudWatchGetMetricStatisticsInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchGetMetricStatisticsInput dimensionsJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsInput endTimeJSONTransformer]
+__63+[AWSCloudWatchGetMetricStatisticsInput endTimeJSONTransformer]_block_invoke
+__63+[AWSCloudWatchGetMetricStatisticsInput endTimeJSONTransformer]_block_invoke_2
++[AWSCloudWatchGetMetricStatisticsInput startTimeJSONTransformer]
+__65+[AWSCloudWatchGetMetricStatisticsInput startTimeJSONTransformer]_block_invoke
+__65+[AWSCloudWatchGetMetricStatisticsInput startTimeJSONTransformer]_block_invoke_2
++[AWSCloudWatchGetMetricStatisticsInput unitJSONTransformer]
+__60+[AWSCloudWatchGetMetricStatisticsInput unitJSONTransformer]_block_invoke
+__60+[AWSCloudWatchGetMetricStatisticsInput unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchGetMetricStatisticsInput dimensions]
+-[AWSCloudWatchGetMetricStatisticsInput setDimensions:]
+-[AWSCloudWatchGetMetricStatisticsInput endTime]
+-[AWSCloudWatchGetMetricStatisticsInput setEndTime:]
+-[AWSCloudWatchGetMetricStatisticsInput metricName]
+-[AWSCloudWatchGetMetricStatisticsInput setMetricName:]
+-[AWSCloudWatchGetMetricStatisticsInput namespace]
+-[AWSCloudWatchGetMetricStatisticsInput setNamespace:]
+-[AWSCloudWatchGetMetricStatisticsInput period]
+-[AWSCloudWatchGetMetricStatisticsInput setPeriod:]
+-[AWSCloudWatchGetMetricStatisticsInput startTime]
+-[AWSCloudWatchGetMetricStatisticsInput setStartTime:]
+-[AWSCloudWatchGetMetricStatisticsInput statistics]
+-[AWSCloudWatchGetMetricStatisticsInput setStatistics:]
+-[AWSCloudWatchGetMetricStatisticsInput unit]
+-[AWSCloudWatchGetMetricStatisticsInput setUnit:]
+-[AWSCloudWatchGetMetricStatisticsInput .cxx_destruct]
++[AWSCloudWatchGetMetricStatisticsOutput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchGetMetricStatisticsOutput datapointsJSONTransformer]
+-[AWSCloudWatchGetMetricStatisticsOutput datapoints]
+-[AWSCloudWatchGetMetricStatisticsOutput setDatapoints:]
+-[AWSCloudWatchGetMetricStatisticsOutput label]
+-[AWSCloudWatchGetMetricStatisticsOutput setLabel:]
+-[AWSCloudWatchGetMetricStatisticsOutput .cxx_destruct]
++[AWSCloudWatchListMetricsInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchListMetricsInput dimensionsJSONTransformer]
+-[AWSCloudWatchListMetricsInput dimensions]
+-[AWSCloudWatchListMetricsInput setDimensions:]
+-[AWSCloudWatchListMetricsInput metricName]
+-[AWSCloudWatchListMetricsInput setMetricName:]
+-[AWSCloudWatchListMetricsInput namespace]
+-[AWSCloudWatchListMetricsInput setNamespace:]
+-[AWSCloudWatchListMetricsInput nextToken]
+-[AWSCloudWatchListMetricsInput setNextToken:]
+-[AWSCloudWatchListMetricsInput .cxx_destruct]
++[AWSCloudWatchListMetricsOutput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchListMetricsOutput metricsJSONTransformer]
+-[AWSCloudWatchListMetricsOutput metrics]
+-[AWSCloudWatchListMetricsOutput setMetrics:]
+-[AWSCloudWatchListMetricsOutput nextToken]
+-[AWSCloudWatchListMetricsOutput setNextToken:]
+-[AWSCloudWatchListMetricsOutput .cxx_destruct]
++[AWSCloudWatchMetric JSONKeyPathsByPropertyKey]
++[AWSCloudWatchMetric dimensionsJSONTransformer]
+-[AWSCloudWatchMetric dimensions]
+-[AWSCloudWatchMetric setDimensions:]
+-[AWSCloudWatchMetric metricName]
+-[AWSCloudWatchMetric setMetricName:]
+-[AWSCloudWatchMetric namespace]
+-[AWSCloudWatchMetric setNamespace:]
+-[AWSCloudWatchMetric .cxx_destruct]
++[AWSCloudWatchMetricAlarm JSONKeyPathsByPropertyKey]
++[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestampJSONTransformer]
+__77+[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestampJSONTransformer]_block_invoke
+__77+[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestampJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricAlarm comparisonOperatorJSONTransformer]
+__61+[AWSCloudWatchMetricAlarm comparisonOperatorJSONTransformer]_block_invoke
+__61+[AWSCloudWatchMetricAlarm comparisonOperatorJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricAlarm dimensionsJSONTransformer]
++[AWSCloudWatchMetricAlarm stateUpdatedTimestampJSONTransformer]
+__64+[AWSCloudWatchMetricAlarm stateUpdatedTimestampJSONTransformer]_block_invoke
+__64+[AWSCloudWatchMetricAlarm stateUpdatedTimestampJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricAlarm stateValueJSONTransformer]
+__53+[AWSCloudWatchMetricAlarm stateValueJSONTransformer]_block_invoke
+__53+[AWSCloudWatchMetricAlarm stateValueJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricAlarm statisticJSONTransformer]
+__52+[AWSCloudWatchMetricAlarm statisticJSONTransformer]_block_invoke
+__52+[AWSCloudWatchMetricAlarm statisticJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricAlarm unitJSONTransformer]
+__47+[AWSCloudWatchMetricAlarm unitJSONTransformer]_block_invoke
+__47+[AWSCloudWatchMetricAlarm unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchMetricAlarm actionsEnabled]
+-[AWSCloudWatchMetricAlarm setActionsEnabled:]
+-[AWSCloudWatchMetricAlarm alarmActions]
+-[AWSCloudWatchMetricAlarm setAlarmActions:]
+-[AWSCloudWatchMetricAlarm alarmArn]
+-[AWSCloudWatchMetricAlarm setAlarmArn:]
+-[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestamp]
+-[AWSCloudWatchMetricAlarm setAlarmConfigurationUpdatedTimestamp:]
+-[AWSCloudWatchMetricAlarm alarmDescription]
+-[AWSCloudWatchMetricAlarm setAlarmDescription:]
+-[AWSCloudWatchMetricAlarm alarmName]
+-[AWSCloudWatchMetricAlarm setAlarmName:]
+-[AWSCloudWatchMetricAlarm comparisonOperator]
+-[AWSCloudWatchMetricAlarm setComparisonOperator:]
+-[AWSCloudWatchMetricAlarm dimensions]
+-[AWSCloudWatchMetricAlarm setDimensions:]
+-[AWSCloudWatchMetricAlarm evaluationPeriods]
+-[AWSCloudWatchMetricAlarm setEvaluationPeriods:]
+-[AWSCloudWatchMetricAlarm insufficientDataActions]
+-[AWSCloudWatchMetricAlarm setInsufficientDataActions:]
+-[AWSCloudWatchMetricAlarm metricName]
+-[AWSCloudWatchMetricAlarm setMetricName:]
+-[AWSCloudWatchMetricAlarm namespace]
+-[AWSCloudWatchMetricAlarm setNamespace:]
+-[AWSCloudWatchMetricAlarm OKActions]
+-[AWSCloudWatchMetricAlarm setOKActions:]
+-[AWSCloudWatchMetricAlarm period]
+-[AWSCloudWatchMetricAlarm setPeriod:]
+-[AWSCloudWatchMetricAlarm stateReason]
+-[AWSCloudWatchMetricAlarm setStateReason:]
+-[AWSCloudWatchMetricAlarm stateReasonData]
+-[AWSCloudWatchMetricAlarm setStateReasonData:]
+-[AWSCloudWatchMetricAlarm stateUpdatedTimestamp]
+-[AWSCloudWatchMetricAlarm setStateUpdatedTimestamp:]
+-[AWSCloudWatchMetricAlarm stateValue]
+-[AWSCloudWatchMetricAlarm setStateValue:]
+-[AWSCloudWatchMetricAlarm statistic]
+-[AWSCloudWatchMetricAlarm setStatistic:]
+-[AWSCloudWatchMetricAlarm threshold]
+-[AWSCloudWatchMetricAlarm setThreshold:]
+-[AWSCloudWatchMetricAlarm unit]
+-[AWSCloudWatchMetricAlarm setUnit:]
+-[AWSCloudWatchMetricAlarm .cxx_destruct]
++[AWSCloudWatchMetricDatum JSONKeyPathsByPropertyKey]
++[AWSCloudWatchMetricDatum dimensionsJSONTransformer]
++[AWSCloudWatchMetricDatum statisticValuesJSONTransformer]
++[AWSCloudWatchMetricDatum timestampJSONTransformer]
+__52+[AWSCloudWatchMetricDatum timestampJSONTransformer]_block_invoke
+__52+[AWSCloudWatchMetricDatum timestampJSONTransformer]_block_invoke_2
++[AWSCloudWatchMetricDatum unitJSONTransformer]
+__47+[AWSCloudWatchMetricDatum unitJSONTransformer]_block_invoke
+__47+[AWSCloudWatchMetricDatum unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchMetricDatum dimensions]
+-[AWSCloudWatchMetricDatum setDimensions:]
+-[AWSCloudWatchMetricDatum metricName]
+-[AWSCloudWatchMetricDatum setMetricName:]
+-[AWSCloudWatchMetricDatum statisticValues]
+-[AWSCloudWatchMetricDatum setStatisticValues:]
+-[AWSCloudWatchMetricDatum timestamp]
+-[AWSCloudWatchMetricDatum setTimestamp:]
+-[AWSCloudWatchMetricDatum unit]
+-[AWSCloudWatchMetricDatum setUnit:]
+-[AWSCloudWatchMetricDatum value]
+-[AWSCloudWatchMetricDatum setValue:]
+-[AWSCloudWatchMetricDatum .cxx_destruct]
++[AWSCloudWatchPutMetricAlarmInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchPutMetricAlarmInput comparisonOperatorJSONTransformer]
+__69+[AWSCloudWatchPutMetricAlarmInput comparisonOperatorJSONTransformer]_block_invoke
+__69+[AWSCloudWatchPutMetricAlarmInput comparisonOperatorJSONTransformer]_block_invoke_2
++[AWSCloudWatchPutMetricAlarmInput dimensionsJSONTransformer]
++[AWSCloudWatchPutMetricAlarmInput statisticJSONTransformer]
+__60+[AWSCloudWatchPutMetricAlarmInput statisticJSONTransformer]_block_invoke
+__60+[AWSCloudWatchPutMetricAlarmInput statisticJSONTransformer]_block_invoke_2
++[AWSCloudWatchPutMetricAlarmInput unitJSONTransformer]
+__55+[AWSCloudWatchPutMetricAlarmInput unitJSONTransformer]_block_invoke
+__55+[AWSCloudWatchPutMetricAlarmInput unitJSONTransformer]_block_invoke_2
+-[AWSCloudWatchPutMetricAlarmInput actionsEnabled]
+-[AWSCloudWatchPutMetricAlarmInput setActionsEnabled:]
+-[AWSCloudWatchPutMetricAlarmInput alarmActions]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmActions:]
+-[AWSCloudWatchPutMetricAlarmInput alarmDescription]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmDescription:]
+-[AWSCloudWatchPutMetricAlarmInput alarmName]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmName:]
+-[AWSCloudWatchPutMetricAlarmInput comparisonOperator]
+-[AWSCloudWatchPutMetricAlarmInput setComparisonOperator:]
+-[AWSCloudWatchPutMetricAlarmInput dimensions]
+-[AWSCloudWatchPutMetricAlarmInput setDimensions:]
+-[AWSCloudWatchPutMetricAlarmInput evaluationPeriods]
+-[AWSCloudWatchPutMetricAlarmInput setEvaluationPeriods:]
+-[AWSCloudWatchPutMetricAlarmInput insufficientDataActions]
+-[AWSCloudWatchPutMetricAlarmInput setInsufficientDataActions:]
+-[AWSCloudWatchPutMetricAlarmInput metricName]
+-[AWSCloudWatchPutMetricAlarmInput setMetricName:]
+-[AWSCloudWatchPutMetricAlarmInput namespace]
+-[AWSCloudWatchPutMetricAlarmInput setNamespace:]
+-[AWSCloudWatchPutMetricAlarmInput OKActions]
+-[AWSCloudWatchPutMetricAlarmInput setOKActions:]
+-[AWSCloudWatchPutMetricAlarmInput period]
+-[AWSCloudWatchPutMetricAlarmInput setPeriod:]
+-[AWSCloudWatchPutMetricAlarmInput statistic]
+-[AWSCloudWatchPutMetricAlarmInput setStatistic:]
+-[AWSCloudWatchPutMetricAlarmInput threshold]
+-[AWSCloudWatchPutMetricAlarmInput setThreshold:]
+-[AWSCloudWatchPutMetricAlarmInput unit]
+-[AWSCloudWatchPutMetricAlarmInput setUnit:]
+-[AWSCloudWatchPutMetricAlarmInput .cxx_destruct]
++[AWSCloudWatchPutMetricDataInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchPutMetricDataInput metricDataJSONTransformer]
+-[AWSCloudWatchPutMetricDataInput metricData]
+-[AWSCloudWatchPutMetricDataInput setMetricData:]
+-[AWSCloudWatchPutMetricDataInput namespace]
+-[AWSCloudWatchPutMetricDataInput setNamespace:]
+-[AWSCloudWatchPutMetricDataInput .cxx_destruct]
++[AWSCloudWatchSetAlarmStateInput JSONKeyPathsByPropertyKey]
++[AWSCloudWatchSetAlarmStateInput stateValueJSONTransformer]
+__60+[AWSCloudWatchSetAlarmStateInput stateValueJSONTransformer]_block_invoke
+__60+[AWSCloudWatchSetAlarmStateInput stateValueJSONTransformer]_block_invoke_2
+-[AWSCloudWatchSetAlarmStateInput alarmName]
+-[AWSCloudWatchSetAlarmStateInput setAlarmName:]
+-[AWSCloudWatchSetAlarmStateInput stateReason]
+-[AWSCloudWatchSetAlarmStateInput setStateReason:]
+-[AWSCloudWatchSetAlarmStateInput stateReasonData]
+-[AWSCloudWatchSetAlarmStateInput setStateReasonData:]
+-[AWSCloudWatchSetAlarmStateInput stateValue]
+-[AWSCloudWatchSetAlarmStateInput setStateValue:]
+-[AWSCloudWatchSetAlarmStateInput .cxx_destruct]
++[AWSCloudWatchStatisticSet JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchStatisticSet maximum]
+-[AWSCloudWatchStatisticSet setMaximum:]
+-[AWSCloudWatchStatisticSet minimum]
+-[AWSCloudWatchStatisticSet setMinimum:]
+-[AWSCloudWatchStatisticSet sampleCount]
+-[AWSCloudWatchStatisticSet setSampleCount:]
+-[AWSCloudWatchStatisticSet sum]
+-[AWSCloudWatchStatisticSet setSum:]
+-[AWSCloudWatchStatisticSet .cxx_destruct]
+.str
+_unnamed_cfstring_
+.str.1
+_unnamed_cfstring_.2
+.str.3
+_unnamed_cfstring_.4
+.str.5
+_unnamed_cfstring_.6
+.str.7
+_unnamed_cfstring_.8
+.str.9
+_unnamed_cfstring_.10
+.str.11
+_unnamed_cfstring_.12
+.str.13
+_unnamed_cfstring_.14
+.str.15
+_unnamed_cfstring_.16
+.str.17
+_unnamed_cfstring_.18
+.str.19
+_unnamed_cfstring_.20
+OBJC_CLASSLIST_REFERENCES_$_
+OBJC_METH_VAR_NAME_
+OBJC_SELECTOR_REFERENCES_
+OBJC_CLASSLIST_REFERENCES_$_.21
+.str.22
+_unnamed_cfstring_.23
+OBJC_METH_VAR_NAME_.24
+OBJC_SELECTOR_REFERENCES_.25
+OBJC_CLASSLIST_REFERENCES_$_.26
+OBJC_METH_VAR_NAME_.27
+OBJC_SELECTOR_REFERENCES_.28
+.str.29
+_unnamed_cfstring_.30
+.str.31
+_unnamed_cfstring_.32
+.str.33
+__block_descriptor_tmp
+__block_literal_global
+OBJC_METH_VAR_NAME_.34
+OBJC_SELECTOR_REFERENCES_.35
+.str.36
+__block_descriptor_tmp.37
+__block_literal_global.38
+OBJC_METH_VAR_NAME_.39
+OBJC_SELECTOR_REFERENCES_.40
+OBJC_CLASSLIST_REFERENCES_$_.41
+OBJC_METH_VAR_NAME_.42
+OBJC_SELECTOR_REFERENCES_.43
+.str.44
+__block_descriptor_tmp.45
+__block_literal_global.46
+OBJC_METH_VAR_NAME_.47
+OBJC_SELECTOR_REFERENCES_.48
+.str.49
+__block_descriptor_tmp.50
+__block_literal_global.51
+OBJC_IVAR_$_AWSCloudWatchAlarmHistoryItem._alarmName
+OBJC_IVAR_$_AWSCloudWatchAlarmHistoryItem._historyData
+OBJC_IVAR_$_AWSCloudWatchAlarmHistoryItem._historyItemType
+OBJC_IVAR_$_AWSCloudWatchAlarmHistoryItem._historySummary
+OBJC_IVAR_$_AWSCloudWatchAlarmHistoryItem._timestamp
+OBJC_CLASS_NAME_
+OBJC_METH_VAR_NAME_.52
+OBJC_METH_VAR_TYPE_
+OBJC_METH_VAR_NAME_.53
+OBJC_METH_VAR_NAME_.54
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchAlarmHistoryItem
+l_OBJC_METACLASS_RO_$_AWSCloudWatchAlarmHistoryItem
+OBJC_CLASS_NAME_.55
+OBJC_METH_VAR_NAME_.56
+OBJC_METH_VAR_TYPE_.57
+OBJC_METH_VAR_NAME_.58
+OBJC_METH_VAR_NAME_.59
+OBJC_METH_VAR_TYPE_.60
+OBJC_METH_VAR_NAME_.61
+OBJC_METH_VAR_NAME_.62
+OBJC_METH_VAR_NAME_.63
+OBJC_METH_VAR_TYPE_.64
+OBJC_METH_VAR_NAME_.65
+OBJC_METH_VAR_TYPE_.66
+OBJC_METH_VAR_NAME_.67
+OBJC_METH_VAR_NAME_.68
+OBJC_METH_VAR_NAME_.69
+OBJC_METH_VAR_NAME_.70
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchAlarmHistoryItem
+OBJC_METH_VAR_NAME_.71
+OBJC_METH_VAR_TYPE_.72
+OBJC_METH_VAR_NAME_.73
+OBJC_METH_VAR_NAME_.74
+OBJC_METH_VAR_TYPE_.75
+OBJC_METH_VAR_NAME_.76
+OBJC_METH_VAR_NAME_.77
+OBJC_METH_VAR_TYPE_.78
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchAlarmHistoryItem
+OBJC_PROP_NAME_ATTR_
+OBJC_PROP_NAME_ATTR_.79
+OBJC_PROP_NAME_ATTR_.80
+OBJC_PROP_NAME_ATTR_.81
+OBJC_PROP_NAME_ATTR_.82
+OBJC_PROP_NAME_ATTR_.83
+OBJC_PROP_NAME_ATTR_.84
+OBJC_PROP_NAME_ATTR_.85
+OBJC_PROP_NAME_ATTR_.86
+OBJC_PROP_NAME_ATTR_.87
+l_OBJC_$_PROP_LIST_AWSCloudWatchAlarmHistoryItem
+l_OBJC_CLASS_RO_$_AWSCloudWatchAlarmHistoryItem
+.str.88
+_unnamed_cfstring_.89
+.str.90
+_unnamed_cfstring_.91
+.str.92
+_unnamed_cfstring_.93
+.str.94
+_unnamed_cfstring_.95
+.str.96
+_unnamed_cfstring_.97
+.str.98
+_unnamed_cfstring_.99
+.str.100
+_unnamed_cfstring_.101
+.str.102
+_unnamed_cfstring_.103
+.str.104
+_unnamed_cfstring_.105
+.str.106
+_unnamed_cfstring_.107
+.str.108
+_unnamed_cfstring_.109
+.str.110
+_unnamed_cfstring_.111
+__block_descriptor_tmp.112
+__block_literal_global.113
+__block_descriptor_tmp.114
+__block_literal_global.115
+.str.116
+_unnamed_cfstring_.117
+.str.118
+_unnamed_cfstring_.119
+.str.120
+_unnamed_cfstring_.121
+.str.122
+_unnamed_cfstring_.123
+.str.124
+_unnamed_cfstring_.125
+.str.126
+_unnamed_cfstring_.127
+.str.128
+_unnamed_cfstring_.129
+.str.130
+_unnamed_cfstring_.131
+.str.132
+_unnamed_cfstring_.133
+.str.134
+_unnamed_cfstring_.135
+.str.136
+_unnamed_cfstring_.137
+.str.138
+_unnamed_cfstring_.139
+.str.140
+_unnamed_cfstring_.141
+.str.142
+_unnamed_cfstring_.143
+.str.144
+_unnamed_cfstring_.145
+.str.146
+_unnamed_cfstring_.147
+.str.148
+_unnamed_cfstring_.149
+.str.150
+_unnamed_cfstring_.151
+.str.152
+_unnamed_cfstring_.153
+.str.154
+_unnamed_cfstring_.155
+.str.156
+_unnamed_cfstring_.157
+.str.158
+_unnamed_cfstring_.159
+.str.160
+_unnamed_cfstring_.161
+.str.162
+_unnamed_cfstring_.163
+.str.164
+_unnamed_cfstring_.165
+.str.166
+_unnamed_cfstring_.167
+.str.168
+_unnamed_cfstring_.169
+__block_descriptor_tmp.170
+__block_literal_global.171
+__block_descriptor_tmp.172
+__block_literal_global.173
+OBJC_IVAR_$_AWSCloudWatchDatapoint._average
+OBJC_IVAR_$_AWSCloudWatchDatapoint._maximum
+OBJC_IVAR_$_AWSCloudWatchDatapoint._minimum
+OBJC_IVAR_$_AWSCloudWatchDatapoint._sampleCount
+OBJC_IVAR_$_AWSCloudWatchDatapoint._sum
+OBJC_IVAR_$_AWSCloudWatchDatapoint._timestamp
+OBJC_IVAR_$_AWSCloudWatchDatapoint._unit
+OBJC_CLASS_NAME_.174
+OBJC_METH_VAR_NAME_.175
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDatapoint
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDatapoint
+OBJC_CLASS_NAME_.176
+OBJC_METH_VAR_NAME_.177
+OBJC_METH_VAR_NAME_.178
+OBJC_METH_VAR_NAME_.179
+OBJC_METH_VAR_NAME_.180
+OBJC_METH_VAR_NAME_.181
+OBJC_METH_VAR_NAME_.182
+OBJC_METH_VAR_NAME_.183
+OBJC_METH_VAR_NAME_.184
+OBJC_METH_VAR_NAME_.185
+OBJC_METH_VAR_NAME_.186
+OBJC_METH_VAR_NAME_.187
+OBJC_METH_VAR_NAME_.188
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDatapoint
+OBJC_METH_VAR_NAME_.189
+OBJC_METH_VAR_TYPE_.190
+OBJC_METH_VAR_NAME_.191
+OBJC_METH_VAR_NAME_.192
+OBJC_METH_VAR_NAME_.193
+OBJC_METH_VAR_NAME_.194
+OBJC_METH_VAR_NAME_.195
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDatapoint
+OBJC_PROP_NAME_ATTR_.196
+OBJC_PROP_NAME_ATTR_.197
+OBJC_PROP_NAME_ATTR_.198
+OBJC_PROP_NAME_ATTR_.199
+OBJC_PROP_NAME_ATTR_.200
+OBJC_PROP_NAME_ATTR_.201
+OBJC_PROP_NAME_ATTR_.202
+OBJC_PROP_NAME_ATTR_.203
+OBJC_PROP_NAME_ATTR_.204
+OBJC_PROP_NAME_ATTR_.205
+OBJC_PROP_NAME_ATTR_.206
+OBJC_PROP_NAME_ATTR_.207
+l_OBJC_$_PROP_LIST_AWSCloudWatchDatapoint
+l_OBJC_CLASS_RO_$_AWSCloudWatchDatapoint
+.str.208
+_unnamed_cfstring_.209
+.str.210
+_unnamed_cfstring_.211
+OBJC_IVAR_$_AWSCloudWatchDeleteAlarmsInput._alarmNames
+OBJC_CLASS_NAME_.212
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDeleteAlarmsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDeleteAlarmsInput
+OBJC_CLASS_NAME_.213
+OBJC_METH_VAR_NAME_.214
+OBJC_METH_VAR_NAME_.215
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDeleteAlarmsInput
+OBJC_METH_VAR_NAME_.216
+OBJC_METH_VAR_TYPE_.217
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDeleteAlarmsInput
+OBJC_PROP_NAME_ATTR_.218
+OBJC_PROP_NAME_ATTR_.219
+l_OBJC_$_PROP_LIST_AWSCloudWatchDeleteAlarmsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDeleteAlarmsInput
+.str.220
+_unnamed_cfstring_.221
+.str.222
+_unnamed_cfstring_.223
+.str.224
+_unnamed_cfstring_.225
+.str.226
+_unnamed_cfstring_.227
+.str.228
+_unnamed_cfstring_.229
+.str.230
+_unnamed_cfstring_.231
+.str.232
+_unnamed_cfstring_.233
+.str.234
+_unnamed_cfstring_.235
+__block_descriptor_tmp.236
+__block_literal_global.237
+__block_descriptor_tmp.238
+__block_literal_global.239
+__block_descriptor_tmp.240
+__block_literal_global.241
+__block_descriptor_tmp.242
+__block_literal_global.243
+__block_descriptor_tmp.244
+__block_literal_global.245
+__block_descriptor_tmp.246
+__block_literal_global.247
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._alarmName
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._endDate
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._historyItemType
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._maxRecords
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._nextToken
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryInput._startDate
+OBJC_CLASS_NAME_.248
+OBJC_METH_VAR_NAME_.249
+OBJC_METH_VAR_NAME_.250
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmHistoryInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmHistoryInput
+OBJC_CLASS_NAME_.251
+OBJC_METH_VAR_NAME_.252
+OBJC_METH_VAR_NAME_.253
+OBJC_METH_VAR_NAME_.254
+OBJC_METH_VAR_NAME_.255
+OBJC_METH_VAR_NAME_.256
+OBJC_METH_VAR_NAME_.257
+OBJC_METH_VAR_NAME_.258
+OBJC_METH_VAR_NAME_.259
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmHistoryInput
+OBJC_METH_VAR_NAME_.260
+OBJC_METH_VAR_NAME_.261
+OBJC_METH_VAR_NAME_.262
+OBJC_METH_VAR_NAME_.263
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmHistoryInput
+OBJC_PROP_NAME_ATTR_.264
+OBJC_PROP_NAME_ATTR_.265
+OBJC_PROP_NAME_ATTR_.266
+OBJC_PROP_NAME_ATTR_.267
+OBJC_PROP_NAME_ATTR_.268
+OBJC_PROP_NAME_ATTR_.269
+OBJC_PROP_NAME_ATTR_.270
+OBJC_PROP_NAME_ATTR_.271
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmHistoryInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmHistoryInput
+.str.272
+_unnamed_cfstring_.273
+.str.274
+_unnamed_cfstring_.275
+OBJC_CLASSLIST_REFERENCES_$_.276
+OBJC_CLASSLIST_REFERENCES_$_.277
+OBJC_METH_VAR_NAME_.278
+OBJC_SELECTOR_REFERENCES_.279
+OBJC_METH_VAR_NAME_.280
+OBJC_SELECTOR_REFERENCES_.281
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryOutput._alarmHistoryItems
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmHistoryOutput._nextToken
+OBJC_CLASS_NAME_.282
+OBJC_METH_VAR_NAME_.283
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmHistoryOutput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmHistoryOutput
+OBJC_CLASS_NAME_.284
+OBJC_METH_VAR_NAME_.285
+OBJC_METH_VAR_NAME_.286
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmHistoryOutput
+OBJC_METH_VAR_NAME_.287
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmHistoryOutput
+OBJC_PROP_NAME_ATTR_.288
+OBJC_PROP_NAME_ATTR_.289
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmHistoryOutput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmHistoryOutput
+.str.290
+_unnamed_cfstring_.291
+.str.292
+_unnamed_cfstring_.293
+.str.294
+_unnamed_cfstring_.295
+.str.296
+_unnamed_cfstring_.297
+.str.298
+_unnamed_cfstring_.299
+.str.300
+_unnamed_cfstring_.301
+.str.302
+_unnamed_cfstring_.303
+.str.304
+_unnamed_cfstring_.305
+.str.306
+_unnamed_cfstring_.307
+.str.308
+_unnamed_cfstring_.309
+OBJC_CLASSLIST_REFERENCES_$_.310
+__block_descriptor_tmp.311
+__block_literal_global.312
+__block_descriptor_tmp.313
+__block_literal_global.314
+__block_descriptor_tmp.315
+__block_literal_global.316
+__block_descriptor_tmp.317
+__block_literal_global.318
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._dimensions
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._metricName
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._namespace
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._period
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._statistic
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricInput._unit
+OBJC_CLASS_NAME_.319
+OBJC_METH_VAR_NAME_.320
+OBJC_METH_VAR_NAME_.321
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmsForMetricInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmsForMetricInput
+OBJC_CLASS_NAME_.322
+OBJC_METH_VAR_NAME_.323
+OBJC_METH_VAR_NAME_.324
+OBJC_METH_VAR_NAME_.325
+OBJC_METH_VAR_NAME_.326
+OBJC_METH_VAR_NAME_.327
+OBJC_METH_VAR_NAME_.328
+OBJC_METH_VAR_NAME_.329
+OBJC_METH_VAR_NAME_.330
+OBJC_METH_VAR_NAME_.331
+OBJC_METH_VAR_NAME_.332
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmsForMetricInput
+OBJC_METH_VAR_NAME_.333
+OBJC_METH_VAR_NAME_.334
+OBJC_METH_VAR_NAME_.335
+OBJC_METH_VAR_NAME_.336
+OBJC_METH_VAR_NAME_.337
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmsForMetricInput
+OBJC_PROP_NAME_ATTR_.338
+OBJC_PROP_NAME_ATTR_.339
+OBJC_PROP_NAME_ATTR_.340
+OBJC_PROP_NAME_ATTR_.341
+OBJC_PROP_NAME_ATTR_.342
+OBJC_PROP_NAME_ATTR_.343
+OBJC_PROP_NAME_ATTR_.344
+OBJC_PROP_NAME_ATTR_.345
+OBJC_PROP_NAME_ATTR_.346
+OBJC_PROP_NAME_ATTR_.347
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmsForMetricInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmsForMetricInput
+.str.348
+_unnamed_cfstring_.349
+.str.350
+_unnamed_cfstring_.351
+OBJC_CLASSLIST_REFERENCES_$_.352
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsForMetricOutput._metricAlarms
+OBJC_CLASS_NAME_.353
+OBJC_METH_VAR_NAME_.354
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmsForMetricOutput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmsForMetricOutput
+OBJC_CLASS_NAME_.355
+OBJC_METH_VAR_NAME_.356
+OBJC_METH_VAR_NAME_.357
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmsForMetricOutput
+OBJC_METH_VAR_NAME_.358
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmsForMetricOutput
+OBJC_PROP_NAME_ATTR_.359
+OBJC_PROP_NAME_ATTR_.360
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmsForMetricOutput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmsForMetricOutput
+.str.361
+_unnamed_cfstring_.362
+.str.363
+_unnamed_cfstring_.364
+.str.365
+_unnamed_cfstring_.366
+.str.367
+_unnamed_cfstring_.368
+.str.369
+_unnamed_cfstring_.370
+.str.371
+_unnamed_cfstring_.372
+.str.373
+_unnamed_cfstring_.374
+.str.375
+_unnamed_cfstring_.376
+.str.377
+_unnamed_cfstring_.378
+__block_descriptor_tmp.379
+__block_literal_global.380
+__block_descriptor_tmp.381
+__block_literal_global.382
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._actionPrefix
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._alarmNamePrefix
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._alarmNames
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._maxRecords
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._nextToken
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsInput._stateValue
+OBJC_CLASS_NAME_.383
+OBJC_METH_VAR_NAME_.384
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmsInput
+OBJC_CLASS_NAME_.385
+OBJC_METH_VAR_NAME_.386
+OBJC_METH_VAR_NAME_.387
+OBJC_METH_VAR_NAME_.388
+OBJC_METH_VAR_NAME_.389
+OBJC_METH_VAR_NAME_.390
+OBJC_METH_VAR_NAME_.391
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmsInput
+OBJC_METH_VAR_NAME_.392
+OBJC_METH_VAR_NAME_.393
+OBJC_METH_VAR_NAME_.394
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmsInput
+OBJC_PROP_NAME_ATTR_.395
+OBJC_PROP_NAME_ATTR_.396
+OBJC_PROP_NAME_ATTR_.397
+OBJC_PROP_NAME_ATTR_.398
+OBJC_PROP_NAME_ATTR_.399
+OBJC_PROP_NAME_ATTR_.400
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmsInput
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsOutput._metricAlarms
+OBJC_IVAR_$_AWSCloudWatchDescribeAlarmsOutput._nextToken
+OBJC_CLASS_NAME_.401
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDescribeAlarmsOutput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDescribeAlarmsOutput
+OBJC_CLASS_NAME_.402
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDescribeAlarmsOutput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDescribeAlarmsOutput
+l_OBJC_$_PROP_LIST_AWSCloudWatchDescribeAlarmsOutput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDescribeAlarmsOutput
+.str.403
+_unnamed_cfstring_.404
+.str.405
+_unnamed_cfstring_.406
+.str.407
+_unnamed_cfstring_.408
+.str.409
+_unnamed_cfstring_.410
+OBJC_IVAR_$_AWSCloudWatchDimension._name
+OBJC_IVAR_$_AWSCloudWatchDimension._value
+OBJC_CLASS_NAME_.411
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDimension
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDimension
+OBJC_CLASS_NAME_.412
+OBJC_METH_VAR_NAME_.413
+OBJC_METH_VAR_NAME_.414
+OBJC_METH_VAR_NAME_.415
+OBJC_METH_VAR_NAME_.416
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDimension
+OBJC_METH_VAR_NAME_.417
+OBJC_METH_VAR_NAME_.418
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDimension
+OBJC_PROP_NAME_ATTR_.419
+OBJC_PROP_NAME_ATTR_.420
+OBJC_PROP_NAME_ATTR_.421
+OBJC_PROP_NAME_ATTR_.422
+l_OBJC_$_PROP_LIST_AWSCloudWatchDimension
+l_OBJC_CLASS_RO_$_AWSCloudWatchDimension
+OBJC_IVAR_$_AWSCloudWatchDimensionFilter._name
+OBJC_IVAR_$_AWSCloudWatchDimensionFilter._value
+OBJC_CLASS_NAME_.423
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDimensionFilter
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDimensionFilter
+OBJC_CLASS_NAME_.424
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDimensionFilter
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDimensionFilter
+l_OBJC_$_PROP_LIST_AWSCloudWatchDimensionFilter
+l_OBJC_CLASS_RO_$_AWSCloudWatchDimensionFilter
+OBJC_IVAR_$_AWSCloudWatchDisableAlarmActionsInput._alarmNames
+OBJC_CLASS_NAME_.425
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchDisableAlarmActionsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchDisableAlarmActionsInput
+OBJC_CLASS_NAME_.426
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchDisableAlarmActionsInput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchDisableAlarmActionsInput
+l_OBJC_$_PROP_LIST_AWSCloudWatchDisableAlarmActionsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchDisableAlarmActionsInput
+OBJC_IVAR_$_AWSCloudWatchEnableAlarmActionsInput._alarmNames
+OBJC_CLASS_NAME_.427
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchEnableAlarmActionsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchEnableAlarmActionsInput
+OBJC_CLASS_NAME_.428
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchEnableAlarmActionsInput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchEnableAlarmActionsInput
+l_OBJC_$_PROP_LIST_AWSCloudWatchEnableAlarmActionsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchEnableAlarmActionsInput
+.str.429
+_unnamed_cfstring_.430
+.str.431
+_unnamed_cfstring_.432
+.str.433
+_unnamed_cfstring_.434
+.str.435
+_unnamed_cfstring_.436
+.str.437
+_unnamed_cfstring_.438
+.str.439
+_unnamed_cfstring_.440
+__block_descriptor_tmp.441
+__block_literal_global.442
+__block_descriptor_tmp.443
+__block_literal_global.444
+__block_descriptor_tmp.445
+__block_literal_global.446
+__block_descriptor_tmp.447
+__block_literal_global.448
+__block_descriptor_tmp.449
+__block_literal_global.450
+__block_descriptor_tmp.451
+__block_literal_global.452
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._dimensions
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._endTime
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._metricName
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._namespace
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._period
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._startTime
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._statistics
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsInput._unit
+OBJC_CLASS_NAME_.453
+OBJC_METH_VAR_NAME_.454
+OBJC_METH_VAR_NAME_.455
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchGetMetricStatisticsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchGetMetricStatisticsInput
+OBJC_CLASS_NAME_.456
+OBJC_METH_VAR_NAME_.457
+OBJC_METH_VAR_NAME_.458
+OBJC_METH_VAR_NAME_.459
+OBJC_METH_VAR_NAME_.460
+OBJC_METH_VAR_NAME_.461
+OBJC_METH_VAR_NAME_.462
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchGetMetricStatisticsInput
+OBJC_METH_VAR_NAME_.463
+OBJC_METH_VAR_NAME_.464
+OBJC_METH_VAR_NAME_.465
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchGetMetricStatisticsInput
+OBJC_PROP_NAME_ATTR_.466
+OBJC_PROP_NAME_ATTR_.467
+OBJC_PROP_NAME_ATTR_.468
+OBJC_PROP_NAME_ATTR_.469
+OBJC_PROP_NAME_ATTR_.470
+OBJC_PROP_NAME_ATTR_.471
+l_OBJC_$_PROP_LIST_AWSCloudWatchGetMetricStatisticsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchGetMetricStatisticsInput
+.str.472
+_unnamed_cfstring_.473
+.str.474
+_unnamed_cfstring_.475
+.str.476
+_unnamed_cfstring_.477
+.str.478
+_unnamed_cfstring_.479
+OBJC_CLASSLIST_REFERENCES_$_.480
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsOutput._datapoints
+OBJC_IVAR_$_AWSCloudWatchGetMetricStatisticsOutput._label
+OBJC_CLASS_NAME_.481
+OBJC_METH_VAR_NAME_.482
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchGetMetricStatisticsOutput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchGetMetricStatisticsOutput
+OBJC_CLASS_NAME_.483
+OBJC_METH_VAR_NAME_.484
+OBJC_METH_VAR_NAME_.485
+OBJC_METH_VAR_NAME_.486
+OBJC_METH_VAR_NAME_.487
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchGetMetricStatisticsOutput
+OBJC_METH_VAR_NAME_.488
+OBJC_METH_VAR_NAME_.489
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchGetMetricStatisticsOutput
+OBJC_PROP_NAME_ATTR_.490
+OBJC_PROP_NAME_ATTR_.491
+OBJC_PROP_NAME_ATTR_.492
+OBJC_PROP_NAME_ATTR_.493
+l_OBJC_$_PROP_LIST_AWSCloudWatchGetMetricStatisticsOutput
+l_OBJC_CLASS_RO_$_AWSCloudWatchGetMetricStatisticsOutput
+OBJC_CLASSLIST_REFERENCES_$_.494
+OBJC_IVAR_$_AWSCloudWatchListMetricsInput._dimensions
+OBJC_IVAR_$_AWSCloudWatchListMetricsInput._metricName
+OBJC_IVAR_$_AWSCloudWatchListMetricsInput._namespace
+OBJC_IVAR_$_AWSCloudWatchListMetricsInput._nextToken
+OBJC_CLASS_NAME_.495
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchListMetricsInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchListMetricsInput
+OBJC_CLASS_NAME_.496
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchListMetricsInput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchListMetricsInput
+l_OBJC_$_PROP_LIST_AWSCloudWatchListMetricsInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchListMetricsInput
+.str.497
+_unnamed_cfstring_.498
+.str.499
+_unnamed_cfstring_.500
+OBJC_CLASSLIST_REFERENCES_$_.501
+OBJC_IVAR_$_AWSCloudWatchListMetricsOutput._metrics
+OBJC_IVAR_$_AWSCloudWatchListMetricsOutput._nextToken
+OBJC_CLASS_NAME_.502
+OBJC_METH_VAR_NAME_.503
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchListMetricsOutput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchListMetricsOutput
+OBJC_CLASS_NAME_.504
+OBJC_METH_VAR_NAME_.505
+OBJC_METH_VAR_NAME_.506
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchListMetricsOutput
+OBJC_METH_VAR_NAME_.507
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchListMetricsOutput
+OBJC_PROP_NAME_ATTR_.508
+OBJC_PROP_NAME_ATTR_.509
+l_OBJC_$_PROP_LIST_AWSCloudWatchListMetricsOutput
+l_OBJC_CLASS_RO_$_AWSCloudWatchListMetricsOutput
+OBJC_IVAR_$_AWSCloudWatchMetric._dimensions
+OBJC_IVAR_$_AWSCloudWatchMetric._metricName
+OBJC_IVAR_$_AWSCloudWatchMetric._namespace
+OBJC_CLASS_NAME_.510
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchMetric
+l_OBJC_METACLASS_RO_$_AWSCloudWatchMetric
+OBJC_CLASS_NAME_.511
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchMetric
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchMetric
+l_OBJC_$_PROP_LIST_AWSCloudWatchMetric
+l_OBJC_CLASS_RO_$_AWSCloudWatchMetric
+.str.512
+_unnamed_cfstring_.513
+.str.514
+_unnamed_cfstring_.515
+.str.516
+_unnamed_cfstring_.517
+.str.518
+_unnamed_cfstring_.519
+.str.520
+_unnamed_cfstring_.521
+.str.522
+_unnamed_cfstring_.523
+.str.524
+_unnamed_cfstring_.525
+.str.526
+_unnamed_cfstring_.527
+.str.528
+_unnamed_cfstring_.529
+.str.530
+_unnamed_cfstring_.531
+.str.532
+_unnamed_cfstring_.533
+.str.534
+_unnamed_cfstring_.535
+.str.536
+_unnamed_cfstring_.537
+.str.538
+_unnamed_cfstring_.539
+.str.540
+_unnamed_cfstring_.541
+.str.542
+_unnamed_cfstring_.543
+.str.544
+_unnamed_cfstring_.545
+.str.546
+_unnamed_cfstring_.547
+.str.548
+_unnamed_cfstring_.549
+.str.550
+_unnamed_cfstring_.551
+.str.552
+_unnamed_cfstring_.553
+.str.554
+_unnamed_cfstring_.555
+.str.556
+_unnamed_cfstring_.557
+.str.558
+_unnamed_cfstring_.559
+.str.560
+_unnamed_cfstring_.561
+__block_descriptor_tmp.562
+__block_literal_global.563
+__block_descriptor_tmp.564
+__block_literal_global.565
+.str.566
+_unnamed_cfstring_.567
+.str.568
+_unnamed_cfstring_.569
+.str.570
+_unnamed_cfstring_.571
+.str.572
+_unnamed_cfstring_.573
+__block_descriptor_tmp.574
+__block_literal_global.575
+__block_descriptor_tmp.576
+__block_literal_global.577
+__block_descriptor_tmp.578
+__block_literal_global.579
+__block_descriptor_tmp.580
+__block_literal_global.581
+__block_descriptor_tmp.582
+__block_literal_global.583
+__block_descriptor_tmp.584
+__block_literal_global.585
+__block_descriptor_tmp.586
+__block_literal_global.587
+__block_descriptor_tmp.588
+__block_literal_global.589
+__block_descriptor_tmp.590
+__block_literal_global.591
+__block_descriptor_tmp.592
+__block_literal_global.593
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._actionsEnabled
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._alarmActions
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._alarmArn
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._alarmConfigurationUpdatedTimestamp
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._alarmDescription
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._alarmName
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._comparisonOperator
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._dimensions
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._evaluationPeriods
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._insufficientDataActions
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._metricName
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._namespace
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._OKActions
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._period
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._stateReason
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._stateReasonData
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._stateUpdatedTimestamp
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._stateValue
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._statistic
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._threshold
+OBJC_IVAR_$_AWSCloudWatchMetricAlarm._unit
+OBJC_CLASS_NAME_.594
+OBJC_METH_VAR_NAME_.595
+OBJC_METH_VAR_NAME_.596
+OBJC_METH_VAR_NAME_.597
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchMetricAlarm
+l_OBJC_METACLASS_RO_$_AWSCloudWatchMetricAlarm
+OBJC_CLASS_NAME_.598
+OBJC_METH_VAR_NAME_.599
+OBJC_METH_VAR_NAME_.600
+OBJC_METH_VAR_NAME_.601
+OBJC_METH_VAR_NAME_.602
+OBJC_METH_VAR_NAME_.603
+OBJC_METH_VAR_NAME_.604
+OBJC_METH_VAR_NAME_.605
+OBJC_METH_VAR_NAME_.606
+OBJC_METH_VAR_NAME_.607
+OBJC_METH_VAR_NAME_.608
+OBJC_METH_VAR_NAME_.609
+OBJC_METH_VAR_NAME_.610
+OBJC_METH_VAR_NAME_.611
+OBJC_METH_VAR_NAME_.612
+OBJC_METH_VAR_NAME_.613
+OBJC_METH_VAR_NAME_.614
+OBJC_METH_VAR_NAME_.615
+OBJC_METH_VAR_NAME_.616
+OBJC_METH_VAR_NAME_.617
+OBJC_METH_VAR_NAME_.618
+OBJC_METH_VAR_NAME_.619
+OBJC_METH_VAR_NAME_.620
+OBJC_METH_VAR_NAME_.621
+OBJC_METH_VAR_NAME_.622
+OBJC_METH_VAR_NAME_.623
+OBJC_METH_VAR_NAME_.624
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchMetricAlarm
+OBJC_METH_VAR_NAME_.625
+OBJC_METH_VAR_NAME_.626
+OBJC_METH_VAR_NAME_.627
+OBJC_METH_VAR_NAME_.628
+OBJC_METH_VAR_NAME_.629
+OBJC_METH_VAR_NAME_.630
+OBJC_METH_VAR_NAME_.631
+OBJC_METH_VAR_NAME_.632
+OBJC_METH_VAR_NAME_.633
+OBJC_METH_VAR_NAME_.634
+OBJC_METH_VAR_NAME_.635
+OBJC_METH_VAR_NAME_.636
+OBJC_METH_VAR_NAME_.637
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchMetricAlarm
+OBJC_PROP_NAME_ATTR_.638
+OBJC_PROP_NAME_ATTR_.639
+OBJC_PROP_NAME_ATTR_.640
+OBJC_PROP_NAME_ATTR_.641
+OBJC_PROP_NAME_ATTR_.642
+OBJC_PROP_NAME_ATTR_.643
+OBJC_PROP_NAME_ATTR_.644
+OBJC_PROP_NAME_ATTR_.645
+OBJC_PROP_NAME_ATTR_.646
+OBJC_PROP_NAME_ATTR_.647
+OBJC_PROP_NAME_ATTR_.648
+OBJC_PROP_NAME_ATTR_.649
+OBJC_PROP_NAME_ATTR_.650
+OBJC_PROP_NAME_ATTR_.651
+OBJC_PROP_NAME_ATTR_.652
+OBJC_PROP_NAME_ATTR_.653
+OBJC_PROP_NAME_ATTR_.654
+OBJC_PROP_NAME_ATTR_.655
+OBJC_PROP_NAME_ATTR_.656
+OBJC_PROP_NAME_ATTR_.657
+OBJC_PROP_NAME_ATTR_.658
+OBJC_PROP_NAME_ATTR_.659
+OBJC_PROP_NAME_ATTR_.660
+OBJC_PROP_NAME_ATTR_.661
+OBJC_PROP_NAME_ATTR_.662
+OBJC_PROP_NAME_ATTR_.663
+l_OBJC_$_PROP_LIST_AWSCloudWatchMetricAlarm
+l_OBJC_CLASS_RO_$_AWSCloudWatchMetricAlarm
+.str.664
+_unnamed_cfstring_.665
+.str.666
+_unnamed_cfstring_.667
+OBJC_CLASSLIST_REFERENCES_$_.668
+OBJC_METH_VAR_NAME_.669
+OBJC_SELECTOR_REFERENCES_.670
+__block_descriptor_tmp.671
+__block_literal_global.672
+__block_descriptor_tmp.673
+__block_literal_global.674
+__block_descriptor_tmp.675
+__block_literal_global.676
+__block_descriptor_tmp.677
+__block_literal_global.678
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._dimensions
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._metricName
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._statisticValues
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._timestamp
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._unit
+OBJC_IVAR_$_AWSCloudWatchMetricDatum._value
+OBJC_CLASS_NAME_.679
+OBJC_METH_VAR_NAME_.680
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchMetricDatum
+l_OBJC_METACLASS_RO_$_AWSCloudWatchMetricDatum
+OBJC_CLASS_NAME_.681
+OBJC_METH_VAR_NAME_.682
+OBJC_METH_VAR_NAME_.683
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchMetricDatum
+OBJC_METH_VAR_NAME_.684
+OBJC_METH_VAR_TYPE_.685
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchMetricDatum
+OBJC_PROP_NAME_ATTR_.686
+OBJC_PROP_NAME_ATTR_.687
+OBJC_PROP_NAME_ATTR_.688
+l_OBJC_$_PROP_LIST_AWSCloudWatchMetricDatum
+l_OBJC_CLASS_RO_$_AWSCloudWatchMetricDatum
+__block_descriptor_tmp.689
+__block_literal_global.690
+__block_descriptor_tmp.691
+__block_literal_global.692
+__block_descriptor_tmp.693
+__block_literal_global.694
+__block_descriptor_tmp.695
+__block_literal_global.696
+__block_descriptor_tmp.697
+__block_literal_global.698
+__block_descriptor_tmp.699
+__block_literal_global.700
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._actionsEnabled
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._alarmActions
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._alarmDescription
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._alarmName
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._comparisonOperator
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._dimensions
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._evaluationPeriods
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._insufficientDataActions
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._metricName
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._namespace
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._OKActions
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._period
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._statistic
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._threshold
+OBJC_IVAR_$_AWSCloudWatchPutMetricAlarmInput._unit
+OBJC_CLASS_NAME_.701
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchPutMetricAlarmInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchPutMetricAlarmInput
+OBJC_CLASS_NAME_.702
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchPutMetricAlarmInput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchPutMetricAlarmInput
+l_OBJC_$_PROP_LIST_AWSCloudWatchPutMetricAlarmInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchPutMetricAlarmInput
+.str.703
+_unnamed_cfstring_.704
+.str.705
+_unnamed_cfstring_.706
+OBJC_CLASSLIST_REFERENCES_$_.707
+OBJC_IVAR_$_AWSCloudWatchPutMetricDataInput._metricData
+OBJC_IVAR_$_AWSCloudWatchPutMetricDataInput._namespace
+OBJC_CLASS_NAME_.708
+OBJC_METH_VAR_NAME_.709
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchPutMetricDataInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchPutMetricDataInput
+OBJC_CLASS_NAME_.710
+OBJC_METH_VAR_NAME_.711
+OBJC_METH_VAR_NAME_.712
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchPutMetricDataInput
+OBJC_METH_VAR_NAME_.713
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchPutMetricDataInput
+OBJC_PROP_NAME_ATTR_.714
+OBJC_PROP_NAME_ATTR_.715
+l_OBJC_$_PROP_LIST_AWSCloudWatchPutMetricDataInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchPutMetricDataInput
+__block_descriptor_tmp.716
+__block_literal_global.717
+__block_descriptor_tmp.718
+__block_literal_global.719
+OBJC_IVAR_$_AWSCloudWatchSetAlarmStateInput._alarmName
+OBJC_IVAR_$_AWSCloudWatchSetAlarmStateInput._stateReason
+OBJC_IVAR_$_AWSCloudWatchSetAlarmStateInput._stateReasonData
+OBJC_IVAR_$_AWSCloudWatchSetAlarmStateInput._stateValue
+OBJC_CLASS_NAME_.720
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchSetAlarmStateInput
+l_OBJC_METACLASS_RO_$_AWSCloudWatchSetAlarmStateInput
+OBJC_CLASS_NAME_.721
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchSetAlarmStateInput
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchSetAlarmStateInput
+l_OBJC_$_PROP_LIST_AWSCloudWatchSetAlarmStateInput
+l_OBJC_CLASS_RO_$_AWSCloudWatchSetAlarmStateInput
+OBJC_IVAR_$_AWSCloudWatchStatisticSet._maximum
+OBJC_IVAR_$_AWSCloudWatchStatisticSet._minimum
+OBJC_IVAR_$_AWSCloudWatchStatisticSet._sampleCount
+OBJC_IVAR_$_AWSCloudWatchStatisticSet._sum
+OBJC_CLASS_NAME_.722
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchStatisticSet
+l_OBJC_METACLASS_RO_$_AWSCloudWatchStatisticSet
+OBJC_CLASS_NAME_.723
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchStatisticSet
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchStatisticSet
+l_OBJC_$_PROP_LIST_AWSCloudWatchStatisticSet
+l_OBJC_CLASS_RO_$_AWSCloudWatchStatisticSet
+OBJC_LABEL_CLASS_$
+Apple LLVM version 7.3.0 (clang-703.0.31)
+-[AWSCloudWatchStatisticSet .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCloudWatch/AWSCloudWatchModel.m
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios
+-[AWSCloudWatchStatisticSet setSum:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCloudWatch/AWSCloudWatchModel.h
+-[AWSCloudWatchStatisticSet sum]
+-[AWSCloudWatchStatisticSet setSampleCount:]
+-[AWSCloudWatchStatisticSet sampleCount]
+-[AWSCloudWatchStatisticSet setMinimum:]
+-[AWSCloudWatchStatisticSet minimum]
+-[AWSCloudWatchStatisticSet setMaximum:]
+-[AWSCloudWatchStatisticSet maximum]
++[AWSCloudWatchStatisticSet JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchSetAlarmStateInput .cxx_destruct]
+-[AWSCloudWatchSetAlarmStateInput setStateValue:]
+-[AWSCloudWatchSetAlarmStateInput stateValue]
+-[AWSCloudWatchSetAlarmStateInput setStateReasonData:]
+-[AWSCloudWatchSetAlarmStateInput stateReasonData]
+-[AWSCloudWatchSetAlarmStateInput setStateReason:]
+-[AWSCloudWatchSetAlarmStateInput stateReason]
+-[AWSCloudWatchSetAlarmStateInput setAlarmName:]
+-[AWSCloudWatchSetAlarmStateInput alarmName]
++[AWSCloudWatchSetAlarmStateInput stateValueJSONTransformer]
++[AWSCloudWatchSetAlarmStateInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchPutMetricDataInput .cxx_destruct]
+-[AWSCloudWatchPutMetricDataInput setNamespace:]
+-[AWSCloudWatchPutMetricDataInput namespace]
+-[AWSCloudWatchPutMetricDataInput setMetricData:]
+-[AWSCloudWatchPutMetricDataInput metricData]
++[AWSCloudWatchPutMetricDataInput metricDataJSONTransformer]
++[AWSCloudWatchPutMetricDataInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchPutMetricAlarmInput .cxx_destruct]
+-[AWSCloudWatchPutMetricAlarmInput setUnit:]
+-[AWSCloudWatchPutMetricAlarmInput unit]
+-[AWSCloudWatchPutMetricAlarmInput setThreshold:]
+-[AWSCloudWatchPutMetricAlarmInput threshold]
+-[AWSCloudWatchPutMetricAlarmInput setStatistic:]
+-[AWSCloudWatchPutMetricAlarmInput statistic]
+-[AWSCloudWatchPutMetricAlarmInput setPeriod:]
+-[AWSCloudWatchPutMetricAlarmInput period]
+-[AWSCloudWatchPutMetricAlarmInput setOKActions:]
+-[AWSCloudWatchPutMetricAlarmInput OKActions]
+-[AWSCloudWatchPutMetricAlarmInput setNamespace:]
+-[AWSCloudWatchPutMetricAlarmInput namespace]
+-[AWSCloudWatchPutMetricAlarmInput setMetricName:]
+-[AWSCloudWatchPutMetricAlarmInput metricName]
+-[AWSCloudWatchPutMetricAlarmInput setInsufficientDataActions:]
+-[AWSCloudWatchPutMetricAlarmInput insufficientDataActions]
+-[AWSCloudWatchPutMetricAlarmInput setEvaluationPeriods:]
+-[AWSCloudWatchPutMetricAlarmInput evaluationPeriods]
+-[AWSCloudWatchPutMetricAlarmInput setDimensions:]
+-[AWSCloudWatchPutMetricAlarmInput dimensions]
+-[AWSCloudWatchPutMetricAlarmInput setComparisonOperator:]
+-[AWSCloudWatchPutMetricAlarmInput comparisonOperator]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmName:]
+-[AWSCloudWatchPutMetricAlarmInput alarmName]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmDescription:]
+-[AWSCloudWatchPutMetricAlarmInput alarmDescription]
+-[AWSCloudWatchPutMetricAlarmInput setAlarmActions:]
+-[AWSCloudWatchPutMetricAlarmInput alarmActions]
+-[AWSCloudWatchPutMetricAlarmInput setActionsEnabled:]
+-[AWSCloudWatchPutMetricAlarmInput actionsEnabled]
++[AWSCloudWatchPutMetricAlarmInput unitJSONTransformer]
++[AWSCloudWatchPutMetricAlarmInput statisticJSONTransformer]
++[AWSCloudWatchPutMetricAlarmInput dimensionsJSONTransformer]
++[AWSCloudWatchPutMetricAlarmInput comparisonOperatorJSONTransformer]
++[AWSCloudWatchPutMetricAlarmInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchMetricDatum .cxx_destruct]
+-[AWSCloudWatchMetricDatum setValue:]
+-[AWSCloudWatchMetricDatum value]
+-[AWSCloudWatchMetricDatum setUnit:]
+-[AWSCloudWatchMetricDatum unit]
+-[AWSCloudWatchMetricDatum setTimestamp:]
+-[AWSCloudWatchMetricDatum timestamp]
+-[AWSCloudWatchMetricDatum setStatisticValues:]
+-[AWSCloudWatchMetricDatum statisticValues]
+-[AWSCloudWatchMetricDatum setMetricName:]
+-[AWSCloudWatchMetricDatum metricName]
+-[AWSCloudWatchMetricDatum setDimensions:]
+-[AWSCloudWatchMetricDatum dimensions]
++[AWSCloudWatchMetricDatum unitJSONTransformer]
++[AWSCloudWatchMetricDatum timestampJSONTransformer]
++[AWSCloudWatchMetricDatum statisticValuesJSONTransformer]
++[AWSCloudWatchMetricDatum dimensionsJSONTransformer]
++[AWSCloudWatchMetricDatum JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchMetricAlarm .cxx_destruct]
+-[AWSCloudWatchMetricAlarm setUnit:]
+-[AWSCloudWatchMetricAlarm unit]
+-[AWSCloudWatchMetricAlarm setThreshold:]
+-[AWSCloudWatchMetricAlarm threshold]
+-[AWSCloudWatchMetricAlarm setStatistic:]
+-[AWSCloudWatchMetricAlarm statistic]
+-[AWSCloudWatchMetricAlarm setStateValue:]
+-[AWSCloudWatchMetricAlarm stateValue]
+-[AWSCloudWatchMetricAlarm setStateUpdatedTimestamp:]
+-[AWSCloudWatchMetricAlarm stateUpdatedTimestamp]
+-[AWSCloudWatchMetricAlarm setStateReasonData:]
+-[AWSCloudWatchMetricAlarm stateReasonData]
+-[AWSCloudWatchMetricAlarm setStateReason:]
+-[AWSCloudWatchMetricAlarm stateReason]
+-[AWSCloudWatchMetricAlarm setPeriod:]
+-[AWSCloudWatchMetricAlarm period]
+-[AWSCloudWatchMetricAlarm setOKActions:]
+-[AWSCloudWatchMetricAlarm OKActions]
+-[AWSCloudWatchMetricAlarm setNamespace:]
+-[AWSCloudWatchMetricAlarm namespace]
+-[AWSCloudWatchMetricAlarm setMetricName:]
+-[AWSCloudWatchMetricAlarm metricName]
+-[AWSCloudWatchMetricAlarm setInsufficientDataActions:]
+-[AWSCloudWatchMetricAlarm insufficientDataActions]
+-[AWSCloudWatchMetricAlarm setEvaluationPeriods:]
+-[AWSCloudWatchMetricAlarm evaluationPeriods]
+-[AWSCloudWatchMetricAlarm setDimensions:]
+-[AWSCloudWatchMetricAlarm dimensions]
+-[AWSCloudWatchMetricAlarm setComparisonOperator:]
+-[AWSCloudWatchMetricAlarm comparisonOperator]
+-[AWSCloudWatchMetricAlarm setAlarmName:]
+-[AWSCloudWatchMetricAlarm alarmName]
+-[AWSCloudWatchMetricAlarm setAlarmDescription:]
+-[AWSCloudWatchMetricAlarm alarmDescription]
+-[AWSCloudWatchMetricAlarm setAlarmConfigurationUpdatedTimestamp:]
+-[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestamp]
+-[AWSCloudWatchMetricAlarm setAlarmArn:]
+-[AWSCloudWatchMetricAlarm alarmArn]
+-[AWSCloudWatchMetricAlarm setAlarmActions:]
+-[AWSCloudWatchMetricAlarm alarmActions]
+-[AWSCloudWatchMetricAlarm setActionsEnabled:]
+-[AWSCloudWatchMetricAlarm actionsEnabled]
++[AWSCloudWatchMetricAlarm unitJSONTransformer]
++[AWSCloudWatchMetricAlarm statisticJSONTransformer]
++[AWSCloudWatchMetricAlarm stateValueJSONTransformer]
++[AWSCloudWatchMetricAlarm stateUpdatedTimestampJSONTransformer]
++[AWSCloudWatchMetricAlarm dimensionsJSONTransformer]
++[AWSCloudWatchMetricAlarm comparisonOperatorJSONTransformer]
++[AWSCloudWatchMetricAlarm alarmConfigurationUpdatedTimestampJSONTransformer]
++[AWSCloudWatchMetricAlarm JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchMetric .cxx_destruct]
+-[AWSCloudWatchMetric setNamespace:]
+-[AWSCloudWatchMetric namespace]
+-[AWSCloudWatchMetric setMetricName:]
+-[AWSCloudWatchMetric metricName]
+-[AWSCloudWatchMetric setDimensions:]
+-[AWSCloudWatchMetric dimensions]
++[AWSCloudWatchMetric dimensionsJSONTransformer]
++[AWSCloudWatchMetric JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchListMetricsOutput .cxx_destruct]
+-[AWSCloudWatchListMetricsOutput setNextToken:]
+-[AWSCloudWatchListMetricsOutput nextToken]
+-[AWSCloudWatchListMetricsOutput setMetrics:]
+-[AWSCloudWatchListMetricsOutput metrics]
++[AWSCloudWatchListMetricsOutput metricsJSONTransformer]
++[AWSCloudWatchListMetricsOutput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchListMetricsInput .cxx_destruct]
+-[AWSCloudWatchListMetricsInput setNextToken:]
+-[AWSCloudWatchListMetricsInput nextToken]
+-[AWSCloudWatchListMetricsInput setNamespace:]
+-[AWSCloudWatchListMetricsInput namespace]
+-[AWSCloudWatchListMetricsInput setMetricName:]
+-[AWSCloudWatchListMetricsInput metricName]
+-[AWSCloudWatchListMetricsInput setDimensions:]
+-[AWSCloudWatchListMetricsInput dimensions]
++[AWSCloudWatchListMetricsInput dimensionsJSONTransformer]
++[AWSCloudWatchListMetricsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchGetMetricStatisticsOutput .cxx_destruct]
+-[AWSCloudWatchGetMetricStatisticsOutput setLabel:]
+-[AWSCloudWatchGetMetricStatisticsOutput label]
+-[AWSCloudWatchGetMetricStatisticsOutput setDatapoints:]
+-[AWSCloudWatchGetMetricStatisticsOutput datapoints]
++[AWSCloudWatchGetMetricStatisticsOutput datapointsJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsOutput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchGetMetricStatisticsInput .cxx_destruct]
+-[AWSCloudWatchGetMetricStatisticsInput setUnit:]
+-[AWSCloudWatchGetMetricStatisticsInput unit]
+-[AWSCloudWatchGetMetricStatisticsInput setStatistics:]
+-[AWSCloudWatchGetMetricStatisticsInput statistics]
+-[AWSCloudWatchGetMetricStatisticsInput setStartTime:]
+-[AWSCloudWatchGetMetricStatisticsInput startTime]
+-[AWSCloudWatchGetMetricStatisticsInput setPeriod:]
+-[AWSCloudWatchGetMetricStatisticsInput period]
+-[AWSCloudWatchGetMetricStatisticsInput setNamespace:]
+-[AWSCloudWatchGetMetricStatisticsInput namespace]
+-[AWSCloudWatchGetMetricStatisticsInput setMetricName:]
+-[AWSCloudWatchGetMetricStatisticsInput metricName]
+-[AWSCloudWatchGetMetricStatisticsInput setEndTime:]
+-[AWSCloudWatchGetMetricStatisticsInput endTime]
+-[AWSCloudWatchGetMetricStatisticsInput setDimensions:]
+-[AWSCloudWatchGetMetricStatisticsInput dimensions]
++[AWSCloudWatchGetMetricStatisticsInput unitJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsInput startTimeJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsInput endTimeJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsInput dimensionsJSONTransformer]
++[AWSCloudWatchGetMetricStatisticsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchEnableAlarmActionsInput .cxx_destruct]
+-[AWSCloudWatchEnableAlarmActionsInput setAlarmNames:]
+-[AWSCloudWatchEnableAlarmActionsInput alarmNames]
++[AWSCloudWatchEnableAlarmActionsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDisableAlarmActionsInput .cxx_destruct]
+-[AWSCloudWatchDisableAlarmActionsInput setAlarmNames:]
+-[AWSCloudWatchDisableAlarmActionsInput alarmNames]
++[AWSCloudWatchDisableAlarmActionsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDimensionFilter .cxx_destruct]
+-[AWSCloudWatchDimensionFilter setValue:]
+-[AWSCloudWatchDimensionFilter value]
+-[AWSCloudWatchDimensionFilter setName:]
+-[AWSCloudWatchDimensionFilter name]
++[AWSCloudWatchDimensionFilter JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDimension .cxx_destruct]
+-[AWSCloudWatchDimension setValue:]
+-[AWSCloudWatchDimension value]
+-[AWSCloudWatchDimension setName:]
+-[AWSCloudWatchDimension name]
++[AWSCloudWatchDimension JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmsOutput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmsOutput setNextToken:]
+-[AWSCloudWatchDescribeAlarmsOutput nextToken]
+-[AWSCloudWatchDescribeAlarmsOutput setMetricAlarms:]
+-[AWSCloudWatchDescribeAlarmsOutput metricAlarms]
++[AWSCloudWatchDescribeAlarmsOutput metricAlarmsJSONTransformer]
++[AWSCloudWatchDescribeAlarmsOutput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmsInput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmsInput setStateValue:]
+-[AWSCloudWatchDescribeAlarmsInput stateValue]
+-[AWSCloudWatchDescribeAlarmsInput setNextToken:]
+-[AWSCloudWatchDescribeAlarmsInput nextToken]
+-[AWSCloudWatchDescribeAlarmsInput setMaxRecords:]
+-[AWSCloudWatchDescribeAlarmsInput maxRecords]
+-[AWSCloudWatchDescribeAlarmsInput setAlarmNames:]
+-[AWSCloudWatchDescribeAlarmsInput alarmNames]
+-[AWSCloudWatchDescribeAlarmsInput setAlarmNamePrefix:]
+-[AWSCloudWatchDescribeAlarmsInput alarmNamePrefix]
+-[AWSCloudWatchDescribeAlarmsInput setActionPrefix:]
+-[AWSCloudWatchDescribeAlarmsInput actionPrefix]
++[AWSCloudWatchDescribeAlarmsInput stateValueJSONTransformer]
++[AWSCloudWatchDescribeAlarmsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput setMetricAlarms:]
+-[AWSCloudWatchDescribeAlarmsForMetricOutput metricAlarms]
++[AWSCloudWatchDescribeAlarmsForMetricOutput metricAlarmsJSONTransformer]
++[AWSCloudWatchDescribeAlarmsForMetricOutput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmsForMetricInput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setUnit:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput unit]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setStatistic:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput statistic]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setPeriod:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput period]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setNamespace:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput namespace]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setMetricName:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput metricName]
+-[AWSCloudWatchDescribeAlarmsForMetricInput setDimensions:]
+-[AWSCloudWatchDescribeAlarmsForMetricInput dimensions]
++[AWSCloudWatchDescribeAlarmsForMetricInput unitJSONTransformer]
++[AWSCloudWatchDescribeAlarmsForMetricInput statisticJSONTransformer]
++[AWSCloudWatchDescribeAlarmsForMetricInput dimensionsJSONTransformer]
++[AWSCloudWatchDescribeAlarmsForMetricInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmHistoryOutput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmHistoryOutput setNextToken:]
+-[AWSCloudWatchDescribeAlarmHistoryOutput nextToken]
+-[AWSCloudWatchDescribeAlarmHistoryOutput setAlarmHistoryItems:]
+-[AWSCloudWatchDescribeAlarmHistoryOutput alarmHistoryItems]
++[AWSCloudWatchDescribeAlarmHistoryOutput alarmHistoryItemsJSONTransformer]
++[AWSCloudWatchDescribeAlarmHistoryOutput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDescribeAlarmHistoryInput .cxx_destruct]
+-[AWSCloudWatchDescribeAlarmHistoryInput setStartDate:]
+-[AWSCloudWatchDescribeAlarmHistoryInput startDate]
+-[AWSCloudWatchDescribeAlarmHistoryInput setNextToken:]
+-[AWSCloudWatchDescribeAlarmHistoryInput nextToken]
+-[AWSCloudWatchDescribeAlarmHistoryInput setMaxRecords:]
+-[AWSCloudWatchDescribeAlarmHistoryInput maxRecords]
+-[AWSCloudWatchDescribeAlarmHistoryInput setHistoryItemType:]
+-[AWSCloudWatchDescribeAlarmHistoryInput historyItemType]
+-[AWSCloudWatchDescribeAlarmHistoryInput setEndDate:]
+-[AWSCloudWatchDescribeAlarmHistoryInput endDate]
+-[AWSCloudWatchDescribeAlarmHistoryInput setAlarmName:]
+-[AWSCloudWatchDescribeAlarmHistoryInput alarmName]
++[AWSCloudWatchDescribeAlarmHistoryInput startDateJSONTransformer]
++[AWSCloudWatchDescribeAlarmHistoryInput historyItemTypeJSONTransformer]
++[AWSCloudWatchDescribeAlarmHistoryInput endDateJSONTransformer]
++[AWSCloudWatchDescribeAlarmHistoryInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDeleteAlarmsInput .cxx_destruct]
+-[AWSCloudWatchDeleteAlarmsInput setAlarmNames:]
+-[AWSCloudWatchDeleteAlarmsInput alarmNames]
++[AWSCloudWatchDeleteAlarmsInput JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchDatapoint .cxx_destruct]
+-[AWSCloudWatchDatapoint setUnit:]
+-[AWSCloudWatchDatapoint unit]
+-[AWSCloudWatchDatapoint setTimestamp:]
+-[AWSCloudWatchDatapoint timestamp]
+-[AWSCloudWatchDatapoint setSum:]
+-[AWSCloudWatchDatapoint sum]
+-[AWSCloudWatchDatapoint setSampleCount:]
+-[AWSCloudWatchDatapoint sampleCount]
+-[AWSCloudWatchDatapoint setMinimum:]
+-[AWSCloudWatchDatapoint minimum]
+-[AWSCloudWatchDatapoint setMaximum:]
+-[AWSCloudWatchDatapoint maximum]
+-[AWSCloudWatchDatapoint setAverage:]
+-[AWSCloudWatchDatapoint average]
++[AWSCloudWatchDatapoint unitJSONTransformer]
++[AWSCloudWatchDatapoint timestampJSONTransformer]
++[AWSCloudWatchDatapoint JSONKeyPathsByPropertyKey]
+-[AWSCloudWatchAlarmHistoryItem .cxx_destruct]
+-[AWSCloudWatchAlarmHistoryItem setTimestamp:]
+-[AWSCloudWatchAlarmHistoryItem timestamp]
+-[AWSCloudWatchAlarmHistoryItem setHistorySummary:]
+-[AWSCloudWatchAlarmHistoryItem historySummary]
+-[AWSCloudWatchAlarmHistoryItem setHistoryItemType:]
+-[AWSCloudWatchAlarmHistoryItem historyItemType]
+-[AWSCloudWatchAlarmHistoryItem setHistoryData:]
+-[AWSCloudWatchAlarmHistoryItem historyData]
+-[AWSCloudWatchAlarmHistoryItem setAlarmName:]
+-[AWSCloudWatchAlarmHistoryItem alarmName]
++[AWSCloudWatchAlarmHistoryItem timestampJSONTransformer]
++[AWSCloudWatchAlarmHistoryItem historyItemTypeJSONTransformer]
++[AWSCloudWatchAlarmHistoryItem JSONKeyPathsByPropertyKey]
++[AWSCloudWatchResponseSerializer initialize]
+-[AWSCloudWatchResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSCloudWatch initialize]
++[AWSCloudWatch defaultCloudWatch]
+__34+[AWSCloudWatch defaultCloudWatch]_block_invoke
++[AWSCloudWatch registerCloudWatchWithConfiguration:forKey:]
+__60+[AWSCloudWatch registerCloudWatchWithConfiguration:forKey:]_block_invoke
++[AWSCloudWatch CloudWatchForKey:]
++[AWSCloudWatch removeCloudWatchForKey:]
+-[AWSCloudWatch init]
+-[AWSCloudWatch initWithConfiguration:]
+-[AWSCloudWatch invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSCloudWatch deleteAlarms:]
+-[AWSCloudWatch deleteAlarms:completionHandler:]
+__48-[AWSCloudWatch deleteAlarms:completionHandler:]_block_invoke
+__copy_helper_block_
+__destroy_helper_block_
+-[AWSCloudWatch describeAlarmHistory:]
+-[AWSCloudWatch describeAlarmHistory:completionHandler:]
+__56-[AWSCloudWatch describeAlarmHistory:completionHandler:]_block_invoke
+__copy_helper_block_.209
+__destroy_helper_block_.210
+-[AWSCloudWatch describeAlarms:]
+-[AWSCloudWatch describeAlarms:completionHandler:]
+__50-[AWSCloudWatch describeAlarms:completionHandler:]_block_invoke
+__copy_helper_block_.217
+__destroy_helper_block_.218
+-[AWSCloudWatch describeAlarmsForMetric:]
+-[AWSCloudWatch describeAlarmsForMetric:completionHandler:]
+__59-[AWSCloudWatch describeAlarmsForMetric:completionHandler:]_block_invoke
+__copy_helper_block_.225
+__destroy_helper_block_.226
+-[AWSCloudWatch disableAlarmActions:]
+-[AWSCloudWatch disableAlarmActions:completionHandler:]
+__55-[AWSCloudWatch disableAlarmActions:completionHandler:]_block_invoke
+__copy_helper_block_.232
+__destroy_helper_block_.233
+-[AWSCloudWatch enableAlarmActions:]
+-[AWSCloudWatch enableAlarmActions:completionHandler:]
+__54-[AWSCloudWatch enableAlarmActions:completionHandler:]_block_invoke
+__copy_helper_block_.239
+__destroy_helper_block_.240
+-[AWSCloudWatch getMetricStatistics:]
+-[AWSCloudWatch getMetricStatistics:completionHandler:]
+__55-[AWSCloudWatch getMetricStatistics:completionHandler:]_block_invoke
+__copy_helper_block_.247
+__destroy_helper_block_.248
+-[AWSCloudWatch listMetrics:]
+-[AWSCloudWatch listMetrics:completionHandler:]
+__47-[AWSCloudWatch listMetrics:completionHandler:]_block_invoke
+__copy_helper_block_.255
+__destroy_helper_block_.256
+-[AWSCloudWatch putMetricAlarm:]
+-[AWSCloudWatch putMetricAlarm:completionHandler:]
+__50-[AWSCloudWatch putMetricAlarm:completionHandler:]_block_invoke
+__copy_helper_block_.262
+__destroy_helper_block_.263
+-[AWSCloudWatch putMetricData:]
+-[AWSCloudWatch putMetricData:completionHandler:]
+__49-[AWSCloudWatch putMetricData:completionHandler:]_block_invoke
+__copy_helper_block_.269
+__destroy_helper_block_.270
+-[AWSCloudWatch setAlarmState:]
+-[AWSCloudWatch setAlarmState:completionHandler:]
+__49-[AWSCloudWatch setAlarmState:completionHandler:]_block_invoke
+__copy_helper_block_.276
+__destroy_helper_block_.277
+-[AWSCloudWatch configuration]
+-[AWSCloudWatch setConfiguration:]
+-[AWSCloudWatch networking]
+-[AWSCloudWatch setNetworking:]
+-[AWSCloudWatch .cxx_destruct]
+errorCodeDictionary
+OBJC_CLASSLIST_REFERENCES_$_.19
+OBJC_METH_VAR_NAME_.20
+OBJC_SELECTOR_REFERENCES_.21
+OBJC_CLASSLIST_SUP_REFS_$_
+OBJC_METH_VAR_NAME_.22
+OBJC_SELECTOR_REFERENCES_.23
+OBJC_METH_VAR_NAME_.26
+OBJC_SELECTOR_REFERENCES_.27
+.str.28
+_unnamed_cfstring_.29
+OBJC_METH_VAR_NAME_.30
+OBJC_SELECTOR_REFERENCES_.31
+.str.32
+_unnamed_cfstring_.33
+OBJC_CLASSLIST_REFERENCES_$_.34
+OBJC_METH_VAR_NAME_.35
+OBJC_SELECTOR_REFERENCES_.36
+OBJC_METH_VAR_NAME_.37
+OBJC_SELECTOR_REFERENCES_.38
+OBJC_METH_VAR_NAME_.41
+OBJC_SELECTOR_REFERENCES_.42
+OBJC_CLASSLIST_REFERENCES_$_.43
+OBJC_METH_VAR_NAME_.44
+OBJC_SELECTOR_REFERENCES_.45
+OBJC_METH_VAR_NAME_.46
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchResponseSerializer
+l_OBJC_METACLASS_RO_$_AWSCloudWatchResponseSerializer
+OBJC_METH_VAR_TYPE_.47
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchResponseSerializer
+l_OBJC_CLASS_RO_$_AWSCloudWatchResponseSerializer
+OBJC_CLASS_NAME_.48
+l_OBJC_METACLASS_RO_$_AWSCloudWatchRequestRetryHandler
+l_OBJC_CLASS_RO_$_AWSCloudWatchRequestRetryHandler
+OBJC_CLASSLIST_SUP_REFS_$_.49
+OBJC_SELECTOR_REFERENCES_.50
+OBJC_METH_VAR_NAME_.51
+OBJC_SELECTOR_REFERENCES_.52
+OBJC_CLASSLIST_REFERENCES_$_.53
+OBJC_CLASSLIST_REFERENCES_$_.54
+.str.55
+_unnamed_cfstring_.56
+OBJC_METH_VAR_NAME_.57
+OBJC_SELECTOR_REFERENCES_.58
+OBJC_SELECTOR_REFERENCES_.60
+_serviceClients
+defaultCloudWatch._defaultCloudWatch
+defaultCloudWatch.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.61
+OBJC_SELECTOR_REFERENCES_.63
+OBJC_METH_VAR_NAME_.64
+OBJC_SELECTOR_REFERENCES_.65
+OBJC_CLASSLIST_REFERENCES_$_.66
+OBJC_SELECTOR_REFERENCES_.68
+OBJC_SELECTOR_REFERENCES_.70
+OBJC_SELECTOR_REFERENCES_.72
+OBJC_SELECTOR_REFERENCES_.74
+OBJC_CLASSLIST_REFERENCES_$_.75
+OBJC_SELECTOR_REFERENCES_.77
+OBJC_METH_VAR_NAME_.78
+OBJC_SELECTOR_REFERENCES_.79
+.str.80
+_unnamed_cfstring_.81
+OBJC_CLASSLIST_REFERENCES_$_.82
+OBJC_METH_VAR_NAME_.83
+OBJC_SELECTOR_REFERENCES_.84
+.str.85
+registerCloudWatchWithConfiguration:forKey:.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.86
+OBJC_METH_VAR_NAME_.87
+OBJC_SELECTOR_REFERENCES_.88
+__block_descriptor_tmp.89
+__block_literal_global.90
+OBJC_METH_VAR_NAME_.91
+OBJC_SELECTOR_REFERENCES_.92
+OBJC_METH_VAR_NAME_.93
+OBJC_SELECTOR_REFERENCES_.94
+OBJC_METH_VAR_NAME_.95
+OBJC_SELECTOR_REFERENCES_.96
+OBJC_METH_VAR_NAME_.97
+OBJC_SELECTOR_REFERENCES_.98
+OBJC_METH_VAR_NAME_.99
+OBJC_SELECTOR_REFERENCES_.100
+.str.101
+_unnamed_cfstring_.102
+OBJC_CLASSLIST_SUP_REFS_$_.103
+OBJC_METH_VAR_NAME_.104
+OBJC_SELECTOR_REFERENCES_.105
+OBJC_METH_VAR_NAME_.106
+OBJC_SELECTOR_REFERENCES_.107
+OBJC_IVAR_$_AWSCloudWatch._configuration
+OBJC_CLASSLIST_REFERENCES_$_.108
+OBJC_METH_VAR_NAME_.109
+OBJC_SELECTOR_REFERENCES_.110
+OBJC_METH_VAR_NAME_.111
+OBJC_SELECTOR_REFERENCES_.112
+OBJC_METH_VAR_NAME_.113
+OBJC_SELECTOR_REFERENCES_.114
+OBJC_CLASSLIST_REFERENCES_$_.115
+OBJC_METH_VAR_NAME_.116
+OBJC_SELECTOR_REFERENCES_.117
+OBJC_METH_VAR_NAME_.118
+OBJC_SELECTOR_REFERENCES_.119
+OBJC_METH_VAR_NAME_.120
+OBJC_SELECTOR_REFERENCES_.121
+OBJC_CLASSLIST_REFERENCES_$_.122
+OBJC_METH_VAR_NAME_.123
+OBJC_SELECTOR_REFERENCES_.124
+OBJC_METH_VAR_NAME_.125
+OBJC_SELECTOR_REFERENCES_.126
+OBJC_CLASSLIST_REFERENCES_$_.127
+OBJC_METH_VAR_NAME_.128
+OBJC_SELECTOR_REFERENCES_.129
+OBJC_METH_VAR_NAME_.130
+OBJC_SELECTOR_REFERENCES_.131
+OBJC_METH_VAR_NAME_.132
+OBJC_SELECTOR_REFERENCES_.133
+OBJC_METH_VAR_NAME_.134
+OBJC_SELECTOR_REFERENCES_.135
+OBJC_CLASSLIST_REFERENCES_$_.136
+OBJC_METH_VAR_NAME_.137
+OBJC_SELECTOR_REFERENCES_.138
+OBJC_METH_VAR_NAME_.139
+OBJC_SELECTOR_REFERENCES_.140
+OBJC_METH_VAR_NAME_.141
+OBJC_SELECTOR_REFERENCES_.142
+OBJC_CLASSLIST_REFERENCES_$_.143
+OBJC_IVAR_$_AWSCloudWatch._networking
+OBJC_CLASSLIST_REFERENCES_$_.144
+OBJC_METH_VAR_NAME_.145
+OBJC_SELECTOR_REFERENCES_.146
+OBJC_METH_VAR_NAME_.147
+OBJC_SELECTOR_REFERENCES_.148
+OBJC_METH_VAR_NAME_.149
+OBJC_SELECTOR_REFERENCES_.150
+OBJC_METH_VAR_NAME_.151
+OBJC_SELECTOR_REFERENCES_.152
+OBJC_METH_VAR_NAME_.153
+OBJC_SELECTOR_REFERENCES_.154
+OBJC_CLASSLIST_REFERENCES_$_.155
+OBJC_CLASSLIST_REFERENCES_$_.156
+OBJC_METH_VAR_NAME_.157
+OBJC_SELECTOR_REFERENCES_.158
+OBJC_METH_VAR_NAME_.159
+OBJC_SELECTOR_REFERENCES_.160
+OBJC_METH_VAR_NAME_.161
+OBJC_SELECTOR_REFERENCES_.162
+OBJC_METH_VAR_NAME_.163
+OBJC_SELECTOR_REFERENCES_.164
+OBJC_CLASSLIST_REFERENCES_$_.165
+OBJC_METH_VAR_NAME_.166
+OBJC_SELECTOR_REFERENCES_.167
+OBJC_METH_VAR_NAME_.168
+OBJC_SELECTOR_REFERENCES_.169
+OBJC_METH_VAR_NAME_.170
+OBJC_SELECTOR_REFERENCES_.171
+OBJC_METH_VAR_NAME_.172
+OBJC_SELECTOR_REFERENCES_.173
+.str.174
+_unnamed_cfstring_.175
+.str.176
+_unnamed_cfstring_.177
+OBJC_SELECTOR_REFERENCES_.179
+OBJC_SELECTOR_REFERENCES_.181
+OBJC_SELECTOR_REFERENCES_.183
+OBJC_SELECTOR_REFERENCES_.185
+OBJC_CLASSLIST_REFERENCES_$_.186
+OBJC_SELECTOR_REFERENCES_.188
+.str.189
+_unnamed_cfstring_.190
+.str.191
+OBJC_SELECTOR_REFERENCES_.193
+OBJC_SELECTOR_REFERENCES_.195
+__PRETTY_FUNCTION__.__48-[AWSCloudWatch deleteAlarms:completionHandler:]_block_invoke
+OBJC_METH_VAR_NAME_.196
+OBJC_SELECTOR_REFERENCES_.197
+.str.198
+__block_descriptor_tmp.199
+OBJC_METH_VAR_NAME_.200
+OBJC_SELECTOR_REFERENCES_.201
+.str.202
+_unnamed_cfstring_.203
+OBJC_CLASSLIST_REFERENCES_$_.204
+OBJC_METH_VAR_NAME_.205
+OBJC_SELECTOR_REFERENCES_.206
+OBJC_METH_VAR_NAME_.207
+OBJC_SELECTOR_REFERENCES_.208
+__PRETTY_FUNCTION__.__56-[AWSCloudWatch describeAlarmHistory:completionHandler:]_block_invoke
+__block_descriptor_tmp.211
+.str.212
+_unnamed_cfstring_.213
+OBJC_CLASSLIST_REFERENCES_$_.214
+OBJC_SELECTOR_REFERENCES_.216
+__PRETTY_FUNCTION__.__50-[AWSCloudWatch describeAlarms:completionHandler:]_block_invoke
+__block_descriptor_tmp.219
+OBJC_CLASSLIST_REFERENCES_$_.222
+OBJC_METH_VAR_NAME_.223
+OBJC_SELECTOR_REFERENCES_.224
+__PRETTY_FUNCTION__.__59-[AWSCloudWatch describeAlarmsForMetric:completionHandler:]_block_invoke
+__block_descriptor_tmp.227
+OBJC_METH_VAR_NAME_.230
+OBJC_SELECTOR_REFERENCES_.231
+__PRETTY_FUNCTION__.__55-[AWSCloudWatch disableAlarmActions:completionHandler:]_block_invoke
+__block_descriptor_tmp.234
+.str.235
+_unnamed_cfstring_.236
+OBJC_METH_VAR_NAME_.237
+OBJC_SELECTOR_REFERENCES_.238
+__PRETTY_FUNCTION__.__54-[AWSCloudWatch enableAlarmActions:completionHandler:]_block_invoke
+__block_descriptor_tmp.241
+.str.242
+_unnamed_cfstring_.243
+OBJC_CLASSLIST_REFERENCES_$_.244
+OBJC_METH_VAR_NAME_.245
+OBJC_SELECTOR_REFERENCES_.246
+__PRETTY_FUNCTION__.__55-[AWSCloudWatch getMetricStatistics:completionHandler:]_block_invoke
+__block_descriptor_tmp.249
+.str.250
+_unnamed_cfstring_.251
+OBJC_CLASSLIST_REFERENCES_$_.252
+OBJC_SELECTOR_REFERENCES_.254
+__PRETTY_FUNCTION__.__47-[AWSCloudWatch listMetrics:completionHandler:]_block_invoke
+__block_descriptor_tmp.257
+.str.258
+_unnamed_cfstring_.259
+OBJC_SELECTOR_REFERENCES_.261
+__PRETTY_FUNCTION__.__50-[AWSCloudWatch putMetricAlarm:completionHandler:]_block_invoke
+__block_descriptor_tmp.264
+.str.265
+_unnamed_cfstring_.266
+OBJC_METH_VAR_NAME_.267
+OBJC_SELECTOR_REFERENCES_.268
+__PRETTY_FUNCTION__.__49-[AWSCloudWatch putMetricData:completionHandler:]_block_invoke
+__block_descriptor_tmp.271
+OBJC_METH_VAR_NAME_.274
+OBJC_SELECTOR_REFERENCES_.275
+__PRETTY_FUNCTION__.__49-[AWSCloudWatch setAlarmState:completionHandler:]_block_invoke
+__block_descriptor_tmp.278
+OBJC_CLASS_NAME_.279
+OBJC_METH_VAR_TYPE_.281
+OBJC_METH_VAR_TYPE_.282
+OBJC_METH_VAR_TYPE_.284
+OBJC_METH_VAR_TYPE_.286
+l_OBJC_$_CLASS_METHODS_AWSCloudWatch
+l_OBJC_METACLASS_RO_$_AWSCloudWatch
+OBJC_CLASS_NAME_.287
+OBJC_METH_VAR_TYPE_.288
+OBJC_METH_VAR_NAME_.289
+OBJC_METH_VAR_TYPE_.290
+OBJC_METH_VAR_NAME_.291
+OBJC_METH_VAR_NAME_.292
+OBJC_METH_VAR_NAME_.293
+OBJC_METH_VAR_NAME_.294
+OBJC_METH_VAR_NAME_.295
+OBJC_METH_VAR_NAME_.296
+OBJC_METH_VAR_NAME_.297
+OBJC_METH_VAR_NAME_.298
+OBJC_METH_VAR_NAME_.299
+OBJC_METH_VAR_NAME_.300
+OBJC_METH_VAR_NAME_.301
+OBJC_METH_VAR_NAME_.302
+OBJC_METH_VAR_NAME_.303
+OBJC_METH_VAR_NAME_.304
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatch
+OBJC_METH_VAR_NAME_.305
+OBJC_METH_VAR_TYPE_.306
+OBJC_METH_VAR_NAME_.307
+OBJC_METH_VAR_TYPE_.308
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatch
+OBJC_PROP_NAME_ATTR_.309
+OBJC_PROP_NAME_ATTR_.310
+OBJC_PROP_NAME_ATTR_.311
+l_OBJC_$_PROP_LIST_AWSCloudWatch
+l_OBJC_CLASS_RO_$_AWSCloudWatch
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/include/dispatch/once.h
+-[AWSCloudWatch .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCloudWatch/AWSCloudWatchService.m
+-[AWSCloudWatch setNetworking:]
+-[AWSCloudWatch networking]
+-[AWSCloudWatch setConfiguration:]
+-[AWSCloudWatch configuration]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCloudWatch/AWSCloudWatchService.h
+-[AWSCloudWatch setAlarmState:completionHandler:]
+-[AWSCloudWatch setAlarmState:]
+-[AWSCloudWatch putMetricData:completionHandler:]
+-[AWSCloudWatch putMetricData:]
+-[AWSCloudWatch putMetricAlarm:completionHandler:]
+-[AWSCloudWatch putMetricAlarm:]
+-[AWSCloudWatch listMetrics:completionHandler:]
+-[AWSCloudWatch listMetrics:]
+-[AWSCloudWatch getMetricStatistics:completionHandler:]
+-[AWSCloudWatch getMetricStatistics:]
+-[AWSCloudWatch enableAlarmActions:completionHandler:]
+-[AWSCloudWatch enableAlarmActions:]
+-[AWSCloudWatch disableAlarmActions:completionHandler:]
+-[AWSCloudWatch disableAlarmActions:]
+-[AWSCloudWatch describeAlarmsForMetric:completionHandler:]
+-[AWSCloudWatch describeAlarmsForMetric:]
+-[AWSCloudWatch describeAlarms:completionHandler:]
+-[AWSCloudWatch describeAlarms:]
+-[AWSCloudWatch describeAlarmHistory:completionHandler:]
+-[AWSCloudWatch describeAlarmHistory:]
+-[AWSCloudWatch deleteAlarms:completionHandler:]
+-[AWSCloudWatch deleteAlarms:]
+-[AWSCloudWatch invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSCloudWatch initWithConfiguration:]
+-[AWSCloudWatch init]
++[AWSCloudWatch removeCloudWatchForKey:]
++[AWSCloudWatch CloudWatchForKey:]
++[AWSCloudWatch registerCloudWatchWithConfiguration:forKey:]
++[AWSCloudWatch defaultCloudWatch]
++[AWSCloudWatch initialize]
+-[AWSCloudWatchResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSCloudWatchResponseSerializer initialize]
++[AWSCloudWatchResources sharedInstance]
+__40+[AWSCloudWatchResources sharedInstance]_block_invoke
+-[AWSCloudWatchResources JSONObject]
+-[AWSCloudWatchResources init]
+-[AWSCloudWatchResources definitionString]
+-[AWSCloudWatchResources definitionDictionary]
+-[AWSCloudWatchResources setDefinitionDictionary:]
+-[AWSCloudWatchResources .cxx_destruct]
+sharedInstance._sharedResources
+sharedInstance.once_token
+OBJC_METH_VAR_NAME_.1
+OBJC_SELECTOR_REFERENCES_.2
+OBJC_METH_VAR_NAME_.3
+OBJC_SELECTOR_REFERENCES_.4
+OBJC_CLASSLIST_REFERENCES_$_.5
+OBJC_METH_VAR_NAME_.6
+OBJC_SELECTOR_REFERENCES_.7
+OBJC_METH_VAR_NAME_.8
+OBJC_SELECTOR_REFERENCES_.9
+OBJC_METH_VAR_NAME_.10
+OBJC_SELECTOR_REFERENCES_.11
+OBJC_IVAR_$_AWSCloudWatchResources._definitionDictionary
+OBJC_CLASSLIST_REFERENCES_$_.12
+OBJC_METH_VAR_NAME_.13
+OBJC_SELECTOR_REFERENCES_.14
+OBJC_CLASSLIST_REFERENCES_$_.16
+OBJC_METH_VAR_NAME_.18
+OBJC_SELECTOR_REFERENCES_.19
+__PRETTY_FUNCTION__.-[AWSCloudWatchResources init]
+.str.24
+_unnamed_cfstring_.25
+l_OBJC_$_CLASS_METHODS_AWSCloudWatchResources
+l_OBJC_METACLASS_RO_$_AWSCloudWatchResources
+OBJC_CLASS_NAME_.27
+OBJC_METH_VAR_NAME_.28
+OBJC_METH_VAR_NAME_.29
+OBJC_METH_VAR_TYPE_.30
+OBJC_METH_VAR_NAME_.31
+OBJC_METH_VAR_TYPE_.32
+l_OBJC_$_INSTANCE_METHODS_AWSCloudWatchResources
+OBJC_METH_VAR_NAME_.33
+OBJC_METH_VAR_TYPE_.34
+l_OBJC_$_INSTANCE_VARIABLES_AWSCloudWatchResources
+OBJC_PROP_NAME_ATTR_.35
+l_OBJC_$_PROP_LIST_AWSCloudWatchResources
+l_OBJC_CLASS_RO_$_AWSCloudWatchResources
+-[AWSCloudWatchResources .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSCloudWatch/AWSCloudWatchResources.m
+-[AWSCloudWatchResources setDefinitionDictionary:]
+-[AWSCloudWatchResources definitionDictionary]
+-[AWSCloudWatchResources definitionString]
+-[AWSCloudWatchResources init]
+-[AWSCloudWatchResources JSONObject]
++[AWSCloudWatchResources sharedInstance]
+/Users/lukasz/Library/Developer/Xcode/DerivedData/AWSiOSSDKv2-cqgditqlqlxkxfdyzbkzoqrzqldw/Build/Intermediates/AWSiOSSDKv2.build/Release-iphoneos/AWSCloudWatch.build/DerivedSources/AWSCloudWatch_vers.c
+_ZL15__ARCLite__loadv
+_ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+_ZL22add_image_hook_swiftV1PK11mach_headerl
+_ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+_ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+_ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+_ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+_ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+_ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+_ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+_ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+_ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+_ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+_ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+_ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+_ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+_ZL32__arclite_object_getIndexedIvarsP11objc_object
+_ZL23__arclite_objc_getClassPKc
+_ZL27__arclite_objc_getMetaClassPKc
+_ZL31__arclite_objc_getRequiredClassPKc
+_ZL26__arclite_objc_lookUpClassPKc
+_ZL26__arclite_objc_getProtocolPKc
+_ZL23__arclite_class_getNameP10objc_class
+_ZL26__arclite_protocol_getNameP8Protocol
+_ZL37__arclite_objc_copyClassNamesForImagePKcPj
+_ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+_ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+_ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+_ZL14initialize_impP11objc_objectP13objc_selector
+_ZL18allocateMaybeSwiftP18glue_swift_class_tm
+_ZL22copySwiftV1MangledNamePKcb
+_ZL13demangledNamePKcb
+_ZL16scanMangledFieldRPKcS0_S1_Ri
+_ZL30arclite_uninitialized_functionv
+_ZL12cxxConstructP11objc_object
+_ZL20fixStringForCoreDataP11objc_object
+OBJC_METACLASS_$___ARCLite__
+_ZL24OBJC_CLASS_$___ARCLite__
+_ZL31OBJC_METACLASS_RO_$___ARCLite__
+_non_lazy_classes
+_ZL27OBJC_CLASS_RO_$___ARCLite__
+_ZL11_class_name
+_ZL32OBJC_$_CLASS_METHODS___ARCLite__
+_ZL17_load_method_name
+_ZL17_load_method_type
+OBJC_METH_VAR_NAME_.5
+OBJC_METH_VAR_TYPE_.6
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteKeyedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+.str.8
+_ZL30NSUndoManagerProxy_targetClass
+OBJC_METH_VAR_NAME_.9
+OBJC_SELECTOR_REFERENCES_.10
+.str.12
+_ZL29original_NSManagedObject_init
+OBJC_METH_VAR_NAME_.15
+OBJC_SELECTOR_REFERENCES_.16
+_ZL40original_NSManagedObject_allocWithEntity
+OBJC_METH_VAR_NAME_.17
+OBJC_SELECTOR_REFERENCES_.18
+_ZL35original_NSManagedObject_allocBatch
+_ZL25NSMutableDictionary_class
+_ZL22NSConstantString_class
+.str.20
+_ZL14NSString_class
+.str.21
+_ZL36original_NSKKMS_fastIndexForKnownKey
+_ZL27original_NSKKMS_indexForKey
+.str.26
+_ZL28original_NSKKsD_objectForKey
+_ZL34original_NSKKsD_removeObjectForKey
+_ZL32original_NSKKsD_setObject_forKey
+OBJC_SELECTOR_REFERENCES_.30
+_ZL40original_NSKKsD_addEntriesFromDictionary
+_ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+_ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+_ZL31original_objc_allocateClassPair
+_ZL31original_object_getIndexedIvars
+.str.34
+_ZL22original_objc_getClass
+.str.35
+_ZL26original_objc_getMetaClass
+_ZL30original_objc_getRequiredClass
+.str.37
+_ZL25original_objc_lookUpClass
+.str.38
+_ZL25original_objc_getProtocol
+.str.39
+_ZL22original_class_getName
+.str.40
+_ZL25original_protocol_getName
+.str.41
+_ZL36original_objc_copyClassNamesForImage
+.str.46
+.str.47
+.str.48
+.str.50
+.str.51
+.str.52
+.str.53
+_ZL12demangleLock
+_ZL9Demangled
+.str.54
+.str.56
+.str.57
+OBJC_SELECTOR_REFERENCES_.59
+OBJC_METH_VAR_NAME_.60
+OBJC_SELECTOR_REFERENCES_.61
+OBJC_METH_VAR_NAME_.66
+OBJC_SELECTOR_REFERENCES_.67
+OBJC_SELECTOR_REFERENCES_.69
+OBJC_SELECTOR_REFERENCES_.71
+Apple LLVM version 7.3.0 (clang-703.0.21)
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch arm64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -fembed-bitcode -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -fgnu-inline-asm -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.o -mlinker-version=264.3
+__arclite_NSKKsD_addEntriesFromDictionary
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+fixStringForCoreData
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+cxxConstruct
+__arclite_NSManagedObject_init
+arclite_uninitialized_function
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+patch_lazy_pointers
+patch_t<const char **(const char *, unsigned int *)>
+__arclite_objc_copyClassNamesForImage
+patch_t<const char *(Protocol *)>
+__arclite_protocol_getName
+patch_t<const char *(Class)>
+__isctype
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/ctype.h
+isdigit
+scanMangledField
+copySwiftV1DemangledName
+demangledName
+__arclite_class_getName
+patch_t<Protocol *(const char *)>
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+patch_t<Class (const char *)>
+copySwiftV1MangledName
+__arclite_objc_getClass
+patch_t<void *(id)>
+word_align
+__arclite_object_getIndexedIvars
+patch_t<Class (Class, const char *, unsigned long)>
+allocateMaybeSwift
+isSwift
+metaclass
+__arclite_objc_allocateClassPair
+patch_t<Class (Class, const objc_image_info *)>
+initialize_imp
+property_list_nth
+transcribeProperties
+transcribeProtocols
+method_list_nth
+transcribeMethods
+alignment
+max
+ivar_list_nth
+transcribeIvars
+fastFlags
+data
+ro
+__arclite_objc_readClassPair
+add_image_hook_swiftV1
+install_swiftV1
+install_ARC
+objc_collectingEnabled
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/objc/objc-auto.h
+keyedGetter
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+addOrReplaceMethod
+install_dict_nil_value
+install_subscripting
+install_autoreleasepool
+__ARCLite__load
