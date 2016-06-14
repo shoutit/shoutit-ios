@@ -6,7 +6,7 @@ before_script:
   - rm -rf Gemfile.lock
   - gem install bundler
   - bundle install
-  - carthage build --platform ios --no-skip-current
+  - carthage build --platform ios
 
 production:
   type: build
