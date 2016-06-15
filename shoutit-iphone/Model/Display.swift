@@ -10,8 +10,8 @@ import Foundation
 import Argo
 
 public struct DisplayRange: Decodable {
-    let offset: Int
-    let length: Int
+    public let offset: Int
+    public let length: Int
     
     public static func decode(j: JSON) -> Decoded<DisplayRange> {
         let a = curry(DisplayRange.init)
@@ -23,9 +23,9 @@ public struct DisplayRange: Decodable {
 }
 
 public struct Display: Decodable {
-    let text: String
-    var ranges: [DisplayRange]?
-    let image: String?
+    public let text: String
+    public var ranges: [DisplayRange]?
+    public let image: String?
     
     
     public static func decode(j: JSON) -> Decoded<Display> {
@@ -36,5 +36,4 @@ public struct Display: Decodable {
         
         return a
     }
-    
 }

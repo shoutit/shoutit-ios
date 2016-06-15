@@ -129,7 +129,7 @@ extension ShoutsCollectionViewController {
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            cell.hydrateWithShout(cellViewModel.shout)
+            cell.bindWith(Shout: cellViewModel.shout)
             return cell
         }
         

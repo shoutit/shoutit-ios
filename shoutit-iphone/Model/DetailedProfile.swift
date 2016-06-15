@@ -159,7 +159,7 @@ extension DetailedProfile {
 }
 
 extension DetailedProfile {
-    func hasAllRequiredFieldsFilled() -> Bool {
+    public func hasAllRequiredFieldsFilled() -> Bool {
         return (self.imagePath?.characters.count > 0) && (self.gender != nil) && (self.birthday != nil)
     }
 }

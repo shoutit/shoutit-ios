@@ -61,6 +61,24 @@ final class EditProfileTableViewController: UITableViewController {
         setupRX()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        if (NSUserDefaults.standardUserDefaults().boolForKey("CompleteProfileAlertWasShown") == false && !viewModel.user.hasAllRequiredFieldsFilled()) {
+            showCompleteProfileInfo()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CompleteProfileAlertWasShown")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    func showCompleteProfileInfo() {
+        let alert = UIAlertController(title: NSLocalizedString("Completing your Profile", comment: ""), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Setup
     
     private func setupRX() {

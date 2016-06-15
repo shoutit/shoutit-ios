@@ -47,38 +47,6 @@ public struct Transaction: Decodable, Hashable, Equatable {
     }
 }
 
-public extension Transaction {
-    
-    func attributedText() -> NSAttributedString? {
-        
-        if let display = self.display {
-            let attributed = NSMutableAttributedString(string: display.text)
-            
-            guard let ranges = display.ranges else {
-                return attributed
-            }
-            
-            for range in ranges {
-                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: NSMakeRange(range.offset, range.length))
-            }
-            
-            return attributed
-        }
-        
-        return nil
-    }
-    
-    func imageURL() -> NSURL? {
-        
-        if let display = self.display, path = display.image {
-            return NSURL(string: path)
-        }
-        
-        return nil
-    }
-    
-}
-
 public func ==(lhs: Transaction, rhs: Transaction) -> Bool {
     return lhs.id == rhs.id
 }

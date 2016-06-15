@@ -197,7 +197,7 @@ extension ProfileCollectionViewController {
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
-            cell.hydrateWithShout(cellViewModel.shout)
+            cell.bindWith(Shout: cellViewModel.shout)
             
             return cell
         }
@@ -464,6 +464,17 @@ extension ProfileCollectionViewController {
                 self?.moreAction()
             }).addDisposableTo(disposeBag)
         case .EditProfile:
+            if let btn = button as? BadgeButton {
+                var shouldShowFillProfileBadge = false
+                
+                if let profile = Account.sharedInstance.user as? DetailedProfile {
+                    if profile.hasAllRequiredFieldsFilled() == false {
+                        shouldShowFillProfileBadge = true
+                    }
+                }
+                
+                btn.setBadgeNumber(shouldShowFillProfileBadge ? 1 : 0)
+            }
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
             }.addDisposableTo(disposeBag)

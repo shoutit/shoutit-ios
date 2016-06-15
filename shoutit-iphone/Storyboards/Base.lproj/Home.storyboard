@@ -235,6 +235,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </constraints>
                                         <connections>
                                             <outlet property="name" destination="RRw-th-eLm" id="vjX-c5-d8k"/>
+                                            <outlet property="shoutBackgroundView" destination="wko-ah-gpU" id="6LM-nC-b3P"/>
                                             <outlet property="shoutImage" destination="alf-Bi-JkA" id="m7w-W3-1Y1"/>
                                             <outlet property="shoutPrice" destination="9jz-Ro-msM" id="8z9-Eh-hRE"/>
                                             <outlet property="shoutTitle" destination="5LU-gw-tJA" id="2GK-SW-dBQ"/>
@@ -448,6 +449,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <size key="customSize" width="384" height="110"/>
                                         <connections>
                                             <outlet property="name" destination="RCG-32-Miu" id="NTZ-Of-C1K"/>
+                                            <outlet property="shoutBackgroundView" destination="awE-po-m6s" id="T3H-uz-NYY"/>
                                             <outlet property="shoutCategoryImage" destination="ktr-Mf-FI1" id="t5G-as-fHE"/>
                                             <outlet property="shoutCountryImage" destination="OcH-Ty-SmU" id="xYc-QN-M9T"/>
                                             <outlet property="shoutImage" destination="Ui7-bA-YwT" id="D8T-AY-c8u"/>
