@@ -196,7 +196,7 @@ extension ProfileCollectionViewController {
         else if indexPath.section == ProfileCollectionViewSection.Shouts.rawValue {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
-            cell.hydrateWithShout(cellViewModel.shout)
+            cell.bindWith(Shout: cellViewModel.shout)
             
             return cell
         }

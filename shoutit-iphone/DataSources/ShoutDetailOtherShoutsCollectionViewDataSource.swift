@@ -36,7 +36,7 @@ final class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollecti
         switch cellViewModel {
         case .Content(let shout):
             let contentCell = cell as! ShoutsCollectionViewCell
-            contentCell.hydrateWithShout(shout)
+            contentCell.bindWith(Shout: shout)
         case .NoContent(let message):
             let noContentCell = cell as! PlcaholderCollectionViewCell
             noContentCell.setupCellForActivityIndicator(false)

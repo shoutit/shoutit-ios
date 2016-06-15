@@ -41,6 +41,7 @@ struct Shout: Decodable, Hashable, Equatable {
     let conversations: [MiniConversation]?
     let isMobileSet: Bool?
     let mobile: String?
+    let promotion: Promotion?
     
     static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -74,8 +75,10 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
+        let h = g
             <*> j <|? "mobile"
-        return g
+            <*> j <|? "promotion"
+        return h
     }
     
     var hashValue: Int {

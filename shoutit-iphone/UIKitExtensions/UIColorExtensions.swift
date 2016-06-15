@@ -34,6 +34,7 @@ enum ShoutitColor: Int {
     case SuccessGreen = 0x4BA63F
     case LightGreen = 0xC8E6C9
     case TextFieldBorderGrayColor = 0xC3C3C3
+    case PromotedShoutYellowBackgroundColor = 0xffd700
     
     var alpha: Float {
         switch self {
@@ -47,5 +48,22 @@ extension UIColor {
     
     convenience init(shoutitColor: ShoutitColor) {
         self.init(hex: shoutitColor.rawValue, alpha: shoutitColor.alpha)!
+    }
+}
+
+extension UIColor {
+    static func colorFromHexAlphaString(hexStringWithAlpha: String) -> UIColor {
+        
+        let baseString = hexStringWithAlpha.stringByReplacingOccurrencesOfString("#", withString: "")
+        
+        let alphaString = (baseString as NSString).substringToIndex(2)
+        
+        let hex = (baseString as NSString).substringFromIndex(2)
+        
+        guard let color = UIColor(hexString: hex) else {
+            return UIColor.blackColor()
+        }
+    
+        return color//.colorWithAlphaComponent(CGFloat(alphaString.doubleValue/100))
     }
 }

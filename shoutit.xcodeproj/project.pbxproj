@@ -171,6 +171,8 @@
 		AE4DB3651C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */; };
 		AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */; };
+		AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B51D11674A002F1430 /* ShoutCell.swift */; };
+		AE54A6B81D1173D9002F1430 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B71D1173D9002F1430 /* Promotion.swift */; };
 		AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */; };
 		AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
@@ -928,6 +930,8 @@
 		AE4E2EDF1CB272A4001153E0 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoBrowser.h; path = Controllers/PhotoBrowser.h; sourceTree = "<group>"; };
 		AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoBrowser.m; path = Controllers/PhotoBrowser.m; sourceTree = "<group>"; };
 		AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerControllerProtocol.swift; path = Controllers/MediaPickerControllerProtocol.swift; sourceTree = "<group>"; };
+		AE54A6B51D11674A002F1430 /* ShoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutCell.swift; path = View/ShoutCell.swift; sourceTree = "<group>"; };
+		AE54A6B71D1173D9002F1430 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promotion.swift; path = Model/Promotion.swift; sourceTree = "<group>"; };
 		AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallViewController.swift; path = Controllers/VideoCallViewController.swift; sourceTree = "<group>"; };
 		AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutButton.swift; path = View/CreateShoutButton.swift; sourceTree = "<group>"; };
 		AE6654641CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchCategoriesHeaderView.strings; sourceTree = "<group>"; };
@@ -2015,6 +2019,7 @@
 				24E298911CF1F23700FDB055 /* Display.swift */,
 				AE0CD3591CFC6647006B05FD /* Contact.swift */,
 				AED505331D0ECC3900CD965C /* Transaction.swift */,
+				AE54A6B71D1173D9002F1430 /* Promotion.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3545,6 +3550,7 @@
 				601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */,
 				B2B2869A1CD3B4CA00CE5607 /* RTLShoutItemCell.swift */,
 				B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */,
+				AE54A6B51D11674A002F1430 /* ShoutCell.swift */,
 			);
 			name = CommonCollectionViewCells;
 			sourceTree = "<group>";
@@ -4331,6 +4337,7 @@
 				B28379A31C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift in Sources */,
 				B27230521CE0DF6F003547EA /* UITableView+Reusables.swift in Sources */,
 				AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */,
+				AE54A6B81D1173D9002F1430 /* Promotion.swift in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
@@ -4699,6 +4706,7 @@
 				B209C5231CF3181E00727095 /* PhotosMenuController.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
 				B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */,
+				AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */,
 				AEDDCC711CB6467800B98A94 /* Reportable.swift in Sources */,
 				B20F47D21CAEDC080091899C /* LimitingTextFieldsFilterTableViewCell.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,

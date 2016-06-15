@@ -84,6 +84,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <size key="customSize" width="200" height="242"/>
                                 <connections>
                                     <outlet property="name" destination="C39-Cu-yZU" id="z3R-94-fQz"/>
+                                    <outlet property="shoutBackgroundView" destination="cGz-qk-fIZ" id="RpG-1a-85n"/>
                                     <outlet property="shoutImage" destination="IgI-sU-YyS" id="rv7-sP-GjU"/>
                                     <outlet property="shoutPrice" destination="jMN-dN-Vu2" id="ix9-7q-iCC"/>
                                     <outlet property="shoutTitle" destination="1zO-PU-axo" id="YgM-Fd-Pdo"/>
@@ -135,6 +136,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 </constraints>
                                 <size key="customSize" width="200" height="239"/>
                                 <connections>
+                                    <outlet property="shoutBackgroundView" destination="OAj-Z9-APk" id="EKu-0O-nXe"/>
                                     <outlet property="shoutImage" destination="b9c-iv-eYo" id="lmt-8p-PCT"/>
                                     <outlet property="shoutTitle" destination="DFH-Ro-KZo" id="g6R-hP-1kD"/>
                                 </connections>
@@ -192,7 +194,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-4T-9jB">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-25-5NW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-25-5NW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="340" y="46" width="39" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
@@ -207,7 +209,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-ve-3cT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-ve-3cT">
                                                     <rect key="frame" x="115" y="49" width="64" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,13 +229,13 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                                         <constraint firstAttribute="width" constant="21" id="Xcg-3y-Vao"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-rE-D1W">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$44 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-rE-D1W">
                                                     <rect key="frame" x="319" y="88" width="60" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-FE-ywc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG0-FE-ywc">
                                                     <rect key="frame" x="345" y="49" width="29" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -305,6 +307,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 </constraints>
                                 <size key="customSize" width="384" height="110"/>
                                 <connections>
+                                    <outlet property="shoutBackgroundView" destination="5V3-4T-9jB" id="Kdq-aT-6so"/>
                                     <outlet property="shoutCategoryImage" destination="aNS-zE-8e0" id="SYR-4h-890"/>
                                     <outlet property="shoutCountryImage" destination="ffa-jz-1g2" id="pcg-9w-k5Q"/>
                                     <outlet property="shoutImage" destination="ZPd-Dh-WPK" id="OVZ-bC-JDm"/>
@@ -383,6 +386,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <size key="customSize" width="200" height="242"/>
                                 <connections>
                                     <outlet property="name" destination="t0W-ij-BKo" id="8Tp-W3-B4e"/>
+                                    <outlet property="shoutBackgroundView" destination="VdA-QH-byA" id="s0J-nQ-EyR"/>
                                     <outlet property="shoutImage" destination="sWk-h7-M1t" id="9f9-EV-v2d"/>
                                     <outlet property="shoutPrice" destination="rVl-oZ-ib3" id="PMx-wB-SAg"/>
                                     <outlet property="shoutTitle" destination="eMu-SA-8L3" id="tlh-dk-SaE"/>
