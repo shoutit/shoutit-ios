@@ -463,6 +463,17 @@ extension ProfileCollectionViewController {
                 self?.moreAction()
             }).addDisposableTo(disposeBag)
         case .EditProfile:
+            if let btn = button as? BadgeButton {
+                var shouldShowFillProfileBadge = false
+                
+                if let profile = Account.sharedInstance.user as? DetailedProfile {
+                    if profile.hasAllRequiredFieldsFilled() == false {
+                        shouldShowFillProfileBadge = true
+                    }
+                }
+                
+                btn.setBadgeNumber(shouldShowFillProfileBadge ? 1 : 0)
+            }
             button.rx_tap.asDriver().driveNext{[weak self] in
                 self?.flowDelegate?.showEditProfile()
             }.addDisposableTo(disposeBag)
