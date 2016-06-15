@@ -79,8 +79,8 @@
     
     if (progress > 0.0f && self.roundedCorners) {
         CGFloat pathWidth = radius * self.thicknessRatio;
-        CGFloat xOffset = radius * (1.0f + ((1.0f - (self.thicknessRatio / 2.0f)) * cosf(radians)));
-        CGFloat yOffset = radius * (1.0f + ((1.0f - (self.thicknessRatio / 2.0f)) * sinf(radians)));
+        CGFloat xOffset = radius * (1.0f + ((1.0f - (self.thicknessRatio / 2.0f)) * cos(radians)));
+        CGFloat yOffset = radius * (1.0f + ((1.0f - (self.thicknessRatio / 2.0f)) * sin(radians)));
         CGPoint endPoint = CGPointMake(xOffset, yOffset);
         
         CGRect startEllipseRect = (CGRect) {
@@ -212,8 +212,8 @@
         animation.duration = duration;
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.fillMode = kCAFillModeForwards;
-        animation.fromValue = [NSNumber numberWithFloat:self.progress];
-        animation.toValue = [NSNumber numberWithFloat:pinnedProgress];
+        animation.fromValue = [NSNumber numberWithFloat:(float)self.progress];
+        animation.toValue = [NSNumber numberWithFloat:(float)pinnedProgress];
         animation.beginTime = CACurrentMediaTime() + initialDelay;
         animation.delegate = self;
         [self.circularProgressLayer addAnimation:animation forKey:@"progress"];

@@ -34,7 +34,7 @@ internal class ABAddressBookQueryBuilder: InternalAddressBookQueryBuilder<ABAddr
     
     func removePropertiesFromRecord(record: ABRecord) {
         let keysWhichShouldBeIgnored = Set(AddressBookRecordProperty.allValues).subtract(keysToFetch)
-        for var key in keysWhichShouldBeIgnored {
+        for key in keysWhichShouldBeIgnored {
             if let abKey = addressBookPropertiesToABProperties[key] {
                 ABRecordRemoveValue(record, abKey, nil)
             }

@@ -39,7 +39,7 @@ static NSString * const DPLURLParameterPattern        = @"([^/]+)";
     NSMutableDictionary *routeParameters = [NSMutableDictionary dictionary];
     for (NSTextCheckingResult *result in matches) {
         // Begin at 1 as first range is the whole match
-        for (NSInteger i = 1; i < result.numberOfRanges && i <= self.groupNames.count; i++) {
+        for (NSUInteger i = 1; i < result.numberOfRanges && i <= self.groupNames.count; i++) {
             NSString *parameterName         = self.groupNames[i - 1];
             NSString *parameterValue        = [str substringWithRange:[result rangeAtIndex:i]];
             routeParameters[parameterName]  = parameterValue;

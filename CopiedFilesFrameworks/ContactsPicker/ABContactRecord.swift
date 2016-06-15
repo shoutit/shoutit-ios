@@ -113,7 +113,7 @@ internal class ABRecordAdapter {
         if let phoneNumbers = contact.phoneNumbers {
             let phoneNumberMultiValue = createMultiValue(kABPersonPhoneProperty)
             
-            for var phoneNumberLabeledValue in phoneNumbers {
+            for phoneNumberLabeledValue in phoneNumbers {
                 ABMultiValueAddValueAndLabel(phoneNumberMultiValue, phoneNumberLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: phoneNumberLabeledValue.label), nil)
             }
             setValueToRecord(person, key: kABPersonPhoneProperty, phoneNumberMultiValue)
@@ -122,7 +122,7 @@ internal class ABRecordAdapter {
         if let emailAddresses = contact.emailAddresses {
             let emailAddressesMultiValue = createMultiValue(kABPersonEmailProperty)
             
-            for var emailLabeledValue in emailAddresses {
+            for emailLabeledValue in emailAddresses {
                 ABMultiValueAddValueAndLabel(emailAddressesMultiValue, emailLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: emailLabeledValue.label), nil)
             }
             
@@ -150,7 +150,7 @@ internal class ABRecordAdapter {
     internal class func createMultiValuesFromLabels(record: ABRecord, type: ABPropertyID, labels:[AddressBookRecordLabel]?) -> ABMutableMultiValue {
         let multiValue = createMultiValue(type)
         let labels = labels ?? [AddressBookRecordLabel]()
-        for var adressBookLabel in labels {
+        for adressBookLabel in labels {
             addLabelToMultiValue(multiValue, label: adressBookLabel)
         }
         return multiValue

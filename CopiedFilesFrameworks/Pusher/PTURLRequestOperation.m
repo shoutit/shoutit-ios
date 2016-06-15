@@ -26,7 +26,7 @@
 @synthesize connectionError;
 @synthesize responseData;
 
-- (id)initWithURLRequest:(NSURLRequest *)request;
+- (id)initWithURLRequest:(NSURLRequest *)request
 {
   if ((self = [super init])) {
     URLRequest = request;
@@ -61,7 +61,7 @@
   [URLConnection start];
 }
 
-- (void)finish;
+- (void)finish
 {
   [self setFinished:YES];
 }
@@ -130,14 +130,14 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void)setExecuting:(BOOL)isExecuting;
+- (void)setExecuting:(BOOL)isExecuting
 {
   [self willChangeValueForKey:@"isExecuting"];
   _isExecuting = isExecuting;
   [self didChangeValueForKey:@"isExecuting"];
 }
 
-- (void)setFinished:(BOOL)isFinished;
+- (void)setFinished:(BOOL)isFinished
 {
   [self willChangeValueForKey:@"isFinished"];
   [self setExecuting:NO];

@@ -115,7 +115,7 @@ internal class CNAddressBookImpl: AddressBookProtocol {
         let keys = [CNContactIdentifierKey]
         do {
             let allContacts = try contactStore.unifiedContactsMatchingPredicate(predicate, keysToFetch: keys)
-            for var contact in allContacts {
+            for contact in allContacts {
                 saveRequest.deleteContact(contact.mutableCopy() as! CNMutableContact)
             }
         } catch let e {

@@ -82,7 +82,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         let allRecordsArray = allPeople as NSArray? as? [ABRecord]
         
         if let allRecords = allRecordsArray {
-            for var person in allRecords {
+            for person in allRecords {
                 if let error = (errorIfNoSuccess({
                     return ABAddressBookRemoveRecord(self.addressBook, person, $0)
                 })) {
@@ -124,7 +124,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         var allContacts = [ContactProtocol]()
         let allRecords = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as Array<ABRecord>
         
-        for var record in allRecords {
+        for record in allRecords {
             allContacts.append(ABContactRecord(abRecord: record))
         }
         
