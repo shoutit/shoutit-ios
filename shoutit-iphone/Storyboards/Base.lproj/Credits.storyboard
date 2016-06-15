@@ -195,10 +195,11 @@
         <scene sceneID="3Kb-IU-cur">
             <objects>
                 <tableViewController storyboardIdentifier="CreditTransactionsTableViewController" id="Mdh-Ee-mZB" customClass="CreditTransactionsTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="XXd-4k-CVa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="XXd-4k-CVa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="nOg-1X-N2j">
                             <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -228,12 +229,12 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fzd-Lf-qIh" id="VQG-rG-AvY">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1n3-wU-Nwd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1n3-wU-Nwd">
                                             <rect key="frame" x="10" y="8" width="48" height="48"/>
-                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="8bV-ma-Rf5"/>
                                                 <constraint firstAttribute="width" constant="48" id="ng8-iH-Sii"/>
@@ -244,38 +245,37 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="New Shout from Lenovo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQV-Ow-m5M">
-                                            <rect key="frame" x="70" y="6" width="174" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mon at 12:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgX-b3-Tgq">
-                                            <rect key="frame" x="92" y="38" width="85" height="17"/>
+                                            <rect key="frame" x="92" y="40" width="85" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="xRq-ew-MXA">
-                                            <rect key="frame" x="70" y="37" width="17" height="17"/>
+                                            <rect key="frame" x="70" y="46" width="17" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="99z-Ry-8Vq"/>
                                                 <constraint firstAttribute="width" constant="17" id="K3l-DN-alS"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="New Shout from Lenovo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQV-Ow-m5M">
+                                            <rect key="frame" x="70" y="11" width="174" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="HgX-b3-Tgq" secondAttribute="bottom" constant="9" id="5MU-wi-hqo"/>
                                         <constraint firstItem="1n3-wU-Nwd" firstAttribute="centerY" secondItem="VQG-rG-AvY" secondAttribute="centerY" id="98y-lV-4Mg"/>
-                                        <constraint firstItem="xRq-ew-MXA" firstAttribute="bottom" secondItem="1n3-wU-Nwd" secondAttribute="bottom" constant="-1" id="AtK-rG-akh"/>
-                                        <constraint firstItem="HgX-b3-Tgq" firstAttribute="bottom" secondItem="1n3-wU-Nwd" secondAttribute="bottom" id="Esh-L6-6rE"/>
                                         <constraint firstItem="zQV-Ow-m5M" firstAttribute="leading" secondItem="1n3-wU-Nwd" secondAttribute="trailing" constant="12" id="G2I-Bm-iK5"/>
                                         <constraint firstItem="HgX-b3-Tgq" firstAttribute="leading" secondItem="xRq-ew-MXA" secondAttribute="trailing" constant="5" id="ItA-QT-6UB"/>
-                                        <constraint firstItem="xRq-ew-MXA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zQV-Ow-m5M" secondAttribute="bottom" id="XE0-4O-jTv"/>
+                                        <constraint firstItem="zQV-Ow-m5M" firstAttribute="top" secondItem="VQG-rG-AvY" secondAttribute="top" constant="10" id="J2G-Rn-KLV"/>
+                                        <constraint firstItem="HgX-b3-Tgq" firstAttribute="centerY" secondItem="xRq-ew-MXA" secondAttribute="centerY" id="JZK-9j-aBH"/>
+                                        <constraint firstItem="xRq-ew-MXA" firstAttribute="top" secondItem="zQV-Ow-m5M" secondAttribute="bottom" priority="999" constant="10" id="XE0-4O-jTv"/>
                                         <constraint firstItem="xRq-ew-MXA" firstAttribute="leading" secondItem="1n3-wU-Nwd" secondAttribute="trailing" constant="12" id="dEJ-z3-htK"/>
-                                        <constraint firstItem="HgX-b3-Tgq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zQV-Ow-m5M" secondAttribute="bottom" id="dcj-5G-fUQ"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zQV-Ow-m5M" secondAttribute="trailing" constant="10" id="fbx-Pp-S2y"/>
                                         <constraint firstItem="1n3-wU-Nwd" firstAttribute="leading" secondItem="VQG-rG-AvY" secondAttribute="leading" constant="10" id="g6z-Is-ZIL"/>
-                                        <constraint firstItem="zQV-Ow-m5M" firstAttribute="top" secondItem="1n3-wU-Nwd" secondAttribute="top" constant="-2" id="oYS-GX-LvY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

@@ -43,6 +43,9 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 65.0
     }
     
     
@@ -153,7 +156,7 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65.0
+        return UITableViewAutomaticDimension
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

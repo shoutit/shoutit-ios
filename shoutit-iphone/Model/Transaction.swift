@@ -58,7 +58,7 @@ extension Transaction {
             }
             
             for range in ranges {
-                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: NSMakeRange(range.offset, range.length))
+                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0), NSForegroundColorAttributeName: UIColor(shoutitColor: .ShoutitLightBlueColor)], range: NSMakeRange(range.offset, range.length))
             }
             
             return attributed
@@ -66,16 +66,6 @@ extension Transaction {
         
         return nil
     }
-    
-    func imageURL() -> NSURL? {
-        
-        if let display = self.display, path = display.image {
-            return NSURL(string: path)
-        }
-        
-        return nil
-    }
-    
 }
 
 func ==(lhs: Transaction, rhs: Transaction) -> Bool {
