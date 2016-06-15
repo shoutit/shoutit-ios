@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol AllShoutsDisplayable {
     func showShoutsForProfile(profile: Profile) -> Void

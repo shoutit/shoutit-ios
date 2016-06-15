@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct AutocompletionParams: Params {
-    let searchPhrase: String
-    let categoryName: String?
-    let country: String?
+public struct AutocompletionParams: Params {
+    public let searchPhrase: String
+    public let categoryName: String?
+    public let country: String?
     
-    init(phrase: String, categoryName: String?, country: String?, useLocaleBasedCountryCodeWhenNil: Bool = false) {
+    public init(phrase: String, categoryName: String?, country: String?, useLocaleBasedCountryCodeWhenNil: Bool = false) {
         self.searchPhrase = phrase
         self.categoryName = categoryName
         if country == nil && useLocaleBasedCountryCodeWhenNil {
@@ -23,7 +23,7 @@ struct AutocompletionParams: Params {
         }
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["search"] = searchPhrase
         p["category"] = categoryName

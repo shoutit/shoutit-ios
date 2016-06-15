@@ -106,6 +106,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
         return kTableSecondaryCellHeight
     }
     
+
+    
     // MARK: User Interactions
     
     @IBAction func profileAction(sender: AnyObject) {
@@ -119,6 +121,11 @@ final class MenuTableViewController: UITableViewController, Navigation {
     @IBAction func changeLocation(sender: AnyObject) {
         triggerActionWithItem(.Location)
     }
+    
+    @IBAction func showCreditsAction(sender: AnyObject) {
+        triggerActionWithItem(.Credits)
+    }
+    
     
     override func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)

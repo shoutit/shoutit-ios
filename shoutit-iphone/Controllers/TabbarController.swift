@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class TabbarController: UIViewController, Navigation {
 
@@ -15,7 +16,7 @@ final class TabbarController: UIViewController, Navigation {
     
     private let disposeBag = DisposeBag()
     
-    var rootController : RootController?
+    weak var rootController : RootController?
     
     var selectedNavigationItem : NavigationItem? {
         didSet {

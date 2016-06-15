@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MWPhotoBrowser
 
 final class ShoutDetailTableViewController: UITableViewController {
     

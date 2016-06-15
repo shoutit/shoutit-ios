@@ -8,6 +8,7 @@
 
 import UIKit
 import AmazonS3RequestManager
+import ShoutitKit
 
 enum MediaUploaderBucket {
     case UserImage

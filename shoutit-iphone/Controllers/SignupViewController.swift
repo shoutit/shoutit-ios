@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Material
-import ResponsiveLabel
 import MBProgressHUD
 
 final class SignupViewController: UITableViewController {
@@ -53,7 +52,7 @@ final class SignupViewController: UITableViewController {
         
         let signupActionFilterClosure: Void -> Bool = {[unowned self] in
             
-            for validationResult in [Validator.validateName(self.nameTextField.text), Validator.validateEmail(self.emailTextField.text), Validator.validatePassword(self.passwordTextField.text)] {
+            for validationResult in [ShoutitValidator.validateName(self.nameTextField.text), ShoutitValidator.validateEmail(self.emailTextField.text), ShoutitValidator.validatePassword(self.passwordTextField.text)] {
                 if case .Invalid(let errors) = validationResult {
                     if let error = errors.first {
                         self.delegate?.showLoginErrorMessage(error.message)
@@ -96,9 +95,9 @@ final class SignupViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         // add validators
-        nameTextField.addValidator(Validator.validateName, withDisposeBag: disposeBag)
-        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
-        passwordTextField.addValidator(Validator.validatePassword, withDisposeBag: disposeBag)
+        nameTextField.addValidator(ShoutitValidator.validateName, withDisposeBag: disposeBag)
+        emailTextField.addValidator(ShoutitValidator.validateEmail, withDisposeBag: disposeBag)
+        passwordTextField.addValidator(ShoutitValidator.validatePassword, withDisposeBag: disposeBag)
     }
     
     private func setupTermsAndPolicyLabel() {

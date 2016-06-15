@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import CoreLocation
 
-protocol AuthParams: Params {
+public protocol AuthParams: Params {
     
     var grantType: String {get}
     var authParams: [String : AnyObject] {get}
+    var mixPanelDistinctId: String {get set}
+    var currentUserCoordinates: CLLocationCoordinate2D {get set}
 }
 
 extension AuthParams {
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         
         var commonParams: [String : AnyObject] = [
             "client_id": Constants.Authentication.clientID,
@@ -28,7 +31,8 @@ extension AuthParams {
             commonParams[key] = value
         }
         
-        let coordinate = LocationManager.sharedInstance.currentLocation.coordinate
+        let coordinate = currentUserCoordinates
+        
         var locationUserParams: [String : AnyObject] = ["location" : ["latitude": coordinate.latitude, "longitude": coordinate.longitude]]
         if let currentUserParams = commonParams["profile"] as? [String : AnyObject] {
             for (key, value) in currentUserParams {
@@ -36,19 +40,29 @@ extension AuthParams {
             }
         }
         commonParams["profile"] = locationUserParams
-        commonParams["mixpanel_distinct_id"] = MixpanelHelper.getDistictId()
+        commonParams["mixpanel_distinct_id"] = mixPanelDistinctId
         
         return commonParams
     }
 }
 
-struct LoginParams: AuthParams {
+public struct LoginParams: AuthParams {
+    public let email: String
+    public let password: String
     
-    let email: String
-    let password: String
+    public let grantType = "shoutit_login"
     
-    let grantType = "shoutit_login"
-    var authParams: [String : AnyObject] {
+    public var mixPanelDistinctId: String
+    public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public init(email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.email = email
+        self.password = password
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
+    
+    public var authParams: [String : AnyObject] {
         return [
             "email": email,
             "password": password
@@ -56,14 +70,26 @@ struct LoginParams: AuthParams {
     }
 }
 
-struct SignupParams: AuthParams {
+public struct SignupParams: AuthParams {
     
-    let name: String
-    let email: String
-    let password: String
+    public let name: String
+    public let email: String
+    public let password: String
     
-    let grantType = "shoutit_signup"
-    var authParams: [String : AnyObject] {
+    public let grantType = "shoutit_signup"
+    
+    public var mixPanelDistinctId: String
+    public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public init(name: String, email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.name = name
+        self.email = email
+        self.password = password
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
+    
+    public var authParams: [String : AnyObject] {
         return [
             "email": email,
             "password": password,
@@ -72,53 +98,87 @@ struct SignupParams: AuthParams {
     }
 }
 
-struct LoginGuestParams: AuthParams {
+public struct LoginGuestParams: AuthParams {
     
-    let grantType = "shoutit_guest"
-    var apns: NSObject {
-        if let token = Account.sharedInstance.apnsToken {
-            return token as NSString
-        }
-        return NSNull()
+    public let grantType = "shoutit_guest"
+    public var apns: NSObject?
+//    {
+//        if let token = Account.sharedInstance.apnsToken {
+//            return token as NSString
+//        }
+//        return NSNull()
+//    }
+    
+    public init(apns: NSObject?, mixPanelId: String, currentUserLocation: CLLocationCoordinate2D) {
+        self.apns = apns
+        self.mixPanelDistinctId = mixPanelId
+        self.currentUserCoordinates = currentUserLocation
     }
     
-    var authParams: [String : AnyObject] {
+    public var mixPanelDistinctId: String
+    public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public var authParams: [String : AnyObject] {
         return [
             "profile":
-                ["push_tokens" : ["apns" : apns]]
+                ["push_tokens" : ["apns" : apns ?? NSNull()]]
         ]
     }
 }
 
-struct FacebookLoginParams: AuthParams {
+public struct FacebookLoginParams: AuthParams {
     
-    let token: String
+    public let token: String
     
-    let grantType = "facebook_access_token"
-    var authParams: [String : AnyObject] {
+    public let grantType = "facebook_access_token"
+    
+    public var mixPanelDistinctId: String
+    public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public var authParams: [String : AnyObject] {
         return [
             "facebook_access_token": token
         ]
     }
+    
+    public init(token: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.token = token
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
 }
 
-struct GoogleLoginParams: AuthParams {
+public struct GoogleLoginParams: AuthParams {
     
-    let gplusCode: String
+    public let gplusCode: String
     
-    let grantType = "gplus_code"
-    var authParams: [String : AnyObject] {
+    public let grantType = "gplus_code"
+    
+    public var mixPanelDistinctId: String
+    public var currentUserCoordinates: CLLocationCoordinate2D
+    
+    public var authParams: [String : AnyObject] {
         return [
             "gplus_code": gplusCode
         ]
     }
+    
+    public init(gplusCode: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+        self.gplusCode = gplusCode
+        self.mixPanelDistinctId = mixPanelDistinctId
+        self.currentUserCoordinates = currentUserCoordinates
+    }
 }
 
-struct ResetPasswordParams: Params {
+public struct ResetPasswordParams: Params {
     
-    let email: String
+    public let email: String
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return ["email" : email]
+    }
+    
+    public init(email: String) {
+        self.email = email
     }
 }

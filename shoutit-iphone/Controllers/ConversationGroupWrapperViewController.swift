@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 class ConversationGroupWrapperViewController: UIViewController {
     

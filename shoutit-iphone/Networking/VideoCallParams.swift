@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct VideoCallParams: Params {
+public struct VideoCallParams: Params {
     let identity: String
     let missed: Bool
     
-    init(identity: String, missed: Bool) {
+    public init(identity: String, missed: Bool) {
         self.identity = identity
         self.missed = missed
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return ["identity" : identity,
                 "missed" : missed]
     }

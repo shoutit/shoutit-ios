@@ -8,18 +8,25 @@
 
 import Foundation
 
-struct ConversationsListParams: Params {
-    let pageSize : Int
-    let conversationType: ConversationType? = nil
-    let beforeTimestamp: Int? = nil
-    let afterTimestamp: Int? = nil
+public struct ConversationsListParams: Params {
+    public let pageSize : Int
+    public var conversationType: ConversationType? = nil
+    public var beforeTimestamp: Int? = nil
+    public var afterTimestamp: Int? = nil
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
         params["page_size"] = pageSize
         params["type"] = conversationType?.rawValue
         params["before"] = beforeTimestamp
         params["after"] = afterTimestamp
         return params
+    }
+    
+    public init(pageSize: Int, conversationType: ConversationType? = nil, beforeTimestamp: Int? = nil, afterTimestamp: Int? = nil) {
+        self.pageSize = pageSize
+        self.conversationType = conversationType
+        self.beforeTimestamp = beforeTimestamp
+        self.afterTimestamp = afterTimestamp
     }
 }

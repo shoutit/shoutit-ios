@@ -10,10 +10,10 @@ import UIKit
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
-import UIViewAppearanceSwift
-import DeepLinkKit
 import SwiftyBeaver
 import FBSDKCoreKit
+import ShoutitKit
+import Bolts
 
 let log = SwiftyBeaver.self
 
@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PlacesGeocoder.setup()
         MixpanelHelper.handleUserDidOpenApp()
         LocationManager.sharedInstance.startUpdatingLocation()
+        
+        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
         
         configureAPS(application)
         configureURLCache()
@@ -199,8 +201,7 @@ private extension AppDelegate {
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
             UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
         } else {
-            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).tintColor = UIColor(shoutitColor: .PrimaryGreen)
-            UINavigationBar.appearanceWhenContainedWithin(LoginNavigationViewController.self).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+            SHAppearanceBridge.applyNavigationBarAppearanceWithColor(UIColor(shoutitColor: .PrimaryGreen))
         }
     }
     
@@ -240,7 +241,7 @@ private extension AppDelegate {
 extension AppDelegate {
     func registerRoutes() {
         
-        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout]
+        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout, .CreditsTransations]
         
         for route in routableElements {
             self.router.registerBlock({ [weak self] (deeplink) in

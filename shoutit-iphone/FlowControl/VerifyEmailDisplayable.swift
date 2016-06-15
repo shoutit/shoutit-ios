@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol VerifyEmailDisplayable {
     func showVerifyEmailView(profile: DetailedProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) -> Void

@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import ShoutitKit
 
 final class EditShoutParentViewController: CreateShoutParentViewController {
 

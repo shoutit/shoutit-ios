@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Pusher
+import ShoutitKit
 
 protocol ChatsListViewModel {
     var pager: Pager<ConversationPagedResults, MiniConversation, MiniConversation> { get }

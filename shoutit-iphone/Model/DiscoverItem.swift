@@ -8,19 +8,18 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct DiscoverItem: Decodable, Hashable, Equatable {
-    let id: String
-    let apiUrl: String
-    let title: String
-    let subtitle: String?
-    let position: Int
-    let image: String?
-    let cover: String?
-    let icon: String?
+public struct DiscoverItem: Decodable, Hashable, Equatable {
+    public let id: String
+    public let apiUrl: String
+    public let title: String
+    public let subtitle: String?
+    public let position: Int
+    public let image: String?
+    public let cover: String?
+    public let icon: String?
     
-    static func decode(j: JSON) -> Decoded<DiscoverItem> {
+    public static func decode(j: JSON) -> Decoded<DiscoverItem> {
         let f = curry(DiscoverItem.init)
             <^> j <| "id"
             <*> j <| "api_url"
@@ -35,7 +34,7 @@ struct DiscoverItem: Decodable, Hashable, Equatable {
     }
     
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
@@ -43,6 +42,6 @@ struct DiscoverItem: Decodable, Hashable, Equatable {
     
 }
 
-func ==(lhs: DiscoverItem, rhs: DiscoverItem) -> Bool {
+public func ==(lhs: DiscoverItem, rhs: DiscoverItem) -> Bool {
     return lhs.id == rhs.id
 }

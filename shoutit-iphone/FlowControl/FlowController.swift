@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import DeepLinkKit
 import RxSwift
 import MBProgressHUD
+import ShoutitKit
 
 protocol UserAccess {
     func requiresLoggedInUser() -> Bool

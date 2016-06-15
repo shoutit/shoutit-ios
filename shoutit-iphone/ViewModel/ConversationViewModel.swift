@@ -9,6 +9,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 enum ConversationDataState : Int {
     case NotLoaded
@@ -232,20 +233,20 @@ final class ConversationViewModel {
     
     func cellIdentifierForMessage(msg: Message) -> String {
         guard let attachmentType = msg.attachment()?.type() else {
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
         }
         
         switch attachmentType {
         case .ImageAttachment:
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
         case .VideoAttachment:
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
         case .LocationAttachment:
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
         case .ShoutAttachment:
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
         case .ProfileAttachment:
-            return msg.isOutgoingCell() ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
+            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
         }
     }
     

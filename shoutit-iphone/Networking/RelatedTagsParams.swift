@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
+public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
     
-    let tagName: String
-    let pageSize: Int?
-    let page: Int?
-    let category: String?
-    let city: String?
-    let state: String?
-    let country: String?
+    public let tagName: String
+    public let pageSize: Int?
+    public let page: Int?
+    public let category: String?
+    public let city: String?
+    public let state: String?
+    public let country: String?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["category"] = category
         
@@ -31,5 +31,15 @@ struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
         }
         
         return p
+    }
+    
+    public init(tagName: String, pageSize: Int?, page: Int?, category: String?, city: String?, state: String?, country: String?) {
+        self.tagName = tagName
+        self.pageSize = pageSize
+        self.page = page
+        self.category = category
+        self.city = city
+        self.state = state
+        self.country = country
     }
 }

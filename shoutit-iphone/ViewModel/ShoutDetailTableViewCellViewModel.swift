@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import ShoutitKit
 
 enum ShoutDetailTableViewCellViewModel {
     case SectionHeader(title: String)
     case Description(description: String)
-    case KeyValue(rowInSection: Int, sectionRowsCount: Int, key: String, value: String, imageName: String?, filter: Filter?, tag: Category?)
+    case KeyValue(rowInSection: Int, sectionRowsCount: Int, key: String, value: String, imageName: String?, filter: Filter?, tag: ShoutitKit.Category?)
     case Regular(rowInSection: Int, sectionRowsCount: Int, title: String)
     case Button(title: String, type: ShoutDetailTableViewCellButtonType)
     case OtherShouts

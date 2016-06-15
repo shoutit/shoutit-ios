@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import ShoutitKit
 
 enum SearchContext {
     case General
     case ProfileShouts(profile: Profile)
     case TagShouts(tag: Tag)
-    case CategoryShouts(category: Category)
+    case CategoryShouts(category: ShoutitKit.Category)
     case DiscoverShouts(item: DiscoverItem)
 }
 

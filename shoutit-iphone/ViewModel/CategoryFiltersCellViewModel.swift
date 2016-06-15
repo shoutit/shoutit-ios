@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 struct CategoryFiltersCellViewModel {
     let filterValue: FilterValue

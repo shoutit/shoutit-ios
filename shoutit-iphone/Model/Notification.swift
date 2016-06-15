@@ -8,27 +8,27 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct Notification: Decodable, Hashable, Equatable {
-    let id: String
-    var read: Bool
-    let createdAt: Int
+
+public struct Notification: Decodable, Hashable, Equatable {
+    public let id: String
+    public var read: Bool
+    public let createdAt: Int
     
-    let type: String
-    let object:  AttachedObject?
-    let display: Display?
+    public let type: String
+    public let object:  AttachedObject?
+    public let display: Display?
     
-    let webPath: String?
-    let appPath: String?
+    public let webPath: String?
+    public let appPath: String?
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
     
-    static func decode(j: JSON) -> Decoded<Notification> {
+    public static func decode(j: JSON) -> Decoded<Notification> {
         let a = curry(Notification.init)
             <^> j <| "id"
             <*> j <| "is_read"
@@ -44,17 +44,17 @@ struct Notification: Decodable, Hashable, Equatable {
         return c
     }
     
-    mutating func markAsRead() {
+    public mutating func markAsRead() {
         read = true
     }
     
-    func readCopy() -> Notification {
+    public func readCopy() -> Notification {
         return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display, webPath: self.webPath, appPath:self.appPath)
     }
 }
 
 extension Notification {
-    func attributedText() -> NSAttributedString? {
+    public func attributedText() -> NSAttributedString? {
         
         if let display = self.display {
             let attributed = NSMutableAttributedString(string: display.text)
@@ -73,7 +73,7 @@ extension Notification {
         return nil
     }
     
-    func imageURL() -> NSURL? {
+    public func imageURL() -> NSURL? {
         
         if let display = self.display, path = display.image {
             return NSURL(string: path)
@@ -84,7 +84,7 @@ extension Notification {
     
 }
 
-func ==(lhs: Notification, rhs: Notification) -> Bool {
+public func ==(lhs: Notification, rhs: Notification) -> Bool {
     return lhs.id == rhs.id
 }
 

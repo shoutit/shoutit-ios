@@ -8,18 +8,24 @@
 
 import Foundation
 
-struct SearchParams: Params, PagedParams {
+public struct SearchParams: Params, PagedParams {
     
-    let phrase: String
-    let page: Int?
-    let pageSize: Int?
+    public let phrase: String
+    public let page: Int?
+    public let pageSize: Int?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = ["search" : phrase]
         for (key, value) in pagedParams {
             p[key] = value
         }
         
         return p
+    }
+    
+    public init(phrase: String, page: Int?, pageSize: Int?) {
+        self.phrase = phrase
+        self.page = page
+        self.pageSize = pageSize
     }
 }

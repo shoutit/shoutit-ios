@@ -8,13 +8,17 @@
 
 import Foundation
 
-struct BatchListenParams: Params {
+public struct BatchListenParams: Params {
     
-    let tagNames: [String]
+    public let tagNames: [String]
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return [
             "tags" : tagNames.map{["name" : $0]}
         ]
+    }
+    
+    public init(tagNames: [String]) {
+        self.tagNames = tagNames
     }
 }

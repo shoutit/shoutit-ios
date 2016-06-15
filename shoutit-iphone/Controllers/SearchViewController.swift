@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 final class SearchViewController: UIViewController {
     

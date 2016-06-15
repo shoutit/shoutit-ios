@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Alamofire
+import ShoutitKit
 
 final class IntroViewModel {
     
@@ -20,7 +21,7 @@ final class IntroViewModel {
     func fetchGuestUser() {
         
         self.progressHUDSubject.onNext(true)
-        let params = LoginGuestParams()
+        let params = LoginGuestParams(apns: Account.sharedInstance.apnsToken, mixPanelId: MixpanelHelper.getDistictId(), currentUserLocation: LocationManager.sharedInstance.currentLocation.coordinate)
         
         let observable: Observable<(AuthData, GuestUser)> = APIAuthService.getOAuthToken(params)
         observable

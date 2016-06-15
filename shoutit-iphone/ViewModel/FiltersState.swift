@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 struct FiltersState {
     
@@ -21,7 +22,7 @@ struct FiltersState {
     }
     let shoutType: (ShoutType?, Editing)
     let sortType: (SortType?, Editing)
-    let category: (Category?, Editing)
+    let category: (ShoutitKit.Category?, Editing)
     let minimumPrice: (Int?, Editing)
     let maximumPrice: (Int?, Editing)
     let location: (Address?, Editing)
@@ -30,7 +31,7 @@ struct FiltersState {
     
     init(shoutType: (ShoutType?, Editing) = (nil, .Enabled),
          sortType: (SortType?, Editing) = (nil, .Enabled),
-         category: (Category?, Editing) = (nil, .Enabled),
+         category: (ShoutitKit.Category?, Editing) = (nil, .Enabled),
          minimumPrice: (Int?, Editing) = (nil, .Enabled),
          maximumPrice: (Int?, Editing) = (nil, .Enabled),
          location: (Address?, Editing) = (nil, .Enabled),
@@ -74,7 +75,8 @@ struct FiltersState {
                                     withinDistance: distance,
                                     entireCountry: entireCountry,
                                     sort: sortType.0,
-                                    filters: filters)
+                                    filters: filters,
+                                    currentUserLocation: Account.sharedInstance.user?.location)
     }
 }
 

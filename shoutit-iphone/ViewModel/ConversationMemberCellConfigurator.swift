@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 class ConversationMemberCellConfigurator: ProfileCellConfigurator {
     var blocked : [String]!

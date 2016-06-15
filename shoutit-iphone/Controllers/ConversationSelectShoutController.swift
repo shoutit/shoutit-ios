@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class ConversationSelectShoutController: UITableViewController {
     
@@ -22,7 +23,7 @@ final class ConversationSelectShoutController: UITableViewController {
         
         navigationItem.title = NSLocalizedString("Select Shout", comment: "")
         
-        let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30)
+        let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30, currentUserLocation: Account.sharedInstance.user?.location)
         
         APIShoutsService.listShoutsWithParams(params).asDriver(onErrorJustReturn: []).driveNext { [weak self] (shouts) in
             self?.shouts = shouts

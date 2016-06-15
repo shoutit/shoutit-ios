@@ -8,16 +8,16 @@
 
 import Foundation
 import Argo
-import Curry
+
 import Ogra
 
-struct TwilioAuth {
-    let token: String
-    let identity: String
+public struct TwilioAuth {
+    public let token: String
+    public let identity: String
 }
 
 extension TwilioAuth: Decodable {
-    static func decode(j: JSON) -> Decoded<TwilioAuth> {
+    public static func decode(j: JSON) -> Decoded<TwilioAuth> {
         return curry(TwilioAuth.init)
             <^> j <| "token"
             <*> j <| "identity"
@@ -25,25 +25,29 @@ extension TwilioAuth: Decodable {
 }
 
 extension TwilioAuth: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object(["token": self.token.encode(),
             "identity" : self.identity.encode()])
     }
 }
 
-struct TwilioIdentity {
-    let identity: String
+public struct TwilioIdentity {
+    public let identity: String
+
+    public init(identity: String) {
+        self.identity = identity
+    }
 }
 
 extension TwilioIdentity: Decodable {
-    static func decode(j: JSON) -> Decoded<TwilioIdentity> {
+    public static func decode(j: JSON) -> Decoded<TwilioIdentity> {
         return curry(TwilioIdentity.init)
             <^> j <| "identity"
     }
 }
 
 extension TwilioIdentity: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object(["identity" : self.identity.encode()])
     }
 }

@@ -11,6 +11,7 @@ import Alamofire
 import RxSwift
 import RxCocoa
 import Argo
+import ShoutitKit
 
 typealias DiscoverResult = (mainItem:DiscoverItem?, retrivedItems:[DiscoverItem]?)
 

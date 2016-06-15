@@ -8,27 +8,25 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
-import Pusher
 
-struct Message: Decodable, Hashable, Equatable {
+public struct Message: Decodable, Hashable, Equatable {
     
-    let id: String
-    let conversationId: String?
-    let createdAt: Int
-    let readPath: String?
-    let user: Profile?
-    let text: String?
-    let attachments: [MessageAttachment]?
+    public let id: String
+    public let conversationId: String?
+    public let createdAt: Int
+    public let readPath: String?
+    public let user: Profile?
+    public let text: String?
+    public let attachments: [MessageAttachment]?
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
     
-    static func decode(j: JSON) -> Decoded<Message> {
+    public static func decode(j: JSON) -> Decoded<Message> {
         let a = curry(Message.init)
             <^> j <| "id"
             <*> j <|? "conversation_id"
@@ -42,40 +40,40 @@ struct Message: Decodable, Hashable, Equatable {
         return b
     }
     
-    static func messageWithText(text: String) -> Message {
+    public static func messageWithText(text: String) -> Message {
         return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
     }
     
-    static func messageWithAttachment(attachment: MessageAttachment) -> Message {
+    public static func messageWithAttachment(attachment: MessageAttachment) -> Message {
         return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: nil, attachments: [attachment])
     }
     
-    static func generateId() -> String {
+    public static func generateId() -> String {
         return NSProcessInfo.processInfo().globallyUniqueString
     }
 }
 
 extension Message {
-    func dateString() -> String {
+    public func dateString() -> String {
         return DateFormatters.sharedInstance.stringFromDateEpoch(self.createdAt)
     }
     
-    func day() -> NSDate {
+    public func day() -> NSDate {
         let unitFlags: NSCalendarUnit = [.Day, .Month, .Year]
         let comps = NSCalendar.currentCalendar().components(unitFlags, fromDate: NSDate(timeIntervalSince1970: NSTimeInterval(self.createdAt)))
         return NSCalendar.currentCalendar().dateFromComponents(comps)!
     }
     
-    func isOutgoingCell() -> Bool {
+    public func isOutgoingCell(currentUserId: String?) -> Bool {
         
-        if let user = user, currentUser = Account.sharedInstance.user {
-            return user.id == currentUser.id
+        if let user = user, currentUserId = currentUserId {
+            return user.id == currentUserId
         }
         
         return false
     }
     
-    func isSameSenderAs(message: Message?) -> Bool {
+    public func isSameSenderAs(message: Message?) -> Bool {
         if let user = user, secondUser = message?.user {
             return user.id == secondUser.id
         }
@@ -83,7 +81,7 @@ extension Message {
         return false
     }
     
-    func attachment() -> MessageAttachment? {
+    public func attachment() -> MessageAttachment? {
         guard let attachments = attachments else {
             return nil
         }
@@ -94,7 +92,7 @@ extension Message {
 
 
 extension Message: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         var encoded : [String: JSON] = [:]
         
         if let text = text {
@@ -109,6 +107,6 @@ extension Message: Encodable {
     }
 }
 
-func ==(lhs: Message, rhs: Message) -> Bool {
+public func ==(lhs: Message, rhs: Message) -> Bool {
     return lhs.id == rhs.id
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import DeepLinkKit
 
 enum NavigationItem : String {
     case Home = "home"
@@ -27,6 +26,8 @@ enum NavigationItem : String {
     case Help = "help"
     case InviteFriends = "inviteFriends"
     case Search = "search"
+    case Credits = "credits"
+    case CreditsTransations = "credit_transaction"
     
     func title() -> String {
         switch self {

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class ShoutDetailViewModel {
     
@@ -270,7 +271,7 @@ private extension ShoutDetailViewModel {
     }
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4)
+        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
@@ -316,9 +317,9 @@ private extension ShoutDetailViewModel {
         return models
     }
     
-    func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, Category?)] {
+    func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, ShoutitKit.Category?)] {
         
-        var details: [(String, String, String?, Filter?, Category?)] = []
+        var details: [(String, String, String?, Filter?, ShoutitKit.Category?)] = []
         
         // date
         if let epoch = shout.publishedAtEpoch {

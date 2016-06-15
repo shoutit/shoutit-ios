@@ -8,25 +8,25 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct ReadBy: Decodable, Hashable, Equatable {
+
+public struct ReadBy: Decodable, Hashable, Equatable {
     let profileId: String
     let readAt: Int
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.profileId.hashValue
         }
     }
     
-    static func decode(j: JSON) -> Decoded<ReadBy> {
+    public static func decode(j: JSON) -> Decoded<ReadBy> {
         return curry(ReadBy.init)
             <^> j <| "profile_id"
             <*> j <| "read_at"
     }
 }
 
-func ==(lhs: ReadBy, rhs: ReadBy) -> Bool {
+public func ==(lhs: ReadBy, rhs: ReadBy) -> Bool {
     return lhs.profileId == rhs.profileId
 }

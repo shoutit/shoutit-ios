@@ -8,9 +8,8 @@
 
 import UIKit
 import Alamofire
-import ReachabilitySwift
+import Reachability
 import Kingfisher
-import Timberjack
 
 final class APIManager {
 
@@ -27,7 +26,7 @@ final class APIManager {
     static func manager() -> Alamofire.Manager {
         if apiManager == nil {
             let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-            let configuration = Timberjack.defaultSessionConfiguration()
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
             configuration.HTTPAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.Manager(configuration: configuration)
         }

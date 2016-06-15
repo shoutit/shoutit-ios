@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Suggestable {
+public protocol Suggestable {
     var listenId: String {get}
     var suggestionTitle: String {get}
     var suggestionId: String {get} // user for api requests
@@ -18,16 +18,16 @@ protocol Suggestable {
 
 extension Profile: Suggestable {
     
-    var listenId: String {
+    public var listenId: String {
         return self.username
     }
-    var suggestionTitle: String {
+    public var suggestionTitle: String {
         return self.name
     }
-    var suggestionId: String {
+    public var suggestionId: String {
         return self.username
     }
-    var thumbnailURL: NSURL? {
+    public var thumbnailURL: NSURL? {
         return (self.imagePath != nil) ? NSURL(string: self.imagePath!) : nil
     }
 }

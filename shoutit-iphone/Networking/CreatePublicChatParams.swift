@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct CreatePublicChatParams: Params {
-    let subject: String
-    let iconPath: String?
-    let location: Address
+public struct CreatePublicChatParams: Params {
+    public let subject: String
+    public let iconPath: String?
+    public let location: Address
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
         params["subject"] = subject
         params["icon"] = iconPath
@@ -25,5 +25,11 @@ struct CreatePublicChatParams: Params {
             params["location"] = locationParams
         }
         return params
+    }
+    
+    public init(subject: String, iconPath: String?, location: Address) {
+        self.subject = subject
+        self.iconPath = iconPath
+        self.location = location
     }
 }

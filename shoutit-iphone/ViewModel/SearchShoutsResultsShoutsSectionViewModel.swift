@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 extension SearchShoutsResultsViewModel {
     
@@ -67,35 +68,35 @@ extension SearchShoutsResultsViewModel {
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              includeCurrentUserLocation: true)
+                                              currentUserLocation: Account.sharedInstance.user?.location)
             case .DiscoverShouts(let item):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               discoverId: item.id,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              includeCurrentUserLocation: true)
+                                              currentUserLocation: Account.sharedInstance.user?.location)
             case .ProfileShouts(let profile):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               username: profile.username,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              includeCurrentUserLocation: true)
+                                              currentUserLocation: Account.sharedInstance.user?.location)
             case .TagShouts(let tag):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               tag: tag.name,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              includeCurrentUserLocation: true)
+                                              currentUserLocation: Account.sharedInstance.user?.location)
             case .CategoryShouts(let category):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               category: category.slug,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              includeCurrentUserLocation: true)
+                                              currentUserLocation: Account.sharedInstance.user?.location)
             }
             
             applyParamsToFilterParamsIfAny(&params)

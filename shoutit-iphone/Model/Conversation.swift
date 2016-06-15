@@ -8,31 +8,30 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct Conversation: ConversationInterface {
+public struct Conversation: ConversationInterface {
     
-    let id: String
-    let createdAt: Int?
-    let modifiedAt: Int?
-    let apiPath: String?
-    let webPath: String?
-    let typeString: String
-    let users: [Box<Profile>]?
-    let lastMessage: Message?
-    let unreadMessagesCount: Int
-    let shout: Shout?
-    let readby: [ReadBy]?
-    let display: ConversationDescription
-    let blocked: [String]
-    let admins: [String]
-    let attachmentCount: AttachmentCount
-    let creator: MiniProfile?
+    public let id: String
+    public let createdAt: Int?
+    public let modifiedAt: Int?
+    public let apiPath: String?
+    public let webPath: String?
+    public let typeString: String
+    public let users: [Box<Profile>]?
+    public let lastMessage: Message?
+    public let unreadMessagesCount: Int
+    public let shout: Shout?
+    public let readby: [ReadBy]?
+    public let display: ConversationDescription
+    public let blocked: [String]
+    public let admins: [String]
+    public let attachmentCount: AttachmentCount
+    public let creator: MiniProfile?
 }
 
 extension Conversation: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Conversation> {
+    public static func decode(j: JSON) -> Decoded<Conversation> {
         let a = curry(Conversation.init)
             <^> j <| "id"
             <*> j <|? "created_at"
@@ -62,23 +61,23 @@ extension Conversation: Decodable {
 
 extension Conversation: Equatable, Hashable {
     
-    var hashValue: Int {
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
 }
 
-func ==(lhs: Conversation, rhs: Conversation) -> Bool {
+public func ==(lhs: Conversation, rhs: Conversation) -> Bool {
     return lhs.id == rhs.id && lhs.apiPath == rhs.apiPath
 }
 
 extension Conversation {
     
-    func coParticipant() -> Profile? {
+    public func coParticipant(currentUserId: String?) -> Profile? {
         var prof : Profile?
         self.users?.each({ (profile) -> () in
-            if profile.value.id != Account.sharedInstance.user?.id {
+            if profile.value.id != currentUserId {
                 prof = profile.value
             }
         })
@@ -86,7 +85,7 @@ extension Conversation {
         return prof
     }
     
-    func lastMessageText() -> String {
+    public func lastMessageText() -> String {
         guard let msg = lastMessage else {
             return ""
         }
@@ -110,18 +109,18 @@ extension Conversation {
 }
 
 extension Conversation : Reportable {
-    func attachedObjectJSON() -> JSON {
+    public func attachedObjectJSON() -> JSON {
         return ["conversation" : ["id" : self.id.encode()].encode()].encode()
     }
     
-    func reportTitle() -> String {
+    public func reportTitle() -> String {
         return NSLocalizedString("Report Chat", comment: "")
     }
 }
 
 // Public Chats Helpers
 extension Conversation {
-    func isAdmin(profileId: String?) -> Bool {
+    public func isAdmin(profileId: String?) -> Bool {
         guard let profileId = profileId else {
             return false
         }

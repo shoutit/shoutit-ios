@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol ProfileDisplayable {
     func showProfile(profile: Profile) -> Void

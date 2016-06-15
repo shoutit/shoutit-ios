@@ -10,6 +10,7 @@ import UIKit
 import SlackTextViewController
 import RxSwift
 import DZNEmptyDataSet
+import ShoutitKit
 
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: FlowController?
@@ -392,7 +393,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     
     @IBAction func videoCall() {
         guard case .CreatedAndLoaded(let conversation) = viewModel.conversation.value else { return }
-        if let profile = conversation.coParticipant() {
+        if let profile = conversation.coParticipant(Account.sharedInstance.user?.id) {
           self.flowDelegate?.startVideoCallWithProfile(profile)
             return
         }

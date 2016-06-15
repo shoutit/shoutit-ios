@@ -8,15 +8,14 @@
 
 import Foundation
 import Argo
-import Curry
 
-final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
-    var value: T
-    init(_ value: T) {
+public final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
+    public var value: T
+    public init(_ value: T) {
         self.value = value
     }
     
-    static func decode(j: JSON) -> Decoded<Box<T>> {
+    public static func decode(j: JSON) -> Decoded<Box<T>> {
         let value : Decoded<T.DecodedType> = T.decode(j)
 
         switch value {

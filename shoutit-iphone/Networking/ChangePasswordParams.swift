@@ -8,17 +8,23 @@
 
 import Foundation
 
-struct ChangePasswordParams: Params {
-    let oldPassword: String?
-    let newPassword: String
-    let newPassword2: String
+public struct ChangePasswordParams: Params {
+    public let oldPassword: String?
+    public let newPassword: String
+    public let newPassword2: String
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["old_password"] = oldPassword
         p["new_password"] = newPassword
         p["new_password2"] = newPassword2
         
         return p
+    }
+    
+    public init(oldPassword: String?, newPassword: String, newPassword2: String) {
+        self.oldPassword = oldPassword
+        self.newPassword = newPassword
+        self.newPassword2 = newPassword2
     }
 }

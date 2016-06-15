@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     
@@ -48,7 +49,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
             }
         }
         
-        if case .Invalid(let errors) = Validator.validatePassword(newPassword) {
+        if case .Invalid(let errors) = ShoutitValidator.validatePassword(newPassword) {
             errorSubject.onNext(errors[0])
             return
         }

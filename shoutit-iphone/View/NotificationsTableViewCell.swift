@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class NotificationsTableViewCell: UITableViewCell {
 
@@ -28,4 +29,15 @@ final class NotificationsTableViewCell: UITableViewCell {
         
     }
 
+    func bindWithTransaction(transaction: Transaction) {
+        self.titleLabel.attributedText = transaction.attributedText()
+        if transaction.type == "in" {
+            self.notificationImage.image = UIImage(named: "dollarIn")
+        } else {
+            self.notificationImage.image = UIImage(named: "dollarOut")
+        }
+        
+        dateLabel.text = DateFormatters.sharedInstance.stringFromDateEpoch(transaction.createdAt)
+        
+    }
 }

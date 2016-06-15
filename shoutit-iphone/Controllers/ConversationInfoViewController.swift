@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import MBProgressHUD
+import ShoutitKit
 
 class ConversationInfoViewController: UITableViewController {
 

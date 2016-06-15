@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import DZNEmptyDataSet
+import ShoutitKit
 
 class HomeShoutsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 

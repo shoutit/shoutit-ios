@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class ConversationShoutCell: UITableViewCell, ConversationCell {
 

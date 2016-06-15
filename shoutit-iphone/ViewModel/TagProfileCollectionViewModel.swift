@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
@@ -16,7 +17,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     let filter: Filter?
-    let category: Category?
+    let category: ShoutitKit.Category?
     private(set) var tag: Tag?
     var model: ProfileCollectionViewModelMainModel? {
         guard let tag = tag else { return nil }
@@ -42,7 +43,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         listSection = listSectionWithModels([], isLoading: true)
     }
     
-    init(category: Category) {
+    init(category: ShoutitKit.Category) {
         self.filter = nil
         self.tag = nil
         self.category = category
@@ -162,7 +163,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let name = nameParameter else { return nil }
-        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil)
+        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

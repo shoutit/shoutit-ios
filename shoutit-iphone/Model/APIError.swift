@@ -8,9 +8,8 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct APIError {
+public struct APIError {
     let code: Int
     let message: String
     let developerMessage: String
@@ -20,7 +19,7 @@ struct APIError {
 
 extension APIError: Decodable {
     
-    static func decode(j: JSON) -> Decoded<APIError> {
+    public static func decode(j: JSON) -> Decoded<APIError> {
         let a = curry(APIError.init)
             <^> j <| "code"
             <*> j <| "message"
@@ -32,7 +31,7 @@ extension APIError: Decodable {
 }
 
 extension APIError: ShoutitError {
-    var userMessage: String {
+    public var userMessage: String {
         
         guard let detailedError = errors.first else {
             return message
@@ -48,7 +47,7 @@ extension APIError: ShoutitError {
     }
 }
 
-struct APIDetailedError {
+public struct APIDetailedError {
     let reason: String?
     let message: String
     let location: String?
@@ -57,7 +56,7 @@ struct APIDetailedError {
 
 extension APIDetailedError: Decodable {
     
-    static func decode(j: JSON) -> Decoded<APIDetailedError> {
+    public static func decode(j: JSON) -> Decoded<APIDetailedError> {
         return curry(APIDetailedError.init)
             <^> j <|? "reason"
             <*> j <| "message"

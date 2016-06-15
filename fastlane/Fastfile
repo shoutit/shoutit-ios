@@ -28,9 +28,6 @@ platform :ios do
     au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
 
     `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-
-    #prepare cocoapods
-    cocoapods
     
     ENV["SIGH_TEAM_ID"]="2857HUGC3W"
     
@@ -78,9 +75,6 @@ platform :ios do
     au_add_identity
 
     `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-
-    #prepare cocoapods
-    cocoapods
     
     ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
     
@@ -126,9 +120,6 @@ platform :ios do
     au_add_identity
 
     `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-
-    #prepare cocoapods
-    cocoapods
     
     ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
     

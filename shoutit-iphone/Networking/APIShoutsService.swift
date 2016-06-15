@@ -11,6 +11,7 @@ import Alamofire
 import Argo
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 final class APIShoutsService {
     
@@ -24,7 +25,7 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL)
     }
     
-    static func listCategories() -> Observable<[Category]> {
+    static func listCategories() -> Observable<[ShoutitKit.Category]> {
         let url = APIManager.baseURL + "/shouts/categories"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol MediaDisplayable {
     func showMediaForConversation(conversation: Conversation) -> Void

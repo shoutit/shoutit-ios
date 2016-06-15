@@ -1,0 +1,22 @@
+github "ReactiveX/RxSwift" == 2.3.1
+github "thoughtbot/Argo"
+github "edwardaux/Ogra" == 3.0.0
+github "mixpanel/mixpanel-iphone" == 2.9
+github "SwiftyBeaver/SwiftyBeaver"
+github "aws/aws-sdk-ios"
+github "AnthonyMDev/AmazonS3RequestManager"
+github "Alamofire/Alamofire" ==  3.3.0
+github "ashleymills/Reachability.swift" == 2.3
+github "onevcat/Kingfisher" == 2.2
+github "CosmicMind/Material" == 1.39
+github "jdg/MBProgressHUD" ~> 0.9.2
+github "SVProgressHUD/SVProgressHUD"
+github "dzenbot/DZNEmptyDataSet"
+github "slackhq/SlackTextViewController"
+github "lukkas/ACPDownload"
+github "rs/SDWebImage"
+github "BoltsFramework/Bolts-ObjC"
+github "facebook/SocketRocket"
+github "kishikawakatsumi/KeychainAccess"
+github "adamwaite/Validator"
+github "drmohundro/SWXMLHash"

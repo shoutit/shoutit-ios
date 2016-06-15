@@ -1,4 +1,4 @@
-//
+ //
 //  ConversationPagedResults.swift
 //  shoutit-iphone
 //
@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 struct ConversationPagedResults: Equatable {
     let results: PagedResults<MiniConversation>?

@@ -7,19 +7,17 @@
 //
 
 import UIKit
-
 import Argo
-import Curry
 import Ogra
 
-struct ConversationDescription {
+public struct ConversationDescription {
     
-    let title: String?
-    let subtitle: String?
-    let image: String?
-    let lastMessageSummary: String?
+    public let title: String?
+    public let subtitle: String?
+    public let image: String?
+    public let lastMessageSummary: String?
     
-    static var nilDescription: ConversationDescription {
+    public static var nilDescription: ConversationDescription {
         return ConversationDescription(title: nil, subtitle: nil, image: nil, lastMessageSummary: nil)
     }
 }
@@ -27,7 +25,7 @@ struct ConversationDescription {
 
 extension ConversationDescription: Decodable {
     
-    static func decode(j: JSON) -> Decoded<ConversationDescription> {
+    public static func decode(j: JSON) -> Decoded<ConversationDescription> {
         let f = curry(ConversationDescription.init)
             <^> j <|? "title"
             <*> j <|? "sub_title"
@@ -39,7 +37,7 @@ extension ConversationDescription: Decodable {
 
 extension ConversationDescription: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "title"    : self.title.encode(),
             "sub_title"  : self.subtitle.encode(),

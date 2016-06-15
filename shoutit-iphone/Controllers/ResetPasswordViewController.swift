@@ -44,7 +44,7 @@ final class ResetPasswordViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         resetPasswordButton.rx_tap.filter {
-            if case .Invalid(let errors) = Validator.validateEmail(self.emailTextField.text) {
+            if case .Invalid(let errors) = ShoutitValidator.validateEmail(self.emailTextField.text) {
                 if let error = errors.first {
                     self.delegate?.showLoginErrorMessage(error.message)
                 }
@@ -60,6 +60,6 @@ final class ResetPasswordViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         // add validators
-        emailTextField.addValidator(Validator.validateEmail, withDisposeBag: disposeBag)
+        emailTextField.addValidator(ShoutitValidator.validateEmail, withDisposeBag: disposeBag)
     }
 }

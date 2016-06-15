@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import ShoutitKit
 
 enum FiltersCellViewModel {
     
     case ShoutTypeChoice(shoutType: ShoutType?)
     case SortTypeChoice(sortType: SortType?, loaded: (Void -> Bool))
-    case CategoryChoice(category: Category?, enabled: Bool, loaded: (Void -> Bool))
+    case CategoryChoice(category: ShoutitKit.Category?, enabled: Bool, loaded: (Void -> Bool))
     case PriceRestriction(from: Int?, to: Int?)
     case LocationChoice(location: Address?)
     case DistanceRestriction(distanceOption: FiltersState.DistanceRestriction)

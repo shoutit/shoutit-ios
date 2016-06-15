@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import CoreLocation
-import GooglePlaces
 
 final class ChangeLocationViewModel: AnyObject {
     var searchTextObservable = PublishSubject<String>()

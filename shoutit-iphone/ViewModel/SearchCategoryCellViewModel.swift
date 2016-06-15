@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import ShoutitKit
 
 struct SearchCategoryCellViewModel {
-    let category: Category
+    let category: ShoutitKit.Category
 }

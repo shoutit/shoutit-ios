@@ -7,16 +7,21 @@
 //
 
 import Foundation
+import CoreLocation
 
-struct CoordinateParams: Params {
-    let coordinates: CLLocationCoordinate2D
+public struct CoordinateParams: Params {
+    public let coordinates: CLLocationCoordinate2D
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return [
             "location" : [
                 "latitude": coordinates.latitude,
                 "longitude": coordinates.longitude
             ]
         ]
+    }
+    
+    public init(coordinates: CLLocationCoordinate2D) {
+        self.coordinates = coordinates
     }
 }

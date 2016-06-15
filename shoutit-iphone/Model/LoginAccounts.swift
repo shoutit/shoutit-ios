@@ -8,17 +8,16 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
 
-struct LoginAccounts {
-    let facebook: FacebookAccount?
-    let gplus: GoogleAccount?
+public struct LoginAccounts {
+    public let facebook: FacebookAccount?
+    public let gplus: GoogleAccount?
 }
 
 extension LoginAccounts: Decodable {
     
-    static func decode(j: JSON) -> Decoded<LoginAccounts> {
+    public static func decode(j: JSON) -> Decoded<LoginAccounts> {
         return curry(LoginAccounts.init)
             <^> j <|? "facebook"
             <*> j <|? "gplus"
@@ -27,7 +26,7 @@ extension LoginAccounts: Decodable {
 
 extension LoginAccounts: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "facebook"  : self.facebook.encode(),
             "gplus"    : self.gplus.encode()

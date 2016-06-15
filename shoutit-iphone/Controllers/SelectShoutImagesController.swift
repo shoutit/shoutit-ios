@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class SelectShoutImagesController: UICollectionViewController {
     
@@ -139,7 +140,6 @@ extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate
     
     func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
         
-        editingController?.dismissViewControllerAnimated(true, completion: nil)
         guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else { return }
         guard let image = image, imageData = image.dataRepresentation() else {
             editingCompletion(attachment: editingAttachment)

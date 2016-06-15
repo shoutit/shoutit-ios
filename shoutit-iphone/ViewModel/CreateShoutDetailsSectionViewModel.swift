@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
     
@@ -29,7 +30,7 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
     private unowned var parent: CreateShoutViewModel
     
     private let disposeBag = DisposeBag()
-    let categories : Variable<[Category]> = Variable([])
+    let categories : Variable<[ShoutitKit.Category]> = Variable([])
     let currencies : Variable<[Currency]> = Variable([])
     private(set) var filters : [Filter] = []
     
@@ -48,7 +49,7 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
 
 extension CreateShoutDetailsSectionViewModel {
     
-    func setCategory(category: Category?) {
+    func setCategory(category: ShoutitKit.Category?) {
         
         parent.shoutParams.filters.value = [:]
         parent.shoutParams.category.value = category

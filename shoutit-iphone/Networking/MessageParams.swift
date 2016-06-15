@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct MessageParams: Params {
+public struct MessageParams: Params {
     let message: Message
     
-    init(message: Message) {
+    public init(message: Message) {
         self.message = message
     }
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         return self.message.encode().JSONObject() as! [String: AnyObject]
     }
 }

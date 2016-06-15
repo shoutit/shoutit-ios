@@ -12,7 +12,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import DeepLinkKit
+import ShoutitKit
 
 final class RootController: UIViewController, ContainerController {
     
@@ -75,6 +75,14 @@ final class RootController: UIViewController, ContainerController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        adjustTabbarHeight()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(openItemFromNotification), name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -135,17 +143,27 @@ final class RootController: UIViewController, ContainerController {
     
     // MARK: - Actions
     
+    func openItemFromNotification(notification: NSNotification) {
+        if let itemString = notification.userInfo?["item"] as? String, item = NavigationItem(rawValue: itemString) {
+            openItem(item)
+        }
+    }
+    
     func openItem(navigationItem: NavigationItem, deepLink: DPLDeepLink? = nil) {
         
         var item = navigationItem
         
-        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) {
+        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) || navigationItem == .CreditsTransations {
             self.showOverExistingFlowController(navigationItem, deepLink: deepLink)
             return
         }
         
         if navigationItem == .PublicChats {
             item = .Chats
+        }
+        
+        if navigationItem == .CreditsTransations {
+            item = .Credits
         }
         
         if navigationItem == .Notifications {
@@ -247,7 +265,14 @@ final class RootController: UIViewController, ContainerController {
             }
             
             currentFlowController.showProfileWithId(profileId)
+        
+        case .CreditsTransations:
+            if !Account.sharedInstance.isUserLoggedIn {
+                promptUserForLogin(navigationItem, deepLink: deepLink)
+                return
+            }
             
+            currentFlowController.showCreditTransactions()
         default:
             break
         }
@@ -374,6 +399,7 @@ private extension RootController {
         case .Location: flowController      = LocationFlowController(navigationController: navController)
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)
         case .Browse: flowController        = BrowseFlowController(navigationController: navController)
+        case .Credits: flowController       = CreditsFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
             
         }

@@ -162,7 +162,7 @@ class RecentPhotosCollectionViewController: UICollectionViewController, UICollec
         var numberOfSections: Int = 0
         
         if self.recentPhotosSection >= 0 {
-            numberOfSections++
+            numberOfSections += 1
         }
         
         return numberOfSections

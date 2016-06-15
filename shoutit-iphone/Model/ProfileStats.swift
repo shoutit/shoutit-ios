@@ -8,27 +8,29 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
 
-struct ProfileStats {
-    let unreadConversationCount: Int
-    let unreadNotificationsCount: Int
+public struct ProfileStats {
+    public let unreadConversationCount: Int
+    public let unreadNotificationsCount: Int
+    public let credit: Int?
 }
 
 extension ProfileStats: Decodable {
     
-    static func decode(j: JSON) -> Decoded<ProfileStats> {
+    public static func decode(j: JSON) -> Decoded<ProfileStats> {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
+            <*> j <|? "credit"
     }
 }
 
 extension ProfileStats: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "unread_conversations_count" : self.unreadConversationCount.encode(),
-            "unread_notifications_count" : self.unreadNotificationsCount.encode()])
+            "unread_notifications_count" : self.unreadNotificationsCount.encode(),
+            "credit" : self.credit.encode()])
     }
 }

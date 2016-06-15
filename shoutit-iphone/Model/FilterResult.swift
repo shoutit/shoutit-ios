@@ -8,16 +8,20 @@
 
 import UIKit
 import Argo
-import Curry
 import Ogra
 
-struct FilterResult {
-    let filter : Filter
-    let value : FilterValue
+public struct FilterResult {
+    public let filter : Filter
+    public let value : FilterValue
+    
+    public init(filter: Filter, value: FilterValue) {
+        self.filter = filter
+        self.value = value
+    }
 }
 
 extension FilterResult: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object(["slug": filter.slug.encode(),
                             "value": value.encode()])
     }

@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Material
-import ResponsiveLabel
-import Validator
 import MBProgressHUD
 
 final class LoginViewController: UITableViewController {
@@ -48,7 +46,7 @@ final class LoginViewController: UITableViewController {
         
         let loginActionFilterClosure: Void -> Bool = {[unowned self] in
             
-            for validationResult in [Validator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
+            for validationResult in [ShoutitValidator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
                 if case .Invalid(let errors) = validationResult {
                     if let error = errors.first {
                         self.delegate?.showLoginErrorMessage(error.message)
@@ -88,7 +86,7 @@ final class LoginViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         // validation
-        emailTextField.addValidator(Validator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
+        emailTextField.addValidator(ShoutitValidator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
     }
     
     private func setupSwitchToSignupLabel() {

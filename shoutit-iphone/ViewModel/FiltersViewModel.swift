@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 enum FilterOptionDownloadState<T> {
     case Loading
@@ -23,7 +24,7 @@ final class FiltersViewModel {
     var cellViewModels: [FiltersCellViewModel] = []
     let filtersState: FiltersState
     let reloadSubject: PublishSubject<Void> = PublishSubject()
-    let categories: Variable<FilterOptionDownloadState<Category>> = Variable(.Loading)
+    let categories: Variable<FilterOptionDownloadState<ShoutitKit.Category>> = Variable(.Loading)
     let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
     
     // consts
@@ -80,7 +81,7 @@ final class FiltersViewModel {
         }
     }
     
-    func changeCategoryToCategory(category: Category?) {
+    func changeCategoryToCategory(category: ShoutitKit.Category?) {
         for case (let index, .CategoryChoice(_, true, let loaded)) in cellViewModels.enumerate() {
             cellViewModels[index] = .CategoryChoice(category: category, enabled: true, loaded: loaded)
             extendViewModelsWithFilters(category?.filters ?? [])
@@ -124,7 +125,7 @@ final class FiltersViewModel {
     func composeFiltersState() -> FiltersState {
         var shoutType: ShoutType?
         var sort: SortType?
-        var category: Category?
+        var category: ShoutitKit.Category?
         var minimumPrice: Int?
         var maximumPrice: Int?
         var location: Address?

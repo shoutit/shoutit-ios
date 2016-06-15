@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import ShoutitKit
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var pickerSettings : MediaPickerSettings { get set }

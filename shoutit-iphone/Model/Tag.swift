@@ -8,27 +8,27 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct Tag {
+
+public struct Tag {
     
     // basic fields
-    let id: String
-    let name: String
-    let apiPath: String
-    let imagePath: String?
+    public let id: String
+    public let name: String
+    public let apiPath: String
+    public let imagePath: String?
     
     // extended fiedlds
-    let webPath: String?
-    let listenersCount: Int?
-    let listenersPath: String?
-    let isListening: Bool?
-    let shoutsPath: String?
+    public let webPath: String?
+    public let listenersCount: Int?
+    public let listenersPath: String?
+    public let isListening: Bool?
+    public let shoutsPath: String?
 }
 
 extension Tag: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Tag> {
+    public static func decode(j: JSON) -> Decoded<Tag> {
         let a = curry(Tag.init)
             <^> j <| "id"
             <*> j <| "name"

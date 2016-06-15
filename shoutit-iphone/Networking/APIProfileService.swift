@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import Argo
 import RxSwift
+import ShoutitKit
 
 final class APIProfileService {
     

@@ -1,0 +1,1545 @@
+BCSymbolMap Version: 1.0
++[AWSSimpleDBAttribute JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBAttribute alternateNameEncoding]
+-[AWSSimpleDBAttribute setAlternateNameEncoding:]
+-[AWSSimpleDBAttribute alternateValueEncoding]
+-[AWSSimpleDBAttribute setAlternateValueEncoding:]
+-[AWSSimpleDBAttribute name]
+-[AWSSimpleDBAttribute setName:]
+-[AWSSimpleDBAttribute value]
+-[AWSSimpleDBAttribute setValue:]
+-[AWSSimpleDBAttribute .cxx_destruct]
++[AWSSimpleDBBatchDeleteAttributesRequest JSONKeyPathsByPropertyKey]
++[AWSSimpleDBBatchDeleteAttributesRequest itemsJSONTransformer]
+-[AWSSimpleDBBatchDeleteAttributesRequest domainName]
+-[AWSSimpleDBBatchDeleteAttributesRequest setDomainName:]
+-[AWSSimpleDBBatchDeleteAttributesRequest items]
+-[AWSSimpleDBBatchDeleteAttributesRequest setItems:]
+-[AWSSimpleDBBatchDeleteAttributesRequest .cxx_destruct]
++[AWSSimpleDBBatchPutAttributesRequest JSONKeyPathsByPropertyKey]
++[AWSSimpleDBBatchPutAttributesRequest itemsJSONTransformer]
+-[AWSSimpleDBBatchPutAttributesRequest domainName]
+-[AWSSimpleDBBatchPutAttributesRequest setDomainName:]
+-[AWSSimpleDBBatchPutAttributesRequest items]
+-[AWSSimpleDBBatchPutAttributesRequest setItems:]
+-[AWSSimpleDBBatchPutAttributesRequest .cxx_destruct]
++[AWSSimpleDBCreateDomainRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBCreateDomainRequest domainName]
+-[AWSSimpleDBCreateDomainRequest setDomainName:]
+-[AWSSimpleDBCreateDomainRequest .cxx_destruct]
++[AWSSimpleDBDeletableAttribute JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeletableAttribute name]
+-[AWSSimpleDBDeletableAttribute setName:]
+-[AWSSimpleDBDeletableAttribute value]
+-[AWSSimpleDBDeletableAttribute setValue:]
+-[AWSSimpleDBDeletableAttribute .cxx_destruct]
++[AWSSimpleDBDeletableItem JSONKeyPathsByPropertyKey]
++[AWSSimpleDBDeletableItem attributesJSONTransformer]
+-[AWSSimpleDBDeletableItem attributes]
+-[AWSSimpleDBDeletableItem setAttributes:]
+-[AWSSimpleDBDeletableItem name]
+-[AWSSimpleDBDeletableItem setName:]
+-[AWSSimpleDBDeletableItem .cxx_destruct]
++[AWSSimpleDBDeleteAttributesRequest JSONKeyPathsByPropertyKey]
++[AWSSimpleDBDeleteAttributesRequest attributesJSONTransformer]
++[AWSSimpleDBDeleteAttributesRequest expectedJSONTransformer]
+-[AWSSimpleDBDeleteAttributesRequest attributes]
+-[AWSSimpleDBDeleteAttributesRequest setAttributes:]
+-[AWSSimpleDBDeleteAttributesRequest domainName]
+-[AWSSimpleDBDeleteAttributesRequest setDomainName:]
+-[AWSSimpleDBDeleteAttributesRequest expected]
+-[AWSSimpleDBDeleteAttributesRequest setExpected:]
+-[AWSSimpleDBDeleteAttributesRequest itemName]
+-[AWSSimpleDBDeleteAttributesRequest setItemName:]
+-[AWSSimpleDBDeleteAttributesRequest .cxx_destruct]
++[AWSSimpleDBDeleteDomainRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeleteDomainRequest domainName]
+-[AWSSimpleDBDeleteDomainRequest setDomainName:]
+-[AWSSimpleDBDeleteDomainRequest .cxx_destruct]
++[AWSSimpleDBDomainMetadataRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDomainMetadataRequest domainName]
+-[AWSSimpleDBDomainMetadataRequest setDomainName:]
+-[AWSSimpleDBDomainMetadataRequest .cxx_destruct]
++[AWSSimpleDBDomainMetadataResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDomainMetadataResult attributeNameCount]
+-[AWSSimpleDBDomainMetadataResult setAttributeNameCount:]
+-[AWSSimpleDBDomainMetadataResult attributeNamesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setAttributeNamesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult attributeValueCount]
+-[AWSSimpleDBDomainMetadataResult setAttributeValueCount:]
+-[AWSSimpleDBDomainMetadataResult attributeValuesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setAttributeValuesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult itemCount]
+-[AWSSimpleDBDomainMetadataResult setItemCount:]
+-[AWSSimpleDBDomainMetadataResult itemNamesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setItemNamesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult timestamp]
+-[AWSSimpleDBDomainMetadataResult setTimestamp:]
+-[AWSSimpleDBDomainMetadataResult .cxx_destruct]
++[AWSSimpleDBGetAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBGetAttributesRequest attributeNames]
+-[AWSSimpleDBGetAttributesRequest setAttributeNames:]
+-[AWSSimpleDBGetAttributesRequest consistentRead]
+-[AWSSimpleDBGetAttributesRequest setConsistentRead:]
+-[AWSSimpleDBGetAttributesRequest domainName]
+-[AWSSimpleDBGetAttributesRequest setDomainName:]
+-[AWSSimpleDBGetAttributesRequest itemName]
+-[AWSSimpleDBGetAttributesRequest setItemName:]
+-[AWSSimpleDBGetAttributesRequest .cxx_destruct]
++[AWSSimpleDBGetAttributesResult JSONKeyPathsByPropertyKey]
++[AWSSimpleDBGetAttributesResult attributesJSONTransformer]
+-[AWSSimpleDBGetAttributesResult attributes]
+-[AWSSimpleDBGetAttributesResult setAttributes:]
+-[AWSSimpleDBGetAttributesResult .cxx_destruct]
++[AWSSimpleDBItem JSONKeyPathsByPropertyKey]
++[AWSSimpleDBItem attributesJSONTransformer]
+-[AWSSimpleDBItem alternateNameEncoding]
+-[AWSSimpleDBItem setAlternateNameEncoding:]
+-[AWSSimpleDBItem attributes]
+-[AWSSimpleDBItem setAttributes:]
+-[AWSSimpleDBItem name]
+-[AWSSimpleDBItem setName:]
+-[AWSSimpleDBItem .cxx_destruct]
++[AWSSimpleDBListDomainsRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBListDomainsRequest maxNumberOfDomains]
+-[AWSSimpleDBListDomainsRequest setMaxNumberOfDomains:]
+-[AWSSimpleDBListDomainsRequest nextToken]
+-[AWSSimpleDBListDomainsRequest setNextToken:]
+-[AWSSimpleDBListDomainsRequest .cxx_destruct]
++[AWSSimpleDBListDomainsResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBListDomainsResult domainNames]
+-[AWSSimpleDBListDomainsResult setDomainNames:]
+-[AWSSimpleDBListDomainsResult nextToken]
+-[AWSSimpleDBListDomainsResult setNextToken:]
+-[AWSSimpleDBListDomainsResult .cxx_destruct]
++[AWSSimpleDBPutAttributesRequest JSONKeyPathsByPropertyKey]
++[AWSSimpleDBPutAttributesRequest attributesJSONTransformer]
++[AWSSimpleDBPutAttributesRequest expectedJSONTransformer]
+-[AWSSimpleDBPutAttributesRequest attributes]
+-[AWSSimpleDBPutAttributesRequest setAttributes:]
+-[AWSSimpleDBPutAttributesRequest domainName]
+-[AWSSimpleDBPutAttributesRequest setDomainName:]
+-[AWSSimpleDBPutAttributesRequest expected]
+-[AWSSimpleDBPutAttributesRequest setExpected:]
+-[AWSSimpleDBPutAttributesRequest itemName]
+-[AWSSimpleDBPutAttributesRequest setItemName:]
+-[AWSSimpleDBPutAttributesRequest .cxx_destruct]
++[AWSSimpleDBReplaceableAttribute JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBReplaceableAttribute name]
+-[AWSSimpleDBReplaceableAttribute setName:]
+-[AWSSimpleDBReplaceableAttribute replace]
+-[AWSSimpleDBReplaceableAttribute setReplace:]
+-[AWSSimpleDBReplaceableAttribute value]
+-[AWSSimpleDBReplaceableAttribute setValue:]
+-[AWSSimpleDBReplaceableAttribute .cxx_destruct]
++[AWSSimpleDBReplaceableItem JSONKeyPathsByPropertyKey]
++[AWSSimpleDBReplaceableItem attributesJSONTransformer]
+-[AWSSimpleDBReplaceableItem attributes]
+-[AWSSimpleDBReplaceableItem setAttributes:]
+-[AWSSimpleDBReplaceableItem name]
+-[AWSSimpleDBReplaceableItem setName:]
+-[AWSSimpleDBReplaceableItem .cxx_destruct]
++[AWSSimpleDBSelectRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBSelectRequest consistentRead]
+-[AWSSimpleDBSelectRequest setConsistentRead:]
+-[AWSSimpleDBSelectRequest nextToken]
+-[AWSSimpleDBSelectRequest setNextToken:]
+-[AWSSimpleDBSelectRequest selectExpression]
+-[AWSSimpleDBSelectRequest setSelectExpression:]
+-[AWSSimpleDBSelectRequest .cxx_destruct]
++[AWSSimpleDBSelectResult JSONKeyPathsByPropertyKey]
++[AWSSimpleDBSelectResult itemsJSONTransformer]
+-[AWSSimpleDBSelectResult items]
+-[AWSSimpleDBSelectResult setItems:]
+-[AWSSimpleDBSelectResult nextToken]
+-[AWSSimpleDBSelectResult setNextToken:]
+-[AWSSimpleDBSelectResult .cxx_destruct]
++[AWSSimpleDBUpdateCondition JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBUpdateCondition exists]
+-[AWSSimpleDBUpdateCondition setExists:]
+-[AWSSimpleDBUpdateCondition name]
+-[AWSSimpleDBUpdateCondition setName:]
+-[AWSSimpleDBUpdateCondition value]
+-[AWSSimpleDBUpdateCondition setValue:]
+-[AWSSimpleDBUpdateCondition .cxx_destruct]
+.str
+_unnamed_cfstring_
+.str.1
+_unnamed_cfstring_.2
+.str.3
+_unnamed_cfstring_.4
+.str.5
+_unnamed_cfstring_.6
+.str.7
+_unnamed_cfstring_.8
+.str.9
+_unnamed_cfstring_.10
+.str.11
+_unnamed_cfstring_.12
+.str.13
+_unnamed_cfstring_.14
+.str.15
+_unnamed_cfstring_.16
+OBJC_CLASSLIST_REFERENCES_$_
+OBJC_METH_VAR_NAME_
+OBJC_SELECTOR_REFERENCES_
+OBJC_IVAR_$_AWSSimpleDBAttribute._alternateNameEncoding
+OBJC_IVAR_$_AWSSimpleDBAttribute._alternateValueEncoding
+OBJC_IVAR_$_AWSSimpleDBAttribute._name
+OBJC_IVAR_$_AWSSimpleDBAttribute._value
+OBJC_CLASS_NAME_
+OBJC_METH_VAR_NAME_.17
+OBJC_METH_VAR_TYPE_
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBAttribute
+l_OBJC_METACLASS_RO_$_AWSSimpleDBAttribute
+OBJC_CLASS_NAME_.18
+OBJC_METH_VAR_NAME_.19
+OBJC_METH_VAR_TYPE_.20
+OBJC_METH_VAR_NAME_.21
+OBJC_METH_VAR_NAME_.22
+OBJC_METH_VAR_TYPE_.23
+OBJC_METH_VAR_NAME_.24
+OBJC_METH_VAR_NAME_.25
+OBJC_METH_VAR_NAME_.26
+OBJC_METH_VAR_NAME_.27
+OBJC_METH_VAR_NAME_.28
+OBJC_METH_VAR_NAME_.29
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBAttribute
+OBJC_METH_VAR_NAME_.30
+OBJC_METH_VAR_TYPE_.31
+OBJC_METH_VAR_NAME_.32
+OBJC_METH_VAR_NAME_.33
+OBJC_METH_VAR_NAME_.34
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBAttribute
+OBJC_PROP_NAME_ATTR_
+OBJC_PROP_NAME_ATTR_.35
+OBJC_PROP_NAME_ATTR_.36
+OBJC_PROP_NAME_ATTR_.37
+OBJC_PROP_NAME_ATTR_.38
+OBJC_PROP_NAME_ATTR_.39
+OBJC_PROP_NAME_ATTR_.40
+OBJC_PROP_NAME_ATTR_.41
+l_OBJC_$_PROP_LIST_AWSSimpleDBAttribute
+l_OBJC_CLASS_RO_$_AWSSimpleDBAttribute
+.str.42
+_unnamed_cfstring_.43
+.str.44
+_unnamed_cfstring_.45
+.str.46
+_unnamed_cfstring_.47
+.str.48
+_unnamed_cfstring_.49
+OBJC_CLASSLIST_REFERENCES_$_.50
+OBJC_CLASSLIST_REFERENCES_$_.51
+OBJC_METH_VAR_NAME_.52
+OBJC_SELECTOR_REFERENCES_.53
+OBJC_METH_VAR_NAME_.54
+OBJC_SELECTOR_REFERENCES_.55
+OBJC_IVAR_$_AWSSimpleDBBatchDeleteAttributesRequest._domainName
+OBJC_IVAR_$_AWSSimpleDBBatchDeleteAttributesRequest._items
+OBJC_CLASS_NAME_.56
+OBJC_METH_VAR_NAME_.57
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBBatchDeleteAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBBatchDeleteAttributesRequest
+OBJC_CLASS_NAME_.58
+OBJC_METH_VAR_NAME_.59
+OBJC_METH_VAR_NAME_.60
+OBJC_METH_VAR_NAME_.61
+OBJC_METH_VAR_NAME_.62
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBBatchDeleteAttributesRequest
+OBJC_METH_VAR_NAME_.63
+OBJC_METH_VAR_NAME_.64
+OBJC_METH_VAR_TYPE_.65
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBBatchDeleteAttributesRequest
+OBJC_PROP_NAME_ATTR_.66
+OBJC_PROP_NAME_ATTR_.67
+OBJC_PROP_NAME_ATTR_.68
+OBJC_PROP_NAME_ATTR_.69
+l_OBJC_$_PROP_LIST_AWSSimpleDBBatchDeleteAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBBatchDeleteAttributesRequest
+OBJC_CLASSLIST_REFERENCES_$_.70
+OBJC_IVAR_$_AWSSimpleDBBatchPutAttributesRequest._domainName
+OBJC_IVAR_$_AWSSimpleDBBatchPutAttributesRequest._items
+OBJC_CLASS_NAME_.71
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBBatchPutAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBBatchPutAttributesRequest
+OBJC_CLASS_NAME_.72
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBBatchPutAttributesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBBatchPutAttributesRequest
+l_OBJC_$_PROP_LIST_AWSSimpleDBBatchPutAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBBatchPutAttributesRequest
+OBJC_IVAR_$_AWSSimpleDBCreateDomainRequest._domainName
+OBJC_CLASS_NAME_.73
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBCreateDomainRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBCreateDomainRequest
+OBJC_CLASS_NAME_.74
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBCreateDomainRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBCreateDomainRequest
+l_OBJC_$_PROP_LIST_AWSSimpleDBCreateDomainRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBCreateDomainRequest
+OBJC_IVAR_$_AWSSimpleDBDeletableAttribute._name
+OBJC_IVAR_$_AWSSimpleDBDeletableAttribute._value
+OBJC_CLASS_NAME_.75
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDeletableAttribute
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDeletableAttribute
+OBJC_CLASS_NAME_.76
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDeletableAttribute
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDeletableAttribute
+l_OBJC_$_PROP_LIST_AWSSimpleDBDeletableAttribute
+l_OBJC_CLASS_RO_$_AWSSimpleDBDeletableAttribute
+.str.77
+_unnamed_cfstring_.78
+.str.79
+_unnamed_cfstring_.80
+OBJC_CLASSLIST_REFERENCES_$_.81
+OBJC_IVAR_$_AWSSimpleDBDeletableItem._attributes
+OBJC_IVAR_$_AWSSimpleDBDeletableItem._name
+OBJC_CLASS_NAME_.82
+OBJC_METH_VAR_NAME_.83
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDeletableItem
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDeletableItem
+OBJC_CLASS_NAME_.84
+OBJC_METH_VAR_NAME_.85
+OBJC_METH_VAR_NAME_.86
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDeletableItem
+OBJC_METH_VAR_NAME_.87
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDeletableItem
+OBJC_PROP_NAME_ATTR_.88
+OBJC_PROP_NAME_ATTR_.89
+l_OBJC_$_PROP_LIST_AWSSimpleDBDeletableItem
+l_OBJC_CLASS_RO_$_AWSSimpleDBDeletableItem
+.str.90
+_unnamed_cfstring_.91
+.str.92
+_unnamed_cfstring_.93
+.str.94
+_unnamed_cfstring_.95
+.str.96
+_unnamed_cfstring_.97
+OBJC_CLASSLIST_REFERENCES_$_.98
+OBJC_METH_VAR_NAME_.99
+OBJC_SELECTOR_REFERENCES_.100
+OBJC_IVAR_$_AWSSimpleDBDeleteAttributesRequest._attributes
+OBJC_IVAR_$_AWSSimpleDBDeleteAttributesRequest._domainName
+OBJC_IVAR_$_AWSSimpleDBDeleteAttributesRequest._expected
+OBJC_IVAR_$_AWSSimpleDBDeleteAttributesRequest._itemName
+OBJC_CLASS_NAME_.101
+OBJC_METH_VAR_NAME_.102
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDeleteAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDeleteAttributesRequest
+OBJC_CLASS_NAME_.103
+OBJC_METH_VAR_NAME_.104
+OBJC_METH_VAR_NAME_.105
+OBJC_METH_VAR_NAME_.106
+OBJC_METH_VAR_NAME_.107
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDeleteAttributesRequest
+OBJC_METH_VAR_NAME_.108
+OBJC_METH_VAR_TYPE_.109
+OBJC_METH_VAR_NAME_.110
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDeleteAttributesRequest
+OBJC_PROP_NAME_ATTR_.111
+OBJC_PROP_NAME_ATTR_.112
+OBJC_PROP_NAME_ATTR_.113
+OBJC_PROP_NAME_ATTR_.114
+l_OBJC_$_PROP_LIST_AWSSimpleDBDeleteAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBDeleteAttributesRequest
+OBJC_IVAR_$_AWSSimpleDBDeleteDomainRequest._domainName
+OBJC_CLASS_NAME_.115
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDeleteDomainRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDeleteDomainRequest
+OBJC_CLASS_NAME_.116
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDeleteDomainRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDeleteDomainRequest
+l_OBJC_$_PROP_LIST_AWSSimpleDBDeleteDomainRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBDeleteDomainRequest
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataRequest._domainName
+OBJC_CLASS_NAME_.117
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDomainMetadataRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDomainMetadataRequest
+OBJC_CLASS_NAME_.118
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDomainMetadataRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDomainMetadataRequest
+l_OBJC_$_PROP_LIST_AWSSimpleDBDomainMetadataRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBDomainMetadataRequest
+.str.119
+_unnamed_cfstring_.120
+.str.121
+_unnamed_cfstring_.122
+.str.123
+_unnamed_cfstring_.124
+.str.125
+_unnamed_cfstring_.126
+.str.127
+_unnamed_cfstring_.128
+.str.129
+_unnamed_cfstring_.130
+.str.131
+_unnamed_cfstring_.132
+.str.133
+_unnamed_cfstring_.134
+.str.135
+_unnamed_cfstring_.136
+.str.137
+_unnamed_cfstring_.138
+.str.139
+_unnamed_cfstring_.140
+.str.141
+_unnamed_cfstring_.142
+.str.143
+_unnamed_cfstring_.144
+.str.145
+_unnamed_cfstring_.146
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._attributeNameCount
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._attributeNamesSizeBytes
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._attributeValueCount
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._attributeValuesSizeBytes
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._itemCount
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._itemNamesSizeBytes
+OBJC_IVAR_$_AWSSimpleDBDomainMetadataResult._timestamp
+OBJC_CLASS_NAME_.147
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBDomainMetadataResult
+l_OBJC_METACLASS_RO_$_AWSSimpleDBDomainMetadataResult
+OBJC_CLASS_NAME_.148
+OBJC_METH_VAR_NAME_.149
+OBJC_METH_VAR_NAME_.150
+OBJC_METH_VAR_NAME_.151
+OBJC_METH_VAR_NAME_.152
+OBJC_METH_VAR_NAME_.153
+OBJC_METH_VAR_NAME_.154
+OBJC_METH_VAR_NAME_.155
+OBJC_METH_VAR_NAME_.156
+OBJC_METH_VAR_NAME_.157
+OBJC_METH_VAR_NAME_.158
+OBJC_METH_VAR_NAME_.159
+OBJC_METH_VAR_NAME_.160
+OBJC_METH_VAR_NAME_.161
+OBJC_METH_VAR_NAME_.162
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBDomainMetadataResult
+OBJC_METH_VAR_NAME_.163
+OBJC_METH_VAR_TYPE_.164
+OBJC_METH_VAR_NAME_.165
+OBJC_METH_VAR_NAME_.166
+OBJC_METH_VAR_NAME_.167
+OBJC_METH_VAR_NAME_.168
+OBJC_METH_VAR_NAME_.169
+OBJC_METH_VAR_NAME_.170
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBDomainMetadataResult
+OBJC_PROP_NAME_ATTR_.171
+OBJC_PROP_NAME_ATTR_.172
+OBJC_PROP_NAME_ATTR_.173
+OBJC_PROP_NAME_ATTR_.174
+OBJC_PROP_NAME_ATTR_.175
+OBJC_PROP_NAME_ATTR_.176
+OBJC_PROP_NAME_ATTR_.177
+OBJC_PROP_NAME_ATTR_.178
+OBJC_PROP_NAME_ATTR_.179
+OBJC_PROP_NAME_ATTR_.180
+OBJC_PROP_NAME_ATTR_.181
+OBJC_PROP_NAME_ATTR_.182
+OBJC_PROP_NAME_ATTR_.183
+OBJC_PROP_NAME_ATTR_.184
+l_OBJC_$_PROP_LIST_AWSSimpleDBDomainMetadataResult
+l_OBJC_CLASS_RO_$_AWSSimpleDBDomainMetadataResult
+.str.185
+_unnamed_cfstring_.186
+.str.187
+_unnamed_cfstring_.188
+.str.189
+_unnamed_cfstring_.190
+.str.191
+_unnamed_cfstring_.192
+OBJC_IVAR_$_AWSSimpleDBGetAttributesRequest._attributeNames
+OBJC_IVAR_$_AWSSimpleDBGetAttributesRequest._consistentRead
+OBJC_IVAR_$_AWSSimpleDBGetAttributesRequest._domainName
+OBJC_IVAR_$_AWSSimpleDBGetAttributesRequest._itemName
+OBJC_CLASS_NAME_.193
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBGetAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBGetAttributesRequest
+OBJC_CLASS_NAME_.194
+OBJC_METH_VAR_NAME_.195
+OBJC_METH_VAR_NAME_.196
+OBJC_METH_VAR_NAME_.197
+OBJC_METH_VAR_NAME_.198
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBGetAttributesRequest
+OBJC_METH_VAR_NAME_.199
+OBJC_METH_VAR_NAME_.200
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBGetAttributesRequest
+OBJC_PROP_NAME_ATTR_.201
+OBJC_PROP_NAME_ATTR_.202
+OBJC_PROP_NAME_ATTR_.203
+OBJC_PROP_NAME_ATTR_.204
+l_OBJC_$_PROP_LIST_AWSSimpleDBGetAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBGetAttributesRequest
+OBJC_CLASSLIST_REFERENCES_$_.205
+OBJC_IVAR_$_AWSSimpleDBGetAttributesResult._attributes
+OBJC_CLASS_NAME_.206
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBGetAttributesResult
+l_OBJC_METACLASS_RO_$_AWSSimpleDBGetAttributesResult
+OBJC_CLASS_NAME_.207
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBGetAttributesResult
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBGetAttributesResult
+l_OBJC_$_PROP_LIST_AWSSimpleDBGetAttributesResult
+l_OBJC_CLASS_RO_$_AWSSimpleDBGetAttributesResult
+OBJC_IVAR_$_AWSSimpleDBItem._alternateNameEncoding
+OBJC_IVAR_$_AWSSimpleDBItem._attributes
+OBJC_IVAR_$_AWSSimpleDBItem._name
+OBJC_CLASS_NAME_.208
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBItem
+l_OBJC_METACLASS_RO_$_AWSSimpleDBItem
+OBJC_CLASS_NAME_.209
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBItem
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBItem
+l_OBJC_$_PROP_LIST_AWSSimpleDBItem
+l_OBJC_CLASS_RO_$_AWSSimpleDBItem
+.str.210
+_unnamed_cfstring_.211
+.str.212
+_unnamed_cfstring_.213
+.str.214
+_unnamed_cfstring_.215
+.str.216
+_unnamed_cfstring_.217
+OBJC_IVAR_$_AWSSimpleDBListDomainsRequest._maxNumberOfDomains
+OBJC_IVAR_$_AWSSimpleDBListDomainsRequest._nextToken
+OBJC_CLASS_NAME_.218
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBListDomainsRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBListDomainsRequest
+OBJC_CLASS_NAME_.219
+OBJC_METH_VAR_NAME_.220
+OBJC_METH_VAR_NAME_.221
+OBJC_METH_VAR_NAME_.222
+OBJC_METH_VAR_NAME_.223
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBListDomainsRequest
+OBJC_METH_VAR_NAME_.224
+OBJC_METH_VAR_NAME_.225
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBListDomainsRequest
+OBJC_PROP_NAME_ATTR_.226
+OBJC_PROP_NAME_ATTR_.227
+OBJC_PROP_NAME_ATTR_.228
+OBJC_PROP_NAME_ATTR_.229
+l_OBJC_$_PROP_LIST_AWSSimpleDBListDomainsRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBListDomainsRequest
+.str.230
+_unnamed_cfstring_.231
+.str.232
+_unnamed_cfstring_.233
+OBJC_IVAR_$_AWSSimpleDBListDomainsResult._domainNames
+OBJC_IVAR_$_AWSSimpleDBListDomainsResult._nextToken
+OBJC_CLASS_NAME_.234
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBListDomainsResult
+l_OBJC_METACLASS_RO_$_AWSSimpleDBListDomainsResult
+OBJC_CLASS_NAME_.235
+OBJC_METH_VAR_NAME_.236
+OBJC_METH_VAR_NAME_.237
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBListDomainsResult
+OBJC_METH_VAR_NAME_.238
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBListDomainsResult
+OBJC_PROP_NAME_ATTR_.239
+OBJC_PROP_NAME_ATTR_.240
+l_OBJC_$_PROP_LIST_AWSSimpleDBListDomainsResult
+l_OBJC_CLASS_RO_$_AWSSimpleDBListDomainsResult
+OBJC_CLASSLIST_REFERENCES_$_.241
+OBJC_IVAR_$_AWSSimpleDBPutAttributesRequest._attributes
+OBJC_IVAR_$_AWSSimpleDBPutAttributesRequest._domainName
+OBJC_IVAR_$_AWSSimpleDBPutAttributesRequest._expected
+OBJC_IVAR_$_AWSSimpleDBPutAttributesRequest._itemName
+OBJC_CLASS_NAME_.242
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBPutAttributesRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBPutAttributesRequest
+OBJC_CLASS_NAME_.243
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBPutAttributesRequest
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBPutAttributesRequest
+l_OBJC_$_PROP_LIST_AWSSimpleDBPutAttributesRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBPutAttributesRequest
+.str.244
+_unnamed_cfstring_.245
+.str.246
+_unnamed_cfstring_.247
+OBJC_IVAR_$_AWSSimpleDBReplaceableAttribute._name
+OBJC_IVAR_$_AWSSimpleDBReplaceableAttribute._replace
+OBJC_IVAR_$_AWSSimpleDBReplaceableAttribute._value
+OBJC_CLASS_NAME_.248
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBReplaceableAttribute
+l_OBJC_METACLASS_RO_$_AWSSimpleDBReplaceableAttribute
+OBJC_CLASS_NAME_.249
+OBJC_METH_VAR_NAME_.250
+OBJC_METH_VAR_NAME_.251
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBReplaceableAttribute
+OBJC_METH_VAR_NAME_.252
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBReplaceableAttribute
+OBJC_PROP_NAME_ATTR_.253
+OBJC_PROP_NAME_ATTR_.254
+l_OBJC_$_PROP_LIST_AWSSimpleDBReplaceableAttribute
+l_OBJC_CLASS_RO_$_AWSSimpleDBReplaceableAttribute
+OBJC_IVAR_$_AWSSimpleDBReplaceableItem._attributes
+OBJC_IVAR_$_AWSSimpleDBReplaceableItem._name
+OBJC_CLASS_NAME_.255
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBReplaceableItem
+l_OBJC_METACLASS_RO_$_AWSSimpleDBReplaceableItem
+OBJC_CLASS_NAME_.256
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBReplaceableItem
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBReplaceableItem
+l_OBJC_$_PROP_LIST_AWSSimpleDBReplaceableItem
+l_OBJC_CLASS_RO_$_AWSSimpleDBReplaceableItem
+.str.257
+_unnamed_cfstring_.258
+.str.259
+_unnamed_cfstring_.260
+OBJC_IVAR_$_AWSSimpleDBSelectRequest._consistentRead
+OBJC_IVAR_$_AWSSimpleDBSelectRequest._nextToken
+OBJC_IVAR_$_AWSSimpleDBSelectRequest._selectExpression
+OBJC_CLASS_NAME_.261
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBSelectRequest
+l_OBJC_METACLASS_RO_$_AWSSimpleDBSelectRequest
+OBJC_CLASS_NAME_.262
+OBJC_METH_VAR_NAME_.263
+OBJC_METH_VAR_NAME_.264
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBSelectRequest
+OBJC_METH_VAR_NAME_.265
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBSelectRequest
+OBJC_PROP_NAME_ATTR_.266
+OBJC_PROP_NAME_ATTR_.267
+l_OBJC_$_PROP_LIST_AWSSimpleDBSelectRequest
+l_OBJC_CLASS_RO_$_AWSSimpleDBSelectRequest
+OBJC_CLASSLIST_REFERENCES_$_.268
+OBJC_IVAR_$_AWSSimpleDBSelectResult._items
+OBJC_IVAR_$_AWSSimpleDBSelectResult._nextToken
+OBJC_CLASS_NAME_.269
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBSelectResult
+l_OBJC_METACLASS_RO_$_AWSSimpleDBSelectResult
+OBJC_CLASS_NAME_.270
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBSelectResult
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBSelectResult
+l_OBJC_$_PROP_LIST_AWSSimpleDBSelectResult
+l_OBJC_CLASS_RO_$_AWSSimpleDBSelectResult
+.str.271
+_unnamed_cfstring_.272
+.str.273
+_unnamed_cfstring_.274
+OBJC_IVAR_$_AWSSimpleDBUpdateCondition._exists
+OBJC_IVAR_$_AWSSimpleDBUpdateCondition._name
+OBJC_IVAR_$_AWSSimpleDBUpdateCondition._value
+OBJC_CLASS_NAME_.275
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBUpdateCondition
+l_OBJC_METACLASS_RO_$_AWSSimpleDBUpdateCondition
+OBJC_CLASS_NAME_.276
+OBJC_METH_VAR_NAME_.277
+OBJC_METH_VAR_NAME_.278
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBUpdateCondition
+OBJC_METH_VAR_NAME_.279
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBUpdateCondition
+OBJC_PROP_NAME_ATTR_.280
+OBJC_PROP_NAME_ATTR_.281
+l_OBJC_$_PROP_LIST_AWSSimpleDBUpdateCondition
+l_OBJC_CLASS_RO_$_AWSSimpleDBUpdateCondition
+OBJC_LABEL_CLASS_$
+Apple LLVM version 7.3.0 (clang-703.0.31)
+-[AWSSimpleDBUpdateCondition .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSimpleDB/AWSSimpleDBModel.m
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios
+-[AWSSimpleDBUpdateCondition setValue:]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSimpleDB/AWSSimpleDBModel.h
+-[AWSSimpleDBUpdateCondition value]
+-[AWSSimpleDBUpdateCondition setName:]
+-[AWSSimpleDBUpdateCondition name]
+-[AWSSimpleDBUpdateCondition setExists:]
+-[AWSSimpleDBUpdateCondition exists]
++[AWSSimpleDBUpdateCondition JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBSelectResult .cxx_destruct]
+-[AWSSimpleDBSelectResult setNextToken:]
+-[AWSSimpleDBSelectResult nextToken]
+-[AWSSimpleDBSelectResult setItems:]
+-[AWSSimpleDBSelectResult items]
++[AWSSimpleDBSelectResult itemsJSONTransformer]
++[AWSSimpleDBSelectResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBSelectRequest .cxx_destruct]
+-[AWSSimpleDBSelectRequest setSelectExpression:]
+-[AWSSimpleDBSelectRequest selectExpression]
+-[AWSSimpleDBSelectRequest setNextToken:]
+-[AWSSimpleDBSelectRequest nextToken]
+-[AWSSimpleDBSelectRequest setConsistentRead:]
+-[AWSSimpleDBSelectRequest consistentRead]
++[AWSSimpleDBSelectRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBReplaceableItem .cxx_destruct]
+-[AWSSimpleDBReplaceableItem setName:]
+-[AWSSimpleDBReplaceableItem name]
+-[AWSSimpleDBReplaceableItem setAttributes:]
+-[AWSSimpleDBReplaceableItem attributes]
++[AWSSimpleDBReplaceableItem attributesJSONTransformer]
++[AWSSimpleDBReplaceableItem JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBReplaceableAttribute .cxx_destruct]
+-[AWSSimpleDBReplaceableAttribute setValue:]
+-[AWSSimpleDBReplaceableAttribute value]
+-[AWSSimpleDBReplaceableAttribute setReplace:]
+-[AWSSimpleDBReplaceableAttribute replace]
+-[AWSSimpleDBReplaceableAttribute setName:]
+-[AWSSimpleDBReplaceableAttribute name]
++[AWSSimpleDBReplaceableAttribute JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBPutAttributesRequest .cxx_destruct]
+-[AWSSimpleDBPutAttributesRequest setItemName:]
+-[AWSSimpleDBPutAttributesRequest itemName]
+-[AWSSimpleDBPutAttributesRequest setExpected:]
+-[AWSSimpleDBPutAttributesRequest expected]
+-[AWSSimpleDBPutAttributesRequest setDomainName:]
+-[AWSSimpleDBPutAttributesRequest domainName]
+-[AWSSimpleDBPutAttributesRequest setAttributes:]
+-[AWSSimpleDBPutAttributesRequest attributes]
++[AWSSimpleDBPutAttributesRequest expectedJSONTransformer]
++[AWSSimpleDBPutAttributesRequest attributesJSONTransformer]
++[AWSSimpleDBPutAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBListDomainsResult .cxx_destruct]
+-[AWSSimpleDBListDomainsResult setNextToken:]
+-[AWSSimpleDBListDomainsResult nextToken]
+-[AWSSimpleDBListDomainsResult setDomainNames:]
+-[AWSSimpleDBListDomainsResult domainNames]
++[AWSSimpleDBListDomainsResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBListDomainsRequest .cxx_destruct]
+-[AWSSimpleDBListDomainsRequest setNextToken:]
+-[AWSSimpleDBListDomainsRequest nextToken]
+-[AWSSimpleDBListDomainsRequest setMaxNumberOfDomains:]
+-[AWSSimpleDBListDomainsRequest maxNumberOfDomains]
++[AWSSimpleDBListDomainsRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBItem .cxx_destruct]
+-[AWSSimpleDBItem setName:]
+-[AWSSimpleDBItem name]
+-[AWSSimpleDBItem setAttributes:]
+-[AWSSimpleDBItem attributes]
+-[AWSSimpleDBItem setAlternateNameEncoding:]
+-[AWSSimpleDBItem alternateNameEncoding]
++[AWSSimpleDBItem attributesJSONTransformer]
++[AWSSimpleDBItem JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBGetAttributesResult .cxx_destruct]
+-[AWSSimpleDBGetAttributesResult setAttributes:]
+-[AWSSimpleDBGetAttributesResult attributes]
++[AWSSimpleDBGetAttributesResult attributesJSONTransformer]
++[AWSSimpleDBGetAttributesResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBGetAttributesRequest .cxx_destruct]
+-[AWSSimpleDBGetAttributesRequest setItemName:]
+-[AWSSimpleDBGetAttributesRequest itemName]
+-[AWSSimpleDBGetAttributesRequest setDomainName:]
+-[AWSSimpleDBGetAttributesRequest domainName]
+-[AWSSimpleDBGetAttributesRequest setConsistentRead:]
+-[AWSSimpleDBGetAttributesRequest consistentRead]
+-[AWSSimpleDBGetAttributesRequest setAttributeNames:]
+-[AWSSimpleDBGetAttributesRequest attributeNames]
++[AWSSimpleDBGetAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDomainMetadataResult .cxx_destruct]
+-[AWSSimpleDBDomainMetadataResult setTimestamp:]
+-[AWSSimpleDBDomainMetadataResult timestamp]
+-[AWSSimpleDBDomainMetadataResult setItemNamesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult itemNamesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setItemCount:]
+-[AWSSimpleDBDomainMetadataResult itemCount]
+-[AWSSimpleDBDomainMetadataResult setAttributeValuesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult attributeValuesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setAttributeValueCount:]
+-[AWSSimpleDBDomainMetadataResult attributeValueCount]
+-[AWSSimpleDBDomainMetadataResult setAttributeNamesSizeBytes:]
+-[AWSSimpleDBDomainMetadataResult attributeNamesSizeBytes]
+-[AWSSimpleDBDomainMetadataResult setAttributeNameCount:]
+-[AWSSimpleDBDomainMetadataResult attributeNameCount]
++[AWSSimpleDBDomainMetadataResult JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDomainMetadataRequest .cxx_destruct]
+-[AWSSimpleDBDomainMetadataRequest setDomainName:]
+-[AWSSimpleDBDomainMetadataRequest domainName]
++[AWSSimpleDBDomainMetadataRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeleteDomainRequest .cxx_destruct]
+-[AWSSimpleDBDeleteDomainRequest setDomainName:]
+-[AWSSimpleDBDeleteDomainRequest domainName]
++[AWSSimpleDBDeleteDomainRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeleteAttributesRequest .cxx_destruct]
+-[AWSSimpleDBDeleteAttributesRequest setItemName:]
+-[AWSSimpleDBDeleteAttributesRequest itemName]
+-[AWSSimpleDBDeleteAttributesRequest setExpected:]
+-[AWSSimpleDBDeleteAttributesRequest expected]
+-[AWSSimpleDBDeleteAttributesRequest setDomainName:]
+-[AWSSimpleDBDeleteAttributesRequest domainName]
+-[AWSSimpleDBDeleteAttributesRequest setAttributes:]
+-[AWSSimpleDBDeleteAttributesRequest attributes]
++[AWSSimpleDBDeleteAttributesRequest expectedJSONTransformer]
++[AWSSimpleDBDeleteAttributesRequest attributesJSONTransformer]
++[AWSSimpleDBDeleteAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeletableItem .cxx_destruct]
+-[AWSSimpleDBDeletableItem setName:]
+-[AWSSimpleDBDeletableItem name]
+-[AWSSimpleDBDeletableItem setAttributes:]
+-[AWSSimpleDBDeletableItem attributes]
++[AWSSimpleDBDeletableItem attributesJSONTransformer]
++[AWSSimpleDBDeletableItem JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBDeletableAttribute .cxx_destruct]
+-[AWSSimpleDBDeletableAttribute setValue:]
+-[AWSSimpleDBDeletableAttribute value]
+-[AWSSimpleDBDeletableAttribute setName:]
+-[AWSSimpleDBDeletableAttribute name]
++[AWSSimpleDBDeletableAttribute JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBCreateDomainRequest .cxx_destruct]
+-[AWSSimpleDBCreateDomainRequest setDomainName:]
+-[AWSSimpleDBCreateDomainRequest domainName]
++[AWSSimpleDBCreateDomainRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBBatchPutAttributesRequest .cxx_destruct]
+-[AWSSimpleDBBatchPutAttributesRequest setItems:]
+-[AWSSimpleDBBatchPutAttributesRequest items]
+-[AWSSimpleDBBatchPutAttributesRequest setDomainName:]
+-[AWSSimpleDBBatchPutAttributesRequest domainName]
++[AWSSimpleDBBatchPutAttributesRequest itemsJSONTransformer]
++[AWSSimpleDBBatchPutAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBBatchDeleteAttributesRequest .cxx_destruct]
+-[AWSSimpleDBBatchDeleteAttributesRequest setItems:]
+-[AWSSimpleDBBatchDeleteAttributesRequest items]
+-[AWSSimpleDBBatchDeleteAttributesRequest setDomainName:]
+-[AWSSimpleDBBatchDeleteAttributesRequest domainName]
++[AWSSimpleDBBatchDeleteAttributesRequest itemsJSONTransformer]
++[AWSSimpleDBBatchDeleteAttributesRequest JSONKeyPathsByPropertyKey]
+-[AWSSimpleDBAttribute .cxx_destruct]
+-[AWSSimpleDBAttribute setValue:]
+-[AWSSimpleDBAttribute value]
+-[AWSSimpleDBAttribute setName:]
+-[AWSSimpleDBAttribute name]
+-[AWSSimpleDBAttribute setAlternateValueEncoding:]
+-[AWSSimpleDBAttribute alternateValueEncoding]
+-[AWSSimpleDBAttribute setAlternateNameEncoding:]
+-[AWSSimpleDBAttribute alternateNameEncoding]
++[AWSSimpleDBAttribute JSONKeyPathsByPropertyKey]
++[AWSSimpleDBResources sharedInstance]
+__38+[AWSSimpleDBResources sharedInstance]_block_invoke
+-[AWSSimpleDBResources JSONObject]
+-[AWSSimpleDBResources init]
+-[AWSSimpleDBResources definitionString]
+-[AWSSimpleDBResources definitionDictionary]
+-[AWSSimpleDBResources setDefinitionDictionary:]
+-[AWSSimpleDBResources .cxx_destruct]
+sharedInstance._sharedResources
+sharedInstance.once_token
+__block_descriptor_tmp
+__block_literal_global
+OBJC_METH_VAR_NAME_.1
+OBJC_SELECTOR_REFERENCES_.2
+OBJC_CLASSLIST_SUP_REFS_$_
+OBJC_METH_VAR_NAME_.3
+OBJC_SELECTOR_REFERENCES_.4
+OBJC_CLASSLIST_REFERENCES_$_.5
+OBJC_METH_VAR_NAME_.6
+OBJC_SELECTOR_REFERENCES_.7
+OBJC_METH_VAR_NAME_.8
+OBJC_SELECTOR_REFERENCES_.9
+OBJC_METH_VAR_NAME_.10
+OBJC_SELECTOR_REFERENCES_.11
+OBJC_IVAR_$_AWSSimpleDBResources._definitionDictionary
+OBJC_CLASSLIST_REFERENCES_$_.12
+OBJC_METH_VAR_NAME_.13
+OBJC_SELECTOR_REFERENCES_.14
+OBJC_CLASSLIST_REFERENCES_$_.16
+.str.17
+OBJC_METH_VAR_NAME_.18
+OBJC_SELECTOR_REFERENCES_.19
+OBJC_METH_VAR_NAME_.20
+OBJC_SELECTOR_REFERENCES_.21
+__PRETTY_FUNCTION__.-[AWSSimpleDBResources init]
+OBJC_SELECTOR_REFERENCES_.23
+.str.24
+_unnamed_cfstring_.25
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBResources
+l_OBJC_METACLASS_RO_$_AWSSimpleDBResources
+OBJC_CLASS_NAME_.27
+OBJC_METH_VAR_TYPE_.30
+OBJC_METH_VAR_NAME_.31
+OBJC_METH_VAR_TYPE_.32
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBResources
+OBJC_METH_VAR_TYPE_.34
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDBResources
+l_OBJC_$_PROP_LIST_AWSSimpleDBResources
+l_OBJC_CLASS_RO_$_AWSSimpleDBResources
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/include/dispatch/once.h
+-[AWSSimpleDBResources .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSimpleDB/AWSSimpleDBResources.m
+-[AWSSimpleDBResources setDefinitionDictionary:]
+-[AWSSimpleDBResources definitionDictionary]
+-[AWSSimpleDBResources definitionString]
+-[AWSSimpleDBResources init]
+-[AWSSimpleDBResources JSONObject]
++[AWSSimpleDBResources sharedInstance]
++[AWSSimpleDBResponseSerializer initialize]
+-[AWSSimpleDBResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSSimpleDB initialize]
++[AWSSimpleDB defaultSimpleDB]
+__30+[AWSSimpleDB defaultSimpleDB]_block_invoke
++[AWSSimpleDB registerSimpleDBWithConfiguration:forKey:]
+__56+[AWSSimpleDB registerSimpleDBWithConfiguration:forKey:]_block_invoke
++[AWSSimpleDB SimpleDBForKey:]
++[AWSSimpleDB removeSimpleDBForKey:]
+-[AWSSimpleDB init]
+-[AWSSimpleDB initWithConfiguration:]
+-[AWSSimpleDB invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSSimpleDB batchDeleteAttributes:]
+-[AWSSimpleDB batchDeleteAttributes:completionHandler:]
+__55-[AWSSimpleDB batchDeleteAttributes:completionHandler:]_block_invoke
+__copy_helper_block_
+__destroy_helper_block_
+-[AWSSimpleDB batchPutAttributes:]
+-[AWSSimpleDB batchPutAttributes:completionHandler:]
+__52-[AWSSimpleDB batchPutAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.224
+__destroy_helper_block_.225
+-[AWSSimpleDB createDomain:]
+-[AWSSimpleDB createDomain:completionHandler:]
+__46-[AWSSimpleDB createDomain:completionHandler:]_block_invoke
+__copy_helper_block_.231
+__destroy_helper_block_.232
+-[AWSSimpleDB deleteAttributes:]
+-[AWSSimpleDB deleteAttributes:completionHandler:]
+__50-[AWSSimpleDB deleteAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.238
+__destroy_helper_block_.239
+-[AWSSimpleDB deleteDomain:]
+-[AWSSimpleDB deleteDomain:completionHandler:]
+__46-[AWSSimpleDB deleteDomain:completionHandler:]_block_invoke
+__copy_helper_block_.245
+__destroy_helper_block_.246
+-[AWSSimpleDB domainMetadata:]
+-[AWSSimpleDB domainMetadata:completionHandler:]
+__48-[AWSSimpleDB domainMetadata:completionHandler:]_block_invoke
+__copy_helper_block_.255
+__destroy_helper_block_.256
+-[AWSSimpleDB getAttributes:]
+-[AWSSimpleDB getAttributes:completionHandler:]
+__47-[AWSSimpleDB getAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.263
+__destroy_helper_block_.264
+-[AWSSimpleDB listDomains:]
+-[AWSSimpleDB listDomains:completionHandler:]
+__45-[AWSSimpleDB listDomains:completionHandler:]_block_invoke
+__copy_helper_block_.271
+__destroy_helper_block_.272
+-[AWSSimpleDB putAttributes:]
+-[AWSSimpleDB putAttributes:completionHandler:]
+__47-[AWSSimpleDB putAttributes:completionHandler:]_block_invoke
+__copy_helper_block_.278
+__destroy_helper_block_.279
+-[AWSSimpleDB select:]
+-[AWSSimpleDB select:completionHandler:]
+__40-[AWSSimpleDB select:completionHandler:]_block_invoke
+__copy_helper_block_.286
+__destroy_helper_block_.287
+-[AWSSimpleDB configuration]
+-[AWSSimpleDB setConfiguration:]
+-[AWSSimpleDB networking]
+-[AWSSimpleDB setNetworking:]
+-[AWSSimpleDB .cxx_destruct]
+errorCodeDictionary
+_unnamed_cfstring_.18
+.str.19
+_unnamed_cfstring_.20
+.str.21
+_unnamed_cfstring_.22
+.str.23
+_unnamed_cfstring_.24
+.str.25
+_unnamed_cfstring_.26
+.str.27
+_unnamed_cfstring_.28
+.str.29
+_unnamed_cfstring_.30
+.str.31
+_unnamed_cfstring_.32
+.str.33
+_unnamed_cfstring_.34
+.str.35
+_unnamed_cfstring_.36
+OBJC_CLASSLIST_REFERENCES_$_.37
+OBJC_METH_VAR_NAME_.38
+OBJC_SELECTOR_REFERENCES_.39
+OBJC_METH_VAR_NAME_.40
+OBJC_SELECTOR_REFERENCES_.41
+OBJC_METH_VAR_NAME_.42
+OBJC_SELECTOR_REFERENCES_.43
+OBJC_METH_VAR_NAME_.44
+OBJC_SELECTOR_REFERENCES_.45
+OBJC_METH_VAR_NAME_.48
+OBJC_SELECTOR_REFERENCES_.49
+.str.50
+_unnamed_cfstring_.51
+OBJC_CLASSLIST_REFERENCES_$_.52
+OBJC_METH_VAR_NAME_.53
+OBJC_SELECTOR_REFERENCES_.54
+OBJC_METH_VAR_NAME_.55
+OBJC_SELECTOR_REFERENCES_.56
+OBJC_SELECTOR_REFERENCES_.58
+OBJC_SELECTOR_REFERENCES_.60
+OBJC_CLASSLIST_REFERENCES_$_.61
+OBJC_SELECTOR_REFERENCES_.63
+l_OBJC_$_CLASS_METHODS_AWSSimpleDBResponseSerializer
+l_OBJC_METACLASS_RO_$_AWSSimpleDBResponseSerializer
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDBResponseSerializer
+l_OBJC_CLASS_RO_$_AWSSimpleDBResponseSerializer
+OBJC_CLASS_NAME_.66
+l_OBJC_METACLASS_RO_$_AWSSimpleDBRequestRetryHandler
+l_OBJC_CLASS_RO_$_AWSSimpleDBRequestRetryHandler
+OBJC_CLASSLIST_SUP_REFS_$_.67
+OBJC_SELECTOR_REFERENCES_.68
+OBJC_METH_VAR_NAME_.69
+OBJC_SELECTOR_REFERENCES_.70
+OBJC_CLASSLIST_REFERENCES_$_.71
+OBJC_CLASSLIST_REFERENCES_$_.72
+.str.73
+_unnamed_cfstring_.74
+OBJC_METH_VAR_NAME_.75
+OBJC_SELECTOR_REFERENCES_.76
+OBJC_METH_VAR_NAME_.77
+OBJC_SELECTOR_REFERENCES_.78
+_serviceClients
+defaultSimpleDB._defaultSimpleDB
+defaultSimpleDB.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.79
+OBJC_METH_VAR_NAME_.80
+OBJC_SELECTOR_REFERENCES_.81
+OBJC_METH_VAR_NAME_.82
+OBJC_SELECTOR_REFERENCES_.83
+OBJC_CLASSLIST_REFERENCES_$_.84
+OBJC_SELECTOR_REFERENCES_.86
+OBJC_SELECTOR_REFERENCES_.88
+OBJC_METH_VAR_NAME_.89
+OBJC_SELECTOR_REFERENCES_.90
+OBJC_METH_VAR_NAME_.91
+OBJC_SELECTOR_REFERENCES_.92
+OBJC_CLASSLIST_REFERENCES_$_.93
+OBJC_METH_VAR_NAME_.94
+OBJC_SELECTOR_REFERENCES_.95
+OBJC_METH_VAR_NAME_.96
+OBJC_SELECTOR_REFERENCES_.97
+.str.98
+_unnamed_cfstring_.99
+OBJC_CLASSLIST_REFERENCES_$_.100
+OBJC_METH_VAR_NAME_.101
+OBJC_SELECTOR_REFERENCES_.102
+.str.103
+registerSimpleDBWithConfiguration:forKey:.onceToken
+OBJC_CLASSLIST_REFERENCES_$_.104
+OBJC_SELECTOR_REFERENCES_.106
+__block_descriptor_tmp.107
+__block_literal_global.108
+OBJC_METH_VAR_NAME_.109
+OBJC_SELECTOR_REFERENCES_.110
+OBJC_METH_VAR_NAME_.111
+OBJC_SELECTOR_REFERENCES_.112
+OBJC_METH_VAR_NAME_.113
+OBJC_SELECTOR_REFERENCES_.114
+OBJC_METH_VAR_NAME_.115
+OBJC_SELECTOR_REFERENCES_.116
+OBJC_METH_VAR_NAME_.117
+OBJC_SELECTOR_REFERENCES_.118
+OBJC_CLASSLIST_SUP_REFS_$_.121
+OBJC_METH_VAR_NAME_.122
+OBJC_SELECTOR_REFERENCES_.123
+OBJC_METH_VAR_NAME_.124
+OBJC_SELECTOR_REFERENCES_.125
+OBJC_IVAR_$_AWSSimpleDB._configuration
+OBJC_CLASSLIST_REFERENCES_$_.126
+OBJC_METH_VAR_NAME_.127
+OBJC_SELECTOR_REFERENCES_.128
+OBJC_METH_VAR_NAME_.129
+OBJC_SELECTOR_REFERENCES_.130
+OBJC_METH_VAR_NAME_.131
+OBJC_SELECTOR_REFERENCES_.132
+OBJC_CLASSLIST_REFERENCES_$_.133
+OBJC_METH_VAR_NAME_.134
+OBJC_SELECTOR_REFERENCES_.135
+OBJC_METH_VAR_NAME_.136
+OBJC_SELECTOR_REFERENCES_.137
+OBJC_METH_VAR_NAME_.138
+OBJC_SELECTOR_REFERENCES_.139
+OBJC_CLASSLIST_REFERENCES_$_.140
+OBJC_METH_VAR_NAME_.141
+OBJC_SELECTOR_REFERENCES_.142
+OBJC_METH_VAR_NAME_.143
+OBJC_SELECTOR_REFERENCES_.144
+OBJC_CLASSLIST_REFERENCES_$_.145
+OBJC_METH_VAR_NAME_.146
+OBJC_SELECTOR_REFERENCES_.147
+OBJC_METH_VAR_NAME_.148
+OBJC_SELECTOR_REFERENCES_.149
+OBJC_SELECTOR_REFERENCES_.151
+OBJC_SELECTOR_REFERENCES_.153
+OBJC_CLASSLIST_REFERENCES_$_.154
+OBJC_SELECTOR_REFERENCES_.156
+OBJC_SELECTOR_REFERENCES_.158
+OBJC_SELECTOR_REFERENCES_.160
+OBJC_CLASSLIST_REFERENCES_$_.161
+OBJC_IVAR_$_AWSSimpleDB._networking
+OBJC_CLASSLIST_REFERENCES_$_.162
+OBJC_SELECTOR_REFERENCES_.164
+OBJC_SELECTOR_REFERENCES_.166
+OBJC_SELECTOR_REFERENCES_.168
+OBJC_SELECTOR_REFERENCES_.170
+OBJC_METH_VAR_NAME_.171
+OBJC_SELECTOR_REFERENCES_.172
+OBJC_CLASSLIST_REFERENCES_$_.173
+OBJC_CLASSLIST_REFERENCES_$_.174
+OBJC_METH_VAR_NAME_.175
+OBJC_SELECTOR_REFERENCES_.176
+OBJC_METH_VAR_NAME_.177
+OBJC_SELECTOR_REFERENCES_.178
+OBJC_METH_VAR_NAME_.179
+OBJC_SELECTOR_REFERENCES_.180
+OBJC_METH_VAR_NAME_.181
+OBJC_SELECTOR_REFERENCES_.182
+OBJC_CLASSLIST_REFERENCES_$_.183
+OBJC_METH_VAR_NAME_.184
+OBJC_SELECTOR_REFERENCES_.185
+OBJC_METH_VAR_NAME_.186
+OBJC_SELECTOR_REFERENCES_.187
+OBJC_METH_VAR_NAME_.188
+OBJC_SELECTOR_REFERENCES_.189
+OBJC_METH_VAR_NAME_.190
+OBJC_SELECTOR_REFERENCES_.191
+.str.192
+_unnamed_cfstring_.193
+.str.194
+_unnamed_cfstring_.195
+OBJC_SELECTOR_REFERENCES_.197
+OBJC_SELECTOR_REFERENCES_.199
+OBJC_SELECTOR_REFERENCES_.201
+OBJC_METH_VAR_NAME_.202
+OBJC_SELECTOR_REFERENCES_.203
+OBJC_CLASSLIST_REFERENCES_$_.204
+OBJC_METH_VAR_NAME_.205
+OBJC_SELECTOR_REFERENCES_.206
+.str.207
+_unnamed_cfstring_.208
+.str.209
+OBJC_METH_VAR_NAME_.210
+OBJC_SELECTOR_REFERENCES_.211
+OBJC_METH_VAR_NAME_.212
+OBJC_SELECTOR_REFERENCES_.213
+__PRETTY_FUNCTION__.__55-[AWSSimpleDB batchDeleteAttributes:completionHandler:]_block_invoke
+OBJC_METH_VAR_NAME_.214
+OBJC_SELECTOR_REFERENCES_.215
+__block_descriptor_tmp.217
+OBJC_METH_VAR_NAME_.218
+OBJC_SELECTOR_REFERENCES_.219
+.str.220
+_unnamed_cfstring_.221
+OBJC_SELECTOR_REFERENCES_.223
+__PRETTY_FUNCTION__.__52-[AWSSimpleDB batchPutAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.226
+.str.227
+_unnamed_cfstring_.228
+OBJC_METH_VAR_NAME_.229
+OBJC_SELECTOR_REFERENCES_.230
+__PRETTY_FUNCTION__.__46-[AWSSimpleDB createDomain:completionHandler:]_block_invoke
+__block_descriptor_tmp.233
+.str.234
+_unnamed_cfstring_.235
+OBJC_SELECTOR_REFERENCES_.237
+__PRETTY_FUNCTION__.__50-[AWSSimpleDB deleteAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.240
+.str.241
+_unnamed_cfstring_.242
+OBJC_METH_VAR_NAME_.243
+OBJC_SELECTOR_REFERENCES_.244
+__PRETTY_FUNCTION__.__46-[AWSSimpleDB deleteDomain:completionHandler:]_block_invoke
+__block_descriptor_tmp.247
+.str.248
+_unnamed_cfstring_.249
+OBJC_CLASSLIST_REFERENCES_$_.250
+OBJC_SELECTOR_REFERENCES_.252
+OBJC_METH_VAR_NAME_.253
+OBJC_SELECTOR_REFERENCES_.254
+__PRETTY_FUNCTION__.__48-[AWSSimpleDB domainMetadata:completionHandler:]_block_invoke
+__block_descriptor_tmp.257
+.str.258
+_unnamed_cfstring_.259
+OBJC_CLASSLIST_REFERENCES_$_.260
+OBJC_METH_VAR_NAME_.261
+OBJC_SELECTOR_REFERENCES_.262
+__PRETTY_FUNCTION__.__47-[AWSSimpleDB getAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.265
+.str.266
+_unnamed_cfstring_.267
+OBJC_METH_VAR_NAME_.269
+OBJC_SELECTOR_REFERENCES_.270
+__PRETTY_FUNCTION__.__45-[AWSSimpleDB listDomains:completionHandler:]_block_invoke
+__block_descriptor_tmp.273
+.str.274
+_unnamed_cfstring_.275
+OBJC_METH_VAR_NAME_.276
+OBJC_SELECTOR_REFERENCES_.277
+__PRETTY_FUNCTION__.__47-[AWSSimpleDB putAttributes:completionHandler:]_block_invoke
+__block_descriptor_tmp.280
+.str.281
+_unnamed_cfstring_.282
+OBJC_CLASSLIST_REFERENCES_$_.283
+OBJC_METH_VAR_NAME_.284
+OBJC_SELECTOR_REFERENCES_.285
+__PRETTY_FUNCTION__.__40-[AWSSimpleDB select:completionHandler:]_block_invoke
+__block_descriptor_tmp.288
+OBJC_CLASS_NAME_.289
+OBJC_METH_VAR_NAME_.290
+OBJC_METH_VAR_TYPE_.291
+OBJC_METH_VAR_TYPE_.292
+OBJC_METH_VAR_NAME_.293
+OBJC_METH_VAR_TYPE_.294
+OBJC_METH_VAR_NAME_.295
+OBJC_METH_VAR_TYPE_.296
+l_OBJC_$_CLASS_METHODS_AWSSimpleDB
+l_OBJC_METACLASS_RO_$_AWSSimpleDB
+OBJC_CLASS_NAME_.297
+OBJC_METH_VAR_TYPE_.298
+OBJC_METH_VAR_NAME_.299
+OBJC_METH_VAR_TYPE_.300
+OBJC_METH_VAR_NAME_.301
+OBJC_METH_VAR_NAME_.302
+OBJC_METH_VAR_NAME_.303
+OBJC_METH_VAR_NAME_.304
+OBJC_METH_VAR_NAME_.305
+OBJC_METH_VAR_NAME_.306
+OBJC_METH_VAR_NAME_.307
+OBJC_METH_VAR_NAME_.308
+OBJC_METH_VAR_NAME_.309
+OBJC_METH_VAR_NAME_.310
+OBJC_METH_VAR_NAME_.311
+OBJC_METH_VAR_NAME_.312
+OBJC_METH_VAR_NAME_.313
+l_OBJC_$_INSTANCE_METHODS_AWSSimpleDB
+OBJC_METH_VAR_NAME_.314
+OBJC_METH_VAR_TYPE_.315
+OBJC_METH_VAR_NAME_.316
+OBJC_METH_VAR_TYPE_.317
+l_OBJC_$_INSTANCE_VARIABLES_AWSSimpleDB
+OBJC_PROP_NAME_ATTR_.318
+OBJC_PROP_NAME_ATTR_.319
+OBJC_PROP_NAME_ATTR_.320
+l_OBJC_$_PROP_LIST_AWSSimpleDB
+l_OBJC_CLASS_RO_$_AWSSimpleDB
+-[AWSSimpleDB .cxx_destruct]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSimpleDB/AWSSimpleDBService.m
+-[AWSSimpleDB setNetworking:]
+-[AWSSimpleDB networking]
+-[AWSSimpleDB setConfiguration:]
+-[AWSSimpleDB configuration]
+/Users/lukasz/Documents/AppUnite/shoutit-ios/Carthage/Checkouts/aws-sdk-ios/AWSSimpleDB/AWSSimpleDBService.h
+-[AWSSimpleDB select:completionHandler:]
+-[AWSSimpleDB select:]
+-[AWSSimpleDB putAttributes:completionHandler:]
+-[AWSSimpleDB putAttributes:]
+-[AWSSimpleDB listDomains:completionHandler:]
+-[AWSSimpleDB listDomains:]
+-[AWSSimpleDB getAttributes:completionHandler:]
+-[AWSSimpleDB getAttributes:]
+-[AWSSimpleDB domainMetadata:completionHandler:]
+-[AWSSimpleDB domainMetadata:]
+-[AWSSimpleDB deleteDomain:completionHandler:]
+-[AWSSimpleDB deleteDomain:]
+-[AWSSimpleDB deleteAttributes:completionHandler:]
+-[AWSSimpleDB deleteAttributes:]
+-[AWSSimpleDB createDomain:completionHandler:]
+-[AWSSimpleDB createDomain:]
+-[AWSSimpleDB batchPutAttributes:completionHandler:]
+-[AWSSimpleDB batchPutAttributes:]
+-[AWSSimpleDB batchDeleteAttributes:completionHandler:]
+-[AWSSimpleDB batchDeleteAttributes:]
+-[AWSSimpleDB invokeRequest:HTTPMethod:URLString:targetPrefix:operationName:outputClass:]
+-[AWSSimpleDB initWithConfiguration:]
+-[AWSSimpleDB init]
++[AWSSimpleDB removeSimpleDBForKey:]
++[AWSSimpleDB SimpleDBForKey:]
++[AWSSimpleDB registerSimpleDBWithConfiguration:forKey:]
++[AWSSimpleDB defaultSimpleDB]
++[AWSSimpleDB initialize]
+-[AWSSimpleDBResponseSerializer responseObjectForResponse:originalRequest:currentRequest:data:error:]
++[AWSSimpleDBResponseSerializer initialize]
+/Users/lukasz/Library/Developer/Xcode/DerivedData/AWSiOSSDKv2-cqgditqlqlxkxfdyzbkzoqrzqldw/Build/Intermediates/AWSiOSSDKv2.build/Release-iphoneos/AWSSimpleDB.build/DerivedSources/AWSSimpleDB_vers.c
+_ZL15__ARCLite__loadv
+_ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+_ZL34__arclite_objc_autoreleasePoolPushv
+_ZL33__arclite_objc_autoreleasePoolPopPv
+_ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+_ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+_ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+_ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+_ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+_ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+_ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+_ZL18add_image_hook_ARCPK11mach_headerl
+_ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+_ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+_ZL21__arclite_object_copyP11objc_objectm
+_ZL21__arclite_objc_retainP11objc_object
+_ZL26__arclite_objc_retainBlockP11objc_object
+_ZL22__arclite_objc_releaseP11objc_object
+_ZL26__arclite_objc_autoreleaseP11objc_object
+_ZL32__arclite_objc_retainAutoreleaseP11objc_object
+_ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+_ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+_ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+_ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+_ZL22add_image_hook_swiftV1PK11mach_headerl
+_ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+_ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+_ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+_ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+_ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+_ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+_ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+_ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+_ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+_ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+_ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+_ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+_ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+_ZL32__arclite_object_getIndexedIvarsP11objc_object
+_ZL23__arclite_objc_getClassPKc
+_ZL27__arclite_objc_getMetaClassPKc
+_ZL31__arclite_objc_getRequiredClassPKc
+_ZL26__arclite_objc_lookUpClassPKc
+_ZL26__arclite_objc_getProtocolPKc
+_ZL23__arclite_class_getNameP10objc_class
+_ZL26__arclite_protocol_getNameP8Protocol
+_ZL37__arclite_objc_copyClassNamesForImagePKcPj
+_ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+_ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+_ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+_ZL14initialize_impP11objc_objectP13objc_selector
+_ZL18allocateMaybeSwiftP18glue_swift_class_tm
+_ZL22copySwiftV1MangledNamePKcb
+_ZL13demangledNamePKcb
+_ZL16scanMangledFieldRPKcS0_S1_Ri
+_ZL30arclite_uninitialized_functionv
+_ZL12cxxConstructP11objc_object
+_ZL20fixStringForCoreDataP11objc_object
+OBJC_METACLASS_$___ARCLite__
+_ZL24OBJC_CLASS_$___ARCLite__
+_ZL31OBJC_METACLASS_RO_$___ARCLite__
+_non_lazy_classes
+_ZL27OBJC_CLASS_RO_$___ARCLite__
+_ZL11_class_name
+_ZL32OBJC_$_CLASS_METHODS___ARCLite__
+_ZL17_load_method_name
+_ZL17_load_method_type
+_ZL23NSAutoreleasePool_class
+_ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+_ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+.str.2
+.str.6
+.str.10
+OBJC_METH_VAR_NAME_.11
+OBJC_SELECTOR_REFERENCES_.12
+OBJC_METH_VAR_NAME_.14
+OBJC_SELECTOR_REFERENCES_.15
+.str.16
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteIndexedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+OBJC_SELECTOR_REFERENCES_.22
+OBJC_METH_VAR_NAME_.23
+OBJC_SELECTOR_REFERENCES_.24
+OBJC_SELECTOR_REFERENCES_.26
+OBJC_SELECTOR_REFERENCES_.28
+OBJC_METH_VAR_TYPE_.29
+OBJC_CLASS_NAME_.32
+l_OBJC_$_PROTOCOL_INSTANCE_METHODS___ARCLiteKeyedSubscripting__
+l_OBJC_$_PROTOCOL_METHOD_TYPES___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+OBJC_SELECTOR_REFERENCES_.34
+OBJC_SELECTOR_REFERENCES_.36
+OBJC_METH_VAR_NAME_.37
+OBJC_SELECTOR_REFERENCES_.38
+OBJC_METH_VAR_NAME_.39
+OBJC_SELECTOR_REFERENCES_.40
+_ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+_ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+.str.41
+.str.43
+.str.45
+.str.47
+.str.49
+.str.51
+.str.52
+.str.59
+.str.60
+_ZL30NSUndoManagerProxy_targetClass
+OBJC_SELECTOR_REFERENCES_.62
+.str.63
+.str.64
+OBJC_METH_VAR_NAME_.65
+OBJC_SELECTOR_REFERENCES_.66
+_ZL29original_NSManagedObject_init
+OBJC_METH_VAR_NAME_.67
+_ZL40original_NSManagedObject_allocWithEntity
+_ZL35original_NSManagedObject_allocBatch
+_ZL25NSMutableDictionary_class
+.str.71
+_ZL22NSConstantString_class
+.str.72
+_ZL14NSString_class
+OBJC_METH_VAR_NAME_.74
+OBJC_SELECTOR_REFERENCES_.75
+_ZL36original_NSKKMS_fastIndexForKnownKey
+OBJC_METH_VAR_NAME_.76
+OBJC_SELECTOR_REFERENCES_.77
+_ZL27original_NSKKMS_indexForKey
+.str.78
+_ZL28original_NSKKsD_objectForKey
+_ZL34original_NSKKsD_removeObjectForKey
+_ZL32original_NSKKsD_setObject_forKey
+OBJC_METH_VAR_NAME_.79
+OBJC_SELECTOR_REFERENCES_.80
+_ZL40original_NSKKsD_addEntriesFromDictionary
+_ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+_ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+.str.81
+.str.82
+_ZL31original_objc_allocateClassPair
+.str.83
+_ZL31original_object_getIndexedIvars
+.str.84
+_ZL22original_objc_getClass
+.str.85
+_ZL26original_objc_getMetaClass
+.str.86
+_ZL30original_objc_getRequiredClass
+.str.87
+_ZL25original_objc_lookUpClass
+.str.88
+_ZL25original_objc_getProtocol
+.str.89
+_ZL22original_class_getName
+_ZL25original_protocol_getName
+.str.91
+_ZL36original_objc_copyClassNamesForImage
+OBJC_METH_VAR_NAME_.92
+OBJC_SELECTOR_REFERENCES_.93
+.str.97
+.str.99
+.str.100
+.str.101
+.str.102
+_ZL12demangleLock
+_ZL9Demangled
+.str.104
+.str.105
+OBJC_SELECTOR_REFERENCES_.107
+OBJC_SELECTOR_REFERENCES_.109
+OBJC_SELECTOR_REFERENCES_.111
+OBJC_METH_VAR_NAME_.112
+OBJC_SELECTOR_REFERENCES_.113
+OBJC_METH_VAR_NAME_.114
+OBJC_SELECTOR_REFERENCES_.115
+OBJC_METH_VAR_NAME_.116
+OBJC_SELECTOR_REFERENCES_.117
+Apple LLVM version 7.3.0 (clang-703.0.21)
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -fembed-bitcode -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/Symbols/BuiltProducts -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -fgnu-inline-asm -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/arclite_iOS-65~248/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -mlinker-version=264.3 -march=armv7a
+__arclite_NSKKsD_addEntriesFromDictionary
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-65
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+fixStringForCoreData
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+cxxConstruct
+__arclite_NSManagedObject_init
+arclite_uninitialized_function
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+patch_t<const char **(const char *, unsigned int *)>
+__arclite_objc_copyClassNamesForImage
+patch_t<const char *(Protocol *)>
+__arclite_protocol_getName
+patch_t<const char *(Class)>
+__isctype
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/ctype.h
+isdigit
+scanMangledField
+copySwiftV1DemangledName
+demangledName
+__arclite_class_getName
+patch_t<Protocol *(const char *)>
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+patch_t<Class (const char *)>
+copySwiftV1MangledName
+__arclite_objc_getClass
+patch_t<void *(id)>
+word_align
+__arclite_object_getIndexedIvars
+patch_t<Class (Class, const char *, unsigned long)>
+allocateMaybeSwift
+isSwift
+metaclass
+__arclite_objc_allocateClassPair
+patch_t<Class (Class, const objc_image_info *)>
+initialize_imp
+property_list_nth
+transcribeProperties
+transcribeProtocols
+method_list_nth
+transcribeMethods
+alignment
+max
+ivar_list_nth
+transcribeIvars
+fastFlags
+ro
+__arclite_objc_readClassPair
+add_image_hook_swiftV1
+install_swiftV1
+patch_t<void (id *, id)>
+__arclite_objc_storeStrong
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+patch_t<void (id)>
+__arclite_objc_release
+__arclite_objc_retainBlock
+patch_t<id (id)>
+__arclite_objc_retain
+patch_t<id (id, unsigned long)>
+fixupCopiedReferences
+classOrSuperClassesUseARR
+__arclite_object_copy
+patch_t<void (id, objc_ivar *, id)>
+isScannedOffset
+alignedInstanceStart
+_class_getInstanceStart
+data
+__arclite_class_usesAutomaticRetainRelease
+_ivar_getClass
+__arclite_object_setIvar
+patch_t<objc_ivar *(id, const char *, void *)>
+__arclite_object_setInstanceVariable
+add_image_hook_ARC
+install_ARC
+objc_collectingEnabled
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.Internal.sdk/usr/include/objc/objc-auto.h
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+addOrReplaceMethod
+install_dict_nil_value
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+keyedGetter
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+indexedGetter
+__arclite_NSArray_objectAtIndexedSubscript
+addMethod
+install_subscripting
+patch_lazy_pointers
+patch_t<void (void *)>
+__arclite_objc_autoreleasePoolPop
+patch_t<void *()>
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+install_autoreleasepool
+__ARCLite__load

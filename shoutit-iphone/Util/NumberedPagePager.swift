@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Argo
+import ShoutitKit
 
 class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType>: Pager<Int, CellViewModelType, ItemType> {
     

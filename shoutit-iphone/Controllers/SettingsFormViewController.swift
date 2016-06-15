@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import Material
-import Validator
 import MBProgressHUD
 
 final class SettingsFormViewController: UITableViewController {

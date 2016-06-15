@@ -8,15 +8,18 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct AutocompletionTerm {
-    let term: String
+public struct AutocompletionTerm {
+    public let term: String
+    
+    public init(term: String) {
+        self.term = term
+    }
 }
 
 extension AutocompletionTerm: Decodable {
     
-    static func decode(j: JSON) -> Decoded<AutocompletionTerm> {
+    public static func decode(j: JSON) -> Decoded<AutocompletionTerm> {
         return curry(AutocompletionTerm.init)
             <^> j <| "term"
     }

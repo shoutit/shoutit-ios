@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GooglePlaces
+import ShoutitKit
 
 final class LocationFlowController: FlowController {
     

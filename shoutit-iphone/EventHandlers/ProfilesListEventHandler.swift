@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol ProfilesListEventHandler: class {
     func handleUserDidTapProfile(profile: Profile)

@@ -12,6 +12,7 @@ import RxCocoa
 import Alamofire
 import FBSDKCoreKit
 import FBSDKLoginKit
+import ShoutitKit
 
 final class LoginMethodChoiceViewModel {
     
@@ -35,7 +36,7 @@ final class LoginMethodChoiceViewModel {
             .subscribe { (event) in
                 switch event {
                 case .Next(let token):
-                    let params = FacebookLoginParams(token: token)
+                    let params = FacebookLoginParams(token: token, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
                     self.authenticateWithParameters(params)
                 case .Error(LocalError.Cancelled):
                     self.progressHUDSubject.onNext(false)
@@ -89,7 +90,7 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         }
         
         if let serverAuthCode = user?.serverAuthCode {
-            let params = GoogleLoginParams(gplusCode: serverAuthCode)
+            let params = GoogleLoginParams(gplusCode: serverAuthCode, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
             authenticateWithParameters(params)
         }
     }

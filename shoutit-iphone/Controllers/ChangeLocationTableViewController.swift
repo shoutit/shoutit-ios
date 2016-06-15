@@ -8,8 +8,8 @@
 
 import UIKit
 import RxSwift
-import GooglePlaces
 import CoreLocation
+import ShoutitKit
 
 class ChangeLocationTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var currentLocationLabel : UILabel!

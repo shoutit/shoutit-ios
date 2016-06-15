@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class SearchViewModel {
     
@@ -213,7 +214,7 @@ final class SearchViewModel {
     
     // MARK: - Create cell view models
     
-    private func setSectionViewModelWithCategories(categories: [Category]) {
+    private func setSectionViewModelWithCategories(categories: [ShoutitKit.Category]) {
         
         if categories.count == 0 {
             let message = NSLocalizedString("No categores are available", comment: "")

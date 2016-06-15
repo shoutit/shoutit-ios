@@ -8,20 +8,28 @@
 
 import Foundation
 import Argo
-import Curry
+
 import Ogra
 
-struct Video {
-    let path: String
-    let thumbnailPath: String
-    let provider: String
-    let idOnProvider: String
-    let duration: Int
+public struct Video {
+    public let path: String
+    public let thumbnailPath: String
+    public let provider: String
+    public let idOnProvider: String
+    public let duration: Int
+    
+    public init(path: String, thumbnailPath: String, provider: String, idOnProvider: String, duration: Int) {
+        self.path = path
+        self.thumbnailPath = thumbnailPath
+        self.provider = provider
+        self.idOnProvider = idOnProvider
+        self.duration = duration
+    }
 }
 
 extension Video: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Video> {
+    public static func decode(j: JSON) -> Decoded<Video> {
         return curry(Video.init)
             <^> j <| "url"
             <*> j <| "thumbnail_url"
@@ -32,7 +40,7 @@ extension Video: Decodable {
 }
 
 extension Video: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object([
             "url"    : self.path.encode(),
             "thumbnail_url"  : self.thumbnailPath.encode(),

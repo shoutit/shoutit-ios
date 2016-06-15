@@ -8,15 +8,18 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct Mobile {
-    let phone: String
+
+public struct Mobile {
+    public let phone: String
+    public init(phone: String) {
+        self.phone = phone
+    }
 }
 
 extension Mobile: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Mobile> {
+    public static func decode(j: JSON) -> Decoded<Mobile> {
         return curry(Mobile.init)
             <^> j <| "mobile"
     }

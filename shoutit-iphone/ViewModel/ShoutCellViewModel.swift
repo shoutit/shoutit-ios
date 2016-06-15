@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 struct ShoutCellViewModel {
     let shout: Shout

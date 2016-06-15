@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class CreateShoutTableHeaderView: UIView {
     @IBOutlet var currencyButton : SelectionButton!
     @IBOutlet var titleTextField : UITextField!
     @IBOutlet var priceTextField : UITextField!
     
-    func setCurrency(currency: Currency?) {
+    func setCurrency(currency: ShoutitKit.Currency?) {
         if let curr = currency {
             self.currencyButton.setTitle(curr.code, forState: .Normal)
         } else {

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 import TwilioCommon
 
 final class Twilio: NSObject {

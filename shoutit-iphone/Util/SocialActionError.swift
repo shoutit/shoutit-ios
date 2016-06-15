@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 enum SocialActionError: ShoutitError {
     case FacebookPermissionsFailedError

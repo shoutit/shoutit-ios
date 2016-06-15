@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 protocol DiscoverRequest {
     func retriveDiscoverItems()

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-#import <MWPhotoBrowser/MWPhotoBrowser.h>
+#import "MWPhotoBrowser.h"
 
 @interface PhotoBrowser : MWPhotoBrowser
 

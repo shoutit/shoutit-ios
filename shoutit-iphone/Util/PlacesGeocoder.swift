@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GooglePlaces
 import RxSwift
 
 public final class PlacesGeocoder: AnyObject {

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     
@@ -32,7 +33,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
             newEmail = value
         }
         
-        if case .Invalid(let errors) = Validator.validateEmail(newEmail) {
+        if case .Invalid(let errors) = ShoutitValidator.validateEmail(newEmail) {
             errorSubject.onNext(errors[0])
             return
         }

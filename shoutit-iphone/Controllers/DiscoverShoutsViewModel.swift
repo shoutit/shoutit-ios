@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class DiscoverShoutsViewModel: HomeShoutsViewModel {
     
@@ -22,12 +23,12 @@ final class DiscoverShoutsViewModel: HomeShoutsViewModel {
     }
     
     override func retriveShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: 1, pageSize: 20)
+        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: 1, pageSize: 20, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
     override func loadMorePage(page: Int) -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: page, pageSize: 20)
+        let params = FilteredShoutsParams(discoverId: self.discoverItem.id, page: page, pageSize: 20, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
 }

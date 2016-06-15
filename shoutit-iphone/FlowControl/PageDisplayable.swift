@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol PageDisplayable {
     func showPage(page: Profile) -> Void

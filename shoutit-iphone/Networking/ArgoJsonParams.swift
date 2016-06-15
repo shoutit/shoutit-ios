@@ -11,7 +11,7 @@ import Argo
 
 extension Argo.JSON: Params {
     
-    var params: [Swift.String : AnyObject] {
+    public var params: [Swift.String : AnyObject] {
         guard let json = self.JSONObject() as? [Swift.String : AnyObject] else {
             assertionFailure()
             return [:]

@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class NumberFormatters {
+public final class NumberFormatters {
     
-    static func minutesAndSecondsUserDisplayableStringWithTimeInterval(time: NSTimeInterval) -> String {
+    public static func minutesAndSecondsUserDisplayableStringWithTimeInterval(time: NSTimeInterval) -> String {
         let seconds = Int(time)
         let minutesPart = seconds / 60
         let secondsPart = seconds % 60
@@ -19,7 +19,7 @@ final class NumberFormatters {
         return "\(minutesString):\(secondsString)"
     }
     
-    static func numberToShortString(number: Int) -> String {
+    public static func numberToShortString(number: Int) -> String {
         
         var num:Double = Double(number)
         
@@ -43,7 +43,7 @@ final class NumberFormatters {
         return string
     }
     
-    static func priceStringWithPrice(price: Int?, currency: String? = nil) -> String? {
+    public static func priceStringWithPrice(price: Int?, currency: String? = nil) -> String? {
         
         guard let price = price else {
             return nil
@@ -67,7 +67,7 @@ final class NumberFormatters {
         return formatter.stringFromNumber(Double(price)/100.0)
     }
     
-    static func badgeCountStringWithNumber(number: Int) -> String {
+    public static func badgeCountStringWithNumber(number: Int) -> String {
         
         if number > 99 {
             return "\(NSLocalizedString("+99", comment: "More than 99 Notifications")) "

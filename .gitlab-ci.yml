@@ -1,4 +1,6 @@
 before_script:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
   - export LANG=en_US.UTF-8
   - git submodule update --init --recursive
   - rm -rf Gemfile.lock
@@ -12,6 +14,7 @@ production:
     - s4
   only:
     - develop
+    - /^production-.*$/
 alpha:
   type: build
   script: "bundle exec fastlane staging"

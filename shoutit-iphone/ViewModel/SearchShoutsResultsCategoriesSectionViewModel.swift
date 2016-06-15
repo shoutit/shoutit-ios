@@ -8,14 +8,14 @@
 
 import Foundation
 import RxSwift
-
+import ShoutitKit
 extension SearchShoutsResultsViewModel {
     
     final class CategoriesSection {
         
         unowned var parent: SearchShoutsResultsViewModel
         
-        private(set) var state: Variable<PagedViewModelState<SearchShoutsResultsCategoryCellViewModel, Int, Category>> = Variable(.Idle)
+        private(set) var state: Variable<PagedViewModelState<SearchShoutsResultsCategoryCellViewModel, Int, ShoutitKit.Category>> = Variable(.Idle)
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent

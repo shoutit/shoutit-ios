@@ -9,3 +9,5 @@
 #include "../../External/xcconfigs/iOS/iOS-Application.xcconfig"
 #include "../../External/xcconfigs/Base/Configurations/Release.xcconfig"
 #include "shoutit-Staging-Release.xcconfig"
+
+KIT_PRODUCT_BUNDLE_IDENTIFIER = $(PRODUCT_BUNDLE_IDENTIFIER)

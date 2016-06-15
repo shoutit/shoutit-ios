@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class CategoryFiltersViewController: UIViewController {
     

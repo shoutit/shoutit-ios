@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MBProgressHUD
+import ShoutitKit
 
 class CreateShoutTableViewController: UITableViewController {
 
@@ -17,7 +18,7 @@ class CreateShoutTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     private let facebookTappedSubject: PublishSubject<Void> = PublishSubject()
     
-    var type : ShoutType!
+    var type : ShoutitKit.ShoutType!
     
     var viewModel : CreateShoutViewModel!
     
@@ -32,6 +33,8 @@ class CreateShoutTableViewController: UITableViewController {
         setupAppearance()
         createViewModel()
         setupRX()
+        
+        self.tableView.registerNib(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
     }
     
     private func setupAppearance() {
@@ -276,18 +279,23 @@ extension CreateShoutTableViewController {
         default: return 70
         }
     }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.tintColor = UIColor.whiteColor()
-        header.textLabel?.font = UIFont.systemFontOfSize(14.0)
-        header.textLabel?.textColor = UIColor(shoutitColor: .FontGrayColor)
-    }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         guard case .Facebook = cellViewModel else { return }
         facebookTappedSubject.onNext()
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let sectionHeader = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("SectionHeaderWithDetailsButton") as? SectionHeaderWithDetailsButton {
+            sectionHeader.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+            sectionHeader.infoButton.hidden = section != 2
+            sectionHeader.infoButton.tag = section
+            sectionHeader.infoButton.addTarget(self, action: #selector(showSharingAlert), forControlEvents: .TouchUpInside)
+            return sectionHeader
+        }
+        
+        return nil
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -296,5 +304,14 @@ extension CreateShoutTableViewController {
             return true
         }
         return false
+    }
+    
+    func showSharingAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+        }))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

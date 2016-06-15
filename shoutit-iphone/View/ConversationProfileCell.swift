@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 final class ConversationProfileCell: UITableViewCell, ConversationCell {
     

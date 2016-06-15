@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 enum ProfileCollectionViewModelMainModel {
     case ProfileModel(profile: Profile)

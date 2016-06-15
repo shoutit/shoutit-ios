@@ -8,16 +8,16 @@
 
 import Foundation
 import Argo
-import Curry
 
-struct SortType {
-    let type: String
-    let name: String
+
+public struct SortType {
+    public let type: String
+    public let name: String
 }
 
 extension SortType: Decodable {
     
-    static func decode(j: JSON) -> Decoded<SortType> {
+    public static func decode(j: JSON) -> Decoded<SortType> {
         return curry(SortType.init)
             <^> j <| "type"
             <*> j <| "name"

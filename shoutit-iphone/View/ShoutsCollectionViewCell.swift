@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class ShoutsCollectionViewCell: UICollectionViewCell {
     
@@ -14,6 +15,46 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         case Regular
         case Expanded
     }
+    
+    
+    weak var shoutImage: UIImageView? {
+        return imageView
+    }
+    
+    weak var name: UILabel? {
+        return userNameLabel
+    }
+    
+    weak var shoutTitle: UILabel? {
+        return subtitleLabel
+    }
+    
+    weak var shoutPrice: UILabel? {
+        return priceLabel
+    }
+    
+    weak var shoutType: UILabel? {
+        return shoutTypeLabel
+    }
+    
+    weak var shoutSubtitle: UILabel? {
+        return subtitleLabel
+    }
+    
+    weak var shoutCountryImage: UIImageView? {
+        return shoutCountryFlagImageView
+    }
+    
+    weak var shoutCategoryImage: UIImageView? {
+        return shoutCategoryImageView
+    }
+    
+    weak var shoutBackgroundView: UIView? {
+        return self.contentView
+    }
+    
+    weak var shoutPromotionBackground: UIView?
+    weak var shoutPromotionLabel: UILabel?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,35 +75,11 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 4
         layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
         layer.borderWidth = 1 / UIScreen.mainScreen().scale
-    }
-    
-    func hydrateWithShout(shout: Shout) {
-        titleLabel.text = shout.title
-        userNameLabel?.text = shout.user?.name
         
-        if let publishedAt = shout.publishedAtEpoch, user = shout.user {
-            subtitleLabel?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
-        } else if let user = shout.user {
-            subtitleLabel?.text = user.name
-        }
+        let (promotionView, promotionLabel) = createPromotionViews()
         
-        priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
-        
-        if let country = shout.location?.country, countryImage = UIImage(named:  country), countryImageView = shoutCountryFlagImageView {
-            countryImageView.image = countryImage
-        }
-        
-        if let categoryIcon = shout.category.icon, categoryImageView = shoutCategoryImageView, url = categoryIcon.toURL() {
-            categoryImageView.kf_setImageWithURL(url, placeholderImage: nil)
-        }
-        
-        if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
-            imageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage.backgroundPattern())
-        } else {
-            imageView.image = UIImage.backgroundPattern()
-        }
-        
-        shoutTypeLabel?.text = shout.type()?.title()
+        self.shoutPromotionBackground = promotionView
+        self.shoutPromotionLabel = promotionLabel
     }
     
     func hydrateWithDiscoverItem(discoverItem: DiscoverItem) {

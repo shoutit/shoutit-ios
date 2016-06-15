@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MBProgressHUD
+import ShoutitKit
 
 enum ShoutDetailTabbarButton {
     case Call

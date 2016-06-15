@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol ShoutitError: ErrorType {
+public protocol ShoutitError: ErrorType {
     var userMessage: String {get}
 }
 
 extension ErrorType {
-    var sh_message: String {
+    public var sh_message: String {
         if let e = self as? ShoutitError {
             return e.userMessage
         }

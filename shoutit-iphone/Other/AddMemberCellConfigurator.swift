@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 class AddMemberCellConfigurator: ProfileCellConfigurator {
 

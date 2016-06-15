@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ShoutitKit
 
 protocol ShoutDisplayable {
     func showShout(shout: Shout) -> Void

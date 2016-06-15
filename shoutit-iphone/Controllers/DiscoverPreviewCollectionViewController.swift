@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Kingfisher
+import ShoutitKit
 
 final class DiscoverPreviewCollectionViewController: UICollectionViewController {
     

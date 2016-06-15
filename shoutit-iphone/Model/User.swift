@@ -8,10 +8,10 @@
 
 import Foundation
 import Argo
-import Curry
+
 import Ogra
 
-protocol User: Encodable {
+public protocol User: Encodable {
     
     var id: String {get}
     var type: UserType {get}
@@ -26,7 +26,7 @@ protocol User: Encodable {
 
 extension User {
     
-    func basicEncodedProfile() -> [String: AnyObject]! {
+    public func basicEncodedProfile() -> [String: AnyObject]! {
 
         return ["username": self.username.encode(), "id": self.id.encode()].encode().JSONObject() as! [String : AnyObject]
     }
@@ -34,14 +34,14 @@ extension User {
 
 // MARK: - User type
 
-enum UserType: String {
+public enum UserType: String {
     case Page = "page"
     case User = "user"
 }
 
 extension UserType: Decodable {
     
-    static func decode(j: JSON) -> Decoded<UserType> {
+    public static func decode(j: JSON) -> Decoded<UserType> {
         switch j {
         case .String(let string):
             if let userType = UserType(rawValue: string) {
@@ -56,21 +56,22 @@ extension UserType: Decodable {
 
 extension UserType: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return self.rawValue.encode()
     }
 }
 
 // MARK: - Gender
 
-enum Gender: String {
+public enum Gender: String {
     case Male = "male"
     case Female = "female"
+    case Other = "other"
 }
 
 extension Gender: Decodable {
     
-    static func decode(j: JSON) -> Decoded<Gender> {
+    public static func decode(j: JSON) -> Decoded<Gender> {
         switch j {
         case .String(let string):
             if let gender = Gender(rawValue: string) {
@@ -85,7 +86,7 @@ extension Gender: Decodable {
 
 extension Gender: Encodable {
     
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return self.rawValue.encode()
     }
 }

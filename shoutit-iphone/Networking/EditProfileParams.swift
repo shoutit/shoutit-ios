@@ -8,20 +8,22 @@
 
 import Foundation
 
-struct EditProfileParams: Params {
+public struct EditProfileParams: Params {
     
-    let firstname: String?
-    let lastname: String?
-    let name: String?
-    let username: String?
-    let bio: String?
-    let website: String?
-    let location: Address?
-    let imagePath: String?
-    let coverPath : String?
-    let mobile: String?
+    public let firstname: String?
+    public let lastname: String?
+    public let name: String?
+    public let username: String?
+    public let bio: String?
+    public let website: String?
+    public let location: Address?
+    public let imagePath: String?
+    public let coverPath : String?
+    public let mobile: String?
+    public let birthday: String?
+    public let gender: Gender?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["first_name"] = firstname
         p["last_name"] = lastname
@@ -35,8 +37,25 @@ struct EditProfileParams: Params {
         }
         p["image"] = imagePath
         p["cover"] = coverPath
+        p["birthday"] = birthday
+        p["gender"] = gender != nil ? (gender!.rawValue) : NSNull()
         
         
         return p
+    }
+    
+    public init(firstname: String?, lastname: String?, name: String?, username: String?, bio: String?, website: String?, location: Address?, imagePath: String?, coverPath: String?, mobile: String?, birthday: String?, gender: Gender?){
+        self.firstname = firstname
+        self.lastname = lastname
+        self.name = name
+        self.username = username
+        self.bio = bio
+        self.website = website
+        self.location = location
+        self.imagePath = imagePath
+        self.coverPath = coverPath
+        self.mobile = mobile
+        self.birthday = birthday
+        self.gender = gender
     }
 }

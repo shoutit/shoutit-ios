@@ -8,18 +8,28 @@
 
 import UIKit
 
-final class DateFormatters {
+public final class DateFormatters {
     
-    static let sharedInstance = DateFormatters()
+    public static let sharedInstance = DateFormatters()
     
     private let formatter: NSDateFormatter
+    private let apiFormatter: NSDateFormatter
     
-    init() {
+    public init() {
         formatter = NSDateFormatter()
-        
+        apiFormatter = NSDateFormatter()
     }
     
-    func stringFromDateEpoch(epoch: Int) -> String {
+    public func apiStringFromDate(date: NSDate) -> String {
+        setAPIFormat()
+        return apiFormatter.stringFromDate(date)
+    }
+    
+    public func setAPIFormat() {
+        apiFormatter.dateFormat = "yyyy-MM-dd"
+    }
+    
+    public func stringFromDateEpoch(epoch: Int) -> String {
         let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
         
         setDayFormat()
@@ -27,25 +37,37 @@ final class DateFormatters {
         return stringFromDate(date)
     }
     
-    func stringFromDate(date: NSDate) -> String {
+    public func stringFromDate(date: NSDate) -> String {
         setDayFormat()
         
         return formatter.stringFromDate(date)
     }
     
-    func setDayFormat() {
+    public func setDayFormat() {
+        formatter.dateFormat = "MM/dd/yyyy"
         formatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
     }
     
-    func setHourFormat() {
+    public func setHourFormat() {
+        formatter.dateFormat = "HH:mm"
         formatter.setLocalizedDateFormatFromTemplate("HH:mm")
     }
     
-    func hourStringFromEpoch(epoch: Int) -> String {
+    public func hourStringFromEpoch(epoch: Int) -> String {
         let date = NSDate(timeIntervalSince1970: NSTimeInterval(epoch))
         
         setHourFormat()
         
         return formatter.stringFromDate(date)
+    }
+    
+    public func dateFromBasicString(string: String?) -> NSDate? {
+        guard let string = string else {
+            return nil
+        }
+        
+        setAPIFormat()
+        
+        return formatter.dateFromString(string)
     }
 }

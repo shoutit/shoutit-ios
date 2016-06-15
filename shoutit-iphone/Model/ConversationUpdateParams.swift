@@ -8,14 +8,19 @@
 
 import UIKit
 
-struct ConversationUpdateParams: Params {
-    let subject : String?
-    let icon: String?
+public struct ConversationUpdateParams: Params {
+    public let subject : String?
+    public let icon: String?
     
-    var params: [String : AnyObject] {
+    public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
         params["subject"] = subject
         params["icon"] = icon
         return params
+    }
+    
+    public init(subject: String?, icon: String?) {
+        self.subject = subject
+        self.icon = icon
     }
 }

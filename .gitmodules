@@ -1,9 +1,24 @@
 [submodule "External/xcconfigs"]
 	path = External/xcconfigs
 	url = https://github.com/jspahrsummers/xcconfigs.git
+	ignore = dirty
   [submodule "translations"]
 	path = translations
 	url = https://shoutit-bot:shoutitbot1@github.com/shoutit/shoutit-ios-xliff.git
-[submodule "AviarySDK"]
-	path = AviarySDK
-	url = git@git.appunite.com:appunite/aviary.git
+	ignore = dirty
+[submodule "External/AviarySDK"]
+	path = External/AviarySDK
+	url = git@git.appunite.com:appunite/aviary.
+	ignore = dirty
+[submodule "External/TwilioCommon"]
+	path = External/TwilioCommon
+	url = git@git.appunite.com:shoutit/TwilioCommon.git
+	ignore = dirty
+[submodule "External/TwilioConversationsClient"]
+	path = External/TwilioConversationsClient
+	url = git@git.appunite.com:shoutit/TwilioConversationsClient.git
+	ignore = dirty
+[submodule "External/GoogleMaps"]
+	path = External/GoogleMaps
+	url = git@git.appunite.com:shoutit/GoogleMaps.git
+	ignore = dirty

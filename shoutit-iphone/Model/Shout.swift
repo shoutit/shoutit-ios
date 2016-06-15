@@ -8,41 +8,41 @@
 
 import Foundation
 import Argo
-import Curry
 import Ogra
 
-struct Shout: Decodable, Hashable, Equatable {
+public struct Shout: Decodable, Hashable, Equatable {
     
     // MARK: Basic fields
-    let id: String
-    let apiPath: String
-    let webPath: String
-    let typeString: String
-    let location: Address?
-    let title: String?
-    let text: String?
-    let price: Int?
-    let currency: String?
-    let thumbnailPath: String?
-    let videoPath: String?
-    let user: Profile?
-    let publishedAtEpoch: Int?
-    let category: Category
-    let tags: [Tag]?
-    let filters: [Filter]?
+    public let id: String
+    public let apiPath: String
+    public let webPath: String
+    public let typeString: String
+    public let location: Address?
+    public let title: String?
+    public let text: String?
+    public let price: Int?
+    public let currency: String?
+    public let thumbnailPath: String?
+    public let videoPath: String?
+    public let user: Profile?
+    public let publishedAtEpoch: Int?
+    public let category: Category
+    public let tags: [Tag]?
+    public let filters: [Filter]?
     
     // MARK: - Detail fields
-    let imagePaths: [String]?
-    let videos: [Video]?
+    public let imagePaths: [String]?
+    public let videos: [Video]?
     //let publishedOn: String?
-    let replyPath: String?
-    let relatedRequests: [Shout]?
-    let relatedOffers: [Shout]?
-    let conversations: [MiniConversation]?
-    let isMobileSet: Bool?
-    let mobile: String?
+    public let replyPath: String?
+    public let relatedRequests: [Shout]?
+    public let relatedOffers: [Shout]?
+    public let conversations: [MiniConversation]?
+    public let isMobileSet: Bool?
+    public let mobile: String?
+    public let promotion: Promotion?
     
-    static func decode(j: JSON) -> Decoded<Shout> {
+    public static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
             <^> j <| "id"
             <*> j <| "api_url"
@@ -74,24 +74,27 @@ struct Shout: Decodable, Hashable, Equatable {
             <*> j <||? "related_offers"
             <*> j <||? "conversations"
             <*> j <|? "is_mobile_set"
+        let h = g
             <*> j <|? "mobile"
-        return g
+            <*> j <|? "promotion"
+        return h
     }
     
-    var hashValue: Int {
+    
+    public var hashValue: Int {
         get {
             return self.id.hashValue
         }
     }
     
-    func type() -> ShoutType? {
+    public func type() -> ShoutType? {
         return ShoutType(rawValue: self.typeString)
     }
     
 }
 
 extension Shout: Encodable {
-    func encode() -> JSON {
+    public func encode() -> JSON {
         return JSON.Object(["id":self.id.encode(),
             "api_url":self.apiPath.encode(),
             "web_url":self.webPath.encode(),
@@ -104,8 +107,8 @@ extension Shout: Encodable {
     }
 }
 
-extension Shout {
-    func priceText() -> String? {
+public extension Shout {
+    public func priceText() -> String? {
         if let price = self.price {
             return NumberFormatters.priceStringWithPrice(price)
         }
@@ -113,7 +116,7 @@ extension Shout {
         return nil
     }
     
-    func priceTextWithoutFree() -> String? {
+    public func priceTextWithoutFree() -> String? {
         if let price = self.price {
             if price == 0 {
                 return "0"
@@ -127,24 +130,24 @@ extension Shout {
 }
 
 extension Shout: Reportable {
-    func attachedObjectJSON() -> JSON {
+    public func attachedObjectJSON() -> JSON {
         return ["shout" : ["id" : self.id.encode()].encode()].encode()
     }
     
-    func reportTitle() -> String {
+    public func reportTitle() -> String {
         return NSLocalizedString("Report Shout", comment: "")
     }
 }
 
-func ==(lhs: Shout, rhs: Shout) -> Bool {
+public func ==(lhs: Shout, rhs: Shout) -> Bool {
     return lhs.id == rhs.id
 }
 
-enum ShoutType : String {
+public enum ShoutType : String {
     case Offer = "offer"
     case Request = "request"
     
-    func title() -> String {
+    public func title() -> String {
         switch self {
         case .Offer: return NSLocalizedString("Offer", comment: "")
         case .Request: return NSLocalizedString("Request", comment: "")
