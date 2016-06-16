@@ -108,6 +108,7 @@ extension Shout: Encodable {
 }
 
 public extension Shout {
+    
     public func priceText() -> String? {
         if let price = self.price {
             return NumberFormatters.priceStringWithPrice(price)
@@ -126,6 +127,13 @@ public extension Shout {
         }
         
         return nil
+    }
+}
+
+public extension Shout {
+    
+    public var isPromoted: Bool {
+        return promotion != nil
     }
 }
 

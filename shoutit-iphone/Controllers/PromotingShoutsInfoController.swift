@@ -10,7 +10,7 @@ import UIKit
 
 class PromotingShoutsInfoController: UIViewController {
     
-    var flowDelegate : FlowController?
+    weak var flowDelegate : FlowController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

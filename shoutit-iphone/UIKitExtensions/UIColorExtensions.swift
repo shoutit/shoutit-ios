@@ -35,6 +35,7 @@ enum ShoutitColor: Int {
     case LightGreen = 0xC8E6C9
     case TextFieldBorderGrayColor = 0xC3C3C3
     case PromotedShoutYellowBackgroundColor = 0xffd700
+    case PromoteActionYellowColor = 0xFFAC40
     
     var alpha: Float {
         switch self {

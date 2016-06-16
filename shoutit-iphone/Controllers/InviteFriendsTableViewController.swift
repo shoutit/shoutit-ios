@@ -14,7 +14,7 @@ import ShoutitKit
 
 class InviteFriendsTableViewController: UITableViewController {
     
-    var flowDelegate : FlowController?
+    weak var flowDelegate : FlowController?
     
     private let disposeBag = DisposeBag()
     private var addressBook : AddressBook?
