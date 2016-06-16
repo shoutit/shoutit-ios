@@ -24,7 +24,7 @@ extension FlowController: PromoteDisplayable {
     }
     
     func showPromotedViewWithShout(shout: Shout) {
-        let controller = Wireframe.promotedShoutTableViewController()
+        let controller = Wireframe.promotedShoutViewController()
         controller.viewModel = PromotedShoutViewModel(shout: shout)
         controller.flowDelegate = self
         navigationController.showViewController(controller, sender: nil)

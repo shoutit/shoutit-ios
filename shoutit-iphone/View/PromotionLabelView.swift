@@ -14,6 +14,7 @@ class PromotionLabelView: UIView {
     @IBOutlet weak var sentenceLabel : UILabel?
     @IBOutlet weak var topLabel : UILabel?
     @IBOutlet weak var topLabelBackground : UIView?
+    @IBOutlet weak var daysLeftLabel: UIView?
     @IBOutlet weak var backgroundView : UIView?
     
     class func instanceFromNib() -> PromotionLabelView {

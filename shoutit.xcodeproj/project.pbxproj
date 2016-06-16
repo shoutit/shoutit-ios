@@ -316,7 +316,6 @@
 		B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD61C89F65400C9E8DB /* APIProfileService.swift */; };
 		B211F06E1D12C73C008DEEBC /* PromoteDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F06D1D12C73C008DEEBC /* PromoteDisplayable.swift */; };
 		B211F0711D12C858008DEEBC /* Promote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B211F0731D12C858008DEEBC /* Promote.storyboard */; };
-		B211F07D1D12C94B008DEEBC /* PromotedShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */; };
 		B211F07F1D12C958008DEEBC /* PromoteShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */; };
 		B211F0821D12C9A7008DEEBC /* PromoteShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F0811D12C9A7008DEEBC /* PromoteShoutViewModel.swift */; };
 		B211F0851D12C9C8008DEEBC /* PromotedShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F0841D12C9C8008DEEBC /* PromotedShoutViewModel.swift */; };
@@ -574,6 +573,7 @@
 		B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5D0461C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift */; };
 		B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */; };
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
+		B2BB12BA1D130D6400708386 /* PromotedShoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */; };
 		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
 		B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
@@ -1283,7 +1283,6 @@
 		B211F0751D12C85B008DEEBC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Promote.strings; sourceTree = "<group>"; };
 		B211F0771D12C85C008DEEBC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Promote.strings; sourceTree = "<group>"; };
 		B211F0791D12C85E008DEEBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Promote.strings; sourceTree = "<group>"; };
-		B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutTableViewController.swift; path = Controllers/PromotedShoutTableViewController.swift; sourceTree = "<group>"; };
 		B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutTableViewController.swift; path = Controllers/PromoteShoutTableViewController.swift; sourceTree = "<group>"; };
 		B211F0811D12C9A7008DEEBC /* PromoteShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutViewModel.swift; path = ViewModel/PromoteShoutViewModel.swift; sourceTree = "<group>"; };
 		B211F0841D12C9C8008DEEBC /* PromotedShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutViewModel.swift; path = ViewModel/PromotedShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1557,6 +1556,7 @@
 		B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAccount.swift; path = Model/GoogleAccount.swift; sourceTree = "<group>"; };
 		B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewController.swift; path = Controllers/EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewModel.swift; path = ViewModel/EditProfileTableViewModel.swift; sourceTree = "<group>"; };
+		B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutViewController.swift; path = Controllers/PromotedShoutViewController.swift; sourceTree = "<group>"; };
 		B2BC1EC71CF5A2BC00E56ECF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Nemo.strings; sourceTree = "<group>"; };
 		B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsHeaderView.swift; path = View/DiscoverShoutsHeaderView.swift; sourceTree = "<group>"; };
@@ -3261,7 +3261,7 @@
 		B211F07B1D12C929008DEEBC /* PromotedShoutViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */,
+				B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */,
 				B211F0831D12C9AD008DEEBC /* ViewModel */,
 			);
 			name = PromotedShoutViewController;
@@ -5119,7 +5119,6 @@
 				B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */,
 				B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */,
 				B2FA5CCE1D11AA1C007034F8 /* Promotion+Colors.swift in Sources */,
-				B211F07D1D12C94B008DEEBC /* PromotedShoutTableViewController.swift in Sources */,
 				B2778FA01CAD4BD100BBDD5F /* FilterTransition.swift in Sources */,
 				B2F719CE1D0EF2EC002C1D74 /* CustomDateFormatTransform.swift in Sources */,
 				240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */,
@@ -5203,6 +5202,7 @@
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
 				B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */,
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
+				B2BB12BA1D130D6400708386 /* PromotedShoutViewController.swift in Sources */,
 				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
 				B2F71A281D0EF643002C1D74 /* NSDictionary+QueryString.m in Sources */,
 				B272304B1CE0D9C7003547EA /* ProfilesListTableViewController.swift in Sources */,
