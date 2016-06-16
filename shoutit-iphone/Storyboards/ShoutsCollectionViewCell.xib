@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,6 +15,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emt-C8-eiw">
+                        <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ksa-8m-quI">
                         <rect key="frame" x="0.0" y="0.0" width="172" height="129"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
@@ -33,13 +37,13 @@
                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAC-NA-H9N">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAC-NA-H9N">
                         <rect key="frame" x="5" y="153" width="31" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-XP-tPO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-XP-tPO">
                         <rect key="frame" x="136" y="153" width="31" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,18 +58,23 @@
                 <constraint firstAttribute="bottom" secondItem="Ksa-8m-quI" secondAttribute="bottom" constant="43" id="CfA-9u-u1W"/>
                 <constraint firstItem="Ksa-8m-quI" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="HCB-g4-dS6"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w8U-XU-Ie9" secondAttribute="trailing" constant="5" id="Kix-da-P1M"/>
+                <constraint firstItem="emt-C8-eiw" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" id="PHT-Qx-dql"/>
                 <constraint firstAttribute="trailing" secondItem="gKZ-XP-tPO" secondAttribute="trailing" constant="5" id="a82-AP-TsY"/>
                 <constraint firstItem="Ksa-8m-quI" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" id="bw5-4y-6VV"/>
                 <constraint firstItem="w8U-XU-Ie9" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" constant="5" id="cHl-KJ-19o"/>
                 <constraint firstAttribute="trailing" secondItem="Ksa-8m-quI" secondAttribute="trailing" id="dFq-G8-2Mm"/>
                 <constraint firstItem="w8U-XU-Ie9" firstAttribute="top" secondItem="Ksa-8m-quI" secondAttribute="bottom" constant="5" id="eE5-zs-SEs"/>
                 <constraint firstItem="gKZ-XP-tPO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AAC-NA-H9N" secondAttribute="trailing" constant="5" id="gcy-MZ-khY"/>
+                <constraint firstAttribute="bottom" secondItem="emt-C8-eiw" secondAttribute="bottom" id="hsb-yE-oAl"/>
+                <constraint firstItem="emt-C8-eiw" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="l1M-Zv-DDf"/>
+                <constraint firstAttribute="trailing" secondItem="emt-C8-eiw" secondAttribute="trailing" id="pxE-dm-5Ic"/>
                 <constraint firstAttribute="bottom" secondItem="AAC-NA-H9N" secondAttribute="bottom" constant="5" id="w1X-Ms-b5K"/>
                 <constraint firstAttribute="bottom" secondItem="gKZ-XP-tPO" secondAttribute="bottom" constant="5" id="wj3-qB-nF6"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="Ksa-8m-quI" id="0Bb-sY-n8D"/>
                 <outlet property="priceLabel" destination="gKZ-XP-tPO" id="szV-vv-Aek"/>
+                <outlet property="shoutBackgroundView" destination="emt-C8-eiw" id="foY-Sb-erV"/>
                 <outlet property="titleLabel" destination="w8U-XU-Ie9" id="Cch-N0-2Yc"/>
                 <outlet property="userNameLabel" destination="AAC-NA-H9N" id="EhV-fq-EJF"/>
             </connections>

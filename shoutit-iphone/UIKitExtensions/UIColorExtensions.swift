@@ -56,14 +56,46 @@ extension UIColor {
         
         let baseString = hexStringWithAlpha.stringByReplacingOccurrencesOfString("#", withString: "")
         
-        let alphaString = (baseString as NSString).substringToIndex(2)
+        var alpha, red, blue, green : CGFloat
         
-        let hex = (baseString as NSString).substringFromIndex(2)
-        
-        guard let color = UIColor(hexString: hex) else {
+        switch baseString.characters.count {
+        case 3:
+            alpha = 1.0
+            red = colorComponentFrom(baseString, start: 0, length: 1)
+            green = colorComponentFrom(baseString, start: 1, length: 1)
+            blue = colorComponentFrom(baseString, start: 2, length: 1)
+            
+        case 4:
+            alpha = colorComponentFrom(baseString, start: 0, length: 1)
+            red = colorComponentFrom(baseString, start: 1, length: 1)
+            green = colorComponentFrom(baseString, start: 2, length: 1)
+            blue = colorComponentFrom(baseString, start: 3, length: 1)
+        case 6:
+            alpha = 1.0
+            red = colorComponentFrom(baseString, start: 0, length: 2)
+            green = colorComponentFrom(baseString, start: 2, length: 2)
+            blue = colorComponentFrom(baseString, start: 4, length: 2)
+        case 8:
+            alpha = colorComponentFrom(baseString, start: 0, length: 2)
+            red = colorComponentFrom(baseString, start: 2, length: 2)
+            green = colorComponentFrom(baseString, start: 4, length: 2)
+            blue = colorComponentFrom(baseString, start: 6, length: 2)
+        default:
             return UIColor.blackColor()
         }
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
     
-        return color//.colorWithAlphaComponent(CGFloat(alphaString.doubleValue/100))
+    static func colorComponentFrom(string: NSString, start : Int, length : Int) -> CGFloat {
+        let subString = string.substringWithRange(NSMakeRange(start, length))
+        
+        let fullHex : NSString = length == 2 ? subString : ("\(subString)\(subString)" as NSString)
+        
+        var hexComponent : UInt32 = 0
+        
+        NSScanner(string: fullHex as String).scanHexInt(&hexComponent)
+        
+        return CGFloat(CGFloat(hexComponent)/255.0)
     }
 }

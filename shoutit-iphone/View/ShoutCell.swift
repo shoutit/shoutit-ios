@@ -93,13 +93,18 @@ extension ShoutCell where Self : UICollectionViewCell {
     }
 }
 
-extension UICollectionViewCell {
-    func createPromotionViews() -> (UIView, UILabel) {
+extension ShoutCell where Self: UICollectionViewCell {
+    func createPromotionViews() -> (UIView?, UILabel?) {
         let promotionBackground = UIView()
         promotionBackground.translatesAutoresizingMaskIntoConstraints = false
         
-        let leading = NSLayoutConstraint(item: self.contentView, attribute: .Leading, relatedBy: .Equal, toItem: promotionBackground, attribute: .Leading, multiplier: 1.0, constant: 0)
-        let top = NSLayoutConstraint(item: self.contentView, attribute: .Top, relatedBy: .Equal, toItem: promotionBackground, attribute: .Top, multiplier: 1.0, constant: 0)
+        guard let shoutImage = self.shoutImage else {
+            assertionFailure("Shout Image should be presented")
+            return (nil, nil)
+        }
+        
+        let leading = NSLayoutConstraint(item: shoutImage, attribute: .Leading, relatedBy: .Equal, toItem: promotionBackground, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: shoutImage, attribute: .Top, relatedBy: .Equal, toItem: promotionBackground, attribute: .Top, multiplier: 1.0, constant: 0)
         let trailing = NSLayoutConstraint(item: self.contentView, attribute: .Trailing, relatedBy: .GreaterThanOrEqual, toItem: promotionBackground, attribute: .Trailing, multiplier: 1.0, constant: 0)
         let height = NSLayoutConstraint(item: promotionBackground, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 16)
         
