@@ -49,6 +49,11 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
         return nil
     }
     
+    func adjustTabBarControllerForTopViewController() {
+        guard let topViewController = topViewController else { return }
+        willShowViewControllerPreferringTabBarHidden?(topViewController.prefersTabbarHidden())
+    }
+    
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
@@ -70,5 +75,4 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
             viewController.navigationItem.leftBarButtonItem = toggleMenuBarButtonItem
         }
     }
-    
 }
