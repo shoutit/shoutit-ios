@@ -27,3 +27,13 @@ extension Promotion {
         return UIColor.colorFromHexAlphaString(colorString)
     }
 }
+
+extension PromotionLabel {
+    func color() -> UIColor {
+        return UIColor.colorFromHexAlphaString(self.color)
+    }
+    
+    func backgroundUIColor() -> UIColor {
+        return UIColor.colorFromHexAlphaString(self.backgroundColor)
+    }
+}

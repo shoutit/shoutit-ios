@@ -8,6 +8,8 @@
 
 import Foundation
 import ShoutitKit
+import RxSwift
+import RxCocoa
 
 class PromoteShoutViewModel {
     
@@ -15,5 +17,13 @@ class PromoteShoutViewModel {
     
     init(shout: Shout) {
         self.shout = shout
+    }
+    
+    func getPromotionLabels() -> Observable<[PromotionLabel]> {
+        return APIShoutsService.getPromotionLabels()
+    }
+    
+    func getPromotionOptions() -> Observable<[PromotionOption]> {
+        return APIShoutsService.getPromotionOptions()
     }
 }

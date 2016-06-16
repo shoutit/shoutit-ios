@@ -223,6 +223,11 @@
 		AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B51D11674A002F1430 /* ShoutCell.swift */; };
 		AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */; };
 		AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */; };
+		AE63FB121D12D04F005A35CD /* PromotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB111D12D04F005A35CD /* PromotionOption.swift */; };
+		AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */; };
+		AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB161D12D284005A35CD /* PromotionLabelView.swift */; };
+		AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */; };
+		AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
@@ -1044,6 +1049,11 @@
 		AE54A6B71D1173D9002F1430 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promotion.swift; path = Model/Promotion.swift; sourceTree = "<group>"; };
 		AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallViewController.swift; path = Controllers/VideoCallViewController.swift; sourceTree = "<group>"; };
 		AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutButton.swift; path = View/CreateShoutButton.swift; sourceTree = "<group>"; };
+		AE63FB111D12D04F005A35CD /* PromotionOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionOption.swift; path = Model/PromotionOption.swift; sourceTree = "<group>"; };
+		AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelsViews.swift; path = View/PromotionLabelsViews.swift; sourceTree = "<group>"; };
+		AE63FB161D12D284005A35CD /* PromotionLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelView.swift; path = View/PromotionLabelView.swift; sourceTree = "<group>"; };
+		AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PromotionLabelView.xib; path = Other/PromotionLabelView.xib; sourceTree = "<group>"; };
+		AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionOptionTableViewCell.swift; path = View/PromotionOptionTableViewCell.swift; sourceTree = "<group>"; };
 		AE6654641CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchCategoriesHeaderView.strings; sourceTree = "<group>"; };
 		AE6654651CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchRecentsHeaderView.strings; sourceTree = "<group>"; };
 		AE6654661CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ConversationLoadMoreFooter.strings; sourceTree = "<group>"; };
@@ -2424,6 +2434,7 @@
 				AE0CD3591CFC6647006B05FD /* Contact.swift */,
 				AE54A6B71D1173D9002F1430 /* Promotion.swift */,
 				B2FA5CCF1D11AAEF007034F8 /* ModelUIExtensions */,
+				AE63FB111D12D04F005A35CD /* PromotionOption.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2708,6 +2719,16 @@
 				B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */,
 			);
 			name = MediaPicker;
+			sourceTree = "<group>";
+		};
+		AE63FB131D12D234005A35CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */,
+				AE63FB161D12D284005A35CD /* PromotionLabelView.swift */,
+				AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		AE6432FC1CAAD43100729AA6 /* VideoCalls */ = {
@@ -3230,6 +3251,7 @@
 		B211F07A1D12C91D008DEEBC /* PromoteShoutViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AE63FB131D12D234005A35CD /* Views */,
 				B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */,
 				B211F0801D12C996008DEEBC /* ViewModel */,
 			);
@@ -3548,6 +3570,7 @@
 				B2E43CAA1D104598006C6AD2 /* SectionHeaderWithDetailsButton.xib */,
 				B2D441A81CB819D2009782AF /* TableViewPlaceholderView.xib */,
 				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
+				AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -4839,6 +4862,7 @@
 				B2F7196F1D0EEEF5002C1D74 /* ImageSelectedSmallOn@2x.png in Resources */,
 				B2F719781D0EEEF5002C1D74 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				B2D441721CB816FB009782AF /* VideoCalls.storyboard in Resources */,
+				AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */,
 				B2F7197A1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight.png in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
@@ -5173,6 +5197,7 @@
 				B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */,
 				B2F7199B1D0EEFAA002C1D74 /* MWPhoto.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
+				AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
@@ -5185,6 +5210,7 @@
 				2463B6961C982A5A00BFE6BA /* ChatDisplayable.swift in Sources */,
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				B2AB73F61CB56C1600C2C0C0 /* SettingsFormTextFieldTableViewCell.swift in Sources */,
+				AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */,
 				B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */,
 				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
@@ -5396,6 +5422,7 @@
 				B209C5251CF3181E00727095 /* RecentPhotosCollectionViewController.swift in Sources */,
 				B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */,
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
+				AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */,
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
 				B2F71A5A1D0EF791002C1D74 /* DPLDeepLink.m in Sources */,
 				B2F524721C9AFBA200EA622F /* SearchUserResultsViewModel.swift in Sources */,
@@ -5633,6 +5660,7 @@
 				AE32C5D31D0564C5009A49C5 /* FilteredShoutsParams.swift in Sources */,
 				AE32C5E11D0564C5009A49C5 /* CreatePublicChatParams.swift in Sources */,
 				AE32C5CC1D0564C5009A49C5 /* PageParams.swift in Sources */,
+				AE63FB121D12D04F005A35CD /* PromotionOption.swift in Sources */,
 				AE32C5BC1D055C33009A49C5 /* Suggestable.swift in Sources */,
 				AE32C5A31D055C33009A49C5 /* LoginAccounts.swift in Sources */,
 				AE32C5A11D055C33009A49C5 /* AuthData.swift in Sources */,
