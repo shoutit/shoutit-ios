@@ -26,7 +26,7 @@ final class RootController: UIViewController, ContainerController {
     
     private var token: dispatch_once_t = 0
     private let disposeBag = DisposeBag()
-    let presentMenuSegue = "presentMenuSegue"
+    private let presentMenuSegue = "presentMenuSegue"
     
     var currentNavigationItem : NavigationItem? {
         willSet(newItem) {
@@ -72,11 +72,6 @@ final class RootController: UIViewController, ContainerController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-//        adjustTabbarHeight()
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -111,18 +106,6 @@ final class RootController: UIViewController, ContainerController {
             segue.destinationViewController.modalPresentationStyle = .Custom
             segue.destinationViewController.transitioningDelegate = self
         }
-    }
-
-    func adjustTabbarHeight() {
-        guard let navigationItem = self.currentNavigationItem, flowController = flowControllers[navigationItem] else {
-            return
-        }
-        
-        let hidden = flowController.navigationController.visibleViewController?.prefersTabbarHidden() ?? false
-        
-        self.tabbarHeightConstraint.constant = hidden ? 0 : self.defaultTabBarHeight
-        self.view.layoutIfNeeded()
-        self.view.setNeedsDisplay()
     }
     
     // MARK: - IB
@@ -164,10 +147,6 @@ final class RootController: UIViewController, ContainerController {
         
         self.currentNavigationItem = item
         
-        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
-            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
         let flowControllerToShow: FlowController
         
         if let loadedFlowController = cachedFlowControllerForNavigationItem(item) {
@@ -175,6 +154,13 @@ final class RootController: UIViewController, ContainerController {
         } else {
             flowControllerToShow = flowControllerFor(item)
             flowControllers[item] = flowControllerToShow
+        }
+        
+        if let presentedMenu = self.presentedViewController as? MenuTableViewController {
+            presentedMenu.dismissViewControllerAnimated(true, completion: nil)
+            if let navigationController = flowControllerToShow.navigationController as? SHNavigationViewController {
+                navigationController.adjustTabBarControllerForTopViewController()
+            }
         }
         
         // Location Controller Should Be Presented Modally instead of within tabbar
