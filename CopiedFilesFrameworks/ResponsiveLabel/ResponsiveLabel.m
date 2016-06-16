@@ -506,19 +506,17 @@ NSString *RLHighlightedBackgroundCornerRadius = @"HighlightedBackgroundCornerRad
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touchLocation = [[touches anyObject] locationInView:self];
 	NSInteger index = [self characterIndexAtLocation:touchLocation];
-	NSRange rangeOfTappedText;
+    
 	if (index < self.textStorage.length) {
-		rangeOfTappedText = [self.layoutManager rangeOfNominallySpacedGlyphsContainingIndex:index];
+		NSRange rangeOfTappedText = [self.layoutManager rangeOfNominallySpacedGlyphsContainingIndex:index];
+        if (![self patternTouchInProgress] &&
+            [self shouldHandleTouchAtIndex:index]) {
+            [self handleTouchBeginForRange:rangeOfTappedText];
+        }
+        return;
 	}
-
-	if (rangeOfTappedText.location != NSNotFound &&
-		![self patternTouchInProgress] &&
-		[self shouldHandleTouchAtIndex:index]) {
-
-		[self handleTouchBeginForRange:rangeOfTappedText];
-	}else {
-		[super touchesBegan:touches withEvent:event];
-	}
+    
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -653,10 +651,10 @@ NSString *RLHighlightedBackgroundCornerRadius = @"HighlightedBackgroundCornerRad
 
 		if (index < self.textStorage.length) {
 			backgroundcolor = [self.currentAttributedString attribute:NSBackgroundColorAttributeName
-															  atIndex:index
+															  atIndex:(NSUInteger)index
 													   effectiveRange:&patternRange];
 			foregroundcolor = [self.currentAttributedString attribute:NSForegroundColorAttributeName
-															  atIndex:index
+															  atIndex:(NSUInteger)index
 													   effectiveRange:&patternRange];
 
 			if (backgroundcolor) {
@@ -734,7 +732,7 @@ NSString *RLHighlightedBackgroundCornerRadius = @"HighlightedBackgroundCornerRad
 		if ([self isRangeTruncated:obj.rangeValue]) {
 			self.truncatedPatternRange = NSMakeRange(NSNotFound, 0);
 		}else if ((obj.rangeValue.location + obj.rangeValue.length) <= self.textStorage.length) {
-			[patternDescriptor.patternAttributes enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, id attributeValue, BOOL *stop) {
+			[patternDescriptor.patternAttributes enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, id attributeValue, BOOL *innerStop) {
 		  if ([attributeName isEqualToString:NSForegroundColorAttributeName]) {
 			  //Color will be set based on the state of the Label whether it is enabled or highlighted
 			  [self updateTextColorForRange:obj.rangeValue];
