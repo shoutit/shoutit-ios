@@ -49,9 +49,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         return shoutCategoryImageView
     }
     
-    weak var shoutBackgroundView: UIView? {
-        return self.contentView
-    }
+    @IBOutlet weak var shoutBackgroundView: UIView?
     
     weak var shoutPromotionBackground: UIView?
     weak var shoutPromotionLabel: UILabel?
