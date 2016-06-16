@@ -3251,8 +3251,8 @@
 		B211F07A1D12C91D008DEEBC /* PromoteShoutViewController */ = {
 			isa = PBXGroup;
 			children = (
-				AE63FB131D12D234005A35CD /* Views */,
 				B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */,
+				AE63FB131D12D234005A35CD /* Views */,
 				B211F0801D12C996008DEEBC /* ViewModel */,
 			);
 			name = PromoteShoutViewController;

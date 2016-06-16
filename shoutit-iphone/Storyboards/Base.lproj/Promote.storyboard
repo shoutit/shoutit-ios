@@ -261,7 +261,13 @@
                             <outlet property="delegate" destination="E3f-Tc-734" id="4Pb-Rx-NjG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Promote Shout" id="Wob-fS-Dgf"/>
+                    <navigationItem key="navigationItem" title="Promote Shout" id="Wob-fS-Dgf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dDL-WB-khO">
+                            <connections>
+                                <action selector="dismiss" destination="E3f-Tc-734" id="SUM-XO-XV5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="headerView" destination="m8X-CL-4Eq" id="iAe-Z2-hwG"/>
                     </connections>
@@ -362,7 +368,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Promote Shout" id="Tfr-BP-RaS"/>
+                    <navigationItem key="navigationItem" title="Promote Shout" id="Tfr-BP-RaS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tRV-0n-ca3">
+                            <connections>
+                                <action selector="dismiss" destination="jHg-HC-mlZ" id="qEq-19-64G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="availableShoutitCreditLabel" destination="zfG-Y8-kVR" id="Ti9-AY-Scg"/>
                         <outlet property="promotionLabelViewContainer" destination="EHQ-cw-lHc" id="dPM-Yz-Sv6"/>

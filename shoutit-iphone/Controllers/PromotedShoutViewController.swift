@@ -16,9 +16,33 @@ final class PromotedShoutViewController: UIViewController {
     @IBOutlet weak var shoutTitleLabel: UILabel!
     @IBOutlet weak var promotionLabelViewContainer: UIView!
     @IBOutlet weak var availableShoutitCreditLabel: UILabel!
+    var promotionLabelView: PromotionLabelView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
+        configureViews()
+    }
+}
+
+private extension PromotedShoutViewController {
+    
+    private func configureViews() {
+        addPromotionLabelViewToContainer()
+        hydrateViewsWithData()
+    }
+    
+    private func addPromotionLabelViewToContainer() {
+        promotionLabelView = PromotionLabelView.instanceFromNib()
+        promotionLabelViewContainer.addSubview(promotionLabelView)
+        let views: [String : AnyObject] = ["view" : promotionLabelView]
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views))
+    }
+    
+    private func hydrateViewsWithData() {
+        shoutTitleLabel.text = viewModel.shout.title
+        guard let promotionLabel = viewModel.shout.promotion?.label else { return }
+        promotionLabelView.bindWithPromotionLabel(promotionLabel)
     }
 }
