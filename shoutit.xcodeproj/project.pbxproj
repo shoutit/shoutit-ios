@@ -228,6 +228,7 @@
 		AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB161D12D284005A35CD /* PromotionLabelView.swift */; };
 		AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */; };
 		AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */; };
+		AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
@@ -1163,6 +1164,7 @@
 		AE6654CE1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VerifyEmail.strings; sourceTree = "<group>"; };
 		AE6654CF1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VideoCalls.strings; sourceTree = "<group>"; };
 		AE6654D01CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SeeAllShouts.strings; sourceTree = "<group>"; };
+		AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutParams.swift; path = Networking/PromoteShoutParams.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE7AC1661CB3FBB400C9DEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -3387,6 +3389,7 @@
 				AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */,
 				AE1F3FDD1CEB323800C3432F /* ConversationMemberParams.swift */,
 				B271E5F01CF490A30038A02C /* SocialAccountLinkParams.swift */,
+				AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -5681,6 +5684,7 @@
 				AE32C5DA1D0564C5009A49C5 /* GeocodeParams.swift in Sources */,
 				AE32C5E81D05655F009A49C5 /* Array+Additions.swift in Sources */,
 				AE32C5A41D055C33009A49C5 /* FacebookAccount.swift in Sources */,
+				AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */,
 				AE32C5D11D0564C5009A49C5 /* EditProfileParams.swift in Sources */,
 				AE32C5991D055C33009A49C5 /* JSONWriteable.swift in Sources */,
 				AE32C5D91D0564C5009A49C5 /* EmailParams.swift in Sources */,

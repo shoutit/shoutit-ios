@@ -31,8 +31,8 @@ extension ShoutsCollectionViewCell : ShoutCell {}
 
 extension ShoutCell where Self : UICollectionViewCell {
     func bindWith(Shout shout: Shout) {
-        self.shoutTitle?.text = shout.title
-        self.name?.text = shout.user?.name
+        self.shoutTitle?.text = shout.title ?? ""
+        self.name?.text = shout.user?.name ?? ""
         
         if let publishedAt = shout.publishedAtEpoch, user = shout.user {
             self.shoutSubtitle?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"

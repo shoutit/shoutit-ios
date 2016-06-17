@@ -162,3 +162,9 @@ public enum ShoutType : String {
         }
     }
 }
+
+public extension Shout {
+    public func copyShoutWithPromotion(newPromotion: Promotion) -> Shout {
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion)
+    }
+}

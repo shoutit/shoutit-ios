@@ -36,8 +36,8 @@ private extension PromotedShoutViewController {
         promotionLabelView = PromotionLabelView.instanceFromNib()
         promotionLabelViewContainer.addSubview(promotionLabelView)
         let views: [String : AnyObject] = ["view" : promotionLabelView]
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views))
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(20)-[view]-(20)-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[view(90)]-|", options: [], metrics: nil, views: views))
     }
     
     private func hydrateViewsWithData() {

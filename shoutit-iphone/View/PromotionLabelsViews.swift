@@ -15,6 +15,8 @@ class PromotionLabelsViews: UIView {
     @IBOutlet weak var scroll : UIScrollView?
     @IBOutlet weak var shoutTitleLabel: UILabel?
     
+    var timer : NSTimer?
+    
     func fillWithShout(shout: Shout) {
         self.shoutTitleLabel?.text = shout.title
     }
@@ -27,8 +29,10 @@ class PromotionLabelsViews: UIView {
         
         if labels.count > 0 {
             hidePlaceholderView()
+            startAnimating()
         } else {
             showPlaceholderView()
+            stopAnimating()
         }
         
         
@@ -75,4 +79,21 @@ class PromotionLabelsViews: UIView {
         placeholderView?.hidden = false
     }
 
+    
+}
+
+extension PromotionLabelsViews : UIScrollViewDelegate {
+    func startAnimating() {
+        self.scroll?.delegate = self
+        timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
+    }
+    
+    func stopAnimating() {
+        self.scroll?.delegate = nil
+        timer?.invalidate()
+        timer = nil
+    }
+    func skipToNextSlide() {
+        
+    }
 }

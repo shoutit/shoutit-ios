@@ -82,5 +82,11 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
     }
     
+    static func promoteShout(params: PromoteShoutParams) -> Observable<Promotion> {
+        let url = shoutsURL + "/\(params.shout.id)/promote"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, responseJsonPath: ["promotion"], headers: ["Accept": "application/json"])
+    }
+    
+    
     
 }

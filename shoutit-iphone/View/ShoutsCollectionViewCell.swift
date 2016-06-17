@@ -26,7 +26,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     }
     
     weak var shoutTitle: UILabel? {
-        return subtitleLabel
+        return titleLabel
     }
     
     weak var shoutPrice: UILabel? {
