@@ -71,4 +71,22 @@ final class APIShoutsService {
         let url = shoutsURL + "/sort_types"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
     }
+    
+    static func getPromotionLabels() -> Observable<[PromotionLabel]> {
+        let url = shoutsURL + "/promote_labels"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func getPromotionOptions() -> Observable<[PromotionOption]> {
+        let url = shoutsURL + "/promote_options"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func promoteShout(params: PromoteShoutParams) -> Observable<Promotion> {
+        let url = shoutsURL + "/\(params.shout.id)/promote"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, responseJsonPath: ["promotion"], headers: ["Accept": "application/json"])
+    }
+    
+    
+    
 }

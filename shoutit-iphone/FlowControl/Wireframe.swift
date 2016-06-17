@@ -311,7 +311,7 @@ struct Wireframe {
         return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromoteShoutTableViewController") as! PromoteShoutTableViewController
     }
     
-    static func promotedShoutTableViewController() -> PromotedShoutTableViewController {
-        return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutTableViewController") as! PromotedShoutTableViewController
+    static func promotedShoutViewController() -> PromotedShoutViewController {
+        return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutViewController") as! PromotedShoutViewController
     }
 }

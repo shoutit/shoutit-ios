@@ -17,16 +17,18 @@ protocol PromoteDisplayable {
 extension FlowController: PromoteDisplayable {
     
     func showPromoteViewWithShout(shout: Shout) {
-        let controlller = Wireframe.promoteShoutTableViewController()
-        controlller.viewModel = PromoteShoutViewModel(shout: shout)
-        controlller.flowDelegate = self
-        navigationController.showViewController(controlller, sender: nil)
+        let controller = Wireframe.promoteShoutTableViewController()
+        controller.viewModel = PromoteShoutViewModel(shout: shout)
+        controller.flowDelegate = self
+        let modalNavigationController = ModalNavigationController(rootViewController: controller)
+        navigationController.presentViewController(modalNavigationController, animated: true, completion: nil)
     }
     
     func showPromotedViewWithShout(shout: Shout) {
-        let controller = Wireframe.promotedShoutTableViewController()
+        let controller = Wireframe.promotedShoutViewController()
         controller.viewModel = PromotedShoutViewModel(shout: shout)
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        let modalNavigationController = ModalNavigationController(rootViewController: controller)
+        navigationController.presentViewController(modalNavigationController, animated: true, completion: nil)
     }
 }

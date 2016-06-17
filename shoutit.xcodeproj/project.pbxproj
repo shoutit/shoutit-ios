@@ -223,6 +223,12 @@
 		AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B51D11674A002F1430 /* ShoutCell.swift */; };
 		AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */; };
 		AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */; };
+		AE63FB121D12D04F005A35CD /* PromotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB111D12D04F005A35CD /* PromotionOption.swift */; };
+		AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */; };
+		AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB161D12D284005A35CD /* PromotionLabelView.swift */; };
+		AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */; };
+		AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */; };
+		AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
@@ -311,7 +317,6 @@
 		B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211AAD61C89F65400C9E8DB /* APIProfileService.swift */; };
 		B211F06E1D12C73C008DEEBC /* PromoteDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F06D1D12C73C008DEEBC /* PromoteDisplayable.swift */; };
 		B211F0711D12C858008DEEBC /* Promote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B211F0731D12C858008DEEBC /* Promote.storyboard */; };
-		B211F07D1D12C94B008DEEBC /* PromotedShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */; };
 		B211F07F1D12C958008DEEBC /* PromoteShoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */; };
 		B211F0821D12C9A7008DEEBC /* PromoteShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F0811D12C9A7008DEEBC /* PromoteShoutViewModel.swift */; };
 		B211F0851D12C9C8008DEEBC /* PromotedShoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211F0841D12C9C8008DEEBC /* PromotedShoutViewModel.swift */; };
@@ -575,6 +580,7 @@
 		B2BB12AD1D12F85000708386 /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2BB12AE1D12F94500708386 /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2BB12AF1D12F94800708386 /* Crashlytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2BB12BA1D130D6400708386 /* PromotedShoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */; };
 		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
 		B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
@@ -1055,6 +1061,11 @@
 		AE54A6B71D1173D9002F1430 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promotion.swift; path = Model/Promotion.swift; sourceTree = "<group>"; };
 		AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallViewController.swift; path = Controllers/VideoCallViewController.swift; sourceTree = "<group>"; };
 		AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutButton.swift; path = View/CreateShoutButton.swift; sourceTree = "<group>"; };
+		AE63FB111D12D04F005A35CD /* PromotionOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionOption.swift; path = Model/PromotionOption.swift; sourceTree = "<group>"; };
+		AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelsViews.swift; path = View/PromotionLabelsViews.swift; sourceTree = "<group>"; };
+		AE63FB161D12D284005A35CD /* PromotionLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelView.swift; path = View/PromotionLabelView.swift; sourceTree = "<group>"; };
+		AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PromotionLabelView.xib; path = Other/PromotionLabelView.xib; sourceTree = "<group>"; };
+		AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionOptionTableViewCell.swift; path = View/PromotionOptionTableViewCell.swift; sourceTree = "<group>"; };
 		AE6654641CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchCategoriesHeaderView.strings; sourceTree = "<group>"; };
 		AE6654651CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchRecentsHeaderView.strings; sourceTree = "<group>"; };
 		AE6654661CD383C20087E38D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ConversationLoadMoreFooter.strings; sourceTree = "<group>"; };
@@ -1164,6 +1175,7 @@
 		AE6654CE1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VerifyEmail.strings; sourceTree = "<group>"; };
 		AE6654CF1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VideoCalls.strings; sourceTree = "<group>"; };
 		AE6654D01CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SeeAllShouts.strings; sourceTree = "<group>"; };
+		AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutParams.swift; path = Networking/PromoteShoutParams.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE7AC1661CB3FBB400C9DEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
@@ -1284,7 +1296,6 @@
 		B211F0751D12C85B008DEEBC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Promote.strings; sourceTree = "<group>"; };
 		B211F0771D12C85C008DEEBC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Promote.strings; sourceTree = "<group>"; };
 		B211F0791D12C85E008DEEBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Promote.strings; sourceTree = "<group>"; };
-		B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutTableViewController.swift; path = Controllers/PromotedShoutTableViewController.swift; sourceTree = "<group>"; };
 		B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutTableViewController.swift; path = Controllers/PromoteShoutTableViewController.swift; sourceTree = "<group>"; };
 		B211F0811D12C9A7008DEEBC /* PromoteShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutViewModel.swift; path = ViewModel/PromoteShoutViewModel.swift; sourceTree = "<group>"; };
 		B211F0841D12C9C8008DEEBC /* PromotedShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutViewModel.swift; path = ViewModel/PromotedShoutViewModel.swift; sourceTree = "<group>"; };
@@ -1558,6 +1569,7 @@
 		B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAccount.swift; path = Model/GoogleAccount.swift; sourceTree = "<group>"; };
 		B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewController.swift; path = Controllers/EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewModel.swift; path = ViewModel/EditProfileTableViewModel.swift; sourceTree = "<group>"; };
+		B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotedShoutViewController.swift; path = Controllers/PromotedShoutViewController.swift; sourceTree = "<group>"; };
 		B2BC1EC71CF5A2BC00E56ECF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Nemo.strings; sourceTree = "<group>"; };
 		B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutsHeaderView.swift; path = View/DiscoverShoutsHeaderView.swift; sourceTree = "<group>"; };
@@ -2435,6 +2447,7 @@
 				AE0CD3591CFC6647006B05FD /* Contact.swift */,
 				AE54A6B71D1173D9002F1430 /* Promotion.swift */,
 				B2FA5CCF1D11AAEF007034F8 /* ModelUIExtensions */,
+				AE63FB111D12D04F005A35CD /* PromotionOption.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2719,6 +2732,16 @@
 				B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */,
 			);
 			name = MediaPicker;
+			sourceTree = "<group>";
+		};
+		AE63FB131D12D234005A35CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */,
+				AE63FB161D12D284005A35CD /* PromotionLabelView.swift */,
+				AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		AE6432FC1CAAD43100729AA6 /* VideoCalls */ = {
@@ -3242,6 +3265,7 @@
 			isa = PBXGroup;
 			children = (
 				B211F07E1D12C958008DEEBC /* PromoteShoutTableViewController.swift */,
+				AE63FB131D12D234005A35CD /* Views */,
 				B211F0801D12C996008DEEBC /* ViewModel */,
 			);
 			name = PromoteShoutViewController;
@@ -3250,7 +3274,7 @@
 		B211F07B1D12C929008DEEBC /* PromotedShoutViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B211F07C1D12C94B008DEEBC /* PromotedShoutTableViewController.swift */,
+				B2BB12B91D130D6400708386 /* PromotedShoutViewController.swift */,
 				B211F0831D12C9AD008DEEBC /* ViewModel */,
 			);
 			name = PromotedShoutViewController;
@@ -3376,6 +3400,7 @@
 				AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */,
 				AE1F3FDD1CEB323800C3432F /* ConversationMemberParams.swift */,
 				B271E5F01CF490A30038A02C /* SocialAccountLinkParams.swift */,
+				AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -3559,6 +3584,7 @@
 				B2E43CAA1D104598006C6AD2 /* SectionHeaderWithDetailsButton.xib */,
 				B2D441A81CB819D2009782AF /* TableViewPlaceholderView.xib */,
 				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
+				AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -4850,6 +4876,7 @@
 				B2F7196F1D0EEEF5002C1D74 /* ImageSelectedSmallOn@2x.png in Resources */,
 				B2F719781D0EEEF5002C1D74 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				B2D441721CB816FB009782AF /* VideoCalls.storyboard in Resources */,
+				AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */,
 				B2F7197A1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight.png in Resources */,
 				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
@@ -5107,7 +5134,6 @@
 				B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */,
 				B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */,
 				B2FA5CCE1D11AA1C007034F8 /* Promotion+Colors.swift in Sources */,
-				B211F07D1D12C94B008DEEBC /* PromotedShoutTableViewController.swift in Sources */,
 				B2778FA01CAD4BD100BBDD5F /* FilterTransition.swift in Sources */,
 				B2F719CE1D0EF2EC002C1D74 /* CustomDateFormatTransform.swift in Sources */,
 				240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */,
@@ -5185,11 +5211,13 @@
 				B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */,
 				B2F7199B1D0EEFAA002C1D74 /* MWPhoto.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
+				AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
 				B2D9B11A1C98981900924941 /* SearchCategoryCellViewModel.swift in Sources */,
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
+				B2BB12BA1D130D6400708386 /* PromotedShoutViewController.swift in Sources */,
 				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
 				B2F71A281D0EF643002C1D74 /* NSDictionary+QueryString.m in Sources */,
 				B272304B1CE0D9C7003547EA /* ProfilesListTableViewController.swift in Sources */,
@@ -5197,6 +5225,7 @@
 				2463B6961C982A5A00BFE6BA /* ChatDisplayable.swift in Sources */,
 				B2B5D02D1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift in Sources */,
 				B2AB73F61CB56C1600C2C0C0 /* SettingsFormTextFieldTableViewCell.swift in Sources */,
+				AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */,
 				B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */,
 				2496715E1C874F9F0011B078 /* ShoutConfirmationViewController.swift in Sources */,
 				604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */,
@@ -5408,6 +5437,7 @@
 				B209C5251CF3181E00727095 /* RecentPhotosCollectionViewController.swift in Sources */,
 				B22D196F1C74F45600A620F3 /* CustomUILabel.swift in Sources */,
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
+				AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */,
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
 				B2F71A5A1D0EF791002C1D74 /* DPLDeepLink.m in Sources */,
 				B2F524721C9AFBA200EA622F /* SearchUserResultsViewModel.swift in Sources */,
@@ -5645,6 +5675,7 @@
 				AE32C5D31D0564C5009A49C5 /* FilteredShoutsParams.swift in Sources */,
 				AE32C5E11D0564C5009A49C5 /* CreatePublicChatParams.swift in Sources */,
 				AE32C5CC1D0564C5009A49C5 /* PageParams.swift in Sources */,
+				AE63FB121D12D04F005A35CD /* PromotionOption.swift in Sources */,
 				AE32C5BC1D055C33009A49C5 /* Suggestable.swift in Sources */,
 				AE32C5A31D055C33009A49C5 /* LoginAccounts.swift in Sources */,
 				AE32C5A11D055C33009A49C5 /* AuthData.swift in Sources */,
@@ -5665,6 +5696,7 @@
 				AE32C5DA1D0564C5009A49C5 /* GeocodeParams.swift in Sources */,
 				AE32C5E81D05655F009A49C5 /* Array+Additions.swift in Sources */,
 				AE32C5A41D055C33009A49C5 /* FacebookAccount.swift in Sources */,
+				AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */,
 				AE32C5D11D0564C5009A49C5 /* EditProfileParams.swift in Sources */,
 				AE32C5991D055C33009A49C5 /* JSONWriteable.swift in Sources */,
 				AE32C5D91D0564C5009A49C5 /* EmailParams.swift in Sources */,
