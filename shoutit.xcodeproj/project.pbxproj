@@ -473,6 +473,7 @@
 		B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A41C738898009AFF01 /* ProfileCollectionCellViewModel.swift */; };
 		B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A71C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift */; };
 		B28379AA1C749F32009AFF01 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A91C749F32009AFF01 /* UIImageView+Networking.swift */; };
+		B294726B1D1469A900997912 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF401BE74EAE00124C28 /* Info.plist */; };
 		B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC891CEB298000131B31 /* Pager+Convenience.swift */; };
 		B294BC901CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC8F1CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift */; };
 		B294BC921CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC911CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift */; };
@@ -574,12 +575,6 @@
 		B2BB12AD1D12F85000708386 /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719371D0EEC99002C1D74 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2BB12AE1D12F94500708386 /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7193B1D0EECEE002C1D74 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2BB12AF1D12F94800708386 /* Crashlytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B11D13000D00708386 /* TwilioConversationsClient.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B21D13000D00708386 /* TwilioCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B31D13000D00708386 /* AdobeCreativeSDKCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B41D13000D00708386 /* AdobeCreativeSDKImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B51D13000D00708386 /* GoogleMaps.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B2BB12B61D13002200708386 /* GoogleSignIn.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */; };
 		B2C0E2EF1D0F0B8400058FEF /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C2EBF01CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift */; };
@@ -885,21 +880,6 @@
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B2BB12B01D12FFED00708386 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B2BB12B61D13002200708386 /* GoogleSignIn.framework in CopyFiles */,
-				B2BB12B11D13000D00708386 /* TwilioConversationsClient.framework in CopyFiles */,
-				B2BB12B21D13000D00708386 /* TwilioCommon.framework in CopyFiles */,
-				B2BB12B31D13000D00708386 /* AdobeCreativeSDKCore.framework in CopyFiles */,
-				B2BB12B41D13000D00708386 /* AdobeCreativeSDKImage.framework in CopyFiles */,
-				B2BB12B51D13000D00708386 /* GoogleMaps.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -4722,7 +4702,6 @@
 				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
 				AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */,
-				B2BB12B01D12FFED00708386 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4977,6 +4956,7 @@
 				B2D9B10C1C9881CF00924941 /* SearchSuggestionTableViewCell.xib in Resources */,
 				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */,
+				B294726B1D1469A900997912 /* Info.plist in Resources */,
 				B2F719691D0EEEF5002C1D74 /* ImageSelectedOn@2x.png in Resources */,
 				B2F719801D0EEEF5002C1D74 /* VideoOverlay.png in Resources */,
 				B2F719711D0EEEF5002C1D74 /* PlayButtonOverlayLarge.png in Resources */,
