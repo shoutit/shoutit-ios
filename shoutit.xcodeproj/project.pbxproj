@@ -121,7 +121,6 @@
 		AE1F3FE21CEB3CD300C3432F /* AddMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE11CEB3CD300C3432F /* AddMemberCellConfigurator.swift */; };
 		AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */; };
 		AE1F3FE61CEB4ED800C3432F /* ConversationBlockedListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */; };
-		AE2083D31D180512009EC32D /* ShoutitKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2EB7CA1D057799000A324D /* ContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EB7C91D057799000A324D /* ContactExtensions.swift */; };
@@ -874,16 +873,6 @@
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE2083D21D1804F6009EC32D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AE2083D31D180512009EC32D /* ShoutitKit.framework in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -4727,7 +4716,6 @@
 				6068E6451C2435D20061F56C /* Embed Frameworks */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
 				AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */,
-				AE2083D21D1804F6009EC32D /* CopyFiles */,
 			);
 			buildRules = (
 			);
