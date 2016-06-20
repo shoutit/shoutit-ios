@@ -19,7 +19,17 @@ extension ConversationViewController {
         
         switch cell {
         case let cell as ConversationTextCell:
+            cell.urlHandler = { [weak self] path in
+                guard let url = NSURL(string: path) else { return }
+                if UIApplication.sharedApplication().canOpenURL(url) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
             cell.messageLabel.text = message.text
+            // override issue where url highlighting appears after cell reloads
+            cell.messageLabel.setNeedsLayout()
+            cell.messageLabel.layoutIfNeeded()
+            cell.messageLabel.enabled = true
         case let cell as ConversationPictureCell:
             setThumbWithMessageAttachment(message.attachment(), onCell: cell)
         case let cell as ConversationShoutCell:

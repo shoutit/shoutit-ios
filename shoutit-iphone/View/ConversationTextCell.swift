@@ -8,8 +8,11 @@
 
 import UIKit
 import RxSwift
+import ResponsiveLabel
 
 final class ConversationTextCell: UITableViewCell, ConversationCell {
+    
+    typealias _PatternTapResponder = @convention(block) (String!) -> Void
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
@@ -21,17 +24,30 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     }
     var avatarButton: UIButton?
     @IBOutlet weak var timeLabel: UILabel?
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: ResponsiveLabel!
     var reuseDisposeBag = DisposeBag()
+    var urlHandler: (String -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        selectionStyle = .None
+        setupURLResponder()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         unHideImageView()
         reuseDisposeBag = DisposeBag()
+    }
+    
+    private func setupURLResponder() {
+        messageLabel.userInteractionEnabled = true
+        let urlResponder: _PatternTapResponder = { [weak self] (url) in
+            self?.urlHandler?(url)
+        }
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1,
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+        messageLabel.enableURLDetectionWithAttributes(attributes)
     }
 }
