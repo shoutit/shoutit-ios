@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import RxSwift
 
-final class ConversationVideoCell: UITableViewCell, ConversationCell {
+final class ConversationVideoCell: UITableViewCell, ThumbedConversationCell {
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var avatarImageView: UIImageView? {
+        didSet {
+            avatarImageView?.userInteractionEnabled = true
+            addAvatarButtonToAvatarImageView()
+        }
+    }
+    var avatarButton: UIButton?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var pictureImageView: UIImageView!
+    var reuseDisposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,33 +32,6 @@ final class ConversationVideoCell: UITableViewCell, ConversationCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         unHideImageView()
-    }
-    
-    func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = avatarImageView {
-            setImageWith(imgview, message: message)
-        }
-        
-        timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
-        
-        if message.isSameSenderAs(previousMessage) {
-            hideImageView()
-        }
-        
-        activityIndicator?.startAnimating()
-        activityIndicator?.hidden = false
-        
-        setThumbMessage(message)
-    }
-    
-    func setThumbMessage(message: Message) {
-        guard let imagePath = message.attachment()?.imagePath(), url = NSURL(string: imagePath) else {
-            return
-        }
-        
-        self.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) {[weak self] (image, error, cacheType, imageURL) in
-            self?.activityIndicator?.stopAnimating()
-            self?.activityIndicator?.hidden = true
-        }
+        reuseDisposeBag = DisposeBag()
     }
 }

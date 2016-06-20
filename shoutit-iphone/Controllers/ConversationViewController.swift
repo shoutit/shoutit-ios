@@ -245,7 +245,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         let previousMsg = viewModel.previousMessageFor(msg)
         
         if let conversationCell = cell as? ConversationCell {
-            conversationCell.bindWithMessage(msg, previousMessage: previousMsg)
+            hydrateCell(conversationCell, withMessage: msg, previousMessage: previousMsg)
         }
         
         cell!.transform = tableView.transform

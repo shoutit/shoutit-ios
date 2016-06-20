@@ -299,12 +299,11 @@ class ConversationInfoViewController: UITableViewController {
         controller.autoDeselct = true
         
         
-        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
-            if !isAdmin {
-                return
-            }
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: {[weak self] (profile) in
             
-            if profile.id == Account.sharedInstance.user?.id {
+            guard let `self` = self else { return }
+            guard isAdmin && profile.id != Account.sharedInstance.user?.id else {
+                self.flowDelegate?.showProfile(profile)
                 return
             }
             
@@ -320,22 +319,24 @@ class ConversationInfoViewController: UITableViewController {
             }
             
             if !isBlocked {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: ""), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: ""), style: .Default) { (action) in
                     self.block(profile)
-                }))
+                })
             } else {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
                     self.unblock(profile)
-                }))
+                })
             }
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive) { (action) in
                 self.remove(profile)
-            }))
+            })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            }))
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+                self.flowDelegate?.showProfile(profile)
+            })
             
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })
         
@@ -426,19 +427,22 @@ class ConversationInfoViewController: UITableViewController {
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
             
-            
-            if profile.id == Account.sharedInstance.user?.id {
+            guard profile.id != Account.sharedInstance.user?.id else {
+                self.flowDelegate?.showProfile(profile)
                 return
             }
             
             let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: ""), preferredStyle: .ActionSheet)
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default, handler: { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
                 self.unblock(profile)
-            }))
+            })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            }))
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+                self.flowDelegate?.showProfile(profile)
+            })
+            
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })

@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ConversationTextCell: UITableViewCell, ConversationCell {
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var avatarImageView: UIImageView? {
+        didSet {
+            avatarImageView?.userInteractionEnabled = true
+            addAvatarButtonToAvatarImageView()
+        }
+    }
+    var avatarButton: UIButton?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var messageLabel: UILabel!
+    var reuseDisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,19 +32,6 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         unHideImageView()
-    }
-    
-    func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = self.avatarImageView {
-            setImageWith(imgview, message: message)
-        }
-        
-        messageLabel.text = message.text
-        
-        self.timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
-        
-        if message.isSameSenderAs(previousMessage) {
-            hideImageView()
-        }
+        reuseDisposeBag = DisposeBag()
     }
 }
