@@ -17,12 +17,13 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
         case Progress(show: Bool)
     }
     
-    private let addButtonCellIdentifier = "ChatInfoAddButtonCell"
-    private let destructiveButtonCellIdentifier = "ChatInfoDescructiveButtonCell"
-    private let infoCellIdentifier = "ChatInfoCell"
-    
     // data
-    var conversation: Conversation
+    var conversation: Conversation {
+        didSet {
+            self.sectionViewModels = ConversationInfoViewModel.sectionViewModelsWithConversation(conversation)
+        }
+    }
+    private(set) var sectionViewModels: [ConversationInfoSectionViewModel]
     
     // ConversationSubjectEditable
     var chatSubject: String = ""
@@ -33,6 +34,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
     
     init(conversation: Conversation) {
         self.conversation = conversation
+        self.sectionViewModels = ConversationInfoViewModel.sectionViewModelsWithConversation(conversation)
     }
     
     // MARK: - Actions
@@ -77,98 +79,59 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
     // MARK: - Table view data
     
     func numberOfSections() -> Int {
-        return 3
+        return sectionViewModels.count
     }
     
     func numberOfRows(section: Int) -> Int {
-        switch section {
-            case 0:
-                return 2
-            case 1:
-                return 3
-            case 2:
-                return 1 + (self.conversation.isPublicChat() ? 1 : 0)
-            default:
-                return 0
-        }
+        return sectionViewModels[section].cellViewModels.count
     }
     
     func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String {
-        switch indexPath.section {
-        case 0:
-            return infoCellIdentifier
-        
-        case 1:
-            switch indexPath.row {
-                case 0:
-                    return addButtonCellIdentifier
-                default:
-                    return infoCellIdentifier
-            }
-        default:
-             return destructiveButtonCellIdentifier
-        }
+        return sectionViewModels[indexPath.section].cellViewModels[indexPath.row].reuseIdentifier()
     }
     
     func sectionTitleForSection(section: Int) -> String {
-        switch section {
-        case 0:
-            return NSLocalizedString("ATTACHMENTS", comment: "")
-        case 1:
-            return NSLocalizedString("MEMBERS", comment: "")
-        default:
-            return ""
-        }
+        return sectionViewModels[section].sectionTitle
     }
     
     func fillCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        
+        let cellViewModel = sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         cell.tintColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = NSLocalizedString("Shouts", comment: "")
-                cell.detailTextLabel?.text = String(conversation.attachmentCount.shout)
-                
-            case 1:
-                cell.textLabel?.text = NSLocalizedString("Media", comment: "")
-                cell.detailTextLabel?.text = String(conversation.attachmentCount.media)
-            default:
-                break
-            }
-        case 1:
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = NSLocalizedString("Add Member", comment: "")
-            case 1:
-                cell.textLabel?.text = NSLocalizedString("Participants", comment: "")
-                cell.detailTextLabel?.text = NSLocalizedString("\(self.conversation.users?.count ?? 0)", comment: "Participants count")
-            case 2:
-                cell.textLabel?.text = NSLocalizedString("Blocked", comment: "")
-                cell.detailTextLabel?.text = NSLocalizedString("\(self.conversation.blocked.count)", comment: "Blocked Users count")
-            default:
-                break
-            }
-        case 2:
-            switch (indexPath.row, conversation.isPublicChat()) {
-            case (0, true):
-                cell.textLabel?.text = NSLocalizedString("Report Chat", comment: "")
-            case (0, false):
-                cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
-            case (1, _):
-                cell.textLabel?.text = NSLocalizedString("Exit Chat", comment: "")
-            default:
-                break
-            }
-        default:
-            break
-        }
+        cell.textLabel?.text = cellViewModel.title()
+        cell.detailTextLabel?.text = cellViewModel.detailTextWithConversation(conversation)
     }
 }
 
 private extension ConversationInfoViewModel {
+    
+    static func sectionViewModelsWithConversation(conversation: Conversation) -> [ConversationInfoSectionViewModel] {
+        
+        let attachmentsSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("ATTACHMENTS", comment: ""),
+                                                                           cellViewModels:[.Shouts, .Media])
+        var membersCellViewModels: [ConversationInfoCellViewModel] = [.AddMember, .Participants]
+        let isAdmin = conversation.isAdmin(Account.sharedInstance.user?.id)
+        if isAdmin {
+            membersCellViewModels.append(.Blocked)
+        }
+        let membersSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("MEMBERS", comment: ""),
+                                                                       cellViewModels: membersCellViewModels)
+        var destructiveSectionCellViewModels: [ConversationInfoCellViewModel] = []
+        if conversation.isPublicChat() {
+            destructiveSectionCellViewModels.append(.ReportChat)
+        }
+        if let currentUserId = Account.sharedInstance.user?.id, users = conversation.users {
+            let isMemeber = users.map{$0.value.id}.contains(currentUserId)
+            if isMemeber {
+                destructiveSectionCellViewModels.append(.ExitChat)
+            }
+        }
+        
+        var sections = [attachmentsSectionViewModel, membersSectionViewModel]
+        if destructiveSectionCellViewModels.count > 0 {
+            sections.append(ConversationInfoSectionViewModel(title: "", cellViewModels: destructiveSectionCellViewModels))
+        }
+        return sections
+    }
     
     func composeParameters() -> ConversationUpdateParams {
         let params = ConversationUpdateParams(subject: chatSubject,

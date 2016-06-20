@@ -185,34 +185,28 @@ class ConversationInfoViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        switch (indexPath.section, indexPath.row, isAdmin, self.viewModel.conversation.isPublicChat()) {
-        case (0, 0, _, _):
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
+        switch cellViewModel {
+        case .Shouts:
             showShouts()
-        case (0, 1, _, _):
+        case .Media:
             showMedia()
-        case (1, 0, true, _):
-            addMember()
-        case (1, 0, false, _):
-            showNotAuthorizedMessage()
-        case (1, 1, _, _):
+        case .AddMember:
+            if isAdmin {
+                addMember()
+            } else {
+                showNotAuthorizedMessage()
+            }
+        case .Participants:
             showParticipants()
-        case (1, 2, true, _):
+        case .Blocked:
             showBlocked()
-        case (1, 2, false, _):
-            showNotAuthorizedMessage()
-        case (2, 0, _, true):
+        case .ReportChat:
             reportChat()
-        case (2, 0, _, false):
+        case .ExitChat:
             exitChat()
-        case (2, 1, _, _):
-            exitChat()
-        default:
-            assertionFailure()
-            break
         }
     }
     

@@ -575,6 +575,8 @@
 		B2B5D0451C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2B5D0441C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib */; };
 		B2B5D0471C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5D0461C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift */; };
 		B2B8899E1D1814CC00C38808 /* ConversationViewController+CellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8899D1D1814CC00C38808 /* ConversationViewController+CellConfiguration.swift */; };
+		B2B889A01D183EC400C38808 /* ConversationInfoSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8899F1D183EC400C38808 /* ConversationInfoSectionViewModel.swift */; };
+		B2B889A21D183ED900C38808 /* ConversationInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B889A11D183ED900C38808 /* ConversationInfoCellViewModel.swift */; };
 		B2B93F661CF5DD4F004934B1 /* GoogleAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */; };
 		B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */; };
 		B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */; };
@@ -1389,6 +1391,8 @@
 		B2B5D0441C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutsSmallCollectionViewCell.xib; path = Storyboards/ShoutsSmallCollectionViewCell.xib; sourceTree = "<group>"; };
 		B2B5D0461C80D5A60068A6AF /* ShoutDetailShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailShoutCellViewModel.swift; path = ViewModel/ShoutDetailShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B2B8899D1D1814CC00C38808 /* ConversationViewController+CellConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ConversationViewController+CellConfiguration.swift"; path = "Controllers/ConversationViewController+CellConfiguration.swift"; sourceTree = "<group>"; };
+		B2B8899F1D183EC400C38808 /* ConversationInfoSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoSectionViewModel.swift; path = ViewModel/ConversationInfoSectionViewModel.swift; sourceTree = "<group>"; };
+		B2B889A11D183ED900C38808 /* ConversationInfoCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationInfoCellViewModel.swift; path = ViewModel/ConversationInfoCellViewModel.swift; sourceTree = "<group>"; };
 		B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAccount.swift; path = Model/GoogleAccount.swift; sourceTree = "<group>"; };
 		B2B9AA891C8DC8C700AFE67E /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewController.swift; path = Controllers/EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B2B9AA8C1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewModel.swift; path = ViewModel/EditProfileTableViewModel.swift; sourceTree = "<group>"; };
@@ -3738,6 +3742,8 @@
 			isa = PBXGroup;
 			children = (
 				AE1F29741CE9E05D00D1AA76 /* ConversationInfoViewModel.swift */,
+				B2B8899F1D183EC400C38808 /* ConversationInfoSectionViewModel.swift */,
+				B2B889A11D183ED900C38808 /* ConversationInfoCellViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -4327,6 +4333,7 @@
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				B272306A1CE0FAB0003547EA /* ConversationProfileCell.swift in Sources */,
+				B2B889A21D183ED900C38808 /* ConversationInfoCellViewModel.swift in Sources */,
 				B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */,
 				B209C5161CEF2BCA00727095 /* ConversationSubjectEditable.swift in Sources */,
 				B21217CC1CA5BD78001BAEFC /* CoordinateParams.swift in Sources */,
@@ -4555,6 +4562,7 @@
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
 				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
 				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
+				B2B889A01D183EC400C38808 /* ConversationInfoSectionViewModel.swift in Sources */,
 				24826B491C96A8F300032FC9 /* Notification.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
