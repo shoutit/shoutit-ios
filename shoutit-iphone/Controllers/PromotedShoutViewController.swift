@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ShoutitKit
+import RxSwift
 
 final class PromotedShoutViewController: UIViewController {
     
@@ -17,11 +19,20 @@ final class PromotedShoutViewController: UIViewController {
     @IBOutlet weak var promotionLabelViewContainer: UIView!
     @IBOutlet weak var availableShoutitCreditLabel: UILabel!
     var promotionLabelView: PromotionLabelView!
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
         configureViews()
+        
+        if let user = Account.sharedInstance.user as? DetailedProfile {
+            availableShoutitCreditLabel.text = "\(user.stats?.credit ?? 0)"
+        }
+        
+        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
+            self?.availableShoutitCreditLabel.text = "\(stats?.credit ?? 0)"
+        }.addDisposableTo(disposeBag)
     }
 }
 
@@ -34,10 +45,13 @@ private extension PromotedShoutViewController {
     
     private func addPromotionLabelViewToContainer() {
         promotionLabelView = PromotionLabelView.instanceFromNib()
+        promotionLabelView.translatesAutoresizingMaskIntoConstraints = false
         promotionLabelViewContainer.addSubview(promotionLabelView)
         let views: [String : AnyObject] = ["view" : promotionLabelView]
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(20)-[view]-(20)-|", options: [], metrics: nil, views: views))
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[view(90)]-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[view]-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[view]-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.layoutIfNeeded()
+        promotionLabelView.setNeedsLayout()
     }
     
     private func hydrateViewsWithData() {

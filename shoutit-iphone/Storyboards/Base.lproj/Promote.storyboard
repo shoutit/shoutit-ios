@@ -85,6 +85,7 @@
                                 </mask>
                             </variation>
                             <connections>
+                                <outlet property="pageControl" destination="LBe-e9-75i" id="Azz-Zv-KFc"/>
                                 <outlet property="placeholderView" destination="2Fs-2I-ayf" id="7iR-ve-YB1"/>
                                 <outlet property="scroll" destination="wzO-j0-1MF" id="ad8-BS-3Bu"/>
                                 <outlet property="shoutTitleLabel" destination="XZh-Pv-InN" id="qA5-OW-nlt"/>
@@ -356,11 +357,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHQ-cw-lHc">
-                                <rect key="frame" x="20" y="75" width="560" height="90"/>
+                                <rect key="frame" x="20" y="75" width="560" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="700" constant="90" id="9Qw-NH-2hU"/>
+                                    <constraint firstAttribute="height" priority="999" constant="140" id="VIo-tO-g8t"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9Qw-NH-2hU"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -368,8 +375,6 @@
                             <constraint firstItem="EHQ-cw-lHc" firstAttribute="leading" secondItem="iPG-lr-ppb" secondAttribute="leading" constant="20" id="KmX-8n-ahd"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Sie-Db-5Jb" secondAttribute="trailing" constant="10" id="Oo4-90-aPj"/>
                             <constraint firstItem="Sie-Db-5Jb" firstAttribute="top" secondItem="xWo-NJ-8b3" secondAttribute="bottom" constant="12" id="Suo-07-3MX"/>
-                            <constraint firstItem="Sie-Db-5Jb" firstAttribute="centerY" secondItem="iPG-lr-ppb" secondAttribute="centerY" id="U5n-T5-qlI"/>
-                            <constraint firstItem="rQ8-nh-ZEH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EHQ-cw-lHc" secondAttribute="bottom" constant="20" id="WAC-Mi-RMw"/>
                             <constraint firstItem="EHQ-cw-lHc" firstAttribute="top" secondItem="Sie-Db-5Jb" secondAttribute="bottom" constant="22" id="ZEF-OV-aKo"/>
                             <constraint firstAttribute="trailing" secondItem="rQ8-nh-ZEH" secondAttribute="trailing" constant="20" id="dTN-Cd-8KX"/>
                             <constraint firstItem="Sie-Db-5Jb" firstAttribute="centerX" secondItem="iPG-lr-ppb" secondAttribute="centerX" id="dnK-dQ-NI9"/>
@@ -378,11 +383,6 @@
                             <constraint firstItem="rQ8-nh-ZEH" firstAttribute="leading" secondItem="iPG-lr-ppb" secondAttribute="leading" constant="20" id="xll-ET-F7z"/>
                             <constraint firstAttribute="trailing" secondItem="EHQ-cw-lHc" secondAttribute="trailing" constant="20" id="zmX-0A-Jrg"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="U5n-T5-qlI"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Promote Shout" id="Tfr-BP-RaS">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tRV-0n-ca3">

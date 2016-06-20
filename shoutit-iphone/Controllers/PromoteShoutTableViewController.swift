@@ -114,6 +114,7 @@ final class PromoteShoutTableViewController: UITableViewController {
         self.viewModel.promoteShoutWithOption(option).subscribe { [weak self] (event) in
             switch event {
                 case .Next(let promotion):
+                    self?.navigationController?.showSuccessMessage(NSLocalizedString("Shout Promoted successfully", comment: ""))
                     self?.shoutPromoted(promotion)
                 case .Error(let error):
                     self?.showError(error)
