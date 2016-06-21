@@ -5,7 +5,6 @@ before_script:
 
   # download and load envs
   - python tools/download.py --token ${AUTO_CLOSE_TOKEN} --key-version agxzfmF1dG8tY2xvc2VyGAsSC1Byb2plY3RLZXlzGICAgJCo7pAJDA
-  - source artifacts/.env-ci
   
   # install submodules
   - git submodule update --init --recursive
