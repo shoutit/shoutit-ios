@@ -5,6 +5,10 @@ module Fastlane
 
     class AuAddIdentityAction < Action
       def self.run(params)
+
+        # check all needed parameters before run
+        check_params(params)
+        
         # download cert from google storage
         command = "gsutil cp #{params[:gs_certificate_path].shellescape} cert.p12"
         Fastlane::Actions.sh command, log: true
@@ -23,6 +27,25 @@ module Fastlane
 
       def self.description
         "Download cert from Google Storage, unlock keychain and add identity from inputfile into a keychain"
+      end
+
+      def self.check_params(params)
+        if params[:keychain_password].nil?
+          Helper.log.error "Missing :keychain_password Parameter"  
+        end
+
+        if params[:keychain_name].nil?
+          Helper.log.error "Missing :keychain_name Parameter"  
+        end
+
+        if params[:certificate_password].nil?
+          Helper.log.error "Missing :certificate_password Parameter"  
+        end
+
+        if params[:gs_certificate_path].nil?
+          Helper.log.error "Missing :gs_certificate_path Parameter"  
+        end
+
       end
 
       def self.available_options

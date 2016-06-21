@@ -5,7 +5,7 @@ module Fastlane
       def self.run(params)
         # generate artifacts path
         git_hash = `git rev-parse --short HEAD`
-        artifacts_path = File.join(ENV["GS_ARTIFACTS_BUCKET"], git_hash).to_s.shellescape
+        artifacts_path = File.join(ENV["GS_ARTIFACTS_BUCKET"], git_hash, "data.tgz").to_s.shellescape
 
         # download zip
         command = "gsutil cp #{artifacts_path} data.tgz"

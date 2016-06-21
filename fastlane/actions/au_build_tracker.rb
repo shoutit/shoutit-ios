@@ -6,7 +6,7 @@ module Fastlane
         require 'httparty'
         require 'uri'
         
-        uri = URI.parse("http://build-tracker.appunite.com/api/v1/builds")
+        uri = URI.parse("BUILD_TRACKER_HOST")
        
         response = HTTParty.post(uri, { body: { 'build' =>
           { 'application_name' => params[:app_name],
