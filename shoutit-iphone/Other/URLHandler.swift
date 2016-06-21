@@ -24,11 +24,12 @@ struct URLHandler {
         case .Valid:
             path = "mailto:?to=\(path)"
         default:
-            if !path.hasPrefix("http://") {
-                path = "http://" + path
-            }
+            break
         }
-        guard let url = NSURL(string: path) else { return }
+        guard var url = NSURL(string: path) else { return }
+        if url.scheme.utf16.count == 0 {
+            url = NSURL(string: "http://\(url.absoluteString)")!
+        }
         if UIApplication.sharedApplication().canOpenURL(url) {
             UIApplication.sharedApplication().openURL(url)
         }
