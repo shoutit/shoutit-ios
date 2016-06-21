@@ -25,26 +25,70 @@ platform :ios do
   desc "Submit a new β-Staging build..."
   lane :stage do |options|    
     options[:slack_title] = "Successfully deployed β-Staging build"
-
+    options[:main_app_identifier] = "com.appunite.shoutit"
+    options[:kit_identifier] = "com.appunite.shoutit.shoutitkit"
+    options[:certificate_path] = "Signing/appunite-inhouse.p12"
     # build for staging
     beta(options)
 
     # upload crashlytics
     crashlytics
   end
+  
+  desc "Submit a new β-Staging build..."
+  lane :local do |options|    
+    options[:slack_title] = "Successfully deployed β-Local build"
+    options[:main_app_identifier] = "com.shoutit-iphone.local"
+    options[:kit_identifier] = "com.shoutit-iphone.local.shoutitkit"
+    options[:certificate_path] = "Signing/appunite-inhouse.p12"
+    
+    # build for staging
+    beta(options)
+
+    # upload crashlytics
+    crashlytics
+  end
+  
+  desc "Submit a new β-Staging build..."
+  lane :production do |options|    
+    options[:slack_title] = "Successfully deployed β-Production build"
+    options[:main_app_identifier] = "com.shoutit-iphone"
+    options[:kit_identifier] = "com.shoutit-iphone.shoutitkit"
+    options[:certificate_path] = "Signing/appunite-inhouse.p12"
+    
+    # build for staging
+    beta(options)
+
+    # upload crashlytics
+    crashlytics
+  end
+  
+  desc "Submit a new Testflight build..."
+  lane :testflight do |options|    
+    options[:slack_title] = "Successfully deployed Testflight build"
+    options[:main_app_identifier] = "com.shoutit-iphone"
+    options[:kit_identifier] = "com.shoutit-iphone.shoutitkit"
+    options[:certificate_path] = "Signing/shoutit-appstore.p12"
+    
+    # build for staging
+    beta(options)
+
+    # upload crashlytics
+    pilot(skip_submission: true, wait_processing_interval: 1, app_identifier: options[:main_app_identifier])
+  end
 
   private_lane :beta do |options|
 
     # add identity
     unlock_keychain(password: "8kwz9bb77q")
-    import_certificate(certificate_path: "Signing/appunite-inhouse.p12", certificate_password:"")
+    import_certificate(certificate_path: options[:certificate_path], certificate_password:"")
 
     # download prov profiles for share extension
-    udid = sigh(app_identifier: "com.appunite.shoutit.shoutitkit")
+    udid = sigh(app_identifier: options[:kit_identifier])
     ENV["KIT_UDID"] = udid
     
     # download prov profiles for app
-    udid = sigh(app_identifier: "com.appunite.shoutit")
+    udid = sigh(app_identifier: options[:main_app_identifier])
     ENV["PROJECT_UDID"] = udid
     
     # increase build number
