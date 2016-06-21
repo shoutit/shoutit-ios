@@ -163,7 +163,7 @@ extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate
     }
 }
 
-extension SelectShoutImagesController {
+private extension SelectShoutImagesController {
     
     func showPhotoEditingForAttechmentIfNeeded(attachment: MediaAttachment, completion: (attachment : MediaAttachment) -> Void ) {
         
@@ -271,20 +271,15 @@ private extension SelectShoutImagesController {
         
 
         if attachment.type == .Image && attachment.image != nil {
-            alert.addAction(UIAlertAction(title: changeButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
-            
-            
-                guard attachment.type == .Image else {
-                    return
-                }
-            
-                self?.showPhotoEditingForAttechmentIfNeeded(attachment, completion: { (atts) in
+            alert.addAction(UIAlertAction(title: changeButtonTitle, style: .Default) {[weak self] (alertAction) in
+                guard attachment.type == .Image else { return }
+                self?.showPhotoEditingForAttechmentIfNeeded(attachment) { (atts) in
                     self?.mediaUploader.removeAttachment(attachment)
                     self?.attachments[idx] = atts
                     self?.startUploadingAttachment(atts)
                     self?.collectionView?.reloadData()
-                })
-                }))
+                }
+            })
         }
         
         alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
