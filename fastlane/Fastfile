@@ -37,7 +37,7 @@ platform :ios do
 
     # add identity
     unlock_keychain(password: "8kwz9bb77q")
-    import_certificate(certificate_path: "artifacts/appunite-inhouse.p12", certificate_password:"")
+    import_certificate(certificate_path: "Signing/appunite-inhouse.p12", certificate_password:"")
 
     # download prov profiles for share extension
     udid = sigh(app_identifier: "com.appunite.shoutit.shoutitkit")
