@@ -17,7 +17,7 @@ before_script:
 
 production:
   type: build
-  script: "bundle exec fastlane production --env production"
+  script: "bundle exec fastlane ios production --env production"
   tags:
     - s4
   only:
@@ -25,7 +25,7 @@ production:
     - /^production-.*$/
 alpha:
   type: build
-  script: "bundle exec fastlane staging --env staging"
+  script: "bundle exec fastlane ios stage --env staging"
   tags:
     - s4
   except:
@@ -34,7 +34,7 @@ alpha:
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 local:
   type: build
-  script: "bundle exec fastlane local --env local"
+  script: "bundle exec fastlane ios local --env local"
   tags:
     - s4
   except:
@@ -42,14 +42,14 @@ local:
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 testflight:
   type: build
-  script: "bundle exec fastlane testflight --env production"
+  script: "bundle exec fastlane ios testflight --env production"
   tags:
     - artifacts
   only:
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 translations:
   type: build
-  script: "bundle exec fastlane localizations"
+  script: "bundle exec fastlane ios localizations"
   tags:
     - artifacts
   only:
