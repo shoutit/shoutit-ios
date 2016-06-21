@@ -288,6 +288,7 @@ DEPENDENCIES
   certified
   cocoapods
   fastlane
+  google-api-client
   httparty
   slack-notifier
   xcpretty

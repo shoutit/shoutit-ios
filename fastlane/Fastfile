@@ -34,8 +34,6 @@ platform :ios do
   end
 
   private_lane :beta do |options|
-    # install pods
-    sh "bundle exec pod install"
 
     # add identity
     unlock_keychain(password: "8kwz9bb77q")
@@ -43,7 +41,7 @@ platform :ios do
 
     # download prov profiles for share extension
     udid = sigh(app_identifier: "com.appunite.shoutit.shoutitkit")
-    ENV["SHARE_EXTENSIONS_UDID"] = udid
+    ENV["KIT_UDID"] = udid
     
     # download prov profiles for app
     udid = sigh(app_identifier: "com.appunite.shoutit")
