@@ -26,7 +26,7 @@ module Fastlane
         command = "python tools/upload.py --token #{params[:token]} "
         command << "--final " if params[:final]
         command << "--build-name #{params[:build_name]} ipa.tgz dsym.tgz "
-        Fastlane::Actions.sh command, log: false
+        Fastlane::Actions.sh command, log: true
       end
 
       def self.description
