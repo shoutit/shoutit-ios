@@ -19,9 +19,14 @@ struct URLHandler {
     }
     
     static func openSafariWithPath(p: String) {
-        var path = p
-        if !path.hasPrefix("http://") {
-            path = "http://" + p
+        var path = p.lowercaseString
+        switch Validator.validateEmail(path) {
+        case .Valid:
+            path = "mailto:?to=\(path)"
+        default:
+            if !path.hasPrefix("http://") {
+                path = "http://" + path
+            }
         }
         guard let url = NSURL(string: path) else { return }
         if UIApplication.sharedApplication().canOpenURL(url) {
