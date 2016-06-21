@@ -51,20 +51,6 @@ platform :ios do
   
   desc "Submit a new β-Staging build..."
   lane :production do |options|    
-    options[:slack_title] = "Successfully deployed β-Production build"
-    options[:main_app_identifier] = "com.shoutit-iphone"
-    options[:kit_identifier] = "com.shoutit-iphone.shoutitkit"
-    options[:certificate_path] = "Signing/appunite-inhouse.p12"
-    
-    # build for staging
-    beta(options)
-
-    # upload crashlytics
-    crashlytics
-  end
-  
-  desc "Submit a new Testflight build..."
-  lane :testflight do |options|    
     options[:slack_title] = "Successfully deployed Testflight build"
     options[:main_app_identifier] = "com.shoutit-iphone"
     options[:kit_identifier] = "com.shoutit-iphone.shoutitkit"
@@ -76,7 +62,7 @@ platform :ios do
     # upload crashlytics
     pilot(skip_submission: true, wait_processing_interval: 1, app_identifier: options[:main_app_identifier])
   end
-
+  
   private_lane :beta do |options|
 
     # add identity
@@ -117,183 +103,8 @@ platform :ios do
     )
 
   end
-
-  # =========================================
-  # desc "create and upload ipa to crashlytics"
-  # lane :production do
-  #
-  #   au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
-  #
-  #   `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-  #
-  #   ENV["SIGH_TEAM_ID"]="2857HUGC3W"
-  #
-  #   #download provisioning profile
-  #   sigh
-  #
-  #   # setup provisioning profile
-  #   ENV["PROFILE_UDID"] = Actions.lane_context[Actions::SharedValues::SIGH_UDID]
-  #
-  #   # increase build number
-  #   build_no = `git rev-list --count HEAD`
-  #   increment_build_number build_number: build_no
-  #   build_no = build_no.to_s.delete!("\n")
-  #
-  #   #build app
-  #   gym scheme: ENV["XCODE_SCHEME"], clean: true, configuration: "Distribution", use_legacy_build_api: true
-  #
-  #   #upload artifact
-  #   au_artifacts_upload
-  #
-  #   #upload to testflight
-  #   pilot(skip_submission: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
-  #
-  #   #prepare git hash
-  #   git_hash = `git rev-parse --short HEAD`
-  #
-  #   #send slack message
-  #   slack(
-  #     message: "New Shoutit Production (#{build_no}) processing on testflight.",
-  #     attachment_properties: {
-  #       fields: [{
-  #         title: 'git-hash',
-  #         value: git_hash,
-  #         short: true
-  #       }, {
-  #         title: 'storage',
-  #         short: true
-  #       }]
-  #     }
-  #   )
-  #
-  # end
-  #
-  # lane :local do
-  #   au_add_identity
-  #
-  #   `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-  #
-  #   ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
-  #
-  #   #download provisioning profile
-  #   sigh
-  #
-  #   # setup provisioning profile
-  #   ENV["PROFILE_UDID"] = Actions.lane_context[Actions::SharedValues::SIGH_UDID]
-  #
-  #   # increase build number
-  #   build_no = `git rev-list --count HEAD`
-  #   increment_build_number build_number: build_no
-  #   build_no = build_no.to_s.delete!("\n")
-  #
-  #   #build app
-  #   gym scheme: ENV["XCODE_SCHEME_LOCAL"], clean: true, use_legacy_build_api: true
-  #
-  #   #upload to crashlytics
-  #   crashlytics({groups: 'internal-tests, internal-testers'})
-  #
-  #   #prepare git hash
-  #   git_hash = `git rev-parse --short HEAD`
-  #
-  #   #send slack message
-  #   slack(
-  #     message: "New Local Shoutit version available (#{build_no}).",
-  #     attachment_properties: {
-  #       fields: [{
-  #         title: 'git-hash',
-  #         value: git_hash,
-  #         short: true
-  #       }, {
-  #         title: 'storage',
-  #         short: true
-  #       }]
-  #     }
-  #   )
-  #
-  # end
-  #
-  # lane :staging do
-  #
-  #   au_add_identity
-  #
-  #   `export SSL_CERT_FILE=/etc/openssl/ca-cert.pem`
-  #
-  #   ENV["SIGH_TEAM_ID"]="E6WRHQXQE9"
-  #
-  #   #download provisioning profile
-  #   sigh
-  #
-  #   # setup provisioning profile
-  #   ENV["PROFILE_UDID"] = Actions.lane_context[Actions::SharedValues::SIGH_UDID]
-  #
-  #   # increase build number
-  #   build_no = `git rev-list --count HEAD`
-  #   increment_build_number build_number: build_no
-  #   build_no = build_no.to_s.delete!("\n")
-  #
-  #   #build app
-  #   gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, use_legacy_build_api: true
-  #
-  #   extension_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier) + ENV["KIT_SUFFIX"]
-  #
-  #   #upload to crashlytics
-  #   crashlytics({groups: 'internal-tests, internal-testers'})
-  #
-  #   #prepare git hash
-  #   git_hash = `git rev-parse --short HEAD`
-  #
-  #   #send slack message
-  #   slack(
-  #     message: "New Shoutit version available (#{build_no}).",
-  #     attachment_properties: {
-  #       fields: [{
-  #         title: 'git-hash',
-  #         value: git_hash,
-  #         short: true
-  #       }, {
-  #         title: 'storage',
-  #         short: true
-  #       }]
-  #     }
-  #   )
-  #
-  # end
-  #
-  # desc "Runs all the tests"
-  # lane :testflight do
-  #
-  #   au_provision_download
-  #
-  #   au_add_identity gs_certificate_path: ENV["GS_TF_CERTIFICATE_PATH"], certificate_password: ENV["CERTIFICATE_PASSWORD"]
-  #
-  #   au_artifacts_download
-  #
-  #   sh "ls -a"
-  #   sh "ls -d `pwd`/../*"
-  #   sh "sigh resign ../shoutit-iphone.ipa --signing_identity \"iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)\" --provisioning_profile ../distribution.mobileprovision"
-  #
-  #   ENV["FASTLANE_PASSWORD"] = ENV["TESTFLIGHT_DELIVER_PASSWORD"]
-  #   ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
-  #
-  #   pilot(skip_submission: true, skip_waiting_for_build_processing: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
-  #
-  #   git_hash = `git rev-parse --short HEAD`
-  #
-  #   slack(
-  #     message: "New version of Shoutit available on TestFlight",
-  #     attachment_properties: {
-  #       fields: [{
-  #         title: 'git-hash',
-  #         value: git_hash,
-  #         short: true
-  #       }]
-  #     }
-  #   )
-  #
-  # end
-
   
-  desc "Runs all the tests"
+  desc "Generate Localization Files"
   lane :localizations do
     au_generate_translations languages: "en ar de", export_dir: "translations/", project_file_path: "shoutit.xcodeproj"
   end

@@ -42,13 +42,6 @@ local:
   except:
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-testflight:
-  type: build
-  script: "bundle exec fastlane ios testflight --env production"
-  tags:
-    - artifacts
-  only:
-    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 translations:
   type: build
   script: "bundle exec fastlane ios localizations"
