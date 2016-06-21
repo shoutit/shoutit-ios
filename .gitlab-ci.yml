@@ -2,7 +2,6 @@ before_script:
   - export LANG=en_US.UTF-8
   - brew update
   - brew outdated carthage || brew upgrade carthage
-
   # download and load envs
   - python tools/download.py --token ${AUTO_CLOSE_TOKEN} --key-version agxzfmF1dG8tY2xvc2VyGAsSC1Byb2plY3RLZXlzGICAgJCo7pAJDA
   
@@ -14,6 +13,9 @@ before_script:
   - gem outdated
   - gem update
   - bundle install
+  
+  - chmod 755 InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework/submit
+  - chmod 755 InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework/run
 
 production:
   type: build
