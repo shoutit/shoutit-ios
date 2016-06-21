@@ -27,11 +27,13 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     @IBOutlet weak var messageLabel: ResponsiveLabel!
     var reuseDisposeBag = DisposeBag()
     var urlHandler: (String -> Void)?
+    var phoneNumberHandler: (String -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .None
         setupURLResponder()
+        setupPhoneNumberResponder()
     }
     
     override func prepareForReuse() {
@@ -49,5 +51,16 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
                                                 NSUnderlineStyleAttributeName : 1,
                                                 RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
         messageLabel.enableURLDetectionWithAttributes(attributes)
+    }
+    
+    private func setupPhoneNumberResponder() {
+        messageLabel.userInteractionEnabled = true
+        let urlResponder: _PatternTapResponder = { [weak self] (url) in
+            self?.phoneNumberHandler?(url)
+        }
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1,
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+        messageLabel.enablePhoneNumberDetectionWithAttribtues(attributes)
     }
 }

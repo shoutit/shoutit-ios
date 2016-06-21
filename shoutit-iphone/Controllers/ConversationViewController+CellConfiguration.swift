@@ -19,11 +19,11 @@ extension ConversationViewController {
         
         switch cell {
         case let cell as ConversationTextCell:
-            cell.urlHandler = { [weak self] path in
-                guard let url = NSURL(string: path) else { return }
-                if UIApplication.sharedApplication().canOpenURL(url) {
-                    UIApplication.sharedApplication().openURL(url)
-                }
+            cell.urlHandler = { path in
+                URLHandler.openSafariWithPath(path)
+            }
+            cell.phoneNumberHandler = { number in
+                URLHandler.callPhoneNumberWithString(number)
             }
             cell.messageLabel.text = message.text
             // override issue where url highlighting appears after cell reloads

@@ -508,6 +508,8 @@
 		B2A849351C846B2A00176EB0 /* SeeAllCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A849341C846B2A00176EB0 /* SeeAllCollectionViewCell.swift */; };
 		B2A849391C847EE800176EB0 /* RelatedShoutsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A849381C847EE800176EB0 /* RelatedShoutsParams.swift */; };
 		B2A8493B1C8483E300176EB0 /* ShoutDetailShoutImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A8493A1C8483E300176EB0 /* ShoutDetailShoutImageViewModel.swift */; };
+		B2AAB69B1D196E7900307987 /* ResponsiveLabel+PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AAB69A1D196E7900307987 /* ResponsiveLabel+PhoneNumber.swift */; };
+		B2AAB69D1D19723B00307987 /* URLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AAB69C1D19723B00307987 /* URLHandler.swift */; };
 		B2AB73E21CB55BFB00C2C0C0 /* ChangePasswordParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AB73E11CB55BFB00C2C0C0 /* ChangePasswordParams.swift */; };
 		B2AB73EA1CB567BA00C2C0C0 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AB73E91CB567BA00C2C0C0 /* SettingsFormViewController.swift */; };
 		B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AB73EC1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift */; };
@@ -1324,6 +1326,8 @@
 		B2A849341C846B2A00176EB0 /* SeeAllCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeeAllCollectionViewCell.swift; path = View/SeeAllCollectionViewCell.swift; sourceTree = "<group>"; };
 		B2A849381C847EE800176EB0 /* RelatedShoutsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelatedShoutsParams.swift; path = Networking/RelatedShoutsParams.swift; sourceTree = "<group>"; };
 		B2A8493A1C8483E300176EB0 /* ShoutDetailShoutImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDetailShoutImageViewModel.swift; path = ViewModel/ShoutDetailShoutImageViewModel.swift; sourceTree = "<group>"; };
+		B2AAB69A1D196E7900307987 /* ResponsiveLabel+PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ResponsiveLabel+PhoneNumber.swift"; path = "Other/ResponsiveLabel+PhoneNumber.swift"; sourceTree = "<group>"; };
+		B2AAB69C1D19723B00307987 /* URLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLHandler.swift; path = Other/URLHandler.swift; sourceTree = "<group>"; };
 		B2AB73E11CB55BFB00C2C0C0 /* ChangePasswordParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePasswordParams.swift; path = Networking/ChangePasswordParams.swift; sourceTree = "<group>"; };
 		B2AB73E91CB567BA00C2C0C0 /* SettingsFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsFormViewController.swift; path = Controllers/SettingsFormViewController.swift; sourceTree = "<group>"; };
 		B2AB73EC1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePasswordSettingsFormViewModel.swift; path = ViewModel/ChangePasswordSettingsFormViewModel.swift; sourceTree = "<group>"; };
@@ -2307,6 +2311,7 @@
 				B2082D761C6298D8007EB2FB /* MaterialTextField+Validation.swift */,
 				B2082D781C636422007EB2FB /* UITextField+Extensions.swift */,
 				B2D9B1021C98723100924941 /* UIView+SubviewSearch.swift */,
+				B2AAB69A1D196E7900307987 /* ResponsiveLabel+PhoneNumber.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2675,6 +2680,7 @@
 				6027CF341BE74EAE00124C28 /* AppDelegate.swift */,
 				6027CF901BE7539300124C28 /* Constants.swift */,
 				B275469E1CC145BC00172FE3 /* UserMessages.swift */,
+				B2AAB69C1D19723B00307987 /* URLHandler.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -4538,6 +4544,7 @@
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,
 				AE7FFFE01CAC55A7009F3FBC /* TWCLocalMedia+Additions.m in Sources */,
+				B2AAB69B1D196E7900307987 /* ResponsiveLabel+PhoneNumber.swift in Sources */,
 				B20F47CE1CAEDAF70091899C /* LabeledSelectButtonFilterTableViewCell.swift in Sources */,
 				2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
@@ -4635,6 +4642,7 @@
 				B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */,
 				B2D9B1101C9883F900924941 /* SearchCategoriesHeaderView.swift in Sources */,
 				B2B2869B1CD3B4CA00CE5607 /* RTLShoutItemCell.swift in Sources */,
+				B2AAB69D1D19723B00307987 /* URLHandler.swift in Sources */,
 				B2778FB31CAD8D7300BBDD5F /* FiltersViewModel.swift in Sources */,
 				249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */,
 				249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */,
