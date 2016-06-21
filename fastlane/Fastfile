@@ -137,6 +137,8 @@ platform :ios do
     #build app
     gym scheme: ENV["XCODE_SCHEME_STAGING"], clean: true, use_legacy_build_api: true
   
+    extension_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier) + ENV["KIT_SUFFIX"]
+  
     #upload to crashlytics
     crashlytics({groups: 'internal-tests, internal-testers'})
     
@@ -174,6 +176,7 @@ platform :ios do
     sh "sigh resign ../shoutit-iphone.ipa --signing_identity \"iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)\" --provisioning_profile ../distribution.mobileprovision"
 
     ENV["FASTLANE_PASSWORD"] = ENV["TESTFLIGHT_DELIVER_PASSWORD"]
+    ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
     
     pilot(skip_submission: true, skip_waiting_for_build_processing: true, wait_processing_interval: 1, app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier))
 
