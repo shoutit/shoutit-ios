@@ -12,6 +12,7 @@ production:
     - s4
   only:
     - develop
+    - /^production-.*$/
 alpha:
   type: build
   script: "bundle exec fastlane staging"
