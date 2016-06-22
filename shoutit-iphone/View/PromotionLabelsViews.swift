@@ -14,8 +14,11 @@ class PromotionLabelsViews: UIView {
     @IBOutlet weak var placeholderView : UIView?
     @IBOutlet weak var scroll : UIScrollView?
     @IBOutlet weak var shoutTitleLabel: UILabel?
+    @IBOutlet weak var pageControl: UIPageControl?
     
     var timer : NSTimer?
+    var currentSlide = 0
+    var maxSlides : Int?
     
     func fillWithShout(shout: Shout) {
         self.shoutTitleLabel?.text = shout.title
@@ -26,11 +29,17 @@ class PromotionLabelsViews: UIView {
         scroll?.subviews.each { (view) in
             view.removeFromSuperview()
         }
+
+        
+        
+        maxSlides = labels.count
         
         if labels.count > 0 {
             hidePlaceholderView()
             startAnimating()
+            pageControl?.numberOfPages = labels.count
         } else {
+            pageControl?.numberOfPages = 0
             showPlaceholderView()
             stopAnimating()
         }
@@ -61,6 +70,8 @@ class PromotionLabelsViews: UIView {
         self.setNeedsDisplay()
         
         self.scroll?.contentSize = CGSize(width: CGFloat((self.scroll?.frame.width ?? 0) * CGFloat(labels.count)), height: self.scroll?.frame.height ?? 0)
+        
+        startAnimating()
     }
     
     func promotionLabelView(promotionLabel: PromotionLabel) -> PromotionLabelView {
@@ -79,13 +90,24 @@ class PromotionLabelsViews: UIView {
         placeholderView?.hidden = false
     }
 
-    
+    func skipToNextSlide() {
+        currentSlide = currentSlide + 1
+        
+        if currentSlide >= maxSlides {
+            currentSlide = 0
+        }
+        
+        let offset : CGFloat = (self.scroll?.frame.width ?? 0) * CGFloat(currentSlide)
+        self.scroll?.setContentOffset(CGPointMake(offset, 0), animated: true)
+    }
 }
 
 extension PromotionLabelsViews : UIScrollViewDelegate {
     func startAnimating() {
+        stopAnimating()
+        
         self.scroll?.delegate = self
-        timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
     }
     
     func stopAnimating() {
@@ -93,7 +115,13 @@ extension PromotionLabelsViews : UIScrollViewDelegate {
         timer?.invalidate()
         timer = nil
     }
-    func skipToNextSlide() {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         
+        let width = scrollView.frame.size.width
+        let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)
+        
+        self.pageControl?.currentPage = page
     }
+    
 }
