@@ -108,6 +108,7 @@ extension Shout: Encodable {
 }
 
 public extension Shout {
+    
     public func priceText() -> String? {
         if let price = self.price {
             return NumberFormatters.priceStringWithPrice(price)
@@ -126,6 +127,13 @@ public extension Shout {
         }
         
         return nil
+    }
+}
+
+public extension Shout {
+    
+    public var isPromoted: Bool {
+        return promotion != nil
     }
 }
 
@@ -152,5 +160,11 @@ public enum ShoutType : String {
         case .Offer: return NSLocalizedString("Offer", comment: "")
         case .Request: return NSLocalizedString("Request", comment: "")
         }
+    }
+}
+
+public extension Shout {
+    public func copyShoutWithPromotion(newPromotion: Promotion) -> Shout {
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion)
     }
 }

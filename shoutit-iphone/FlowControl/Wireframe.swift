@@ -32,6 +32,7 @@ struct Wireframe {
         case VideoCalls = "VideoCalls"
         case Filter = "Filter"
         case SeeAllShouts = "SeeAllShouts"
+        case Promote = "Promote"
     }
     
     // General
@@ -304,5 +305,13 @@ struct Wireframe {
         return storyboard(.VideoCalls).instantiateViewControllerWithIdentifier("IncomingCallController") as! IncomingCallController
     }
     
+    // MARK: - Promote stroyboard
     
+    static func promoteShoutTableViewController() -> PromoteShoutTableViewController {
+        return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromoteShoutTableViewController") as! PromoteShoutTableViewController
+    }
+    
+    static func promotedShoutViewController() -> PromotedShoutViewController {
+        return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutViewController") as! PromotedShoutViewController
+    }
 }

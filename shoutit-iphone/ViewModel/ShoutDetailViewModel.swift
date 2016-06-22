@@ -138,40 +138,6 @@ final class ShoutDetailViewModel {
         return APIShoutsService.retrievePhoneNumberForShoutWithId(shout.id)
     }
     
-    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
-        
-        let reportAction = UIAlertAction(title: NSLocalizedString("Report Shout", comment: ""), style: .Default, handler: { (action) in
-            completion(alertController: alertController)
-        })
-        
-        if self.shout.user?.id == Account.sharedInstance.user?.id {
-            reportAction.enabled = false
-        }
-        
-        alertController.addAction(reportAction)
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            
-        }))
-        
-        return alertController
-    }
-    
-    func deleteAlert(completion: () -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this shout?", comment: ""), preferredStyle: .ActionSheet)
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Yes, Delete Shout", comment: ""), style: .Destructive, handler: { (action) in
-            completion()
-        }))
-        
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            
-        }))
-        
-        return alertController
-    }
-    
     // MARK: - To display
     
     func locationString() -> String? {
@@ -191,7 +157,7 @@ final class ShoutDetailViewModel {
     
     func tabbarButtons() -> [ShoutDetailTabbarButton] {
         if shout.user?.id == Account.sharedInstance.user?.id {
-            return [.Edit, .Delete, .More]
+            return [.Promote(promoted: shout.isPromoted), .Edit, .More]
         }
         
         var buttons: [ShoutDetailTabbarButton] = [.VideoCall, .Chat, .More]

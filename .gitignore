@@ -68,3 +68,4 @@ report.xml
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
+artifacts/

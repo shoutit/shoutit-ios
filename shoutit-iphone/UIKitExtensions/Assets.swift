@@ -132,6 +132,10 @@ extension UIImage {
         return UIImage(named: "shoutdetail_tab_delete")!
     }
     
+    static func shoutDetailTabBarPromoteStarImage() -> UIImage {
+        return UIImage(named: "shoutdetail_tab_promote_star")!
+    }
+    
     // MARK: - Profile
     
     static func profileBioIcon() -> UIImage {

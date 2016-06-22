@@ -19,9 +19,8 @@ extension FlowController : CreditsDisplayable {
         let controller = Wireframe.inviteFriendsViewController()
         
         controller.flowDelegate = self
-        
+
         navigationController.showViewController(controller, sender: nil)
-        
     }
     
     func showCreditTransactions() {
@@ -39,5 +38,4 @@ extension FlowController : CreditsDisplayable {
         
         navigationController.showViewController(controller, sender: nil)
     }
-    
 }

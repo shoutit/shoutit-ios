@@ -14,7 +14,7 @@ import ShoutitKit
 
 class CreditTransactionsTableViewController: UITableViewController, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
-    var flowDelegate : FlowController?
+    weak var flowDelegate : FlowController?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let cellIdentifier = "NotificationsCellIdentifier"

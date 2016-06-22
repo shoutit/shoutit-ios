@@ -18,6 +18,7 @@ enum ShoutDetailTabbarButton {
     case Chat
     case More
     case Chats
+    case Promote(promoted: Bool)
     case Edit
     case Delete
     
@@ -33,10 +34,16 @@ enum ShoutDetailTabbarButton {
             return NSLocalizedString("More", comment: "Shout detail tab bar item")
         case .Chats:
             return NSLocalizedString("Chats", comment: "Shout detail tab bar item")
+        case .Promote(true):
+            return NSLocalizedString("Promoted", comment: "Shout detail tab bar item")
+        case .Promote(false):
+            return NSLocalizedString("Promote", comment: "Shout detail tab bar item")
         case .Edit:
             return NSLocalizedString("Edit", comment: "Shout detail tab bar item")
         case .Delete:
             return NSLocalizedString("Delete", comment: "Shout detail tab bar item")
+        default:
+            fatalError()
         }
     }
     
@@ -52,10 +59,21 @@ enum ShoutDetailTabbarButton {
             return UIImage.shoutDetailTabBarMoreImage()
         case .Chats:
             return UIImage.shoutDetailTabBarChatImage()
+        case .Promote:
+            return UIImage.shoutDetailTabBarPromoteStarImage()
         case .Edit:
             return UIImage.shoutDetailTabBarEditImage()
         case .Delete:
             return UIImage.shoutDetailTabBarDeleteImage()
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .Promote:
+            return UIColor(shoutitColor: .PromoteActionYellowColor)
+        default:
+            return UIColor.whiteColor()
         }
     }
 }
@@ -112,7 +130,77 @@ class ShowDetailContainerViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    func startChat() {
+    @IBAction func shareAction() {
+        let url = viewModel.shout.webPath.toURL()!
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
+        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func layoutButtons(reload reload: Bool) {
+        
+        buttonsDisposeBag = DisposeBag()
+        let buttonModels = viewModel.tabbarButtons()
+        let singleButtonWidth = floor(view.frame.width / CGFloat(buttonModels.count))
+        
+        for button in tabBatButtons {
+            let constraint = tabBarButtonsWidthConstraints[button.tag]
+            guard buttonModels.count > button.tag else {
+                constraint.constant = 0
+                continue
+            }
+            constraint.constant = singleButtonWidth
+            let model = buttonModels[button.tag]
+            button.setImage(model.image, forState: .Normal)
+            button.setTitle(model.title, forState: .Normal)
+            button.tintColor = model.color
+            button.titleLabel?.textColor = model.color
+            addActionToButton(button, withModel: model)
+        }
+        
+        if reload {
+            tabBarButtonsBar.layoutIfNeeded()
+        }
+    }
+    
+    private func addActionToButton(button: UIButton, withModel model: ShoutDetailTabbarButton) {
+        
+        button
+            .rx_tap
+            .observeOn(MainScheduler.instance)
+            .subscribeNext {[weak self] in
+                switch model {
+                case .Call:
+                    self?.makeCall()
+                case .VideoCall:
+                    self?.videoCall()
+                case .Chat:
+                    self?.startChat()
+                case .More:
+                    self?.moreAction()
+                case .Chats:
+                    self?.notImplemented()
+                case .Edit:
+                    self?.showEditController()
+                case .Delete:
+                    self?.deleteAction()
+                case .Promote(true):
+                    self?.promotedAction()
+                case .Promote(false):
+                    self?.promoteAction()
+                default:
+                    fatalError()
+                }
+            }
+            .addDisposableTo(buttonsDisposeBag)
+    }
+}
+
+private extension ShowDetailContainerViewController {
+    
+    private func startChat() {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         guard let user = viewModel.shout.user else { return }
         if let conversation = viewModel.shout.conversations?.first {
@@ -146,15 +234,15 @@ class ShowDetailContainerViewController: UIViewController {
     }
     
     private func moreAction() {
-        let alert = viewModel.moreAlert { (alertController) in
-            self.reportAction()
-        }
-        
+        let isShoutOwnedByCurrentUser = viewModel.shout.user?.id == Account.sharedInstance.user?.id
+        let reportHandler: (Void -> Void)? = isShoutOwnedByCurrentUser ? nil : reportAction
+        let deleteHandler: (Void -> Void)? = isShoutOwnedByCurrentUser ? deleteAction : nil
+        let alert = moreAlert(reportHandler, deleteHandler: deleteHandler)
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     private func deleteAction() {
-        let alert = viewModel.deleteAlert {
+        let alert = deleteAlert {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             
             APIShoutsService.deleteShoutWithId(self.viewModel.shout.id).subscribeOn(MainScheduler.instance).subscribe({ [weak self] (event) in
@@ -170,7 +258,7 @@ class ShowDetailContainerViewController: UIViewController {
                 default:
                     break
                 }
-            }).addDisposableTo(self.disposeBag)
+                }).addDisposableTo(self.disposeBag)
         }
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
@@ -196,73 +284,22 @@ class ShowDetailContainerViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
     }
-
+    
     private func videoCall() {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         guard let user = viewModel.shout.user else { return }
         self.flowDelegate?.startVideoCallWithProfile(user)
     }
     
-    @IBAction func shareAction() {
-        let url = viewModel.shout.webPath.toURL()!
-        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
-        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
-    }
-    
-    // MARK: - Helpers
-    
-    private func layoutButtons(reload reload: Bool) {
-        
-        buttonsDisposeBag = DisposeBag()
-        let buttonModels = viewModel.tabbarButtons()
-        let singleButtonWidth = floor(view.frame.width / CGFloat(buttonModels.count))
-        
-        for button in tabBatButtons {
-            let constraint = tabBarButtonsWidthConstraints[button.tag]
-            guard buttonModels.count > button.tag else {
-                constraint.constant = 0
-                continue
-            }
-            constraint.constant = singleButtonWidth
-            let model = buttonModels[button.tag]
-            button.setImage(model.image, forState: .Normal)
-            button.setTitle(model.title, forState: .Normal)
-            addActionToButton(button, withModel: model)
-        }
-        
-        if reload {
-            tabBarButtonsBar.layoutIfNeeded()
-        }
-    }
-    
-    private func addActionToButton(button: UIButton, withModel model: ShoutDetailTabbarButton) {
-        
-        button
-            .rx_tap
-            .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] in
-                switch model {
-                case .Call:
-                    self?.makeCall()
-                case .VideoCall:
-                    self?.videoCall()
-                case .Chat:
-                    self?.startChat()
-                case .More:
-                    self?.moreAction()
-                case .Chats:
-                    self?.notImplemented()
-                case .Edit:
-                    self?.showEditController()
-                case .Delete:
-                    self?.deleteAction()
-                }
-            }
-            .addDisposableTo(buttonsDisposeBag)
-    }
-    
     private func showEditController() {
         self.flowDelegate?.showEditShout(viewModel.shout)
+    }
+    
+    private func promoteAction() {
+        flowDelegate?.showPromoteViewWithShout(viewModel.shout)
+    }
+    
+    private func promotedAction() {
+        flowDelegate?.showPromotedViewWithShout(viewModel.shout)
     }
 }

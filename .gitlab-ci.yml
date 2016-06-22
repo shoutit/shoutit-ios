@@ -1,15 +1,25 @@
 before_script:
+  - export LANG=en_US.UTF-8
   - brew update
   - brew outdated carthage || brew upgrade carthage
-  - export LANG=en_US.UTF-8
+  # download and load envs
+  - python tools/download.py --token ${AUTO_CLOSE_TOKEN} --key-version agxzfmF1dG8tY2xvc2VyGAsSC1Byb2plY3RLZXlzGICAgJCo7pAJDA
+  
+  # install submodules
   - git submodule update --init --recursive
-  - rm -rf Gemfile.lock
+
+  # update gems & bundle
   - gem install bundler
+  - gem outdated
+  - gem update
   - bundle install
+  
+  - chmod 755 InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework/submit
+  - chmod 755 InRepoFrameworks/Crashlytics/iOS/Crashlytics.framework/run
 
 production:
   type: build
-  script: "bundle exec fastlane production"
+  script: "bundle exec fastlane ios production --env production"
   tags:
     - s4
   only:
@@ -17,7 +27,7 @@ production:
     - /^production-.*$/
 alpha:
   type: build
-  script: "bundle exec fastlane staging"
+  script: "bundle exec fastlane ios stage --env staging"
   tags:
     - s4
   except:
@@ -26,22 +36,15 @@ alpha:
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 local:
   type: build
-  script: "bundle exec fastlane local"
+  script: "bundle exec fastlane ios local --env local"
   tags:
     - s4
   except:
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
     - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-testflight:
-  type: build
-  script: "bundle exec fastlane testflight"
-  tags:
-    - artifacts
-  only:
-    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 translations:
   type: build
-  script: "bundle exec fastlane localizations"
+  script: "bundle exec fastlane ios localizations"
   tags:
     - artifacts
   only:

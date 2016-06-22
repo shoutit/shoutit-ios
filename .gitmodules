@@ -8,7 +8,7 @@
 	ignore = dirty
 [submodule "External/AviarySDK"]
 	path = External/AviarySDK
-	url = git@git.appunite.com:appunite/aviary.
+	url = git@git.appunite.com:appunite/aviary.git
 	ignore = dirty
 [submodule "External/TwilioCommon"]
 	path = External/TwilioCommon
