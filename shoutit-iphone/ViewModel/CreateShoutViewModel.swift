@@ -37,6 +37,7 @@ final class CreateShoutViewModel: NSObject {
                                   price: shout.price != nil ? Double(shout.price!/100) : 0.0,
                                   images: shout.imagePaths ?? [],
                                   category: shout.category,
+                                  location: shout.location,
                                   shout: shout,
                                   mobile: shout.mobile)
         super.init()
