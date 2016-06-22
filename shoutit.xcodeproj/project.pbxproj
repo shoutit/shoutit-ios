@@ -300,7 +300,6 @@
 		B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5321CF341E100727095 /* InterestsTagsListViewModel.swift */; };
 		B209C5351CF3437E00727095 /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5341CF3437E00727095 /* Listenable.swift */; };
 		B209C5371CF34F3800727095 /* TagsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5361CF34F3800727095 /* TagsListCellViewModel.swift */; };
-		B20BFFC31D102B6F00D90729 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B20BFFC21D102B6F00D90729 /* Info.plist */; };
 		B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20BFFC41D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle */; };
 		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
 		B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */; };
@@ -479,7 +478,6 @@
 		B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A41C738898009AFF01 /* ProfileCollectionCellViewModel.swift */; };
 		B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A71C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift */; };
 		B28379AA1C749F32009AFF01 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379A91C749F32009AFF01 /* UIImageView+Networking.swift */; };
-		B294726B1D1469A900997912 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6027CF401BE74EAE00124C28 /* Info.plist */; };
 		B294BC8A1CEB298000131B31 /* Pager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC891CEB298000131B31 /* Pager+Convenience.swift */; };
 		B294BC901CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC8F1CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift */; };
 		B294BC921CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B294BC911CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift */; };
@@ -4973,7 +4971,6 @@
 				B2D9B10C1C9881CF00924941 /* SearchSuggestionTableViewCell.xib in Resources */,
 				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */,
-				B294726B1D1469A900997912 /* Info.plist in Resources */,
 				B2F719691D0EEEF5002C1D74 /* ImageSelectedOn@2x.png in Resources */,
 				B2F719801D0EEEF5002C1D74 /* VideoOverlay.png in Resources */,
 				B2F719711D0EEEF5002C1D74 /* PlayButtonOverlayLarge.png in Resources */,
@@ -4994,7 +4991,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20BFFC31D102B6F00D90729 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
