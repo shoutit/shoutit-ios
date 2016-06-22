@@ -118,14 +118,14 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
         
         if let idx = newAttachmentIdx {
             if let oldAttachment = self.attachments[idx] {
-                self.mediaUploader.removeAttachment(oldAttachment)
+                self.mediaUploader.removeTaskForAttachment(oldAttachment)
             }
             
             self.attachments[idx] = attachment
             self.collectionView?.reloadData()
-            showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (attachment) in
-                self?.attachments[idx] = attachment
-                self?.startUploadingAttachment(attachment)
+            showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (editedAttachment) in
+                let task = self?.startUploadingAttachment(editedAttachment)
+                self?.attachments[idx] = task?.attachment
                 self?.collectionView?.reloadData()
             })
             return
@@ -205,8 +205,8 @@ private extension SelectShoutImagesController {
         return indexPath.item <= selectedAttachments().count
     }
     
-    func startUploadingAttachment(attachment: MediaAttachment) {
-        mediaUploader.uploadAttachment(attachment)
+    func startUploadingAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+        return mediaUploader.uploadAttachment(attachment)
     }
     
     func checkIfAttachmentCanBeAdded(attachment: MediaAttachment) -> Bool {
@@ -273,10 +273,10 @@ private extension SelectShoutImagesController {
         if attachment.type == .Image && attachment.image != nil {
             alert.addAction(UIAlertAction(title: changeButtonTitle, style: .Default) {[weak self] (alertAction) in
                 guard attachment.type == .Image else { return }
-                self?.showPhotoEditingForAttechmentIfNeeded(attachment) { (atts) in
-                    self?.mediaUploader.removeAttachment(attachment)
-                    self?.attachments[idx] = atts
-                    self?.startUploadingAttachment(atts)
+                self?.showPhotoEditingForAttechmentIfNeeded(attachment) { (newAttachment) in
+                    self?.mediaUploader.removeTaskForAttachment(attachment)
+                    let task = self?.startUploadingAttachment(newAttachment)
+                    self?.attachments[idx] = task?.attachment
                     self?.collectionView?.reloadData()
                 }
             })
@@ -285,7 +285,7 @@ private extension SelectShoutImagesController {
         alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
             if let selectedIdx = self?.selectedIdx {
                 if let attachment = self?.attachments[selectedIdx] {
-                    self?.mediaUploader.removeAttachment(attachment)
+                    self?.mediaUploader.removeTaskForAttachment(attachment)
                     self?.attachments[selectedIdx] = nil
                     self?.rearangeAttachments()
                 }
