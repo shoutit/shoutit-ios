@@ -24,8 +24,8 @@ final class LoginWithEmailViewModel {
         authenticateWithParameters(loginParams)
     }
     
-    func signupWithName(name: String, email: String, password: String) {
-        let signupParams = SignupParams(name: name, email: email, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
+    func signupWithName(name: String, email: String, password: String, invitationCode: String?) {
+        let signupParams = SignupParams(name: name, email: email, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate, invitationCode: invitationCode)
         authenticateWithParameters(signupParams)
     }
     

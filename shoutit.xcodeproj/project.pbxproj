@@ -36,6 +36,7 @@
 		246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */; };
 		246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */; };
 		246C182E1C8EECE300DD6DE0 /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */; };
+		246C64821D1A8DFD00BC0CEE /* InvitationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */; };
 		246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA721CA40637009DF436 /* ConversationLocationController.swift */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
 		24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */; };
@@ -911,6 +912,7 @@
 		246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = Controllers/CaptureViewController.swift; sourceTree = "<group>"; };
 		246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoProcessor.swift; path = Controllers/VideoProcessor.swift; sourceTree = "<group>"; };
+		246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvitationCode.swift; path = Model/InvitationCode.swift; sourceTree = "<group>"; };
 		246DEA721CA40637009DF436 /* ConversationLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationController.swift; path = Controllers/ConversationLocationController.swift; sourceTree = "<group>"; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewCell.swift; path = View/NotificationsTableViewCell.swift; sourceTree = "<group>"; };
@@ -2436,6 +2438,7 @@
 				AE54A6B71D1173D9002F1430 /* Promotion.swift */,
 				B2FA5CCF1D11AAEF007034F8 /* ModelUIExtensions */,
 				AE63FB111D12D04F005A35CD /* PromotionOption.swift */,
+				246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -5640,6 +5643,7 @@
 				AE32C5BD1D055C33009A49C5 /* User.swift in Sources */,
 				AE32C5AE1D055C33009A49C5 /* APIError.swift in Sources */,
 				AE32C5DB1D0564C5009A49C5 /* ChangePasswordParams.swift in Sources */,
+				246C64821D1A8DFD00BC0CEE /* InvitationCode.swift in Sources */,
 				AE32C5E71D05652D009A49C5 /* DateFormatters.swift in Sources */,
 				AE32C5D51D0564C5009A49C5 /* SearchParams.swift in Sources */,
 				AE32C5BA1D055C33009A49C5 /* Conversation.swift in Sources */,

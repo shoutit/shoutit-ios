@@ -76,25 +76,34 @@ public struct SignupParams: AuthParams {
     public let email: String
     public let password: String
     
+    
     public let grantType = "shoutit_signup"
     
     public var mixPanelDistinctId: String
     public var currentUserCoordinates: CLLocationCoordinate2D
+    public let invitationCode: String?
     
-    public init(name: String, email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D) {
+    public init(name: String, email: String, password: String, mixPanelDistinctId: String, currentUserCoordinates: CLLocationCoordinate2D, invitationCode: String?) {
         self.name = name
         self.email = email
         self.password = password
         self.mixPanelDistinctId = mixPanelDistinctId
         self.currentUserCoordinates = currentUserCoordinates
+        self.invitationCode = invitationCode
     }
     
     public var authParams: [String : AnyObject] {
-        return [
+        var params = [
             "email": email,
             "password": password,
             "name": name
         ]
+        
+        if invitationCode?.characters.count > 0 {
+            params["invitation_code"] = invitationCode
+        }
+        
+        return params
     }
 }
 
@@ -102,13 +111,7 @@ public struct LoginGuestParams: AuthParams {
     
     public let grantType = "shoutit_guest"
     public var apns: NSObject?
-//    {
-//        if let token = Account.sharedInstance.apnsToken {
-//            return token as NSString
-//        }
-//        return NSNull()
-//    }
-    
+
     public init(apns: NSObject?, mixPanelId: String, currentUserLocation: CLLocationCoordinate2D) {
         self.apns = apns
         self.mixPanelDistinctId = mixPanelId

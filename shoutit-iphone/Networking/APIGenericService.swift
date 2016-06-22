@@ -162,8 +162,8 @@ final class APIGenericService {
             }
         }
         guard let j = nestedJson else {
-            assertionFailure(InternalParseError.InvalidJson.userMessage)
             print(json)
+            assertionFailure(InternalParseError.InvalidJson.userMessage)
             throw InternalParseError.InvalidJson
         }
         
