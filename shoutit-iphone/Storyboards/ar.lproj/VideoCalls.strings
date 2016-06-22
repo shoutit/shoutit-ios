@@ -1,7 +1,13 @@
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6ax-sw-xDW"; */
+/* (No Commment) */
 "6ax-sw-xDW.normalTitle" = "إلغاء";
 
-/* Class = "UILabel"; text = "Discard"; ObjectID = "I74-IB-ecl"; */
+/* Class = "UILabel"; text = "Label"; ObjectID = "7sw-fv-yOp"; */
+"7sw-fv-yOp.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EGs-t5-eKn"; */
+"EGs-t5-eKn.text" = "Label";
+
+/* Class = "UILabel"; text = "Reject"; ObjectID = "I74-IB-ecl"; */
 "I74-IB-ecl.text" = "رفض";
 
 /* Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT"; */
@@ -13,9 +19,9 @@
 /* Class = "UILabel"; text = "Call"; ObjectID = "WrL-1Z-BUo"; */
 "WrL-1Z-BUo.text" = "مكالمة";
 
-/* Class = "UILabel"; text = "Answer"; ObjectID = "Y8C-qw-JQt"; */
+/* Class = "UILabel"; text = "Accept"; ObjectID = "Y8C-qw-JQt"; */
 "Y8C-qw-JQt.text" = "إجابة";
 
-/* Class = "UILabel"; text = "Calling"; ObjectID = "wAE-6B-zom"; */
+/* (No Commment) */
 "wAE-6B-zom.text" = "يتصل";
 
