@@ -72,6 +72,7 @@ public struct LoginParams: AuthParams {
 
 public struct SignupParams: AuthParams {
     
+
     public let name: String
     public let email: String
     public let password: String
@@ -99,7 +100,7 @@ public struct SignupParams: AuthParams {
             "name": name
         ]
         
-        if invitationCode?.characters.count > 0 {
+        if self.invitationCode?.characters.count > 0 {
             params["invitation_code"] = invitationCode
         }
         

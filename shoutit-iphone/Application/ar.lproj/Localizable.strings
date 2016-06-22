@@ -19,12 +19,6 @@
 /* No comment provided by engineer. */
 "(profileName) can now administrate this chat" = "(profileName) يستطيع الآن إدارة المحادثة";
 
-/* Blocked Users count */
-"(self.conversation.blocked.count)" = "(self.conversation.blocked.count)";
-
-/* Participants count */
-"(self.conversation.users?.count ?? 0)" = "(self.conversation.users?.count ?? 0)";
-
 /* More than 99 Notifications */
 "+99" = "+99";
 
@@ -152,12 +146,6 @@
 /* No comment provided by engineer. */
 "Confirmation" = "موافقة ";
 
-/* Video call status message */
-"Connecting with %@..." = "جاري الاتصال مع %@...";
-
-/* Video call status message */
-"Connecting..." = "جاري الاتصال ...";
-
 /* No comment provided by engineer. */
 "Contacts Friends" = "أصدقاء من دفتر الهاتف";
 
@@ -175,9 +163,6 @@
 
 /* No comment provided by engineer. */
 "Conversation reported succesfully" = "تم التبليغ عن المحادثة بنجاح";
-
-/* No comment provided by engineer. */
-"Could not establish connection right now." = "لايمكن تأسيس إتصال الآن ";
 
 /* No comment provided by engineer. */
 "Could not get your data" = "لايمكن الحصول على البيانات الخاصة بك";
@@ -734,11 +719,11 @@
 /* Shout detail tab bar item */
 "Video call" = "مكالمة فيديو";
 
-/* Video call status message */
-"Video call with %@" = "مكالمة فيديو مع %@";
-
 /* No comment provided by engineer. */
 "Video is too long" = "مدة الفيديو طويلة";
+
+/* No comment provided by engineer. */
+"View profile" = "عرض الملف الشخصي";
 
 /* No comment provided by engineer. */
 "Visit %@'s profile" = "زيارة صفحة %@ الشخصية";
@@ -814,6 +799,9 @@
 
 /* No comment provided by engineer. */
 "Your request will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
+
+/* Video call status message */
+"calling..." = "مكالمة…";
 
 /* Displayed on shout detail screen if user's firstname would be null */
 "shouter" = "معلن";

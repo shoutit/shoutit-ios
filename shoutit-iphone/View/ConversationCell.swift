@@ -8,6 +8,7 @@
 
 import UIKit
 import ShoutitKit
+import RxSwift
 
 protocol MessagePresenting {
     func bindWithMessage(message: Message, previousMessage: Message?)
@@ -43,40 +44,51 @@ struct ConversationCellIdentifier {
     }
 }
 
-protocol ConversationCell: MessagePresenting {
+protocol ConversationCell: class {
     weak var imageHeightConstraint: NSLayoutConstraint? {get set}
     weak var activityIndicator: UIActivityIndicatorView? {get set}
     weak var avatarImageView: UIImageView? {get set}
+    var avatarButton: UIButton? { get set }
     weak var timeLabel: UILabel? {get set}
+    var reuseDisposeBag: DisposeBag { get set }
     
-    func setImageWith(imgview: UIImageView, message: Message)
+    func hydrateAvatarImageView(imageView: UIImageView, withAvatarPath path: String?)
     func hideImageView()
     func unHideImageView()
 }
 
+protocol ThumbedConversationCell: ConversationCell {
+    weak var pictureImageView: UIImageView! { get set }
+}
+
 extension ConversationCell where Self: UIView {
     
-    func setImageWith(imgview: UIImageView, message: Message) {
-        if let imagePath = message.user?.imagePath, imgUrl = NSURL(string: imagePath) {
-            imgview.sh_setImageWithURL(imgUrl, placeholderImage: UIImage.squareAvatarPlaceholder())
+    func addAvatarButtonToAvatarImageView() {
+        avatarButton = UIButton()
+        avatarButton?.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView?.addSubview(avatarButton!)
+        let views: [String : AnyObject] = ["button" : avatarButton!]
+        avatarImageView?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[button]|", options: [], metrics: nil, views: views))
+        avatarImageView?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[button]|", options: [], metrics: nil, views: views))
+    }
+    
+    func hydrateAvatarImageView(imageView: UIImageView, withAvatarPath path: String?) {
+        if let imagePath = path, imgUrl = NSURL(string: imagePath) {
+            imageView.sh_setImageWithURL(imgUrl, placeholderImage: UIImage.squareAvatarPlaceholder())
         } else {
-            imgview.image = UIImage.squareAvatarPlaceholder()
+            imageView.image = UIImage.squareAvatarPlaceholder()
         }
     }
     
     func hideImageView() {
         avatarImageView?.hidden = true
-        
         imageHeightConstraint?.constant = 5.0
-        
         layoutIfNeeded()
     }
     
     func unHideImageView() {
         avatarImageView?.hidden = false
-        
         imageHeightConstraint?.constant = 40.0
-        
         layoutIfNeeded()
     }
 }

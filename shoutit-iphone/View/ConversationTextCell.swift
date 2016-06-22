@@ -8,36 +8,59 @@
 
 import UIKit
 import ShoutitKit
+import RxSwift
 
 final class ConversationTextCell: UITableViewCell, ConversationCell {
     
+    typealias _PatternTapResponder = @convention(block) (String!) -> Void
+    
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var avatarImageView: UIImageView? {
+        didSet {
+            avatarImageView?.userInteractionEnabled = true
+            addAvatarButtonToAvatarImageView()
+        }
+    }
+    var avatarButton: UIButton?
     @IBOutlet weak var timeLabel: UILabel?
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: ResponsiveLabel!
+    var reuseDisposeBag = DisposeBag()
+    var urlHandler: (String -> Void)?
+    var phoneNumberHandler: (String -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        selectionStyle = .None
+        setupURLResponder()
+        setupPhoneNumberResponder()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         unHideImageView()
+        reuseDisposeBag = DisposeBag()
     }
     
-    func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = self.avatarImageView {
-            setImageWith(imgview, message: message)
+    private func setupURLResponder() {
+        messageLabel.userInteractionEnabled = true
+        let urlResponder: _PatternTapResponder = { [weak self] (url) in
+            self?.urlHandler?(url)
         }
-        
-        messageLabel.text = message.text
-        
-        self.timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
-        
-        if message.isSameSenderAs(previousMessage) {
-            hideImageView()
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1,
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+        messageLabel.enableURLDetectionWithAttributes(attributes)
+    }
+    
+    private func setupPhoneNumberResponder() {
+        messageLabel.userInteractionEnabled = true
+        let urlResponder: _PatternTapResponder = { [weak self] (url) in
+            self?.phoneNumberHandler?(url)
         }
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1,
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+        messageLabel.enablePhoneNumberDetectionWithAttribtues(attributes)
     }
 }

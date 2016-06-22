@@ -38,94 +38,52 @@ final class MediaUploader: AnyObject {
     private let amazonSecretKey = "SEFJmgBeqBBCpxeIbB+WOVmjGWFI+330tTRLrhxh"
     
     var tasks : [MediaUploadingTask]!
-    
     let bucket : MediaUploaderBucket!
-    
     var amazonManager : AmazonS3RequestManager!
     
     init(bucket: MediaUploaderBucket) {
         self.bucket = bucket
-        
-        tasks = []
-        
+        self.tasks = []
         createAmazonS3Manager()
     }
     
-    func createAmazonS3Manager() {
-        amazonManager = AmazonS3RequestManager(bucket: self.bucket.bucketName(), region: .EUWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
-    }
-    
     func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
-        
-        if let task = taskForAttachment(attachment) {
-            return task
-        }
-        
+        if let task = taskForAttachment(attachment) { return task }
+        guard let originalData = attachment.originalData else { fatalError() }
+        guard let user = Account.sharedInstance.user else { fatalError("Uploading without user account not supported.") }
         let task = MediaUploadingTask(attachment: attachment)
-     
-        self.tasks.append(task)
-        
-        startTask(task)
-        
+        let destination = task.attachment.remoteFilename(user)
+        let request = amazonManager.putObject(originalData, destinationPath: destination)
+        task.request = request
+        task.attachment.remoteURL = NSURL(string: bucket.bucketBasePath() + destination)
+        if let data = task.attachment.image?.dataRepresentation() where attachment.type == .Video {
+            let destination = task.attachment.thumbRemoteFilename(user)
+            amazonManager.putObject(data, destinationPath: destination)
+            task.attachment.thumbRemoteURL = NSURL(string: bucket.bucketBasePath() + destination)
+        }
+        tasks.append(task)
         return task
     }
     
-    func startTask(task: MediaUploadingTask) {
-        guard let user = Account.sharedInstance.user else {
-            fatalError("Uploading without user account not supported.")
+    func taskForAttachment(attachment: MediaAttachment?) -> MediaUploadingTask? {
+        guard let _ = attachment else { return nil }
+        for task in tasks {
+            if task.attachment == attachment {
+                return task
+            }
         }
-        
-        if task.attachment.type == .Image {
-            uploadImageAttachment(task, user: user)
-            return
-        }
-        
-        uploadVideoAttachment(task, user: user)
+        return nil
     }
     
-    func removeAttachment(attachment: MediaAttachment) {
-        if let task = self.taskForAttachment(attachment) {
-            if let idx = self.tasks.indexOf(task) {
+    func removeTaskForAttachment(attachment: MediaAttachment) {
+        if let task = taskForAttachment(attachment) {
+            if let idx = tasks.indexOf(task) {
                 self.tasks.removeAtIndex(idx)
             }
         }
     }
     
-    func uploadImageAttachment(task: MediaUploadingTask, user: User) {
-        if let data = task.attachment.originalData {
-            let destination = task.attachment.remoteFilename(user)
-            let request = amazonManager.putObject(data, destinationPath: destination)
-            task.request = request
-            task.attachment.remoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
-        }
-    }
-    
-    func uploadVideoAttachment(task: MediaUploadingTask, user: User) {
-        if let data = task.attachment.originalData {
-            let destination = task.attachment.remoteFilename(user)
-            let request = amazonManager.putObject(data, destinationPath: destination)
-            task.request = request
-            task.attachment.remoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
-        }
-        
-        if let data = task.attachment.image?.dataRepresentation() {
-            let destination = task.attachment.thumbRemoteFilename(user)
-            amazonManager.putObject(data, destinationPath: destination)
-            task.attachment.thumbRemoteURL = NSURL(string: self.bucket.bucketBasePath() + destination)
-        }
-    }
-    
-    func taskForAttachment(attachment: MediaAttachment?) -> MediaUploadingTask? {
-        guard let _ = attachment else {
-            return nil
-        }
-        
-        for task in self.tasks {
-            if task.attachment == attachment {
-                return task
-            }
-        }
-        
-        return nil
+    private func createAmazonS3Manager() {
+        amazonManager = AmazonS3RequestManager(bucket: bucket.bucketName(), region: .EUWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
     }
 }

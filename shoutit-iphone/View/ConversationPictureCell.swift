@@ -8,14 +8,22 @@
 
 import UIKit
 import ShoutitKit
+import RxSwift
 
-final class ConversationPictureCell: UITableViewCell, ConversationCell {
+final class ConversationPictureCell: UITableViewCell, ThumbedConversationCell {
     
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var avatarImageView: UIImageView? {
+        didSet {
+            avatarImageView?.userInteractionEnabled = true
+            addAvatarButtonToAvatarImageView()
+        }
+    }
+    var avatarButton: UIButton?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var pictureImageView: UIImageView!
+    var reuseDisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,36 +34,6 @@ final class ConversationPictureCell: UITableViewCell, ConversationCell {
         super.prepareForReuse()
         unHideImageView()
         pictureImageView.image = nil
-    }
-    
-    func bindWithMessage(message: Message, previousMessage: Message?) {
-        if let imgview = avatarImageView {
-            setImageWith(imgview, message: message)
-        }
-        
-        timeLabel?.text = DateFormatters.sharedInstance.hourStringFromEpoch(message.createdAt)
-        
-        if message.isSameSenderAs(previousMessage) {
-            hideImageView()
-        }
-        
-        activityIndicator?.startAnimating()
-        activityIndicator?.hidden = false
-        
-        setThumbMessage(message)
-    }
-    
-    func setThumbMessage(message: Message) {
-        guard let imagePath = message.attachment()?.imagePath(), let url = NSURL(string: imagePath) else {
-            activityIndicator?.stopAnimating()
-            activityIndicator?.hidden = true
-            pictureImageView.image = UIImage.shoutsPlaceholderImage()
-            return
-        }
-        
-        pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) {[weak self] (image, error, cacheType, imageURL) in
-            self?.activityIndicator?.stopAnimating()
-            self?.activityIndicator?.hidden = true
-        }
+        reuseDisposeBag = DisposeBag()
     }
 }
