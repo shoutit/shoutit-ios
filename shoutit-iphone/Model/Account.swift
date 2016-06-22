@@ -49,6 +49,8 @@ final class Account {
     var apnsToken: String? {
         didSet { self.updateAPNSIfNeeded() }
     }
+    var invitationCode: String?
+    
     private(set) var authData: AuthData? {
         didSet { self.loginSubject.onNext(authData) }
     }

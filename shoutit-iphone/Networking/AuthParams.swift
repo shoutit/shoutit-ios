@@ -61,14 +61,21 @@ struct SignupParams: AuthParams {
     let name: String
     let email: String
     let password: String
+    let invitationCode: String?
     
     let grantType = "shoutit_signup"
     var authParams: [String : AnyObject] {
-        return [
+        var params =  [
             "email": email,
             "password": password,
             "name": name
         ]
+        
+        if self.invitationCode?.characters.count > 0 {
+            params["invitation_code"] = invitationCode
+        }
+        
+        return params
     }
 }
 

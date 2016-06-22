@@ -56,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
                 // to decide what needs to be done here, url - refferal
+                let promoCode = FBSDKAppLinkUtility.appInvitePromotionCodeFromURL(url)
+                Account.sharedInstance.invitationCode = promoCode
             })
         }
         

@@ -194,11 +194,30 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     private func inviteFacebookFriends() {
+        
+        self.showProgressHUD(true)
+        
+        APICreditsService.requestInvitationCode().subscribe { [weak self] (event) in
+            self?.hideProgressHUD(true)
+            
+            switch event {
+            case .Next(let code):
+                    self?.inviteFriendsByFacebookUsingCode(code)
+            case .Error(let error):
+                    self?.showError(error)
+                default: break
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    private func inviteFriendsByFacebookUsingCode(code: InvitationCode) {
         let inviteContent = FBSDKAppInviteContent()
         
         inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
+        inviteContent.promotionCode = code.code
+        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "")
         
-        FBSDKAppInviteDialog.showFromViewController(self.navigationController, withContent: inviteContent, delegate: self)
+        FBSDKAppInviteDialog.showFromViewController(self, withContent: inviteContent, delegate: self)
     }
     
     private func inviteTwitterFriends() {

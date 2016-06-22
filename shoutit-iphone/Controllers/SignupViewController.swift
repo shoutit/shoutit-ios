@@ -77,7 +77,7 @@ final class SignupViewController: UITableViewController {
             .rx_tap
             .filter(signupActionFilterClosure).subscribeNext{
                 MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
-                self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
+                self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
             }
             .addDisposableTo(disposeBag)
         
@@ -92,7 +92,7 @@ final class SignupViewController: UITableViewController {
         
         passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
             MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
-            self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
+            self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
         }.addDisposableTo(disposeBag)
         
         // add validators

@@ -23,8 +23,8 @@ final class LoginWithEmailViewModel {
         authenticateWithParameters(loginParams)
     }
     
-    func signupWithName(name: String, email: String, password: String) {
-        let signupParams = SignupParams(name: name, email: email, password: password)
+    func signupWithName(name: String, email: String, password: String, invitationCode: String?) {
+        let signupParams = SignupParams(name: name, email: email, password: password, invitationCode: invitationCode)
         authenticateWithParameters(signupParams)
     }
     

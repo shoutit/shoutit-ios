@@ -39,6 +39,8 @@
 		246C18291C8EC4B600DD6DE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */; };
 		246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */; };
 		246C182E1C8EECE300DD6DE0 /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */; };
+		246C64831D1ABA2E00BC0CEE /* InvitationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */; };
+		246C64851D1ABC3200BC0CEE /* APICreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64841D1ABC3200BC0CEE /* APICreditsService.swift */; };
 		246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA721CA40637009DF436 /* ConversationLocationController.swift */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
 		24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */; };
@@ -774,6 +776,8 @@
 		246C18281C8EC4B600DD6DE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		246C182B1C8EEA5200DD6DE0 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = Controllers/CaptureViewController.swift; sourceTree = "<group>"; };
 		246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoProcessor.swift; path = Controllers/VideoProcessor.swift; sourceTree = "<group>"; };
+		246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvitationCode.swift; path = Model/InvitationCode.swift; sourceTree = "<group>"; };
+		246C64841D1ABC3200BC0CEE /* APICreditsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICreditsService.swift; path = Networking/APICreditsService.swift; sourceTree = "<group>"; };
 		246DEA721CA40637009DF436 /* ConversationLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationController.swift; path = Controllers/ConversationLocationController.swift; sourceTree = "<group>"; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewCell.swift; path = View/NotificationsTableViewCell.swift; sourceTree = "<group>"; };
@@ -2002,6 +2006,7 @@
 				B209C51B1CEF5C7700727095 /* MiniProfile.swift */,
 				24E298911CF1F23700FDB055 /* Display.swift */,
 				AE0CD3591CFC6647006B05FD /* Contact.swift */,
+				246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3575,6 +3580,7 @@
 		B2C729B91C62217D006F7D29 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				246C64841D1ABC3200BC0CEE /* APICreditsService.swift */,
 				B2B5D03B1C808A4E0068A6AF /* APIGenericService.swift */,
 				B2C729BA1C62218C006F7D29 /* APIAuthService.swift */,
 				B2ACBDF21C68D585000FA302 /* APIMiscService.swift */,
@@ -4174,6 +4180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				246C64831D1ABA2E00BC0CEE /* InvitationCode.swift in Sources */,
 				B2A144181C64BE68002CD70A /* PushTokens.swift in Sources */,
 				248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */,
 				B2A849351C846B2A00176EB0 /* SeeAllCollectionViewCell.swift in Sources */,
@@ -4226,6 +4233,7 @@
 				B24E29FA1CBD237500328503 /* CreateShoutTextViewCell.swift in Sources */,
 				AE1F296E1CE9BF5300D1AA76 /* ConversationDescription.swift in Sources */,
 				24826B571C96E3FC00032FC9 /* APIChatsService.swift in Sources */,
+				246C64851D1ABC3200BC0CEE /* APICreditsService.swift in Sources */,
 				B22D909A1CEA18CE00D3C387 /* CreatePublicChatParams.swift in Sources */,
 				AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */,
 				B2C8C2681CF89CCA00E80C6A /* CreateShoutSelectableCell.swift in Sources */,
