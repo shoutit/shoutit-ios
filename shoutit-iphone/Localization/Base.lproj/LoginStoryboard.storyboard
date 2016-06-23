@@ -1622,6 +1622,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="BGZ-RK-BbD">
+                                        <rect key="frame" x="0.0" y="414" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BGZ-RK-BbD" id="Rwe-l1-qAq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmD-j1-B34">
+                                                    <rect key="frame" x="20" y="7" width="335" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <state key="normal" title="Create a Page for brand or business.">
+                                                        <color key="titleColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gmD-j1-B34" secondAttribute="trailing" constant="20" id="JC5-IR-9Pd"/>
+                                                <constraint firstItem="gmD-j1-B34" firstAttribute="leading" secondItem="Rwe-l1-qAq" secondAttribute="leading" constant="20" id="SUi-IR-7yA"/>
+                                                <constraint firstItem="gmD-j1-B34" firstAttribute="top" secondItem="Rwe-l1-qAq" secondAttribute="top" constant="7" id="adp-ib-U2T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1633,6 +1655,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="500"/>
                     <connections>
+                        <outlet property="createPageButton" destination="gmD-j1-B34" id="lKh-Ja-prF"/>
                         <outlet property="emailTextField" destination="N11-JB-SIw" id="MhT-s4-dZH"/>
                         <outlet property="nameTextField" destination="RaH-ti-Eac" id="zAz-iP-WWU"/>
                         <outlet property="passwordTextField" destination="iKX-Fx-ZOg" id="W7U-GL-B9d"/>

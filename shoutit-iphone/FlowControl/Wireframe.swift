@@ -329,4 +329,8 @@ struct Wireframe {
     static func publicPagesTableViewController() -> PublicPagesTableViewController {
         return storyboard(.Pages).instantiateViewControllerWithIdentifier("PublicPagesTableViewController") as! PublicPagesTableViewController
     }
+
+    static func createPageViewController() -> CreatePageViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
+    }
 }

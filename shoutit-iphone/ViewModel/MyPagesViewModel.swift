@@ -11,7 +11,7 @@ import ShoutitKit
 
 class MyPagesViewModel {
     
-    var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
+    //var pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
     
     init() {
         
