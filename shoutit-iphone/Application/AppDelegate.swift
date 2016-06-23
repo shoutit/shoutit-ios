@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let router = DPLDeepLinkRouter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        BuddyBuildSDK.setup()
+        
         
         applyAppearance()
         configureLoggingServices()
