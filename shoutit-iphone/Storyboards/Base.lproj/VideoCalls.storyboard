@@ -148,7 +148,7 @@
                                 </constraints>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="KX9-CO-JVS">
-                                <rect key="frame" x="495" y="32" width="93" height="24"/>
+                                <rect key="frame" x="487" y="32" width="101" height="24"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
@@ -440,7 +440,7 @@
     </scenes>
     <resources>
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
-        <image name="logo_transparent" width="93" height="24"/>
+        <image name="logo_transparent" width="101" height="24"/>
         <image name="phone" width="24" height="24"/>
         <image name="phone_disconnected" width="32" height="12"/>
         <image name="videocall_audio_icon" width="29" height="30"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Upf-uN-bxG">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -242,7 +243,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="vvw-X9-c7O" customClass="SHShoutDiscoverTitleCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="249" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="249" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -287,7 +288,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="Bv6-ya-z53" customClass="SHShoutMyFeedHeaderCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="300" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="300" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -627,7 +628,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <rect key="frame" x="262" y="12" width="76" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headbarLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-VU-RTZ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_navbar_white" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-VU-RTZ">
                                     <rect key="frame" x="0.0" y="0.0" width="77" height="20"/>
                                 </imageView>
                             </subviews>
@@ -649,7 +650,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
     <resources>
         <image name="filterIcon" width="20" height="20"/>
         <image name="filterShoutList" width="19" height="21"/>
-        <image name="headbarLogoWhite" width="77" height="20"/>
+        <image name="logo_navbar_white" width="101" height="24"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>

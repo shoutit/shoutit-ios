@@ -37,7 +37,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         super.viewDidLoad()
         
         // setup title view
-        navigationItem.titleView = UIImageView(image: UIImage.navBarLogoImage())
+        navigationItem.titleView = UIImageView(image: UIImage.navBarLogoWhite())
         
         // configure google client
         GIDSignIn.sharedInstance().uiDelegate = self

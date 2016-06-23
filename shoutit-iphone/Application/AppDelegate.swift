@@ -198,13 +198,6 @@ private extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
                                                             NSFontAttributeName : UIFont.systemFontOfSize(20)]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        
-        if #available(iOS 9.0, *) {
-            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
-            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
-        } else {
-            SHAppearanceBridge.applyNavigationBarAppearanceWithColor(UIColor(shoutitColor: .PrimaryGreen))
-        }
     }
     
     func configureAPS(application: UIApplication) {

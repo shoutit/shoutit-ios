@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fg4-Ur-6wO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fg4-Ur-6wO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,11 +21,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_background" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-OD-0EH">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="3cg-iZ-cjd">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="3cg-iZ-cjd">
+                                <rect key="frame" x="200" y="268" width="200" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="MyZ-Mh-Pbm"/>
-                                    <constraint firstAttribute="height" constant="100" id="j9j-Vt-S80"/>
+                                    <constraint firstAttribute="width" constant="200" id="2y5-Ko-YNm"/>
+                                    <constraint firstAttribute="height" constant="64" id="kAX-py-fXQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -47,6 +47,6 @@
     </scenes>
     <resources>
         <image name="launch_background" width="375" height="667"/>
-        <image name="shoutit_logo_white" width="100" height="100"/>
+        <image name="shoutit_logo_white" width="200" height="64"/>
     </resources>
 </document>
