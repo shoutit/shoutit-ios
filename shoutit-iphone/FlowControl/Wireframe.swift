@@ -316,6 +316,20 @@ struct Wireframe {
         return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutViewController") as! PromotedShoutViewController
     }
     
+    // MARK: - Pages storyboard
+    
+    static func pagesListParentViewController() -> PagesListParentViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("PagesListParentViewController") as! PagesListParentViewController
+    }
+    
+    static func myPagesTableViewController() -> MyPagesTableViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("MyPagesTableViewController") as! MyPagesTableViewController
+    }
+    
+    static func publicPagesTableViewController() -> PublicPagesTableViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("PublicPagesTableViewController") as! PublicPagesTableViewController
+    }
+
     static func createPageViewController() -> CreatePageViewController {
         return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
     }

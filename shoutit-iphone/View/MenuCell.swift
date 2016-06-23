@@ -22,9 +22,6 @@ final class MenuCell: UITableViewCell {
         self.bottomSeparatorHeight?.constant = 1.0/UIScreen.mainScreen().scale
         self.backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.whiteColor()
         self.layoutIfNeeded()
-        
-        setSeparatorVisible(item == .Chats || current)
-        
 //        self.accessoryType = ((item == .InviteFriends) ? .DetailButton : .None)
 //        self.tintColor = UIColor(shoutitColor: .PrimaryGreen)
     }

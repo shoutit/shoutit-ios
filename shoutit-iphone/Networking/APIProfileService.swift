@@ -106,4 +106,9 @@ final class APIProfileService {
         let url = APIManager.baseURL + "/profiles/me/contacts"
         return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
+    
+    static func getPagesForUsername(username: String, pageParams: PageParams) -> Observable<PagedResults<Profile>> {
+        let url = APIManager.baseURL + "/profiles/\(username)/pages"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: pageParams, encoding: .URL, headers: ["Accept": "application/json"])
+    }
 }

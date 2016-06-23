@@ -11,7 +11,7 @@ import ShoutitKit
 
 class BadgeButton: UIButton {
 
-    private let badgeLabel = UILabel()
+    private let badgeLabel = CustomUILabel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,7 @@ class BadgeButton: UIButton {
         badgeLabel.textAlignment = .Center
         badgeLabel.font = UIFont.sh_systemFontOfSize(12, weight: .Regular)
         badgeLabel.textColor = UIColor.whiteColor()
-        badgeLabel.clipsToBounds = true
-        badgeLabel.layer.cornerRadius = 7.0
+        badgeLabel.cornerRadius = 7.0
         badgeLabel.hidden = true
         badgeLabel.translatesAutoresizingMaskIntoConstraints = false
         

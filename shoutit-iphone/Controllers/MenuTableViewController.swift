@@ -19,7 +19,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     private let kTablePrimaryCellHeight: CGFloat = 48.0
     private let kTableSecondaryCellHeight: CGFloat = 44.0
-    private let kTableHeaderHeight: CGFloat = 240.0
+    private let kTableHeaderHeight: CGFloat = 288.0
     private let kTableFooterHeight: CGFloat = 44.0
     
     @IBOutlet var headerView : MenuHeaderView?
@@ -46,13 +46,11 @@ final class MenuTableViewController: UITableViewController, Navigation {
         tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
         tableView.layer.borderWidth = 1
         
-        // lock scroll
-        let contentHeight = kTableHeaderHeight + kTableFooterHeight + 5 * kTablePrimaryCellHeight + 3 * kTableSecondaryCellHeight
-        tableView.scrollEnabled = contentHeight > tableView.frame.height
-        
-        Account.sharedInstance.userSubject.subscribeNext { (user) in
-            self.headerView?.fillWith(user)
-        }.addDisposableTo(disposeBag)
+        Account.sharedInstance.userSubject
+            .subscribeNext { (user) in
+                self.headerView?.fillWith(user)
+            }
+            .addDisposableTo(disposeBag)
         
         let user = Account.sharedInstance.user
         headerView?.fillWith(user)
@@ -67,7 +65,13 @@ final class MenuTableViewController: UITableViewController, Navigation {
             
             versionLabel?.text = "\(appName) \(version) (\(build))"
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
+        let contentHeight = kTableHeaderHeight + kTableFooterHeight + CGFloat(viewModel.numberOfRowsInSection(0)) * kTablePrimaryCellHeight + CGFloat(viewModel.numberOfRowsInSection(1)) * kTableSecondaryCellHeight
+        tableView.scrollEnabled = contentHeight > tableView.frame.height
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -90,7 +94,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         let item = viewModel.navigationItemForIndexPath(indexPath)
         
         cell.bindWith(item, current: item == self.selectedNavigationItem)
-        
+        cell.setSeparatorVisible(viewModel.numberOfRowsInSection(0) - 1 == indexPath.row)
         return cell
     }
     
@@ -100,7 +104,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if case (0..<5) = indexPath.row {
+        if case (0..<viewModel.numberOfRowsInSection(0)) = indexPath.row {
             return kTablePrimaryCellHeight
         }
         return kTableSecondaryCellHeight
