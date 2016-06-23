@@ -11,11 +11,21 @@ sudo gem install fastlane
 fastlane ios stage
 ```
 Submit a new β-Staging build...
+### ios local
+```
+fastlane ios local
+```
+Submit a new β-Staging build...
+### ios production
+```
+fastlane ios production
+```
+Submit a new β-Staging build...
 ### ios localizations
 ```
 fastlane ios localizations
 ```
-Runs all the tests
+Generate Localization Files
 
 ----
 
