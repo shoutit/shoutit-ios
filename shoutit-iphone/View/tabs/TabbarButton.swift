@@ -16,7 +16,7 @@ final class TabbarButton: UIButton {
     @IBInspectable var textHeight : CGFloat = 20
     @IBInspectable var navigationItem : String!
     
-    private let badgeLabel = UILabel()
+    private let badgeLabel = CustomUILabel()
     
     @IBInspectable var selectedTintColor : UIColor! = UIColor.darkGrayColor() {
         didSet {
@@ -68,8 +68,7 @@ final class TabbarButton: UIButton {
         badgeLabel.textAlignment = .Center
         badgeLabel.font = UIFont.sh_systemFontOfSize(12, weight: .Regular)
         badgeLabel.textColor = UIColor.whiteColor()
-        badgeLabel.clipsToBounds = true
-        badgeLabel.layer.cornerRadius = 7.0
+        badgeLabel.cornerRadius = 7.0
         badgeLabel.hidden = true
         badgeLabel.translatesAutoresizingMaskIntoConstraints = false
         

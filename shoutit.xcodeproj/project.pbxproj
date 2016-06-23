@@ -605,6 +605,14 @@
 		B2C8C2661CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */; };
 		B2C8C2681CF89CCA00E80C6A /* CreateShoutSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */; };
 		B2C8C26B1CF89D4800E80C6A /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C26A1CF89D4800E80C6A /* Borderable.swift */; };
+		B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D029471D1C1FF800A29D8B /* Pages.storyboard */; };
+		B2D029501D1C22EE00A29D8B /* PagesListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0294F1D1C22EE00A29D8B /* PagesListParentViewController.swift */; };
+		B2D029541D1C2BFD00A29D8B /* MyPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029531D1C2BFD00A29D8B /* MyPagesTableViewController.swift */; };
+		B2D029561D1C2C1E00A29D8B /* PublicPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029551D1C2C1E00A29D8B /* PublicPagesTableViewController.swift */; };
+		B2D0295A1D1C2C5200A29D8B /* MyPagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029591D1C2C5200A29D8B /* MyPagesViewModel.swift */; };
+		B2D0295C1D1C2C6500A29D8B /* PublicPagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0295B1D1C2C6500A29D8B /* PublicPagesViewModel.swift */; };
+		B2D0295E1D1C305200A29D8B /* MyPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D0295D1D1C305200A29D8B /* MyPageTableViewCell.xib */; };
+		B2D029601D1C30CC00A29D8B /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0295F1D1C30CC00A29D8B /* MyPageTableViewCell.swift */; };
 		B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */; };
 		B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D440DD1CB81466009782AF /* Filter.storyboard */; };
 		B2D441091CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
@@ -1597,6 +1605,17 @@
 		B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSocialSharingSectionViewModel.swift; path = ViewModel/CreateShoutSocialSharingSectionViewModel.swift; sourceTree = "<group>"; };
 		B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSelectableCell.swift; path = View/CreateShoutSelectableCell.swift; sourceTree = "<group>"; };
 		B2C8C26A1CF89D4800E80C6A /* Borderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Borderable.swift; path = Util/Borderable.swift; sourceTree = "<group>"; };
+		B2D029461D1C1FF800A29D8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pages.storyboard; sourceTree = "<group>"; };
+		B2D029491D1C1FFC00A29D8B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Pages.strings; sourceTree = "<group>"; };
+		B2D0294B1D1C200100A29D8B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Pages.strings; sourceTree = "<group>"; };
+		B2D0294D1D1C200300A29D8B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Pages.strings; sourceTree = "<group>"; };
+		B2D0294F1D1C22EE00A29D8B /* PagesListParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagesListParentViewController.swift; path = Controllers/PagesListParentViewController.swift; sourceTree = "<group>"; };
+		B2D029531D1C2BFD00A29D8B /* MyPagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPagesTableViewController.swift; path = Controllers/MyPagesTableViewController.swift; sourceTree = "<group>"; };
+		B2D029551D1C2C1E00A29D8B /* PublicPagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicPagesTableViewController.swift; path = Controllers/PublicPagesTableViewController.swift; sourceTree = "<group>"; };
+		B2D029591D1C2C5200A29D8B /* MyPagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPagesViewModel.swift; path = ViewModel/MyPagesViewModel.swift; sourceTree = "<group>"; };
+		B2D0295B1D1C2C6500A29D8B /* PublicPagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicPagesViewModel.swift; path = ViewModel/PublicPagesViewModel.swift; sourceTree = "<group>"; };
+		B2D0295D1D1C305200A29D8B /* MyPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyPageTableViewCell.xib; path = Storyboards/MyPageTableViewCell.xib; sourceTree = "<group>"; };
+		B2D0295F1D1C30CC00A29D8B /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPageTableViewCell.swift; path = View/MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ProgressHUD.swift"; path = "UIKitExtensions/UIViewController+ProgressHUD.swift"; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		B2D4410C1CB81632009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -2475,6 +2494,7 @@
 				B22D90821CE4E84500D3C387 /* CreatePublicChat */,
 				AE1F29711CE9DDE900D1AA76 /* ConversationInfo */,
 				2463B6921C9828FB00BFE6BA /* Conversation */,
+				B2D0294E1D1C229900A29D8B /* PagesList */,
 				24826B4C1C96DEB900032FC9 /* ConversationList */,
 				24826B3E1C969A0200032FC9 /* Notifications */,
 				246C182A1C8EE90600DD6DE0 /* CaptureController */,
@@ -2566,6 +2586,7 @@
 				B2D4417D1CB81704009782AF /* SeeAllShouts.storyboard */,
 				B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */,
 				B211F0731D12C858008DEEBC /* Promote.storyboard */,
+				B2D029471D1C1FF800A29D8B /* Pages.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -4357,6 +4378,50 @@
 			name = UIViewExtensions;
 			sourceTree = "<group>";
 		};
+		B2D0294E1D1C229900A29D8B /* PagesList */ = {
+			isa = PBXGroup;
+			children = (
+				B2D0294F1D1C22EE00A29D8B /* PagesListParentViewController.swift */,
+				B2D029511D1C2BDC00A29D8B /* MyPages */,
+				B2D029521D1C2BE100A29D8B /* PublicPages */,
+			);
+			name = PagesList;
+			sourceTree = "<group>";
+		};
+		B2D029511D1C2BDC00A29D8B /* MyPages */ = {
+			isa = PBXGroup;
+			children = (
+				B2D029531D1C2BFD00A29D8B /* MyPagesTableViewController.swift */,
+				B2D029571D1C2C2200A29D8B /* ViewModel */,
+			);
+			name = MyPages;
+			sourceTree = "<group>";
+		};
+		B2D029521D1C2BE100A29D8B /* PublicPages */ = {
+			isa = PBXGroup;
+			children = (
+				B2D029551D1C2C1E00A29D8B /* PublicPagesTableViewController.swift */,
+				B2D029581D1C2C2C00A29D8B /* ViewModel */,
+			);
+			name = PublicPages;
+			sourceTree = "<group>";
+		};
+		B2D029571D1C2C2200A29D8B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2D029591D1C2C5200A29D8B /* MyPagesViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B2D029581D1C2C2C00A29D8B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2D0295B1D1C2C6500A29D8B /* PublicPagesViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B2D9B0FA1C98488B00924941 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -4547,6 +4612,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F5246A1C9AF73D00EA622F /* ProfileTableViewCell.xib */,
+				B2D0295D1D1C305200A29D8B /* MyPageTableViewCell.xib */,
 			);
 			name = TableViewCommonCells;
 			sourceTree = "<group>";
@@ -4555,6 +4621,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F5246E1C9AF84E00EA622F /* ProfileTableViewCell.swift */,
+				B2D0295F1D1C30CC00A29D8B /* MyPageTableViewCell.swift */,
 			);
 			name = CommonTableViewCells;
 			sourceTree = "<group>";
@@ -4847,6 +4914,7 @@
 				B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */,
 				AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */,
 				B2D442091CB81BB0009782AF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
+				B2D0295E1D1C305200A29D8B /* MyPageTableViewCell.xib in Resources */,
 				B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */,
 				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
@@ -4937,6 +5005,7 @@
 				B2D441E51CB81AC8009782AF /* SearchRecentsHeaderView.xib in Resources */,
 				B2F7196D1D0EEEF5002C1D74 /* ImageSelectedSmallOff@3x.png in Resources */,
 				B2F7197D1D0EEEF5002C1D74 /* UIBarButtonItemGrid.png in Resources */,
+				B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */,
 				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
@@ -5087,6 +5156,7 @@
 				B2778F911CAAEBC700BBDD5F /* VerifyEmailViewModel.swift in Sources */,
 				B2E43C961D103C51006C6AD2 /* RoundSwitchableButton.swift in Sources */,
 				24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */,
+				B2D0295A1D1C2C5200A29D8B /* MyPagesViewModel.swift in Sources */,
 				B2F71A641D0EF791002C1D74 /* NSString+DPLJSON.m in Sources */,
 				246C182C1C8EEA5200DD6DE0 /* CaptureViewController.swift in Sources */,
 				2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */,
@@ -5100,6 +5170,7 @@
 				B2E43CA91D10455A006C6AD2 /* SectionHeaderWithDetailsButton.swift in Sources */,
 				24AEF7921CF759C500C57C7C /* SuggestedProfilesTableViewController.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
+				B2D029541D1C2BFD00A29D8B /* MyPagesTableViewController.swift in Sources */,
 				60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */,
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				2499EA6D1C8094F80086DEA9 /* CreateShoutViewModel.swift in Sources */,
@@ -5126,6 +5197,7 @@
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */,
 				B2B4AADB1CB53D2900926474 /* DiscoverShoutsDisplayable.swift in Sources */,
+				B2D029601D1C30CC00A29D8B /* MyPageTableViewCell.swift in Sources */,
 				B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */,
 				2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */,
 				246C18251C8D89A000DD6DE0 /* MediaUploader.swift in Sources */,
@@ -5387,6 +5459,7 @@
 				B2E7155D1C6E11F4007F95CF /* ProfileReusableViewKind.swift in Sources */,
 				B2AB73F31CB569BE00C2C0C0 /* SettingsFormViewModel.swift in Sources */,
 				B272305A1CE0E691003547EA /* ProfilesListCellViewModel.swift in Sources */,
+				B2D0295C1D1C2C6500A29D8B /* PublicPagesViewModel.swift in Sources */,
 				B27230501CE0DEAF003547EA /* NibLoadableView.swift in Sources */,
 				B2D9B11C1C98984300924941 /* SearchSuggestionCellViewModel.swift in Sources */,
 				240F509E1C71C92000AE4A76 /* ShoutsVerticalGridLayoutDelegate.swift in Sources */,
@@ -5509,6 +5582,7 @@
 				B2F71A001D0EF53A002C1D74 /* PatternDescriptor.m in Sources */,
 				B2A03E211C85D53900F5E257 /* ShowDetailContainerViewController.swift in Sources */,
 				B2B4AAD41CB43CCD00926474 /* CategoryFiltersCellViewModel.swift in Sources */,
+				B2D029561D1C2C1E00A29D8B /* PublicPagesTableViewController.swift in Sources */,
 				AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */,
 				B2E43C9F1D103D4D006C6AD2 /* PromotingShoutsInfoController.swift in Sources */,
 				B2B5D01F1C7F5A370068A6AF /* ShoutDetailTableHeaderView.swift in Sources */,
@@ -5560,6 +5634,7 @@
 				B20F47D21CAEDC080091899C /* LimitingTextFieldsFilterTableViewCell.swift in Sources */,
 				B27DF7821C58DCCA006909D4 /* FlowController.swift in Sources */,
 				B27230541CE0DF80003547EA /* UICollectionView+Reusables.swift in Sources */,
+				B2D029501D1C22EE00A29D8B /* PagesListParentViewController.swift in Sources */,
 				B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */,
 				B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */,
 				B2F719D31D0EF2EC002C1D74 /* FromJSON.swift in Sources */,
@@ -5780,6 +5855,18 @@
 			);
 			name = Nemo.strings;
 			path = Application;
+			sourceTree = "<group>";
+		};
+		B2D029471D1C1FF800A29D8B /* Pages.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2D029461D1C1FF800A29D8B /* Base */,
+				B2D029491D1C1FFC00A29D8B /* ar */,
+				B2D0294B1D1C200100A29D8B /* en */,
+				B2D0294D1D1C200300A29D8B /* de */,
+			);
+			name = Pages.storyboard;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		B2D440DD1CB81466009782AF /* Filter.storyboard */ = {
