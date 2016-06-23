@@ -22,7 +22,18 @@ final class MenuViewModel: AnyObject {
         
         func menuItems() -> [NavigationItem] {
             switch self {
-            case .Main: return [.Home, .Discover, .Browse, .Chats]
+            case .Main:
+                let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats]
+                switch Account.sharedInstance.userModel {
+                case .Some(.Logged(let user)):
+                    if user.type == .User {
+                        return basicItems + [.Pages]
+                    } else {
+                        return basicItems + [.Admins]
+                    }
+                default:
+                    return basicItems
+                }
             case .Help: return [.InviteFriends, .Settings, .Help]
             }
         }

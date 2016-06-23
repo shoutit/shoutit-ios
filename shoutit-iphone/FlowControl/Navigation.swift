@@ -28,6 +28,8 @@ enum NavigationItem : String {
     case Search = "search"
     case Credits = "credits"
     case CreditsTransations = "credit_transaction"
+    case Pages = "pages"
+    case Admins = "admins"
     
     func title() -> String {
         switch self {
@@ -41,6 +43,8 @@ enum NavigationItem : String {
         case .Settings: return NSLocalizedString("Settings",comment: "")
         case .Help: return NSLocalizedString("Help",comment: "")
         case .InviteFriends: return NSLocalizedString("Invite Friends",comment: "")
+        case .Pages: return NSLocalizedString("Pages",comment: "Menu item")
+        case .Admins: return NSLocalizedString("Admins",comment: "Menu item")
         default: return NSLocalizedString("Unsupported Title",comment: "")
         }
     }
@@ -52,6 +56,8 @@ enum NavigationItem : String {
         case .Browse: return UIImage(named: "sidemenu_browse")
         case .Chats: return UIImage(named: "sidemenu_chats")
         case .Orders: return UIImage(named: "sidemenu_orders")
+        case .Admins: return UIImage(named: "sidemenu_admins")
+        case .Pages: return UIImage(named: "sidemenu_pages")
         default: return nil
         }
     }
