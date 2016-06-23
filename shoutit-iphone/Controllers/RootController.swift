@@ -79,7 +79,6 @@ final class RootController: UIViewController, ContainerController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
     }
     
