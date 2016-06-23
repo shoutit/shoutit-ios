@@ -32,7 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.28 green:0.69 blue:0.29 alpha:1];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:53.0f/255.0f green:221.0f/255.0f blue:105.0f/255.0f alpha:1];
 }
 
 - (void)pop {
