@@ -41,6 +41,9 @@
 		246C64851D1ABC3200BC0CEE /* APICreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64841D1ABC3200BC0CEE /* APICreditsService.swift */; };
 		246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA721CA40637009DF436 /* ConversationLocationController.swift */; };
 		2474E0051D1ACDA60085D9DD /* InvitationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */; };
+		2474E0071D1C15650085D9DD /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2474E0061D1C15650085D9DD /* Pages.storyboard */; };
+		2474E00A1D1C15A40085D9DD /* CreatePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */; };
+		2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
 		24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */; };
 		24826B451C969BA400032FC9 /* NotificationsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */; };
@@ -913,6 +916,9 @@
 		246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvitationCode.swift; path = Model/InvitationCode.swift; sourceTree = "<group>"; };
 		246C64841D1ABC3200BC0CEE /* APICreditsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICreditsService.swift; path = Networking/APICreditsService.swift; sourceTree = "<group>"; };
 		246DEA721CA40637009DF436 /* ConversationLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationController.swift; path = Controllers/ConversationLocationController.swift; sourceTree = "<group>"; };
+		2474E0061D1C15650085D9DD /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Pages.storyboard; path = Storyboards/Pages.storyboard; sourceTree = "<group>"; };
+		2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageViewController.swift; path = Controllers/CreatePageViewController.swift; sourceTree = "<group>"; };
+		2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalButton.swift; path = View/VerticalButton.swift; sourceTree = "<group>"; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewCell.swift; path = View/NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsDisplayable.swift; path = FlowControl/NotificationsDisplayable.swift; sourceTree = "<group>"; };
@@ -2153,6 +2159,14 @@
 			name = ConversationLocation;
 			sourceTree = "<group>";
 		};
+		2474E0081D1C15900085D9DD /* CreatePage */ = {
+			isa = PBXGroup;
+			children = (
+				2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */,
+			);
+			name = CreatePage;
+			sourceTree = "<group>";
+		};
 		24826B3E1C969A0200032FC9 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -2449,6 +2463,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2474E0081D1C15900085D9DD /* CreatePage */,
 				B211F07B1D12C929008DEEBC /* PromotedShoutViewController */,
 				B211F07A1D12C91D008DEEBC /* PromoteShoutViewController */,
 				B2E43C9D1D103D3D006C6AD2 /* PromotingShoutsInfoController */,
@@ -2566,6 +2581,7 @@
 				B2D4417D1CB81704009782AF /* SeeAllShouts.storyboard */,
 				B2DCBD8D1CC7997D00927174 /* LaunchScreen.storyboard */,
 				B211F0731D12C858008DEEBC /* Promote.storyboard */,
+				2474E0061D1C15650085D9DD /* Pages.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -3460,6 +3476,7 @@
 				B2A03E221C85F69400F5E257 /* BorderedView.swift */,
 				AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */,
 				AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */,
+				2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -4937,6 +4954,7 @@
 				B2D441E51CB81AC8009782AF /* SearchRecentsHeaderView.xib in Resources */,
 				B2F7196D1D0EEEF5002C1D74 /* ImageSelectedSmallOff@3x.png in Resources */,
 				B2F7197D1D0EEEF5002C1D74 /* UIBarButtonItemGrid.png in Resources */,
+				2474E0071D1C15650085D9DD /* Pages.storyboard in Resources */,
 				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
@@ -5158,11 +5176,13 @@
 				B294BC921CEB4CE500131B31 /* MessageAttachmentPhotoBrowserViewModel.swift in Sources */,
 				B2B8899E1D1814CC00C38808 /* ConversationViewController+CellConfiguration.swift in Sources */,
 				B22D90841CE4E86A00D3C387 /* CreatePublicChatTableViewController.swift in Sources */,
+				2474E00A1D1C15A40085D9DD /* CreatePageViewController.swift in Sources */,
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
 				249FD6D81C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift in Sources */,
 				B2A849331C8458F400176EB0 /* PhotoBrowserPhotoViewController.swift in Sources */,
 				B2F5247D1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift in Sources */,
 				B2B540DB1C6A69320075EDA6 /* PostSignupSuggestionsSectionHeader.swift in Sources */,
+				2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */,
 				B2B5D0401C80AAE80068A6AF /* PageDisplayable.swift in Sources */,
 				B2F7199C1D0EEFAA002C1D74 /* MWPhotoBrowser.m in Sources */,
 				B28379A31C7385D0009AFF01 /* ProfileCollectionSectionViewModel.swift in Sources */,

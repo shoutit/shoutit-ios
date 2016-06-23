@@ -23,6 +23,7 @@ final class SignupViewController: UITableViewController {
     @IBOutlet weak var signupButton: CustomUIButton!
     @IBOutlet weak var termsAndPolicyLabel: ResponsiveLabel!
     @IBOutlet weak var switchToLoginButton: UIButton!
+    @IBOutlet weak var createPageButton: UIButton!
     
     // delegate
     weak var delegate: LoginWithEmailViewControllerChildDelegate?
@@ -72,6 +73,12 @@ final class SignupViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
         
+        createPageButton
+            .rx_tap
+            .subscribeNext{[unowned self] in
+                self.delegate?.presentCreatePage()
+            }
+            .addDisposableTo(disposeBag)
         signupButton
             .rx_tap
             .filter(signupActionFilterClosure).subscribeNext{
@@ -151,5 +158,24 @@ final class SignupViewController: UITableViewController {
         
         // assign
         switchToLoginButton.setAttributedTitle(attributedString, forState: .Normal)
+    }
+    
+    private func setupCreatePageLabel() {
+        
+        let text = NSLocalizedString("Create a Page for brand or business.", comment: "Signup view")
+        let loginText = NSLocalizedString("Create a Page", comment: "Signup view. Should be the same as whole text's part")
+        
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        
+        // get attributes for login
+        let range = (text as NSString).rangeOfString(loginText)
+        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        
+        // modify attributed string
+        attributedString.setAttributes(attributes, range: range)
+        
+        // assign
+        createPageButton.setAttributedTitle(attributedString, forState: .Normal)
     }
 }

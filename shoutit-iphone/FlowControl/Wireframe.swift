@@ -33,6 +33,7 @@ struct Wireframe {
         case Filter = "Filter"
         case SeeAllShouts = "SeeAllShouts"
         case Promote = "Promote"
+        case Pages = "Pages"
     }
     
     // General
@@ -313,5 +314,9 @@ struct Wireframe {
     
     static func promotedShoutViewController() -> PromotedShoutViewController {
         return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutViewController") as! PromotedShoutViewController
+    }
+    
+    static func createPageViewController() -> CreatePageViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
     }
 }

@@ -13,6 +13,7 @@ import MBProgressHUD
 
 protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentLogin()
+    func presentCreatePage()
     func presentSignup()
     func presentResetPassword()
     func showLoginErrorMessage(message: String)
@@ -24,6 +25,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     internal let animationDuration: Double = 0.25
     private let signupViewHeight: CGFloat = 416
     private let loginViewHeight: CGFloat = 326
+    private let createPageViewHeight: CGFloat = 375
     private let resetPasswordViewHeight: CGFloat = 188
     
     // UI
@@ -51,6 +53,12 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     lazy var loginViewController: LoginViewController = {
         let controller = Wireframe.loginViewController()
         controller.viewModel = self.viewModel
+        controller.delegate = self
+        controller.flowDelegate = self.flowDelegate
+        return controller
+    }()
+    lazy var createPageViewController: CreatePageViewController = {
+        let controller = Wireframe.createPageViewController()
         controller.delegate = self
         controller.flowDelegate = self.flowDelegate
         return controller
@@ -145,6 +153,12 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
         title = loginViewController.title
         containerHeightConstraint.constant = loginViewHeight
         changeContentTo(loginViewController, animated: true)
+    }
+    
+    func presentCreatePage() {
+        title = createPageViewController.title
+        containerHeightConstraint.constant = createPageViewHeight
+        changeContentTo(createPageViewController, animated: true)
     }
     
     func presentSignup() {
