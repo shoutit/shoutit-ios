@@ -41,7 +41,6 @@
 		246C64851D1ABC3200BC0CEE /* APICreditsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64841D1ABC3200BC0CEE /* APICreditsService.swift */; };
 		246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DEA721CA40637009DF436 /* ConversationLocationController.swift */; };
 		2474E0051D1ACDA60085D9DD /* InvitationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */; };
-		2474E0071D1C15650085D9DD /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2474E0061D1C15650085D9DD /* Pages.storyboard */; };
 		2474E00A1D1C15A40085D9DD /* CreatePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */; };
 		2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
@@ -616,6 +615,8 @@
 		B2D0295C1D1C2C6500A29D8B /* PublicPagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0295B1D1C2C6500A29D8B /* PublicPagesViewModel.swift */; };
 		B2D0295E1D1C305200A29D8B /* MyPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D0295D1D1C305200A29D8B /* MyPageTableViewCell.xib */; };
 		B2D029601D1C30CC00A29D8B /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0295F1D1C30CC00A29D8B /* MyPageTableViewCell.swift */; };
+		B2D029621D1C47C200A29D8B /* APIPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029611D1C47C200A29D8B /* APIPageService.swift */; };
+		B2D029641D1C4B9F00A29D8B /* FilteredPagesParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029631D1C4B9F00A29D8B /* FilteredPagesParams.swift */; };
 		B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */; };
 		B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D440DD1CB81466009782AF /* Filter.storyboard */; };
 		B2D441091CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
@@ -924,7 +925,6 @@
 		246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvitationCode.swift; path = Model/InvitationCode.swift; sourceTree = "<group>"; };
 		246C64841D1ABC3200BC0CEE /* APICreditsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICreditsService.swift; path = Networking/APICreditsService.swift; sourceTree = "<group>"; };
 		246DEA721CA40637009DF436 /* ConversationLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationController.swift; path = Controllers/ConversationLocationController.swift; sourceTree = "<group>"; };
-		2474E0061D1C15650085D9DD /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Pages.storyboard; path = Storyboards/Pages.storyboard; sourceTree = "<group>"; };
 		2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageViewController.swift; path = Controllers/CreatePageViewController.swift; sourceTree = "<group>"; };
 		2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalButton.swift; path = View/VerticalButton.swift; sourceTree = "<group>"; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
@@ -1622,6 +1622,8 @@
 		B2D0295B1D1C2C6500A29D8B /* PublicPagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicPagesViewModel.swift; path = ViewModel/PublicPagesViewModel.swift; sourceTree = "<group>"; };
 		B2D0295D1D1C305200A29D8B /* MyPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyPageTableViewCell.xib; path = Storyboards/MyPageTableViewCell.xib; sourceTree = "<group>"; };
 		B2D0295F1D1C30CC00A29D8B /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPageTableViewCell.swift; path = View/MyPageTableViewCell.swift; sourceTree = "<group>"; };
+		B2D029611D1C47C200A29D8B /* APIPageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPageService.swift; path = Networking/APIPageService.swift; sourceTree = "<group>"; };
+		B2D029631D1C4B9F00A29D8B /* FilteredPagesParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilteredPagesParams.swift; path = Networking/FilteredPagesParams.swift; sourceTree = "<group>"; };
 		B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ProgressHUD.swift"; path = "UIKitExtensions/UIViewController+ProgressHUD.swift"; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		B2D4410C1CB81632009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -3419,6 +3421,7 @@
 				AE1F3FDD1CEB323800C3432F /* ConversationMemberParams.swift */,
 				B271E5F01CF490A30038A02C /* SocialAccountLinkParams.swift */,
 				AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */,
+				B2D029631D1C4B9F00A29D8B /* FilteredPagesParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -4352,6 +4355,7 @@
 				24826B461C96A34900032FC9 /* APINotificationsService.swift */,
 				24826B561C96E3FC00032FC9 /* APIChatsService.swift */,
 				B22D907A1CE4DAAF00D3C387 /* APIPublicChatsService.swift */,
+				B2D029611D1C47C200A29D8B /* APIPageService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -5145,6 +5149,7 @@
 				248328FD1C842C550042B0DB /* CreateShoutTableHeaderView.swift in Sources */,
 				B2A849351C846B2A00176EB0 /* SeeAllCollectionViewCell.swift in Sources */,
 				B2B5D00F1C7F286E0068A6AF /* ShoutDetailBackgroundSwappableTableViewCell.swift in Sources */,
+				B2D029621D1C47C200A29D8B /* APIPageService.swift in Sources */,
 				B2E43C9C1D103D2C006C6AD2 /* CreditTransactionsTableViewController.swift in Sources */,
 				B2082D791C636422007EB2FB /* UITextField+Extensions.swift in Sources */,
 				B2B5D0281C7F690C0068A6AF /* ProfileCollectionInfoSupplementeryViewModel.swift in Sources */,
@@ -5719,6 +5724,7 @@
 				AE32C5E41D0564C5009A49C5 /* SocialAccountLinkParams.swift in Sources */,
 				AE32C5B81D055C33009A49C5 /* ConversationInterface.swift in Sources */,
 				AE32C5C81D055C33009A49C5 /* MiniProfile.swift in Sources */,
+				B2D029641D1C4B9F00A29D8B /* FilteredPagesParams.swift in Sources */,
 				AE32C5CB1D0564BF009A49C5 /* Params.swift in Sources */,
 				AE32C5B91D055C33009A49C5 /* MiniConversation.swift in Sources */,
 				AE32C59B1D055C33009A49C5 /* AutocompletionTerm.swift in Sources */,
