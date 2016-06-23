@@ -10,10 +10,6 @@ import UIKit
 
 extension UIImage {
     
-    static func navBarLogoImage() -> UIImage {
-        return UIImage(named: "logo_navbar")!
-    }
-    
     static func navBarLogoWhite() -> UIImage {
         return UIImage(named: "logo_navbar_white")!
     }
