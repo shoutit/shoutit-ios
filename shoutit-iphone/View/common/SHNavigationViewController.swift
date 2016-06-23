@@ -34,8 +34,8 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
-        self.navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        navigationBar.tintColor = UIColor.whiteColor()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

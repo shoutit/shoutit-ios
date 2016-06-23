@@ -12,15 +12,12 @@ final class LoginNavigationViewController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
+        delegate = self
+        navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
-    }
-    
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
-        return topViewController
+        return .LightContent
     }
 }
 

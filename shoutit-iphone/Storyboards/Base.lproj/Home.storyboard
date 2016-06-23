@@ -628,7 +628,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <rect key="frame" x="262" y="12" width="76" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headbarLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-VU-RTZ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_navbar_white" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-VU-RTZ">
                                     <rect key="frame" x="0.0" y="0.0" width="77" height="20"/>
                                 </imageView>
                             </subviews>
@@ -650,7 +650,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
     <resources>
         <image name="filterIcon" width="20" height="20"/>
         <image name="filterShoutList" width="19" height="21"/>
-        <image name="headbarLogoWhite" width="77" height="20"/>
+        <image name="logo_navbar_white" width="101" height="24"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="search" width="25" height="24"/>
         <image name="shoutListMessage" width="25" height="25"/>
