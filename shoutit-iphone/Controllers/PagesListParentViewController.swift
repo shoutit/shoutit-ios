@@ -58,6 +58,10 @@ class PagesListParentViewController: UIViewController, ContainerController {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
+    @IBAction func searchAction() {
+        flowDelegate?.showSearchInContext(.General)
+    }
+    
     func switchToPublicChats() {
         listChoiceSegmentedControl.selectedSegmentIndex = 1
         self.changeContentTo(self.publicPagesViewController)
@@ -73,7 +77,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
         listChoiceSegmentedControl
             .rx_value
             .asDriver()
-            .driveNext {[unowned self] (value) in
+            .driveNext { [unowned self] (value) in
                 if value == 0 {
                     self.changeContentTo(self.myPagesViewController)
                 }
@@ -82,5 +86,16 @@ class PagesListParentViewController: UIViewController, ContainerController {
                 }
             }
             .addDisposableTo(disposeBag)
+        
+        createPageButton
+            .rx_tap
+            .asDriver().driveNext { [weak self] in
+                self?.showCreatePageView()
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
+    private func showCreatePageView() {
+        notImplemented()
     }
 }

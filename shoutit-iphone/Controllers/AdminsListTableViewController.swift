@@ -1,25 +1,25 @@
 //
-//  PublicPagesTableViewController.swift
+//  AdminsListTableViewController.swift
 //  shoutit
 //
-//  Created by Łukasz Kasperek on 23.06.2016.
+//  Created by Łukasz Kasperek on 24.06.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
 import Foundation
 import RxSwift
-import RxCocoa
+import ShoutitKit
 
-class PublicPagesTableViewController: UITableViewController {
+final class AdminsListTableViewController: UITableViewController {
     
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
         let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
         return view
-    }()
+        }()
     
-    var viewModel: PublicPagesViewModel!
+    var viewModel: AdminsListViewModel!
     weak var flowDelegate: FlowController?
     private let cellConfigurator = ProfileCellConfigurator()
     
@@ -45,6 +45,7 @@ class PublicPagesTableViewController: UITableViewController {
         }
     }
     
+    // MARK: Setup
     private func registerReusables() {
         tableView.register(ProfileTableViewCell.self)
     }
@@ -127,12 +128,43 @@ class PublicPagesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
-        flowDelegate?.showPage(cellViewModel.profile)
+        showActionSheetWithAdminProfile(cellViewModel.profile)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.pager.fetchNextPage()
         }
+    }
+}
+
+private extension AdminsListTableViewController {
+    
+    func showActionSheetWithAdminProfile(profile: Profile) {
+        let showProfileActionString = NSLocalizedString("View Profile", comment: "Admins list action sheet option")
+        let removeAdminActionString = NSLocalizedString("Remove Admin", comment: "Admins list action sheet option")
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let showProfileAction = UIAlertAction(title: showProfileActionString, style: .Default) { [weak self] (_) in
+            self?.showProfile(profile)
+        }
+        let removeAdminAction = UIAlertAction(title: removeAdminActionString, style: .Default) { [weak self] (_) in
+            self?.removeAdmin(profile)
+        }
+        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
+        
+        actionSheet.addAction(showProfileAction)
+        actionSheet.addAction(removeAdminAction)
+        actionSheet.addAction(cancelAction)
+        
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showProfile(profile: Profile) {
+        flowDelegate?.showProfile(profile)
+    }
+    
+    func removeAdmin(profile: Profile) {
+        viewModel.removeAdmin(profile)
     }
 }

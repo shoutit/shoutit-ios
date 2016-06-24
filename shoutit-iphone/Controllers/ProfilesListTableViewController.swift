@@ -106,20 +106,22 @@ class ProfilesListTableViewController: UITableViewController {
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
-            cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
-                switch event {
-                case .Next(let (listening, successMessage, error)):
-                    let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
-                    cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
-                    if let message = successMessage {
-                        self.showSuccessMessage(message)
-                        self.viewModel.pager.reloadItemAtIndex(indexPath.row)
-                    } else if let error = error {
-                        self.showError(error)
+            cellModel?.toggleIsListening()
+                .observeOn(MainScheduler.instance)
+                .subscribe({[weak cell] (event) in
+                    switch event {
+                    case .Next(let (listening, successMessage, error)):
+                        let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+                        cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                        if let message = successMessage {
+                            self.showSuccessMessage(message)
+                            self.viewModel.pager.reloadItemAtIndex(indexPath.row)
+                        } else if let error = error {
+                            self.showError(error)
+                        }
+                    default:
+                        break
                     }
-                default:
-                    break
-                }
                 }).addDisposableTo(cell.reuseDisposeBag)
         }.addDisposableTo(cell.reuseDisposeBag)
         

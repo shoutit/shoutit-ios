@@ -380,7 +380,7 @@ private extension RootController {
         case .Home: flowController          = HomeFlowController(navigationController: navController)
         case .Discover: flowController      = DiscoverFlowController(navigationController: navController)
         case .CreateShout: flowController   = ShoutFlowController(navigationController: navController)
-        case .Chats: flowController = ChatsFlowController(navigationController: navController)
+        case .Chats: flowController         = ChatsFlowController(navigationController: navController)
         case .Profile: flowController       = ProfileFlowController(navigationController: navController)
         case .Settings: flowController      = SettingsFlowController(navigationController: navController)
         case .InviteFriends: flowController = InviteFriendsFlowController(navigationController: navController)
@@ -388,8 +388,9 @@ private extension RootController {
         case .Orders: flowController        = OrdersFlowController(navigationController: navController)
         case .Browse: flowController        = BrowseFlowController(navigationController: navController)
         case .Credits: flowController       = CreditsFlowController(navigationController: navController)
+        case .Pages: flowController         = PagesFlowController(navigationController: navController)
+        case .Admins: flowController        = AdminsFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
-            
         }
         
         return flowController
