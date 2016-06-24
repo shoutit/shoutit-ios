@@ -607,6 +607,7 @@
 		B2C8C2661CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */; };
 		B2C8C2681CF89CCA00E80C6A /* CreateShoutSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */; };
 		B2C8C26B1CF89D4800E80C6A /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8C26A1CF89D4800E80C6A /* Borderable.swift */; };
+		B2CA5C431D1D7BD1009E164E /* AdminsListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA5C421D1D7BD1009E164E /* AdminsListParentViewController.swift */; };
 		B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D029471D1C1FF800A29D8B /* Pages.storyboard */; };
 		B2D029501D1C22EE00A29D8B /* PagesListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0294F1D1C22EE00A29D8B /* PagesListParentViewController.swift */; };
 		B2D029541D1C2BFD00A29D8B /* MyPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D029531D1C2BFD00A29D8B /* MyPagesTableViewController.swift */; };
@@ -1614,6 +1615,7 @@
 		B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSocialSharingSectionViewModel.swift; path = ViewModel/CreateShoutSocialSharingSectionViewModel.swift; sourceTree = "<group>"; };
 		B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutSelectableCell.swift; path = View/CreateShoutSelectableCell.swift; sourceTree = "<group>"; };
 		B2C8C26A1CF89D4800E80C6A /* Borderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Borderable.swift; path = Util/Borderable.swift; sourceTree = "<group>"; };
+		B2CA5C421D1D7BD1009E164E /* AdminsListParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminsListParentViewController.swift; path = Controllers/AdminsListParentViewController.swift; sourceTree = "<group>"; };
 		B2D029461D1C1FF800A29D8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pages.storyboard; sourceTree = "<group>"; };
 		B2D029491D1C1FFC00A29D8B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Pages.strings; sourceTree = "<group>"; };
 		B2D0294B1D1C200100A29D8B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Pages.strings; sourceTree = "<group>"; };
@@ -2517,6 +2519,7 @@
 				B22D90821CE4E84500D3C387 /* CreatePublicChat */,
 				AE1F29711CE9DDE900D1AA76 /* ConversationInfo */,
 				2463B6921C9828FB00BFE6BA /* Conversation */,
+				B2CA5C411D1D7B0F009E164E /* AdminsList */,
 				B2D0294E1D1C229900A29D8B /* PagesList */,
 				24826B4C1C96DEB900032FC9 /* ConversationList */,
 				24826B3E1C969A0200032FC9 /* Notifications */,
@@ -4405,6 +4408,22 @@
 			name = UIViewExtensions;
 			sourceTree = "<group>";
 		};
+		B2CA5C411D1D7B0F009E164E /* AdminsList */ = {
+			isa = PBXGroup;
+			children = (
+				B2CA5C421D1D7BD1009E164E /* AdminsListParentViewController.swift */,
+				B2CA5C441D1D7BD9009E164E /* Admins */,
+			);
+			name = AdminsList;
+			sourceTree = "<group>";
+		};
+		B2CA5C441D1D7BD9009E164E /* Admins */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Admins;
+			sourceTree = "<group>";
+		};
 		B2D0294E1D1C229900A29D8B /* PagesList */ = {
 			isa = PBXGroup;
 			children = (
@@ -5353,6 +5372,7 @@
 				AE83518B1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
 				AE8351871C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
 				B2E107191C9700B200F7F4EF /* TagProfileCollectionViewModel.swift in Sources */,
+				B2CA5C431D1D7BD1009E164E /* AdminsListParentViewController.swift in Sources */,
 				B2F71A331D0EF643002C1D74 /* PTPusherEventDispatcher.m in Sources */,
 				24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */,
 				B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */,

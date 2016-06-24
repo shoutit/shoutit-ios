@@ -109,7 +109,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="N5t-oY-IF2">
-                        <barButtonItem key="rightBarButtonItem" image="search" id="75z-eG-e0k"/>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="75z-eG-e0k">
+                            <connections>
+                                <action selector="searchAction" destination="Yj1-fd-aTN" id="hjd-ez-Z2x"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="QU3-Z1-wBD" id="t8r-mV-eH1"/>

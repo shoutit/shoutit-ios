@@ -58,6 +58,10 @@ class PagesListParentViewController: UIViewController, ContainerController {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
+    @IBAction func searchAction() {
+        flowDelegate?.showSearchInContext(.General)
+    }
+    
     func switchToPublicChats() {
         listChoiceSegmentedControl.selectedSegmentIndex = 1
         self.changeContentTo(self.publicPagesViewController)
