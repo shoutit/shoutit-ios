@@ -389,8 +389,8 @@ private extension RootController {
         case .Browse: flowController        = BrowseFlowController(navigationController: navController)
         case .Credits: flowController       = CreditsFlowController(navigationController: navController)
         case .Pages: flowController         = PagesFlowController(navigationController: navController)
+        case .Admins: flowController        = AdminsFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
-            
         }
         
         return flowController

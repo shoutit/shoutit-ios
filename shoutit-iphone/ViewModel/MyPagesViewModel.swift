@@ -12,7 +12,7 @@ import ShoutitKit
 
 class MyPagesViewModel {
     
-    var pager: NumberedPagePager<MyPagesCellViewModel, Profile>
+    let pager: NumberedPagePager<MyPagesCellViewModel, Profile>
     
     init() {
         pager = NumberedPagePager(itemToCellViewModelBlock: {MyPagesCellViewModel(profile: $0)},

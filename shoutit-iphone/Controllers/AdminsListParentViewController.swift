@@ -7,3 +7,72 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import ShoutitKit
+
+final class AdminsListParentViewController: UIViewController {
+    
+    @IBOutlet weak var addAdminsButton: UIButton!
+    @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
+    
+    var viewModel: AdminsListViewModel!
+    weak var flowDelegate: FlowController?
+    
+    private let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        precondition(viewModel != nil)
+        setupViews()
+        setupRX()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupViews() {
+        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
+        addAdminsButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
+    }
+    
+    private func setupRX() {
+        
+        addAdminsButton
+            .rx_tap
+            .asDriver().driveNext{ [weak self] in
+                self?.addAdmin()
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel
+            .errorSubject
+            .observeOn(MainScheduler.instance).subscribeNext { [weak self] (error) in
+                self?.showError(error)
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if let controller = segue.destinationViewController as? AdminsListTableViewController {
+            controller.viewModel = viewModel
+            controller.flowDelegate = flowDelegate
+        }
+    }
+}
+
+private extension AdminsListParentViewController {
+    
+    func addAdmin() {
+        guard case .Some(.Logged(let page)) = Account.sharedInstance.userModel else {
+            assertionFailure()
+            return
+        }
+        let eventHandler = SelectProfileProfilesListEventHandler { [weak self] (profile) in
+            self?.viewModel.addAdmin(profile)
+        }
+        flowDelegate?.showListenersForProfile(Profile.profileWithUser(page), withEventHandler: eventHandler)
+    }
+}

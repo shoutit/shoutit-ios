@@ -34,6 +34,7 @@ struct Wireframe {
         case SeeAllShouts = "SeeAllShouts"
         case Promote = "Promote"
         case Pages = "Pages"
+        case Admins = "Admins"
     }
     
     // General
@@ -332,5 +333,15 @@ struct Wireframe {
 
     static func createPageViewController() -> CreatePageViewController {
         return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
+    }
+    
+    // MARK: - Admins storyboard
+    
+    static func adminsListParentViewController() -> AdminsListParentViewController {
+        return storyboard(.Admins).instantiateViewControllerWithIdentifier("AdminsListParentViewController") as! AdminsListParentViewController
+    }
+    
+    static func adminsListTableViewController() -> AdminsListTableViewController {
+        return storyboard(.Admins).instantiateViewControllerWithIdentifier("AdminsListTableViewController") as! AdminsListTableViewController
     }
 }
