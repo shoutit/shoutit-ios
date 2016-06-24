@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class PublicPagesTableViewController: UITableViewController {
     
     var viewModel: PublicPagesViewModel!
     weak var flowDelegate: FlowController?
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

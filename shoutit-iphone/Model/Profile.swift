@@ -25,6 +25,8 @@ public struct Profile {
     public let coverPath: String?
     public let isListening: Bool?
     public let listenersCount: Int
+    public let location: Address?
+    public let stats: ProfileStats?
     
     public static func profileWithUser(user: DetailedProfile) -> Profile {
         return Profile(id: user.id,
@@ -39,7 +41,10 @@ public struct Profile {
                        imagePath: user.imagePath,
                        coverPath: user.coverPath,
                        isListening: user.isListening,
-                       listenersCount: user.listenersCount)
+                       listenersCount: user.listenersCount,
+                       location: user.location,
+                       stats:  user.stats
+                )
     }
 }
 
@@ -73,6 +78,8 @@ extension Profile: Decodable {
             <*> j <|? "is_listening"
         return c
             <*> j <| "listeners_count"
+            <*> j <|? "location"
+            <*> j <|? "stats"
     }
 }
 
@@ -93,6 +100,8 @@ extension Profile: Encodable {
             "cover" : self.coverPath.encode(),
             "is_listening" : self.isListening.encode(),
             "listeners_count" : self.listenersCount.encode(),
+            "location" : self.location.encode(),
+            "stats" : self.stats.encode()
             ])
     }
 }

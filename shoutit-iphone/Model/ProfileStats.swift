@@ -13,6 +13,7 @@ import Ogra
 public struct ProfileStats {
     public let unreadConversationCount: Int
     public let unreadNotificationsCount: Int
+    public let totalUnreadCount: Int?
     public let credit: Int?
 }
 
@@ -22,6 +23,7 @@ extension ProfileStats: Decodable {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
+            <*> j <|? "total_unread_count"
             <*> j <|? "credit"
     }
 }
@@ -31,6 +33,7 @@ extension ProfileStats: Encodable {
         return JSON.Object([
             "unread_conversations_count" : self.unreadConversationCount.encode(),
             "unread_notifications_count" : self.unreadNotificationsCount.encode(),
+            "total_unread_count" : self.totalUnreadCount.encode(),
             "credit" : self.credit.encode()])
     }
 }

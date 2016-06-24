@@ -73,7 +73,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
         listChoiceSegmentedControl
             .rx_value
             .asDriver()
-            .driveNext {[unowned self] (value) in
+            .driveNext { [unowned self] (value) in
                 if value == 0 {
                     self.changeContentTo(self.myPagesViewController)
                 }
@@ -82,5 +82,16 @@ class PagesListParentViewController: UIViewController, ContainerController {
                 }
             }
             .addDisposableTo(disposeBag)
+        
+        createPageButton
+            .rx_tap
+            .asDriver().driveNext { [weak self] in
+                self?.showCreatePageView()
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
+    private func showCreatePageView() {
+        notImplemented()
     }
 }
