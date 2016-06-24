@@ -161,13 +161,16 @@ extension EditProfileTableViewController {
                 .rx_text
                 .asDriver()
                 .driveNext{[unowned self] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Date(let value, let placeholder, _):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
-            cell.textField.text = value
+            
+            if let value = value {
+                cell.textField.text = DateFormatters.sharedInstance.stringFromDate(value)
+            }
             
             let picker =  UIDatePicker()
             picker.datePickerMode = .Date
@@ -180,7 +183,7 @@ extension EditProfileTableViewController {
                 .rx_text
                 .asDriver()
                 .driveNext{[unowned self] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Gender(let value, let placeholder, _):
@@ -198,7 +201,7 @@ extension EditProfileTableViewController {
                     
                     self?.genderValues().each({ (genderString) in
                     controller.addAction(UIAlertAction(title: genderString.capitalizedString, style: .Default, handler: { (alert) in
-                        self?.viewModel.mutateModelForIndex(indexPath.row, withString: genderString)
+                        self?.viewModel.mutateModelForIndex(indexPath.row, object: genderString)
                         self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }))
                     })
@@ -216,7 +219,7 @@ extension EditProfileTableViewController {
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, withString: text)
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                     textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
@@ -257,9 +260,9 @@ extension EditProfileTableViewController {
     }
     
     func birthDateSelected(sender: UIDatePicker) {
-        let result = DateFormatters.sharedInstance.apiStringFromDate(sender.date)
+        let result = DateFormatters.sharedInstance.stringFromDate(sender.date)
         
-        let newViewModel = EditProfileCellViewModel(birthday: result)
+        let newViewModel = EditProfileCellViewModel(birthday: sender.date)
         
         self.viewModel.cells[7] = newViewModel
         

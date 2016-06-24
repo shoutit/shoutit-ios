@@ -11,7 +11,7 @@ import ShoutitKit
 
 enum EditProfileCellViewModel {
     
-    enum Identity {
+    enum Identity  : Int {
         case Firstname
         case Lastname
         case Name
@@ -27,7 +27,7 @@ enum EditProfileCellViewModel {
     case BasicText(value: String, placeholder: String, identity: Identity)
     case RichText(value: String, placeholder: String, identity: Identity)
     case Location(value: Address, placeholder: String, identity: Identity)
-    case Date(value: String?, placeholder: String, identity: Identity)
+    case Date(value: NSDate?, placeholder: String, identity: Identity)
     case Gender(value: String?, placeholder: String, identity: Identity)
     
     var reuseIdentifier: String {
@@ -89,7 +89,7 @@ enum EditProfileCellViewModel {
         self = .BasicText(value: mobile, placeholder: NSLocalizedString("Mobile", comment: "Edit profile placeholder text"), identity: .Mobile)
     }
     
-    init(birthday: String?) {
+    init(birthday: NSDate?) {
         self = .Date(value: birthday, placeholder: NSLocalizedString("Birthday", comment: "Edit profile placeholder text"), identity: .Birthday)
     }
     

@@ -27,6 +27,7 @@ public final class DateFormatters {
     
     public func setAPIFormat() {
         apiFormatter.dateFormat = "yyyy-MM-dd"
+        apiFormatter.locale = NSLocale(localeIdentifier: "en_EN")
     }
     
     public func stringFromDateEpoch(epoch: Int) -> String {
@@ -69,5 +70,15 @@ public final class DateFormatters {
         setAPIFormat()
         
         return formatter.dateFromString(string)
+    }
+    
+    public func dateFromApiString(string: String?) -> NSDate? {
+        guard let string = string else {
+            return nil
+        }
+        
+        setAPIFormat()
+        
+        return apiFormatter.dateFromString(string)
     }
 }
