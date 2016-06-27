@@ -24,6 +24,7 @@ final class Account {
     
     // public
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
+    let loginStateSubject = BehaviorSubject<LoginState?>(value: nil)
     let loginSubject: PublishSubject<AuthData?> = PublishSubject() // triggered on login
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
     lazy var twilioManager: Twilio = {[unowned self] in Twilio(account: self) }()
@@ -50,6 +51,7 @@ final class Account {
     
     private(set) var loginState: LoginState? {
         didSet {
+            loginStateSubject.onNext(loginState)
             switch loginState {
             case .Some(.Logged(let userObject)):
                 userSubject.onNext(userObject)

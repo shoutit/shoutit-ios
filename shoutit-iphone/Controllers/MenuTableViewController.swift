@@ -46,14 +46,13 @@ final class MenuTableViewController: UITableViewController, Navigation {
         tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
         tableView.layer.borderWidth = 1
         
-        Account.sharedInstance.userSubject
-            .subscribeNext { (user) in
-                self.headerView?.fillWith(user)
+        Account.sharedInstance
+            .loginStateSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext { (loginState) in
+                self.headerView?.fillWith(loginState)
             }
             .addDisposableTo(disposeBag)
-        
-        let user = Account.sharedInstance.user
-        headerView?.fillWith(user)
         
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String, build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
             
