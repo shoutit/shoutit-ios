@@ -27,7 +27,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     }
     
     private func changeEmail() {
-        guard case .Logged(let user)? = Account.sharedInstance.userModel else { preconditionFailure() }
+        guard case .Logged(let user)? = Account.sharedInstance.loginState else { preconditionFailure() }
         var newEmail: String?
         for case .TextField(let value, .NewEmail) in cellViewModels {
             newEmail = value

@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         MixpanelHelper.handleUserDidOpenApp()
-        if case .Logged(let user)? = Account.sharedInstance.userModel {
+        if case .Logged(let user)? = Account.sharedInstance.loginState {
             Account.sharedInstance.pusherManager.tryToConnect()
             Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }

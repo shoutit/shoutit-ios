@@ -66,7 +66,7 @@ final class AdminsListParentViewController: UIViewController {
 private extension AdminsListParentViewController {
     
     func addAdmin() {
-        guard case .Some(.Logged(let page)) = Account.sharedInstance.userModel else {
+        guard case .Some(.Logged(let page)) = Account.sharedInstance.loginState else {
             assertionFailure()
             return
         }
