@@ -14,18 +14,22 @@ class PromotionLabelView: UIView {
     @IBOutlet weak var sentenceLabel : UILabel?
     @IBOutlet weak var topLabel : UILabel?
     @IBOutlet weak var topLabelBackground : UIView?
-    @IBOutlet weak var daysLeftLabel: UIView?
+    @IBOutlet weak var daysLeftLabel: UILabel?
     @IBOutlet weak var backgroundView : UIView?
     
     class func instanceFromNib() -> PromotionLabelView {
         return UINib(nibName: "PromotionLabelView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PromotionLabelView
     }
 
-    func bindWithPromotionLabel(label: PromotionLabel) {
-        self.sentenceLabel?.text = label.description
-        self.topLabel?.text = label.name
-        self.topLabelBackground?.backgroundColor = label.color()
-        self.backgroundView?.backgroundColor = label.backgroundUIColor()
+    func bindWithPromotionLabel(promo: Promotion) {
+        self.sentenceLabel?.text = promo.label?.description
+        self.topLabel?.text = promo.label?.name
+        
+        
+        
+        self.topLabelBackground?.backgroundColor = promo.label?.color()
+        self.backgroundView?.backgroundColor = promo.label?.backgroundUIColor()
     }
+
 }
 

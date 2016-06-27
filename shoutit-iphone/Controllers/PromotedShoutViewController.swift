@@ -56,7 +56,22 @@ private extension PromotedShoutViewController {
     
     private func hydrateViewsWithData() {
         shoutTitleLabel.text = viewModel.shout.title
-        guard let promotionLabel = viewModel.shout.promotion?.label else { return }
-        promotionLabelView.bindWithPromotionLabel(promotionLabel)
+        guard let promotionLabel = viewModel.shout.promotion else { return }
+        bindWithPromotionLabel(promotionLabel)
     }
+    
+    func bindWithPromotionLabel(promo: Promotion) {
+        promotionLabelView.sentenceLabel?.text = promo.label?.description
+        promotionLabelView.topLabel?.text = promo.label?.name
+        
+        if let days = promo.days {
+            promotionLabelView.daysLeftLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ days", comment: "days count label on promotion shout"), NSNumber(integer: days))
+            promotionLabelView.daysLeftLabel?.hidden = false
+        }
+        
+        promotionLabelView.topLabelBackground?.backgroundColor = promo.label?.color()
+        promotionLabelView.backgroundView?.backgroundColor = promo.label?.backgroundUIColor()
+    }
+    
+    
 }
