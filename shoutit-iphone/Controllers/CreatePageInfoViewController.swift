@@ -12,6 +12,13 @@ import RxSwift
 
 class CreatePageInfoViewController: UITableViewController {
 
+    @IBOutlet var nameTextField : UITextField!
+    
+    @IBOutlet var fullNameTextField : UITextField!
+    @IBOutlet var emailTextField : UITextField!
+    @IBOutlet var passwordTextField : UITextField!
+    
+    
     var preselectedCategory : PageCategory?
     
     weak var flowDelegate: FlowController?
@@ -19,7 +26,13 @@ class CreatePageInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        applyBackButton()
+        
         self.navigationItem.title = preselectedCategory?.name ?? NSLocalizedString("Create Page", comment: "create page screen title")
+    }
+    
+    @IBAction func createPageAction() {
+        
     }
     
 }

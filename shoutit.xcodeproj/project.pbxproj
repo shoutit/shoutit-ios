@@ -258,6 +258,7 @@
 		AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351921C5F7DFA0055C71F /* ProfileFlowController.swift */; };
 		AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */; };
 		AE8635521CCDF7A00076293D /* WatermarkGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */; };
+		AE8DF0551D2183B1004FEE22 /* CreatePageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DF0541D2183B1004FEE22 /* CreatePageParams.swift */; };
 		AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */; };
 		AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599751C609DA100015AA3 /* MenuTableViewController.swift */; };
 		AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */; };
@@ -1222,6 +1223,7 @@
 		AE8351921C5F7DFA0055C71F /* ProfileFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileFlowController.swift; path = FlowControl/ProfileFlowController.swift; sourceTree = "<group>"; };
 		AE8351961C5F7E0F0055C71F /* ShoutFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutFlowController.swift; path = FlowControl/ShoutFlowController.swift; sourceTree = "<group>"; };
 		AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatermarkGenerator.swift; path = Other/WatermarkGenerator.swift; sourceTree = "<group>"; };
+		AE8DF0541D2183B1004FEE22 /* CreatePageParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageParams.swift; path = Networking/CreatePageParams.swift; sourceTree = "<group>"; };
 		AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesGeocoder.swift; path = Util/PlacesGeocoder.swift; sourceTree = "<group>"; };
 		AEA599751C609DA100015AA3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = Controllers/MenuTableViewController.swift; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
@@ -3478,6 +3480,7 @@
 				AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */,
 				B2D029631D1C4B9F00A29D8B /* FilteredPagesParams.swift */,
 				B2CA5C591D1D9DC1009E164E /* ProfileIdParams.swift */,
+				AE8DF0541D2183B1004FEE22 /* CreatePageParams.swift */,
 			);
 			name = Params;
 			sourceTree = "<group>";
@@ -5616,6 +5619,7 @@
 				B27DF77F1C58DC1A006909D4 /* IntroViewController.swift in Sources */,
 				24826B511C96DFAA00032FC9 /* ConversationTableViewCell.swift in Sources */,
 				B2B5D0301C7F87400068A6AF /* ShoutDetailTableViewDataSource.swift in Sources */,
+				AE8DF0551D2183B1004FEE22 /* CreatePageParams.swift in Sources */,
 				AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */,
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
 				249324801C7EFF0700A1AB6A /* DiscoverShoutsCollectionViewController.swift in Sources */,
