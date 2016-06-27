@@ -26,12 +26,16 @@ class PromotionLabelsViews: UIView {
     
     func presentPromotionLabels(labels: [PromotionLabel]) {
         
+        if Platform.isRTL {
+            self.pageControl?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        } else {
+            self.pageControl?.transform = CGAffineTransformIdentity
+        }
+        
         scroll?.subviews.each { (view) in
             view.removeFromSuperview()
         }
 
-        
-        
         maxSlides = labels.count
         
         if labels.count > 0 {
@@ -44,7 +48,6 @@ class PromotionLabelsViews: UIView {
             stopAnimating()
         }
         
-        
         var lastView : UIView?
         
         labels.each { (label) in
@@ -55,9 +58,9 @@ class PromotionLabelsViews: UIView {
             self.scroll?.addSubview(view)
             
             if lastView == nil {
-                NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: self.scroll, attribute: .Leading, multiplier: 1.0, constant: 50).active = true
+                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .Trailing : .Leading), relatedBy: .Equal, toItem: self.scroll, attribute: (Platform.isRTL ? .Trailing : .Leading), multiplier: 1.0, constant: Platform.isRTL ? -50 : 50).active = true
             } else {
-                NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: lastView, attribute: .Trailing, multiplier: 1.0, constant: 100).active = true
+                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .Trailing : .Leading), relatedBy: .Equal, toItem: lastView, attribute: (Platform.isRTL ? .Leading : .Trailing), multiplier: 1.0, constant: Platform.isRTL ? -100 : 100).active = true
             }
             
             NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: self.scroll, attribute: .Height, multiplier: 1.0, constant: 0).active = true
@@ -68,6 +71,13 @@ class PromotionLabelsViews: UIView {
         }
         
         self.setNeedsDisplay()
+        
+        if Platform.isRTL {
+            currentSlide = labels.count - 1
+            self.scroll?.contentOffset = CGPoint(x: CGFloat((self.scroll?.frame.width ?? 0) * CGFloat(labels.count - 1)), y: CGFloat(0.0))
+        } else {
+            currentSlide = 0
+        }
         
         self.scroll?.contentSize = CGSize(width: CGFloat((self.scroll?.frame.width ?? 0) * CGFloat(labels.count)), height: self.scroll?.frame.height ?? 0)
         
@@ -100,14 +110,31 @@ class PromotionLabelsViews: UIView {
         let offset : CGFloat = (self.scroll?.frame.width ?? 0) * CGFloat(currentSlide)
         self.scroll?.setContentOffset(CGPointMake(offset, 0), animated: true)
     }
+    
+    func skipToPreviousSlide() {
+        currentSlide = currentSlide - 1
+        
+        if currentSlide < 0 {
+            currentSlide = maxSlides != nil ? maxSlides! - 1 : 0
+        }
+        
+        let offset : CGFloat = (self.scroll?.frame.width ?? 0) * CGFloat(currentSlide)
+        self.scroll?.setContentOffset(CGPointMake(offset, 0), animated: true)
+    }
 }
 
 extension PromotionLabelsViews : UIScrollViewDelegate {
     func startAnimating() {
         stopAnimating()
         
+        
         self.scroll?.delegate = self
-        timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
+        
+        if Platform.isRTL {
+            timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToPreviousSlide), userInfo: nil, repeats: true)
+        } else {
+            timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
+        }
     }
     
     func stopAnimating() {

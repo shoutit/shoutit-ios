@@ -59,7 +59,6 @@ extension ShoutCell where Self : UICollectionViewCell {
         
         self.shoutType?.text = shout.type()?.title()
  
- 
         guard let promotion = shout.promotion else {
             hidePromotion()
             setDefaultBackground()

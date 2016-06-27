@@ -40,7 +40,7 @@ final class EditProfileTableViewModel {
                  EditProfileCellViewModel(location: user.location),
                  EditProfileCellViewModel(website: user.website ?? ""),
                  EditProfileCellViewModel(mobile: user.mobile ?? ""),
-                 EditProfileCellViewModel(birthday: user.birthday),
+                 EditProfileCellViewModel(birthday: DateFormatters.sharedInstance.dateFromApiString(user.birthday)),
                  EditProfileCellViewModel(gender: ((user.gender != nil) ? (user.gender!.rawValue) : NSLocalizedString("Not specified", comment: "")))
             
         ]
@@ -48,7 +48,17 @@ final class EditProfileTableViewModel {
     
     // MARK: - Mutation
     
-    func mutateModelForIndex(index: Int, withString string: String) {
+    func mutateModelForIndex(index: Int, object: AnyObject) {
+        
+        guard let string = object as? String else {
+            
+            if let date = object as? NSDate {
+                mutateBirthdayWithDate(date)
+            }
+            
+            return
+        }
+        
         let currentModel = cells[index]
         switch currentModel.identity {
         case .Firstname:
@@ -65,13 +75,15 @@ final class EditProfileTableViewModel {
             cells[index] = EditProfileCellViewModel(website: string)
         case .Mobile:
             cells[index] = EditProfileCellViewModel(mobile: string)
-        case .Birthday:
-            cells[index] = EditProfileCellViewModel(birthday: string)
         case .Gender:
             cells[index] = EditProfileCellViewModel(gender: string)
-        case .Location:
+        default:
             break
         }
+    }
+    
+    func mutateBirthdayWithDate(date: NSDate?) {
+        cells[9] = EditProfileCellViewModel(birthday: date)
     }
     
     // MARK: Actions
@@ -165,7 +177,9 @@ final class EditProfileTableViewModel {
             case .BasicText(let value, _, .Mobile):
                 mobile = value
             case .Date(let value, _, .Birthday):
-                birthday = value
+                if let value = value {
+                    birthday = DateFormatters.sharedInstance.apiStringFromDate(value)
+                }
             case .Gender(let value, _, .Gender):
                 if value != nil {
                     gender = Gender(rawValue: value!)
