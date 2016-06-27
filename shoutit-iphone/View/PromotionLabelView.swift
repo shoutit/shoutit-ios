@@ -21,14 +21,11 @@ class PromotionLabelView: UIView {
         return UINib(nibName: "PromotionLabelView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PromotionLabelView
     }
 
-    func bindWithPromotionLabel(promo: Promotion) {
-        self.sentenceLabel?.text = promo.label?.description
-        self.topLabel?.text = promo.label?.name
-        
-        
-        
-        self.topLabelBackground?.backgroundColor = promo.label?.color()
-        self.backgroundView?.backgroundColor = promo.label?.backgroundUIColor()
+    func bindWithPromotionLabel(label: PromotionLabel) {
+        self.sentenceLabel?.text = label.description
+        self.topLabel?.text = label.name
+        self.topLabelBackground?.backgroundColor = label.color()
+        self.backgroundView?.backgroundColor = label.backgroundUIColor()
     }
 
 }
