@@ -30,6 +30,7 @@ enum NavigationItem : String {
     case CreditsTransations = "credit_transaction"
     case Pages = "pages"
     case Admins = "admins"
+    case SwitchFromPageToUser = "switch_to_user"
     
     func title() -> String {
         switch self {
@@ -45,6 +46,11 @@ enum NavigationItem : String {
         case .InviteFriends: return NSLocalizedString("Invite Friends",comment: "")
         case .Pages: return NSLocalizedString("Pages",comment: "Menu item")
         case .Admins: return NSLocalizedString("Admins",comment: "Menu item")
+        case .SwitchFromPageToUser:
+            guard case .Some(.Page(let user, _)) = Account.sharedInstance.loginState else {
+                fallthrough
+            }
+            return String.localizedStringWithFormat(NSLocalizedString("Use Shoutit as %@", comment: ""), user.name)
         default: return NSLocalizedString("Unsupported Title",comment: "")
         }
     }

@@ -74,7 +74,7 @@ final class PusherClient : NSObject {
         
         var userLoggedIn = false
         
-        if case .Logged(_)? = account.userModel {
+        if case .Logged(_)? = account.loginState {
             userLoggedIn = true
         }
         
@@ -133,7 +133,7 @@ final class PusherClient : NSObject {
             }
             
             if event.eventType() == .ProfileChange {
-                switch self.account.userModel {
+                switch self.account.loginState {
                 case .Some(.Logged):
                     if let profile : DetailedProfile = event.object() {
                         self.account.updateUserWithModel(profile)

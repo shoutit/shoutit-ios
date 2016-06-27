@@ -13,16 +13,10 @@ import KeychainAccess
 
 final class Account {
     
-    enum UserModel {
+    enum LoginState {
         case Logged(user: DetailedProfile)
+        case Page(user: DetailedProfile, page: Profile)
         case Guest(user: GuestUser)
-        
-        var user: User {
-            switch self {
-            case .Logged(let user): return user
-            case .Guest(let user): return user
-            }
-        }
     }
     
     // singleton
@@ -52,13 +46,11 @@ final class Account {
     }
     var invitationCode: String?
     
-    private(set) var authData: AuthData? {
-        didSet { self.loginSubject.onNext(authData) }
-    }
+    private(set) var authData: AuthData?
     
-    private(set) var userModel: UserModel? {
+    private(set) var loginState: LoginState? {
         didSet {
-            switch userModel {
+            switch loginState {
             case .Some(.Logged(let userObject)):
                 userSubject.onNext(userObject)
                 statsSubject.onNext(userObject.stats)
@@ -80,8 +72,9 @@ final class Account {
     }
     
     var user: User? {
-        switch userModel {
+        switch loginState {
         case .Some(.Logged(let userObject)): return userObject
+        case .Some(.Page(let userObject, _)): return userObject
         case .Some(.Guest(let userObject)): return userObject
         default: return nil
         }
@@ -101,9 +94,9 @@ final class Account {
     private init() {
         
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
-            userModel = .Guest(user: guest)
+            loginState = .Guest(user: guest)
         } else if let loggedUser: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
-            userModel = .Logged(user: loggedUser)
+            loginState = .Logged(user: loggedUser)
         }
         
         guard let user = user else { return }
@@ -111,17 +104,10 @@ final class Account {
         guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
         self.authData = authData
-        
-        APIManager.setAuthToken(authData.apiToken)
-    
-        if let detailed = user as? DetailedProfile, stats = detailed.stats {
-                updateApplicationBadgeNumberWithStats(stats)
-        } else {
-            updateApplicationBadgeNumberWithStats(nil)
-        }
-    
+        loginSubject.onNext(authData)
+        APIManager.setAuthToken(authData.apiToken, pageId: nil)
+        updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
         configureTwilioAndPusherServices()
-        
         userSubject.onNext(user)
     }
     
@@ -133,17 +119,36 @@ final class Account {
         
         // auth
         self.authData = authData
-        
-        APIManager.setAuthToken(authData.apiToken)
+        loginSubject.onNext(authData)
+        APIManager.setAuthToken(authData.apiToken, pageId: nil)
         updateUserWithModel(user)
         configureTwilioAndPusherServices()
     }
     
+    func switchToPage(page: Profile) {
+        guard case .Some(.Logged(let user)) = loginState, let authData = authData where user.type == .User else {
+            fatalError("User must be logged in to switch to page")
+        }
+        precondition(page.type == .Page)
+        APIManager.setAuthToken(authData.apiToken, pageId: page.id)
+        loginSubject.onNext(authData)
+        loginState = .Page(user: user, page: page)
+    }
+    
+    func switchToUser() {
+        guard case .Some(.Page(let user , _)) = loginState, let authData = authData else {
+            fatalError("User must use app as page to switch back to user")
+        }
+        APIManager.setAuthToken(authData.apiToken, pageId: nil)
+        loginSubject.onNext(authData)
+        loginState = .Logged(user: user)
+    }
+    
     func updateUserWithModel<T: User>(user: T) {
         if let user = user as? DetailedProfile {
-            userModel = .Logged(user: user)
+            loginState = .Logged(user: user)
         } else if let user = user as? GuestUser {
-            userModel = .Guest(user: user)
+            loginState = .Guest(user: user)
         }
     }
     
@@ -155,10 +160,11 @@ final class Account {
     }
     
     func clearUserData() throws {
-        try self.removeFilesFromUserDirecotry()
-        try self.keychain.remove(self.authDataKey)
-        self.userModel = nil
-        self.authData = nil
+        try removeFilesFromUserDirecotry()
+        try keychain.remove(self.authDataKey)
+        loginState = nil
+        authData = nil
+        loginSubject.onNext(nil)
         APIManager.eraseAuthToken()
         pusherManager.disconnect()
         twilioManager.disconnect()
@@ -176,13 +182,13 @@ extension Account {
     }
     
     func fetchUserProfile() {
-        guard case .Logged(let user)? = userModel where isUserLoggedIn else { return }
+        guard case .Logged(let user)? = loginState where isUserLoggedIn else { return }
         
         let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
         observable.subscribe{ (event) in
             switch event {
             case .Next(let profile):
-                self.userModel = .Logged(user: profile)
+                self.loginState = .Logged(user: profile)
             case .Error(let error): debugPrint(error)
             default: break
             }
@@ -190,8 +196,8 @@ extension Account {
     }
     
     func updateStats(stats: ProfileStats) {
-        guard case .Logged(let user)? = userModel else { return }
-        self.userModel = .Logged(user: user.updatedProfileWithStats(stats))
+        guard case .Logged(let user)? = loginState else { return }
+        self.loginState = .Logged(user: user.updatedProfileWithStats(stats))
         self.statsSubject.onNext(stats)
     }
 }
@@ -204,7 +210,7 @@ private extension Account {
     
     private func configureTwilioAndPusherServices() {
         
-        switch userModel {
+        switch loginState {
         case .Some(.Logged(_)):
             guard let authData = authData else { assertionFailure(); return; }
             pusherManager.setAuthorizationToken(authData.apiToken)
@@ -231,7 +237,7 @@ private extension Account {
         
         let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
         
-        if case .Guest(let guest)? = userModel {
+        if case .Guest(let guest)? = loginState {
             let observable: Observable<GuestUser> = APIProfileService.updateAPNsWithUsername(guest.username, withParams: params)
             observable
                 .subscribe{ (event) in
@@ -244,7 +250,7 @@ private extension Account {
                 .addDisposableTo(disposeBag)
             
         }
-        else if case .Logged(let user)? = userModel {
+        else if case .Logged(let user)? = loginState {
             let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
             observable
                 .subscribe{ (event) in

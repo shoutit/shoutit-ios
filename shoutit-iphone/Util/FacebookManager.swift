@@ -45,7 +45,7 @@ class FacebookManager {
 extension FacebookManager {
     
     func hasPermissions(permissions: FacebookPermissions) -> Bool {
-        guard case .Some(.Logged(let user)) = account.userModel else { return false }
+        guard case .Some(.Logged(let user)) = account.loginState else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
         guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return false }
         return facebookAccount.scopes.contains(permissions.rawValue) && currentAccessToken.hasGranted(permissions.rawValue)

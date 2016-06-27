@@ -69,9 +69,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let contentHeight = kTableHeaderHeight + kTableFooterHeight + CGFloat(viewModel.numberOfRowsInSection(0)) * kTablePrimaryCellHeight + CGFloat(viewModel.numberOfRowsInSection(1)) * kTableSecondaryCellHeight
-        tableView.scrollEnabled = contentHeight > tableView.frame.height
+        setScrollEnabledAccordinglyToTableViewContentHeight()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -93,8 +91,11 @@ final class MenuTableViewController: UITableViewController, Navigation {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! MenuCell
         let item = viewModel.navigationItemForIndexPath(indexPath)
         
-        cell.bindWith(item, current: item == self.selectedNavigationItem)
-        cell.setSeparatorVisible(viewModel.numberOfRowsInSection(0) - 1 == indexPath.row)
+        let isNotLastSection = indexPath.section + 1 != viewModel.sections().count
+        let itemIsLastInSection = indexPath.row + 1 == viewModel.numberOfRowsInSection(indexPath.section)
+        cell.bindWith(item, current: item == selectedNavigationItem)
+        cell.setSeparatorVisible(isNotLastSection && itemIsLastInSection)
+        
         return cell
     }
     
@@ -104,13 +105,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if case (0..<viewModel.numberOfRowsInSection(0)) = indexPath.row {
-            return kTablePrimaryCellHeight
-        }
-        return kTableSecondaryCellHeight
+        return heightForRowAtSection(indexPath.section)
     }
-    
-
     
     // MARK: User Interactions
     
@@ -130,7 +126,6 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Credits)
     }
     
-    
     override func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -138,8 +133,27 @@ final class MenuTableViewController: UITableViewController, Navigation {
     // MARK: Bussines Logic
     
     func triggerActionWithItem(navigationItem: NavigationItem) {
-        if let root = self.rootController {
-            root.openItem(navigationItem)
+        guard let rootController = rootController else { return }
+        if case .SwitchFromPageToUser = navigationItem {
+            Account.sharedInstance.switchToUser()
+        } else {
+            rootController.openItem(navigationItem)
         }
+    }
+}
+
+private extension MenuTableViewController {
+    
+    private func setScrollEnabledAccordinglyToTableViewContentHeight() {
+        let cellsHeight = Array(viewModel.sections().indices).reduce(CGFloat()) { $0 + CGFloat(viewModel.numberOfRowsInSection($1)) * heightForRowAtSection($1) }
+        let contentHeight = kTableHeaderHeight + kTableFooterHeight + cellsHeight
+        tableView.scrollEnabled = contentHeight > tableView.frame.height
+    }
+    
+    private func heightForRowAtSection(section: Int) -> CGFloat {
+        if case .Main = viewModel.sections()[section] {
+            return kTablePrimaryCellHeight
+        }
+        return kTableSecondaryCellHeight
     }
 }

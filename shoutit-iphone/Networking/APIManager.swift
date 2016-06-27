@@ -37,17 +37,18 @@ final class APIManager {
     
     // MARK: - Token
     
-    static func setAuthToken(token: String) {
-        _setAuthToken(token)
+    static func setAuthToken(token: String, pageId: String?) {
+        _setAuthToken(token, pageId: pageId)
     }
     
     static func eraseAuthToken() {
-        _setAuthToken(nil)
+        _setAuthToken(nil, pageId: nil)
     }
     
-    private static func _setAuthToken(token: String?) {
+    private static func _setAuthToken(token: String?, pageId: String?) {
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
+        defaultHeaders["Authorization-Page-Id"] = pageId
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = defaultHeaders
         apiManager = Alamofire.Manager(configuration: configuration)
