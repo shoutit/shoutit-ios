@@ -9,36 +9,22 @@
 import UIKit
 
 class VerticalButton: UIButton {
-
-    @IBInspectable var verticalAligmentPadding: CGFloat? = 6.0 {
-        didSet {
-            alignImageAndTitleVertically()
-        }
-    }
-
-    func alignImageAndTitleVertically() {
+    
+    let bottomMargin : CGFloat = 5.0
+    let titleHeight : CGFloat = 30.0
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        guard let verticalAligmentPadding = verticalAligmentPadding else {
-            return
-        }
-        
-        let imageSize = self.imageView!.frame.size
-        let titleSize = self.titleLabel!.frame.size
-        let totalHeight = imageSize.height + titleSize.height + verticalAligmentPadding
-        
-        self.imageEdgeInsets = UIEdgeInsets(
-            top: -(totalHeight - imageSize.height),
-            left: 0,
-            bottom: 0,
-            right: -titleSize.width
-        )
-        
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageSize.width,
-            bottom: -(totalHeight - titleSize.height),
-            right: 0
-        )
+        self.imageView?.contentMode = .Center
+        self.titleLabel?.textAlignment = .Center
     }
     
+    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
+        return CGRect(x: 0, y: contentRect.size.height - titleHeight - bottomMargin, width: contentRect.size.width, height: titleHeight)
+    }
+    
+    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+        return CGRect(x: 0, y: 0, width: contentRect.size.width, height: contentRect.size.height - titleHeight)
+    }
 }

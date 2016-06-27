@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class CreatePageViewController: UIViewController {
     
     // navigation
-    weak var flowDelegate: LoginFlowController?
+    weak var flowDelegate: FlowController?
+    
+    private let disposeBag = DisposeBag()
     
     weak var delegate: LoginWithEmailViewControllerChildDelegate?
     
@@ -21,20 +24,12 @@ class CreatePageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let categoriesController = segue.destinationViewController as? PageCategoriesCollectionViewController {
+            categoriesController.selectedCategory.subscribeNext({ (category) in
+                self.flowDelegate?.showCreatePageInfo(category)
+            }).addDisposableTo(disposeBag)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

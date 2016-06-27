@@ -45,6 +45,7 @@ final class SignupViewController: UITableViewController {
         setupRX()
         setupTermsAndPolicyLabel()
         setupSwitchToLoginLabel()
+        setupCreatePageLabel()
     }
     
     // MARK: - Setup
@@ -177,5 +178,9 @@ final class SignupViewController: UITableViewController {
         
         // assign
         createPageButton.setAttributedTitle(attributedString, forState: .Normal)
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
     }
 }

@@ -335,6 +335,10 @@ struct Wireframe {
         return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
     }
     
+    static func createPageInfoViewController() -> CreatePageInfoViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageInfoViewController") as! CreatePageInfoViewController
+    }
+    
     // MARK: - Admins storyboard
     
     static func adminsListParentViewController() -> AdminsListParentViewController {

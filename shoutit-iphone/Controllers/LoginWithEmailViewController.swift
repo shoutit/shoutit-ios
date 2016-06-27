@@ -23,9 +23,9 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // animation
     internal let animationDuration: Double = 0.25
-    private let signupViewHeight: CGFloat = 416
+    private let signupViewHeight: CGFloat = 466
     private let loginViewHeight: CGFloat = 326
-    private let createPageViewHeight: CGFloat = 475
+    private let createPageViewHeight: CGFloat = 495
     private let resetPasswordViewHeight: CGFloat = 188
     
     // UI

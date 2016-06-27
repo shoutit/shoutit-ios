@@ -216,6 +216,11 @@
 		AE32C5E71D05652D009A49C5 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28379AC1C74B459009AFF01 /* DateFormatters.swift */; };
 		AE32C5E81D05655F009A49C5 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351701C5F65D50055C71F /* Array+Additions.swift */; };
 		AE32C5E91D05657D009A49C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027CF901BE7539300124C28 /* Constants.swift */; };
+		AE32EA1D1D2139EF00545F72 /* CreatePageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */; };
+		AE32EA1F1D213A8000545F72 /* CreatePageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE32EA1E1D213A8000545F72 /* CreatePageInfoViewController.swift */; };
+		AE3DC4031D21202400C460CC /* PageCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DC4021D21202400C460CC /* PageCategoriesCollectionViewController.swift */; };
+		AE3DC4051D21206900C460CC /* PageCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DC4041D21206900C460CC /* PageCategory.swift */; };
+		AE3DC4081D212ADB00C460CC /* PageCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DC4071D212ADB00C460CC /* PageCategoryCell.swift */; };
 		AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */; };
 		AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */; };
 		AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */; };
@@ -1061,6 +1066,11 @@
 		AE32C53E1D055BFB009A49C5 /* ShoutitKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoutitKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE32C5451D055BFD009A49C5 /* ShoutitKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoutitKitTests.swift; sourceTree = "<group>"; };
 		AE32C5471D055BFD009A49C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageDisplayable.swift; path = FlowControl/CreatePageDisplayable.swift; sourceTree = "<group>"; };
+		AE32EA1E1D213A8000545F72 /* CreatePageInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageInfoViewController.swift; path = Controllers/CreatePageInfoViewController.swift; sourceTree = "<group>"; };
+		AE3DC4021D21202400C460CC /* PageCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageCategoriesCollectionViewController.swift; path = Controllers/PageCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
+		AE3DC4041D21206900C460CC /* PageCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageCategory.swift; path = Model/PageCategory.swift; sourceTree = "<group>"; };
+		AE3DC4071D212ADB00C460CC /* PageCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageCategoryCell.swift; path = View/PageCategoryCell.swift; sourceTree = "<group>"; };
 		AE3DEE761CEB17F7009EA0F3 /* ConversationUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationUpdateParams.swift; path = Model/ConversationUpdateParams.swift; sourceTree = "<group>"; };
 		AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2207,6 +2217,7 @@
 			isa = PBXGroup;
 			children = (
 				2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */,
+				AE32EA1E1D213A8000545F72 /* CreatePageInfoViewController.swift */,
 			);
 			name = CreatePage;
 			sourceTree = "<group>";
@@ -2487,6 +2498,7 @@
 				B2FA5CCF1D11AAEF007034F8 /* ModelUIExtensions */,
 				AE63FB111D12D04F005A35CD /* PromotionOption.swift */,
 				246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */,
+				AE3DC4041D21206900C460CC /* PageCategory.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2507,6 +2519,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE3DC4011D211FF900C460CC /* PagesCategories */,
 				2474E0081D1C15900085D9DD /* CreatePage */,
 				B211F07B1D12C929008DEEBC /* PromotedShoutViewController */,
 				B211F07A1D12C91D008DEEBC /* PromoteShoutViewController */,
@@ -2745,6 +2758,23 @@
 				AE32C5471D055BFD009A49C5 /* Info.plist */,
 			);
 			path = ShoutitKitTests;
+			sourceTree = "<group>";
+		};
+		AE3DC4011D211FF900C460CC /* PagesCategories */ = {
+			isa = PBXGroup;
+			children = (
+				AE3DC4061D2121EC00C460CC /* View */,
+				AE3DC4021D21202400C460CC /* PageCategoriesCollectionViewController.swift */,
+			);
+			name = PagesCategories;
+			sourceTree = "<group>";
+		};
+		AE3DC4061D2121EC00C460CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE3DC4071D212ADB00C460CC /* PageCategoryCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		AE4DB3391C63492E001EB84B /* Segue */ = {
@@ -3697,6 +3727,7 @@
 				B2E43CA41D1042ED006C6AD2 /* CreditsDisplayable.swift */,
 				B211F06D1D12C73C008DEEBC /* PromoteDisplayable.swift */,
 				B2CA5C571D1D99EF009E164E /* ProfilesListDisplayable.swift */,
+				AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -5216,6 +5247,7 @@
 				B27230581CE0E4A7003547EA /* ProfilesListViewModel.swift in Sources */,
 				B2F719EF1D0EF4C7002C1D74 /* Types.swift in Sources */,
 				B2F71A2D1D0EF643002C1D74 /* PTPusher+Testing.m in Sources */,
+				AE3DC4081D212ADB00C460CC /* PageCategoryCell.swift in Sources */,
 				B2778FA81CAD5D7A00BBDD5F /* FiltersViewController.swift in Sources */,
 				AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
@@ -5374,6 +5406,7 @@
 				B2F719B51D0EF12F002C1D74 /* ABContactRecord.swift in Sources */,
 				24826B471C96A34900032FC9 /* APINotificationsService.swift in Sources */,
 				B294BC941CEB7A9A00131B31 /* MessageAttachmentPhotoBrowserCellViewModel.swift in Sources */,
+				AE32EA1F1D213A8000545F72 /* CreatePageInfoViewController.swift in Sources */,
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				B272306A1CE0FAB0003547EA /* ConversationProfileCell.swift in Sources */,
@@ -5600,6 +5633,7 @@
 				B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */,
 				B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */,
 				B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */,
+				AE3DC4031D21202400C460CC /* PageCategoriesCollectionViewController.swift in Sources */,
 				601EB8BA1C2B922900D4C1AE /* SHShoutItemCell.swift in Sources */,
 				AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */,
 				B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */,
@@ -5727,6 +5761,7 @@
 				B27BD3671C6A146B00546440 /* TableViewPlaceholderView.swift in Sources */,
 				B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */,
 				B2F719D31D0EF2EC002C1D74 /* FromJSON.swift in Sources */,
+				AE32EA1D1D2139EF00545F72 /* CreatePageDisplayable.swift in Sources */,
 				B2E7155B1C6E0BF1007F95CF /* ShoutsCollectionViewCell.swift in Sources */,
 				B2B3454A1CA558960066DF15 /* PusherError.swift in Sources */,
 				AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */,
@@ -5817,6 +5852,7 @@
 				AE32C5E91D05657D009A49C5 /* Constants.swift in Sources */,
 				AE32C59F1D055C33009A49C5 /* Address.swift in Sources */,
 				B2F71A6A1D0EF7C9002C1D74 /* Curry.swift in Sources */,
+				AE3DC4051D21206900C460CC /* PageCategory.swift in Sources */,
 				AE32C5D71D0564C5009A49C5 /* ArgoJsonParams.swift in Sources */,
 				AE32C5D81D0564C5009A49C5 /* CoordinateParams.swift in Sources */,
 				AE32C5B71D055C33009A49C5 /* Reportable.swift in Sources */,

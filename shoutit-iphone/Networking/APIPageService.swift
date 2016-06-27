@@ -31,4 +31,9 @@ final class APIPageService {
         let url = APIManager.baseURL + "/pages/\(username)/admin"
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
+    
+    static func getPageCategories() -> Observable<[PageCategory]> {
+        let url = APIManager.baseURL + "/pages/categories"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
 }
