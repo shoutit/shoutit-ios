@@ -39,7 +39,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jb1-qN-j0U">
-                            <rect key="frame" x="125" y="7" width="32" height="15"/>
+                            <rect key="frame" x="128" y="7" width="32" height="15"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                             <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -51,6 +51,7 @@
                         <constraint firstItem="Jb1-qN-j0U" firstAttribute="centerY" secondItem="fu4-pe-fhF" secondAttribute="centerY" id="7xL-TO-Y72"/>
                         <constraint firstItem="bah-Gv-2fj" firstAttribute="leading" secondItem="FaF-Oj-5yZ" secondAttribute="leading" constant="10" id="CAB-Qx-7Bt"/>
                         <constraint firstItem="Jb1-qN-j0U" firstAttribute="leading" secondItem="fu4-pe-fhF" secondAttribute="trailing" constant="8" id="CPd-iQ-U1n"/>
+                        <constraint firstItem="Jb1-qN-j0U" firstAttribute="leading" secondItem="Pwv-0a-1pe" secondAttribute="trailing" constant="8" id="GOv-lk-oko"/>
                         <constraint firstItem="Pwv-0a-1pe" firstAttribute="leading" secondItem="FaF-Oj-5yZ" secondAttribute="leading" id="Yiu-Xn-uJS"/>
                         <constraint firstItem="bah-Gv-2fj" firstAttribute="centerY" secondItem="FaF-Oj-5yZ" secondAttribute="centerY" id="bKT-wo-LdA"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bah-Gv-2fj" secondAttribute="trailing" constant="10" id="icQ-pp-Suy"/>
@@ -64,6 +65,11 @@
                             <color key="value" white="0.0" alpha="0.12" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="CPd-iQ-U1n"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -75,7 +81,7 @@
             </constraints>
             <connections>
                 <outlet property="backgroundView" destination="FaF-Oj-5yZ" id="Op0-PJ-WDJ"/>
-                <outlet property="daysLeftLabel" destination="Jb1-qN-j0U" id="hej-p0-mvp"/>
+                <outlet property="daysLeftLabel" destination="Jb1-qN-j0U" id="bFA-Xm-dOq"/>
                 <outlet property="sentenceLabel" destination="bah-Gv-2fj" id="VOh-nU-i2f"/>
                 <outlet property="topLabel" destination="fu4-pe-fhF" id="vQM-uz-3Xm"/>
                 <outlet property="topLabelBackground" destination="Pwv-0a-1pe" id="OPq-RW-zh4"/>

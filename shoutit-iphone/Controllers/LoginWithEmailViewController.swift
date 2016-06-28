@@ -60,6 +60,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     lazy var createPageViewController: CreatePageViewController = {
         let controller = Wireframe.createPageViewController()
         controller.delegate = self
+        controller.viewModel = self.viewModel
         controller.flowDelegate = self.flowDelegate
         return controller
     }()

@@ -24,7 +24,7 @@ public struct PageSignupParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "category": category.encode().JSONObject(),
+            "page_category": category.encode().JSONObject(),
             "page_name" : name,
             "email" : email,
             "name": userFullName,
@@ -40,5 +40,17 @@ public struct PageSignupParams: AuthParams {
         self.userFullName = userFullName
         self.mixPanelDistinctId = mixPanelDistinctId
         self.currentUserCoordinates = currentUserCoordinates
+    }
+}
+
+public struct PageCreationParams : Params {
+    public let category : PageCategory
+    public let name : String
+ 
+    public var params: [String : AnyObject] {
+        return [
+            "page_category": category.encode().JSONObject(),
+            "page_name": name
+        ]
     }
 }

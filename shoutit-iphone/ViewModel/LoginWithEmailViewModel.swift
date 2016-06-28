@@ -43,7 +43,7 @@ final class LoginWithEmailViewModel {
         }.addDisposableTo(disposeBag)
     }
     
-    private func authenticateWithParameters(params: AuthParams) {
+    func authenticateWithParameters(params: AuthParams) {
         
         let observable: Observable<(AuthData, DetailedProfile)> = APIAuthService.getOAuthToken(params)
         observable

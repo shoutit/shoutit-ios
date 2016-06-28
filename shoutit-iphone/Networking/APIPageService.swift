@@ -36,4 +36,9 @@ final class APIPageService {
         let url = APIManager.baseURL + "/pages/categories"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
     }
+    
+    static func createPage(params: PageCreationParams) -> Observable<Profile> {
+        let url = APIManager.baseURL + "/pages"
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
 }

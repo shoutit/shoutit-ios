@@ -96,6 +96,14 @@ class PagesListParentViewController: UIViewController, ContainerController {
     }
     
     private func showCreatePageView() {
-        notImplemented()
+        let viewModel = LoginWithEmailViewModel()
+        
+        viewModel.loginSuccessSubject.subscribeNext { (created) in
+            if created {
+                self.navigationController?.popToViewController(self, animated: true)
+            }
+        }.addDisposableTo(disposeBag)
+        
+        self.flowDelegate?.showCreatePage(viewModel)
     }
 }
