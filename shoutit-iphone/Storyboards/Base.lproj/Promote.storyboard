@@ -92,10 +92,10 @@
                             </connections>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="9Lk-a8-O1m">
-                            <rect key="frame" x="0.0" y="319" width="600" height="115"/>
+                            <rect key="frame" x="0.0" y="319" width="600" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-5j-BhQ" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Da6-5j-BhQ" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="10" y="36" width="580" height="44"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="credits_icon_menu" translatesAutoresizingMaskIntoConstraints="NO" id="DHR-ay-ILq">
