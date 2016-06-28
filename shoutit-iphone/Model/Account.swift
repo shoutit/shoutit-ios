@@ -104,8 +104,12 @@ final class Account {
         
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
             loginState = .Guest(user: guest)
-        } else if let loggedUser: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
-            loginState = .Logged(user: loggedUser)
+        } else if let model: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
+            if let admin = model.admin where model.type == .Page {
+                loginState = .Page(user: admin.value, page: model)
+            } else {
+                loginState = .Logged(user: model)
+            }
         }
         
         guard let user = user else { return }
