@@ -61,6 +61,12 @@ final class AdminsListParentViewController: UIViewController {
             controller.flowDelegate = flowDelegate
         }
     }
+    
+    // MARL: - Actions
+    
+    @IBAction func searchAction() {
+        flowDelegate?.showSearchInContext(.General)
+    }
 }
 
 private extension AdminsListParentViewController {

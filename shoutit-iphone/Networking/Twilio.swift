@@ -67,11 +67,17 @@ final class Twilio: NSObject {
     // MARK: - Public
     
     func connectIfNeeded() {
-        if case .Logged(_)? = account.loginState {
+        switch account.loginState {
+        case .Logged(_)?, .Page(_)?:
             retriveToken()
-        } else {
+        default:
             disconnect()
         }
+    }
+    
+    func reconnect() {
+        disconnect()
+        connectIfNeeded()
     }
     
     func disconnect() {
@@ -103,7 +109,7 @@ final class Twilio: NSObject {
                             }
                         })
                     }
-                    .doOnError({ (error) in
+                    .doOnError { (error) in
                         APIChatsService.twilioVideoCallWithParams(VideoCallParams(identity: identity.identity, missed: true))
                             .subscribe{ (event) in
                                 switch event {
@@ -113,7 +119,7 @@ final class Twilio: NSObject {
                                 }
                             }
                             .addDisposableTo(self.disposeBag)
-                    })
+                    }
         }
     }
     

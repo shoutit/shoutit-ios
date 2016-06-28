@@ -15,7 +15,7 @@ final class Account {
     
     enum LoginState {
         case Logged(user: DetailedProfile)
-        case Page(user: DetailedProfile, page: Profile)
+        case Page(user: DetailedProfile, page: DetailedProfile)
         case Guest(user: GuestUser)
     }
     
@@ -76,7 +76,7 @@ final class Account {
     var user: User? {
         switch loginState {
         case .Some(.Logged(let userObject)): return userObject
-        case .Some(.Page(let userObject, _)): return userObject
+        case .Some(.Page(_, let page)): return page
         case .Some(.Guest(let userObject)): return userObject
         default: return nil
         }
@@ -127,7 +127,7 @@ final class Account {
         configureTwilioAndPusherServices()
     }
     
-    func switchToPage(page: Profile) {
+    func switchToPage(page: DetailedProfile) {
         guard case .Some(.Logged(let user)) = loginState, let authData = authData where user.type == .User else {
             fatalError("User must be logged in to switch to page")
         }
@@ -135,6 +135,7 @@ final class Account {
         APIManager.setAuthToken(authData.apiToken, pageId: page.id)
         loginSubject.onNext(authData)
         loginState = .Page(user: user, page: page)
+        twilioManager.reconnect()
     }
     
     func switchToUser() {
@@ -144,13 +145,25 @@ final class Account {
         APIManager.setAuthToken(authData.apiToken, pageId: nil)
         loginSubject.onNext(authData)
         loginState = .Logged(user: user)
+        twilioManager.reconnect()
     }
     
-    func updateUserWithModel<T: User>(user: T) {
-        if let user = user as? DetailedProfile {
-            loginState = .Logged(user: user)
-        } else if let user = user as? GuestUser {
-            loginState = .Guest(user: user)
+    func updateUserWithModel<T: User>(model: T) {
+        switch loginState {
+        case .Some(.Logged(_)):
+            if let model = model as? DetailedProfile where model.type == .User {
+                loginState = .Logged(user: model)
+            }
+        case .Some(.Page(let user, _)):
+            if let model = model as? DetailedProfile where model.type == .Page {
+                loginState = .Page(user: user, page: model)
+            }
+        case .Some(.Guest(_)):
+            if let model = model as? GuestUser {
+                loginState = .Guest(user: model)
+            }
+        default:
+            break
         }
     }
     

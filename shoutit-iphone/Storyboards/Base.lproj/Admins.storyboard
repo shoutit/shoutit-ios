@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Admins List Parent View Controller-->
+        <!--Admins-->
         <scene sceneID="f3k-gz-CTR">
             <objects>
-                <viewController storyboardIdentifier="AdminsListParentViewController" id="qTq-3i-XDT" customClass="AdminsListParentViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdminsListParentViewController" automaticallyAdjustsScrollViewInsets="NO" id="qTq-3i-XDT" customClass="AdminsListParentViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0eI-pH-Ktu"/>
                         <viewControllerLayoutGuide type="bottom" id="6qz-w0-ozY"/>
@@ -73,6 +73,13 @@
                             <constraint firstAttribute="trailing" secondItem="gc9-qf-w26" secondAttribute="trailing" id="yiM-o5-PmS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Admins" id="BUV-Z6-DzV">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="F1b-Qe-eSg">
+                            <connections>
+                                <action selector="searchAction" destination="qTq-3i-XDT" id="QuS-a3-gFn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addAdminsButton" destination="IOe-7Z-ZXa" id="X6C-z0-8yB"/>
                         <outlet property="disclosureIndicatorImageView" destination="xXW-En-dwG" id="lG9-2U-nja"/>
@@ -85,7 +92,7 @@
         <!--Admins List Table View Controller-->
         <scene sceneID="48f-ED-2rm">
             <objects>
-                <tableViewController storyboardIdentifier="AdminsListTableViewController" id="HMh-Ze-bsq" customClass="AdminsListTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AdminsListTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="HMh-Ze-bsq" customClass="AdminsListTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="roY-Wa-zkl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,6 +112,7 @@
                             <outlet property="delegate" destination="HMh-Ze-bsq" id="adh-Sd-8QD"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5z-Qz-Wbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,5 +121,6 @@
     </scenes>
     <resources>
         <image name="disclosure_indicator_green" width="10" height="18"/>
+        <image name="search" width="25" height="24"/>
     </resources>
 </document>

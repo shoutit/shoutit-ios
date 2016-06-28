@@ -153,7 +153,18 @@ private extension MyPagesTableViewController {
     }
     
     func useShoutitAsPage(page: Profile) {
-        Account.sharedInstance.switchToPage(page)
+        showProgressHUD()
+        viewModel.fetchPage(page).observeOn(MainScheduler.instance).subscribe {[weak self] (event) in
+            self?.hideProgressHUD()
+            switch event {
+            case .Next(let detailedPage):
+                Account.sharedInstance.switchToPage(detailedPage)
+            case .Error(let error):
+                self?.showError(error)
+            case .Completed:
+                return
+            }
+        }.addDisposableTo(disposeBag)
     }
     
     func editPage(page: Profile) {

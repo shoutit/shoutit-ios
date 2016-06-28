@@ -20,4 +20,8 @@ class MyPagesViewModel {
                                   fetchItemObservableFactory: { APIProfileService.getPagesForUsername(Account.sharedInstance.user?.username ?? "me", pageParams: PageParams(page: $0, pageSize: 20))},
                                   pageSize: 20)
     }
+    
+    func fetchPage(page: Profile) -> Observable<DetailedProfile> {
+        return APIProfileService.retrieveProfileWithUsername(page.username)
+    }
 }
