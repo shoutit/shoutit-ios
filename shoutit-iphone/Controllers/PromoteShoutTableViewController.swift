@@ -32,9 +32,9 @@ final class PromoteShoutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
-        setupRx()
-        
+       
         if let user = Account.sharedInstance.user as? DetailedProfile {
+            setupRx()
             creditsBalanceLabel.text = "\(user.stats?.credit ?? 0)"
         }
         

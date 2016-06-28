@@ -27,7 +27,7 @@ enum NavigationItem : String {
     case InviteFriends = "inviteFriends"
     case Search = "search"
     case Credits = "credits"
-    case CreditsTransations = "credit_transaction"
+    case CreditsTransations = "credit_transactions"
     case Pages = "pages"
     case Admins = "admins"
     case SwitchFromPageToUser = "switch_to_user"

@@ -28,8 +28,11 @@ class CreditsMainViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         if let profile = Account.sharedInstance.user as? DetailedProfile {
+            setupRx()
             fillWithLoggedUser(profile)
         }
+        
+        
     }
     
     func setupRx() {
