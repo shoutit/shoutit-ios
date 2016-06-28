@@ -57,12 +57,12 @@ final class RootController: UIViewController, ContainerController {
 
         Account.sharedInstance
             .loginSubject
-            .distinctUntilChanged{(old, new) -> Bool in
-                if old == nil {
-                    return true
-                }
-                return false
-            }
+//            .distinctUntilChanged{(old, new) -> Bool in
+//                if old == nil {
+//                    return true
+//                }
+//                return false
+//            }
             .observeOn(MainScheduler.instance)
             .subscribeNext {_ in
                 self.sh_invalidateControllersCache()

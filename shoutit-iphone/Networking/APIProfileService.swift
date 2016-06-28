@@ -25,9 +25,10 @@ final class APIProfileService {
         return APIGenericService.basicRequestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
-    static func retrieveProfileWithUsername(username: String) -> Observable<DetailedProfile> {
+    static func retrieveProfileWithUsername(username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
+        let headers: [String : String]? = additionalPageIdHeader != nil ? ["Authorization-Page-Id" : additionalPageIdHeader!] : nil
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: headers)
     }
     
     static func retrieveProfileWithTwilioUsername(twilio: String) -> Observable<Profile> {

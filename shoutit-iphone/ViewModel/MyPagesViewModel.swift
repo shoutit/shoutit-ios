@@ -22,6 +22,6 @@ class MyPagesViewModel {
     }
     
     func fetchPage(page: Profile) -> Observable<DetailedProfile> {
-        return APIProfileService.retrieveProfileWithUsername(page.username)
+        return APIProfileService.retrieveProfileWithUsername(page.username, additionalPageIdHeader: page.id)
     }
 }
