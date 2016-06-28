@@ -20,10 +20,9 @@ extension FlowController : ShoutDisplayable {
     
     func showShout(shout: Shout) {
         
-        if shout.id == ""{
+        if shout.id == "" {
             navigationController.showErrorMessage(NSLocalizedString("This shout has been deleted", comment: "Deleted Shout"))
-        }
-        else {
+        } else {
         let controller = Wireframe.shoutDetailContainerViewController()
         controller.viewModel = ShoutDetailViewModel(shout: shout)
         controller.flowDelegate = self
