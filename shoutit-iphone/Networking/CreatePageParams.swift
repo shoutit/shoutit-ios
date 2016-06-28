@@ -24,7 +24,7 @@ public struct PageSignupParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "category": category.encode().JSONObject(),
+            "page_category": category.encode().JSONObject(),
             "page_name" : name,
             "email" : email,
             "name": userFullName,

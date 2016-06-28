@@ -15,20 +15,24 @@ protocol CreatePageDisplayable {
 
 extension FlowController : CreatePageDisplayable {
     
-    func showCreatePage() {
+    func showCreatePage(loginViewModel: LoginWithEmailViewModel) {
         let controller = Wireframe.createPageViewController()
         
         controller.flowDelegate = self
         
+        controller.viewModel = loginViewModel
+        
         navigationController.showViewController(controller, sender: nil)
     }
     
-    func showCreatePageInfo(category: PageCategory) {
+    func showCreatePageInfo(category: PageCategory, loginViewModel: LoginWithEmailViewModel) {
         let controller = Wireframe.createPageInfoViewController()
         
         controller.flowDelegate = self
         
         controller.preselectedCategory = category
+        
+        controller.viewModel = loginViewModel
         
         navigationController.showViewController(controller, sender: nil)
     }

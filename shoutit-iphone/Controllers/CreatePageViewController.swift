@@ -16,6 +16,8 @@ class CreatePageViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    var viewModel : LoginWithEmailViewModel!
+    
     weak var delegate: LoginWithEmailViewControllerChildDelegate?
     
     override func viewDidLoad() {
@@ -27,7 +29,7 @@ class CreatePageViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let categoriesController = segue.destinationViewController as? PageCategoriesCollectionViewController {
             categoriesController.selectedCategory.subscribeNext({ (category) in
-                self.flowDelegate?.showCreatePageInfo(category)
+                self.flowDelegate?.showCreatePageInfo(category, loginViewModel: self.viewModel)
             }).addDisposableTo(disposeBag)
         }
     }
