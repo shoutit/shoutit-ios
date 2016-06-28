@@ -39,12 +39,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 switch event {
                 case .Next(let detailedProfile):
                     self?.detailedProfile = detailedProfile
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
                 case .Error:
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 }
                 })
@@ -57,12 +55,29 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
+                    self?.reloadSubject.onNext()
                 case .Error(let error as NSError):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.reloadSubject.onNext()
                 default:
                     break
                 }
-                self?.reloadSubject.onNext(())
+            }
+            .addDisposableTo(disposeBag)
+        
+        // reload admins
+        fetchAdmins()
+            .subscribe { [weak self] (event) in
+                switch event {
+                case .Next(let value):
+                    self?.listSection = self?.listSectionWithModels(value, isLoading: false)
+                    self?.reloadSubject.onNext()
+                case .Error(let error):
+                    self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                    self?.reloadSubject.onNext()
+                default:
+                    break
+                }
             }
             .addDisposableTo(disposeBag)
     }
@@ -133,12 +148,17 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]> {
+    private func fetchShouts() -> Observable<[Shout]> {
         let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
-    func fetchProfile() -> Observable<DetailedProfile> {
+    private func fetchAdmins() -> Observable<[Profile]> {
+        let params = PageParams(page: 1, pageSize: 3)
+        return APIPageService.getAdminsForPageWithUsername(profile.username, pageParams: params).map{ $0.results }
+    }
+    
+    private func fetchProfile() -> Observable<DetailedProfile> {
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
     
@@ -157,11 +177,6 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     // MARK: - Helpers
-    
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedProfile?.admins ?? []
-        listSection = listSectionWithModels(pages, isLoading: loading)
-    }
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}

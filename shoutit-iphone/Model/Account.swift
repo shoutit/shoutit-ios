@@ -60,6 +60,13 @@ final class Account {
                 SecureCoder.writeObject(userObject, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
                 facebookManager.checkExpiryDateWithProfile(userObject)
+            case .Some(.Page(let user, let page)):
+                userSubject.onNext(page)
+                statsSubject.onNext(page.stats)
+                updateApplicationBadgeNumberWithStats(page.stats)
+                SecureCoder.writeObject(page, toFileAtPath: archivePath)
+                updateAPNSIfNeeded()
+                facebookManager.checkExpiryDateWithProfile(user)
             case .Some(.Guest(let userObject)):
                 userSubject.onNext(userObject)
                 statsSubject.onNext(nil)
@@ -149,21 +156,14 @@ final class Account {
     }
     
     func updateUserWithModel<T: User>(model: T) {
-        switch loginState {
-        case .Some(.Logged(_)):
-            if let model = model as? DetailedProfile where model.type == .User {
-                loginState = .Logged(user: model)
-            }
-        case .Some(.Page(let user, _)):
-            if let model = model as? DetailedProfile where model.type == .Page {
-                loginState = .Page(user: user, page: model)
-            }
-        case .Some(.Guest(_)):
-            if let model = model as? GuestUser {
-                loginState = .Guest(user: model)
-            }
-        default:
-            break
+        if let model = model as? DetailedProfile where model.type == .User {
+            loginState = .Logged(user: model)
+        }
+        else if let model = model as? DetailedProfile, admin = model.admin where model.type == .Page {
+            loginState = .Page(user: admin.value, page: model)
+        }
+        else if let model = model as? GuestUser {
+            loginState = .Guest(user: model)
         }
     }
     
