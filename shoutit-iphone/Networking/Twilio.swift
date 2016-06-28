@@ -67,7 +67,7 @@ final class Twilio: NSObject {
     // MARK: - Public
     
     func connectIfNeeded() {
-        if case .Logged(_)? = account.userModel {
+        if case .Logged(_)? = account.loginState {
             retriveToken()
         } else {
             disconnect()

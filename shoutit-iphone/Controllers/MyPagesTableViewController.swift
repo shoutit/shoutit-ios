@@ -108,6 +108,7 @@ class MyPagesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
         showActionSheetForPage(cellViewModel.profile)
@@ -152,7 +153,7 @@ private extension MyPagesTableViewController {
     }
     
     func useShoutitAsPage(page: Profile) {
-        notImplemented()
+        Account.sharedInstance.switchToPage(page)
     }
     
     func editPage(page: Profile) {
