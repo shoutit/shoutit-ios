@@ -37,4 +37,14 @@ extension FlowController : CreatePageDisplayable {
         navigationController.showViewController(controller, sender: nil)
     }
     
+    func showCreatePageInfoForLoggedUser(category: PageCategory) {
+        let controller = Wireframe.createPageInfoViewController()
+        
+        controller.flowDelegate = self
+        
+        controller.preselectedCategory = category
+        
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
 }

@@ -21,7 +21,7 @@ class CreatePageInfoViewController: UITableViewController {
     @IBOutlet var categoryButton : UIButton!
     
     
-    var viewModel : LoginWithEmailViewModel!
+    var viewModel : LoginWithEmailViewModel?
     
     var preselectedCategory : PageCategory?
     var selectedCategory : PageCategory?
@@ -46,10 +46,14 @@ class CreatePageInfoViewController: UITableViewController {
     }
     
     @IBAction func createPageAction() {
-        validFieldsAndCreatePageIfPossible()
+        if Account.sharedInstance.isUserLoggedIn {
+            validateAndCreatePageForLoggedUser()
+            return
+        }
+        validFieldsAndCreatePageBySignupIfPossible()
     }
     
-    func validFieldsAndCreatePageIfPossible() {
+    func validFieldsAndCreatePageBySignupIfPossible() {
         guard let pageName = nameTextField.text else {
             return
         }
@@ -83,11 +87,47 @@ class CreatePageInfoViewController: UITableViewController {
         }
         
         guard let category = selectedCategory else {
+            self.showErrorMessage(NSLocalizedString("Please select category", comment: ""))
             return
         }
         
         createPageWith(pageName, fullname: fullName, email: email, password: password, category: category)
         
+    }
+    
+    func validateAndCreatePageForLoggedUser() {
+        guard let pageName = nameTextField.text else {
+            return
+        }
+        
+        guard case .Valid = ShoutitValidator.validateName(pageName) else {
+            return
+        }
+        
+        guard let category = selectedCategory else {
+            self.showErrorMessage(NSLocalizedString("Please select category", comment: ""))
+            return
+        }
+
+        let params = PageCreationParams(category: category, name: pageName)
+        
+        APIPageService.createPage(params).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let page):
+                self?.navigationController?.popToRootViewControllerAnimated(true)
+                Account.sharedInstance.switchToPage(page)
+            
+            case .Error(let error):
+                self?.showError(error)
+            
+            default: break
+            }
+        }.addDisposableTo(disposeBag)
+        
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return Account.sharedInstance.isUserLoggedIn ? 1 : 2
     }
     
     @IBAction func showSubCategories() {
@@ -111,6 +151,10 @@ class CreatePageInfoViewController: UITableViewController {
     }
     
     func createPageWith(name: String, fullname: String, email: String, password: String, category: PageCategory) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        
         let params = PageSignupParams(category: category, name: name, email: email, userFullName: fullname, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
         
         viewModel.authenticateWithParameters(params)

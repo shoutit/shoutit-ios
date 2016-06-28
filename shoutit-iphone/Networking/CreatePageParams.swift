@@ -42,3 +42,15 @@ public struct PageSignupParams: AuthParams {
         self.currentUserCoordinates = currentUserCoordinates
     }
 }
+
+public struct PageCreationParams : Params {
+    public let category : PageCategory
+    public let name : String
+ 
+    public var params: [String : AnyObject] {
+        return [
+            "page_category": category.encode().JSONObject(),
+            "page_name": name
+        ]
+    }
+}
