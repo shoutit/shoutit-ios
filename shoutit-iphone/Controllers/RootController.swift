@@ -27,6 +27,7 @@ final class RootController: UIViewController, ContainerController {
     private var token: dispatch_once_t = 0
     private let disposeBag = DisposeBag()
     private let presentMenuSegue = "presentMenuSegue"
+    lazy var animationDelegate = RootControllerAnimationDelegate()
     
     var currentNavigationItem : NavigationItem? {
         willSet(newItem) {
@@ -103,18 +104,18 @@ final class RootController: UIViewController, ContainerController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if var destination = segue.destinationViewController as? Navigation {
+        if let destination = segue.destinationViewController as? Navigation {
             destination.rootController = self
             destination.selectedNavigationItem = self.currentNavigationItem
         }
         
         if let destination = segue.destinationViewController as? TabbarController {
             self.tabbarController = destination
-        }
-        
-        if segue.identifier == presentMenuSegue {
+        } else if let controller = segue.destinationViewController as? MenuTableViewController {
+            controller.viewModel = MenuViewModel(loginState: Account.sharedInstance.loginState)
             segue.destinationViewController.modalPresentationStyle = .Custom
-            segue.destinationViewController.transitioningDelegate = self
+            segue.destinationViewController.transitioningDelegate = animationDelegate
+            
         }
     }
     
@@ -271,25 +272,6 @@ final class RootController: UIViewController, ContainerController {
     }
 }
 
-extension RootController: UIViewControllerTransitioningDelegate {
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let _ = presented as? MenuTableViewController {
-            return MenuAnimationController()
-        }
-        
-        return OverlayAnimationController()
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let _ = dismissed as? MenuTableViewController {
-            return MenuDismissAnimationController()
-        }
-        
-        return OverlayDismissAnimationController()
-    }
-}
-
 // MARK: - Routing
 extension RootController {
     func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
@@ -352,7 +334,7 @@ extension RootController {
         }
         
         controller.modalPresentationStyle = .Custom
-        controller.transitioningDelegate = self
+        controller.transitioningDelegate = animationDelegate
         
         self.presentViewController(controller, animated: true, completion: nil)
     }
@@ -469,7 +451,7 @@ private extension RootController {
         shoutsFlowController.handleDeeplink(deepLink)
         
         navController.modalPresentationStyle = .Custom
-        navController.transitioningDelegate = self
+        navController.transitioningDelegate = animationDelegate
         
         // present directly above current content
         self.presentViewController(shoutsFlowController.navigationController, animated: true, completion: nil)

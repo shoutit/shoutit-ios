@@ -12,7 +12,7 @@ import RxSwift
 final class MenuTableViewController: UITableViewController, Navigation {
     
     var rootController : RootController?
-    let viewModel = MenuViewModel()
+    var viewModel: MenuViewModel!
     private let disposeBag = DisposeBag()
     
     var selectedNavigationItem : NavigationItem?
@@ -41,18 +41,13 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        precondition(viewModel != nil)
         
         // add border
         tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
         tableView.layer.borderWidth = 1
         
-        Account.sharedInstance
-            .loginStateSubject
-            .observeOn(MainScheduler.instance)
-            .subscribeNext { (loginState) in
-                self.headerView?.fillWith(loginState)
-            }
-            .addDisposableTo(disposeBag)
+        headerView?.fillWith(viewModel.loginState)
         
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String, build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
             

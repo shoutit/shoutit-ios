@@ -633,6 +633,7 @@
 		B2D19C541D1D3F30007CB6DF /* PagesFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D19C531D1D3F30007CB6DF /* PagesFlowController.swift */; };
 		B2D19C561D1D47B4007CB6DF /* MyPageCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D19C551D1D47B4007CB6DF /* MyPageCellConfigurator.swift */; };
 		B2D19C581D1D4D83007CB6DF /* MyPagesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D19C571D1D4D83007CB6DF /* MyPagesCellViewModel.swift */; };
+		B2D2C9DB1D23CE590087E4FF /* RootControllerAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2C9DA1D23CE590087E4FF /* RootControllerAnimationDelegate.swift */; };
 		B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */; };
 		B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D440DD1CB81466009782AF /* Filter.storyboard */; };
 		B2D441091CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
@@ -1659,6 +1660,7 @@
 		B2D19C531D1D3F30007CB6DF /* PagesFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagesFlowController.swift; path = FlowControl/PagesFlowController.swift; sourceTree = "<group>"; };
 		B2D19C551D1D47B4007CB6DF /* MyPageCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPageCellConfigurator.swift; path = CellConfigurators/MyPageCellConfigurator.swift; sourceTree = "<group>"; };
 		B2D19C571D1D4D83007CB6DF /* MyPagesCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPagesCellViewModel.swift; path = ViewModel/MyPagesCellViewModel.swift; sourceTree = "<group>"; };
+		B2D2C9DA1D23CE590087E4FF /* RootControllerAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootControllerAnimationDelegate.swift; path = FlowControl/RootControllerAnimationDelegate.swift; sourceTree = "<group>"; };
 		B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ProgressHUD.swift"; path = "UIKitExtensions/UIViewController+ProgressHUD.swift"; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		B2D4410C1CB81632009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -2870,6 +2872,7 @@
 			isa = PBXGroup;
 			children = (
 				AE83517A1C5F6E620055C71F /* RootController.swift */,
+				B2D2C9DA1D23CE590087E4FF /* RootControllerAnimationDelegate.swift */,
 			);
 			name = RootController;
 			sourceTree = "<group>";
@@ -5253,6 +5256,7 @@
 				AE3DC4081D212ADB00C460CC /* PageCategoryCell.swift in Sources */,
 				B2778FA81CAD5D7A00BBDD5F /* FiltersViewController.swift in Sources */,
 				AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */,
+				B2D2C9DB1D23CE590087E4FF /* RootControllerAnimationDelegate.swift in Sources */,
 				AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */,
 				B250E1C81C593ED60010AB2D /* LoginFlowController.swift in Sources */,
 				B2F719DB1D0EF2EC002C1D74 /* TransformOf.swift in Sources */,
