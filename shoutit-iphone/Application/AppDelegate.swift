@@ -200,6 +200,9 @@ private extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
                                                             NSFontAttributeName : UIFont.systemFontOfSize(20)]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
+        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
     }
     
     func configureAPS(application: UIApplication) {
