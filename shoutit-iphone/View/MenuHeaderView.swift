@@ -65,7 +65,7 @@ final class MenuHeaderView: UIView {
         creditsCountLabel?.text = "\(user.stats?.credit ?? 0)"
     }
     
-    private func fillWithPage(page: Profile) {
+    private func fillWithPage(page: DetailedProfile) {
         
         if let path = page.imagePath, profileURL = NSURL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))

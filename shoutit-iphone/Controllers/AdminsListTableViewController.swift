@@ -126,9 +126,10 @@ final class AdminsListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
-        showActionSheetWithAdminProfile(cellViewModel.profile)
+        handleProfileTapped(cellViewModel.profile)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -139,6 +140,14 @@ final class AdminsListTableViewController: UITableViewController {
 }
 
 private extension AdminsListTableViewController {
+    
+    func handleProfileTapped(profile: Profile) {
+        if case .Page(let pageUser, _)? = Account.sharedInstance.loginState where profile.id == pageUser.id {
+            showProfile(profile)
+        } else {
+            showActionSheetWithAdminProfile(profile)
+        }
+    }
     
     func showActionSheetWithAdminProfile(profile: Profile) {
         let showProfileActionString = NSLocalizedString("View Profile", comment: "Admins list action sheet option")

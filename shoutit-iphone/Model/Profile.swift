@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-
 import Ogra
 
 public struct Profile {
