@@ -353,7 +353,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                                         <constraint firstAttribute="height" constant="34" id="402-N2-bf1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -383,7 +383,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                                         <constraint firstAttribute="height" constant="34" id="Ghm-Bo-buI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -409,7 +409,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                                         <constraint firstAttribute="height" constant="34" id="7jt-Ly-om1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
