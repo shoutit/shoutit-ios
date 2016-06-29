@@ -37,7 +37,7 @@ final class MenuViewModel: AnyObject {
                 }
                 return [.SwitchFromPageToUser]
             case .Main:
-                let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats]
+                let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats, .Bookmarks]
                 switch loginState {
                 case .Some(.Logged):
                     return basicItems + [.Pages]

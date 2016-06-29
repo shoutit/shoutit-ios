@@ -29,6 +29,7 @@ enum NavigationItem : String {
     case Credits = "credits"
     case CreditsTransations = "credit_transactions"
     case Pages = "pages"
+    case Bookmarks = "bookmarks"
     case Admins = "admins"
     case SwitchFromPageToUser = "switch_to_user"
     
@@ -40,6 +41,7 @@ enum NavigationItem : String {
         case .PublicChats: return NSLocalizedString("Public Chats",comment: "")
         case .Conversation: return NSLocalizedString("Conversation",comment: "")
         case .Chats: return NSLocalizedString("Chats",comment: "")
+        case .Bookmarks: return NSLocalizedString("Bookmarks",comment: "")
         case .Orders: return NSLocalizedString("Orders",comment: "")
         case .Settings: return NSLocalizedString("Settings",comment: "")
         case .Help: return NSLocalizedString("Help",comment: "")
@@ -64,6 +66,7 @@ enum NavigationItem : String {
         case .Orders: return UIImage(named: "sidemenu_orders")
         case .Admins: return UIImage(named: "sidemenu_admins")
         case .Pages: return UIImage(named: "sidemenu_pages")
+        case .Bookmarks: return UIImage(named: "sidemenu_bookmarks")
         default: return nil
         }
     }

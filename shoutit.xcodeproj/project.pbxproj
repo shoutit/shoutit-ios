@@ -260,6 +260,8 @@
 		AE8635521CCDF7A00076293D /* WatermarkGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */; };
 		AE8DF0551D2183B1004FEE22 /* CreatePageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DF0541D2183B1004FEE22 /* CreatePageParams.swift */; };
 		AE9300321C6B6A65004ADBA5 /* PlacesGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */; };
+		AE9BB9131D242DAF00973541 /* BookmarksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9BB9121D242DAF00973541 /* BookmarksCollectionViewController.swift */; };
+		AE9BB9151D242E4E00973541 /* Bookmarks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */; };
 		AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599751C609DA100015AA3 /* MenuTableViewController.swift */; };
 		AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */; };
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
@@ -1229,6 +1231,11 @@
 		AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatermarkGenerator.swift; path = Other/WatermarkGenerator.swift; sourceTree = "<group>"; };
 		AE8DF0541D2183B1004FEE22 /* CreatePageParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageParams.swift; path = Networking/CreatePageParams.swift; sourceTree = "<group>"; };
 		AE9300311C6B6A65004ADBA5 /* PlacesGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesGeocoder.swift; path = Util/PlacesGeocoder.swift; sourceTree = "<group>"; };
+		AE9BB9121D242DAF00973541 /* BookmarksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarksCollectionViewController.swift; path = Controllers/BookmarksCollectionViewController.swift; sourceTree = "<group>"; };
+		AE9BB9161D242E4E00973541 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Bookmarks.storyboard; sourceTree = "<group>"; };
+		AE9BB9191D242E5A00973541 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Bookmarks.strings; sourceTree = "<group>"; };
+		AE9BB91B1D242E5E00973541 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Bookmarks.strings; sourceTree = "<group>"; };
+		AE9BB91D1D242E6000973541 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Bookmarks.strings; sourceTree = "<group>"; };
 		AEA599751C609DA100015AA3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = Controllers/MenuTableViewController.swift; sourceTree = "<group>"; };
 		AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleMenu.swift; path = Util/ToggleMenu.swift; sourceTree = "<group>"; };
 		AEA599831C60DDE000015AA3 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = View/MenuCell.swift; sourceTree = "<group>"; };
@@ -2590,6 +2597,7 @@
 				AE8351791C5F6E420055C71F /* RootController */,
 				AE83516A1C5F59270055C71F /* Tabbar */,
 				6027CFA11BE75B4A00124C28 /* common */,
+				AE9BB9141D242DB400973541 /* Bookmarks */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2653,6 +2661,7 @@
 				B211F0731D12C858008DEEBC /* Promote.storyboard */,
 				B2D029471D1C1FF800A29D8B /* Pages.storyboard */,
 				B2CA5C4E1D1D7DC9009E164E /* Admins.storyboard */,
+				AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2890,6 +2899,14 @@
 				AE8635511CCDF7A00076293D /* WatermarkGenerator.swift */,
 			);
 			name = WatermarkGenerator;
+			sourceTree = "<group>";
+		};
+		AE9BB9141D242DB400973541 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				AE9BB9121D242DAF00973541 /* BookmarksCollectionViewController.swift */,
+			);
+			name = Bookmarks;
 			sourceTree = "<group>";
 		};
 		AEA599741C609D7E00015AA3 /* Menu */ = {
@@ -5123,6 +5140,7 @@
 				B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */,
 				B2F7197C1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */,
+				AE9BB9151D242E4E00973541 /* Bookmarks.storyboard in Resources */,
 				B2D4417B1CB81704009782AF /* SeeAllShouts.storyboard in Resources */,
 				B2F719791D0EEEF5002C1D74 /* UIBarButtonItemArrowLeft@3x.png in Resources */,
 				B2D441E51CB81AC8009782AF /* SearchRecentsHeaderView.xib in Resources */,
@@ -5672,6 +5690,7 @@
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
 				B2F719BC1D0EF12F002C1D74 /* ContactValues.swift in Sources */,
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,
+				AE9BB9131D242DAF00973541 /* BookmarksCollectionViewController.swift in Sources */,
 				B212D12F1D0B136900E9E19D /* SHAppearanceBridge.m in Sources */,
 				B2F719D71D0EF2EC002C1D74 /* Mapper.swift in Sources */,
 				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
@@ -5946,6 +5965,18 @@
 				AE6654C61CD3846B0087E38D /* en */,
 			);
 			name = Menu.storyboard;
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE9BB9161D242E4E00973541 /* Base */,
+				AE9BB9191D242E5A00973541 /* en */,
+				AE9BB91B1D242E5E00973541 /* de */,
+				AE9BB91D1D242E6000973541 /* ar */,
+			);
+			name = Bookmarks.storyboard;
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
