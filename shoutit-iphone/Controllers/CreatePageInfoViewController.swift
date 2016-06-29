@@ -23,6 +23,8 @@ class CreatePageInfoViewController: UITableViewController {
     
     var viewModel : LoginWithEmailViewModel?
     
+    var locked : Bool = false
+    
     var preselectedCategory : PageCategory?
     var selectedCategory : PageCategory?
     weak var flowDelegate: FlowController?
@@ -55,6 +57,7 @@ class CreatePageInfoViewController: UITableViewController {
     
     func validFieldsAndCreatePageBySignupIfPossible() {
         guard let pageName = nameTextField.text else {
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
             return
         }
         
@@ -97,10 +100,12 @@ class CreatePageInfoViewController: UITableViewController {
     
     func validateAndCreatePageForLoggedUser() {
         guard let pageName = nameTextField.text else {
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
             return
         }
         
         guard case .Valid = ShoutitValidator.validateName(pageName) else {
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
             return
         }
         
@@ -108,10 +113,21 @@ class CreatePageInfoViewController: UITableViewController {
             self.showErrorMessage(NSLocalizedString("Please select category", comment: ""))
             return
         }
+        
+        if locked {
+            return
+        }
+        
+        locked = true
 
         let params = PageCreationParams(category: category, name: pageName)
         
+        self.showProgressHUD()
+        
         APIPageService.createPage(params).subscribe { [weak self] (event) in
+            self?.hideProgressHUD()
+            self?.locked = false
+            
             switch event {
             case .Next(let page):
                 self?.navigationController?.popToRootViewControllerAnimated(true)
